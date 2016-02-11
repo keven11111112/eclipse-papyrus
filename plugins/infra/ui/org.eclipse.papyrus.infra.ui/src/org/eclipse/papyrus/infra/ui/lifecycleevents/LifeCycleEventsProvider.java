@@ -19,6 +19,7 @@ import java.util.List;
  *
  *
  * @author cedric dumoulin
+ * @since 1.2
  *
  */
 public class LifeCycleEventsProvider implements ILifeCycleEventsProvider {

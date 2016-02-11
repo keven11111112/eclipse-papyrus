@@ -58,6 +58,9 @@ public abstract class DefaultConstraintEngine<E extends DisplayUnit> implements 
 
 	private final Map<Class<?>, Method> collectionConverters = new HashMap<>();
 
+	/**
+	 * @since 2.0
+	 */
 	protected DefaultConstraintEngine(Class<? extends E> displayUnitType) {
 		super();
 
@@ -75,6 +78,9 @@ public abstract class DefaultConstraintEngine<E extends DisplayUnit> implements 
 		}
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	@Override
 	public synchronized Set<E> getDisplayUnits(final Object selection) {
 		Collection<?> collection = asCollection(selection);

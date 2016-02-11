@@ -19,6 +19,8 @@ import java.util.Map;
 
 /**
  * The Class Context.
+ * 
+ * @since 2.0
  */
 public interface IContext {
 

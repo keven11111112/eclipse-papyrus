@@ -15,6 +15,7 @@ import org.eclipse.papyrus.infra.ui.extension.diagrameditor.PluggableEditorFacto
  * Service Factory to register {@link IPageIconsRegistry}.
  *
  * @author cedric dumoulin
+ * @since 1.2
  *
  */
 public class PageIconRegistryServiceFactory implements IServiceFactory {

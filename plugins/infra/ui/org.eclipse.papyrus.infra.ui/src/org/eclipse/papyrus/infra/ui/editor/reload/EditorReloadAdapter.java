@@ -16,6 +16,8 @@ package org.eclipse.papyrus.infra.ui.editor.reload;
 
 /**
  * Convenience superclass for selective implementation of editor reload call-backs.
+ * 
+ * @since 1.2
  */
 public class EditorReloadAdapter implements IEditorReloadListener {
 

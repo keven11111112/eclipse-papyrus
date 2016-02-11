@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
  * Expects an IStructuredSelection containing at least one EObject (It then relies on ServiceUtilsForEObject to retrieve the ServicesRegistry)
  *
  * @author Camille Letavernier
+ * @since 1.2
  */
 public class ServiceUtilsForSelection extends AbstractServiceUtils<ISelection> {
 

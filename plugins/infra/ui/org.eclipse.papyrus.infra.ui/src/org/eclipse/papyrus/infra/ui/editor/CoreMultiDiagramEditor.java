@@ -125,7 +125,7 @@ import com.google.common.collect.ImmutableSet;
  * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>
  *         Refactoring.
  *
- *         TODO : remove GMF dependency !
+ * @since 1.2
  */
 public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IGotoMarker, IEditingDomainProvider {
 

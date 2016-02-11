@@ -29,6 +29,7 @@ import org.eclipse.papyrus.infra.ui.extension.diagrameditor.PluggableEditorFacto
  * Service Factory to create the {@link DiSashModelManager} service.
  *
  * @author cedric dumoulin
+ * @since 1.2
  *
  */
 public class DiSashModelManagerServiceFactory implements IServiceFactory {

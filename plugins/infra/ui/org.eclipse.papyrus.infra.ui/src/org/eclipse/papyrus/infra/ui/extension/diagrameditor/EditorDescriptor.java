@@ -21,6 +21,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * to know about the nested diagram. It is fill by an extension.
  *
  * @author Cedric Dumoulin
+ * @since 1.2
  *
  */
 public class EditorDescriptor {

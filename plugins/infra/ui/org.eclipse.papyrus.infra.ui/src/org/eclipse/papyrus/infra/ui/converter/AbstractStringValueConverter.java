@@ -23,6 +23,7 @@ import org.eclipse.papyrus.infra.ui.messages.Messages;
  * Abstract class for String value Container
  *
  * @author VL222926
+ * @since 1.2
  *
  */
 public abstract class AbstractStringValueConverter implements IStringValueConverter {

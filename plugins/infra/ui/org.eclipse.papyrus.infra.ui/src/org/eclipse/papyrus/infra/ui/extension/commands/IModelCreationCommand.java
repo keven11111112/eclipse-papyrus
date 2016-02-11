@@ -17,6 +17,8 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 
 /**
  * The Interface IModelCreationCommand.
+ * 
+ * @since 1.2
  */
 public interface IModelCreationCommand {
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.infra.ui.feature" label="%featureName" provider-name="%featureProvider" version="1.2.0.qualifier">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.infra.ui.feature" label="%featureName" provider-name="%featureProvider" version="2.0.0.qualifier">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
@@ -22,6 +22,8 @@ http://www.eclipse.org/legal/epl-v10.html
    <plugin download-size="0" id="org.eclipse.papyrus.infra.ui.resources" install-size="0" unpack="false" version="0.0.0"/>
 
    <plugin download-size="0" id="org.eclipse.papyrus.infra.constraints.ui" install-size="0" unpack="false" version="0.0.0"/>
+   
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.types.editor" install-size="0" unpack="false" version="0.0.0"/>
 
    <plugin download-size="0" id="org.eclipse.papyrus.infra.types.ui" install-size="0" unpack="false" version="0.0.0"/>
 
@@ -29,6 +31,12 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin download-size="0" id="org.eclipse.papyrus.infra.services.edit.ui" install-size="0" unpack="false" version="0.0.0"/>
 
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.services.resourceloading.ui" install-size="0" unpack="false" version="0.0.0"/>
+
    <plugin download-size="0" id="org.eclipse.papyrus.infra.properties.ui" install-size="0" unpack="false" version="0.0.0"/>
+
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.editor.welcome" install-size="0" unpack="false" version="0.0.0"/>
+
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.editor.welcome.nattable" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

@@ -19,6 +19,8 @@ import org.osgi.framework.BundleContext;
 /**
  * A resolver that delegates to registered OSGi services in a <em>Chain of Command</em>
  * pattern to provide the first available service result.
+ * 
+ * @since 2.0
  */
 public class EObjectResolverService implements IEObjectResolver {
 	private final CompositeServiceTracker<IEObjectResolver> tracker;

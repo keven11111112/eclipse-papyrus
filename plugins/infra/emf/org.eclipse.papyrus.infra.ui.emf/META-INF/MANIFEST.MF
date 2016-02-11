@@ -7,26 +7,16 @@ Export-Package: org.eclipse.papyrus.infra.ui.emf.adapters,
  org.eclipse.papyrus.infra.ui.emf.utils,
  org.eclipse.papyrus.infra.ui.internal.emf;x-internal:=true,
  org.eclipse.papyrus.infra.ui.internal.emf.expressions;x-internal:=true,
- org.eclipse.papyrus.infra.ui.internal.emf.readonly.handlers
-Require-Bundle: org.eclipse.papyrus.infra.core.log;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="1.2.0",
- org.eclipse.emf.edit.ui;bundle-version="2.8.0",
- org.eclipse.emf.databinding;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.core;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.2.0",
- org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
- org.eclipse.core.expressions;bundle-version="3.4.400",
- org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.7.0",
- com.google.guava;bundle-version="11.0.0",
- org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.2.0",
- org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.core.sasheditor.di;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.emf;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.emf.readonly;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.onefile;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.ui;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.tools;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="1.2.0"
+ org.eclipse.papyrus.infra.ui.internal.emf.readonly.handlers;x-internal:=true
+Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
+ org.eclipse.emf.databinding;bundle-version="[1.3.0,2.0.0)";visibility:=reexport,
+ org.eclipse.core.databinding.property;bundle-version="[1.6.0,2.0.0)";visibility:=reexport,
+ org.eclipse.gmf.runtime.notation;bundle-version="[1.8.0,2.0.0)",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.emf.readonly;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.onefile;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.ui;bundle-version="[1.2.0,2.0.0)";visibility:=reexport
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier

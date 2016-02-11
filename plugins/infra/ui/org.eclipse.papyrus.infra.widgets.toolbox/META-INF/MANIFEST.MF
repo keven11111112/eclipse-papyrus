@@ -10,13 +10,12 @@ Export-Package: org.eclipse.papyrus.infra.widgets.toolbox,
  org.eclipse.papyrus.infra.widgets.toolbox.notification.utils,
  org.eclipse.papyrus.infra.widgets.toolbox.notification.view,
  org.eclipse.papyrus.infra.widgets.toolbox.utils
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.ui,
- org.eclipse.ui.forms;bundle-version="3.5.100",
- org.eclipse.draw2d;bundle-version="3.8.1",
- org.eclipse.papyrus.infra.core;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.ui;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.tools;bundle-version="1.2.0";visibility:=reexport
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)";visibility:=reexport,
+ org.eclipse.ui;bundle-version="[3.107.0,4.0.0)";visibility:=reexport,
+ org.eclipse.ui.forms;bundle-version="[3.7.0,4.0.0)";visibility:=reexport,
+ org.eclipse.draw2d;bundle-version="[3.10.0,4.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.ui;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.tools;bundle-version="[2.0.0,3.0.0)";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier

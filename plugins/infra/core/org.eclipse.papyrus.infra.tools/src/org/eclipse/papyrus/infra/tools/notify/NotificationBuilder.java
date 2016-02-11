@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.tools.spi.INotificationBuilderFactory;
  * the run method launch the message according to the value of the attributes
  *
  * @author tristan faure
+ * @since 2.0
  *
  */
 public class NotificationBuilder implements INotificationBuilder {

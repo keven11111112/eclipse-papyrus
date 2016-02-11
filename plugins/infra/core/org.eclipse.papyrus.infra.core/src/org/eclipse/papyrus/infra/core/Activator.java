@@ -76,6 +76,7 @@ public class Activator extends Plugin {
 	 * 
 	 * @return the service-registry tracker service, or {@code null} if none (probably
 	 *         because there is no UI and, therefore, no user to be editing any Papyrus models)
+	 * @since 2.0
 	 */
 	public IContextualServiceRegistryTracker getContextualServiceRegistryTracker() {
 		return serviceRegistryTrackerTracker.getService();

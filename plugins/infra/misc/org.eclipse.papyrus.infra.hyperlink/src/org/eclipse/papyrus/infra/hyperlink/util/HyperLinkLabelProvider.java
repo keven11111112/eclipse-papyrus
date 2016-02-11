@@ -156,6 +156,9 @@ public class HyperLinkLabelProvider extends LabelProvider {
 		return out;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public static ImageData convertAWTImageToSWT(java.awt.Image image) {
 		if (image == null) {
 			throw new IllegalArgumentException("Null 'image' argument.");
@@ -172,6 +175,9 @@ public class HyperLinkLabelProvider extends LabelProvider {
 		return convertToSWT(bi);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public static ImageData convertToSWT(BufferedImage bufferedImage) {
 		if (bufferedImage.getColorModel() instanceof DirectColorModel) {
 			DirectColorModel colorModel = (DirectColorModel) bufferedImage.getColorModel();
@@ -223,6 +229,9 @@ public class HyperLinkLabelProvider extends LabelProvider {
 		return null;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	protected InputStream getRawStreamFromURL(URL url) {
 		try {
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();

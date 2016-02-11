@@ -97,6 +97,9 @@ public class CompositeContentProvider implements ICompositeContentProvider {
 		contentProviders.add(treeContentProvider);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public List<ITreeContentProvider> getContentProviders() {
 		return contentProviders;
 	}

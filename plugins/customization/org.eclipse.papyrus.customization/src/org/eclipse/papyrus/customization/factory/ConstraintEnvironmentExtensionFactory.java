@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginPackage;
 import org.eclipse.papyrus.customization.model.customizationplugin.FileBasedCustomizableElement;
-import org.eclipse.papyrus.customization.plugin.PluginEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginEditor;
 
 
 public class ConstraintEnvironmentExtensionFactory extends FileBasedExtensionFactory {
@@ -25,10 +25,10 @@ public class ConstraintEnvironmentExtensionFactory extends FileBasedExtensionFac
 	}
 
 	@Override
-	public void addElement(CustomizableElement element, PluginEditor editor) {
+	public void addElement(CustomizableElement element, IPluginEditor editor) {
 		super.addElement(element, editor);
 
-		editor.getManifestEditor().addDependency("org.eclipse.papyrus.infra.constraints"); //$NON-NLS-1$
+		editor.addDependency("org.eclipse.papyrus.infra.constraints"); //$NON-NLS-1$
 	}
 
 	@Override

@@ -211,6 +211,8 @@ public abstract class AbstractConstraint implements Constraint {
 	 *
 	 * The default implementation matches a selection iff the constraint matches
 	 * each object of the selection.
+	 * 
+	 * @since 2.0
 	 */
 	@Override
 	public boolean match(Collection<?> selection) {
@@ -245,6 +247,9 @@ public abstract class AbstractConstraint implements Constraint {
 		return false;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	protected Object first(Collection<?> collection) {
 		return (collection instanceof List<?>)
 				? ((List<?>) collection).get(0)

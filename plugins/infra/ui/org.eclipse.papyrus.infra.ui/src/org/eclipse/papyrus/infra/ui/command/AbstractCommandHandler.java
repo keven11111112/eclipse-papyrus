@@ -44,6 +44,8 @@ import org.eclipse.ui.handlers.HandlerUtil;
  * (the command is now shown in menu if not executable).
  *
  * </pre>
+ * 
+ * @since 1.2
  */
 public abstract class AbstractCommandHandler extends AbstractPapyrusHandler {
 

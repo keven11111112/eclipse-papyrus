@@ -66,6 +66,8 @@ import com.google.common.collect.Lists;
 
 /**
  * Page for Papyrus outline when active nested editor is a GMF editor
+ * 
+ * @since 1.2
  */
 public class NestedEditorDelegatedOutlinePage extends Page implements IPapyrusContentOutlinePage, IPageLifeCycleEventsListener, IEditorReloadListener {
 
@@ -107,7 +109,7 @@ public class NestedEditorDelegatedOutlinePage extends Page implements IPapyrusCo
 	}
 
 	private void internalInit(IMultiDiagramEditor multiEditor) {
-		sashWindowsContainer = (ISashWindowsContainer) multiEditor.getAdapter(ISashWindowsContainer.class);
+		sashWindowsContainer = multiEditor.getAdapter(ISashWindowsContainer.class);
 		sashWindowsContainer.addPageLifeCycleListener(this);
 	}
 

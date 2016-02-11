@@ -64,6 +64,7 @@ public interface ILanguageService extends IAdaptable, ILanguageChangeListener {
 	 *            a {@link ModelSet} in which to find the instantiated languages
 	 * 
 	 * @return the languages instantiated in the specified resource
+	 * @since 2.0
 	 */
 	Set<ILanguage> getLanguages(ModelSet modelSet);
 
@@ -109,6 +110,7 @@ public interface ILanguageService extends IAdaptable, ILanguageChangeListener {
 	 * 
 	 * @return its language models, which may be empty if the model-set is not in a
 	 *         service registry that has a language service
+	 * @since 2.0
 	 */
 	static Collection<IModel> getLanguageModels(ModelSet modelSet) {
 		List<IModel> result;

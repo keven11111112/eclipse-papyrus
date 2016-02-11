@@ -22,6 +22,7 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  *
  * @author Cedric Dumoulin
  * @author Patrick Tessier
+ * @since 1.2
  *
  */
 public class ActionBarContributorDescriptor {

@@ -1,8 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.core.pluginexplorer
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core.log;bundle-version="1.2.0"
+Require-Bundle: org.eclipse.ui;bundle-version="[3.107.0,4.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.core.log;bundle-version="[1.2.0,2.0.0)";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier

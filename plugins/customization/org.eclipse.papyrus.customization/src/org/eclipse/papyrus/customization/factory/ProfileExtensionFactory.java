@@ -22,7 +22,7 @@ import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableE
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginPackage;
 import org.eclipse.papyrus.customization.model.customizationplugin.FileBasedCustomizableElement;
 import org.eclipse.papyrus.customization.model.customizationplugin.Profile;
-import org.eclipse.papyrus.customization.plugin.PluginEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginEditor;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.w3c.dom.Element;
 
@@ -34,14 +34,14 @@ public class ProfileExtensionFactory extends FileBasedExtensionFactory {
 	}
 
 	@Override
-	public void addElement(CustomizableElement element, PluginEditor editor) {
+	public void addElement(CustomizableElement element, IPluginEditor editor) {
 		super.addElement(element, editor);
 
-		editor.getManifestEditor().addDependency("org.eclipse.papyrus.uml.extensionpoints"); //$NON-NLS-1$
+		editor.addDependency("org.eclipse.papyrus.uml.extensionpoints"); //$NON-NLS-1$
 	}
 
 	@Override
-	protected Element createExtension(FileBasedCustomizableElement element, PluginEditor editor) {
+	protected Element createExtension(FileBasedCustomizableElement element, IPluginEditor editor) {
 		Element extension = super.createExtension(element, editor);
 		Profile profile = (Profile) element;
 
@@ -52,7 +52,7 @@ public class ProfileExtensionFactory extends FileBasedExtensionFactory {
 		}
 
 		if (profile.getIconpath() != null && !profile.getIconpath().trim().equals("")) {
-			//extension.setAttribute("iconpath", profile.getIconpath()); //$NON-NLS-1$
+			// extension.setAttribute("iconpath", profile.getIconpath()); //$NON-NLS-1$
 			copyIcon(profile.getIconpath(), editor);
 			extension.setAttribute("iconpath", getIconPath(profile.getIconpath())); //$NON-NLS-1$
 		}
@@ -64,7 +64,7 @@ public class ProfileExtensionFactory extends FileBasedExtensionFactory {
 		return extension;
 	}
 
-	protected void copyIcon(String path, PluginEditor editor) {
+	protected void copyIcon(String path, IPluginEditor editor) {
 		File sourceFile = FileUtil.getFile(path);
 		File targetFile = FileUtil.getWorkspaceFile("/" + editor.getProject().getName() + "/" + getIconPath(path)); //$NON-NLS-1$ //$NON-NLS-2$
 		if (!targetFile.getParentFile().exists()) {
@@ -77,7 +77,7 @@ public class ProfileExtensionFactory extends FileBasedExtensionFactory {
 			Activator.log.error(ex);
 		}
 
-		editor.getBuildEditor().addToBuild("icons/"); //$NON-NLS-1$
+		editor.addToBuild("icons/"); //$NON-NLS-1$
 	}
 
 	protected String getIconPath(String path) {

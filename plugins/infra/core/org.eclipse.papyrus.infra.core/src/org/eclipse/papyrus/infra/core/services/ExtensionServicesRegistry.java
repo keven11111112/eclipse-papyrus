@@ -61,6 +61,7 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 	 * 
 	 * @throws ServiceException
 	 *             on any problem in the loading of service registrations
+	 * @since 2.0
 	 */
 	public ExtensionServicesRegistry() throws ServiceException {
 		this(Activator.PLUGIN_ID);

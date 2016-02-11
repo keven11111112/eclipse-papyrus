@@ -25,6 +25,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
  * serviceFactory depends on {@link ISashWindowsContentProvider} service.
  *
  * @author cedric dumoulin
+ * @since 1.2
  *
  */
 public class PageMngrServiceFactory implements IServiceFactory {

@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 /**
  * The Class ApplyValueOnPreferenceKeyDialog display all the preference key and give all selected keys
+ * 
+ * @since 1.2
  */
 public abstract class AbstractApplyValueOnPreferenceKeyDialog extends AbstractPreferenceKeyDialog {
 

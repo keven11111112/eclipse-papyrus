@@ -18,6 +18,8 @@
  */
 package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl;
 
+import static org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage.RESOURCE;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -339,6 +341,7 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 1.2
 	 */
 	public EReference getFacet_AllTypedElements() {
 		return (EReference) facetEClass.getEStructuralFeatures().get(5);
@@ -349,6 +352,7 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 1.2
 	 */
 	public EReference getFacet_AllFacetOperations() {
 		return (EReference) facetEClass.getEStructuralFeatures().get(6);
@@ -359,6 +363,7 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 1.2
 	 */
 	public EReference getFacet_AllFacetElements() {
 		return (EReference) facetEClass.getEStructuralFeatures().get(7);

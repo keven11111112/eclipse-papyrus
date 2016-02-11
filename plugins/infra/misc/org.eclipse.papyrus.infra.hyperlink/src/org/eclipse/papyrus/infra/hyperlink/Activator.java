@@ -27,14 +27,29 @@ public class Activator extends AbstractUIPlugin {
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.hyperlink"; //$NON-NLS-1$
 
+	/**
+	 * @since 2.0
+	 */
 	public static final String IMG_LOUPE = "loupe"; //$NON-NLS-1$
 
+	/**
+	 * @since 2.0
+	 */
 	public static final String IMG_ARROW_UP = "arrowUp"; //$NON-NLS-1$
 
+	/**
+	 * @since 2.0
+	 */
 	public static final String IMG_ARROW_DOWN = "arrowDown"; //$NON-NLS-1$
 
+	/**
+	 * @since 2.0
+	 */
 	public static final String IMG_ARROW_LEFT = "arrowLeft"; //$NON-NLS-1$
 
+	/**
+	 * @since 2.0
+	 */
 	public static final String IMG_ARROW_RIGHT = "arrowRight"; //$NON-NLS-1$
 
 	// The shared instance
@@ -71,6 +86,9 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	@Override
 	protected void initializeImageRegistry(ImageRegistry reg) {
 		super.initializeImageRegistry(reg);
@@ -82,6 +100,9 @@ public class Activator extends AbstractUIPlugin {
 		reg.put(IMG_ARROW_RIGHT, imageDescriptorFromPlugin(PLUGIN_ID, "icons/ArrowRight_16x16.gif")); //$NON-NLS-1$
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public Image getIcon(String key) {
 		return getImageRegistry().get(key);
 	}

@@ -429,6 +429,9 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 		return false;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	@Override
 	public Iterable<? extends EObject> getRootElements() {
 		Iterable<? extends EObject> result;
@@ -452,6 +455,7 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	 * @param object
 	 *            an object in a resource
 	 * @return whether it is a root element
+	 * @since 2.0
 	 */
 	protected boolean isRootElement(EObject object) {
 		return object.eContainer() == null;

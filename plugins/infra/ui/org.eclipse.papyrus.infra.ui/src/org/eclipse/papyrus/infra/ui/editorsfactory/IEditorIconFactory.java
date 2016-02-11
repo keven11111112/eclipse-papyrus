@@ -17,6 +17,7 @@ import org.eclipse.swt.graphics.Image;
  *
  *
  * @author cedric dumoulin
+ * @since 1.2
  *
  */
 public interface IEditorIconFactory {

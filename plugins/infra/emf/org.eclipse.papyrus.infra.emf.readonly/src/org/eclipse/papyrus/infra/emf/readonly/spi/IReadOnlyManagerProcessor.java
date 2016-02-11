@@ -18,7 +18,7 @@ import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 
 /**
  * <p>
- * An OSGi service interface for hooks to process the a new {@link ReadOnlyManager}
+ * An OSGi service interface for hooks to process a new {@link ReadOnlyManager}
  * upon its creation. There is no special provision for notification of when the
  * manager is no longer being used.
  * </p>
@@ -26,6 +26,8 @@ import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
  * Any number of of implementations of this service may be registered; all will be
  * invoked for each read-only manager.
  * </p>
+ * 
+ * @since 2.0
  */
 @FunctionalInterface
 public interface IReadOnlyManagerProcessor {

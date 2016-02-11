@@ -64,6 +64,7 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	 * @see #getCurrentSelection()
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	protected PageRef currentSelection;
 
@@ -110,6 +111,7 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	 * @see #getChildren()
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	protected static final int[] CHILDREN_ESUBSETS = new int[] { DiPackage.TAB_FOLDER__CURRENT_SELECTION };
 
@@ -118,6 +120,7 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 1.2
 	 */
 	@Override
 	public PageRef getCurrentSelection() {
@@ -138,6 +141,7 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 1.2
 	 */
 	public PageRef basicGetCurrentSelection() {
 		return currentSelection;
@@ -148,6 +152,7 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 1.2
 	 */
 	@Override
 	public void setCurrentSelection(PageRef newCurrentSelection) {
@@ -198,6 +203,7 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated NOT
+	 * @since 1.2
 	 */
 	@Override
 	public void addPage(PageRef pageRef) {

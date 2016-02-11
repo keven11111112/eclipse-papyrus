@@ -11,6 +11,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
  *
  *
  * @author cedric dumoulin
+ * @since 1.2
  *
  */
 public interface IEditorFactory {

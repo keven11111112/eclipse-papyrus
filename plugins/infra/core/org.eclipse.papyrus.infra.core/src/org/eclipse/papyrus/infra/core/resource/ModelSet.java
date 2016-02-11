@@ -1300,6 +1300,7 @@ public class ModelSet extends ResourceSetImpl {
 	 *            an object to be persisted as a new root of a managed EMF {@code Resource}
 	 * 
 	 * @return the model that is best suited to persist the {@code object}, or {@code null} if none
+	 * @since 2.0
 	 */
 	public IEMFModel getModelToPersist(EObject object) {
 		return models.values().stream()

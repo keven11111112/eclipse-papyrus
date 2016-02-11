@@ -35,6 +35,8 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.E
  * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomFactory
  * @model kind="package"
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface CustomPackage extends EPackage {
 	/**

@@ -170,6 +170,7 @@ public class FacetItemProvider
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 1.2
 	 */
 	protected void addAllTypedElementsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
@@ -191,6 +192,7 @@ public class FacetItemProvider
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 1.2
 	 */
 	protected void addAllFacetOperationsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
@@ -212,6 +214,7 @@ public class FacetItemProvider
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 1.2
 	 */
 	protected void addAllFacetElementsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
@@ -283,8 +286,7 @@ public class FacetItemProvider
 	public String getText(Object object) {
 		String label = ((Facet) object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_Facet_type") //$NON-NLS-1$
-				:
-				getString("_UI_Facet_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+				: getString("_UI_Facet_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

@@ -39,6 +39,7 @@ public interface ConstraintEngine<E extends DisplayUnit> {
 	 *            or just a single object
 	 * 
 	 * @return the display units applicable to the selection
+	 * @since 2.0
 	 */
 	public Set<E> getDisplayUnits(Object selection);
 

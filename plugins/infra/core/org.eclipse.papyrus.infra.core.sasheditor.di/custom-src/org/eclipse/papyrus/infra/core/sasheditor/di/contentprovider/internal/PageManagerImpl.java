@@ -92,6 +92,9 @@ public class PageManagerImpl extends BasicPageManagerImpl {
 		return false;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	@Override
 	protected boolean isPage(EObject content) {
 		return Platform.getAdapterManager().getAdapter(content, IOpenable.class) != null;

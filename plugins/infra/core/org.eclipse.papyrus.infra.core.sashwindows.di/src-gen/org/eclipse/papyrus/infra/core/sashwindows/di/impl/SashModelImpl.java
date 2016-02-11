@@ -61,7 +61,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	private static final int SWT_VERTICAL = 1 << 9; // from SWT.VERTICAL
 	private static final int SWT_LEFT = 1 << 14; // from SWT.LEFT
 	private static final int SWT_RIGHT = 1 << 17; // from SWT.RIGHT
-	
+
 	/**
 	 * The cached value of the '{@link #getWindows() <em>Windows</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -92,6 +92,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 * @see #isRestoreActivePage()
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	protected static final boolean RESTORE_ACTIVE_PAGE_EDEFAULT = false;
 
@@ -103,6 +104,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 * @see #isRestoreActivePage()
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	protected boolean restoreActivePage = RESTORE_ACTIVE_PAGE_EDEFAULT;
 
@@ -191,6 +193,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 1.2
 	 */
 	@Override
 	public boolean isRestoreActivePage() {
@@ -202,6 +205,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 1.2
 	 */
 	@Override
 	public void setRestoreActivePage(boolean newRestoreActivePage) {
@@ -243,6 +247,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated NOT
+	 * @since 1.2
 	 */
 	@Override
 	public void addPage(TabFolder folder, PageRef pageRef) {

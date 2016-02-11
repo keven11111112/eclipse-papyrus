@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.emf.facet.query.ocl.metamodel" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="Re-exported Ecore bundle version previously was unbounded" id="927989779">
+            <message_arguments>
+                <message_argument value="1.2.0"/>
+                <message_argument value="org.eclipse.emf.ecore"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

@@ -357,6 +357,7 @@ public class ModelsReader extends ExtensionUtils {
 	 * @param modelSet
 	 *            a model-set
 	 * @return ones that are required
+	 * @since 2.0
 	 */
 	public Set<IModel> getRequiredModels(ModelSet modelSet) {
 		return getRequiredModels(modelSet, IModel.class);
@@ -370,6 +371,7 @@ public class ModelsReader extends ExtensionUtils {
 	 * @param modelType
 	 *            the specific type of models to request
 	 * @return ones that are required
+	 * @since 2.0
 	 */
 	public <M extends IModel> Set<M> getRequiredModels(ModelSet modelSet, Class<M> modelType) {
 		Set<String> requiredModelClasses = Stream.of(getExtensions())

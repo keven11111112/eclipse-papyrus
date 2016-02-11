@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,8 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Vincent Lorenzot (CEA-LIST) vincent.lorenzo@cea.fr
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.project;
 
@@ -17,6 +19,7 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -70,11 +73,16 @@ public class PluginProjectEditor extends ProjectEditor implements IPluginProject
 	}
 
 	/**
+	 * Initializes me as a slave to another editor, which maintains the canonical
+	 * project description.
 	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor#init()
-	 *
-	 *      {@inheritDoc}
+	 * @param master
+	 *            my master editor
 	 */
+	PluginProjectEditor(AbstractProjectEditor master) {
+		super(master);
+	}
+
 	@Override
 	public void init() {
 		this.pluginFile = getPlugin();
@@ -118,26 +126,16 @@ public class PluginProjectEditor extends ProjectEditor implements IPluginProject
 		super.createFiles(files);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.AbstractProjectEditor.plugin.AbstractEditor#exists()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public boolean exists() {
 		IFile plugin = getProject().getFile(PLUGIN_XML_FILE);
 		return plugin.exists() && super.exists();
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginProjectEditor#addExtension(java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public Element addExtension(final String extensionPoint) {
 		if (exists()) {
+			touch();
 			Element extension = this.pluginXML.createElement(EXTENSION);
 			extension.setAttribute(POINT, extensionPoint);
 			this.pluginRoot.appendChild(extension);
@@ -152,8 +150,9 @@ public class PluginProjectEditor extends ProjectEditor implements IPluginProject
 	 * @param extensionPoint
 	 *            the name of an extension point
 	 * @return
-	 *         the list of the registered extension with this extension point
+	 * 		the list of the registered extension with this extension point
 	 */
+	@Override
 	public List<Node> getExtensions(final String extensionPoint) {
 		if (exists()) {
 			NodeList nodes = this.pluginRoot.getChildNodes();
@@ -179,33 +178,22 @@ public class PluginProjectEditor extends ProjectEditor implements IPluginProject
 	}
 
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginProjectEditor#setAttribute(org.w3c.dom.Element, java.lang.String, java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void setAttribute(final Element element, final String attributeName, final String attributeValue) {
-		element.setAttribute(attributeName, attributeValue);
+		if (!Objects.equals(element.getAttribute(attributeName), attributeValue)) {
+			touch();
+			element.setAttribute(attributeName, attributeValue);
+		}
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginProjectEditor#addChild(org.w3c.dom.Element, java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public Element addChild(final Element element, final String childName) {
+		touch();
 		Element child = this.pluginXML.createElement(childName);
 		element.appendChild(child);
 		return child;
 	}
 
-	/**
-	 *
-	 * @return
-	 *         the plugin file if it exists
-	 */
 	private IFile getPlugin() {
 		IFile plugin = getProject().getFile(PLUGIN_XML_FILE);
 		if (plugin.exists()) {
@@ -216,13 +204,10 @@ public class PluginProjectEditor extends ProjectEditor implements IPluginProject
 
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor#save()
-	 *
-	 *      {@inheritDoc}
+	 * @since 2.0
 	 */
 	@Override
-	public void save() {
+	protected void doSave() {
 		if (exists()) {
 			try {
 				TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -247,15 +232,9 @@ public class PluginProjectEditor extends ProjectEditor implements IPluginProject
 				Activator.log.error(ex);
 			}
 		}
-		super.save();
+		super.doSave();
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor#getMissingNature()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public Set<String> getMissingNature() {
 		Set<String> natures = super.getMissingNature();
@@ -265,12 +244,6 @@ public class PluginProjectEditor extends ProjectEditor implements IPluginProject
 		return natures;
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor#getMissingFiles()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public Set<String> getMissingFiles() {
 		Set<String> files = super.getMissingFiles();
@@ -281,12 +254,6 @@ public class PluginProjectEditor extends ProjectEditor implements IPluginProject
 		return files;
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.file.AbstractFileEditor#getMissingBuildCommand()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public Set<String> getMissingBuildCommand() {
 		Set<String> commands = super.getMissingBuildCommand();
@@ -296,11 +263,7 @@ public class PluginProjectEditor extends ProjectEditor implements IPluginProject
 		return commands;
 	}
 
-	/**
-	 * @return The XML Document associated to this plugin.xml file
-	 * @see PluginProjectEditor#init()
-	 * @see PluginProjectEditor#create()
-	 */
+	@Override
 	public Document getDocument() {
 		return pluginXML;
 	}

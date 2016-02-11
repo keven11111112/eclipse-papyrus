@@ -23,6 +23,8 @@ import com.google.common.collect.Lists;
 /**
  * A convenient context object for {@link IEditorReloadListener}s to store in an {@link EditorReloadEvent} to capture and restore
  * the expansion and selection state of nodes in a tree viewer.
+ * 
+ * @since 1.2
  */
 public abstract class TreeViewerContext<T> extends SelectionContext<AbstractTreeViewer, T> {
 

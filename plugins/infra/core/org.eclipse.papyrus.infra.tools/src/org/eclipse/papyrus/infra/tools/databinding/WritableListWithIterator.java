@@ -31,6 +31,8 @@ import org.eclipse.core.databinding.observable.list.WritableList;
 /**
  * A specialization of the core Databindings {@link WritableList} providing
  * iterators that support modification.
+ * 
+ * @since 2.0
  */
 public class WritableListWithIterator<E> extends WritableList<E> implements ReferenceCountedObservable {
 

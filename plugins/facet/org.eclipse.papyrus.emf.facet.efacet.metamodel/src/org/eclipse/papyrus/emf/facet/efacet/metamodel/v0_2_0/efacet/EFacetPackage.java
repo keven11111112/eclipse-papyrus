@@ -40,6 +40,8 @@ import org.eclipse.emf.ecore.EcorePackage;
  * @model kind="package"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore validationDelegates='org.eclipse.ocl.ecore.OCL'"
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface EFacetPackage extends EPackage {
 	/**
@@ -1130,6 +1132,7 @@ public interface EFacetPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	int FACET__ALL_TYPED_ELEMENTS = EcorePackage.ECLASSIFIER_FEATURE_COUNT + 6;
 
@@ -1140,6 +1143,7 @@ public interface EFacetPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	int FACET__ALL_FACET_OPERATIONS = EcorePackage.ECLASSIFIER_FEATURE_COUNT + 7;
 
@@ -1150,6 +1154,7 @@ public interface EFacetPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	int FACET__ALL_FACET_ELEMENTS = EcorePackage.ECLASSIFIER_FEATURE_COUNT + 8;
 
@@ -1160,6 +1165,7 @@ public interface EFacetPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FACET_FEATURE_COUNT = EcorePackage.ECLASSIFIER_FEATURE_COUNT + 9;
 
@@ -1736,6 +1742,7 @@ public interface EFacetPackage extends EPackage {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getAllTypedElements()
 	 * @see #getFacet()
 	 * @generated
+	 * @since 1.2
 	 */
 	EReference getFacet_AllTypedElements();
 
@@ -1748,6 +1755,7 @@ public interface EFacetPackage extends EPackage {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getAllFacetOperations()
 	 * @see #getFacet()
 	 * @generated
+	 * @since 1.2
 	 */
 	EReference getFacet_AllFacetOperations();
 
@@ -1760,6 +1768,7 @@ public interface EFacetPackage extends EPackage {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getAllFacetElements()
 	 * @see #getFacet()
 	 * @generated
+	 * @since 1.2
 	 */
 	EReference getFacet_AllFacetElements();
 
@@ -2041,6 +2050,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 *
 		 * @generated
+		 * @since 1.2
 		 */
 		EReference FACET__ALL_TYPED_ELEMENTS = eINSTANCE.getFacet_AllTypedElements();
 
@@ -2050,6 +2060,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 *
 		 * @generated
+		 * @since 1.2
 		 */
 		EReference FACET__ALL_FACET_OPERATIONS = eINSTANCE.getFacet_AllFacetOperations();
 
@@ -2059,6 +2070,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 *
 		 * @generated
+		 * @since 1.2
 		 */
 		EReference FACET__ALL_FACET_ELEMENTS = eINSTANCE.getFacet_AllFacetElements();
 

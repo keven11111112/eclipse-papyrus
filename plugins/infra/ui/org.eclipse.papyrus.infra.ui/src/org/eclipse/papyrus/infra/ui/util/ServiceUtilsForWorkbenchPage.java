@@ -21,6 +21,7 @@ import org.eclipse.ui.IWorkbenchPage;
  * A ServiceUtils implementation for manipulating the Papyrus services from an IWorkbenchPage
  *
  * @author Camille Letavernier
+ * @since 1.2
  *
  */
 public class ServiceUtilsForWorkbenchPage extends AbstractServiceUtils<IWorkbenchPage> {
@@ -40,7 +41,7 @@ public class ServiceUtilsForWorkbenchPage extends AbstractServiceUtils<IWorkbenc
 		}
 
 		if (adaptable != null) {
-			ServicesRegistry registry = (ServicesRegistry) adaptable.getAdapter(ServicesRegistry.class);
+			ServicesRegistry registry = adaptable.getAdapter(ServicesRegistry.class);
 			if (registry != null) {
 				return registry;
 			}

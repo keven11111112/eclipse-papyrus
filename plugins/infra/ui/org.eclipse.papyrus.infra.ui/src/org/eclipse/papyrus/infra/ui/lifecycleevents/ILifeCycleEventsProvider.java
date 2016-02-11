@@ -8,6 +8,7 @@ package org.eclipse.papyrus.infra.ui.lifecycleevents;
  * lifecycle events. This interface is the "public" part of the {@link LifeCycleEventsProvider}.
  *
  * @author cedric dumoulin
+ * @since 1.2
  *
  */
 public interface ILifeCycleEventsProvider {

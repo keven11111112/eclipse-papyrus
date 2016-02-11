@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.papyrus.infra.ui.util.ICallableWithProgress;
+import org.eclipse.papyrus.infra.tools.util.IProgressCallable;
 import org.eclipse.papyrus.infra.ui.util.UIUtil;
 import org.eclipse.papyrus.uml.decoratormodel.helper.DecoratorModelUtils;
 import org.eclipse.papyrus.uml.decoratormodel.internal.resource.DecoratorModelCopier;
@@ -87,7 +87,7 @@ public class DuplicateDecoratorModelWizard extends Wizard {
 
 		if (!profileURIs.isEmpty() && (resourceURI != null)) {
 			try {
-				result = UIUtil.call(getContainer(), false, false, new ICallableWithProgress<Boolean>() {
+				result = UIUtil.call(getContainer(), false, false, new IProgressCallable<Boolean>() {
 
 					@Override
 					public Boolean call(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {

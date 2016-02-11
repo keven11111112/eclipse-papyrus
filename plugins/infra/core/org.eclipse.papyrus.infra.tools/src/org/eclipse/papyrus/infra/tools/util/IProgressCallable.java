@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
  * reporting to these callables.
  * 
  * @see IExecutorService
+ * @since 2.0
  */
 @FunctionalInterface
 public interface IProgressCallable<V> {

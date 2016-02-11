@@ -44,6 +44,7 @@ public interface Constraint {
 	 *            The selection to be tested against this constraint
 	 * @return
 	 * 		True if this constraint matches the given selection
+	 * @since 2.0
 	 */
 	public boolean match(Collection<?> selection);
 

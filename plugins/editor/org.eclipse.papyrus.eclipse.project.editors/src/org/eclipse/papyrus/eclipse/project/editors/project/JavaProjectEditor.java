@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.project;
@@ -76,15 +76,31 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 	 */
 	public JavaProjectEditor(final IProject project) throws CoreException {
 		super(project);
+
 		this.javaProject = JavaCore.create(project);
 		this.buildEditor = new BuildEditor(project);
 		this.classpathEditor = new ClasspathEditor(this.javaProject);
 	}
 
 	/**
+	 * Initializes me as a slave to another editor, which maintains the canonical
+	 * project description.
+	 *
+	 * @param master
+	 *            my master editor
+	 */
+	JavaProjectEditor(AbstractProjectEditor master) {
+		super(master);
+
+		this.javaProject = JavaCore.create(master.getProject());
+		this.buildEditor = new BuildEditor(master.getProject());
+		this.classpathEditor = new ClasspathEditor(this.javaProject);
+	}
+
+	/**
 	 *
 	 * @return
-	 *         <code>true</code> if the project is a java project :
+	 * 		<code>true</code> if the project is a java project :
 	 *
 	 */
 	@Override
@@ -92,12 +108,6 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 		return super.exists() && this.javaProject.exists();
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor#getMissingFiles()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public Set<String> getMissingFiles() {
 		Set<String> files = super.getMissingFiles();
@@ -106,12 +116,6 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 		return files;
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.AbstractProjectEditor#getMissingNature()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public Set<String> getMissingNature() {
 		Set<String> natures = super.getMissingNature();
@@ -123,8 +127,6 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		super.init();
 		this.classpathEditor.init();
 		this.buildEditor.init();
 	}
@@ -137,15 +139,19 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 	}
 
 
+	@Override
+	public boolean isDirty() {
+		return super.isDirty() || classpathEditor.isDirty() || buildEditor.isDirty();
+	}
 
 	/**
 	 * save the modification
-	 *
-	 * @throws Throwable
+	 * 
+	 * @since 2.0
 	 */
 	@Override
-	public void save() {
-		super.save();
+	protected void doSave() {
+		super.doSave();
 		try {
 			this.javaProject.save(new NullProgressMonitor(), true);
 		} catch (JavaModelException ex) {
@@ -155,12 +161,7 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 		this.buildEditor.save();
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IJavaProjectEditor#addJavaSourceFolder(java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void addJavaSourceFolder(final String path) {
 		if (exists()) {
 			// we add this source folder to the class path
@@ -173,54 +174,28 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 		}
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#registerSourceFolder(java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void registerSourceFolder(final String string) {
 		this.buildEditor.registerSourceFolder(string);
 
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#addToBuild(java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void addToBuild(final String path) {
 		this.buildEditor.addToBuild(path);
 
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#isRegistred(java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public boolean isRegisteredSourceFolder(final String path) {
 		return this.buildEditor.isRegisteredSourceFolder(path);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#getSourceFolders()
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public String[] getSourceFolders() {
 		return this.buildEditor.getSourceFolders();
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.file.AbstractFileEditor#getMissingBuildCommand()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public Set<String> getMissingBuildCommand() {
 		Set<String> buildCommand = super.getMissingBuildCommand();
@@ -230,43 +205,55 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 		return buildCommand;
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#removeFromBuild(java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void removeFromBuild(String path) {
 		buildEditor.removeFromBuild(path);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#getElementsInBuild()
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public String[] getElementsInBuild() {
 		return buildEditor.getElementsInBuild();
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#registerBinFolder(java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void registerBinFolder(String binFolder) {
 		buildEditor.registerBinFolder(binFolder);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IBuildEditor#isRegisteredBinFolder(java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public boolean isRegisteredBinFolder(String binFolder) {
 		return buildEditor.isRegisteredBinFolder(binFolder);
+	}
+
+	/**
+	 * @since 2.0
+	 */
+	@Override
+	public void addSourceFolderToClasspath(String folderPath) {
+		classpathEditor.addSourceFolderToClasspath(folderPath);
+	}
+
+	/**
+	 * @since 2.0
+	 */
+	@Override
+	public void addSourceFolderToClasspath(String srcPath, String binPath) {
+		classpathEditor.addSourceFolderToClasspath(srcPath, binPath);
+	}
+
+	/**
+	 * @since 2.0
+	 */
+	@Override
+	public boolean isSourceFolderRegistered(String folderPath) {
+		return classpathEditor.isSourceFolderRegistered(folderPath);
+	}
+
+	/**
+	 * @since 2.0
+	 */
+	@Override
+	public String[] getBinFolders() {
+		return classpathEditor.getBinFolders();
 	}
 }

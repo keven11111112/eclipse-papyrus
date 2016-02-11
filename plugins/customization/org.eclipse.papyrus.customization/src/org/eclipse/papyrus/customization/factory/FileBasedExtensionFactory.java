@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.customization.factory;
 
@@ -22,7 +24,7 @@ import java.io.OutputStream;
 import org.eclipse.papyrus.customization.Activator;
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customizationplugin.FileBasedCustomizableElement;
-import org.eclipse.papyrus.customization.plugin.PluginEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginEditor;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.w3c.dom.Element;
 
@@ -47,7 +49,7 @@ public abstract class FileBasedExtensionFactory implements ExtensionFactory {
 		this.name = name;
 	}
 
-	public void addElement(CustomizableElement element, PluginEditor editor) {
+	public void addElement(CustomizableElement element, IPluginEditor editor) {
 		createExtension((FileBasedCustomizableElement) element, editor);
 		try {
 			copyFile((FileBasedCustomizableElement) element, editor);
@@ -56,21 +58,21 @@ public abstract class FileBasedExtensionFactory implements ExtensionFactory {
 		}
 	}
 
-	protected Element createExtension(FileBasedCustomizableElement element, PluginEditor editor) {
+	protected Element createExtension(FileBasedCustomizableElement element, IPluginEditor editor) {
 		Element extensionElement = null;
 		if (element instanceof FileBasedCustomizableElement) {
-			Element extension = editor.getPluginEditor().addExtension(extensionPoint);
-			extensionElement = editor.getPluginEditor().addChild(extension, fileElementName);
-			editor.getPluginEditor().setAttribute(extensionElement, fileAttributeName, getTargetPath(element));
+			Element extension = editor.addExtension(extensionPoint);
+			extensionElement = editor.addChild(extension, fileElementName);
+			editor.setAttribute(extensionElement, fileAttributeName, getTargetPath(element));
 		}
 		return extensionElement;
 	}
 
-	protected void copyFile(FileBasedCustomizableElement element, PluginEditor editor) throws FileNotFoundException, IOException {
+	protected void copyFile(FileBasedCustomizableElement element, IPluginEditor editor) throws FileNotFoundException, IOException {
 		copyFile(element.getFile(), getTargetPath(element), editor);
 	}
 
-	protected void copyFile(String sourcePath, String targetPath, PluginEditor editor) throws FileNotFoundException, IOException {
+	protected void copyFile(String sourcePath, String targetPath, IPluginEditor editor) throws FileNotFoundException, IOException {
 		File sourceFile = FileUtil.getFile(sourcePath);
 		File targetFile = FileUtil.getWorkspaceFile("/" + editor.getProject().getName() + "/" + targetPath); //$NON-NLS-1$ //$NON-NLS-2$
 
@@ -88,7 +90,7 @@ public abstract class FileBasedExtensionFactory implements ExtensionFactory {
 
 		copy(new FileInputStream(sourceFile), targetFile);
 
-		editor.getBuildEditor().addToBuild(targetPath);
+		editor.addToBuild(targetPath);
 	}
 
 	protected String getTargetPath(FileBasedCustomizableElement element) {

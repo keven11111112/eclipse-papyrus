@@ -127,6 +127,7 @@ public class NotificationBuilder implements INotificationBuilder {
 	 *            , a runnable triggered when default action of the notification is selected
 	 *            The first action added is the default One
 	 * @return this
+	 * @since 1.2
 	 */
 	@SuppressWarnings("unchecked")
 	public NotificationBuilder addAction(NotificationRunnable runnable) {
@@ -223,6 +224,7 @@ public class NotificationBuilder implements INotificationBuilder {
 	 * @param type
 	 *            , the desired type
 	 * @return this
+	 * @since 1.2
 	 */
 	public NotificationBuilder setType(Type type) {
 		parameters.put(TYPE, type);

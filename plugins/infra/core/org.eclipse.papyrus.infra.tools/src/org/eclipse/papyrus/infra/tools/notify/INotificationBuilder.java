@@ -16,6 +16,8 @@ package org.eclipse.papyrus.infra.tools.notify;
 
 /**
  * Protocol of a pluggable notification builder.
+ * 
+ * @since 2.0
  */
 public interface INotificationBuilder {
 	/** asynchronous, determines if the message needs or not to be synchronous with the notification */

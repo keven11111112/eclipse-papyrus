@@ -109,6 +109,7 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 	 *            the uml element linked to the view
 	 * @param aview
 	 *            the aview of the uml element
+	 * @since 2.0
 	 */
 	public HyperLinkManagerShell(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, EModelElement semanticElement, EModelElement aview, HyperLinkHelperFactory hyperHelperFactory) {
 		super();

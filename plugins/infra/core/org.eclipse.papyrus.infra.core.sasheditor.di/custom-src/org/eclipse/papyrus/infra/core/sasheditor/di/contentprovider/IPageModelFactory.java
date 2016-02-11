@@ -30,6 +30,8 @@ public interface IPageModelFactory {
 
 	/**
 	 * Generic EditorID that represents the default editor associated to any page identifier
+	 * 
+	 * @since 2.0
 	 */
 	String DEFAULT_EDITOR = IPageManager.class.getCanonicalName() + ".Default";
 
@@ -50,6 +52,7 @@ public interface IPageModelFactory {
 	 *
 	 * @param pageIdentifier
 	 * @return
+	 * @since 2.0
 	 */
 	default IPageModel createIPageModel(Object pageIdentifier, String favoriteEditorID) {
 		return createIPageModel(pageIdentifier);
@@ -69,6 +72,7 @@ public interface IPageModelFactory {
 	 * @return A map of (ID -> Label) of the editors that can open the given page
 	 *
 	 * @see {@link IPageManager#DEFAULT_EDITOR}
+	 * @since 2.0
 	 */
 	default Map<String, String> getEditorIDsFor(Object pageIdentifier) {
 		return Collections.singletonMap(DEFAULT_EDITOR, "Default editor");

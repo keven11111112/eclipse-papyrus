@@ -17,7 +17,9 @@ package org.eclipse.papyrus.eclipse.project.editors.interfaces;
 /**
  *
  * Editor for the build.properties
- *
+ * 
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface IBuildEditor extends IFileEditor {
 
@@ -84,7 +86,7 @@ public interface IBuildEditor extends IFileEditor {
 	 * Returns all the registered source folders
 	 *
 	 * @return
-	 *         all the registered source folders
+	 * 		all the registered source folders
 	 */
 	public String[] getSourceFolders();
 
@@ -92,7 +94,7 @@ public interface IBuildEditor extends IFileEditor {
 	 * Returns all the files added to the build
 	 *
 	 * @return
-	 *         all the files added to the build
+	 * 		all the files added to the build
 	 */
 	public String[] getElementsInBuild();
 }

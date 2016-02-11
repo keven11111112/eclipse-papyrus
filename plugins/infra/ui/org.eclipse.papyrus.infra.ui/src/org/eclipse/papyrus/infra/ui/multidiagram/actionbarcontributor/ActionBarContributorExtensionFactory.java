@@ -25,6 +25,7 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  *
  * @author Cedric Dumoulin
  * @auhtor Patrick Tessier
+ * @since 1.2
  */
 public class ActionBarContributorExtensionFactory extends ExtensionUtils {
 

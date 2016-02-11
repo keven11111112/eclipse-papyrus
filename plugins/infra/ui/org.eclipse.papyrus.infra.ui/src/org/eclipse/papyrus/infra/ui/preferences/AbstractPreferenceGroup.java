@@ -26,6 +26,8 @@ import org.eclipse.swt.widgets.Composite;
 
 /**
  * The Class AbstractPreferenceGroup.
+ * 
+ * @since 1.2
  */
 public abstract class AbstractPreferenceGroup extends Composite {
 

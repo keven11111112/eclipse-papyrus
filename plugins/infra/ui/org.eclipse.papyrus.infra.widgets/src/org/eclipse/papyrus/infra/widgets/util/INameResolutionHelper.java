@@ -47,7 +47,7 @@ public interface INameResolutionHelper {
 	 *            The element to get the shortest qualified name.
 	 * @return
 	 * 		the shortest qualified to use for the element
-	 * @deprecated since 1.2.0
+	 * @deprecated since 2.0
 	 */
 	@Deprecated
 	public List<String> getShortestQualifiedNames(final Object element);
@@ -60,6 +60,8 @@ public interface INameResolutionHelper {
 	 * @param manageDuplicate
 	 *            Boolean to determinate if the duplicated shortest qualified names must be remove from the returned list.
 	 * @return the shortest qualified to use for the element
+	 * 
+	 * @since 2.0
 	 */
 	public List<String> getShortestQualifiedNames(final Object element, final boolean manageDuplicate);
 

@@ -16,7 +16,7 @@ import org.eclipse.papyrus.customization.messages.Messages;
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginPackage;
 import org.eclipse.papyrus.customization.model.customizationplugin.FileBasedCustomizableElement;
-import org.eclipse.papyrus.customization.plugin.PluginEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginEditor;
 
 
 public class PropertyViewEnvironmentExtensionFactory extends FileBasedExtensionFactory {
@@ -26,10 +26,10 @@ public class PropertyViewEnvironmentExtensionFactory extends FileBasedExtensionF
 	}
 
 	@Override
-	public void addElement(CustomizableElement element, PluginEditor editor) {
+	public void addElement(CustomizableElement element, IPluginEditor editor) {
 		super.addElement(element, editor);
 
-		editor.getManifestEditor().addDependency("org.eclipse.papyrus.infra.properties.ui"); //$NON-NLS-1$
+		editor.addDependency("org.eclipse.papyrus.infra.properties.ui"); //$NON-NLS-1$
 	}
 
 	@Override

@@ -22,6 +22,9 @@ import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.ui.extension.diagrameditor.EditorDescriptorExtensionFactory;
 import org.osgi.framework.Bundle;
 
+/**
+ * @since 1.2
+ */
 public class ContentOutlineRegistry {
 
 	/** ID of the editor extension (schema filename) */

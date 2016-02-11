@@ -28,6 +28,7 @@ import com.google.common.collect.Lists;
  *            the type of selection provider
  * @param <T>
  *            the type of token used to restore the selection state
+ * @since 1.2
  */
 public abstract class SelectionContext<V extends ISelectionProvider, T> {
 

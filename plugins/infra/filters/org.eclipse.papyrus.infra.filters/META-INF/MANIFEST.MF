@@ -1,9 +1,8 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;bundle-version="2.11.0";visibility:=reexport,
- org.eclipse.uml2.types;bundle-version="2.0.0";visibility:=reexport,
- org.eclipse.uml2.common;visibility:=reexport,
- org.eclipse.papyrus.infra.core.log;bundle-version="1.2.0"
+Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.11.0,3.0.0)";visibility:=reexport,
+ org.eclipse.uml2.types;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.uml2.common;bundle-version="[2.1.0,3.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.core.log;bundle-version="[1.2.0,2.0.0)"
 Export-Package: org.eclipse.papyrus.infra.filters,
  org.eclipse.papyrus.infra.filters.impl,
  org.eclipse.papyrus.infra.filters.internal;x-internal:=true,

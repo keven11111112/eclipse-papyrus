@@ -42,6 +42,7 @@ import org.eclipse.papyrus.infra.ui.lifecycleevents.LifeCycleEventsProvider;
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=430976
  *
  * @author Camille Letavernier
+ * @since 1.2
  */
 public class SaveLayoutBeforeClose implements IService {
 

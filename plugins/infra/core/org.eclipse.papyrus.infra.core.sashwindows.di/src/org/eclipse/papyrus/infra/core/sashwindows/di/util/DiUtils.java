@@ -224,6 +224,7 @@ public class DiUtils {
 	 *            the identifier of the page(s) to be removed
 	 *
 	 * @return the memoized close-all-pages command, or {@code null} if there are no pages to close
+	 * @since 1.2
 	 */
 	public static Command getMemoizedCloseAllPagesCommand(final TransactionalEditingDomain domain, final IPageManager pageManager, final Object pageIdentifier) {
 		Command result = null;

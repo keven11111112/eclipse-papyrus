@@ -15,6 +15,8 @@ package org.eclipse.papyrus.infra.tools.notify;
 
 /**
  * a runnable
+ * 
+ * @since 2.0
  *
  */
 public interface NotificationRunnable {

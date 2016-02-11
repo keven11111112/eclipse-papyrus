@@ -15,7 +15,10 @@ package org.eclipse.papyrus.infra.ui.extension.commands;
 
 import org.eclipse.emf.ecore.EObject;
 
-//FIXME  Refactoring Juno : I don't know how to migrate this code
+/**
+ * @since 1.2
+ */
+// FIXME Refactoring Juno : I don't know how to migrate this code
 public class PerspectiveContextDependence implements ICreationCondition {
 
 	protected String commandID = null;

@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.ui.Activator;
  *
  * @author Cedric Dumoulin
  * @author Patrick Tessier
+ * @since 1.2
  */
 public class EditorDescriptorExtensionFactory extends ExtensionUtils {
 

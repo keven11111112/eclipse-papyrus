@@ -23,6 +23,7 @@ import org.eclipse.papyrus.infra.ui.editorsfactory.IEditorFactory;
  * editor data.
  *
  * @author C�dric Dumoulin
+ * @since 1.2
  *
  */
 public interface IPluggableEditorFactory extends IEditorFactory {

@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.junit;bundle-version="4.10.0",
- org.eclipse.papyrus.junit.framework;bundle-version="1.2.0"
+ org.eclipse.papyrus.junit.framework;bundle-version="1.2.0",
+ org.eclipse.emf.ecore.xmi;bundle-version="[2.12.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider,
  org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal,
  org.eclipse.papyrus.infra.core.sasheditor.di.sashmodel.query,

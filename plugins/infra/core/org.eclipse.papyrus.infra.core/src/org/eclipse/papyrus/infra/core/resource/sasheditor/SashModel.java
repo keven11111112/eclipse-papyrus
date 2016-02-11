@@ -62,8 +62,17 @@ import com.google.common.base.Objects;
  */
 public class SashModel extends EMFLogicalModel implements IModel {
 
+	/**
+	 * @since 2.0
+	 */
 	public static final String PROPERTY_PRIVATE_RESOURCE_URI = "privateResourceURI"; //$NON-NLS-1$
+	/**
+	 * @since 2.0
+	 */
 	public static final String PROPERTY_SHARED_RESOURCE_URI = "sharedResourceURI"; //$NON-NLS-1$
+	/**
+	 * @since 2.0
+	 */
 	public static final String PROPERTY_LEGACY_MODE = "legacyMode"; //$NON-NLS-1$
 
 	private final PropertyChangeSupport bean = new PropertyChangeSupport(this);
@@ -293,6 +302,9 @@ public class SashModel extends EMFLogicalModel implements IModel {
 		return saveOptions;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public boolean isLegacyMode() {
 		if (legacyMode == null) {
 			legacyMode = false; // Assume not
@@ -329,6 +341,7 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	 * of whether that actually is the resource that currently stores the sash model.
 	 * 
 	 * @return the private sash-model resource URI
+	 * @since 2.0
 	 */
 	public URI getPrivateResourceURI() {
 		URI modelURI = (getModelManager() == null) ? null : getModelManager().getURIWithoutExtension();
@@ -341,6 +354,7 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	 * sash model.
 	 * 
 	 * @return the shared sash-model resource URI
+	 * @since 2.0
 	 */
 	public URI getSharedResourceURI() {
 		URI modelURI = (getModelManager() == null) ? null : getModelManager().getURIWithoutExtension();
@@ -361,18 +375,30 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	// Bean API
 	//
 
+	/**
+	 * @since 2.0
+	 */
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		bean.addPropertyChangeListener(listener);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
 		bean.removePropertyChangeListener(listener);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
 		bean.addPropertyChangeListener(propertyName, listener);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
 		bean.removePropertyChangeListener(propertyName, listener);
 	}

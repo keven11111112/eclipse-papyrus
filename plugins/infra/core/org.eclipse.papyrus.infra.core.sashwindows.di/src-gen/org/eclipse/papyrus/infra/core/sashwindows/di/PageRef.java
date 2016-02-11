@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getPageRef()
  * @model
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface PageRef extends EObject {
 
@@ -129,6 +130,7 @@ public interface PageRef extends EObject {
 	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getPageRef_FavoriteEditor()
 	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"
 	 * @generated
+	 * @since 1.2
 	 */
 	String getFavoriteEditor();
 
@@ -141,6 +143,7 @@ public interface PageRef extends EObject {
 	 *            the new value of the '<em>Favorite Editor</em>' attribute.
 	 * @see #getFavoriteEditor()
 	 * @generated
+	 * @since 1.2
 	 */
 	void setFavoriteEditor(String value);
 

@@ -19,6 +19,8 @@ import org.eclipse.jface.preference.IPreferencePage;
  * This singleton has bee created to manage the button ok and apply of preference page.
  * In the case of button ok pressed, the behavior of eclipse try of apply in the first preference page found.
  * Here each page has a specific behavior. So to store the preference, the active page is called
+ * 
+ * @since 1.2
  *
  */
 public class VisiblePageSingleton {

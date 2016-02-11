@@ -30,6 +30,8 @@ import com.google.common.collect.Lists;
 /**
  * A content-provider implementing the complete set of Papyrus-specific content-provider APIs that
  * delegates those APIs to another provider according to its actual capabilities.
+ * 
+ * @since 1.2
  */
 public class DelegatingPapyrusContentProvider implements IAdaptableContentProvider, IHierarchicContentProvider, IStaticContentProvider {
 

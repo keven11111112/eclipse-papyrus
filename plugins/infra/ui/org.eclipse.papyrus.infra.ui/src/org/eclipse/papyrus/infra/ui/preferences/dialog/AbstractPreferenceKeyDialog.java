@@ -31,6 +31,8 @@ import org.eclipse.swt.widgets.TableColumn;
 
 /**
  * The Class AbstractPreferenceKeyDialog display all preference key that are given in parameters
+ * 
+ * @since 1.2
  */
 public abstract class AbstractPreferenceKeyDialog extends org.eclipse.jface.dialogs.StatusDialog {
 

@@ -385,6 +385,9 @@ public abstract class ResourceAdapter extends AdapterImpl {
 			}
 		}
 
+		/**
+		 * @since 2.0
+		 */
 		protected void handleResourceSetChangeEvent0(ResourceSetChangeEvent event) {
 			try {
 				notifications = event.getNotifications();

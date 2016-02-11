@@ -23,6 +23,8 @@ import org.eclipse.ui.PlatformUI;
 /**
  *
  * a helper for the Editor
+ * 
+ * @since 1.2
  *
  */
 public class EditorHelper {
@@ -34,7 +36,7 @@ public class EditorHelper {
 	/**
 	 *
 	 * @return
-	 *         the current editor or <code>null</code> if not found
+	 * 		the current editor or <code>null</code> if not found
 	 */
 	public static final IEditorPart getCurrentEditor() {
 		final IWorkbench workbench = PlatformUI.getWorkbench();
@@ -53,7 +55,7 @@ public class EditorHelper {
 	/**
 	 *
 	 * @return
-	 *         the current active part or <code>null</code> if not found
+	 * 		the current active part or <code>null</code> if not found
 	 */
 	public static final IWorkbenchPart getActivePart() {
 		final IWorkbench workbench = PlatformUI.getWorkbench();

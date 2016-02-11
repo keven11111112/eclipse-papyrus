@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.uml2.types;visibility:=reexport,
- org.eclipse.uml2.uml
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)",
+ org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
+ org.eclipse.uml2.types;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.uml2.uml;bundle-version="[5.2.0,6.0.0)";visibility:=reexport
 Export-Package: org.eclipse.papyrus.uml.documentation.Documentation,
  org.eclipse.papyrus.uml.documentation.Documentation.impl,
  org.eclipse.papyrus.uml.documentation.Documentation.util,

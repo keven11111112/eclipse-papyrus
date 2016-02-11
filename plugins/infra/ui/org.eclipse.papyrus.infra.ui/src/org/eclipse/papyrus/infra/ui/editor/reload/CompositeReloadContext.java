@@ -26,6 +26,8 @@ import com.google.common.collect.Lists;
  * An {@linkplain EditorReloadEvent#putContext(Object) editor reload context} that composes other reload contexts.
  * This should be used whenever a {@linkplain IReloadContextProvider reload context provider} supplies multiple
  * reload contexts, to ensure that they are properly initialized by the reload system.
+ * 
+ * @since 1.2
  */
 public class CompositeReloadContext implements IDisposableReloadContext, IAdaptable {
 

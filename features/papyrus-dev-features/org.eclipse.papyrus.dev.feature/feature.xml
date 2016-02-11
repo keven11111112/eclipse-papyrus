@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.dev.feature"
       label="Papyrus Developer Tools (Incubation)"
-      version="1.2.0.qualifier"
+      version="2.0.0.qualifier"
       provider-name="Eclipse Modeling Project">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
@@ -190,20 +190,6 @@ http://www.eclipse.org/legal/epl-v10.html
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.papyrus.tests.framework"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.tests.framework.annotations"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.papyrus.tests.framework.edit"
          download-size="0"
          install-size="0"
@@ -217,13 +203,6 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"
          unpack="false"/>
 
-   <plugin
-         id="org.eclipse.upr.utp"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-         
    <plugin
          id="org.eclipse.papyrus.dev.types"
          download-size="0"

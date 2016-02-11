@@ -4,20 +4,17 @@ Export-Package: org.eclipse.papyrus.infra.services.controlmode,
  org.eclipse.papyrus.infra.services.controlmode.handler,
  org.eclipse.papyrus.infra.services.controlmode.participants,
  org.eclipse.papyrus.infra.services.controlmode.ui,
- org.eclipse.papyrus.infra.services.controlmode.util
-Require-Bundle: org.eclipse.emf.edit.ui,
- org.eclipse.papyrus.infra.core;bundle-version="1.2.0",
- org.eclipse.core.expressions;bundle-version="3.4.400",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.2.0",
- com.google.guava;bundle-version="11.0.0",
- org.eclipse.gmf.runtime.emf.type.core,
- org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.emf;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.emf.gmf;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.services.edit;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.core.sasheditor.di;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.ui;bundle-version="1.2.0"
+ org.eclipse.papyrus.infra.services.controlmode.util;uses:="org.eclipse.emf.ecore"
+Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.core;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.core.expressions;bundle-version="[3.5.0,4.0.0)";visibility:=reexport,
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="[1.9.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.emf;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.emf.gmf;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.ui;bundle-version="[1.2.0,2.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier

@@ -17,7 +17,7 @@ import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableE
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginPackage;
 import org.eclipse.papyrus.customization.model.customizationplugin.FileBasedCustomizableElement;
 import org.eclipse.papyrus.customization.model.customizationplugin.ModelTemplate;
-import org.eclipse.papyrus.customization.plugin.PluginEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginEditor;
 import org.w3c.dom.Element;
 
 
@@ -28,14 +28,14 @@ public class ModelTemplateExtensionFactory extends FileBasedExtensionFactory {
 	}
 
 	@Override
-	public void addElement(CustomizableElement element, PluginEditor editor) {
+	public void addElement(CustomizableElement element, IPluginEditor editor) {
 		super.addElement(element, editor);
 
-		editor.getManifestEditor().addDependency("org.eclipse.papyrus.uml.diagram.wizards"); //$NON-NLS-1$
+		editor.addDependency("org.eclipse.papyrus.uml.diagram.wizards"); //$NON-NLS-1$
 	}
 
 	@Override
-	protected Element createExtension(FileBasedCustomizableElement customizableElement, PluginEditor editor) {
+	protected Element createExtension(FileBasedCustomizableElement customizableElement, IPluginEditor editor) {
 		Element extension = super.createExtension(customizableElement, editor);
 		if (customizableElement instanceof ModelTemplate) {
 			ModelTemplate element = (ModelTemplate) customizableElement;

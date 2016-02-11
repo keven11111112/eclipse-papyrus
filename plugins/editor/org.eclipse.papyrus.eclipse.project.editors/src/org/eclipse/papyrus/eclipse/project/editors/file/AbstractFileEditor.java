@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.file;
@@ -33,6 +33,7 @@ public abstract class AbstractFileEditor implements IFileEditor {
 	/** the Eclipse Project */
 	private final IProject project;
 
+	private boolean dirty;
 
 	/**
 	 *
@@ -48,28 +49,19 @@ public abstract class AbstractFileEditor implements IFileEditor {
 	/**
 	 *
 	 * @return
-	 *         the eclipse project
+	 * 		the eclipse project
 	 */
+	@Override
 	public IProject getProject() {
 		return this.project;
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.AbstractProjectEditor#init()
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void init() {
-
+		// Pass
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IProjectEditor#getMissingFiles()
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public Set<String> getMissingFiles() {
 		return new HashSet<String>();
 	}
@@ -79,7 +71,7 @@ public abstract class AbstractFileEditor implements IFileEditor {
 	 * @param text
 	 *            the initial text
 	 * @return
-	 *         an input stream
+	 * 		an input stream
 	 */
 	protected InputStream getInputStream(final String text) {
 		if (text == null) {
@@ -99,24 +91,49 @@ public abstract class AbstractFileEditor implements IFileEditor {
 		return is;
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.AbstractProjectEditor.plugin.AbstractEditor#exists()
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public boolean exists() {
 		return getMissingFiles().size() == 0;
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IFileEditor#create()
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void create() {
 		createFiles(getMissingFiles());
 		init();
 	}
+
+	/**
+	 * @since 2.0
+	 */
+	@Override
+	public boolean isDirty() {
+		return dirty;
+	}
+
+	/**
+	 * Marks me {@linkplain #isDirty() dirty}.
+	 * 
+	 * @since 2.0
+	 */
+	protected final void touch() {
+		this.dirty = true;
+	}
+
+	/**
+	 * @since 2.0
+	 */
+	@Override
+	public final void save() {
+		if (isDirty()) {
+			doSave();
+			dirty = false;
+		}
+	}
+
+	/**
+	 * Implemented by subclasses to perform the save behaviour.
+	 * 
+	 * @since 2.0
+	 */
+	protected abstract void doSave();
 }

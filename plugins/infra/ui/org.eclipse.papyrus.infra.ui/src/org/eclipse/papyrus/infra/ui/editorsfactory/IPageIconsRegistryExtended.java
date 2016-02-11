@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.ui.editorsfactory;
  * Extends IPageIconsRegistry in order to offer a second methods which will give back the URL of the requested Icon
  *
  * @author "Arthur Daussy <a href="mailto:arthur.daussy@atos.net">arthur.daussy@atos.net</a>"
+ * @since 1.2
  *
  */
 public interface IPageIconsRegistryExtended extends IPageIconsRegistry {

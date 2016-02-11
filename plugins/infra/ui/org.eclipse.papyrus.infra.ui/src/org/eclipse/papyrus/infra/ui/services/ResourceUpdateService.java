@@ -57,6 +57,7 @@ import com.google.common.collect.Maps;
  * A Service to check workspace modifications on current resources
  *
  * @author Camille Letavernier
+ * @since 1.2
  *
  */
 public class ResourceUpdateService implements IService, IPartListener {

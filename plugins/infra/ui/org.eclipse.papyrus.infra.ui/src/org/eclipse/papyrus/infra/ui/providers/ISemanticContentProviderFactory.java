@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
  * 
  * @see IModel
  * @see #compose(ISemanticContentProviderFactory)
+ * @since 1.2
  */
 @FunctionalInterface
 public interface ISemanticContentProviderFactory {

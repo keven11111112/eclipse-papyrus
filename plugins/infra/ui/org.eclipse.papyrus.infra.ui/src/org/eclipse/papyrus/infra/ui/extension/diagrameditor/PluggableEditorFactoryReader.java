@@ -29,6 +29,8 @@ import org.eclipse.papyrus.infra.ui.editorsfactory.PageModelFactoryRegistry;
 /**
  * This reader is used to read PluggableEditorFactory from the Eclipse extension
  * declarations. It can be used to populate an {@link PageModelFactoryRegistry}.
+ * 
+ * @since 1.2
  */
 public class PluggableEditorFactoryReader {
 

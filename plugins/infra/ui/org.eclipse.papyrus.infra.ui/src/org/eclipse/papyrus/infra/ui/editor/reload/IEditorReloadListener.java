@@ -19,6 +19,8 @@ import org.eclipse.papyrus.infra.ui.editor.IReloadableEditor;
 
 /**
  * A protocol for notification of the phases of re-loading of an {@link IReloadableEditor}.
+ * 
+ * @since 1.2
  */
 public interface IEditorReloadListener extends EventListener {
 

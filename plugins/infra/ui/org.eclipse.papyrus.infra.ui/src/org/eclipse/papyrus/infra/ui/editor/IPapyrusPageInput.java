@@ -18,6 +18,7 @@ import org.eclipse.ui.IEditorInput;
  * An IEditorInput used to reference the page(s) to open
  *
  * @author Camille Letavernier
+ * @since 1.2
  *
  */
 public interface IPapyrusPageInput extends IEditorInput {

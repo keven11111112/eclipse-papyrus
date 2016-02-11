@@ -89,6 +89,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	 * @see #getFavoriteEditor()
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	protected static final String FAVORITE_EDITOR_EDEFAULT = null;
 
@@ -100,6 +101,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	 * @see #getFavoriteEditor()
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	protected String favoriteEditor = FAVORITE_EDITOR_EDEFAULT;
 
@@ -430,6 +432,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 1.2
 	 */
 	@Override
 	public String getFavoriteEditor() {
@@ -441,6 +444,7 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 1.2
 	 */
 	@Override
 	public void setFavoriteEditor(String newFavoriteEditor) {

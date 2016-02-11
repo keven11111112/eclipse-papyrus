@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
  * reporting to these runnables.
  * 
  * @see IExecutorService
+ * @since 2.0
  */
 @FunctionalInterface
 public interface IProgressRunnable {

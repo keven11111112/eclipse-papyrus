@@ -56,6 +56,7 @@ public abstract class AbstractServiceUtils<T> {
 	 * Papyrus editor or view is active (implying the model that the user is currently editing).
 	 * 
 	 * @return the contextual service registry, or {@code null} if none can be determined
+	 * @since 2.0
 	 */
 	protected ServicesRegistry getContextualServiceRegistry() {
 		IContextualServiceRegistryTracker tracker = Activator.getDefault().getContextualServiceRegistryTracker();
@@ -81,6 +82,7 @@ public abstract class AbstractServiceUtils<T> {
 	 * @return
 	 * @throws ServiceException
 	 *             If an error occurs while getting the requested service.
+	 * @since 2.0
 	 */
 	public IPageManager getIPageManager(T from) throws ServiceException {
 		return getServiceRegistry(from).getService(IPageManager.class);
@@ -167,6 +169,7 @@ public abstract class AbstractServiceUtils<T> {
 	 *            the Papyrus context from which to derive the registry
 	 * 
 	 * @return the Papyrus callable
+	 * @since 2.0
 	 */
 	public <V> IPapyrusCallable<V> callable(IProgressCallable<V> callable, T from) {
 		return new IPapyrusCallable<V>() {
@@ -200,6 +203,7 @@ public abstract class AbstractServiceUtils<T> {
 	 *            the Papyrus context from which to derive the registry
 	 * 
 	 * @return the Papyrus runnable
+	 * @since 2.0
 	 */
 	public IPapyrusRunnable runnable(IProgressRunnable runnable, T from) {
 		return new IPapyrusRunnable() {

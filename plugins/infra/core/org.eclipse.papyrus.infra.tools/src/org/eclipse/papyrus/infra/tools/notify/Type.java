@@ -22,6 +22,7 @@ package org.eclipse.papyrus.infra.tools.notify;
  * <li>QUESTION</i>
  *
  * @author tristan faure
+ * @since 2.0
  *
  */
 public enum Type {

@@ -31,6 +31,7 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  * editor in a MultiPageEditor environement.
  *
  * @author dumoulin
+ * @since 1.2
  *
  */
 public class CoreComposedActionBarContributor extends ComposedActionBarContributor implements IMultiPageEditorActionBarContributor {

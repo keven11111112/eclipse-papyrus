@@ -33,6 +33,7 @@ import org.eclipse.ui.commands.ICommandService;
  * This class provides useful methods to manipulate Eclipse Command
  *
  * @author vl222926
+ * @since 1.2
  *
  */
 public class EclipseCommandUtils {

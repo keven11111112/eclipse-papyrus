@@ -19,6 +19,7 @@ import org.eclipse.ui.part.FileEditorInput;
  * Basic implementation of {@link IPapyrusPageInput}
  *
  * @author Camille Letavernier
+ * @since 1.2
  */
 public class PapyrusPageInput extends FileEditorInput implements IPapyrusPageInput {
 

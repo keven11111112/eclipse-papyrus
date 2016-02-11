@@ -17,6 +17,8 @@ import org.eclipse.papyrus.infra.tools.Activator;
 
 /**
  * A simple notification that just emits a message to the log.
+ * 
+ * @since 2.0
  */
 public class LogNotification implements INotification {
 

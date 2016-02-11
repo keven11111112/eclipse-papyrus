@@ -51,6 +51,7 @@ import org.eclipse.emf.ecore.ETypedElement;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore validationDelegates='self.conformanceQuery.scope = self.extendedMetaClass'"
  *        annotation="org.eclipse.ocl.ecore.OCL body='not(self.container().oclCastAs(FacetSet).facets->exists(f|f.extendedMetaClass.container() <> self.extendedMetaClass.container() ))'"
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface Facet extends EClassifier, DocumentedElement {
 	/**
@@ -171,6 +172,7 @@ public interface Facet extends EClassifier, DocumentedElement {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_AllTypedElements()
 	 * @model changeable="false" derived="true"
 	 * @generated
+	 * @since 1.2
 	 */
 	EList<ETypedElement> getAllTypedElements();
 
@@ -188,6 +190,7 @@ public interface Facet extends EClassifier, DocumentedElement {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_AllFacetOperations()
 	 * @model changeable="false" derived="true"
 	 * @generated
+	 * @since 1.2
 	 */
 	EList<FacetOperation> getAllFacetOperations();
 
@@ -205,6 +208,7 @@ public interface Facet extends EClassifier, DocumentedElement {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_AllFacetElements()
 	 * @model changeable="false" derived="true"
 	 * @generated
+	 * @since 1.2
 	 */
 	EList<EStructuralFeature> getAllFacetElements();
 

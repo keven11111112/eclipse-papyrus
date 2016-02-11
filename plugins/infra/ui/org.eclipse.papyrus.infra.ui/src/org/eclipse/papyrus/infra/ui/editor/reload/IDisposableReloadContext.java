@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.ui.editor.reload;
  * Protocol implemented by {@link EditorReloadEvent} context objects that must be disposed when they are no longer needed.
  *
  * @see EditorReloadEvent#dispose()
+ * @since 1.2
  */
 public interface IDisposableReloadContext {
 

@@ -22,6 +22,8 @@ import org.eclipse.ui.IWorkbenchPart;
  * {@linkplain IMultiPageEditorPart multi-page editor} that are conditionally
  * closeable. That is, parts that may not always be permitted to be closed by the
  * user.
+ * 
+ * @since 2.0
  */
 public interface ICloseablePart {
 	/**

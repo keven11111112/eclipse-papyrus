@@ -144,6 +144,8 @@ public abstract class AbstractModel implements IModel {
 
 	/**
 	 * Starts my registered snippets.
+	 * 
+	 * @since 2.0
 	 */
 	protected void startSnippets() {
 		if (!snippetsStarted) {
@@ -154,6 +156,8 @@ public abstract class AbstractModel implements IModel {
 
 	/**
 	 * Stops my registered snippets.
+	 * 
+	 * @since 2.0
 	 */
 	protected void stopSnippets() {
 		if (snippetsStarted) {

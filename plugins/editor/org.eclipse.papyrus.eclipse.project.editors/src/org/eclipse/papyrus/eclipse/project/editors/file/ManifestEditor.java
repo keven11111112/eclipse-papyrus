@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.file;
 
@@ -15,19 +17,34 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.BiFunction;
+import java.util.function.Predicate;
 import java.util.jar.Attributes;
-import java.util.jar.Attributes.Name;
 import java.util.jar.Manifest;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.osgi.service.resolver.VersionRange;
 import org.eclipse.papyrus.eclipse.project.editors.Activator;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor;
 import org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor;
+import org.eclipse.pde.core.project.IBundleProjectService;
+import org.eclipse.pde.core.project.IPackageImportDescription;
+import org.eclipse.pde.core.project.IRequiredBundleDescription;
 
 public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 
@@ -40,7 +57,12 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 
 	private static final String COMMA = ","; //$NON-NLS-1$
 
-	private static final String ASSIGN = "="; //$NON-NLS-1$
+	// Pattern for splitting on commas that are not within version ranges
+	private static final String COMMA_SPLIT = ",(?!\\s*\\d)"; //$NON-NLS-1$
+
+	private static final String EQUALS = "="; //$NON-NLS-1$
+
+	private static final String ASSIGN = ":="; //$NON-NLS-1$
 
 	private static final String BUNDLE_SYMBOLIC_NAME = "Bundle-SymbolicName"; //$NON-NLS-1$
 
@@ -50,11 +72,17 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 
 	private static final String SINGLETON = "singleton:="; //$NON-NLS-1$
 
+	private static final String VISIBILITY = "visibility"; //$NON-NLS-1$
+
+	private static final String REEXPORT = "reexport"; //$NON-NLS-1$
+
+	private static final String VERSION = "version"; //$NON-NLS-1$
+
 	/** the manifest file */
 	private IFile manifestFile;
 
 	/** the manifest itself */
-	private Manifest manifest;
+	private Optional<Manifest> manifest = Optional.empty();
 
 	/**
 	 *
@@ -68,36 +96,18 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		super(project);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#initOk()
-	 *
-	 *      {@inheritDoc}
-	 */
 	public boolean initOk() {
-		return manifest != null && manifestFile != null;
+		return manifest.isPresent() && (manifestFile != null);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#addDependency(java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void addDependency(final String dependency) {
 		addDependency(dependency, null);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor#init()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public void init() {
-		super.init();
-		if (manifest != null && manifestFile != null) {
+		if (initOk()) {
 			return;
 		}
 		if (manifestFile == null) {
@@ -105,7 +115,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		}
 		if (manifestFile != null) {
 			try {
-				manifest = new Manifest(manifestFile.getContents());
+				manifest = Optional.of(new Manifest(manifestFile.getContents()));
 			} catch (final IOException e) {
 				Activator.log.error(e);
 				// assure that exception is not silently captured (for users not examining the error log)
@@ -119,124 +129,222 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#addDependency(java.lang.String, java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void addDependency(final String dependency, final String version) {
-		final Name rqBundle = new Name(REQUIRED_BUNDLE);
-		String requireBundle = manifest.getMainAttributes().getValue(rqBundle);
+		if (hasDependency(dependency)) {
+			// Easy case: Just update the version
+			Map<String, String> attributes = (version == null)
+					? null
+					: Collections.singletonMap("bundle-version", version); //$NON-NLS-1$
+			updateDependencies(dependency::equals, attributes, null);
+		} else {
+			// Only slightly more difficult case: Add the new dependency
+			String newDependency = (version == null)
+					? dependency
+					: String.format("%s;bundle-version=\"%s\"", dependency, version); //$NON-NLS-1$
 
-		// TODO : Improve the detection of existing dependency
-		// If a.b.c exists, then a.b cannot be added (Because it is already contained)
-		// Moreover, the Manifest allows newlines anywhere (Including in the
-		// middle of a word) : check if these newlines appear in this map,
-		// or if they have already been parsed. If the manifest value is copied as-is in the map,
-		// then we need to take care of newlines when parsing it
+			String requireBundle = getMainAttribute(REQUIRED_BUNDLE)
+					.map(rb -> rb + COMMA + newDependency)
+					.orElse(newDependency);
 
-		if (requireBundle == null) {
-			requireBundle = dependency;
-
-			if (version != null) {
-				requireBundle += SEMICOLON + "bundle-version=\"" + version + "\"";
-			}
-		} else if (!requireBundle.contains(dependency)) {
-			requireBundle += COMMA + dependency;
-			// TODO: Update version
+			setMainAttribute(REQUIRED_BUNDLE, requireBundle);
 		}
-
-		manifest.getMainAttributes().put(rqBundle, requireBundle);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#hasDependency(java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public boolean hasDependency(final String dependency) {
-		final Name rqBundle = new Name(REQUIRED_BUNDLE);
-		String requireBundle = manifest.getMainAttributes().getValue(rqBundle);
-		return requireBundle != null && requireBundle.contains(dependency);
+		// Match a dependency if it is
+		// (a) preceded by another dependency or the beginning of the input, AND
+		// (b) followed by another dependency or an attribute/directive or the end of the input
+		Pattern namePattern = Pattern.compile(String.format("(?<=^|,)\\Q%s\\E(?=,|;|$)", dependency)); //$NON-NLS-1$
+		return getMainAttribute(REQUIRED_BUNDLE)
+				.map(rb -> namePattern.matcher(rb).find()) // $NON-NLS-1$
+				.orElse(false);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	public boolean hasPackage(final String packageName, final String type) {
+		// Match a package if it is
+		// (a) preceded by another dependency or the beginning of the input, AND
+		// (b) followed by another dependency or an attribute/directive or the end of the input
+		Pattern namePattern = Pattern.compile(String.format("(?<=^|,)\\Q%s\\E(?=,|;|$)", packageName)); //$NON-NLS-1$
+		return getMainAttribute(type)
+				.map(ip -> namePattern.matcher(ip).find()) // $NON-NLS-1$
+				.orElse(false);
+	}
+
+	@Override
+	@Deprecated
 	public void setDependenciesVersion(final String dependencyPattern, final String newVersion) {
-		final Name rqBundle = new Name(REQUIRED_BUNDLE);
-		final String requireBundles = manifest.getMainAttributes().getValue(rqBundle);
-		final String[] bundles = requireBundles.split(COMMA);
-		String newRequiredBundles = ""; //$NON-NLS-1$
-		for (int ii = 0; ii < bundles.length; ii++) {// we iterate on the declared dependencies
-			final String currentDependency = bundles[ii];
-			final String[] dependencyValue = currentDependency.split(SEMICOLON);
-			if (dependencyValue[0].contains(dependencyPattern)) {
-				final String newBundleVersion = BUNDLE_VERSION + ASSIGN + '"' + newVersion + '"';
-				newRequiredBundles += dependencyValue[0] + SEMICOLON + newBundleVersion;
-				for (int i = 1; i < dependencyValue.length; i++) {
-					final String declaration = dependencyValue[i];
-					if (declaration.contains(BUNDLE_VERSION + ASSIGN)) {
-						// we ignore it
-					} else {
-						newRequiredBundles += SEMICOLON + dependencyValue[i];// we add the others declaration
+		updateDependencies(
+				name -> name.contains(dependencyPattern), // Update dependencies like this
+				Collections.singletonMap("bundle-version", newVersion), // To have this version attribute
+				null); // And don't change directives such as optionality
+	}
+
+	private void updateDependencies(Predicate<String> predicate, Map<String, String> attributes, Map<String, String> directives) {
+		updateHeader(REQUIRED_BUNDLE, predicate, attributes, directives);
+	}
+
+	private void updatePackages(Predicate<String> predicate, String type, Map<String, String> attributes, Map<String, String> directives) {
+		updateHeader(type, predicate, attributes, directives);
+	}
+
+	private void updateHeader(String headerName, Predicate<String> predicate, Map<String, String> attributes, Map<String, String> directives) {
+		// Match an attribute or directive, capturing:
+		// 1 - the attribute/directive name
+		// 2 - the equality/assignment operator
+		// 3 - the quotation delimiter, if any
+		Pattern attributeOrDirective = Pattern.compile("([^:]+)(:?=)([\"']?).*\\3");
+
+		transformHeader(headerName, predicate, (dependency, attrs) -> {
+			StringBuilder result = new StringBuilder();
+
+			Map<String, String> newAttributes = (attributes == null) ? Collections.emptyMap() : new HashMap<>(attributes);
+			Map<String, String> newDirectives = (directives == null) ? Collections.emptyMap() : new HashMap<>(directives);
+			result.append(dependency);
+
+			for (String next : attrs) {
+				Matcher m = attributeOrDirective.matcher(next);
+
+				if (!m.matches()) {
+					// Unexpected formulation. Just append it as is
+					result.append(SEMICOLON).append(next);
+				} else {
+					String name = m.group(1);
+					boolean explicit = newAttributes.containsKey(name) || newDirectives.containsKey(name);
+					String value = newAttributes.remove(name);
+					if (value == null) {
+						value = newDirectives.remove(name);
 					}
+
+					if (value != null) {
+						// Replace this attribute or directive
+						result.append(SEMICOLON);
+						result.append(name).append(m.group(2));
+						result.append(m.group(3)).append(value).append(m.group(3));
+					} else if (!explicit) {
+						// Just append it as is
+						result.append(SEMICOLON).append(m.group());
+					} // else an explicit null value: remove the attribute or directive
 				}
-			} else {
-				newRequiredBundles += currentDependency;// we copy the existing declaration
 			}
-			if (ii < bundles.length - 1) {
-				newRequiredBundles += COMMA;
+
+			// Left-overs
+			for (Map.Entry<String, String> next : newAttributes.entrySet()) {
+				result.append(SEMICOLON);
+				result.append(next.getKey()).append(EQUALS).append('"').append(next.getValue()).append('"');
+			}
+			for (Map.Entry<String, String> next : newDirectives.entrySet()) {
+				result.append(SEMICOLON);
+				result.append(next.getKey()).append(ASSIGN).append(next.getValue());
+			}
+
+			return result.toString();
+		});
+	}
+
+	private void transformDependencies(Predicate<String> predicate, BiFunction<String, List<String>, String> transformation) {
+		transformHeader(REQUIRED_BUNDLE, predicate, transformation);
+	}
+
+	private void transformImportedPackages(Predicate<String> predicate, BiFunction<String, List<String>, String> transformation) {
+		transformHeader(IMPORT_PACKAGE, predicate, transformation);
+	}
+
+	private void transformHeader(String headerName, Predicate<String> predicate, BiFunction<String, List<String>, String> transformation) {
+		final String entryList = getMainAttribute(headerName).orElse(""); //$NON-NLS-1$
+		final String[] entries = entryList.isEmpty() ? new String[0] : entryList.split(COMMA_SPLIT);
+		StringBuilder newEntryList = new StringBuilder();
+		for (int i = 0; i < entries.length; i++) {// we iterate on the declared dependencies
+			String entry = entries[i];
+			List<String> parts = Arrays.asList(entry.split(SEMICOLON));
+			String dependencyName = parts.get(0);
+
+			if (!predicate.test(dependencyName)) {
+				// Retain this one as is
+				if (newEntryList.length() > 0) {
+					newEntryList.append(COMMA);
+				}
+				newEntryList.append(entry);
+			} else {
+				String transformed = transformation.apply(dependencyName, parts.subList(1, parts.size()));
+				if (transformed != null) {
+					if (newEntryList.length() > 0) {
+						newEntryList.append(COMMA);
+					}
+					newEntryList.append(transformed);
+				}
 			}
 		}
-		setValue(REQUIRED_BUNDLE, newRequiredBundles);
 
+		setMainAttribute(headerName, (newEntryList.length() == 0) ? null : newEntryList.toString());
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setValue(java.lang.String, java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void setValue(final String key, final String value) {
-		setValue(key, "", value); //$NON-NLS-1$
+		setMainAttribute(key, value);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setValue(java.lang.String, java.lang.String, java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void setValue(final String key, final String name, final String value) {
-		manifest.getMainAttributes().putValue(key, value);
-		// this.manifest.getAttributes(key).put(name, value);
+		setAttribute(key, name, value);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#removeValue(java.lang.String, java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
-	public void removeValue(final String key, final String value) {
-
+	void setMainAttribute(String name, String value) {
+		if (value == null) {
+			removeMainAttribute(name);
+		} else {
+			manifest.map(Manifest::getMainAttributes).ifPresent(attrs -> {
+				if (!Objects.equals(attrs.getValue(name), value)) {
+					touch();
+					attrs.putValue(name, value);
+				}
+			});
+		}
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#removeValue(java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	void setAttribute(String section, String name, String value) {
+		if (value == null) {
+			removeAttribute(section, name);
+		} else {
+			manifest.map(m -> m.getAttributes(section)).ifPresent(attrs -> {
+				if (!Objects.equals(attrs.getValue(name), value)) {
+					touch();
+					attrs.putValue(name, value);
+				}
+			});
+		}
+	}
+
+	@Override
+	public void removeValue(final String section, final String name) {
+		removeAttribute(section, name);
+	}
+
+	@Override
 	public void removeValue(final String key) {
-		manifest.getAttributes(key).remove(key);
+		removeMainAttribute(key);
 	}
 
-	/**
-	 *
-	 * @return
-	 */
+	void removeMainAttribute(String name) {
+		manifest.map(m -> m.getMainAttributes()).ifPresent(attrs -> {
+			if (attrs.remove(new Attributes.Name(name)) != null) {
+				touch();
+			}
+		});
+	}
+
+	void removeAttribute(String section, String name) {
+		manifest.map(m -> m.getAttributes(section)).ifPresent(attrs -> {
+			if (attrs.remove(new Attributes.Name(name)) != null) {
+				touch();
+			}
+		});
+	}
+
 	private IFile getManifestFile() {
 		final IFile manifest = getProject().getFile("META-INF/MANIFEST.MF"); //$NON-NLS-1$
 		if (manifest.exists()) {
@@ -245,44 +353,36 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		return null;
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.AbstractProjectEditor#exists()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public boolean exists() {
 		return super.exists() && getManifestFile() != null && getSymbolicBundleName() != null && getBundleVersion() != null;
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor#save()
-	 *
-	 *      {@inheritDoc}
+	 * @since 2.0
 	 */
 	@Override
-	public void save() {
+	protected void doSave() {
+		if (manifest.isPresent()) {
+			final ByteArrayOutputStream os = new ByteArrayOutputStream();
 
-		final ByteArrayOutputStream os = new ByteArrayOutputStream();
+			try {
+				manifest.get().write(os);
 
-		try {
-			manifest.write(os);
+				final StringReader reader = new StringReader(format(os.toString("UTF-8"))); //$NON-NLS-1$
+				manifestFile.setContents(new InputStream() {
 
-			final StringReader reader = new StringReader(format(os.toString("UTF-8"))); //$NON-NLS-1$
-			manifestFile.setContents(new InputStream() {
+					@Override
+					public int read() throws IOException {
+						return reader.read();
+					}
+				}, true, true, null);
 
-				@Override
-				public int read() throws IOException {
-					return reader.read();
-				}
-			}, true, true, null);
-
-		} catch (final IOException ex) {
-			Activator.log.error(ex);
-		} catch (final CoreException ex) {
-			Activator.log.error(ex);
+			} catch (final IOException ex) {
+				Activator.log.error(ex);
+			} catch (final CoreException ex) {
+				Activator.log.error(ex);
+			}
 		}
 	}
 
@@ -297,8 +397,8 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		for (String line : lines) {
 			non72safe += line;
 		}
-		// 2. split lines on comma
-		lines = non72safe.split(COMMA);
+		// 2. split lines on comma (but not within version ranges)
+		lines = non72safe.split(",(?!\\s*\\d)");
 		String newText = ""; //$NON-NLS-1$
 		for (int i = 0; i < lines.length; i++) {
 			newText += lines[i].trim();
@@ -319,19 +419,13 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		return files;
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor#createFiles(java.util.Set)
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public void createFiles(final Set<String> files) {
 		if (files.contains(MANIFEST_PATH)) {
 			manifestFile = getProject().getFile(MANIFEST_PATH);
 			if (!manifestFile.exists()) {
 				try {
-					final String input = "Manifest-Version: 1.0\n"; //without the "/n", it doesn't work!!!!! //$NON-NLS-1$
+					final String input = "Manifest-Version: 1.0\n"; // without the "/n", it doesn't work!!!!! //$NON-NLS-1$
 					if (!manifestFile.getParent().exists()) {
 						final IContainer parent = manifestFile.getParent();
 						if (parent instanceof IFolder) {
@@ -354,162 +448,106 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 					Activator.log.error(ex);
 				}
 			}
-		}
 
-		try {
-			manifest = new Manifest(manifestFile.getContents());
-		} catch (IOException e) {
-			Activator.log.error(e);
-		} catch (CoreException e) {
-			Activator.log.error(e);
-		}
+			try (InputStream contents = manifestFile.getContents()) {
+				manifest = Optional.of(new Manifest(contents));
+			} catch (IOException e) {
+				Activator.log.error(e);
+			} catch (CoreException e) {
+				Activator.log.error(e);
+			}
 
-		if (getSymbolicBundleName() == null) {
-			setSymbolicBundleName(getProject().getName());
-		}
+			if (getSymbolicBundleName() == null) {
+				setSymbolicBundleName(getProject().getName());
+			}
 
-		if (getBundleVersion() == null) {
-			setBundleVersion("0.0.1"); //$NON-NLS-1$
+			if (getBundleVersion() == null) {
+				setBundleVersion("0.0.1"); //$NON-NLS-1$
+			}
 		}
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setSymbolicBundleName(java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void setSymbolicBundleName(String newName) {
 		if (newName == null) {
 			newName = "noName"; //$NON-NLS-1$
 		}
-		final Name symbolicName = new Name(BUNDLE_SYMBOLIC_NAME);
-		manifest.getMainAttributes().put(symbolicName, newName);
+		setMainAttribute(BUNDLE_SYMBOLIC_NAME, newName);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#getSymbolicBundleName()
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public String getSymbolicBundleName() {
-		if (manifest != null) {
-			final Name symbolicName = new Name(BUNDLE_SYMBOLIC_NAME);
-			final String name = manifest.getMainAttributes().getValue(symbolicName);
-
-			if (name != null) {
-				int semiColon = name.indexOf(SEMICOLON);
-				return semiColon != -1 ? name.substring(0, semiColon) : name;
-			}
-		}
-
-		return null;
+		// Without the <String> hint, javac balks but JDT does not
+		return getMainAttribute(BUNDLE_SYMBOLIC_NAME)
+				.<String> map(name -> {
+					int semiColon = name.indexOf(SEMICOLON);
+					return semiColon >= 0 ? name.substring(0, semiColon) : name;
+				}).orElse(null);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#getBundleVersion()
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public String getBundleVersion() {
-		if (manifest != null) {
-			final Name symbolicName = new Name(BUNDLE_VERSION);
-			final String version = manifest.getMainAttributes().getValue(symbolicName);
-			return version;
-		}
-		return null;
+		return getMainAttribute(BUNDLE_VERSION).orElse(null);
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setBundleVersion(java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void setBundleVersion(final String version) {
-		if (manifest != null) {
-			final Name bundleVersion = new Name(BUNDLE_VERSION);
-			if (version == null) {
-				manifest.getMainAttributes().remove(bundleVersion);
-			} else {
-				manifest.getMainAttributes().put(bundleVersion, version);
-			}
-		}
+		setMainAttribute(BUNDLE_VERSION, version);
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#getBundleVendor()
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public String getBundleVendor() {
-		if (manifest != null) {
-			final Name bundleVendor = new Name(BUNDLE_VENDOR);
-			return manifest.getMainAttributes().getValue(bundleVendor);
-		}
-		return null;
+		return getMainAttribute(BUNDLE_VENDOR).orElse(null);
+	}
+
+	@Override
+	public void setBundleVendor(final String vendor) {
+		setMainAttribute(BUNDLE_VENDOR, vendor);
+	}
+
+	@Override
+	public String getValue(final String name) {
+		return getMainAttribute(name).orElse(null);
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setBundleVendor(java.lang.String)
-	 *
-	 *      {@inheritDoc}
+	 * @since 2.0
 	 */
-	public void setBundleVendor(final String vendor) {
-		if (manifest != null) {
-			final Name bundleVendor = new Name(BUNDLE_VENDOR);
-			if (vendor == null) {
-				manifest.getMainAttributes().remove(bundleVendor);
-			} else {
-				manifest.getMainAttributes().put(bundleVendor, vendor);
-			}
-		}
+	@Override
+	public String getValue(String key, String name) {
+		return getAttribute(key, name).orElse(null);
 	}
 
-	public String getValue(final String key) {
-		if (manifest != null) {
-			String value = manifest.getMainAttributes().getValue(key);
-			if (value == null) {
-				final Attributes attributes = manifest.getAttributes(key);
-				if (attributes != null) {
-					value = attributes.getValue(key);
-				}
-			}
-			return value;
-		}
-		return null;
+	Optional<String> getMainAttribute(String name) {
+		return manifest.map(Manifest::getMainAttributes).map(attrs -> attrs.getValue(name));
 	}
 
+	Optional<String> getAttribute(String section, String name) {
+		return manifest.map(m -> m.getAttributes(section)).map(attrs -> attrs.getValue(name));
+	}
+
+	@Override
 	public String getBundleName() {
-		if (manifest != null) {
-			final Name bundleName = new Name(BUNDLE_NAME);
-			final String name = manifest.getMainAttributes().getValue(bundleName);
-			return name;
-		}
-		return null;
+		return getMainAttribute(BUNDLE_NAME).orElse(null);
 	}
 
+	@Override
 	public void setBundleName(String newName) {
 		if (newName == null) {
 			newName = "noName"; //$NON-NLS-1$
 		}
-		final Name bundleNameName = new Name(BUNDLE_NAME);
-		manifest.getMainAttributes().put(bundleNameName, newName);
+		setMainAttribute(BUNDLE_NAME, newName);
 	}
 
+	@Override
 	public String getBundleLocalization() {
-		if (manifest != null) {
-			final Name bundleLocalization = new Name(BUNDLE_LOCALIZATION);
-			final String name = manifest.getMainAttributes().getValue(bundleLocalization);
-			return name;
-		}
-		return null;
+		return getMainAttribute(BUNDLE_LOCALIZATION).orElse(null);
 	}
 
+	@Override
 	public void setSingleton(final boolean singleton) {
-		String value = manifest.getMainAttributes().getValue(BUNDLE_SYMBOLIC_NAME);
-		final String[] directives = value.split(SEMICOLON);
+		String value = getMainAttribute(BUNDLE_SYMBOLIC_NAME).orElse(""); //$NON-NLS-1$
+		final String[] directives = value.isEmpty() ? new String[0] : value.split(SEMICOLON);
 
 		if (directives.length == 0) {
 			return; // This should not happen if the Manifest is well-formed
@@ -529,18 +567,24 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 			}
 		}
 
-		manifest.getMainAttributes().putValue(BUNDLE_SYMBOLIC_NAME, value);
+		setMainAttribute(BUNDLE_SYMBOLIC_NAME, value);
 	}
 
 	/**
 	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#addImportPackage(java.lang.String)
 	 *
 	 * @param packageName
+	 * @since 2.0
 	 */
+	@Override
 	public void addImportPackage(String packageName) {
 		addImportPackage(packageName, null);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public void addImportPackage(String packageName, String version) {
 		addPackage(packageName, IMPORT_PACKAGE, version);
 	}
@@ -549,7 +593,9 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#addExportPackage(java.lang.String)
 	 *
 	 * @param packageName
+	 * @since 2.0
 	 */
+	@Override
 	public void addExportPackage(String packageName) {
 		addExportPackage(packageName, null);
 	}
@@ -560,7 +606,9 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	 *
 	 * @param packageName
 	 * @param version
+	 * @since 2.0
 	 */
+	@Override
 	public void addExportPackage(String packageName, String version) {
 		addPackage(packageName, EXPORT_PACKAGE, version);
 	}
@@ -568,27 +616,144 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	/**
 	 * Adds a package name in a manifest header type.
 	 *
-	 * @param packageName the package name to add
-	 * @param type IMPORT_PACKAGE or EXPORT_PACKAGE
+	 * @param packageName
+	 *            the package name to add
+	 * @param type
+	 *            IMPORT_PACKAGE or EXPORT_PACKAGE
 	 */
 	private void addPackage(String packageName, String type, String version) {
-		final Name manifestHeader = new Name(type);
-		String manifestHeaderValue = manifest.getMainAttributes().getValue(manifestHeader);
+		if (hasPackage(packageName, type)) {
+			// Easy case: Just update the version
+			Map<String, String> attributes = (version == null)
+					? null
+					: Collections.singletonMap(VERSION, version); // $NON-NLS-1$
+			updatePackages(packageName::equals, type, attributes, null);
+		} else {
+			// Only slightly more difficult case: Add the new import
+			String newPackage = (version == null)
+					? packageName
+					: String.format("%s;version=\"%s\"", packageName, version); //$NON-NLS-1$
 
-		// TODO: Same as addDependency(final String, final String) : Improve the detection of existing packages
+			String importPackage = getMainAttribute(type)
+					.map(ip -> ip + COMMA + newPackage)
+					.orElse(newPackage);
 
-		if (manifestHeaderValue == null) {
-			manifestHeaderValue = packageName;
+			setMainAttribute(type, importPackage);
+		}
+	}
 
-			if (version != null) {
-				manifestHeaderValue += SEMICOLON + "version=\"" + version + "\"";
+	/**
+	 * @since 2.0
+	 */
+	@Override
+	public List<IRequiredBundleDescription> getRequiredBundles() {
+		List<IRequiredBundleDescription> result = new ArrayList<>();
+
+		Pattern versionPattern = Pattern.compile("bundle-version=([\"']?)(.*)\\1"); //$NON-NLS-1$
+		Pattern optionalPattern = Pattern.compile("resolution:?=([\"']?)optional\\1"); //$NON-NLS-1$
+		Pattern reexportPattern = Pattern.compile("visibility:?=([\"']?)reexport\\1"); //$NON-NLS-1$
+
+		IBundleProjectService service = Activator.getDefault().getBundleProjectService();
+		String requireBundles = getMainAttribute(REQUIRED_BUNDLE).orElse(""); //$NON-NLS-1$
+		String[] bundles = requireBundles.isEmpty() ? new String[0] : requireBundles.split(COMMA_SPLIT);
+
+		for (int i = 0; i < bundles.length; i++) {
+			String dependency = bundles[i];
+			String[] parts = dependency.split(SEMICOLON);
+
+			String name = parts[0];
+			VersionRange version = VersionRange.emptyRange;
+			boolean optional = false;
+			boolean reexported = false;
+
+			for (int j = 1; j < parts.length; j++) {
+				Matcher m = versionPattern.matcher(parts[j]);
+				if (m.matches()) {
+					version = new VersionRange(m.group(2));
+				} else {
+					m = optionalPattern.matcher(parts[j]);
+					if (m.matches()) {
+						optional = true;
+					} else {
+						m = reexportPattern.matcher(parts[j]);
+						if (m.matches()) {
+							reexported = true;
+						}
+					}
+				}
 			}
-		} else if (!manifestHeaderValue.contains(packageName)) {
-			manifestHeaderValue += COMMA + packageName;
 
-			// TODO: Update version
+			result.add(service.newRequiredBundle(name, version, optional, reexported));
 		}
 
-		manifest.getMainAttributes().put(manifestHeader, manifestHeaderValue);
+		return result;
+	}
+
+	/**
+	 * @since 2.0
+	 */
+	@Override
+	public List<IPackageImportDescription> getImportedPackages() {
+		List<IPackageImportDescription> result = new ArrayList<>();
+
+		Pattern versionPattern = Pattern.compile("version=([\"']?)(.*)\\1"); //$NON-NLS-1$
+		Pattern optionalPattern = Pattern.compile("resolution:?=([\"']?)optional\\1"); //$NON-NLS-1$
+
+		IBundleProjectService service = Activator.getDefault().getBundleProjectService();
+		String importedPackages = getMainAttribute(IMPORT_PACKAGE).orElse(""); //$NON-NLS-1$
+		String[] packages = importedPackages.isEmpty() ? new String[0] : importedPackages.split(COMMA_SPLIT);
+
+		for (int i = 0; i < packages.length; i++) {
+			String package_ = packages[i];
+			String[] parts = package_.split(SEMICOLON);
+
+			String name = parts[0];
+			VersionRange version = VersionRange.emptyRange;
+			boolean optional = false;
+
+			for (int j = 1; j < parts.length; j++) {
+				Matcher m = versionPattern.matcher(parts[j]);
+				if (m.matches()) {
+					version = new VersionRange(m.group(2));
+				} else {
+					m = optionalPattern.matcher(parts[j]);
+					if (m.matches()) {
+						optional = true;
+					}
+				}
+			}
+
+			result.add(service.newPackageImport(name, version, optional));
+		}
+
+		return result;
+	}
+
+
+	/**
+	 * @since 2.0
+	 */
+	@Override
+	public void setRequiredBundleExported(String bundleName, boolean exported) {
+		updateDependencies(
+				bundleName::equals, // Update bundles having this name
+				null, // Don't change attributes such as version
+				Collections.singletonMap(VISIBILITY, exported ? REEXPORT : null)); // Set the visibility directive
+	}
+
+	/**
+	 * @since 2.0
+	 */
+	@Override
+	public void removeRequiredBundle(String bundleName) {
+		transformDependencies(bundleName::equals, (dep, parts) -> null);
+	}
+
+	/**
+	 * @since 2.0
+	 */
+	@Override
+	public void removeImportedPackage(String packageName) {
+		transformImportedPackages(packageName::equals, (dep, parts) -> null);
 	}
 }

@@ -67,6 +67,8 @@ import com.google.common.collect.Iterators;
 
 /**
  * Miscellaneous general-purpose UI utilities.
+ * 
+ * @since 1.2
  */
 public class UIUtil {
 
@@ -175,33 +177,6 @@ public class UIUtil {
 	 */
 	public static <V> Future<V> asyncCall(Callable<V> callable) {
 		return asyncCall(Display.getDefault(), callable);
-	}
-
-	/**
-	 * Calls a {@code callable} in the given {@code context}.
-	 *
-	 * @param fork
-	 *            {@code true} if the runnable should be run in a separate thread,
-	 *            and {@code false} to run in the same thread
-	 * @param cancelable
-	 *            {@code true} to enable the cancellation, and {@code false} to make the operation uncancellable
-	 * @param runnable
-	 *            the runnable to run
-	 *
-	 * @exception InvocationTargetException
-	 *                wraps any exception or error which occurs
-	 *                while running the runnable
-	 * @exception InterruptedException
-	 *                propagated by the context if the runnable
-	 *                acknowledges cancellation by throwing this exception. This should not be thrown
-	 *                if {@code cancelable} is {@code false}.
-	 * 
-	 * @deprecated Use the {@link #call(IRunnableContext, boolean, boolean, IProgressCallable)} or
-	 *             {@link IExecutorService#submit(IProgressCallable)} API, instead.
-	 */
-	@Deprecated
-	public static <V> V call(IRunnableContext context, boolean fork, boolean cancelable, ICallableWithProgress<V> callable) throws InvocationTargetException, InterruptedException {
-		return call(context, fork, cancelable, (IProgressCallable<V>) callable);
 	}
 
 	/**

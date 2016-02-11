@@ -14,6 +14,7 @@ import org.eclipse.swt.graphics.Image;
  *
  *
  * @author cedric dumoulin
+ * @since 1.2
  */
 public class PageIconsRegistry implements IPageIconsRegistryExtended {
 

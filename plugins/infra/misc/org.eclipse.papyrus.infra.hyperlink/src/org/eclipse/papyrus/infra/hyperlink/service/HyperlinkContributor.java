@@ -22,6 +22,7 @@ import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
  * a specific element
  * 
  * @author Shuai Li
+ * @since 2.0
  *
  */
 public interface HyperlinkContributor {

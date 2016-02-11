@@ -19,6 +19,7 @@ import org.eclipse.papyrus.infra.core.services.IService;
  * It notifies its listeners when the state of the editor changes
  *
  * @author Camille Letavernier
+ * @since 1.2
  *
  */
 public interface EditorLifecycleManager extends IService {

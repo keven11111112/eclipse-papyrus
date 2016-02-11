@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.interfaces;
@@ -19,7 +19,9 @@ import java.util.Set;
 /**
  *
  * This interface defines the methods for the ProjectEditor
- *
+ * 
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface IProjectEditor extends IFileEditor {
 
@@ -46,23 +48,28 @@ public interface IProjectEditor extends IFileEditor {
 	/**
 	 *
 	 * @return
-	 *         the missing nature for the project
+	 * 		the missing nature for the project
 	 */
 	public Set<String> getMissingNature();
+
+	/**
+	 * @since 2.0
+	 */
+	public void addNatures(Set<String> natures);
 
 	/**
 	 *
 	 * @param nature
 	 *            a nature
 	 * @return
-	 *         <code>true</code> if the project has this nature
+	 * 		<code>true</code> if the project has this nature
 	 */
 	public boolean hasNature(final String nature);
 
 	/**
 	 *
 	 * @return
-	 *         the missing build command
+	 * 		the missing build command
 	 */
 	public Set<String> getMissingBuildCommand();
 
@@ -78,7 +85,7 @@ public interface IProjectEditor extends IFileEditor {
 	 * @param command
 	 *            a build command
 	 * @return
-	 *         <code>true</code> if the project has the build command
+	 * 		<code>true</code> if the project has the build command
 	 */
 	public boolean hasBuildCommand(String command);
 

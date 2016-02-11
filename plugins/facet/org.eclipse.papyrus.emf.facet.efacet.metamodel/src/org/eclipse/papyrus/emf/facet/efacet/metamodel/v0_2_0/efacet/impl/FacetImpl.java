@@ -147,6 +147,7 @@ public class FacetImpl extends EClassifierImpl implements Facet {
 	 * @see #getAllTypedElements()
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	protected EList<ETypedElement> allTypedElements;
 
@@ -158,6 +159,7 @@ public class FacetImpl extends EClassifierImpl implements Facet {
 	 * @see #getAllFacetOperations()
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	protected EList<FacetOperation> allFacetOperations;
 
@@ -169,6 +171,7 @@ public class FacetImpl extends EClassifierImpl implements Facet {
 	 * @see #getAllFacetElements()
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	protected EList<EStructuralFeature> allFacetElements;
 
@@ -380,6 +383,7 @@ public class FacetImpl extends EClassifierImpl implements Facet {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated NOT
+	 * @since 1.2
 	 */
 	public EList<ETypedElement> getAllTypedElements() {
 		if (allTypedElements == null) {
@@ -396,6 +400,7 @@ public class FacetImpl extends EClassifierImpl implements Facet {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated NOT
+	 * @since 1.2
 	 */
 	public EList<FacetOperation> getAllFacetOperations() {
 		if (allFacetOperations == null) {
@@ -414,6 +419,7 @@ public class FacetImpl extends EClassifierImpl implements Facet {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated NOT
+	 * @since 1.2
 	 */
 	public EList<EStructuralFeature> getAllFacetElements() {
 		if (allFacetElements == null) {

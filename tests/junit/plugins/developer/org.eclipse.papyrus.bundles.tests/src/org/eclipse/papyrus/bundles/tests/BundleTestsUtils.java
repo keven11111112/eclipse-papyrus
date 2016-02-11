@@ -1,8 +1,24 @@
+/*****************************************************************************
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.bundles.tests;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.internal.runtime.InternalPlatform;
 import org.eclipse.pde.internal.core.PDECore;
@@ -13,9 +29,6 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
 public class BundleTestsUtils {
-
-	// This version number should be changed at each release
-	public static final String PAPYRUS_VERSION = "1.2.0"; //$NON-NLS-1$
 
 	public static final String INCUBATION = "(Incubation)"; //$NON-NLS-1$
 
@@ -41,7 +54,9 @@ public class BundleTestsUtils {
 
 	public static final String JAVA_VERSION_8 = "JavaSE-1.8"; //$NON-NLS-1$
 
-	public static final String JAVA_VERSION_REGEX = JAVA_VERSION_5 + "|" + JAVA_VERSION_6 + "|" + JAVA_VERSION_7 + "|" + JAVA_VERSION_8;
+	public static final String JAVA_VERSION_REGEX = Stream.of(JAVA_VERSION_5, JAVA_VERSION_6, JAVA_VERSION_7, JAVA_VERSION_8)
+			.map(Pattern::quote)
+			.collect(Collectors.joining("|")); //$NON-NLS-1$
 
 	public static final String REQUIRE_BUNDLE = "Require-Bundle"; //$NON-NLS-1$
 

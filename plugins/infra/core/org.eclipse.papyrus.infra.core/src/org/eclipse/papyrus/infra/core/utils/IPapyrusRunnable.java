@@ -20,6 +20,8 @@ import org.eclipse.papyrus.infra.tools.util.IProgressRunnable;
 
 /**
  * Protocol for a runnable in the Papyrus context.
+ * 
+ * @since 2.0
  */
 @FunctionalInterface
 public interface IPapyrusRunnable extends IProgressRunnable, IServiceRegistryProvider {

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.emf.facet.util.emf.catalog
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)",
+ org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility:=reexport
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

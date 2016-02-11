@@ -23,6 +23,7 @@ import org.eclipse.papyrus.infra.ui.editorsfactory.IEditorFactory;
  * @author Remi Schnekenburger
  * @author Patrick Tessier
  * @author cedric dumoulin
+ * @since 1.2
  */
 public abstract class AbstractEditorFactory implements IPluggableEditorFactory {
 

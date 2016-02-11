@@ -64,6 +64,7 @@ public class LogHelper {
 	 *
 	 * @param bundle
 	 *            The bundle.
+	 * @since 1.2
 	 */
 	public LogHelper(Bundle bundle) {
 		setBundle(bundle);
@@ -85,6 +86,7 @@ public class LogHelper {
 	 *
 	 * @param bundle
 	 *            the bundle
+	 * @since 1.2
 	 */
 	public void setBundle(Bundle bundle) {
 		this.pluginId = bundle.getSymbolicName();

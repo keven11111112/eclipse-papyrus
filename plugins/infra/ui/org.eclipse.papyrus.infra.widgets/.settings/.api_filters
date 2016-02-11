@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.infra.widgets" version="2">
+    <resource path="src/org/eclipse/papyrus/infra/widgets/editors/AbstractEditor.java" type="org.eclipse.papyrus.infra.widgets.editors.AbstractEditor">
+        <filter comment="No sane developer would have assigned these fields" id="388100214">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.widgets.editors.AbstractEditor"/>
+                <message_argument value="factory"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/infra/widgets/editors/MultipleValueEditor.java" type="org.eclipse.papyrus.infra.widgets.editors.MultipleValueEditor">
+        <filter comment="No sane developer would have assigned these fields" id="388100214">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.widgets.editors.MultipleValueEditor"/>
+                <message_argument value="MANY"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/infra/widgets/editors/MultipleValueSelectorDialog.java" type="org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog">
+        <filter comment="No sane developer would have assigned these fields" id="388100214">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog"/>
+                <message_argument value="MANY"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/infra/widgets/providers/CollectionContentProvider.java" type="org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider">
+        <filter comment="No sane developer would have assigned these fields" id="388100214">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider"/>
+                <message_argument value="instance"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/infra/widgets/providers/EmptyContentProvider.java" type="org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider">
+        <filter comment="No sane developer would have assigned these fields" id="388100214">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider"/>
+                <message_argument value="instance"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/infra/widgets/providers/TreeCollectionContentProvider.java" type="org.eclipse.papyrus.infra.widgets.providers.TreeCollectionContentProvider">
+        <filter comment="No sane developer would have assigned these fields" id="388100214">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.widgets.providers.TreeCollectionContentProvider"/>
+                <message_argument value="instance"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/infra/widgets/providers/UnchangedObject.java" type="org.eclipse.papyrus.infra.widgets.providers.UnchangedObject">
+        <filter comment="No sane developer would have assigned these fields" id="388100214">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.widgets.providers.UnchangedObject"/>
+                <message_argument value="instance"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/papyrus/infra/widgets/providers/UnsetObject.java" type="org.eclipse.papyrus.infra.widgets.providers.UnsetObject">
+        <filter comment="No sane developer would have assigned these fields" id="388100214">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.widgets.providers.UnsetObject"/>
+                <message_argument value="instance"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

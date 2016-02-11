@@ -25,6 +25,8 @@ import com.google.common.collect.Iterables;
 
 /**
  * A content provider that synthesizes content from multiple other providers.
+ * 
+ * @since 1.2
  */
 public class CompositePapyrusContentProvider implements IAdaptableContentProvider, IHierarchicContentProvider, IStaticContentProvider {
 

@@ -1,7 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.properties.ui;bundle-version="1.2.0"
+Require-Bundle: org.eclipse.papyrus.infra.properties.ui;bundle-version="[1.2.0,2.0.0)"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier

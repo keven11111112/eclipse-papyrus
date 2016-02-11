@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
  * serviceFactory depends on {@link SaveAndDirtyService} service.
  *
  * @author cedric dumoulin
+ * @since 1.2
  *
  */
 public class LifeCycleEventsProviderServiceFactory implements IServiceFactory {

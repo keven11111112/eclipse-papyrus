@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,13 +8,16 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors;
 
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.pde.core.project.IBundleProjectService;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -30,35 +32,30 @@ public class Activator extends AbstractUIPlugin {
 
 	public static LogHelper log;
 
+	private ServiceTracker<IBundleProjectService, IBundleProjectService> bundleProjectService;
+
 	/**
 	 * The constructor
 	 */
 	public Activator() {
+		super();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
-	 * )
-	 */
 	@Override
 	public void start(final BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
+
+		bundleProjectService = new ServiceTracker<>(context, IBundleProjectService.class, null);
+		bundleProjectService.open();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
-	 * )
-	 */
 	@Override
 	public void stop(final BundleContext context) throws Exception {
+		bundleProjectService.close();
+		bundleProjectService = null;
+
 		plugin = null;
 		super.stop(context);
 	}
@@ -72,4 +69,12 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
+	/**
+	 * Obtains the PDE's bundle project service, if available.
+	 * 
+	 * @return the bundle project service, or {@code null} if none
+	 */
+	public IBundleProjectService getBundleProjectService() {
+		return bundleProjectService.getService();
+	}
 }

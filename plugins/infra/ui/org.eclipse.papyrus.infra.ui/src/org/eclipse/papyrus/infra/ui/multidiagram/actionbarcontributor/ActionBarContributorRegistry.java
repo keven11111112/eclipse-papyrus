@@ -34,6 +34,7 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  * ActionBarContributor declared in Eclipse extension mechanism.
  *
  * @author dumoulin
+ * @since 1.2
  *
  */
 public class ActionBarContributorRegistry implements IActionBarContributorFactory, IService {

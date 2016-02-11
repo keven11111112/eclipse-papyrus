@@ -26,6 +26,8 @@ import org.osgi.util.tracker.ServiceTracker;
 /**
  * A service tracker that provides a single service as a composite of
  * registered service implementations.
+ * 
+ * @since 2.0
  */
 public class CompositeServiceTracker<S> extends ServiceTracker<S, S> {
 	private final AtomicReference<S> delegate = new AtomicReference<>();

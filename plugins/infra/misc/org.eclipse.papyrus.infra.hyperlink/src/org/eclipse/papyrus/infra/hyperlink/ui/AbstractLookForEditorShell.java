@@ -54,7 +54,7 @@ public class AbstractLookForEditorShell {
 
 	/** The tree viewcomposite. */
 	private Composite treeViewcomposite = null;
-	
+
 	private Composite afterTreeViewComposite = null;
 
 	/** The modeltree. */
@@ -163,14 +163,14 @@ public class AbstractLookForEditorShell {
 		GridData gridData5 = new GridData();
 		gridData4.horizontalAlignment = GridData.FILL;
 		gridData4.verticalAlignment = GridData.CENTER;
-		
+
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 2;
 		treeViewcomposite = new Composite(cTabFolder, SWT.NONE);
 		treeViewcomposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		
+
 		createModelFilteredTree();
-		
+
 		treeViewcomposite.setLayout(gridLayout);
 		newDiagrambutton = new Button(treeViewcomposite, SWT.NONE);
 		newDiagrambutton.setText(Messages.AbstractLookForEditorShell_New);
@@ -181,19 +181,21 @@ public class AbstractLookForEditorShell {
 		cLabel = new CLabel(treeViewcomposite, SWT.NONE);
 		cLabel.setText("   "); //$NON-NLS-1$
 		cLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		
+
 		afterTreeViewComposite = new Composite(treeViewcomposite, SWT.NONE);
 		afterTreeViewComposite.setLayout(new FillLayout());
 		afterTreeViewComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		afterTreeViewComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 	}
-	
+
 	/**
 	 * Recursively set the background of all children of parent composite to chosen color
+	 * 
 	 * @param parent
-	 *        The composite that contains children
+	 *            The composite that contains children
 	 * @param color
-	 *        The background color
+	 *            The background color
+	 * @since 2.0
 	 */
 	protected void setChildrenBackground(Composite parent, Color color) {
 		for (Control child : parent.getChildren()) {
@@ -370,6 +372,9 @@ public class AbstractLookForEditorShell {
 		return modeFilteredTree;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	protected Composite getAfterTreeViewComposite() {
 		return afterTreeViewComposite;
 	}

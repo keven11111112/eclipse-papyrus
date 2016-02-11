@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  * A service interface for resolution of the {@linkplain EObject EMF object} wrapped
  * in an EMF Facet content-provider node or anything else that doesn't implement
  * the usual {@link IAdaptable} protocol with respect to provision of an {@link EObject}.
+ * 
+ * @since 2.0
  */
 @FunctionalInterface
 public interface IEObjectResolver {

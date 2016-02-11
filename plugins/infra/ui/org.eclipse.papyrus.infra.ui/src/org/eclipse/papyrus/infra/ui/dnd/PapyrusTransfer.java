@@ -21,6 +21,8 @@ import org.eclipse.swt.dnd.TransferData;
  * A local transfer carrying a single object being dragged. Subclasses should maintain a
  * single instance of their Transfer and provide a static method to obtain that
  * instance.
+ * 
+ * @since 1.2
  */
 public abstract class PapyrusTransfer<T> extends ByteArrayTransfer {
 

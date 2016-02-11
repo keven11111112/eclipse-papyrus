@@ -31,6 +31,8 @@ import com.google.common.collect.Maps;
 
 /**
  * The event object for notifications of each phase in the reloading of a {@linkplain IReloadableEditor reloadable editor}.
+ * 
+ * @since 1.2
  */
 public class EditorReloadEvent extends EventObject {
 

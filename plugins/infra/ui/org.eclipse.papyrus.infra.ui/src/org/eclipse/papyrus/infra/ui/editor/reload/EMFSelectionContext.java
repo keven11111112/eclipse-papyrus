@@ -19,6 +19,8 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 
 /**
  * A convenient selection re-load context for UIs that present EMF-based content.
+ * 
+ * @since 1.2
  */
 public class EMFSelectionContext extends SelectionContext<ISelectionProvider, URI> implements IAdaptable {
 

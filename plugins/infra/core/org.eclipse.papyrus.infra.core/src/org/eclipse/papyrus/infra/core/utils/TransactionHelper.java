@@ -59,6 +59,9 @@ public class TransactionHelper {
 
 	public static final String TRANSACTION_OPTION_MERGE_NESTED_READ = "papyrus.merge_nested_read"; //$NON-NLS-1$
 
+	/**
+	 * @since 2.0
+	 */
 	public static void run(EditingDomain domain, Runnable writeOperation) throws InterruptedException, RollbackException {
 		if (domain instanceof TransactionalEditingDomain) {
 			run((TransactionalEditingDomain) domain, writeOperation);
@@ -67,6 +70,9 @@ public class TransactionHelper {
 		}
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public static void run(TransactionalEditingDomain domain, final Runnable writeOperation) throws InterruptedException, RollbackException {
 		if (domain instanceof InternalTransactionalEditingDomain) {
 			run((InternalTransactionalEditingDomain) domain, writeOperation);
@@ -82,6 +88,9 @@ public class TransactionHelper {
 		}
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public static void run(InternalTransactionalEditingDomain domain, Runnable writeOperation) throws InterruptedException, RollbackException {
 		Transaction transaction = domain.startTransaction(false, Collections.emptyMap());
 		try {
@@ -472,6 +481,7 @@ public class TransactionHelper {
 	 * @param runnable
 	 *            a progress runnable that is to borrow the {@code domain}'s active transaction on the modal context thread
 	 * @return the privileged runnable, ready to pass into the {@link IExecutorService} or other such API
+	 * @since 2.0
 	 */
 	public static IProgressRunnable createPrivilegedRunnable(TransactionalEditingDomain domain, final IProgressRunnable runnable) {
 		IProgressMonitor monitorHolder[] = { null };
@@ -493,6 +503,7 @@ public class TransactionHelper {
 	 * @param callable
 	 *            a progress callable that is to borrow the {@code domain}'s active transaction on the modal context thread
 	 * @return the privileged callable, ready to pass into the {@link IExecutorService} or other such API
+	 * @since 2.0
 	 */
 	public static <V> IProgressCallable<V> createPrivilegedCallable(TransactionalEditingDomain domain, final IProgressCallable<V> callable) {
 		IProgressMonitor monitorHolder[] = { null };

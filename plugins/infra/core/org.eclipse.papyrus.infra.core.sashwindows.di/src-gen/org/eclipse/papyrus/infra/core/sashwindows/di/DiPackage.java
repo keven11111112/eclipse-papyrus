@@ -34,6 +34,8 @@ import org.eclipse.emf.ecore.EReference;
  * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiFactory
  * @model kind="package"
  * @generated
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface DiPackage extends EPackage {
 
@@ -111,6 +113,7 @@ public interface DiPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	int SASH_MODEL__RESTORE_ACTIVE_PAGE = 2;
 
@@ -367,6 +370,7 @@ public interface DiPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	int TAB_FOLDER__CURRENT_SELECTION = ABSTRACT_PANEL_FEATURE_COUNT + 1;
 
@@ -428,6 +432,7 @@ public interface DiPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
+	 * @since 1.2
 	 */
 	int PAGE_REF__FAVORITE_EDITOR = 3;
 
@@ -703,6 +708,7 @@ public interface DiPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.SashModel#isRestoreActivePage()
 	 * @see #getSashModel()
 	 * @generated
+	 * @since 1.2
 	 */
 	EAttribute getSashModel_RestoreActivePage();
 
@@ -901,6 +907,7 @@ public interface DiPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder#getCurrentSelection()
 	 * @see #getTabFolder()
 	 * @generated
+	 * @since 1.2
 	 */
 	EReference getTabFolder_CurrentSelection();
 
@@ -960,6 +967,7 @@ public interface DiPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.PageRef#getFavoriteEditor()
 	 * @see #getPageRef()
 	 * @generated
+	 * @since 1.2
 	 */
 	EAttribute getPageRef_FavoriteEditor();
 
@@ -1200,6 +1208,7 @@ public interface DiPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 *
 		 * @generated
+		 * @since 1.2
 		 */
 		EAttribute SASH_MODEL__RESTORE_ACTIVE_PAGE = eINSTANCE.getSashModel_RestoreActivePage();
 
@@ -1365,6 +1374,7 @@ public interface DiPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 *
 		 * @generated
+		 * @since 1.2
 		 */
 		EReference TAB_FOLDER__CURRENT_SELECTION = eINSTANCE.getTabFolder_CurrentSelection();
 
@@ -1412,6 +1422,7 @@ public interface DiPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 *
 		 * @generated
+		 * @since 1.2
 		 */
 		EAttribute PAGE_REF__FAVORITE_EDITOR = eINSTANCE.getPageRef_FavoriteEditor();
 

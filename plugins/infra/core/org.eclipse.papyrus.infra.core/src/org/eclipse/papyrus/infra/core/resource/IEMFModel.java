@@ -37,6 +37,7 @@ public interface IEMFModel extends IModel {
 	 * @return the model roots, or an empty iterable if either there definitively are none
 	 *         or they cannot be determined (for example, because the main resource is a controlled
 	 *         unit and the parent unit is not available)
+	 * @since 2.0
 	 */
 	public Iterable<? extends EObject> getRootElements();
 
@@ -66,6 +67,7 @@ public interface IEMFModel extends IModel {
 	 * @return whether I should persist the {@code object}
 	 * 
 	 * @see #persist(EObject)
+	 * @since 2.0
 	 */
 	public boolean canPersist(EObject object);
 
@@ -80,6 +82,7 @@ public interface IEMFModel extends IModel {
 	 *             if I cannot persist the {@code object}
 	 * 
 	 * @see #canPersist(EObject)
+	 * @since 2.0
 	 */
 	public void persist(EObject object);
 }

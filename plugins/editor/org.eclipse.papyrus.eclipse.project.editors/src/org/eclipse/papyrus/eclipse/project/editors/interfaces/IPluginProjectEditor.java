@@ -23,6 +23,8 @@ import org.w3c.dom.Node;
  *
  * Editor for the file plugin.xml
  *
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface IPluginProjectEditor extends IProjectEditor, IFileEditor {
 

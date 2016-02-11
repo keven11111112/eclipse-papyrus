@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.Status;
  * This status is used y the String Value solvers
  *
  * @author vl222926
+ * @since 1.2
  *
  */
 public class StringValueConverterStatus extends Status {
@@ -52,7 +53,7 @@ public class StringValueConverterStatus extends Status {
 	/**
 	 *
 	 * @return
-	 *         the list of the unresolved string
+	 * 		the list of the unresolved string
 	 */
 	public final Collection<String> getUnresolvedString() {
 		return unresolvedString;

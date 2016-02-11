@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
- *
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,7 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus - Skip the feature-version test when running in development mode
- *  Christian W. Damus - bug 433206
+ *  Christian W. Damus - bugs 433206, 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.bundles.tests;
@@ -19,7 +18,6 @@ import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,10 +25,8 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.framework.classification.NotImplemented;
 import org.eclipse.papyrus.junit.framework.classification.rules.Condition;
-import org.eclipse.papyrus.junit.framework.classification.rules.Conditional;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
-import org.eclipse.pde.internal.core.feature.Feature;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.junit.Assert;
@@ -45,10 +41,6 @@ import org.osgi.framework.Bundle;
  */
 public class BundlesTests extends AbstractPapyrusTest {
 
-	// Transform the version number to the regex format
-	// Adds .* (Valid version numbers are e.g. 0.10.1.qualifier)
-	private static final String REGEX_VERSION_NUMBER = BundleTestsUtils.PAPYRUS_VERSION.replaceAll("\\.", "\\\\.") + "\\..*"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-
 	// Indicates that the bundle name must contain the (Incubation) string
 	// private static final String REGEX_INCUBATION = ".*\\(Incubation\\)"; //$NON-NLS-1$
 
@@ -60,31 +52,8 @@ public class BundlesTests extends AbstractPapyrusTest {
 
 	private static final String GLAZED_LIST_VERSION = "1.9.0";//$NON-NLS-1$
 
-	private static final String PAPYRUS_VERSION = BundleTestsUtils.PAPYRUS_VERSION;
-
 	@Condition
 	public final boolean isAutomatedBuild = JUnitUtils.isAutomatedBuildExecution();
-
-	@Test
-	@Conditional(key = "isAutomatedBuild")
-	public void featureVersionNumberTest() {
-		StringBuffer message = new StringBuffer("Wrong version number for the features:"); //$NON-NLS-1$
-		int nbProblem = 0;
-		final List<Feature> features = BundleTestsUtils.getPapyrusFeature();
-		for (final Feature feature : features) {
-			String version = feature.getVersion();
-			if (!version.matches(REGEX_VERSION_NUMBER)) {
-				message.append("\n"); //$NON-NLS-1$
-				message.append(feature.getId());
-				nbProblem++;
-			}
-		}
-		StringBuffer errorMessage = new StringBuffer();
-		errorMessage.append(nbProblem);
-		errorMessage.append("problems!\n");//$NON-NLS-1$
-		errorMessage.append(message.toString());
-		Assert.assertTrue(errorMessage.toString(), nbProblem == 0);
-	}
 
 	/**
 	 * Tests that all Papyrus Bundle name are finished by {@link #INCUBATION}
@@ -117,15 +86,6 @@ public class BundlesTests extends AbstractPapyrusTest {
 	}
 
 	/**
-	 * Tests that each papyrus plugins have the correct version
-	 */
-	@InvalidTest("FIXME: add exceptions for incubating extra plug-ins, which have a different version")
-	@Test
-	public void versionTest() {
-		testManifestProperty(BundleTestsUtils.BUNDLE_VERSION, REGEX_VERSION_NUMBER, false, false);
-	}
-
-	/**
 	 * Tests if the file about.html is included to the plugin
 	 */
 	@Test
@@ -148,46 +108,6 @@ public class BundlesTests extends AbstractPapyrusTest {
 	@Test
 	public void importPackage() {
 		testManifestProperty(BundleTestsUtils.BUNDLE_IMPORT_PACKAGE, "", true, false); //$NON-NLS-1$
-	}
-
-	/**
-	 * This test verify that we doesn't re-export dependencies
-	 */
-	@NotImplemented("Usage of reexported dependencies is discouraged")
-	@Test
-	public void reexportDependencies() {
-		StringBuffer message = new StringBuffer();
-		int nb = 0;
-		for (final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
-			final String value = current.getHeaders().get(BundleTestsUtils.REQUIRE_BUNDLE);
-			if (value == null) {
-				continue;
-			}
-			final String[] bundles = value.split(","); //$NON-NLS-1$
-			StringBuffer localMessage = new StringBuffer();
-			for (final String bundle : bundles) {
-				if (bundle.contains("visibility:=reexport")) { //$NON-NLS-1$
-					nb++;
-					if (localMessage.length() == 0) {
-						localMessage.append(NLS.bind("{0} re-exports:", current.getSymbolicName())); //$NON-NLS-1$
-					}
-					if (bundle.contains(";")) { //$NON-NLS-1$
-						localMessage.append(NLS.bind("\n  - {0}", bundle.substring(0, bundle.indexOf(";")))); //$NON-NLS-1$ //$NON-NLS-2$
-					} else {
-						localMessage.append(NLS.bind("\n  - {0}", bundle)); //$NON-NLS-1$
-					}
-				}
-			}
-			if (localMessage.length() != 0) {
-				message.append(localMessage);
-				message.append("\n");//$NON-NLS-1$
-			}
-		}
-		StringBuffer errorMessage = new StringBuffer();
-		errorMessage.append(nb);
-		errorMessage.append(" problems!");//$NON-NLS-1$
-		errorMessage.append(message);
-		Assert.assertTrue(errorMessage.toString(), nb == 0);
 	}
 
 	/**
@@ -274,16 +194,6 @@ public class BundlesTests extends AbstractPapyrusTest {
 		errorMessage.append(" problems!\n"); //$NON-NLS-1$
 		errorMessage.append(buffer.toString());
 		Assert.assertTrue(errorMessage.toString(), buffer.toString().isEmpty());
-	}
-
-	/**
-	 * We want that all Papyrus dependencies in the Papyrus plugin will be
-	 * define
-	 */
-	@InvalidTest("FIXME: add exceptions for incubating extra plug-ins, which have a different version")
-	@Test
-	public void papyrusDependencyVersionTest() {
-		testPapyrusDependencies2("org.eclipse.papyrus", PAPYRUS_VERSION);//$NON-NLS-1$
 	}
 
 	/**
@@ -396,7 +306,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 		 * @param first
 		 * @param second
 		 * @return
-		 * 		<ul>
+		 *         <ul>
 		 *         <li>0 when they are equal</li>
 		 *         <li>1 if first is greater than second</li>
 		 *         <li>-1 if first is smaller than second</li>

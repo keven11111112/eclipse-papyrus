@@ -17,6 +17,7 @@ package org.eclipse.papyrus.infra.ui.extension.diagrameditor;
  * Editor was not found.
  *
  * @author dumoulin
+ * @since 1.2
  *
  */
 @SuppressWarnings("serial")

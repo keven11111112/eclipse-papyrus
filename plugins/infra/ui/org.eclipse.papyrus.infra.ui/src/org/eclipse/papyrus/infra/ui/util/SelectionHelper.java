@@ -23,6 +23,7 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * @author VL222926
+ * @since 1.2
  *
  */
 public class SelectionHelper {
@@ -38,7 +39,7 @@ public class SelectionHelper {
 	/**
 	 * 
 	 * @return
-	 *         the selection service or <code>null</code> if not found
+	 * 		the selection service or <code>null</code> if not found
 	 * 
 	 */
 	public static final ISelectionService getSelectionService() {
@@ -48,7 +49,7 @@ public class SelectionHelper {
 			// ISelectionService s1 = (ISelectionService) wb.getService(ISelectionService.class);
 			IWorkbenchWindow ww = wb.getActiveWorkbenchWindow();
 			if (ww != null) {
-				return (ISelectionService) ww.getService(ISelectionService.class);
+				return ww.getService(ISelectionService.class);
 			}
 		}
 		return null;
@@ -57,7 +58,7 @@ public class SelectionHelper {
 	/**
 	 * 
 	 * @return
-	 *         the current selection or an empty selection. can't be <code>null</code>
+	 * 		the current selection or an empty selection. can't be <code>null</code>
 	 */
 	public static final ISelection getCurrentSelection() {
 		ISelectionService selectionService = getSelectionService();
@@ -75,7 +76,7 @@ public class SelectionHelper {
 	 * @param viewId
 	 *            the id of the view for which we want the selection
 	 * @return
-	 *         the current selection for the view, the returned value can't be <code>null</code>
+	 * 		the current selection for the view, the returned value can't be <code>null</code>
 	 */
 	public static final ISelection getCurrentSelection(String viewId) {
 		ISelectionService selectionService = getSelectionService();
@@ -91,7 +92,7 @@ public class SelectionHelper {
 	/**
 	 * 
 	 * @return
-	 *         a structured selection.
+	 * 		a structured selection.
 	 *         the returned value can't be <code>null</code>
 	 */
 	public static final IStructuredSelection getCurrentStructuredSelection() {
@@ -107,7 +108,7 @@ public class SelectionHelper {
 	 * @param viewId
 	 *            the id of the view for which we want the selection
 	 * @return
-	 *         the current selection for the view, the returned value can't be <code>null</code>
+	 * 		the current selection for the view, the returned value can't be <code>null</code>
 	 */
 	public static final IStructuredSelection getCurrentStructuredSelection(String viewId) {
 		ISelection selection = getCurrentSelection(viewId);

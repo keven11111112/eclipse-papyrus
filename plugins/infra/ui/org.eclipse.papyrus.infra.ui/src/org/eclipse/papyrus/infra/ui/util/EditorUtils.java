@@ -60,6 +60,7 @@ import org.eclipse.ui.PlatformUI;
  *
  * @author cedric dumoulin
  * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>
+ * @since 1.2
  */
 // FIXME throws Exception (eg: NotFoundException) instead of null
 public class EditorUtils {

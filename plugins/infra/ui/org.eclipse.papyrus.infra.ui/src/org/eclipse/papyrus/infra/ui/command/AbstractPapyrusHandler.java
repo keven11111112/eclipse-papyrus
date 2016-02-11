@@ -36,6 +36,8 @@ import org.eclipse.ui.handlers.HandlerUtil;
 /**
  * This provides facilities to get the TransactionEditingDomain and the PageManager from
  * the current Papyrus editor or view context.
+ * 
+ * @since 1.2
  */
 public abstract class AbstractPapyrusHandler extends AbstractHandler {
 

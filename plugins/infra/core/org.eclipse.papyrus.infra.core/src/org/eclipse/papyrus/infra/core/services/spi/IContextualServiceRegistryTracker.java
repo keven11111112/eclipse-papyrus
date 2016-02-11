@@ -20,6 +20,8 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
  * that is associated with the user's current editing context, if any.
  * When the user is not editing any Papyrus model, then presumably there
  * is no need for any service registry.
+ * 
+ * @since 2.0
  */
 @FunctionalInterface
 public interface IContextualServiceRegistryTracker {

@@ -14,6 +14,9 @@ package org.eclipse.papyrus.infra.ui.extension.commands;
 
 import org.eclipse.emf.ecore.EObject;
 
+/**
+ * @since 1.2
+ */
 public interface ICreationCondition {
 
 	/**

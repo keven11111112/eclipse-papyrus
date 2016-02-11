@@ -12,6 +12,7 @@ import org.eclipse.swt.graphics.Image;
  * common ancestor for {@link EditorIconFactory} and {@link EditorFactoryProxy}
  *
  * @author cedric dumoulin
+ * @since 1.2
  *
  */
 public class EditorIconFactory implements IEditorIconFactoryExtended {

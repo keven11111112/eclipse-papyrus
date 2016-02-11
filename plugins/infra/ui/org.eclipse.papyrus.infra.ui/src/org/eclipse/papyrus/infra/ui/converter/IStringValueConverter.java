@@ -19,6 +19,7 @@ import org.eclipse.ui.services.IDisposable;
  * Common interface for string converter
  *
  * @author VL222926
+ * @since 1.2
  *
  */
 public interface IStringValueConverter extends IDisposable {
@@ -30,7 +31,7 @@ public interface IStringValueConverter extends IDisposable {
 	 * @param valueAsString
 	 *            the value represented by a string
 	 * @return
-	 *         a {@link ConvertedValueContainer}
+	 * 		a {@link ConvertedValueContainer}
 	 */
 	public ConvertedValueContainer<?> deduceValueFromString(final Object type, final String valueAsString);
 }

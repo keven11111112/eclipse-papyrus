@@ -443,6 +443,7 @@ public class EMFHelper {
 	 *            the type of container to find
 	 * 
 	 * @return the container of the requested {@code type}, or {@code null} if none
+	 * @since 2.0
 	 */
 	public static <T extends EObject> T getContainer(EObject object, EClass type) {
 		T result = null;
@@ -468,6 +469,7 @@ public class EMFHelper {
 	 *            the type of container to find
 	 * 
 	 * @return the container of the requested {@code type}, or {@code null} if none
+	 * @since 2.0
 	 */
 	public static <T extends EObject> T getContainer(EObject object, Class<T> type) {
 		T result = null;

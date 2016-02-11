@@ -31,6 +31,7 @@ import org.eclipse.ui.IEditorSite;
  *         TODO remove extends IEditingDomainProvider. This interface should be
  *         independant of any technology (EMF, GMF, ...). If the EditingDomain
  *         is required, it can be retrieved by the registry.
+ * @since 1.2
  *
  */
 public interface IMultiDiagramEditor extends IEditorPart {

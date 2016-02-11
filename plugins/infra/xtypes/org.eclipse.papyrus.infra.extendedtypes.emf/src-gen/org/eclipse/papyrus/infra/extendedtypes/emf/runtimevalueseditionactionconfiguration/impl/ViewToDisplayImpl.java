@@ -62,6 +62,7 @@ public class ViewToDisplayImpl extends MinimalEObjectImpl.Container implements V
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 2.0
 	 */
 	@Override
 	public View getView() {
@@ -82,6 +83,7 @@ public class ViewToDisplayImpl extends MinimalEObjectImpl.Container implements V
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 2.0
 	 */
 	public View basicGetView() {
 		return view;
@@ -92,6 +94,7 @@ public class ViewToDisplayImpl extends MinimalEObjectImpl.Container implements V
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * @since 2.0
 	 */
 	@Override
 	public void setView(View newView) {

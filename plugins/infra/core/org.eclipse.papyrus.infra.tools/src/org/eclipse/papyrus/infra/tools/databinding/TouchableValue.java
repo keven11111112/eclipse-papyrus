@@ -23,6 +23,8 @@ import org.eclipse.core.databinding.observable.value.WritableValue;
 /**
  * An analogue of the {@link WritableValue} that supports "touches" to send
  * change events even though the value is not replaced.
+ * 
+ * @since 2.0
  */
 public class TouchableValue<T> extends ReferenceCountedObservable.Value<T> {
 	private final Class<? extends T> type;

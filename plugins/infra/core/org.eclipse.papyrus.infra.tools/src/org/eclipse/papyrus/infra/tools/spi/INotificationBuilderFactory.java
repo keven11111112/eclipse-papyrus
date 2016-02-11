@@ -18,6 +18,8 @@ import org.eclipse.papyrus.infra.tools.notify.INotificationBuilder;
 /**
  * An OSGi service protocol for creation of a notification builder
  * (preferably for UI presentation).
+ * 
+ * @since 2.0
  */
 @FunctionalInterface
 public interface INotificationBuilderFactory {

@@ -5,16 +5,12 @@ Export-Package: org.eclipse.papyrus.emf.facet.custom.core,
  org.eclipse.papyrus.emf.facet.custom.core.internal.exception,
  org.eclipse.papyrus.emf.facet.custom.core.internal.exported,
  org.eclipse.papyrus.emf.facet.custom.core.internal.query
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.emf.ecore,
- org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="1.2.0";visibility:=reexport,
- org.eclipse.papyrus.emf.facet.util.emf.core;bundle-version="1.2.0",
- org.eclipse.papyrus.emf.facet.efacet.core;bundle-version="1.2.0";visibility:=reexport,
- org.eclipse.papyrus.emf.facet.util.core;bundle-version="1.2.0",
- org.eclipse.emf.edit;bundle-version="2.6.0",
- org.eclipse.emf.validation;bundle-version="1.4.0",
- org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="1.2.0"
+Require-Bundle: org.eclipse.ui;bundle-version="[3.107.0,4.0.0)",
+ org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)",
+ org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.emf.facet.efacet.core;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.emf.facet.util.core;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.emf.validation;bundle-version="[1.8.0,2.0.0)"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier

@@ -177,6 +177,7 @@ public class DiSashModelMngr {
 	 * Get the IPageMngr providing basic methods to manage Pages in the sash model.
 	 *
 	 * @return
+	 * @since 2.0
 	 */
 	public IPageManager getIPageMngr() {
 		return getPageMngrImpl();
@@ -238,6 +239,7 @@ public class DiSashModelMngr {
 	 *
 	 * @param diResource
 	 * @return The non transactional version of the IPageMngr
+	 * @since 2.0
 	 */
 	public static IPageManager createIPageMngr(Resource diResource) {
 

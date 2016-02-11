@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.IStatus;
  * This class allows to store the value created for a pasted String AND a result status associated to this pasted String
  *
  * @param <T>
+ * @since 1.2
  */
 
 public class ConvertedValueContainer<T> {
@@ -57,7 +58,7 @@ public class ConvertedValueContainer<T> {
 	/**
 	 *
 	 * @return
-	 *         the status of the conversion
+	 * 		the status of the conversion
 	 */
 	public final IStatus getStatus() {
 		return this.status;
@@ -66,7 +67,7 @@ public class ConvertedValueContainer<T> {
 	/**
 	 *
 	 * @return
-	 *         the value
+	 * 		the value
 	 */
 	public final T getConvertedValue() {
 		return this.value;

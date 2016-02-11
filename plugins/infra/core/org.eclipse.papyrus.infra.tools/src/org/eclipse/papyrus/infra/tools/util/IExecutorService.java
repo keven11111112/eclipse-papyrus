@@ -23,6 +23,8 @@ import java.util.concurrent.Future;
  * execution of tasks, with the possibility that these could be optimized
  * where appropriate (such as in a UI-thread executor to use a {@code syncExec}
  * call).
+ * 
+ * @since 2.0
  */
 public interface IExecutorService extends ExecutorService {
 	/**

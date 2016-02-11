@@ -44,6 +44,7 @@ import org.eclipse.uml2.types.TypesPackage;
  * <!-- end-user-doc -->
  *
  * @generated
+ * @noreference This class is not intended to be referenced by clients.
  */
 public class DiPackageImpl extends EPackageImpl implements DiPackage {
 

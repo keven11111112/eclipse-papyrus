@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,8 @@
  * Contributors:
  *  Ernest Wozniak (CEA LIST) ernest.wozniak@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) patrick.tessier@cea.fr - modification
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.dsml.validation.wizard;
 
@@ -25,7 +27,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.papyrus.customization.plugin.PluginEditor;
 import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.MessageHandling;
 import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.NameBasedMsgMode;
 import org.eclipse.papyrus.dsml.validation.generator.xtend.Generate;
@@ -36,7 +37,9 @@ import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraint
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IValidationRule;
 import org.eclipse.papyrus.dsml.validation.model.profilenames.Utils;
 import org.eclipse.papyrus.eclipse.project.editors.file.ManifestEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginEditor;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginProjectEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.ProjectEditors;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
@@ -156,12 +159,17 @@ public class ValidationPluginGenerator {
 	 * @throws ParserConfigurationException
 	 */
 	public void generate(IProject project, IConstraintsManager constraintsManager, EPackage definition) throws CoreException, IOException, SAXException, ParserConfigurationException {
-		PluginEditor editor;
+		IPluginEditor editor;
 
 		this.constraintsManager = constraintsManager;
 
 		// prepare the plugin
-		editor = new PluginEditor(project);
+		editor = ProjectEditors.getPluginEditor(project);
+		if (!editor.exists()) {
+			editor.create();
+		}
+		editor.init();
+
 		editor.registerSourceFolder(Generate.SRC);
 		// it's possible that editor.getManifestEditor() logs an exception due to resource out of sync.
 		String pluginID = editor.getSymbolicBundleName();
@@ -170,14 +178,14 @@ public class ValidationPluginGenerator {
 			editor.setBundleName(pluginID);
 		}
 		editor.setSingleton(true);
-		editor.getBuildEditor().addToBuild(IPluginProjectEditor.PLUGIN_XML_FILE);
+		editor.addToBuild(IPluginProjectEditor.PLUGIN_XML_FILE);
 		Set<String> natures = new HashSet<String>();
 		natures.add(PLUGIN_NATURE_ID);
 		editor.addNatures(natures);
 
-		editor.getManifestEditor().addDependency(EMF_VALIDATION_PLUGIN);
-		editor.getManifestEditor().addDependency(UML_VALIDATION_PLUGIN);
-		editor.getManifestEditor().addDependency(UML_PLUGIN);
+		editor.addDependency(EMF_VALIDATION_PLUGIN);
+		editor.addDependency(UML_VALIDATION_PLUGIN);
+		editor.addDependency(UML_PLUGIN);
 
 		String filterName = "dsml.validation.generated" + SEPARATOR + this.constraintsManager.getPrimeCategory().getID(); //$NON-NLS-1$
 		Element constraintProviderExtension = createOrCleanExtension(editor, EMF_VALIDATION_CONSTRAINT_PROVIDERS_EXTENSIONPOINT, filterName);
@@ -224,10 +232,9 @@ public class ValidationPluginGenerator {
 	}
 
 	private Element createExtensionForConstraint(IValidationRule validationRule,
-			Element parentElement, PluginEditor editor) {
+			Element parentElement, IPluginEditor editor) {
 
-		Element extElForConstraint = editor.getPluginEditor().addChild(
-				parentElement, EMF_VALIDATION_CONSTRAINT_CHILD);
+		Element extElForConstraint = editor.addChild(parentElement, EMF_VALIDATION_CONSTRAINT_CHILD);
 
 		extElForConstraint.setAttribute(ATTRIB_ID, validationRule.getID());
 		extElForConstraint.setAttribute(XML_CONSTRAINT_NAME, validationRule.getName());
@@ -281,7 +288,7 @@ public class ValidationPluginGenerator {
 	}
 
 	private Element createJavaExtensionForConstraint(String pluginID, IValidationRule validationRule,
-			Element parentElement, PluginEditor editor) {
+			Element parentElement, IPluginEditor editor) {
 
 		Element extElForConstraint = createExtensionForConstraint(validationRule, parentElement, editor);
 
@@ -302,7 +309,7 @@ public class ValidationPluginGenerator {
 	 * @return the extension point
 	 */
 	private Element createOCLExtensionForConstraint(IValidationRule validationRule,
-			Element parentElement, PluginEditor editor) {
+			Element parentElement, IPluginEditor editor) {
 
 		Element extElForConstraint = createExtensionForConstraint(validationRule, parentElement, editor);
 
@@ -353,10 +360,9 @@ public class ValidationPluginGenerator {
 	 * @param editor
 	 */
 	private Element createExtensionForCategory(String pluginID, Category category,
-			Element parentElement, PluginEditor editor) {
+			Element parentElement, IPluginEditor editor) {
 
-		Element extElForCategory = editor.getPluginEditor().addChild(
-				parentElement, "category"); //$NON-NLS-1$
+		Element extElForCategory = editor.addChild(parentElement, "category"); //$NON-NLS-1$
 
 		extElForCategory.setAttribute(ATTRIB_ID, pluginID + SEPARATOR + category.getID());
 
@@ -380,9 +386,9 @@ public class ValidationPluginGenerator {
 	@SuppressWarnings("nls")
 	private Element createExtensionForConstraintsProvider(
 			IConstraintProvider constraintProvider, Element parentElement,
-			PluginEditor editor, EPackage definition) {
+			IPluginEditor editor, EPackage definition) {
 
-		Element extElForConstraintsProvider = editor.getPluginEditor().addChild(parentElement, "constraintProvider");
+		Element extElForConstraintsProvider = editor.addChild(parentElement, "constraintProvider");
 
 		extElForConstraintsProvider.setAttribute(XML_CONSTRAINT_MODE, constraintProvider.getMode().name());
 
@@ -401,8 +407,8 @@ public class ValidationPluginGenerator {
 	}
 
 	@SuppressWarnings("nls")
-	private Element createExtensionForConstraintsCategory(String pluginID, IConstraintsCategory constraintsCategory, Element parentElement, PluginEditor editor, IConstraintsManager constraintManager) {
-		Element extElForConstraintsCategory = editor.getPluginEditor().addChild(parentElement, "constraints"); //$NON-NLS-1$
+	private Element createExtensionForConstraintsCategory(String pluginID, IConstraintsCategory constraintsCategory, Element parentElement, IPluginEditor editor, IConstraintsManager constraintManager) {
+		Element extElForConstraintsCategory = editor.addChild(parentElement, "constraints"); //$NON-NLS-1$
 		extElForConstraintsCategory.setAttribute("categories", pluginID + SEPARATOR + constraintManager.getPrimeCategory().getName());
 		return extElForConstraintsCategory;
 
@@ -410,7 +416,7 @@ public class ValidationPluginGenerator {
 
 
 	@SuppressWarnings("nls")
-	private void generateBindings(String pluginID, PluginEditor editor, IConstraintsManager constraintsManager, String filterName) {
+	private void generateBindings(String pluginID, IPluginEditor editor, IConstraintsManager constraintsManager, String filterName) {
 		Element extension = createOrCleanExtension(editor, EMF_VALIDATION_CONSTRAINT_BINDINGS_EXTENSIONPOINT, filterName);
 
 		// create a client context per stereotype
@@ -418,14 +424,14 @@ public class ValidationPluginGenerator {
 		for (Iterator<Stereotype> iterator = constrainedStereotype.iterator(); iterator.hasNext();) {
 			Stereotype stereotype = iterator.next();
 			// ("+--> create clientContext for the stereotype "+stereotype.getName());
-			Element clientContextElement = editor.getPluginEditor().addChild(extension, "clientContext");
+			Element clientContextElement = editor.addChild(extension, "clientContext");
 			clientContextElement.setAttribute(ATTRIB_ID, stereotype.getName() + "ClientContext");
 			Element selectorElement = editor.addChild(clientContextElement, "selector");
 			selectorElement.setAttribute(XML_CONSTRAINT_CLASS, pluginID + ".selectors." + stereotype.getName() + "ClientSelector");
 
 			// create binding
 			List<Constraint> constraints = constraintsManager.getConstraintsOfStereotype().get(stereotype);
-			Element bindingelement = editor.getPluginEditor().addChild(extension, "binding");
+			Element bindingelement = editor.addChild(extension, "binding");
 			bindingelement.setAttribute("context", stereotype.getName() + "ClientContext");
 
 			for (Iterator<Constraint> iteratorConstraint = constraints.iterator(); iteratorConstraint.hasNext();) {
@@ -454,8 +460,8 @@ public class ValidationPluginGenerator {
 	 *            the name of the extension
 	 * @return
 	 */
-	protected Element createOrCleanExtension(PluginEditor editor, String extensionName, String filterName) {
-		List<Node> existingExtensions = editor.getPluginEditor().getExtensions(extensionName);
+	protected Element createOrCleanExtension(IPluginEditor editor, String extensionName, String filterName) {
+		List<Node> existingExtensions = editor.getExtensions(extensionName);
 		for (Node extension : existingExtensions) {
 			if (extension instanceof Element) {
 				Element extensionElement = (Element) extension;
@@ -481,7 +487,7 @@ public class ValidationPluginGenerator {
 			}
 		}
 		// create new extension
-		Element newExtension = editor.getPluginEditor().addExtension(extensionName);
+		Element newExtension = editor.addExtension(extensionName);
 		newExtension.setAttribute(ATTRIB_NAME, filterName);
 		return newExtension;
 	}

@@ -51,6 +51,7 @@ public interface ILanguageProvider {
 	 *            a {@link ModelSet} in which to find the instantiated languages
 	 * 
 	 * @return the languages instantiated in the specified resource
+	 * @since 2.0
 	 */
 	default Iterable<ILanguage> getLanguages(ILanguageService languageService, ModelSet modelSet) {
 		return getLanguages(languageService, modelSet.getURIWithoutExtension(), false);

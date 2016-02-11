@@ -50,6 +50,8 @@ import org.eclipse.ui.ide.IDE;
 /**
  * An {@linkplain IAdaptable adapter protocol} for editors that know how to internally
  * reload themselves without disturbing the workbench window's perspective layout.
+ * 
+ * @since 1.2
  */
 public interface IReloadableEditor {
 

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.infra.core.feature" label="Papyrus core" provider-name="Eclipse Modeling Project" version="1.2.0.qualifier">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<feature id="org.eclipse.papyrus.infra.core.feature" label="Papyrus core" provider-name="Eclipse Modeling Project" version="2.0.0.qualifier">
 
 <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
@@ -25,8 +26,6 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin download-size="0" id="org.eclipse.papyrus.infra.core.pluginexplorer" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.editor.welcome" install-size="0" unpack="false" version="0.0.0"/>
-
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.editor.welcome.nattable" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.tools" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

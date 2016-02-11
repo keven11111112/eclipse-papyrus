@@ -511,6 +511,7 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 	 * 
 	 * @return my read-only handlers, by axis of affiliation. Changes to this collection
 	 *         do not affect my registered handlers
+	 * @since 2.0
 	 */
 	public final Map<ReadOnlyAxis, Collection<IReadOnlyHandler2>> getReadOnlyHandlers() {
 		Map<ReadOnlyAxis, Collection<IReadOnlyHandler2>> result = new HashMap<>();

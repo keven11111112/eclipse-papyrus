@@ -10,6 +10,7 @@ package org.eclipse.papyrus.infra.ui.lifecycleevents;
  *
  * @param <T>
  *            Type of event passed to methods.
+ * @since 1.2
  */
 public interface ISaveEventListener {
 

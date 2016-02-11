@@ -35,6 +35,7 @@ public interface ViewToDisplay extends EObject {
 	 * @see org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.RuntimeValuesEditionActionConfigurationPackage#getViewToDisplay_View()
 	 * @model required="true"
 	 * @generated
+	 * @since 2.0
 	 */
 	View getView();
 
@@ -47,6 +48,7 @@ public interface ViewToDisplay extends EObject {
 	 *            the new value of the '<em>View</em>' reference.
 	 * @see #getView()
 	 * @generated
+	 * @since 2.0
 	 */
 	void setView(View value);
 

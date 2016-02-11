@@ -24,6 +24,8 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 
 /**
  * Helper utilities for working with transactions on the UI thread.
+ * 
+ * @since 1.2
  */
 public class TransactionUIHelper {
 

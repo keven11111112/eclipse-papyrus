@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.Display;
  * Services to access to Papyrus images
  *
  * @author tristan faure
+ * @since 1.2
  *
  */
 public class PapyrusImageUtils {

@@ -72,6 +72,7 @@ public interface TabFolder extends AbstractPanel {
 	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getTabFolder_CurrentSelection()
 	 * @model ordered="false"
 	 * @generated
+	 * @since 1.2
 	 */
 	PageRef getCurrentSelection();
 
@@ -84,6 +85,7 @@ public interface TabFolder extends AbstractPanel {
 	 *            the new value of the '<em>Current Selection</em>' reference.
 	 * @see #getCurrentSelection()
 	 * @generated
+	 * @since 1.2
 	 */
 	void setCurrentSelection(PageRef value);
 
@@ -129,6 +131,7 @@ public interface TabFolder extends AbstractPanel {
 	 *
 	 * @model pageRefRequired="true" pageRefOrdered="false"
 	 * @generated
+	 * @since 1.2
 	 */
 	void addPage(PageRef pageRef);
 

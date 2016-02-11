@@ -247,6 +247,7 @@ public class DiSashModelManager {
 	 * Get the IPageManager providing basic methods to manage Pages in the sash model.
 	 *
 	 * @return
+	 * @since 2.0
 	 */
 	public IPageManager getIPageManager() {
 		return getPageManagerImpl();
@@ -325,6 +326,7 @@ public class DiSashModelManager {
 	 * @return A map of (ID -> Label) for the matching editors
 	 *
 	 * @see {@link IPageManager#DEFAULT_EDITOR}
+	 * @since 2.0
 	 */
 	public Map<String, String> getEditorIDsFor(Object pageIdentifier) {
 		return pageModelFactory.getEditorIDsFor(pageIdentifier);

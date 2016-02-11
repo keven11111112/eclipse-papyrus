@@ -35,6 +35,7 @@ import org.eclipse.ui.IWorkbenchPartSite;
  * @author Camille Letavernier
  *
  * @see ServiceUtilsForSelection
+ * @since 1.2
  */
 public class ServiceUtilsForHandlers extends AbstractServiceUtils<ExecutionEvent> {
 

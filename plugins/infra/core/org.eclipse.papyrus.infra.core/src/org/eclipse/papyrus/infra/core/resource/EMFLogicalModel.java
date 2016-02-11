@@ -181,14 +181,22 @@ public abstract class EMFLogicalModel extends AbstractBaseModel implements IEMFM
 	/**
 	 * The very basic requirement is that I have a {@link #getResource() resource} in which
 	 * to persist the {@code object}.
+	 * 
+	 * @since 2.0
 	 */
 	@Override
 	public boolean canPersist(EObject object) {
 		return (getResource() != null) && isSupportedRoot(object);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	protected abstract boolean isSupportedRoot(EObject object);
 
+	/**
+	 * @since 2.0
+	 */
 	@Override
 	public void persist(EObject object) {
 		if (!canPersist(object)) {

@@ -17,6 +17,7 @@ package org.eclipse.papyrus.infra.ui.extension.diagrameditor;
  * Root Exception of MultiDiagram exception
  *
  * @author dumoulin
+ * @since 1.2
  *
  */
 @SuppressWarnings("serial")

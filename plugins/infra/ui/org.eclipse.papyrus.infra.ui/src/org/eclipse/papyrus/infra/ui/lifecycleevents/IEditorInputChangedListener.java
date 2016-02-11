@@ -21,6 +21,7 @@ import org.eclipse.ui.part.FileEditorInput;
  * event after a call to {@link ISaveAndDirtyService#doSaveAs()}.
  *
  * @author cedric dumoulin
+ * @since 1.2
  *
  */
 public interface IEditorInputChangedListener {

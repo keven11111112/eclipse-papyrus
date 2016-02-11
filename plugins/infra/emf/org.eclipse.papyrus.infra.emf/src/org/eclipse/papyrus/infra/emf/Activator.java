@@ -121,6 +121,7 @@ public class Activator extends Plugin {
 	 * Obtain the instance of the {@link EObject} resolver service, if any.
 	 * 
 	 * @return the object resolver service (never {@code null} while this bundle is active)
+	 * @since 2.0
 	 */
 	public IEObjectResolver getEObjectResolver() {
 		return resolverService;

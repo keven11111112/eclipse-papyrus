@@ -20,6 +20,8 @@ import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
  * An {@linkplain EditorReloadEvent#putContext(Object) editor reload context} that delegates to another reload context.
  * This should be used whenever a {@linkplain IReloadContextProvider reload context provider} is needed to get a reload
  * context to delegate to.
+ * 
+ * @since 1.2
  */
 public class DelegatingReloadContext implements IDisposableReloadContext, IAdaptable {
 

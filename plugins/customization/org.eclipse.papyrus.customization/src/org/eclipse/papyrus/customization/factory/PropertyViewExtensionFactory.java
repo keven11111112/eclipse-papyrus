@@ -36,7 +36,7 @@ import org.eclipse.papyrus.customization.messages.Messages;
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginPackage;
 import org.eclipse.papyrus.customization.model.customizationplugin.FileBasedCustomizableElement;
-import org.eclipse.papyrus.customization.plugin.PluginEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginEditor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
@@ -53,21 +53,21 @@ public class PropertyViewExtensionFactory extends FileBasedExtensionFactory {
 	}
 
 	@Override
-	public void addElement(CustomizableElement element, PluginEditor editor) {
+	public void addElement(CustomizableElement element, IPluginEditor editor) {
 		super.addElement(element, editor);
 
-		editor.getManifestEditor().addDependency("org.eclipse.papyrus.infra.properties.ui"); //$NON-NLS-1$
+		editor.addDependency("org.eclipse.papyrus.infra.properties.ui"); //$NON-NLS-1$
 	}
 
 	@Override
-	protected Element createExtension(FileBasedCustomizableElement element, PluginEditor editor) {
+	protected Element createExtension(FileBasedCustomizableElement element, IPluginEditor editor) {
 		Element extension = super.createExtension(element, editor);
 		// extension.setAttribute("loadDefault", ((PropertyView)element).isLoadDefault() ? "true" : "false");
 		return extension;
 	}
 
 	@Override
-	protected void copyFile(FileBasedCustomizableElement element, PluginEditor editor) {
+	protected void copyFile(FileBasedCustomizableElement element, IPluginEditor editor) {
 		String path = element.getFile();
 		File sourceFile = FileUtil.getFile(path);
 		URI uri = URI.createFileURI(sourceFile.getAbsolutePath());
@@ -93,7 +93,7 @@ public class PropertyViewExtensionFactory extends FileBasedExtensionFactory {
 		// Activator.log.error(ex);
 		// }
 		//
-		editor.getBuildEditor().addToBuild("propertyView/");
+		editor.addToBuild("propertyView/");
 	}
 
 	private void copyAll(final Context source, final File target) {

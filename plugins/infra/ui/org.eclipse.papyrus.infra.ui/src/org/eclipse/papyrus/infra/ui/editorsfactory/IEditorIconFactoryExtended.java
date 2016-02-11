@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.ui.editorsfactory;
 /**
  *
  * @author "Arthur Daussy <a href="mailto:arthur.daussy@atos.net">arthur.daussy@atos.net</a>"
+ * @since 1.2
  *
  */
 public interface IEditorIconFactoryExtended extends IEditorIconFactory {

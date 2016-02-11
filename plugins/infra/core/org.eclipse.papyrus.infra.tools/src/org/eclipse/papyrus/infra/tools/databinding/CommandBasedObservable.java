@@ -15,6 +15,9 @@ import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.common.command.Command;
 
 
+/**
+ * @since 2.0
+ */
 public interface CommandBasedObservable extends IObservable {
 
 	/**

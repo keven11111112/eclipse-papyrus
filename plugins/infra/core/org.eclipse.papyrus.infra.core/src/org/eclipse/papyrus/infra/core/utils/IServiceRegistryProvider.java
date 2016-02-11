@@ -18,6 +18,8 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 /**
  * A protocol for any object that can provide the context of a Papyrus
  * {@link ServicesRegistry} in which it is exists.
+ * 
+ * @since 2.0
  */
 @FunctionalInterface
 public interface IServiceRegistryProvider {

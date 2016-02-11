@@ -17,8 +17,9 @@ import org.eclipse.papyrus.infra.core.services.IService;
 
 /**
  * @author Shuai Li
+ * @since 2.0
  *
  */
 public interface HyperlinkService extends IService, HyperlinkContributor {
-	
+
 }

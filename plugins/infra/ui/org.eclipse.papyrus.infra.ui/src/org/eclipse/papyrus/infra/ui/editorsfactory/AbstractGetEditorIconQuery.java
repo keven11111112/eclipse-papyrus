@@ -17,13 +17,12 @@ package org.eclipse.papyrus.infra.ui.editorsfactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistryExtended;
-import org.eclipse.papyrus.infra.ui.editorsfactory.PageIconsRegistry;
 
 /**
  *
  * An abstract class to get the iconRegistery
+ * 
+ * @since 1.2
  *
  */
 public abstract class AbstractGetEditorIconQuery {// we don't need to implements IJavaModelQuery here

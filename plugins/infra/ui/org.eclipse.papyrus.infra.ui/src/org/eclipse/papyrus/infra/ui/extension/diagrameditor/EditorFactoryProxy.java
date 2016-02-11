@@ -13,6 +13,7 @@ import org.eclipse.papyrus.infra.ui.editorsfactory.IEditorFactory;
  * by the {@link PluggableEditorFactoryReader}
  *
  * @author cedric dumoulin
+ * @since 1.2
  *
  */
 public class EditorFactoryProxy implements IEditorFactory {

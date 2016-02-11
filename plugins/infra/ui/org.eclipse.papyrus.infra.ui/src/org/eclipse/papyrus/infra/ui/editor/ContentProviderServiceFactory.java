@@ -14,6 +14,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
  * This service depends on {@link DiSashModelMngrServiceFactory}.
  *
  * @author cedric dumoulin
+ * @since 1.2
  *
  */
 public class ContentProviderServiceFactory implements IServiceFactory {

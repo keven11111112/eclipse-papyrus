@@ -17,6 +17,8 @@ import org.eclipse.papyrus.infra.tools.util.IExecutorService;
 
 /**
  * An OSGi service protocol for creation of an executor service on the UI thread.
+ * 
+ * @since 2.0
  */
 @FunctionalInterface
 public interface IExecutorServiceFactory {

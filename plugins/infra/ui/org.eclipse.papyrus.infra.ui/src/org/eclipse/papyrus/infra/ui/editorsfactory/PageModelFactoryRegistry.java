@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.ui.Activator;
  *
  *
  * @author cedric dumoulin
+ * @since 1.2
  */
 public class PageModelFactoryRegistry implements IPageModelFactory {
 

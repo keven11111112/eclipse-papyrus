@@ -21,6 +21,7 @@ import org.eclipse.papyrus.infra.ui.Activator;
  * Util class for display in Papyrus (label providers, etc...)
  *
  * @deprecated Use the LabelProviderService instead
+ * @since 1.2
  */
 @Deprecated
 public class DisplayUtils {

@@ -99,6 +99,7 @@ public class PlatformHelper {
 	 *            a default adapter to return if none can be obtained (may be {@code null}
 	 *
 	 * @return the best-effort adapter of the given {@code type}, else the {@code defaultAdapter}
+	 * @since 2.0
 	 */
 	public static <T> T getAdapter(Object object, Class<T> type, T defaultAdapter) {
 		T result = defaultAdapter;
@@ -125,6 +126,7 @@ public class PlatformHelper {
 	 *            obtained by the usual means (may be {@code null}
 	 *
 	 * @return the best-effort adapter of the given {@code type}, else the {@code defaultAdapter}
+	 * @since 2.0
 	 */
 	public static <T> T getAdapter(Object object, Class<T> type, Supplier<T> defaultAdapter) {
 		T result = null;

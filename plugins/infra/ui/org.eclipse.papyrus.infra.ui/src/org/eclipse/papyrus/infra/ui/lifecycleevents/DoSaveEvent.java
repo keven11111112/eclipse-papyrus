@@ -10,6 +10,7 @@ import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
  * Event sent whith a Save or SaveAs.
  *
  * @author cedric dumoulin
+ * @since 1.2
  *
  */
 public class DoSaveEvent {

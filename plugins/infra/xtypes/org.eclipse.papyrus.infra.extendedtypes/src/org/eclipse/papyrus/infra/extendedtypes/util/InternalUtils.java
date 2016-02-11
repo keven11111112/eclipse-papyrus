@@ -28,6 +28,8 @@ import org.osgi.framework.Bundle;
 
 /**
  * Utilities for internal use by rthe ExtendedTypes bundle.
+ * 
+ * @noreference This class is not intended to be referenced by clients.
  */
 public class InternalUtils {
 

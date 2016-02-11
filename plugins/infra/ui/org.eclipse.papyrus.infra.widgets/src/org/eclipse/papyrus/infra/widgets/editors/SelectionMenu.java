@@ -57,25 +57,28 @@ public class SelectionMenu {
 	private Object input;
 
 	private Shell shell;
-	
+
 	private TableViewer tableViewer;
 
 	private ISelectionChangedListener selectionChangedListener;
 
 	private List<ISelectionChangedListener> selectionChangedListeners;
-	
+
 	private KeyListener keyListener;
-	
+
 	private List<KeyListener> keyListeners;
-	
+
 	private MouseTrackListener mouseTrackListener;
-	
+
 	private List<MouseTrackListener> mouseTrackListeners;
 
 	public SelectionMenu(Shell parentShell) {
 		this(parentShell, parentShell.getDisplay().getCursorLocation());
 	}
-	
+
+	/**
+	 * @since 2.0
+	 */
 	public SelectionMenu(Shell parentShell, Object source) {
 		if (source instanceof TableViewer && parentShell != null) {
 			TableViewer tableViewer = (TableViewer) source;
@@ -87,7 +90,7 @@ public class SelectionMenu {
 			y += selectionIndex * cellHeight;
 
 			// Get the cell's x position and append by the table's width
-			//int width= tableViewer.getTable().getSize().x;
+			// int width= tableViewer.getTable().getSize().x;
 			int width = tableViewer.getTable().getShell().getBounds().width;
 			int x = tableViewer.getTable().getShell().getLocation().x + width;
 
@@ -95,16 +98,19 @@ public class SelectionMenu {
 			init(parentShell, location, -1, 0);
 			return;
 		}
-		
+
 		init(parentShell, parentShell.getDisplay().getCursorLocation(), 1, 1);
 	}
-	
+
+	/**
+	 * @since 2.0
+	 */
 	public SelectionMenu(Shell parentShell, Object source, Point cursorPosition) {
 		if (source instanceof Table && parentShell != null && cursorPosition != null) {
 			Table table = (Table) source;
-			
+
 			TableItem item = table.getItem(cursorPosition);
-			
+
 			if (item != null) {
 				int selectionIndex = 0;
 				for (Object tableItem : table.getItems()) {
@@ -113,13 +119,13 @@ public class SelectionMenu {
 					}
 					selectionIndex++;
 				}
-				
+
 				int cellHeight = item.getBounds().height;
 				int y = table.getShell().getLocation().y;
 				y += selectionIndex * cellHeight;
 
 				// Get the cell's x position and append by the table's width
-				//int width= tableViewer.getTable().getSize().x;
+				// int width= tableViewer.getTable().getSize().x;
 				int width = table.getShell().getBounds().width;
 				int x = table.getShell().getLocation().x + width;
 
@@ -128,14 +134,17 @@ public class SelectionMenu {
 				return;
 			}
 		}
-		
+
 		init(parentShell, parentShell.getDisplay().getCursorLocation(), 1, 1);
 	}
 
 	public SelectionMenu(Shell parentShell, Point location) {
 		init(parentShell, location, 1, 1);
 	}
-	
+
+	/**
+	 * @since 2.0
+	 */
 	protected void init(Shell parentShell, Point location, int xOffset, int yOffset) {
 		// Move the shell so that it doesn't open under the mouse
 		// The hovered element can still be selected
@@ -172,7 +181,7 @@ public class SelectionMenu {
 				}
 			}
 		};
-		
+
 		mouseTrackListeners = new LinkedList<MouseTrackListener>();
 		mouseTrackListener = new MouseTrackListener() {
 			@Override
@@ -203,10 +212,12 @@ public class SelectionMenu {
 		shell = new Shell(parentShell, SWT.NONE);
 		shell.setBackground(shell.getDisplay().getSystemColor(SWT.COLOR_WHITE));
 		shell.setBackgroundMode(SWT.INHERIT_DEFAULT);
-		/*GridLayout gridLayout = new GridLayout(1, false);
-		gridLayout.marginWidth = 5;
-		gridLayout.marginHeight = 5;
-		shell.setLayout(gridLayout);*/
+		/*
+		 * GridLayout gridLayout = new GridLayout(1, false);
+		 * gridLayout.marginWidth = 5;
+		 * gridLayout.marginHeight = 5;
+		 * shell.setLayout(gridLayout);
+		 */
 		shell.setLayout(new GridLayout(1, false));
 
 		// TableViewer for menu items
@@ -216,7 +227,7 @@ public class SelectionMenu {
 		tableViewer.setLabelProvider(labelProvider);
 		ColumnViewerToolTipSupport.enableFor(tableViewer);
 		tableViewer.setInput(input);
-		
+
 		// Listeners
 		tableViewer.addSelectionChangedListener(selectionChangedListener);
 		tableViewer.getTable().addKeyListener(keyListener);
@@ -226,10 +237,13 @@ public class SelectionMenu {
 		shell.setLocation(location);
 		shell.pack();
 		shell.open();
-		
-		
+
+
 	}
-	
+
+	/**
+	 * @since 2.0
+	 */
 	public void refresh() {
 		tableViewer.refresh();
 		shell.pack();
@@ -239,11 +253,11 @@ public class SelectionMenu {
 		if (tableViewer != null) {
 			tableViewer.removeSelectionChangedListener(selectionChangedListener);
 		}
-		
+
 		if (tableViewer.getTable() != null) {
 			tableViewer.getTable().removeKeyListener(keyListener);
 		}
-		
+
 		if (shell != null) {
 			shell.dispose();
 		}
@@ -252,7 +266,7 @@ public class SelectionMenu {
 	public void setContentProvider(IStructuredContentProvider provider) {
 		this.contentProvider = provider;
 	}
-	
+
 	public void setInput(Object input) {
 		this.input = input;
 	}
@@ -261,30 +275,51 @@ public class SelectionMenu {
 		this.labelProvider = labelProvider;
 	}
 
+	/**
+	 * @since 1.2
+	 */
 	public void addSelectionChangedListener(ISelectionChangedListener listener) {
 		this.selectionChangedListeners.add(listener);
 	}
-	
+
+	/**
+	 * @since 2.0
+	 */
 	public void addKeyListener(KeyListener listener) {
 		this.keyListeners.add(listener);
 	}
-	
+
+	/**
+	 * @since 2.0
+	 */
 	public void addMouseTrackListener(MouseTrackListener listener) {
 		this.mouseTrackListeners.add(listener);
 	}
-	
+
+	/**
+	 * @since 2.0
+	 */
 	public Shell getShell() {
 		return shell;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public void setShell(Shell shell) {
 		this.shell = shell;
 	}
-	
+
+	/**
+	 * @since 2.0
+	 */
 	public Shell getParentShell() {
 		return parentShell;
 	}
-	
+
+	/**
+	 * @since 2.0
+	 */
 	public TableViewer getTableViewer() {
 		return tableViewer;
 	}

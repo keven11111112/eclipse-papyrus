@@ -100,6 +100,7 @@ public interface SashModel extends EObject {
 	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getSashModel_RestoreActivePage()
 	 * @model dataType="org.eclipse.papyrus.infra.core.sashwindows.di.boolean" required="true" ordered="false"
 	 * @generated
+	 * @since 1.2
 	 */
 	boolean isRestoreActivePage();
 
@@ -112,6 +113,7 @@ public interface SashModel extends EObject {
 	 *            the new value of the '<em>Restore Active Page</em>' attribute.
 	 * @see #isRestoreActivePage()
 	 * @generated
+	 * @since 1.2
 	 */
 	void setRestoreActivePage(boolean value);
 
@@ -167,6 +169,7 @@ public interface SashModel extends EObject {
 	 *
 	 * @model folderRequired="true" folderOrdered="false" pageRefRequired="true" pageRefOrdered="false"
 	 * @generated
+	 * @since 1.2
 	 */
 	void addPage(TabFolder folder, PageRef pageRef);
 

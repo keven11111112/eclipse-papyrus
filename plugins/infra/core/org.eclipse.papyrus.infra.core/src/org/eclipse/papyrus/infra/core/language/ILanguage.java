@@ -61,6 +61,7 @@ public interface ILanguage {
 	 *            a model set in which the language is {@linkplain #install(ModelSet) installed}
 	 * 
 	 * @return the language's model in the {code modelSet}, or {@code null} if there is no corresponding model
+	 * @since 2.0
 	 */
 	default IModel getModel(ModelSet modelSet) {
 		return LanguageModelRegistry.INSTANCE.getModel(this, modelSet);

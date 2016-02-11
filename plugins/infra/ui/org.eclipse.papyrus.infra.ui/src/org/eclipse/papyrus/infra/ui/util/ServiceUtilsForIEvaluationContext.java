@@ -30,6 +30,7 @@ import org.eclipse.ui.IWorkbenchPartSite;
  *
  *
  * @author Cedric Dumoulin
+ * @since 1.2
  *
  */
 public class ServiceUtilsForIEvaluationContext extends AbstractServiceUtils<IEvaluationContext> {

@@ -19,6 +19,8 @@ import org.eclipse.jface.viewers.AbstractTreeViewer;
 /**
  * A convenient context object for {@link IEditorReloadListener}s to store in an {@link EditorReloadEvent} to capture and restore
  * the expansion and selection state of nodes in an EMF-based tree viewer.
+ * 
+ * @since 1.2
  */
 public class EMFTreeViewerContext extends TreeViewerContext<URI> implements IAdaptable {
 

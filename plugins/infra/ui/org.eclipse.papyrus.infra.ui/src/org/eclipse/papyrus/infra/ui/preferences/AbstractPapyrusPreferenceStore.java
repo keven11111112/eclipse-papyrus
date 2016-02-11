@@ -22,6 +22,9 @@ import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.papyrus.infra.ui.Activator;
 import org.eclipse.papyrus.infra.ui.preferences.dialog.AbstractApplyValueOnPreferenceKeyDialog;
 
+/**
+ * @since 1.2
+ */
 public abstract class AbstractPapyrusPreferenceStore extends PapyrusScopedPreferenceStore {
 
 	/**

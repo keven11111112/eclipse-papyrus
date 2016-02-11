@@ -69,6 +69,7 @@ import org.eclipse.ui.part.FileEditorInput;
  * hasn't changed.
  *
  * @author cedric dumoulin
+ * @since 1.2
  *
  */
 public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISaveablePart, IService, ISaveAndDirtyService {

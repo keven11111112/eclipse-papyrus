@@ -31,6 +31,7 @@
     <requirement name="org.eclipse.oomph.projectconfig.feature.group"/>    
     <requirement name="org.eclipse.oomph.projectcopy.feature.group"/>    
     <requirement name="org.eclipse.oomph.workingsets.feature.group"/>    
+    <requirement name="org.eclipse.oomph.version.feature.group"/>
     <requirement name="org.sonatype.tycho.m2e.feature.feature.group"/>    
     <repository url="http://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.8.0/N/LATEST/"/>    
   </setupTask>
@@ -204,7 +205,7 @@
             </detail>    
           </annotation>    
         </repository>    
-        <repository url="${base.downloads.url}/nattable/snapshots/484/repository/"/>    
+        <repository url="${base.downloads.url}/nattable/snapshots/475/repository/"/>    
         <repository url="http://download.eclipse.org/xwt/release-1.1.0">    
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">    
             <detail key="updateFrom">    
@@ -652,6 +653,8 @@
       </setupTask>    
       <setupTask xsi:type="setup.targlets:TargletTask">
         <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Dependencies">    
+          <requirement name="org.eclipse.xtext.xbase.feature.group"/>
+          <requirement name="org.eclipse.emf.mwe2.launcher.feature.group"/>    
           <repositoryList name="Neon">    
             <repository url="${base.downloads.url}/technology/nebula/snapshot/"/>    
           </repositoryList>    
@@ -660,7 +663,7 @@
           </repositoryList>    
         </targlet>
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
         <setupTask xsi:type="setup.targlets:TargletTask">
           <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Neon Dependencies">    
@@ -712,7 +715,7 @@
           </predicate>    
         </workingSet>
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -828,7 +831,7 @@
       <setupTask xsi:type="p2_1.0:P2Task">    
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>    
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -875,7 +878,7 @@
           <requirement name="org.eclipse.m2m.qvt.oml.runtime.feature.group"/>    
         </targlet>
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -916,7 +919,7 @@
       <setupTask xsi:type="p2_1.0:P2Task">    
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>    
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -976,7 +979,7 @@
           </predicate>    
         </workingSet>
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1013,7 +1016,7 @@
           </predicate>    
         </workingSet>
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1055,7 +1058,7 @@
           </predicate>    
         </workingSet>
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1090,7 +1093,7 @@
           </predicate>    
         </workingSet>
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1140,7 +1143,7 @@
           <requirement name="org.eclipse.m2m.qvt.oml.runtime.feature.group"/>    
         </targlet>
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1151,7 +1154,7 @@
       </stream>    
     </project>    
     <project label="Others" name="misc">    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1218,7 +1221,7 @@
         <setupTask xsi:type="projects:ProjectsImportTask">
           <sourceLocator locateNestedProjects="true" rootFolder="${papyrus.git.clone.location/releng/emfgen}"/>
         </setupTask>    
-        <stream label="master (Neon/1.2)" name="master">    
+        <stream label="master (Neon/2.0)" name="master">    
           <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
         </stream>    
         <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1226,7 +1229,7 @@
         </stream>    
         <description>Sources of Maven plug-ins for Papyrus custom build behaviours</description>    
       </project>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1310,7 +1313,7 @@
         </targlet>
       </setupTask>    
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="cdo"/>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1378,7 +1381,7 @@
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>    
         <requirement name="org.eclipse.acceleo.feature.group"/>    
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1395,7 +1398,7 @@
     </project>    
     <project label="Diagram Template" name="diagramtemplate">    
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="diagramtemplate"/>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1416,7 +1419,7 @@
       <setupTask xsi:type="p2_1.0:P2Task">    
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>    
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1429,7 +1432,7 @@
     </project>    
     <project label="East-ADL" name="eastadl">    
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="eastadl"/>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1469,7 +1472,7 @@
           </predicate>    
         </workingSet>
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1508,7 +1511,7 @@
           </repositoryList>    
         </targlet>
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1524,7 +1527,7 @@
       <setupTask xsi:type="p2_1.0:P2Task">    
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>    
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1542,7 +1545,7 @@
           <requirement name="org.eclipse.papyrus.umlrt"/>    
         </targlet>
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1565,7 +1568,7 @@
     </project>    
     <project label="RobotML" name="robotml">    
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="robotml"/>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1579,7 +1582,7 @@
     <project label="Table Migration" name="tablemigration">    
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="tablemigration"/>    
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extrafeature" value="tablemigration"/>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1593,7 +1596,7 @@
     <project label="UML Compare" name="umlcompare">    
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="uml/compare"/>    
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extrafeature" value="extra.uml.compare"/>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1607,7 +1610,7 @@
     <project label="UML Export" name="umlexport">    
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="uml/org.eclipse.papyrus.uml.export"/>    
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extrafeature" value="uml.export"/>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1620,7 +1623,7 @@
     </project>    
     <project label="UML-RT" name="umlrt">    
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="umlrt"/>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1643,7 +1646,7 @@
     </project>    
     <project label="BPMN" name="bpmn">    
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="bpmn"/>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1653,7 +1656,7 @@
     </project>    
     <project label="Manufacturing" name="manufacturing">    
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="manufacturing"/>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <description>Papyrus4Manufacturing</description>    
@@ -1700,7 +1703,7 @@
     </setupTask>    
     <project label="Oomph Setup" name="Oomph">    
       <setupTask xsi:type="setup:EclipseIniTask" option="-Doomph.redirection.papyrussetups" value="=http://git.eclipse.org/c/papyrus/org.eclipse.papyrus.git/plain/releng/org.eclipse.papyrus.oomph/setups/->${papyrus.git.clone.location|uri}/releng/org.eclipse.papyrus.oomph/setups/" vm="true"/>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1726,7 +1729,7 @@
           <predicate xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.releng\.tools"/>    
         </sourceLocator>
       </setupTask>    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
       </stream>    
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1735,7 +1738,7 @@
       <description>Release engineering tools, including the POM and Oomph Setup dependencies updater actions.</description>    
     </project>    
     <project label="Developer Tools" name="devtools">    
-      <stream label="master (Neon/1.2)" name="master">    
+      <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
         <setupTask xsi:type="p2_1.0:P2Task">    
           <requirement name="org.eclipse.papyrus.dev.feature.feature.group"/>    
@@ -1778,7 +1781,7 @@
       </stream>    
       <description>Installs developer tools, including the code generator for Papyrus diagram plug-ins and various debugging aids such as &quot;spy&quot; views.  Source code is not included.</description>    
     </project>    
-    <stream label="master (Neon/1.2)" name="master">    
+    <stream label="master (Neon/2.0)" name="master">    
       <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
     </stream>    
     <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">    
@@ -1789,7 +1792,7 @@
     </stream>    
     <description>Sources and tools required for working on the Papyrus developer tools (not part of the product).  Does not install the developer tools in your IDE:  use the Developer Tools sub-project for that.</description>    
   </project>
-  <stream label="master (Neon/1.2)" name="master">    
+  <stream label="master (Neon/2.0)" name="master">    
     <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
     <setupTask xsi:type="jdt:JRETask" version="JavaSE-1.8" location="${jre.location-1.8}"/>    
     <setupTask xsi:type="setup.targlets:TargletTask">

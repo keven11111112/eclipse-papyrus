@@ -45,6 +45,8 @@ import org.eclipse.ui.preferences.ScopedPreferenceStore;
  * Each group added has to be declared through the {@link #addPreferenceGroup(AbstractPreferenceGroup)}</code> method</li>
  * </ul>
  * </p>
+ * 
+ * @since 1.2
  */
 public abstract class AbstractPapyrusPreferencePage extends PreferencePage implements IWorkbenchPreferencePage, IWorkbenchPropertyPage, IPapyrusPreferencePage {
 

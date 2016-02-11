@@ -18,6 +18,8 @@ import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 
 /**
  * Extends the original interface to add the init method.
+ * 
+ * @since 1.2
  */
 public interface IPapyrusContentOutlinePage extends org.eclipse.ui.views.contentoutline.IContentOutlinePage {
 

@@ -32,7 +32,11 @@ import org.eclipse.ui.PlatformUI;
  */
 public class DiscoveryComponent {
 
-	/** URI of the model where all extra component features to be installed are referenced */
+	/**
+	 * URI of the model where all extra component features to be installed are referenced.
+	 * 
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
 	public static final String DISCOVERY_PAPYRUS_URI = "http://www.eclipse.org/modeling/mdt/papyrus/downloads/discovery/neon/papyrus-extra.xmi";
 
 	public static final Object execute() {

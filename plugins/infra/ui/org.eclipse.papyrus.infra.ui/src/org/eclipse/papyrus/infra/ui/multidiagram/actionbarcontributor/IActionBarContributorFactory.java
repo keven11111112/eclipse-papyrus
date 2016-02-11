@@ -10,6 +10,7 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  * Interface used to get an ActionBarContributor from its ID.
  *
  * @author dumoulin
+ * @since 1.2
  *
  */
 public interface IActionBarContributorFactory {

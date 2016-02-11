@@ -19,6 +19,8 @@ import org.eclipse.jface.preference.IPreferencePage;
 /**
  * Specialized protocol for preference pages participating in the {@link VisiblePageSingleton}
  * mechanism.
+ * 
+ * @since 1.2
  */
 public interface IPapyrusPreferencePage extends IPreferencePage {
 	/**

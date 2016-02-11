@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,16 +9,22 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.interfaces;
 
+import java.util.List;
 
+import org.eclipse.pde.core.project.IPackageImportDescription;
+import org.eclipse.pde.core.project.IRequiredBundleDescription;
 
 /**
  *
  * Editor for the Manifest
- *
+ * 
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface IManifestEditor extends IProjectEditor, IFileEditor {
 
@@ -52,6 +57,7 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 
 	/**
 	 * Add a dependency to the MANIFEST
+	 * 
 	 * @param dependency
 	 *            the dependency to add
 	 */
@@ -76,43 +82,67 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	public boolean hasDependency(final String dependency);
 
 	/**
-	 *
-	 * @param key
-	 *            the key
+	 * Sets the value of a header in the main section of the manifest.
+	 * 
+	 * @param name
+	 *            the header name
 	 * @param value
-	 *            the new value for the key
+	 *            the new value for the header
 	 */
-	public void setValue(final String key, final String value);
-
-	public String getValue(final String key);
+	public void setValue(final String name, final String value);
 
 	/**
-	 *
-	 * @param key
-	 *            the key
+	 * Queries the value of a header in the main section of the manifest.
+	 * 
 	 * @param name
-	 *            the name
+	 *            the header name
+	 * @return the value of the header, {@code null} if none
+	 */
+	public String getValue(final String name);
+
+	/**
+	 * Sets the value of an attribute in a named section of the manifest.
+	 * 
+	 * @param key
+	 *            the key (section name)
+	 * @param name
+	 *            the name of the attribute
 	 * @param value
-	 *            the new value for the key
+	 *            the new value for the attribute
 	 */
 	public void setValue(final String key, final String name, final String value);
 
 	/**
-	 *
+	 * Queries the value of a header in a named section of the manifest.
+	 * 
 	 * @param key
-	 *            the key
-	 * @param value
-	 *            the value to remove for this key
+	 *            the key (section name)
+	 * @param name
+	 *            the header (attribute) name to set
+	 * @return the value of the header, {@code null} if none
+	 * 
+	 * @since 2.0
 	 */
-	public void removeValue(final String key, final String value);
+	public String getValue(final String key, String name);
 
 	/**
-	 *
+	 * Removes a header from the main section of the manifest
+	 * 
 	 * @param key
-	 *            a key to remove from the manifest
+	 *            the header to remove from the manifest
 	 *
 	 */
 	public void removeValue(final String key);
+
+	/**
+	 * Removes an attribute in a named section of the manifest.
+	 * 
+	 * @param key
+	 *            the key (section name)
+	 * @param name
+	 *            the attribute to remove from this section
+	 */
+	public void removeValue(final String key, final String name);
 
 	/**
 	 *
@@ -125,14 +155,14 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	/**
 	 *
 	 * @return
-	 *         the bundle name for the project
+	 * 		the bundle name for the project
 	 */
 	public String getSymbolicBundleName();
 
 	/**
 	 *
 	 * @return
-	 *         the symbolic bundle name for the project
+	 * 		the symbolic bundle name for the project
 	 */
 	public String getBundleName();
 
@@ -146,7 +176,7 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	/**
 	 *
 	 * @return
-	 *         the version of the bundle
+	 * 		the version of the bundle
 	 */
 	public String getBundleVersion();
 
@@ -159,7 +189,7 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	 * Gets this plug-in's provider
 	 *
 	 * @return
-	 *         this plug-in's provider
+	 * 		this plug-in's provider
 	 */
 	public String getBundleVendor();
 
@@ -175,7 +205,7 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	 * Get the bundle localization
 	 *
 	 * @return
-	 *         the bundle localization
+	 * 		the bundle localization
 	 */
 	public String getBundleLocalization();
 
@@ -193,37 +223,100 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	 *            the pattern for the dependency to update
 	 * @param newVersion
 	 *            the version for the dependency
+	 * 
+	 * @deprecated Bulk updates of the bundle dependencies are no longer policy since release 2.0.
 	 */
+	@Deprecated
 	public void setDependenciesVersion(final String dependencyPattern, final String newVersion);
 
 	/**
 	 * Adds an import package to the MANIFEST.
 	 *
-	 * @param packageName the package name to add
+	 * @param packageName
+	 *            the package name to add
+	 * @since 2.0
 	 */
 	public void addImportPackage(String packageName);
 
 	/**
 	 * Adds an import package and its version to the MANIFEST.
 	 *
-	 * @param packageName the package name to add
-	 * @param version the package version
+	 * @param packageName
+	 *            the package name to add
+	 * @param version
+	 *            the package version
+	 * @since 2.0
 	 */
 	public void addImportPackage(String packageName, String version);
 
 	/**
 	 * Adds an export package to the MANFIEST.
 	 *
-	 * @param packageName the package name to add
+	 * @param packageName
+	 *            the package name to add
+	 * @since 2.0
 	 */
 	public void addExportPackage(String packageName);
 
 	/**
 	 * Adds an export package and its version to the MANIFEST.
 	 *
-	 * @param packageName the package name to add
-	 * @param version the package version
+	 * @param packageName
+	 *            the package name to add
+	 * @param version
+	 *            the package version
+	 * @since 2.0
 	 */
 	public void addExportPackage(String packageName, String version);
+
+	/**
+	 * Queries the existing bundle requirements.
+	 * 
+	 * @return the existing <tt>Require-Bundle</tt> dependencies
+	 * 
+	 * @since 2.0
+	 */
+	public List<IRequiredBundleDescription> getRequiredBundles();
+
+	/**
+	 * Queries the existing package imports.
+	 * 
+	 * @return the existing <tt>Import-Package</tt> dependencies
+	 * 
+	 * @since 2.0
+	 */
+	public List<IPackageImportDescription> getImportedPackages();
+
+	/**
+	 * Sets whether a <tt>Require-Bundle</tt> dependency is re-exported.
+	 * 
+	 * @param bundleName
+	 *            the required bundle
+	 * @param exported
+	 *            whether the required bundle is re-exported
+	 * 
+	 * @since 2.0
+	 */
+	public void setRequiredBundleExported(String bundleName, boolean exported);
+
+	/**
+	 * Removes a <tt>Require-Bundle</tt> dependency.
+	 * 
+	 * @param bundleName
+	 *            the required bundle to remove
+	 * 
+	 * @since 2.0
+	 */
+	public void removeRequiredBundle(String bundleName);
+
+	/**
+	 * Removes an <tt>Import-package</tt> dependency.
+	 * 
+	 * @param packageName
+	 *            the imported package to remove
+	 * 
+	 * @since 2.0
+	 */
+	public void removeImportedPackage(String packageName);
 
 }

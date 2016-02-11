@@ -17,6 +17,8 @@ package org.eclipse.papyrus.infra.tools.notify;
 /**
  * The Interface INotification.
  * offers some services for a notification
+ * 
+ * @since 2.0
  */
 public interface INotification {
 

@@ -2,16 +2,11 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.service.validation,
  org.eclipse.papyrus.uml.service.validation.internal;x-internal:=true,
  org.eclipse.papyrus.uml.service.validation.oclpivot
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.services.validation;bundle-version="1.2.0",
- org.eclipse.emf;bundle-version="2.6.0",
- org.eclipse.uml2.uml;bundle-version="4.1.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.2.0",
- org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0",
- org.eclipse.ocl.pivot;bundle-version="1.0.0",
- org.eclipse.ocl.pivot.uml;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.core;bundle-version="1.2.0"
+Require-Bundle: org.eclipse.papyrus.infra.services.validation;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.emf;bundle-version="[2.6.0,3.0.0)",
+ org.eclipse.uml2.uml;bundle-version="[5.2.0,6.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.ocl.pivot.uml;bundle-version="[1.1.0,2.0.0)"
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier

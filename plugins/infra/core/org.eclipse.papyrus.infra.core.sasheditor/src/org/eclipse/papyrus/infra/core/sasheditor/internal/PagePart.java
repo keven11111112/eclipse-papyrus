@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ICloseablePart;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
@@ -49,6 +50,9 @@ public abstract class PagePart extends AbstractPart implements IPage, IAdaptable
 		this.rawModel = rawModel;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	@Override
 	public <T> T getAdapter(Class<T> adapter) {
 		return Platform.getAdapterManager().getAdapter(this, adapter);
@@ -222,6 +226,7 @@ public abstract class PagePart extends AbstractPart implements IPage, IAdaptable
 	 * Queries whether I should be permitted to be closed.
 	 * 
 	 * @return whether my containing tab should show the close widget
+	 * @since 2.0
 	 */
 	public boolean canClose() {
 		ICloseablePart closeable = getAdapter(ICloseablePart.class);

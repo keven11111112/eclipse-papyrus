@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.project;
@@ -21,7 +21,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.core.internal.events.BuildCommand;
 import org.eclipse.core.resources.ICommand;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
@@ -59,24 +58,24 @@ public abstract class AbstractProjectEditor extends AbstractFileEditor implement
 		this.description = getProject().getDescription();
 	}
 
-
 	/**
+	 * Initializes me as a slave to another editor, which maintains the canonical
+	 * project description.
 	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.AbstractProjectEditor.plugin.AbstractEditor#exists()
-	 *
-	 *      {@inheritDoc}
+	 * @param master
+	 *            my master editor
 	 */
+	AbstractProjectEditor(AbstractProjectEditor master) {
+		super(master.getProject());
+
+		this.description = master.description;
+	}
+
 	@Override
 	public boolean exists() {
 		return super.exists() && getMissingNature().size() == 0 && getMissingBuildCommand().size() == 0;
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.file.AbstractFileEditor#create()
-	 *
-	 *      {@inheritDoc}
-	 */
 	@Override
 	public void create() {
 		createFiles(getMissingFiles());
@@ -85,52 +84,37 @@ public abstract class AbstractProjectEditor extends AbstractFileEditor implement
 		init();
 	}
 
-	/**
-	 *
-	 * @param nature
-	 *            a nature
-	 * @return
-	 *         <code>true</code> if the project has the wanted nature
-	 */
+	@Override
 	public boolean hasNature(final String nature) {
 		List<String> natures = new LinkedList<String>(Arrays.asList(this.description.getNatureIds()));
 		return natures.contains(nature);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IProjectEditor#getMissingNature()
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public Set<String> getMissingNature() {
 		return new HashSet<String>();
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IProjectEditor#addNatures(java.util.List)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void addNatures(final Set<String> natures) {
 		List<String> existingNatures = new LinkedList<String>(Arrays.asList(this.description.getNatureIds()));
+		boolean added = false;
 		Iterator<String> iter = natures.iterator();
 		while (iter.hasNext()) {
 			String nature = iter.next();
 			if (!existingNatures.contains(nature)) {
 				existingNatures.add(nature);
+				added = true;
 			}
 		}
-		this.description.setNatureIds(existingNatures.toArray(new String[existingNatures.size()]));
+
+		if (added) {
+			touch();
+			this.description.setNatureIds(existingNatures.toArray(new String[existingNatures.size()]));
+		}
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.AbstractProjectEditor#hasBuildCommand(java.lang.String)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public boolean hasBuildCommand(final String command) {
 		ICommand[] buildSpec = this.description.getBuildSpec();
 		for (int i = 0; i < buildSpec.length; i++) {
@@ -141,38 +125,33 @@ public abstract class AbstractProjectEditor extends AbstractFileEditor implement
 		return false;
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.project.AbstractProjectEditor#addBuildCommands(java.util.Set)
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public void addBuildCommands(final Set<String> commands) {
 		ICommand[] buildSpec = this.description.getBuildSpec();
 
 		List<ICommand> buildSpecList = new ArrayList<ICommand>();
 		buildSpecList.addAll(Arrays.asList(buildSpec));
 
+		boolean added = false;
 		Iterator<String> iter = commands.iterator();
 		while (iter.hasNext()) {
 			String name = iter.next();
 			if (!hasBuildCommand(name)) {
-				ICommand cmd = new BuildCommand();
+				ICommand cmd = this.description.newCommand();
 				cmd.setBuilderName(name);
 				buildSpecList.add(cmd);
+				added = true;
 			}
 		}
-		this.description.setBuildSpec(buildSpecList.toArray(new ICommand[buildSpecList.size()]));
+
+		if (added) {
+			touch();
+			this.description.setBuildSpec(buildSpecList.toArray(new ICommand[buildSpecList.size()]));
+		}
 	}
 
-	/**
-	 *
-	 * @throws Throwable
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IProjectEditor#save()
-	 *
-	 *      {@inheritDoc}
-	 */
-	public void save() {
+	@Override
+	protected void doSave() {
 		if (this.description != null) {
 			try {
 				getProject().setDescription(this.description, null);
@@ -182,12 +161,7 @@ public abstract class AbstractProjectEditor extends AbstractFileEditor implement
 		}
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IProjectEditor#getMissingBuildCommand()
-	 *
-	 *      {@inheritDoc}
-	 */
+	@Override
 	public Set<String> getMissingBuildCommand() {
 		return new HashSet<String>();
 	}

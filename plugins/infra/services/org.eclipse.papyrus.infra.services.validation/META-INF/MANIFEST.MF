@@ -4,22 +4,12 @@ Export-Package: org.eclipse.papyrus.infra.services.validation,
  org.eclipse.papyrus.infra.services.validation.handler,
  org.eclipse.papyrus.infra.services.validation.internal;x-friends:="org.eclipse.papyrus.uml.service.validation",
  org.eclipse.papyrus.infra.services.validation.preferences
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.emf;bundle-version="2.6.0",
- org.eclipse.emf.ecore;bundle-version="2.6.1",
- org.eclipse.core.resources;bundle-version="3.6.0",
- org.eclipse.emf.edit.ui;bundle-version="2.6.0",
- org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.0.100",
- org.eclipse.papyrus.infra.services.decoration;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.emf.gmf;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.core;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.emf;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.services.markerlistener;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.ui;bundle-version="1.2.0",
- com.google.guava;bundle-version="11.0.0"
+Require-Bundle: org.eclipse.gmf.runtime.emf.commands.core;bundle-version="[1.7.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.services.decoration;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.emf.gmf;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.core;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.emf;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.ui;bundle-version="[1.2.0,2.0.0)"
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier

@@ -36,16 +36,24 @@ class CompositeSemanticContentProviderFactory implements ISemanticContentProvide
 	private CompositeSemanticContentProviderFactory(CompositeSemanticContentProviderFactory composite, ISemanticContentProviderFactory other) {
 		super();
 
+		this.factories = concat(composite, other);
+	}
+
+	private final List<ISemanticContentProviderFactory> concat(CompositeSemanticContentProviderFactory composite, ISemanticContentProviderFactory other) {
+		List<ISemanticContentProviderFactory> result;
+
 		if (other instanceof CompositeSemanticContentProviderFactory) {
 			List<ISemanticContentProviderFactory> otherFactories = ((CompositeSemanticContentProviderFactory) other).factories;
-			factories = new ArrayList<>(composite.factories.size() + otherFactories.size());
-			factories.addAll(composite.factories);
-			factories.addAll(otherFactories);
+			result = new ArrayList<>(composite.factories.size() + otherFactories.size());
+			result.addAll(composite.factories);
+			result.addAll(otherFactories);
 		} else {
-			factories = new ArrayList<>(composite.factories.size() + 1);
-			factories.addAll(composite.factories);
-			factories.add(other);
+			result = new ArrayList<>(composite.factories.size() + 1);
+			result.addAll(composite.factories);
+			result.add(other);
 		}
+
+		return result;
 	}
 
 	@Override

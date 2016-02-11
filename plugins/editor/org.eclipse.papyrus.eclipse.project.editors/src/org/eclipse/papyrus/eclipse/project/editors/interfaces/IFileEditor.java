@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.interfaces;
@@ -20,7 +20,9 @@ import org.eclipse.core.resources.IProject;
 /**
  *
  * Interface to edit file
- *
+ * 
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface IFileEditor {
 
@@ -40,7 +42,7 @@ public interface IFileEditor {
 	/**
 	 *
 	 * @return
-	 *         the missing files for the project
+	 * 		the missing files for the project
 	 */
 	public Set<String> getMissingFiles();
 
@@ -51,15 +53,20 @@ public interface IFileEditor {
 	 */
 	public void createFiles(final Set<String> files);
 
+	/**
+	 * Queries whether the editor has any unsaved changes.
+	 * 
+	 * @since 2.0
+	 */
+	public boolean isDirty();
 
-	// TODO : Remove that "Throwable" exception...
 	/** save the modification on the editor */
 	public void save();
 
 	/**
 	 *
 	 * @return
-	 *         the eclipse project
+	 * 		the eclipse project
 	 */
 	public IProject getProject();
 

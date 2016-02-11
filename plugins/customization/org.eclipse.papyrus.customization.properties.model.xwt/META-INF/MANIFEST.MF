@@ -3,16 +3,10 @@ Export-Package: org.eclipse.papyrus.customization.properties.model.xwt.resource,
  org.eclipse.papyrus.customization.properties.model.xwt.xwtxml,
  org.eclipse.papyrus.customization.properties.model.xwt.xwtxml.impl,
  org.eclipse.papyrus.customization.properties.model.xwt.xwtxml.util
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.emf.ecore,
- org.eclipse.m2m.qvt.oml;bundle-version="3.1.0",
- org.eclipse.papyrus.views.properties;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.properties;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.2.0",
- org.eclipse.wst.xml.core;bundle-version="1.1.0",
- org.eclipse.core.resources;bundle-version="3.7.0",
- org.eclipse.m2m.qvt.oml.project;bundle-version="3.1.0",
+Require-Bundle: org.eclipse.m2m.qvt.oml;bundle-version="[3.6.0,4.0.0)",
+ org.eclipse.papyrus.views.properties;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.wst.xml.core;bundle-version="[1.1.0,2.0.0)",
+ org.eclipse.m2m.qvt.oml.project;bundle-version="[3.6.0,4.0.0)",
  com.ibm.icu
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy

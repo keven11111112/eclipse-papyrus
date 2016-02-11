@@ -17,6 +17,8 @@ package org.eclipse.papyrus.infra.ui.editor.reload;
  * An adapter protocol for objects that can provide {@code context}s to be included in the
  * re-load state of dependent parts in an {@link EditorReloadEvent}, for the purpose of
  * restoring the state of those objects after re-load has completed.
+ * 
+ * @since 1.2
  */
 public interface IReloadContextProvider {
 

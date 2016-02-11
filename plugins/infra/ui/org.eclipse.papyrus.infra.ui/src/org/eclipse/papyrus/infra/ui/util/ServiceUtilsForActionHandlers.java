@@ -38,6 +38,7 @@ import org.eclipse.ui.IEditorPart;
  * @author cedric dumoulin
  *
  * @deprecated 0.10: Use org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers instead
+ * @since 1.2
  */
 @Deprecated
 public class ServiceUtilsForActionHandlers extends AbstractServiceUtils<Void> {

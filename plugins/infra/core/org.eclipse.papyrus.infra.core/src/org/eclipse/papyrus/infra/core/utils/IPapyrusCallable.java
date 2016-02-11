@@ -20,6 +20,8 @@ import org.eclipse.papyrus.infra.tools.util.IProgressCallable;
 
 /**
  * Protocol for a callable in the Papyrus context.
+ * 
+ * @since 2.0
  */
 @FunctionalInterface
 public interface IPapyrusCallable<V> extends IProgressCallable<V>, IServiceRegistryProvider {

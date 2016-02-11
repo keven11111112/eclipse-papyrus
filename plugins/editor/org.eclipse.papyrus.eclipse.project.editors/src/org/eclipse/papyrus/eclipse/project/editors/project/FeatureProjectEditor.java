@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.project;
@@ -16,7 +16,7 @@ package org.eclipse.papyrus.eclipse.project.editors.project;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
-import java.util.Collections;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 
@@ -43,8 +43,15 @@ import org.xml.sax.SAXException;
 
 public class FeatureProjectEditor extends ProjectEditor implements IFeatureProjectEditor {
 
-	/** the name of the file feature.xml */
-	public static final String FRAGMENT_XML_FILE = "feature.xml"; //$NON-NLS-1$
+	/**
+	 * the name of the file feature.xml
+	 * 
+	 * @since 2.0
+	 */
+	public static final String FEATURE_XML_FILE = "feature.xml"; //$NON-NLS-1$
+
+	private static final String FEATURE_NATURE = "org.eclipse.pde.FeatureNature"; //$NON-NLS-1$
+	private static final String FEATURE_BUILDER = "org.eclipse.pde.FeatureBuilder"; //$NON-NLS-1$
 
 	private static final String ID = "id"; //$NON-NLS-1$
 	private static final String LABEL = "label"; //$NON-NLS-1$
@@ -68,18 +75,19 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 	private static final String REQUIRES = "requires"; //$NON-NLS-1$
 	private static final String FEATURE = "feature"; //$NON-NLS-1$
 
-	// TODO pour l'externalization : utiliser l'éditeur de Properties! dans java Utils
+	// TODO pour l'externalization : utiliser l'ï¿½diteur de Properties! dans java Utils
 
-	private Document fragmentXML;
+	private Document featureXML;
 
-	private IFile fragmentFile;
+	private IFile featureFile;
 
-	private Element fragmentRoot;
+	private Element featureRoot;
 
 	/**
 	 * Constructor.
 	 *
-	 * @param project the eclipse project
+	 * @param project
+	 *            the eclipse project
 	 * @throws ParserConfigurationException
 	 * @throws SAXException
 	 * @throws IOException
@@ -91,13 +99,13 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 
 	@Override
 	public void init() {
-		fragmentFile = getFeature();
-		if (fragmentFile != null && fragmentFile.exists()) {
+		featureFile = getFeature();
+		if ((featureFile != null) && featureFile.exists()) {
 			final DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 			try {
 				DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-				fragmentXML = documentBuilder.parse(fragmentFile.getLocation().toOSString());
-				fragmentRoot = fragmentXML.getDocumentElement();
+				featureXML = documentBuilder.parse(featureFile.getLocation().toOSString());
+				featureRoot = featureXML.getDocumentElement();
 			} catch (final ParserConfigurationException e) {
 				Activator.log.error(e);
 			} catch (final SAXException e) {
@@ -110,13 +118,13 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 
 	@Override
 	public void createFiles(final Set<String> files) {
-		if (files.contains(FRAGMENT_XML_FILE)) {
-			fragmentFile = getProject().getFile(FRAGMENT_XML_FILE);
-			if (!fragmentFile.exists()) {
+		if (files.contains(FEATURE_XML_FILE)) {
+			featureFile = getProject().getFile(FEATURE_XML_FILE);
+			if (!featureFile.exists()) {
 				InputStream content = getInputStream("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<feature>\n</feature>\n\n"); //$NON-NLS-1$
 
 				try {
-					fragmentFile.create(content, true, null);
+					featureFile.create(content, true, null);
 				} catch (CoreException e) {
 					Activator.log.error(e);
 				}
@@ -129,93 +137,147 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 		return getFeature().exists() && super.exists();
 	}
 
-	public void setAttribute(final Element element, final String attributeName, final String attributeValue) {
-		element.setAttribute(attributeName, attributeValue);
+	private void setAttribute(final String attributeName, final String attributeValue) {
+		setAttribute(featureRoot, attributeName, attributeValue);
+	}
+
+	private void setAttribute(final Element element, final String attributeName, final String attributeValue) {
+		if (!Objects.equals(element.getAttribute(attributeName), attributeValue)) {
+			touch();
+			element.setAttribute(attributeName, attributeValue);
+		}
+	}
+
+	private void setTextContent(Element element, String text) {
+		if (!Objects.equals(element.getTextContent(), text)) {
+			touch();
+			element.setTextContent(text);
+		}
 	}
 
 	/**
 	 * @return the feature.xml file if it exists
 	 */
 	private IFile getFeature() {
-		final IFile fragment = getProject().getFile(FRAGMENT_XML_FILE);
+		final IFile result = getProject().getFile(FEATURE_XML_FILE);
 
-		if (fragment.exists()) {
-			return fragment;
+		if (result.exists()) {
+			return result;
 		}
 
 		return null;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	@Override
-	public void save() {
-		if (exists()) {
+	protected void doSave() {
+		if ((featureFile != null) && featureFile.exists()) {
 			try {
 				final TransformerFactory transformerFactory = TransformerFactory.newInstance();
 				final Transformer transformer = transformerFactory.newTransformer();
 				transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8"); //$NON-NLS-1$
 				final StreamResult result = new StreamResult(new StringWriter());
-				final DOMSource source = new DOMSource(fragmentXML);
+				final DOMSource source = new DOMSource(featureXML);
 				transformer.transform(source, result);
 
 				final InputStream inputStream = getInputStream(result.getWriter().toString());
-				fragmentFile.setContents(inputStream, true, true, null);
+				featureFile.setContents(inputStream, true, true, null);
 			} catch (final TransformerException ex) {
 				Activator.log.error(ex);
 			} catch (final CoreException ex) {
 				Activator.log.error(ex);
 			}
 		}
-		super.save();
+		super.doSave();
 	}
 
 	@Override
 	public Set<String> getMissingNature() {
-		// TODO
-		return Collections.emptySet();
+		Set<String> result = super.getMissingNature();
+		if (!hasNature(FEATURE_NATURE)) {
+			result.add(FEATURE_NATURE);
+		}
+		return result;
 	}
 
 	@Override
 	public Set<String> getMissingFiles() {
-		// TODO
-		return Collections.emptySet();
+		Set<String> result = super.getMissingFiles();
+		IFile feature = getProject().getFile(FEATURE_XML_FILE);
+		if (!feature.exists()) {
+			result.add(FEATURE_XML_FILE);
+		}
+		return result;
 	}
 
 	@Override
 	public Set<String> getMissingBuildCommand() {
-		// TODO
-		return Collections.emptySet();
+		Set<String> result = super.getMissingBuildCommand();
+		if (!hasBuildCommand(FEATURE_BUILDER)) {
+			result.add(FEATURE_BUILDER);
+		}
+		return result;
 	}
 
+	@Override
 	public Document getDocument() {
-		return fragmentXML;
+		return featureXML;
 	}
 
+	private String getAttribute(String name) {
+		return getAttribute(featureRoot, name);
+	}
+
+	private String getAttribute(Element element, String name) {
+		return element.getAttribute(name);
+	}
+
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public String getId() {
-		return fragmentRoot.getAttribute(ID);
+		return getAttribute(ID);
 	}
 
+	@Override
 	public String getLabel() {
-		return fragmentRoot.getAttribute(LABEL);
+		return getAttribute(LABEL);
 	}
 
+	@Override
 	public String getVersion() {
-		return fragmentRoot.getAttribute(VERSION);
+		return getAttribute(VERSION);
 	}
 
+	@Override
 	public String getProviderName() {
-		return fragmentRoot.getAttribute(PROVIDER);
+		return getAttribute(PROVIDER);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public String getDescriptionText() {
-		// TODO Auto-generated method stub
-		return null;
+		Element description = getNodeChild(DESCRIPTION, featureRoot);
+		return (description == null) ? null : description.getTextContent().trim();
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public String getDescriptionURL() {
-		// TODO Auto-generated method stub
-		return null;
+		Element description = getNodeChild(DESCRIPTION, featureRoot);
+		return (description == null) || !description.hasAttribute(URL)
+				? null
+				: description.getAttribute(URL);
 	}
 
+	@Override
 	public String getCopyrightURL() {
 		final Element copyrightNode = getNode(COPYRIGHT);
 		if (copyrightNode != null) {
@@ -240,203 +302,239 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 		return null;
 	}
 
+	@Override
 	public String getCopyrightText() {
 		final Element copyrightNode = getNode(COPYRIGHT);
 
 		return copyrightNode != null ? copyrightNode.getTextContent() : null;
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public String getLicenseText() {
-		// TODO Auto-generated method stub
-		return null;
+		Element license = getNodeChild(LICENSE, featureRoot);
+		return (license == null)
+				? null
+				: license.getTextContent().trim();
 	}
 
-	public String getLicenceURL() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * @since 2.0
+	 */
+	@Override
+	public String getLicenseURL() {
+		Element license = getNodeChild(LICENSE, featureRoot);
+		return (license == null) || !license.hasAttribute(URL)
+				? null
+				: license.getAttribute(URL);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public String getOS() {
-		return fragmentRoot.getAttribute(OS);
+		return getAttribute(OS);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public String getWS() {
-		return fragmentRoot.getAttribute(WS);
+		return getAttribute(WS);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public String getNL() {
-		return fragmentRoot.getAttribute(NL);
+		return getAttribute(NL);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public String getArch() {
-		return fragmentRoot.getAttribute(ARCH);
+		return getAttribute(ARCH);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public void setId(final String id) {
-		fragmentRoot.setAttribute(ID, id);
+		setAttribute(ID, id);
 	}
 
+	@Override
 	public void setLabel(final String label) {
-		fragmentRoot.setAttribute(LABEL, label);
+		setAttribute(LABEL, label);
 	}
 
+	@Override
 	public void setVersion(final String version) {
-		fragmentRoot.setAttribute(VERSION, version);
+		setAttribute(VERSION, version);
 	}
 
+	@Override
 	public void setProviderName(final String providerName) {
-		fragmentRoot.setAttribute(PROVIDER, providerName);
+		setAttribute(PROVIDER, providerName);
 	}
 
+	private Element forceElement(String name) {
+		return forceElement(featureRoot, name);
+	}
+
+	private Element forceElement(Element parent, String name) {
+		Element result = getNodeChild(name, parent);
+		if (result == null) {
+			touch();
+			result = createElement(name);
+			parent.appendChild(result);
+		}
+		return result;
+	}
+
+	@Override
 	public void setDescription(final String descriptionURL, final String description) {
-		if (exists()) {
-			Element extension = getNode(DESCRIPTION);
-
-			if (extension == null) {
-				extension = fragmentXML.createElement(DESCRIPTION);
-				fragmentRoot.appendChild(extension);
-			}
-
-			extension.setAttribute(URL, descriptionURL);
-			extension.setTextContent(description);
+		if (featureRoot != null) {
+			Element extension = forceElement(DESCRIPTION);
+			setAttribute(extension, URL, descriptionURL);
+			setTextContent(extension, description);
 		}
 	}
 
+	@Override
 	public void setCopyright(final String copyrightURL, final String copyrightDesc) {
 		setURLNode(COPYRIGHT, copyrightURL, copyrightDesc);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public void setLicense(final String licenseURL, final String licenseDesc) {
 		setURLNode(LICENSE, licenseURL, licenseDesc);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public void setOS(final String os) {
-		fragmentRoot.setAttribute(OS, os);
+		setAttribute(OS, os);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public void setWS(final String ws) {
-		fragmentRoot.setAttribute(WS, ws);
+		setAttribute(WS, ws);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public void setNL(final String nl) {
-		fragmentRoot.setAttribute(NL, nl);
+		setAttribute(NL, nl);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public void setArch(final String architecture) {
-		fragmentRoot.setAttribute(ARCH, architecture);
+		setAttribute(ARCH, architecture);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public void setUpdateURL(final String urlLabel, final String url) {
-		Element urlNode = getNode(URL);
+		Element urlNode = forceElement(URL);
+		Element updateNode = forceElement(urlNode, UPDATE);
 
-		if (urlNode == null) {
-			urlNode = createElement(URL);
-			fragmentRoot.appendChild(urlNode);
-		}
-
-		Element updateNode = getNodeChild(UPDATE, urlNode);
-		if (updateNode == null) {
-			updateNode = createElement(UPDATE);
-			urlNode.appendChild(updateNode);
-		}
-
-		updateNode.setAttribute(LABEL, urlLabel);
-		updateNode.setAttribute(URL, url);
+		setAttribute(updateNode, LABEL, urlLabel);
+		setAttribute(updateNode, URL, url);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public void addPlugin(final String pluginName) {
 		// Get the plug-in element or create it if it does not exist
-		Element pluginNode = getPlugin(pluginName);
-
-		if (pluginNode == null) {
-			pluginNode = createElement(PLUGIN);
-			fragmentRoot.appendChild(pluginNode);
+		Element plugin = forcePlugin(pluginName);
+		if (!plugin.hasAttribute(VERSION)) {
+			plugin.setAttribute(VERSION, "0.0.0"); //$NON-NLS-1$
 		}
-
-		// Set the id on the element
-		pluginNode.setAttribute(ID, pluginName);
+		if (!plugin.hasAttribute("download-size")) {
+			plugin.setAttribute("download-size", "0"); //$NON-NLS-1$
+		}
+		if (!plugin.hasAttribute("install-size")) {
+			plugin.setAttribute("install-size", "0"); //$NON-NLS-1$
+		}
+		if (!plugin.hasAttribute("unpack")) {
+			plugin.setAttribute("unpack", "false"); //$NON-NLS-1$
+		}
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public void addRequiredFeature(final String featureName, final String version) {
-		// Make sure the "requires" element exists
-		Element requires = getNode(REQUIRES);
-
-		if (requires == null) {
-			requires = createElement(REQUIRES);
-			fragmentRoot.appendChild(requires);
-		}
-
 		// Get or create the required feature element
-		Element feature = getRequiredFeature(featureName);
-
-		if (feature == null) {
-			feature = createElement(IMPORT);
-			requires.appendChild(feature);
-		}
+		Element feature = forceRequiredFeature(featureName);
 
 		// Set the element values
-		feature.setAttribute(FEATURE, featureName);
 		feature.setAttribute(VERSION, version);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public void addRequiredPlugin(final String pluginName) {
-		// Make sure the "requires" element exists
-		Element requires = getNode(REQUIRES);
-
-		if (requires == null) {
-			requires = createElement(REQUIRES);
-			fragmentRoot.appendChild(requires);
-		}
-
 		// Get or create the plug-in element
-		Element plugin = getRequiredPlugin(pluginName);
-
-		if (plugin == null) {
-			plugin = createElement(IMPORT);
-			requires.appendChild(plugin);
-		}
-
-		plugin.setAttribute(PLUGIN, pluginName);
+		forceRequiredPlugin(pluginName);
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	@Override
 	public void addInclude(final String featureName, final String version) {
-		Element includeNode = getInclude(featureName);
-
-		if (includeNode == null) {
-			includeNode = createElement(INCLUDES);
-			fragmentRoot.appendChild(includeNode);
-		}
-
-		includeNode.setAttribute(ID, featureName);
-		includeNode.setAttribute(VERSION, version);
+		Element includeNode = forceInclude(featureName);
+		setAttribute(includeNode, VERSION, (version == null) ? "0.0.0" : version);
 	}
 
 	/**
 	 * Creates an element and returns it.
 	 *
-	 * @param elementName the name of the element to create
+	 * @param elementName
+	 *            the name of the element to create
 	 * @return the created element
 	 */
 	private Element createElement(String elementName) {
-		return fragmentXML.createElement(elementName);
+		return featureXML.createElement(elementName);
 	}
 
 	protected void setURLNode(final String nodeName, final String url, final String description) {
-		if (exists()) {
-			Element extension = getNode(nodeName);
-			if (extension == null) {
-				extension = fragmentXML.createElement(nodeName);
-				if (url != null) {
-					extension.setAttribute(URL, url);
-				}
-				extension.setTextContent(description);
-				fragmentRoot.appendChild(extension);
-			} else {
-				if (url != null) {
-					extension.setAttribute(URL, url);
-				}
-				extension.setTextContent(description);
+		if (featureRoot != null) {
+			Element urlNode = forceElement(nodeName);
+			if (url != null) {
+				setAttribute(urlNode, URL, url);
 			}
+			setTextContent(urlNode, description);
 		}
 	}
 
@@ -444,8 +542,10 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 	 * Gets an element inside a parent element.
 	 *
 	 * @param parentElement
-	 * @param nodeName the node name of the element
-	 * @param attributeValue the value of the element's attribute to retrieve
+	 * @param nodeName
+	 *            the node name of the element
+	 * @param attributeValue
+	 *            the value of the element's attribute to retrieve
 	 * @return the element or null if it does not exist
 	 */
 	private Element getElement(final Element parentElement, final String nodeName, final String attributeName, final String attributeValue) {
@@ -489,12 +589,13 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 	/**
 	 * Gets a node element inside the root element.
 	 *
-	 * @param nodeName the node name
+	 * @param nodeName
+	 *            the node name
 	 * @return the node element or null if it does not exist.
 	 */
 	private Element getNode(final String nodeName) {
-		if (exists()) {
-			final NodeList nodes = fragmentRoot.getChildNodes();
+		if (featureRoot != null) {
+			final NodeList nodes = featureRoot.getChildNodes();
 			for (int i = 0; i < nodes.getLength(); i++) {
 				final Node item = nodes.item(i);
 				if (item instanceof NodeList) {
@@ -512,11 +613,31 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 	}
 
 	private Element getPlugin(String pluginName) {
-		return getElement(fragmentRoot, PLUGIN, ID, pluginName);
+		return getElement(featureRoot, PLUGIN, ID, pluginName);
+	}
+
+	private Element forcePlugin(String pluginName) {
+		Element result = getPlugin(pluginName);
+		if (result == null) {
+			result = createElement(PLUGIN);
+			featureRoot.appendChild(result);
+			setAttribute(result, ID, pluginName);
+		}
+		return result;
 	}
 
 	private Element getInclude(String featureName) {
-		return getElement(fragmentRoot, INCLUDES, ID, featureName);
+		return getElement(featureRoot, INCLUDES, ID, featureName);
+	}
+
+	private Element forceInclude(String featureName) {
+		Element result = getInclude(featureName);
+		if (result == null) {
+			result = createElement(INCLUDES);
+			featureRoot.appendChild(result);
+			setAttribute(result, ID, featureName);
+		}
+		return result;
 	}
 
 	/**
@@ -533,6 +654,18 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 		return null;
 	}
 
+	private Element forceRequiredPlugin(String pluginName) {
+		Element result = getRequiredPlugin(pluginName);
+
+		if (result == null) {
+			result = createElement(IMPORT);
+			forceElement(REQUIRES).appendChild(result);
+			setAttribute(result, PLUGIN, pluginName);
+		}
+
+		return result;
+	}
+
 	private String getNodeAttribute(Node node, String name) {
 		Node attribute = node.getAttributes().getNamedItem(name);
 
@@ -547,6 +680,18 @@ public class FeatureProjectEditor extends ProjectEditor implements IFeatureProje
 		}
 
 		return null;
+	}
+
+	private Element forceRequiredFeature(String featureName) {
+		Element result = getRequiredFeature(featureName);
+
+		if (result == null) {
+			result = createElement(IMPORT);
+			forceElement(REQUIRES).appendChild(result);
+			setAttribute(result, FEATURE, featureName);
+		}
+
+		return result;
 	}
 
 }

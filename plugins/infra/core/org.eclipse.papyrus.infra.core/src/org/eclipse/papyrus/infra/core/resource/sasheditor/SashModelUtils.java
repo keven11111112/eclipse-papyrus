@@ -134,6 +134,9 @@ public class SashModelUtils {
 		return SashModelUtils.getSashModel(modelSet).getResourceURI();
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public static SashWindowsMngr getSashWindowsMngr(ModelSet modelSet) {
 		SashWindowsMngr result = null;
 

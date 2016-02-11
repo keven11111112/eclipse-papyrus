@@ -14,6 +14,9 @@ package org.eclipse.papyrus.infra.tools.databinding;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 
 
+/**
+ * @since 2.0
+ */
 public interface CommandBasedObservableValue extends CommandBasedObservable, IObservableValue {
 
 }

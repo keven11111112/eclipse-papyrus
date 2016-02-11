@@ -29,8 +29,9 @@ import org.eclipse.papyrus.customization.factory.ExtensionFactory;
 import org.eclipse.papyrus.customization.messages.Messages;
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizableElement;
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationConfiguration;
-import org.eclipse.papyrus.customization.plugin.PluginEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginEditor;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginProjectEditor;
+import org.eclipse.papyrus.eclipse.project.editors.interfaces.ProjectEditors;
 import org.xml.sax.SAXException;
 
 public class PluginGenerator {
@@ -40,9 +41,13 @@ public class PluginGenerator {
 	private final static String PLUGIN_NATURE_ID = "org.eclipse.pde.PluginNature"; //$NON-NLS-1$
 
 	public void generate(IProject project, CustomizationConfiguration configuration) throws CoreException, IOException, SAXException, ParserConfigurationException {
-		PluginEditor editor;
+		IPluginEditor editor;
 
-		editor = new PluginEditor(project);
+		editor = ProjectEditors.getPluginEditor(project);
+		if (!editor.exists()) {
+			editor.create();
+		}
+		editor.init();
 
 		// editor.addNature("org.eclipse.jdt.core.javanature");
 
@@ -62,10 +67,9 @@ public class PluginGenerator {
 
 		editor.save();
 
-
-		if (editor.getPluginEditor().exists()) {
-			editor.getBuildEditor().addToBuild(IPluginProjectEditor.PLUGIN_XML_FILE);
-			editor.getBuildEditor().save();
+		if (editor.pluginManifestExists()) {
+			editor.addToBuild(IPluginProjectEditor.PLUGIN_XML_FILE);
+			editor.save();
 		}
 
 		String pluginId = configuration.getPlugin();

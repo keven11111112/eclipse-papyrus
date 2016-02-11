@@ -19,6 +19,7 @@ import org.eclipse.ui.ISaveablePart;
 
 /**
  * @author dumoulin
+ * @since 1.2
  *
  */
 public interface ISaveAndDirtyService extends ISaveablePart {

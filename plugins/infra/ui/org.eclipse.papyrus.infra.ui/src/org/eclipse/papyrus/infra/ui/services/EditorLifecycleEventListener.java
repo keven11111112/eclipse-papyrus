@@ -18,6 +18,7 @@ import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
  * Listens to the Lifecycle of an {@link IMultiDiagramEditor}
  *
  * @author Camille Letavernier
+ * @since 1.2
  *
  */
 public interface EditorLifecycleEventListener {

@@ -20,6 +20,8 @@ import org.eclipse.papyrus.infra.tools.Activator;
 /**
  * A provider of {@link Executor}s offering various synchronous and asynchronous
  * execution characteristics.
+ * 
+ * @since 2.0
  */
 public class CoreExecutors {
 

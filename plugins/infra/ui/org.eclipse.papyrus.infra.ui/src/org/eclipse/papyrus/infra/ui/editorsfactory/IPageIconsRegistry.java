@@ -19,6 +19,7 @@ import org.eclipse.swt.graphics.Image;
  * Registry used to get Icons associated to an editor.
  *
  * @author cedric dumoulin
+ * @since 1.2
  */
 public interface IPageIconsRegistry {
 

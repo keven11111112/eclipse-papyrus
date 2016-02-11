@@ -75,6 +75,7 @@ public class IPageUtils {
 	 * @param page
 	 *            a page
 	 * @return whether it can be closed
+	 * @since 2.0
 	 */
 	public static boolean canClose(IPage page) {
 		ICloseablePart closeable = (page instanceof IAdaptable)
