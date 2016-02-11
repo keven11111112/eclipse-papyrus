@@ -9,11 +9,10 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 482790
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.celleditor;
-
-
 
 import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
@@ -44,9 +43,6 @@ import org.eclipse.swt.widgets.Text;
 /**
  * duplicated code from {@link TextCellEditor}. Here we replace Text by StyledText
  * This code is used with XText Cell Editor
- *
- * @author vl222926
- *
  */
 public abstract class AbstractStyledTextCellEditor extends AbstractCellEditor implements KeyListener {
 
@@ -191,23 +187,48 @@ public abstract class AbstractStyledTextCellEditor extends AbstractCellEditor im
 		return this.text;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor#getEditorValue()
+	 */
 	@Override
 	public Object getEditorValue() {
-		return this.text.getText();
+		if(null != this.text){
+			return this.text.getText();
+		}
+		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor#setEditorValue(java.lang.Object)
+	 */
 	@Override
-	public void setEditorValue(Object value) {
-		this.text.setText(value != null && value.toString().length() > 0 ? value.toString() : ""); //$NON-NLS-1$
+	public void setEditorValue(final Object value) {
+		if(null != this.text){
+			this.text.setText(value != null && value.toString().length() > 0 ? value.toString() : ""); //$NON-NLS-1$
+		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor#getEditorControl()
+	 */
 	@Override
 	public Control getEditorControl() {
 		return this.text;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor#createEditorControl(org.eclipse.swt.widgets.Composite)
+	 */
 	@Override
-	public StyledText createEditorControl(Composite parent) {
+	public StyledText createEditorControl(final Composite parent) {
 		int style = HorizontalAlignmentEnum.getSWTStyle(this.cellStyle);
 		if (this.editMode == EditModeEnum.DIALOG) {
 			style = style | SWT.BORDER;

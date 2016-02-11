@@ -7,19 +7,31 @@
  *
  * Contributors:
  *     Vincent Lorenzo (CEA-LIST)  - duplicated and adapted code from nattable project.
+ *     Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue - Bug 482790
  *
  ******************************************************************************/
 package org.eclipse.papyrus.uml.nattable.manager.cell.editor;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jface.window.Window;
+import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.edit.DialogEditHandler;
+import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
+import org.eclipse.nebula.widgets.nattable.edit.EditConfigHelper;
+import org.eclipse.nebula.widgets.nattable.edit.ICellEditHandler;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.editor.IEditErrorHandler;
+import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
+import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer.MoveDirectionEnum;
+import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
+import org.eclipse.nebula.widgets.nattable.widget.EditModeEnum;
 import org.eclipse.papyrus.infra.nattable.celleditor.AbstractPapyrusStyledTextCellEditor;
 import org.eclipse.papyrus.infra.nattable.converter.StringResolutionProblemPapyrusConverter;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
@@ -29,6 +41,7 @@ import org.eclipse.papyrus.infra.widgets.editors.StringEditorWithCompletionWrapp
 import org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper;
 import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
 import org.eclipse.papyrus.infra.widgets.util.ISetPapyrusConverter;
+import org.eclipse.papyrus.uml.nattable.editor.SingleReferenceValueCellEditor;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.tools.util.UMLReferenceConverter;
 import org.eclipse.papyrus.uml.tools.utils.NameResolutionHelper;
@@ -38,15 +51,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.uml2.uml.Element;
-
-
+import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * {@link ICellEditor} implementation that wraps a SWT {@link Text} control to
  * support text editing. This is also the default editor in NatTable if you
  * didn't configure something else.
  *
- * duplicated and adapted code from nattable project. Add the method {@link #keyPressed(Composite, KeyEvent)} to allow to ovveride it
+ * duplicated and adapted code from nattable project. Add the method {@link #keyPressed(Composite, KeyEvent)} to allow to override it
  */
 public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusStyledTextCellEditor {
 
@@ -70,122 +82,174 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 	private boolean isMultiValued = false;
 
 	/**
-	 * 
+	 * The cell editor which allow to use the dialog reference selection.
+	 * It must be used when the text completion can't reach the value.
+	 */
+	protected SingleReferenceValueCellEditor singleReferenceValueCellEditor;
+
+	/**
 	 * Constructor.
 	 *
-	 * @param table
-	 * @param axisElement
-	 * @param elementProvider
-	 * @param commitOnUpDown
-	 * @param moveSelectionOnEnter
+	 * @param table The current table.
+	 * @param axisElement The axis element to manage.
+	 * @param elementProvider The element provider for the current axis to edit.
+	 * @param commitOnUpDown Flag to configure whether the editor should commit and move the selection in the corresponding way if the up or down key is pressed.
+	 * @param moveSelectionOnEnter Flag to configure whether the selection should move after a value was committed after pressing enter.
 	 */
-	public UMLReferenceTextWithCompletionCellEditor(Table table, Object axisElement, ITableAxisElementProvider elementProvider, boolean commitOnUpDown, boolean moveSelectionOnEnter) {
+	public UMLReferenceTextWithCompletionCellEditor(final Table table, final Object axisElement, final ITableAxisElementProvider elementProvider, final boolean commitOnUpDown, final boolean moveSelectionOnEnter) {
 		super(table, axisElement, elementProvider, commitOnUpDown, moveSelectionOnEnter);
 	}
 
 	/**
-	 * 
 	 * Constructor.
 	 *
-	 * @param table
-	 * @param axisElement
-	 * @param elementProvider
-	 * @param commitOnUpDown
+	 * @param table The current table.
+	 * @param axisElement The axis element to manage.
+	 * @param elementProvider The element provider for the current axis to edit.
+	 * @param commitOnUpDown Flag to configure whether the editor should commit and move the selection in the corresponding way if the up or down key is pressed.
 	 */
-	public UMLReferenceTextWithCompletionCellEditor(Table table, Object axisElement, ITableAxisElementProvider elementProvider, boolean commitOnUpDown) {
+	public UMLReferenceTextWithCompletionCellEditor(final Table table, final Object axisElement, final ITableAxisElementProvider elementProvider, final boolean commitOnUpDown) {
 		super(table, axisElement, elementProvider, commitOnUpDown);
 	}
 
 	/**
-	 * 
 	 * Constructor.
 	 *
-	 * @param table
-	 * @param axisElement
-	 * @param elementProvider
+	 * @param table The current table.
+	 * @param axisElement The axis element to manage.
+	 * @param elementProvider The element provider for the current axis to edit.
 	 */
-	public UMLReferenceTextWithCompletionCellEditor(Table table, Object axisElement, ITableAxisElementProvider elementProvider) {
+	public UMLReferenceTextWithCompletionCellEditor(final Table table, final Object axisElement, final ITableAxisElementProvider elementProvider) {
 		super(table, axisElement, elementProvider);
 	}
 
 	/**
+	 * Set the multi valued boolean value.
 	 * 
-	 * @param isMultivalued
+	 * @param isMultivalued The multi valued boolean value.
 	 */
 	public void setIsMultiValued(boolean isMultivalued) {
 		this.isMultiValued = isMultivalued;
 	}
 
 	/**
+	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.celleditor.AbstractStyledTextCellEditor#activateCell(org.eclipse.swt.widgets.Composite, java.lang.Object)
-	 *
-	 * @param parent
-	 * @param originalCanonicalValue
-	 * @return
 	 */
 	@Override
-	protected Control activateCell(Composite parent, Object originalCanonicalValue) {
-		this.helper = createNameResolutionHelper();
-		parser = new StringResolutionProblemPapyrusConverter(new UMLReferenceConverter(this.helper, isMultiValued));
-		setPapyrusConverter(parser);
-		return super.activateCell(parent, originalCanonicalValue);
+	protected Control activateCell(final Composite parent, final Object originalCanonicalValue) {
+		final CrossAxisWrapper<EObject, EStructuralFeature> editedElement = UMLTableUtils.getRealEditedObject(layerCell, elementProvider);
+		final EObject element = editedElement.getFirstAxis();
+		
+		Control control = null;
+		
+		// Bug 482790: Check if this is not an object with a null namespace
+		if (!(element instanceof NamedElement && null == ((NamedElement) element).getNamespace())) {
+			this.helper = createNameResolutionHelper();
+			parser = new StringResolutionProblemPapyrusConverter(new UMLReferenceConverter(this.helper, isMultiValued));
+			setPapyrusConverter(parser);
+			control = super.activateCell(parent, originalCanonicalValue);
+		}else{
+			// Bug 482790: The parse can't be used because no name resolution helper can't be created
+			// So re-initialize the display converter to null
+			this.displayConverter = null;
+			
+			// The reference dialog used is managed by the SingleReferenceValueCellEditor cell editor
+			singleReferenceValueCellEditor = new SingleReferenceValueCellEditor(axisElement, elementProvider) {
+
+				@Override
+				public Control activateCell(Composite parent, Object originalCanonicalValue, EditModeEnum editMode, ICellEditHandler editHandler, ILayerCell cell, IConfigRegistry configRegistry) {
+					this.parent = parent;
+					this.layerCell = cell;
+					this.configRegistry = configRegistry;
+
+					final List<String> configLabels = cell.getConfigLabels().getLabels();
+					this.displayConverter = UMLReferenceTextWithCompletionCellEditor.this.displayConverter;
+					this.dataValidator = configRegistry.getConfigAttribute(
+							EditConfigAttributes.DATA_VALIDATOR,
+							DisplayMode.EDIT,
+							configLabels);
+
+					this.conversionEditErrorHandler = EditConfigHelper.getEditErrorHandler(
+							configRegistry,
+							EditConfigAttributes.CONVERSION_ERROR_HANDLER,
+							configLabels);
+					this.validationEditErrorHandler = EditConfigHelper.getEditErrorHandler(
+							configRegistry,
+							EditConfigAttributes.VALIDATION_ERROR_HANDLER,
+							configLabels);
+
+					this.dialog = createDialogInstance();
+
+					setCanonicalValue(originalCanonicalValue);
+
+					// this method is only needed to initialize the dialog editor, there
+					// will be no control to return
+					return null;
+				}
+
+			};
+			// Activate the cell of the single reference cell editor
+			control = singleReferenceValueCellEditor.activateCell(parent, originalCanonicalValue, EditModeEnum.DIALOG, new DialogEditHandler(), layerCell, configRegistry);
+			// Manage the dialog return
+			if (Window.OK == singleReferenceValueCellEditor.open()) {
+				// The user click on 'OK' button, so set the canonical value
+				setCanonicalValue(singleReferenceValueCellEditor.getEditorValue());
+				// Commit the value
+				commit(MoveDirectionEnum.NONE);
+			} else {
+				singleReferenceValueCellEditor.close();
+			}
+		}
+		return control;
 	}
 
 	/**
+	 * This allows to set the parser to the display converter.
 	 * 
 	 * @param parser
-	 *            the parser to use to find the references
+	 *            the parser to use to find the references.
 	 */
-	private void setPapyrusConverter(IPapyrusConverter parser) {
+	private void setPapyrusConverter(final IPapyrusConverter parser) {
 		if (this.displayConverter instanceof ISetPapyrusConverter) {
 			((ISetPapyrusConverter) this.displayConverter).setPapyrusConverter(parser);
 		}
 	}
 
 	/**
+	 * {@inheritDoc}
 	 * 
-	 * @return
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.AbstractStyledTextCellEditor#createStyledText(org.eclipse.swt.widgets.Composite, int)
 	 */
 	@Override
-	public Control getEditorControl() {
-		return super.getEditorControl();
-	}
-
-	/**
-	 * 
-	 * @param parent
-	 * @param style
-	 * @return
-	 */
-	@Override
-	protected StyledText createStyledText(Composite parent, int style) {
+	protected StyledText createStyledText(final Composite parent, final int style) {
 		this.textCompletion = new StringEditorWithCompletionWrapper(parent, this.parser);
 		return this.textCompletion.getTextViewer().getTextWidget();
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.celleditor.AbstractStyledTextCellEditor#keyPressed(org.eclipse.swt.events.KeyEvent)
-	 *
-	 * @param event
 	 */
 	@Override
-	public void keyPressed(KeyEvent event) {
-		if (isMultiValued && textCompletion.isContentAssistOpened()) {
-			return;
+	public void keyPressed(final KeyEvent event) {
+		if (!(isMultiValued && textCompletion.isContentAssistOpened())) {
+			super.keyPressed(event);
 		}
-		super.keyPressed(event);
 	}
 
 
 	/**
+	 * This allows to create the name resolution helper managed by the namespace.
 	 * 
 	 * @return
-	 *         the created name resolution helper
+	 * 		the created name resolution helper
 	 */
 	protected INameResolutionHelper createNameResolutionHelper() {
-		CrossAxisWrapper<EObject, EStructuralFeature> editedElement = UMLTableUtils.getRealEditedObject(layerCell, elementProvider);
-		EObject element = editedElement.getFirstAxis();
+		final CrossAxisWrapper<EObject, EStructuralFeature> editedElement = UMLTableUtils.getRealEditedObject(layerCell, elementProvider);
+		final EObject element = editedElement.getFirstAxis();
 		Element scope;
 		if (element instanceof Element) {
 			scope = (Element) element;
@@ -194,24 +258,23 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 			scope = org.eclipse.uml2.uml.util.UMLUtil.getBaseElement(element);
 		}
 
-		EStructuralFeature feature = editedElement.getSecondAxis();
-		EClassifier eType = feature.getEType();
+		INameResolutionHelper helper = null;
+		
+		final EStructuralFeature feature = editedElement.getSecondAxis();
+		final EClassifier eType = feature.getEType();
 		if (eType instanceof EClass) {
-			INameResolutionHelper helper = new NameResolutionHelper(scope, (EClass) eType);
-			return helper;
+			helper = new NameResolutionHelper(scope, (EClass) eType);
 		}
-		return null;
+		return helper;
 	}
 
 	/**
+	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.nebula.widgets.nattable.edit.editor.AbstractCellEditor#getCanonicalValue(org.eclipse.nebula.widgets.nattable.edit.editor.IEditErrorHandler)
-	 *
-	 * @param conversionErrorHandler
-	 * @return
 	 */
 	@Override
-	public Object getCanonicalValue(IEditErrorHandler conversionErrorHandler) {
+	public Object getCanonicalValue(final IEditErrorHandler conversionErrorHandler) {
 		Object canonnicalValue = super.getCanonicalValue(conversionErrorHandler);
 		if (canonnicalValue instanceof Collection<?>) {
 			return canonnicalValue;
@@ -226,34 +289,38 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 	}
 
 	/**
+	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.nebula.widgets.nattable.edit.editor.AbstractCellEditor#getCanonicalValue()
-	 *
-	 * @return
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.AbstractStyledTextCellEditor#getEditorValue()
 	 */
 	@Override
-	public Object getCanonicalValue() {
-		return super.getCanonicalValue();
+	public Object getEditorValue() {
+		Object result = null;
+		if (null != singleReferenceValueCellEditor) {
+			result = singleReferenceValueCellEditor.getEditorValue();
+		}
+		return null != result ? result : super.getEditorValue();
 	}
-
+	
 	/**
+	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.celleditor.AbstractStyledTextCellEditor#close()
-	 *
 	 */
 	@Override
 	public void close() {
-		this.textCompletion.getTextWidget().dispose();
+		if (null != this.textCompletion && null != this.textCompletion.getTextWidget() && !this.textCompletion.getTextWidget().isDisposed()) {
+			this.textCompletion.getTextWidget().dispose();
+		}
 		super.close();
 	}
 
-
 	/**
+	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.celleditor.AbstractPapyrusStyledTextCellEditor#getEditedEObject()
-	 *
-	 * @return
 	 */
+	@Override
 	protected EObject getEditedEObject() {
 		return null;
 	}
