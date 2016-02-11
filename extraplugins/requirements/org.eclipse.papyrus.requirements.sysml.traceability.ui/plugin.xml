@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=org.eclipse.papyrus.requirements.common.ui.traceability.additions">
+         <menu
+               icon="platform:/plugin/org.eclipse.papyrus.requirements.common.ui/images/Papyrus_Req_logo_16x16.png"
+               id="papyrus.requirements.sysml.traceability.menu"
+               label="%papyrus.requirements.sysml.traceability.menu.label"
+               tooltip="%papyrus.requirements.sysml.traceability.tooltip">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.requirements.common.ui.traceability.additions">
+         <menu
+               icon="platform:/plugin/org.eclipse.papyrus.requirements.common.ui/images/Papyrus_Req_logo_16x16.png"
+               id="papyrus.requirements.sysml.traceability.menu"
+               label="%papyrus.requirements.sysml.traceability.menu.label"
+               tooltip="%papyrus.requirements.sysml.traceability.menu.tooltip">
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:papyrus.requirements.sysml.traceability.menu">
+         <command
+               commandId="org.eclipse.papyrus.requirements.sysml.traceability.handlers.ApplyTracabilityHandler"
+               label="%applyTraceabilityAssistant.command.label"
+               style="push"
+               tooltip="%applyTraceabilityAssistant.command.tooltip">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.requirements.sysml.testers.isModel"
+                        value="true">
+                  </test>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+</plugin>
+

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Require-Bundle: org.eclipse.ui;bundle-version="3.107.0",
+ org.eclipse.core.runtime;bundle-version="3.12.0"
+Export-Package: org.eclipse.papyrus.requirements.preferences
+Bundle-Vendor: %Bundle-Vendor
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.7.0.qualifier
+Bundle-Name: %Bundle-Name
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.requirements.preferences.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.requirements.preferences;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

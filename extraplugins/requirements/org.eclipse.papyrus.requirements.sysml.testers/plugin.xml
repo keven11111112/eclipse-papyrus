@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.requirements.sysml.testers.RequirementTester"
+            id="org.eclipse.papyrus.requirements.sysml.testers.RequirementTester"
+            namespace="org.eclipse.papyrus.requirements.sysml.testers"
+            properties="isRequirementElement"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
+      <propertyTester
+            class="org.eclipse.papyrus.requirements.sysml.testers.PackageTester"
+            id="org.eclipse.papyrus.requirements.sysml.testers.PackageTester"
+            namespace="org.eclipse.papyrus.requirements.sysml.testers"
+            properties="isUMLPackage"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
+      <propertyTester
+            class="org.eclipse.papyrus.requirements.sysml.testers.ProfileTester"
+            id="org.eclipse.papyrus.requirements.sysml.testers.ProfileTester"
+            namespace="org.eclipse.papyrus.requirements.sysml.testers"
+            properties="isUMLProfile"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
+      <propertyTester
+            class="org.eclipse.papyrus.requirements.sysml.testers.SysMLRequirementsProfileTester"
+            id="org.eclipse.papyrus.requirements.sysml.testers.SysMLRequirementsProfileTester"
+            namespace="org.eclipse.papyrus.requirements.sysml.testers"
+            properties="appliesSysMLRequirementsProfile"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
+      <propertyTester
+            class="org.eclipse.papyrus.requirements.sysml.testers.ModelTester"
+            id="org.eclipse.papyrus.requirements.sysml.testers.Model"
+            namespace="org.eclipse.papyrus.requirements.sysml.testers"
+            properties="isModel"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
+   </extension>
+
+</plugin>

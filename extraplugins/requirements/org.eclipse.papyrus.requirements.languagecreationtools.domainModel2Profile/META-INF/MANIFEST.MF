@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: org.eclipse.papyrus.requirements.languagecreationtools.domainModel2Profile;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.requirements.languagecreationtools.domainModel2Profile.Activator
+Bundle-Vendor: %Bundle-Vendor
+Require-Bundle: org.eclipse.uml2.uml.resources,
+ org.eclipse.gmf.runtime.diagram.ui,
+ org.eclipse.papyrus.requirements.preferences
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.requirements.languagecreationtools.domainModel2Profile;uses:="org.osgi.framework",
+ org.eclipse.papyrus.requirements.languagecreationtools.domainModel2Profile.generator;uses:="org.eclipse.uml2.uml,org.eclipse.emf.common.util,org.eclipse.emf.ecore.resource",
+ org.eclipse.papyrus.requirements.languagecreationtools.domainModel2Profile.utils;uses:="org.eclipse.uml2.uml,org.eclipse.emf.common.util"
+Bundle-Localization: bundle

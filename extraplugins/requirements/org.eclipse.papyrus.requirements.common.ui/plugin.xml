@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+         <separator
+               name="org.eclipse.papyrus.requirements.common.ui.sysml.assistant.additions"
+               visible="true">
+         </separator>
+         <separator
+               name="org.eclipse.papyrus.requirements.common.ui.traceability.additions"
+               visible="false">
+         </separator>
+         <separator
+               name="org.eclipse.papyrus.requirements.common.ui.languagecreation.additions"
+               visible="false">
+         </separator>
+         <separator
+               name="org.eclipse.papyrus.requirements.common.ui.dummy"
+               visible="true">
+         </separator>
+      </menuContribution>
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=filtersMenu">
+         <separator
+               name="org.eclipse.papyrus.requirements.common.ui.sysml.assistant.additions"
+               visible="true">
+         </separator>
+         <separator
+               name="org.eclipse.papyrus.requirements.common.ui.traceability.additions"
+               visible="false">
+         </separator>
+         <separator
+               name="org.eclipse.papyrus.requirements.common.ui.languagecreation.additions"
+               visible="false">
+         </separator>
+         <separator
+               name="org.eclipse.papyrus.requirements.common.ui.dummy"
+               visible="true">
+         </separator>
+      </menuContribution>
+   </extension>
+
+</plugin>
