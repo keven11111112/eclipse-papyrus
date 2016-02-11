@@ -126,7 +126,14 @@
          </propertySection>
       </propertySections>
    </extension>
-
+   <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="inner-port-view-provider">
+      <viewProvider class="org.eclipse.papyrus.uml.diagram.composite.custom.providers.InnerPortViewProvider">
+         <Priority name="Low"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="CompositeStructure"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="3121,3069"/>
+         
+       </viewProvider>
+   </extension>
    <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
       <viewProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLViewProvider">
@@ -136,6 +143,8 @@
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4022,4001,4002,4003,4004,4005,4011,4006,4012,4007,4008,4009,4017,4010,4013,4015,4018,4019,4020,4021"/>
       </viewProvider>
    </extension>
+
+
 
    <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
       <?gmfgen generated="false"?>

@@ -8,22 +8,31 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Benoit maggi (CEA LIST) benoit.maggi@cea.fr - Allow InnerPort (Visual : Port in Port) 
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts;
 
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PortResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.BehaviorPortEditPolicy;
+import org.eclipse.papyrus.uml.diagram.composite.custom.locators.CustomPortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
 
 
@@ -34,19 +43,26 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
  * @author Trung-Truc Nguyen
  *
  */
-public class CustomFullPortAffixedEditPart extends PortEditPart{
+public class ResizablePortEditPart extends PortEditPart{
 
 	/**
 	 * Constructor.
 	 *
 	 * @param view
 	 */
-	public CustomFullPortAffixedEditPart(View view) {
+	public ResizablePortEditPart(View view) {
 		super(view);
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PortResizableEditPolicy());
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new PortResizableEditPolicy());
 	}
 
+	/**
+	 * @see org.eclipse.gef.editparts.AbstractEditPart#installEditPolicy(java.lang.Object, org.eclipse.gef.EditPolicy)
+	 *
+	 * @param key
+	 * @param editPolicy
+	 */
 	public void installEditPolicy(Object key, EditPolicy editPolicy){
 		if(EditPolicy.PRIMARY_DRAG_ROLE.equals(key)) {
 			//prevent its parents from overriding this policy 
@@ -83,4 +99,34 @@ public class CustomFullPortAffixedEditPart extends PortEditPart{
 		
 		return result;
 	}
+	
+	/**
+	 * Use a the CustomPortPositionLocator to manage the added ports
+	 * 
+	 * @see org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart#addBorderItem(org.eclipse.draw2d.IFigure, org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart)
+	 *
+	 * @param borderItemContainer
+	 * @param borderItemEditPart
+	 */
+	@Override
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		if(borderItemEditPart instanceof PortEditPart) {
+			IBorderItemLocator locator = new CustomPortPositionLocator(getMainFigure(), (RoundedBorderNamedElementEditPart) borderItemEditPart, PositionConstants.NONE);
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else {
+			super.addBorderItem(borderItemContainer, borderItemEditPart);
+		}
+	}
+	
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart#refreshVisuals()
+	 *
+	 */
+	@Override
+	protected void refreshVisuals() {
+		BehaviorPortEditPolicy policy = (BehaviorPortEditPolicy)getEditPolicy(BehaviorPortEditPolicy.BEHAVIOR_PORT);
+		policy.udaptePortBehavior();
+		super.refreshVisuals();
+	}
+
 }

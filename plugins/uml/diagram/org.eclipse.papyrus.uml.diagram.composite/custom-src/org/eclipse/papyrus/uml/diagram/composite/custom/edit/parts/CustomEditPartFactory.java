@@ -50,7 +50,7 @@ public class CustomEditPartFactory extends UMLEditPartFactory {
 			case ConstraintEditPartCN.VISUAL_ID:
 				return new CustomConstraintEditPartCN(view);
 			case PortEditPart.VISUAL_ID:
-				return new CustomFullPortAffixedEditPart(view);
+				return new ResizablePortEditPart(view);
 			case PortNameEditPart.VISUAL_ID:
 				return new CustomPortNameEditPart(view);
 			case DurationObservationStereotypeLabelEditPart.VISUAL_ID:
