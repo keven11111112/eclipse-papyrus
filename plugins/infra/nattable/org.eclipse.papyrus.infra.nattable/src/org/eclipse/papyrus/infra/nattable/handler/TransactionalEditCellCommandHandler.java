@@ -23,6 +23,7 @@ import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.config.IEditableRule;
 import org.eclipse.nebula.widgets.nattable.edit.ActiveCellEditorRegistry;
+import org.eclipse.nebula.widgets.nattable.edit.CellEditorCreatedEvent;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.edit.EditTypeEnum;
 import org.eclipse.nebula.widgets.nattable.edit.InlineEditHandler;
@@ -121,7 +122,8 @@ public class TransactionalEditCellCommandHandler extends TransactionalCommandHan
 
 					cellEditor.addEditorControlListeners();
 					addScrollListener(cellEditor);
-					ActiveCellEditorRegistry.registerActiveCellEditor(cellEditor);
+					
+					layer.fireLayerEvent(new CellEditorCreatedEvent(cellEditor));
 				}
 
 				// Command succeeded but should not appear on the undo stack because we haven't completed an edit (only activated the cell editor),
