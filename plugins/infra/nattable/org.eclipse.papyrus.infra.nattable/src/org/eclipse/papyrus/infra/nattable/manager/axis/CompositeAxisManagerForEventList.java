@@ -26,7 +26,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.ResourceSetListener;
@@ -248,7 +247,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 		}
 		return cmd;
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
@@ -307,7 +306,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 		}
 		return cmd;
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
@@ -368,14 +367,12 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	}
 
 	/**
-	 *
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#sortAxisByName(boolean, org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
-	 *
-	 * @param inverted
-	 * @param configRegistry
 	 */
 	@Override
-	public void sortAxisByName(boolean alphabeticOrder, final IConfigRegistry configRegistry) {
+	public void sortAxisByName(boolean alphabeticOrder, final IConfigRegistry configRegistry, final boolean isRowsSort) {
 		if (canMoveAxis()) {
 			final List<IAxis> axis = new ArrayList<IAxis>(getRepresentedContentProvider().getAxis());
 			Collections.sort(axis, new AxisComparator(alphabeticOrder, configRegistry));
@@ -383,7 +380,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 			final AbstractEditCommandRequest request = new SetRequest(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), axis);
 			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
 			final ICommand cmd = provider.getEditCommand(request);
-			domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
+			domain.getCommandStack().execute(new ReorderAxisCommandWrapper(new GMFtoEMFCommandWrapper(cmd), isRowsSort));
 		}
 	}
 
@@ -497,9 +494,14 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	@Override
 	public void moveAxis(Object elementToMove, int newIndex) {
 		if (!isDynamic() && elementToMove instanceof IAxis) {
-			TransactionalEditingDomain domain = getTableEditingDomain();
-			final Command command = MoveCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), elementToMove, newIndex);
-			domain.getCommandStack().execute(command);
+			final TransactionalEditingDomain domain = getTableEditingDomain();
+			if (null != domain) {
+				final List<Object> newAxisOrder = new ArrayList<Object>(getRepresentedContentProvider().getAxis());
+				newAxisOrder.remove(elementToMove);
+				newAxisOrder.add(newIndex, elementToMove);
+	
+				domain.getCommandStack().execute(getSetNewAxisOrderCommand(newAxisOrder));
+			}
 		}
 	}
 
@@ -735,7 +737,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	@Override
 	public Command getSetNewAxisOrderCommand(final List<Object> newOrder) {
 		if (canMoveAxis() && !isDynamic()) {
-			return new RecordingCommand(getTableEditingDomain()) {
+			return new ReorderAxisCommandWrapper(new RecordingCommand(getTableEditingDomain()) {
 
 				@Override
 				protected void doExecute() {
@@ -763,7 +765,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 					newValues.addAll(order.values());
 					SetCommand.create(getTableEditingDomain(), provider, NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), newValues).execute();
 				}
-			};
+			});
 		}
 		return null;
 	}

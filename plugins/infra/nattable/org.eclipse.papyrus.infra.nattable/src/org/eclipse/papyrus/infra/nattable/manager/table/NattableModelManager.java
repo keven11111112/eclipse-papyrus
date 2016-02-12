@@ -1657,13 +1657,13 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	@Override
 	public void sortColumnsByName(final boolean alphabeticOrder) {
-		this.columnManager.sortAxisByName(alphabeticOrder, this.natTable.getConfigRegistry());
+		this.columnManager.sortAxisByName(alphabeticOrder, this.natTable.getConfigRegistry(), false);
 	}
 
 
 	@Override
 	public void sortRowsByName(final boolean alphabeticOrder) {
-		this.rowManager.sortAxisByName(alphabeticOrder, this.natTable.getConfigRegistry());
+		this.rowManager.sortAxisByName(alphabeticOrder, this.natTable.getConfigRegistry(), true);
 	}
 
 	/**

@@ -47,15 +47,17 @@ public interface ICompositeAxisManager extends IAxisManager {
 	 *            <code>true</code> if we sort the axis by alphabetic order, <code>false</code> if not
 	 * @param iConfigRegistry
 	 *            the config registry used to find the label provider
+	 * @param isRowsSort
+	 *            Boolean to determinate if this is a rows sort.
 	 */
-	public void sortAxisByName(final boolean alpabeticOrder, IConfigRegistry iConfigRegistry);
+	public void sortAxisByName(final boolean alpabeticOrder, final IConfigRegistry iConfigRegistry, final boolean isRowsSort);
 
 	public boolean canEditAxisHeader(NatEventData evaluationContext);
 
 	/**
 	 *
 	 * @return
-	 *         <code>true</code> if the axis managed by this manager are sorted
+	 * 		<code>true</code> if the axis managed by this manager are sorted
 	 */
 	public boolean isInSortedState();
 
@@ -71,7 +73,7 @@ public interface ICompositeAxisManager extends IAxisManager {
 	 * @param newOrder
 	 *            the new order for the objects : the objects can be IAxis or objects, or objects represented by IAxis in the model
 	 * @return
-	 *         the command to use to set this new order
+	 * 		the command to use to set this new order
 	 */
 	public Command getSetNewAxisOrderCommand(final List<Object> newOrder);
 
@@ -80,8 +82,8 @@ public interface ICompositeAxisManager extends IAxisManager {
 	 * @param axis
 	 *            an axis
 	 * @return
-	 *         the axis manager managing this axis
+	 * 		the axis manager managing this axis
 	 */
-	public IAxisManager getSubAxisManagerFor(final IAxis axis) ;
+	public IAxisManager getSubAxisManagerFor(final IAxis axis);
 
 }

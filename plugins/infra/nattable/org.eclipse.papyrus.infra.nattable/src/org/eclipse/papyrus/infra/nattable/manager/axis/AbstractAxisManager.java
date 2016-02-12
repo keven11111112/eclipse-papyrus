@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -45,6 +46,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
+import org.eclipse.papyrus.infra.nattable.utils.DefaultSizeUtils;
+import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.widgets.editors.InputDialog;
@@ -237,7 +242,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		this.tableManager = null;
 		this.representedAxisManager = null;
 		this.representedContentProvider = null;
-		if(null != this.managedObject){
+		if (null != this.managedObject) {
 			this.managedObject.clear();
 		}
 	}
@@ -286,7 +291,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
 		return null;
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
@@ -326,7 +331,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
 		return null;
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
@@ -383,7 +388,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @param object
 	 *            an object
 	 * @return
-	 *         <code>true</code> if the object is already displayed, <code>false</code> otherwise.
+	 * 		<code>true</code> if the object is already displayed, <code>false</code> otherwise.
 	 */
 	@Override
 	public boolean isAlreadyManaged(final Object object) {
@@ -433,9 +438,9 @@ public abstract class AbstractAxisManager implements IAxisManager {
 				if (objectToDestroy.contains(current) || objectToDestroy.contains(current.getElement())) {
 					final DestroyElementRequest request = new DestroyElementRequest(domain, current, false);
 					compositeCommand.add(provider.getEditCommand(request));
-					if(current instanceof IAxis){
+					if (current instanceof IAxis) {
 						objectsToRemove.add(current.getElement());
-					}else{
+					} else {
 						objectsToRemove.add(current);
 					}
 				}
@@ -554,7 +559,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @param axis
 	 *            an axis
 	 * @return
-	 *         <code>null</code> or an {@link UnsupportedOperationException} when the method {@link #canEditAxisHeader()} returns <code>false</code>
+	 * 		<code>null</code> or an {@link UnsupportedOperationException} when the method {@link #canEditAxisHeader()} returns <code>false</code>
 	 */
 	@Override
 	public String getElementAxisName(final IAxis axis) {
@@ -636,10 +641,10 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		final List<Object> toDestroy = getElements(axisPositions);
 		TransactionalEditingDomain domain = getTableEditingDomain();
 		final Collection<Object> objectsToRemove = new ArrayList<Object>(toDestroy.size());
-		for(final Object objectToDestroy : toDestroy){
-			if(objectToDestroy instanceof IAxis){
+		for (final Object objectToDestroy : toDestroy) {
+			if (objectToDestroy instanceof IAxis) {
 				objectsToRemove.add(((IAxis) objectToDestroy).getElement());
-			}else{
+			} else {
 				objectsToRemove.add(objectToDestroy);
 			}
 		}
@@ -736,31 +741,33 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		}
 		return columnAxisProvider == getRepresentedContentProvider();
 	}
-	
+
 	/**
 	 * This allows to manage the managed objects during the add command.
 	 * 
 	 * @author Nicolas FAUVERGUE
 	 */
-	protected class AddCommandWrapper extends CommandWrapper{
-		
+	protected class AddCommandWrapper extends ReorderAxisCommandWrapper {
+
 		/**
 		 * The objects to add in the managed objects list.
 		 */
 		private Collection<Object> objectsToAdd;
-		
+
 		/**
 		 * Constructor.
 		 *
-		 * @param command The command to wrap.
-		 * @param objectsToAdd The objects to add.
+		 * @param command
+		 *            The command to wrap.
+		 * @param objectsToAdd
+		 *            The objects to add.
 		 */
 		public AddCommandWrapper(final Command command, final Collection<Object> objectsToAdd) {
 			super(command);
 			this.objectsToAdd = objectsToAdd;
-			
+
 		}
-		
+
 		/**
 		 * {@inheritDoc}
 		 * 
@@ -769,11 +776,11 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		@Override
 		public void execute() {
 			super.execute();
-			if(null != managedObject){
+			if (null != managedObject) {
 				managedObject.addAll(objectsToAdd);
 			}
 		}
-		
+
 		/**
 		 * {@inheritDoc}
 		 * 
@@ -782,11 +789,11 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		@Override
 		public void undo() {
 			super.undo();
-			if(null != managedObject){
+			if (null != managedObject) {
 				managedObject.removeAll(objectsToAdd);
 			}
 		}
-		
+
 		/**
 		 * {@inheritDoc}
 		 * 
@@ -795,37 +802,39 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		@Override
 		public void redo() {
 			super.redo();
-			if(null != managedObject){
+			if (null != managedObject) {
 				managedObject.addAll(objectsToAdd);
 			}
 		}
 	}
-	
+
 	/**
 	 * This allows to manage the managed objects during the remove command.
 	 * 
 	 * @author Nicolas FAUVERGUE
 	 */
-	protected class RemoveCommandWrapper extends CommandWrapper{
-		
+	protected class RemoveCommandWrapper extends ReorderAxisCommandWrapper {
+
 		/**
 		 * The objects to remove in the managed objects list.
 		 */
 		private Collection<Object> objectsToRemove;
-		
+
 		/**
 		 * Constructor.
 		 *
-		 * @param command The command to wrap.
-		 * @param objectsToRemove The objects to remove.
+		 * @param command
+		 *            The command to wrap.
+		 * @param objectsToRemove
+		 *            The objects to remove.
 		 */
 		public RemoveCommandWrapper(final Command command, final Collection<Object> objectsToRemove) {
 			super(command);
-			if(null != managedObject){
+			if (null != managedObject) {
 				this.objectsToRemove = objectsToRemove;
 			}
 		}
-		
+
 		/**
 		 * {@inheritDoc}
 		 * 
@@ -834,11 +843,11 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		@Override
 		public void execute() {
 			super.execute();
-			if(null != managedObject){
+			if (null != managedObject) {
 				managedObject.removeAll(objectsToRemove);
 			}
 		}
-		
+
 		/**
 		 * {@inheritDoc}
 		 * 
@@ -847,11 +856,11 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		@Override
 		public void undo() {
 			super.undo();
-			if(null != managedObject){
+			if (null != managedObject) {
 				managedObject.addAll(objectsToRemove);
 			}
 		}
-		
+
 		/**
 		 * {@inheritDoc}
 		 * 
@@ -860,10 +869,121 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		@Override
 		public void redo() {
 			super.redo();
-			if(null != managedObject){
+			if (null != managedObject) {
 				managedObject.removeAll(objectsToRemove);
 			}
 		}
 	}
-	
+
+	/**
+	 * This allows to manage a wrapper after the reorder columns or rows.
+	 * This can't me managed by the notification (in the NattableModelManager class)
+	 * because the move action is managed as REMOVE and ADD notifications.
+	 * 
+	 * @author Nicolas FAUVERGUE
+	 */
+	protected class ReorderAxisCommandWrapper extends CommandWrapper {
+
+		/**
+		 * Boolean to determinate if this a rows reordering.
+		 * ust be usable only for the sort rows by name action.
+		 */
+		private final boolean isRowsReordering;
+
+		/**
+		 * Constructor.
+		 *
+		 * @param command
+		 *            The initial command.
+		 */
+		public ReorderAxisCommandWrapper(final Command command) {
+			this(command, false);
+		}
+
+		/**
+		 * Constructor.
+		 *
+		 * @param command
+		 *            The initial command.
+		 * @param isRowsReordering
+		 *            Boolean to determinate if this is a rows reordering.
+		 */
+		public ReorderAxisCommandWrapper(final Command command, final boolean isRowsReordering) {
+			super(command);
+			this.isRowsReordering = isRowsReordering;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.emf.common.command.CommandWrapper#execute()
+		 */
+		@Override
+		public void execute() {
+			super.execute();
+			reInitializeColumnsWidth();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.emf.common.command.CommandWrapper#undo()
+		 */
+		@Override
+		public void undo() {
+			super.undo();
+			reInitializeColumnsWidth();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.emf.common.command.CommandWrapper#redo()
+		 */
+		@Override
+		public void redo() {
+			super.redo();
+			reInitializeColumnsWidth();
+		}
+
+		/**
+		 * This allows to reset the column width after a reorder action.
+		 * We need to reset the column width to refresh the columns instead of nattable reload.
+		 */
+		protected void reInitializeColumnsWidth() {
+			final List<IAxis> notationAxisList = ((isRowsReordering && !tableManager.getTable().isInvertAxis()) || (!isRowsReordering && tableManager.getTable().isInvertAxis())) ? tableManager.getTable().getCurrentRowAxisProvider().getAxis()
+					: tableManager.getTable().getCurrentColumnAxisProvider().getAxis();
+			final DataLayer tableBodyLayer = tableManager.getBodyLayerStack().getBodyDataLayer();
+
+			// Loop on columns axis to reset the width
+			for (int index = 0; index < notationAxisList.size(); index++) {
+				final IAxis currentAxis = notationAxisList.get(index);
+				// we need both to detect and use the correct value, width or height, of the handled element as the user could have modified the table when the axis was inverted
+				if (!tableManager.getTable().isInvertAxis()) {
+					if (isRowsReordering) {
+						final int axisHeight = tableBodyLayer.getRowHeightByPosition(index);
+						final IntValueStyle value = (IntValueStyle) currentAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.AXIS_HEIGHT);
+						if (null != value) {
+							// we set the size of the axis in the graphical representation
+							tableBodyLayer.setRowHeightByPosition(index, value.getIntValue(), false);
+						} else if (axisHeight != DefaultSizeUtils.getDefaultCellHeight()) {
+							// resets the size in case of an undo in the default table
+							tableBodyLayer.setRowHeightByPosition(index, DefaultSizeUtils.getDefaultCellHeight(), false);
+						}
+					} else {
+						final int axisWidth = tableBodyLayer.getColumnWidthByPosition(index);
+						final IntValueStyle value = (IntValueStyle) currentAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.AXIS_WIDTH);
+						if (null != value) {
+							// we set the size of the axis in the graphical representation
+							tableBodyLayer.setColumnWidthByPosition(index, value.getIntValue(), false);
+						} else if (axisWidth != DefaultSizeUtils.getDefaultCellWidth()) {
+							// resets the size in case of an undo to the default table
+							tableBodyLayer.setColumnWidthByPosition(index, DefaultSizeUtils.getDefaultCellWidth(), false);
+						}
+					}
+				}
+			}
+		}
+	}
+
 }
