@@ -12,40 +12,17 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<modules>
-		<module>../../plugins/developer/org.eclipse.papyrus.codegen</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.def</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.dev.java.utils</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.dev.project.management</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.dev.assistants.codegen</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.dev.view.services.edit.request</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.developer.profile</module>
+		<module>../../features/papyrus-dev-features/org.eclipse.papyrus.dev.feature</module>
+		<module>../../features/papyrus-dev-features/org.eclipse.papyrus.junit.feature</module>
+		<module>../../plugins/developer</module>
 		<!-- <module>../../plugins/developer/org.eclipse.papyrus.diagramdev.modelexplorer</module> -->
-		<module>../../plugins/developer/org.eclipse.papyrus.domaincodegen.ui</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.domaincontextcodegen</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.domaincontextcodegen.edit</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.domaincontextcodegen.editor</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.gmf.editpartview</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.gmf.editpoliciesstates</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.gmf.figureview</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.gmfgenextension</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.infra.emf.commandstack</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.infra.extendedtypes.elementtypeview</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.elementtypesconfigurations.developer</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.mwe2.utils</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.releng.tools</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.uml.developer.mde</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.dev.tests.framework</module>
-		<module>../../plugins/developer/org.eclipse.papyrus.dev.tests.framework.ui</module>
-		<module>../../tests/framework/org.eclipse.papyrus.tests.framework</module>
 		<module>../../tests/framework/org.eclipse.papyrus.tests.framework.annotations</module>
 		<module>../../tests/framework/org.eclipse.papyrus.tests.framework.edit</module>
 		<module>../../tests/framework/org.eclipse.papyrus.tests.framework.editor</module>
-		<module>../../plugins/infra/gmfdiag/css/org.eclipse.papyrus.infra.gmfdiag.css.debug</module>
-		<module>../../features/papyrus-dev-features/org.eclipse.papyrus.dev.feature</module>
-		<module>../../features/papyrus-dev-features/org.eclipse.papyrus.junit.feature</module>
+		<module>../../tests/framework/org.eclipse.papyrus.tests.framework</module>
+		<module>../../tests/junit/plugins/developer/org.eclipse.papyrus.bundles.tests</module>
 		<module>../../tests/junit/plugins/junit/org.eclipse.papyrus.junit.framework</module>
 		<module>../../tests/junit/plugins/junit/org.eclipse.papyrus.junit.utils</module>
-		<module>../../tests/junit/plugins/developer/org.eclipse.papyrus.bundles.tests</module>
 		<module>site</module>
 	</modules>
 	<repositories>

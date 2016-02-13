@@ -2,10 +2,9 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>org.eclipse.papyrus.dev.releng</artifactId>
+		<artifactId>org.eclipse.papyrus.developer</artifactId>
 		<groupId>org.eclipse.papyrus</groupId>
-		<version>1.2.0-SNAPSHOT</version>
-		<relativePath>../../../releng/dev</relativePath>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>org.eclipse.papyrus.domaincontextcodegen.editor</artifactId>
 	<groupId>org.eclipse.papyrus</groupId>

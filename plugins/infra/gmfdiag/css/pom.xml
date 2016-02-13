@@ -14,7 +14,6 @@
 	<modules>
 		<module>org.eclipse.papyrus.infra.gmfdiag.css</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.css.configuration</module>
-		<!-- org.eclipse.papyrus.infra.gmfdiag.css.debug is in the Dev Build (?!) -->
 		<module>org.eclipse.papyrus.infra.gmfdiag.css.properties</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.css.theme</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.css3.xtext</module>
