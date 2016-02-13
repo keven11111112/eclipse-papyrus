@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>org.eclipse.papyrus.editor-all</artifactId>
-	<groupId>org.eclipse.papyrus</groupId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>org.eclipse.papyrus.editor</artifactId>
 	<packaging>pom</packaging>
 	<parent>
 	    <groupId>org.eclipse.papyrus</groupId>

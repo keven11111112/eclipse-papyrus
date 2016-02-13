@@ -2,12 +2,10 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>org.eclipse.papyrus.sysml-properties</artifactId>
-	<groupId>org.eclipse.papyrus</groupId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<parent>
 	    <groupId>org.eclipse.papyrus</groupId>
-	    <artifactId>org.eclipse.papyrus.sysml-all</artifactId>
+	    <artifactId>org.eclipse.papyrus.sysml</artifactId>
 	    <version>0.0.1-SNAPSHOT</version>
     </parent>
 	<name>Papyrus SysML Properties</name>

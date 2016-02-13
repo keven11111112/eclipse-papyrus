@@ -7,7 +7,6 @@
 	    <version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>org.eclipse.papyrus.uml.properties.feature</artifactId>
-	<groupId>org.eclipse.papyrus</groupId>
 	<version>1.2.0-SNAPSHOT</version>
 	<packaging>eclipse-feature</packaging>
 </project>

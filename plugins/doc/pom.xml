@@ -7,8 +7,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>org.eclipse.papyrus.plugins-doc</artifactId>
-	<groupId>org.eclipse.papyrus</groupId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>The Papyrus end-user and developer documentation bundles</name>
 	<description>Maven plugin dedicated to generate developer documentation through a dedicated website and pdf files.</description>
