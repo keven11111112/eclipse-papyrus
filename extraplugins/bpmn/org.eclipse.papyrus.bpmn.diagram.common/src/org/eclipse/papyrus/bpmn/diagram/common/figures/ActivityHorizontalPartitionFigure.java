@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.bpmn.diagram.common.figures;
 
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.uml.diagram.activity.figures.ActivityPartitionFigure;
 
 public class ActivityHorizontalPartitionFigure extends ActivityPartitionFigure {

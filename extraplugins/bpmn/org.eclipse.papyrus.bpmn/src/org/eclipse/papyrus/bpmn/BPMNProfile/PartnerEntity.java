@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.uml2.uml.InstanceSpecification;
 
 /**

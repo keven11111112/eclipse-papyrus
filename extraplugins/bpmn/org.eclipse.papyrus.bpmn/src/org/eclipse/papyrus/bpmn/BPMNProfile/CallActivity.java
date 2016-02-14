@@ -5,7 +5,6 @@ package org.eclipse.papyrus.bpmn.BPMNProfile;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
-
 import org.eclipse.uml2.uml.CallBehaviorAction;
 
 /**

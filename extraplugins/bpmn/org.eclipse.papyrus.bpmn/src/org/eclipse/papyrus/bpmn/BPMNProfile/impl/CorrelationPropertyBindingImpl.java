@@ -3,17 +3,13 @@
 package org.eclipse.papyrus.bpmn.BPMNProfile.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage;
 import org.eclipse.papyrus.bpmn.BPMNProfile.CorrelationProperty;
 import org.eclipse.papyrus.bpmn.BPMNProfile.CorrelationPropertyBinding;
 import org.eclipse.papyrus.bpmn.BPMNProfile.FormalExpression;
-
 import org.eclipse.uml2.uml.Property;
 
 /**

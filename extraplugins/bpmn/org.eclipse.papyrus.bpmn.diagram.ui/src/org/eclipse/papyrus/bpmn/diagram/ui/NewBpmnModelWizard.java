@@ -13,7 +13,7 @@ package org.eclipse.papyrus.bpmn.diagram.ui;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.bpmn.diagram.common.commands.CreateBpmnModelCommand;
-import org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard;
+import org.eclipse.papyrus.uml.diagram.wizards.wizards.CreateModelWizard;
 import org.eclipse.ui.IWorkbench;
 
 public class NewBpmnModelWizard extends CreateModelWizard {

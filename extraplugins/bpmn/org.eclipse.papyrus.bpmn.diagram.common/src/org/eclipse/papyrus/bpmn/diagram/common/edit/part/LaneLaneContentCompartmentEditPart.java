@@ -12,25 +12,8 @@
 package org.eclipse.papyrus.bpmn.diagram.common.edit.part;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.ScrollPane;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 
 public class LaneLaneContentCompartmentEditPart extends ActivityPartitionActivityPartitionContentCompartmentEditPart{
 	/**

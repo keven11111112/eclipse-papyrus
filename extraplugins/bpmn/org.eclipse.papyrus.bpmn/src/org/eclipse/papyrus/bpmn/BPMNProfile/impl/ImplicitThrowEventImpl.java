@@ -3,7 +3,6 @@
 package org.eclipse.papyrus.bpmn.BPMNProfile.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage;
 import org.eclipse.papyrus.bpmn.BPMNProfile.ImplicitThrowEvent;
 

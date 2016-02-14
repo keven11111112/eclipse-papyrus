@@ -17,8 +17,6 @@ import org.eclipse.papyrus.bpmn.diagram.common.edit.part.LaneEditPart;
 import org.eclipse.papyrus.bpmn.diagram.common.edit.part.LaneLaneContentCompartmentEditPart;
 import org.eclipse.papyrus.bpmn.diagram.common.edit.part.LaneNameEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.part.CustomUMLEditPartFactory;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionNameEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 
 public class CustomBpmnUMLEditPartFactory extends CustomUMLEditPartFactory {

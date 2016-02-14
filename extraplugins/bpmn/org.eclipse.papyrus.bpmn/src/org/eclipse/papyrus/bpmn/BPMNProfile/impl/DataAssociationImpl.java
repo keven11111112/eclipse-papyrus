@@ -3,35 +3,26 @@
 package org.eclipse.papyrus.bpmn.BPMNProfile.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-
 import org.eclipse.papyrus.bpmn.BPMNProfile.Assignment;
 import org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage;
 import org.eclipse.papyrus.bpmn.BPMNProfile.DataAssociation;
 import org.eclipse.papyrus.bpmn.BPMNProfile.FormalExpression;
 import org.eclipse.papyrus.bpmn.BPMNProfile.ItemAwareElement;
-
 import org.eclipse.papyrus.bpmn.BPMNProfile.util.BPMNProfileValidator;
-
 import org.eclipse.uml2.uml.ObjectFlow;
 
 /**

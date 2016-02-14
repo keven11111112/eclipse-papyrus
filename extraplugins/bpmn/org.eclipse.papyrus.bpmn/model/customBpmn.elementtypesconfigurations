@@ -1,42 +1,13 @@
-<?xml version="1.0" encoding="ASCII"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:applystereotypeadviceconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/applystereotypeadvice/1.0"
-    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
-    xmlns:stereotypeapplicationmatcherconfiguration="http://www.eclipse.org/payrus/elementtypesconfigurations/uml/stereotypematcherconfiguration"
-    xmi:id="_ulgXkAkFEeWVleXnap4Kwg"
-    name="BPMNProfile"
-    identifier="org.eclipse.papyrus.bpmn.customElementTypeSet"
-    metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_ulhBugkFEeWVleXnap4Kwg1"
-      name="Task Action"
-      identifier="org.eclipse.papyrus.bpmn.Task_OpaqueAction"
-      hint="UML::Action">
-    <iconEntry
-        xmi:id="_ulhBuwkFEeWVleXnap4Kwg2"
-        iconPath="/icons/full/obj16/Action.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1" xmlns:applystereotypeadviceconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/applystereotypeadvice/1.1" xmlns:stereotypeapplicationmatcherconfiguration="http://www.eclipse.org/payrus/elementtypesconfigurations/uml/stereotypematcherconfiguration/1.1" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" identifier="org.eclipse.papyrus.bpmn.customElementTypeSet" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML" name="BPMNProfile" xmi:id="_ulgXkAkFEeWVleXnap4Kwg" xmi:version="2.0">
+  <elementTypeConfigurations hint="UML::Action" identifier="org.eclipse.papyrus.bpmn.Task_OpaqueAction" name="Task Action" xmi:id="_ulhBugkFEeWVleXnap4Kwg1" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Action.gif" xmi:id="_ulhBuwkFEeWVleXnap4Kwg2"/>
     <specializedTypesID>org.eclipse.papyrus.uml.OpaqueAction</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_ulhBvAkFEeWVleXnap4Kwg1">
+    <matcherConfiguration xmi:id="_ulhBvAkFEeWVleXnap4Kwg1" xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration">
       <stereotypesQualifiedNames>BPMNProfile::Task</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_ulhCCwkFEeWVleXnap4Kwg5"
-      name="Apply InclusiveGateway"
-      identifier="org.eclipse.papyrus.bpmn.task"
-      target="_ulhBugkFEeWVleXnap4Kwg1">
-    <stereotypesToApply
-        xmi:id="_ulhCDAkFEeWVleXnap4Kwg6"
-        stereotypeQualifiedName="BPMNProfile::Task"
-        updateName="true">
+  <adviceBindingsConfigurations identifier="org.eclipse.papyrus.bpmn.task" target="_ulhBugkFEeWVleXnap4Kwg1" xmi:id="_ulhCCwkFEeWVleXnap4Kwg5" xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration">
+    <stereotypesToApply stereotypeQualifiedName="BPMNProfile::Task" updateName="true" xmi:id="_ulhCDAkFEeWVleXnap4Kwg6">
       <requiredProfiles>BPMNProfile</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>

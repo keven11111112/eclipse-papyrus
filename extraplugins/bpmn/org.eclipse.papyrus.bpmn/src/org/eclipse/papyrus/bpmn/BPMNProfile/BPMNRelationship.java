@@ -3,7 +3,6 @@
 package org.eclipse.papyrus.bpmn.BPMNProfile;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 
