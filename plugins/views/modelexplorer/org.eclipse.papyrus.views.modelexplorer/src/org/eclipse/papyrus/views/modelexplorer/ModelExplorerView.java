@@ -11,7 +11,7 @@
  *  Christian W. Damus (CEA) - post refreshes for transaction commit asynchronously (CDO)
  *  Christian W. Damus (CEA) - bugs 429826, 434635, 437217, 441857
  *  Christian W. Damus - bugs 450235, 451683, 485220
- *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289, 455241
  *  Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 500290: implement new filter and ignore case Check button
  *
  *****************************************************************************/
@@ -22,12 +22,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.EventObject;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.commands.operations.IUndoContext;
+import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -216,6 +218,18 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		public void isDirtyChanged() {
 			firePropertyChange(IEditorPart.PROP_DIRTY);
 		}
+	};
+
+	/**
+	 * Listener on commandStack changes.
+	 */
+	private final CommandStackListener commandStackListener = new CommandStackListener() {
+
+		@Override
+		public void commandStackChanged(EventObject event) {
+			// Selection of the root element
+			getCommonViewer().setSelection(new StructuredSelection(getCommonViewer().getTree().getItems()[0].getData()));
+		};
 	};
 
 	/** The {@link IPropertySheetPage} this model explorer will use. */
@@ -844,6 +858,8 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				scheduleRefresh();
 			}
 		}
+
+		editingDomain.getCommandStack().addCommandStackListener(commandStackListener);
 	}
 
 	/**
@@ -871,6 +887,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		if (editingDomain != null) {
 			editingDomain.removeResourceSetListener(resourceSetListener);
+			editingDomain.getCommandStack().removeCommandStackListener(commandStackListener);
 			editingDomain = null;
 		}
 
