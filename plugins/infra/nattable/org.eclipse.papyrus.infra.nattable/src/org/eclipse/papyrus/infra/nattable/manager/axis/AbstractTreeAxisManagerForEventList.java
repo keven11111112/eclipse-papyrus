@@ -206,7 +206,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	@Override
 	public boolean canDestroyAxis(Integer axisPosition) {
 		IAxis axis = (IAxis) getTableManager().getRowElementsList().get(axisPosition.intValue());// we need to have the tree list here and not the basic event list!
-		if (axis instanceof ITreeItemAxis) {
+		if (axis instanceof ITreeItemAxis && !(((ITreeItemAxis)axis).getElement() instanceof TreeFillingConfiguration)) {
 			return ((ITreeItemAxis) axis).getParent() == null;
 		}
 		return false;
@@ -515,7 +515,10 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 		EventListHelper.removeFromEventList(eventList, axis);
 		this.alreadyExpanded.remove(axis);
 		ITreeItemAxisHelper.unlinkITreeItemAxisToSemanticElement(this.managedElements, axis);
-		ITreeItemAxisHelper.destroyITreeItemAxis(getTableEditingDomain(), axis);
+		final TransactionalEditingDomain tableEditingDomain = getTableEditingDomain();
+		if(null != tableEditingDomain){
+			ITreeItemAxisHelper.destroyITreeItemAxis(tableEditingDomain, axis);
+		}
 		if (parentAxis != null) {
 			final Object representedElement = parentAxis.getElement();
 			if (representedElement instanceof TreeFillingConfiguration && parentAxis.getChildren().size() == 0) {
@@ -859,18 +862,20 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 			Collection<ITreeItemAxis> itemAxisRepresentations = new ArrayList<ITreeItemAxis>(this.managedElements.get(object));
 			for (final ITreeItemAxis current : itemAxisRepresentations) {
 				ITreeItemAxis parent = current.getParent();
-				// must always be a TreeFillingConfiguration
-				TreeFillingConfiguration conf = (TreeFillingConfiguration) parent.getElement();
-				Object context;
-				ITreeItemAxis greatParent = parent.getParent();
-				if (greatParent == null) {
-					context = getTableContext();
-				} else {
-					context = greatParent.getElement();
-				}
-				Collection<?> values = getCellValueAsCollection(conf.getAxisUsedAsAxisProvider(), context);
-				if (!values.contains(object)) {
-					removeObject(current);
+				if(null != parent){
+					// must always be a TreeFillingConfiguration
+					TreeFillingConfiguration conf = (TreeFillingConfiguration) parent.getElement();
+					Object context;
+					ITreeItemAxis greatParent = parent.getParent();
+					if (greatParent == null) {
+						context = getTableContext();
+					} else {
+						context = greatParent.getElement();
+					}
+					Collection<?> values = getCellValueAsCollection(conf.getAxisUsedAsAxisProvider(), context);
+					if (!values.contains(object)) {
+						removeObject(current);
+					}
 				}
 			}
 		}

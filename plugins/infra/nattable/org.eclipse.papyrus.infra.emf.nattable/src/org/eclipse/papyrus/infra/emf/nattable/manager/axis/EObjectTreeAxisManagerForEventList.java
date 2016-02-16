@@ -9,31 +9,38 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 487496
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.nattable.manager.axis;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.Window;
-import org.eclipse.papyrus.infra.nattable.dataprovider.HierarchicalRowLabelHeaderDataProvider;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AbstractTreeAxisManagerForEventList;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManagerForEventList;
 import org.eclipse.papyrus.infra.nattable.manager.axis.ITreeItemAxisManagerForEventList;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
 import org.eclipse.papyrus.infra.nattable.tree.ITreeItemAxisHelper;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 //import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 
@@ -61,7 +68,7 @@ public class EObjectTreeAxisManagerForEventList extends AbstractTreeAxisManagerF
 		return null;
 	}
 
-	
+
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
 	 *
@@ -78,14 +85,15 @@ public class EObjectTreeAxisManagerForEventList extends AbstractTreeAxisManagerF
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Get the axis to add from the objects to add.
 	 * 
-	 * @param objectToAdd The objects to add.
+	 * @param objectToAdd
+	 *            The objects to add.
 	 * @return The axis to add.
 	 */
-	protected Collection<IAxis> getAxisToAdd(final Collection<Object> objectToAdd){
+	protected Collection<IAxis> getAxisToAdd(final Collection<Object> objectToAdd) {
 		final Collection<IAxis> toAdd = new ArrayList<IAxis>();
 		for (final Object object : objectToAdd) {
 			if (isAllowedContents(object, null, null, 0) && !isAlreadyManaged(object)) {
@@ -184,5 +192,36 @@ public class EObjectTreeAxisManagerForEventList extends AbstractTreeAxisManagerF
 		// }
 		// return true;
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractTreeAxisManagerForEventList#canDestroyAxisElement(java.lang.Integer)
+	 */
+	@Override
+	public boolean canDestroyAxisElement(final Integer axisIndex) {
+		final Object current = getElements().get(axisIndex);
+		if (current instanceof EObjectTreeItemAxis && !(((EObjectTreeItemAxis) current).getElement() instanceof TreeFillingConfiguration)) {
+			return !EMFHelper.isReadOnly(((EObjectTreeItemAxis) current).getElement());
+		}
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractTreeAxisManagerForEventList#getDestroyAxisElementCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Integer)
+	 */
+	@Override
+	public Command getDestroyAxisElementCommand(final TransactionalEditingDomain domain, final Integer axisPosition) {
+		final Object current = getElements().get(axisPosition);
+		if (current instanceof EObjectTreeItemAxis) {
+			final EObject element = ((EObjectTreeItemAxis) current).getElement();
+			final DestroyElementRequest request = new DestroyElementRequest(getContextEditingDomain(), element, false);
+			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(element);
+			return new RemoveCommandWrapper(new GMFtoEMFCommandWrapper(provider.getEditCommand(request)), Collections.singleton((Object) ((EObjectTreeItemAxis) current).getElement()));
+		}
+		return null;
 	}
 }

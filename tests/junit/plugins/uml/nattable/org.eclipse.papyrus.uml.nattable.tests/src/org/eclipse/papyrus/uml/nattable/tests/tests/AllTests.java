@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.uml.nattable.tests.tests;
 
 
+import org.eclipse.papyrus.uml.nattable.tests.bugs.DeleteRowElementTest;
 import org.eclipse.papyrus.uml.nattable.tests.tests.configs.GenericTreeTableConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.tests.tests.configs.GenericTreeTableNattableConfigurationTest;
 import org.junit.runner.RunWith;
@@ -21,7 +22,10 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({ UMLRestrictedContentProviderTest.class, UMLRestrictedContentProviderTestCustomProfile.class,
 	GenericTreeTableConfigurationTest.class,
-	GenericTreeTableNattableConfigurationTest.class
+	GenericTreeTableNattableConfigurationTest.class,
+	
+	// Delete row elements
+	DeleteRowElementTest.class
 })
 public class AllTests {
 
