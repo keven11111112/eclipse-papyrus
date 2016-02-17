@@ -279,19 +279,19 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>${eclipse.download}/eclipse/updates/4.5-M-builds/M-4.5.2RC3-201602031000/</url>
+			<url>${eclipse.download}/eclipse/updates/4.5-M-builds/M-4.5.2RC4-201602121500/</url>
 		</repository>
 		<repository>
 			<id>cdt</id>
 			<layout>p2</layout>
 			<!-- updateFrom("CDT",0) -->
-			<url>${eclipse.download}/tools/cdt/builds/mars/milestones/ur2-rc3</url>
+			<url>${eclipse.download}/tools/cdt/builds/mars/milestones/ur2-rc4</url>
 		</repository>
 		<repository>
 			<id>emf-cdo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("CDO Model Repository",0) -->
-			<url>${eclipse.download}/modeling/emf/cdo/drops/S20160209-0943</url>
+			<url>${eclipse.download}/modeling/emf/cdo/drops/R20160216-0037</url>
 		</repository>
 		<repository>
 			<id>emf-compare</id>
@@ -375,7 +375,7 @@
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT OCL 6.0.2",0) -->
-			<url>${eclipse.download}/modeling/mdt/ocl/updates/milestones/6.0.2/S201601311318</url>
+			<url>${eclipse.download}/modeling/mdt/ocl/updates/milestones/6.0.2/S201602100610</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>
