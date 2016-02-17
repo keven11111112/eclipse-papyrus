@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
- * This class helps to test if the selected element is a UML Package or not
+ * This class helps to test if the selected element applies the SysMLRequirements Profile or not
  */
 public class SysMLRequirementsProfileTester extends PropertyTester {
 

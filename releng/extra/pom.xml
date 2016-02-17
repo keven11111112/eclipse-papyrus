@@ -231,6 +231,7 @@
 		<module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
 		<!-- Papyrus EFFBD -->
 		<module>../../extraplugins/EFFBD/org.eclipse.papyrus.effbd</module>
+		
 		<!-- Papyrus Req -->
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.reqif</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.domainModel2Profile</module>
@@ -238,6 +239,25 @@
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.assistant</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.traceabilityassistant</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.req.feature</module>
+
+		<!-- Papyrus 4 Requirements (a.k.a. Papyrus Req)-->
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.common</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.common.ui</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.languagecreationtools.commands</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.languagecreationtools.domainModel2Profile</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.languagecreationtools.handlers</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.languagecreationtools.ui</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.preferences</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.assistant.commands</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.assistant.handlers</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.assistant.ui</module>        
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.common</module>      
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.testers</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.traceability.assistant</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.traceability.commands</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.traceability.handlers</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.traceability.ui</module>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.requirements.feature</module>
 
 		<!-- Papyrus BMM -->
 		<module>../../extraplugins/bmm/org.eclipse.papyrus.bmm</module>

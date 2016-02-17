@@ -179,7 +179,7 @@ public class Utils {
 	 * Creates a UML profile with a specific name and nsURI
 	 * 
 	 * @param name
-	 *            The new of the new profile
+	 *            The new profile
 	 * @param nsURI
 	 *            The nsURI of the new package
 	 * @return the new UML profile

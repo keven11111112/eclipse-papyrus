@@ -13,10 +13,6 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0",
  org.eclipse.papyrus.infra.ui.emf;bundle-version="1.2.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.requirements.sysml.assistant.commands;
-  uses:="org.osgi.framework,
-   org.eclipse.uml2.uml,
-   org.eclipse.ui.plugin,
-   org.eclipse.emf.transaction"
+Export-Package: org.eclipse.papyrus.requirements.sysml.assistant.commands
 Bundle-Localization: plugin
 Import-Package: org.eclipse.papyrus.requirements.sysml.common

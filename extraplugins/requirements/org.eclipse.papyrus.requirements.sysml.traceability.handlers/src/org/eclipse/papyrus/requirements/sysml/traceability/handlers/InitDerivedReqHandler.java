@@ -10,14 +10,14 @@
  * Contributors:
  *     Patrick Tessier (patrick.tessier@cea.fr) CEA LIST. - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.requirements.sysml.assistant.handlers;
+package org.eclipse.papyrus.requirements.sysml.traceability.handlers;
 
 import java.util.ArrayList;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.requirements.sysml.assistant.commands.InitDerivedReqCommand;
 import org.eclipse.papyrus.requirements.common.PapyrusAbstractHandler;
+import org.eclipse.papyrus.requirements.sysml.traceability.commands.InitDerivedReqCommand;
 import org.eclipse.uml2.uml.Element;
 
 /**

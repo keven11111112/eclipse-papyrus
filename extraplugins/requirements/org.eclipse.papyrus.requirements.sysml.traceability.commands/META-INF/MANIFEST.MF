@@ -7,7 +7,15 @@ Bundle-Activator: org.eclipse.papyrus.requirements.sysml.traceability.commands.A
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0",
  org.eclipse.papyrus.uml.tools;bundle-version="0.9.1";resolution:=optional,
- org.eclipse.papyrus.requirements.sysml.common;bundle-version="0.7.0"
+ org.eclipse.papyrus.requirements.sysml.common;bundle-version="0.7.0",
+ org.eclipse.papyrus.infra.widgets,
+ org.eclipse.papyrus.infra.ui.emf;bundle-version="1.2.0",
+ org.eclipse.papyrus.requirements.preferences,
+ org.eclipse.papyrus.requirements.sysml.assistant.commands,
+ org.eclipse.jface,
+ org.eclipse.papyrus.sysml,
+ org.eclipse.uml2.uml,
+ org.eclipse.papyrus.requirements.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.requirements.sysml.traceability.commands;

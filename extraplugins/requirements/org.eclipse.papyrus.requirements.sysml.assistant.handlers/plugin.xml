@@ -8,33 +8,17 @@
             commandId="org.eclipse.papyrus.requirements.sysml.assistant.handlers.PapyrusReqSysMLRequirementHandler">
       </handler>
       <handler
-            class="org.eclipse.papyrus.requirements.sysml.assistant.handlers.ExtractCommentsHandler"
-            commandId="org.eclipse.papyrus.requirements.sysml.assistant.handlers.ExtractCommentsHandler">
-      </handler>
-      <handler
-            class="org.eclipse.papyrus.requirements.sysml.assistant.handlers.InitDerivedReqHandler"
-            commandId="org.eclipse.papyrus.requirements.sysml.assistant.handlers.InitDerivedReqHandler">
-      </handler>
-      <handler
-            class="org.eclipse.papyrus.requirements.sysml.assistant.handlers.AddVerifyLinkHandler"
-            commandId="org.eclipse.papyrus.requirements.sysml.assistant.handlers.AddVerifyLinkHandler">
-      </handler>
-      <handler
-            class="org.eclipse.papyrus.requirements.sysml.assistant.handlers.AddSatisfyLinkHandler"
-            commandId="org.eclipse.papyrus.requirements.sysml.assistant.handlers.AddSatisfyLinkHandler">
-      </handler>
-      <handler
             class="org.eclipse.papyrus.requirements.sysml.assistant.handlers.DecomposeReqHandler"
             commandId="org.eclipse.papyrus.requirements.sysml.assistant.handlers.DecomposeReqHandler">
       </handler>
       <handler
-            class="org.eclipse.papyrus.requirements.sysml.assistant.handlers.AddDerivedLinkReqHandler"
-            commandId="org.eclipse.papyrus.requirements.sysml.assistant.handlers.AddDerivedLinkReqHandler">
+            class="org.eclipse.papyrus.requirements.sysml.assistant.handlers.ExtractCommentsHandler"
+            commandId="org.eclipse.papyrus.requirements.sysml.assistant.handlers.ExtractCommentsHandler">
       </handler>
+		
       <handler
             class="org.eclipse.papyrus.requirements.sysml.assistant.handlers.CommentReqHandler"
             commandId="org.eclipse.papyrus.requirements.sysml.assistant.handlers.CommentReqHandler">
       </handler>
    </extension>
-
 </plugin>

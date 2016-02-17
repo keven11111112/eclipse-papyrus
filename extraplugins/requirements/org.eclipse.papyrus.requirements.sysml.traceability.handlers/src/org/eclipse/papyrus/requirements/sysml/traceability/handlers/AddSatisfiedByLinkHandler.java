@@ -12,29 +12,38 @@
  * 		Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.requirements.sysml.assistant.handlers;
+package org.eclipse.papyrus.requirements.sysml.traceability.handlers;
+
+import java.util.ArrayList;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.papyrus.requirements.common.PapyrusAbstractHandler;
-import org.eclipse.papyrus.requirements.sysml.assistant.commands.InitDecomposeReqCommand;
+import org.eclipse.papyrus.requirements.sysml.traceability.commands.AddSatisfiedByLinkCommand;
+import org.eclipse.papyrus.requirements.sysml.traceability.commands.SatisfyCreateCommand;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * Executes the decomposition of a parent requirement to create a new child
- * requirement with a name based on its ancestors as defined in the Papyrus Req
- * preferences page.
- *
+ * Executes the addition of Satisfy links based on a selected requirement
+ * 
  */
-public class DecomposeReqHandler extends PapyrusAbstractHandler {
+public class AddSatisfiedByLinkHandler extends PapyrusAbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		super.execute(event);
-		Element selectedElement = getSelection();
-		if (selectedElement != null) {
-			InitDecomposeReqCommand decomposeReqCommand = new InitDecomposeReqCommand(transactionalEditingDomain,
-					selectedElement);
-			transactionalEditingDomain.getCommandStack().execute(decomposeReqCommand);
+		ArrayList<Element> selectedElements = getSelectionSet();
+		if (selectedElements.size() == 2) {
+			SatisfyCreateCommand addSatisfyCreateCommand = new SatisfyCreateCommand(transactionalEditingDomain,
+					(NamedElement) selectedElements.get(1), (NamedElement) selectedElements.get(0));
+			transactionalEditingDomain.getCommandStack().execute(addSatisfyCreateCommand);
+		} else {
+			Element selectedElement = getSelection();
+			if (selectedElement != null) {
+				AddSatisfiedByLinkCommand addAddSatisfyLinkCommand = new AddSatisfiedByLinkCommand(
+						transactionalEditingDomain, selectedElement);
+				transactionalEditingDomain.getCommandStack().execute(addAddSatisfyLinkCommand);
+			}
 		}
 		return null;
 	}
@@ -54,4 +63,5 @@ public class DecomposeReqHandler extends PapyrusAbstractHandler {
 			return false;
 		}
 	}
+
 }

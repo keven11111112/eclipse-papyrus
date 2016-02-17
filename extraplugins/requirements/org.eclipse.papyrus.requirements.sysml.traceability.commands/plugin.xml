@@ -9,5 +9,57 @@
             name="%applyTraceabilityAssistant.command.name">
       </command>
    </extension>
-
+   <extension
+         point="org.eclipse.ui.commands">
+         
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            id="org.eclipse.papyrus.requirements.sysml.traceability.handlers.InitDerivedReqHandler"
+            name="%deriveNewRequirement.command.name">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            id="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddDerivedByLinkHandler"
+            name="%addDerivedByLink.command.name">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            id="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddRefinedByLinkHandler"
+            name="%addRefinedByLink.command.name">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            id="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddSatisfiedByLinkHandler"
+            name="%addSatisfiedByLink.command.name">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            id="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddVerifiedByLinkHandler"
+            name="%addVerifiedByLink.command.name">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            id="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddVerifiesLinkHandler"
+            name="%addVerifiesLink.command.name">
+      </command>
+  
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            id="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddRefinesLinkHandler"
+            name="%addRefinesLink.command.name">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            id="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddSatisfiesLinkHandler"
+            name="%addSatisfiesLink.command.name">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            id="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddDerivesLinkHandler"
+            name="%addDerivesLink.command.name">
+      </command>
+   </extension>
 </plugin>

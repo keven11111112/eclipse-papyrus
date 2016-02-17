@@ -12,7 +12,7 @@
  * 		Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.requirements.sysml.assistant.commands;
+package org.eclipse.papyrus.requirements.sysml.traceability.commands;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -36,9 +36,11 @@ public class VerifyCreateCommand extends RecordingCommand {
 	 * @param domain
 	 *            the domain to execute a transaction
 	 * @param source
-	 *            the source of the abstraction (the more concrete element)
+	 *            the source of the abstraction (the more concrete element) -
+	 *            client
 	 * @param target
-	 *            the target of the abstraction (the more abstract element)
+	 *            the target of the abstraction (the more abstract element) -
+	 *            supplier
 	 * 
 	 */
 	public VerifyCreateCommand(TransactionalEditingDomain domain, NamedElement source, NamedElement target) {

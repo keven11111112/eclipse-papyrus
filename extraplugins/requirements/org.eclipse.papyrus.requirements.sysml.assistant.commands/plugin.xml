@@ -15,26 +15,6 @@
       </command>
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            id="org.eclipse.papyrus.requirements.sysml.assistant.handlers.InitDerivedReqHandler"
-            name="%deriveNewRequirement.command.name">
-      </command>
-      <command
-            categoryId="org.eclipse.papyrus.editor.category"
-            id="org.eclipse.papyrus.requirements.sysml.assistant.handlers.AddDerivedLinkReqHandler"
-            name="%addDerivedLink.command.name">
-      </command>
-      <command
-            categoryId="org.eclipse.papyrus.editor.category"
-            id="org.eclipse.papyrus.requirements.sysml.assistant.handlers.AddSatisfyLinkHandler"
-            name="%addSatisfyLink.command.name">
-      </command>
-      <command
-            categoryId="org.eclipse.papyrus.editor.category"
-            id="org.eclipse.papyrus.requirements.sysml.assistant.handlers.AddVerifyLinkHandler"
-            name="%addVerifyLink.command.name">
-      </command>
-      <command
-            categoryId="org.eclipse.papyrus.editor.category"
             id="org.eclipse.papyrus.requirements.sysml.assistant.handlers.CommentReqHandler"
             name="%createComments.command.name">
       </command>
@@ -44,5 +24,4 @@
             name="%extractComments.command.name">
       </command>
    </extension>
-
 </plugin>

@@ -6,7 +6,8 @@ Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.requirements.sysml.assistant.ui.Activator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0",
- org.eclipse.papyrus.requirements.common.ui;bundle-version="0.7.0"
+ org.eclipse.papyrus.requirements.common.ui;bundle-version="0.7.0",
+ org.eclipse.papyrus.requirements.sysml.testers;bundle-version="0.7.0"
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

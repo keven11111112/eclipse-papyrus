@@ -8,8 +8,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
-*     CEA LIST. - initial API and implementation
-*******************************************************************************/
+ * 
+ * 		Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.requirements.sysml.assistant.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;

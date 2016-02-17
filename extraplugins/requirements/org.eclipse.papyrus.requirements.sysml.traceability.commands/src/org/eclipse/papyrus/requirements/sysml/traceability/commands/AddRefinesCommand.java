@@ -12,62 +12,64 @@
  * 		Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.requirements.sysml.assistant.commands;
+package org.eclipse.papyrus.requirements.sysml.traceability.commands;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectionDialog;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
+import org.eclipse.papyrus.requirements.common.Utils;
+import org.eclipse.papyrus.requirements.sysml.common.I_SysMLStereotype;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.UseCase;
+
 /**
  * 
- * Creates a set of Verify links
+ * Creates a set of Refine links based on the model elements that refine the selected requirement
+ * 
  */
-public class AddVerifyLinkCommand extends RecordingCommand {
+public class AddRefinesCommand extends RecordingCommand {
 	protected Element selectedElement;
 	TransactionalEditingDomain domain;
 
-	public AddVerifyLinkCommand(TransactionalEditingDomain domain, Element selectedElement) {
-		super(domain,"Add Verify Link Command" );
-		this.selectedElement=selectedElement;
-		this.domain=domain;
+	public AddRefinesCommand(TransactionalEditingDomain domain, Element selectedElement) {
+		super(domain, "AddRefinesCommand");
+		this.selectedElement = selectedElement;
+		this.domain = domain;
 	}
 
-	private Package getToPackage(Element elem){
-		Package tmp= elem.getNearestPackage();
-		while(tmp.getOwner()!=null && (tmp.getOwner()instanceof Package)){
-			tmp= (Package)tmp.getOwner();
-		}
-		return tmp;
-	}
 	@Override
 	protected void doExecute() {
-			//open Tree selection dialog
-			final IStaticContentProvider provider =new UMLContentProvider(getToPackage(selectedElement), UMLPackage.eINSTANCE.getPackage_PackagedElement());
+		if (selectedElement instanceof UseCase) {
+			final IStaticContentProvider provider = new UMLContentProvider(Utils.getToPackage(selectedElement),
+					UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			ReferenceSelector selector = new ReferenceSelector();
 			selector.setLabelProvider(new UMLLabelProvider());
 			selector.setContentProvider(provider);
-			MultipleValueSelectionDialog dialog = new MultipleValueSelectionDialog(Display.getDefault().getActiveShell(),selector,"Choose the model elements that verify the requirement");
-		
+			MultipleValueSelectionDialog dialog = new MultipleValueSelectionDialog(
+					Display.getDefault().getActiveShell(), selector, "Choose the requirements refined by the Use Case");
+
 			dialog.setLabelProvider(new UMLLabelProvider());
-			//dialog.setMessage("Choose the model elements that verify the requirement");
-			//dialog.setTitle("Choose the model elements that verify the requirement");
+
 			dialog.create();
-			if(dialog.open() == org.eclipse.jface.window.Window.OK) {
+			if (dialog.open() == org.eclipse.jface.window.Window.OK) {
 				Object[] result = dialog.getResult();
 
 				for (int i = 0; i < result.length; i++) {
 					Element currentElement = (Element) result[i];
-						VerifyCreateCommand verifyCreateCommand= new VerifyCreateCommand(domain,(NamedElement) currentElement,(NamedElement) selectedElement);
-						verifyCreateCommand.execute();
+					if (currentElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE) != null) {
+						RefinementCreateCommand refinementCreateCommand = new RefinementCreateCommand(domain,
+								(UseCase) selectedElement, (NamedElement) currentElement);
+						refinementCreateCommand.execute();
+					}
 				}
 			}
 		}
+	}
 }

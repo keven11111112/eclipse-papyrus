@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2016 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -8,41 +8,41 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     Patrick Tessier (patrick.tessier@cea.fr) CEA LIST. - initial API and implementation
- *******************************************************************************/
-package org.eclipse.papyrus.requirements.sysml.assistant.handlers;
+ * 
+ * 		Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
+package org.eclipse.papyrus.requirements.sysml.traceability.handlers;
 
 import java.util.ArrayList;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.requirements.sysml.assistant.commands.AddDerivedLinkReqCommand;
-import org.eclipse.papyrus.requirements.sysml.assistant.commands.DerivationReqCreateCommand;
 import org.eclipse.papyrus.requirements.common.PapyrusAbstractHandler;
+import org.eclipse.papyrus.requirements.sysml.traceability.commands.AddVerifiedByLinkCommand;
+import org.eclipse.papyrus.requirements.sysml.traceability.commands.VerifyCreateCommand;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * Executes the addition of DerivedReqt links
+ * Executes the addition of Verify links based on a selected requirement
  *
  */
-public class AddDerivedLinkReqHandler extends PapyrusAbstractHandler {
+public class AddVerifiedByLinkHandler extends PapyrusAbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		super.execute(event);
 		ArrayList<Element> selectedElements = getSelectionSet();
 		if (selectedElements.size() == 2) {
-			DerivationReqCreateCommand addDerivedLinkReqCommand = new DerivationReqCreateCommand(
-					transactionalEditingDomain, (NamedElement) selectedElements.get(1),
-					(NamedElement) selectedElements.get(0));
-			transactionalEditingDomain.getCommandStack().execute(addDerivedLinkReqCommand);
+			VerifyCreateCommand addVerifyCreateCommand = new VerifyCreateCommand(transactionalEditingDomain,
+					(NamedElement) selectedElements.get(1), (NamedElement) selectedElements.get(0));
+			transactionalEditingDomain.getCommandStack().execute(addVerifyCreateCommand);
 		} else {
-
 			Element selectedElement = getSelection();
 			if (selectedElement != null) {
-				AddDerivedLinkReqCommand addDerivedLinkReqCommand = new AddDerivedLinkReqCommand(
-						transactionalEditingDomain, selectedElement);
-				transactionalEditingDomain.getCommandStack().execute(addDerivedLinkReqCommand);
+				AddVerifiedByLinkCommand addVerifiedByLinkCommand = new AddVerifiedByLinkCommand(transactionalEditingDomain,
+						selectedElement);
+				transactionalEditingDomain.getCommandStack().execute(addVerifiedByLinkCommand);
 			}
 		}
 		return null;
