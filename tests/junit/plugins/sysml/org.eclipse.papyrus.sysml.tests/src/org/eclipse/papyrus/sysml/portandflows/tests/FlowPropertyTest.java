@@ -119,13 +119,13 @@ public class FlowPropertyTest extends AbstractPapyrusTest {
 		Property p2 = i.createOwnedAttribute("p2", null);
 
 		// Add FlowPort stereotypes
-		fp0 = (FlowProperty)StereotypeApplicationHelper.INSTANCE.applyStereotype(p0, PortandflowsPackage.eINSTANCE.getFlowProperty());
+		fp0 = (FlowProperty)StereotypeApplicationHelper.getInstance(null).applyStereotype(p0, PortandflowsPackage.eINSTANCE.getFlowProperty());
 		fp0.setDirection(FlowDirection.IN);
 
-		fp1 = (FlowProperty)StereotypeApplicationHelper.INSTANCE.applyStereotype(p1, PortandflowsPackage.eINSTANCE.getFlowProperty());
+		fp1 = (FlowProperty)StereotypeApplicationHelper.getInstance(null).applyStereotype(p1, PortandflowsPackage.eINSTANCE.getFlowProperty());
 		fp1.setDirection(FlowDirection.OUT);
 
-		fp2 = (FlowProperty)StereotypeApplicationHelper.INSTANCE.applyStereotype(p2, PortandflowsPackage.eINSTANCE.getFlowProperty());
+		fp2 = (FlowProperty)StereotypeApplicationHelper.getInstance(null).applyStereotype(p2, PortandflowsPackage.eINSTANCE.getFlowProperty());
 		fp2.setDirection(FlowDirection.INOUT);
 
 	}

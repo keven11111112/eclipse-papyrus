@@ -123,11 +123,11 @@ public class AllocatedTest extends AbstractPapyrusTest {
 
 		// Add Allocated stereotype
 
-		ac0 = (Allocated)StereotypeApplicationHelper.INSTANCE.applyStereotype(c0, AllocationsPackage.eINSTANCE.getAllocated());
-		ac1 = (Allocated)StereotypeApplicationHelper.INSTANCE.applyStereotype(c1, AllocationsPackage.eINSTANCE.getAllocated());
-		ac2 = (Allocated)StereotypeApplicationHelper.INSTANCE.applyStereotype(c2, AllocationsPackage.eINSTANCE.getAllocated());
-		ac3 = (Allocated)StereotypeApplicationHelper.INSTANCE.applyStereotype(c3, AllocationsPackage.eINSTANCE.getAllocated());
-		ac4 = (Allocated)StereotypeApplicationHelper.INSTANCE.applyStereotype(c4, AllocationsPackage.eINSTANCE.getAllocated());
+		ac0 = (Allocated)StereotypeApplicationHelper.getInstance(null).applyStereotype(c0, AllocationsPackage.eINSTANCE.getAllocated());
+		ac1 = (Allocated)StereotypeApplicationHelper.getInstance(null).applyStereotype(c1, AllocationsPackage.eINSTANCE.getAllocated());
+		ac2 = (Allocated)StereotypeApplicationHelper.getInstance(null).applyStereotype(c2, AllocationsPackage.eINSTANCE.getAllocated());
+		ac3 = (Allocated)StereotypeApplicationHelper.getInstance(null).applyStereotype(c3, AllocationsPackage.eINSTANCE.getAllocated());
+		ac4 = (Allocated)StereotypeApplicationHelper.getInstance(null).applyStereotype(c4, AllocationsPackage.eINSTANCE.getAllocated());
 
 		// Add Abstractions with allocate stereotype
 		// c1 -> c2, c3
@@ -137,19 +137,19 @@ public class AllocatedTest extends AbstractPapyrusTest {
 		c1_c2.getSuppliers().add(c2);
 		model.getPackagedElements().add(c1_c2);
 
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(c1_c2, AllocationsPackage.eINSTANCE.getAllocate());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(c1_c2, AllocationsPackage.eINSTANCE.getAllocate());
 
 		Abstraction c1_c3 = UMLFactory.eINSTANCE.createAbstraction();
 		model.getPackagedElements().add(c1_c3);
 		c1_c3.getClients().add(c1);
 		c1_c3.getSuppliers().add(c3);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(c1_c3, AllocationsPackage.eINSTANCE.getAllocate());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(c1_c3, AllocationsPackage.eINSTANCE.getAllocate());
 
 		Abstraction c4_c3 = UMLFactory.eINSTANCE.createAbstraction();
 		model.getPackagedElements().add(c4_c3);
 		c4_c3.getClients().add(c4);
 		c4_c3.getSuppliers().add(c3);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(c4_c3, AllocationsPackage.eINSTANCE.getAllocate());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(c4_c3, AllocationsPackage.eINSTANCE.getAllocate());
 	}
 
 	/**

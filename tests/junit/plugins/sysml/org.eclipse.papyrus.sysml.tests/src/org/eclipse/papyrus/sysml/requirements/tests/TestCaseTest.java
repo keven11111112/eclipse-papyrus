@@ -112,19 +112,19 @@ public class TestCaseTest extends AbstractPapyrusTest {
 		// ////////////////////////////////////////////////////////////////////
 
 		Class verified1 = model.createOwnedClass("verified1", false);
-		verified1_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(verified1, RequirementsPackage.eINSTANCE.getRequirement());
+		verified1_req = (Requirement)StereotypeApplicationHelper.getInstance(null).applyStereotype(verified1, RequirementsPackage.eINSTANCE.getRequirement());
 
 		Class verified2 = model.createOwnedClass("verified2", false);
-		verified2_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(verified2, RequirementsPackage.eINSTANCE.getRequirement());
+		verified2_req = (Requirement)StereotypeApplicationHelper.getInstance(null).applyStereotype(verified2, RequirementsPackage.eINSTANCE.getRequirement());
 
 		Class testClass = model.createOwnedClass("testClass", false);
 		Operation op0 = testClass.createOwnedOperation("op0", null, null, null);
 		Operation op1 = testClass.createOwnedOperation("op1", null, null, null);
 		Operation op2 = testClass.createOwnedOperation("op2", null, null, null);
 
-		testCase0 = (org.eclipse.papyrus.sysml.requirements.TestCase)StereotypeApplicationHelper.INSTANCE.applyStereotype(op0, RequirementsPackage.eINSTANCE.getTestCase());
-		testCase1 = (org.eclipse.papyrus.sysml.requirements.TestCase)StereotypeApplicationHelper.INSTANCE.applyStereotype(op1, RequirementsPackage.eINSTANCE.getTestCase());
-		testCase2 = (org.eclipse.papyrus.sysml.requirements.TestCase)StereotypeApplicationHelper.INSTANCE.applyStereotype(op2, RequirementsPackage.eINSTANCE.getTestCase());
+		testCase0 = (org.eclipse.papyrus.sysml.requirements.TestCase)StereotypeApplicationHelper.getInstance(null).applyStereotype(op0, RequirementsPackage.eINSTANCE.getTestCase());
+		testCase1 = (org.eclipse.papyrus.sysml.requirements.TestCase)StereotypeApplicationHelper.getInstance(null).applyStereotype(op1, RequirementsPackage.eINSTANCE.getTestCase());
+		testCase2 = (org.eclipse.papyrus.sysml.requirements.TestCase)StereotypeApplicationHelper.getInstance(null).applyStereotype(op2, RequirementsPackage.eINSTANCE.getTestCase());
 
 		// Add "Verify" (Abstraction)
 		// testCase1, testCase2 -> verified1
@@ -133,19 +133,19 @@ public class TestCaseTest extends AbstractPapyrusTest {
 		t1_v1.getClients().add(op1);
 		t1_v1.getSuppliers().add(verified1);
 		model.getPackagedElements().add(t1_v1);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(t1_v1, RequirementsPackage.eINSTANCE.getVerify());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(t1_v1, RequirementsPackage.eINSTANCE.getVerify());
 
 		Abstraction t1_v2 = UMLFactory.eINSTANCE.createAbstraction();
 		t1_v2.getClients().add(op1);
 		t1_v2.getSuppliers().add(verified2);
 		model.getPackagedElements().add(t1_v2);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(t1_v2, RequirementsPackage.eINSTANCE.getVerify());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(t1_v2, RequirementsPackage.eINSTANCE.getVerify());
 
 		Abstraction t2_v2 = UMLFactory.eINSTANCE.createAbstraction();
 		t2_v2.getClients().add(op2);
 		t2_v2.getSuppliers().add(verified2);
 		model.getPackagedElements().add(t2_v2);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(t2_v2, RequirementsPackage.eINSTANCE.getVerify());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(t2_v2, RequirementsPackage.eINSTANCE.getVerify());
 
 		// ////////////////////////////////////////////////////////////////////
 	}

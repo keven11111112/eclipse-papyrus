@@ -151,20 +151,20 @@ public class RequirementRelatedTest extends AbstractPapyrusTest {
 		Class defaultClass = model.createOwnedClass("defaultClass", false);
 
 		// Add Requirement stereotypes
-		default_reqR = (RequirementRelated)StereotypeApplicationHelper.INSTANCE.applyStereotype(defaultClass, RequirementsPackage.eINSTANCE.getRequirementRelated());
+		default_reqR = (RequirementRelated)StereotypeApplicationHelper.getInstance(null).applyStereotype(defaultClass, RequirementsPackage.eINSTANCE.getRequirementRelated());
 
 		// ////////////////////////////////////////////////////////////////////
 		// Prepare getTracedFrom test elements
 		// ////////////////////////////////////////////////////////////////////
 
 		Class traced = model.createOwnedClass("traced", false);
-		traced_reqR = (RequirementRelated)StereotypeApplicationHelper.INSTANCE.applyStereotype(traced, RequirementsPackage.eINSTANCE.getRequirementRelated());
+		traced_reqR = (RequirementRelated)StereotypeApplicationHelper.getInstance(null).applyStereotype(traced, RequirementsPackage.eINSTANCE.getRequirementRelated());
 
 		Class trace1 = model.createOwnedClass("trace1", false);
-		trace1_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(trace1, RequirementsPackage.eINSTANCE.getRequirement());
+		trace1_req = (Requirement)StereotypeApplicationHelper.getInstance(null).applyStereotype(trace1, RequirementsPackage.eINSTANCE.getRequirement());
 
 		Class trace2 = model.createOwnedClass("trace2", false);
-		trace2_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(trace2, RequirementsPackage.eINSTANCE.getRequirement());
+		trace2_req = (Requirement)StereotypeApplicationHelper.getInstance(null).applyStereotype(trace2, RequirementsPackage.eINSTANCE.getRequirement());
 
 		// Add "Trace" (Abstraction)
 		// trace1, trace2 -> traced
@@ -172,20 +172,20 @@ public class RequirementRelatedTest extends AbstractPapyrusTest {
 		t11.getClients().add(traced);
 		t11.getSuppliers().add(trace1);
 		model.getPackagedElements().add(t11);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(t11, StandardPackage.eINSTANCE.getTrace());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(t11, StandardPackage.eINSTANCE.getTrace());
 
 		Abstraction t12 = UMLFactory.eINSTANCE.createAbstraction();
 		t12.getClients().add(traced);
 		t12.getSuppliers().add(trace2);
 		model.getPackagedElements().add(t12);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(t12, StandardPackage.eINSTANCE.getTrace());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(t12, StandardPackage.eINSTANCE.getTrace());
 
 		master = model.createOwnedClass("master", false);
-		master_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(master, RequirementsPackage.eINSTANCE.getRequirement());
+		master_req = (Requirement)StereotypeApplicationHelper.getInstance(null).applyStereotype(master, RequirementsPackage.eINSTANCE.getRequirement());
 
 		copy = model.createOwnedClass("copy", false);
-		copy_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(copy, RequirementsPackage.eINSTANCE.getRequirement());
-		copy_reqR = (RequirementRelated)StereotypeApplicationHelper.INSTANCE.applyStereotype(copy, RequirementsPackage.eINSTANCE.getRequirementRelated());
+		copy_req = (Requirement)StereotypeApplicationHelper.getInstance(null).applyStereotype(copy, RequirementsPackage.eINSTANCE.getRequirement());
+		copy_reqR = (RequirementRelated)StereotypeApplicationHelper.getInstance(null).applyStereotype(copy, RequirementsPackage.eINSTANCE.getRequirementRelated());
 
 		// Add "copy" (Abstraction) between master and copy
 		// copy -> master
@@ -193,7 +193,7 @@ public class RequirementRelatedTest extends AbstractPapyrusTest {
 		c_m.getClients().add(copy);
 		c_m.getSuppliers().add(master);
 		model.getPackagedElements().add(c_m);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(c_m, RequirementsPackage.eINSTANCE.getCopy());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(c_m, RequirementsPackage.eINSTANCE.getCopy());
 
 
 		// ////////////////////////////////////////////////////////////////////
@@ -203,13 +203,13 @@ public class RequirementRelatedTest extends AbstractPapyrusTest {
 		// ////////////////////////////////////////////////////////////////////
 
 		Class satisfying = model.createOwnedClass("satisfying", false);
-		satisfying_reqR = (RequirementRelated)StereotypeApplicationHelper.INSTANCE.applyStereotype(satisfying, RequirementsPackage.eINSTANCE.getRequirementRelated());
+		satisfying_reqR = (RequirementRelated)StereotypeApplicationHelper.getInstance(null).applyStereotype(satisfying, RequirementsPackage.eINSTANCE.getRequirementRelated());
 
 		Class satisfied1 = model.createOwnedClass("satisfied1", false);
-		satisfied1_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(satisfied1, RequirementsPackage.eINSTANCE.getRequirement());
+		satisfied1_req = (Requirement)StereotypeApplicationHelper.getInstance(null).applyStereotype(satisfied1, RequirementsPackage.eINSTANCE.getRequirement());
 
 		Class satisfied2 = model.createOwnedClass("satisfied2", false);
-		satisfied2_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(satisfied2, RequirementsPackage.eINSTANCE.getRequirement());
+		satisfied2_req = (Requirement)StereotypeApplicationHelper.getInstance(null).applyStereotype(satisfied2, RequirementsPackage.eINSTANCE.getRequirement());
 
 		// Add "Satisfy" (Realization)
 		// satisfying_reqR -> satisfied1_req, satisfied2_req
@@ -217,14 +217,14 @@ public class RequirementRelatedTest extends AbstractPapyrusTest {
 		s1.getClients().add(satisfying);
 		s1.getSuppliers().add(satisfied1);
 		model.getPackagedElements().add(s1);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(s1, RequirementsPackage.eINSTANCE.getSatisfy());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(s1, RequirementsPackage.eINSTANCE.getSatisfy());
 
 
 		Realization s2 = UMLFactory.eINSTANCE.createRealization();
 		s2.getClients().add(satisfying);
 		s2.getSuppliers().add(satisfied2);
 		model.getPackagedElements().add(s2);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(s2, RequirementsPackage.eINSTANCE.getSatisfy());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(s2, RequirementsPackage.eINSTANCE.getSatisfy());
 
 		// ////////////////////////////////////////////////////////////////////
 
@@ -233,12 +233,12 @@ public class RequirementRelatedTest extends AbstractPapyrusTest {
 		// ////////////////////////////////////////////////////////////////////
 
 		Class verifying = model.createOwnedClass("verifying", false);
-		verifying_reqR = (RequirementRelated)StereotypeApplicationHelper.INSTANCE.applyStereotype(verifying, RequirementsPackage.eINSTANCE.getRequirementRelated());
+		verifying_reqR = (RequirementRelated)StereotypeApplicationHelper.getInstance(null).applyStereotype(verifying, RequirementsPackage.eINSTANCE.getRequirementRelated());
 
 		Class verified1 = model.createOwnedClass("verified1", false);
-		verified1_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(verified1, RequirementsPackage.eINSTANCE.getRequirement());
+		verified1_req = (Requirement)StereotypeApplicationHelper.getInstance(null).applyStereotype(verified1, RequirementsPackage.eINSTANCE.getRequirement());
 		Class verified2 = model.createOwnedClass("verified2", false);
-		verified2_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(verified2, RequirementsPackage.eINSTANCE.getRequirement());
+		verified2_req = (Requirement)StereotypeApplicationHelper.getInstance(null).applyStereotype(verified2, RequirementsPackage.eINSTANCE.getRequirement());
 
 		// Add "Verify" (Realization)
 		// verifying_reqR -> verified1_req, verified2_req
@@ -246,13 +246,13 @@ public class RequirementRelatedTest extends AbstractPapyrusTest {
 		v1.getClients().add(verifying);
 		v1.getSuppliers().add(verified1);
 		model.getPackagedElements().add(v1);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(v1, RequirementsPackage.eINSTANCE.getVerify());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(v1, RequirementsPackage.eINSTANCE.getVerify());
 
 		Realization v2 = UMLFactory.eINSTANCE.createRealization();
 		v2.getClients().add(verifying);
 		v2.getSuppliers().add(verified2);
 		model.getPackagedElements().add(v2);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(v2, RequirementsPackage.eINSTANCE.getVerify());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(v2, RequirementsPackage.eINSTANCE.getVerify());
 
 
 		// ////////////////////////////////////////////////////////////////////
@@ -262,12 +262,12 @@ public class RequirementRelatedTest extends AbstractPapyrusTest {
 		// ////////////////////////////////////////////////////////////////////
 
 		Class refining = model.createOwnedClass("refining", false);
-		refining_reqR = (RequirementRelated)StereotypeApplicationHelper.INSTANCE.applyStereotype(refining, RequirementsPackage.eINSTANCE.getRequirementRelated());
+		refining_reqR = (RequirementRelated)StereotypeApplicationHelper.getInstance(null).applyStereotype(refining, RequirementsPackage.eINSTANCE.getRequirementRelated());
 
 		Class refined1 = model.createOwnedClass("refined1", false);
-		refined1_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(refined1, RequirementsPackage.eINSTANCE.getRequirement());
+		refined1_req = (Requirement)StereotypeApplicationHelper.getInstance(null).applyStereotype(refined1, RequirementsPackage.eINSTANCE.getRequirement());
 		Class refined2 = model.createOwnedClass("refined2", false);
-		refined2_req = (Requirement)StereotypeApplicationHelper.INSTANCE.applyStereotype(refined2, RequirementsPackage.eINSTANCE.getRequirement());
+		refined2_req = (Requirement)StereotypeApplicationHelper.getInstance(null).applyStereotype(refined2, RequirementsPackage.eINSTANCE.getRequirement());
 
 		// Add "Refine" (Abstraction)
 		// refining_reqR -> refined1_req, refined2_req
@@ -275,13 +275,13 @@ public class RequirementRelatedTest extends AbstractPapyrusTest {
 		r1.getClients().add(refining);
 		r1.getSuppliers().add(refined1);
 		model.getPackagedElements().add(r1);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(r1, StandardPackage.eINSTANCE.getRefine());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(r1, StandardPackage.eINSTANCE.getRefine());
 
 		Abstraction r2 = UMLFactory.eINSTANCE.createAbstraction();
 		r2.getClients().add(refining);
 		r2.getSuppliers().add(refined2);
 		model.getPackagedElements().add(r2);
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(r2, StandardPackage.eINSTANCE.getRefine());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(r2, StandardPackage.eINSTANCE.getRefine());
 
 
 		// ////////////////////////////////////////////////////////////////////

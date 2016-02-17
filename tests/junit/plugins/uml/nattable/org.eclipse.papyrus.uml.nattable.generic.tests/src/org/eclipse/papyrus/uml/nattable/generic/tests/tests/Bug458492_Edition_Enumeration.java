@@ -76,6 +76,7 @@ public class Bug458492_Edition_Enumeration extends AbstractGenericTableTest {
 
 	private static final String PORT_NAME = "flowport1"; //$NON-NLS-1$
 
+	//TODO #487932: Either use the standard profile or move the test to SysML 1.4 
 	private static final String FLOW_PORT_STEREOTYPE_QN = "SysML::PortAndFlows::FlowPort"; //$NON-NLS-1$
 
 	private static final String DIRECTION_QN = "SysML::PortAndFlows::FlowPort::direction"; //$NON-NLS-1$

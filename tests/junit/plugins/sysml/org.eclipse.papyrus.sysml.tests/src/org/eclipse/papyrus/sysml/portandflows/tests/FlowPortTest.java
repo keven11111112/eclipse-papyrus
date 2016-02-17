@@ -136,15 +136,15 @@ public class FlowPortTest extends AbstractPapyrusTest {
 		p2 = c0.createOwnedPort("p2", i2);
 
 		// Add FlowPort stereotypes
-		fp0 = (FlowPort)StereotypeApplicationHelper.INSTANCE.applyStereotype(p0, PortandflowsPackage.eINSTANCE.getFlowPort());
-		fp1 = (FlowPort)StereotypeApplicationHelper.INSTANCE.applyStereotype(p1, PortandflowsPackage.eINSTANCE.getFlowPort());
+		fp0 = (FlowPort)StereotypeApplicationHelper.getInstance(null).applyStereotype(p0, PortandflowsPackage.eINSTANCE.getFlowPort());
+		fp1 = (FlowPort)StereotypeApplicationHelper.getInstance(null).applyStereotype(p1, PortandflowsPackage.eINSTANCE.getFlowPort());
 		fp1.setDirection(FlowDirection.OUT);
-		fp2 = (FlowPort)StereotypeApplicationHelper.INSTANCE.applyStereotype(p2, PortandflowsPackage.eINSTANCE.getFlowPort());
+		fp2 = (FlowPort)StereotypeApplicationHelper.getInstance(null).applyStereotype(p2, PortandflowsPackage.eINSTANCE.getFlowPort());
 		fp2.setDirection(FlowDirection.IN);
 		fp2.setIsConjugated(true);
 
 		// Add FlowSpecification
-		fsp2 = (FlowSpecification)StereotypeApplicationHelper.INSTANCE.applyStereotype(i2, PortandflowsPackage.eINSTANCE.getFlowSpecification());
+		fsp2 = (FlowSpecification)StereotypeApplicationHelper.getInstance(null).applyStereotype(i2, PortandflowsPackage.eINSTANCE.getFlowSpecification());
 	}
 
 	/**

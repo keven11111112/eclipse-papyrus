@@ -19,7 +19,6 @@ import org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRootElementPage;
 import org.eclipse.papyrus.uml.diagram.wizards.wizards.InitModelWizard;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.junit.Test;

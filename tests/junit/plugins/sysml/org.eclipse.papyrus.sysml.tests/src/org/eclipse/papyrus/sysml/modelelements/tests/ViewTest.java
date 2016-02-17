@@ -116,11 +116,11 @@ public class ViewTest extends AbstractPapyrusTest {
 
 		// Add View stereotype
 
-		v0 = (View)StereotypeApplicationHelper.INSTANCE.applyStereotype(p0, ModelelementsPackage.eINSTANCE.getView());
-		v1 = (View)StereotypeApplicationHelper.INSTANCE.applyStereotype(p1, ModelelementsPackage.eINSTANCE.getView());
+		v0 = (View)StereotypeApplicationHelper.getInstance(null).applyStereotype(p0, ModelelementsPackage.eINSTANCE.getView());
+		v1 = (View)StereotypeApplicationHelper.getInstance(null).applyStereotype(p1, ModelelementsPackage.eINSTANCE.getView());
 
 		// Add ViewPoint stereotype
-		vp1 = (ViewPoint)StereotypeApplicationHelper.INSTANCE.applyStereotype(c1, ModelelementsPackage.eINSTANCE.getViewPoint());
+		vp1 = (ViewPoint)StereotypeApplicationHelper.getInstance(null).applyStereotype(c1, ModelelementsPackage.eINSTANCE.getViewPoint());
 
 		// Add Abstractions with allocate stereotype
 		// v1 (p1) -> vp1 (c1)
@@ -129,7 +129,7 @@ public class ViewTest extends AbstractPapyrusTest {
 		v1_vp1.getSuppliers().add(c1);
 		model.getPackagedElements().add(v1_vp1);
 
-		StereotypeApplicationHelper.INSTANCE.applyStereotype(v1_vp1, ModelelementsPackage.eINSTANCE.getConform());
+		StereotypeApplicationHelper.getInstance(null).applyStereotype(v1_vp1, ModelelementsPackage.eINSTANCE.getConform());
 	}
 
 	/**
