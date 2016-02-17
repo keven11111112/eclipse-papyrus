@@ -48,7 +48,6 @@ public class NewSoamlProjectWizard extends NewPapyrusProjectWizard {
 	 */
 	@Override
 	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
-		//here SysML is the only available category
 		return null;
 	}
 
@@ -58,7 +57,6 @@ public class NewSoamlProjectWizard extends NewPapyrusProjectWizard {
 	@Override
 	protected void saveDiagramCategorySettings() {
 		//do nothing
-		//here SysML is the only available category
 	}
 
 	/**

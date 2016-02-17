@@ -12,13 +12,13 @@ import org.eclipse.papyrus.infra.nattable.utils.INattableModelManagerUtils;
 public class CreateFunctionAllocationHandler extends FunctionAllocationHandler {
 
 	/**
-	 * the id used for the Papyrus SysML Allocation Table
+	 * the id used for the Papyrus Eastadl Allocation Table
 	 */
 	public static final String TABLE_ALLOCATION_TYPE = "EAST-ADLFunctionAllocationTable"; //$NON-NLS-1$
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.sysml.nattable.menu.handlers.AbstractSysmlNattableCreateCommandHandler#setEnabled(java.lang.Object)
+	 * 
 	 *
 	 * @param evaluationContext
 	 */

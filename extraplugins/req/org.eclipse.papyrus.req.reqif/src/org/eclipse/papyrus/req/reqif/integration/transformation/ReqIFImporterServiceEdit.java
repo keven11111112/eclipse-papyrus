@@ -30,7 +30,6 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.req.reqif.integration.assistant.ChooseReqIFTypeDialog;
 import org.eclipse.papyrus.req.reqif.integration.command.DefineProfileCommand;
 import org.eclipse.papyrus.req.reqif.transformation.ReqIFImporter;
-import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.rmf.reqif10.ReqIF;
 import org.eclipse.rmf.reqif10.SpecType;

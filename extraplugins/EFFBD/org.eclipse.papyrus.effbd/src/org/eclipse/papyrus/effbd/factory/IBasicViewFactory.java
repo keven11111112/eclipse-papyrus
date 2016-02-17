@@ -28,7 +28,7 @@ public interface IBasicViewFactory extends ViewFactory {
 	 * Create the the view, a element that represents the serialization of a figure inside the GMF framework
 	 * 
 	 * @param domainElement
-	 *            in our case this a SysML element
+	 *            in our case this a Effbd element
 	 * @param containerView
 	 *            the container of the created view
 	 * @param semanticHint

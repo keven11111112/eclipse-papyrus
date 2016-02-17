@@ -39,16 +39,13 @@ public class NewSoamlModelWizard extends CreateModelWizard {
 	 */
 	 public NewSoamlModelWizard()   {
 		super();
-
 	}
 
 
 
 	@Override
 	public String getModelKindName() {
-		// TODO Auto-generated method stub
-
-		return "SoaML Model";
+		return "SoaML Model"; //$NON-NLS-1$
 	}
 
 	@Override

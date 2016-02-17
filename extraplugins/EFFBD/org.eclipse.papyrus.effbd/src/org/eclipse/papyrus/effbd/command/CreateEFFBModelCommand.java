@@ -48,10 +48,10 @@ public class CreateEFFBModelCommand extends ModelCreationCommandBase {
 		super.initializeModel(owner);
 		((org.eclipse.uml2.uml.Package) owner).setName(getModelName());
 
-		// Retrieve SysML profile and apply with Sub-profile
-		Profile sysml = (Profile) PackageUtil.loadPackage(URI.createURI(PROFILE_PATH), owner.eResource().getResourceSet());
-		if (sysml != null) {
-			PackageUtil.applyProfile(((org.eclipse.uml2.uml.Package) owner), sysml, true);
+		// Retrieve EFFB profile and apply with Sub-profile
+		Profile effb = (Profile) PackageUtil.loadPackage(URI.createURI(PROFILE_PATH), owner.eResource().getResourceSet());
+		if (effb != null) {
+			PackageUtil.applyProfile(((org.eclipse.uml2.uml.Package) owner), effb, true);
 		}
 	}
 

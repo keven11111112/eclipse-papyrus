@@ -37,7 +37,7 @@ public class ConfigureFunction extends RecordingCommand {
 	}
 
 	/**
-	 * get new name of Papyrus SysML requirement
+	 * get new ID Function
 	 * 
 	 * @param owner
 	 *            the package that will contain requirement
