@@ -2,11 +2,11 @@
 
 The following Papyrus capabilities are supported on models in CDO repositories:
 
-* create new UML and SysML models
+* create new UML and DSML models
 	* initialize Papyrus model from existing domain model resource in the repository
 	* import models from the workspace
 	* reorganize models in folders by drag-and-drop
-* create and edit all kinds of UML and SysML diagram
+* create and edit all kinds of UML and DSML diagram
 * create and edit tables
 * export models to the workspace
 * browse connected repositories for importing packages and applying profiles

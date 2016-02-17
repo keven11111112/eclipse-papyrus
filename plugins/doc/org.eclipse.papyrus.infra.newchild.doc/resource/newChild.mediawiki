@@ -2,7 +2,7 @@ __TOC__
 
 =Requirements=
 ; AddNewChild (id=newChild001): : Papyrus shall add in the menu new child for new customized elements by using extended type
-; HideElement (id=newChild002): : Papyrus shall not display all UML or SysML element creation
+; HideElement (id=newChild002): : Papyrus shall not display all UML or DSML element creation
 ; newChildFromProfile (id=newChild003): : Papyrus shall add the creation of new element from a subset of profile
 ; newChildMenuDisplay (id=newChild004): : Papyrus shall be able to associate icons to folder or creation menu
 ; RoleAndElementCreation (id=newChild005): : When an element can be created from several roles for a container, Papyrus shall let the possibility to choose the role or to let to the possibility to be created from all roles.

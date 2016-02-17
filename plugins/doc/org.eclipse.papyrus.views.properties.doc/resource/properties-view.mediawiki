@@ -23,7 +23,7 @@ Most customizations can be done through the Property view customization Editor. 
 
 === Edit a configuration ===
 
-Each property view configuration is defined in a different set of files. Each configuration can contain elements from different contexts, but we typically have one configuration per Ecore Metamodel or UML Profile (i.e. one configuration for UML, one for the Diagram Appearance tab, another one for the SysML profile')
+Each property view configuration is defined in a different set of files. Each configuration can contain elements from different contexts, but we typically have one configuration per Ecore Metamodel or UML Profile (i.e. one configuration for UML, one for the Diagram Appearance tab, another one for the each DSML profile based')
 
 To see the list of available configurations, open the properties view (Window -> Show View -> Other' -> General/Properties). Click on the white arrow in the upper right corner of the Properties view, and select 'Customize property view'. You should see a dialog with the list of all available configurations.
 

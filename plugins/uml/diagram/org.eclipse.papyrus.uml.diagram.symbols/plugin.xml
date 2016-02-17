@@ -48,7 +48,7 @@
       </Priority>
       <object
             class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
-            id="org.eclipse.papyrus.sysml.diagram.internalblock.editpart.ShapeCompartmentDisplay">
+            id="org.eclipse.papyrus.uml.diagram.symbols.editpart.ShapeCompartmentDisplay">
          <method
                name="getType()"
                value="compartment_shape_display">

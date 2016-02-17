@@ -15,7 +15,7 @@ import org.eclipse.papyrus.infra.ui.util.AbstractCreateMenuFromCommandCategory;
 
 
 /**
- * Abstract menu for the creation of SysML elements
+ * Abstract menu for the creation of UML elements
  */
 public abstract class AbstractCreateUmlChildMenu extends AbstractCreateMenuFromCommandCategory {
 

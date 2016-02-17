@@ -14,10 +14,10 @@
 
 This plugin is created to regroup actions which can be used in : 
    - oep.uml.modelexplorer
-   - oep.sysml.modelexplorer
+   - oep.%DSML%.modelexplorer
    
 for example, the handler RenameNamedElementHandler works with UML, 
-but if we choose distribute a Papyrus for SysML version, 
+but if we choose distribute a Papyrus for DSML version, 
 we can exclude oep.uml.modelexplorer, nevertheless, we need to Rename UML Element.
 
 So this plugin was created to avoid this kind of problem.
