@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA
+ * Copyright (c) 2013-2016 CEA
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
- *
+ *   Benoit Maggi (benoit.maggi@cea.fr) - #487997 remove dependency to Sys ML
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.pro20130916;
 
@@ -27,8 +27,6 @@ import org.eclipse.draw2d.text.TextFlow;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -61,8 +59,20 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public class BaseStereotypesTest extends AbstractNodeTest {
 
-	private static final URI SYSML_PROFILE = URI.createURI("pathmap://SysML_PROFILES/SysML.profile.uml");
+	/**
+	 * 
+	 */
+	private static final String STEREOTYPE1 = "Stereotype1";
 
+	/**
+	 * 
+	 */
+	private static final String TESTPROFILE_STEREOTYPE1 = "testProfile::Stereotype1";
+
+	private static final URI TEST_PROFILE_URI = URI.createURI("platform:/plugin/org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests/resource/testProfile.profile.uml");
+	
+	
+	
 	private StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
 
 	protected void prepareStereotypes(EditPart editPart) {
@@ -89,15 +99,15 @@ public class BaseStereotypesTest extends AbstractNodeTest {
 		final View stereotypeLabelView = ((GraphicalEditPart) stereotypeEditPart).getNotationView();
 
 		String labelName = "";
-		if (helper.getStereotypeLabel(stereotypeLabelView, "SysML::Allocations::Allocated") != null) {
+		if (helper.getStereotypeLabel(stereotypeLabelView, TESTPROFILE_STEREOTYPE1) != null) {
 			labelName = helper.getStereotypeTextToDisplay(stereotypeLabelView);
-		} else if (helper.getStereotypeLabel(view, "SysML::Allocations::Allocated") != null) {
+		} else if (helper.getStereotypeLabel(view, TESTPROFILE_STEREOTYPE1) != null) {
 			labelName = helper.getStereotypeTextToDisplay(view);
 
 		}
 
 
-		assertTrue("Label Name", labelName.equals(Activator.ST_LEFT + "Allocated" + Activator.ST_RIGHT) || labelName.equals(Activator.ST_LEFT + "SysML::Allocations::Allocated" + Activator.ST_RIGHT));
+		assertTrue("Label Name", labelName.equals(Activator.ST_LEFT + STEREOTYPE1 + Activator.ST_RIGHT) || labelName.equals(Activator.ST_LEFT + TESTPROFILE_STEREOTYPE1 + Activator.ST_RIGHT));
 
 
 		IFigure stereotypeFigure = null;
@@ -117,7 +127,7 @@ public class BaseStereotypesTest extends AbstractNodeTest {
 
 
 		// Check Compartment Figure
-		Stereotype stereotype = getElement(editPart).getAppliedStereotype("SysML::Allocations::Allocated");
+		Stereotype stereotype = getElement(editPart).getAppliedStereotype(TESTPROFILE_STEREOTYPE1);
 		assertNotNull(stereotype);
 		View compartment = helper.getStereotypeCompartment(view, stereotype);
 
@@ -289,28 +299,19 @@ public class BaseStereotypesTest extends AbstractNodeTest {
 		}
 		return null;
 	}
-
+	
+	
 	protected Profile applyProfile(final Model model) {
-		ResourceSet resourceSet = model.eResource().getResourceSet();
-		Resource resource = resourceSet.getResource(SYSML_PROFILE, true);
-		Profile profileToApply = null;
-		if (!resource.getContents().isEmpty()) {
-			EObject eObject = resource.getContents().get(0);
-			if (eObject instanceof Profile) {
-				profileToApply = (Profile) eObject;
-			}
-		}
-		assertNotNull("profileToApply", profileToApply);
-		final Profile allocationsProfile = (Profile) profileToApply.getPackagedElement("Allocations");
-		assertNotNull("allocationsProfile", allocationsProfile);
+		final Profile testProfile = (Profile) PackageUtil.loadPackage(TEST_PROFILE_URI, model.eResource().getResourceSet());
+		assertNotNull("profileToApply", testProfile);
 		getCommandStack().execute(new RecordingCommand(getEditingDomain()) {
 
 			@Override
 			protected void doExecute() {
-				PackageUtil.applyProfile(model, allocationsProfile, true);
+				PackageUtil.applyProfile(model, testProfile, true);
 			}
 		});
-		return allocationsProfile;
+		return testProfile;
 	}
 
 	protected View getDiagramElement(EditPart editPart) {
