@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST and others.
+ * Copyright (c) 2012, 2016 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 402525
  *  Christian W. Damus (CEA) - bug 430880
+ *  Dirk Fauth <dirk.fauth@googlemail.com> - Bug 488234
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -245,7 +246,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 * the composite layer providing the filter row in the column header
 	 */
-	private FilterRowHeaderComposite<?> filterColumnHeaderComposite;
+	protected FilterRowHeaderComposite<?> filterColumnHeaderComposite;
 
 	/**
 	 * the sort model used for rows
@@ -354,7 +355,6 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.gridLayer.addConfiguration(new DefaultPrintBindings());
 		this.natTable = new NatTable(parent, this.gridLayer, false);
 
-
 		// we register nattable configuration
 		registerPopupMenuConfiguration(this.natTable);
 
@@ -412,7 +412,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * Register the menu configuration for the table
-	 * 
+	 *
 	 * @param natTable
 	 *            the nattable to configure
 	 */
@@ -422,7 +422,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * Configure the row sort selecting column header
-	 * 
+	 *
 	 * @param natTable
 	 *            the nattable widget
 	 */
@@ -609,7 +609,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		the label provider service
 	 */
@@ -624,7 +624,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		the decoration service
 	 */
@@ -642,7 +642,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 *
 	 * @param natTable
 	 * @return
-	 * 
+	 *
 	 * @deprecated since Papyrus 1.3 (Eclipse Neon)
 	 */
 	@Deprecated
@@ -655,7 +655,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @param natTable
 	 * @param site
 	 * @param selectionProvider
-	 * 
+	 *
 	 * @return
 	 * 		This method creates the MenuManager used for theBody of the table and register it, with the selection provider in the {@link IWorkbenchPartSite} of the editor when not <code>null</code>
 	 */
@@ -1833,4 +1833,5 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		}
 		return Collections.emptyMap();
 	}
+
 }

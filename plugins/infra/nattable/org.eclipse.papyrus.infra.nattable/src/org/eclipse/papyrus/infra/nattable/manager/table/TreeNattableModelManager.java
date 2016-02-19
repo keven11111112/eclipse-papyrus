@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2016 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Dirk Fauth <dirk.fauth@googlemail.com> - Bug 488234
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -32,8 +33,18 @@ import org.eclipse.nebula.widgets.nattable.hideshow.command.MultiColumnHideComma
 import org.eclipse.nebula.widgets.nattable.hideshow.command.MultiColumnShowCommand;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.ShowAllColumnsCommand;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
+import org.eclipse.nebula.widgets.nattable.painter.IOverlayPainter;
+import org.eclipse.nebula.widgets.nattable.painter.layer.CellLayerPainter;
+import org.eclipse.nebula.widgets.nattable.resize.action.VerticalResizeCursorAction;
+import org.eclipse.nebula.widgets.nattable.selection.SelectionLayerPainter;
+import org.eclipse.nebula.widgets.nattable.util.ClientAreaAdapter;
+import org.eclipse.nebula.widgets.nattable.util.GUIHelper;
+import org.eclipse.nebula.widgets.nattable.viewport.SliderScroller;
+import org.eclipse.nebula.widgets.nattable.viewport.ViewportLayer;
 import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.papyrus.infra.nattable.clientarea.ClientAreaResizeDragMode;
+import org.eclipse.papyrus.infra.nattable.clientarea.ClientAreaResizeMatcher;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
 import org.eclipse.papyrus.infra.nattable.configuration.TreeTableClickSortConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.TreeTablePopupMenuConfiguration;
@@ -67,8 +78,16 @@ import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Slider;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.commands.ICommandService;
 
@@ -98,6 +117,11 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	protected DatumTreeFormat treeFormat;
 
 	protected DatumExpansionModel expansionModel;
+
+  	/**
+        * the height of the scrollbar
+        */
+	private static final int scrollbarHeight = 17;
 
 
 	/**
@@ -213,7 +237,72 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 */
 	@Override
 	public NatTable createNattable(Composite parent, int style, IWorkbenchPartSite site) {
-		NatTable nattable = super.createNattable(parent, style, site);
+		// Wrap NatTable in composite so we can slap on the external horizontal
+        // sliders
+        Composite composite = new Composite(parent, SWT.NONE);
+        GridLayout gridLayout = new GridLayout(1, false);
+        gridLayout.marginHeight = 0;
+        gridLayout.marginWidth = 0;
+        gridLayout.horizontalSpacing = 0;
+        gridLayout.verticalSpacing = 0;
+        composite.setLayout(gridLayout);
+
+        NatTable nattable = super.createNattable(composite, style, site);
+        GridData gridData = new GridData();
+        gridData.horizontalAlignment = GridData.FILL;
+        gridData.verticalAlignment = GridData.FILL;
+        gridData.grabExcessHorizontalSpace = true;
+        gridData.grabExcessVerticalSpace = true;
+        natTable.setLayoutData(gridData);
+
+        // MULTI-VIEWPORT-CONFIGURATION
+        createSplitSliders(composite, getRowHeaderLayerStack().getViewportLayer(), getBodyLayerStack().getViewportLayer());
+
+        // as the CompositeLayer is setting a IClientAreaProvider for the
+        // composition we need to set a special ClientAreaAdapter after the
+        // creation of the CompositeLayer to support split viewports
+        int leftWidth = RowHeaderLayerStack.DEFAULT_ROW_HEIGHT;
+        ClientAreaAdapter leftClientAreaAdapter =
+                new ClientAreaAdapter(getRowHeaderLayerStack().getViewportLayer().getClientAreaProvider());
+        leftClientAreaAdapter.setWidth(leftWidth);
+        getRowHeaderLayerStack().getViewportLayer().setClientAreaProvider(leftClientAreaAdapter);
+
+        getRowHeaderLayerStack().getViewportLayer().setVerticalScrollbarEnabled(false);
+
+        // use a cell layer painter that is configured for left clipping
+        // this ensures that the rendering works correctly for split
+        // viewports
+        getBodyLayerStack().getSelectionLayer().setLayerPainter(new SelectionLayerPainter(true, false));
+
+        filterColumnHeaderComposite.setLayerPainter(new CellLayerPainter(true, false));
+
+        // add an IOverlayPainter to render the split viewport border
+        natTable.addOverlayPainter(new IOverlayPainter() {
+
+            @Override
+            public void paintOverlay(GC gc, ILayer layer) {
+                Color beforeColor = gc.getForeground();
+                gc.setForeground(GUIHelper.COLOR_GRAY);
+                int viewportBorderX = getRowHeaderLayerStack().getWidth() - 1;
+                gc.drawLine(viewportBorderX, 0, viewportBorderX, layer.getHeight() - 1);
+                gc.setForeground(beforeColor);
+            }
+        });
+
+        // Mouse move - Show resize cursor
+        natTable.getUiBindingRegistry().registerFirstMouseMoveBinding(
+                new ClientAreaResizeMatcher(getRowHeaderLayerStack()),
+                new VerticalResizeCursorAction());
+
+        natTable.getUiBindingRegistry().registerFirstMouseDragMode(
+                new ClientAreaResizeMatcher(getRowHeaderLayerStack()),
+                new ClientAreaResizeDragMode(
+                		getRowHeaderLayerStack().getIndexRowHeaderLayer(),
+                		getRowHeaderLayerStack().getTreeLayer(),
+                		leftClientAreaAdapter,
+                		getRowHeaderLayerStack().getViewportLayer(),
+                		getBodyLayerStack().getViewportLayer()));
+
 		// update the hidden categories
 
 		List<Integer> hiddenDepth = StyleUtils.getHiddenDepths(this);
@@ -233,6 +322,59 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 
 		return nattable;
 	}
+
+	private void createSplitSliders(Composite natTableParent, final ViewportLayer left, final ViewportLayer right) {
+        Composite sliderComposite = new Composite(natTableParent, SWT.NONE);
+        GridData gridData = new GridData();
+        gridData.horizontalAlignment = GridData.FILL;
+        gridData.grabExcessHorizontalSpace = true;
+        gridData.grabExcessVerticalSpace = false;
+        gridData.heightHint = scrollbarHeight;
+        sliderComposite.setLayoutData(gridData);
+
+        GridLayout gridLayout = new GridLayout(2, false);
+        gridLayout.marginHeight = 0;
+        gridLayout.marginWidth = 0;
+        gridLayout.horizontalSpacing = 0;
+        gridLayout.verticalSpacing = 0;
+        sliderComposite.setLayout(gridLayout);
+
+        // Slider Left
+        // Need a composite here to set preferred size because Slider can't be
+        // subclassed.
+        Composite sliderLeftComposite = new Composite(sliderComposite, SWT.NONE) {
+            @Override
+            public Point computeSize(int wHint, int hHint, boolean changed) {
+                int width = ((ClientAreaAdapter) left.getClientAreaProvider()).getWidth()
+                		+ getRowHeaderLayerStack().getIndexRowHeaderLayer().getWidth();
+                return new Point(width, scrollbarHeight);
+            }
+        };
+        sliderLeftComposite.setLayout(new FillLayout());
+        gridData = new GridData();
+        gridData.horizontalAlignment = GridData.BEGINNING;
+        gridData.verticalAlignment = GridData.BEGINNING;
+        sliderLeftComposite.setLayoutData(gridData);
+
+        Slider sliderLeft = new Slider(sliderLeftComposite, SWT.HORIZONTAL);
+        gridData = new GridData();
+        gridData.horizontalAlignment = GridData.FILL;
+        gridData.verticalAlignment = GridData.FILL;
+        sliderLeft.setLayoutData(gridData);
+
+        left.setHorizontalScroller(new SliderScroller(sliderLeft));
+
+        // Slider Right
+        Slider sliderRight = new Slider(sliderComposite, SWT.HORIZONTAL);
+        gridData = new GridData();
+        gridData.horizontalAlignment = GridData.FILL;
+        gridData.verticalAlignment = GridData.BEGINNING;
+        gridData.grabExcessHorizontalSpace = true;
+        gridData.grabExcessVerticalSpace = false;
+        sliderRight.setLayoutData(gridData);
+
+        right.setHorizontalScroller(new SliderScroller(sliderRight));
+    }
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager#addClickSortConfiguration(org.eclipse.nebula.widgets.nattable.NatTable)
@@ -427,10 +569,10 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	}
 
 	/**
-	 * 
+	 *
 	 * @param bodyLayerStack
 	 *            the body layer stack to use
-	 * 
+	 *
 	 * @return
 	 * 		the row header layer stack to use
 	 */
@@ -439,8 +581,12 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		return new RowHeaderHierarchicalLayerStack(bodyLayerStack, this);
 	}
 
+	public RowHeaderHierarchicalLayerStack getRowHeaderLayerStack() {
+		return (RowHeaderHierarchicalLayerStack) super.getRowHeaderLayerStack();
+	}
+
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManager#doCollapseExpandAction(org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum, java.util.List)
 	 *
 	 * @param actionId
@@ -463,7 +609,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 
 	/**
 	 * Modify the axis when it is disposed.
-	 * 
+	 *
 	 * @param iAxis
 	 *            The list of axis.
 	 */

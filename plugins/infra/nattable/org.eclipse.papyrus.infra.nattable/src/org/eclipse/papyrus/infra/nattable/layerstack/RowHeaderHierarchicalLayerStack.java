@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2016 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Dirk Fauth <dirk.fauth@googlemail.com> - Bug 488234
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.layerstack;
@@ -24,8 +25,8 @@ import org.eclipse.nebula.widgets.nattable.hideshow.ColumnHideShowLayer;
 import org.eclipse.nebula.widgets.nattable.layer.AbstractLayer;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
-import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.tree.TreeLayer;
+import org.eclipse.nebula.widgets.nattable.viewport.ViewportLayer;
 import org.eclipse.papyrus.infra.nattable.dataprovider.HierarchicalRowLabelHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusTreeLayer;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -48,6 +49,8 @@ public class RowHeaderHierarchicalLayerStack extends RowHeaderLayerStack {
 	private ColumnHideShowLayer columnHideShowLayer;
 
 	private TreeLayer treeLayer;
+
+	private ViewportLayer viewportLayer;
 
 	/**
 	 *
@@ -90,10 +93,9 @@ public class RowHeaderHierarchicalLayerStack extends RowHeaderLayerStack {
 			GlazedListTreeData<ITreeItemAxis> glazedListTreeData = new GlazedListTreeData<ITreeItemAxis>((TreeList<ITreeItemAxis>) managedAxis);
 			this.columnHideShowLayer = new ColumnHideShowLayer(getLabelDataLayer());
 			this.treeLayer = new PapyrusTreeLayer(this.columnHideShowLayer, new GlazedListTreeRowModel<ITreeItemAxis>(glazedListTreeData), new PapyrusIndentedTreeImagePainter(), true);
+			this.viewportLayer = new ViewportLayer(this.treeLayer);
 
-
-			SelectionLayer selectionLayer = bodyLayerStack.getSelectionLayer();
-			return new RowHeaderLayer(treeLayer, bodyLayerStack, selectionLayer, false) {
+			return new RowHeaderLayer(viewportLayer, bodyLayerStack, bodyLayerStack.getSelectionLayer(), false) {
 				/**
 				 * @see org.eclipse.nebula.widgets.nattable.layer.AbstractLayer#getCellPainter(int, int, org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell, org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
 				 *
@@ -126,6 +128,15 @@ public class RowHeaderHierarchicalLayerStack extends RowHeaderLayerStack {
 	 */
 	public TreeLayer getTreeLayer() {
 		return this.treeLayer;
+	}
+
+	/**
+	 *
+	 * @return
+	 *         the viewport layer;
+	 */
+	public ViewportLayer getViewportLayer() {
+		return this.viewportLayer;
 	}
 
 	/**

@@ -39,6 +39,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.utils.NattableModelManagerFactory;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
+import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.infra.ui.editor.reload.IReloadContextProvider;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
 import org.eclipse.swt.SWT;
@@ -244,14 +245,35 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=466447
 	 */
 	public void reloadNattableModelManager() {
+		if (TableHelper.isTreeTable(tableManager)) {
+			reloadTreeNattableModelManager();
+		} else {
+			Table rawModel = this.tableManager.getTable();
+			// we dispose the previous nattable widget
+			NatTable nattable = this.tableManager.getAdapter(NatTable.class);
+			Composite parent = nattable.getParent();
+			this.tableManager.dispose();
+			this.tableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(rawModel, new EObjectSelectionExtractor());
+			nattable = this.tableManager.createNattable(parent, SWT.NONE, getSite());
+			nattable.getParent().layout();
+		}
+	}
+
+	/**
+	 * the reload method for Treetable (due to bug Bug 488234)
+	 */
+	protected void reloadTreeNattableModelManager() {
 		Table rawModel = this.tableManager.getTable();
 		// we dispose the previous nattable widget
 		NatTable nattable = this.tableManager.getAdapter(NatTable.class);
-		Composite parent = nattable.getParent();
+		Composite sliderComposite = nattable.getParent();
+		Composite greatParent = sliderComposite.getParent();
 		this.tableManager.dispose();
+		sliderComposite.dispose();
+
 		this.tableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(rawModel, new EObjectSelectionExtractor());
-		nattable = this.tableManager.createNattable(parent, SWT.NONE, getSite());
-		nattable.getParent().layout();
+		nattable = this.tableManager.createNattable(greatParent, SWT.NONE, getSite());
+		greatParent.layout();
 	}
 
 	@Override
