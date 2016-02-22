@@ -10,6 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.generic.tests.tests;
@@ -21,6 +22,7 @@ import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeInd
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.OpenAndDeleteTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.StereotypeInheritDisplayTest;
+import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.StereotypeSubPackagesDisplayTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -45,6 +47,9 @@ import org.junit.runners.Suite.SuiteClasses;
 		
 		// Stereotype inherited properties
 		StereotypeInheritDisplayTest.class,
+		
+		// Stereotype properties in sub packages
+		StereotypeSubPackagesDisplayTest.class,
 })
 public class AllTests {
 	// JUnit 4 test suite
