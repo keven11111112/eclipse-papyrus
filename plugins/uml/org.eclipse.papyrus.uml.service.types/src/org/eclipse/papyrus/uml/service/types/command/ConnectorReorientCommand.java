@@ -36,7 +36,7 @@ public class ConnectorReorientCommand extends ConnectorReorientSemanticCommand {
 	/**
 	 * the new end view
 	 */
-	private EObject newEndView;
+	private View newEndView;
 
 	/**
 	 * the opposite end view
@@ -76,7 +76,7 @@ public class ConnectorReorientCommand extends ConnectorReorientSemanticCommand {
 	protected void initFields() {
 		super.initFields();
 		reorientedEdgeView = RequestParameterUtils.getReconnectedEdge(getRequest());
-		newEndView = ((ReorientRelationshipRequest) getRequest()).getNewRelationshipEnd();
+		newEndView = RequestParameterUtils.getReconnectedEndView(getRequest());
 		if (this.reorientedEdgeView != null) {
 			oppositeEndView = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? reorientedEdgeView.getTarget() : reorientedEdgeView.getSource();
 		} else {
@@ -236,12 +236,12 @@ public class ConnectorReorientCommand extends ConnectorReorientSemanticCommand {
 	 * 
 	 * @return the new {@link Connector} end graphical parent.
 	 */
-	protected Element getEndParent(EObject end) {
-		if (end == null) {
-			return null;
+	protected Element getEndParent(View endView) {
+		if (endView != null) {
+			EObject parent = ViewUtil.getContainerView(endView).getElement();
+			return (parent instanceof Element) ? (Element) parent : null;
 		}
-		EObject parent = end.eContainer();
-		return (parent instanceof Element) ? (Element) parent : null;
+		return null;
 	}
 
 
@@ -258,7 +258,7 @@ public class ConnectorReorientCommand extends ConnectorReorientSemanticCommand {
 
 			if ((newEndParent != null) && (newEndParent instanceof Property) && !(newEndParent instanceof Port)) {
 				// Only add PartWithPort for assembly (not for delegation)
-				if (!EcoreUtil.isAncestor(this.newEndView, this.oppositeEndView)) {
+				if (!EcoreUtil.isAncestor(ViewUtil.getContainerView(this.newEndView), this.oppositeEndView)) {
 					partWithPort = (Property) newEndParent;
 				}
 			}
