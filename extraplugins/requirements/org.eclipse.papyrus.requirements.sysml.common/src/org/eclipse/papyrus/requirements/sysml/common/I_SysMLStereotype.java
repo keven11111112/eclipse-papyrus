@@ -17,6 +17,8 @@ package org.eclipse.papyrus.requirements.sysml.common;
  *
  */
 public interface I_SysMLStereotype {
+		/** Qualified name of the SysML for Requirements profile*/
+		public static final String SYSML_4_REQUIREMENTS_PROFILE = "SysML::Requirements"; 
 		/** Qualified name of the stereotype Conform */
 		public static final String CONFORM_STEREOTYPE = "SysML::ModelElements::Conform";
 		/**  name of property base_Dependency of the stereotype Conform */

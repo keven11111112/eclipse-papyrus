@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2016 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -8,8 +8,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     CEA LIST. - initial API and implementation
- *******************************************************************************/
+ * 
+ * 		CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.requirements.sysml.traceability.handlers;
 
 import java.util.ArrayList;
@@ -21,7 +23,6 @@ import org.eclipse.papyrus.requirements.sysml.traceability.commands.AddRefinedBy
 import org.eclipse.papyrus.requirements.sysml.traceability.commands.RefinementCreateCommand;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.UseCase;
 
 /**
  * Executes the addition of Refine links based on a selected requirement
@@ -34,7 +35,7 @@ public class AddRefinedByLinkHandler extends PapyrusAbstractHandler {
 		ArrayList<Element> selectedElements = getSelectionSet();
 		if (selectedElements.size() == 2) {
 			RefinementCreateCommand refinementCreateCommand = new RefinementCreateCommand(
-					transactionalEditingDomain, (UseCase) selectedElements.get(0),
+					transactionalEditingDomain, (NamedElement) selectedElements.get(0),//e.g. a use case
 					(NamedElement) selectedElements.get(1));
 			transactionalEditingDomain.getCommandStack().execute(refinementCreateCommand);
 		} else {

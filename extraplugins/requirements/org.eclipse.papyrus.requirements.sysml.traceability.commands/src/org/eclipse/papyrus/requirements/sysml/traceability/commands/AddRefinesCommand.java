@@ -14,6 +14,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.requirements.sysml.traceability.commands;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectionDialog;
@@ -26,12 +29,13 @@ import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.UseCase;
 
 /**
  * 
- * Creates a set of Refine links based on the model elements that refine the selected requirement
+ * Creates a set of Refine links based on the model element that refines the the
+ * requirement(s) selected in a MultipleValueSelectionDialog
  * 
  */
 public class AddRefinesCommand extends RecordingCommand {
@@ -46,15 +50,23 @@ public class AddRefinesCommand extends RecordingCommand {
 
 	@Override
 	protected void doExecute() {
-		if (selectedElement instanceof UseCase) {
+		if (selectedElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE) == null) {
+			ArrayList<String> requiredProfiles = new ArrayList<String>(Arrays.asList("StandardProfile"));
+			ArrayList<String> missingProfiles = Utils
+					.getMissingRequiredProfileApplications(selectedElement.getNearestPackage(), requiredProfiles);
+			if (missingProfiles.size() > 0) {
+				Utils.printMissingProfiles(selectedElement.getNearestPackage(), missingProfiles);
+				return;
+			}
+			Stereotype reqStereotype = selectedElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
 			final IStaticContentProvider provider = new UMLContentProvider(Utils.getToPackage(selectedElement),
-					UMLPackage.eINSTANCE.getPackage_PackagedElement());
+					UMLPackage.eINSTANCE.getPackage_PackagedElement(), reqStereotype);
 			ReferenceSelector selector = new ReferenceSelector();
 			selector.setLabelProvider(new UMLLabelProvider());
 			selector.setContentProvider(provider);
 			MultipleValueSelectionDialog dialog = new MultipleValueSelectionDialog(
-					Display.getDefault().getActiveShell(), selector, "Choose the requirements refined by the Use Case");
-
+					Display.getDefault().getActiveShell(), selector,
+					"Choose the requirement(s) refined by " + ((NamedElement) selectedElement).getName());
 			dialog.setLabelProvider(new UMLLabelProvider());
 
 			dialog.create();
@@ -63,9 +75,10 @@ public class AddRefinesCommand extends RecordingCommand {
 
 				for (int i = 0; i < result.length; i++) {
 					Element currentElement = (Element) result[i];
+					// chosen elements must be requirements
 					if (currentElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE) != null) {
 						RefinementCreateCommand refinementCreateCommand = new RefinementCreateCommand(domain,
-								(UseCase) selectedElement, (NamedElement) currentElement);
+								(NamedElement) selectedElement, (NamedElement) currentElement);
 						refinementCreateCommand.execute();
 					}
 				}

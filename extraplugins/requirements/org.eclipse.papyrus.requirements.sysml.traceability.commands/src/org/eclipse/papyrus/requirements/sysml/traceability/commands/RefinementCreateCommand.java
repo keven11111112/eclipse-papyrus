@@ -15,29 +15,33 @@
  *****************************************************************************/
 package org.eclipse.papyrus.requirements.sysml.traceability.commands;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.requirements.common.Utils;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UseCase;
+
 
 
 /**
- * Used to create a link "Refine" between requirement and UseCase
+ * Used to create a link "Refine" between requirement and a Model Element
  *
  */
 public class RefinementCreateCommand extends RecordingCommand {
-	private UseCase source;
+	private NamedElement source;
 	private NamedElement target;
 	/**
-	 * use to make an abstraction 
+	 * Makes an abstraction 
 	 * @param domain the domain to execute a transaction
-	 * @param source the source of the abstraction (the more concrete element) - client
-	 * @param target the target of the abstraction (the more abstract element) - supplier
+	 * @param source the source of the abstraction (the more concrete element) - client. For example, a Use Case
+	 * @param target the target of the abstraction (the more abstract element) - supplier. For example, a Requirement
 	 */
-	public RefinementCreateCommand(TransactionalEditingDomain domain, UseCase source, NamedElement target){ 
+	public RefinementCreateCommand(TransactionalEditingDomain domain, NamedElement source, NamedElement target){ 
 		super(domain,"Create an Abstraction");
 		this.source=source;
 		this.target=target;
@@ -45,15 +49,20 @@ public class RefinementCreateCommand extends RecordingCommand {
 
 	@Override
 	protected void doExecute() {
-		Abstraction theAbstraction= UMLFactory.eINSTANCE.createAbstraction();
-		source.getNearestPackage().getPackagedElements().add(theAbstraction);
-		theAbstraction.getSuppliers().add(target);
-		theAbstraction.getClients().add(source);
-		theAbstraction.setName("Refines_"+this.target.getName());
-//		final String packageQN = UMLUtil.getProfile(StandardPackage.eINSTANCE, source.getNearestPackage()).getQualifiedName();
-//		Stereotype refineStereotype= theAbstraction.getApplicableStereotype(packageQN+"::Refine");// now it is "StandardProfile::Refine" before it was "StandardProfileL2::Refine"
-		Stereotype refineStereotype= theAbstraction.getApplicableStereotype("StandardProfile::Refine");
-		theAbstraction.applyStereotype(refineStereotype);
+		ArrayList<String> requiredProfiles = new ArrayList<String>(
+				Arrays.asList("StandardProfile"));
+		ArrayList<String> missingProfiles = Utils.getMissingRequiredProfileApplications(source.getNearestPackage(), requiredProfiles);
+		if (missingProfiles.size() == 0) {
+			Abstraction theAbstraction = UMLFactory.eINSTANCE.createAbstraction();
+			source.getNearestPackage().getPackagedElements().add(theAbstraction);
+			theAbstraction.getSuppliers().add(target);
+			theAbstraction.getClients().add(source);
+			theAbstraction.setName("Refines_" + this.target.getName());
+			Stereotype refineStereotype = theAbstraction.getApplicableStereotype("StandardProfile::Refine");
+			theAbstraction.applyStereotype(refineStereotype);
+		} else {
+			Utils.printMissingProfiles(source.getNearestPackage(), missingProfiles);
+			return;
+		}
 	}
-
 }

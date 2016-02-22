@@ -68,7 +68,7 @@
                   <test
                         forcePluginActivation="true"
                         property="org.eclipse.papyrus.requirements.sysml.testers.isRequirementElement"
-                        value="false">
+                        value="true">
                   </test>
                </with>
             </visibleWhen>

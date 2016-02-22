@@ -16,10 +16,16 @@ package org.eclipse.papyrus.requirements.common;
 
 import java.util.ArrayList;
 
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
 public class Utils {
+	
+	private Utils() {
+	}
+	
 	/**
 	 * @param elem UML model element
 	 * @return the highest level Package of the element 
@@ -37,7 +43,7 @@ public class Utils {
 	 * @param element
 	 *            the model element that can apply profiles
 	 * @param requiredProfiles
-	 *            the profiles that will be verified
+	 *            the qualified names of the profiles that will be verified
 	 * @return the list of missing profiles
 	 */
 	public static ArrayList<String> getMissingRequiredProfileApplications(org.eclipse.uml2.uml.Package element,
@@ -50,4 +56,19 @@ public class Utils {
 		}
 		return missingProfiles;
 	}
+	
+	/**
+	 * Prints a list of missing profiles
+	 * 
+	 * @param requiredProfiles
+	 */
+	public static void printMissingProfiles(Package thePackage, ArrayList<String> requiredProfiles) {
+		for (String missingProfileQN : Utils
+				.getMissingRequiredProfileApplications(thePackage, requiredProfiles)) {
+			MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Missing profile application",
+					"Please apply the profile " + missingProfileQN + " to "
+							+ thePackage.getName());
+		}
+	}
+	
 }

@@ -14,6 +14,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.requirements.sysml.traceability.commands;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectionDialog;
@@ -27,11 +30,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.UseCase;
 
 /**
  * 
- * Creates a set of Refine links based on a requirement
+ * Creates a set of Refine links based on a requirement that is refined by the
+ * model element(s) selected in a MultipleValueSelectionDialog
  * 
  */
 public class AddRefinedByCommand extends RecordingCommand {
@@ -46,30 +49,42 @@ public class AddRefinedByCommand extends RecordingCommand {
 
 	@Override
 	protected void doExecute() {
-		if (selectedElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE) != null) {	
+		if (selectedElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE) != null) {
 			final IStaticContentProvider provider = new UMLContentProvider(Utils.getToPackage(selectedElement),
 					UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			ReferenceSelector selector = new ReferenceSelector();
 			selector.setLabelProvider(new UMLLabelProvider());
 			selector.setContentProvider(provider);
 			MultipleValueSelectionDialog dialog = new MultipleValueSelectionDialog(
-					Display.getDefault().getActiveShell(), selector, "Choose the Use Cases that refine the requirement");
-
+					Display.getDefault().getActiveShell(), selector,
+					"Choose the model element(s) (for example, use cases) that refine "
+							+ ((NamedElement) selectedElement).getName());
 			dialog.setLabelProvider(new UMLLabelProvider());
 
 			dialog.create();
+
 			if (dialog.open() == org.eclipse.jface.window.Window.OK) {
 				Object[] result = dialog.getResult();
 
 				for (int i = 0; i < result.length; i++) {
 					Element currentElement = (Element) result[i];
-					if (currentElement instanceof UseCase) {
+					// chosen elements cannot be requirements
+					if (currentElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE) == null) {
+						ArrayList<String> requiredProfiles = new ArrayList<String>(Arrays.asList("StandardProfile"));
+						ArrayList<String> missingProfiles = Utils.getMissingRequiredProfileApplications(
+								currentElement.getNearestPackage(), requiredProfiles);
+						if (missingProfiles.size() > 0) {
+							Utils.printMissingProfiles(currentElement.getNearestPackage(), missingProfiles);
+							return;
+						}
 						RefinementCreateCommand refinementCreateCommand = new RefinementCreateCommand(domain,
-								(UseCase) currentElement, (NamedElement) selectedElement);
+								(NamedElement) currentElement, (NamedElement) selectedElement);
 						refinementCreateCommand.execute();
 					}
 				}
+
 			}
 		}
 	}
+
 }

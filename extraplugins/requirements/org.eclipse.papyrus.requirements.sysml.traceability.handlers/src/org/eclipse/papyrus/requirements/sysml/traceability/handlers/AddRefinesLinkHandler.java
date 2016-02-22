@@ -21,7 +21,6 @@ import org.eclipse.papyrus.requirements.sysml.traceability.commands.AddRefinesCo
 import org.eclipse.papyrus.requirements.sysml.traceability.commands.RefinementCreateCommand;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.UseCase;
 
 /**
  * Executes the addition of Refine links based on a selected model element (e.g. an Use Case)
@@ -34,7 +33,7 @@ public class AddRefinesLinkHandler extends PapyrusAbstractHandler {
 		ArrayList<Element> selectedElements = getSelectionSet();
 		if (selectedElements.size() == 2) {
 			RefinementCreateCommand refinementCreateCommand = new RefinementCreateCommand(
-					transactionalEditingDomain, (UseCase) selectedElements.get(1),
+					transactionalEditingDomain, (NamedElement) selectedElements.get(1),
 					(NamedElement) selectedElements.get(0));
 			transactionalEditingDomain.getCommandStack().execute(refinementCreateCommand);
 		} else {
