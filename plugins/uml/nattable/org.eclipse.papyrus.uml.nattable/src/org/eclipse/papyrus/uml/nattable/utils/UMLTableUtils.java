@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.CrossAxisWrapper;
 import org.eclipse.papyrus.uml.nattable.paste.StereotypeApplicationStructure;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
@@ -104,7 +105,9 @@ public class UMLTableUtils {
 			final Iterator<Profile> appliedProfilesIterator = element.getNearestPackage().getAllAppliedProfiles().iterator();
 			while(appliedProfilesIterator.hasNext() && null == result){
 				final Profile appliedProfile = appliedProfilesIterator.next();
-				final Iterator<Stereotype> stereotypesIterator = appliedProfile.getOwnedStereotypes().iterator();
+
+				// Bug 488082 : Loop on all stereotypes (check in sub packages)
+				final Iterator<Stereotype> stereotypesIterator = StereotypeUtil.getAllStereotypes(appliedProfile).iterator();
 				while(stereotypesIterator.hasNext() && null == result){
 					final Stereotype ownedStereotype = stereotypesIterator.next();
 					final Iterator<Property> propertiesIterator = ownedStereotype.getAllAttributes().iterator();

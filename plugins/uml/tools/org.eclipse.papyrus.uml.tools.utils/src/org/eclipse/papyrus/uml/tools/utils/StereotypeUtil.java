@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 488082
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
@@ -35,6 +36,9 @@ import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -1002,5 +1006,45 @@ public class StereotypeUtil {
 			name = name.substring(index + 2);
 		}
 		return name;
+	}
+	
+	/**
+	 * This allows to get all stereotypes of a profile (check in sub packages).
+	 * 
+	 * @param profile the profile.
+	 * @return The list of stereotypes corresponding to the profile.
+	 */
+	public static List<Stereotype> getAllStereotypes(final Profile profile){
+		final List<Stereotype> stereotypes = new ArrayList<Stereotype>(profile.getOwnedStereotypes());
+		stereotypes.addAll(getStereotypeInMembers(profile.getOwnedMembers()));
+		return stereotypes;
+	}
+	
+	/**
+	 * This allows to get all stereotypes in sub packages.
+	 * 
+	 * @param members The owned members of an element.
+	 * @return The list of stereotypes in sub packages.
+	 */
+	protected static List<Stereotype> getStereotypeInMembers(final List<NamedElement> members){
+		final List<Stereotype> stereotypes = new ArrayList<Stereotype>();
+		
+		// Loop on members
+		final Iterator<NamedElement> membersIterator = members.iterator();
+		while(membersIterator.hasNext()){
+			NamedElement member = membersIterator.next();
+			
+			// Get stereotypes in packages
+			if(member instanceof Package){
+				stereotypes.addAll(((Package) member).getOwnedStereotypes());
+			}
+			
+			// Loop recursively in members
+			if(member instanceof Namespace){
+				stereotypes.addAll(getStereotypeInMembers(((Namespace) member).getOwnedMembers()));
+			}
+		}
+		
+		return stereotypes;
 	}
 }

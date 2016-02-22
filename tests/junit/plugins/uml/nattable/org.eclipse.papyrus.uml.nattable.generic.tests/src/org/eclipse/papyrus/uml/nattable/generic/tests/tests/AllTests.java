@@ -10,6 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.generic.tests.tests;
@@ -24,6 +25,7 @@ import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeInd
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.OpenAndDeleteTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.StereotypeInheritDisplayTest;
+import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.StereotypeSubPackagesDisplayTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.importfile.ImportCellsAll_Test;
 import org.eclipse.papyrus.uml.nattable.generic.tests.importfile.ImportEmptyAddAll_Test;
 import org.eclipse.papyrus.uml.nattable.generic.tests.importfile.ImportEmptyReplaceAll_Test;
@@ -85,16 +87,19 @@ import org.junit.runners.Suite.SuiteClasses;
 		FilterNumericMatcherTest.class,
 		FilterUMLEnumerationMatcherTest.class,
 		CellEditorsConfigurationTest.class,
-		
+
 		// Stereotype inherited properties
 		StereotypeInheritDisplayTest.class,
-		
+
+		// Stereotype properties in sub packages
+		StereotypeSubPackagesDisplayTest.class,
+
 		// Check the enumeration content items
 		EnumerationContentItemsTest.class,
 
 		// Paste Overwrite tests
 		PasteEmptyClipboard_Test.class,
-		
+
 		PasteCellsOverwriteAll_Test.class,
 		PasteCellsOverwriteByOneLine_Test.class,
 		PasteCellsOverwriteFailColumns_Test.class,
@@ -120,7 +125,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 		// Insert tests
 		InsertEmptyClipboard_Test.class,
-		
+
 		InsertRowsReplaceAll_Test.class,
 		InsertRowsAddAll_Test.class,
 		InsertRowsSkipAll_Test.class,
