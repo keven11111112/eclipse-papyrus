@@ -4,6 +4,7 @@
     <intListValue>0</intListValue>
     <intListValue>1</intListValue>
   </styles>
+  <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_lcXCwNrwEeWQ0ugY78OgLw" name="rowHeaderWidth" intValue="600"/>
   <context xmi:type="uml:Model" href="PasteWithCategories_H1_H1_V1_MultiColumns_DetachedMode_Test.uml#_yDlxwHucEeSTu_GUJ96b9g"/>
   <owner xmi:type="uml:Model" href="PasteWithCategories_H1_H1_V1_MultiColumns_DetachedMode_Test.uml#_yDlxwHucEeSTu_GUJ96b9g"/>
   <prototype xmi:type="configuration:PapyrusSyncTable" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/classTreeTable.configuration#_P3J1cEr7EeSVGbM3cmVSqQ"/>

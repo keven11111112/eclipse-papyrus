@@ -3,6 +3,7 @@
   <styles xmi:type="nattablestyle:IntListValueStyle" xmi:id="_6gzOoHucEeSTu_GUJ96b9g" name="hiddenCategoriesByDepth">
     <intListValue>2</intListValue>
   </styles>
+  <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_gRUhQNrwEeWQ0ugY78OgLw" name="rowHeaderWidth" intValue="582"/>
   <context xmi:type="uml:Model" href="PasteWithCategories_Empty_V3_H1_MultiColumns_DetachedMode_Test.uml#_yDlxwHucEeSTu_GUJ96b9g"/>
   <owner xmi:type="uml:Model" href="PasteWithCategories_Empty_V3_H1_MultiColumns_DetachedMode_Test.uml#_yDlxwHucEeSTu_GUJ96b9g"/>
   <prototype xmi:type="configuration:PapyrusSyncTable" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/classTreeTable.configuration#_P3J1cEr7EeSVGbM3cmVSqQ"/>

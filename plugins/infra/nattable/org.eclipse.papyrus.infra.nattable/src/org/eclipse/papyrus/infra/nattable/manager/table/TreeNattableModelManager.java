@@ -24,6 +24,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.ISelectionProvider;
@@ -41,6 +47,7 @@ import org.eclipse.nebula.widgets.nattable.util.ClientAreaAdapter;
 import org.eclipse.nebula.widgets.nattable.util.GUIHelper;
 import org.eclipse.nebula.widgets.nattable.viewport.SliderScroller;
 import org.eclipse.nebula.widgets.nattable.viewport.ViewportLayer;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.clientarea.ClientAreaResizeDragMode;
@@ -64,21 +71,31 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestyleFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
 import org.eclipse.papyrus.infra.nattable.selection.ISelectionExtractor;
 import org.eclipse.papyrus.infra.nattable.selection.ObjectsSelectionExtractor;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.nattable.tree.DatumExpansionModel;
 import org.eclipse.papyrus.infra.nattable.tree.DatumTreeFormat;
 import org.eclipse.papyrus.infra.nattable.utils.CollapseExpandActionHelper;
+import org.eclipse.papyrus.infra.nattable.utils.DefaultSizeUtils;
 import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
+import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
+import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
+import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ControlAdapter;
+import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
@@ -118,9 +135,9 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 
 	protected DatumExpansionModel expansionModel;
 
-  	/**
-        * the height of the scrollbar
-        */
+	/**
+	 * the height of the scrollbar
+	 */
 	private static final int scrollbarHeight = 17;
 
 
@@ -238,70 +255,69 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	@Override
 	public NatTable createNattable(Composite parent, int style, IWorkbenchPartSite site) {
 		// Wrap NatTable in composite so we can slap on the external horizontal
-        // sliders
-        Composite composite = new Composite(parent, SWT.NONE);
-        GridLayout gridLayout = new GridLayout(1, false);
-        gridLayout.marginHeight = 0;
-        gridLayout.marginWidth = 0;
-        gridLayout.horizontalSpacing = 0;
-        gridLayout.verticalSpacing = 0;
-        composite.setLayout(gridLayout);
+		// sliders
+		Composite composite = new Composite(parent, SWT.NONE);
+		GridLayout gridLayout = new GridLayout(1, false);
+		gridLayout.marginHeight = 0;
+		gridLayout.marginWidth = 0;
+		gridLayout.horizontalSpacing = 0;
+		gridLayout.verticalSpacing = 0;
+		composite.setLayout(gridLayout);
 
-        NatTable nattable = super.createNattable(composite, style, site);
-        GridData gridData = new GridData();
-        gridData.horizontalAlignment = GridData.FILL;
-        gridData.verticalAlignment = GridData.FILL;
-        gridData.grabExcessHorizontalSpace = true;
-        gridData.grabExcessVerticalSpace = true;
-        natTable.setLayoutData(gridData);
+		NatTable nattable = super.createNattable(composite, style, site);
+		GridData gridData = new GridData();
+		gridData.horizontalAlignment = GridData.FILL;
+		gridData.verticalAlignment = GridData.FILL;
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.grabExcessVerticalSpace = true;
+		natTable.setLayoutData(gridData);
 
-        // MULTI-VIEWPORT-CONFIGURATION
-        createSplitSliders(composite, getRowHeaderLayerStack().getViewportLayer(), getBodyLayerStack().getViewportLayer());
+		// MULTI-VIEWPORT-CONFIGURATION
+		createSplitSliders(composite, getRowHeaderLayerStack().getViewportLayer(), getBodyLayerStack().getViewportLayer());
 
-        // as the CompositeLayer is setting a IClientAreaProvider for the
-        // composition we need to set a special ClientAreaAdapter after the
-        // creation of the CompositeLayer to support split viewports
-        int leftWidth = RowHeaderLayerStack.DEFAULT_ROW_HEIGHT;
-        ClientAreaAdapter leftClientAreaAdapter =
-                new ClientAreaAdapter(getRowHeaderLayerStack().getViewportLayer().getClientAreaProvider());
-        leftClientAreaAdapter.setWidth(leftWidth);
-        getRowHeaderLayerStack().getViewportLayer().setClientAreaProvider(leftClientAreaAdapter);
+		// as the CompositeLayer is setting a IClientAreaProvider for the
+		// composition we need to set a special ClientAreaAdapter after the
+		// creation of the CompositeLayer to support split viewports
+		int leftWidth = getWidthSliderComposite();
+		ClientAreaAdapter leftClientAreaAdapter = new ClientAreaAdapter(getRowHeaderLayerStack().getViewportLayer().getClientAreaProvider());
+		leftClientAreaAdapter.setWidth(leftWidth);
+		getRowHeaderLayerStack().getViewportLayer().setClientAreaProvider(leftClientAreaAdapter);
 
-        getRowHeaderLayerStack().getViewportLayer().setVerticalScrollbarEnabled(false);
+		getRowHeaderLayerStack().getViewportLayer().setVerticalScrollbarEnabled(false);
 
-        // use a cell layer painter that is configured for left clipping
-        // this ensures that the rendering works correctly for split
-        // viewports
-        getBodyLayerStack().getSelectionLayer().setLayerPainter(new SelectionLayerPainter(true, false));
+		// use a cell layer painter that is configured for left clipping
+		// this ensures that the rendering works correctly for split
+		// viewports
+		getBodyLayerStack().getSelectionLayer().setLayerPainter(new SelectionLayerPainter(true, false));
 
-        filterColumnHeaderComposite.setLayerPainter(new CellLayerPainter(true, false));
+		filterColumnHeaderComposite.setLayerPainter(new CellLayerPainter(true, false));
 
-        // add an IOverlayPainter to render the split viewport border
-        natTable.addOverlayPainter(new IOverlayPainter() {
+		// add an IOverlayPainter to render the split viewport border
+		natTable.addOverlayPainter(new IOverlayPainter() {
 
-            @Override
-            public void paintOverlay(GC gc, ILayer layer) {
-                Color beforeColor = gc.getForeground();
-                gc.setForeground(GUIHelper.COLOR_GRAY);
-                int viewportBorderX = getRowHeaderLayerStack().getWidth() - 1;
-                gc.drawLine(viewportBorderX, 0, viewportBorderX, layer.getHeight() - 1);
-                gc.setForeground(beforeColor);
-            }
-        });
+			@Override
+			public void paintOverlay(GC gc, ILayer layer) {
+				Color beforeColor = gc.getForeground();
+				gc.setForeground(GUIHelper.COLOR_GRAY);
+				int viewportBorderX = getRowHeaderLayerStack().getWidth() - 1;
+				gc.drawLine(viewportBorderX, 0, viewportBorderX, layer.getHeight() - 1);
+				gc.setForeground(beforeColor);
+			}
+		});
 
-        // Mouse move - Show resize cursor
-        natTable.getUiBindingRegistry().registerFirstMouseMoveBinding(
-                new ClientAreaResizeMatcher(getRowHeaderLayerStack()),
-                new VerticalResizeCursorAction());
+		// Mouse move - Show resize cursor
+		natTable.getUiBindingRegistry().registerFirstMouseMoveBinding(
+				new ClientAreaResizeMatcher(getRowHeaderLayerStack()),
+				new VerticalResizeCursorAction());
 
-        natTable.getUiBindingRegistry().registerFirstMouseDragMode(
-                new ClientAreaResizeMatcher(getRowHeaderLayerStack()),
-                new ClientAreaResizeDragMode(
-                		getRowHeaderLayerStack().getIndexRowHeaderLayer(),
-                		getRowHeaderLayerStack().getTreeLayer(),
-                		leftClientAreaAdapter,
-                		getRowHeaderLayerStack().getViewportLayer(),
-                		getBodyLayerStack().getViewportLayer()));
+		natTable.getUiBindingRegistry().registerFirstMouseDragMode(
+				new ClientAreaResizeMatcher(getRowHeaderLayerStack()),
+				new ClientAreaResizeDragMode(
+						getRowHeaderLayerStack().getIndexRowHeaderLayer(),
+						getRowHeaderLayerStack().getTreeLayer(),
+						leftClientAreaAdapter,
+						getRowHeaderLayerStack().getViewportLayer(),
+						getBodyLayerStack().getViewportLayer()));
 
 		// update the hidden categories
 
@@ -322,59 +338,179 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 
 		return nattable;
 	}
+	
+	/**
+	 * Get the width of the slider composite.
+	 * 
+	 * @return The int value corresponding to the needed row header width.
+	 */
+	protected int getWidthSliderComposite(){
+		int result = 0;
+		
+		final IntValueStyle valueRowHeader = (IntValueStyle) getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_HEADER_WIDTH);
+		if (null != valueRowHeader) {
+			result = valueRowHeader.getIntValue();
+		} else {
+			result = calculateBestWidthSliderComposite();
+		}
+		
+		return result;
+	}
+
+	/**
+	 * This allows to calculate the initial width of the row header.
+	 * 
+	 * @return The int value corresponding to the needed row header width.
+	 */
+	protected int calculateBestWidthSliderComposite() {
+
+		// If non namedStyle exists for the slider composite, the initial width of the table must be an addition of:
+		// - The size of the two first columns
+		// - The alf size of the 3rd column
+
+		int result = 0;
+
+		final AbstractHeaderAxisConfiguration rowHeader = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisConfigurationUsedInTable(getTable());
+
+		// Get the size of the two first columns
+		final IntValueStyle valueFirstRow = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_LABEL_WIDTH);
+		if (null != valueFirstRow) {
+			result += valueFirstRow.getIntValue();
+		} else {
+			result += DefaultSizeUtils.getDefaultRowHeaderWidth();
+		}
+		final IntValueStyle valueSecondRow = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_LABEL_POSITION_PREFIX_WIDTH + "2" + NamedStyleConstants.ROW_LABEL_POSITION_SUFFIX_WIDTH); //$NON-NLS-1$
+		if (null != valueSecondRow) {
+			result += valueSecondRow.getIntValue();
+		} else {
+			result += DefaultSizeUtils.getDefaultRowHeaderWidth();
+		}
+
+		// Get the alf size of the 3rd column
+		final IntValueStyle valueThirdRow = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_LABEL_POSITION_PREFIX_WIDTH + "3" + NamedStyleConstants.ROW_LABEL_POSITION_SUFFIX_WIDTH); //$NON-NLS-1$
+		if (null != valueThirdRow) {
+			if (1 == valueThirdRow.getIntValue() % 2) {
+				result += (valueThirdRow.getIntValue() / 2) + 1;
+			} else {
+				result += valueThirdRow.getIntValue() / 2;
+			}
+		} else {
+			if (1 == DefaultSizeUtils.getDefaultRowHeaderWidth() % 2) {
+				result += (DefaultSizeUtils.getDefaultRowHeaderWidth() / 2) + 1;
+			} else {
+				result += DefaultSizeUtils.getDefaultRowHeaderWidth() / 2;
+			}
+		}
+
+		return result;
+	}
 
 	private void createSplitSliders(Composite natTableParent, final ViewportLayer left, final ViewportLayer right) {
-        Composite sliderComposite = new Composite(natTableParent, SWT.NONE);
-        GridData gridData = new GridData();
-        gridData.horizontalAlignment = GridData.FILL;
-        gridData.grabExcessHorizontalSpace = true;
-        gridData.grabExcessVerticalSpace = false;
-        gridData.heightHint = scrollbarHeight;
-        sliderComposite.setLayoutData(gridData);
+		Composite sliderComposite = new Composite(natTableParent, SWT.NONE);
+		GridData gridData = new GridData();
+		gridData.horizontalAlignment = GridData.FILL;
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.grabExcessVerticalSpace = false;
+		gridData.heightHint = scrollbarHeight;
+		sliderComposite.setLayoutData(gridData);
 
-        GridLayout gridLayout = new GridLayout(2, false);
-        gridLayout.marginHeight = 0;
-        gridLayout.marginWidth = 0;
-        gridLayout.horizontalSpacing = 0;
-        gridLayout.verticalSpacing = 0;
-        sliderComposite.setLayout(gridLayout);
+		GridLayout gridLayout = new GridLayout(2, false);
+		gridLayout.marginHeight = 0;
+		gridLayout.marginWidth = 0;
+		gridLayout.horizontalSpacing = 0;
+		gridLayout.verticalSpacing = 0;
+		sliderComposite.setLayout(gridLayout);
 
-        // Slider Left
-        // Need a composite here to set preferred size because Slider can't be
-        // subclassed.
-        Composite sliderLeftComposite = new Composite(sliderComposite, SWT.NONE) {
-            @Override
-            public Point computeSize(int wHint, int hHint, boolean changed) {
-                int width = ((ClientAreaAdapter) left.getClientAreaProvider()).getWidth()
-                		+ getRowHeaderLayerStack().getIndexRowHeaderLayer().getWidth();
-                return new Point(width, scrollbarHeight);
-            }
-        };
-        sliderLeftComposite.setLayout(new FillLayout());
-        gridData = new GridData();
-        gridData.horizontalAlignment = GridData.BEGINNING;
-        gridData.verticalAlignment = GridData.BEGINNING;
-        sliderLeftComposite.setLayoutData(gridData);
+		// Slider Left
+		// Need a composite here to set preferred size because Slider can't be
+		// subclassed.
+		Composite sliderLeftComposite = new Composite(sliderComposite, SWT.NONE) {
+			@Override
+			public Point computeSize(int wHint, int hHint, boolean changed) {
+				int width = ((ClientAreaAdapter) left.getClientAreaProvider()).getWidth()
+						+ getRowHeaderLayerStack().getIndexRowHeaderLayer().getWidth();
+				return new Point(width, scrollbarHeight);
+			}
+		};
+		sliderLeftComposite.setLayout(new FillLayout());
+		gridData = new GridData();
+		gridData.horizontalAlignment = GridData.BEGINNING;
+		gridData.verticalAlignment = GridData.BEGINNING;
+		sliderLeftComposite.setLayoutData(gridData);
 
-        Slider sliderLeft = new Slider(sliderLeftComposite, SWT.HORIZONTAL);
-        gridData = new GridData();
-        gridData.horizontalAlignment = GridData.FILL;
-        gridData.verticalAlignment = GridData.FILL;
-        sliderLeft.setLayoutData(gridData);
+		addControlListener(sliderLeftComposite);
 
-        left.setHorizontalScroller(new SliderScroller(sliderLeft));
+		Slider sliderLeft = new Slider(sliderLeftComposite, SWT.HORIZONTAL);
+		gridData = new GridData();
+		gridData.horizontalAlignment = GridData.FILL;
+		gridData.verticalAlignment = GridData.FILL;
+		sliderLeft.setLayoutData(gridData);
 
-        // Slider Right
-        Slider sliderRight = new Slider(sliderComposite, SWT.HORIZONTAL);
-        gridData = new GridData();
-        gridData.horizontalAlignment = GridData.FILL;
-        gridData.verticalAlignment = GridData.BEGINNING;
-        gridData.grabExcessHorizontalSpace = true;
-        gridData.grabExcessVerticalSpace = false;
-        sliderRight.setLayoutData(gridData);
+		left.setHorizontalScroller(new SliderScroller(sliderLeft));
 
-        right.setHorizontalScroller(new SliderScroller(sliderRight));
-    }
+		// Slider Right
+		Slider sliderRight = new Slider(sliderComposite, SWT.HORIZONTAL);
+		gridData = new GridData();
+		gridData.horizontalAlignment = GridData.FILL;
+		gridData.verticalAlignment = GridData.BEGINNING;
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.grabExcessVerticalSpace = false;
+		sliderRight.setLayoutData(gridData);
+
+		right.setHorizontalScroller(new SliderScroller(sliderRight));
+	}
+
+	/**
+	 * This allows to create the control listener when the slider composite is resized.
+	 * 
+	 * @param leftSliderComposite
+	 *            the slider composite.
+	 */
+	protected void addControlListener(final Composite leftSliderComposite) {
+		leftSliderComposite.addControlListener(new ControlAdapter() {
+
+			@Override
+			public void controlResized(final ControlEvent e) {
+				super.controlResized(e);
+
+				final CompositeCommand resizeRowHeaderCommand = new CompositeCommand("Resize Slider composite"); //$NON-NLS-1$
+				TransactionalEditingDomain tableDomain = TableEditingDomainUtils.getTableEditingDomain(getTable());
+				if (null == tableDomain) {
+					return;
+				}
+
+				final int newHeaderWidth = getRowHeaderLayerStack().getViewportLayer().getClientAreaWidth();
+				final int initialSize = calculateBestWidthSliderComposite();
+
+				// check that the modified value is not the initial one
+				if (newHeaderWidth != initialSize) {
+					IntValueStyle valueIndex = (IntValueStyle) getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_HEADER_WIDTH);
+					if (null != valueIndex && valueIndex.getIntValue() != newHeaderWidth) {
+						SetRequest resizeRowHeader = new SetRequest(tableDomain, valueIndex, NattablestylePackage.eINSTANCE.getIntValueStyle_IntValue(), newHeaderWidth);
+						resizeRowHeaderCommand.add(new SetValueCommand(resizeRowHeader));
+					} else if (null == valueIndex && newHeaderWidth != DefaultSizeUtils.getDefaultRowHeaderWidth()) {
+						valueIndex = NattablestyleFactory.eINSTANCE.createIntValueStyle();
+						valueIndex.setIntValue(newHeaderWidth);
+						valueIndex.setName(NamedStyleConstants.ROW_HEADER_WIDTH);
+
+						SetRequest initRowHeaderSizeRequest = new SetRequest(tableDomain, getTable(), NattablestylePackage.eINSTANCE.getStyledElement_Styles(), valueIndex);
+						resizeRowHeaderCommand.add(new SetValueCommand(initRowHeaderSizeRequest));
+					}
+
+					if (resizeRowHeaderCommand.canExecute() && !resizeRowHeaderCommand.isEmpty()) {
+						tableDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(resizeRowHeaderCommand));
+					}
+				} else {
+					// Remove the named style if existing and with the initial width
+					final IntValueStyle valueIndex = (IntValueStyle) getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_HEADER_WIDTH);
+					if (null != valueIndex) {
+						DestroyElementRequest destroyRowHeaderWidthRequest = new DestroyElementRequest(tableDomain, valueIndex, false);
+						new GMFtoEMFCommandWrapper(new DestroyElementCommand(destroyRowHeaderWidthRequest)).execute();
+					}
+				}
+			}
+		});
+	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager#addClickSortConfiguration(org.eclipse.nebula.widgets.nattable.NatTable)

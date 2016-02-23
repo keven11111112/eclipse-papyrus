@@ -3,6 +3,7 @@
   <styles xmi:type="nattablestyle:IntListValueStyle" xmi:id="_KJpacHxbEeSxVJAGQ_SozA" name="hiddenCategoriesByDepth">
     <intListValue>1</intListValue>
   </styles>
+  <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_QCpIoNrvEeWQ0ugY78OgLw" name="rowHeaderWidth" intValue="582"/>
   <context xmi:type="uml:Model" href="PasteWithCategories_Empty_H3_V1_MultiColumns_AttachedMode_Test.uml#_yDlxwHucEeSTu_GUJ96b9g"/>
   <owner xmi:type="uml:Model" href="PasteWithCategories_Empty_H3_V1_MultiColumns_AttachedMode_Test.uml#_yDlxwHucEeSTu_GUJ96b9g"/>
   <prototype xmi:type="configuration:PapyrusSyncTable" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/classTreeTable.configuration#_P3J1cEr7EeSVGbM3cmVSqQ"/>
@@ -51,16 +52,16 @@
       </axisUsedAsAxisProvider>
       <labelProvider xmi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/class_synchronized_tree.nattableconfiguration#//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.1"/>
     </ownedAxisConfigurations>
-    <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" detachedMode="false" xmi:id="_3W0-cHvHEeSOIP1uah0_EA" pastedElementId="org.eclipse.papyrus.uml.Property">
+    <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_3W0-cHvHEeSOIP1uah0_EA" detachedMode="false" pastedElementId="org.eclipse.papyrus.uml.Property">
       <pasteElementContainementFeature xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//StructuredClassifier/ownedAttribute"/>
     </ownedAxisConfigurations>
-    <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" detachedMode="false" xmi:id="_3W0-cXvHEeSOIP1uah0_EA" pastedElementId="org.eclipse.papyrus.uml.Operation">
+    <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_3W0-cXvHEeSOIP1uah0_EA" detachedMode="false" pastedElementId="org.eclipse.papyrus.uml.Operation">
       <pasteElementContainementFeature xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class/ownedOperation"/>
     </ownedAxisConfigurations>
-    <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" detachedMode="false" xmi:id="_3W0-cnvHEeSOIP1uah0_EA" pastedElementId="org.eclipse.papyrus.uml.Class">
+    <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_3W0-cnvHEeSOIP1uah0_EA" detachedMode="false" pastedElementId="org.eclipse.papyrus.uml.Class">
       <pasteElementContainementFeature xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class/nestedClassifier"/>
     </ownedAxisConfigurations>
-    <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" detachedMode="false" xmi:id="_3W0-c3vHEeSOIP1uah0_EA" pastedElementId="org.eclipse.papyrus.uml.Parameter">
+    <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_3W0-c3vHEeSOIP1uah0_EA" detachedMode="false" pastedElementId="org.eclipse.papyrus.uml.Parameter">
       <pasteElementContainementFeature xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioralFeature/ownedParameter"/>
     </ownedAxisConfigurations>
     <axisManagerConfigurations xmi:type="nattableaxisconfiguration:AxisManagerConfiguration" xmi:id="_0T6OkHucEeSTu_GUJ96b9g" localSpecificConfigurations="_Uchc4Hu1EeSOIP1uah0_EA _0T6Ok3ucEeSTu_GUJ96b9g _Uchc4nu1EeSOIP1uah0_EA _0T6OlXucEeSTu_GUJ96b9g">

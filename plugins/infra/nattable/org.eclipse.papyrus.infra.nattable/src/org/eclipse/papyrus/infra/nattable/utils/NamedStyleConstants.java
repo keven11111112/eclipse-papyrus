@@ -43,6 +43,11 @@ public class NamedStyleConstants {
 	 */
 	public static final String ROW_LABEL_POSITION_SUFFIX_WIDTH = "LabelWidth"; //$NON-NLS-1$
 	
+	/**
+	 * The named style id for the slider composite width.
+	 */
+	public static final String ROW_HEADER_WIDTH = "rowHeaderWidth"; //$NON-NLS-1$
+	
 
 	public static final String COLUMN_INDEX_HEIGHT = "columnIndexHeight"; //$NON-NLS-1$
 
