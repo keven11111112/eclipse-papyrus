@@ -13,6 +13,11 @@
       <context
             contextModel="model/synchronization/synchronization.ctx">
       </context>
+      <context
+            appliedByDefault="false"
+            contextModel="model/advanceStyle/advanceStyle.ctx"
+            isCustomizable="true">
+      </context>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.properties.environments">

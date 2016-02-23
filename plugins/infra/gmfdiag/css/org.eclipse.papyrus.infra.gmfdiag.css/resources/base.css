@@ -30,6 +30,7 @@ Compartment[kind=symbol]{
  	transparency:0; /* Default transparency in GMF Notation is -1. -1 is recognized as "Unchanged" by the GMF NodeFigure. e.g. changing from 50 to -1 ("reset") does nothing */
  	showTitle:false;
  	textAlignment:"center";
+ 	isOval:false;
  	shadowWidth:5;
  	borderStyle:"solid";
  	customDash:5 5;

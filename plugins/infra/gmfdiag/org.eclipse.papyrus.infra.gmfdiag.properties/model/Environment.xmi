@@ -36,6 +36,9 @@
   <modelElementFactories
       name="GMF Synchronization Factory"
       factoryClass="org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.SynchronizationModelElementFactory"/>
+  <modelElementFactories
+      name="Advance Style Factory"
+      factoryClass="org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.AdvanceStyleModelElementFactory"/>
   <widgetTypes
       label="DiagramPreferencesDefaultButton"
       widgetClass="DiagramPreferencesDefaultButton"
