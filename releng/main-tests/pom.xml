@@ -75,7 +75,6 @@
 		<module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.tests</module>
 		<module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.controlmode.tests</module>
 		<module>../../tests/junit/plugins/uml/diagram</module>
-		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.dynamic.profile.tests</module>
 		<module>../../tests/junit/plugins/uml/modelexplorer/org.eclipse.papyrus.uml.modelexplorer.tests</module>
 		<module>../../tests/junit/plugins/uml/nattable</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.search.tests</module>
