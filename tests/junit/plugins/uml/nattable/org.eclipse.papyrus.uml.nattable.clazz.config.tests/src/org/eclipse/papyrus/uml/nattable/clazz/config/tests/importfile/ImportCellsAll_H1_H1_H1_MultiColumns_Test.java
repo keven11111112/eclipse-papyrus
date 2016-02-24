@@ -13,8 +13,6 @@
 
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.importfile;
 
-import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
-
 /**
  * Test import all of selection with hidden categories.
  */
@@ -36,15 +34,4 @@ public class ImportCellsAll_H1_H1_H1_MultiColumns_Test extends AbstractImportCel
 	public String removeClassName(final String className) throws Exception {
 		return className.replaceFirst("ImportCellsAll_", ""); //$NON-NLS-1$ //$NON-NLS-2$ k
 	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.AbstractPasteInsertTest#testUndo_Redo(org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager)
-	 */
-	@Override
-	protected void testUndo_Redo(final TreeNattableModelManager treeManager) throws Exception {
-		// Do nothing : The undo/redo is not implemented for the old basic paste
-	}
-
 }

@@ -513,7 +513,9 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 				}
 
 				// 1. Add the elements to the context
-				compoundCommand.append(AddCommand.create(contextEditingDomain, tableContext, containmentFeature, createdElements));
+				if(!createdElements.isEmpty()){
+					compoundCommand.append(AddCommand.create(contextEditingDomain, tableContext, containmentFeature, createdElements));
+				}
 
 				if (progressMonitor != null) {
 					if (progressMonitor.isCanceled()) {
@@ -530,7 +532,7 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 					cmd = tableManager.getAddRowElementCommand(createdElements);
 				}
 				if (null != cmd) {// could be null
-					compoundCommand.append(cmd);
+					compoundCommand.appendIfCanExecute(cmd);
 				}
 
 				if (progressMonitor != null) {
@@ -579,7 +581,9 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 				}
 
 				// add the created cells to the table
-				compoundCommand.append(AddCommand.create(tableEditingDomain, table, NattablePackage.eINSTANCE.getTable_Cells(), cells));
+				if(!cells.isEmpty()){
+					compoundCommand.append(AddCommand.create(tableEditingDomain, table, NattablePackage.eINSTANCE.getTable_Cells(), cells));
+				}
 
 				// Execute the global command
 				if (null != compoundCommand && !compoundCommand.isEmpty() && compoundCommand.canExecute()) {

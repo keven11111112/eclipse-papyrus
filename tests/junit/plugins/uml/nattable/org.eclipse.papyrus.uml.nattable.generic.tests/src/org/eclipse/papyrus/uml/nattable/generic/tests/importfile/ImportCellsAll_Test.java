@@ -38,14 +38,4 @@ public class ImportCellsAll_Test extends AbstractImportCellsTest {
 		super.manageSelection(manager);
 		manager.getBodyLayerStack().getSelectionLayer().doCommand(new SelectCellCommand(manager.getBodyLayerStack().getSelectionLayer(), 2, 2, true, false));
 	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.uml.nattable.generic.tests.paste.overwrite.AbstractPasteInsertTest#testUndo_Redo(org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager)
-	 */
-	@Override
-	protected void testUndo_Redo(NattableModelManager treeManager) throws Exception {
-		// Do nothing : The undo/redo is not implemented for the old basic paste
-	}
 }

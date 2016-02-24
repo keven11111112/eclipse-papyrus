@@ -365,7 +365,9 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 			}
 		}
 
-		Arrays.sort(advices, new AdviceComparator());
+		if(null != advices){
+			Arrays.sort(advices, new AdviceComparator());
+		}
 
 		return advices;
 	}
