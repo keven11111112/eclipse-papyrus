@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2016 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,31 +7,33 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.navigation.navigableElement;
 
-import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Connector;
 
 /**
- * Navigates from an Operation to it's return type declaration
+ * Navigate from a Connector to its type
  *
  * @author Camille Letavernier
  *
  */
-public class OperationTypeNavigableElement extends TypedNavigableElement {
+public class ConnectorTypeNavigableElement extends TypedNavigableElement {
 
-	public OperationTypeNavigableElement(Operation operation) {
-		super(operation.getType());
-	}
-
-	@Override
-	public String getLabel() {
-		return "Go to return type" + getTypeLabel() + "...";
+	/**
+	 * Constructor.
+	 *
+	 * @param type
+	 */
+	public ConnectorTypeNavigableElement(Connector connector) {
+		super(connector.getType());
 	}
 
 	@Override
 	public String getDescription() {
-		return "Go to the return type declaration of this Operation:" + getTypeLabel();
+		return "Go to the type declaration of this Connector: " + getTypeLabel();
 	}
+
 }

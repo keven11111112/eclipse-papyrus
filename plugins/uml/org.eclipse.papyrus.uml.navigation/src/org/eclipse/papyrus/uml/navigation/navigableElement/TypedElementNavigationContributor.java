@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationContributor;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
+import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.TypedElement;
@@ -37,6 +38,8 @@ public class TypedElementNavigationContributor implements NavigationContributor 
 			result.add(new TypedNavigableElement(((TypedElement) element).getType()));
 		} else if (element instanceof Operation && ((Operation) element).getType() != null) {
 			result.add(new OperationTypeNavigableElement((Operation) element));
+		} else if (element instanceof Connector && ((Connector) element).getType() != null) {
+			result.add(new ConnectorTypeNavigableElement((Connector) element));
 		}
 
 		return result;

@@ -46,12 +46,14 @@ public class TypedNavigableElement implements ExtendedNavigableElement {
 	}
 
 	public String getDescription() {
-		return "Go to the type declaration of this TypedElement" + getTypeLabel();
+		return "Go to the type declaration of this TypedElement: " + getTypeLabel();
 	}
 
 	protected String getTypeLabel() {
 		if (type == null) {
 			return " (Undefined)";
+		} else if (type.getName() == null) {
+			return " (Unnamed)"; // Often happens for Associations, as their name is derived in the UI
 		} else {
 			return " (" + type.getName() + ")";
 		}
@@ -97,6 +99,7 @@ public class TypedNavigableElement implements ExtendedNavigableElement {
 
 	/**
 	 * Returns the type (UML Element) of the TypedNavigableElement
+	 *
 	 * @return type
 	 */
 	public Element getType() {
