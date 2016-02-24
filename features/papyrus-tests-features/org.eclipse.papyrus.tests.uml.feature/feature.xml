@@ -29,5 +29,8 @@ http://www.eclipse.org/legal/epl-v10.html
    <plugin download-size="0" id="org.eclipse.papyrus.uml.filters.tests" install-size="0" unpack="false" version="0.0.0"/>
 
    <plugin download-size="0" fragment="true" id="org.eclipse.papyrus.uml.profile.tests" install-size="0" unpack="false" version="0.0.0"/>
+   
+   <plugin download-size="0" id="org.eclipse.papyrus.uml.dynamic.profile.tests" install-size="0" unpack="false" version="0.0.0"/>
+   
 
 </feature>
