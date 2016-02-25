@@ -44,6 +44,12 @@
             id="org.eclipse.papyrus.dev.project.management.command.syncPOMVersions"
             name="Synchronize POM Versions">
       </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.dev.project.management.handlers.plugins.OpenParentPOMHandler"
+            description="Open the parent POM, even if not in the workspace"
+            id="org.eclipse.papyrus.dev.project.management.command.openParentPOM"
+            name="Open Parent POM">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -117,6 +123,30 @@
                         definitionId="org.eclipse.papyrus.dev.project.management.isPluginProjectOrManifest">
                   </reference>
                </iterate>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="org.eclipse.papyrus.dev.project.management.command.openParentPOM">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <adapt
+	                    type="org.eclipse.core.resources.IFile">
+	                 <or>
+	                    <test
+	                          property="org.eclipse.core.resources.name"
+	                          value="pom.xml">
+	                    </test>
+                        <test
+	                          property="org.eclipse.core.resources.contentTypeId"
+	                          value="org.eclipse.m2e.core.pomFile">
+	                    </test>
+	                 </or>
+	              </adapt>
+	           </iterate>
             </visibleWhen>
          </command>
       </menuContribution>
