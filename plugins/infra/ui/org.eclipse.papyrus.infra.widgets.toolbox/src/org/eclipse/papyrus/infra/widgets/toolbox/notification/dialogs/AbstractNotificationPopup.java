@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2009 Tasktop Technologies and others.
+ * Copyright (c) 2004, 2016 Tasktop Technologies, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,8 @@
  * Contributors:
  *     Benjamin Pasero - intial API and implementation
  *     Tasktop Technologies - initial API and implementation
+ *     Christian W. Damus - bug 485220
+ *     
  *******************************************************************************/
 package org.eclipse.papyrus.infra.widgets.toolbox.notification.dialogs;
 
@@ -18,9 +20,10 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.resource.LocalResourceManager;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.infra.ui.util.PapyrusImageUtils;
 import org.eclipse.papyrus.infra.widgets.toolbox.SwtUtil;
 import org.eclipse.papyrus.infra.widgets.toolbox.SwtUtil.FadeJob;
+import org.eclipse.papyrus.infra.widgets.toolbox.utils.ISharedImages;
+import org.eclipse.papyrus.infra.widgets.toolbox.utils.ToolbooxImageUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
@@ -85,6 +88,7 @@ public abstract class AbstractNotificationPopup extends Window {
 			if (!display.isDisposed()) {
 				display.asyncExec(new Runnable() {
 
+					@Override
 					public void run() {
 						Shell shell = AbstractNotificationPopup.this.getShell();
 						if (shell == null || shell.isDisposed()) {
@@ -158,7 +162,7 @@ public abstract class AbstractNotificationPopup extends Window {
 	}
 
 	protected Image getPopupShellImage(int maximumHeight) {
-		return PapyrusImageUtils.getDefaultIcon();
+		return ToolbooxImageUtils.getImage(ISharedImages.IMG_PAPYRUS);
 	}
 
 	/**
@@ -307,6 +311,7 @@ public abstract class AbstractNotificationPopup extends Window {
 		shell.setVisible(true);
 		fadeJob = SwtUtil.fadeIn(shell, new SwtUtil.IFadeListener() {
 
+			@Override
 			public void faded(Shell shell, int alpha) {
 				if (shell.isDisposed()) {
 					return;
@@ -501,6 +506,7 @@ public abstract class AbstractNotificationPopup extends Window {
 		}
 		fadeJob = SwtUtil.fadeOut(getShell(), new SwtUtil.IFadeListener() {
 
+			@Override
 			public void faded(Shell shell, int alpha) {
 				if (!shell.isDisposed()) {
 					if (alpha == 0) {
@@ -511,6 +517,7 @@ public abstract class AbstractNotificationPopup extends Window {
 						}
 						fadeJob = SwtUtil.fastFadeIn(shell, new SwtUtil.IFadeListener() {
 
+							@Override
 							public void faded(Shell shell, int alpha) {
 								if (shell.isDisposed()) {
 									return;

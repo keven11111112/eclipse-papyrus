@@ -1,5 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2008 CEA LIST.
+ *
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,19 +9,15 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.toolbox;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.papyrus.infra.tools.spi.INotificationBuilderFactory;
-import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceRegistration;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -33,27 +30,30 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 
-	private ServiceRegistration<INotificationBuilderFactory> notificationBuilderReg;
-
 	/**
 	 * The constructor
 	 */
 	public Activator() {
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
+	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-
-		notificationBuilderReg = context.registerService(INotificationBuilderFactory.class, NotificationBuilder::new, null);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
+	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
-		notificationBuilderReg.unregister();
-		notificationBuilderReg = null;
-
 		plugin = null;
 		super.stop(context);
 	}

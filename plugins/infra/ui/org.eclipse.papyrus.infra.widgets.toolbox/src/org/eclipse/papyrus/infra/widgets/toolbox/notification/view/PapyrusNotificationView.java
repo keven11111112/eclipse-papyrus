@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 ATOS ORIGIN.
+ * Copyright (c) 2010, 2016 ATOS ORIGIN, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Tristan Faure (ATOS ORIGIN INTEGRATION) tristan.faure@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.toolbox.notification.view;
 
@@ -20,7 +22,6 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.papyrus.infra.ui.util.PapyrusImageUtils;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.ICallBack;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.ICompositeCreator;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.NotificationRunnable;
@@ -79,7 +80,7 @@ public class PapyrusNotificationView extends ViewPart implements ICallBack {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		setTitleImage(PapyrusImageUtils.getDefaultIcon());
+		setTitleImage(ToolbooxImageUtils.getImage(org.eclipse.papyrus.infra.widgets.toolbox.utils.ISharedImages.IMG_PAPYRUS));
 		createContent(parent);
 		makeActions();
 		hookContextMenu();
@@ -262,6 +263,7 @@ public class PapyrusNotificationView extends ViewPart implements ICallBack {
 		menuMgr.setRemoveAllWhenShown(true);
 		menuMgr.addMenuListener(new IMenuListener() {
 
+			@Override
 			public void menuAboutToShow(IMenuManager manager) {
 				PapyrusNotificationView.this.fillContextMenu(manager);
 			}
@@ -370,6 +372,7 @@ public class PapyrusNotificationView extends ViewPart implements ICallBack {
 	 *
 	 * @see org.eclipse.papyrus.infra.widgets.toolbox.notification.view.ICloseCallBack#closed(java.lang.Object)
 	 */
+	@Override
 	public void callBack(Object element) {
 		destroy(element);
 	}

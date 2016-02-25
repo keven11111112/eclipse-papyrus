@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 ATOS ORIGIN.
+ * Copyright (c) 2010, 2016 ATOS ORIGIN, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Tristan Faure (ATOS ORIGIN INTEGRATION) tristan.faure@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.toolbox.notification.dialogs;
 
@@ -18,12 +20,13 @@ import java.util.Map;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.papyrus.infra.ui.util.PapyrusImageUtils;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.ICompositeCreator;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.INotification;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.NotificationRunnable;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.PapyrusToolkit;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.IContext;
+import org.eclipse.papyrus.infra.widgets.toolbox.utils.ISharedImages;
+import org.eclipse.papyrus.infra.widgets.toolbox.utils.ToolbooxImageUtils;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -70,7 +73,7 @@ public abstract class PapyrusPopup extends Dialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		getShell().setText(title == null ? "" : title);
-		getShell().setImage(PapyrusImageUtils.getDefaultIcon());
+		getShell().setImage(ToolbooxImageUtils.getImage(ISharedImages.IMG_PAPYRUS));
 		Composite c = (Composite) super.createDialogArea(parent);
 		c.setLayout(new FillLayout());
 		createForm(c);

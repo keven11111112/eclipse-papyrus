@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 ATOS ORIGIN.
+ * Copyright (c) 2010, 2016 ATOS ORIGIN, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Tristan Faure (ATOS ORIGIN INTEGRATION) tristan.faure@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.toolbox.utils;
 
@@ -42,6 +44,9 @@ public class ToolbooxImageUtils {
 		switch (id) {
 		case ISharedImages.IMG_RUN:
 			path = path.append("run.gif");
+			break;
+		case ISharedImages.IMG_PAPYRUS:
+			path = path.append("Papyrus.gif");
 			break;
 		default:
 			break;

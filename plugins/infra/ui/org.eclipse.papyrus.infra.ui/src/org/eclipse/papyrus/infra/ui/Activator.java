@@ -17,8 +17,10 @@ import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.spi.IContextualServiceRegistryTracker;
 import org.eclipse.papyrus.infra.tools.spi.IExecutorServiceFactory;
+import org.eclipse.papyrus.infra.tools.spi.INotificationBuilderFactory;
 import org.eclipse.papyrus.infra.ui.util.UIUtil;
 import org.eclipse.papyrus.infra.ui.util.WorkbenchPartHelper;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -46,6 +48,9 @@ public class Activator extends AbstractUIPlugin {
 	private ServiceRegistration<IExecutorServiceFactory> executorFactoryReg;
 	private ServiceRegistration<IContextualServiceRegistryTracker> serviceRegistryTrackerReg;
 
+	// Glue the UI notification mechanism to the facade
+	private ServiceRegistration<INotificationBuilderFactory> notificationBuilderReg;
+
 	/**
 	 * The constructor
 	 */
@@ -70,10 +75,16 @@ public class Activator extends AbstractUIPlugin {
 			return result;
 		};
 		serviceRegistryTrackerReg = context.registerService(IContextualServiceRegistryTracker.class, serviceRegistryTracker, null);
+
+		notificationBuilderReg = context.registerService(INotificationBuilderFactory.class, NotificationBuilder::new, null);
 	}
 
 	@Override
 	public void stop(BundleContext context) throws Exception {
+		if (notificationBuilderReg != null) {
+			notificationBuilderReg.unregister();
+			notificationBuilderReg = null;
+		}
 		if (serviceRegistryTrackerReg != null) {
 			serviceRegistryTrackerReg.unregister();
 			serviceRegistryTrackerReg = null;
