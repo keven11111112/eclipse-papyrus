@@ -58,4 +58,16 @@
    </contexts>
 </extension>
 		
+  <extension
+        point="org.eclipse.ui.intro.configExtension">
+     <configExtension
+           configId="org.eclipse.ui.intro.universalConfig"
+           content="intro/firststeps.xml">
+     </configExtension>
+     <configExtension
+           configId="org.eclipse.ui.intro.universalConfig"
+           content="intro/overview.xml">
+     </configExtension>
+  </extension>
+  
 </plugin>
