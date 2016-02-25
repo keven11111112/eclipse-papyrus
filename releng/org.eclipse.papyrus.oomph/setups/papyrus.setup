@@ -205,7 +205,7 @@
             </detail>    
           </annotation>    
         </repository>    
-        <repository url="${base.downloads.url}/nattable/snapshots/475/repository/"/>    
+        <repository url="${base.downloads.url}/nattable/snapshots/484/repository/"/>    
         <repository url="http://download.eclipse.org/xwt/release-1.1.0">    
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">    
             <detail key="updateFrom">    
