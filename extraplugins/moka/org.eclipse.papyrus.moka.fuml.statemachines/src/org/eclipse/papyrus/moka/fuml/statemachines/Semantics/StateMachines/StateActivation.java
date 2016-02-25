@@ -406,30 +406,19 @@ public class StateActivation extends VertexActivation {
 		// Postpone the time at which this event occurrence will be available at the event pool.
 		// The given event occurrence is placed in the deferred event pool and will be released
 		// only when the current state activation will leave the state-machine configuration.
-		SM_ObjectActivation objectActivation = (SM_ObjectActivation) this.getExecutionContext().objectActivation;
-		DeferredEventOccurrence deferredEventOccurrence = new DeferredEventOccurrence();
-		deferredEventOccurrence.constrainingStateActivation = this;
-		deferredEventOccurrence.deferredEventOccurrence = eventOccurrence;
-		objectActivation.deferredEventPool.add(deferredEventOccurrence);
+		Object_ context = this.getExecutionContext();
+		if(context.objectActivation != null){
+			((SM_ObjectActivation)context.objectActivation).registerDeferredEvent(eventOccurrence, this); 
+		}
 	}
 	
 	public void releaseDeferredEvents(){
-		// If events have been deferred by that state then following set of action takes place:
-		// 1 - The events return to the event pool owned by the object activation
-		// 2 - The events are removed from the deferred event pool
-		// Note: The release of events deferred by that state occurs when this latter
-		// leaves the state-machine configuration.
-		SM_ObjectActivation objectActivation = (SM_ObjectActivation) this.getExecutionContext().objectActivation;
-		List<DeferredEventOccurrence> releasedDeferredEvent = new ArrayList<DeferredEventOccurrence>();
-		for(int i=0; i < objectActivation.deferredEventPool.size(); i++){
-			DeferredEventOccurrence eventOccurrence = objectActivation.deferredEventPool.get(i);
-			if(eventOccurrence.constrainingStateActivation == this){
-				releasedDeferredEvent.add(eventOccurrence);
-				objectActivation.eventPool.add(eventOccurrence.deferredEventOccurrence);
-				objectActivation._send(new ArrivalSignal());
-			}
+		// If events have been deferred by that state then these latter return to the
+		// regular event pool.
+		Object_ context = this.getExecutionContext();
+		if(context.objectActivation != null){
+			((SM_ObjectActivation)context.objectActivation).releaseDeferredEvents(this); 
 		}
-		objectActivation.deferredEventPool.removeAll(releasedDeferredEvent);
 	}
 	
 	public void terminate(){
