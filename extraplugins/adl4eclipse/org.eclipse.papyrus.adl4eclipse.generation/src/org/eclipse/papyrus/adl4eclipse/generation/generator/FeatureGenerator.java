@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Thomas Daniellou (CEA LIST) - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.adl4eclipse.generation.generator;
 
@@ -46,7 +48,7 @@ public class FeatureGenerator implements Generator {
 		stereotype = component.getAppliedStereotype(ADL4Eclipse_Stereotypes.FEATURE_STEREOTYPE);
 
 		files = new HashSet<>();
-		files.add(FeatureProjectEditor.FRAGMENT_XML_FILE);
+		files.add(FeatureProjectEditor.FEATURE_XML_FILE);
 	}
 
 	@Override
