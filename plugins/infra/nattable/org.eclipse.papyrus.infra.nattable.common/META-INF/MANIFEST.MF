@@ -23,4 +23,4 @@ Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.common.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.common;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2014 LIFL, CEA LIST, and others.
- *
+ * Copyright (c) 2008, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +10,7 @@
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - service hook for integrating tools into graphical editor (CDO)
  *  Christian W. Damus (CEA) - bug 392301
+ *  Christian W. Damus - bug 474467
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common;
@@ -19,19 +19,19 @@ import java.lang.reflect.Constructor;
 
 import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.AbstractPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.messages.Messages;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.providers.NotationLabelProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.ui.extension.diagrameditor.AbstractEditorFactory;
 import org.eclipse.papyrus.infra.ui.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorActionBarContributor;
@@ -83,17 +83,14 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.ui.extension.diagrameditor.IPluggableEditorFactory#createIPageModel(java.lang.Object)
-	 * @param pageIdentifier
-	 * @return
-	 *
-	 */
 	@Override
 	public IPageModel createIPageModel(Object pageIdentifier) {
+		ServicesRegistry services = getServiceRegistry();
+		ILabelProvider labels = ServiceUtils.getInstance().tryService(services, LabelProviderService.class)
+				.map(lps -> lps.getLabelProvider(pageIdentifier))
+				.orElseGet(NotationLabelProvider::new);
 
-		return new GMFEditorModel((Diagram) pageIdentifier, getServiceRegistry());
+		return new GMFEditorModel((Diagram) pageIdentifier, services, labels);
 	}
 
 	/**
@@ -102,7 +99,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 	 * @author dumoulin
 	 *
 	 */
-	class GMFEditorModel implements IEditorModel {
+	class GMFEditorModel extends AbstractPageModel implements IEditorModel {
 
 		/**
 		 * The Diagram object describing the diagram.
@@ -114,13 +111,13 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 		 */
 		private ServicesRegistry servicesRegistry;
 
-		private Image tabIcon;
-
 		/**
 		 *
 		 * Constructor.
 		 */
-		public GMFEditorModel(Diagram pageIdentifier, ServicesRegistry servicesRegistry) {
+		public GMFEditorModel(Diagram pageIdentifier, ServicesRegistry servicesRegistry, ILabelProvider labels) {
+			super(labels);
+
 			diagram = pageIdentifier;
 			this.servicesRegistry = servicesRegistry;
 		}
@@ -203,51 +200,6 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 		@Override
 		public Object getRawModel() {
 			return diagram;
-		}
-
-		/**
-		 * Get the icon to be shown by Tabs
-		 *
-		 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel#getTabIcon()
-		 * @return
-		 *
-		 */
-		@Override
-		public Image getTabIcon() {
-			if (tabIcon == null) {
-				ImageDescriptor imageDescriptor = DiagramUtils.getPrototype(diagram).getIconDescriptor();
-				if (imageDescriptor != null) {
-					tabIcon = imageDescriptor.createImage();
-				}
-			}
-
-			return tabIcon;
-		}
-
-		/**
-		 * Get the title of the Diagram.
-		 *
-		 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel#getTabTitle()
-		 * @return
-		 *
-		 */
-		@Override
-		public String getTabTitle() {
-			try {
-				LabelProviderService service = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, diagram);
-				return service.getLabelProvider().getText(diagram);
-			} catch (ServiceException e) {
-				Activator.log.error(e);
-			}
-			return diagram.getName();
-		}
-
-		@Override
-		public void dispose() {
-			if (tabIcon != null) {
-				tabIcon.dispose();
-				tabIcon = null;
-			}
 		}
 	}
 

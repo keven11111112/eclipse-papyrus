@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 LIFL, CEA LIST, and others.
- *
+ * Copyright (c) 2011, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,23 +10,28 @@
  *  Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *  Christian W. Damus (CEA) - bug 392301
+ *  Christian W. Damus - bug 474467
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.factory;
 
 import java.lang.reflect.Constructor;
 
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.AbstractPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.provider.TableLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.ui.extension.diagrameditor.AbstractEditorFactory;
 import org.eclipse.papyrus.infra.ui.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorActionBarContributor;
@@ -64,7 +68,12 @@ public class NattableEditorFactory extends AbstractEditorFactory {
 	 */
 	@Override
 	public IPageModel createIPageModel(Object pageIdentifier) {
-		return new NattableEditorModel(pageIdentifier, getServiceRegistry());
+		ServicesRegistry services = getServiceRegistry();
+		ILabelProvider labels = ServiceUtils.getInstance().tryService(services, LabelProviderService.class)
+				.map(lps -> lps.getLabelProvider(pageIdentifier))
+				.orElseGet(TableLabelProvider::new);
+
+		return new NattableEditorModel(pageIdentifier, services, labels);
 	}
 
 	/**
@@ -84,7 +93,7 @@ public class NattableEditorFactory extends AbstractEditorFactory {
 	 * @author cedric dumoulin
 	 *
 	 */
-	class NattableEditorModel implements IEditorModel {
+	class NattableEditorModel extends AbstractPageModel implements IEditorModel {
 
 
 		/**
@@ -106,7 +115,9 @@ public class NattableEditorFactory extends AbstractEditorFactory {
 		 *
 		 * Constructor.
 		 */
-		public NattableEditorModel(Object pageIdentifier, ServicesRegistry servicesRegistry) {
+		public NattableEditorModel(Object pageIdentifier, ServicesRegistry servicesRegistry, ILabelProvider labels) {
+			super(labels);
+
 			this.rawModel = (Table) pageIdentifier;
 			this.servicesRegistry = servicesRegistry;
 		}
@@ -185,35 +196,6 @@ public class NattableEditorFactory extends AbstractEditorFactory {
 		@Override
 		public Object getRawModel() {
 			return this.rawModel;
-		}
-
-		/**
-		 * Get the icon to be shown by Tabs
-		 *
-		 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel#getTabIcon()
-		 * @return
-		 *
-		 */
-		@Override
-		public Image getTabIcon() {
-			return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(this.rawModel.getTableConfiguration().getIconPath());
-		}
-
-		/**
-		 * Get the title of the Diagram.
-		 *
-		 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel#getTabTitle()
-		 * @return
-		 *
-		 */
-		@Override
-		public String getTabTitle() {
-			return this.rawModel.getName();
-		}
-
-		@Override
-		public void dispose() {
-			// Pass. The tab icon is a plugin-shared image
 		}
 	}
 }

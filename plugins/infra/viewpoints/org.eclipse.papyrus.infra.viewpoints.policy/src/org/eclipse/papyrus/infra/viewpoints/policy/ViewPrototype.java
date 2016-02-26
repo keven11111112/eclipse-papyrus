@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 474467
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.policy;
@@ -158,7 +158,7 @@ public abstract class ViewPrototype {
 	 *
 	 * @param view
 	 *            The view for which a prototype is expected
-	 * @return The view's prototype
+	 * @return The view's prototype, never {@code null} but possibly {@link #isUnavailable() unavailable}
 	 */
 	public static ViewPrototype get(EObject view) {
 		for (IViewTypeHelper helper : HELPERS) {
@@ -224,6 +224,17 @@ public abstract class ViewPrototype {
 	 */
 	public boolean isNatural() {
 		return isNatural(configuration);
+	}
+
+	/**
+	 * Queries whether the prototype is unavailable, effectively a <em>Null Object</em>.
+	 * 
+	 * @return whether the prototype is a non-view prototype
+	 * 
+	 * @since 1.2
+	 */
+	public boolean isUnavailable() {
+		return false;
 	}
 
 	/**
@@ -419,6 +430,7 @@ public abstract class ViewPrototype {
 		/**
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 		 */
+		@Override
 		public int compare(ViewPrototype proto1, ViewPrototype proto2) {
 			Integer p1 = getPriority(proto1);
 			Integer p2 = getPriority(proto2);

@@ -1,7 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
  *
- *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,12 +8,13 @@
  *
  * Contributors:
  *  Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
- *  Christian W. Damus - bug 468030
- *  Christian W. Damus - bug 485220
+ *  Christian W. Damus - bugs 468030, 485220, 474467
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.core.utils;
+
+import java.util.Optional;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -225,5 +225,46 @@ public abstract class AbstractServiceUtils<T> {
 				return result;
 			}
 		};
+	}
+
+	/**
+	 * Attempts to obtain the service registry from the given context object.
+	 * 
+	 * @param from
+	 *            the context object
+	 * @return maybe the registry
+	 * 
+	 * @since 2.0
+	 */
+	protected Optional<ServicesRegistry> tryServiceRegistry(T from) {
+		try {
+			return Optional.ofNullable(getServiceRegistry(from));
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+			return Optional.empty();
+		}
+	}
+
+	/**
+	 * Attempts to obtain the requested from the registry associated with
+	 * the given context object.
+	 * 
+	 * @param from
+	 *            the context object
+	 * @param serviceType
+	 *            the type of service to obtain
+	 * @return maybe the service
+	 * 
+	 * @since 2.0
+	 */
+	public <S> Optional<S> tryService(T from, Class<S> serviceType) {
+		return tryServiceRegistry(from).map(services -> {
+			try {
+				return services.getService(serviceType);
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+				return (S) null;
+			}
+		});
 	}
 }

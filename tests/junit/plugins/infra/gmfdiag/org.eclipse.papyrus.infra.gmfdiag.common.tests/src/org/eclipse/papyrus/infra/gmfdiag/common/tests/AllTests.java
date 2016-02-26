@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,14 +8,15 @@
  *
  * Contributors:
  *  Christian W. Damus (CEA) - initial API and implementation
- *  Christian W. Damus - bug 465416
+ *  Christian W. Damus - bugs 465416, 474467
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.tests;
 
+import org.eclipse.papyrus.infra.gmfdiag.common.providers.tests.NotationLabelProviderTest;
 import org.eclipse.papyrus.infra.gmfdiag.common.sync.tests.SyncTests;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafeTest;
-import org.junit.runner.RunWith;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 
@@ -34,7 +35,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		ExpansionDropElements.class,
 		AssistantUsage.class,
 		GMFUnsafeTest.class,
-		SyncTests.class
+		SyncTests.class,
+		NotationLabelProviderTest.class,
 })
 public class AllTests {
 

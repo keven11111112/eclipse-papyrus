@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bug 485214
+ *   Christian W. Damus - bugs 485214, 474467
  *
  */
 package org.eclipse.papyrus.editor.integration.tests.tests;
@@ -186,4 +186,17 @@ public class EditorMemoryLeakTest extends AbstractPapyrusTest {
 		memory.add(editor.getModel().getAppliedProfile("j2ee"));
 	}
 
+	/**
+	 * Verify that the attachment of listeners to the UML's shared item providers doesn't
+	 * cause any leaks (all is properly cleaned up when unloading the editor).
+	 */
+	@Test
+	@SoftReferenceSensitive
+	@PluginResource("model/basic/unnamed_diagram.di")
+	public void testCleanUpListenersOnItemProviders() {
+		memory.add(editor.getModelSet());
+
+		DiagramEditor diagramEditor = (DiagramEditor) editor.getEditor().getActiveEditor();
+		memory.add(diagramEditor.getDiagramEditPart());
+	}
 }

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2015 CEA LIST & LIFL, Christian W. Damus, and others
- *
+ * Copyright (c) 2009, 2016 CEA LIST, LIFL, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +8,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *  Christian W. Damus - bug 469188
+ *  Christian W. Damus - bugs 469188, 474467
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -23,6 +22,7 @@ import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.sasheditor.Activator;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.AbstractPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IMultiPageEditorSite;
@@ -168,6 +168,10 @@ public class EditorPart extends PagePart implements IEditorPage {
 		super(parent, rawModel);
 		this.editorModel = editorModel;
 		this.multiEditorManager = multiEditorManager;
+
+		if (editorModel instanceof AbstractPageModel) {
+			((AbstractPageModel) editorModel).onLabelChanged(label -> refreshTab());
+		}
 	}
 
 	@Override

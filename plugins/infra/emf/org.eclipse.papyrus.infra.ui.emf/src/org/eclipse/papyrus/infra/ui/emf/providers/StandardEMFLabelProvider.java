@@ -1,5 +1,6 @@
 /*******************************************************************************
- * Copyright (c) 2008 Obeo.
+ * Copyright (c) 2008, 2016 Obeo, CEA LIST, Christian W. Damus, and others.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +10,8 @@
  *     Obeo - initial API and implementation
  *     Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Added support for enum literals
  *     Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Implementation of IDetailLabelProvider
+ *     Christian W. Damus - bug 474467
+ *     
  *******************************************************************************/
 package org.eclipse.papyrus.infra.ui.emf.providers;
 
@@ -41,9 +44,6 @@ import org.eclipse.swt.graphics.Image;
  * @author Jerome Benois
  */
 public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implements IDetailLabelProvider {
-
-	/** item provider class */
-	private static final Class<?> IItemLabelProviderClass = IItemLabelProvider.class;
 
 	/** list of adapter factories, identified by their Ids */
 	private static Map<String, AdapterFactory> factories = new HashMap<String, AdapterFactory>();
@@ -154,10 +154,14 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 		if (eObject != null) {
 			AdapterFactory adapterFactory = getEditFactory(eObject);
 			if (adapterFactory != null) {
-				return (IItemLabelProvider) adapterFactory.adapt(eObject, IItemLabelProviderClass);
+				itemLabelProvider = adapt(adapterFactory, eObject);
 			}
 		}
 		return itemLabelProvider;
+	}
+
+	IItemLabelProvider adapt(AdapterFactory adapterFactory, EObject object) {
+		return (IItemLabelProvider) adapterFactory.adapt(object, IItemLabelProvider.class);
 	}
 
 	/**
@@ -205,6 +209,7 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 		return factory;
 	}
 
+	@Override
 	public String getDetail(Object object) {
 		object = EMFHelper.getEObject(object);
 		return getText(object) + " - " + getQualifiedClassName(object); //$NON-NLS-1$
@@ -226,5 +231,4 @@ public class StandardEMFLabelProvider extends AdapterFactoryLabelProvider implem
 		}
 		return ""; //$NON-NLS-1$
 	}
-
 }

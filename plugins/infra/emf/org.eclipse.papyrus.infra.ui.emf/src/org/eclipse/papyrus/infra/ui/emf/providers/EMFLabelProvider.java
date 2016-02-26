@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 474467
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.emf.providers;
 
@@ -18,7 +20,9 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeElement;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.DecoratingCustomizedLabelProvider;
@@ -45,8 +49,21 @@ public class EMFLabelProvider extends ResolvingCustomizedLabelProvider implement
 	 * Creates a new EMFObjectLabelProvider.
 	 */
 	public EMFLabelProvider() {
-		super(new DecoratingCustomizedLabelProvider(Activator.getDefault().getCustomizationManager())); // Note: CustomizableModelLabelProvider doesn't use the CustomizationManager. It relies on the content provider's CustomizationManager
-		baseEMFLabelProvider = new StandardEMFLabelProvider();
+		this(new StandardEMFLabelProvider());
+	}
+
+	EMFLabelProvider(ILabelProvider baseEMFLabelProvider) {
+		// Note: CustomizableModelLabelProvider doesn't use the CustomizationManager.
+		// It relies on the content provider's CustomizationManager
+		super(new DecoratingCustomizedLabelProvider(Activator.getDefault().getCustomizationManager()));
+		this.baseEMFLabelProvider = baseEMFLabelProvider;
+	}
+
+	@Override
+	public void dispose() {
+		baseEMFLabelProvider.dispose();
+
+		super.dispose();
 	}
 
 	/**
@@ -169,7 +186,7 @@ public class EMFLabelProvider extends ResolvingCustomizedLabelProvider implement
 	 * @param objects
 	 *            a collection of objects
 	 * @return
-	 *         <code>true</code> if the image found for each object is the same <code>false</code> of if the collection is empty or the image returned
+	 * 		<code>true</code> if the image found for each object is the same <code>false</code> of if the collection is empty or the image returned
 	 *         for each object is not the same
 	 */
 	protected boolean hasCommonImage(final Collection<?> objects) {
@@ -191,7 +208,7 @@ public class EMFLabelProvider extends ResolvingCustomizedLabelProvider implement
 	 * @param commonEClass
 	 *            the eClass
 	 * @return
-	 *         the icon to use for this eclass
+	 * 		the icon to use for this eclass
 	 */
 	protected Image getNonCommonIcon(final Object commonObject) {
 		return getImage(commonObject);
@@ -202,7 +219,7 @@ public class EMFLabelProvider extends ResolvingCustomizedLabelProvider implement
 	 * @param objects
 	 *            a collection of eobject
 	 * @return
-	 *         the set of eclasses for the parameter objects
+	 * 		the set of eclasses for the parameter objects
 	 */
 	private Set<EClass> getEClasses(final Collection<EObject> objects) {
 		final Set<EClass> eclasses = new HashSet<EClass>();
@@ -212,6 +229,7 @@ public class EMFLabelProvider extends ResolvingCustomizedLabelProvider implement
 		return eclasses;
 	}
 
+	@Override
 	public String getDetail(Object object) {
 		object = EMFHelper.getEObject(object);
 		return getText(object) + " - " + getQualifiedClassName(object); //$NON-NLS-1$
@@ -236,6 +254,7 @@ public class EMFLabelProvider extends ResolvingCustomizedLabelProvider implement
 
 
 
+	@Override
 	public String getQualifierText(Object element) {
 		String result = null;
 
@@ -260,6 +279,7 @@ public class EMFLabelProvider extends ResolvingCustomizedLabelProvider implement
 		return result;
 	}
 
+	@Override
 	public Image getQualifierImage(Object element) {
 		Image result = null;
 
@@ -298,5 +318,29 @@ public class EMFLabelProvider extends ResolvingCustomizedLabelProvider implement
 			name = String.format("<%s>", object.eClass().getName());
 		}
 		buf.append(name);
+	}
+
+	@Override
+	public void addListener(ILabelProviderListener listener) {
+		super.addListener(listener);
+		baseEMFLabelProvider.addListener(listener);
+
+		// If we're adding a listener to it, presumably we want its
+		// notifications, so enable them
+		if (baseEMFLabelProvider.getClass() == StandardEMFLabelProvider.class) {
+			// Replace it with a fowarding provider
+			baseEMFLabelProvider.dispose();
+			baseEMFLabelProvider = new ForwardingEMFLabelProvider();
+			baseEMFLabelProvider.addListener(listener);
+		} else if (baseEMFLabelProvider instanceof AdapterFactoryLabelProvider) {
+			// Trust that it will notify if enabled
+			((AdapterFactoryLabelProvider) baseEMFLabelProvider).setFireLabelUpdateNotifications(true);
+		}
+	}
+
+	@Override
+	public void removeListener(ILabelProviderListener listener) {
+		baseEMFLabelProvider.removeListener(listener);
+		super.removeListener(listener);
 	}
 }

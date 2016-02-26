@@ -193,7 +193,7 @@
   <nattable:Table xmi:id="_HvMBoPrfEeOjArr2x5XJOA" name="classes_table" currentRowAxisProvider="_HvMosfrfEeOjArr2x5XJOA" currentColumnAxisProvider="_HvMosPrfEeOjArr2x5XJOA">
     <context xmi:type="uml:Model" href="employment_sashes.uml#_6iAasPJDEeOWJr1T78jdJA"/>
     <owner xmi:type="uml:Model" href="employment_sashes.uml#_6iAasPJDEeOWJr1T78jdJA"/>
-    <prototype xmi:type="configuration:PapyrusSyncTable" href="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration#_7wNb2NxhEeOqHvRyiN87hA"/>
+    <prototype xmi:type="configuration:PapyrusSyncTable" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/configs/genericTable.configuration#_Uz8agHDuEeWh-MssWmCB_A"/>
     <tableConfiguration xmi:type="nattableconfiguration:TableConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/configs/generic.nattableconfiguration#/"/>
     <columnAxisProvidersHistory xmi:type="nattableaxisprovider:SlaveObjectAxisProvider" xmi:id="_HvMosPrfEeOjArr2x5XJOA" description="This axis provider provides available columns according to the rows of the table (features of the object displayed on the other axis)" name="UML Feature axis provider">
       <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_I58kkPrfEeOjArr2x5XJOA">
