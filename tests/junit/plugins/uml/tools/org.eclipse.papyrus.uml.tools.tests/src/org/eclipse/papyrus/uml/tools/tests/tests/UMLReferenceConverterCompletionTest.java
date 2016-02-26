@@ -7,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUe (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 481835
  *   
  *****************************************************************************/
 
@@ -34,10 +35,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 /**
- * @author VL222926
- * 
- *         This class the suggestion of the content assist
- *
+ * This class the suggestion of the content assist
  */
 @PluginResource("/resources/uml/UMLReferenceConverterCompletionTest.di")
 public class UMLReferenceConverterCompletionTest {
@@ -126,7 +124,7 @@ public class UMLReferenceConverterCompletionTest {
 		Assert.assertEquals(8, values.size());
 		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 		Assert.assertTrue(!values.contains(IPapyrusConverter.MORE_ELEMENTS));
-		Assert.assertTrue(values.contains(CLASS1_SHORTEST_QN_TO_DISPLAY));
+		// Bug 481835: The values contains 2 times 'Class1' for 2 different objects
 		Assert.assertTrue(values.contains(NESTED_CLASS1_NAME_TO_DISPLAY));
 		Assert.assertTrue(values.contains(CLASS2_NAME_TO_DISPLAY));
 		Assert.assertTrue(values.contains(CLASS3_NAME_TO_DISPLAY));
@@ -144,7 +142,7 @@ public class UMLReferenceConverterCompletionTest {
 		Assert.assertEquals(3, values.size());
 		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 		Assert.assertTrue(!values.contains(IPapyrusConverter.MORE_ELEMENTS));
-		Assert.assertTrue(values.contains(CLASS1_SHORTEST_QN_TO_DISPLAY));
+		// Bug 481835: The values contains 2 times 'Class1' for 2 different objects
 		Assert.assertTrue(values.contains(NESTED_CLASS1_NAME_TO_DISPLAY));
 	}
 
@@ -158,7 +156,7 @@ public class UMLReferenceConverterCompletionTest {
 		Assert.assertEquals(7, values.size());
 		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 		Assert.assertTrue(!values.contains(IPapyrusConverter.MORE_ELEMENTS));
-		Assert.assertTrue(values.contains(CLASS1_SHORTEST_QN_TO_DISPLAY));
+		// Bug 481835: The values contains 2 times 'Class1' for 2 different objects
 		Assert.assertTrue(values.contains(NESTED_CLASS1_NAME_TO_DISPLAY));
 		Assert.assertTrue(values.contains(CLASS2_NAME_TO_DISPLAY));
 		Assert.assertTrue(values.contains(CLASS4_NAME_TO_DISPLAY));
@@ -204,7 +202,7 @@ public class UMLReferenceConverterCompletionTest {
 		Assert.assertEquals(8, values.size());
 		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 		Assert.assertTrue(!values.contains(IPapyrusConverter.MORE_ELEMENTS));
-		Assert.assertTrue(values.contains(CLASS1_SHORTEST_QN_TO_DISPLAY));
+		// Bug 481835: The values contains 2 times 'Class1' for 2 different objects
 		Assert.assertTrue(values.contains(NESTED_CLASS1_NAME_TO_DISPLAY));
 		Assert.assertTrue(values.contains(CLASS2_NAME_TO_DISPLAY));
 		Assert.assertTrue(values.contains(CLASS3_NAME_TO_DISPLAY));
