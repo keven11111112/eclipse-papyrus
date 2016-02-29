@@ -26,7 +26,7 @@
 		<!-- Timestamp used in various places, e.g. the about dialog (see about.mappings) -->
 	    <eclipse.simultaneous.release.build>${maven.build.timestamp}</eclipse.simultaneous.release.build>
 	    <!-- Human readable name of the release, e.g. used in the about dialog (see about.mappings) -->
-	    <eclipse.simultaneous.release.name>Mars.3 (4.5.3)</eclipse.simultaneous.release.name>
+	    <eclipse.simultaneous.release.name>Payrus Mars (1.1.4)</eclipse.simultaneous.release.name>
 	    <eclipse.download>http://download.eclipse.org</eclipse.download>
 <!-- Set to file:/home/data/httpd/download.eclipse.org when building on Eclipse servers to improve performances -->
 	</properties>
