@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.nattable.utils;
 import java.io.Reader;
 import java.util.Map;
 
+import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderHierarchicalLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -79,7 +80,11 @@ public class PasteHelperUtils {
 		if (TableHelper.isSingleColumnTreeTable(tableManager)) {
 			nbExpectedColumn++;
 		} else {
-			nbExpectedColumn = nbExpectedColumn + ((NattableModelManager) tableManager).getRowHeaderLayerStack().getRowHeaderLayerLabel().getColumnCount();
+			if(TableHelper.isTreeTable(tableManager)){
+				nbExpectedColumn = nbExpectedColumn + ((RowHeaderHierarchicalLayerStack)((NattableModelManager) tableManager).getRowHeaderLayerStack()).getRowHeaderColumnHideShowLayer().getColumnCount();
+			}else{
+				nbExpectedColumn = nbExpectedColumn + ((NattableModelManager) tableManager).getRowHeaderLayerStack().getRowHeaderLayerLabel().getColumnCount();
+			}
 		}
 
 		// If the number of column read is equals to the number of column in table, this is a basic paste (PasteEObject...)
