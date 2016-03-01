@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   LIFL - Initial API and implementation
- *   Christian W. Damus - bug 485220
+ *   Christian W. Damus - bugs 485220, 488791
  * 
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 public class FakeModel extends AbstractBaseModel {
 
 	private String identifier;
-	
+
 	public FakeModel(String identifier) {
 		this.identifier = identifier;
 	}
@@ -59,5 +59,9 @@ public class FakeModel extends AbstractBaseModel {
 		throw new IllegalArgumentException("cannot persist " + object); //$NON-NLS-1$
 	}
 
-
+	// Overridden to make it accessible
+	@Override
+	protected ModelSet getModelManager() {
+		return super.getModelManager();
+	}
 }

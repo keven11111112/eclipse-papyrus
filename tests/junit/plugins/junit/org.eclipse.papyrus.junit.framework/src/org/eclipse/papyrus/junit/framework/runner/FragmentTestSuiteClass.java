@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 451230
+ *  Christian W. Damus - bugs 451230, 488791
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.junit.framework.runner;
 
@@ -17,8 +18,11 @@ import org.osgi.framework.Bundle;
 
 
 /**
- * Test Suite class entry for a test fragment
+ * Test Suite class entry for a test fragment.
+ * 
+ * @deprecated As of 2.0, All test suites should be plug-in bundles, not fragment bundles.
  */
+@Deprecated
 public class FragmentTestSuiteClass implements ITestSuiteClass {
 
 	/** unique identifier of the bundle host */
@@ -31,9 +35,9 @@ public class FragmentTestSuiteClass implements ITestSuiteClass {
 	 * Constructor.
 	 *
 	 * @param hostBundleId
-	 *        unique identifier of the bundle host
+	 *            unique identifier of the bundle host
 	 * @param classQualifiedName
-	 *        qualified name of the test suite class
+	 *            qualified name of the test suite class
 	 */
 	public FragmentTestSuiteClass(String hostBundleId, String classQualifiedName) {
 		this.hostBundleId = hostBundleId;
@@ -46,7 +50,7 @@ public class FragmentTestSuiteClass implements ITestSuiteClass {
 	@Override
 	public Class<?> getMainTestSuiteClass() {
 		Bundle bundle = Platform.getBundle(hostBundleId);
-		if(bundle == null) {
+		if (bundle == null) {
 			System.err.println("Impossible to find bundle: " + hostBundleId);
 		} else {
 			try {

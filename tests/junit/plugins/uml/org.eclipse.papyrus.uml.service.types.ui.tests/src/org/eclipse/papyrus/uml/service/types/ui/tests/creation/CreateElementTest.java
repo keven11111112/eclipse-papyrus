@@ -100,7 +100,7 @@ public class CreateElementTest extends AbstractPapyrusTest {
 
 		// import test model
 		try {
-			copyPapyrusModel = PapyrusProjectUtils.copyPapyrusModel(createProject, Platform.getBundle("org.eclipse.papyrus.uml.service.types.ui"), "/resource/", "TestModel");
+			copyPapyrusModel = PapyrusProjectUtils.copyPapyrusModel(createProject, Platform.getBundle("org.eclipse.papyrus.uml.service.types.ui.tests"), "/resource/", "TestModel");
 		} catch (CoreException e) {
 			fail(e.getMessage());
 		} catch (IOException e) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,8 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bug 436666
- *   Christian W. Damus - bug 458736
+ *   Christian W. Damus - bugs 436666, 458736, 488791
  *
  */
 package org.eclipse.papyrus.uml.modelrepair.internal.stereotypes;
@@ -25,6 +24,7 @@ import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
@@ -33,24 +33,31 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.junit.utils.rules.AbstractHouseKeeperRule.CleanUp;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.junit.utils.rules.ModelSetFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.uml.modelrepair.ui.IZombieStereotypePresenter;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import com.google.common.base.Function;
 import com.google.common.base.Functions;
 
 
@@ -71,8 +78,9 @@ public class StereotypeApplicationRepairSnippetTest extends AbstractPapyrusTest 
 
 	private Class class1;
 
-	private StereotypeApplicationRepairSnippet fixture;
+	private MyStereotypeApplicationRepairSnippet fixture;
 
+	@CleanUp
 	private ZombieStereotypesDescriptor zombies;
 
 	public StereotypeApplicationRepairSnippetTest() {
@@ -100,7 +108,7 @@ public class StereotypeApplicationRepairSnippetTest extends AbstractPapyrusTest 
 		assertThat("Should have found zombie stereotypes", zombies, notNullValue());
 
 		IAdaptable schema = getOnlyZombieSchema();
-		EPackage ePackage = AdapterUtils.adapt(schema, EPackage.class).get();
+		EPackage ePackage = PlatformHelper.getAdapter(schema, EPackage.class);
 		assertThat("Did not match schema to loaded profile", EcoreUtil.getRootContainer(ePackage), is((EObject) profile));
 		assertThat("EPackage is an unknown schema", getExtendedMetadata().demandedPackages(), not(hasItem(ePackage)));
 
@@ -121,7 +129,7 @@ public class StereotypeApplicationRepairSnippetTest extends AbstractPapyrusTest 
 		assertThat("Should have found zombie stereotypes", zombies, notNullValue());
 
 		IAdaptable schema = getOnlyZombieSchema();
-		EPackage ePackage = AdapterUtils.adapt(schema, EPackage.class).get();
+		EPackage ePackage = PlatformHelper.getAdapter(schema, EPackage.class);
 		assertThat("Did not match schema to loaded profile", EcoreUtil.getRootContainer(ePackage), is((EObject) profile));
 		assertThat("EPackage is an unknown schema", getExtendedMetadata().demandedPackages(), not(hasItem(ePackage)));
 
@@ -142,7 +150,7 @@ public class StereotypeApplicationRepairSnippetTest extends AbstractPapyrusTest 
 		assertThat("Should have found zombie stereotypes", zombies, notNullValue());
 
 		IAdaptable schema = getOnlyZombieSchema();
-		EPackage ePackage = AdapterUtils.adapt(schema, EPackage.class).get();
+		EPackage ePackage = PlatformHelper.getAdapter(schema, EPackage.class);
 		assertThat("EPackage is not an unknown schema", getExtendedMetadata().demandedPackages(), hasItem(ePackage));
 
 		IRepairAction action = zombies.getSuggestedRepairAction(schema);
@@ -181,9 +189,9 @@ public class StereotypeApplicationRepairSnippetTest extends AbstractPapyrusTest 
 		stereotype = profile.getOwnedStereotype("Stereo");
 		class1 = (Class) modelSet.getModel().getOwnedType("Class1");
 
-		fixture = houseKeeper.cleanUpLater(new StereotypeApplicationRepairSnippet(null, Functions.constant(profile)), "dispose", modelSet.getResourceSet());
+		fixture = houseKeeper.cleanUpLater(new MyStereotypeApplicationRepairSnippet(null, Functions.constant(profile)), "dispose", modelSet.getResourceSet());
 		fixture.start(modelSet.getResourceSet());
-		houseKeeper.setField("zombies", fixture.getZombieStereotypes(modelSet.getModelResource(), modelSet.getModel()));
+		zombies = fixture.getZombieStereotypes(modelSet.getModelResource(), modelSet.getModel());
 	}
 
 	void repair(final IAdaptable schema, final IRepairAction action) {
@@ -252,5 +260,48 @@ public class StereotypeApplicationRepairSnippetTest extends AbstractPapyrusTest 
 		}
 
 		return result;
+	}
+
+	//
+	// Nested types
+	//
+
+	static class MyStereotypeApplicationRepairSnippet extends StereotypeApplicationRepairSnippet {
+
+		MyStereotypeApplicationRepairSnippet() {
+			super();
+		}
+
+		MyStereotypeApplicationRepairSnippet(Function<? super ModelSet, ? extends IZombieStereotypePresenter> presenterFunction, Function<? super EPackage, Profile> dynamicProfileSupplier) {
+			super(presenterFunction, dynamicProfileSupplier);
+		}
+
+		MyStereotypeApplicationRepairSnippet(Function<? super ModelSet, ? extends IZombieStereotypePresenter> presenterFunction) {
+			super(presenterFunction);
+		}
+
+		// Overridden to make it accessible
+		@Override
+		protected ZombieStereotypesDescriptor getZombieStereotypes(Resource resource) {
+			return super.getZombieStereotypes(resource);
+		}
+
+		// Overridden to make it accessible
+		@Override
+		protected ZombieStereotypesDescriptor getZombieStereotypes(Resource resource, Element root) {
+			return super.getZombieStereotypes(resource, root);
+		}
+
+		// Overridden to make it accessible
+		@Override
+		protected Element getRootUMLElement(Resource resource) {
+			return super.getRootUMLElement(resource);
+		}
+
+		// Overridden to make it accessible
+		@Override
+		protected Set<EPackage> getAppliedDefinitions(Iterable<? extends ProfileApplication> profileApplications) {
+			return super.getAppliedDefinitions(profileApplications);
+		}
 	}
 }

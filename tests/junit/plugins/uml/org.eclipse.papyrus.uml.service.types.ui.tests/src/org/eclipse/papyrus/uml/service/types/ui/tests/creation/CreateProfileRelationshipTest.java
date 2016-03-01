@@ -77,7 +77,7 @@ public class CreateProfileRelationshipTest extends AbstractCreateRelationshipTes
 
 		// import test model
 		try {
-			copyPapyrusModel = PapyrusProjectUtils.copyPapyrusModel(createProject, Platform.getBundle("org.eclipse.papyrus.uml.service.types.ui"), "/resource/", "testprofile.profile");
+			copyPapyrusModel = PapyrusProjectUtils.copyPapyrusModel(createProject, Platform.getBundle("org.eclipse.papyrus.uml.service.types.ui.tests"), "/resource/", "testprofile.profile");
 		} catch (CoreException e) {
 			fail(e.getMessage());
 		} catch (IOException e) {

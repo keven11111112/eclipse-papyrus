@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL
- *
+ * Copyright (c) 2009, 2016 CEA LIST, LIFL, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 
@@ -58,7 +58,7 @@ public class DiSashModelMngrTest extends AbstractPapyrusTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		//Nothing
+		// Nothing
 	}
 
 	protected Resource createDiSashModelResource() {
@@ -83,7 +83,7 @@ public class DiSashModelMngrTest extends AbstractPapyrusTest {
 	@Test
 	public void testDiSashModelMngrIPageModelFactory() {
 
-		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);
+		MyDISashModelMngr modelMngr = new MyDISashModelMngr(fakeModelFactory);
 
 		assertNotNull("retrieve ContentProvider", modelMngr.getISashWindowsContentProvider());
 		assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
@@ -101,7 +101,7 @@ public class DiSashModelMngrTest extends AbstractPapyrusTest {
 	public void testDiSashModelMngrIPageModelFactoryResource() {
 		Resource resource = createDiSashModelResource();
 
-		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory, resource);
+		MyDISashModelMngr modelMngr = new MyDISashModelMngr(fakeModelFactory, resource);
 
 		assertNotNull("retrieve ContentProvider", modelMngr.getISashWindowsContentProvider());
 		assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
@@ -124,7 +124,7 @@ public class DiSashModelMngrTest extends AbstractPapyrusTest {
 	public void testDiSashModelMngrIPageModelFactoryDiSashModel() {
 		SashWindowsMngr diSashModel = DiUtils.createDefaultSashWindowsMngr();
 
-		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory, diSashModel);
+		MyDISashModelMngr modelMngr = new MyDISashModelMngr(fakeModelFactory, diSashModel);
 
 		assertNotNull("retrieve ContentProvider", modelMngr.getISashWindowsContentProvider());
 		assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
@@ -138,7 +138,7 @@ public class DiSashModelMngrTest extends AbstractPapyrusTest {
 	 */
 	@Test
 	public void testGetIPageMngr() {
-		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);
+		MyDISashModelMngr modelMngr = new MyDISashModelMngr(fakeModelFactory);
 
 		assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
 	}
@@ -148,7 +148,7 @@ public class DiSashModelMngrTest extends AbstractPapyrusTest {
 	 */
 	@Test
 	public void testGetISashWindowsContentProvider() {
-		DiSashModelMngr modelMngr = new DiSashModelMngr(fakeModelFactory);
+		MyDISashModelMngr modelMngr = new MyDISashModelMngr(fakeModelFactory);
 
 		assertNotNull("retrieve ContentProvider", modelMngr.getISashWindowsContentProvider());
 	}
@@ -164,4 +164,38 @@ public class DiSashModelMngrTest extends AbstractPapyrusTest {
 		return DiUtils.lookupSashWindowsMngr(diResource);
 	}
 
+	//
+	// Nested types
+	//
+
+	static class MyDISashModelMngr extends DiSashModelMngr {
+
+		MyDISashModelMngr(IPageModelFactory pageModelFactory, boolean createDefaultSashModel) {
+			super(pageModelFactory, createDefaultSashModel);
+		}
+
+		MyDISashModelMngr(IPageModelFactory pageModelFactory, Resource diResource) {
+			super(pageModelFactory, diResource);
+		}
+
+		MyDISashModelMngr(IPageModelFactory pageModelFactory, SashWindowsMngr sashModel) {
+			super(pageModelFactory, sashModel);
+		}
+
+		MyDISashModelMngr(IPageModelFactory pageModelFactory) {
+			super(pageModelFactory);
+		}
+
+		// Overridden to make it accessible
+		@Override
+		protected SashWindowsMngr getDiSashWindowsMngr() {
+			return super.getDiSashWindowsMngr();
+		}
+
+		// Overridden to make it accessible
+		@Override
+		protected SashWindowsMngr lookupSashWindowMngr(Resource diResource) {
+			return super.lookupSashWindowMngr(diResource);
+		}
+	}
 }

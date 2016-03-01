@@ -10,7 +10,7 @@
  *
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 434993
- *  Christian W. Damus - bug 485220
+ *  Christian W. Damus - bugs 485220, 488791
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.tests;
@@ -20,18 +20,19 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
-import org.eclipse.papyrus.sysml.diagram.parametric.Activator;
 import org.eclipse.papyrus.sysml.diagram.parametric.tests.utils.Constants;
 import org.eclipse.papyrus.sysml.diagram.parametric.tests.utils.EditorUtils;
 import org.eclipse.ui.IEditorPart;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.osgi.framework.Bundle;
 
 /**
  * Abstract Papyrus initialization class (required to get Service activation).
@@ -53,9 +54,10 @@ public abstract class AbstractTest4B extends AbstractPapyrusTest {
 		IFile emptyModel_no = testProject.getFile("ModelWithPD.notation");
 		IFile emptyModel_uml = testProject.getFile("ModelWithPD.uml");
 
-		emptyModel_di.create(Activator.getInstance().getBundle().getResource("/model/ModelWithPD.di").openStream(), true, new NullProgressMonitor());
-		emptyModel_no.create(Activator.getInstance().getBundle().getResource("/model/ModelWithPD.notation").openStream(), true, new NullProgressMonitor());
-		emptyModel_uml.create(Activator.getInstance().getBundle().getResource("/model/ModelWithPD.uml").openStream(), true, new NullProgressMonitor());
+		Bundle bundle = Platform.getBundle("org.eclipse.papyrus.sysml.diagram.parametric.tests");
+		emptyModel_di.create(bundle.getResource("/model/ModelWithPD.di").openStream(), true, new NullProgressMonitor());
+		emptyModel_no.create(bundle.getResource("/model/ModelWithPD.notation").openStream(), true, new NullProgressMonitor());
+		emptyModel_uml.create(bundle.getResource("/model/ModelWithPD.uml").openStream(), true, new NullProgressMonitor());
 
 		// Open the EmptyModel.di file with Papyrus (assumed to be the default editor for "di" files here).
 		editor = houseKeeper.openPapyrusEditor(emptyModel_di);

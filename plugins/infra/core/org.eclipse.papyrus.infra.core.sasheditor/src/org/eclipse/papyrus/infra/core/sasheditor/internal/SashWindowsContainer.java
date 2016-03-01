@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2014 LIFL, CEA LIST, and others.
+ * Copyright (c) 2009, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 437217
+ *  Christian W. Damus - bug 488791
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -273,7 +274,12 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * <li>properties are cleaned in order to help the GC</li>
 	 * <li>swt controls are not disposed again</li>
 	 * </ul>
-	 * <li></li> <li></li> <li></li> <li></li> <li></li> </ul>
+	 * <li></li>
+	 * <li></li>
+	 * <li></li>
+	 * <li></li>
+	 * <li></li>
+	 * </ul>
 	 *
 	 */
 	public void dispose() {
@@ -557,7 +563,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		return visitor.getVisiblePages();
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer#getNextPage()
@@ -569,7 +575,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		CollectNextPageVisitor visitor = new CollectNextPageVisitor(false);
 		return getPage(visitor);
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer#getNextPage()
@@ -581,15 +587,15 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		CollectNextPageVisitor visitor = new CollectNextPageVisitor(true);
 		return getPage(visitor);
 	}
-	
+
 	/**
 	 * Use the provided visitor to get the next page and return it.
 	 */
 	private IPage getPage(CollectNextPageVisitor visitor) {
 		if (visitor != null) {
-			rootPart.visit(visitor);			
+			rootPart.visit(visitor);
 			if (!visitor.getNextPages().isEmpty()) {
-				return (IPage) visitor.getNextPages().get(0);
+				return visitor.getNextPages().get(0);
 			}
 		}
 		return null;
@@ -885,8 +891,10 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * Visit the Part associated to the container. This method visibility is protected in order to be able to access it
 	 * from junit tests.
 	 * It is not intended to be used by public API or from outside.
+	 * 
+	 * @noreference This method is not intended to be referenced by clients.
 	 */
-	protected void visit(IPartVisitor visitor) {
+	public void visit(IPartVisitor visitor) {
 		rootPart.visit(visitor);
 	}
 
@@ -1314,7 +1322,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		}
 
 	}
-	
+
 	/**
 	 * Inner class.
 	 * A visitor used to collect the next page of the next opened tab (right or left).
@@ -1323,7 +1331,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	private class CollectNextPageVisitor extends PartVisitor {
 
 		private List<IPage> nextPages = new ArrayList<IPage>();
-		
+
 		private final boolean isPrevious;
 
 		/**
@@ -1348,14 +1356,14 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		public boolean accept(TabFolderPart part) {
 			PagePart activePage = activePageTracker.getActiveEditor();
 			PagePart visiblePage = part.getVisiblePagePart();
-			
+
 			if (activePage == visiblePage) {
 				CTabFolder tabFolder = part.getTabFolder();
 				int itemCount = tabFolder.getItemCount();
-				
+
 				if (itemCount > 1) {
 					int selectionIndex = tabFolder.getSelectionIndex();
-					
+
 					if (isPrevious) {
 						selectionIndex--;
 						if (selectionIndex < 0) {
@@ -1367,14 +1375,14 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 							selectionIndex = 0;
 						}
 					}
-					
+
 					IPage nextPage = part.getPagePart(selectionIndex);
 					if (nextPage != null) {
 						nextPages.add(nextPage);
 					}
 				}
 			}
-			
+
 			return true;
 		}
 	}

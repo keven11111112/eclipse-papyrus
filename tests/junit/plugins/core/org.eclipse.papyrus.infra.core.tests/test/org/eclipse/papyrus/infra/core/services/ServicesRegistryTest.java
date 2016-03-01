@@ -1,6 +1,16 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2010, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- */
+ * Contributors:
+ *   LIFL - Initial API and implementation
+ *   Christian W. Damus - bug 488791
+ *   
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.services;
 
 import static org.junit.Assert.assertEquals;
@@ -63,14 +73,14 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		servicesRegistry.add(servicePojoADesc);
 
 		// Test entries creation
-		//		try {
-		//			assertFalse("serviceA stopped", servicesRegistry.isStarted(serviceADesc.getKey()));
-		//			assertFalse("serviceB stopped", servicesRegistry.isStarted(serviceBDesc.getKey()));
-		//			assertFalse("serviceC stopped", servicesRegistry.isStarted(serviceCDesc.getKey()));
-		//			assertFalse("servicePojoA stopped", servicesRegistry.isStarted(servicePojoADesc.getKey()));
-		//		} catch (ServiceNotFoundException e) {
-		//			fail("Service should exist." + e.getMessage());
-		//		}
+		// try {
+		// assertFalse("serviceA stopped", servicesRegistry.isStarted(serviceADesc.getKey()));
+		// assertFalse("serviceB stopped", servicesRegistry.isStarted(serviceBDesc.getKey()));
+		// assertFalse("serviceC stopped", servicesRegistry.isStarted(serviceCDesc.getKey()));
+		// assertFalse("servicePojoA stopped", servicesRegistry.isStarted(servicePojoADesc.getKey()));
+		// } catch (ServiceNotFoundException e) {
+		// fail("Service should exist." + e.getMessage());
+		// }
 
 		// Test startup
 		servicesRegistry.startRegistry();
@@ -182,12 +192,12 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		servicesRegistry.add(serviceBDesc);
 
 		// Test creation
-		//		try {
-		//			assertFalse("serviceA stopped", servicesRegistry.isStarted(serviceADesc.getKey()));
-		//			assertFalse("serviceB stopped", servicesRegistry.isStarted(serviceBDesc.getKey()));
-		//		} catch (ServiceNotFoundException e) {
-		//			fail("Service should exist.");
-		//		}
+		// try {
+		// assertFalse("serviceA stopped", servicesRegistry.isStarted(serviceADesc.getKey()));
+		// assertFalse("serviceB stopped", servicesRegistry.isStarted(serviceBDesc.getKey()));
+		// } catch (ServiceNotFoundException e) {
+		// fail("Service should exist.");
+		// }
 
 		servicesRegistry.startRegistry();
 
@@ -249,12 +259,12 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
 		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
 		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
-		//		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
+		// assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
 
 		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
 		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
 		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
-		//		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
+		// assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
 
 		// Now, start lazy service
 		ServiceB service = servicesRegistry.getService(ServiceB.class);
@@ -268,7 +278,7 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
 		assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
 		assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
-		//		assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
+		// assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
 
 		//
 	}
@@ -293,13 +303,13 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		//
 		int i = 0;
 		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
-		//		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
+		// assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
 
 		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
-		//		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
+		// assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
 
 		// Now, start lazy service
-		ServiceB service = (ServiceB)servicesRegistry.getService(ServiceB.class.getName());
+		ServiceB service = (ServiceB) servicesRegistry.getService(ServiceB.class.getName());
 		assertNotNull("service found", service);
 		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
 		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
@@ -309,7 +319,7 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		servicesRegistry.disposeRegistry();
 		assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
 		assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
-		//		assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
+		// assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
 
 		//
 	}
@@ -327,7 +337,7 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		String C = "C";
 		String D = "D";
 		String E = "E";
-		//		String F = "F";
+		// String F = "F";
 
 		// Create services E --> D --> C --> B --> A
 		FakeService.getTrace().reset();
@@ -337,7 +347,7 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		servicesRegistry.add(new ServiceDesc(C, ServiceStartKind.STARTUP, Arrays.asList(B)));
 		servicesRegistry.add(new ServiceDesc(B, ServiceStartKind.STARTUP, Arrays.asList(A)));
 		servicesRegistry.add(new ServiceDesc(A, ServiceStartKind.STARTUP));
-		//		servicesRegistry.add( new ServiceDesc( F, ServiceStartKind.STARTUP, Arrays.asList(E) ));
+		// servicesRegistry.add( new ServiceDesc( F, ServiceStartKind.STARTUP, Arrays.asList(E) ));
 
 		// Start services
 		servicesRegistry.startRegistry();
@@ -348,33 +358,33 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		assertNotSame("services are different", servicesRegistry.getService(A), servicesRegistry.getService(B));
 
 		// Get names of created services
-		String nameA = ((FakeService)servicesRegistry.getService(A)).getName();
-		String nameB = ((FakeService)servicesRegistry.getService(B)).getName();
-		String nameC = ((FakeService)servicesRegistry.getService(C)).getName();
-		String nameD = ((FakeService)servicesRegistry.getService(D)).getName();
-		String nameE = ((FakeService)servicesRegistry.getService(E)).getName();
-		//		String nameF = ((FakeService)servicesRegistry.getService(F)).getName();
+		String nameA = ((FakeService) servicesRegistry.getService(A)).getName();
+		String nameB = ((FakeService) servicesRegistry.getService(B)).getName();
+		String nameC = ((FakeService) servicesRegistry.getService(C)).getName();
+		String nameD = ((FakeService) servicesRegistry.getService(D)).getName();
+		String nameE = ((FakeService) servicesRegistry.getService(E)).getName();
+		// String nameF = ((FakeService)servicesRegistry.getService(F)).getName();
 
 
-		// check order	(E and F order are not guaranteed)
+		// check order (E and F order are not guaranteed)
 		// order should be A, B, C, D, E
 		TestTrace trace = FakeService.getTrace();
 		int i = 0;
-		//		assertEquals("order", nameF + ",create", trace.getNameTrace(i++));
+		// assertEquals("order", nameF + ",create", trace.getNameTrace(i++));
 		assertEquals("order", nameA + ",create", trace.getNameTrace(i++));
 		assertEquals("order", nameB + ",create", trace.getNameTrace(i++));
 		assertEquals("order", nameC + ",create", trace.getNameTrace(i++));
 		assertEquals("order", nameD + ",create", trace.getNameTrace(i++));
 		assertEquals("order", nameE + ",create", trace.getNameTrace(i++));
 
-		//		assertEquals("order", nameF + ",init", trace.getNameTrace(i++));
+		// assertEquals("order", nameF + ",init", trace.getNameTrace(i++));
 		assertEquals("order", nameA + ",init", trace.getNameTrace(i++));
 		assertEquals("order", nameB + ",init", trace.getNameTrace(i++));
 		assertEquals("order", nameC + ",init", trace.getNameTrace(i++));
 		assertEquals("order", nameD + ",init", trace.getNameTrace(i++));
 		assertEquals("order", nameE + ",init", trace.getNameTrace(i++));
 
-		//		assertEquals("order", nameF + ",start", trace.getNameTrace(i++));
+		// assertEquals("order", nameF + ",start", trace.getNameTrace(i++));
 		assertEquals("order", nameA + ",start", trace.getNameTrace(i++));
 		assertEquals("order", nameB + ",start", trace.getNameTrace(i++));
 		assertEquals("order", nameC + ",start", trace.getNameTrace(i++));
@@ -449,9 +459,9 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		assertSame("service type", FakeCreatedService.class, servicesRegistry.getService(B).getClass());
 
 		// Get names of created services
-		String nameA = ((FakeCreatedService)servicesRegistry.getService(A)).getName();
-		String nameB = ((FakeCreatedService)servicesRegistry.getService(B)).getName();
-		String nameC = ((FakeCreatedService)servicesRegistry.getService(C)).getName();
+		String nameA = ((FakeCreatedService) servicesRegistry.getService(A)).getName();
+		String nameB = ((FakeCreatedService) servicesRegistry.getService(B)).getName();
+		String nameC = ((FakeCreatedService) servicesRegistry.getService(C)).getName();
 
 
 		// check order
@@ -490,7 +500,8 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		Class<?> C = ServiceC.class;
 
 		// Specify service types as String
-		String serviceClassname1 = FakeServiceFactory.class.getName();;
+		String serviceClassname1 = FakeServiceFactory.class.getName();
+		;
 		String serviceClassname2 = FakeServiceFactory.class.getName();
 		String serviceClassname3 = FakeServiceFactory.class.getName();
 
@@ -509,12 +520,12 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		assertSame("service type", FakeCreatedService.class, servicesRegistry.getService(B).getClass());
 
 		// Get names of created services
-		String nameA = ((FakeCreatedService)servicesRegistry.getService(A)).getName();
-		String nameB = ((FakeCreatedService)servicesRegistry.getService(B)).getName();
-		String nameC = ((FakeCreatedService)servicesRegistry.getService(C)).getName();
+		String nameA = ((FakeCreatedService) servicesRegistry.getService(A)).getName();
+		String nameB = ((FakeCreatedService) servicesRegistry.getService(B)).getName();
+		String nameC = ((FakeCreatedService) servicesRegistry.getService(C)).getName();
 
 
-		// check order	(E and F order are not guaranteed)
+		// check order (E and F order are not guaranteed)
 		// Order should be
 		TestTrace trace = FakeService.getTrace();
 		int i = 0;
@@ -565,9 +576,9 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		assertSame("service type", FakeCreatedService.class, servicesRegistry.getService(B).getClass());
 
 		// Get names of created services
-		String nameA = ((FakeCreatedService)servicesRegistry.getService(A)).getName();
-		String nameB = ((FakeCreatedService)servicesRegistry.getService(B)).getName();
-		String nameC = ((FakeCreatedService)servicesRegistry.getService(C)).getName();
+		String nameA = ((FakeCreatedService) servicesRegistry.getService(A)).getName();
+		String nameB = ((FakeCreatedService) servicesRegistry.getService(B)).getName();
+		String nameC = ((FakeCreatedService) servicesRegistry.getService(C)).getName();
 
 
 		// check order
@@ -594,8 +605,8 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 
 		// next order is the order of getService()
 		assertEquals("order", nameA + ",createInstance", trace.getNameTrace(i++));
-		//		assertEquals("order", nameB + ",createInstance", trace.getNameTrace(i++));
-		//		assertEquals("order", nameC + ",createInstance", trace.getNameTrace(i++));
+		// assertEquals("order", nameB + ",createInstance", trace.getNameTrace(i++));
+		// assertEquals("order", nameC + ",createInstance", trace.getNameTrace(i++));
 	}
 
 	/**
@@ -631,48 +642,89 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		assertTrue("service started", servicesRegistry.isStarted(C));
 
 		// Get names of created services
-		String nameA = ((FakeService)servicesRegistry.getService(A)).getName();
-		String nameB = ((FakeService)servicesRegistry.getService(B)).getName();
-		String nameC = ((FakeService)servicesRegistry.getService(C)).getName();
-		//		String nameD = ((FakeService)servicesRegistry.getService(D)).getName();
-		//		String nameE = ((FakeService)servicesRegistry.getService(E)).getName();
-		//		String nameF = ((FakeService)servicesRegistry.getService(F)).getName();
+		String nameA = ((FakeService) servicesRegistry.getService(A)).getName();
+		String nameB = ((FakeService) servicesRegistry.getService(B)).getName();
+		String nameC = ((FakeService) servicesRegistry.getService(C)).getName();
+		// String nameD = ((FakeService)servicesRegistry.getService(D)).getName();
+		// String nameE = ((FakeService)servicesRegistry.getService(E)).getName();
+		// String nameF = ((FakeService)servicesRegistry.getService(F)).getName();
 
 
-		// check order	(E and F order are not guaranteed)
+		// check order (E and F order are not guaranteed)
 		// order should be A, B, C
 		TestTrace trace = FakeService.getTrace();
 		int i = 0;
 		assertEquals("order", nameA + ",create", trace.getNameTrace(i++));
 		assertEquals("order", nameB + ",create", trace.getNameTrace(i++));
 		assertEquals("order", nameC + ",create", trace.getNameTrace(i++));
-		//		assertEquals("order", nameD + ",create", trace.getNameTrace(i++));
-		//		assertEquals("order", nameE + ",create", trace.getNameTrace(i++));
+		// assertEquals("order", nameD + ",create", trace.getNameTrace(i++));
+		// assertEquals("order", nameE + ",create", trace.getNameTrace(i++));
 
 		assertEquals("order", nameA + ",init", trace.getNameTrace(i++));
 		assertEquals("order", nameB + ",init", trace.getNameTrace(i++));
 		assertEquals("order", nameC + ",init", trace.getNameTrace(i++));
-		//		assertEquals("order", nameD + ",init", trace.getNameTrace(i++));
-		//		assertEquals("order", nameE + ",init", trace.getNameTrace(i++));
+		// assertEquals("order", nameD + ",init", trace.getNameTrace(i++));
+		// assertEquals("order", nameE + ",init", trace.getNameTrace(i++));
 
 		assertEquals("order", nameA + ",start", trace.getNameTrace(i++));
 		assertEquals("order", nameB + ",start", trace.getNameTrace(i++));
 		assertEquals("order", nameC + ",start", trace.getNameTrace(i++));
-		//		assertEquals("order", nameD + ",start", trace.getNameTrace(i++));
-		//		assertEquals("order", nameE + ",start", trace.getNameTrace(i++));
+		// assertEquals("order", nameD + ",start", trace.getNameTrace(i++));
+		// assertEquals("order", nameE + ",start", trace.getNameTrace(i++));
 
 	}
 
 	/* **************************************** */
 
 
+	abstract static class TestServiceDescriptor extends ServiceDescriptor {
+		{
+			setClassBundleID("org.eclipse.papyrus.infra.core.tests");
+		}
 
+		public TestServiceDescriptor(Class<?> key, String serviceClassname, ServiceStartKind serviceStartKind, int priority, boolean isAnonymous, List<String> requiredServices) {
+			super(key, serviceClassname, serviceStartKind, priority, isAnonymous, requiredServices);
+		}
+
+		public TestServiceDescriptor(Class<?> key, String serviceClassname, ServiceStartKind serviceStartKind, int priority, List<String> requiredServices) {
+			super(key, serviceClassname, serviceStartKind, priority, requiredServices);
+		}
+
+		public TestServiceDescriptor(Class<?> key, String serviceClassname, ServiceStartKind serviceStartKind, int priority) {
+			super(key, serviceClassname, serviceStartKind, priority);
+		}
+
+		public TestServiceDescriptor(String serviceClassname, ServiceStartKind serviceStartKind, int priority, boolean isAnonymous) {
+			super(serviceClassname, serviceStartKind, priority, isAnonymous);
+		}
+
+		public TestServiceDescriptor(String serviceClassname, ServiceStartKind serviceStartKind, int priority, List<String> requiredServices) {
+			super(serviceClassname, serviceStartKind, priority, requiredServices);
+		}
+
+		public TestServiceDescriptor(String serviceClassname, ServiceStartKind serviceStartKind, int priority) {
+			super(serviceClassname, serviceStartKind, priority);
+		}
+
+		public TestServiceDescriptor(String key, String serviceClassname, ServiceStartKind serviceStartKind, int priority, boolean isAnonymous, List<String> requiredServices) {
+			super(key, serviceClassname, serviceStartKind, priority, isAnonymous, requiredServices);
+		}
+
+		public TestServiceDescriptor(String key, String serviceClassname, ServiceStartKind serviceStartKind, int priority, List<String> requiredServices) {
+			super(key, serviceClassname, serviceStartKind, priority, requiredServices);
+		}
+
+		public TestServiceDescriptor(String key, String serviceClassname, ServiceStartKind serviceStartKind, int priority) {
+			super(key, serviceClassname, serviceStartKind, priority);
+		}
+
+	}
 
 
 	/**
 	 * General purpose descriptor.
 	 */
-	public class ServiceDesc extends ServiceDescriptor {
+	public class ServiceDesc extends TestServiceDescriptor {
 
 
 		public ServiceDesc(String key, ServiceStartKind startKind) {
@@ -687,7 +739,7 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 	/**
 	 * General purpose descriptor.
 	 */
-	public class ServiceFactoryDesc extends ServiceDescriptor {
+	public class ServiceFactoryDesc extends TestServiceDescriptor {
 
 
 		public ServiceFactoryDesc(String key, ServiceStartKind startKind) {
@@ -742,7 +794,7 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 	 * @author dumoulin
 	 *
 	 */
-	public class LazyServiceADescriptor extends ServiceDescriptor {
+	public class LazyServiceADescriptor extends TestServiceDescriptor {
 
 
 		public LazyServiceADescriptor() {
@@ -750,7 +802,7 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		}
 	}
 
-	public class LazyServiceA10Descriptor extends ServiceDescriptor {
+	public class LazyServiceA10Descriptor extends TestServiceDescriptor {
 
 
 		public LazyServiceA10Descriptor() {
@@ -758,7 +810,7 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		}
 	}
 
-	public class LazyServiceBDescriptor extends ServiceDescriptor {
+	public class LazyServiceBDescriptor extends TestServiceDescriptor {
 
 
 		public LazyServiceBDescriptor() {
@@ -766,7 +818,7 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		}
 	}
 
-	public class ServiceCDescriptor extends ServiceDescriptor {
+	public class ServiceCDescriptor extends TestServiceDescriptor {
 
 
 		public ServiceCDescriptor() {
@@ -774,7 +826,7 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		}
 	}
 
-	public class LazyServicePojoADescriptor extends ServiceDescriptor {
+	public class LazyServicePojoADescriptor extends TestServiceDescriptor {
 
 
 		public LazyServicePojoADescriptor() {
@@ -782,7 +834,7 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 		}
 	}
 
-	public class PojoServiceDescriptor extends ServiceDescriptor {
+	public class PojoServiceDescriptor extends TestServiceDescriptor {
 
 
 		public PojoServiceDescriptor() {

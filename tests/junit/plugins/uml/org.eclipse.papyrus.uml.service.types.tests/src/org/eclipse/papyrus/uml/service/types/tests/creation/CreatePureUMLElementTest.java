@@ -92,7 +92,7 @@ public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 		// create UML resource
 		// import test model
 		try {
-			copyPapyrusModel = PapyrusProjectUtils.copyIFile("/resource/TestPureUMLModel.uml", Platform.getBundle("org.eclipse.papyrus.uml.service.types"), createProject, "TestPureUMLModel.uml");
+			copyPapyrusModel = PapyrusProjectUtils.copyIFile("/resource/TestPureUMLModel.uml", Platform.getBundle("org.eclipse.papyrus.uml.service.types.tests"), createProject, "TestPureUMLModel.uml");
 		} catch (CoreException e) {
 			fail(e.getMessage());
 		} catch (IOException e) {

@@ -22,13 +22,13 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin download-size="0" id="org.eclipse.papyrus.infra.types.ui.tests" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin download-size="0" fragment="true" id="org.eclipse.papyrus.infra.gmfdiag.commands.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.gmfdiag.commands.tests" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin download-size="0" fragment="true" id="org.eclipse.papyrus.infra.gmfdiag.common.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.gmfdiag.common.tests" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin download-size="0" fragment="true" id="org.eclipse.papyrus.infra.emf.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.emf.tests" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin download-size="0" fragment="true" id="org.eclipse.papyrus.infra.emf.readonly.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.emf.readonly.tests" install-size="0" unpack="false" version="0.0.0"/>
 
    <plugin download-size="0" id="org.eclipse.papyrus.infra.tools.tests" install-size="0" unpack="false" version="0.0.0"/>
 

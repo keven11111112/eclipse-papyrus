@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 CEA LIST and others.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 434993
  *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 419357
+ *  Christian W. Damus - 488791
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests;
@@ -18,6 +19,7 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
@@ -28,6 +30,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.intro.IIntroPart;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
+import org.osgi.framework.Bundle;
 
 /**
  * Abstract Papyrus initialization class (required to get Service activation).
@@ -58,9 +61,10 @@ public abstract class AbstractTest extends AbstractPapyrusTest {
 		IFile emptyModel_no = testProject.getFile("ModelWithBDD.notation");
 		IFile emptyModel_uml = testProject.getFile("ModelWithBDD.uml");
 
-		emptyModel_di.create(Activator.getInstance().getBundle().getResource("/model/ModelWithBDD.di").openStream(), true, new NullProgressMonitor());
-		emptyModel_no.create(Activator.getInstance().getBundle().getResource("/model/ModelWithBDD.notation").openStream(), true, new NullProgressMonitor());
-		emptyModel_uml.create(Activator.getInstance().getBundle().getResource("/model/ModelWithBDD.uml").openStream(), true, new NullProgressMonitor());
+		Bundle bundle = Platform.getBundle("org.eclipse.papyrus.sysml.diagram.blockdefinition.tests");
+		emptyModel_di.create(bundle.getResource("/model/ModelWithBDD.di").openStream(), true, new NullProgressMonitor());
+		emptyModel_no.create(bundle.getResource("/model/ModelWithBDD.notation").openStream(), true, new NullProgressMonitor());
+		emptyModel_uml.create(bundle.getResource("/model/ModelWithBDD.uml").openStream(), true, new NullProgressMonitor());
 
 		// Open the EmptyModel.di file with Papyrus (assumed to be the default editor for "di" files here).
 		editor = houseKeeper.openPapyrusEditor(emptyModel_di);

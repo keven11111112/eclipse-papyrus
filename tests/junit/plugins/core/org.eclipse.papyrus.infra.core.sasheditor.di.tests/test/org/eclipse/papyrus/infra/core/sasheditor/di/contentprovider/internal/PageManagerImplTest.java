@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IAbstractPanelM
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.DiContentProviderTest.MyDIContentProvider;
 import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractPanel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiFactory;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
@@ -53,7 +54,7 @@ public class PageManagerImplTest extends AbstractPapyrusTest {
 	/**
 	 * The associated {@link DiContentProvider}. Not tested, but used to check events.
 	 */
-	protected DiContentProvider contentProvider;
+	protected MyDIContentProvider contentProvider;
 
 	/**
 	 * @see junit.framework.TestCase#setUp()
@@ -78,7 +79,7 @@ public class PageManagerImplTest extends AbstractPapyrusTest {
 		};
 
 		IPageModelFactory pageModelFactory = new FakePageModelFactory();
-		contentProvider = new DiContentProvider(diSashModel.getSashModel(), pageModelFactory, eventProvider);
+		contentProvider = new MyDIContentProvider(diSashModel.getSashModel(), pageModelFactory, eventProvider);
 
 	}
 
@@ -481,7 +482,5 @@ public class PageManagerImplTest extends AbstractPapyrusTest {
 		assertNull("Page removed from sashStructure ", pageRef);
 
 	}
-
-
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,13 +8,15 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bug 463564
+ *   Christian W. Damus - bugs 463564, 488791
  *
  */
 package org.eclipse.papyrus.infra.emf.readonly;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+
+import java.util.Iterator;
 
 import org.eclipse.papyrus.infra.emf.readonly.tests.PapyrusROEditingDomainFixture;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
@@ -43,7 +45,7 @@ public class ReadOnlyTesterTest extends AbstractPapyrusTest {
 
 	private final ProjectFixture project = domain.getProject();
 
-	private ReadOnlyTester fixture;
+	private MyReadOnlyTester fixture;
 
 	@Test
 	public void testAsBoolean() {
@@ -83,7 +85,7 @@ public class ReadOnlyTesterTest extends AbstractPapyrusTest {
 
 	@Before
 	public void createFixture() throws Exception {
-		fixture = new ReadOnlyTester();
+		fixture = new MyReadOnlyTester();
 	}
 
 	@After
@@ -91,4 +93,27 @@ public class ReadOnlyTesterTest extends AbstractPapyrusTest {
 		fixture = null;
 	}
 
+	private static class MyReadOnlyTester extends ReadOnlyTester {
+		MyReadOnlyTester() {
+			super();
+		}
+
+		// Overridden to make it accessible
+		@Override
+		protected Boolean asBoolean(Object expectedValue) {
+			return super.asBoolean(expectedValue);
+		}
+
+		// Overridden to make it accessible
+		@Override
+		protected boolean canMakeWritable(Iterator<?> objects, Boolean expectedValue) {
+			return super.canMakeWritable(objects, expectedValue);
+		}
+
+		// Overridden to make it accessible
+		@Override
+		protected boolean testIsReadOnly(Iterator<?> objects, Boolean expectedValue) {
+			return super.testIsReadOnly(objects, expectedValue);
+		}
+	}
 }

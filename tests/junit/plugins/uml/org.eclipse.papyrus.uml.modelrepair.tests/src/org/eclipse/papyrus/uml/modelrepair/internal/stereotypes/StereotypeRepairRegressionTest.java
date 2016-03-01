@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bug 455248
- *   Christian W. Damus - bug 455329
- *   Christian W. Damus - bug 436666
- *   Christian W. Damus - bug 458736
- *   Christian W. Damus - bug 459488
+ *   Christian W. Damus - bugs 455248, 455329, 436666, 458736, 459488, 488791
  *
  */
 package org.eclipse.papyrus.uml.modelrepair.internal.stereotypes;
@@ -46,9 +42,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.junit.utils.rules.AbstractHouseKeeperRule.CleanUp;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.junit.utils.rules.ModelSetFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.StereotypeApplicationRepairSnippetTest.MyStereotypeApplicationRepairSnippet;
 import org.eclipse.papyrus.uml.modelrepair.ui.IZombieStereotypePresenter;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Class;
@@ -84,10 +82,12 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	@Rule
 	public final ReadOnlyCacheRule readonly = new ReadOnlyCacheRule();
 
-	private StereotypeApplicationRepairSnippet fixture;
+	private MyStereotypeApplicationRepairSnippet fixture;
 
+	@CleanUp
 	private TestPresenter presenter; // For tests that use it
 
+	@CleanUp
 	private ZombieStereotypesDescriptor zombies;
 
 	private Package model;
@@ -370,19 +370,19 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 		if (fixtureMethod == null) {
 			fixture = createDefaultFixture();
 		} else {
-			fixture = (StereotypeApplicationRepairSnippet) fixtureMethod.invoke(this);
+			fixture = (MyStereotypeApplicationRepairSnippet) fixtureMethod.invoke(this);
 		}
 
 		fixture.start(modelSet.getResourceSet());
-		houseKeeper.setField("zombies", fixture.getZombieStereotypes(modelSet.getModelResource(), modelSet.getModel()));
+		zombies = fixture.getZombieStereotypes(modelSet.getModelResource(), modelSet.getModel());
 	}
 
-	protected StereotypeApplicationRepairSnippet createDefaultFixture() {
+	protected MyStereotypeApplicationRepairSnippet createDefaultFixture() {
 		final Profile rootProfile = model.getAppliedProfile("Profile");
 		final Profile nested1 = model.getNestedPackage("Package1").getAppliedProfile("Profile::Nested1");
 		final Profile nested2 = model.getNestedPackage("Package2").getAppliedProfile("Profile::Nested2");
 
-		return houseKeeper.cleanUpLater(new StereotypeApplicationRepairSnippet(null, new Function<EPackage, Profile>() {
+		return houseKeeper.cleanUpLater(new MyStereotypeApplicationRepairSnippet(null, new Function<EPackage, Profile>() {
 
 			@Override
 			public Profile apply(EPackage input) {
@@ -403,11 +403,11 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	}
 
 	@Bug("436666")
-	protected StereotypeApplicationRepairSnippet createBug436666Fixture() {
+	protected MyStereotypeApplicationRepairSnippet createBug436666Fixture() {
 		final Profile rootProfile = model.getAppliedProfile("Profile");
 		final Profile nestedProfile = model.getAppliedProfile("Profile::Profile1");
 
-		return houseKeeper.cleanUpLater(new StereotypeApplicationRepairSnippet(null, new Function<EPackage, Profile>() {
+		return houseKeeper.cleanUpLater(new MyStereotypeApplicationRepairSnippet(null, new Function<EPackage, Profile>() {
 
 			@Override
 			public Profile apply(EPackage input) {
@@ -426,18 +426,18 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	}
 
 	@Bug({ "436666bis", "455248", "455329" })
-	protected StereotypeApplicationRepairSnippet createSimpleFixture() {
-		return houseKeeper.cleanUpLater(new StereotypeApplicationRepairSnippet(null, Functions.constant((Profile) null)), "dispose", modelSet.getResourceSet());
+	protected MyStereotypeApplicationRepairSnippet createSimpleFixture() {
+		return houseKeeper.cleanUpLater(new MyStereotypeApplicationRepairSnippet(null, Functions.constant((Profile) null)), "dispose", modelSet.getResourceSet());
 	}
 
 	@Bug("458736")
-	protected StereotypeApplicationRepairSnippet createPresenterFixture() {
-		TestPresenter presenter = houseKeeper.setField("presenter", new TestPresenter());
-		return houseKeeper.cleanUpLater(new StereotypeApplicationRepairSnippet(Functions.constant(presenter)), "dispose", modelSet.getResourceSet());
+	protected MyStereotypeApplicationRepairSnippet createPresenterFixture() {
+		presenter = new TestPresenter();
+		return houseKeeper.cleanUpLater(new MyStereotypeApplicationRepairSnippet(Functions.constant(presenter)), "dispose", modelSet.getResourceSet());
 	}
 
 	@Bug("459488")
-	protected StereotypeApplicationRepairSnippet createLocalProfileFixture() throws CoreException {
+	protected MyStereotypeApplicationRepairSnippet createLocalProfileFixture() throws CoreException {
 		// Get the profile to supply for repairing
 		URI profileURI = null;
 		for (IFile next : Iterables.filter(Arrays.asList(modelSet.getProject().getProject().members()), IFile.class)) {
@@ -451,9 +451,9 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 		Profile profile = UML2Util.load(modelSet.getResourceSet(), profileURI, UMLPackage.Literals.PROFILE);
 
 		// And set up a presenter to enable incremental repair as resources are loaded
-		TestPresenter presenter = houseKeeper.setField("presenter", new TestPresenter());
+		presenter = new TestPresenter();
 
-		return houseKeeper.cleanUpLater(new StereotypeApplicationRepairSnippet(Functions.constant(presenter), Functions.constant(profile)), "dispose", modelSet.getResourceSet());
+		return houseKeeper.cleanUpLater(new MyStereotypeApplicationRepairSnippet(Functions.constant(presenter), Functions.constant(profile)), "dispose", modelSet.getResourceSet());
 	}
 
 	void repair(final IAdaptable schema, final IRepairAction action) {

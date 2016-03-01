@@ -44,6 +44,7 @@ import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.junit.Assert;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 /**
  * this Test is used to test if it is possible to add compartment
@@ -164,6 +165,6 @@ public class ExpansionAddLink extends AbstractEditorTest {
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipse.papyrus.infra.gmfdiag.common.Activator.getInstance().getBundle();
+		return FrameworkUtil.getBundle(getClass());
 	}
 }

@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 485220
+ *   
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
 import java.util.ArrayList;
@@ -5,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedListener;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory;
@@ -31,7 +45,7 @@ public class DiContentProviderTest extends AbstractPapyrusTest {
 	/**
 	 * The {@link DiContentProvider} under test.
 	 */
-	protected DiContentProvider contentProvider;
+	protected MyDIContentProvider contentProvider;
 
 	/** The FolderModel of the first TabFolder */
 	protected ITabFolderModel folderModel;
@@ -40,7 +54,7 @@ public class DiContentProviderTest extends AbstractPapyrusTest {
 	public void setUp() throws Exception {
 		IPageModelFactory pageModelFactory = new FakePageModelFactory();
 		SashModel diSashModel = DiUtils.createDefaultSashModel();
-		contentProvider = new DiContentProvider(diSashModel, pageModelFactory);
+		contentProvider = new MyDIContentProvider(diSashModel, pageModelFactory);
 		folderModel = lookupFolderModel();
 	}
 
@@ -61,7 +75,7 @@ public class DiContentProviderTest extends AbstractPapyrusTest {
 	 * @return
 	 */
 	private ITabFolderModel lookupFolderModel() {
-		if(contentProvider == null) {
+		if (contentProvider == null) {
 			return null;
 		}
 
@@ -80,15 +94,15 @@ public class DiContentProviderTest extends AbstractPapyrusTest {
 	 */
 	private ITabFolderModel lookupFolderModel(IAbstractPanelModel panelModel) {
 
-		if(panelModel instanceof ITabFolderModel) {
-			return (ITabFolderModel)panelModel;
+		if (panelModel instanceof ITabFolderModel) {
+			return (ITabFolderModel) panelModel;
 		} else {
-			ISashPanelModel sashModel = (ISashPanelModel)panelModel;
+			ISashPanelModel sashModel = (ISashPanelModel) panelModel;
 			// Iterate on children
-			for(Object child : sashModel.getChildren()) {
+			for (Object child : sashModel.getChildren()) {
 				IAbstractPanelModel childModel = contentProvider.createChildSashModel(child);
 				ITabFolderModel res = lookupFolderModel(childModel);
-				if(res != null) {
+				if (res != null) {
 					return res;
 				}
 			}
@@ -115,7 +129,7 @@ public class DiContentProviderTest extends AbstractPapyrusTest {
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
 		// Add 10 folders
-		for(int i = 0; i < 10; i++) {
+		for (int i = 0; i < 10; i++) {
 			// reset change count
 			changeListener.reset();
 			// Add Editor
@@ -163,7 +177,7 @@ public class DiContentProviderTest extends AbstractPapyrusTest {
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
 		// Add 10 pages
-		for(int i = 0; i < 5; i++) {
+		for (int i = 0; i < 5; i++) {
 			// reset change count
 			changeListener.reset();
 			// Add Editor
@@ -181,7 +195,7 @@ public class DiContentProviderTest extends AbstractPapyrusTest {
 		// Check if pageIdentifier 3 have change of folder
 		PageRef pageRef = contentProvider.getDiSashModel().lookupPage(identifiers.get(3));
 		Assert.assertNotNull("Moved page have a parent", pageRef.getParent());
-		Assert.assertNotSame("Moved page is in another parent", ((TabFolderModel)folderModel).getTabFolder(), pageRef.getParent());
+		Assert.assertNotSame("Moved page is in another parent", ((TabFolderModel) folderModel).getTabFolder(), pageRef.getParent());
 
 		// reset change count
 		changeListener.reset();
@@ -191,7 +205,7 @@ public class DiContentProviderTest extends AbstractPapyrusTest {
 		// Check if pageIdentifier 2 have change of folder
 		pageRef = contentProvider.getDiSashModel().lookupPage(identifiers.get(2));
 		Assert.assertNotNull("Moved page have a parent", pageRef.getParent());
-		Assert.assertNotSame("Moved page is in another parent", ((TabFolderModel)folderModel).getTabFolder(), pageRef.getParent());
+		Assert.assertNotSame("Moved page is in another parent", ((TabFolderModel) folderModel).getTabFolder(), pageRef.getParent());
 	}
 
 	/**
@@ -210,7 +224,7 @@ public class DiContentProviderTest extends AbstractPapyrusTest {
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
 		// Add 10 pages
-		for(int i = 0; i < 5; i++) {
+		for (int i = 0; i < 5; i++) {
 			// reset change count
 			changeListener.reset();
 			// Add Editor
@@ -227,7 +241,7 @@ public class DiContentProviderTest extends AbstractPapyrusTest {
 
 
 		// Get the real di implementation of the first folder
-		TabFolder firstFolder = ((TabFolderModel)folderModel).getTabFolder();
+		TabFolder firstFolder = ((TabFolderModel) folderModel).getTabFolder();
 		TabFolder createdDiFolder = contentProvider.getDiSashModel().getCurrentSelection();
 
 		// Check if the folder has changed
@@ -269,4 +283,39 @@ public class DiContentProviderTest extends AbstractPapyrusTest {
 			changeCount = 0;
 		}
 	}
+
+	//
+	// Nested types
+	//
+
+	static class MyDIContentProvider extends DiContentProvider {
+
+		MyDIContentProvider(SashModel diSashModel, IPageModelFactory pageModelFactory) throws IllegalArgumentException {
+			super(diSashModel, pageModelFactory);
+		}
+
+		MyDIContentProvider(SashModel diSashModel, IPageModelFactory pageModelFactory, ContentChangedEventProvider contentChangedEventProvider) throws IllegalArgumentException {
+			super(diSashModel, pageModelFactory, contentChangedEventProvider);
+		}
+
+		// Overridden to make it accessible
+		@Override
+		protected SashModel getDiSashModel() {
+			return super.getDiSashModel();
+		}
+
+		// Overridden to make it accessible
+		@Override
+		protected ContentChangedEventProvider getContentChangedEventProvider() {
+			return super.getContentChangedEventProvider();
+		}
+
+		// Overridden to make it accessible
+		@Override
+		protected void firePropertyChanged(ContentEvent event) {
+			super.firePropertyChanged(event);
+		}
+
+	}
+
 }

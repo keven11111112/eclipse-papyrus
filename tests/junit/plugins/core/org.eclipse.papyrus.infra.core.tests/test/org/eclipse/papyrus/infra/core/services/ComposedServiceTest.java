@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   LIFL - Initial API and implementation
+ *   Christian W. Damus - bug 488791
+ *   
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.services;
 
 import static org.junit.Assert.assertFalse;
@@ -6,6 +19,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.eclipse.papyrus.infra.core.services.ServicesRegistryTest.TestServiceDescriptor;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.junit.After;
 import org.junit.Before;
@@ -101,7 +115,7 @@ public class ComposedServiceTest extends AbstractPapyrusTest {
 	 * @author dumoulin
 	 *
 	 */
-	public class ServicePartADescriptor extends ServiceDescriptor {
+	public class ServicePartADescriptor extends TestServiceDescriptor {
 
 
 		public ServicePartADescriptor() {
@@ -116,7 +130,7 @@ public class ComposedServiceTest extends AbstractPapyrusTest {
 	 * @author dumoulin
 	 *
 	 */
-	public class ServicePartBDescriptor extends ServiceDescriptor {
+	public class ServicePartBDescriptor extends TestServiceDescriptor {
 
 
 		public ServicePartBDescriptor() {
@@ -130,7 +144,7 @@ public class ComposedServiceTest extends AbstractPapyrusTest {
 	 * @author dumoulin
 	 *
 	 */
-	public class ComposedServiceDescriptor extends ServiceDescriptor {
+	public class ComposedServiceDescriptor extends TestServiceDescriptor {
 
 
 		public ComposedServiceDescriptor() {

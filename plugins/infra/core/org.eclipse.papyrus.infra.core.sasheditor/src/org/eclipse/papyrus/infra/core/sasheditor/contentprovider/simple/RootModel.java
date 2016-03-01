@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL
- *
+ * Copyright (c) 2009, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 488791
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple;
@@ -75,7 +75,10 @@ public class RootModel extends AbstractModel {
 		return child.lookupTabFolder(tabItem);
 	}
 
-	protected AbstractPanelModel getChild() {
+	/**
+	 * @noreference This method is not intended to be referenced by clients.
+	 */
+	public AbstractPanelModel getChild() {
 		return child;
 	}
 
