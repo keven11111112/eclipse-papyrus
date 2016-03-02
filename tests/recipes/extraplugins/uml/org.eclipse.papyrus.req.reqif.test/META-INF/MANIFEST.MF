@@ -11,12 +11,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.extensionpoints,
  org.eclipse.rmf.reqif10,
  org.eclipse.papyrus.infra.ui,
- org.eclipse.papyrus.req.reqif
+ org.eclipse.papyrus.requirements.reqif
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.req.reqif.test.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.req.reqif.test
+Bundle-Activator: org.eclipse.papyrus.requirements.reqif.test.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.requirements.reqif.test
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

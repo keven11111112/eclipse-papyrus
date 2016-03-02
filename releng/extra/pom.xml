@@ -233,7 +233,6 @@
 		<module>../../extraplugins/EFFBD/org.eclipse.papyrus.effbd</module>
 		
 		<!-- Papyrus Req -->
-		<module>../../extraplugins/req/org.eclipse.papyrus.req.reqif</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.domainModel2Profile</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.preferences</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.assistant</module>
@@ -248,6 +247,7 @@
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.languagecreationtools.handlers</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.languagecreationtools.ui</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.preferences</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.reqif</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.assistant.commands</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.assistant.handlers</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.assistant.ui</module>        

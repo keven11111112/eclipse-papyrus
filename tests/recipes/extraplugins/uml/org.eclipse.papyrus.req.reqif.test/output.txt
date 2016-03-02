@@ -21,8 +21,8 @@ eclipse.buildId=4.6.0.I20160128-2000
 java.version=1.8.0_65
 java.vendor=Oracle Corporation
 BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
-Framework arguments:  -version 3 -port 57835 -testLoaderClass org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -classNames org.eclipse.papyrus.req.reqif.test.ReImportRemoveSpecObject -application org.eclipse.pde.junit.runtime.uitestapplication -product org.eclipse.platform.ide -testpluginname org.eclipse.papyrus.req.reqif.test
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -consoleLog -version 3 -port 57835 -testLoaderClass org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -classNames org.eclipse.papyrus.req.reqif.test.ReImportRemoveSpecObject -application org.eclipse.pde.junit.runtime.uitestapplication -product org.eclipse.platform.ide -data C:\Workspaces\neon-branch/../junit-workspace -dev file:C:/Workspaces/neon-branch/.metadata/.plugins/org.eclipse.pde.core/pde-junit/dev.properties -debug C:\Workspaces\neon-branch\.metadata\.plugins\org.eclipse.pde.core\pde-junit/.options -os win32 -ws win32 -arch x86_64 -consoleLog -testpluginname org.eclipse.papyrus.req.reqif.test
+Framework arguments:  -version 3 -port 57835 -testLoaderClass org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -classNames org.eclipse.papyrus.requirements.reqif.test.ReImportRemoveSpecObject -application org.eclipse.pde.junit.runtime.uitestapplication -product org.eclipse.platform.ide -testpluginname org.eclipse.papyrus.requirements.reqif.test
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -consoleLog -version 3 -port 57835 -testLoaderClass org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -classNames org.eclipse.papyrus.requirements.reqif.test.ReImportRemoveSpecObject -application org.eclipse.pde.junit.runtime.uitestapplication -product org.eclipse.platform.ide -data C:\Workspaces\neon-branch/../junit-workspace -dev file:C:/Workspaces/neon-branch/.metadata/.plugins/org.eclipse.pde.core/pde-junit/dev.properties -debug C:\Workspaces\neon-branch\.metadata\.plugins\org.eclipse.pde.core\pde-junit/.options -os win32 -ws win32 -arch x86_64 -consoleLog -testpluginname org.eclipse.papyrus.requirements.reqif.test
 
 !ENTRY org.eclipse.emf.ecore 2 0 2016-03-01 16:59:37.752
 !MESSAGE Both 'org.eclipse.papyrus.infra.gmfdiag.common' and 'org.eclipse.papyrus.infra.gmfdiag.common' register an extension parser for 'expansionmodel'
@@ -119,7 +119,7 @@ java.lang.InterruptedException
 	at org.eclipse.core.internal.resources.Project.create(Project.java:247)
 	at org.eclipse.core.internal.resources.Project.create(Project.java:242)
 	at org.eclipse.papyrus.junit.utils.ProjectUtils.createProject(ProjectUtils.java:49)
-	at org.eclipse.papyrus.req.reqif.test.ReImportRemoveSpecObject.addRequirements(ReImportRemoveSpecObject.java:75)
+	at org.eclipse.papyrus.requirements.reqif.test.ReImportRemoveSpecObject.addRequirements(ReImportRemoveSpecObject.java:75)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
