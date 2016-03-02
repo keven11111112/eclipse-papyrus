@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.infra.nattable.utils;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style;
 
@@ -102,4 +103,8 @@ public class NamedStyleConstants {
 	 */
 	public static final String FILTER_FORCED_BY_USER_ID = "filterForcedByUserId"; //$NON-NLS-1$
 
+	/**
+	 * This is for boolean value style {@link BooleanValueStyle}. This is used to expand all the rows in a tree table during the opening of the table.
+	 */
+	public static final String EXPAND_ALL =  "expandAll"; //$NON-NLS-1$
 }

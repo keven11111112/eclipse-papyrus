@@ -74,6 +74,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestyleFactory;
@@ -329,7 +331,15 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		if (StyleUtils.hasAppliedFilter(this)) {
 			doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 		}
+		Table table = getTable();
+		TableConfiguration config = table.getTableConfiguration();
 
+		BooleanValueStyle expandAll = (BooleanValueStyle) config.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.EXPAND_ALL);
+		if (null != expandAll) {
+			if (expandAll.isBooleanValue()) {
+				doCollapseExpandAction(org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum.EXPAND_ALL, null);
+			}
+		}
 		return nattable;
 	}
 	
@@ -338,16 +348,16 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 * 
 	 * @return The int value corresponding to the needed row header width.
 	 */
-	protected int getWidthSliderComposite(){
+	protected int getWidthSliderComposite() {
 		int result = 0;
-		
+
 		final IntValueStyle valueRowHeader = (IntValueStyle) getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_HEADER_WIDTH);
 		if (null != valueRowHeader) {
 			result = valueRowHeader.getIntValue();
 		} else {
 			result = calculateBestWidthSliderComposite();
 		}
-		
+
 		return result;
 	}
 
