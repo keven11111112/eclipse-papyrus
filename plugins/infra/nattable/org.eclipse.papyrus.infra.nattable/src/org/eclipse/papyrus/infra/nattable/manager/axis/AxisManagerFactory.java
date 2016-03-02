@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.axis;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,11 +65,30 @@ public class AxisManagerFactory {
 	 *
 	 * @param axisManagerRepresentation
 	 * @return
-	 *         the axis manager for this axisManagerRepresentation. The class calling this method must initialize itself the IAxisManager with its
+	 * 		the axis manager for this axisManagerRepresentation. The class calling this method must initialize itself the IAxisManager with its
 	 *         method #init
 	 */
 	public IAxisManager getAxisManager(final AxisManagerRepresentation axisManagerRepresentation) {
-		final Class<IAxisManager> managerClass = this.map.get(axisManagerRepresentation.getAxisManagerId());
+		return getAxisManager(axisManagerRepresentation.getAxisManagerId());
+	}
+
+	/**
+	 * 
+	 * @return
+	 * 		the list of known axis manager
+	 */
+	public Map<String, Class<IAxisManager>> getAllRegisteredAxisManager() {
+		return Collections.unmodifiableMap(this.map);
+	}
+	
+	/**
+	 * Get the axis manager by the axis manager id.
+	 * 
+	 * @param id The searched axis manager id.
+	 * @return The axis manager corresponding to the axis manager id.
+	 */
+	public IAxisManager getAxisManager(final String id){
+		final Class<IAxisManager> managerClass = this.map.get(id);
 		IAxisManager axisManager = null;
 		if (managerClass != null) {
 			try {

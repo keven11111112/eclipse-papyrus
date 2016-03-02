@@ -13,6 +13,7 @@
 
 	<modules>
 		<!-- org.eclipse.papyrus.customization is in the Extras Build (?!) -->
+		<module>org.eclipse.papyrus.customization.nattableconfiguration</module>
 		<module>org.eclipse.papyrus.customization.palette</module>
 		<module>org.eclipse.papyrus.customization.paletteconfiguration</module>
 		<module>org.eclipse.papyrus.customization.properties</module>

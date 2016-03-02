@@ -30,6 +30,8 @@ public class FileExtensions {
 
 	public static final Map<String, String> cssStylesheetsExtension = new LinkedHashMap<String, String>();
 
+	public static final Map<String, String> imagesFilesExtensions = new LinkedHashMap<String, String>();
+	
 	public static final Map<String, String> allFilesExtensions = new LinkedHashMap<String, String>();
 
 	static {
@@ -40,6 +42,9 @@ public class FileExtensions {
 		umlProfileExtensions.put("*.uml", "UML (*.uml)"); //$NON-NLS-1$ //$NON-NLS-2$
 
 		cssStylesheetsExtension.put("*.css", "CSS Stylesheets (*.css)"); //$NON-NLS-1$ //$NON-NLS-2$
+		
+		imagesFilesExtensions.put("*.png", "PNG (*.png"); //$NON-NLS-1$ //$NON-NLS-2$
+		imagesFilesExtensions.put("*.jpg", "JPG (*.jpg"); //$NON-NLS-1$ //$NON-NLS-2$
 
 		allFilesExtensions.put("*", "All (*)"); //$NON-NLS-1$ //$NON-NLS-2$
 	}

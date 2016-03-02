@@ -183,6 +183,34 @@ public class TableHelper {
 		}
 		return false;
 	}
+	
+	/**
+	 * This allows to check if this is a tree table.
+	 * 
+	 * @param tableConfiguration The table configuration.
+	 * @return <code>true</code> if this is a tree table, <code>false</code> otherwise.
+	 */
+	public static final boolean isTreeTable(final TableConfiguration tableConfiguration) {
+		final TableDisplayStyle style = (TableDisplayStyle) tableConfiguration.getStyle(NattablestylePackage.eINSTANCE.getTableDisplayStyle());
+		if (null != style) {
+			final DisplayStyle displayStyle = style.getDisplayStyle();
+			return DisplayStyle.HIERARCHIC_MULTI_TREE_COLUMN.equals(displayStyle) || DisplayStyle.HIERARCHIC_SINGLE_TREE_COLUMN.equals(displayStyle);
+		}
+		return false;
+	}
+
+	/**
+	 * This allows to check if the tree table contains a single column for the row header.
+	 * 
+	 * @param tableConfiguration The table configuration.
+	 * @return <code>true</code> if this is a single column, <code>false</code> otherwise.
+	 */
+	public static final boolean isSingleColumnTreeTable(final TableConfiguration tableConfiguration) {
+		final TableDisplayStyle style = (TableDisplayStyle) tableConfiguration.getStyle(NattablestylePackage.eINSTANCE.getTableDisplayStyle());
+		Assert.isNotNull(style);
+		final DisplayStyle displayStyle = style.getDisplayStyle();
+		return DisplayStyle.HIERARCHIC_SINGLE_TREE_COLUMN.equals(displayStyle);
+	}
 
 	/**
 	 *
