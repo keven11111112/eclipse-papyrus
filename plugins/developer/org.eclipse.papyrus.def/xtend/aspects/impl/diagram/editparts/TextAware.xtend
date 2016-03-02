@@ -13,6 +13,7 @@
  */
 package aspects.impl.diagram.editparts
 
+import aspects.xpt.editor.VisualIDRegistry
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.gmf.codegen.gmfgen.DesignLabelModelFacet
@@ -23,11 +24,11 @@ import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel
 import org.eclipse.gmf.codegen.gmfgen.LabelModelFacet
 import org.eclipse.gmf.codegen.gmfgen.ParentAssignedViewmap
 import org.eclipse.gmf.codegen.gmfgen.Viewmap
-import parsers.ParserProvider
 import xpt.CodeStyle
 import xpt.Common
 import xpt.Common_qvto
 import xpt.diagram.ViewmapAttributesUtils_qvto
+import xpt.providers.ElementTypes
 
 //DOCUMENTATION: PapyrusGencode
 //This template has been modified to take in account the possibility to have extended direct editors
@@ -39,9 +40,9 @@ import xpt.diagram.ViewmapAttributesUtils_qvto
 
 	@Inject extension ViewmapAttributesUtils_qvto
 
-	@Inject extension ParserProvider
-
 	@Inject extension Common_qvto 
+	
+	@Inject ElementTypes xptElementTypes;
 	
 	override fields(GenCommonBase it)'''
 	«generatedMemberComment»
@@ -306,7 +307,7 @@ override getLabelText (GenCommonBase it)'''
 		org.eclipse.emf.ecore.EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
 			text = getParser().getPrintString(
-				new org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter(parserElement),
+				org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil.getParserAdapter(getParserElement(), this),
 				getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {
@@ -338,7 +339,7 @@ override getEditText (GenCommonBase it)'''
 			return ""; «nonNLS»
 		}
 		return getParser().getEditString(
-			new org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter(getParserElement()),
+			org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil.getParserAdapter(getParserElement(), this),
 			getParserOptions().intValue());
 	}
 '''
@@ -371,7 +372,7 @@ override getEditTextValidator (GenCommonBase it)'''
 
 							«overrideI»
 							public void run() {
-								setResult(parser.isValidEditString(new org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter(element), (String) value));
+								setResult(parser.isValidEditString(org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil.getParserAdapter(getParserElement(), «editPartClassName».this), (String) value));
 							}
 						});
 						return valid.getCode() == org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus.EDITABLE ? null : valid.getMessage();
@@ -393,7 +394,7 @@ override getCompletionProcessor (GenCommonBase it)'''
 		if (getParserElement() == null || getParser() == null) {
 			return null;
 		}
-		return getParser().getCompletionProcessor(new org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter(getParserElement()));
+		return getParser().getCompletionProcessor(org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil.getParserAdapter(getParserElement(), this));
 	}
 '''
 
@@ -408,7 +409,7 @@ override getParser(GenCommonBase it, LabelModelFacet modelFacet, GenDiagram diag
 	«generatedMemberComment»
 	public org.eclipse.gmf.runtime.common.ui.services.parser.IParser getParser() {
 		if (parser == null) {
-			parser = « accessorCall(it,host, modelFacet, 'getParserElement()')»;
+			parser = org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil.getParser(«xptElementTypes.accessElementType(host)», getParserElement(), this, VISUAL_ID);
 		}
 		return parser;
 	}
