@@ -15,13 +15,6 @@
          id="com.cea.darwin.reqif.importWizard"
          name="Import ReqIF">
    </wizard>
-    <wizard
-         category="org.eclipse.papyrus.editor.category"
-         class="org.eclipse.papyrus.req.reqif.integration.assistant.ReqIFReImportWizard"
-         icon="img/Papyrus_Req_logo_16x16.bmp"
-         id="com.cea.darwin.reqif.reimportWizard"
-         name="Re-Import ReqIF">
-   </wizard>
 </extension>
 <extension
       point="org.eclipse.ui.exportWizards">

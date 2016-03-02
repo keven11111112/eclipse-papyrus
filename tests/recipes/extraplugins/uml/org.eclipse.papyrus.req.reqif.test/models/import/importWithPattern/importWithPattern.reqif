@@ -172,7 +172,8 @@
         <SPEC-OBJECT-TYPE
             DESC="no Description"
             IDENTIFIER="_uXKuvShrEeSMW_x_2UpqNQ"
-            LAST-CHANGE="2014-08-20T15:13:06.587+02:00">
+            LAST-CHANGE="2014-08-20T15:13:06.587+02:00"
+            LONG-NAME="Type1">
           <SPEC-ATTRIBUTES>
             <ATTRIBUTE-DEFINITION-ENUMERATION
                 IDENTIFIER="_uXKuvihrEeSMW_x_2UpqNQ"

@@ -1,0 +1,926 @@
+Configuration location:
+    file:/C:/Workspaces/neon-branch/.metadata/.plugins/org.eclipse.pde.core/pde-junit/
+Configuration file:
+    file:/C:/Workspaces/neon-branch/.metadata/.plugins/org.eclipse.pde.core/pde-junit/config.ini loaded
+Install location:
+    file:/C:/ECLIPSE/eclipse-jee-neon-M5-win32-x86_64/eclipse/
+Framework located:
+    file:/C:/ECLIPSE/eclipse-jee-neon-M5-win32-x86_64/eclipse/plugins/org.eclipse.osgi_3.11.0.v20160121-2005.jar
+Loading extension: reference:file:C:/ECLIPSE/eclipse-jee-neon-M5-win32-x86_64/eclipse/plugins/org.eclipse.osgi.compatibility.state_1.0.100.v20150709-1617.jar
+	eclipse.properties not found
+Framework classpath:
+    file:/C:/ECLIPSE/eclipse-jee-neon-M5-win32-x86_64/eclipse/plugins/org.eclipse.osgi_3.11.0.v20160121-2005.jar
+    file:/C:/ECLIPSE/eclipse-jee-neon-M5-win32-x86_64/eclipse/plugins/
+    file:/C:/ECLIPSE/eclipse-jee-neon-M5-win32-x86_64/eclipse/plugins/org.eclipse.osgi.compatibility.state_1.0.100.v20150709-1617.jar
+Debug options:
+    file:/C:/Workspaces/neon-branch/.metadata/.plugins/org.eclipse.pde.core/pde-junit/.options loaded
+Time to load bundles: 57
+Starting application: 9743
+!SESSION 2016-03-01 16:59:27.143 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160128-2000
+java.version=1.8.0_65
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Framework arguments:  -version 3 -port 57835 -testLoaderClass org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -classNames org.eclipse.papyrus.req.reqif.test.ReImportRemoveSpecObject -application org.eclipse.pde.junit.runtime.uitestapplication -product org.eclipse.platform.ide -testpluginname org.eclipse.papyrus.req.reqif.test
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -consoleLog -version 3 -port 57835 -testLoaderClass org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -classNames org.eclipse.papyrus.req.reqif.test.ReImportRemoveSpecObject -application org.eclipse.pde.junit.runtime.uitestapplication -product org.eclipse.platform.ide -data C:\Workspaces\neon-branch/../junit-workspace -dev file:C:/Workspaces/neon-branch/.metadata/.plugins/org.eclipse.pde.core/pde-junit/dev.properties -debug C:\Workspaces\neon-branch\.metadata\.plugins\org.eclipse.pde.core\pde-junit/.options -os win32 -ws win32 -arch x86_64 -consoleLog -testpluginname org.eclipse.papyrus.req.reqif.test
+
+!ENTRY org.eclipse.emf.ecore 2 0 2016-03-01 16:59:37.752
+!MESSAGE Both 'org.eclipse.papyrus.infra.gmfdiag.common' and 'org.eclipse.papyrus.infra.gmfdiag.common' register an extension parser for 'expansionmodel'
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [bundleresource://1411.fwk49752459:1/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [bundleresource://1411.fwk49752459:2/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [ch.qos.logback.classic.util.ContextSelectorStaticBinder]
+Application Started: 28180
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-03-01 16:59:55.736
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'H:\'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.ui 2 2 2016-03-01 16:59:57.503
+!MESSAGE Invalid preference category path: org.eclipse.papyrus.infra.properties.ui.propertyview (bundle: org.eclipse.papyrus.uml.properties, page: org.eclipse.papyrus.uml.properties.multiplicityEditorProperties)
+Retrieving for: DatatypeDefinitionString
+Constant: DatatypeDefinitionString
+Installed as default for DatatypeDefinitionString: LinewrapConfigurationImpl
+
+!ENTRY org.eclipse.jst.j2ee.core 4 0 2016-03-01 17:00:01.243
+!MESSAGE 
+!STACK 0
+java.lang.InterruptedException
+	at org.eclipse.core.internal.jobs.OrderedLock.acquire(OrderedLock.java:96)
+	at org.eclipse.jst.j2ee.internal.J2EEInit.aquireInitializePackageContentsLock(J2EEInit.java:454)
+	at org.eclipse.jst.j2ee.webservice.wsclient.internal.impl.Webservice_clientPackageImpl.initializePackageContents(Webservice_clientPackageImpl.java:457)
+	at org.eclipse.jst.j2ee.webservice.wsclient.internal.impl.Webservice_clientPackageImpl.init(Webservice_clientPackageImpl.java:141)
+	at org.eclipse.jst.j2ee.webservice.wsclient.Webservice_clientPackage.<clinit>(Webservice_clientPackage.java:75)
+	at sun.misc.Unsafe.ensureClassInitialized(Native Method)
+	at sun.reflect.UnsafeFieldAccessorFactory.newFieldAccessor(UnsafeFieldAccessorFactory.java:43)
+	at sun.reflect.ReflectionFactory.newFieldAccessor(ReflectionFactory.java:142)
+	at java.lang.reflect.Field.acquireFieldAccessor(Field.java:1088)
+	at java.lang.reflect.Field.getFieldAccessor(Field.java:1069)
+	at java.lang.reflect.Field.get(Field.java:393)
+	at org.eclipse.emf.ecore.plugin.RegistryReader$EPackageDescriptor.getEPackage(RegistryReader.java:275)
+	at org.eclipse.emf.ecore.impl.EPackageRegistryImpl.getEPackage(EPackageRegistryImpl.java:127)
+	at org.eclipse.jst.j2ee.common.internal.impl.CommonPackageImpl.initializePackageContents(CommonPackageImpl.java:1332)
+	at org.eclipse.jst.j2ee.common.internal.impl.CommonPackageImpl.init(CommonPackageImpl.java:297)
+	at org.eclipse.jst.j2ee.common.CommonPackage.<clinit>(CommonPackage.java:243)
+	at org.eclipse.jst.j2ee.internal.provider.J2EEAdapterFactoryLabelProvider.<clinit>(J2EEAdapterFactoryLabelProvider.java:41)
+	at org.eclipse.jst.j2ee.navigator.internal.J2EELabelProvider.initialize(J2EELabelProvider.java:57)
+	at org.eclipse.jst.j2ee.navigator.internal.J2EELabelProvider.init(J2EELabelProvider.java:246)
+	at org.eclipse.ui.internal.navigator.extensions.NavigatorContentExtension$2.run(NavigatorContentExtension.java:156)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.navigator.extensions.NavigatorContentExtension.getLabelProvider(NavigatorContentExtension.java:148)
+	at org.eclipse.ui.internal.navigator.NavigatorContentServiceLabelProvider.findStyledText(NavigatorContentServiceLabelProvider.java:165)
+	at org.eclipse.ui.internal.navigator.NavigatorContentServiceLabelProvider.getStyledText(NavigatorContentServiceLabelProvider.java:153)
+	at org.eclipse.ui.internal.navigator.NavigatorDecoratingLabelProvider$StyledLabelProviderAdapter.getStyledText(NavigatorDecoratingLabelProvider.java:63)
+	at org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.getStyledText(DelegatingStyledCellLabelProvider.java:206)
+	at org.eclipse.jface.viewers.DecoratingStyledCellLabelProvider.getStyledText(DecoratingStyledCellLabelProvider.java:194)
+	at org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.update(DelegatingStyledCellLabelProvider.java:106)
+	at org.eclipse.jface.viewers.DecoratingStyledCellLabelProvider.update(DecoratingStyledCellLabelProvider.java:131)
+	at org.eclipse.jface.viewers.ViewerColumn.refresh(ViewerColumn.java:141)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:949)
+	at org.eclipse.jface.viewers.AbstractTreeViewer$UpdateItemSafeRunnable.run(AbstractTreeViewer.java:118)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:50)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:173)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:1029)
+	at org.eclipse.jface.viewers.StructuredViewer$UpdateItemSafeRunnable.run(StructuredViewer.java:474)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:50)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:173)
+	at org.eclipse.jface.viewers.StructuredViewer.updateItem(StructuredViewer.java:2170)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:843)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createAddedElements(AbstractTreeViewer.java:351)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.internalAdd(AbstractTreeViewer.java:285)
+	at org.eclipse.jface.viewers.TreeViewer.internalAdd(TreeViewer.java:615)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.add(AbstractTreeViewer.java:160)
+	at org.eclipse.ui.navigator.CommonViewer.add(CommonViewer.java:301)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.add(AbstractTreeViewer.java:668)
+	at org.eclipse.jdt.internal.ui.packageview.PackageExplorerContentProvider$4.run(PackageExplorerContentProvider.java:960)
+	at org.eclipse.jdt.internal.ui.packageview.PackageExplorerContentProvider.runUpdates(PackageExplorerContentProvider.java:193)
+	at org.eclipse.jdt.internal.ui.packageview.PackageExplorerContentProvider.executeRunnables(PackageExplorerContentProvider.java:141)
+	at org.eclipse.jdt.internal.ui.packageview.PackageExplorerContentProvider.elementChanged(PackageExplorerContentProvider.java:126)
+	at org.eclipse.jdt.internal.core.DeltaProcessor$3.run(DeltaProcessor.java:1662)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.notifyListeners(DeltaProcessor.java:1652)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.firePostChangeDelta(DeltaProcessor.java:1486)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.fire(DeltaProcessor.java:1462)
+	at org.eclipse.jdt.internal.core.DeltaProcessor.resourceChanged(DeltaProcessor.java:2074)
+	at org.eclipse.jdt.internal.core.DeltaProcessingState.resourceChanged(DeltaProcessingState.java:477)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:289)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:152)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:374)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1469)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:307)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:247)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:242)
+	at org.eclipse.papyrus.junit.utils.ProjectUtils.createProject(ProjectUtils.java:49)
+	at org.eclipse.papyrus.req.reqif.test.ReImportRemoveSpecObject.addRequirements(ReImportRemoveSpecObject.java:75)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.eclipse.papyrus.junit.framework.classification.ClassificationRunner.access$0(ClassificationRunner.java:1)
+	at org.eclipse.papyrus.junit.framework.classification.ClassificationRunner$1.runChild(ClassificationRunner.java:56)
+	at org.eclipse.papyrus.junit.framework.classification.ClassificationRunnerImpl.runChild(ClassificationRunnerImpl.java:85)
+	at org.eclipse.papyrus.junit.framework.classification.ClassificationRunner.runChild(ClassificationRunner.java:84)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:55)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:670)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.pde.internal.junit.runtime.RemotePluginTestRunner.main(RemotePluginTestRunner.java:66)
+	at org.eclipse.pde.internal.junit.runtime.PlatformUITestHarness.lambda$0(PlatformUITestHarness.java:43)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4166)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3782)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1118)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1019)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:157)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:691)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:604)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:138)
+	at org.eclipse.pde.internal.junit.runtime.NonUIThreadTestApplication.runApp(NonUIThreadTestApplication.java:52)
+	at org.eclipse.pde.internal.junit.runtime.UITestApplication.runApp(UITestApplication.java:43)
+	at org.eclipse.pde.internal.junit.runtime.NonUIThreadTestApplication.start(NonUIThreadTestApplication.java:46)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:670)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:609)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1516)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1489)
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:02.739
+!MESSAGE [DEBUG] ActionBarContributorRegistry : contributors desc loaded  [1]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.107
+!MESSAGE [DEBUG] PapyrusMultiDiagramEditor - ActionBarContributorRegistry loaded from CoreComposedActionBarContributor.
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.113
+!MESSAGE [DEBUG] --------------------------
+ Roots:
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.core.resource.ModelSet, serviceClassname=org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSetServiceFactory, serviceStartKind=STARTUP, priority=5]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor, serviceClassname=org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor, serviceStartKind=STARTUP, priority=1]
+--------- done -----------
+
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.114
+!MESSAGE [DEBUG] --------------------------
+ Services to start:
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.core.resource.ModelSet, serviceClassname=org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSetServiceFactory, serviceStartKind=STARTUP, priority=5]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor, serviceClassname=org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor, serviceStartKind=STARTUP, priority=1]
+--------- done -----------
+
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.124
+!MESSAGE [DEBUG] --------------------------
+ Roots:
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.core.language.ILanguageService, serviceClassname=org.eclipse.papyrus.infra.core.internal.language.LanguageService, serviceStartKind=STARTUP, priority=10]
+--------- done -----------
+
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.126
+!MESSAGE [DEBUG] --------------------------
+ Services to start:
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.core.language.ILanguageService, serviceClassname=org.eclipse.papyrus.infra.core.internal.language.LanguageService, serviceStartKind=STARTUP, priority=10]
+--------- done -----------
+
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.154
+!MESSAGE [DEBUG] model loaded: 'org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel'
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.157
+!MESSAGE [DEBUG] model loaded: 'org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel'
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.160
+!MESSAGE [DEBUG] model loaded: 'org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel'
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.164
+!MESSAGE [DEBUG] model loaded: 'org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationModel'
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.169
+!MESSAGE [DEBUG] model loaded: 'org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel'
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.171
+!MESSAGE [DEBUG] model loaded: 'org.eclipse.papyrus.infra.services.controlmode.history.HistoryModel'
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.177
+!MESSAGE [DEBUG] model snippet added: 'org.eclipse.papyrus.uml.decoratormodel.model.DecoratorModel().add(org.eclipse.papyrus.uml.decoratormodel.model.UMLSnippet)'
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.177
+!MESSAGE [DEBUG] model loaded: 'org.eclipse.papyrus.uml.decoratormodel.model.DecoratorModel'
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.218
+!MESSAGE [DEBUG] model snippet added: 'org.eclipse.papyrus.uml.tools.model.ExtendedUmlModel().add(org.eclipse.papyrus.uml.tools.model.UmlSnippet)'
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.219
+!MESSAGE [DEBUG] model loaded: 'org.eclipse.papyrus.uml.tools.model.ExtendedUmlModel'
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.221
+!MESSAGE [DEBUG] modelSet snippet added: 'org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSet().add(org.eclipse.papyrus.infra.core.modelsetquery.impl.ModelSetQueryInitializer)'
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.225
+!MESSAGE [DEBUG] modelSet snippet added: 'org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSet().add(org.eclipse.papyrus.infra.services.controlmode.listener.LoadResourceSnippet)'
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.230
+!MESSAGE [DEBUG] modelSet snippet added: 'org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSet().add(org.eclipse.papyrus.uml.decoratormodel.internal.ui.providers.AvailableDecoratorModelsSnippet)'
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:03.240
+!MESSAGE [DEBUG] modelSet snippet added: 'org.eclipse.papyrus.infra.services.resourceloading.OnDemandLoadingModelSet().add(org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.StereotypeApplicationRepairSnippet)'
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.203
+!MESSAGE [DEBUG] --------------------------
+ Services to start:
+  ServiceDescriptor [key=org.eclipse.emf.transaction.TransactionalEditingDomain, serviceClassname=org.eclipse.papyrus.infra.core.resource.EditingDomainServiceFactory, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.sync.service.ISyncService, serviceClassname=org.eclipse.papyrus.infra.sync.internal.SyncService, serviceStartKind=LAZY, priority=10]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.gmfdiag.common.internal.sync.UISyncServiceInitializer, serviceClassname=org.eclipse.papyrus.infra.gmfdiag.common.internal.sync.UISyncServiceInitializer, serviceStartKind=STARTUP, priority=10]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.ui.multidiagram.actionbarcontributor.ActionBarContributorRegistry, serviceClassname=org.eclipse.papyrus.infra.ui.multidiagram.actionbarcontributor.ActionBarContributorRegistry, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.extendedtypes.ExtendedTypeRegistryService, serviceClassname=org.eclipse.papyrus.infra.extendedtypes.ExtendedTypeRegistryService, serviceStartKind=STARTUP, priority=50]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry, serviceClassname=org.eclipse.papyrus.infra.ui.editor.PageIconRegistryServiceFactory, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.ui.services.EditorLifecycleManager, serviceClassname=org.eclipse.papyrus.infra.ui.services.internal.EditorLifecycleManagerImpl, serviceStartKind=LAZY, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.uml.modelrepair.service.IStereotypeRepairService, serviceClassname=org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.StereotypeRepairService, serviceStartKind=LAZY, priority=50]
+  ServiceDescriptor [key=org.eclipse.papyrus.uml.profile.service.ReapplyProfilesService, serviceClassname=org.eclipse.papyrus.uml.profile.service.ReapplyProfilesService, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=ElementTypesConfigurationsRegistryService, serviceClassname=org.eclipse.papyrus.infra.types.core.TypesConfigurationsRegistryService, serviceStartKind=STARTUP, priority=50]
+  ServiceDescriptor [key=org.eclipse.papyrus.uml.service.StereotypeElementService, serviceClassname=org.eclipse.papyrus.uml.tools.service.StereotypeElementService, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.emf.edit.domain.EditingDomain, serviceClassname=org.eclipse.papyrus.infra.core.resource.EditingDomainServiceFactory, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.uml.diagram.profile.service.ProfileService, serviceClassname=org.eclipse.papyrus.uml.diagram.profile.service.ProfileService, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager, serviceClassname=org.eclipse.papyrus.infra.ui.editor.DiSashModelManagerServiceFactory, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider, serviceClassname=org.eclipse.papyrus.infra.ui.editor.ContentProviderServiceFactory, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.ui.services.ResourceUpdateService, serviceClassname=org.eclipse.papyrus.infra.ui.services.ResourceUpdateService, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvider, serviceClassname=org.eclipse.papyrus.infra.services.edit.internal.ElementEditServiceProviderFactory, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr, serviceClassname=org.eclipse.papyrus.infra.ui.editor.PageMngrServiceFactory, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.ui.services.SaveLayoutBeforeClose, serviceClassname=org.eclipse.papyrus.infra.ui.services.SaveLayoutBeforeClose, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.core.utils.DiResourceSet, serviceClassname=org.eclipse.papyrus.infra.core.editor.DiResourceSetServiceFactory, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.services.resourceloading.IStrategyChooser, serviceClassname=org.eclipse.papyrus.infra.services.resourceloading.impl.StrategyChooserFactory, serviceStartKind=STARTUP, priority=50]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.services.markerlistener.MarkersMonitorService, serviceClassname=org.eclipse.papyrus.infra.services.markerlistener.MarkersMonitorService, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.jface.viewers.ILabelProvider, serviceClassname=org.eclipse.papyrus.infra.ui.editor.CoreMultiDiagramEditor$2, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService, serviceClassname=org.eclipse.papyrus.infra.ui.lifecycleevents.SaveAndDirtyService, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.ui.lifecycleevents.ILifeCycleEventsProvider, serviceClassname=org.eclipse.papyrus.infra.ui.lifecycleevents.LifeCycleEventsProviderServiceFactory, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.services.controlmode.service.IUncontrolledObjectsProvider, serviceClassname=org.eclipse.papyrus.infra.services.controlmode.service.UncontrolledObjectsServiceFactory, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.services.controlmode.service.ControlModeService, serviceClassname=org.eclipse.papyrus.infra.services.controlmode.service.ControlModeService, serviceStartKind=STARTUP, priority=9]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager, serviceClassname=org.eclipse.papyrus.infra.ui.editor.PageMngrServiceFactory, serviceStartKind=STARTUP, priority=10]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.editor.welcome.IWelcomePageService, serviceClassname=org.eclipse.papyrus.infra.editor.welcome.internal.WelcomePageService, serviceStartKind=STARTUP, priority=50]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr, serviceClassname=org.eclipse.papyrus.infra.ui.editor.DiSashModelMngrServiceFactory, serviceStartKind=STARTUP, priority=1]
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.services.validation.IValidationMarkersService, serviceClassname=org.eclipse.papyrus.infra.services.validation.internal.ValidationMarkersService, serviceStartKind=STARTUP, priority=1]
+--------- done -----------
+
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.447
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.infra.editor.welcome.internal.WelcomePageFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.450
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.infra.nattable.common.factory.NattableEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.452
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.infra.services.resourceloading.internal.ui.editor.UnloadResourcesEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.454
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.infra.ui.editorsfactory.anytype.AnyTypeEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.488
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.491
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.514
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.sysml.diagram.parametric.ParametricDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.531
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.534
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.activity.ActivityDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.550
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.clazz.ClassDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.554
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.clazz.PackageDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.567
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.communication.CommunicationDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.572
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.component.ComponentDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.576
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.composite.CompositeDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.580
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.deployment.DeploymentDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.605
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.interactionoverview.InteractionOverviewDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.608
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.profile.ProfileDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.644
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.sequence.SequenceDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.646
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.statemachine.StateMachineDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.658
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.timing.custom.TimingDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.674
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.usecase.UseCaseDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:04.677
+!MESSAGE [DEBUG] Read 21 editor descriptors from Eclipse extensions
+
+!ENTRY org.eclipse.papyrus.infra.emf.readonly 1 0 2016-03-01 17:00:06.382
+!MESSAGE Read-only cache activated for manager: org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager@309fcb06
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.694
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.695
+!MESSAGE [DEBUG] -  Path to the model: resource/EFFB.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.696
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.697
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.effbd
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.744
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.744
+!MESSAGE [DEBUG] -  Path to the model: resource/GraphicalEFFB.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.745
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.745
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.effbd
+
+!ENTRY org.eclipse.papyrus.infra.types.core 2 0 2016-03-01 17:00:06.750
+!MESSAGE The following ElementTypesSetConfiguration has been ignored because the same ID already registreted: org.eclipse.papyrus.effb.elementTypes
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.751
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.752
+!MESSAGE [DEBUG] -  Path to the model: model/notation.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.752
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.753
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.infra.gmfdiag.common
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.759
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.761
+!MESSAGE [DEBUG] -  Path to the model: models/TestExpansionDiagram.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.762
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.762
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.infra.gmfdiag.common
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.769
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.770
+!MESSAGE [DEBUG] -  Path to the model: model/rulebased.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.771
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.772
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.infra.types.rulebased
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.777
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.778
+!MESSAGE [DEBUG] -  Path to the model: model/sysml-activities.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.778
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.779
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.sysml.service.types
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.784
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.785
+!MESSAGE [DEBUG] -  Path to the model: model/sysml-allocations.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.786
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.786
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.sysml.service.types
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.790
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.791
+!MESSAGE [DEBUG] -  Path to the model: model/sysml-blocks.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.792
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.792
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.sysml.service.types
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.797
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.798
+!MESSAGE [DEBUG] -  Path to the model: model/sysml-constraints.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.798
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.799
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.sysml.service.types
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.803
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.804
+!MESSAGE [DEBUG] -  Path to the model: model/sysml-modelelements.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.805
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.805
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.sysml.service.types
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.809
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.810
+!MESSAGE [DEBUG] -  Path to the model: model/sysml-portsandflows.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.811
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.812
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.sysml.service.types
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.815
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.816
+!MESSAGE [DEBUG] -  Path to the model: model/sysml-requirements.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.817
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.818
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.sysml.service.types
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.822
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.823
+!MESSAGE [DEBUG] -  Path to the model: model/sysml.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.823
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.824
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.sysml.service.types
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.835
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.836
+!MESSAGE [DEBUG] -  Path to the model: model/activityDiagram.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.837
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.838
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.diagram.activity
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.853
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.854
+!MESSAGE [DEBUG] -  Path to the model: model/classdiagram.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.854
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.855
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.diagram.clazz
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.863
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.864
+!MESSAGE [DEBUG] -  Path to the model: model/classdiagram-notation.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.865
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.866
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.diagram.clazz
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.870
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.871
+!MESSAGE [DEBUG] -  Path to the model: model/ComponentDiagram.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.872
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.874
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.diagram.component
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.879
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.880
+!MESSAGE [DEBUG] -  Path to the model: model/ComponentDiagram-notation.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.880
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.881
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.diagram.component
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.884
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.885
+!MESSAGE [DEBUG] -  Path to the model: model/compositediagram.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.886
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.886
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.diagram.composite
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.897
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.898
+!MESSAGE [DEBUG] -  Path to the model: model/compositediagram-notation.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.899
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.901
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.diagram.composite
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.904
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.905
+!MESSAGE [DEBUG] -  Path to the model: model/DeploymentDiagram.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.906
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.908
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.diagram.deployment
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.913
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.914
+!MESSAGE [DEBUG] -  Path to the model: model/DeploymentDiagram-notation.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.915
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.916
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.diagram.deployment
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.920
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.921
+!MESSAGE [DEBUG] -  Path to the model: model/interactionOverviewDiagram.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.921
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.922
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.diagram.interactionoverview
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.926
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.927
+!MESSAGE [DEBUG] -  Path to the model: model/profilediagram.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.928
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.928
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.diagram.profile
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.934
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.935
+!MESSAGE [DEBUG] -  Path to the model: model/stateMachineDiagram.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.936
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.936
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.diagram.statemachine
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.941
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.942
+!MESSAGE [DEBUG] -  Path to the model: models/usecaseDiagram.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.943
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.943
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.diagram.usecase
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.948
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.949
+!MESSAGE [DEBUG] -  Path to the model: models/usecaseDiagram-notation.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.950
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.950
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.diagram.usecase
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.953
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.954
+!MESSAGE [DEBUG] -  Path to the model: model/uml.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.954
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.955
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.service.types
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.982
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.984
+!MESSAGE [DEBUG] -  Path to the model: model/uml-containments.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.985
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.986
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.service.types
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.996
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.997
+!MESSAGE [DEBUG] -  Path to the model: model/StandardProfile.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.998
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:06.999
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.service.types
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:07.002
+!MESSAGE [DEBUG] [Reading extension point]
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:07.003
+!MESSAGE [DEBUG] -  Path to the model: model/uml-advice.elementtypesconfigurations
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:07.004
+!MESSAGE [DEBUG] -  ClientContext the model should be registreted to: org.eclipse.papyrus.infra.services.edit.TypeContext
+
+!ENTRY org.eclipse.papyrus.infra.types.core 1 0 2016-03-01 17:00:07.005
+!MESSAGE [DEBUG] -  id of the container bundle: org.eclipse.papyrus.uml.service.types.ui
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.790
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.infra.editor.welcome.internal.WelcomePageFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.791
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.infra.nattable.common.factory.NattableEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.792
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.infra.services.resourceloading.internal.ui.editor.UnloadResourcesEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.793
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.infra.ui.editorsfactory.anytype.AnyTypeEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.794
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.795
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.796
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.sysml.diagram.parametric.ParametricDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.797
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.798
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.activity.ActivityDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.800
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.clazz.ClassDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.801
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.clazz.PackageDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.802
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.communication.CommunicationDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.803
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.component.ComponentDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.804
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.composite.CompositeDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.805
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.deployment.DeploymentDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.806
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.interactionoverview.InteractionOverviewDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.807
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.profile.ProfileDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.808
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.sequence.SequenceDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.809
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.statemachine.StateMachineDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.810
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.timing.custom.TimingDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.811
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.usecase.UseCaseDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.812
+!MESSAGE [DEBUG] Read 21 editor descriptors from Eclipse extensions
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.829
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.infra.editor.welcome.internal.WelcomePageFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.831
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.infra.nattable.common.factory.NattableEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.831
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.infra.services.resourceloading.internal.ui.editor.UnloadResourcesEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.832
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.infra.ui.editorsfactory.anytype.AnyTypeEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.833
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.834
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.835
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.sysml.diagram.parametric.ParametricDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.836
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.837
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.activity.ActivityDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.838
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.clazz.ClassDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.840
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.clazz.PackageDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.840
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.communication.CommunicationDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.841
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.component.ComponentDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.842
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.composite.CompositeDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.843
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.deployment.DeploymentDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.845
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.interactionoverview.InteractionOverviewDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.846
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.profile.ProfileDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.847
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.sequence.SequenceDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.848
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.statemachine.StateMachineDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.849
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.timing.custom.TimingDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.850
+!MESSAGE [DEBUG] Read editor descriptor [nestedEditor  editorFactory:org.eclipse.papyrus.uml.diagram.usecase.UseCaseDiagramEditorFactory]
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:10.850
+!MESSAGE [DEBUG] Read 21 editor descriptors from Eclipse extensions
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:11.027
+!MESSAGE [DEBUG] --------------------------
+ Roots:
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer, serviceClassname=org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer, serviceStartKind=STARTUP, priority=1]
+--------- done -----------
+
+
+!ENTRY org.eclipse.papyrus.infra.core 1 0 2016-03-01 17:00:11.028
+!MESSAGE [DEBUG] --------------------------
+ Services to start:
+  ServiceDescriptor [key=org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer, serviceClassname=org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer, serviceStartKind=STARTUP, priority=1]
+--------- done -----------
+
+
+!ENTRY org.eclipse.papyrus.infra.core.sasheditor 1 0 2016-03-01 17:00:11.595
+!MESSAGE [DEBUG] setActiveEditor(org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor@4567f7d8 )
+
+!ENTRY org.eclipse.papyrus.infra.core.sasheditor 1 0 2016-03-01 17:00:11.677
+!MESSAGE [DEBUG] setActiveEditor(org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor@4567f7d8 )
+
+!ENTRY org.eclipse.papyrus.infra.gmfdiag.common 2 0 2016-03-01 17:00:14.116
+!MESSAGE Expansion model not loaded
+
+!ENTRY org.eclipse.papyrus.infra.gmfdiag.common 2 0 2016-03-01 17:00:14.117
+!MESSAGE 	The representation 'Input Data as a node' references a element type that does not exist org.eclipse.papyrus.effbd.inputdata_node
+
+!ENTRY org.eclipse.papyrus.infra.gmfdiag.common 2 0 2016-03-01 17:00:14.118
+!MESSAGE 	The representation 'Output Data as a node' references a element type that does not exist org.eclipse.papyrus.effbd.outputdata_node
+
+!ENTRY org.eclipse.papyrus.infra.gmfdiag.common 2 0 2016-03-01 17:00:14.118
+!MESSAGE 	The representation 'Body of the OpaqueAction' references a element type that does not exist org.eclipse.papyrus.effbd.opaqueAction_body
+
+!ENTRY org.eclipse.papyrus.uml.diagram.common 1 0 2016-03-01 17:00:14.345
+!MESSAGE [DEBUG] Activate: addtionnal listeners for ModelEditPart( org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl@65e24575 (visible: true, type: PapyrusUMLClassDiagram, mutable: false) (name: ClassDiagram, measurementUnit: Pixel) )
+
+
+!ENTRY org.eclipse.papyrus.infra.core.sasheditor 1 0 2016-03-01 17:00:14.415
+!MESSAGE [DEBUG] attachPage( org.eclipse.papyrus.infra.core.sasheditor.internal.EditorPart@5c646c59 )
+
+!ENTRY org.eclipse.papyrus.infra.core.sasheditor 1 0 2016-03-01 17:00:15.339
+!MESSAGE [DEBUG] setActivePage(org.eclipse.papyrus.uml.diagram.clazz.UmlClassDiagramForMultiEditor@4dca145f )
+Impossible to add org.eclipse.uml2.uml.internal.impl.ProfileApplicationImpl@d2f2e9b (isStrict: false) insideorg.eclipse.uml2.uml.internal.impl.ModelImpl@ca35104 (name: SysMLmodel, visibility: <unset>) (URI: null) (viewpoint: <unset>)
+Impossible to add org.eclipse.uml2.uml.internal.impl.ProfileApplicationImpl@618f3bf1 (isStrict: false) insideorg.eclipse.uml2.uml.internal.impl.ModelImpl@ca35104 (name: SysMLmodel, visibility: <unset>) (URI: null) (viewpoint: <unset>)
+Impossible to add org.eclipse.uml2.uml.internal.impl.ProfileApplicationImpl@4a1317dc (isStrict: false) insideorg.eclipse.uml2.uml.internal.impl.ModelImpl@ca35104 (name: SysMLmodel, visibility: <unset>) (URI: null) (viewpoint: <unset>)
+Impossible to add org.eclipse.uml2.uml.internal.impl.ProfileApplicationImpl@148c112a (isStrict: false) insideorg.eclipse.uml2.uml.internal.impl.ModelImpl@ca35104 (name: SysMLmodel, visibility: <unset>) (URI: null) (viewpoint: <unset>)
+Impossible to add org.eclipse.uml2.uml.internal.impl.ProfileApplicationImpl@6023bed6 (isStrict: false) insideorg.eclipse.uml2.uml.internal.impl.ModelImpl@ca35104 (name: SysMLmodel, visibility: <unset>) (URI: null) (viewpoint: <unset>)
+Impossible to add org.eclipse.uml2.uml.internal.impl.ProfileApplicationImpl@786b4190 (isStrict: false) insideorg.eclipse.uml2.uml.internal.impl.ModelImpl@ca35104 (name: SysMLmodel, visibility: <unset>) (URI: null) (viewpoint: <unset>)
+Impossible to add org.eclipse.uml2.uml.internal.impl.ProfileApplicationImpl@2a9404b6 (isStrict: false) insideorg.eclipse.uml2.uml.internal.impl.ModelImpl@ca35104 (name: SysMLmodel, visibility: <unset>) (URI: null) (viewpoint: <unset>)
+Impossible to add org.eclipse.uml2.uml.internal.impl.ProfileApplicationImpl@5ee5558f (isStrict: false) insideorg.eclipse.uml2.uml.internal.impl.ModelImpl@ca35104 (name: SysMLmodel, visibility: <unset>) (URI: null) (viewpoint: <unset>)
+Impossible to add org.eclipse.uml2.uml.internal.impl.ProfileApplicationImpl@23cd958b (isStrict: false) insideorg.eclipse.uml2.uml.internal.impl.ModelImpl@ca35104 (name: SysMLmodel, visibility: <unset>) (URI: null) (viewpoint: <unset>)
+Impossible to add org.eclipse.uml2.uml.internal.impl.ProfileApplicationImpl@10837a3 (isStrict: false) insideorg.eclipse.uml2.uml.internal.impl.ModelImpl@ca35104 (name: SysMLmodel, visibility: <unset>) (URI: null) (viewpoint: <unset>)
+Impossible to add org.eclipse.uml2.uml.internal.impl.ProfileApplicationImpl@bb32280 (isStrict: false) insideorg.eclipse.uml2.uml.internal.impl.ModelImpl@ca35104 (name: SysMLmodel, visibility: <unset>) (URI: null) (viewpoint: <unset>)
+Impossible to add org.eclipse.uml2.uml.internal.impl.ProfileApplicationImpl@7f0e5754 (isStrict: false) insideorg.eclipse.uml2.uml.internal.impl.ModelImpl@ca35104 (name: SysMLmodel, visibility: <unset>) (URI: null) (viewpoint: <unset>)

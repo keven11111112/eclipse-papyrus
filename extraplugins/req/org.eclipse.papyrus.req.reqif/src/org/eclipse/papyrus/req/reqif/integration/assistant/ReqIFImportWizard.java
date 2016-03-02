@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.req.reqif.I_SysMLStereotype;
 import org.eclipse.papyrus.req.reqif.assistant.ReqIFSelectionPage;
 import org.eclipse.papyrus.req.reqif.integration.transformation.ReqIFImporterServiceEdit;
 import org.eclipse.papyrus.req.reqif.transformation.ReqIFImporter;
@@ -33,6 +34,7 @@ import org.eclipse.uml2.uml.Package;
 public class ReqIFImportWizard extends AbstractWizardForPapyrus implements IImportWizard {
 
 	protected ReqIFSelectionPage reqifSelectionPage;
+
 	/**
 	 * 
 	 * Constructor.
@@ -45,36 +47,36 @@ public class ReqIFImportWizard extends AbstractWizardForPapyrus implements IImpo
 
 	@Override
 	public void addPages() {
-
-		reqifSelectionPage= new ReqIFSelectionPage((Package)getSelectionSet().get(0));
-		this.addPage(reqifSelectionPage);
+		if(getSelectionSet().size() > 0) {
+			reqifSelectionPage = new ReqIFSelectionPage((Package)getSelectionSet().get(0));
+			this.addPage(reqifSelectionPage);
+		}
 	}
 
 	@Override
 	public boolean performFinish() {
-
 		// get the domain in order to launche the command
-		final TransactionalEditingDomain domain = modelSet.getTransactionalEditingDomain();
-		IFile reqFile=reqifSelectionPage.getSelectedReqIFFile();
-		resourceSet = Util.createTemporaryResourceSet();
-		Resource reqIFResource = resourceSet.getResource(URI.createPlatformResourceURI(reqFile.getFullPath().toOSString(), true),true);
-		if( reqIFResource.getContents().size()>0){
-			if(reqIFResource.getContents().get(0) instanceof ReqIF ){
-				final ReqIF importedReqIFModel=(ReqIF)reqIFResource.getContents().get(0);
-								
-				RecordingCommand cmd= new RecordingCommand(domain, "importReqIF") {
+		if(modelSet != null) {
+			final TransactionalEditingDomain domain = modelSet.getTransactionalEditingDomain();
+			IFile reqFile = reqifSelectionPage.getSelectedReqIFFile();
+			resourceSet = Util.createTemporaryResourceSet();
+			Resource reqIFResource = resourceSet.getResource(URI.createPlatformResourceURI(reqFile.getFullPath().toOSString(), true), true);
+			if(reqIFResource.getContents().size() > 0) {
+				if(reqIFResource.getContents().get(0) instanceof ReqIF) {
+					final ReqIF importedReqIFModel = (ReqIF)reqIFResource.getContents().get(0);
+					RecordingCommand cmd = new RecordingCommand(domain, "importReqIF") {
 
-					@Override
-					protected void doExecute() {
-						ReqIFImporter sysMLReqIFTransfomation= new ReqIFImporterServiceEdit(domain, importedReqIFModel, (Package)getSelectionSet().get(0));
-						sysMLReqIFTransfomation.importReqIFModel(true);
-					}
-				};
-				domain.getCommandStack().execute(cmd);
-
+						@Override
+						protected void doExecute() {
+							ReqIFImporter sysMLReqIFTransfomation = new ReqIFImporterServiceEdit(domain, importedReqIFModel, (Package)getSelectionSet().get(0));
+							sysMLReqIFTransfomation.reImportReqIFModel(true, I_SysMLStereotype.REQUIREMENT_ID_ATT, true);
+						}
+					};
+					domain.getCommandStack().execute(cmd);
+				}
 			}
+			return true;
 		}
-		return true;
+		return false;
 	}
-
 }

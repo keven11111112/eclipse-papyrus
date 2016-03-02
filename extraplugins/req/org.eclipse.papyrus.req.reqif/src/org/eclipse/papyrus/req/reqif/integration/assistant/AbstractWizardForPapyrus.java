@@ -33,6 +33,7 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
+
 /**
  * Abstract wizard that contains method to get the selection, the model Set...
  *
@@ -40,8 +41,11 @@ import org.eclipse.uml2.uml.Element;
 public abstract class AbstractWizardForPapyrus extends Wizard {
 
 	protected TransactionalEditingDomain transactionalEditingDomain = null;
+
 	protected PapyrusMultiDiagramEditor papyrusEditor;
+
 	protected ModelSet modelSet;
+
 	protected ResourceSet resourceSet;
 
 	/**
@@ -54,37 +58,41 @@ public abstract class AbstractWizardForPapyrus extends Wizard {
 	}
 
 	/**
-	 * this method is used in order to initialize  service registry domain and model set: indispensable element in order to execute command
-	 * @param workbench the eclipse workbench
-	 * @param selection the current Selection
+	 * this method is used in order to initialize service registry domain and model set: indispensable element in order to execute command
+	 * 
+	 * @param workbench
+	 *        the eclipse workbench
+	 * @param selection
+	 *        the current Selection
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-
 		//get the service registry of papyrus from the selection
-		ServicesRegistry registry=null;
+		ServicesRegistry registry = null;
 		try {
 			registry = ServiceUtilsForSelection.getInstance().getServiceRegistry(selection);
 		} catch (ServiceException e1) {
-			e1.printStackTrace();
+			//do noting the service registry is not accessible 
+			// we are not inside papyrus
 		}
 		try {
-			modelSet = registry.getService(ModelSet.class);
+			if(registry != null) {
+				modelSet = registry.getService(ModelSet.class);
+			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 
-	 * @return the service registry of Papyrus, maybe null 
+	 * @return the service registry of Papyrus, maybe null
 	 * 
 	 */
 	public ServicesRegistry getServiceRegistry() {
-
 		IEditorPart editor;
 		try {
 			editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-			ServicesRegistry serviceRegistry = (ServicesRegistry)editor.getAdapter(ServicesRegistry.class);
+			ServicesRegistry serviceRegistry = editor.getAdapter(ServicesRegistry.class);
 			if(serviceRegistry != null) {
 				return serviceRegistry;
 			}
@@ -92,7 +100,6 @@ public abstract class AbstractWizardForPapyrus extends Wizard {
 			// Can't get the active editor
 			System.err.println("Can't get the current Eclipse Active Editor. No ServiceRegistry found.");
 		}
-
 		// Not found
 		System.err.println("Can't get the ServiceRegistry from current Eclipse Active Editor");
 		return null;
@@ -109,27 +116,24 @@ public abstract class AbstractWizardForPapyrus extends Wizard {
 
 	/**
 	 * getSelected element in the diagram or in the model explorer
+	 * 
 	 * @return Element or null
 	 */
 	protected ArrayList<Element> getSelectionSet() {
-		ArrayList<Element> selectedSet =new ArrayList<Element>();
+		ArrayList<Element> selectedSet = new ArrayList<Element>();
 		ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		ISelection selection = selectionService.getSelection();
-
-
 		if(selection instanceof IStructuredSelection) {
 			@SuppressWarnings("rawtypes")
 			Iterator selectedobjectIteractor = ((IStructuredSelection)selection).iterator();
-			while (selectedobjectIteractor.hasNext()) {
+			while(selectedobjectIteractor.hasNext()) {
 				Object currentSelection = selectedobjectIteractor.next();
-
 				EObject selectedEObject = EMFHelper.getEObject(currentSelection);
-				if (selectedEObject instanceof org.eclipse.uml2.uml.Package){
+				if(selectedEObject instanceof org.eclipse.uml2.uml.Package) {
 					selectedSet.add((Element)selectedEObject);
 				}
 			}
 		}
-
 		return selectedSet;
 	}
 }

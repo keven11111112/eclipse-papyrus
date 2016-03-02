@@ -11,7 +11,6 @@
  *  Patrick Tessier (CEA LIST) patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.req.reqif.integration.assistant;
 
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -32,7 +31,6 @@ public class ReqIFExportWizard extends AbstractWizardForPapyrus implements IExpo
 
 	@Override
 	public void addPages() {
-
 		reqifFileCreationPage = new WizardNewFileCreationPage("Create new ReqIF file", new StructuredSelection());
 		reqifFileCreationPage.setFileExtension("reqif");
 		reqifFileCreationPage.setTitle("Create new ReqIF file");
@@ -43,17 +41,19 @@ public class ReqIFExportWizard extends AbstractWizardForPapyrus implements IExpo
 	@Override
 	public boolean performFinish() {
 		// get the domain in order to launch the command
-		final TransactionalEditingDomain domain = modelSet.getTransactionalEditingDomain();
-		RecordingCommand cmd= new RecordingCommand(domain, "exportReqIF") {
+		if(modelSet != null) {
+			final TransactionalEditingDomain domain = modelSet.getTransactionalEditingDomain();
+			RecordingCommand cmd = new RecordingCommand(domain, "exportReqIF") {
 
-			@Override
-			protected void doExecute() {
-				ReqIFExporter reqIFExporter= new ReqIFExporter(domain, (Package)getSelectionSet().get(0));
-				reqIFExporter.exportReqIFModel(true, reqifFileCreationPage.getContainerFullPath()+"/"+reqifFileCreationPage.getFileName());
-			}
-		};
-		domain.getCommandStack().execute(cmd);
-
-		return true;
+				@Override
+				protected void doExecute() {
+					ReqIFExporter reqIFExporter = new ReqIFExporter(domain, (Package)getSelectionSet().get(0));
+					reqIFExporter.exportReqIFModel(true, reqifFileCreationPage.getContainerFullPath() + "/" + reqifFileCreationPage.getFileName());
+				}
+			};
+			domain.getCommandStack().execute(cmd);
+			return true;
+		}
+		return false;
 	}
 }
