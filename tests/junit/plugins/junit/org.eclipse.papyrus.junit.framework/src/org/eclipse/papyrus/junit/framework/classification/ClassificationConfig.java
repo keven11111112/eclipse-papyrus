@@ -102,6 +102,8 @@ public enum ClassificationConfig implements Set<TestCategory> {
 
 	/**
 	 * This test configuration runs all generated diagram tests only.
+	 * 
+	 * @since 1.2
 	 */
 	GENERATED_TESTS_CONFIG(InteractiveTest, NotImplemented, FailingTest, InvalidTest, ExpensiveTest, Standard),
 

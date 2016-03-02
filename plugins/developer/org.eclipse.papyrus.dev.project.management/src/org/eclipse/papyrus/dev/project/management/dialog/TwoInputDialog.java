@@ -28,11 +28,12 @@ import org.eclipse.swt.widgets.Text;
  * This Dialog provides 2 texts field. It was created to be used during the table creation.
  * It doesn't provide validator for the second field.
  * 
+ * @since 1.2
  * 
  */
-//TODO move this class in an upper project
-//TODO generalize this class to have several text field
-//FIXME : duplicated code from oep.infra.table.common
+// TODO move this class in an upper project
+// TODO generalize this class to have several text field
+// FIXME : duplicated code from oep.infra.table.common
 public class TwoInputDialog extends InputDialog {
 
 	/** widget for the second value */
@@ -49,19 +50,19 @@ public class TwoInputDialog extends InputDialog {
 	 * Constructor.
 	 * 
 	 * @param parentShell
-	 *        the parent shell
+	 *            the parent shell
 	 * @param dialogTitle
-	 *        the dialog title
+	 *            the dialog title
 	 * @param message1
-	 *        the first message for the dialog
+	 *            the first message for the dialog
 	 * @param message2
-	 *        the second message for the dialog
+	 *            the second message for the dialog
 	 * @param initialValue1
-	 *        the first initial value
+	 *            the first initial value
 	 * @param initialValue2
-	 *        the second initial value
+	 *            the second initial value
 	 * @param validator
-	 *        the validator
+	 *            the validator
 	 */
 	public TwoInputDialog(final Shell parentShell, final String dialogTitle, final String message1, final String message2, final String initialValue1, final String initialValue2, final IInputValidator validator) {
 		super(parentShell, dialogTitle, message1, initialValue1, validator);
@@ -79,8 +80,8 @@ public class TwoInputDialog extends InputDialog {
 	 */
 	@Override
 	protected Control createDialogArea(final Composite parent) {
-		final Composite composite = (Composite)super.createDialogArea(parent);
-		if(this.message_2 != null) {
+		final Composite composite = (Composite) super.createDialogArea(parent);
+		if (this.message_2 != null) {
 			final Label label = new Label(composite, SWT.WRAP);
 			label.setText(this.message_2);
 			final GridData data = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL | GridData.VERTICAL_ALIGN_CENTER);
@@ -102,7 +103,7 @@ public class TwoInputDialog extends InputDialog {
 	 */
 	@Override
 	protected void buttonPressed(final int buttonId) {
-		if(buttonId == IDialogConstants.OK_ID) {
+		if (buttonId == IDialogConstants.OK_ID) {
 			this.value_2 = this.text_2.getText();
 		} else {
 			this.value_2 = null;
@@ -119,7 +120,7 @@ public class TwoInputDialog extends InputDialog {
 	@Override
 	protected void createButtonsForButtonBar(final Composite parent) {
 		super.createButtonsForButtonBar(parent);
-		if(this.value_2 != null) {
+		if (this.value_2 != null) {
 			this.text_2.setText(this.value_2);
 		}
 	}
@@ -128,7 +129,7 @@ public class TwoInputDialog extends InputDialog {
 	 * Getter for {@link #value_2}
 	 * 
 	 * @return
-	 *         the description for the table
+	 * 		the description for the table
 	 */
 	public String getValue_2() {
 		return this.value_2;

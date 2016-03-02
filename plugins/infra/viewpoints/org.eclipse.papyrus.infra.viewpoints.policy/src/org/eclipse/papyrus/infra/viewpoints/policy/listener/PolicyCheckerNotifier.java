@@ -22,6 +22,9 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.viewpoints.policy.Activator;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 
+/**
+ * @since 1.2
+ */
 public class PolicyCheckerNotifier {
 
 	private static PolicyCheckerNotifier notifier;

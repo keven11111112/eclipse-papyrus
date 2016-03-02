@@ -15,8 +15,11 @@ package org.eclipse.papyrus.infra.viewpoints.policy.listener;
 
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 
+/**
+ * @since 1.2
+ */
 public interface IPolicyCheckerListener {
-	
+
 	void policyCheckerChanged(PolicyChecker policyChecker);
-	
+
 }

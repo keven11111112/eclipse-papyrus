@@ -35,13 +35,13 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.ui.navigator;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui.navigator.resources;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide;bundle-version="[1.7.0,2.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.ocl.ecore;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.providers.ide;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.dnd;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.uml.appearance;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.uml.service.types;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.uml.service.types;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
  org.eclipse.papyrus.editor;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.infra.extendedtypes;bundle-version="[2.0.0,3.0.0)",
@@ -55,7 +55,7 @@ Require-Bundle: org.eclipse.ui.navigator;bundle-version="[3.6.0,4.0.0)";visibili
  org.eclipse.papyrus.infra.hyperlink;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.activity; singleton:=true

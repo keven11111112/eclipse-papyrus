@@ -15,11 +15,14 @@ package org.eclipse.papyrus.infra.viewpoints.policy.listener;
 
 import org.eclipse.papyrus.infra.viewpoints.policy.Activator;
 
+/**
+ * @since 1.2
+ */
 public interface IPolicyCheckerListenerExtensionPoint {
 
-	
-		/** ID of the extension point */
-		public final static String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".policycheckerlistener";
 
-		public static final String LISTENER_CLASS = "listenerClass";
-	}
+	/** ID of the extension point */
+	public final static String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".policycheckerlistener";
+
+	public static final String LISTENER_CLASS = "listenerClass";
+}

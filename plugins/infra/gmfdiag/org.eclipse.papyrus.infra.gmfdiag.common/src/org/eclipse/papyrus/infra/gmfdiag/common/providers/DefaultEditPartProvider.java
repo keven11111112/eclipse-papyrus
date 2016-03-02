@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
 
 /**
- * @since 3.1
+ * @since 2.0
  */
 public class DefaultEditPartProvider extends AbstractEditPartProvider {
 

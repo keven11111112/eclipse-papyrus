@@ -16,7 +16,7 @@ package org.eclipse.papyrus.infra.gmfdiag.common.updater;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * @since 3.0
+ * @since 2.0
  */
 public class UpdaterNodeDescriptor {
 

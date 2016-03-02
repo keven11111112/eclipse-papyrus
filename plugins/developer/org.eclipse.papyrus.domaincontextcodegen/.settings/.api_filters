@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.domaincontextcodegen" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="Dependencies were implicitly upper-bounded in Mars" id="927989779">
+            <message_arguments>
+                <message_argument value="1.2.0"/>
+                <message_argument value="org.eclipse.emf.ecore"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

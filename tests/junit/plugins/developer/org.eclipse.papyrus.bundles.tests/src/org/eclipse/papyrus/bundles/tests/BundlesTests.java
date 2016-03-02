@@ -37,7 +37,8 @@ import org.osgi.framework.Bundle;
  * suppress restriction for org.eclipse.pde.internal.core.feature.Feature;
  *
  * @author VL222926
- *
+ * 
+ * @noreference This class is not intended to be referenced by clients.
  */
 public class BundlesTests extends AbstractPapyrusTest {
 

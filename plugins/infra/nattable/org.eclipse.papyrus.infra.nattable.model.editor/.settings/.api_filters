@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.infra.nattable.model.editor" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="Dependencies had implicit upper bounds in Mars" id="927989779">
+            <message_arguments>
+                <message_argument value="1.2.0"/>
+                <message_argument value="org.eclipse.core.resources"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

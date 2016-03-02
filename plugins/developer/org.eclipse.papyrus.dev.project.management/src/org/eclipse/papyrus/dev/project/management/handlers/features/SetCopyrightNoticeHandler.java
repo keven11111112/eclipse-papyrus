@@ -31,6 +31,8 @@ import org.eclipse.swt.widgets.Display;
  * 
  * set the Copyright and the URL only if it not yet set.
  * 
+ * @since 1.2
+ * 
  */
 public class SetCopyrightNoticeHandler extends AbstractHandler {
 
@@ -38,13 +40,14 @@ public class SetCopyrightNoticeHandler extends AbstractHandler {
 
 	final static String TEXT = "text";
 
+	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		Utils.getSelectedOpenProject();
 		final TwoInputDialog dialog = new TwoInputDialog(Display.getDefault().getActiveShell(), "Set Copyright Notice", "Licence url", "text", OPTIONAL_URL, TEXT, null);
-		if(dialog.open() == Window.OK) {
+		if (dialog.open() == Window.OK) {
 			final String newVersion = dialog.getValue();
 			final List<IProject> featureProjects = Utils.getOpenedFeatureProject();
-			for(final IProject current : featureProjects) {
+			for (final IProject current : featureProjects) {
 				try {
 					setCopyrightNotice(current, dialog.getValue(), dialog.getValue_2());
 				} catch (final Throwable e) {
@@ -62,8 +65,8 @@ public class SetCopyrightNoticeHandler extends AbstractHandler {
 	 * @param text
 	 * @throws Throwable
 	 * 
-	 *         TODO : doesn't erase existing value!
-	 *         TODO : add a checkbox in the dialog to erase existing value
+	 *             TODO : doesn't erase existing value!
+	 *             TODO : add a checkbox in the dialog to erase existing value
 	 */
 	protected void setCopyrightNotice(final IProject featureProject, final String url, final String text) throws Throwable {
 		final IFeatureProjectEditor editor = new FeatureProjectEditor(featureProject);
@@ -72,18 +75,18 @@ public class SetCopyrightNoticeHandler extends AbstractHandler {
 		final String copyrightURL = editor.getCopyrightURL();
 		String settedURL = null;
 		String settedText = null;
-		//TODO improve these tests
-		if((copyrightURL == null) || copyrightURL.equals("")) {
+		// TODO improve these tests
+		if ((copyrightURL == null) || copyrightURL.equals("")) {
 			settedURL = url;
 		} else {
 			settedURL = copyrightURL;
 		}
 
-		if((copyrirghtText == null) || copyrirghtText.equals("")) {
+		if ((copyrirghtText == null) || copyrirghtText.equals("")) {
 			settedText = text;
 		}
-		if(settedText.equals(copyrirghtText) && settedURL.equals(copyrightURL)) {
-			//do nothing
+		if (settedText.equals(copyrirghtText) && settedURL.equals(copyrightURL)) {
+			// do nothing
 		} else {
 			editor.setCopyright(settedURL, settedText);
 			editor.save();

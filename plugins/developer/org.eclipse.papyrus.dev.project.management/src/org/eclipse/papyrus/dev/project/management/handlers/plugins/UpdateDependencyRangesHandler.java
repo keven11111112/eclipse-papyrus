@@ -26,6 +26,8 @@ import org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor;
  * by the current PDE Target version, except for certain 3rd-party Orbit bundles
  * (such as Guava, ICU4J) that are known to increase major versions frequently without
  * breaking compatibility.
+ * 
+ * @since 1.2
  */
 public class UpdateDependencyRangesHandler extends AbstractManifestUpdateHandler {
 

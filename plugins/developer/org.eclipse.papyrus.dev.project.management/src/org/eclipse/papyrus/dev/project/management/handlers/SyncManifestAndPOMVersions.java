@@ -67,6 +67,8 @@ import org.w3c.dom.NodeList;
 /**
  * Ensures that <tt>pom.xml</tt> files have the same version number as their
  * corresponding <tt>MANIFEST.MF</tt> or <tt>feature.xml</tt> file.
+ * 
+ * @since 1.2
  */
 public class SyncManifestAndPOMVersions extends AbstractHandler {
 	private static final Pattern BUNDLE_VERSION = Pattern.compile("^Bundle-Version:\\s*(\\S+)\\s*$", Pattern.MULTILINE); //$NON-NLS-1$
@@ -141,7 +143,7 @@ public class SyncManifestAndPOMVersions extends AbstractHandler {
 				.filter(this::hasPluginOrFeatureNature)
 				.forEach(project -> {
 					IFile pom = project.getFile("pom.xml"); //$NON-NLS-1$
-					if (pom != null) {
+					if ((pom != null) && pom.isAccessible()) {
 						IFile manifest = project.getFile("feature.xml");
 						if (!manifest.isAccessible()) {
 							manifest = project.getFile("META-INF/MANIFEST.MF");

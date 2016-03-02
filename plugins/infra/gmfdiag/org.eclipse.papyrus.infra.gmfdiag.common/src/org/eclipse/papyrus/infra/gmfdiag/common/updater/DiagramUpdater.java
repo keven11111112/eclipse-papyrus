@@ -18,7 +18,7 @@ import java.util.List;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
- * @since 3.0
+ * @since 2.0
  */
 public interface DiagramUpdater {
 

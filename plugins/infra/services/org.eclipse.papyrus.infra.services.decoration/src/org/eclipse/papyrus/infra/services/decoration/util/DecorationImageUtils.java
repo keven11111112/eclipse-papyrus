@@ -22,24 +22,25 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 
 /**
- * This class provides methods utils to add decoration (overlay) to an existing image. 
- *
+ * This class provides methods utils to add decoration (overlay) to an existing image.
+ * 
+ * @since 1.2
  */
 public class DecorationImageUtils {
 
 	/** point corresponding to the size 16x16. */
 	public final static Point SIZE_16_16 = new Point(16, 16);
-	
+
 	/**
 	 * The number of decoration is 5 (number of possible decoration position as enumerated by constants in IDecoration from JFace
 	 * (TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, UNDERLAY)fro mTOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, UNDERLAY)
 	 */
 	public final static int NB_DECORATIONS = 5;
-	
-	private DecorationImageUtils(){
-		//to prevent instanciation
+
+	private DecorationImageUtils() {
+		// to prevent instanciation
 	}
-	
+
 	/**
 	 * 
 	 * @param decoratorTarget

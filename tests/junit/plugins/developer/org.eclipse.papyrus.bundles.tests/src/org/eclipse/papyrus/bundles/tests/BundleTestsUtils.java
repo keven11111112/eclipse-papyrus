@@ -28,6 +28,9 @@ import org.eclipse.pde.internal.core.ifeature.IFeatureModel;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
+/**
+ * @noreference This class is not intended to be referenced by clients.
+ */
 public class BundleTestsUtils {
 
 	public static final String INCUBATION = "(Incubation)"; //$NON-NLS-1$

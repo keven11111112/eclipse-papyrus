@@ -30,6 +30,7 @@ import org.junit.runners.parameterized.TestWithParameters;
  * 
  * @see Parameterized
  * @see UseParametersRunnerFactory
+ * @since 1.2
  */
 public class ClassificationRunnerWithParametersFactory implements ParametersRunnerFactory {
 

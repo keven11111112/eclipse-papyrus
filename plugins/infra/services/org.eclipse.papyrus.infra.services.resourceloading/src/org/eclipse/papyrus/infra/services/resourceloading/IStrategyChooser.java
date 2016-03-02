@@ -37,6 +37,8 @@ public interface IStrategyChooser {
 	 *            the new strategy to engage
 	 * 
 	 * @return whether the suggestion to set the new {@code strategy} was accepted and implemented
+	 * 
+	 * @since 2.0
 	 */
 	default boolean setStrategy(int strategy) {
 		return strategy == getCurrentStrategy();

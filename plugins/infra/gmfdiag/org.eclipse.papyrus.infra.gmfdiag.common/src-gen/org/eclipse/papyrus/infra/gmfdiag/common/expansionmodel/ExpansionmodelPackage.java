@@ -33,6 +33,8 @@ import org.eclipse.emf.ecore.EReference;
  * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelFactory
  * @model kind="package"
  * @generated
+ * 
+ * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface ExpansionmodelPackage extends EPackage {
 	/**
@@ -1141,6 +1143,9 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * </ul>
 	 * <!-- end-user-doc -->
 	 * @generated
+	 * 
+	 * @noimplement This interface is not intended to be implemented by clients.
+	 * @noextend This interface is not intended to be extended by clients.
 	 */
 	interface Literals {
 		/**

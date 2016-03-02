@@ -23,7 +23,9 @@ import org.eclipse.ui.PartInitException;
  * Otherwise, a new editor will be opened
  *
  * @author Camille Letavernier
- *
+ * 
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface OpenElementService extends IService {
 

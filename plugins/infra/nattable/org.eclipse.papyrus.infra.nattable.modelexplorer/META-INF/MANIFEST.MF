@@ -11,13 +11,13 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.papyrus.infra.nattable.model;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.emf.gmf;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.emf.facet.query.java.core;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.emf.facet.query.java.core;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
- org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.ui;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.emf;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %Bundle-Vendor
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.modelexplorer.Activator
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription

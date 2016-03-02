@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.diagram.symbols,
  org.eclipse.papyrus.uml.diagram.symbols.provider
-Require-Bundle: org.eclipse.papyrus.uml.profile;bundle-version="[1.2.0,2.0.0)",
+Require-Bundle: org.eclipse.papyrus.uml.profile;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.providers;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="[1.7.0,2.0.0)",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.appearance;bundle-version="[1.2.0,2.0.0)"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy

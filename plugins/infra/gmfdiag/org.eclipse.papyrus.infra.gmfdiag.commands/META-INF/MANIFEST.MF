@@ -11,7 +11,7 @@ Export-Package: org.eclipse.papyrus.commands,
  org.eclipse.papyrus.commands.wrappers
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2

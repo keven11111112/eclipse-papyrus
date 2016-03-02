@@ -9,24 +9,4 @@
             </message_arguments>
         </filter>
     </resource>
-    <resource path="src/org/eclipse/papyrus/emf/facet/efacet/metamodel/v0_2_0/efacet/EFacetPackage.java" type="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage$Literals">
-        <filter comment="EMF package interfaces are not intended to be implemented or extended by clients" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage.Literals"/>
-                <message_argument value="FACET__ALL_FACET_ELEMENTS"/>
-            </message_arguments>
-        </filter>
-        <filter comment="EMF package interfaces are not intended to be implemented or extended by clients" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage.Literals"/>
-                <message_argument value="FACET__ALL_FACET_OPERATIONS"/>
-            </message_arguments>
-        </filter>
-        <filter comment="EMF package interfaces are not intended to be implemented or extended by clients" id="403767336">
-            <message_arguments>
-                <message_argument value="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage.Literals"/>
-                <message_argument value="FACET__ALL_TYPED_ELEMENTS"/>
-            </message_arguments>
-        </filter>
-    </resource>
 </component>

@@ -48,7 +48,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
 Require-Bundle: org.eclipse.emf.ecore.edit;bundle-version="[2.9.0,3.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="[1.7.0,2.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.emf.appearance;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.gmf.runtime.draw2d.ui.render;bundle-version="[1.7.0,2.0.0)";visibility:=reexport,
  org.eclipse.gmf.runtime.draw2d.ui.render.awt;bundle-version="[1.8.0,2.0.0)",
  org.apache.batik.util;bundle-version="[1.6.0,1.7.0)",
@@ -64,11 +64,11 @@ Require-Bundle: org.eclipse.emf.ecore.edit;bundle-version="[2.9.0,3.0.0)",
  org.eclipse.papyrus.infra.emf.readonly;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.types.core;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.sync;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.services.edit.ui;bundle-version="[1.2.0,2.0.0)";visibility:=reexport
+ org.eclipse.papyrus.infra.services.edit.ui;bundle-version="[2.0.0,3.0.0)";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.common.Activator

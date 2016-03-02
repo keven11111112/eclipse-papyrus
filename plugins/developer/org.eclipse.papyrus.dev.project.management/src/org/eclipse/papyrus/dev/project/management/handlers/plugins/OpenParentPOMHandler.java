@@ -45,6 +45,8 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Handler for the "open parent POM" command.
+ * 
+ * @since 1.2
  */
 public class OpenParentPOMHandler extends AbstractHandler {
 	private final String POM_CONTENT_TYPE = "org.eclipse.m2e.core.pomFile"; //$NON-NLS-1$

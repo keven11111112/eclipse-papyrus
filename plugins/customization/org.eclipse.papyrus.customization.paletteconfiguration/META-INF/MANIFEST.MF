@@ -4,7 +4,7 @@ Export-Package: org.eclipse.papyrus.customization.paletteconfiguration,
 Require-Bundle: org.eclipse.uml2.uml;bundle-version="[5.2.0,6.0.0)",
  org.eclipse.papyrus.infra.extendedtypes;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.diagram.paletteconfiguration.edit;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.emf.facet.query.java.core;bundle-version="[1.2.0,2.0.0)";visibility:=reexport
+ org.eclipse.papyrus.emf.facet.query.java.core;bundle-version="[2.0.0,3.0.0)";visibility:=reexport
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier

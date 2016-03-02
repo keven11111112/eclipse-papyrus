@@ -3,8 +3,8 @@ Export-Package: org.eclipse.papyrus.customization.properties.editor,
  org.eclipse.papyrus.customization.properties.modelelement,
  org.eclipse.papyrus.customization.properties.providers,
  org.eclipse.papyrus.customization.properties.storage.actions
-Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.views.properties;bundle-version="[1.2.0,2.0.0)",
+Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.views.properties;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.customization.properties.model.xwt;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.emf.ecore.editor;bundle-version="[2.11.0,3.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.constraints.ui;bundle-version="[1.2.0,2.0.0)"
@@ -12,7 +12,7 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  bin
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.customization.properties.Activator
 Bundle-ManifestVersion: 2

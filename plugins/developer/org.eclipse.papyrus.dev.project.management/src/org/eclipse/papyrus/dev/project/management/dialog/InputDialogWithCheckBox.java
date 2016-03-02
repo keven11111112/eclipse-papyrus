@@ -12,8 +12,10 @@ import org.eclipse.swt.widgets.Shell;
  * 
  * This input dialog provides a field to edit and a checkbox
  * 
+ * @since 1.2
+ * 
  */
-//TODO move this class in an upper project
+// TODO move this class in an upper project
 public class InputDialogWithCheckBox extends InputDialog {
 
 	/**
@@ -64,7 +66,7 @@ public class InputDialogWithCheckBox extends InputDialog {
 	@Override
 	protected Control createContents(Composite parent) {
 		Control ctrl = super.createContents(parent);
-		checkbox = new Button((Composite)((Composite)ctrl).getChildren()[0], SWT.CHECK);
+		checkbox = new Button((Composite) ((Composite) ctrl).getChildren()[0], SWT.CHECK);
 		checkbox.setText(checkboxMessage);
 		checkbox.setSelection(checkboxStatus);
 		return ctrl;
@@ -74,7 +76,7 @@ public class InputDialogWithCheckBox extends InputDialog {
 	/**
 	 * 
 	 * @return
-	 *         <code>true</code> if the checkbox is checked
+	 * 		<code>true</code> if the checkbox is checked
 	 */
 	public boolean isChecked() {
 		return this.finalState;

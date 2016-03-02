@@ -24,6 +24,8 @@ import org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor;
  * Handler for the "optimize dependencies" command, which ensures re-exports of dependencies
  * that contribute types to the exported API and removes redundancies (except where they are
  * re-exported).
+ * 
+ * @since 1.2
  */
 public class OptimizeDependenciesHandler extends AbstractManifestUpdateHandler {
 

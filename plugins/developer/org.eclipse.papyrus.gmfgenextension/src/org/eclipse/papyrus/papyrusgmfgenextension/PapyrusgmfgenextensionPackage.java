@@ -27,6 +27,9 @@ import org.eclipse.gmf.codegen.gmfgen.GMFGenPackage;
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionFactory
  * @model kind="package"
  * @generated
+ * 
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface PapyrusgmfgenextensionPackage extends EPackage {
 
@@ -2571,6 +2574,9 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
+	 * 
+	 * @noimplement This interface is not intended to be implemented by clients.
+	 * @noextend This interface is not intended to be extended by clients.
 	 */
 	interface Literals {
 

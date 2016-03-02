@@ -22,8 +22,10 @@ import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
 
 
 /**
- * @author damus
- *
+ * The validation markers service.
+ * 
+ * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface IValidationMarkersService {
 

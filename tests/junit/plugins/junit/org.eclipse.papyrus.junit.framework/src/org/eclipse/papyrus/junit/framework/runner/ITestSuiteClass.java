@@ -30,6 +30,7 @@ public interface ITestSuiteClass {
 	 * Queries whether the test suite runs in "headless mode" (without the Eclipse Workbench).
 	 * 
 	 * @return whether I am an headless test suite
+	 * @since 1.2
 	 */
 	default boolean isHeadless() {
 		Class<?> main = getMainTestSuiteClass();
@@ -40,6 +41,7 @@ public interface ITestSuiteClass {
 	 * Queries whether the test suite runs in "UI mode" (in an Eclipse Workbench).
 	 * 
 	 * @return whether I am an UI test suite
+	 * @since 1.2
 	 */
 	default boolean isUI() {
 		Class<?> main = getMainTestSuiteClass();

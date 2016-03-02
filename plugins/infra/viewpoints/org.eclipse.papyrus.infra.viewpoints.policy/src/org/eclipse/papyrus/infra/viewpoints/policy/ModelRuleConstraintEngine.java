@@ -43,7 +43,7 @@ public class ModelRuleConstraintEngine extends DefaultConstraintEngine<ModelRule
 	/**
 	 * Not instantiable by clients.
 	 */
-	private ModelRuleConstraintEngine() {
+	public ModelRuleConstraintEngine() {
 		super(ModelRule.class);
 	}
 

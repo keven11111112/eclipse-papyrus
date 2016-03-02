@@ -20,7 +20,7 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.providers;bundle-version="[1.
  org.eclipse.papyrus.infra.extendedtypes;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.sysml.diagram.internalblock.Activator

@@ -21,6 +21,8 @@ import java.lang.annotation.Target;
 /**
  * Marker annotation for test suites that can (and should be) run in "headless mode"
  * (without the Eclipse Workbench).
+ * 
+ * @since 1.2
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.TYPE, ElementType.PACKAGE })

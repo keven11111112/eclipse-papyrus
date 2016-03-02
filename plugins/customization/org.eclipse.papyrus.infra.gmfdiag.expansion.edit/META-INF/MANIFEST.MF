@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.provider,
  org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.provider
-Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.uml2.common.edit;bundle-version="[2.1.0,3.0.0)";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

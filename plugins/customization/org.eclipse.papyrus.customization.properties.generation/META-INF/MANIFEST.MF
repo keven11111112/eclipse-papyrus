@@ -7,16 +7,16 @@ Export-Package: org.eclipse.papyrus.customization.properties.generation,
 Require-Bundle: org.eclipse.m2m.qvt.oml;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.properties.edit;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.uml2.uml;bundle-version="[5.2.0,6.0.0)";visibility:=reexport,
- org.eclipse.papyrus.views.properties;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.views.properties;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.customization.properties.model.xwt;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.m2m.qvt.oml.project;bundle-version="[3.6.0,4.0.0)",
- org.eclipse.papyrus.customization.properties;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.customization.properties;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.jface.databinding;bundle-version="[1.8.0,2.0.0)"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  bin
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Eclipse-BuddyPolicy: dependent
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2

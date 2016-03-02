@@ -23,9 +23,13 @@ import org.eclipse.papyrus.eclipse.project.editors.project.ProjectEditor;
 import org.eclipse.swt.widgets.Display;
 
 
+/**
+ * @since 1.2
+ */
 public abstract class AbstractAddFileHandler extends AbstractHandler {
 
 
+	@Override
 	public Object execute(final ExecutionEvent event) {
 
 		Job job = new Job(getJobName()) {
@@ -46,6 +50,7 @@ public abstract class AbstractAddFileHandler extends AbstractHandler {
 			public void done(final IJobChangeEvent event) {
 				Display.getDefault().asyncExec(new Runnable() {
 
+					@Override
 					public void run() {
 						MessageDialog.openInformation(Display.getDefault().getActiveShell(), getJobName(), "Done.");
 					}
@@ -60,15 +65,15 @@ public abstract class AbstractAddFileHandler extends AbstractHandler {
 		final IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
 
 		URL sourceURL = getSourceURL();
-		if(sourceURL == null) {
+		if (sourceURL == null) {
 			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Cannot find the source file", "The source file is invalid");
 		}
 		String targetPath = getTargetPath();
 
 		monitor.beginTask(getJobName(), projects.length);
 
-		for(final IProject current : projects) {
-			if(current.isOpen() && isValidProject(current)) {
+		for (final IProject current : projects) {
+			if (current.isOpen() && isValidProject(current)) {
 				try {
 					addFile(current, sourceURL, targetPath);
 				} catch (final CoreException e) {
@@ -86,7 +91,7 @@ public abstract class AbstractAddFileHandler extends AbstractHandler {
 		return Status.OK_STATUS;
 	}
 
-	//Subclasses should override this
+	// Subclasses should override this
 	protected String getJobName() {
 		return "Add files";
 	}
@@ -100,11 +105,11 @@ public abstract class AbstractAddFileHandler extends AbstractHandler {
 	/**
 	 * 
 	 * @param project
-	 *        the project
+	 *            the project
 	 * @param file
-	 *        the file to add
+	 *            the file to add
 	 * @param fileDestinationPath
-	 *        the path where add the file
+	 *            the path where add the file
 	 * @throws CoreException
 	 * @throws IOException
 	 */

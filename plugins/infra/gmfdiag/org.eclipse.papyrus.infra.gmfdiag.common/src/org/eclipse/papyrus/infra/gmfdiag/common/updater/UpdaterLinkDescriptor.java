@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 
 /**
- * @since 3.0
+ * @since 2.0
  */
 public class UpdaterLinkDescriptor extends UpdaterNodeDescriptor {
 

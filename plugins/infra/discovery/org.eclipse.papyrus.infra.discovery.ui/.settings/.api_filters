@@ -9,13 +9,4 @@
             </message_arguments>
         </filter>
     </resource>
-    <resource path="src/org/eclipse/papyrus/infra/discovery/ui/wizards/DiscoveryComponent.java" type="org.eclipse.papyrus.infra.discovery.ui.wizards.DiscoveryComponent">
-        <filter comment="This has to change with every major release and isn't intended for clients anyways" id="388194388">
-            <message_arguments>
-                <message_argument value="org.eclipse.papyrus.infra.discovery.ui.wizards.DiscoveryComponent"/>
-                <message_argument value="DISCOVERY_PAPYRUS_URI"/>
-                <message_argument value="http://www.eclipse.org/modeling/mdt/papyrus/downloads/discovery/mars/papyrus-extra.xmi"/>
-            </message_arguments>
-        </filter>
-    </resource>
 </component>

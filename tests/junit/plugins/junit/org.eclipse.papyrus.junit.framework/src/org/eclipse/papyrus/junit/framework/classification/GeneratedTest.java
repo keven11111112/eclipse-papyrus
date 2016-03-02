@@ -25,6 +25,7 @@ import java.lang.annotation.Target;
  * This annotation must be used with the {@link ClassificationRule}
  *
  * @author Camille Letavernier
+ * @since 1.2
  *
  */
 @Target({ ElementType.METHOD, ElementType.TYPE })
