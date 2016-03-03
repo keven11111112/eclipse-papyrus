@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeUtil;
@@ -301,7 +302,7 @@ public class ElementTypeSetConfigurationRegistry {
 			for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSetConfigurations.get(contexId).values()) {
 				TreeIterator<EObject> it = elementTypeSetConfiguration.eAllContents();
 				while (it.hasNext()) {
-					EObject element = (EObject) it.next();
+					EObject element = it.next();
 					if (element instanceof AdviceConfiguration) {
 						adviceToCheck.add((AdviceConfiguration) element);
 					}
@@ -313,7 +314,7 @@ public class ElementTypeSetConfigurationRegistry {
 		for (ElementTypeSetConfiguration elementTypeSetConfiguration : registrableElementTypeSetConfiguration) {
 			TreeIterator<EObject> it = elementTypeSetConfiguration.eAllContents();
 			while (it.hasNext()) {
-				EObject element = (EObject) it.next();
+				EObject element = it.next();
 				if (element instanceof AdviceConfiguration) {
 					adviceToCheck.add((AdviceConfiguration) element);
 
@@ -413,7 +414,7 @@ public class ElementTypeSetConfigurationRegistry {
 		for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSetConfigurations.get(contextId).values()) {
 			TreeIterator<EObject> it = elementTypeSetConfiguration.eAllContents();
 			while (it.hasNext()) {
-				EObject element = (EObject) it.next();
+				EObject element = it.next();
 				if (element instanceof AdviceConfiguration) {
 					advices.add((AdviceConfiguration) element);
 				}
@@ -562,6 +563,11 @@ public class ElementTypeSetConfigurationRegistry {
 
 	protected ResourceSet createResourceSet() {
 		ResourceSet set = new ResourceSetImpl();
+		// Bug 488674 - Safe load and disable the URI to HTTP connection
+		set.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
+		set.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
+		set.getLoadOptions().put(XMLResource.OPTION_USE_PACKAGE_NS_URI_AS_LOCATION, Boolean.FALSE);
+
 		return set;
 	}
 
