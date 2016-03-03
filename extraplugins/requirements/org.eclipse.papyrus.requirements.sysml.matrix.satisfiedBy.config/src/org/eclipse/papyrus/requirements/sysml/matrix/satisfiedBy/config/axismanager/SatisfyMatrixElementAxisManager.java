@@ -15,9 +15,12 @@
 package org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.axismanager;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
+import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.uml.nattable.manager.axis.UMLElementTreeAxisManagerForEventList;
 import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class SatisfyMatrixElementAxisManager extends UMLElementTreeAxisManagerForEventList {
 
@@ -26,11 +29,11 @@ public class SatisfyMatrixElementAxisManager extends UMLElementTreeAxisManagerFo
 			int depth) {
 		if (objectToTest instanceof NamedElement) {
 			if (!(objectToTest instanceof Dependency)) {
-				return true;
+				if (UMLUtil.getStereotypeApplication((Element) objectToTest, Requirement.class) == null) {
+					return true;
+				}
 			}
 		}
 		return false;
-		// return super.isAllowedContents(objectToTest, semanticParent, conf,
-		// depth);//this allows any UML element
 	}
 }

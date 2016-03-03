@@ -25,7 +25,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
-
 public class RequirementTableTester implements ITableTester {
 
 	private static final IElementMatcher matcher = new RequirementMatcher();
@@ -46,9 +45,11 @@ public class RequirementTableTester implements ITableTester {
 				final String packageQN = UMLUtil.getProfile(RequirementsPackage.eINSTANCE, el).getQualifiedName();
 				result = result && el.getNearestPackage().getAppliedProfile(packageQN, true) != null;
 				if (result) {
-					return new Status(IStatus.OK, Activator.PLUGIN_ID, "The context allowed to create a requirement matrix");
+					return new Status(IStatus.OK, Activator.PLUGIN_ID,
+							"The context allowed to create a requirement matrix");
 				} else {
-					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, String.format("The profile {0} is not applied on the model", packageQN));
+					return new Status(IStatus.ERROR, Activator.PLUGIN_ID,
+							String.format("The profile {0} is not applied on the model", packageQN));
 				}
 			}
 		}
