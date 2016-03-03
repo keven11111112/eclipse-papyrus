@@ -246,4 +246,41 @@
          file="resource/revision.custom">
    </modeldeclaration>
 </extension>
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+      <menu
+            id="revision.idm"
+            label="Revision">
+         <visibleWhen
+               checkEnabled="true">
+            <with
+                  variable="activeEditorId">
+               <equals
+                     value="org.eclipse.papyrus.infra.core.papyrusEditor">
+               </equals>
+            </with>
+         </visibleWhen>
+         <command
+               commandId="org.eclipse.papyrus.revision.tool.handlers.DisplayStatHandler"
+               id="org.eclipse.papyrus.revision.tool.handlers.DisplayStatHandler.menu"
+               label="Display stats"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+      </menu>
+   </menuContribution>
+</extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         defaultHandler="org.eclipse.papyrus.revision.tool.handlers.DisplayStatHandler"
+         id="org.eclipse.papyrus.revision.tool.handlers.DisplayStatHandler"
+         name="Display stats">
+   </command>
+</extension>
 </plugin>
