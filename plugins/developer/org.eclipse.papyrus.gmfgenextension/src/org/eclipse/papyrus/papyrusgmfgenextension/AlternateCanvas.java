@@ -1,13 +1,21 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram;
 
 /**
@@ -30,15 +38,15 @@ import org.eclipse.gmf.codegen.gmfgen.GenDiagram;
  * @generated
  */
 public interface AlternateCanvas extends CommentedElement {
-
 	/**
 	 * Returns the value of the '<em><b>Domain Diagram Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Domain Diagram Element</em>' reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Domain Diagram Element</em>' reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Domain Diagram Element</em>' reference.
 	 * @see #setDomainDiagramElement(GenClass)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getAlternateCanvas_DomainDiagramElement()
@@ -51,7 +59,7 @@ public interface AlternateCanvas extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getDomainDiagramElement <em>Domain Diagram Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Domain Diagram Element</em>' reference.
 	 * @see #getDomainDiagramElement()
@@ -64,10 +72,11 @@ public interface AlternateCanvas extends CommentedElement {
 	 * The list contents are of type {@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Alternate Top Level Nodes</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Alternate Top Level Nodes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Alternate Top Level Nodes</em>' containment reference list.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getAlternateCanvas_AlternateTopLevelNodes()
 	 * @model containment="true"
@@ -80,10 +89,11 @@ public interface AlternateCanvas extends CommentedElement {
 	 * The list contents are of type {@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Alternate Link Nodes</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Alternate Link Nodes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Alternate Link Nodes</em>' containment reference list.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getAlternateCanvas_AlternateLinkNodes()
 	 * @model containment="true"
@@ -95,10 +105,11 @@ public interface AlternateCanvas extends CommentedElement {
 	 * Returns the value of the '<em><b>Diagram</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Diagram</em>' reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Diagram</em>' reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Diagram</em>' reference.
 	 * @see #setDiagram(GenDiagram)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getAlternateCanvas_Diagram()
@@ -111,7 +122,7 @@ public interface AlternateCanvas extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getDiagram <em>Diagram</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Diagram</em>' reference.
 	 * @see #getDiagram()

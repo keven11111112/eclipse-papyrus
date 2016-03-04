@@ -1,8 +1,19 @@
 /**
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
 
@@ -17,7 +28,6 @@ public class GenerateUsingElementTypeCreationCommandImpl extends CommentedElemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected GenerateUsingElementTypeCreationCommandImpl() {
@@ -27,7 +37,6 @@ public class GenerateUsingElementTypeCreationCommandImpl extends CommentedElemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -35,4 +44,4 @@ public class GenerateUsingElementTypeCreationCommandImpl extends CommentedElemen
 		return PapyrusgmfgenextensionPackage.Literals.GENERATE_USING_ELEMENT_TYPE_CREATION_COMMAND;
 	}
 
-} // GenerateUsingElementTypeCreationCommandImpl
+} //GenerateUsingElementTypeCreationCommandImpl

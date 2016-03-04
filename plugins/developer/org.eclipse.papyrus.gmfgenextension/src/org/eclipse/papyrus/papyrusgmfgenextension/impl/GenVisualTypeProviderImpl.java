@@ -1,14 +1,14 @@
 /**
- * Copyright (c) 2015 Christian W. Damus and others.
- *
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *   Christian W. Damus - Initial API and implementation
- *
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension.impl;
 
@@ -29,7 +29,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenVisualTypeProviderImpl#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenVisualTypeProviderImpl#getClassName <em>Class Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -39,7 +39,6 @@ public class GenVisualTypeProviderImpl extends CommentedElementImpl implements G
 	 * The default value of the '{@link #getClassName() <em>Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getClassName()
 	 * @generated
 	 * @ordered
@@ -50,7 +49,6 @@ public class GenVisualTypeProviderImpl extends CommentedElementImpl implements G
 	 * The cached value of the '{@link #getClassName() <em>Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getClassName()
 	 * @generated
 	 * @ordered
@@ -60,7 +58,6 @@ public class GenVisualTypeProviderImpl extends CommentedElementImpl implements G
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected GenVisualTypeProviderImpl() {
@@ -70,7 +67,6 @@ public class GenVisualTypeProviderImpl extends CommentedElementImpl implements G
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -81,10 +77,8 @@ public class GenVisualTypeProviderImpl extends CommentedElementImpl implements G
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public String getClassName() {
 		return className;
 	}
@@ -92,29 +86,25 @@ public class GenVisualTypeProviderImpl extends CommentedElementImpl implements G
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public void setClassName(String newClassName) {
 		String oldClassName = className;
 		className = newClassName;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.GEN_VISUAL_TYPE_PROVIDER__CLASS_NAME, oldClassName, className));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.GEN_VISUAL_TYPE_PROVIDER__CLASS_NAME:
-			return getClassName();
+			case PapyrusgmfgenextensionPackage.GEN_VISUAL_TYPE_PROVIDER__CLASS_NAME:
+				return getClassName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,15 +112,14 @@ public class GenVisualTypeProviderImpl extends CommentedElementImpl implements G
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.GEN_VISUAL_TYPE_PROVIDER__CLASS_NAME:
-			setClassName((String) newValue);
-			return;
+			case PapyrusgmfgenextensionPackage.GEN_VISUAL_TYPE_PROVIDER__CLASS_NAME:
+				setClassName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -138,15 +127,14 @@ public class GenVisualTypeProviderImpl extends CommentedElementImpl implements G
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.GEN_VISUAL_TYPE_PROVIDER__CLASS_NAME:
-			setClassName(CLASS_NAME_EDEFAULT);
-			return;
+			case PapyrusgmfgenextensionPackage.GEN_VISUAL_TYPE_PROVIDER__CLASS_NAME:
+				setClassName(CLASS_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -154,14 +142,13 @@ public class GenVisualTypeProviderImpl extends CommentedElementImpl implements G
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.GEN_VISUAL_TYPE_PROVIDER__CLASS_NAME:
-			return CLASS_NAME_EDEFAULT == null ? className != null : !CLASS_NAME_EDEFAULT.equals(className);
+			case PapyrusgmfgenextensionPackage.GEN_VISUAL_TYPE_PROVIDER__CLASS_NAME:
+				return CLASS_NAME_EDEFAULT == null ? className != null : !CLASS_NAME_EDEFAULT.equals(className);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -169,14 +156,11 @@ public class GenVisualTypeProviderImpl extends CommentedElementImpl implements G
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (className: ");
@@ -185,4 +169,4 @@ public class GenVisualTypeProviderImpl extends CommentedElementImpl implements G
 		return result.toString();
 	}
 
-} // GenVisualTypeProviderImpl
+} //GenVisualTypeProviderImpl

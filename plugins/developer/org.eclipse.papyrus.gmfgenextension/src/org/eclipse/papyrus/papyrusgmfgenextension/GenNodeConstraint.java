@@ -1,12 +1,19 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.gmf.codegen.gmfgen.GenConstraint;
 import org.eclipse.gmf.codegen.gmfgen.GenNode;
 
@@ -28,16 +35,16 @@ import org.eclipse.gmf.codegen.gmfgen.GenNode;
  * @generated
  */
 public interface GenNodeConstraint extends CommentedElement {
-
 	/**
 	 * Returns the value of the '<em><b>Gen Node</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenNode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Gen Node</em>' reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Gen Node</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Gen Node</em>' reference list.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getGenNodeConstraint_GenNode()
 	 * @model
@@ -49,10 +56,11 @@ public interface GenNodeConstraint extends CommentedElement {
 	 * Returns the value of the '<em><b>Gen Constraint</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Gen Constraint</em>' reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Gen Constraint</em>' reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Gen Constraint</em>' reference.
 	 * @see #setGenConstraint(GenConstraint)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getGenNodeConstraint_GenConstraint()
@@ -65,7 +73,7 @@ public interface GenNodeConstraint extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenConstraint <em>Gen Constraint</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Gen Constraint</em>' reference.
 	 * @see #getGenConstraint()

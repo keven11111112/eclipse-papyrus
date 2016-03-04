@@ -1,17 +1,27 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.eclipse.gmf.codegen.gmfgen.GenChildSideAffixedNode;
+
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator;
 
@@ -23,18 +33,16 @@ import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorImpl#getGenChildSideAffixedNode <em>Gen Child Side Affixed Node</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorImpl#getGenChildSideAffixedNode <em>Gen Child Side Affixed Node</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLocator {
-
 	/**
 	 * The cached value of the '{@link #getGenChildSideAffixedNode() <em>Gen Child Side Affixed Node</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getGenChildSideAffixedNode()
 	 * @generated
 	 * @ordered
@@ -44,7 +52,6 @@ public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLoc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected SpecificLocatorImpl() {
@@ -54,7 +61,6 @@ public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLoc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -65,10 +71,8 @@ public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLoc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public EList<GenChildSideAffixedNode> getGenChildSideAffixedNode() {
 		if (genChildSideAffixedNode == null) {
 			genChildSideAffixedNode = new EObjectResolvingEList<GenChildSideAffixedNode>(GenChildSideAffixedNode.class, this, PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE);
@@ -79,14 +83,13 @@ public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLoc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE:
-			return getGenChildSideAffixedNode();
+			case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE:
+				return getGenChildSideAffixedNode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -94,17 +97,16 @@ public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLoc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE:
-			getGenChildSideAffixedNode().clear();
-			getGenChildSideAffixedNode().addAll((Collection<? extends GenChildSideAffixedNode>) newValue);
-			return;
+			case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE:
+				getGenChildSideAffixedNode().clear();
+				getGenChildSideAffixedNode().addAll((Collection<? extends GenChildSideAffixedNode>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -112,15 +114,14 @@ public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLoc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE:
-			getGenChildSideAffixedNode().clear();
-			return;
+			case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE:
+				getGenChildSideAffixedNode().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -128,16 +129,15 @@ public class SpecificLocatorImpl extends ExternalHookImpl implements SpecificLoc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE:
-			return genChildSideAffixedNode != null && !genChildSideAffixedNode.isEmpty();
+			case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE:
+				return genChildSideAffixedNode != null && !genChildSideAffixedNode.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} // SpecificLocatorImpl
+} //SpecificLocatorImpl

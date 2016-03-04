@@ -1,10 +1,23 @@
 /**
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
 
@@ -16,7 +29,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CustomDiagramUpdaterSingletonImpl#getSingletonPath <em>Singleton Path</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CustomDiagramUpdaterSingletonImpl#getSingletonPath <em>Singleton Path</em>}</li>
  * </ul>
  *
  * @generated
@@ -26,7 +39,6 @@ public class CustomDiagramUpdaterSingletonImpl extends CommentedElementImpl impl
 	 * The default value of the '{@link #getSingletonPath() <em>Singleton Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getSingletonPath()
 	 * @generated
 	 * @ordered
@@ -37,7 +49,6 @@ public class CustomDiagramUpdaterSingletonImpl extends CommentedElementImpl impl
 	 * The cached value of the '{@link #getSingletonPath() <em>Singleton Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getSingletonPath()
 	 * @generated
 	 * @ordered
@@ -47,7 +58,6 @@ public class CustomDiagramUpdaterSingletonImpl extends CommentedElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected CustomDiagramUpdaterSingletonImpl() {
@@ -57,7 +67,6 @@ public class CustomDiagramUpdaterSingletonImpl extends CommentedElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -68,10 +77,8 @@ public class CustomDiagramUpdaterSingletonImpl extends CommentedElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public String getSingletonPath() {
 		return singletonPath;
 	}
@@ -79,29 +86,25 @@ public class CustomDiagramUpdaterSingletonImpl extends CommentedElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public void setSingletonPath(String newSingletonPath) {
 		String oldSingletonPath = singletonPath;
 		singletonPath = newSingletonPath;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.CUSTOM_DIAGRAM_UPDATER_SINGLETON__SINGLETON_PATH, oldSingletonPath, singletonPath));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.CUSTOM_DIAGRAM_UPDATER_SINGLETON__SINGLETON_PATH:
-			return getSingletonPath();
+			case PapyrusgmfgenextensionPackage.CUSTOM_DIAGRAM_UPDATER_SINGLETON__SINGLETON_PATH:
+				return getSingletonPath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -109,15 +112,14 @@ public class CustomDiagramUpdaterSingletonImpl extends CommentedElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.CUSTOM_DIAGRAM_UPDATER_SINGLETON__SINGLETON_PATH:
-			setSingletonPath((String) newValue);
-			return;
+			case PapyrusgmfgenextensionPackage.CUSTOM_DIAGRAM_UPDATER_SINGLETON__SINGLETON_PATH:
+				setSingletonPath((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -125,15 +127,14 @@ public class CustomDiagramUpdaterSingletonImpl extends CommentedElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.CUSTOM_DIAGRAM_UPDATER_SINGLETON__SINGLETON_PATH:
-			setSingletonPath(SINGLETON_PATH_EDEFAULT);
-			return;
+			case PapyrusgmfgenextensionPackage.CUSTOM_DIAGRAM_UPDATER_SINGLETON__SINGLETON_PATH:
+				setSingletonPath(SINGLETON_PATH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -141,14 +142,13 @@ public class CustomDiagramUpdaterSingletonImpl extends CommentedElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.CUSTOM_DIAGRAM_UPDATER_SINGLETON__SINGLETON_PATH:
-			return SINGLETON_PATH_EDEFAULT == null ? singletonPath != null : !SINGLETON_PATH_EDEFAULT.equals(singletonPath);
+			case PapyrusgmfgenextensionPackage.CUSTOM_DIAGRAM_UPDATER_SINGLETON__SINGLETON_PATH:
+				return SINGLETON_PATH_EDEFAULT == null ? singletonPath != null : !SINGLETON_PATH_EDEFAULT.equals(singletonPath);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -156,14 +156,11 @@ public class CustomDiagramUpdaterSingletonImpl extends CommentedElementImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (singletonPath: ");
@@ -172,4 +169,4 @@ public class CustomDiagramUpdaterSingletonImpl extends CommentedElementImpl impl
 		return result.toString();
 	}
 
-} // CustomDiagramUpdaterSingletonImpl
+} //CustomDiagramUpdaterSingletonImpl

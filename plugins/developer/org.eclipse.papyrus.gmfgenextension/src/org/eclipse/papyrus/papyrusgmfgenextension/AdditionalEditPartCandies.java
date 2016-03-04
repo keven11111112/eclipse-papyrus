@@ -1,8 +1,14 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
@@ -24,15 +30,15 @@ package org.eclipse.papyrus.papyrusgmfgenextension;
  * @generated
  */
 public interface AdditionalEditPartCandies extends CommentedElement {
-
 	/**
 	 * Returns the value of the '<em><b>Base Edit Helper Package</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Edit Helper Package</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Base Edit Helper Package</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Base Edit Helper Package</em>' attribute.
 	 * @see #setBaseEditHelperPackage(String)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getAdditionalEditPartCandies_BaseEditHelperPackage()
@@ -45,7 +51,7 @@ public interface AdditionalEditPartCandies extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies#getBaseEditHelperPackage <em>Base Edit Helper Package</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Base Edit Helper Package</em>' attribute.
 	 * @see #getBaseEditHelperPackage()

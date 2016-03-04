@@ -1,14 +1,14 @@
 /**
- * Copyright (c) 2015 Christian W. Damus and others.
- *
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *   Christian W. Damus - Initial API and implementation
- *
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
@@ -51,7 +51,7 @@ public interface GenVisualTypeProvider extends CommentedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Class Name</em>' attribute.
 	 * @see #setClassName(String)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getGenVisualTypeProvider_ClassName()
@@ -64,7 +64,7 @@ public interface GenVisualTypeProvider extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenVisualTypeProvider#getClassName <em>Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Class Name</em>' attribute.
 	 * @see #getClassName()
@@ -82,6 +82,7 @@ public interface GenVisualTypeProvider extends CommentedElement {
 	 * @param diagram
 	 *            a diagram generator model element
 	 * @return the provider class name
+	 * @generated NOT
 	 */
 	static String getClassName(GenDiagram diagram) {
 		return Optional.ofNullable(diagram.eResource())
@@ -103,10 +104,12 @@ public interface GenVisualTypeProvider extends CommentedElement {
 	 * @param diagram
 	 *            a diagram generator model element
 	 * @return the qualified provider class name
+	 * @generated NOT
 	 */
 	static String getQualifiedClassName(GenDiagram diagram) {
 		String className = getClassName(diagram);
 
 		return String.format("%s.%s", diagram.getProvidersPackageName(), className);
 	}
+
 } // GenVisualTypeProvider

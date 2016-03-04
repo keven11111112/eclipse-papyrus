@@ -1,12 +1,19 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
 
 /**
@@ -18,7 +25,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
  * This element is always linked to a genView (topLevel, or child)
  * Used set if an editPart is abstract.
  * SuperGenViews is a list of all superEditPart.
- *
+ * 
  * Thanks to this, it is possible to factorize code and to decrease the number of generated classes.
  * <!-- end-model-doc -->
  *
@@ -35,15 +42,15 @@ import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
  * @generated
  */
 public interface EditPartUsingDeleteService extends CommentedElement {
-
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getEditPartUsingDeleteService_Name()
@@ -56,7 +63,7 @@ public interface EditPartUsingDeleteService extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
@@ -69,10 +76,11 @@ public interface EditPartUsingDeleteService extends CommentedElement {
 	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenCommonBase}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Gen View</em>' reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Gen View</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Gen View</em>' reference list.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getEditPartUsingDeleteService_GenView()
 	 * @model ordered="false"

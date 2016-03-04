@@ -1,8 +1,19 @@
 /**
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
 
 /**
@@ -18,8 +29,8 @@ import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
  * </ul>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getConstrainedByReferenceCompartmentItemSemanticEditPolicy()
- * @model annotation=
- *        "http://www.eclipse.org/emf/2002/GenModel Documentation='Add constraint on Compartment Item Semantic Policy in order to prevent move into compartment of elements which can be contained. This constraint used the child node define in the GMF Model in order to define the correspoding EReference. When a move is executed the item semantic policy will fisrt check that the element can be conatined/referenced by this EReference?'"
+ * @model annotation="http://www.eclipse.org/emf/2002/GenModel Documentation='Add constraint on Compartment Item Semantic Policy in order to prevent move into compartment of elements which can be contained. This constraint used the child node define in the GMF
+ *        Model in order to define the correspoding EReference. When a move is executed the item semantic policy will fisrt check that the element can be conatined/referenced by this EReference?'"
  * @generated
  */
 public interface ConstrainedByReferenceCompartmentItemSemanticEditPolicy extends CommentedElement {
@@ -28,10 +39,11 @@ public interface ConstrainedByReferenceCompartmentItemSemanticEditPolicy extends
 	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenCommonBase}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Gen View</em>' reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Gen View</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Gen View</em>' reference list.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getConstrainedByReferenceCompartmentItemSemanticEditPolicy_GenView()
 	 * @model

@@ -1,18 +1,31 @@
 /**
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.eclipse.gmf.codegen.gmfgen.GenNode;
+
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate;
 
@@ -24,9 +37,9 @@ import org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificNodePlateImpl#getEditParts <em>Edit Parts</em>}</li>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificNodePlateImpl#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificNodePlateImpl#getNodePlateQualifiedName <em>Node Plate Qualified Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificNodePlateImpl#getEditParts <em>Edit Parts</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificNodePlateImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificNodePlateImpl#getNodePlateQualifiedName <em>Node Plate Qualified Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -36,7 +49,6 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	 * The cached value of the '{@link #getEditParts() <em>Edit Parts</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getEditParts()
 	 * @generated
 	 * @ordered
@@ -47,7 +59,6 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -58,7 +69,6 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -69,7 +79,6 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	 * The default value of the '{@link #getNodePlateQualifiedName() <em>Node Plate Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getNodePlateQualifiedName()
 	 * @generated
 	 * @ordered
@@ -80,7 +89,6 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	 * The cached value of the '{@link #getNodePlateQualifiedName() <em>Node Plate Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getNodePlateQualifiedName()
 	 * @generated
 	 * @ordered
@@ -90,7 +98,6 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected SpecificNodePlateImpl() {
@@ -100,7 +107,6 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -111,10 +117,8 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public EList<GenNode> getEditParts() {
 		if (editParts == null) {
 			editParts = new EObjectResolvingEList<GenNode>(GenNode.class, this, PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__EDIT_PARTS);
@@ -125,10 +129,8 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public String getName() {
 		return name;
 	}
@@ -136,25 +138,20 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NAME, oldName, name));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public String getNodePlateQualifiedName() {
 		return nodePlateQualifiedName;
 	}
@@ -162,33 +159,29 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public void setNodePlateQualifiedName(String newNodePlateQualifiedName) {
 		String oldNodePlateQualifiedName = nodePlateQualifiedName;
 		nodePlateQualifiedName = newNodePlateQualifiedName;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NODE_PLATE_QUALIFIED_NAME, oldNodePlateQualifiedName, nodePlateQualifiedName));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__EDIT_PARTS:
-			return getEditParts();
-		case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NAME:
-			return getName();
-		case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NODE_PLATE_QUALIFIED_NAME:
-			return getNodePlateQualifiedName();
+			case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__EDIT_PARTS:
+				return getEditParts();
+			case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NAME:
+				return getName();
+			case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NODE_PLATE_QUALIFIED_NAME:
+				return getNodePlateQualifiedName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -196,23 +189,22 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__EDIT_PARTS:
-			getEditParts().clear();
-			getEditParts().addAll((Collection<? extends GenNode>) newValue);
-			return;
-		case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NAME:
-			setName((String) newValue);
-			return;
-		case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NODE_PLATE_QUALIFIED_NAME:
-			setNodePlateQualifiedName((String) newValue);
-			return;
+			case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__EDIT_PARTS:
+				getEditParts().clear();
+				getEditParts().addAll((Collection<? extends GenNode>)newValue);
+				return;
+			case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NAME:
+				setName((String)newValue);
+				return;
+			case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NODE_PLATE_QUALIFIED_NAME:
+				setNodePlateQualifiedName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -220,21 +212,20 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__EDIT_PARTS:
-			getEditParts().clear();
-			return;
-		case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NAME:
-			setName(NAME_EDEFAULT);
-			return;
-		case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NODE_PLATE_QUALIFIED_NAME:
-			setNodePlateQualifiedName(NODE_PLATE_QUALIFIED_NAME_EDEFAULT);
-			return;
+			case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__EDIT_PARTS:
+				getEditParts().clear();
+				return;
+			case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NODE_PLATE_QUALIFIED_NAME:
+				setNodePlateQualifiedName(NODE_PLATE_QUALIFIED_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -242,18 +233,17 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__EDIT_PARTS:
-			return editParts != null && !editParts.isEmpty();
-		case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NODE_PLATE_QUALIFIED_NAME:
-			return NODE_PLATE_QUALIFIED_NAME_EDEFAULT == null ? nodePlateQualifiedName != null : !NODE_PLATE_QUALIFIED_NAME_EDEFAULT.equals(nodePlateQualifiedName);
+			case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__EDIT_PARTS:
+				return editParts != null && !editParts.isEmpty();
+			case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE__NODE_PLATE_QUALIFIED_NAME:
+				return NODE_PLATE_QUALIFIED_NAME_EDEFAULT == null ? nodePlateQualifiedName != null : !NODE_PLATE_QUALIFIED_NAME_EDEFAULT.equals(nodePlateQualifiedName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -261,14 +251,11 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
@@ -279,4 +266,4 @@ public class SpecificNodePlateImpl extends CommentedElementImpl implements Speci
 		return result.toString();
 	}
 
-} // SpecificNodePlateImpl
+} //SpecificNodePlateImpl

@@ -1,14 +1,23 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies;
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
 
@@ -20,18 +29,16 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AdditionalEditPartCandiesImpl#getBaseEditHelperPackage <em>Base Edit Helper Package</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AdditionalEditPartCandiesImpl#getBaseEditHelperPackage <em>Base Edit Helper Package</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class AdditionalEditPartCandiesImpl extends CommentedElementImpl implements AdditionalEditPartCandies {
-
 	/**
 	 * The default value of the '{@link #getBaseEditHelperPackage() <em>Base Edit Helper Package</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getBaseEditHelperPackage()
 	 * @generated
 	 * @ordered
@@ -42,7 +49,6 @@ public class AdditionalEditPartCandiesImpl extends CommentedElementImpl implemen
 	 * The cached value of the '{@link #getBaseEditHelperPackage() <em>Base Edit Helper Package</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getBaseEditHelperPackage()
 	 * @generated
 	 * @ordered
@@ -52,7 +58,6 @@ public class AdditionalEditPartCandiesImpl extends CommentedElementImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected AdditionalEditPartCandiesImpl() {
@@ -62,7 +67,6 @@ public class AdditionalEditPartCandiesImpl extends CommentedElementImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -73,10 +77,8 @@ public class AdditionalEditPartCandiesImpl extends CommentedElementImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public String getBaseEditHelperPackage() {
 		return baseEditHelperPackage;
 	}
@@ -84,29 +86,25 @@ public class AdditionalEditPartCandiesImpl extends CommentedElementImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public void setBaseEditHelperPackage(String newBaseEditHelperPackage) {
 		String oldBaseEditHelperPackage = baseEditHelperPackage;
 		baseEditHelperPackage = newBaseEditHelperPackage;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE, oldBaseEditHelperPackage, baseEditHelperPackage));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE:
-			return getBaseEditHelperPackage();
+			case PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE:
+				return getBaseEditHelperPackage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -114,15 +112,14 @@ public class AdditionalEditPartCandiesImpl extends CommentedElementImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE:
-			setBaseEditHelperPackage((String) newValue);
-			return;
+			case PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE:
+				setBaseEditHelperPackage((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -130,15 +127,14 @@ public class AdditionalEditPartCandiesImpl extends CommentedElementImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE:
-			setBaseEditHelperPackage(BASE_EDIT_HELPER_PACKAGE_EDEFAULT);
-			return;
+			case PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE:
+				setBaseEditHelperPackage(BASE_EDIT_HELPER_PACKAGE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -146,14 +142,13 @@ public class AdditionalEditPartCandiesImpl extends CommentedElementImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE:
-			return BASE_EDIT_HELPER_PACKAGE_EDEFAULT == null ? baseEditHelperPackage != null : !BASE_EDIT_HELPER_PACKAGE_EDEFAULT.equals(baseEditHelperPackage);
+			case PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE:
+				return BASE_EDIT_HELPER_PACKAGE_EDEFAULT == null ? baseEditHelperPackage != null : !BASE_EDIT_HELPER_PACKAGE_EDEFAULT.equals(baseEditHelperPackage);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -161,14 +156,11 @@ public class AdditionalEditPartCandiesImpl extends CommentedElementImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (baseEditHelperPackage: ");
@@ -177,4 +169,4 @@ public class AdditionalEditPartCandiesImpl extends CommentedElementImpl implemen
 		return result.toString();
 	}
 
-} // AdditionalEditPartCandiesImpl
+} //AdditionalEditPartCandiesImpl

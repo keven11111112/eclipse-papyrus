@@ -1,12 +1,19 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel;
 import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel;
 
@@ -20,7 +27,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel;
  * role : the role of the Label (Stereotype, Source Multiplicity, Target Multiplicity, Name, ...)
  * iconPath : an icon illustrating the role of the Label
  * visibleByDefault : if false, the label is not visible when the element is created
- *
+ * 
  * These informations are used by the action Show/Hide Label.
  * <!-- end-model-doc -->
  *
@@ -44,10 +51,11 @@ public interface LabelVisibilityPreference extends CommentedElement {
 	 * Returns the value of the '<em><b>Role</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Role</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Role</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Role</em>' attribute.
 	 * @see #setRole(String)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getLabelVisibilityPreference_Role()
@@ -60,7 +68,7 @@ public interface LabelVisibilityPreference extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getRole <em>Role</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Role</em>' attribute.
 	 * @see #getRole()
@@ -72,10 +80,11 @@ public interface LabelVisibilityPreference extends CommentedElement {
 	 * Returns the value of the '<em><b>Icon Path Role</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Icon Path Role</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Icon Path Role</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Icon Path Role</em>' attribute.
 	 * @see #setIconPathRole(String)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getLabelVisibilityPreference_IconPathRole()
@@ -88,7 +97,7 @@ public interface LabelVisibilityPreference extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getIconPathRole <em>Icon Path Role</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Icon Path Role</em>' attribute.
 	 * @see #getIconPathRole()
@@ -101,10 +110,11 @@ public interface LabelVisibilityPreference extends CommentedElement {
 	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenLinkLabel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Link Labels</em>' reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Link Labels</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Link Labels</em>' reference list.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getLabelVisibilityPreference_LinkLabels()
 	 * @model
@@ -117,10 +127,11 @@ public interface LabelVisibilityPreference extends CommentedElement {
 	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>External Node Labels</em>' reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>External Node Labels</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>External Node Labels</em>' reference list.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getLabelVisibilityPreference_ExternalNodeLabels()
 	 * @model
@@ -133,10 +144,11 @@ public interface LabelVisibilityPreference extends CommentedElement {
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Visible By Default</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Visible By Default</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Visible By Default</em>' attribute.
 	 * @see #setVisibleByDefault(boolean)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getLabelVisibilityPreference_VisibleByDefault()
@@ -149,7 +161,7 @@ public interface LabelVisibilityPreference extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#isVisibleByDefault <em>Visible By Default</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Visible By Default</em>' attribute.
 	 * @see #isVisibleByDefault()

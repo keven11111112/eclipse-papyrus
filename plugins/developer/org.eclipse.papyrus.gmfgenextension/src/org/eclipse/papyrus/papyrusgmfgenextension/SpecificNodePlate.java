@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
@@ -15,7 +25,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenNode;
  * This element is always linked to a genView (topLevel, or child)
  * Used set if an editPart is abstract.
  * SuperGenViews is a list of all superEditPart.
- *
+ * 
  * Thanks to this, it is possible to factorize code and to decrease the number of generated classes.
  * <!-- end-model-doc -->
  *
@@ -38,10 +48,11 @@ public interface SpecificNodePlate extends CommentedElement {
 	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenNode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Edit Parts</em>' reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Edit Parts</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Edit Parts</em>' reference list.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificNodePlate_EditParts()
 	 * @model required="true" ordered="false"
@@ -53,10 +64,11 @@ public interface SpecificNodePlate extends CommentedElement {
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificNodePlate_Name()
@@ -69,7 +81,7 @@ public interface SpecificNodePlate extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
@@ -81,10 +93,11 @@ public interface SpecificNodePlate extends CommentedElement {
 	 * Returns the value of the '<em><b>Node Plate Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Node Plate Qualified Name</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Node Plate Qualified Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Node Plate Qualified Name</em>' attribute.
 	 * @see #setNodePlateQualifiedName(String)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificNodePlate_NodePlateQualifiedName()
@@ -97,7 +110,7 @@ public interface SpecificNodePlate extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getNodePlateQualifiedName <em>Node Plate Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Node Plate Qualified Name</em>' attribute.
 	 * @see #getNodePlateQualifiedName()

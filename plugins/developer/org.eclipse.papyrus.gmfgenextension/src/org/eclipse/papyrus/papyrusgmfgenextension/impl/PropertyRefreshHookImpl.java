@@ -1,14 +1,23 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.papyrusgmfgenextension.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
 import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
 
@@ -20,19 +29,17 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.PropertyRefreshHookImpl#getTriggeringCondition <em>Triggering Condition</em>}</li>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.PropertyRefreshHookImpl#getAction <em>Action</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.PropertyRefreshHookImpl#getTriggeringCondition <em>Triggering Condition</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.PropertyRefreshHookImpl#getAction <em>Action</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PropertyRefreshHookImpl extends ExternalHookImpl implements PropertyRefreshHook {
-
 	/**
 	 * The default value of the '{@link #getTriggeringCondition() <em>Triggering Condition</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getTriggeringCondition()
 	 * @generated
 	 * @ordered
@@ -43,7 +50,6 @@ public class PropertyRefreshHookImpl extends ExternalHookImpl implements Propert
 	 * The cached value of the '{@link #getTriggeringCondition() <em>Triggering Condition</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getTriggeringCondition()
 	 * @generated
 	 * @ordered
@@ -54,7 +60,6 @@ public class PropertyRefreshHookImpl extends ExternalHookImpl implements Propert
 	 * The default value of the '{@link #getAction() <em>Action</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getAction()
 	 * @generated
 	 * @ordered
@@ -65,7 +70,6 @@ public class PropertyRefreshHookImpl extends ExternalHookImpl implements Propert
 	 * The cached value of the '{@link #getAction() <em>Action</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getAction()
 	 * @generated
 	 * @ordered
@@ -75,7 +79,6 @@ public class PropertyRefreshHookImpl extends ExternalHookImpl implements Propert
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected PropertyRefreshHookImpl() {
@@ -85,7 +88,6 @@ public class PropertyRefreshHookImpl extends ExternalHookImpl implements Propert
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -96,10 +98,8 @@ public class PropertyRefreshHookImpl extends ExternalHookImpl implements Propert
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public String getTriggeringCondition() {
 		return triggeringCondition;
 	}
@@ -107,25 +107,20 @@ public class PropertyRefreshHookImpl extends ExternalHookImpl implements Propert
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public void setTriggeringCondition(String newTriggeringCondition) {
 		String oldTriggeringCondition = triggeringCondition;
 		triggeringCondition = newTriggeringCondition;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__TRIGGERING_CONDITION, oldTriggeringCondition, triggeringCondition));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public String getAction() {
 		return action;
 	}
@@ -133,31 +128,27 @@ public class PropertyRefreshHookImpl extends ExternalHookImpl implements Propert
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	@Override
 	public void setAction(String newAction) {
 		String oldAction = action;
 		action = newAction;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__ACTION, oldAction, action));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__TRIGGERING_CONDITION:
-			return getTriggeringCondition();
-		case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__ACTION:
-			return getAction();
+			case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__TRIGGERING_CONDITION:
+				return getTriggeringCondition();
+			case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__ACTION:
+				return getAction();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -165,18 +156,17 @@ public class PropertyRefreshHookImpl extends ExternalHookImpl implements Propert
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__TRIGGERING_CONDITION:
-			setTriggeringCondition((String) newValue);
-			return;
-		case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__ACTION:
-			setAction((String) newValue);
-			return;
+			case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__TRIGGERING_CONDITION:
+				setTriggeringCondition((String)newValue);
+				return;
+			case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__ACTION:
+				setAction((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -184,18 +174,17 @@ public class PropertyRefreshHookImpl extends ExternalHookImpl implements Propert
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__TRIGGERING_CONDITION:
-			setTriggeringCondition(TRIGGERING_CONDITION_EDEFAULT);
-			return;
-		case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__ACTION:
-			setAction(ACTION_EDEFAULT);
-			return;
+			case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__TRIGGERING_CONDITION:
+				setTriggeringCondition(TRIGGERING_CONDITION_EDEFAULT);
+				return;
+			case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__ACTION:
+				setAction(ACTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -203,16 +192,15 @@ public class PropertyRefreshHookImpl extends ExternalHookImpl implements Propert
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__TRIGGERING_CONDITION:
-			return TRIGGERING_CONDITION_EDEFAULT == null ? triggeringCondition != null : !TRIGGERING_CONDITION_EDEFAULT.equals(triggeringCondition);
-		case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__ACTION:
-			return ACTION_EDEFAULT == null ? action != null : !ACTION_EDEFAULT.equals(action);
+			case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__TRIGGERING_CONDITION:
+				return TRIGGERING_CONDITION_EDEFAULT == null ? triggeringCondition != null : !TRIGGERING_CONDITION_EDEFAULT.equals(triggeringCondition);
+			case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK__ACTION:
+				return ACTION_EDEFAULT == null ? action != null : !ACTION_EDEFAULT.equals(action);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -220,14 +208,11 @@ public class PropertyRefreshHookImpl extends ExternalHookImpl implements Propert
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (triggeringCondition: ");
@@ -238,4 +223,4 @@ public class PropertyRefreshHookImpl extends ExternalHookImpl implements Propert
 		return result.toString();
 	}
 
-} // PropertyRefreshHookImpl
+} //PropertyRefreshHookImpl
