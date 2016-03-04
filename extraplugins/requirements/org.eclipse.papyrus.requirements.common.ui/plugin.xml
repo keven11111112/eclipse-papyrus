@@ -19,6 +19,14 @@
                visible="false">
          </separator>
          <separator
+               name="org.eclipse.papyrus.requirements.common.ui.analysis.additions"
+               visible="false">
+         </separator>
+         <separator
+               name="org.eclipse.papyrus.requirements.common.ui.metrics.additions"
+               visible="false">
+         </separator>
+         <separator
                name="org.eclipse.papyrus.requirements.common.ui.dummy"
                visible="true">
          </separator>
@@ -36,6 +44,14 @@
          </separator>
          <separator
                name="org.eclipse.papyrus.requirements.common.ui.languagecreation.additions"
+               visible="false">
+         </separator>
+         <separator
+               name="org.eclipse.papyrus.requirements.common.ui.analysis.additions"
+               visible="false">
+         </separator>
+         <separator
+               name="org.eclipse.papyrus.requirements.common.ui.metrics.additions"
                visible="false">
          </separator>
          <separator

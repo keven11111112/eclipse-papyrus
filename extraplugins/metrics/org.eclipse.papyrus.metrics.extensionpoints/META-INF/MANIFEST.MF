@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Metrics Extension Points Definitions
+Bundle-SymbolicName: org.eclipse.papyrus.metrics.extensionpoints;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.metrics.extensionpoints.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.uml2.uml,
+ org.eclipse.papyrus.metrics.smm;bundle-version="0.7.0",
+ org.eclipse.emf.transaction;bundle-version="1.9.0",
+ org.eclipse.swt
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.metrics.extensionpoints,
+ org.eclipse.papyrus.metrics.extensionpoints.helpers

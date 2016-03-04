@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Metrics Handlers
+Bundle-SymbolicName: org.eclipse.papyrus.metrics.handlers;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.metrics.handlers.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.papyrus.infra.emf,
+ org.eclipse.emf.transaction,
+ org.eclipse.papyrus.metrics.commands;bundle-version="0.7.0",
+ org.eclipse.papyrus.infra.ui,
+ org.eclipse.core.runtime;bundle-version="3.12.0",
+ org.eclipse.emf.common;bundle-version="2.12.0",
+ org.eclipse.emf.ecore;bundle-version="2.12.0",
+ org.eclipse.uml2.uml.resources;bundle-version="5.1.0",
+ org.eclipse.ui;bundle-version="3.107.0",
+ org.eclipse.emf.transaction;bundle-version="1.9.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.2.0",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.8.0",
+ org.eclipse.core.resources;bundle-version="3.11.0",
+ org.eclipse.papyrus.infra.ui;bundle-version="1.2.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.metrics.handlers
+

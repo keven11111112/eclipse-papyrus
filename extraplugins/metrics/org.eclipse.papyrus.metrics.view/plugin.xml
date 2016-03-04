@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="Metrics View"
+            icon="platform:/plugin/org.eclipse.papyrus.requirements.common.ui/images/Papyrus_Req_logo_16x16.png"
+            category="org.eclipse.papyrus.views.category"
+            class="org.eclipse.papyrus.metrics.view.MetricsView"
+            id="org.eclipse.papyrus.metrics.view.MetricsView">
+         <description>
+            This view shows quantitative information about the selected model element.
+         </description>
+      </view>
+   </extension>
+
+</plugin>

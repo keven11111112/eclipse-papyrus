@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=org.eclipse.papyrus.requirements.common.ui.traceability.additions">
+         <menu
+               icon="platform:/plugin/org.eclipse.papyrus.requirements.common.ui/images/Papyrus_Req_logo_16x16.png"
+               id="papyrus.requirements.metrics.menu"
+               label="Papyrus Req - Metrics"
+               tooltip="Metrics about requirements models">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.requirements.common.ui.traceability.additions">
+         <menu
+               icon="platform:/plugin/org.eclipse.papyrus.requirements.common.ui/images/Papyrus_Req_logo_16x16.png"
+               id="papyrus.requirements.metrics.menu"
+               label="Papyrus Req - Metrics"
+               tooltip="Metrics about requirements models">
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:papyrus.requirements.metrics.menu">
+         <command
+               commandId="org.eclipse.papyrus.metrics.handlers.MeasureMetricsHandler"
+               label="Get Measure Values from Registered Measures"
+               style="push"
+               tooltip="Calculate measure values">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.metrics.handlers.MeasureMetricsForSmmHandler"
+               label="Get Measure Values from Smm Model"
+               style="push"
+               tooltip="Get measure values from smm model saved as an .xmi file">
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>
