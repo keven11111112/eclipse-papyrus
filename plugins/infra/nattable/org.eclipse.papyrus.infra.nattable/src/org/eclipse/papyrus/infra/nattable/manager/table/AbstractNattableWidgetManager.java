@@ -103,6 +103,7 @@ import org.eclipse.papyrus.infra.nattable.layer.FilterRowHeaderComposite;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusGridLayer;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.ColumnHeaderLayerStack;
+import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderHierarchicalLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.listener.NatTableDropListener;
 import org.eclipse.papyrus.infra.nattable.menu.MenuConstants;
@@ -402,8 +403,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 		addColumnReorderListener(this.bodyLayerStack.getColumnReorderLayer());
 		addAxisResizeListener(this.bodyLayerStack);
-		addColumnHeaderResizeListener(this.columnHeaderLayerStack);
-		addRowHeaderResizeListener(this.rowHeaderLayerStack);
+		addColumnHeaderResizeListener(getColumnHeaderLayerStack());
+		addRowHeaderResizeListener(getRowHeaderLayerStack());
 		addDragAndDropSupport(this.natTable);
 
 		this.selectionProvider = new TableSelectionProvider(this, this.bodyLayerStack.getSelectionLayer());
@@ -1026,10 +1027,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			public void handleLayerEvent(ILayerEvent event) {
 				if (event instanceof ColumnResizeEvent) {
 
-					// Calculate the width of the index column and of the label column (depending to its position)
-					int newHeaderIndexWidth = rowHeaderLayerStack.getRowIndexDataLayer().getColumnWidthByPosition(0);
-					int newHeaderLabelWidth = rowHeaderLayerStack.getRowLabelDataLayer().getColumnWidthByPosition(0);
+					// Get the event position
 					int resizedHeaderPosition = getRangeStart(event);
+
+					boolean isLocalRowHeaderAxisCreation = false;
 
 					if (resizedHeaderPosition != -1) {
 						final CompositeCommand resizeRowHeaderCommand = new CompositeCommand("resize RowHeader's width"); //$NON-NLS-1$
@@ -1039,11 +1040,11 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 						}
 						LocalTableHeaderAxisConfiguration localRowHeaderAxis = null;
 
-
+						// Get or create the local row header axis configuration
 						if (!getTable().isInvertAxis()) {
 							if (getTable().getLocalRowHeaderAxisConfiguration() != null) {
 								localRowHeaderAxis = getTable().getLocalRowHeaderAxisConfiguration();
-							} else if (newHeaderIndexWidth != DefaultSizeUtils.getDefaultRowHeaderWidth() || newHeaderLabelWidth != DefaultSizeUtils.getDefaultRowHeaderWidth()) {
+							} else {
 								TableHeaderAxisConfiguration rowHeaderAxis;
 								EStructuralFeature localHeaderFeature = null;
 								rowHeaderAxis = getTable().getTableConfiguration().getRowHeaderAxisConfiguration();
@@ -1053,12 +1054,13 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 								IEditCommandRequest initLocalRowHeaderAxis = new SetRequest(tableDomain, table, localHeaderFeature, localRowHeaderAxis);
 								IElementEditService localRowHeaderAxisProvider = ElementEditServiceUtils.getCommandProvider(table);
 								resizeRowHeaderCommand.add(localRowHeaderAxisProvider.getEditCommand(initLocalRowHeaderAxis));
+								isLocalRowHeaderAxisCreation = true;
 							}
 
 						} else {
 							if (getTable().getLocalColumnHeaderAxisConfiguration() != null) {
 								localRowHeaderAxis = getTable().getLocalColumnHeaderAxisConfiguration();
-							} else if (newHeaderIndexWidth != DefaultSizeUtils.getDefaultRowHeaderWidth() || newHeaderLabelWidth != DefaultSizeUtils.getDefaultRowHeaderWidth()) {
+							} else {
 								TableHeaderAxisConfiguration rowHeaderAxis;
 								EStructuralFeature localHeaderFeature = null;
 								rowHeaderAxis = getTable().getTableConfiguration().getColumnHeaderAxisConfiguration();
@@ -1068,76 +1070,93 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 								IEditCommandRequest initLocalRowHeaderAxis = new SetRequest(tableDomain, table, localHeaderFeature, localRowHeaderAxis);
 								IElementEditService localRowHeaderAxisProvider = ElementEditServiceUtils.getCommandProvider(table);
 								resizeRowHeaderCommand.add(localRowHeaderAxisProvider.getEditCommand(initLocalRowHeaderAxis));
+								isLocalRowHeaderAxisCreation = true;
 							}
 
 						}
 
-						// If this index is not display, increment the resized header position to corresponding to the label
-						if (null != localRowHeaderAxis && !localRowHeaderAxis.isDisplayIndex()) {
-							resizedHeaderPosition++;
-						}
-
-						// Recalculate the initial label width to compare with the correct one
-						newHeaderLabelWidth = rowHeaderLayerStack.getRowLabelDataLayer().getColumnWidthByPosition(resizedHeaderPosition - 1);
-
-						if (resizedHeaderPosition == 0 && localRowHeaderAxis != null) {
-							IntValueStyle valueIndex = (IntValueStyle) localRowHeaderAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_INDEX_WIDTH);
-							if (valueIndex != null && valueIndex.getIntValue() != newHeaderIndexWidth) {
-								SetRequest resizeRowHeaderIndex = new SetRequest(tableDomain, valueIndex, NattablestylePackage.eINSTANCE.getIntValueStyle_IntValue(), newHeaderIndexWidth);
-								SetValueCommand resizeRowHeaderIndexCommand = new SetValueCommand(resizeRowHeaderIndex);
-								resizeRowHeaderCommand.add(resizeRowHeaderIndexCommand);
-							} else if (valueIndex == null && newHeaderIndexWidth != DefaultSizeUtils.getDefaultRowHeaderWidth()) {
-								valueIndex = NattablestyleFactory.eINSTANCE.createIntValueStyle();
-								valueIndex.setIntValue(newHeaderIndexWidth);
-								valueIndex.setName(NamedStyleConstants.ROW_INDEX_WIDTH);
-
-								SetRequest initRowHeaderIndexSizeRequest = new SetRequest(tableDomain, localRowHeaderAxis, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), valueIndex);
-								SetValueCommand resizeRowHeaderIndexCommand = new SetValueCommand(initRowHeaderIndexSizeRequest);
-								resizeRowHeaderCommand.add(resizeRowHeaderIndexCommand);
+						if (null != localRowHeaderAxis) {
+							// If this index is not display, increment the resized header position to corresponding to the label
+							if (!localRowHeaderAxis.isDisplayIndex()) {
+								resizedHeaderPosition++;
 							}
-						}
 
-						if (resizedHeaderPosition == 1 && localRowHeaderAxis != null) {
-							IntValueStyle valueLabel = (IntValueStyle) localRowHeaderAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_LABEL_WIDTH);
-							if (valueLabel != null && valueLabel.getIntValue() != newHeaderLabelWidth) {
-								SetRequest resizeRowHeaderLabel = new SetRequest(tableDomain, valueLabel, NattablestylePackage.eINSTANCE.getIntValueStyle_IntValue(), newHeaderLabelWidth);
-								SetValueCommand resizeRowHeaderLabelCommand = new SetValueCommand(resizeRowHeaderLabel);
-								resizeRowHeaderCommand.add(resizeRowHeaderLabelCommand);
-							} else if (valueLabel == null && newHeaderLabelWidth != DefaultSizeUtils.getDefaultRowHeaderWidth()) {
-								valueLabel = NattablestyleFactory.eINSTANCE.createIntValueStyle();
-								valueLabel.setIntValue(newHeaderLabelWidth);
-								valueLabel.setName(NamedStyleConstants.ROW_LABEL_WIDTH);
-
-								SetRequest initRowHeaderLabelSizeRequest = new SetRequest(tableDomain, localRowHeaderAxis, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), valueLabel);
-								SetValueCommand resizeRowHeaderLabelCommand = new SetValueCommand(initRowHeaderLabelSizeRequest);
-								resizeRowHeaderCommand.add(resizeRowHeaderLabelCommand);
+							if (0 < resizedHeaderPosition && rowHeaderLayerStack instanceof RowHeaderHierarchicalLayerStack) {
+								// Decrement because the index is not managed in the label layer
+								resizedHeaderPosition--;
+								resizedHeaderPosition = ((RowHeaderHierarchicalLayerStack) rowHeaderLayerStack).getRowHeaderLayerLabel().getColumnIndexByPosition(resizedHeaderPosition);
+								// Increment because the index is not managed in the label layer
+								resizedHeaderPosition++;
 							}
-						}
 
-						if (resizedHeaderPosition > 1 && null != localRowHeaderAxis) {
-							final StringBuilder nameStyle = new StringBuilder(NamedStyleConstants.ROW_LABEL_POSITION_PREFIX_WIDTH);
-							nameStyle.append(resizedHeaderPosition);
-							nameStyle.append(NamedStyleConstants.ROW_LABEL_POSITION_SUFFIX_WIDTH);
+							// Resize the index if the position is 0
+							if (0 == resizedHeaderPosition && localRowHeaderAxis != null) {
+								// Calculate the width of the index column
+								int newHeaderIndexWidth = rowHeaderLayerStack.getRowIndexDataLayer().getColumnWidthByPosition(0);
+								IntValueStyle valueIndex = (IntValueStyle) localRowHeaderAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_INDEX_WIDTH);
+								if (valueIndex != null && valueIndex.getIntValue() != newHeaderIndexWidth) {
+									SetRequest resizeRowHeaderIndex = new SetRequest(tableDomain, valueIndex, NattablestylePackage.eINSTANCE.getIntValueStyle_IntValue(), newHeaderIndexWidth);
+									SetValueCommand resizeRowHeaderIndexCommand = new SetValueCommand(resizeRowHeaderIndex);
+									resizeRowHeaderCommand.add(resizeRowHeaderIndexCommand);
+								} else if (valueIndex == null && newHeaderIndexWidth != DefaultSizeUtils.getDefaultRowHeaderWidth()) {
+									valueIndex = NattablestyleFactory.eINSTANCE.createIntValueStyle();
+									valueIndex.setIntValue(newHeaderIndexWidth);
+									valueIndex.setName(NamedStyleConstants.ROW_INDEX_WIDTH);
 
-							IntValueStyle valueLabel = (IntValueStyle) localRowHeaderAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), nameStyle.toString());
-							if (valueLabel != null && valueLabel.getIntValue() != newHeaderLabelWidth) {
-								SetRequest resizeRowHeaderLabel = new SetRequest(tableDomain, valueLabel, NattablestylePackage.eINSTANCE.getIntValueStyle_IntValue(), newHeaderLabelWidth);
-								SetValueCommand resizeRowHeaderLabelCommand = new SetValueCommand(resizeRowHeaderLabel);
-								resizeRowHeaderCommand.add(resizeRowHeaderLabelCommand);
-							} else if (valueLabel == null && newHeaderLabelWidth != DefaultSizeUtils.getDefaultRowHeaderWidth()) {
-								valueLabel = NattablestyleFactory.eINSTANCE.createIntValueStyle();
-								valueLabel.setIntValue(newHeaderLabelWidth);
-								valueLabel.setName(nameStyle.toString());
-
-								SetRequest initRowHeaderLabelSizeRequest = new SetRequest(tableDomain, localRowHeaderAxis, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), valueLabel);
-								SetValueCommand resizeRowHeaderLabelCommand = new SetValueCommand(initRowHeaderLabelSizeRequest);
-								resizeRowHeaderCommand.add(resizeRowHeaderLabelCommand);
+									SetRequest initRowHeaderIndexSizeRequest = new SetRequest(tableDomain, localRowHeaderAxis, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), valueIndex);
+									SetValueCommand resizeRowHeaderIndexCommand = new SetValueCommand(initRowHeaderIndexSizeRequest);
+									resizeRowHeaderCommand.add(resizeRowHeaderIndexCommand);
+								}
 							}
-						}
+
+							// This is a resize of row header label
+							if (1 <= resizedHeaderPosition && null != localRowHeaderAxis) {
+								// Calculate the width of the label column (depending to its position)
+								int newHeaderLabelWidth = rowHeaderLayerStack.getRowLabelDataLayer().getColumnWidthByPosition(resizedHeaderPosition - 1);
+								if (1 == resizedHeaderPosition) {
+									IntValueStyle valueLabel = (IntValueStyle) localRowHeaderAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_LABEL_WIDTH);
+									if (valueLabel != null && valueLabel.getIntValue() != newHeaderLabelWidth) {
+										SetRequest resizeRowHeaderLabel = new SetRequest(tableDomain, valueLabel, NattablestylePackage.eINSTANCE.getIntValueStyle_IntValue(), newHeaderLabelWidth);
+										SetValueCommand resizeRowHeaderLabelCommand = new SetValueCommand(resizeRowHeaderLabel);
+										resizeRowHeaderCommand.add(resizeRowHeaderLabelCommand);
+									} else if (valueLabel == null && newHeaderLabelWidth != DefaultSizeUtils.getDefaultRowHeaderWidth()) {
+										valueLabel = NattablestyleFactory.eINSTANCE.createIntValueStyle();
+										valueLabel.setIntValue(newHeaderLabelWidth);
+										valueLabel.setName(NamedStyleConstants.ROW_LABEL_WIDTH);
+
+										SetRequest initRowHeaderLabelSizeRequest = new SetRequest(tableDomain, localRowHeaderAxis, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), valueLabel);
+										SetValueCommand resizeRowHeaderLabelCommand = new SetValueCommand(initRowHeaderLabelSizeRequest);
+										resizeRowHeaderCommand.add(resizeRowHeaderLabelCommand);
+									}
+								} else {
+									final StringBuilder nameStyle = new StringBuilder(NamedStyleConstants.ROW_LABEL_POSITION_PREFIX_WIDTH);
+									nameStyle.append(resizedHeaderPosition);
+									nameStyle.append(NamedStyleConstants.ROW_LABEL_POSITION_SUFFIX_WIDTH);
+
+									IntValueStyle valueLabel = (IntValueStyle) localRowHeaderAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), nameStyle.toString());
+									if (valueLabel != null && valueLabel.getIntValue() != newHeaderLabelWidth) {
+										SetRequest resizeRowHeaderLabel = new SetRequest(tableDomain, valueLabel, NattablestylePackage.eINSTANCE.getIntValueStyle_IntValue(), newHeaderLabelWidth);
+										SetValueCommand resizeRowHeaderLabelCommand = new SetValueCommand(resizeRowHeaderLabel);
+										resizeRowHeaderCommand.add(resizeRowHeaderLabelCommand);
+									} else if (valueLabel == null && newHeaderLabelWidth != DefaultSizeUtils.getDefaultRowHeaderWidth()) {
+										valueLabel = NattablestyleFactory.eINSTANCE.createIntValueStyle();
+										valueLabel.setIntValue(newHeaderLabelWidth);
+										valueLabel.setName(nameStyle.toString());
+
+										SetRequest initRowHeaderLabelSizeRequest = new SetRequest(tableDomain, localRowHeaderAxis, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), valueLabel);
+										SetValueCommand resizeRowHeaderLabelCommand = new SetValueCommand(initRowHeaderLabelSizeRequest);
+										resizeRowHeaderCommand.add(resizeRowHeaderLabelCommand);
+									}
+								}
+							}
 
 
-						if (resizeRowHeaderCommand.canExecute() && !resizeRowHeaderCommand.isEmpty()) {
-							tableDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(resizeRowHeaderCommand));
+							if (resizeRowHeaderCommand.canExecute() && !resizeRowHeaderCommand.isEmpty() 
+									// If the local row header axis is created, check that this is not the single command to execute
+									// because we need to manage the named style with this command
+									&& ((!isLocalRowHeaderAxisCreation) || (isLocalRowHeaderAxisCreation && 1 <  resizeRowHeaderCommand.size()))) {
+								tableDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(resizeRowHeaderCommand));
+							}
 						}
 					}
 				}

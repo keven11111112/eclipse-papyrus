@@ -114,7 +114,6 @@ public abstract class AbstractResizeHeaderTest extends AbstractPapyrusTest {
 
 		// Resize the row header
 		resizeColumnheader(tableColumnIndexHeaderLayer, tableColumnLabelHeaderLayer);
-		;
 
 		// Save the project
 		IEditorPart part = fixture.getEditor().getActiveEditor();
@@ -180,6 +179,7 @@ public abstract class AbstractResizeHeaderTest extends AbstractPapyrusTest {
 	 * @throws Exception
 	 *             The exception
 	 */
+	@Test
 	public void testResizeRowsHeader() throws Exception {
 		DataLayer tableRowIndexHeaderLayer = ((AbstractNattableWidgetManager) currentManager).getRowHeaderLayerStack().getRowIndexDataLayer();
 		DataLayer tableRowLabelHeaderLayer = ((AbstractNattableWidgetManager) currentManager).getRowHeaderLayerStack().getRowLabelDataLayer();
@@ -197,7 +197,7 @@ public abstract class AbstractResizeHeaderTest extends AbstractPapyrusTest {
 		AbstractHeaderAxisConfiguration rowHeader = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisConfigurationUsedInTable(currentManager.getTable());
 
 		// Check the modified width
-		checkModifiedColumnHeaderHeight(tableRowIndexHeaderLayer, tableRowLabelHeaderLayer, rowHeader);
+		checkModifiedRowHeaderWidth(tableRowIndexHeaderLayer, tableRowLabelHeaderLayer, rowHeader);
 
 		// Close the table
 		final Table mainTable = TableUtils.getNotationFirstTable(fixture.getModelSet(), TABLE_NAME);
@@ -208,12 +208,12 @@ public abstract class AbstractResizeHeaderTest extends AbstractPapyrusTest {
 		init();
 
 		// Re-get the values after the reopen
-		tableRowIndexHeaderLayer = ((AbstractNattableWidgetManager) currentManager).getColumnHeaderLayerStack().getColumnIndexDataLayer();
-		tableRowLabelHeaderLayer = ((AbstractNattableWidgetManager) currentManager).getColumnHeaderLayerStack().getColumnLabelDataLayer();
+		tableRowIndexHeaderLayer = ((AbstractNattableWidgetManager) currentManager).getRowHeaderLayerStack().getRowIndexDataLayer();
+		tableRowLabelHeaderLayer = ((AbstractNattableWidgetManager) currentManager).getRowHeaderLayerStack().getRowLabelDataLayer();
 		rowHeader = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisConfigurationUsedInTable(currentManager.getTable());
 
 		// Check one more time the modified width after the reopen
-		checkModifiedColumnHeaderHeight(tableRowIndexHeaderLayer, tableRowLabelHeaderLayer, rowHeader);
+		checkModifiedRowHeaderWidth(tableRowIndexHeaderLayer, tableRowLabelHeaderLayer, rowHeader);
 	}
 
 	/**

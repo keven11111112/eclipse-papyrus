@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2016 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:k
- *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation - Bug 488301
  *   
  *****************************************************************************/
 
@@ -28,13 +28,13 @@ import org.junit.Assert;
 /**
  * This allows to test the resize of the header (width of each rows' column header and height of column header) when the index is not displayed.
  */
-@PluginResource("resources/styles/resize/ResizeHeaderWithoutIndexTest.di") //$NON-NLS-1$
-public class ResizeHeaderWithoutIndexTest extends AbstractResizeHeaderTest {
+@PluginResource("resources/styles/resize/ResizeHeaderWithoutCategoriesWithoutIndexTest.di") //$NON-NLS-1$
+public class ResizeHeaderWithoutCategoriesWithoutIndexTest extends AbstractResizeHeaderTest {
 
 	/**
 	 * Constructor.
 	 */
-	public ResizeHeaderWithoutIndexTest() {
+	public ResizeHeaderWithoutCategoriesWithoutIndexTest() {
 		super();
 	}
 
@@ -84,12 +84,9 @@ public class ResizeHeaderWithoutIndexTest extends AbstractResizeHeaderTest {
 	protected void resizeRowheader(final DataLayer tableRowIndexHeaderLayer, final DataLayer tableRowLabelHeaderLayer) {
 		// Resize the row header
 		final NatTable natTable = (NatTable) currentManager.getAdapter(NatTable.class);
-		natTable.doCommand(new ColumnResizeCommand(tableRowLabelHeaderLayer, 0, 75));
-		natTable.doCommand(new ColumnResizeCommand(tableRowLabelHeaderLayer, 1, 100));
-		natTable.doCommand(new ColumnResizeCommand(tableRowLabelHeaderLayer, 2, 10));
-		natTable.doCommand(new ColumnResizeCommand(tableRowLabelHeaderLayer, 3, 35));
-		natTable.doCommand(new ColumnResizeCommand(tableRowLabelHeaderLayer, 4, 75));
-		natTable.doCommand(new ColumnResizeCommand(tableRowLabelHeaderLayer, 5, 90));
+		natTable.doCommand(new ColumnResizeCommand(tableRowLabelHeaderLayer, 1, 75));
+		natTable.doCommand(new ColumnResizeCommand(tableRowLabelHeaderLayer, 3, 100));
+		natTable.doCommand(new ColumnResizeCommand(tableRowLabelHeaderLayer, 5, 10));
 	}
 
 	/**
@@ -111,39 +108,24 @@ public class ResizeHeaderWithoutIndexTest extends AbstractResizeHeaderTest {
 	 */
 	@Override
 	protected void checkModifiedRowHeaderWidth(final DataLayer tableRowIndexHeaderLayer, final DataLayer tableRowLabelHeaderLayer, final AbstractHeaderAxisConfiguration rowHeader) {
-		Assert.assertEquals("The width of the label is modified", 75, tableRowLabelHeaderLayer.getColumnWidthByPosition(0)); //$NON-NLS-1$
-		Assert.assertEquals("The width of the label is modified", 100, tableRowLabelHeaderLayer.getColumnWidthByPosition(1)); //$NON-NLS-1$
-		Assert.assertEquals("The width of the label is modified", 10, tableRowLabelHeaderLayer.getColumnWidthByPosition(2)); //$NON-NLS-1$
-		Assert.assertEquals("The width of the label is modified", 35, tableRowLabelHeaderLayer.getColumnWidthByPosition(3)); //$NON-NLS-1$
-		Assert.assertEquals("The width of the label is modified", 75, tableRowLabelHeaderLayer.getColumnWidthByPosition(4)); //$NON-NLS-1$
-		Assert.assertEquals("The width of the label is modified", 90, tableRowLabelHeaderLayer.getColumnWidthByPosition(5)); //$NON-NLS-1$
-
-		final IntValueStyle valueRowLabel = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_LABEL_WIDTH);
-		Assert.assertNotNull("The NamedStyle for the label must not be null", valueRowLabel); //$NON-NLS-1$
-		Assert.assertEquals("The NamedStyle for the label must be modified", 75, valueRowLabel.getIntValue()); //$NON-NLS-1$
+		Assert.assertEquals("The width of the label is modified", 75, tableRowLabelHeaderLayer.getColumnWidthByPosition(1)); //$NON-NLS-1$
+		Assert.assertEquals("The width of the label is modified", 100, tableRowLabelHeaderLayer.getColumnWidthByPosition(3)); //$NON-NLS-1$
+		Assert.assertEquals("The width of the label is modified", 10, tableRowLabelHeaderLayer.getColumnWidthByPosition(5)); //$NON-NLS-1$
 
 		final StringBuilder nameStyle = new StringBuilder(NamedStyleConstants.ROW_LABEL_POSITION_PREFIX_WIDTH);
 		nameStyle.append(NAME_STYLE_TEMPLATE_TO_REPLACE);
 		nameStyle.append(NamedStyleConstants.ROW_LABEL_POSITION_SUFFIX_WIDTH);
 
-		IntValueStyle valueColumn2Label = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), nameStyle.toString().replace(NAME_STYLE_TEMPLATE_TO_REPLACE, "2"));
+		IntValueStyle valueColumn2Label = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), nameStyle.toString().replace(NAME_STYLE_TEMPLATE_TO_REPLACE, "2")); //$NON-NLS-1$
 		Assert.assertNotNull("The NamedStyle for the label must not be null", valueColumn2Label); //$NON-NLS-1$
-		Assert.assertEquals("The NamedStyle for the label must be modified", 100, valueColumn2Label.getIntValue()); //$NON-NLS-1$
+		Assert.assertEquals("The NamedStyle for the label must be modified", 75, valueColumn2Label.getIntValue()); //$NON-NLS-1$
 
-		IntValueStyle valueColumn3Label = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), nameStyle.toString().replace(NAME_STYLE_TEMPLATE_TO_REPLACE, "3"));
-		Assert.assertNotNull("The NamedStyle for the label must not be null", valueColumn3Label); //$NON-NLS-1$
-		Assert.assertEquals("The NamedStyle for the label must be modified", 10, valueColumn3Label.getIntValue()); //$NON-NLS-1$
-
-		IntValueStyle valueColumn4Label = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), nameStyle.toString().replace(NAME_STYLE_TEMPLATE_TO_REPLACE, "4"));
+		IntValueStyle valueColumn4Label = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), nameStyle.toString().replace(NAME_STYLE_TEMPLATE_TO_REPLACE, "4")); //$NON-NLS-1$
 		Assert.assertNotNull("The NamedStyle for the label must not be null", valueColumn4Label); //$NON-NLS-1$
-		Assert.assertEquals("The NamedStyle for the label must be modified", 35, valueColumn4Label.getIntValue()); //$NON-NLS-1$
+		Assert.assertEquals("The NamedStyle for the label must be modified", 100, valueColumn4Label.getIntValue()); //$NON-NLS-1$
 
-		IntValueStyle valueColumn5Label = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), nameStyle.toString().replace(NAME_STYLE_TEMPLATE_TO_REPLACE, "5"));
-		Assert.assertNotNull("The NamedStyle for the label must not be null", valueColumn5Label); //$NON-NLS-1$
-		Assert.assertEquals("The NamedStyle for the label must be modified", 75, valueColumn5Label.getIntValue()); //$NON-NLS-1$
-
-		IntValueStyle valueColumn6Label = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), nameStyle.toString().replace(NAME_STYLE_TEMPLATE_TO_REPLACE, "6"));
+		IntValueStyle valueColumn6Label = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), nameStyle.toString().replace(NAME_STYLE_TEMPLATE_TO_REPLACE, "6")); //$NON-NLS-1$
 		Assert.assertNotNull("The NamedStyle for the label must not be null", valueColumn6Label); //$NON-NLS-1$
-		Assert.assertEquals("The NamedStyle for the label must be modified", 90, valueColumn6Label.getIntValue()); //$NON-NLS-1$
+		Assert.assertEquals("The NamedStyle for the label must be modified", 10, valueColumn6Label.getIntValue()); //$NON-NLS-1$
 	}
 }

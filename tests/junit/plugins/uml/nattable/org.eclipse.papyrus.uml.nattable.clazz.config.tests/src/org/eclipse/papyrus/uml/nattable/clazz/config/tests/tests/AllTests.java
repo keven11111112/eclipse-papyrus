@@ -177,6 +177,8 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWith
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Sort_H1_H3_H1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Sort_V1_V3_V1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.styles.ResizeHeaderWithIndexTest;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.styles.ResizeHeaderWithoutCategoriesWithIndexTest;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.styles.ResizeHeaderWithoutCategoriesWithoutIndexTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.styles.ResizeHeaderWithoutIndexTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.unset.UnsetCellValueWithProfile_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.unset.UnsetCellValue_H1_H3_H1_Test;
@@ -212,6 +214,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		// Resize of header
 		ResizeHeaderWithIndexTest.class,
 		ResizeHeaderWithoutIndexTest.class,
+		ResizeHeaderWithoutCategoriesWithIndexTest.class,
+		ResizeHeaderWithoutCategoriesWithoutIndexTest.class,
 
 		// SORT
 		Sort_V1_V3_V1.class,
@@ -298,7 +302,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteWithCategories_V1_H1_V1_MultiColumns_AttachedMode_Test.class,
 		PasteWithCategories_V1_V3_H1_MultiColumns_AttachedMode_Test.class,
 		PasteWithCategories_V1_V3_V1_MultiColumns_AttachedMode_Test.class,
-		
+
 		// Bug 481310 : Paste one depth when others can't get pasted elements
 		PasteWithCategories_H1_H3_H1_MultiColumns_AttachedMode_Bug481310Test.class,
 
@@ -320,7 +324,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteWithCategories_V1_H1_V1_SingleColumn_DetachedMode_Test.class,
 		PasteWithCategories_V1_V3_H1_SingleColumn_DetachedMode_Test.class,
 		PasteWithCategories_V1_V3_V1_SingleColumn_DetachedMode_Test.class,
-		
+
 		// Paste tests for multi columns
 		PasteWithCategories_Empty_H1_H1_MultiColumns_DetachedMode_Test.class,
 		PasteWithCategories_Empty_H1_V1_MultiColumns_DetachedMode_Test.class,

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2016 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:k
- *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation - Bug 488301
  *   
  *****************************************************************************/
 
@@ -28,13 +28,13 @@ import org.junit.Assert;
 /**
  * This allows to test the resize of the header (width of each rows' column header and height of column header).
  */
-@PluginResource("resources/styles/resize/ResizeHeaderWithIndexTest.di") //$NON-NLS-1$
-public class ResizeHeaderWithIndexTest extends ResizeHeaderWithoutIndexTest {
+@PluginResource("resources/styles/resize/ResizeHeaderWithoutCategoriesWithIndexTest.di") //$NON-NLS-1$
+public class ResizeHeaderWithoutCategoriesWithIndexTest extends ResizeHeaderWithoutCategoriesWithoutIndexTest {
 
 	/**
 	 * Constructor.
 	 */
-	public ResizeHeaderWithIndexTest() {
+	public ResizeHeaderWithoutCategoriesWithIndexTest() {
 		super();
 	}
 
