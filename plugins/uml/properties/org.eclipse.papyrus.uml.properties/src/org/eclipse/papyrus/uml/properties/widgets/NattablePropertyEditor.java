@@ -269,7 +269,8 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		// Add these values and add some extra to have correct displays
 		final int headerHeight = natTableWidget.getPreferredHeight() - nattableManager.getBodyLayerStack().getRowHideShowLayer().getPreferredHeight();
 		final int bodyHeight = nattableManager.getBodyLayerStack().getRowHideShowLayer().getHeight();
-		final int extra = 20;
+		// 16px must be added because of the left area slider
+		final int extra = 20 + 16;
 		data.minimumHeight = headerHeight + bodyHeight + extra;
 		self.setLayoutData(data);
 

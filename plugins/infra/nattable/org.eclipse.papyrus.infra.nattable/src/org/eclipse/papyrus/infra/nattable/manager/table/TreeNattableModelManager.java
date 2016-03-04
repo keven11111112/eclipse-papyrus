@@ -431,8 +431,10 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		Composite sliderLeftComposite = new Composite(sliderComposite, SWT.NONE) {
 			@Override
 			public Point computeSize(int wHint, int hHint, boolean changed) {
-				int width = ((ClientAreaAdapter) left.getClientAreaProvider()).getWidth()
-						+ getRowHeaderLayerStack().getIndexRowHeaderLayer().getWidth();
+				int width = ((ClientAreaAdapter) left.getClientAreaProvider()).getWidth();
+				if(null != getRowHeaderLayerStack() && null != getRowHeaderLayerStack().getIndexRowHeaderLayer()){			
+					width += getRowHeaderLayerStack().getIndexRowHeaderLayer().getWidth();
+				}
 				return new Point(width, scrollbarHeight);
 			}
 		};
