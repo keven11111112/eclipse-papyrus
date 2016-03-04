@@ -64,6 +64,6 @@ public class CommentLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	@Override
 	public LinkFigure getPrimaryShape() {
-		return (LinkFigure)getFigure();
+		return (LinkFigure) getFigure();
 	}
 }

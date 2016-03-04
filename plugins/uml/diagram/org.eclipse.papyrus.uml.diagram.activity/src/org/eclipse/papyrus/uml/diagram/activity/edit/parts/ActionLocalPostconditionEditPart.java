@@ -66,7 +66,7 @@ public class ActionLocalPostconditionEditPart extends ConnectionEditPart impleme
 	 */
 	@Override
 	public DashedLinkDescriptor getPrimaryShape() {
-		return (DashedLinkDescriptor)getFigure();
+		return (DashedLinkDescriptor) getFigure();
 	}
 
 	/**
@@ -79,6 +79,7 @@ public class ActionLocalPostconditionEditPart extends ConnectionEditPart impleme
 		 */
 		public DashedLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
+
 		}
 	}
 }

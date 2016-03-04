@@ -31,7 +31,6 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -94,12 +93,16 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.AddVariableValueActionCanonicalEditPolicy());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.AddVariableValueActionCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -117,16 +120,16 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
+				View childView = (View) child.getModel();
 				String vid = UMLVisualIDRegistry.getVisualID(childView);
-				if(vid != null) {
-					switch(vid) {
+				if (vid != null) {
+					switch (vid) {
 					case AddVariableValueActionFloatingNameEditPart.VISUAL_ID:
 						return new BorderItemSelectionEditPolicy() {
 
 							@Override
 							protected List<?> createSelectionHandles() {
-								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 								mh.setBorder(null);
 								return Collections.singletonList(mh);
 							}
@@ -141,7 +144,7 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -163,6 +166,7 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new RoundedCompartmentFigure();
 	}
@@ -170,54 +174,81 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public RoundedCompartmentFigure getPrimaryShape() {
-		return (RoundedCompartmentFigure)primaryShape;
+		return (RoundedCompartmentFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AddVariableValueActionNameEditPart) {
-			((AddVariableValueActionNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof AddVariableValueActionNameEditPart) {
+			((AddVariableValueActionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		//Papyrus Gencode :Affixed Pin locator for Actions
-		if(childEditPart instanceof InputPinInAddVariableValueActionAsInsertAtEditPart) {
+
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof InputPinInAddVariableValueActionAsInsertAtEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((InputPinInAddVariableValueActionAsInsertAtEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((InputPinInAddVariableValueActionAsInsertAtEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		//Papyrus Gencode :Affixed Pin locator for Actions
-		if(childEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
+
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
-			getBorderedFigure().getBorderItemContainer().add(((InputPinInAddVariableValueActionAsValueEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((InputPinInAddVariableValueActionAsValueEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		//Papyrus Gencode :Affixed Pin locator for Actions
-		if(childEditPart instanceof ValuePinInAddVariableValueActionAsInsertAtEditPart) {
+
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof ValuePinInAddVariableValueActionAsInsertAtEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((ValuePinInAddVariableValueActionAsInsertAtEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInAddVariableValueActionAsInsertAtEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		//Papyrus Gencode :Affixed Pin locator for Actions
-		if(childEditPart instanceof ValuePinInAddVariableValueActionAsValueEditPart) {
+
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof ValuePinInAddVariableValueActionAsValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
-			getBorderedFigure().getBorderItemContainer().add(((ValuePinInAddVariableValueActionAsValueEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInAddVariableValueActionAsValueEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		//Papyrus Gencode :Affixed Pin locator for Actions
-		if(childEditPart instanceof ActionPinInAddVariableValueActionAsInsertAtEditPart) {
+
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof ActionPinInAddVariableValueActionAsInsertAtEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((ActionPinInAddVariableValueActionAsInsertAtEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInAddVariableValueActionAsInsertAtEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		//Papyrus Gencode :Affixed Pin locator for Actions
-		if(childEditPart instanceof ActionPinInAddVariableValueActionAsValueEditPart) {
+
+
+
+
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof ActionPinInAddVariableValueActionAsValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
-			getBorderedFigure().getBorderItemContainer().add(((ActionPinInAddVariableValueActionAsValueEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInAddVariableValueActionAsValueEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
 		return false;
 	}
 
@@ -225,31 +256,31 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AddVariableValueActionNameEditPart) {
+		if (childEditPart instanceof AddVariableValueActionNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof InputPinInAddVariableValueActionAsInsertAtEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((InputPinInAddVariableValueActionAsInsertAtEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof InputPinInAddVariableValueActionAsInsertAtEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((InputPinInAddVariableValueActionAsInsertAtEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((InputPinInAddVariableValueActionAsValueEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof InputPinInAddVariableValueActionAsValueEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((InputPinInAddVariableValueActionAsValueEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ValuePinInAddVariableValueActionAsInsertAtEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInAddVariableValueActionAsInsertAtEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof ValuePinInAddVariableValueActionAsInsertAtEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInAddVariableValueActionAsInsertAtEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ValuePinInAddVariableValueActionAsValueEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInAddVariableValueActionAsValueEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof ValuePinInAddVariableValueActionAsValueEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInAddVariableValueActionAsValueEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ActionPinInAddVariableValueActionAsInsertAtEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInAddVariableValueActionAsInsertAtEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof ActionPinInAddVariableValueActionAsInsertAtEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInAddVariableValueActionAsInsertAtEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ActionPinInAddVariableValueActionAsValueEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInAddVariableValueActionAsValueEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof ActionPinInAddVariableValueActionAsValueEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInAddVariableValueActionAsValueEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -260,7 +291,7 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -271,7 +302,7 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -282,7 +313,7 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof IBorderItemEditPart) {
+		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -291,6 +322,7 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -307,6 +339,7 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -317,8 +350,9 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -331,7 +365,7 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -342,7 +376,7 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -360,8 +394,8 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -385,32 +419,32 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if(NotationPackage.eINSTANCE.getView_Visible().equals(notification.getFeature())) {
+		if (NotationPackage.eINSTANCE.getView_Visible().equals(notification.getFeature())) {
 			Object notifier = notification.getNotifier();
-			List<?> modelChildren = ((View)getModel()).getChildren();
-			if(!(notifier instanceof Edge)) {
-				if(modelChildren.contains(notification.getNotifier())) {
+			List<?> modelChildren = ((View) getModel()).getChildren();
+			if (!(notifier instanceof Edge)) {
+				if (modelChildren.contains(notification.getNotifier())) {
 					return;
 				}
 			}
 		}
 		Object feature = notification.getFeature();
-		if(UMLPackage.Literals.VARIABLE_ACTION__VARIABLE.equals(feature)) {
+		if (UMLPackage.Literals.VARIABLE_ACTION__VARIABLE.equals(feature)) {
 			final Object value = this.resolveSemanticElement().eGet(UMLPackage.Literals.WRITE_VARIABLE_ACTION__VALUE);
 			Object _varaible = notification.getNewValue();
-			if(_varaible instanceof Variable) {
+			if (_varaible instanceof Variable) {
 				org.eclipse.emf.common.command.Command cmdSetResultType = null;
-				Variable newVariable = (Variable)_varaible;
+				Variable newVariable = (Variable) _varaible;
 				Type type = newVariable.getType();
-				if(type != null) {
+				if (type != null) {
 					cmdSetResultType = SetCommand.create(getEditingDomain(), value, UMLPackage.Literals.TYPED_ELEMENT__TYPE, type);
 				}
 				try {
-					if(cmdSetResultType != null) {
-						if(cmdSetResultType.canExecute()) {
+					if (cmdSetResultType != null) {
+						if (cmdSetResultType.canExecute()) {
 							CommandStack commandStack = getEditingDomain().getCommandStack();
-							if(commandStack instanceof TransactionalCommandStack) {
-								((TransactionalCommandStack)commandStack).execute(cmdSetResultType, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+							if (commandStack instanceof TransactionalCommandStack) {
+								((TransactionalCommandStack) commandStack).execute(cmdSetResultType, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
 							} else {
 								commandStack.execute(cmdSetResultType);
 							}
@@ -431,7 +465,7 @@ public class AddVariableValueActionEditPart extends RoundedCompartmentEditPart {
 	// not generated but change include on gmfgen, can be override at the generation
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof AddVariableValueActionFloatingNameEditPart) {
+		if (borderItemEditPart instanceof AddVariableValueActionFloatingNameEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);

@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEdit
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.InterruptibleEdgeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.figures.ActivityEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 
@@ -53,7 +54,7 @@ public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements IT
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(InterruptibleEdgeEditPolicy.INTERRUPTIBLE_ICON_POLICY, new InterruptibleEdgeEditPolicy());
 	}
 
@@ -61,8 +62,9 @@ public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ControlFlowAppliedStereotypeEditPart) {
-			((ControlFlowAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof ControlFlowAppliedStereotypeEditPart) {
+			((ControlFlowAppliedStereotypeEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -72,7 +74,7 @@ public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -82,7 +84,7 @@ public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ControlFlowAppliedStereotypeEditPart) {
+		if (childEditPart instanceof ControlFlowAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -93,7 +95,7 @@ public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -117,7 +119,7 @@ public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	@Override
 	public ActivityEdgeFigure getPrimaryShape() {
-		return (ActivityEdgeFigure)getFigure();
+		return (ActivityEdgeFigure) getFigure();
 	}
 
 	/**

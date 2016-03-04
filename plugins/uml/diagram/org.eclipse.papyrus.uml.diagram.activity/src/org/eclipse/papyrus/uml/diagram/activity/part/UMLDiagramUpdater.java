@@ -113,16 +113,17 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	protected UMLDiagramUpdater() {
-		//to prevent instantiation allowing the override
+		// to prevent instantiation allowing the override
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public List<UMLNodeDescriptor> getSemanticChildren(View view) {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
-		if(vid != null) {
-			switch(vid) {
+		if (vid != null) {
+			switch (vid) {
 			case ActivityDiagramEditPart.VISUAL_ID:
 				return getPackage_1000SemanticChildren(view);
 			case ActivityEditPart.VISUAL_ID:
@@ -234,15 +235,16 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getActivity_2001SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		Activity modelElement = (Activity)view.getElement();
+		Activity modelElement = (Activity) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getOwnedNodes().iterator(); it.hasNext();) {
-			ActivityNode childElement = (ActivityNode)it.next();
+		for (Iterator<?> it = modelElement.getOwnedNodes()
+				.iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ActivityParameterNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityParameterNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -254,31 +256,33 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getOpaqueAction_3007SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		OpaqueAction modelElement = (OpaqueAction)view.getElement();
+		OpaqueAction modelElement = (OpaqueAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getInputValues().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getInputValues()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ValuePinInOpaqueActEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInOpaqueActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActionInputPinInOpaqueActEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionInputPinInOpaqueActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(InputPinInOpaqueActEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInOpaqueActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getOutputValues().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
+		for (Iterator<?> it = modelElement.getOutputValues()
+				.iterator(); it.hasNext();) {
+			OutputPin childElement = (OutputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInOpaqueActEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInOpaqueActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -290,31 +294,33 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getCallBehaviorAction_3008SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		CallBehaviorAction modelElement = (CallBehaviorAction)view.getElement();
+		CallBehaviorAction modelElement = (CallBehaviorAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getArguments().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getArguments()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ValuePinInCallBeActEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInCallBeActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActionInputPinInCallBeActEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionInputPinInCallBeActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(InputPinInCallBeActEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInCallBeActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getResults().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
+		for (Iterator<?> it = modelElement.getResults()
+				.iterator(); it.hasNext();) {
+			OutputPin childElement = (OutputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInCallBeActEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInCallBeActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -326,31 +332,33 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getCallOperationAction_3010SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		CallOperationAction modelElement = (CallOperationAction)view.getElement();
+		CallOperationAction modelElement = (CallOperationAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getArguments().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getArguments()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ActionInputPinInCallOpActEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionInputPinInCallOpActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValuePinInCallOpActEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInCallOpActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(InputPinInCallOpActEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInCallOpActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getResults().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
+		for (Iterator<?> it = modelElement.getResults()
+				.iterator(); it.hasNext();) {
+			OutputPin childElement = (OutputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInCallOpActEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInCallOpActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -358,13 +366,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		{
 			InputPin childElement = modelElement.getTarget();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ValuePinInCallOpActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInCallOpActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(InputPinInCallOpActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInCallOpActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -375,34 +383,34 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getSendObjectAction_3042SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		SendObjectAction modelElement = (SendObjectAction)view.getElement();
+		SendObjectAction modelElement = (SendObjectAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			InputPin childElement = modelElement.getRequest();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ValuePinInSendObjActAsReqEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInSendObjActAsReqEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(InputPinInSendObjActAsReqEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInSendObjActAsReqEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		{
 			InputPin childElement = modelElement.getTarget();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ValuePinInSendObjActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInSendObjActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(InputPinInSendObjActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInSendObjActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -413,23 +421,24 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getSendSignalAction_3052SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		SendSignalAction modelElement = (SendSignalAction)view.getElement();
+		SendSignalAction modelElement = (SendSignalAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getArguments().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getArguments()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ActionInputPinInSendSigActEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionInputPinInSendSigActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValuePinInSendSigActEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInSendSigActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(InputPinInSendSigActEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInSendSigActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -437,13 +446,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		{
 			InputPin childElement = modelElement.getTarget();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ValuePinInSendSigActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInSendSigActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(InputPinInSendSigActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInSendSigActAsTargetEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -454,15 +463,16 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getAcceptEventAction_3063SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		AcceptEventAction modelElement = (AcceptEventAction)view.getElement();
+		AcceptEventAction modelElement = (AcceptEventAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getResults().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
+		for (Iterator<?> it = modelElement.getResults()
+				.iterator(); it.hasNext();) {
+			OutputPin childElement = (OutputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInAcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInAcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -474,47 +484,51 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getExpansionRegion_3070SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ExpansionRegion modelElement = (ExpansionRegion)view.getElement();
+		ExpansionRegion modelElement = (ExpansionRegion) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getInputElements().iterator(); it.hasNext();) {
-			ExpansionNode childElement = (ExpansionNode)it.next();
+		for (Iterator<?> it = modelElement.getInputElements()
+				.iterator(); it.hasNext();) {
+			ExpansionNode childElement = (ExpansionNode) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ExpansionNodeAsInEditPart.VISUAL_ID.equals(visualID)) {
+			if (ExpansionNodeAsInEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getOutputElements().iterator(); it.hasNext();) {
-			ExpansionNode childElement = (ExpansionNode)it.next();
+		for (Iterator<?> it = modelElement.getOutputElements()
+				.iterator(); it.hasNext();) {
+			ExpansionNode childElement = (ExpansionNode) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ExpansionNodeAsOutEditPart.VISUAL_ID.equals(visualID)) {
+			if (ExpansionNodeAsOutEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getStructuredNodeInputs().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getStructuredNodeInputs()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getStructuredNodeOutputs().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
+		for (Iterator<?> it = modelElement.getStructuredNodeOutputs()
+				.iterator(); it.hasNext();) {
+			OutputPin childElement = (OutputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -526,47 +540,51 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getLoopNode_3071SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		LoopNode modelElement = (LoopNode)view.getElement();
+		LoopNode modelElement = (LoopNode) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getLoopVariableInputs().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getLoopVariableInputs()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInLoopNodeAsVariableEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInLoopNodeAsVariableEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getBodyOutputs().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
+		for (Iterator<?> it = modelElement.getBodyOutputs()
+				.iterator(); it.hasNext();) {
+			OutputPin childElement = (OutputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getLoopVariables().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
+		for (Iterator<?> it = modelElement.getLoopVariables()
+				.iterator(); it.hasNext();) {
+			OutputPin childElement = (OutputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getResults().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
+		for (Iterator<?> it = modelElement.getResults()
+				.iterator(); it.hasNext();) {
+			OutputPin childElement = (OutputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInLoopNodeAsResultEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInLoopNodeAsResultEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -578,31 +596,33 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getSequenceNode_3073SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		SequenceNode modelElement = (SequenceNode)view.getElement();
+		SequenceNode modelElement = (SequenceNode) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getStructuredNodeInputs().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getStructuredNodeInputs()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getStructuredNodeOutputs().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
+		for (Iterator<?> it = modelElement.getStructuredNodeOutputs()
+				.iterator(); it.hasNext();) {
+			OutputPin childElement = (OutputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -614,31 +634,33 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getStructuredActivityNode_3065SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		StructuredActivityNode modelElement = (StructuredActivityNode)view.getElement();
+		StructuredActivityNode modelElement = (StructuredActivityNode) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getStructuredNodeInputs().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getStructuredNodeInputs()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getStructuredNodeOutputs().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
+		for (Iterator<?> it = modelElement.getStructuredNodeOutputs()
+				.iterator(); it.hasNext();) {
+			OutputPin childElement = (OutputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -650,15 +672,15 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getReadSelfAction_3081SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ReadSelfAction modelElement = (ReadSelfAction)view.getElement();
+		ReadSelfAction modelElement = (ReadSelfAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			OutputPin childElement = modelElement.getResult();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ReadSelfActionOutputPinEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadSelfActionOutputPinEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -671,10 +693,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated NOT
 	 */
 	public static List<UMLNodeDescriptor> getOutputPin_3082SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		// for (Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
 		// ActivityNode childElement = (ActivityNode) it.next();
@@ -692,15 +714,16 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getActivity_3083SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		Activity modelElement = (Activity)view.getElement();
+		Activity modelElement = (Activity) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getOwnedNodes().iterator(); it.hasNext();) {
-			ActivityNode childElement = (ActivityNode)it.next();
+		for (Iterator<?> it = modelElement.getOwnedNodes()
+				.iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ActivityParameterNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityParameterNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -712,15 +735,15 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getCreateObjectAction_3086SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		CreateObjectAction modelElement = (CreateObjectAction)view.getElement();
+		CreateObjectAction modelElement = (CreateObjectAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			OutputPin childElement = modelElement.getResult();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -731,28 +754,28 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getReadStructuralFeatureAction_3088SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ReadStructuralFeatureAction modelElement = (ReadStructuralFeatureAction)view.getElement();
+		ReadStructuralFeatureAction modelElement = (ReadStructuralFeatureAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			InputPin childElement = modelElement.getObject();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		{
 			OutputPin childElement = modelElement.getResult();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -763,54 +786,54 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getAddStructuralFeatureValueAction_3091SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		AddStructuralFeatureValueAction modelElement = (AddStructuralFeatureValueAction)view.getElement();
+		AddStructuralFeatureValueAction modelElement = (AddStructuralFeatureValueAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			InputPin childElement = modelElement.getObject();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		{
 			InputPin childElement = modelElement.getValue();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		{
 			InputPin childElement = modelElement.getInsertAt();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		{
 			OutputPin childElement = modelElement.getResult();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -821,21 +844,21 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getDestroyObjectAction_3095SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		DestroyObjectAction modelElement = (DestroyObjectAction)view.getElement();
+		DestroyObjectAction modelElement = (DestroyObjectAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			InputPin childElement = modelElement.getTarget();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInDestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInDestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInDestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInDestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInDestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInDestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -846,15 +869,15 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getReadVariableAction_3097SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ReadVariableAction modelElement = (ReadVariableAction)view.getElement();
+		ReadVariableAction modelElement = (ReadVariableAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			OutputPin childElement = modelElement.getResult();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInReadVariableActionAsResultEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInReadVariableActionAsResultEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -865,34 +888,34 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getAddVariableValueAction_3099SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		AddVariableValueAction modelElement = (AddVariableValueAction)view.getElement();
+		AddVariableValueAction modelElement = (AddVariableValueAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			InputPin childElement = modelElement.getInsertAt();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		{
 			InputPin childElement = modelElement.getValue();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInAddVariableValueActionAsValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInAddVariableValueActionAsValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInAddVariableValueActionAsValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInAddVariableValueActionAsValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -903,23 +926,24 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getBroadcastSignalAction_3102SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		BroadcastSignalAction modelElement = (BroadcastSignalAction)view.getElement();
+		BroadcastSignalAction modelElement = (BroadcastSignalAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getArguments().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getArguments()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInBroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInBroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValuePinInBroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInBroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActionPinInBroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInBroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -931,15 +955,16 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getStartObjectBehaviorAction_3113SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		StartObjectBehaviorAction modelElement = (StartObjectBehaviorAction)view.getElement();
+		StartObjectBehaviorAction modelElement = (StartObjectBehaviorAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getResults().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
+		for (Iterator<?> it = modelElement.getResults()
+				.iterator(); it.hasNext();) {
+			OutputPin childElement = (OutputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInStartObjectBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInStartObjectBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -947,28 +972,29 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		{
 			InputPin childElement = modelElement.getObject();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
-		for(Iterator<?> it = modelElement.getArguments().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getArguments()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValuePinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActionPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -980,41 +1006,41 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getTestIdentityAction_3114SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		TestIdentityAction modelElement = (TestIdentityAction)view.getElement();
+		TestIdentityAction modelElement = (TestIdentityAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			OutputPin childElement = modelElement.getResult();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInTestIdentityActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInTestIdentityActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		{
 			InputPin childElement = modelElement.getFirst();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInTestIdentityActionAsFirstEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInTestIdentityActionAsFirstEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInTestIdentityActionAsFirstEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInTestIdentityActionAsFirstEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInTestIdentityActionAsFirstEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInTestIdentityActionAsFirstEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		{
 			InputPin childElement = modelElement.getSecond();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInTestIdentityActionAsSecondEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInTestIdentityActionAsSecondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInTestIdentityActionAsSecondEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInTestIdentityActionAsSecondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInTestIdentityActionAsSecondEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInTestIdentityActionAsSecondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -1025,28 +1051,28 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getClearStructuralFeatureAction_3115SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ClearStructuralFeatureAction modelElement = (ClearStructuralFeatureAction)view.getElement();
+		ClearStructuralFeatureAction modelElement = (ClearStructuralFeatureAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			OutputPin childElement = modelElement.getResult();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInClearStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInClearStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		{
 			InputPin childElement = modelElement.getObject();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionInputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionInputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -1057,23 +1083,24 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getCreateLinkAction_3117SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		CreateLinkAction modelElement = (CreateLinkAction)view.getElement();
+		CreateLinkAction modelElement = (CreateLinkAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getInputValues().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getInputValues()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValuePinInCreateLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInCreateLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActionInputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionInputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1085,30 +1112,31 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getReadLinkAction_3116SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ReadLinkAction modelElement = (ReadLinkAction)view.getElement();
+		ReadLinkAction modelElement = (ReadLinkAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			OutputPin childElement = modelElement.getResult();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInReadLinkActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInReadLinkActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
-		for(Iterator<?> it = modelElement.getInputValues().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getInputValues()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValuePinInReadLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInReadLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActionInputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionInputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1120,23 +1148,24 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getDestroyLinkAction_3118SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		DestroyLinkAction modelElement = (DestroyLinkAction)view.getElement();
+		DestroyLinkAction modelElement = (DestroyLinkAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getInputValues().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getInputValues()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValuePinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActionInputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionInputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1148,21 +1177,21 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getClearAssociationAction_3119SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ClearAssociationAction modelElement = (ClearAssociationAction)view.getElement();
+		ClearAssociationAction modelElement = (ClearAssociationAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			InputPin childElement = modelElement.getObject();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInClearAssociationActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInClearAssociationActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInClearAssociationActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInClearAssociationActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInClearAssociationActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInClearAssociationActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -1173,15 +1202,15 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getReadExtentAction_3120SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ReadExtentAction modelElement = (ReadExtentAction)view.getElement();
+		ReadExtentAction modelElement = (ReadExtentAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			OutputPin childElement = modelElement.getResult();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInReadExtentActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInReadExtentActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -1192,21 +1221,21 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getReclassifyObjectAction_3121SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ReclassifyObjectAction modelElement = (ReclassifyObjectAction)view.getElement();
+		ReclassifyObjectAction modelElement = (ReclassifyObjectAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			InputPin childElement = modelElement.getObject();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -1217,28 +1246,28 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getReadIsClassifiedObjectAction_3122SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ReadIsClassifiedObjectAction modelElement = (ReadIsClassifiedObjectAction)view.getElement();
+		ReadIsClassifiedObjectAction modelElement = (ReadIsClassifiedObjectAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			OutputPin childElement = modelElement.getResult();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInReadIsClassifiedObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInReadIsClassifiedObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		{
 			InputPin childElement = modelElement.getObject();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -1249,28 +1278,28 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getReduceAction_3123SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ReduceAction modelElement = (ReduceAction)view.getElement();
+		ReduceAction modelElement = (ReduceAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			OutputPin childElement = modelElement.getResult();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInReduceActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInReduceActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		{
 			InputPin childElement = modelElement.getCollection();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInReduceActionAsCollectionEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInReduceActionAsCollectionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInReduceActionAsCollectionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInReduceActionAsCollectionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInReduceActionAsCollectionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInReduceActionAsCollectionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -1281,21 +1310,21 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getStartClassifierBehaviorAction_3124SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		StartClassifierBehaviorAction modelElement = (StartClassifierBehaviorAction)view.getElement();
+		StartClassifierBehaviorAction modelElement = (StartClassifierBehaviorAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			InputPin childElement = modelElement.getObject();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ValuePinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
-			if(ActionPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -1306,23 +1335,24 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getCreateLinkObjectAction_3198SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		CreateLinkObjectAction modelElement = (CreateLinkObjectAction)view.getElement();
+		CreateLinkObjectAction modelElement = (CreateLinkObjectAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getInputValues().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getInputValues()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValuePinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActionPinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1330,7 +1360,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		{
 			OutputPin childElement = modelElement.getResult();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInCreateLinkObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInCreateLinkObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -1341,19 +1371,20 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getActivityParameters_7001SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		Activity modelElement = (Activity)containerView.getElement();
+		Activity modelElement = (Activity) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
-			Parameter childElement = (Parameter)it.next();
+		for (Iterator<?> it = modelElement.getOwnedParameters()
+				.iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ParameterEditPart.VISUAL_ID.equals(visualID)) {
+			if (ParameterEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1365,19 +1396,20 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getActivityPreconditions_7002SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		Activity modelElement = (Activity)containerView.getElement();
+		Activity modelElement = (Activity) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getPreconditions().iterator(); it.hasNext();) {
-			Constraint childElement = (Constraint)it.next();
+		for (Iterator<?> it = modelElement.getPreconditions()
+				.iterator(); it.hasNext();) {
+			Constraint childElement = (Constraint) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConstraintInActivityAsPrecondEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConstraintInActivityAsPrecondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1389,19 +1421,20 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getActivityPostconditions_7003SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		Activity modelElement = (Activity)containerView.getElement();
+		Activity modelElement = (Activity) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getPostconditions().iterator(); it.hasNext();) {
-			Constraint childElement = (Constraint)it.next();
+		for (Iterator<?> it = modelElement.getPostconditions()
+				.iterator(); it.hasNext();) {
+			Constraint childElement = (Constraint) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConstraintInActivityAsPostcondEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConstraintInActivityAsPostcondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1415,111 +1448,111 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated NOT
 	 */
 	public static List<UMLNodeDescriptor> getActivityContent_7004SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		Activity modelElement = (Activity)containerView.getElement();
+		Activity modelElement = (Activity) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
-			ActivityNode childElement = (ActivityNode)it.next();
+		for (Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadSelfActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadSelfActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1568,50 +1601,50 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		// continue;
 		// }
 		// }
-		for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
-			ActivityGroup childElement = (ActivityGroup)it.next();
+		for (Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
+			ActivityGroup childElement = (ActivityGroup) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActivityPartitionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityPartitionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(InterruptibleActivityRegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (InterruptibleActivityRegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
-			Comment childElement = (Comment)it.next();
+		for (Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
+			Comment childElement = (Comment) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(CommentEditPartCN.VISUAL_ID.equals(visualID)) {
+			if (CommentEditPartCN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getOwnedBehaviors().iterator(); it.hasNext();) {
-			Behavior childElement = (Behavior)it.next();
+		for (Iterator<?> it = modelElement.getOwnedBehaviors().iterator(); it.hasNext();) {
+			Behavior childElement = (Behavior) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ActivityEditPartCN.VISUAL_ID.equals(visualID)) {
+			if (ActivityEditPartCN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1623,15 +1656,15 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getValueSpecificationAction_3076SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
+		ValueSpecificationAction modelElement = (ValueSpecificationAction) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			OutputPin childElement = modelElement.getResult();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInValSpecActEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInValSpecActEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -1642,31 +1675,33 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getConditionalNode_3069SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ConditionalNode modelElement = (ConditionalNode)view.getElement();
+		ConditionalNode modelElement = (ConditionalNode) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getStructuredNodeInputs().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
+		for (Iterator<?> it = modelElement.getStructuredNodeInputs()
+				.iterator(); it.hasNext();) {
+			InputPin childElement = (InputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getStructuredNodeOutputs().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
+		for (Iterator<?> it = modelElement.getStructuredNodeOutputs()
+				.iterator(); it.hasNext();) {
+			OutputPin childElement = (OutputPin) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
+			if (OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1680,144 +1715,144 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated NOT
 	 */
 	public static List<UMLNodeDescriptor> getActivityActivityContentCompartment_7004SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		Activity modelElement = (Activity)containerView.getElement();
+		Activity modelElement = (Activity) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
-			ActivityNode childElement = (ActivityNode)it.next();
+		for (Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode) it.next();
 			// add children actions' local conditions
-			if(childElement instanceof Action) {
-				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
+			if (childElement instanceof Action) {
+				result.addAll(getActionLocalConditionsDescriptors((Action) childElement, view));
 			}
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 			// add children actions' local conditions (2 blocks removed)
 		}
-		for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
-			ActivityGroup childElement = (ActivityGroup)it.next();
+		for (Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
+			ActivityGroup childElement = (ActivityGroup) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActivityPartitionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityPartitionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(InterruptibleActivityRegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (InterruptibleActivityRegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1829,111 +1864,111 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
 	 */
 	public static List<UMLNodeDescriptor> getConditionalNodeContent_7008SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ConditionalNode modelElement = (ConditionalNode)containerView.getElement();
+		ConditionalNode modelElement = (ConditionalNode) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
-			ActivityNode childElement = (ActivityNode)it.next();
+		for (Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode) it.next();
 			// add children actions' local conditions
-			if(childElement instanceof Action) {
-				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
+			if (childElement instanceof Action) {
+				result.addAll(getActionLocalConditionsDescriptors((Action) childElement, view));
 			}
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1943,23 +1978,23 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			// for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
 			// ActivityGroup childElement = (ActivityGroup)it.next();
 			// String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1971,111 +2006,111 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated NOT (update at each gmf change) add children actions' local conditions
 	 */
 	public static List<UMLNodeDescriptor> getExpansionRegionContent_7009SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ExpansionRegion modelElement = (ExpansionRegion)containerView.getElement();
+		ExpansionRegion modelElement = (ExpansionRegion) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
-			ActivityNode childElement = (ActivityNode)it.next();
+		for (Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode) it.next();
 			// add children actions' local conditions
-			if(childElement instanceof Action) {
-				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
+			if (childElement instanceof Action) {
+				result.addAll(getActionLocalConditionsDescriptors((Action) childElement, view));
 			}
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2085,23 +2120,23 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			// for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
 			// ActivityGroup childElement = (ActivityGroup)it.next();
 			// String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2113,111 +2148,111 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
 	 */
 	public static List<UMLNodeDescriptor> getLoopNodeContent_7010SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		LoopNode modelElement = (LoopNode)containerView.getElement();
+		LoopNode modelElement = (LoopNode) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
-			ActivityNode childElement = (ActivityNode)it.next();
+		for (Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode) it.next();
 			// add children actions' local conditions
-			if(childElement instanceof Action) {
-				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
+			if (childElement instanceof Action) {
+				result.addAll(getActionLocalConditionsDescriptors((Action) childElement, view));
 			}
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2227,23 +2262,23 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			// for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
 			// ActivityGroup childElement = (ActivityGroup)it.next();
 			// String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2255,111 +2290,111 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
 	 */
 	public static List<UMLNodeDescriptor> getSequenceNodeContent_7012SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		SequenceNode modelElement = (SequenceNode)containerView.getElement();
+		SequenceNode modelElement = (SequenceNode) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
-			ActivityNode childElement = (ActivityNode)it.next();
+		for (Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode) it.next();
 			// add children actions' local conditions
-			if(childElement instanceof Action) {
-				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
+			if (childElement instanceof Action) {
+				result.addAll(getActionLocalConditionsDescriptors((Action) childElement, view));
 			}
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2369,23 +2404,23 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			// for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
 			// ActivityGroup childElement = (ActivityGroup)it.next();
 			// String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2397,111 +2432,111 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
 	 */
 	public static List<UMLNodeDescriptor> getStructuredActivityNodeContent_7005SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		StructuredActivityNode modelElement = (StructuredActivityNode)containerView.getElement();
+		StructuredActivityNode modelElement = (StructuredActivityNode) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
-			ActivityNode childElement = (ActivityNode)it.next();
+		for (Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode) it.next();
 			// add children actions' local conditions
-			if(childElement instanceof Action) {
-				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
+			if (childElement instanceof Action) {
+				result.addAll(getActionLocalConditionsDescriptors((Action) childElement, view));
 			}
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2511,23 +2546,23 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			// for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
 			// ActivityGroup childElement = (ActivityGroup)it.next();
 			// String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2539,111 +2574,111 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
 	 */
 	public static List<UMLNodeDescriptor> getActivityPartitionContent_7006SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		ActivityPartition modelElement = (ActivityPartition)containerView.getElement();
+		ActivityPartition modelElement = (ActivityPartition) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
-			ActivityNode childElement = (ActivityNode)it.next();
+		for (Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode) it.next();
 			// add children actions' local conditions
-			if(childElement instanceof Action) {
-				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
+			if (childElement instanceof Action) {
+				result.addAll(getActionLocalConditionsDescriptors((Action) childElement, view));
 			}
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2653,27 +2688,27 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			// for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
 			// ActivityGroup childElement = (ActivityGroup)it.next();
 			// String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActivityPartitionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityPartitionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2685,111 +2720,111 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
 	 */
 	public static List<UMLNodeDescriptor> getInterruptibleActivityRegionContent_7007SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		InterruptibleActivityRegion modelElement = (InterruptibleActivityRegion)containerView.getElement();
+		InterruptibleActivityRegion modelElement = (InterruptibleActivityRegion) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
-			ActivityNode childElement = (ActivityNode)it.next();
+		for (Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode) it.next();
 			// add children actions' local conditions
-			if(childElement instanceof Action) {
-				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
+			if (childElement instanceof Action) {
+				result.addAll(getActionLocalConditionsDescriptors((Action) childElement, view));
 			}
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2799,23 +2834,23 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			// for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
 			// ActivityGroup childElement = (ActivityGroup)it.next();
 			// String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2827,19 +2862,20 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getActivityParameters_7014SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		Activity modelElement = (Activity)containerView.getElement();
+		Activity modelElement = (Activity) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
-			Parameter childElement = (Parameter)it.next();
+		for (Iterator<?> it = modelElement.getOwnedParameters()
+				.iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ParameterEditPart.VISUAL_ID.equals(visualID)) {
+			if (ParameterEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2851,19 +2887,20 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getActivityPreconditions_7015SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		Activity modelElement = (Activity)containerView.getElement();
+		Activity modelElement = (Activity) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getPreconditions().iterator(); it.hasNext();) {
-			Constraint childElement = (Constraint)it.next();
+		for (Iterator<?> it = modelElement.getPreconditions()
+				.iterator(); it.hasNext();) {
+			Constraint childElement = (Constraint) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConstraintInActivityAsPrecondEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConstraintInActivityAsPrecondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2875,19 +2912,20 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getActivityPostconditions_7016SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		Activity modelElement = (Activity)containerView.getElement();
+		Activity modelElement = (Activity) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getPostconditions().iterator(); it.hasNext();) {
-			Constraint childElement = (Constraint)it.next();
+		for (Iterator<?> it = modelElement.getPostconditions()
+				.iterator(); it.hasNext();) {
+			Constraint childElement = (Constraint) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConstraintInActivityAsPostcondEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConstraintInActivityAsPostcondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2901,111 +2939,111 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated NOT
 	 */
 	public static List<UMLNodeDescriptor> getActivityContent_7013SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		Activity modelElement = (Activity)containerView.getElement();
+		Activity modelElement = (Activity) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
-			ActivityNode childElement = (ActivityNode)it.next();
+		for (Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (InitialNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (FlowFinalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (OpaqueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallBehaviorActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CallOperationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DecisionNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (MergeNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ForkNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (JoinNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (DataStoreNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (CreateObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadStructuralFeatureActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddStructuralFeatureValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (DestroyObjectActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AddVariableValueActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadVariableActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (BroadcastSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (SendSignalActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (AcceptEventActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ValueSpecificationActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ReadSelfActionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ReadSelfActionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (CentralBufferNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -3054,58 +3092,58 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		// continue;
 		// }
 		// }
-		for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
-			ActivityGroup childElement = (ActivityGroup)it.next();
+		for (Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
+			ActivityGroup childElement = (ActivityGroup) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConditionalNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ExpansionRegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (LoopNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (SequenceNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
+			if (StructuredActivityNodeEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ActivityPartitionEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityPartitionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(InterruptibleActivityRegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (InterruptibleActivityRegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
-			Comment childElement = (Comment)it.next();
+		for (Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
+			Comment childElement = (Comment) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(CommentEditPartCN.VISUAL_ID.equals(visualID)) {
+			if (CommentEditPartCN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getOwnedBehaviors().iterator(); it.hasNext();) {
-			Behavior childElement = (Behavior)it.next();
+		for (Iterator<?> it = modelElement.getOwnedBehaviors().iterator(); it.hasNext();) {
+			Behavior childElement = (Behavior) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ActivityEditPartCN.VISUAL_ID.equals(visualID)) {
+			if (ActivityEditPartCN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getOwnedElements().iterator(); it.hasNext();) {
-			Element childElement = (Element)it.next();
+		for (Iterator<?> it = modelElement.getOwnedElements().iterator(); it.hasNext();) {
+			Element childElement = (Element) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ShapeNamedElementEditPart.VISUAL_ID.equals(visualID)) {
+			if (ShapeNamedElementEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -3133,40 +3171,40 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		 * }
 		 */
 		List<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Constraint childElement : actionElement.getLocalPreconditions()) {
+		for (Constraint childElement : actionElement.getLocalPreconditions()) {
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(parentView, childElement);
-			if(ConstraintAsLocalPrecondEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConstraintAsLocalPrecondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID.equals(visualID)) {
+			if (IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DurationConstraintAsLocalPrecondEditPart.VISUAL_ID.equals(visualID)) {
+			if (DurationConstraintAsLocalPrecondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(TimeConstraintAsLocalPrecondEditPart.VISUAL_ID.equals(visualID)) {
+			if (TimeConstraintAsLocalPrecondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Constraint childElement : actionElement.getLocalPostconditions()) {
+		for (Constraint childElement : actionElement.getLocalPostconditions()) {
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(parentView, childElement);
-			if(ConstraintAsLocalPostcondEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConstraintAsLocalPostcondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID.equals(visualID)) {
+			if (IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(DurationConstraintAsLocalPostcondEditPart.VISUAL_ID.equals(visualID)) {
+			if (DurationConstraintAsLocalPostcondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID.equals(visualID)) {
+			if (TimeConstraintAsLocalPostcondEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -3178,15 +3216,16 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getPackage_1000SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		Package modelElement = (Package)view.getElement();
+		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
-			PackageableElement childElement = (PackageableElement)it.next();
+		for (Iterator<?> it = modelElement.getPackagedElements()
+				.iterator(); it.hasNext();) {
+			PackageableElement childElement = (PackageableElement) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ActivityEditPart.VISUAL_ID.equals(visualID)) {
+			if (ActivityEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -3197,10 +3236,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List<UMLLinkDescriptor> getContainedLinks(View view) {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
-		if(vid != null) {
-			switch(vid) {
+		if (vid != null) {
+			switch (vid) {
 			case ActivityDiagramEditPart.VISUAL_ID:
 				return getPackage_1000ContainedLinks(view);
 			case ActivityEditPart.VISUAL_ID:
@@ -3579,10 +3619,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List<UMLLinkDescriptor> getIncomingLinks(View view) {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
-		if(vid != null) {
-			switch(vid) {
+		if (vid != null) {
+			switch (vid) {
 			case ActivityEditPart.VISUAL_ID:
 				return getActivity_2001IncomingLinks(view);
 			case ParameterEditPart.VISUAL_ID:
@@ -3959,10 +4000,11 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List<UMLLinkDescriptor> getOutgoingLinks(View view) {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
-		if(vid != null) {
-			switch(vid) {
+		if (vid != null) {
+			switch (vid) {
 			case ActivityEditPart.VISUAL_ID:
 				return getActivity_2001OutgoingLinks(view);
 			case ParameterEditPart.VISUAL_ID:
@@ -4347,7 +4389,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActivity_2001ContainedLinks(View view) {
-		Activity modelElement = (Activity)view.getElement();
+		Activity modelElement = (Activity) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getContainedTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -4365,7 +4407,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConstraint_3002ContainedLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
+		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -4375,7 +4417,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConstraint_3003ContainedLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
+		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -4406,7 +4448,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOpaqueAction_3007ContainedLinks(View view) {
-		OpaqueAction modelElement = (OpaqueAction)view.getElement();
+		OpaqueAction modelElement = (OpaqueAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -4446,7 +4488,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCallBehaviorAction_3008ContainedLinks(View view) {
-		CallBehaviorAction modelElement = (CallBehaviorAction)view.getElement();
+		CallBehaviorAction modelElement = (CallBehaviorAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -4486,7 +4528,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCallOperationAction_3010ContainedLinks(View view) {
-		CallOperationAction modelElement = (CallOperationAction)view.getElement();
+		CallOperationAction modelElement = (CallOperationAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -4547,7 +4589,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConstraint_3011ContainedLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
+		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -4557,7 +4599,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConstraint_3012ContainedLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
+		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -4595,7 +4637,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getSendObjectAction_3042ContainedLinks(View view) {
-		SendObjectAction modelElement = (SendObjectAction)view.getElement();
+		SendObjectAction modelElement = (SendObjectAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -4649,7 +4691,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getSendSignalAction_3052ContainedLinks(View view) {
-		SendSignalAction modelElement = (SendSignalAction)view.getElement();
+		SendSignalAction modelElement = (SendSignalAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -4710,7 +4752,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getAcceptEventAction_3063ContainedLinks(View view) {
-		AcceptEventAction modelElement = (AcceptEventAction)view.getElement();
+		AcceptEventAction modelElement = (AcceptEventAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -4729,7 +4771,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getStructuredActivityNode_3065ContainedLinks(View view) {
-		StructuredActivityNode modelElement = (StructuredActivityNode)view.getElement();
+		StructuredActivityNode modelElement = (StructuredActivityNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -4804,7 +4846,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getComment_3080ContainedLinks(View view) {
-		Comment modelElement = (Comment)view.getElement();
+		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement));
 		return result;
@@ -4814,7 +4856,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadSelfAction_3081ContainedLinks(View view) {
-		ReadSelfAction modelElement = (ReadSelfAction)view.getElement();
+		ReadSelfAction modelElement = (ReadSelfAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -4833,7 +4875,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActivity_3083ContainedLinks(View view) {
-		Activity modelElement = (Activity)view.getElement();
+		Activity modelElement = (Activity) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getContainedTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -4851,7 +4893,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCreateObjectAction_3086ContainedLinks(View view) {
-		CreateObjectAction modelElement = (CreateObjectAction)view.getElement();
+		CreateObjectAction modelElement = (CreateObjectAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -4870,7 +4912,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadStructuralFeatureAction_3088ContainedLinks(View view) {
-		ReadStructuralFeatureAction modelElement = (ReadStructuralFeatureAction)view.getElement();
+		ReadStructuralFeatureAction modelElement = (ReadStructuralFeatureAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -4910,7 +4952,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getAddStructuralFeatureValueAction_3091ContainedLinks(View view) {
-		AddStructuralFeatureValueAction modelElement = (AddStructuralFeatureValueAction)view.getElement();
+		AddStructuralFeatureValueAction modelElement = (AddStructuralFeatureValueAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -4992,7 +5034,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDestroyObjectAction_3095ContainedLinks(View view) {
-		DestroyObjectAction modelElement = (DestroyObjectAction)view.getElement();
+		DestroyObjectAction modelElement = (DestroyObjectAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5025,7 +5067,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadVariableAction_3097ContainedLinks(View view) {
-		ReadVariableAction modelElement = (ReadVariableAction)view.getElement();
+		ReadVariableAction modelElement = (ReadVariableAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5044,7 +5086,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getAddVariableValueAction_3099ContainedLinks(View view) {
-		AddVariableValueAction modelElement = (AddVariableValueAction)view.getElement();
+		AddVariableValueAction modelElement = (AddVariableValueAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5098,7 +5140,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getBroadcastSignalAction_3102ContainedLinks(View view) {
-		BroadcastSignalAction modelElement = (BroadcastSignalAction)view.getElement();
+		BroadcastSignalAction modelElement = (BroadcastSignalAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5138,7 +5180,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConstraint_3112ContainedLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
+		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -5148,7 +5190,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getStartObjectBehaviorAction_3113ContainedLinks(View view) {
-		StartObjectBehaviorAction modelElement = (StartObjectBehaviorAction)view.getElement();
+		StartObjectBehaviorAction modelElement = (StartObjectBehaviorAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5209,7 +5251,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getTestIdentityAction_3114ContainedLinks(View view) {
-		TestIdentityAction modelElement = (TestIdentityAction)view.getElement();
+		TestIdentityAction modelElement = (TestIdentityAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5270,7 +5312,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getClearStructuralFeatureAction_3115ContainedLinks(View view) {
-		ClearStructuralFeatureAction modelElement = (ClearStructuralFeatureAction)view.getElement();
+		ClearStructuralFeatureAction modelElement = (ClearStructuralFeatureAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5310,7 +5352,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCreateLinkAction_3117ContainedLinks(View view) {
-		CreateLinkAction modelElement = (CreateLinkAction)view.getElement();
+		CreateLinkAction modelElement = (CreateLinkAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5343,7 +5385,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadLinkAction_3116ContainedLinks(View view) {
-		ReadLinkAction modelElement = (ReadLinkAction)view.getElement();
+		ReadLinkAction modelElement = (ReadLinkAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5383,7 +5425,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDestroyLinkAction_3118ContainedLinks(View view) {
-		DestroyLinkAction modelElement = (DestroyLinkAction)view.getElement();
+		DestroyLinkAction modelElement = (DestroyLinkAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5416,7 +5458,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getClearAssociationAction_3119ContainedLinks(View view) {
-		ClearAssociationAction modelElement = (ClearAssociationAction)view.getElement();
+		ClearAssociationAction modelElement = (ClearAssociationAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5449,7 +5491,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadExtentAction_3120ContainedLinks(View view) {
-		ReadExtentAction modelElement = (ReadExtentAction)view.getElement();
+		ReadExtentAction modelElement = (ReadExtentAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5468,7 +5510,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReclassifyObjectAction_3121ContainedLinks(View view) {
-		ReclassifyObjectAction modelElement = (ReclassifyObjectAction)view.getElement();
+		ReclassifyObjectAction modelElement = (ReclassifyObjectAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5501,7 +5543,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadIsClassifiedObjectAction_3122ContainedLinks(View view) {
-		ReadIsClassifiedObjectAction modelElement = (ReadIsClassifiedObjectAction)view.getElement();
+		ReadIsClassifiedObjectAction modelElement = (ReadIsClassifiedObjectAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5541,7 +5583,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReduceAction_3123ContainedLinks(View view) {
-		ReduceAction modelElement = (ReduceAction)view.getElement();
+		ReduceAction modelElement = (ReduceAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5581,7 +5623,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getStartClassifierBehaviorAction_3124ContainedLinks(View view) {
-		StartClassifierBehaviorAction modelElement = (StartClassifierBehaviorAction)view.getElement();
+		StartClassifierBehaviorAction modelElement = (StartClassifierBehaviorAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5614,7 +5656,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCreateLinkObjectAction_3198ContainedLinks(View view) {
-		CreateLinkObjectAction modelElement = (CreateLinkObjectAction)view.getElement();
+		CreateLinkObjectAction modelElement = (CreateLinkObjectAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5654,7 +5696,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValueSpecificationAction_3076ContainedLinks(View view) {
-		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
+		ValueSpecificationAction modelElement = (ValueSpecificationAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5680,7 +5722,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConditionalNode_3069ContainedLinks(View view) {
-		ConditionalNode modelElement = (ConditionalNode)view.getElement();
+		ConditionalNode modelElement = (ConditionalNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5692,7 +5734,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getExpansionRegion_3070ContainedLinks(View view) {
-		ExpansionRegion modelElement = (ExpansionRegion)view.getElement();
+		ExpansionRegion modelElement = (ExpansionRegion) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5718,7 +5760,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getLoopNode_3071ContainedLinks(View view) {
-		LoopNode modelElement = (LoopNode)view.getElement();
+		LoopNode modelElement = (LoopNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5751,7 +5793,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getSequenceNode_3073ContainedLinks(View view) {
-		SequenceNode modelElement = (SequenceNode)view.getElement();
+		SequenceNode modelElement = (SequenceNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -5763,7 +5805,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getIntervalConstraint_3032ContainedLinks(View view) {
-		IntervalConstraint modelElement = (IntervalConstraint)view.getElement();
+		IntervalConstraint modelElement = (IntervalConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -5773,7 +5815,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getIntervalConstraint_3033ContainedLinks(View view) {
-		IntervalConstraint modelElement = (IntervalConstraint)view.getElement();
+		IntervalConstraint modelElement = (IntervalConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -5783,7 +5825,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDurationConstraint_3034ContainedLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint)view.getElement();
+		DurationConstraint modelElement = (DurationConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -5793,7 +5835,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDurationConstraint_3035ContainedLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint)view.getElement();
+		DurationConstraint modelElement = (DurationConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -5803,7 +5845,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getTimeConstraint_3036ContainedLinks(View view) {
-		TimeConstraint modelElement = (TimeConstraint)view.getElement();
+		TimeConstraint modelElement = (TimeConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -5813,7 +5855,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getTimeConstraint_3037ContainedLinks(View view) {
-		TimeConstraint modelElement = (TimeConstraint)view.getElement();
+		TimeConstraint modelElement = (TimeConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -5844,7 +5886,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActivity_2001IncomingLinks(View view) {
-		Activity modelElement = (Activity)view.getElement();
+		Activity modelElement = (Activity) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferencer));
@@ -5877,7 +5919,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInitialNode_3004IncomingLinks(View view) {
-		InitialNode modelElement = (InitialNode)view.getElement();
+		InitialNode modelElement = (InitialNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -5891,7 +5933,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActivityFinalNode_3005IncomingLinks(View view) {
-		ActivityFinalNode modelElement = (ActivityFinalNode)view.getElement();
+		ActivityFinalNode modelElement = (ActivityFinalNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -5905,7 +5947,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getFlowFinalNode_3006IncomingLinks(View view) {
-		FlowFinalNode modelElement = (FlowFinalNode)view.getElement();
+		FlowFinalNode modelElement = (FlowFinalNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -5919,7 +5961,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOpaqueAction_3007IncomingLinks(View view) {
-		OpaqueAction modelElement = (OpaqueAction)view.getElement();
+		OpaqueAction modelElement = (OpaqueAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -5933,7 +5975,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3015IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -5948,7 +5990,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3016IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -5963,7 +6005,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3013IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -5978,7 +6020,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3014IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -5993,7 +6035,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCallBehaviorAction_3008IncomingLinks(View view) {
-		CallBehaviorAction modelElement = (CallBehaviorAction)view.getElement();
+		CallBehaviorAction modelElement = (CallBehaviorAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6007,7 +6049,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3017IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6022,7 +6064,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3018IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6037,7 +6079,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3019IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6052,7 +6094,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3020IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6067,7 +6109,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCallOperationAction_3010IncomingLinks(View view) {
-		CallOperationAction modelElement = (CallOperationAction)view.getElement();
+		CallOperationAction modelElement = (CallOperationAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6081,7 +6123,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3021IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6096,7 +6138,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3022IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6111,7 +6153,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3023IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6126,7 +6168,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3024IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6141,7 +6183,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3025IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6156,7 +6198,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3026IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6171,7 +6213,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3027IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6186,7 +6228,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConstraint_3011IncomingLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
+		Constraint modelElement = (Constraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement, crossReferencer));
@@ -6200,7 +6242,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConstraint_3012IncomingLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
+		Constraint modelElement = (Constraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement, crossReferencer));
@@ -6214,7 +6256,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDecisionNode_3038IncomingLinks(View view) {
-		DecisionNode modelElement = (DecisionNode)view.getElement();
+		DecisionNode modelElement = (DecisionNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6228,7 +6270,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getMergeNode_3039IncomingLinks(View view) {
-		MergeNode modelElement = (MergeNode)view.getElement();
+		MergeNode modelElement = (MergeNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6242,7 +6284,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getForkNode_3040IncomingLinks(View view) {
-		ForkNode modelElement = (ForkNode)view.getElement();
+		ForkNode modelElement = (ForkNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6256,7 +6298,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getJoinNode_3041IncomingLinks(View view) {
-		JoinNode modelElement = (JoinNode)view.getElement();
+		JoinNode modelElement = (JoinNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6270,7 +6312,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getSendObjectAction_3042IncomingLinks(View view) {
-		SendObjectAction modelElement = (SendObjectAction)view.getElement();
+		SendObjectAction modelElement = (SendObjectAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6284,7 +6326,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3046IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6299,7 +6341,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3047IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6314,7 +6356,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3048IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6329,7 +6371,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3049IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6344,7 +6386,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3050IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6359,7 +6401,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3051IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6374,7 +6416,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getSendSignalAction_3052IncomingLinks(View view) {
-		SendSignalAction modelElement = (SendSignalAction)view.getElement();
+		SendSignalAction modelElement = (SendSignalAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6388,7 +6430,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3053IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6403,7 +6445,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3054IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6418,7 +6460,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3055IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6433,7 +6475,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3060IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6448,7 +6490,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3061IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6463,7 +6505,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3062IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6478,7 +6520,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActivityParameterNode_3059IncomingLinks(View view) {
-		ActivityParameterNode modelElement = (ActivityParameterNode)view.getElement();
+		ActivityParameterNode modelElement = (ActivityParameterNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6493,7 +6535,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getAcceptEventAction_3063IncomingLinks(View view) {
-		AcceptEventAction modelElement = (AcceptEventAction)view.getElement();
+		AcceptEventAction modelElement = (AcceptEventAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6507,7 +6549,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3064IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6522,7 +6564,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getStructuredActivityNode_3065IncomingLinks(View view) {
-		StructuredActivityNode modelElement = (StructuredActivityNode)view.getElement();
+		StructuredActivityNode modelElement = (StructuredActivityNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6536,7 +6578,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3188IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6551,7 +6593,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3189IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6566,7 +6608,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3190IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6581,7 +6623,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3191IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6596,7 +6638,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3105IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6611,7 +6653,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3192IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6626,7 +6668,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3193IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6641,7 +6683,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActivityPartition_3067IncomingLinks(View view) {
-		ActivityPartition modelElement = (ActivityPartition)view.getElement();
+		ActivityPartition modelElement = (ActivityPartition) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferencer));
@@ -6653,7 +6695,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInterruptibleActivityRegion_3068IncomingLinks(View view) {
-		InterruptibleActivityRegion modelElement = (InterruptibleActivityRegion)view.getElement();
+		InterruptibleActivityRegion modelElement = (InterruptibleActivityRegion) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferencer));
@@ -6665,7 +6707,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getComment_3080IncomingLinks(View view) {
-		Comment modelElement = (Comment)view.getElement();
+		Comment modelElement = (Comment) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferencer));
@@ -6677,7 +6719,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadSelfAction_3081IncomingLinks(View view) {
-		ReadSelfAction modelElement = (ReadSelfAction)view.getElement();
+		ReadSelfAction modelElement = (ReadSelfAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6691,7 +6733,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3084IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6706,7 +6748,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActivity_3083IncomingLinks(View view) {
-		Activity modelElement = (Activity)view.getElement();
+		Activity modelElement = (Activity) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferencer));
@@ -6718,7 +6760,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getNamedElement_3085IncomingLinks(View view) {
-		NamedElement modelElement = (NamedElement)view.getElement();
+		NamedElement modelElement = (NamedElement) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferencer));
@@ -6730,7 +6772,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCreateObjectAction_3086IncomingLinks(View view) {
-		CreateObjectAction modelElement = (CreateObjectAction)view.getElement();
+		CreateObjectAction modelElement = (CreateObjectAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6744,7 +6786,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3087IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6759,7 +6801,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadStructuralFeatureAction_3088IncomingLinks(View view) {
-		ReadStructuralFeatureAction modelElement = (ReadStructuralFeatureAction)view.getElement();
+		ReadStructuralFeatureAction modelElement = (ReadStructuralFeatureAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6773,7 +6815,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3089IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6788,7 +6830,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3203IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6803,7 +6845,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3204IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6818,7 +6860,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3090IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6833,7 +6875,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getAddStructuralFeatureValueAction_3091IncomingLinks(View view) {
-		AddStructuralFeatureValueAction modelElement = (AddStructuralFeatureValueAction)view.getElement();
+		AddStructuralFeatureValueAction modelElement = (AddStructuralFeatureValueAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6847,7 +6889,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3092IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6862,7 +6904,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3093IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6877,7 +6919,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3181IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6892,7 +6934,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3182IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6907,7 +6949,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3183IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6922,7 +6964,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3184IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6937,7 +6979,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3185IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6952,7 +6994,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3186IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6967,7 +7009,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3187IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6982,7 +7024,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3094IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -6997,7 +7039,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDestroyObjectAction_3095IncomingLinks(View view) {
-		DestroyObjectAction modelElement = (DestroyObjectAction)view.getElement();
+		DestroyObjectAction modelElement = (DestroyObjectAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7011,7 +7053,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3096IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7026,7 +7068,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3173IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7041,7 +7083,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3174IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7056,7 +7098,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadVariableAction_3097IncomingLinks(View view) {
-		ReadVariableAction modelElement = (ReadVariableAction)view.getElement();
+		ReadVariableAction modelElement = (ReadVariableAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7070,7 +7112,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3098IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7085,7 +7127,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getAddVariableValueAction_3099IncomingLinks(View view) {
-		AddVariableValueAction modelElement = (AddVariableValueAction)view.getElement();
+		AddVariableValueAction modelElement = (AddVariableValueAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7099,7 +7141,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3100IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7114,7 +7156,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3101IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7129,7 +7171,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3175IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7144,7 +7186,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3176IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7159,7 +7201,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3177IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7174,7 +7216,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3178IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7189,7 +7231,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getBroadcastSignalAction_3102IncomingLinks(View view) {
-		BroadcastSignalAction modelElement = (BroadcastSignalAction)view.getElement();
+		BroadcastSignalAction modelElement = (BroadcastSignalAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7203,7 +7245,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3103IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7218,7 +7260,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3179IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7233,7 +7275,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3180IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7248,7 +7290,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCentralBufferNode_3104IncomingLinks(View view) {
-		CentralBufferNode modelElement = (CentralBufferNode)view.getElement();
+		CentralBufferNode modelElement = (CentralBufferNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7263,7 +7305,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConstraint_3112IncomingLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
+		Constraint modelElement = (Constraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement, crossReferencer));
@@ -7277,7 +7319,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getStartObjectBehaviorAction_3113IncomingLinks(View view) {
-		StartObjectBehaviorAction modelElement = (StartObjectBehaviorAction)view.getElement();
+		StartObjectBehaviorAction modelElement = (StartObjectBehaviorAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7291,7 +7333,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3125IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7306,7 +7348,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3132IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7321,7 +7363,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3145IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7336,7 +7378,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3158IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7351,7 +7393,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3133IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7366,7 +7408,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3146IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7381,7 +7423,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3159IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7396,7 +7438,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getTestIdentityAction_3114IncomingLinks(View view) {
-		TestIdentityAction modelElement = (TestIdentityAction)view.getElement();
+		TestIdentityAction modelElement = (TestIdentityAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7410,7 +7452,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3126IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7425,7 +7467,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3134IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7440,7 +7482,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3135IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7455,7 +7497,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3147IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7470,7 +7512,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3148IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7485,7 +7527,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3160IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7500,7 +7542,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3161IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7515,7 +7557,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getClearStructuralFeatureAction_3115IncomingLinks(View view) {
-		ClearStructuralFeatureAction modelElement = (ClearStructuralFeatureAction)view.getElement();
+		ClearStructuralFeatureAction modelElement = (ClearStructuralFeatureAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7529,7 +7571,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3127IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7544,7 +7586,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3136IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7559,7 +7601,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3149IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7574,7 +7616,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3162IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7589,7 +7631,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCreateLinkAction_3117IncomingLinks(View view) {
-		CreateLinkAction modelElement = (CreateLinkAction)view.getElement();
+		CreateLinkAction modelElement = (CreateLinkAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7603,7 +7645,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3137IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7618,7 +7660,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3151IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7633,7 +7675,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3163IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7648,7 +7690,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadLinkAction_3116IncomingLinks(View view) {
-		ReadLinkAction modelElement = (ReadLinkAction)view.getElement();
+		ReadLinkAction modelElement = (ReadLinkAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7662,7 +7704,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3128IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7677,7 +7719,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3138IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7692,7 +7734,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3150IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7707,7 +7749,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3164IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7722,7 +7764,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDestroyLinkAction_3118IncomingLinks(View view) {
-		DestroyLinkAction modelElement = (DestroyLinkAction)view.getElement();
+		DestroyLinkAction modelElement = (DestroyLinkAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7736,7 +7778,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3139IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7751,7 +7793,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3152IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7766,7 +7808,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3165IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7781,7 +7823,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getClearAssociationAction_3119IncomingLinks(View view) {
-		ClearAssociationAction modelElement = (ClearAssociationAction)view.getElement();
+		ClearAssociationAction modelElement = (ClearAssociationAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7795,7 +7837,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3140IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7810,7 +7852,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3153IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7825,7 +7867,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3166IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7840,7 +7882,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadExtentAction_3120IncomingLinks(View view) {
-		ReadExtentAction modelElement = (ReadExtentAction)view.getElement();
+		ReadExtentAction modelElement = (ReadExtentAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7854,7 +7896,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3129IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7869,7 +7911,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReclassifyObjectAction_3121IncomingLinks(View view) {
-		ReclassifyObjectAction modelElement = (ReclassifyObjectAction)view.getElement();
+		ReclassifyObjectAction modelElement = (ReclassifyObjectAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7883,7 +7925,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3141IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7898,7 +7940,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3154IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7913,7 +7955,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3167IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7928,7 +7970,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadIsClassifiedObjectAction_3122IncomingLinks(View view) {
-		ReadIsClassifiedObjectAction modelElement = (ReadIsClassifiedObjectAction)view.getElement();
+		ReadIsClassifiedObjectAction modelElement = (ReadIsClassifiedObjectAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7942,7 +7984,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3130IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7957,7 +7999,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3142IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7972,7 +8014,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3155IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -7987,7 +8029,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3168IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8002,7 +8044,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReduceAction_3123IncomingLinks(View view) {
-		ReduceAction modelElement = (ReduceAction)view.getElement();
+		ReduceAction modelElement = (ReduceAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8016,7 +8058,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3131IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8031,7 +8073,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3143IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8046,7 +8088,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3156IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8061,7 +8103,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3169IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8076,7 +8118,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getStartClassifierBehaviorAction_3124IncomingLinks(View view) {
-		StartClassifierBehaviorAction modelElement = (StartClassifierBehaviorAction)view.getElement();
+		StartClassifierBehaviorAction modelElement = (StartClassifierBehaviorAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8090,7 +8132,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3144IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8105,7 +8147,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3157IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8120,7 +8162,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3170IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8135,7 +8177,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCreateLinkObjectAction_3198IncomingLinks(View view) {
-		CreateLinkObjectAction modelElement = (CreateLinkObjectAction)view.getElement();
+		CreateLinkObjectAction modelElement = (CreateLinkObjectAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8149,7 +8191,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3199IncomingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8164,7 +8206,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3200IncomingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8179,7 +8221,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3201IncomingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8194,7 +8236,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3202IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8209,7 +8251,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValueSpecificationAction_3076IncomingLinks(View view) {
-		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
+		ValueSpecificationAction modelElement = (ValueSpecificationAction) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8223,7 +8265,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3077IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8238,7 +8280,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDataStoreNode_3078IncomingLinks(View view) {
-		DataStoreNode modelElement = (DataStoreNode)view.getElement();
+		DataStoreNode modelElement = (DataStoreNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8253,7 +8295,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConditionalNode_3069IncomingLinks(View view) {
-		ConditionalNode modelElement = (ConditionalNode)view.getElement();
+		ConditionalNode modelElement = (ConditionalNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8267,7 +8309,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getExpansionRegion_3070IncomingLinks(View view) {
-		ExpansionRegion modelElement = (ExpansionRegion)view.getElement();
+		ExpansionRegion modelElement = (ExpansionRegion) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8281,7 +8323,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getExpansionNode_3074IncomingLinks(View view) {
-		ExpansionNode modelElement = (ExpansionNode)view.getElement();
+		ExpansionNode modelElement = (ExpansionNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8296,7 +8338,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getExpansionNode_3075IncomingLinks(View view) {
-		ExpansionNode modelElement = (ExpansionNode)view.getElement();
+		ExpansionNode modelElement = (ExpansionNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8311,7 +8353,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getLoopNode_3071IncomingLinks(View view) {
-		LoopNode modelElement = (LoopNode)view.getElement();
+		LoopNode modelElement = (LoopNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8325,7 +8367,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3109IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8340,7 +8382,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3110IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8355,7 +8397,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3111IncomingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8370,7 +8412,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getSequenceNode_3073IncomingLinks(View view) {
-		SequenceNode modelElement = (SequenceNode)view.getElement();
+		SequenceNode modelElement = (SequenceNode) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferencer));
@@ -8384,7 +8426,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getIntervalConstraint_3032IncomingLinks(View view) {
-		IntervalConstraint modelElement = (IntervalConstraint)view.getElement();
+		IntervalConstraint modelElement = (IntervalConstraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement, crossReferencer));
@@ -8398,7 +8440,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getIntervalConstraint_3033IncomingLinks(View view) {
-		IntervalConstraint modelElement = (IntervalConstraint)view.getElement();
+		IntervalConstraint modelElement = (IntervalConstraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement, crossReferencer));
@@ -8412,7 +8454,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDurationConstraint_3034IncomingLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint)view.getElement();
+		DurationConstraint modelElement = (DurationConstraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement, crossReferencer));
@@ -8426,7 +8468,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDurationConstraint_3035IncomingLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint)view.getElement();
+		DurationConstraint modelElement = (DurationConstraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement, crossReferencer));
@@ -8440,7 +8482,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getTimeConstraint_3036IncomingLinks(View view) {
-		TimeConstraint modelElement = (TimeConstraint)view.getElement();
+		TimeConstraint modelElement = (TimeConstraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement, crossReferencer));
@@ -8454,7 +8496,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getTimeConstraint_3037IncomingLinks(View view) {
-		TimeConstraint modelElement = (TimeConstraint)view.getElement();
+		TimeConstraint modelElement = (TimeConstraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement, crossReferencer));
@@ -8468,7 +8510,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getObjectFlow_4003IncomingLinks(View view) {
-		ObjectFlow modelElement = (ObjectFlow)view.getElement();
+		ObjectFlow modelElement = (ObjectFlow) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferencer));
@@ -8480,7 +8522,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getControlFlow_4004IncomingLinks(View view) {
-		ControlFlow modelElement = (ControlFlow)view.getElement();
+		ControlFlow modelElement = (ControlFlow) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferencer));
@@ -8492,7 +8534,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getExceptionHandler_4005IncomingLinks(View view) {
-		ExceptionHandler modelElement = (ExceptionHandler)view.getElement();
+		ExceptionHandler modelElement = (ExceptionHandler) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferencer));
@@ -8532,7 +8574,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInitialNode_3004OutgoingLinks(View view) {
-		InitialNode modelElement = (InitialNode)view.getElement();
+		InitialNode modelElement = (InitialNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8543,7 +8585,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActivityFinalNode_3005OutgoingLinks(View view) {
-		ActivityFinalNode modelElement = (ActivityFinalNode)view.getElement();
+		ActivityFinalNode modelElement = (ActivityFinalNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8554,7 +8596,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getFlowFinalNode_3006OutgoingLinks(View view) {
-		FlowFinalNode modelElement = (FlowFinalNode)view.getElement();
+		FlowFinalNode modelElement = (FlowFinalNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8565,7 +8607,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOpaqueAction_3007OutgoingLinks(View view) {
-		OpaqueAction modelElement = (OpaqueAction)view.getElement();
+		OpaqueAction modelElement = (OpaqueAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -8579,7 +8621,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3015OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8590,7 +8632,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3016OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8601,7 +8643,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3013OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8612,7 +8654,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3014OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8623,7 +8665,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCallBehaviorAction_3008OutgoingLinks(View view) {
-		CallBehaviorAction modelElement = (CallBehaviorAction)view.getElement();
+		CallBehaviorAction modelElement = (CallBehaviorAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -8637,7 +8679,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3017OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8648,7 +8690,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3018OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8659,7 +8701,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3019OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8670,7 +8712,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3020OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8681,7 +8723,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCallOperationAction_3010OutgoingLinks(View view) {
-		CallOperationAction modelElement = (CallOperationAction)view.getElement();
+		CallOperationAction modelElement = (CallOperationAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -8695,7 +8737,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3021OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8706,7 +8748,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3022OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8717,7 +8759,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3023OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8728,7 +8770,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3024OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8739,7 +8781,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3025OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8750,7 +8792,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3026OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8761,7 +8803,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3027OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8772,7 +8814,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConstraint_3011OutgoingLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
+		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -8782,7 +8824,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConstraint_3012OutgoingLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
+		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -8792,7 +8834,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDecisionNode_3038OutgoingLinks(View view) {
-		DecisionNode modelElement = (DecisionNode)view.getElement();
+		DecisionNode modelElement = (DecisionNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8803,7 +8845,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getMergeNode_3039OutgoingLinks(View view) {
-		MergeNode modelElement = (MergeNode)view.getElement();
+		MergeNode modelElement = (MergeNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8814,7 +8856,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getForkNode_3040OutgoingLinks(View view) {
-		ForkNode modelElement = (ForkNode)view.getElement();
+		ForkNode modelElement = (ForkNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8825,7 +8867,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getJoinNode_3041OutgoingLinks(View view) {
-		JoinNode modelElement = (JoinNode)view.getElement();
+		JoinNode modelElement = (JoinNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8836,7 +8878,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getSendObjectAction_3042OutgoingLinks(View view) {
-		SendObjectAction modelElement = (SendObjectAction)view.getElement();
+		SendObjectAction modelElement = (SendObjectAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -8850,7 +8892,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3046OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8861,7 +8903,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3047OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8872,7 +8914,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3048OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8883,7 +8925,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3049OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8894,7 +8936,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3050OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8905,7 +8947,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3051OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8916,7 +8958,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getSendSignalAction_3052OutgoingLinks(View view) {
-		SendSignalAction modelElement = (SendSignalAction)view.getElement();
+		SendSignalAction modelElement = (SendSignalAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -8930,7 +8972,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3053OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8941,7 +8983,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3054OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8952,7 +8994,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3055OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8963,7 +9005,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3060OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8974,7 +9016,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3061OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8985,7 +9027,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3062OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -8996,7 +9038,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActivityParameterNode_3059OutgoingLinks(View view) {
-		ActivityParameterNode modelElement = (ActivityParameterNode)view.getElement();
+		ActivityParameterNode modelElement = (ActivityParameterNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9007,7 +9049,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getAcceptEventAction_3063OutgoingLinks(View view) {
-		AcceptEventAction modelElement = (AcceptEventAction)view.getElement();
+		AcceptEventAction modelElement = (AcceptEventAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9021,7 +9063,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3064OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9032,7 +9074,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getStructuredActivityNode_3065OutgoingLinks(View view) {
-		StructuredActivityNode modelElement = (StructuredActivityNode)view.getElement();
+		StructuredActivityNode modelElement = (StructuredActivityNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9046,7 +9088,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3188OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9057,7 +9099,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3189OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9068,7 +9110,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3190OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9079,7 +9121,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3191OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9090,7 +9132,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3105OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9101,7 +9143,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3192OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9112,7 +9154,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3193OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9137,7 +9179,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getComment_3080OutgoingLinks(View view) {
-		Comment modelElement = (Comment)view.getElement();
+		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement));
 		return result;
@@ -9147,7 +9189,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadSelfAction_3081OutgoingLinks(View view) {
-		ReadSelfAction modelElement = (ReadSelfAction)view.getElement();
+		ReadSelfAction modelElement = (ReadSelfAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9161,7 +9203,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3084OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9186,7 +9228,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCreateObjectAction_3086OutgoingLinks(View view) {
-		CreateObjectAction modelElement = (CreateObjectAction)view.getElement();
+		CreateObjectAction modelElement = (CreateObjectAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9200,7 +9242,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3087OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9211,7 +9253,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadStructuralFeatureAction_3088OutgoingLinks(View view) {
-		ReadStructuralFeatureAction modelElement = (ReadStructuralFeatureAction)view.getElement();
+		ReadStructuralFeatureAction modelElement = (ReadStructuralFeatureAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9225,7 +9267,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3089OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9236,7 +9278,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3203OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9247,7 +9289,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3204OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9258,7 +9300,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3090OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9269,7 +9311,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getAddStructuralFeatureValueAction_3091OutgoingLinks(View view) {
-		AddStructuralFeatureValueAction modelElement = (AddStructuralFeatureValueAction)view.getElement();
+		AddStructuralFeatureValueAction modelElement = (AddStructuralFeatureValueAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9283,7 +9325,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3092OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9294,7 +9336,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3093OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9305,7 +9347,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3181OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9316,7 +9358,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3182OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9327,7 +9369,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3183OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9338,7 +9380,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3184OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9349,7 +9391,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3185OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9360,7 +9402,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3186OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9371,7 +9413,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3187OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9382,7 +9424,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3094OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9393,7 +9435,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDestroyObjectAction_3095OutgoingLinks(View view) {
-		DestroyObjectAction modelElement = (DestroyObjectAction)view.getElement();
+		DestroyObjectAction modelElement = (DestroyObjectAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9407,7 +9449,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3096OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9418,7 +9460,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3173OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9429,7 +9471,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3174OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9440,7 +9482,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadVariableAction_3097OutgoingLinks(View view) {
-		ReadVariableAction modelElement = (ReadVariableAction)view.getElement();
+		ReadVariableAction modelElement = (ReadVariableAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9454,7 +9496,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3098OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9465,7 +9507,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getAddVariableValueAction_3099OutgoingLinks(View view) {
-		AddVariableValueAction modelElement = (AddVariableValueAction)view.getElement();
+		AddVariableValueAction modelElement = (AddVariableValueAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9479,7 +9521,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3100OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9490,7 +9532,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3101OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9501,7 +9543,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3175OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9512,7 +9554,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3176OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9523,7 +9565,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3177OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9534,7 +9576,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3178OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9545,7 +9587,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getBroadcastSignalAction_3102OutgoingLinks(View view) {
-		BroadcastSignalAction modelElement = (BroadcastSignalAction)view.getElement();
+		BroadcastSignalAction modelElement = (BroadcastSignalAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9559,7 +9601,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3103OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9570,7 +9612,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3179OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9581,7 +9623,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3180OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9592,7 +9634,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCentralBufferNode_3104OutgoingLinks(View view) {
-		CentralBufferNode modelElement = (CentralBufferNode)view.getElement();
+		CentralBufferNode modelElement = (CentralBufferNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9603,7 +9645,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConstraint_3112OutgoingLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
+		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -9613,7 +9655,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getStartObjectBehaviorAction_3113OutgoingLinks(View view) {
-		StartObjectBehaviorAction modelElement = (StartObjectBehaviorAction)view.getElement();
+		StartObjectBehaviorAction modelElement = (StartObjectBehaviorAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9627,7 +9669,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3125OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9638,7 +9680,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3132OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9649,7 +9691,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3145OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9660,7 +9702,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3158OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9671,7 +9713,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3133OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9682,7 +9724,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3146OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9693,7 +9735,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3159OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9704,7 +9746,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getTestIdentityAction_3114OutgoingLinks(View view) {
-		TestIdentityAction modelElement = (TestIdentityAction)view.getElement();
+		TestIdentityAction modelElement = (TestIdentityAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9718,7 +9760,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3126OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9729,7 +9771,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3134OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9740,7 +9782,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3135OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9751,7 +9793,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3147OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9762,7 +9804,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3148OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9773,7 +9815,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3160OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9784,7 +9826,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3161OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9795,7 +9837,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getClearStructuralFeatureAction_3115OutgoingLinks(View view) {
-		ClearStructuralFeatureAction modelElement = (ClearStructuralFeatureAction)view.getElement();
+		ClearStructuralFeatureAction modelElement = (ClearStructuralFeatureAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9809,7 +9851,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3127OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9820,7 +9862,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3136OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9831,7 +9873,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3149OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9842,7 +9884,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3162OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9853,7 +9895,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCreateLinkAction_3117OutgoingLinks(View view) {
-		CreateLinkAction modelElement = (CreateLinkAction)view.getElement();
+		CreateLinkAction modelElement = (CreateLinkAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9867,7 +9909,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3137OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9878,7 +9920,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3151OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9889,7 +9931,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3163OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9900,7 +9942,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadLinkAction_3116OutgoingLinks(View view) {
-		ReadLinkAction modelElement = (ReadLinkAction)view.getElement();
+		ReadLinkAction modelElement = (ReadLinkAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9914,7 +9956,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3128OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9925,7 +9967,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3138OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9936,7 +9978,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3150OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9947,7 +9989,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3164OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9958,7 +10000,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDestroyLinkAction_3118OutgoingLinks(View view) {
-		DestroyLinkAction modelElement = (DestroyLinkAction)view.getElement();
+		DestroyLinkAction modelElement = (DestroyLinkAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -9972,7 +10014,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3139OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9983,7 +10025,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3152OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -9994,7 +10036,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3165OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10005,7 +10047,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getClearAssociationAction_3119OutgoingLinks(View view) {
-		ClearAssociationAction modelElement = (ClearAssociationAction)view.getElement();
+		ClearAssociationAction modelElement = (ClearAssociationAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -10019,7 +10061,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3140OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10030,7 +10072,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3153OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10041,7 +10083,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3166OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10052,7 +10094,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadExtentAction_3120OutgoingLinks(View view) {
-		ReadExtentAction modelElement = (ReadExtentAction)view.getElement();
+		ReadExtentAction modelElement = (ReadExtentAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -10066,7 +10108,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3129OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10077,7 +10119,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReclassifyObjectAction_3121OutgoingLinks(View view) {
-		ReclassifyObjectAction modelElement = (ReclassifyObjectAction)view.getElement();
+		ReclassifyObjectAction modelElement = (ReclassifyObjectAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -10091,7 +10133,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3141OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10102,7 +10144,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3154OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10113,7 +10155,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3167OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10124,7 +10166,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReadIsClassifiedObjectAction_3122OutgoingLinks(View view) {
-		ReadIsClassifiedObjectAction modelElement = (ReadIsClassifiedObjectAction)view.getElement();
+		ReadIsClassifiedObjectAction modelElement = (ReadIsClassifiedObjectAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -10138,7 +10180,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3130OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10149,7 +10191,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3142OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10160,7 +10202,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3155OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10171,7 +10213,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3168OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10182,7 +10224,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getReduceAction_3123OutgoingLinks(View view) {
-		ReduceAction modelElement = (ReduceAction)view.getElement();
+		ReduceAction modelElement = (ReduceAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -10196,7 +10238,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3131OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10207,7 +10249,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3143OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10218,7 +10260,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3156OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10229,7 +10271,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3169OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10240,7 +10282,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getStartClassifierBehaviorAction_3124OutgoingLinks(View view) {
-		StartClassifierBehaviorAction modelElement = (StartClassifierBehaviorAction)view.getElement();
+		StartClassifierBehaviorAction modelElement = (StartClassifierBehaviorAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -10254,7 +10296,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3144OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10265,7 +10307,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3157OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10276,7 +10318,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3170OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10287,7 +10329,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getCreateLinkObjectAction_3198OutgoingLinks(View view) {
-		CreateLinkObjectAction modelElement = (CreateLinkObjectAction)view.getElement();
+		CreateLinkObjectAction modelElement = (CreateLinkObjectAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -10301,7 +10343,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getInputPin_3199OutgoingLinks(View view) {
-		InputPin modelElement = (InputPin)view.getElement();
+		InputPin modelElement = (InputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10312,7 +10354,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValuePin_3200OutgoingLinks(View view) {
-		ValuePin modelElement = (ValuePin)view.getElement();
+		ValuePin modelElement = (ValuePin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10323,7 +10365,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getActionInputPin_3201OutgoingLinks(View view) {
-		ActionInputPin modelElement = (ActionInputPin)view.getElement();
+		ActionInputPin modelElement = (ActionInputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10334,7 +10376,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3202OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10345,7 +10387,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getValueSpecificationAction_3076OutgoingLinks(View view) {
-		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
+		ValueSpecificationAction modelElement = (ValueSpecificationAction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -10359,7 +10401,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3077OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10370,7 +10412,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDataStoreNode_3078OutgoingLinks(View view) {
-		DataStoreNode modelElement = (DataStoreNode)view.getElement();
+		DataStoreNode modelElement = (DataStoreNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10381,7 +10423,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getConditionalNode_3069OutgoingLinks(View view) {
-		ConditionalNode modelElement = (ConditionalNode)view.getElement();
+		ConditionalNode modelElement = (ConditionalNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -10395,7 +10437,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getExpansionRegion_3070OutgoingLinks(View view) {
-		ExpansionRegion modelElement = (ExpansionRegion)view.getElement();
+		ExpansionRegion modelElement = (ExpansionRegion) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -10409,7 +10451,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getExpansionNode_3074OutgoingLinks(View view) {
-		ExpansionNode modelElement = (ExpansionNode)view.getElement();
+		ExpansionNode modelElement = (ExpansionNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10420,7 +10462,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getExpansionNode_3075OutgoingLinks(View view) {
-		ExpansionNode modelElement = (ExpansionNode)view.getElement();
+		ExpansionNode modelElement = (ExpansionNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10431,7 +10473,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getLoopNode_3071OutgoingLinks(View view) {
-		LoopNode modelElement = (LoopNode)view.getElement();
+		LoopNode modelElement = (LoopNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -10445,7 +10487,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3109OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10456,7 +10498,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3110OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10467,7 +10509,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getOutputPin_3111OutgoingLinks(View view) {
-		OutputPin modelElement = (OutputPin)view.getElement();
+		OutputPin modelElement = (OutputPin) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
@@ -10478,7 +10520,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getSequenceNode_3073OutgoingLinks(View view) {
-		SequenceNode modelElement = (SequenceNode)view.getElement();
+		SequenceNode modelElement = (SequenceNode) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
@@ -10492,7 +10534,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getIntervalConstraint_3032OutgoingLinks(View view) {
-		IntervalConstraint modelElement = (IntervalConstraint)view.getElement();
+		IntervalConstraint modelElement = (IntervalConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -10502,7 +10544,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getIntervalConstraint_3033OutgoingLinks(View view) {
-		IntervalConstraint modelElement = (IntervalConstraint)view.getElement();
+		IntervalConstraint modelElement = (IntervalConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -10512,7 +10554,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDurationConstraint_3034OutgoingLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint)view.getElement();
+		DurationConstraint modelElement = (DurationConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -10522,7 +10564,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getDurationConstraint_3035OutgoingLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint)view.getElement();
+		DurationConstraint modelElement = (DurationConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -10532,7 +10574,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getTimeConstraint_3036OutgoingLinks(View view) {
-		TimeConstraint modelElement = (TimeConstraint)view.getElement();
+		TimeConstraint modelElement = (TimeConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -10542,7 +10584,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLLinkDescriptor> getTimeConstraint_3037OutgoingLinks(View view) {
-		TimeConstraint modelElement = (TimeConstraint)view.getElement();
+		TimeConstraint modelElement = (TimeConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(modelElement));
 		return result;
@@ -10574,13 +10616,14 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_ObjectFlow_4003(Activity container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getEdges().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof ObjectFlow) {
+		for (Iterator<?> links = container.getEdges()
+				.iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof ObjectFlow) {
 				continue;
 			}
-			ObjectFlow link = (ObjectFlow)linkObject;
-			if(!ObjectFlowEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			ObjectFlow link = (ObjectFlow) linkObject;
+			if (!ObjectFlowEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			ActivityNode dst = link.getTarget();
@@ -10595,13 +10638,14 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_ControlFlow_4004(Activity container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getEdges().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof ControlFlow) {
+		for (Iterator<?> links = container.getEdges()
+				.iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof ControlFlow) {
 				continue;
 			}
-			ControlFlow link = (ControlFlow)linkObject;
-			if(!ControlFlowEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			ControlFlow link = (ControlFlow) linkObject;
+			if (!ControlFlowEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			ActivityNode dst = link.getTarget();
@@ -10616,13 +10660,14 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_ExceptionHandler_4005(ExecutableNode container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getHandlers().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof ExceptionHandler) {
+		for (Iterator<?> links = container.getHandlers()
+				.iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof ExceptionHandler) {
 				continue;
 			}
-			ExceptionHandler link = (ExceptionHandler)linkObject;
-			if(!ExceptionHandlerEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			ExceptionHandler link = (ExceptionHandler) linkObject;
+			if (!ExceptionHandlerEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			ObjectNode dst = link.getExceptionInput();
@@ -10638,8 +10683,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Action_LocalPrecondition_4001(Constraint target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getAction_LocalPrecondition()) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getAction_LocalPrecondition()) {
 				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ActionLocalPrecondition_4001, ActionLocalPreconditionEditPart.VISUAL_ID));
 			}
 		}
@@ -10652,8 +10697,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Action_LocalPostcondition_4002(Constraint target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getAction_LocalPostcondition()) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getAction_LocalPostcondition()) {
 				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ActionLocalPostcondition_4002, ActionLocalPostconditionEditPart.VISUAL_ID));
 			}
 		}
@@ -10666,12 +10711,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_ObjectFlow_4003(ActivityNode target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getActivityEdge_Target() || false == setting.getEObject() instanceof ObjectFlow) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getActivityEdge_Target() || false == setting.getEObject() instanceof ObjectFlow) {
 				continue;
 			}
-			ObjectFlow link = (ObjectFlow)setting.getEObject();
-			if(!ObjectFlowEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			ObjectFlow link = (ObjectFlow) setting.getEObject();
+			if (!ObjectFlowEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			ActivityNode src = link.getSource();
@@ -10686,12 +10731,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_ControlFlow_4004(ActivityNode target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getActivityEdge_Target() || false == setting.getEObject() instanceof ControlFlow) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getActivityEdge_Target() || false == setting.getEObject() instanceof ControlFlow) {
 				continue;
 			}
-			ControlFlow link = (ControlFlow)setting.getEObject();
-			if(!ControlFlowEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			ControlFlow link = (ControlFlow) setting.getEObject();
+			if (!ControlFlowEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			ActivityNode src = link.getSource();
@@ -10706,12 +10751,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_ExceptionHandler_4005(ObjectNode target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getExceptionHandler_ExceptionInput() || false == setting.getEObject() instanceof ExceptionHandler) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getExceptionHandler_ExceptionInput() || false == setting.getEObject() instanceof ExceptionHandler) {
 				continue;
 			}
-			ExceptionHandler link = (ExceptionHandler)setting.getEObject();
-			if(!ExceptionHandlerEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			ExceptionHandler link = (ExceptionHandler) setting.getEObject();
+			if (!ExceptionHandlerEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			ExecutableNode src = link.getProtectedNode();
@@ -10726,8 +10771,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(Element target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
 				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.CommentAnnotatedElement_4006, CommentLinkEditPart.VISUAL_ID));
 			}
 		}
@@ -10740,8 +10785,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(Element target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
 				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ConstraintConstrainedElement_4007, ConstraintConstrainedElementEditPart.VISUAL_ID));
 			}
 		}
@@ -10753,8 +10798,9 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(Action source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> destinations = source.getLocalPreconditions().iterator(); destinations.hasNext();) {
-			Constraint destination = (Constraint)destinations.next();
+		for (Iterator<?> destinations = source.getLocalPreconditions()
+				.iterator(); destinations.hasNext();) {
+			Constraint destination = (Constraint) destinations.next();
 			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ActionLocalPrecondition_4001, ActionLocalPreconditionEditPart.VISUAL_ID));
 		}
 		return result;
@@ -10765,8 +10811,9 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(Action source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> destinations = source.getLocalPostconditions().iterator(); destinations.hasNext();) {
-			Constraint destination = (Constraint)destinations.next();
+		for (Iterator<?> destinations = source.getLocalPostconditions()
+				.iterator(); destinations.hasNext();) {
+			Constraint destination = (Constraint) destinations.next();
 			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ActionLocalPostcondition_4002, ActionLocalPostconditionEditPart.VISUAL_ID));
 		}
 		return result;
@@ -10780,27 +10827,28 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
-			if(element instanceof Activity) {
-				container = (Activity)element;
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if (element instanceof Activity) {
+				container = (Activity) element;
 			}
 		}
-		if(container == null) {
+		if (container == null) {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getEdges().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof ObjectFlow) {
+		for (Iterator<?> links = container.getEdges()
+				.iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof ObjectFlow) {
 				continue;
 			}
-			ObjectFlow link = (ObjectFlow)linkObject;
-			if(!ObjectFlowEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			ObjectFlow link = (ObjectFlow) linkObject;
+			if (!ObjectFlowEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			ActivityNode dst = link.getTarget();
 			ActivityNode src = link.getSource();
-			if(src != source) {
+			if (src != source) {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ObjectFlow_4003, ObjectFlowEditPart.VISUAL_ID));
@@ -10816,27 +10864,28 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
-			if(element instanceof Activity) {
-				container = (Activity)element;
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if (element instanceof Activity) {
+				container = (Activity) element;
 			}
 		}
-		if(container == null) {
+		if (container == null) {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getEdges().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof ControlFlow) {
+		for (Iterator<?> links = container.getEdges()
+				.iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof ControlFlow) {
 				continue;
 			}
-			ControlFlow link = (ControlFlow)linkObject;
-			if(!ControlFlowEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			ControlFlow link = (ControlFlow) linkObject;
+			if (!ControlFlowEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			ActivityNode dst = link.getTarget();
 			ActivityNode src = link.getSource();
-			if(src != source) {
+			if (src != source) {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ControlFlow_4004, ControlFlowEditPart.VISUAL_ID));
@@ -10852,27 +10901,28 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
-			if(element instanceof ExecutableNode) {
-				container = (ExecutableNode)element;
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if (element instanceof ExecutableNode) {
+				container = (ExecutableNode) element;
 			}
 		}
-		if(container == null) {
+		if (container == null) {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getHandlers().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof ExceptionHandler) {
+		for (Iterator<?> links = container.getHandlers()
+				.iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof ExceptionHandler) {
 				continue;
 			}
-			ExceptionHandler link = (ExceptionHandler)linkObject;
-			if(!ExceptionHandlerEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			ExceptionHandler link = (ExceptionHandler) linkObject;
+			if (!ExceptionHandlerEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			ObjectNode dst = link.getExceptionInput();
 			ExecutableNode src = link.getProtectedNode();
-			if(src != source) {
+			if (src != source) {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ExceptionHandler_4005, ExceptionHandlerEditPart.VISUAL_ID));
@@ -10885,8 +10935,9 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(Comment source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
-			Element destination = (Element)destinations.next();
+		for (Iterator<?> destinations = source.getAnnotatedElements()
+				.iterator(); destinations.hasNext();) {
+			Element destination = (Element) destinations.next();
 			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.CommentAnnotatedElement_4006, CommentLinkEditPart.VISUAL_ID));
 		}
 		return result;
@@ -10897,8 +10948,9 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4007(Constraint source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> destinations = source.getConstrainedElements().iterator(); destinations.hasNext();) {
-			Element destination = (Element)destinations.next();
+		for (Iterator<?> destinations = source.getConstrainedElements()
+				.iterator(); destinations.hasNext();) {
+			Element destination = (Element) destinations.next();
 			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ConstraintConstrainedElement_4007, ConstraintConstrainedElementEditPart.VISUAL_ID));
 		}
 		return result;

@@ -34,6 +34,7 @@ public class ModelElementSelectionPage extends DefaultModelElementSelectionPage 
 	 *
 	 * @generated
 	 */
+	@Override
 	protected String getSelectionTitle() {
 		return Messages.ModelElementSelectionPageMessage;
 	}

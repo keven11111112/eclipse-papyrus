@@ -62,7 +62,9 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
@@ -78,6 +80,7 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -89,7 +92,7 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -121,21 +124,23 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	 */
 	@Override
 	public ConstraintFigure getPrimaryShape() {
-		return (ConstraintFigure)primaryShape;
+		return (ConstraintFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ConstraintNameEditPartCN) {
-			((ConstraintNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof ConstraintNameEditPartCN) {
+			((ConstraintNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof ConstraintBodyEditPartCN) {
-			((ConstraintBodyEditPartCN)childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
+		if (childEditPart instanceof ConstraintBodyEditPartCN) {
+			((ConstraintBodyEditPartCN) childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
+
+
 		return false;
 	}
 
@@ -143,10 +148,10 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ConstraintNameEditPartCN) {
+		if (childEditPart instanceof ConstraintNameEditPartCN) {
 			return true;
 		}
-		if(childEditPart instanceof ConstraintBodyEditPartCN) {
+		if (childEditPart instanceof ConstraintBodyEditPartCN) {
 			return true;
 		}
 		return false;
@@ -157,7 +162,7 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -168,7 +173,7 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -202,6 +207,7 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -214,7 +220,7 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -227,7 +233,7 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -238,7 +244,7 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -256,8 +262,8 @@ public class ConstraintEditPartCN extends AbstractConstraintEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

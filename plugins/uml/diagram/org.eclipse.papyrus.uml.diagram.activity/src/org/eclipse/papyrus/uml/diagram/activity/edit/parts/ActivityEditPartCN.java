@@ -78,10 +78,13 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCanonicalEditPolicyCN());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCanonicalEditPolicyCN());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
@@ -100,6 +103,7 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -110,16 +114,16 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
+				View childView = (View) child.getModel();
 				String vid = UMLVisualIDRegistry.getVisualID(childView);
-				if(vid != null) {
-					switch(vid) {
+				if (vid != null) {
+					switch (vid) {
 					case ActivityParameterNodeEditPart.VISUAL_ID:
 						return new BorderItemResizableEditPolicy();
 					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -151,51 +155,61 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	public ActivityFigureCN getPrimaryShape() {
-		return (ActivityFigureCN)primaryShape;
+		return (ActivityFigureCN) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ActivityNameEditPartCN) {
-			((ActivityNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof ActivityNameEditPartCN) {
+			((ActivityNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof ActivityIsSingleExecutionCNEditPart) {
-			((ActivityIsSingleExecutionCNEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderSingleExecution());
+		if (childEditPart instanceof ActivityIsSingleExecutionCNEditPart) {
+			((ActivityIsSingleExecutionCNEditPart) childEditPart).setLabel(getPrimaryShape().getHeaderSingleExecution());
 			return true;
 		}
-		if(childEditPart instanceof ActivityCNParametersCompartmentEditPart) {
+
+
+		if (childEditPart instanceof ActivityCNParametersCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getParameterFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ActivityCNParametersCompartmentEditPart)childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			pane.add(((ActivityCNParametersCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ActivityCNPreConditionsCompartmentEditPart) {
+
+		if (childEditPart instanceof ActivityCNPreConditionsCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPreconditionFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ActivityCNPreConditionsCompartmentEditPart)childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			pane.add(((ActivityCNPreConditionsCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ActivityCNPostConditionsCompartmentEditPart) {
+
+		if (childEditPart instanceof ActivityCNPostConditionsCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPostconditionFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ActivityCNPostConditionsCompartmentEditPart)childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			pane.add(((ActivityCNPostConditionsCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ActivityCNContentCompartmentEditPart) {
+
+		if (childEditPart instanceof ActivityCNContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getContentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ActivityCNContentCompartmentEditPart)childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			pane.add(((ActivityCNContentCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		//Papyrus Gencode :Affixed Activity Parameter Node locator for Activity
-		if(childEditPart instanceof ActivityParameterNodeEditPart) {
+
+
+
+		// Papyrus Gencode :Affixed Activity Parameter Node locator for Activity
+		if (childEditPart instanceof ActivityParameterNodeEditPart) {
 			IBorderItemLocator locator = new ParameterNodeLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((ActivityParameterNodeEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ActivityParameterNodeEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
 		return false;
 	}
 
@@ -203,34 +217,34 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ActivityNameEditPartCN) {
+		if (childEditPart instanceof ActivityNameEditPartCN) {
 			return true;
 		}
-		if(childEditPart instanceof ActivityIsSingleExecutionCNEditPart) {
+		if (childEditPart instanceof ActivityIsSingleExecutionCNEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof ActivityCNParametersCompartmentEditPart) {
+		if (childEditPart instanceof ActivityCNParametersCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getParameterFigure();
-			pane.remove(((ActivityCNParametersCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((ActivityCNParametersCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ActivityCNPreConditionsCompartmentEditPart) {
+		if (childEditPart instanceof ActivityCNPreConditionsCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPreconditionFigure();
-			pane.remove(((ActivityCNPreConditionsCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((ActivityCNPreConditionsCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ActivityCNPostConditionsCompartmentEditPart) {
+		if (childEditPart instanceof ActivityCNPostConditionsCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPostconditionFigure();
-			pane.remove(((ActivityCNPostConditionsCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((ActivityCNPostConditionsCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ActivityCNContentCompartmentEditPart) {
+		if (childEditPart instanceof ActivityCNContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getContentFigure();
-			pane.remove(((ActivityCNContentCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((ActivityCNContentCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ActivityParameterNodeEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ActivityParameterNodeEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof ActivityParameterNodeEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ActivityParameterNodeEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -241,7 +255,7 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -252,7 +266,7 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -263,19 +277,19 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof ActivityCNParametersCompartmentEditPart) {
+		if (editPart instanceof ActivityCNParametersCompartmentEditPart) {
 			return getPrimaryShape().getParameterFigure();
 		}
-		if(editPart instanceof ActivityCNPreConditionsCompartmentEditPart) {
+		if (editPart instanceof ActivityCNPreConditionsCompartmentEditPart) {
 			return getPrimaryShape().getPreconditionFigure();
 		}
-		if(editPart instanceof ActivityCNPostConditionsCompartmentEditPart) {
+		if (editPart instanceof ActivityCNPostConditionsCompartmentEditPart) {
 			return getPrimaryShape().getPostconditionFigure();
 		}
-		if(editPart instanceof ActivityCNContentCompartmentEditPart) {
+		if (editPart instanceof ActivityCNContentCompartmentEditPart) {
 			return getPrimaryShape().getContentFigure();
 		}
-		if(editPart instanceof IBorderItemEditPart) {
+		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -301,6 +315,7 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -313,7 +328,7 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -326,7 +341,7 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -337,7 +352,7 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -355,8 +370,8 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -373,16 +388,16 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-		if(request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Parameter_3001)) {
+		if (request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Parameter_3001)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ActivityCNParametersCompartmentEditPart.VISUAL_ID));
 			}
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Constraint_3002)) {
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Constraint_3002)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID));
 			}
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Constraint_3003)) {
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Constraint_3003)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID));
 			}
 		}

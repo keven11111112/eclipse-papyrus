@@ -66,13 +66,17 @@ public class ValuePinInTestIdentityActionAsSecondEditPart extends AbstractPinEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -86,10 +90,10 @@ public class ValuePinInTestIdentityActionAsSecondEditPart extends AbstractPinEdi
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
+				View childView = (View) child.getModel();
 				String vid = UMLVisualIDRegistry.getVisualID(childView);
-				if(vid != null) {
-					switch(vid) {
+				if (vid != null) {
+					switch (vid) {
 					case ValuePinInTestIdentityActionAsSecondLabelEditPart.VISUAL_ID:
 					case ValuePinInTestIdentityActionAsSecondValueEditPart.VISUAL_ID:
 					case ValuePinInTestIdentityActionAsSecondAppliedStereotypeLabelEditPart.VISUAL_ID:
@@ -97,7 +101,7 @@ public class ValuePinInTestIdentityActionAsSecondEditPart extends AbstractPinEdi
 
 							@Override
 							protected List<?> createSelectionHandles() {
-								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 								mh.setBorder(null);
 								return Collections.singletonList(mh);
 							}
@@ -105,7 +109,7 @@ public class ValuePinInTestIdentityActionAsSecondEditPart extends AbstractPinEdi
 					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -129,21 +133,24 @@ public class ValuePinInTestIdentityActionAsSecondEditPart extends AbstractPinEdi
 	 *
 	 * @generated
 	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View)getModel()).getChildren();
-			if(false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
-				if(modelChildren.contains(event.getNotifier())) {
+			List<?> modelChildren = ((View) getModel()).getChildren();
+			if (false == notifier instanceof Edge
+					&& false == notifier instanceof BasicCompartment) {
+				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -155,24 +162,26 @@ public class ValuePinInTestIdentityActionAsSecondEditPart extends AbstractPinEdi
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	public PinFigure getPrimaryShape() {
-		return (PinFigure)primaryShape;
+		return (PinFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof ValuePinInTestIdentityActionAsSecondLabelEditPart) {
+		if (borderItemEditPart instanceof ValuePinInTestIdentityActionAsSecondLabelEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if(borderItemEditPart instanceof ValuePinInTestIdentityActionAsSecondValueEditPart) {
+		} else if (borderItemEditPart instanceof ValuePinInTestIdentityActionAsSecondValueEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if(borderItemEditPart instanceof ValuePinInTestIdentityActionAsSecondAppliedStereotypeLabelEditPart) {
+		} else if (borderItemEditPart instanceof ValuePinInTestIdentityActionAsSecondAppliedStereotypeLabelEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -190,12 +199,13 @@ public class ValuePinInTestIdentityActionAsSecondEditPart extends AbstractPinEdi
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -203,12 +213,13 @@ public class ValuePinInTestIdentityActionAsSecondEditPart extends AbstractPinEdi
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
+	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
 	 * @generated
@@ -220,8 +231,9 @@ public class ValuePinInTestIdentityActionAsSecondEditPart extends AbstractPinEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -230,8 +242,9 @@ public class ValuePinInTestIdentityActionAsSecondEditPart extends AbstractPinEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -239,6 +252,7 @@ public class ValuePinInTestIdentityActionAsSecondEditPart extends AbstractPinEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -246,15 +260,17 @@ public class ValuePinInTestIdentityActionAsSecondEditPart extends AbstractPinEdi
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ValuePinInTestIdentityActionAsSecondLabelEditPart.VISUAL_ID));
 	}

@@ -66,7 +66,7 @@ public class ActionLocalPreconditionEditPart extends ConnectionEditPart implemen
 	 */
 	@Override
 	public DashedLinkDescriptor getPrimaryShape() {
-		return (DashedLinkDescriptor)getFigure();
+		return (DashedLinkDescriptor) getFigure();
 	}
 
 	/**
@@ -79,6 +79,7 @@ public class ActionLocalPreconditionEditPart extends ConnectionEditPart implemen
 		 */
 		public DashedLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
+
 		}
 	}
 }

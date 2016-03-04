@@ -76,9 +76,12 @@ public class TimeConstraintAsLocalPrecondEditPart extends AbstractConstraintEdit
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+				new OpenDiagramEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -93,6 +96,7 @@ public class TimeConstraintAsLocalPrecondEditPart extends AbstractConstraintEdit
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -104,7 +108,7 @@ public class TimeConstraintAsLocalPrecondEditPart extends AbstractConstraintEdit
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -136,21 +140,23 @@ public class TimeConstraintAsLocalPrecondEditPart extends AbstractConstraintEdit
 	 */
 	@Override
 	public LocalPreconditionConstraintFigure getPrimaryShape() {
-		return (LocalPreconditionConstraintFigure)primaryShape;
+		return (LocalPreconditionConstraintFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof TimeConstraintAsLocalPrecondNameEditPart) {
-			((TimeConstraintAsLocalPrecondNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof TimeConstraintAsLocalPrecondNameEditPart) {
+			((TimeConstraintAsLocalPrecondNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof TimeConstraintAsLocalPrecondBodyEditPart) {
-			((TimeConstraintAsLocalPrecondBodyEditPart)childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
+		if (childEditPart instanceof TimeConstraintAsLocalPrecondBodyEditPart) {
+			((TimeConstraintAsLocalPrecondBodyEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
+
+
 		return false;
 	}
 
@@ -158,10 +164,10 @@ public class TimeConstraintAsLocalPrecondEditPart extends AbstractConstraintEdit
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof TimeConstraintAsLocalPrecondNameEditPart) {
+		if (childEditPart instanceof TimeConstraintAsLocalPrecondNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof TimeConstraintAsLocalPrecondBodyEditPart) {
+		if (childEditPart instanceof TimeConstraintAsLocalPrecondBodyEditPart) {
 			return true;
 		}
 		return false;
@@ -172,7 +178,7 @@ public class TimeConstraintAsLocalPrecondEditPart extends AbstractConstraintEdit
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -183,7 +189,7 @@ public class TimeConstraintAsLocalPrecondEditPart extends AbstractConstraintEdit
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -217,6 +223,7 @@ public class TimeConstraintAsLocalPrecondEditPart extends AbstractConstraintEdit
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -229,7 +236,7 @@ public class TimeConstraintAsLocalPrecondEditPart extends AbstractConstraintEdit
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -242,7 +249,7 @@ public class TimeConstraintAsLocalPrecondEditPart extends AbstractConstraintEdit
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -253,7 +260,7 @@ public class TimeConstraintAsLocalPrecondEditPart extends AbstractConstraintEdit
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -271,8 +278,8 @@ public class TimeConstraintAsLocalPrecondEditPart extends AbstractConstraintEdit
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

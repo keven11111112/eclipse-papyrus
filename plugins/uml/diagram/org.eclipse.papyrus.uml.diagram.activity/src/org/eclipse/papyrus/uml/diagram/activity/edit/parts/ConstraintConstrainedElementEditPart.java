@@ -52,6 +52,6 @@ public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditP
 	 */
 	@Override
 	public LinkFigure getPrimaryShape() {
-		return (LinkFigure)getFigure();
+		return (LinkFigure) getFigure();
 	}
 }

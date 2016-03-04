@@ -28,9 +28,8 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 	 */
 	static {
 		@SuppressWarnings("rawtypes")
-		final Class[] supportedTypes = new Class[]{ ITabbedPropertySheetPageContributor.class };
+		final Class[] supportedTypes = new Class[] { ITabbedPropertySheetPageContributor.class };
 		final ITabbedPropertySheetPageContributor propertySheetPageContributor = new ITabbedPropertySheetPageContributor() {
-
 			@Override
 			public String getContributorId() {
 				return "org.eclipse.papyrus.uml.diagram.activity"; //$NON-NLS-1$
@@ -41,7 +40,7 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 			@Override
 			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if(adaptableObject instanceof org.eclipse.papyrus.uml.diagram.activity.navigator.UMLAbstractNavigatorItem && adapterType == ITabbedPropertySheetPageContributor.class) {
+				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.activity.navigator.UMLAbstractNavigatorItem && adapterType == ITabbedPropertySheetPageContributor.class) {
 					return propertySheetPageContributor;
 				}
 				return null;
