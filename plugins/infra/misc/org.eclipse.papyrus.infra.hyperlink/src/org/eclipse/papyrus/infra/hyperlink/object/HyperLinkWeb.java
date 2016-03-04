@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.object;
@@ -19,6 +20,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperLinkWebShell;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 
@@ -29,12 +31,10 @@ import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 public class HyperLinkWeb extends HyperLinkObject {
 
 	public String getHyperLinkWeb() {
-		// TODO Auto-generated method stub
 		return (String) super.getObject();
 	}
 
 	public void setHyperLinkWeb(String object) {
-		// TODO Auto-generated method stub
 		super.setObject(object);
 	}
 
@@ -50,14 +50,15 @@ public class HyperLinkWeb extends HyperLinkObject {
 	}
 
 	@Override
-	public void executeEditMousePressed(List<HyperLinkObject> list, EObject amodel) {
-		EditorHyperLinkWebShell editor = new EditorHyperLinkWebShell();
+	public void executeEditMousePressed(Shell parentShell, List<HyperLinkObject> list, EObject amodel) {
+		EditorHyperLinkWebShell editor = new EditorHyperLinkWebShell(parentShell);
 		editor.setHyperLinkWeb(this);
 		editor.open();
-		int index = list.indexOf(this);
-		list.remove(this);
-		list.add(index, editor.getHyperLinkWeb());
-
+		if (editor.getHyperLinkWeb() != null) {
+			int index = list.indexOf(this);
+			list.remove(this);
+			list.add(index, editor.getHyperLinkWeb());
+		}
 	}
 
 	@Override

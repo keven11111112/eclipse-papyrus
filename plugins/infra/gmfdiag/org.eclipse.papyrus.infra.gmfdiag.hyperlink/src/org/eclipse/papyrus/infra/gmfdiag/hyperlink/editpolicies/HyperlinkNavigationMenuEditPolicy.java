@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bugs 451230, 485220
+ *  Christian W. Damus - bugs 451230, 485220, 488965
  *  Shuai Li - Modifications for navigation menu integration
  *
  *****************************************************************************/
@@ -46,12 +46,16 @@ import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.ui.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.infra.ui.util.EditorHelper;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  * The Class HyperlinkNavigationMenuEditPolicy can be applied on edit part to display
  * shortcuts on sub-diagrams or to associate hyper-link of files, in addition to the
  * tools provided by the Navigation menu.
+ * 
+ * @since 2.0
  */
 public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
 
@@ -174,14 +178,18 @@ public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
 	public class AddHyperlinkAction extends AbstractHyperlinkAction {
 		@Override
 		public void run() {
-			hyperLinkManagerShell = new HyperLinkManagerShell(getEditorRegistry(), ((IGraphicalEditPart) getHost()).getEditingDomain(), (EModelElement) ((IGraphicalEditPart) getHost()).getNotationView().getElement(),
+			Shell parentShell = EditorHelper.getActiveShell();
+			hyperLinkManagerShell = new HyperLinkManagerShell(parentShell, getEditorRegistry(), ((IGraphicalEditPart) getHost()).getEditingDomain(), (EModelElement) ((IGraphicalEditPart) getHost()).getNotationView().getElement(),
 					((IGraphicalEditPart) getHost()).getNotationView(), hyperlinkHelperFactory);
 			hyperLinkManagerShell.setInput(hyperLinkObjectList);
 
-			// Hide the navigation menu now because the shell is modal
-			// destroyViewerContext();
+			// Do this asynchronously because the dialog is modal and we need the menu to disappear
+			parentShell.getDisplay().asyncExec(new Runnable() {
 
-			hyperLinkManagerShell.open();
+				public void run() {
+					hyperLinkManagerShell.open();
+				}
+			});
 		}
 	}
 

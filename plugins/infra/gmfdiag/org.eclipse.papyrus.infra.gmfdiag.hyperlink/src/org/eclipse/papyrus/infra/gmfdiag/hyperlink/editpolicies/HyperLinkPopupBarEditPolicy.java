@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bugs 451230, 485220
+ *  Christian W. Damus - bugs 451230, 485220, 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies;
@@ -41,6 +41,8 @@ import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.ui.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.infra.ui.util.EditorHelper;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  * The Class HyperLinkPopupBarEditPolicy can be applied on edit part to display
@@ -125,7 +127,8 @@ public class HyperLinkPopupBarEditPolicy extends PapyrusPopupBarEditPolicy {
 			return new Command("Add Hyperlink") {
 				@Override
 				public void execute() {
-					hyperLinkManagerShell = new HyperLinkManagerShell(getEditorRegistry(), ((IGraphicalEditPart) getHost()).getEditingDomain(), (EModelElement) ((IGraphicalEditPart) getHost()).getNotationView().getElement(),
+					Shell parentShell = EditorHelper.getActiveShell();
+					hyperLinkManagerShell = new HyperLinkManagerShell(parentShell, getEditorRegistry(), ((IGraphicalEditPart) getHost()).getEditingDomain(), (EModelElement) ((IGraphicalEditPart) getHost()).getNotationView().getElement(),
 							((IGraphicalEditPart) getHost()).getNotationView(), hyperlinkHelperFactory);
 					hyperLinkManagerShell.setInput(hyperLinkObjectList);
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.helper;
@@ -28,6 +29,7 @@ import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkWeb;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperLinkWebShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  * this is an helper to manager hyperlink web
@@ -47,8 +49,7 @@ public class WebHyperLinkHelper extends AbstractHyperLinkHelper {
 			if (eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION) != null) {
 				boolean isDefaultNaviagation = Boolean.parseBoolean(eAnnotation.getDetails().get(HyperLinkConstants.HYPERLINK_IS_DEFAULT_NAVIGATION));
 				hyperLinkWeb.setIsDefault(isDefaultNaviagation);
-			}
-			else {
+			} else {
 				hyperLinkWeb.setIsDefault(false);
 			}
 
@@ -63,8 +64,7 @@ public class WebHyperLinkHelper extends AbstractHyperLinkHelper {
 		if (HyperLinkObject instanceof HyperLinkWeb) {
 			HyperLinkWeb hyperLinkWeb = (HyperLinkWeb) HyperLinkObject;
 			return new CreateHyperLinkWebCommand(domain, object, hyperLinkWeb.getTooltipText(), hyperLinkWeb.getHyperLinkWeb(), HyperLinkObject.getIsDefault());
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -75,8 +75,8 @@ public class WebHyperLinkHelper extends AbstractHyperLinkHelper {
 	}
 
 	@Override
-	public void executeNewMousePressed(List<HyperLinkObject> list, EObject aModel) {
-		EditorHyperLinkWebShell editor = new EditorHyperLinkWebShell();
+	public void executeNewMousePressed(Shell parentShell, List<HyperLinkObject> list, EObject aModel) {
+		EditorHyperLinkWebShell editor = new EditorHyperLinkWebShell(parentShell);
 		editor.open();
 		if (editor.getHyperLinkWeb() != null) {
 			list.add(editor.getHyperLinkWeb());

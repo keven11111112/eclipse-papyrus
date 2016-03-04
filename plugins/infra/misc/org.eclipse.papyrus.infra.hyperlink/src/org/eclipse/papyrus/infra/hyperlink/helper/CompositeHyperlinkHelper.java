@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST and others.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 488965
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.helper;
 
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
+import org.eclipse.swt.widgets.Shell;
 
 
 /**
@@ -63,10 +65,10 @@ public class CompositeHyperlinkHelper extends AbstractHyperLinkHelper {
 	}
 
 	@Override
-	public void executeNewMousePressed(List<HyperLinkObject> list, EObject aModel) {
+	public void executeNewMousePressed(Shell parentShell, List<HyperLinkObject> list, EObject aModel) {
 		if (activeHelper != null) {
 			final int originalSize = list.size();
-			activeHelper.executeNewMousePressed(list, aModel);
+			activeHelper.executeNewMousePressed(parentShell, list, aModel);
 
 			// remember the helper that created these hyperlinks; we may need it later
 			for (int i = originalSize; i < list.size(); i++) {

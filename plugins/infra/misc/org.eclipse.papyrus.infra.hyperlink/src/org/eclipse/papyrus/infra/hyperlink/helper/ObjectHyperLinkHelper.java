@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.helper;
@@ -40,7 +41,7 @@ import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.providers.CompositeContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.ICompositeContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  * An Hyperlink Helper for referencing objects (i.e. specific object within an
@@ -57,7 +58,7 @@ public class ObjectHyperLinkHelper extends AbstractHyperLinkHelper {
 	}
 
 	@Override
-	public void executeNewMousePressed(List<HyperLinkObject> list, EObject aModel) {
+	public void executeNewMousePressed(Shell parentShell, List<HyperLinkObject> list, EObject aModel) {
 		ServicesRegistry servicesRegistry;
 		LabelProviderService labelProviderService;
 		ModelSet modelSet;
@@ -75,7 +76,7 @@ public class ObjectHyperLinkHelper extends AbstractHyperLinkHelper {
 		}
 
 		// Create and opens a dialog for page models
-		TreeSelectorDialog selectionDialog = new TreeSelectorDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		TreeSelectorDialog selectionDialog = new TreeSelectorDialog(parentShell);
 		selectionDialog.setBlockOnOpen(true);
 
 		IHierarchicContentProvider semanticProvider = getContentProvider();

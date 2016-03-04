@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.object;
@@ -20,6 +21,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  * References a specific object in a View (Diagram/Table/...)
@@ -40,9 +42,8 @@ public class HyperLinkSpecificObject extends HyperLinkObject {
 	}
 
 	@Override
-	public void executeEditMousePressed(List<HyperLinkObject> list, EObject amodel) {
-		// TODO Auto-generated method stub
-		// Edit the hyperlink
+	public void executeEditMousePressed(Shell parentShell, List<HyperLinkObject> list, EObject amodel) {
+		throw new UnsupportedOperationException("Object links are not editable"); //$NON-NLS-1$
 	}
 
 	public void setTargetElement(EObject targetElement) {

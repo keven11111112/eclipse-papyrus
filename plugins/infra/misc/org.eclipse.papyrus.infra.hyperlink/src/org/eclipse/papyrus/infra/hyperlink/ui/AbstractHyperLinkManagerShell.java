@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,132 +9,121 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
+import org.eclipse.jface.dialogs.TrayDialog;
+import org.eclipse.jface.window.IShellProvider;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.swt.widgets.TabFolder;
 
 /**
- * The Class AbstractHyperLinkManagerShell. This Class has been generated from VisualEditor. Do not
- * modify it manually by adding behavior! you will lose the capacity to open with VE. So this class
- * is abstract and it contains set of getter in order to connect behavior in subclasses
+ * Abstract superclass of the initial dialog shown for managing the hyperlinks attached
+ * to an object.
  */
-public abstract class AbstractHyperLinkManagerShell {
+public abstract class AbstractHyperLinkManagerShell extends TrayDialog {
 
-	/** The hyper link shell. */
-	protected Shell hyperLinkShell = null;
+	private TabFolder tabFolder = null;
 
-
-	public Shell getHyperLinkShell() {
-		return hyperLinkShell;
-	}
-
-	/** The c tab folder. */
-	private CTabFolder cTabFolder = null;
-
-
-	public CTabFolder getcTabFolder() {
-		return cTabFolder;
-	}
-
-
-
-	/** The Ok button. */
-	protected Button OkButton = null;
-
-	/** The cancel button. */
-	protected Button cancelButton = null;
-
-
-
-	protected ArrayList<AbstractHyperLinkTab> tabList = new ArrayList<AbstractHyperLinkTab>();
-
-	/**
-	 * This method initializes cTabFolder.
-	 */
-	private void createCTabFolder() {
-		GridData gridData = new GridData();
-		gridData.horizontalAlignment = GridData.FILL;
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.grabExcessVerticalSpace = true;
-		gridData.horizontalSpan = 14;
-		gridData.verticalAlignment = GridData.FILL;
-		cTabFolder = new CTabFolder(hyperLinkShell, SWT.NONE);
-		cTabFolder.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		cTabFolder.setLayoutData(gridData);
-
-
-	}
-
+	private ArrayList<AbstractHyperLinkTab> tabList = new ArrayList<>();
 
 
 	/**
-	 * This method initializes HyperlinkComposite.
+	 * @since 2.0
 	 */
+	public AbstractHyperLinkManagerShell(Shell parentShell) {
+		super(parentShell);
 
-	/**
-	 * This method initializes hyperLinkShell.
-	 *
-	 * @wbp.parser.entryPoint
-	 */
-	protected void createHyperLinkShell() {
-		GridData gridData9 = new GridData();
-		gridData9.grabExcessHorizontalSpace = true;
-		gridData9.verticalAlignment = GridData.FILL;
-		gridData9.horizontalSpan = 2;
-		gridData9.horizontalAlignment = GridData.FILL;
-		GridData gridData8 = new GridData();
-		gridData8.horizontalAlignment = GridData.FILL;
-		gridData8.grabExcessHorizontalSpace = true;
-		gridData8.horizontalSpan = 2;
-		gridData8.verticalAlignment = GridData.FILL;
-		GridLayout gridLayout2 = new GridLayout();
-		gridLayout2.numColumns = 14;
-		gridLayout2.makeColumnsEqualWidth = true;
-
-		// this line has to be commented in order to open with VISUAL EDITOR
-		hyperLinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.DIALOG_TRIM | SWT.RESIZE | SWT.APPLICATION_MODAL);
-
-		// hyperLinkShell = new Shell();
-		hyperLinkShell.setText(Messages.AbstractHyperLinkManagerShell_HyperLink);
-		hyperLinkShell.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		createCTabFolder();
-		hyperLinkShell.setLayout(gridLayout2);
-		hyperLinkShell.setSize(new Point(687, 308));
-		OkButton = new Button(hyperLinkShell, SWT.NONE);
-		OkButton.setText(Messages.AbstractHyperLinkManagerShell_OK);
-		OkButton.setLayoutData(gridData9);
-		cancelButton = new Button(hyperLinkShell, SWT.NONE);
-		cancelButton.setText(Messages.AbstractHyperLinkManagerShell_Cancel);
-		cancelButton.setLayoutData(gridData8);
-
-		getHyperLinkShell().pack();
+		setShellStyle(getShellStyle() | SWT.RESIZE);
 	}
 
 	/**
-	 * @return the okButton
+	 * @since 2.0
 	 */
-	public Button getOkButton() {
-		return OkButton;
+	public AbstractHyperLinkManagerShell(IShellProvider parentProvider) {
+		super(parentProvider);
+
+		setShellStyle(getShellStyle() | SWT.RESIZE);
 	}
 
 	/**
-	 * @return the cancelButton
+	 * @since 2.0
 	 */
-	public Button getCancelButton() {
-		return cancelButton;
+	protected TabFolder getTabFolder() {
+		return tabFolder;
 	}
 
+	/**
+	 * Obtains an unmodifiable view of the tabs instantiated in the dialog.
+	 * 
+	 * @return an unmodifiable view of my tabs
+	 * 
+	 * @since 2.0
+	 */
+	protected List<AbstractHyperLinkTab> getTabs() {
+		return Collections.unmodifiableList(tabList);
+	}
+
+	/**
+	 * Adds a tab to the dialog.
+	 * 
+	 * @param tab
+	 *            a tab to add
+	 * 
+	 * @since 2.0
+	 */
+	protected void addTab(AbstractHyperLinkTab tab) {
+		tabList.add(tab);
+	}
+
+	@Override
+	protected void configureShell(Shell newShell) {
+		super.configureShell(newShell);
+
+		newShell.setText(Messages.AbstractHyperLinkManagerShell_HyperLink);
+	}
+
+	@Override
+	protected Control createDialogArea(Composite parent) {
+		// Tabs on the top
+		tabFolder = new TabFolder(parent, SWT.TOP);
+		tabFolder.setLayoutData(new GridData(GridData.FILL_BOTH));
+		applyDialogFont(tabFolder);
+		return tabFolder;
+	}
+
+	@Override
+	protected void cancelPressed() {
+		tabList.clear();
+		super.cancelPressed();
+	}
+
+	@Override
+	protected void okPressed() {
+		saveDialogSettings();
+		tabList.clear();
+
+		super.okPressed();
+	}
+
+	/**
+	 * Overridden by subclasses to save dialog-specific settings.
+	 * The default implementation does nothing.
+	 * 
+	 * @since 2.0
+	 */
+	protected void saveDialogSettings() {
+		// Pass
+	}
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 
@@ -29,6 +30,7 @@ import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkDocument;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperlinkDocumentShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
+import org.eclipse.swt.widgets.Shell;
 
 
 
@@ -74,8 +76,8 @@ public class DocumentHyperLinkHelper extends AbstractHyperLinkHelper {
 	}
 
 	@Override
-	public void executeNewMousePressed(List<HyperLinkObject> list, EObject aModel) {
-		EditorHyperlinkDocumentShell editor = new EditorHyperlinkDocumentShell();
+	public void executeNewMousePressed(Shell parentShell, List<HyperLinkObject> list, EObject aModel) {
+		EditorHyperlinkDocumentShell editor = new EditorHyperlinkDocumentShell(parentShell);
 		editor.open();
 		if (editor.getHyperlinkDocument() != null) {
 			list.add(editor.getHyperlinkDocument());

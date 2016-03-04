@@ -9,7 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - implement extension API to support drag-and-drop
- *  Christian W. Damus - bug 485220
+ *  Christian W. Damus - bugs 485220, 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.helper;
@@ -40,10 +40,13 @@ import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  *
  * The helper for editors
+ * 
+ * @since 2.0
  *
  */
 public class EditorHyperLinkHelper extends AbstractHyperLinkHelper implements IHyperlinkHelperExtension {
@@ -62,7 +65,7 @@ public class EditorHyperLinkHelper extends AbstractHyperLinkHelper implements IH
 	 * @param aModel
 	 */
 	@Override
-	public void executeNewMousePressed(final List<HyperLinkObject> list, final EObject aModel) {
+	public void executeNewMousePressed(Shell parentShell, final List<HyperLinkObject> list, final EObject aModel) {
 		IPageIconsRegistry editorRegistry;
 		try {
 			editorRegistry = ServiceUtilsForEObject.getInstance().getService(IPageIconsRegistry.class, aModel);
@@ -70,7 +73,7 @@ public class EditorHyperLinkHelper extends AbstractHyperLinkHelper implements IH
 			Activator.log.error(e);
 			return;
 		}
-		EditorHyperLinkEditorShell editor = new EditorHyperLinkEditorShell(editorRegistry, aModel);
+		EditorHyperLinkEditorShell editor = new EditorHyperLinkEditorShell(parentShell, editorRegistry, aModel);
 		editor.open();
 		if (editor.getHyperLinkEditor() != null) {
 			list.add(editor.getHyperLinkEditor());

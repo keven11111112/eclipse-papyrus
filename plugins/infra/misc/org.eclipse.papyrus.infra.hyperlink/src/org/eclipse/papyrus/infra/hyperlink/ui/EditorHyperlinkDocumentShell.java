@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
@@ -16,21 +17,28 @@ package org.eclipse.papyrus.infra.hyperlink.ui;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkDocument;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  * The Class EditorHyperlinkDocumentShell.
  */
-public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentShell {
+public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkShell {
 
 	/** The usedefault tooltip. */
 	protected boolean usedefaultTooltip = true;
 
 	/** The hyperlink document. */
 	protected HyperLinkDocument hyperlinkDocument;
+
+	/**
+	 * Instantiates a new editor hyperlink document shell.
+	 * 
+	 * @since 2.0
+	 */
+	public EditorHyperlinkDocumentShell(Shell parentShell) {
+		super(parentShell, true);
+	}
 
 	/**
 	 * Gets the hyperlink document.
@@ -49,116 +57,75 @@ public class EditorHyperlinkDocumentShell extends AbstractEditHyperlinkDocumentS
 	 */
 	public void setHyperlinkDocument(HyperLinkDocument hyperlinkDocument) {
 		this.hyperlinkDocument = hyperlinkDocument;
-		getObjectLabeltext().setText(getHyperlinkDocument().getHyperlinkDocument());
-		getTooltipInputText().setText(getHyperlinkDocument().getTooltipText());
+		updateFields();
 	}
 
-	/**
-	 * Open.
-	 */
-	public void open() {
-		Display display = Display.getCurrent();
-
-		// code use to wait for an action from the user
-		// getEditHyperlinkShell().setBounds(500, 500, 600, 120);
-		getEditHyperlinkShell().pack();
-		getEditHyperlinkShell().open();
-		while (!getEditHyperlinkShell().isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-	}
-
-	/**
-	 * Instantiates a new editor hyperlink document shell.
-	 */
-	public EditorHyperlinkDocumentShell() {
-		super();
-		createEditHyperlinkShell();
+	@Override
+	protected void contentsCreated() {
+		getObjectLabel().setText(Messages.AbstractEditHyperlinkDocumentShell_Document);
 
 		// intialize "use default" check box
 		getUseDefaultCheckBox().setSelection(usedefaultTooltip);
-		getObjectLabeltext().setEditable(false);
+		getObjectLabelText().setEditable(false);
 		if (usedefaultTooltip) {
 			getTooltipInputText().setEditable(false);
-			getTooltipInputText().setText(getObjectLabeltext().getText());
+			getTooltipInputText().setText(getObjectLabelText().getText());
 		}
-		// add listener "use default button"
-		getUseDefaultCheckBox().addMouseListener(new MouseListener() {
 
-			public void mouseUp(MouseEvent e) {
-				usedefaultTooltip = getUseDefaultCheckBox().getSelection();
-				if (usedefaultTooltip) {
-					getTooltipInputText().setEditable(false);
-					getTooltipInputText().setText(getObjectLabeltext().getText());
-				} else {
-					getTooltipInputText().setEditable(true);
-				}
+		updateFields();
+	}
+
+	private void updateFields() {
+		if (getHyperlinkDocument() != null) {
+			if (getObjectLabelText() != null) {
+				getObjectLabelText().setText(getHyperlinkDocument().getHyperlinkDocument());
 			}
-
-			public void mouseDown(MouseEvent e) {
+			if (getTooltipInputText() != null) {
+				getTooltipInputText().setText(getHyperlinkDocument().getTooltipText());
 			}
+		}
+	}
 
-			public void mouseDoubleClick(MouseEvent e) {
+	@Override
+	protected void onSearch() {
+		FileDialog fd = new FileDialog(getShell(), SWT.OPEN);
+		fd.setText(Messages.EditorHyperlinkDocumentShell_Open);
+		String[] filterExt = { "*.pdf", "*.doc", "*.txt", "*" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		fd.setFilterExtensions(filterExt);
+		String selected = fd.open();
+		if (selected != null) {
+			getObjectLabelText().setText(selected);
+			if (usedefaultTooltip) {
+				getTooltipInputText().setText(selected);
 			}
-		});
+		}
+	}
 
-		getChooseDiagramButton().addMouseListener(new MouseListener() {
+	@Override
+	protected void onUseDefaultTooltip() {
+		usedefaultTooltip = getUseDefaultCheckBox().getSelection();
+		if (usedefaultTooltip) {
+			getTooltipInputText().setEditable(false);
+			getTooltipInputText().setText(getObjectLabelText().getText());
+		} else {
+			getTooltipInputText().setEditable(true);
+		}
+	}
 
-			public void mouseUp(MouseEvent e) {
-			}
+	@Override
+	protected void cancelPressed() {
+		hyperlinkDocument = null;
+		super.cancelPressed();
+	}
 
-			public void mouseDown(MouseEvent e) {
-				FileDialog fd = new FileDialog(getEditHyperlinkShell(), SWT.OPEN);
-				fd.setText(Messages.EditorHyperlinkDocumentShell_Open);
-				String[] filterExt = { "*.pdf", "*.doc", "*.txt", "*" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-				fd.setFilterExtensions(filterExt);
-				String selected = fd.open();
-				if (selected != null) {
-					getObjectLabeltext().setText(selected);
-					if (usedefaultTooltip) {
-						getTooltipInputText().setText(selected);
-					}
-				}
-			}
+	@Override
+	protected void okPressed() {
+		if (hyperlinkDocument == null) {
+			hyperlinkDocument = new HyperLinkDocument();
+		}
+		hyperlinkDocument.setHyperlinkDocument(getObjectLabelText().getText().trim());
+		hyperlinkDocument.setTooltipText(getTooltipInputText().getText().trim());
 
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-		});
-
-		// listener to cancel
-		this.getCancelButton().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
-				hyperlinkDocument = null;
-				getEditHyperlinkShell().close();
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-		});
-		// listener to click on OK
-		this.getOkButton().addMouseListener(new MouseListener() {
-
-			public void mouseUp(MouseEvent e) {
-			}
-
-			public void mouseDown(MouseEvent e) {
-				if (hyperlinkDocument == null) {
-					hyperlinkDocument = new HyperLinkDocument();
-				}
-				hyperlinkDocument.setHyperlinkDocument(getObjectLabeltext().getText().trim());
-				hyperlinkDocument.setTooltipText(getTooltipInputText().getText().trim());
-
-				getEditHyperlinkShell().close();
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-		});
+		super.cancelPressed();
 	}
 }

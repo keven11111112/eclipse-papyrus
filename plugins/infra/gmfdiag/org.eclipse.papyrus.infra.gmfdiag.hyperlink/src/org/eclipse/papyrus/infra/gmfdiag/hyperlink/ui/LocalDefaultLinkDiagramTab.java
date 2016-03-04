@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui;
@@ -48,6 +49,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
@@ -141,13 +144,14 @@ public class LocalDefaultLinkDiagramTab extends AbstractHyperLinkTab {
 	}
 
 	@Override
-	public void init(CTabFolder tabFolder, List<HyperLinkObject> hyperlinkObjects, EObject element) {
+	public void init(TabFolder tabFolder, List<HyperLinkObject> hyperlinkObjects, EObject element) {
 		super.init(tabFolder, hyperlinkObjects, element);
+
 		this.semanticElement = element;
 		// init list of descriptor to fill the table
 		initLocalNavigableElement();
 		// associate the composite to the tabfolder
-		CTabItem tbtmDefaultsHyperlinks = new CTabItem(tabFolder, SWT.NONE);
+		TabItem tbtmDefaultsHyperlinks = new TabItem(tabFolder, SWT.NONE);
 		tbtmDefaultsHyperlinks.setText("Hyperlink diagram with Heuristic");
 		defaultHyperlinkComposite = new Composite(tabFolder, SWT.NONE);
 		defaultHyperlinkComposite.setLayout(new GridLayout(1, false));

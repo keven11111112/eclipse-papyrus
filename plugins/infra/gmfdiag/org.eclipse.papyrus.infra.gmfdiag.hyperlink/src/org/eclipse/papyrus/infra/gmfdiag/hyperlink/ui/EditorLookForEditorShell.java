@@ -10,7 +10,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 410346
  *  Christian W. Damus (CEA) - bug 431397
- *  Christian W. Damus - bug 485220
+ *  Christian W. Damus - bugs 485220, 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui;
@@ -24,12 +24,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IDisposable;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.window.IShellProvider;
 import org.eclipse.papyrus.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.commands.ICreationCommand;
@@ -57,13 +60,15 @@ import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.widgets.Shell;
 
-//TODO: Refactor. Remove the diagram creation listener, and use a Dialog (Which is blocker) instead of a Shell
+//TODO: Refactor. Remove the diagram creation listener
+/**
+ * @since 2.0
+ */
 public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 	/** The adapter factory. */
@@ -191,7 +196,19 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 	}
 
 
+	/**
+	 * Instantiates a new editor look for diagram.
+	 *
+	 * @param editorFactoryRegistry
+	 *            the editor factory registry
+	 * @param amodel
+	 *            the amodel
+	 */
+	public EditorLookForEditorShell(Shell parentShell, IPageIconsRegistry editorFactoryRegistry, EObject amodel) {
+		super(parentShell);
 
+		this.model = amodel;
+	}
 
 	/**
 	 * Instantiates a new editor look for diagram.
@@ -201,30 +218,18 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 	 * @param amodel
 	 *            the amodel
 	 */
-	public EditorLookForEditorShell(IPageIconsRegistry editorFactoryRegistry, EObject amodel) {
-		super();
+	public EditorLookForEditorShell(IShellProvider parentShell, IPageIconsRegistry editorFactoryRegistry, EObject amodel) {
+		super(parentShell);
+
 		this.model = amodel;
-		// create the shell
-		createLookforShell();
+	}
+
+	@Override
+	protected void contentsCreated() {
 
 		// intall tree with uml element
 		treeViewer = getModeFilteredTree().getViewer();
 		treeViewer.setUseHashlookup(true);
-		// treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory) {
-		//
-		// @Override
-		// public Image getImage(Object object) {
-		// //TODO
-		// // if(object instanceof PapyrusTableInstance) {
-		// // return editorRegistry.getEditorIcon((object));
-		// // } else {
-		// // return super.getImage(object);
-		// // }
-		// Image im = super.getImage(object);
-		// return im;
-		// // return null;
-		// }
-		// });
 
 		ILabelProvider labelProvider;
 		ServicesRegistry registry = null;
@@ -238,20 +243,20 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		}
 
 		treeViewer.setLabelProvider(labelProvider);
+
 		// treeViewer.setContentProvider(new
 		// CustomAdapterFactoryContentProvider(adapterFactory));
 		// treeViewer.setContentProvider(new
 		// SemanticEMFContentProvider(amodel)); //This content provider will
 		// only display the selected element, instead of the root element
 		// FIXME: Use a standard, non-deprecated content
-		IHierarchicContentProvider semanticProvider = new TreeViewContentProvider(new EObject[] { EcoreUtil.getRootContainer(amodel) });
+		IHierarchicContentProvider semanticProvider = new TreeViewContentProvider(new EObject[] { EcoreUtil.getRootContainer(model) });
 		ContainmentBrowseStrategy strategy = new ContainmentBrowseStrategy(semanticProvider);
 		IGraphicalContentProvider graphicalContentProvider = new EMFGraphicalContentProvider(strategy, model.eResource().getResourceSet(), Activator.PLUGIN_ID + ".editorTreeView");
 		treeViewer.setContentProvider(graphicalContentProvider);
 		// treeViewer.setInput(model.eResource());
 		treeViewer.setInput(registry);
 		graphicalContentProvider.createAfter(getAfterTreeViewComposite());
-		this.setChildrenBackground(getAfterTreeViewComposite(), Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 
 		// install diagramlist
 		diagramListTreeViewer = getDiagramfilteredTree().getViewer();
@@ -277,7 +282,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 			menuItem.addSelectionListener(new DiagramCreateListener(desc, null, commandRegistry));
 			menuItem.setText(desc.getLabel());
 		}
-		getNewDiagrambutton().addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+		getNewDiagrambutton().addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
@@ -286,7 +291,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		});
 
 		// add listener to remove diagram
-		getRemoveDiagrambutton().addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+		getRemoveDiagrambutton().addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
@@ -322,6 +327,13 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 			}
 		});
 
+		IDoubleClickListener doubleClickHandler = new IDoubleClickListener() {
+
+			public void doubleClick(DoubleClickEvent event) {
+				okPressed();
+			}
+		};
+
 		// add listener to keep the selected diagram in the list for the model
 		// view
 		getModeFilteredTree().getViewer().addSelectionChangedListener(new ISelectionChangedListener() {
@@ -331,6 +343,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 				refresh(selection);
 			}
 		});
+		getModeFilteredTree().getViewer().addDoubleClickListener(doubleClickHandler);
 
 		// add listener to keep in mind the selected diagram in the list for the
 		// view of digram list
@@ -341,36 +354,10 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 				refresh(selection);
 			}
 		});
-
-		// add listener for the button ok, keep the selected diagram
-		getOKbutton().addSelectionListener(new SelectionListener() {
-
-			public void widgetSelected(SelectionEvent e) {
-				if (treeViewer.getContentProvider() instanceof ICommitListener) {
-					((ICommitListener) treeViewer.getContentProvider()).commit(null);
-				}
-				getLookforShell().close();
-			}
-
-			public void widgetDefaultSelected(SelectionEvent e) {
-			}
-		});
-
-		// add listener for the button cancel, remove the value of the selected
-		// diagram
-		getCancelbutton().addSelectionListener(new SelectionListener() {
-
-			public void widgetSelected(SelectionEvent e) {
-				setSelectedEditor(null);
-				getLookforShell().close();
-			}
-
-			public void widgetDefaultSelected(SelectionEvent e) {
-			}
-		});
+		getDiagramfilteredTree().getViewer().addDoubleClickListener(doubleClickHandler);
 
 		// dispose the adapter factory when the shell is closed
-		getLookforShell().addDisposeListener(new DisposeListener() {
+		getShell().addDisposeListener(new DisposeListener() {
 
 			public void widgetDisposed(DisposeEvent e) {
 				// we created the adapter factory, so we should dispose it
@@ -379,33 +366,27 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 				}
 			}
 		});
-
 	}
 
-	/**
-	 * Open the shell
-	 */
-	public void open() {
-		Display display = Display.getCurrent();
-		getLookforShell().pack();
-		// getLookforShell().setSize(700, 500);
-
-		// code use to wait for an action from the user
-		getLookforShell().pack();
-		// getLookforShell().setBounds(500, 500, 500, 300);
-		getLookforShell().open();
-		while (!getLookforShell().isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
+	@Override
+	protected void okPressed() {
+		if (treeViewer.getContentProvider() instanceof ICommitListener) {
+			((ICommitListener) treeViewer.getContentProvider()).commit(null);
 		}
+		super.okPressed();
 	}
+
+	@Override
+	protected void cancelPressed() {
+		setSelectedEditor(null);
+		super.cancelPressed();
+	}
+
 
 	protected void refresh(Object selectedElement) {
 		selectedElement = EMFHelper.getEObject(selectedElement);
-		Button but = getOKbutton();
+		Button but = getButton(OK);
 		if (isAValidEditor(selectedElement)) {
-			but = getOKbutton();
 			but.setEnabled(true);
 			selectedEditor = selectedElement;
 		} else {

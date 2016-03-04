@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -32,15 +33,15 @@ import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.custom.CTabItem;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Table;
 
 /**
@@ -97,22 +98,13 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 		return defaultHyperLinkObject;
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.hyperlink.ui.AbstractHyperLinkTab#init(org.eclipse.swt.custom.CTabFolder, java.util.List, org.eclipse.emf.ecore.EObject)
-	 *
-	 * @param cTabFolder
-	 * @param hyperlinkObjects
-	 * @param element
-	 */
 	@Override
-	public void init(final CTabFolder cTabFolder, List<HyperLinkObject> hyperlinkObjects, EObject element) {
-		super.init(cTabFolder, hyperlinkObjects, element);
-		CTabItem tbtmDefaultsHyperlinks = new CTabItem(cTabFolder, SWT.NONE);
+	public void init(final TabFolder tabFolder, List<HyperLinkObject> hyperlinkObjects, EObject element) {
+		super.init(tabFolder, hyperlinkObjects, element);
+
+		TabItem tbtmDefaultsHyperlinks = new TabItem(tabFolder, SWT.NONE);
 		tbtmDefaultsHyperlinks.setText(Messages.DefaultHyperLinkTab_DefaultHyperlinks);
-		defaultHyperlinkComposite = new Composite(cTabFolder, SWT.NONE);
-		defaultHyperlinkComposite.setBackgroundMode(SWT.INHERIT_DEFAULT);
-		defaultHyperlinkComposite.setBackground(defaultHyperlinkComposite.getDisplay().getSystemColor(SWT.COLOR_WHITE));
+		defaultHyperlinkComposite = new Composite(tabFolder, SWT.NONE);
 
 		defaultHyperlinkComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 		defaultHyperlinkComposite.setLayout(new GridLayout(4, false));
@@ -145,57 +137,22 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 		availableHyperLink.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 
-		defaultHRight = new Button(addRemoveButtonsComposite, SWT.NONE);
-		defaultHRight.addMouseListener(new MouseListener() {
+		defaultHRight = new Button(addRemoveButtonsComposite, SWT.PUSH);
+		defaultHRight.addSelectionListener(new SelectionAdapter() {
 
-			public void mouseUp(MouseEvent e) {
-
-			}
-
-			public void mouseDown(MouseEvent e) {
-				// move element left to right
-				if (availableHyperLinkViewer.getSelection() != null) {
-					// normally this viewer contains only hyperlinkObject
-					if (availableHyperLinkViewer.getSelection() instanceof IStructuredSelection) {
-						HyperLinkObject hyperlinkObjectToMove = (HyperLinkObject) ((IStructuredSelection) availableHyperLinkViewer.getSelection()).getFirstElement();
-						hyperlinkObjectToMove.setIsDefault(true);
-						availableHyperLinkObject.remove(hyperlinkObjectToMove);
-						defaultHyperLinkObject.add(hyperlinkObjectToMove);
-						refresh();
-					}
-				}
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				handleRightButton();
 			}
 		});
 		defaultHRight.setToolTipText("Set default hyperlink");
 
-		defaultHleft = new Button(addRemoveButtonsComposite, SWT.NONE);
-		defaultHleft.addMouseListener(new MouseListener() {
+		defaultHleft = new Button(addRemoveButtonsComposite, SWT.PUSH);
+		defaultHleft.addSelectionListener(new SelectionAdapter() {
 
-			public void mouseUp(MouseEvent e) {
-
-			}
-
-			public void mouseDown(MouseEvent e) {
-				// move element right to left
-				if (defaultHyperLinkViewer.getSelection() != null) {
-					// normally this viewer contains only hyperlinkObject
-					if (defaultHyperLinkViewer.getSelection() instanceof IStructuredSelection) {
-
-						HyperLinkObject hyperlinkObjectToMove = (HyperLinkObject) ((IStructuredSelection) defaultHyperLinkViewer.getSelection()).getFirstElement();
-						hyperlinkObjectToMove.setIsDefault(false);
-						defaultHyperLinkObject.remove(hyperlinkObjectToMove);
-						availableHyperLinkObject.add(hyperlinkObjectToMove);
-						refresh();
-					}
-				}
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				handleLeftButton();
 			}
 		});
 		defaultHleft.setToolTipText("Remove default hyperlink");
@@ -205,16 +162,13 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 		defaultHyperLink.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 
-		defaultHup = new Button(upDownButtonsComposite, SWT.NONE);
+		defaultHup = new Button(upDownButtonsComposite, SWT.PUSH);
 		defaultHup.setToolTipText("Move default hyperlink up");
 
-		defaultHup.addMouseListener(new MouseListener() {
+		defaultHup.addSelectionListener(new SelectionAdapter() {
 
-			public void mouseUp(MouseEvent e) {
-
-			}
-
-			public void mouseDown(MouseEvent e) {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
 				// move element bottom to top
 				if (defaultHyperLinkViewer.getSelection() != null) {
 					// normally this viewer contains only hyperlinkObject
@@ -226,26 +180,20 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 							defaultHyperLinkObject.remove(hyperlinkObjectToMove);
 							defaultHyperLinkObject.add(index - 1, hyperlinkObjectToMove);
 							refresh();
+							updateButtonEnablement(null);
 						}
 					}
 				}
 			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-
-			}
 		});
 
-		defaultHdown = new Button(upDownButtonsComposite, SWT.NONE);
+		defaultHdown = new Button(upDownButtonsComposite, SWT.PUSH);
 		defaultHdown.setToolTipText("Move default hyperlink down");
 
-		defaultHdown.addMouseListener(new MouseListener() {
+		defaultHdown.addSelectionListener(new SelectionAdapter() {
 
-			public void mouseUp(MouseEvent e) {
-
-			}
-
-			public void mouseDown(MouseEvent e) {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
 				// move element top to bottom
 				if (defaultHyperLinkViewer.getSelection() != null) {
 					// normally this viewer contains only hyperlinkObject
@@ -258,13 +206,10 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 							defaultHyperLinkObject.remove(hyperlinkObjectToMove);
 							defaultHyperLinkObject.add(index + 1, hyperlinkObjectToMove);
 							refresh();
+							updateButtonEnablement(null);
 						}
 					}
 				}
-			}
-
-			public void mouseDoubleClick(MouseEvent e) {
-
 			}
 		});
 
@@ -297,10 +242,54 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 		availableHyperLinkViewer.setContentProvider(CollectionContentProvider.instance);
 
 		availableHyperLinkViewer.setInput(hyperlinkObjects);
+		availableHyperLinkViewer.addSelectionChangedListener(this::updateButtonEnablement);
+		availableHyperLinkViewer.addDoubleClickListener(event -> handleRightButton());
 
 		defaultHyperLinkViewer = new TableViewer(defaultHyperLink);
 		defaultHyperLinkViewer.setLabelProvider(provider);
 		defaultHyperLinkViewer.setContentProvider(CollectionContentProvider.instance);
+		defaultHyperLinkViewer.addSelectionChangedListener(this::updateButtonEnablement);
+		defaultHyperLinkViewer.addDoubleClickListener(event -> handleLeftButton());
+
+		updateButtonEnablement(null);
+	}
+
+	private void handleRightButton() {
+		// move element left to right
+		if (availableHyperLinkViewer.getSelection() != null) {
+			// normally this viewer contains only hyperlinkObject
+			if (availableHyperLinkViewer.getSelection() instanceof IStructuredSelection) {
+				HyperLinkObject hyperlinkObjectToMove = (HyperLinkObject) ((IStructuredSelection) availableHyperLinkViewer.getSelection()).getFirstElement();
+				hyperlinkObjectToMove.setIsDefault(true);
+				availableHyperLinkObject.remove(hyperlinkObjectToMove);
+				defaultHyperLinkObject.add(hyperlinkObjectToMove);
+				refresh();
+			}
+		}
+	}
+
+	private void handleLeftButton() {
+		// move element right to left
+		if (defaultHyperLinkViewer.getSelection() != null) {
+			// normally this viewer contains only hyperlinkObject
+			if (defaultHyperLinkViewer.getSelection() instanceof IStructuredSelection) {
+
+				HyperLinkObject hyperlinkObjectToMove = (HyperLinkObject) ((IStructuredSelection) defaultHyperLinkViewer.getSelection()).getFirstElement();
+				hyperlinkObjectToMove.setIsDefault(false);
+				defaultHyperLinkObject.remove(hyperlinkObjectToMove);
+				availableHyperLinkObject.add(hyperlinkObjectToMove);
+				refresh();
+			}
+		}
+	}
+
+	private void updateButtonEnablement(SelectionChangedEvent event) {
+		defaultHRight.setEnabled(!availableHyperLinkViewer.getSelection().isEmpty());
+		defaultHleft.setEnabled(!defaultHyperLinkViewer.getSelection().isEmpty());
+
+		int index = defaultHyperLinkViewer.getTable().getSelectionIndex();
+		defaultHup.setEnabled(index > 0);
+		defaultHdown.setEnabled((index >= 0) && (index < (defaultHyperLinkObject.size() - 1)));
 	}
 
 	/**

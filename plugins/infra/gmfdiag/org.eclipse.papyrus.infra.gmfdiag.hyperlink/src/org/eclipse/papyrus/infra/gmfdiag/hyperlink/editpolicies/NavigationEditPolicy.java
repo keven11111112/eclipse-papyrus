@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST)-modification
  *  Christian W. Damus (CEA) - bug 421411
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 454386
- *  Christian W. Damus - bugs 460583, 485220
+ *  Christian W. Damus - bugs 460583, 485220, 488965
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies;
 
@@ -58,6 +58,8 @@ import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil;
 import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.ui.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.infra.ui.util.EditorHelper;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  * This class is used to open a new diagram when the double click is detected.
@@ -308,7 +310,8 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 							addLinkCommand = new Command("Add Hyperlink") {
 								@Override
 								public void execute() {
-									HyperLinkManagerShell hyperLinkManagerShell = new HyperLinkManagerShell(createEditorRegistry(), ((IGraphicalEditPart) getHost()).getEditingDomain(),
+									Shell parentShell = EditorHelper.getActiveShell();
+									HyperLinkManagerShell hyperLinkManagerShell = new HyperLinkManagerShell(parentShell, createEditorRegistry(), ((IGraphicalEditPart) getHost()).getEditingDomain(),
 											(EModelElement) ((IGraphicalEditPart) getHost()).getNotationView().getElement(),
 											((IGraphicalEditPart) getHost()).getNotationView(), hyperlinkHelperFactory);
 									hyperLinkManagerShell.setInput(hyperLinkObjectList);

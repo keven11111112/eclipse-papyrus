@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Arthur Daussy (Atos) arthur.daussy@atos.net - Bug 363827 - [Improvement] Diagram creation, remember the latest tab chosen
  *  Vincent Lorenzo (CEA-LIST) Vincent.lorenzo@cea.fr (refactoring of the hyperlink)
+ *  Christian W. Damus - bug 488965
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui;
 
@@ -30,6 +31,7 @@ import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
 import org.eclipse.papyrus.infra.hyperlink.ui.AbstractHyperLinkTab;
 import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  *
@@ -54,8 +56,8 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 	 *            the view of the uml element
 	 *
 	 */
-	public AdvancedHLManager(IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, EModelElement semanticElement, View aview, HyperLinkHelperFactory hyperHelperFactory) {
-		super(editorFactoryRegistry, domain, semanticElement, aview, hyperHelperFactory);
+	public AdvancedHLManager(Shell parentShell, IPageIconsRegistry editorFactoryRegistry, TransactionalEditingDomain domain, EModelElement semanticElement, View aview, HyperLinkHelperFactory hyperHelperFactory) {
+		super(parentShell, editorFactoryRegistry, domain, semanticElement, aview, hyperHelperFactory);
 	}
 
 	/**
@@ -112,7 +114,7 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 	private LocalDefaultLinkDiagramTab getHeuristicTab() {
 		int i = 0;
 		LocalDefaultLinkDiagramTab tab = null;
-		for (AbstractHyperLinkTab current : tabList) {
+		for (AbstractHyperLinkTab current : getTabs()) {
 			if (current instanceof LocalDefaultLinkDiagramTab) {
 				tab = (LocalDefaultLinkDiagramTab) current;
 				i++;

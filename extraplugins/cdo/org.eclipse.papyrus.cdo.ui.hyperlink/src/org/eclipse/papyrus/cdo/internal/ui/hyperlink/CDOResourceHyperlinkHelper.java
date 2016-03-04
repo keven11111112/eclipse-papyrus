@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 CEA LIST and others.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - adapted for CDO repository resource hyperlinks
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 
@@ -30,12 +31,14 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.cdo.internal.ui.views.DIModel;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.helper.IHyperlinkHelperExtension;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
+import org.eclipse.swt.widgets.Shell;
 
 import com.google.common.collect.ImmutableList;
 
@@ -82,9 +85,9 @@ public class CDOResourceHyperlinkHelper extends AbstractHyperLinkHelper implemen
 	}
 
 	@Override
-	public void executeNewMousePressed(List<HyperLinkObject> list, EObject aModel) {
-		CDOResourceHyperlinkEditorShell editor = new CDOResourceHyperlinkEditorShell();
-		if (editor.open()) {
+	public void executeNewMousePressed(Shell parentShell, List<HyperLinkObject> list, EObject aModel) {
+		CDOResourceHyperlinkEditorShell editor = new CDOResourceHyperlinkEditorShell(parentShell);
+		if (editor.open() == Window.OK) {
 			list.add(editor.getHyperlink());
 		}
 	}

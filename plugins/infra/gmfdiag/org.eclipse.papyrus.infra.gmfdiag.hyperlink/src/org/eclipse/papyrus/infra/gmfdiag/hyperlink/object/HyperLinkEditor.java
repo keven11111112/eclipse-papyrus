@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 485220
+ *  Christian W. Damus - bugs 485220, 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.object;
@@ -24,8 +24,12 @@ import org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui.EditorHyperLinkEditorShell
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
+import org.eclipse.swt.widgets.Shell;
 
 
+/**
+ * @since 2.0
+ */
 public class HyperLinkEditor extends HyperLinkObject {
 
 	@Override
@@ -47,15 +51,8 @@ public class HyperLinkEditor extends HyperLinkObject {
 		}
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject#executeEditMousePressed(java.util.List, org.eclipse.emf.ecore.EObject)
-	 *
-	 * @param list
-	 * @param amodel
-	 */
 	@Override
-	public void executeEditMousePressed(List<HyperLinkObject> list, EObject amodel) {
+	public void executeEditMousePressed(Shell parentShell, List<HyperLinkObject> list, EObject amodel) {
 		IPageIconsRegistry editorRegistry;
 		try {
 			editorRegistry = ServiceUtilsForEObject.getInstance().getService(IPageIconsRegistry.class, amodel);
@@ -64,7 +61,7 @@ public class HyperLinkEditor extends HyperLinkObject {
 			return;
 		}
 
-		EditorHyperLinkEditorShell editor = new EditorHyperLinkEditorShell(editorRegistry, amodel);
+		EditorHyperLinkEditorShell editor = new EditorHyperLinkEditorShell(parentShell, editorRegistry, amodel);
 		editor.setHyperLinkEditor(this);
 		editor.open();
 		if (editor.getHyperLinkEditor() != null) {

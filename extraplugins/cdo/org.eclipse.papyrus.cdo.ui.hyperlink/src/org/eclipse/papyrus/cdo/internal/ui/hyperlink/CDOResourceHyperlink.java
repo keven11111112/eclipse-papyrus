@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2015 CEA LIST and others.
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,6 +12,7 @@
  *  Christian W. Damus (CEA LIST) - adapted for CDO repository resource hyperlinks
  *  Christian W. Damus (CEA) - adapt to source-incompatible API change in CDO Luna M6
  *  Eike Stepper (CEA) - bug 466520
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.hyperlink;
@@ -32,12 +33,14 @@ import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.window.Window;
 import org.eclipse.net4j.util.ui.UIUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.cdo.internal.ui.editors.PapyrusCDOEditorOpener;
 import org.eclipse.papyrus.cdo.internal.ui.views.DIResourceQuery;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -139,10 +142,10 @@ public class CDOResourceHyperlink extends HyperLinkObject {
 	}
 
 	@Override
-	public void executeEditMousePressed(List<HyperLinkObject> list, EObject aModel) {
-		CDOResourceHyperlinkEditorShell editor = new CDOResourceHyperlinkEditorShell();
+	public void executeEditMousePressed(Shell parentShell, List<HyperLinkObject> list, EObject aModel) {
+		CDOResourceHyperlinkEditorShell editor = new CDOResourceHyperlinkEditorShell(parentShell);
 		editor.setHyperlink(this);
-		if (editor.open()) {
+		if (editor.open() == Window.OK) {
 			int index = list.indexOf(this);
 			list.set(index, editor.getHyperlink());
 		}

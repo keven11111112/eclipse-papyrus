@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.object;
@@ -16,6 +17,7 @@ package org.eclipse.papyrus.infra.hyperlink.object;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.swt.widgets.Shell;
 
 
 /**
@@ -96,8 +98,9 @@ public abstract class HyperLinkObject {
 	 *            of hyperlink that are containted by a graphical element
 	 * @param amodel
 	 *            the top package root element
+	 * @since 2.0
 	 */
-	public abstract void executeEditMousePressed(List<HyperLinkObject> list, EObject amodel);
+	public abstract void executeEditMousePressed(Shell parentShell, List<HyperLinkObject> list, EObject amodel);
 
 	/**
 	 * Tells whether openLink() should be called within an EMF command

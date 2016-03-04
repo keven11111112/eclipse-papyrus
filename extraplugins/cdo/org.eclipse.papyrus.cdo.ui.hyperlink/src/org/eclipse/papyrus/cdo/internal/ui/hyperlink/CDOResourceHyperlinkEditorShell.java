@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2015 CEA LIST and others.
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - adapted for CDO repository resource hyperlinks
  *  Eike Stepper (CEA) - bug 466520
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.hyperlink;
@@ -19,24 +20,27 @@ import org.eclipse.emf.cdo.eresource.EresourcePackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.cdo.internal.ui.dialogs.CheckoutBrowseDialog;
-import org.eclipse.papyrus.infra.hyperlink.ui.AbstractEditHyperlinkDocumentShell;
+import org.eclipse.papyrus.infra.hyperlink.ui.AbstractEditHyperlinkShell;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 
 import com.google.common.base.Objects;
 
 /**
  * The editor shell facade for creation and editing of CDO resource hyperlinks.
  */
-public class CDOResourceHyperlinkEditorShell extends AbstractEditHyperlinkDocumentShell {
+public class CDOResourceHyperlinkEditorShell extends AbstractEditHyperlinkShell {
 
 	private boolean usedefaultTooltip = true;
 
 	private CDOResourceHyperlink hyperlink;
 
-	private boolean okPressed;
+	/**
+	 * Instantiates me.
+	 */
+	public CDOResourceHyperlinkEditorShell(Shell parentShell) {
+		super(parentShell, true);
+	}
 
 	public CDOResourceHyperlink getHyperlink() {
 		return hyperlink;
@@ -44,118 +48,90 @@ public class CDOResourceHyperlinkEditorShell extends AbstractEditHyperlinkDocume
 
 	public void setHyperlink(CDOResourceHyperlink hyperlink) {
 		this.hyperlink = hyperlink;
-
-		getObjectLabeltext().setText(hyperlink.getHyperlink().toString());
-		getTooltipInputText().setText(hyperlink.getTooltipText());
-
-		usedefaultTooltip = Objects.equal(getObjectLabeltext().getText(), getTooltipInputText().getText());
-		getUseDefaultCheckBox().setSelection(usedefaultTooltip);
-		getTooltipInputText().setEditable(!usedefaultTooltip);
+		updateFields();
 	}
 
-	/**
-	 * Open.
-	 */
-	public boolean open() {
-		Display display = Display.getCurrent();
-
-		okPressed = false;
-
-		// code use to wait for an action from the user
-		getEditHyperlinkShell().pack();
-		getEditHyperlinkShell().open();
-		while (!getEditHyperlinkShell().isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-
-		return okPressed;
-	}
-
-	/**
-	 * Instantiates me.
-	 */
-	public CDOResourceHyperlinkEditorShell() {
-		super();
-
-		createEditHyperlinkShell();
-
+	@Override
+	protected void contentsCreated() {
 		// intialize "use default" check box
 		getUseDefaultCheckBox().setSelection(usedefaultTooltip);
-		getObjectLabeltext().setEditable(false);
+		getObjectLabelText().setEditable(false);
 		if (usedefaultTooltip) {
 			getTooltipInputText().setEditable(false);
-			getTooltipInputText().setText(getObjectLabeltext().getText());
+			getTooltipInputText().setText(getObjectLabelText().getText());
 		}
-		// add listener "use default button"
-		getUseDefaultCheckBox().addMouseListener(new MouseAdapter() {
 
-			@Override
-			public void mouseUp(MouseEvent e) {
-				usedefaultTooltip = getUseDefaultCheckBox().getSelection();
-				if (usedefaultTooltip) {
-					getTooltipInputText().setEditable(false);
-					getTooltipInputText().setText(getObjectLabeltext().getText());
-				} else {
-					getTooltipInputText().setEditable(true);
-				}
+		updateFields();
+	}
+
+	private void updateFields() {
+		if (hyperlink != null) {
+			if (getObjectLabelText() != null) {
+				getObjectLabelText().setText(hyperlink.getHyperlink().toString());
 			}
-		});
-
-		getChooseDiagramButton().addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseDown(MouseEvent e) {
-				CheckoutBrowseDialog browse = new CheckoutBrowseDialog(getEditHyperlinkShell(), Messages.CDOResourceHyperlinkEditorShell_title, Messages.CDOResourceHyperlinkEditorShell_message, null, SWT.OPEN);
-				browse.setBlockOnOpen(true);
-
-				String initialURIString = getObjectLabeltext().getText().trim();
-				if (!initialURIString.isEmpty()) {
-					browse.setInitialURI(URI.createURI(initialURIString));
-				}
-
-				// select resource nodes of file or model kind, not folders
-				browse.setNodeTypeFilter(EresourcePackage.Literals.CDO_RESOURCE_LEAF);
-
-				if (browse.open() == Window.OK) {
-					URI selected = browse.getSelectedURI();
-					if (selected != null) {
-						getObjectLabeltext().setText(selected.toString());
-					}
-
-					if (usedefaultTooltip) {
-						getTooltipInputText().setText(selected.toString());
-					}
-				}
+			if (getTooltipInputText() != null) {
+				getTooltipInputText().setText(hyperlink.getTooltipText());
 			}
-		});
 
-		// listener to cancel
-		this.getCancelButton().addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseDown(MouseEvent e) {
-				hyperlink = null;
-				getEditHyperlinkShell().close();
+			if ((getObjectLabelText() != null) && (getTooltipInputText() != null)) {
+				usedefaultTooltip = Objects.equal(getObjectLabelText().getText(), getTooltipInputText().getText());
+				getUseDefaultCheckBox().setSelection(usedefaultTooltip);
+				getTooltipInputText().setEditable(!usedefaultTooltip);
 			}
-		});
-		// listener to click on OK
-		this.getOkButton().addMouseListener(new MouseAdapter() {
+		}
+	}
 
-			@Override
-			public void mouseDown(MouseEvent e) {
-				if (hyperlink == null) {
-					hyperlink = new CDOResourceHyperlink();
-				}
+	@Override
+	protected void onSearch() {
+		CheckoutBrowseDialog browse = new CheckoutBrowseDialog(getShell(), Messages.CDOResourceHyperlinkEditorShell_title, Messages.CDOResourceHyperlinkEditorShell_message, null, SWT.OPEN);
+		browse.setBlockOnOpen(true);
 
-				hyperlink.setHyperlink(URI.createURI(getObjectLabeltext().getText().trim()));
-				hyperlink.setTooltipText(getTooltipInputText().getText().trim());
+		String initialURIString = getObjectLabelText().getText().trim();
+		if (!initialURIString.isEmpty()) {
+			browse.setInitialURI(URI.createURI(initialURIString));
+		}
 
-				okPressed = true;
+		// select resource nodes of file or model kind, not folders
+		browse.setNodeTypeFilter(EresourcePackage.Literals.CDO_RESOURCE_LEAF);
 
-				getEditHyperlinkShell().close();
+		if (browse.open() == Window.OK) {
+			URI selected = browse.getSelectedURI();
+			if (selected != null) {
+				getObjectLabelText().setText(selected.toString());
 			}
-		});
+
+			if (usedefaultTooltip) {
+				getTooltipInputText().setText(selected.toString());
+			}
+		}
+	}
+
+	@Override
+	protected void onUseDefaultTooltip() {
+		usedefaultTooltip = getUseDefaultCheckBox().getSelection();
+		if (usedefaultTooltip) {
+			getTooltipInputText().setEditable(false);
+			getTooltipInputText().setText(getObjectLabelText().getText());
+		} else {
+			getTooltipInputText().setEditable(true);
+		}
+	}
+
+	@Override
+	protected void cancelPressed() {
+		hyperlink = null;
+		super.cancelPressed();
+	}
+
+	@Override
+	protected void okPressed() {
+		if (hyperlink == null) {
+			hyperlink = new CDOResourceHyperlink();
+		}
+
+		hyperlink.setHyperlink(URI.createURI(getObjectLabelText().getText().trim()));
+		hyperlink.setTooltipText(getTooltipInputText().getText().trim());
+
+		super.okPressed();
 	}
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,45 +9,38 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
+import org.eclipse.jface.dialogs.TrayDialog;
+import org.eclipse.jface.window.IShellProvider;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.custom.CTabItem;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredTree;
 import org.eclipse.ui.dialogs.PatternFilter;
 
 
 /**
- * The Class AbstractLookForDiagramShell. This Class has been generated from
- * VisualEditor. Do not modify it manually by adding behavior! you will lose the
- * capacity to open with VE. So this class is abstract and it contains set of
- * getter in order to connect behavior in subclasses
+ * Abstract superclass of the dialog used to search for a notation editor in the
+ * currently open model(s).
  */
-public class AbstractLookForEditorShell {
+public class AbstractLookForEditorShell extends TrayDialog {
 
-	/** The lookfor shell. */
-	private Shell lookforShell = null; // @jve:decl-index=0:visual-constraint="108,60"
-
-	/** The c tab folder. */
-	private CTabFolder cTabFolder = null;
+	/** The tab folder. */
+	private TabFolder tabFolder = null;
 
 	/** The diagram listcomposite. */
 	private Composite diagramListcomposite = null;
@@ -66,12 +59,6 @@ public class AbstractLookForEditorShell {
 	/** The remove diagrambutton. */
 	private Button removeDiagrambutton = null;
 
-	/** The O kbutton. */
-	private Button OKbutton = null;
-
-	/** The cancelbutton. */
-	private Button cancelbutton = null;
-
 	/** The diagram listtree. */
 	private final Tree diagramListtree = null;
 
@@ -85,61 +72,55 @@ public class AbstractLookForEditorShell {
 	private CLabel cLabel = null;
 
 	/**
-	 * This method initializes lookforShell.
+	 * @since 2.0
 	 */
-	protected void createLookforShell() {
-		GridData gridData2 = new GridData();
-		gridData2.horizontalAlignment = GridData.FILL;
-		gridData2.verticalAlignment = GridData.CENTER;
-		GridData gridData1 = new GridData();
-		gridData1.grabExcessHorizontalSpace = false;
-		gridData1.horizontalAlignment = GridData.FILL;
-		gridData1.verticalAlignment = GridData.CENTER;
-		gridData1.grabExcessVerticalSpace = false;
-		GridLayout gridLayout1 = new GridLayout();
-		gridLayout1.numColumns = 5;
-		gridLayout1.makeColumnsEqualWidth = true;
-		// this line has to be commented in order to open with VISUAL EDITOR
-		lookforShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.DIALOG_TRIM | SWT.RESIZE);
-
-		// lookforShell = new Shell();
-		lookforShell.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		createCTabFolder();
-		lookforShell.setLayout(gridLayout1);
-		lookforShell.setSize(new Point(501, 313));
-		new Label(lookforShell, SWT.NONE);
-		new Label(lookforShell, SWT.NONE);
-		new Label(lookforShell, SWT.NONE);
-		OKbutton = new Button(lookforShell, SWT.NONE);
-		OKbutton.setText(Messages.AbstractLookForEditorShell_OK);
-		OKbutton.setLayoutData(gridData1);
-		OKbutton.setEnabled(false);
-		cancelbutton = new Button(lookforShell, SWT.NONE);
-		cancelbutton.setText(Messages.AbstractLookForEditorShell_Cancel);
-		cancelbutton.setLayoutData(gridData2);
+	public AbstractLookForEditorShell(Shell parentShell) {
+		super(parentShell);
 	}
 
 	/**
-	 * This method initializes cTabFolder.
+	 * @since 2.0
 	 */
-	protected void createCTabFolder() {
-		GridData gridData = new GridData();
-		gridData.horizontalAlignment = GridData.FILL;
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.grabExcessVerticalSpace = true;
-		gridData.horizontalSpan = 5;
-		gridData.verticalAlignment = GridData.FILL;
-		cTabFolder = new CTabFolder(lookforShell, SWT.NONE);
-		cTabFolder.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		cTabFolder.setLayoutData(gridData);
+	public AbstractLookForEditorShell(IShellProvider parentShell) {
+		super(parentShell);
+	}
+
+	/**
+	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
+	 *
+	 * @param parent
+	 * @return
+	 */
+	@Override
+	protected Control createDialogArea(Composite parent) {
+		// Tabs on the top
+		tabFolder = new TabFolder(parent, SWT.TOP);
+		tabFolder.setLayoutData(new GridData(GridData.FILL_BOTH));
+		applyDialogFont(tabFolder);
+
 		createDiagramListcomposite();
 		createTreeViewcomposite();
-		CTabItem cTabItem = new CTabItem(cTabFolder, SWT.None);
-		cTabItem.setControl(diagramListcomposite);
-		cTabItem.setText(Messages.AbstractLookForEditorShell_EditorsList);// TODO change this name into Editor List
-		CTabItem cTabItem1 = new CTabItem(cTabFolder, SWT.None);
-		cTabItem1.setText(Messages.AbstractLookForEditorShell_TreeView);
-		cTabItem1.setControl(treeViewcomposite);
+
+		TabItem tabItem = new TabItem(tabFolder, SWT.None);
+		tabItem.setControl(diagramListcomposite);
+		tabItem.setText(Messages.AbstractLookForEditorShell_EditorsList);
+
+		TabItem tabItem1 = new TabItem(tabFolder, SWT.None);
+		tabItem1.setText(Messages.AbstractLookForEditorShell_TreeView);
+		tabItem1.setControl(treeViewcomposite);
+
+		contentsCreated();
+
+		return tabFolder;
+	}
+
+	/**
+	 * Hook that subclasses may override to handle the creation of the dialog contents.
+	 * 
+	 * @since 2.0
+	 */
+	protected void contentsCreated() {
+		// Pass
 	}
 
 	/**
@@ -147,8 +128,7 @@ public class AbstractLookForEditorShell {
 	 */
 	private void createDiagramListcomposite() {
 		GridLayout gridLayout2 = new GridLayout();
-		diagramListcomposite = new Composite(cTabFolder, SWT.BORDER);
-		diagramListcomposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		diagramListcomposite = new Composite(tabFolder, SWT.BORDER);
 		createDiagramfilteredTree();
 		diagramListcomposite.setLayout(gridLayout2);
 	}
@@ -166,8 +146,7 @@ public class AbstractLookForEditorShell {
 
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 2;
-		treeViewcomposite = new Composite(cTabFolder, SWT.NONE);
-		treeViewcomposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		treeViewcomposite = new Composite(tabFolder, SWT.NONE);
 
 		createModelFilteredTree();
 
@@ -180,30 +159,10 @@ public class AbstractLookForEditorShell {
 		removeDiagrambutton.setLayoutData(gridData5);
 		cLabel = new CLabel(treeViewcomposite, SWT.NONE);
 		cLabel.setText("   "); //$NON-NLS-1$
-		cLabel.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 
 		afterTreeViewComposite = new Composite(treeViewcomposite, SWT.NONE);
 		afterTreeViewComposite.setLayout(new FillLayout());
 		afterTreeViewComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		afterTreeViewComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-	}
-
-	/**
-	 * Recursively set the background of all children of parent composite to chosen color
-	 * 
-	 * @param parent
-	 *            The composite that contains children
-	 * @param color
-	 *            The background color
-	 * @since 2.0
-	 */
-	protected void setChildrenBackground(Composite parent, Color color) {
-		for (Control child : parent.getChildren()) {
-			child.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-			if (child instanceof Composite) {
-				setChildrenBackground((Composite) child, color);
-			}
-		}
 	}
 
 	/**
@@ -257,46 +216,6 @@ public class AbstractLookForEditorShell {
 	}
 
 	/**
-	 * Gets the o kbutton.
-	 *
-	 * @return the oKbutton
-	 */
-	protected Button getOKbutton() {
-		return OKbutton;
-	}
-
-	/**
-	 * Sets the o kbutton.
-	 *
-	 * @param oKbutton
-	 *            the oKbutton to set
-	 */
-	// @unused
-	protected void setOKbutton(Button oKbutton) {
-		OKbutton = oKbutton;
-	}
-
-	/**
-	 * Gets the cancelbutton.
-	 *
-	 * @return the cancelbutton
-	 */
-	protected Button getCancelbutton() {
-		return cancelbutton;
-	}
-
-	/**
-	 * Sets the cancelbutton.
-	 *
-	 * @param cancelbutton
-	 *            the cancelbutton to set
-	 */
-	// @unused
-	protected void setCancelbutton(Button cancelbutton) {
-		this.cancelbutton = cancelbutton;
-	}
-
-	/**
 	 * Gets the diagram listtree.
 	 *
 	 * @return the diagramListtree
@@ -304,26 +223,6 @@ public class AbstractLookForEditorShell {
 	// @unused
 	protected Tree getDiagramListtree() {
 		return diagramListtree;
-	}
-
-	/**
-	 * Gets the lookfor shell.
-	 *
-	 * @return the lookforShell
-	 */
-	protected Shell getLookforShell() {
-		return lookforShell;
-	}
-
-	/**
-	 * Sets the lookfor shell.
-	 *
-	 * @param lookforShell
-	 *            the lookforShell to set
-	 */
-	// @unused
-	protected void setLookforShell(Shell lookforShell) {
-		this.lookforShell = lookforShell;
 	}
 
 	/**
@@ -350,7 +249,6 @@ public class AbstractLookForEditorShell {
 		gridData3.verticalSpan = 3;
 		gridData3.verticalAlignment = GridData.FILL;
 		modeFilteredTree = new FilteredTree(treeViewcomposite, SWT.BORDER, new PatternFilter(), true);
-		modeFilteredTree.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		modeFilteredTree.setLayoutData(gridData3);
 	}
 

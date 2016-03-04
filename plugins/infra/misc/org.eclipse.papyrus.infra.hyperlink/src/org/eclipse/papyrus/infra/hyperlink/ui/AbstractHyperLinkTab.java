@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 CEA LIST and others.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,16 +10,18 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - Consolidate all hyperlink helper contributions into one tab
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
-import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.widgets.TabFolder;
 
 /**
  *
@@ -33,26 +35,20 @@ public abstract class AbstractHyperLinkTab {
 	 */
 	private String tabId;
 
-	// TODO these parameters should be privated
 	/**
 	 * The HyperLinkHelper for this tab
 	 */
-	protected AbstractHyperLinkHelper hyperLinkHelper;
+	private AbstractHyperLinkHelper hyperLinkHelper;
 
 	/**
 	 * The hyperlink object
 	 */
-	protected List<HyperLinkObject> hyperlinkObjects;
-
-	/**
-	 * the CTabFolder
-	 */
-	protected CTabFolder cTabFolder;
+	private List<HyperLinkObject> hyperlinkObjects;
 
 	/**
 	 * The edited element
 	 */
-	protected EObject element;
+	private EObject element;
 
 	/**
 	 *
@@ -82,7 +78,7 @@ public abstract class AbstractHyperLinkTab {
 	 * Getter for {@link #tabId}
 	 *
 	 * @return
-	 *         this{@link #tabId}
+	 * 		this{@link #tabId}
 	 */
 	public final String getTabId() {
 		return this.tabId;
@@ -108,34 +104,40 @@ public abstract class AbstractHyperLinkTab {
 	/**
 	 * This method allows to init the parameter of the tab. These parameter can be set only one time!
 	 *
-	 * @param cTabFolder
-	 *            the CTabFolder for this tab
+	 * @param tabFolder
+	 *            the TabFolder for this tab
 	 * @param hyperlinkObjects
 	 *            the hyperlink objects
 	 * @param element
 	 *            the edited element
+	 * @since 2.0
 	 */
-	public void init(final CTabFolder cTabFolder, List<HyperLinkObject> hyperlinkObjects, final EObject element/* , final IHyperLinkShell shell */) {
-		if (this.cTabFolder == null) {
-			this.cTabFolder = cTabFolder;
-		}
-		if (this.hyperlinkObjects == null) {
-			this.hyperlinkObjects = hyperlinkObjects;
-		}
-		if (this.element == null) {
-			this.element = element;
-		}
+	public void init(final TabFolder tabFolder, List<HyperLinkObject> hyperlinkObjects, final EObject element/* , final IHyperLinkShell shell */) {
+		this.hyperlinkObjects = new ArrayList<>(hyperlinkObjects);
+		this.element = element;
 	}
 
 	/**
 	 * Getter for {@link #hyperlinkObjects}
 	 *
 	 * @return
-	 *         this{@link #hyperlinkObjects}
+	 * 		this{@link #hyperlinkObjects}
 	 */
 	public List<HyperLinkObject> getHyperlinkObjects() {
 		return this.hyperlinkObjects;
 	}
 
+	/**
+	 * @since 2.0
+	 */
+	protected AbstractHyperLinkHelper getHyperLinkHelper() {
+		return hyperLinkHelper;
+	}
 
+	/**
+	 * @since 2.0
+	 */
+	protected EObject getElement() {
+		return element;
+	}
 }

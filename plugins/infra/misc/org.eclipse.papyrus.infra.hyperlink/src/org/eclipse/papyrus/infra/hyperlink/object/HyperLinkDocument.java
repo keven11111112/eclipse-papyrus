@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 488965
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.object;
@@ -23,6 +24,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperlinkDocumentShell;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -62,7 +64,7 @@ public class HyperLinkDocument extends HyperLinkObject {
 			super.setObject(relativeURI.toString());
 		} catch (Exception e) {
 			Activator.log.error(e);
-			super.setObject("");
+			super.setObject(""); //$NON-NLS-1$
 		}
 	}
 
@@ -87,14 +89,15 @@ public class HyperLinkDocument extends HyperLinkObject {
 	}
 
 	@Override
-	public void executeEditMousePressed(List<HyperLinkObject> list, EObject amodel) {
-		EditorHyperlinkDocumentShell editor = new EditorHyperlinkDocumentShell();
+	public void executeEditMousePressed(Shell parentShell, List<HyperLinkObject> list, EObject amodel) {
+		EditorHyperlinkDocumentShell editor = new EditorHyperlinkDocumentShell(parentShell);
 		editor.setHyperlinkDocument(this);
 		editor.open();
-		int index = list.indexOf(this);
-		list.remove(this);
-		list.add(index, editor.getHyperlinkDocument());
-
+		if (editor.getHyperlinkDocument() != null) {
+			int index = list.indexOf(this);
+			list.remove(this);
+			list.add(index, editor.getHyperlinkDocument());
+		}
 	}
 
 	@Override
