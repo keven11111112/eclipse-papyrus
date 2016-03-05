@@ -23,7 +23,9 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -469,6 +471,93 @@ public class ManifestEditorTest {
 	public void createFiles() {
 		fixture.getEditor().createFiles(Collections.singleton("META-INF/MANIFEST.MF"));
 		assertThat(fixture.slurp("META-INF/MANIFEST.MF"), hasItem(containsString("Manifest-Version:")));
+	}
+
+	@WithResource("manifest_project/META-INF/MANIFEST.MF")
+	@Test
+	public void headerOrderMaintained_bug489075() {
+		// Make a simple change
+		fixture.getEditor().addDependency("org.eclipse.jface", "3.10.0");
+
+		fixture.getEditor().save();
+
+		List<String> manifest = getManifest();
+		List<String> headerNames = manifest.stream()
+				.filter(l -> !l.startsWith(" "))
+				.filter(l -> !l.trim().isEmpty())
+				.map(l -> l.substring(0, l.indexOf(':')))
+				.collect(Collectors.toList());
+
+		assertThat(headerNames, is(Arrays.asList(
+				"Manifest-Version",
+				"Require-Bundle",
+				"Import-Package",
+				"Export-Package",
+				"Bundle-Vendor",
+				"Bundle-ActivationPolicy",
+				"Bundle-Version",
+				"Bundle-Name",
+				"Bundle-ManifestVersion",
+				"Bundle-SymbolicName",
+				"Bundle-Localization",
+				"Bundle-RequiredExecutionEnvironment",
+				"Name",
+				"Full-Name",
+				"Company",
+				"Committer")));
+	}
+
+	@WithResource("manifest_project/META-INF/MANIFEST.MF")
+	@Test
+	public void addNewCustomSection_bug489075() {
+		// Add a new manifest section with custom attributes
+		fixture.getEditor().setValue("test-section", "Attr1", "foo");
+		fixture.getEditor().setValue("test-section", "Other", "something else");
+		fixture.getEditor().setValue("test-section", "Favorite", "true");
+
+		fixture.getEditor().save();
+
+		List<String> manifest = getManifest();
+		List<String> headerNames = manifest.stream()
+				.filter(l -> !l.startsWith(" "))
+				.filter(l -> !l.trim().isEmpty())
+				.map(l -> l.substring(0, l.indexOf(':')))
+				.collect(Collectors.toList());
+
+		// Isolate the new headers (the last four, including the "Name: test-section")
+		headerNames = headerNames.subList(headerNames.size() - 4, headerNames.size());
+
+		// The first is the section name header
+		assertThat(headerNames.get(0), is("Name"));
+
+		// But the others aren't in any defined order
+		assertThat(new HashSet<>(headerNames), is(new HashSet<>(Arrays.asList(
+				"Name",
+				"Attr1",
+				"Other",
+				"Favorite"))));
+	}
+
+	@WithResource("manifest_project/META-INF/MANIFEST.MF")
+	@Test
+	public void removeCustomSection_bug489075() {
+		// Add a new manifest section with custom attributes
+		fixture.getEditor().removeValue("author-info", "Full-Name");
+		fixture.getEditor().removeValue("author-info", "Company");
+		fixture.getEditor().removeValue("author-info", "Committer");
+
+		fixture.getEditor().save();
+
+		List<String> manifest = getManifest();
+		List<String> headerNames = manifest.stream()
+				.filter(l -> !l.startsWith(" "))
+				.filter(l -> !l.trim().isEmpty())
+				.map(l -> l.substring(0, l.indexOf(':')))
+				.collect(Collectors.toList());
+
+		// The custom section does not appear at all. Not even the section name
+		assertThat(headerNames, not(either(hasItem("Name"))
+				.or(hasItem("Full-Name")).or(hasItem("Company")).or(hasItem("Committer"))));
 	}
 
 	//

@@ -8,19 +8,23 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 485220
+ *  Christian W. Damus - bugs 485220, 489075
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.file;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -32,6 +36,7 @@ import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -77,6 +82,8 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	private static final String REEXPORT = "reexport"; //$NON-NLS-1$
 
 	private static final String VERSION = "version"; //$NON-NLS-1$
+
+	private static final String NAME_ATTRIBUTE = "Name"; //$NON-NLS-1$
 
 	/** the manifest file */
 	private IFile manifestFile;
@@ -310,7 +317,10 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		if (value == null) {
 			removeAttribute(section, name);
 		} else {
-			manifest.map(m -> m.getAttributes(section)).ifPresent(attrs -> {
+			// Implicitly create the section in order to set an attribute value
+			Optional<Attributes> attributes = manifest.map(m -> m.getEntries().computeIfAbsent(section,
+					__ -> new Attributes()));
+			attributes.ifPresent(attrs -> {
 				if (!Objects.equals(attrs.getValue(name), value)) {
 					touch();
 					attrs.putValue(name, value);
@@ -341,6 +351,9 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		manifest.map(m -> m.getAttributes(section)).ifPresent(attrs -> {
 			if (attrs.remove(new Attributes.Name(name)) != null) {
 				touch();
+				if (attrs.isEmpty()) {
+					manifest.get().getEntries().remove(section);
+				}
 			}
 		});
 	}
@@ -364,12 +377,14 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	@Override
 	protected void doSave() {
 		if (manifest.isPresent()) {
+			HeaderOrder headerOrder = getHeaderOrder(manifestFile);
 			final ByteArrayOutputStream os = new ByteArrayOutputStream();
 
 			try {
 				manifest.get().write(os);
 
-				final StringReader reader = new StringReader(format(os.toString("UTF-8"))); //$NON-NLS-1$
+				final StringReader reader = new StringReader(
+						format(sortHeaders(os.toString("UTF-8"), headerOrder))); //$NON-NLS-1$
 				manifestFile.setContents(new InputStream() {
 
 					@Override
@@ -398,7 +413,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 			non72safe += line;
 		}
 		// 2. split lines on comma (but not within version ranges)
-		lines = non72safe.split(",(?!\\s*\\d)");
+		lines = non72safe.split(COMMA_SPLIT);
 		String newText = ""; //$NON-NLS-1$
 		for (int i = 0; i < lines.length; i++) {
 			newText += lines[i].trim();
@@ -407,6 +422,90 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 			}
 		}
 		return newText + CRNL;
+	}
+
+	private HeaderOrder getHeaderOrder(IFile manifestFile) {
+		Predicate<String> blankLine = Pattern.compile("^\\s*$").asPredicate(); //$NON-NLS-1$
+
+		HeaderOrder.Builder builder = HeaderOrder.builder();
+
+		try (BufferedReader input = new BufferedReader(new InputStreamReader(manifestFile.getContents(), manifestFile.getCharset()))) {
+			input.lines().forEach(line -> {
+				if (blankLine.test(line)) {
+					// New section
+					builder.newSection();
+				} else if (!line.startsWith(" ")) { //$NON-NLS-1$
+					int colon = line.indexOf(':');
+					if (colon > 0) {
+						String headerName = line.substring(0, colon).trim();
+						if (NAME_ATTRIBUTE.equals(headerName)) {
+							// For a section name, use the value, not the attribute name
+							builder.sectionName(line.substring(colon + 1).trim());
+						} else {
+							builder.addAttribute(headerName);
+						}
+					}
+				}
+			});
+		} catch (Exception e) {
+			Activator.log.error("Failed to scan manifest for headers", e); //$NON-NLS-1$
+		}
+
+		return builder.build();
+	}
+
+	private String sortHeaders(String manifest, HeaderOrder headerOrder) {
+		StringBuilder result = new StringBuilder(manifest.length());
+
+		String[] sections = Pattern.compile("^\\s*$", Pattern.DOTALL | Pattern.MULTILINE) //$NON-NLS-1$
+				.split(manifest);
+		Pattern attrPattern = Pattern.compile("^(\\w[^:]+):.*?(?=^\\w|\\z)", Pattern.DOTALL | Pattern.MULTILINE); //$NON-NLS-1$
+		Pattern namePattern = Pattern.compile("^Name:(.*?)$", Pattern.DOTALL | Pattern.MULTILINE); //$NON-NLS-1$
+
+		String mainSection = sections[0];
+		Map<String, String> additionalSections = new HashMap<>();
+		for (int i = 1; i < sections.length; i++) {
+			Matcher nameMatcher = namePattern.matcher(sections[i]);
+			if (nameMatcher.find()) {
+				additionalSections.put(nameMatcher.group(1).trim(), sections[i]);
+			}
+		}
+
+		// Process all of the sections we had before, in the same order, followed by new sections
+		headerOrder.sectionsAsStream(additionalSections.keySet()).forEachOrdered(sectionOrder -> {
+			String section = sectionOrder.isMainSection() ? mainSection : additionalSections.remove(sectionOrder.getName());
+
+			// A named section might have been removed from the manifest
+			if (section != null) {
+				// Maintain relative ordering of new headers, but they will appear after the
+				// existing ones
+				Map<String, String> headers = new LinkedHashMap<>();
+
+				Matcher header = attrPattern.matcher(section);
+				while (header.find()) {
+					headers.put(header.group(1), header.group());
+				}
+
+				// Separate the sections
+				if (!sectionOrder.isMainSection()) {
+					result.append(CRNL);
+				}
+
+				// Now, output the headers in order
+				for (String headerName : sectionOrder.getAttributeNames()) {
+					String next = headers.remove(headerName);
+					if (next != null) { // This header may have been deleted
+						result.append(next); // This includes the trailing newline
+					}
+				}
+				// And whatever is new
+				for (String remaining : headers.values()) {
+					result.append(remaining); // This includes the trailing newline
+				}
+			}
+		});
+
+		return result.toString();
 	}
 
 	@Override
@@ -755,5 +854,125 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	@Override
 	public void removeImportedPackage(String packageName) {
 		transformImportedPackages(packageName::equals, (dep, parts) -> null);
+	}
+
+	//
+	// Nested types
+	//
+
+	/**
+	 * Ordering of headers in the manifest as it was in the current edition (which
+	 * is the edition prior to the one being saved).
+	 */
+	private static class HeaderOrder {
+		private final Section main = new Section();
+
+		// Maintain a defined ordering of sections as well as attributes within them
+		private final Map<String, Section> sections = new LinkedHashMap<>();
+
+		private HeaderOrder() {
+			super();
+		}
+
+		public Section getMainSection() {
+			return main;
+		}
+
+		public Section getSection(String name) {
+			// If it's a header with attribute and value both, get just the value
+			name = name.substring(name.indexOf(':') + 1).trim();
+			return sections.computeIfAbsent(name, Section::new);
+		}
+
+		public static Builder builder() {
+			return new Builder();
+		}
+
+		public Stream<Section> sectionsAsStream(Collection<String> implicitSectionNames) {
+			// Compute the sections that are new (didn't exist in the previous edition of the manifest)
+			List<String> newSectionNames = new ArrayList<>(implicitSectionNames);
+			newSectionNames.removeAll(sections.keySet());
+
+			// The main section is always first, followed by those that we had before, and then
+			// the new sections in whatever non-deterministic order
+			return Stream.concat(Stream.concat(
+					Stream.of(main),
+					sections.values().stream()),
+					newSectionNames.stream().map(this::getSection));
+		}
+
+		static final class Builder {
+			private HeaderOrder product = new HeaderOrder();
+			private Section currentSection = product.getMainSection();
+
+			Builder() {
+				super();
+			}
+
+			public Builder newSection() {
+				// Ignore multiple blank lines in sequence: they don't each denote sections
+				if (!currentSection.attributeNames.isEmpty()) {
+					currentSection = new Section();
+				}
+				return this;
+			}
+
+			public Builder sectionName(String name) {
+				currentSection.setName(name);
+				product.sections.put(name, currentSection);
+
+				// And we also need to add the Name attribute at this index
+				return addAttribute(NAME_ATTRIBUTE);
+			}
+
+			public Builder addAttribute(String name) {
+				currentSection.addAttribute(name);
+				return this;
+			}
+
+			public HeaderOrder build() {
+				return product;
+			}
+		}
+	}
+
+	/**
+	 * An ordering of attributes with a named section or the main section.
+	 */
+	private static class Section {
+		private static final String MAIN = "$main$"; //$NON-NLS-1$
+
+		private String name;
+		private final List<String> attributeNames = new ArrayList<>();
+
+		Section() {
+			this(MAIN);
+		}
+
+		Section(String name) {
+			super();
+
+			this.name = name;
+		}
+
+		public boolean isMainSection() {
+			return MAIN.equals(name);
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		void setName(String name) {
+			this.name = name;
+		}
+
+		void addAttribute(String name) {
+			attributeNames.add(name);
+		}
+
+		public Iterable<String> getAttributeNames() {
+			return attributeNames;
+		}
 	}
 }
