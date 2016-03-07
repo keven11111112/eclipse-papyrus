@@ -79,16 +79,13 @@ public class ValidateAction extends Action {
 		if (workbenchPart instanceof IDiagramWorkbenchPart) {
 			final IDiagramWorkbenchPart part = (IDiagramWorkbenchPart) workbenchPart;
 			try {
-				new WorkspaceModifyDelegatingOperation(
-						new IRunnableWithProgress() {
+				new WorkspaceModifyDelegatingOperation(new IRunnableWithProgress() {
 
-							@Override
-							public void run(IProgressMonitor monitor)
-									throws InterruptedException, InvocationTargetException {
-								runValidation(part.getDiagramEditPart(), part.getDiagram());
-							}
-						})
-								.run(new NullProgressMonitor());
+					@Override
+					public void run(IProgressMonitor monitor) throws InterruptedException, InvocationTargetException {
+						runValidation(part.getDiagramEditPart(), part.getDiagram());
+					}
+				}).run(new NullProgressMonitor());
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Validation action failed", e); //$NON-NLS-1$
 			}
@@ -101,8 +98,7 @@ public class ValidateAction extends Action {
 	public static void runValidation(View view) {
 		try {
 			if (UMLDiagramEditorUtil.openDiagram(view.eResource())) {
-				IEditorPart editorPart = PlatformUI.getWorkbench()
-						.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+				IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 				if (editorPart instanceof IDiagramWorkbenchPart) {
 					runValidation(((IDiagramWorkbenchPart) editorPart).getDiagramEditPart(), view);
 				} else {
@@ -110,8 +106,7 @@ public class ValidateAction extends Action {
 				}
 			}
 		} catch (Exception e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Validation action failed", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Validation action failed", e); //$NON-NLS-1$
 		}
 	}
 
@@ -123,9 +118,7 @@ public class ValidateAction extends Action {
 		if (shell == null) {
 			shell = new Shell();
 		}
-
-		DiagramEditPart diagramEditPart = OffscreenEditPartFactory.getInstance().createDiagramEditPart(
-				view.getDiagram(), shell);
+		DiagramEditPart diagramEditPart = OffscreenEditPartFactory.getInstance().createDiagramEditPart(view.getDiagram(), shell);
 		runValidation(diagramEditPart, view);
 	}
 
@@ -171,8 +164,7 @@ public class ValidateAction extends Action {
 		}
 		Diagnostic diagnostic = runEMFValidator(view);
 		createMarkers(target, diagnostic, diagramEditPart);
-		IBatchValidator validator = (IBatchValidator) ModelValidationService.getInstance().newValidator(
-				EvaluationMode.BATCH);
+		IBatchValidator validator = (IBatchValidator) ModelValidationService.getInstance().newValidator(EvaluationMode.BATCH);
 		validator.setIncludeLiveConstraints(true);
 		if (view.isSetElement() && view.getElement() != null) {
 			IStatus status = validator.validate(view.getElement());
@@ -189,16 +181,11 @@ public class ValidateAction extends Action {
 		}
 		final IStatus rootStatus = validationStatus;
 		List allStatuses = new ArrayList();
-		UMLDiagramEditorUtil.LazyElement2ViewMap element2ViewMap = new UMLDiagramEditorUtil.LazyElement2ViewMap(
-				diagramEditPart.getDiagramView(),
-				collectTargetElements(rootStatus, new HashSet<EObject>(), allStatuses));
+		UMLDiagramEditorUtil.LazyElement2ViewMap element2ViewMap = new UMLDiagramEditorUtil.LazyElement2ViewMap(diagramEditPart.getDiagramView(), collectTargetElements(rootStatus, new HashSet<EObject>(), allStatuses));
 		for (Iterator it = allStatuses.iterator(); it.hasNext();) {
 			IConstraintStatus nextStatus = (IConstraintStatus) it.next();
-			View view = UMLDiagramEditorUtil.findView(
-					diagramEditPart, nextStatus.getTarget(), element2ViewMap);
-			addMarker(diagramEditPart.getViewer(), target, view.eResource().getURIFragment(view),
-					EMFCoreUtil.getQualifiedName(nextStatus.getTarget(), true),
-					nextStatus.getMessage(), nextStatus.getSeverity());
+			View view = UMLDiagramEditorUtil.findView(diagramEditPart, nextStatus.getTarget(), element2ViewMap);
+			addMarker(diagramEditPart.getViewer(), target, view.eResource().getURIFragment(view), EMFCoreUtil.getQualifiedName(nextStatus.getTarget(), true), nextStatus.getMessage(), nextStatus.getSeverity());
 		}
 	}
 
@@ -211,19 +198,14 @@ public class ValidateAction extends Action {
 		}
 		final Diagnostic rootStatus = emfValidationStatus;
 		List<Diagnostic> allDiagnostics = new ArrayList<Diagnostic>();
-		UMLDiagramEditorUtil.LazyElement2ViewMap element2ViewMap = new UMLDiagramEditorUtil.LazyElement2ViewMap(
-				diagramEditPart.getDiagramView(),
-				collectTargetElements(rootStatus, new HashSet<EObject>(), allDiagnostics));
+		UMLDiagramEditorUtil.LazyElement2ViewMap element2ViewMap = new UMLDiagramEditorUtil.LazyElement2ViewMap(diagramEditPart.getDiagramView(), collectTargetElements(rootStatus, new HashSet<EObject>(), allDiagnostics));
 		for (Iterator<Diagnostic> it = emfValidationStatus.getChildren().iterator(); it.hasNext();) {
 			Diagnostic nextDiagnostic = it.next();
 			List<?> data = nextDiagnostic.getData();
 			if (data != null && !data.isEmpty() && data.get(0) instanceof EObject) {
 				EObject element = (EObject) data.get(0);
-				View view = UMLDiagramEditorUtil.findView(
-						diagramEditPart, element, element2ViewMap);
-				addMarker(diagramEditPart.getViewer(), target, view.eResource().getURIFragment(view),
-						EMFCoreUtil.getQualifiedName(element, true),
-						nextDiagnostic.getMessage(), diagnosticToStatusSeverity(nextDiagnostic.getSeverity()));
+				View view = UMLDiagramEditorUtil.findView(diagramEditPart, element, element2ViewMap);
+				addMarker(diagramEditPart.getViewer(), target, view.eResource().getURIFragment(view), EMFCoreUtil.getQualifiedName(element, true), nextDiagnostic.getMessage(), diagnosticToStatusSeverity(nextDiagnostic.getSeverity()));
 			}
 		}
 	}
@@ -235,8 +217,7 @@ public class ValidateAction extends Action {
 		if (target == null) {
 			return;
 		}
-		UMLMarkerNavigationProvider.addMarker(
-				target, elementId, location, message, statusSeverity);
+		UMLMarkerNavigationProvider.addMarker(target, elementId, location, message, statusSeverity);
 	}
 
 	/**
@@ -249,8 +230,7 @@ public class ValidateAction extends Action {
 			return IStatus.INFO;
 		} else if (diagnosticSeverity == Diagnostic.WARNING) {
 			return IStatus.WARNING;
-		} else if (diagnosticSeverity == Diagnostic.ERROR
-				|| diagnosticSeverity == Diagnostic.CANCEL) {
+		} else if (diagnosticSeverity == Diagnostic.ERROR || diagnosticSeverity == Diagnostic.CANCEL) {
 			return IStatus.ERROR;
 		}
 		return IStatus.INFO;

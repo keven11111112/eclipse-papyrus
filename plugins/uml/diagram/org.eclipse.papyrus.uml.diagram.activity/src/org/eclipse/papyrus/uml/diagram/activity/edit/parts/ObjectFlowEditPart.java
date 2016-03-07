@@ -63,8 +63,7 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ObjectFlowAppliedStereotypeEditPart) {
-			((ObjectFlowAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((ObjectFlowAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

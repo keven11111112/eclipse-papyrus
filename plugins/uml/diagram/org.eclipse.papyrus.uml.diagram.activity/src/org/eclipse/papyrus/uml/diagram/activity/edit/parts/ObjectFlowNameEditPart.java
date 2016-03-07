@@ -355,20 +355,18 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(
-								new RunnableWithResult.Impl<java.lang.Object>() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(new RunnableWithResult.Impl<java.lang.Object>() {
 
-									@Override
-									public void run() {
-										setResult(parser.isValidEditString(ParserUtil.getParserAdapter(getParserElement(), ObjectFlowNameEditPart.this), (String) value));
-									}
-								});
+							@Override
+							public void run() {
+								setResult(parser.isValidEditString(ParserUtil.getParserAdapter(getParserElement(), ObjectFlowNameEditPart.this), (String) value));
+							}
+						});
 						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
 					}
 				}
-
 				// shouldn't get here
 				return null;
 			}
@@ -410,9 +408,7 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new MultilineLabelDirectEditManager(this,
-					MultilineLabelDirectEditManager.getTextCellEditorClass(this),
-					UMLEditPartFactory.getTextCellEditorLocator(this)));
+			setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -541,11 +537,11 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 		// initialize the direct edit manager
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
+
 				@Override
 				public void run() {
 					if (isActive() && isEditable()) {
-						if (request.getExtendedData().get(
-								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+						if (request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else {
@@ -598,8 +594,7 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
-				NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
@@ -616,8 +611,7 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
-				NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
@@ -628,13 +622,9 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 	 */
 	@Override
 	protected void refreshFont() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
-				NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
-			FontData fontData = new FontData(
-					style.getFontName(), style.getFontHeight(),
-					(style.isBold() ? SWT.BOLD : SWT.NORMAL) |
-							(style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -715,7 +705,6 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 		if (checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
-
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -815,10 +804,8 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 			refreshUnderline();
 		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) ||
-				NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) ||
-				NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) ||
-				NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
+				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
 			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
@@ -835,7 +822,6 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 				}
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 

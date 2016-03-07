@@ -38,7 +38,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ConnectionsPreferencePage.initDefaults(store);
 		PrintingPreferencePage.initDefaults(store);
 		RulerGridPreferencePage.initDefaults(store);
-
 	}
 
 	/**

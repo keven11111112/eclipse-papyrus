@@ -95,12 +95,9 @@ public class ActivityPartitionEditPart extends RoundedCompartmentEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -122,15 +119,13 @@ public class ActivityPartitionEditPart extends RoundedCompartmentEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -201,15 +196,12 @@ public class ActivityPartitionEditPart extends RoundedCompartmentEditPart {
 			((ActivityPartitionNameEditPart) childEditPart).setLabel(getPrimaryShape().getPartitionLabel());
 			return true;
 		}
-
-
 		if (childEditPart instanceof ActivityPartitionActivityPartitionContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getActivityPartitionCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ActivityPartitionActivityPartitionContentCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -298,7 +290,6 @@ public class ActivityPartitionEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**

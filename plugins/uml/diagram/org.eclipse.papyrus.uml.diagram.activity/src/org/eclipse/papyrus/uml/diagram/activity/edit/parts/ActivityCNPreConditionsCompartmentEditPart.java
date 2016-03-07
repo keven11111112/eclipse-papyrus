@@ -8,7 +8,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
@@ -18,6 +17,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.edit.part.NoBorderListCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
@@ -27,7 +27,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 /**
  * @generated
  */
-public class ActivityCNPreConditionsCompartmentEditPart extends ListCompartmentEditPart {
+public class ActivityCNPreConditionsCompartmentEditPart extends NoBorderListCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -58,12 +58,11 @@ public class ActivityCNPreConditionsCompartmentEditPart extends ListCompartmentE
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
-		result.setBorder(null);
 		result.setTitleVisibility(false);
 		return result;
 	}
@@ -80,7 +79,6 @@ public class ActivityCNPreConditionsCompartmentEditPart extends ListCompartmentE
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCNPreConditionsCompartmentCanonicalEditPolicy());
-
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
@@ -101,7 +99,6 @@ public class ActivityCNPreConditionsCompartmentEditPart extends ListCompartmentE
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-
 		return super.getTargetEditPart(request);
 	}
 
@@ -111,10 +108,7 @@ public class ActivityCNPreConditionsCompartmentEditPart extends ListCompartmentE
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
-				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);
@@ -130,10 +124,7 @@ public class ActivityCNPreConditionsCompartmentEditPart extends ListCompartmentE
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(
-				this,
-				getFigure(),
-				new Rectangle(loc, size));
+		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
 	/**

@@ -166,12 +166,7 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				 * Custom figure
 				 */
 				return new CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart(view);
-			case ActivityActivityContentCompartmentEditPart.VISUAL_ID:
-				/*
-				 * Customization in order to make this compartment not selectable
-				 * Custom figure
-				 */
-				return new CustomActivityActivityContentCompartmentEditPart(view);
+			
 			case AcceptEventActionEditPart.VISUAL_ID:
 				return new CustomAcceptEventActionEditPart(view);
 			case AcceptTimeEventActionAppliedStereotypeEditPart.VISUAL_ID:

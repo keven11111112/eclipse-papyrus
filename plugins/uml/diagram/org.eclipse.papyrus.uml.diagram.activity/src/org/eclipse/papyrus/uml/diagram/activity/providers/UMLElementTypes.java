@@ -1038,567 +1038,194 @@ public class UMLElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
-
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Activity_2001, UMLPackage.eINSTANCE.getActivity());
-
-
 			elements.put(Parameter_3001, UMLPackage.eINSTANCE.getParameter());
-
-
 			elements.put(Constraint_3002, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Constraint_3003, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(InitialNode_3004, UMLPackage.eINSTANCE.getInitialNode());
-
-
 			elements.put(ActivityFinalNode_3005, UMLPackage.eINSTANCE.getActivityFinalNode());
-
-
 			elements.put(FlowFinalNode_3006, UMLPackage.eINSTANCE.getFlowFinalNode());
-
-
 			elements.put(OpaqueAction_3007, UMLPackage.eINSTANCE.getOpaqueAction());
-
-
 			elements.put(ValuePin_3015, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3016, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(InputPin_3013, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(OutputPin_3014, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(CallBehaviorAction_3008, UMLPackage.eINSTANCE.getCallBehaviorAction());
-
-
 			elements.put(ValuePin_3017, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3018, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(InputPin_3019, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(OutputPin_3020, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(CallOperationAction_3010, UMLPackage.eINSTANCE.getCallOperationAction());
-
-
 			elements.put(ActionInputPin_3021, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ValuePin_3022, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(InputPin_3023, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(OutputPin_3024, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(ValuePin_3025, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3026, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(InputPin_3027, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(DurationConstraint_3034, UMLPackage.eINSTANCE.getDurationConstraint());
-
-
 			elements.put(DurationConstraint_3035, UMLPackage.eINSTANCE.getDurationConstraint());
-
-
 			elements.put(TimeConstraint_3036, UMLPackage.eINSTANCE.getTimeConstraint());
-
-
 			elements.put(TimeConstraint_3037, UMLPackage.eINSTANCE.getTimeConstraint());
-
-
 			elements.put(IntervalConstraint_3032, UMLPackage.eINSTANCE.getIntervalConstraint());
-
-
 			elements.put(IntervalConstraint_3033, UMLPackage.eINSTANCE.getIntervalConstraint());
-
-
 			elements.put(Constraint_3011, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Constraint_3012, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(DecisionNode_3038, UMLPackage.eINSTANCE.getDecisionNode());
-
-
 			elements.put(MergeNode_3039, UMLPackage.eINSTANCE.getMergeNode());
-
-
 			elements.put(ForkNode_3040, UMLPackage.eINSTANCE.getForkNode());
-
-
 			elements.put(JoinNode_3041, UMLPackage.eINSTANCE.getJoinNode());
-
-
 			elements.put(DataStoreNode_3078, UMLPackage.eINSTANCE.getDataStoreNode());
-
-
 			elements.put(SendObjectAction_3042, UMLPackage.eINSTANCE.getSendObjectAction());
-
-
 			elements.put(ValuePin_3046, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3047, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(InputPin_3048, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3049, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3050, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(InputPin_3051, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(SendSignalAction_3052, UMLPackage.eINSTANCE.getSendSignalAction());
-
-
 			elements.put(ActionInputPin_3053, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ValuePin_3054, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(InputPin_3055, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3060, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3061, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(InputPin_3062, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ActivityParameterNode_3059, UMLPackage.eINSTANCE.getActivityParameterNode());
-
-
 			elements.put(AcceptEventAction_3063, UMLPackage.eINSTANCE.getAcceptEventAction());
-
-
 			elements.put(OutputPin_3064, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(ValueSpecificationAction_3076, UMLPackage.eINSTANCE.getValueSpecificationAction());
-
-
 			elements.put(OutputPin_3077, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(ConditionalNode_3069, UMLPackage.eINSTANCE.getConditionalNode());
-
-
 			elements.put(ExpansionRegion_3070, UMLPackage.eINSTANCE.getExpansionRegion());
-
-
 			elements.put(ExpansionNode_3074, UMLPackage.eINSTANCE.getExpansionNode());
-
-
 			elements.put(ExpansionNode_3075, UMLPackage.eINSTANCE.getExpansionNode());
-
-
 			elements.put(LoopNode_3071, UMLPackage.eINSTANCE.getLoopNode());
-
-
 			elements.put(InputPin_3105, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3192, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3193, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(OutputPin_3109, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(OutputPin_3110, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(OutputPin_3111, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(SequenceNode_3073, UMLPackage.eINSTANCE.getSequenceNode());
-
-
 			elements.put(StructuredActivityNode_3065, UMLPackage.eINSTANCE.getStructuredActivityNode());
-
-
 			elements.put(InputPin_3188, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3189, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3190, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(OutputPin_3191, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(ActivityPartition_3067, UMLPackage.eINSTANCE.getActivityPartition());
-
-
 			elements.put(InterruptibleActivityRegion_3068, UMLPackage.eINSTANCE.getInterruptibleActivityRegion());
-
-
 			elements.put(Comment_3080, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(ReadSelfAction_3081, UMLPackage.eINSTANCE.getReadSelfAction());
-
-
 			elements.put(OutputPin_3084, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(Activity_3083, UMLPackage.eINSTANCE.getActivity());
-
-
 			elements.put(CreateObjectAction_3086, UMLPackage.eINSTANCE.getCreateObjectAction());
-
-
 			elements.put(OutputPin_3087, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(NamedElement_3085, UMLPackage.eINSTANCE.getNamedElement());
-
-
 			elements.put(ReadStructuralFeatureAction_3088, UMLPackage.eINSTANCE.getReadStructuralFeatureAction());
-
-
 			elements.put(InputPin_3089, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3203, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3204, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(OutputPin_3090, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(AddStructuralFeatureValueAction_3091, UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction());
-
-
 			elements.put(InputPin_3092, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(InputPin_3093, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(InputPin_3181, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3182, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ValuePin_3183, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ValuePin_3184, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3185, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ActionInputPin_3186, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ActionInputPin_3187, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(OutputPin_3094, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(DestroyObjectAction_3095, UMLPackage.eINSTANCE.getDestroyObjectAction());
-
-
 			elements.put(InputPin_3096, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3173, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3174, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ReadVariableAction_3097, UMLPackage.eINSTANCE.getReadVariableAction());
-
-
 			elements.put(OutputPin_3098, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(AddVariableValueAction_3099, UMLPackage.eINSTANCE.getAddVariableValueAction());
-
-
 			elements.put(InputPin_3100, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(InputPin_3101, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3175, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ValuePin_3176, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3177, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ActionInputPin_3178, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(BroadcastSignalAction_3102, UMLPackage.eINSTANCE.getBroadcastSignalAction());
-
-
 			elements.put(InputPin_3103, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3179, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3180, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(CentralBufferNode_3104, UMLPackage.eINSTANCE.getCentralBufferNode());
-
-
 			elements.put(Constraint_3112, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(StartObjectBehaviorAction_3113, UMLPackage.eINSTANCE.getStartObjectBehaviorAction());
-
-
 			elements.put(OutputPin_3125, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(InputPin_3132, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3145, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3158, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(InputPin_3133, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3146, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3159, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(TestIdentityAction_3114, UMLPackage.eINSTANCE.getTestIdentityAction());
-
-
 			elements.put(OutputPin_3126, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(InputPin_3134, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(InputPin_3135, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3147, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ValuePin_3148, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3160, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ActionInputPin_3161, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ClearStructuralFeatureAction_3115, UMLPackage.eINSTANCE.getClearStructuralFeatureAction());
-
-
 			elements.put(OutputPin_3127, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(InputPin_3136, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3149, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3162, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(CreateLinkAction_3117, UMLPackage.eINSTANCE.getCreateLinkAction());
-
-
 			elements.put(InputPin_3137, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3151, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3163, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ReadLinkAction_3116, UMLPackage.eINSTANCE.getReadLinkAction());
-
-
 			elements.put(OutputPin_3128, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(InputPin_3138, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3150, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3164, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(DestroyLinkAction_3118, UMLPackage.eINSTANCE.getDestroyLinkAction());
-
-
 			elements.put(InputPin_3139, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3152, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3165, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ClearAssociationAction_3119, UMLPackage.eINSTANCE.getClearAssociationAction());
-
-
 			elements.put(InputPin_3140, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3153, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3166, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ReadExtentAction_3120, UMLPackage.eINSTANCE.getReadExtentAction());
-
-
 			elements.put(OutputPin_3129, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(ReclassifyObjectAction_3121, UMLPackage.eINSTANCE.getReclassifyObjectAction());
-
-
 			elements.put(InputPin_3141, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3154, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3167, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ReadIsClassifiedObjectAction_3122, UMLPackage.eINSTANCE.getReadIsClassifiedObjectAction());
-
-
 			elements.put(OutputPin_3130, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(InputPin_3142, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3155, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3168, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(ReduceAction_3123, UMLPackage.eINSTANCE.getReduceAction());
-
-
 			elements.put(OutputPin_3131, UMLPackage.eINSTANCE.getOutputPin());
-
-
 			elements.put(InputPin_3143, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3156, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3169, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(StartClassifierBehaviorAction_3124, UMLPackage.eINSTANCE.getStartClassifierBehaviorAction());
-
-
 			elements.put(InputPin_3144, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3157, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3170, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(CreateLinkObjectAction_3198, UMLPackage.eINSTANCE.getCreateLinkObjectAction());
-
-
 			elements.put(InputPin_3199, UMLPackage.eINSTANCE.getInputPin());
-
-
 			elements.put(ValuePin_3200, UMLPackage.eINSTANCE.getValuePin());
-
-
 			elements.put(ActionInputPin_3201, UMLPackage.eINSTANCE.getActionInputPin());
-
-
 			elements.put(OutputPin_3202, UMLPackage.eINSTANCE.getOutputPin());
-
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
-
 			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
-
-
 			elements.put(ObjectFlow_4003, UMLPackage.eINSTANCE.getObjectFlow());
-
-
 			elements.put(ControlFlow_4004, UMLPackage.eINSTANCE.getControlFlow());
-
-
 			elements.put(ExceptionHandler_4005, UMLPackage.eINSTANCE.getExceptionHandler());
-
 			elements.put(CommentAnnotatedElement_4006, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-
 			elements.put(ConstraintConstrainedElement_4007, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 		}
 		return elements.get(type);
@@ -2196,16 +1823,13 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4006);
 			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4007);
 		}
-
 		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
-
 		if (!result) {
 			IElementType[] supertypes = elementType.getAllSuperTypes();
 			for (int i = 0; !result && (i < supertypes.length); i++) {
 				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
 			}
 		}
-
 		return result;
 	}
 
@@ -2244,14 +1868,12 @@ public class UMLElementTypes {
 	 */
 	public static boolean isKindOf(IElementType subtype, IElementType supertype) {
 		boolean result = subtype == supertype;
-
 		if (!result) {
 			IElementType[] supertypes = subtype.getAllSuperTypes();
 			for (int i = 0; !result && (i < supertypes.length); i++) {
 				result = supertype == supertypes[i];
 			}
 		}
-
 		return result;
 	}
 }

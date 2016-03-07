@@ -21112,6 +21112,17 @@
         name="Rounded Border Named Element Edit Part inheritance"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart"/>
     <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="This extension enables to draw a rake on a CallBehaviorActionEditPart linked to an activity"
+        name="CallBehaviorAction"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart">
+      <propRefreshHook
+          comment="Add/Remove the RakeFigure when an Activity is selected as behavior or deselected"
+          classpath=""
+          triggeringCondition="resolveSemanticElement() instanceof CallBehaviorAction &amp;&amp; resolveSemanticElement().equals(event.getNotifier()) &amp;&amp; event.getFeature().equals(UMLPackage.eINSTANCE.getCallBehaviorAction_Behavior())"
+          action="CallBehaviorAction action = (CallBehaviorAction) resolveSemanticElement(); if (action.getBehavior() instanceof Activity) { getPrimaryShape().displayRake(true); } else { &#x9;getPrimaryShape().displayRake(false); }"/>
+    </extensionNodes>
+    <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"
         comment="Affixed Pin locator for Actions"
         classpath="org.eclipse.papyrus.uml.diagram.activity.locator.PinPositionLocator"
@@ -21230,9 +21241,20 @@
         comment="creation command"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="shape compartment without scrollbars"
-        genView="/0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8"
+        genView="/0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.4 /0/@diagram/@compartments.5"
         name="ShapeCompartmentWithoutScrollbarsEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.activity.edit.part.ShapeCompartmentWithoutScrollbarsEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="NoBorderListCompartmentEditPart"
+        genView="/0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@compartments.2 /0/@diagram/@compartments.11 /0/@diagram/@compartments.12 /0/@diagram/@compartments.13"
+        name="NoBorderListCompartmentEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.activity.edit.part.NoBorderListCompartmentEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Non selectable and no border Shape compartment"
+        genView="/0/@diagram/@compartments.3 /0/@diagram/@compartments.14"
+        name="BaseActivityContentCompartment"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.activity.edit.part.BaseActivityContentCompartmentEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

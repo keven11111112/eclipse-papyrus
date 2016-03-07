@@ -75,9 +75,7 @@ public class CommentEditPartCN extends AbstractCommentEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
@@ -94,7 +92,6 @@ public class CommentEditPartCN extends AbstractCommentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -149,8 +146,6 @@ public class CommentEditPartCN extends AbstractCommentEditPart {
 			((CommentBodyLabelEditPart) childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -214,7 +209,6 @@ public class CommentEditPartCN extends AbstractCommentEditPart {
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**

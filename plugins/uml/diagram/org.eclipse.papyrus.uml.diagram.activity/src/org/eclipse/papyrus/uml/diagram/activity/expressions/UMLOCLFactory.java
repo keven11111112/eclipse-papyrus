@@ -50,8 +50,7 @@ public class UMLOCLFactory {
 	 */
 	protected UMLOCLFactory() {
 		this.expressions = new UMLAbstractExpression[159];
-		this.expressionBodies = new String[] {
-				"if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
+		this.expressionBodies = new String[] { "if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
 				"if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
 				"if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
 				"if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).target = self\r\nelse false endif", //$NON-NLS-1$

@@ -35,7 +35,6 @@ public class UMLMatchingStrategy implements IEditorMatchingStrategy {
 		} catch (PartInitException e) {
 			return false;
 		}
-
 		if (editorInput.equals(input)) {
 			return true;
 		}

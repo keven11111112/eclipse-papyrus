@@ -2,11 +2,11 @@ package org.eclipse.papyrus.uml.diagram.activity.edit.part;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.ScrollPane;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart;
 
-public class ShapeCompartmentWithoutScrollbarsEditPart extends ShapeCompartmentEditPart {
+public class ShapeCompartmentWithoutScrollbarsEditPart extends LinkLFShapeCompartmentEditPart {
 
 	public ShapeCompartmentWithoutScrollbarsEditPart(View view) {
 		super(view);

@@ -78,13 +78,10 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCanonicalEditPolicyCN());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
@@ -103,7 +100,6 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -170,46 +166,36 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 			((ActivityIsSingleExecutionCNEditPart) childEditPart).setLabel(getPrimaryShape().getHeaderSingleExecution());
 			return true;
 		}
-
-
 		if (childEditPart instanceof ActivityCNParametersCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getParameterFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ActivityCNParametersCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		if (childEditPart instanceof ActivityCNPreConditionsCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPreconditionFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ActivityCNPreConditionsCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		if (childEditPart instanceof ActivityCNPostConditionsCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPostconditionFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ActivityCNPostConditionsCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
 		if (childEditPart instanceof ActivityCNContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getContentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ActivityCNContentCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-
-
-
 		// Papyrus Gencode :Affixed Activity Parameter Node locator for Activity
 		if (childEditPart instanceof ActivityParameterNodeEditPart) {
 			IBorderItemLocator locator = new ParameterNodeLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ActivityParameterNodeEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -315,7 +301,6 @@ public class ActivityEditPartCN extends RoundedCompartmentEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**

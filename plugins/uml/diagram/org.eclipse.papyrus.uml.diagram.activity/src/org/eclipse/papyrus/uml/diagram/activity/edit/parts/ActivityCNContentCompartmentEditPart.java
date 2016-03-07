@@ -15,10 +15,10 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.edit.part.BaseActivityContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityParameterNodeInCompartmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CompartmentXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy;
@@ -29,7 +29,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 /**
  * @generated
  */
-public class ActivityCNContentCompartmentEditPart extends LinkLFShapeCompartmentEditPart {
+public class ActivityCNContentCompartmentEditPart extends BaseActivityContentCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -52,12 +52,11 @@ public class ActivityCNContentCompartmentEditPart extends LinkLFShapeCompartment
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
-		result.setBorder(null);
 		result.setTitleVisibility(false);
 		return result;
 	}
@@ -74,7 +73,6 @@ public class ActivityCNContentCompartmentEditPart extends LinkLFShapeCompartment
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCNContentCompartmentCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityParameterNodeInCompartmentCreationEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
@@ -97,7 +95,6 @@ public class ActivityCNContentCompartmentEditPart extends LinkLFShapeCompartment
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-
 		return super.getTargetEditPart(request);
 	}
 
@@ -107,10 +104,7 @@ public class ActivityCNContentCompartmentEditPart extends LinkLFShapeCompartment
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
-				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);
@@ -126,10 +120,7 @@ public class ActivityCNContentCompartmentEditPart extends LinkLFShapeCompartment
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(
-				this,
-				getFigure(),
-				new Rectangle(loc, size));
+		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
 	/**

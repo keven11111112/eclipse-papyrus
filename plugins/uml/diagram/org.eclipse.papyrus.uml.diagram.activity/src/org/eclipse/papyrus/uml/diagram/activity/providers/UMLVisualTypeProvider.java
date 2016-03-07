@@ -37,13 +37,11 @@ public class UMLVisualTypeProvider extends AbstractVisualTypeProvider {
 	@Override
 	public IElementType getElementType(Diagram diagram, String viewType) {
 		IElementType result = null;
-
 		try {
 			result = UMLElementTypes.getElementType(viewType);
 		} catch (NumberFormatException e) {
 			// Not supported by this diagram
 		}
-
 		return result;
 	}
 

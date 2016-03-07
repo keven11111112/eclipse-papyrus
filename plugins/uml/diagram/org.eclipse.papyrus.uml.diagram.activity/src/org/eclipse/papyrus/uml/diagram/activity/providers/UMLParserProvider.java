@@ -71,9 +71,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getActivityName_5001Parser() {
 		if (activityName_5001Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			activityName_5001Parser = parser;
 		}
@@ -91,9 +89,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getBroadcastSignalActionName_6017Parser() {
 		if (broadcastSignalActionName_6017Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			broadcastSignalActionName_6017Parser = parser;
 		}
@@ -170,9 +166,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInitialNodeName_6034Parser() {
 		if (initialNodeName_6034Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			initialNodeName_6034Parser = parser;
 		}
@@ -204,9 +198,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getActivityFinalNodeName_6033Parser() {
 		if (activityFinalNodeName_6033Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			activityFinalNodeName_6033Parser = parser;
 		}
@@ -238,9 +230,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getFlowFinalNodeName_6035Parser() {
 		if (flowFinalNodeName_6035Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			flowFinalNodeName_6035Parser = parser;
 		}
@@ -272,9 +262,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getOpaqueActionName_5003Parser() {
 		if (opaqueActionName_5003Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			opaqueActionName_5003Parser = parser;
 		}
@@ -291,9 +279,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getOpaqueActionName_6028Parser() {
 		if (opaqueActionName_6028Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			opaqueActionName_6028Parser = parser;
 		}
@@ -475,9 +461,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCallBehaviorActionName_6029Parser() {
 		if (callBehaviorActionName_6029Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			callBehaviorActionName_6029Parser = parser;
 		}
@@ -659,9 +643,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCallOperationActionName_6020Parser() {
 		if (callOperationActionName_6020Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			callOperationActionName_6020Parser = parser;
 		}
@@ -948,9 +930,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getConstraintName_5007Parser() {
 		if (constraintName_5007Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			constraintName_5007Parser = parser;
 		}
@@ -982,9 +962,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getConstraintName_5008Parser() {
 		if (constraintName_5008Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			constraintName_5008Parser = parser;
 		}
@@ -1016,9 +994,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDecisionNodeName_6036Parser() {
 		if (decisionNodeName_6036Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			decisionNodeName_6036Parser = parser;
 		}
@@ -1065,9 +1041,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getMergeNodeName_6037Parser() {
 		if (mergeNodeName_6037Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			mergeNodeName_6037Parser = parser;
 		}
@@ -1099,9 +1073,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getForkNodeName_6038Parser() {
 		if (forkNodeName_6038Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			forkNodeName_6038Parser = parser;
 		}
@@ -1148,9 +1120,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getJoinNodeName_6039Parser() {
 		if (joinNodeName_6039Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			joinNodeName_6039Parser = parser;
 		}
@@ -1182,9 +1152,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getSendObjectActionName_5059Parser() {
 		if (sendObjectActionName_5059Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			sendObjectActionName_5059Parser = parser;
 		}
@@ -1201,9 +1169,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getSendObjectActionName_6027Parser() {
 		if (sendObjectActionName_6027Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			sendObjectActionName_6027Parser = parser;
 		}
@@ -1460,9 +1426,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getSendSignalActionName_5060Parser() {
 		if (sendSignalActionName_5060Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			sendSignalActionName_5060Parser = parser;
 		}
@@ -1479,9 +1443,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getSendSignalActionName_6032Parser() {
 		if (sendSignalActionName_6032Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			sendSignalActionName_6032Parser = parser;
 		}
@@ -1813,9 +1775,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getAcceptEventActionName_6040Parser() {
 		if (acceptEventActionName_6040Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			acceptEventActionName_6040Parser = parser;
 		}
@@ -2147,9 +2107,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getActivityPartitionName_5118Parser() {
 		if (activityPartitionName_5118Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			activityPartitionName_5118Parser = parser;
 		}
@@ -2166,9 +2124,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getActivityPartitionName_6016Parser() {
 		if (activityPartitionName_6016Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			activityPartitionName_6016Parser = parser;
 		}
@@ -2200,9 +2156,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCreateObjectActionName_5148Parser() {
 		if (createObjectActionName_5148Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			createObjectActionName_5148Parser = parser;
 		}
@@ -2219,9 +2173,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCreateObjectActionName_6024Parser() {
 		if (createObjectActionName_6024Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			createObjectActionName_6024Parser = parser;
 		}
@@ -2268,9 +2220,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReadStructuralFeatureActionName_5153Parser() {
 		if (readStructuralFeatureActionName_5153Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			readStructuralFeatureActionName_5153Parser = parser;
 		}
@@ -2287,9 +2237,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReadStructuralFeatureActionName_6023Parser() {
 		if (readStructuralFeatureActionName_6023Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			readStructuralFeatureActionName_6023Parser = parser;
 		}
@@ -2456,9 +2404,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getAddStructuralFeatureValueActionName_5160Parser() {
 		if (addStructuralFeatureValueActionName_5160Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			addStructuralFeatureValueActionName_5160Parser = parser;
 		}
@@ -2475,9 +2421,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getAddStructuralFeatureValueActionName_6019Parser() {
 		if (addStructuralFeatureValueActionName_6019Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			addStructuralFeatureValueActionName_6019Parser = parser;
 		}
@@ -2884,9 +2828,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDestroyObjectActionName_5163Parser() {
 		if (destroyObjectActionName_5163Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			destroyObjectActionName_5163Parser = parser;
 		}
@@ -2903,9 +2845,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDestroyObjectActionName_6022Parser() {
 		if (destroyObjectActionName_6022Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			destroyObjectActionName_6022Parser = parser;
 		}
@@ -3042,9 +2982,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReadVariableActionName_5166Parser() {
 		if (readVariableActionName_5166Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			readVariableActionName_5166Parser = parser;
 		}
@@ -3061,9 +2999,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReadVariableActionName_6021Parser() {
 		if (readVariableActionName_6021Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			readVariableActionName_6021Parser = parser;
 		}
@@ -3110,9 +3046,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getAddVariableValueActionName_5171Parser() {
 		if (addVariableValueActionName_5171Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			addVariableValueActionName_5171Parser = parser;
 		}
@@ -3129,9 +3063,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getAddVariableValueActionName_6018Parser() {
 		if (addVariableValueActionName_6018Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			addVariableValueActionName_6018Parser = parser;
 		}
@@ -3388,9 +3320,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getBroadcastSignalActionName_5175Parser() {
 		if (broadcastSignalActionName_5175Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			broadcastSignalActionName_5175Parser = parser;
 		}
@@ -3572,9 +3502,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCentralBufferNodeName_6030Parser() {
 		if (centralBufferNodeName_6030Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			centralBufferNodeName_6030Parser = parser;
 		}
@@ -3591,9 +3519,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getConstraintName_5189Parser() {
 		if (constraintName_5189Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			constraintName_5189Parser = parser;
 		}
@@ -3625,9 +3551,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getStartObjectBehaviorActionName_5191Parser() {
 		if (startObjectBehaviorActionName_5191Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			startObjectBehaviorActionName_5191Parser = parser;
 		}
@@ -3644,9 +3568,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getStartObjectBehaviorActionName_5394Parser() {
 		if (startObjectBehaviorActionName_5394Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			startObjectBehaviorActionName_5394Parser = parser;
 		}
@@ -3933,9 +3855,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getTestIdentityActionName_5192Parser() {
 		if (testIdentityActionName_5192Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			testIdentityActionName_5192Parser = parser;
 		}
@@ -3952,9 +3872,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getTestIdentityActionName_5395Parser() {
 		if (testIdentityActionName_5395Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			testIdentityActionName_5395Parser = parser;
 		}
@@ -4241,9 +4159,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getClearStructuralFeatureActionName_5193Parser() {
 		if (clearStructuralFeatureActionName_5193Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			clearStructuralFeatureActionName_5193Parser = parser;
 		}
@@ -4260,9 +4176,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getClearStructuralFeatureActionName_5396Parser() {
 		if (clearStructuralFeatureActionName_5396Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			clearStructuralFeatureActionName_5396Parser = parser;
 		}
@@ -4429,9 +4343,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCreateLinkActionName_5195Parser() {
 		if (createLinkActionName_5195Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			createLinkActionName_5195Parser = parser;
 		}
@@ -4448,9 +4360,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCreateLinkActionName_5397Parser() {
 		if (createLinkActionName_5397Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			createLinkActionName_5397Parser = parser;
 		}
@@ -4587,9 +4497,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReadLinkActionName_5194Parser() {
 		if (readLinkActionName_5194Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			readLinkActionName_5194Parser = parser;
 		}
@@ -4606,9 +4514,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReadLinkActionName_5398Parser() {
 		if (readLinkActionName_5398Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			readLinkActionName_5398Parser = parser;
 		}
@@ -4775,9 +4681,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDestroyLinkActionName_5196Parser() {
 		if (destroyLinkActionName_5196Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			destroyLinkActionName_5196Parser = parser;
 		}
@@ -4794,9 +4698,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDestroyLinkActionName_5399Parser() {
 		if (destroyLinkActionName_5399Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			destroyLinkActionName_5399Parser = parser;
 		}
@@ -4933,9 +4835,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getClearAssociationActionName_5197Parser() {
 		if (clearAssociationActionName_5197Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			clearAssociationActionName_5197Parser = parser;
 		}
@@ -4952,9 +4852,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getClearAssociationActionName_5400Parser() {
 		if (clearAssociationActionName_5400Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			clearAssociationActionName_5400Parser = parser;
 		}
@@ -5091,9 +4989,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReadExtentActionName_5198Parser() {
 		if (readExtentActionName_5198Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			readExtentActionName_5198Parser = parser;
 		}
@@ -5110,9 +5006,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReadExtentActionName_5402Parser() {
 		if (readExtentActionName_5402Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			readExtentActionName_5402Parser = parser;
 		}
@@ -5159,9 +5053,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReclassifyObjectActionName_5199Parser() {
 		if (reclassifyObjectActionName_5199Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			reclassifyObjectActionName_5199Parser = parser;
 		}
@@ -5178,9 +5070,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReclassifyObjectActionName_5401Parser() {
 		if (reclassifyObjectActionName_5401Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			reclassifyObjectActionName_5401Parser = parser;
 		}
@@ -5317,9 +5207,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReadIsClassifiedObjectActionName_5200Parser() {
 		if (readIsClassifiedObjectActionName_5200Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			readIsClassifiedObjectActionName_5200Parser = parser;
 		}
@@ -5336,9 +5224,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReadIsClassifiedObjectActionName_5403Parser() {
 		if (readIsClassifiedObjectActionName_5403Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			readIsClassifiedObjectActionName_5403Parser = parser;
 		}
@@ -5505,9 +5391,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReduceActionName_5201Parser() {
 		if (reduceActionName_5201Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			reduceActionName_5201Parser = parser;
 		}
@@ -5524,9 +5408,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReduceActionName_5404Parser() {
 		if (reduceActionName_5404Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			reduceActionName_5404Parser = parser;
 		}
@@ -5693,9 +5575,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getStartClassifierBehaviorActionName_5202Parser() {
 		if (startClassifierBehaviorActionName_5202Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			startClassifierBehaviorActionName_5202Parser = parser;
 		}
@@ -5712,9 +5592,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getStartClassifierBehaviorActionName_5405Parser() {
 		if (startClassifierBehaviorActionName_5405Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			startClassifierBehaviorActionName_5405Parser = parser;
 		}
@@ -5851,9 +5729,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCreateLinkObjectActionName_5406Parser() {
 		if (createLinkObjectActionName_5406Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			createLinkObjectActionName_5406Parser = parser;
 		}
@@ -5870,9 +5746,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getCreateLinkObjectActionName_5407Parser() {
 		if (createLinkObjectActionName_5407Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			createLinkObjectActionName_5407Parser = parser;
 		}
@@ -6054,9 +5928,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReadSelfActionName_5139Parser() {
 		if (readSelfActionName_5139Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			readSelfActionName_5139Parser = parser;
 		}
@@ -6073,9 +5945,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getReadSelfActionName_6025Parser() {
 		if (readSelfActionName_6025Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			readSelfActionName_6025Parser = parser;
 		}
@@ -6122,9 +5992,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getActivityName_5142Parser() {
 		if (activityName_5142Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			activityName_5142Parser = parser;
 		}
@@ -6156,9 +6024,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getValueSpecificationActionName_5126Parser() {
 		if (valueSpecificationActionName_5126Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			valueSpecificationActionName_5126Parser = parser;
 		}
@@ -6175,9 +6041,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getValueSpecificationActionName_6026Parser() {
 		if (valueSpecificationActionName_6026Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			valueSpecificationActionName_6026Parser = parser;
 		}
@@ -6254,9 +6118,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDataStoreNodeName_6031Parser() {
 		if (dataStoreNodeName_6031Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			dataStoreNodeName_6031Parser = parser;
 		}
@@ -6423,9 +6285,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getIntervalConstraintName_5036Parser() {
 		if (intervalConstraintName_5036Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			intervalConstraintName_5036Parser = parser;
 		}
@@ -6457,9 +6317,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getIntervalConstraintName_5037Parser() {
 		if (intervalConstraintName_5037Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			intervalConstraintName_5037Parser = parser;
 		}
@@ -6491,9 +6349,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDurationConstraintName_5038Parser() {
 		if (durationConstraintName_5038Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			durationConstraintName_5038Parser = parser;
 		}
@@ -6525,9 +6381,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDurationConstraintName_5039Parser() {
 		if (durationConstraintName_5039Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			durationConstraintName_5039Parser = parser;
 		}
@@ -6559,9 +6413,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getTimeConstraintName_5040Parser() {
 		if (timeConstraintName_5040Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			timeConstraintName_5040Parser = parser;
 		}
@@ -6593,9 +6445,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getTimeConstraintName_5041Parser() {
 		if (timeConstraintName_5041Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			timeConstraintName_5041Parser = parser;
 		}
@@ -6627,9 +6477,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getObjectFlowName_6001Parser() {
 		if (objectFlowName_6001Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			objectFlowName_6001Parser = parser;
 		}
@@ -6736,9 +6584,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getControlFlowName_6003Parser() {
 		if (controlFlowName_6003Parser == null) {
-			EAttribute[] features = new EAttribute[] {
-					UMLPackage.eINSTANCE.getNamedElement_Name()
-			};
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			controlFlowName_6003Parser = parser;
 		}
@@ -6815,7 +6661,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getActivityName_5001Parser();
 			case ActivityIsSingleExecutionEditPart.VISUAL_ID:
 				return getActivityIsSingleExecution_5002Parser();
-
 			case ParameterEditPart.VISUAL_ID:
 				return getParameter_3001Parser();
 			case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
@@ -6826,285 +6671,236 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getInitialNodeName_6034Parser();
 			case InitialNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getInitialNodeLabel_5080Parser();
-
 			case ActivityFinalNodeFloatingNameEditPart.VISUAL_ID:
 				return getActivityFinalNodeName_6033Parser();
 			case ActivityFinalNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getActivityFinalNodeLabel_5081Parser();
-
 			case FlowFinalNodeFloatingNameEditPart.VISUAL_ID:
 				return getFlowFinalNodeName_6035Parser();
 			case FlowFinalNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getFlowFinalNodeLabel_5082Parser();
-
 			case OpaqueActionNameEditPart.VISUAL_ID:
 				return getOpaqueActionName_5003Parser();
 			case OpaqueActionFloatingNameEditPart.VISUAL_ID:
 				return getOpaqueActionName_6028Parser();
-
 			case ValuePinInOActLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5011Parser();
 			case ValuePinInOActValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5024Parser();
 			case ValuePinInOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePinLabel_5083Parser();
-
 			case ActionInputPinInOActLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5012Parser();
 			case ActionInputPinInOActValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5025Parser();
 			case ActionInputPinInOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5084Parser();
-
 			case InputPinInOActLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5009Parser();
 			case InputPinInOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPinLabel_5085Parser();
-
 			case OutputPinInOActLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5010Parser();
 			case OutputPinInOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPinLabel_5086Parser();
-
 			case CallBehaviorActionNameEditPart.VISUAL_ID:
 				return getCallBehaviorActionLabel_5004Parser();
 			case CallBehaviorActionFloatingNameEditPart.VISUAL_ID:
 				return getCallBehaviorActionName_6029Parser();
-
 			case ValuePinInCBActLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5013Parser();
 			case ValuePinInCBActValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5026Parser();
 			case ValuePinInCBActAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePinLabel_5087Parser();
-
 			case ActionInputPinInCBActLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5014Parser();
 			case ActionInputPinInCBActValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5027Parser();
 			case ActionInputPinInCBActAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5088Parser();
-
 			case InputPinInCBActLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5015Parser();
 			case InputPinInCBActAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPinLabel_5089Parser();
-
 			case OutputPinInCBActLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5016Parser();
 			case OutputPinInCBActAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPinLabel_5090Parser();
-
 			case CallOperationActionNameEditPart.VISUAL_ID:
 				return getCallOperationActionLabel_5006Parser();
 			case CallOperationActionFloatingNameEditPart.VISUAL_ID:
 				return getCallOperationActionName_6020Parser();
-
 			case ActionInputPinInCOActLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5017Parser();
 			case ActionInputPinInCOActValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5028Parser();
 			case ActionInputPinInCOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5091Parser();
-
 			case ValuePinInCOActLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5018Parser();
 			case ValuePinInCOActValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5029Parser();
 			case ValuePinInCOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePinLabel_5092Parser();
-
 			case InputPinInCOActLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5019Parser();
 			case InputPinInCOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPinLabel_5093Parser();
-
 			case OutputPinInCOActLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5020Parser();
 			case OutputPinInCOActAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPinLabel_5094Parser();
-
 			case ValuePinInCOActAsTargetLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5021Parser();
 			case ValuePinInCOActAsTargetValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5030Parser();
 			case ValuePinInCOActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePinLabel_5095Parser();
-
 			case ActionInputPinInCOActAsTargetLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5022Parser();
 			case ActionInputPinInCOActAsTargetValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5031Parser();
 			case ActionInputPinInCOActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5096Parser();
-
 			case InputPinInCOActAsTargetLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5023Parser();
 			case InputPinInCOActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPinLabel_5097Parser();
-
 			case DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 				return getDurationConstraintName_5038Parser();
 			case DurationConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
 				return getDurationConstraintLabel_5130Parser();
-
 			case DurationConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return getDurationConstraintName_5039Parser();
 			case DurationConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
 				return getDurationConstraintLabel_5131Parser();
-
 			case TimeConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 				return getTimeConstraintName_5040Parser();
 			case TimeConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
 				return getTimeConstraintLabel_5132Parser();
-
 			case TimeConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return getTimeConstraintName_5041Parser();
 			case TimeConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
 				return getTimeConstraintLabel_5133Parser();
-
 			case IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 				return getIntervalConstraintName_5036Parser();
 			case IntervalConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
 				return getIntervalConstraintLabel_5134Parser();
-
 			case IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return getIntervalConstraintName_5037Parser();
 			case IntervalConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
 				return getIntervalConstraintLabel_5135Parser();
-
 			case ConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 				return getConstraintName_5007Parser();
 			case ConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
 				return getConstraintLabel_5136Parser();
-
 			case ConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return getConstraintName_5008Parser();
 			case ConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
 				return getConstraintLabel_5137Parser();
-
 			case DecisionNodeFloatingNameEditPart.VISUAL_ID:
 				return getDecisionNodeName_6036Parser();
 			case DecisionInputEditPart.VISUAL_ID:
 				return getDecisionNodeLabel_5043Parser();
 			case DecisionNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getDecisionNodeLabel_5098Parser();
-
 			case MergeNodeFloatingNameEditPart.VISUAL_ID:
 				return getMergeNodeName_6037Parser();
 			case MergeNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getMergeNodeLabel_5099Parser();
-
 			case ForkNodeFloatingNameEditPart.VISUAL_ID:
 				return getForkNodeName_6038Parser();
 			case ForkNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getForkNodeLabel_5100Parser();
-
 			case JoinNodeFloatingNameEditPart.VISUAL_ID:
 				return getJoinNodeName_6039Parser();
 			case JoinSpecEditPart.VISUAL_ID:
 				return getJoinNodeLabel_5042Parser();
 			case JoinNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getJoinNodeLabel_5101Parser();
-
 			case DataStoreNodeLabelEditPart.VISUAL_ID:
 				return getDataStoreNodeLabel_5127Parser();
 			case DataStoreSelectionEditPart.VISUAL_ID:
 				return getDataStoreNodeLabel_5128Parser();
 			case DataStoreNodeFloatingNameEditPart.VISUAL_ID:
 				return getDataStoreNodeName_6031Parser();
-
 			case SendObjectActionNameEditPart.VISUAL_ID:
 				return getSendObjectActionName_5059Parser();
 			case SendObjectActionFloatingNameEditPart.VISUAL_ID:
 				return getSendObjectActionName_6027Parser();
-
 			case ValuePinInSendObjActAsReqLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5049Parser();
 			case ValuePinInSendObjActAsReqValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5050Parser();
 			case ValuePinInSendObjActAsReqAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePinLabel_5102Parser();
-
 			case ActionInputPinInSendObjActAsReqLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5051Parser();
 			case ActionInputPinInSendObjActAsReqValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5052Parser();
 			case ActionInputPinInSendObjActAsReqAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5103Parser();
-
 			case InputPinInSendObjActAsReqLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5053Parser();
 			case InputPinInSendObjActAsReqAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPinLabel_5104Parser();
-
 			case ValuePinInSendObjActAsTargetLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5054Parser();
 			case ValuePinInSendObjActAsTargetValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5055Parser();
 			case ValuePinInSendObjActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePinLabel_5105Parser();
-
 			case ActionInputPinInSendObjActAsTargetLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5056Parser();
 			case ActionInputPinInSendObjActAsTargetValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5057Parser();
 			case ActionInputPinInSendObjActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5106Parser();
-
 			case InputPinInSendObjActAsTargetLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5058Parser();
 			case InputPinInSendObjActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPinLabel_5107Parser();
-
 			case SendSignalActionNameEditPart.VISUAL_ID:
 				return getSendSignalActionName_5060Parser();
 			case SendSignalActionFloatingNameEditPart.VISUAL_ID:
 				return getSendSignalActionName_6032Parser();
-
 			case ActionInputPinInSendSigActLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5061Parser();
 			case ActionInputPinInSendSigActValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5062Parser();
 			case ActionInputPinInSendSigActAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5108Parser();
-
 			case ValuePinInSendSigActLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5063Parser();
 			case ValuePinInSendSigActValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5064Parser();
 			case ValuePinInSendSigActAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePinLabel_5109Parser();
-
 			case InputPinInSendSigActLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5065Parser();
 			case InputPinInSendSigActAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPinLabel_5110Parser();
-
 			case ValuePinInSendSigActAsTargetLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5072Parser();
 			case ValuePinInSendSigActAsTargetValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5073Parser();
 			case ValuePinInSendSigActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePinLabel_5111Parser();
-
 			case ActionInputPinInSendSigActAsTargetLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5074Parser();
 			case ActionInputPinInSendSigActAsTargetValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5075Parser();
 			case ActionInputPinInSendSigActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5112Parser();
-
 			case InputPinInSendSigActAsTargetLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5076Parser();
 			case InputPinInSendSigActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPinLabel_5113Parser();
-
 			case ParameterNodeNameEditPart.VISUAL_ID:
 				return getActivityParameterNodeLabel_5071Parser();
 			case ActivityParameterNodeStreamLabelEditPart.VISUAL_ID:
 				return getActivityParameterNodeLabel_5430Parser();
-
 			case AcceptEventActionLabelEditPart.VISUAL_ID:
 				return getAcceptEventActionLabel_5078Parser();
 			case AcceptTimeEventActionLabelEditPart.VISUAL_ID:
@@ -7113,718 +6909,588 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getAcceptEventActionLabel_5115Parser();
 			case AcceptEventActionFloatingNameEditPart.VISUAL_ID:
 				return getAcceptEventActionName_6040Parser();
-
 			case OutputPinInAcceptEventActionLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5077Parser();
 			case OutputPinInAcceptEventActionAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPinLabel_5114Parser();
-
 			case ValueSpecificationActionNameEditPart.VISUAL_ID:
 				return getValueSpecificationActionName_5126Parser();
 			case ValueSpecificationActionFloatingNameEditPart.VISUAL_ID:
 				return getValueSpecificationActionName_6026Parser();
-
 			case OutputPinInValSpecActLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5124Parser();
 			case OutputPinInValSpecActAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPinLabel_5125Parser();
-
 			case ConditionalNodeKeywordEditPart.VISUAL_ID:
 				return getConditionalNodeLabel_5119Parser();
-
 			case ExpansionRegionKeywordEditPart.VISUAL_ID:
 				return getExpansionRegionLabel_5120Parser();
-
-
-
 			case LoopNodeKeywordEditPart.VISUAL_ID:
 				return getLoopNodeLabel_5121Parser();
-
 			case InputPinInLoopNodeAsVariableLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5178Parser();
 			case InputPinInStructuredActivityNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPinLabel_5179Parser();
-
 			case ValuePinInLoopNodeAsVariableLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5388Parser();
 			case ValuePinInLoopNodeAsVariableValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5389Parser();
 			case ValuePinInLoopNodeAsVariableAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePinLabel_5390Parser();
-
 			case ActionPinInLoopNodeAsVariableLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5391Parser();
 			case ActionPinInLoopNodeAsVariableValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5392Parser();
 			case ActionPinInLoopNodeAsVariableAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5393Parser();
-
 			case OutputPinInLoopNodeAsBodyOutputLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5184Parser();
 			case OutputPinInLoopNodeAsBodyOutputAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPinLabel_5185Parser();
-
 			case OutputPinInLoopNodeAsLoopVariableLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5186Parser();
 			case OutputPinInLoopNodeAsLoopVariableAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPinLabel_5183Parser();
-
 			case OutputPinInLoopNodeAsResultLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5187Parser();
 			case OutputPinInLoopNodeAsResultAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPinLabel_5188Parser();
-
 			case SequenceNodeKeywordEditPart.VISUAL_ID:
 				return getSequenceNodeLabel_5123Parser();
-
 			case StructuredActivityNodeKeywordEditPart.VISUAL_ID:
 				return getStructuredActivityNodeLabel_5117Parser();
-
 			case InputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5377Parser();
 			case InputPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID:
 				return getInputPinLabel_5378Parser();
-
 			case ValuePinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5379Parser();
 			case ValuePinInStructuredActivityNodeAsStructuredNodeInputsValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5380Parser();
 			case ValuePinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID:
 				return getValuePinLabel_5381Parser();
-
 			case ActionPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5382Parser();
 			case ActionPinInStructuredActivityNodeAsStructuredNodeInputsValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5383Parser();
 			case ActionPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5384Parser();
-
 			case OutputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5385Parser();
 			case OutputPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPinLabel_5386Parser();
-
 			case ActivityPartitionNameEditPart.VISUAL_ID:
 				return getActivityPartitionName_5118Parser();
 			case ActivityPartitionFloatingNameEditPart.VISUAL_ID:
 				return getActivityPartitionName_6016Parser();
-
-
 			case CommentBodyLabelEditPart.VISUAL_ID:
 				return getCommentBody_5138Parser();
-
 			case ReadSelfActionNameEditPart.VISUAL_ID:
 				return getReadSelfActionName_5139Parser();
 			case ReadSelfActionFloatingNameEditPart.VISUAL_ID:
 				return getReadSelfActionName_6025Parser();
-
 			case OutputPinInReadSelfActionLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5144Parser();
 			case OutputPinInReadSelfActionAppliedStereotypeEditPart.VISUAL_ID:
 				return getOutputPinLabel_5145Parser();
-
 			case ActivityNameEditPartCN.VISUAL_ID:
 				return getActivityName_5142Parser();
 			case ActivityIsSingleExecutionCNEditPart.VISUAL_ID:
 				return getActivityIsSingleExecution_5143Parser();
-
 			case CreateObjectActionNameEditPart.VISUAL_ID:
 				return getCreateObjectActionName_5148Parser();
 			case CreateObjectActionFloatingNameEditPart.VISUAL_ID:
 				return getCreateObjectActionName_6024Parser();
-
 			case OutputPinInCreateObjectActionAsResultLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5146Parser();
 			case OutputPinInCreateObjectActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5147Parser();
-
 			case ShapeNamedElementNameEditPart.VISUAL_ID:
 				return getNamedElementName_5129Parser();
-
 			case ReadStructuralFeatureActionNameEditPart.VISUAL_ID:
 				return getReadStructuralFeatureActionName_5153Parser();
 			case ReadStructuralFeatureActionFloatingNameEditPart.VISUAL_ID:
 				return getReadStructuralFeatureActionName_6023Parser();
-
 			case InputPinInReadStructuralFeatureAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5149Parser();
 			case InputPinInReadStructuralFeatureAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5150Parser();
-
 			case ValuePinInReadStructuralFeatureAsObjectNameLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5420Parser();
 			case ValuePinInReadStructuralFeatureAsObjectValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5421Parser();
 			case ValuePinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5422Parser();
-
 			case ActionPinInReadStructuralFeatureAsObjectNameLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5423Parser();
 			case ActionPinInReadStructuralFeatureAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5419Parser();
 			case ActionPinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5418Parser();
-
 			case OutputPinInReadStructuralFeatureAsResultLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5151Parser();
 			case InputPinInReadStructuralFeatureAsResultWrappingLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5152Parser();
-
 			case AddStructuralFeatureValueActionNameEditPart.VISUAL_ID:
 				return getAddStructuralFeatureValueActionName_5160Parser();
 			case AddStructuralFeatureValueActionFloatingNameEditPart.VISUAL_ID:
 				return getAddStructuralFeatureValueActionName_6019Parser();
-
 			case InputPinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5154Parser();
 			case InputPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5155Parser();
-
 			case InputPinInAddStructuralFeatureValueActionAsValueLabel2EditPart.VISUAL_ID:
 				return getInputPinLabel_5156Parser();
 			case InputPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabel2EditPart.VISUAL_ID:
 				return getInputPinLabel_5157Parser();
-
 			case InputPinInAddStructuralFeatureValueActionAsInserAtLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5357Parser();
 			case InputPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5358Parser();
-
 			case ValuePinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5359Parser();
 			case ValuePinInAddStructuralFeatureValueActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5360Parser();
 			case ValuePinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5361Parser();
-
 			case ValuePinInAddStructuralFeatureValueActionAsValueLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5362Parser();
 			case ValuePinInAddStructuralFeatureValueActionAsValueValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5363Parser();
 			case ValuePinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5364Parser();
-
 			case ValuePinInAddStructuralFeatureValueActionAsInserAtLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5365Parser();
 			case ValuePinInAddStructuralFeatureValueActionAsInserAtValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5366Parser();
 			case ValuePinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5367Parser();
-
 			case ActionPinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5368Parser();
 			case ActionPinInAddStructuralFeatureValueActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5369Parser();
 			case ActionPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5370Parser();
-
 			case ActionPinInAddStructuralFeatureValueActionAsValueLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5371Parser();
 			case ActionPinInAddStructuralFeatureValueActionAsValueValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5372Parser();
 			case ActionPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5373Parser();
-
 			case ActionPinInAddStructuralFeatureValueActionAsInserAtLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5374Parser();
 			case ActionPinInAddStructuralFeatureValueActionAsInserAtValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5375Parser();
 			case ActionPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5376Parser();
-
 			case OutputPinInAddStructuralFeatureValueActionAsResultLabel3EditPart.VISUAL_ID:
 				return getOutputPinLabel_5158Parser();
 			case OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart.VISUAL_ID:
 				return getOutputPinLabel_5159Parser();
-
 			case DestroyObjectActionNameEditPart.VISUAL_ID:
 				return getDestroyObjectActionName_5163Parser();
 			case DestroyObjectActionFloatingNameEditPart.VISUAL_ID:
 				return getDestroyObjectActionName_6022Parser();
-
 			case InputPinInDestroyObjectActionLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5161Parser();
 			case InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5162Parser();
-
 			case ValuePinInDestroyObjectActionLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5332Parser();
 			case ValuePinInDestroyObjectActionValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5333Parser();
 			case ValuePinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5334Parser();
-
 			case ActionPinInDestroyObjectActionLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5335Parser();
 			case ActionPinInDestroyObjectActionValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5336Parser();
 			case ActionPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5337Parser();
-
 			case ReadVariableActionNameEditPart.VISUAL_ID:
 				return getReadVariableActionName_5166Parser();
 			case ReadVariableActionFloatingNameEditPart.VISUAL_ID:
 				return getReadVariableActionName_6021Parser();
-
 			case OutputPinInReadVariableActionAsResultLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5164Parser();
 			case OutputPinInReadVariableActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5165Parser();
-
 			case AddVariableValueActionNameEditPart.VISUAL_ID:
 				return getAddVariableValueActionName_5171Parser();
 			case AddVariableValueActionFloatingNameEditPart.VISUAL_ID:
 				return getAddVariableValueActionName_6018Parser();
-
 			case InputPinInAddVariableValueActionAsInsertAtLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5167Parser();
 			case InputPinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5168Parser();
-
 			case InputPinInAddVariableValueActionAsValueLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5169Parser();
 			case InputPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5170Parser();
-
 			case ValuePinInAddVariableValueActionAsInsertAtLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5350Parser();
 			case ValuePinInAddVariableValueActionAsInsertAtValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5339Parser();
 			case ValuePinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5340Parser();
-
 			case ValuePinInAddVariableValueActionAsValueLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5341Parser();
 			case ValuePinInAddVariableValueActionAsValueValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5342Parser();
 			case ValuePinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5343Parser();
-
 			case ActionPinInAddVariableValueActionAsInsertAtLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5344Parser();
 			case ActionPinInAddVariableValueActionAsInsertAtValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5345Parser();
 			case ActionPinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5346Parser();
-
 			case ActionPinInAddVariableValueActionAsValueLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5347Parser();
 			case ActionPinInAddVariableValueActionAsValueValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5348Parser();
 			case ActionPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5349Parser();
-
 			case BroadcastSignalActionNameEditPart.VISUAL_ID:
 				return getBroadcastSignalActionName_5175Parser();
 			case BroadcastSignalActionFloatingNameEditPart.VISUAL_ID:
 				return getBroadcastSignalActionName_6017Parser();
-
 			case InputPinInBroadcastSignalActionLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5172Parser();
 			case InputPinInBroadcastSignalActionValueLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5173Parser();
 			case InputPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5174Parser();
-
 			case ValuePinInBroadcastSignalActionLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5351Parser();
 			case ValuePinInBroadcastSignalActionValueLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5352Parser();
 			case ValuePinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5353Parser();
-
 			case ActionPinInBroadcastSignalActionLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5354Parser();
 			case ActionPinInBroadcastSignalActionValueLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5355Parser();
 			case ActionPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5356Parser();
-
 			case CentralBufferNodeLabelEditPart.VISUAL_ID:
 				return getCentralBufferNodeLabel_5176Parser();
 			case CentralBufferNodeSelectionEditPart.VISUAL_ID:
 				return getCentralBufferNodeLabel_5177Parser();
 			case CentralBufferNodeFloatingNameEditPart.VISUAL_ID:
 				return getCentralBufferNodeName_6030Parser();
-
 			case ConstraintNameEditPartCN.VISUAL_ID:
 				return getConstraintName_5189Parser();
 			case ConstraintBodyEditPartCN.VISUAL_ID:
 				return getConstraintSpecification_5190Parser();
-
 			case StartObjectBehaviorActionNameEditPart.VISUAL_ID:
 				return getStartObjectBehaviorActionName_5191Parser();
 			case StartObjectBehaviorActionFloatingNameEditPart.VISUAL_ID:
 				return getStartObjectBehaviorActionName_5394Parser();
-
 			case OutputPinInStartObjectBehaviorActionLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5203Parser();
 			case OutputPinInStartObjectBehaviorActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5204Parser();
-
 			case InputPinInStartObjectBehaviorActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5217Parser();
 			case InputPinInStartObjectBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5218Parser();
-
 			case ValuePinInStartObjectBehaviorActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5245Parser();
 			case ValuePinInStartObjectBehaviorActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5246Parser();
 			case ValuePinInStartObjectBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5247Parser();
-
 			case ActionPinInStartObjectBehaviorActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5263Parser();
 			case ActionPinInStartObjectBehaviorActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5264Parser();
 			case ActionPinInStartObjectBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5265Parser();
-
 			case InputPinInStartObjectBehaviorActionAsArgumentLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5219Parser();
 			case InputPinInStartObjectBehaviorActionAsArgumentAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5220Parser();
-
 			case ValuePinInStartObjectBehaviorActionAsArgumentLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5248Parser();
 			case ValuePinInStartObjectBehaviorActionAsArgumentValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5249Parser();
 			case ValuePinInStartObjectBehaviorActionAsArgumentAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5250Parser();
-
 			case ActionPinInStartObjectBehaviorActionAsArgumentLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5266Parser();
 			case ActionPinInStartObjectBehaviorActionAsArgumentValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5267Parser();
 			case ActionPinInStartObjectBehaviorActionAsArgumentAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5268Parser();
-
 			case TestIdentityActionNameEditPart.VISUAL_ID:
 				return getTestIdentityActionName_5192Parser();
 			case TestIdentityActionFloatingNameEditPart.VISUAL_ID:
 				return getTestIdentityActionName_5395Parser();
-
 			case OutputPinInTestIdentityActionItemLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5205Parser();
 			case OutputPinInTestIdentityActionItemAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5206Parser();
-
 			case InputPinInTestIdentityActionAsFirstLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5221Parser();
 			case InputPinInTestIdentityActionAsFirstAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5222Parser();
-
 			case InputPinInTestIdentityActionAsSecondLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5223Parser();
 			case InputPinInTestIdentityActionAsSecondAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5224Parser();
-
 			case ValuePinInTestIdentityActionAsFirstLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5251Parser();
 			case ValuePinInTestIdentityActionAsFirstValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5252Parser();
 			case ValuePinInTestIdentityActionAsFirstAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5253Parser();
-
 			case ValuePinInTestIdentityActionAsSecondLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5254Parser();
 			case ValuePinInTestIdentityActionAsSecondValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5255Parser();
 			case ValuePinInTestIdentityActionAsSecondAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5256Parser();
-
 			case ActionPinInTestIdentityActionAsFirstLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5269Parser();
 			case ActionPinInTestIdentityActionAsFirstValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5270Parser();
 			case ActionPinInTestIdentityActionAsFirstAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5271Parser();
-
 			case ActionPinInTestIdentityActionAsSecondLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5272Parser();
 			case ActionPinInTestIdentityActionAsSecondValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5273Parser();
 			case ActionPinInTestIdentityActionAsSecondAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5274Parser();
-
 			case ClearStructuralFeatureActionNameEditPart.VISUAL_ID:
 				return getClearStructuralFeatureActionName_5193Parser();
 			case ClearStructuralFeatureActionFloatingNameEditPart.VISUAL_ID:
 				return getClearStructuralFeatureActionName_5396Parser();
-
 			case OutputPinInClearStructuralFeatureActionLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5207Parser();
 			case OutputPinInClearStructuralFeatureActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5208Parser();
-
 			case InputPinInClearStructuralFeatureActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5225Parser();
 			case InputPinInClearStructuralFeatureActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5226Parser();
-
 			case ValuePinInClearStructuralFeatureActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5260Parser();
 			case ValuePinInClearStructuralFeatureActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5261Parser();
 			case ValuePinInClearStructuralFeatureActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5262Parser();
-
 			case ActionInputPinInClearStructuralFeatureActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5275Parser();
 			case ActionInputPinInClearStructuralFeatureActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5276Parser();
 			case ActionInputPinInClearStructFeatActAsObjectAppliedStereotypeEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5277Parser();
-
 			case CreateLinkActionNameEditPart.VISUAL_ID:
 				return getCreateLinkActionName_5195Parser();
 			case CreateLinkActionFloatingNameEditPart.VISUAL_ID:
 				return getCreateLinkActionName_5397Parser();
-
 			case InputPinInCreateLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5227Parser();
 			case InputPinInCreateLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5228Parser();
-
 			case ValuePinInCreateLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5281Parser();
 			case ValuePinInCreateLinkActionAsInputValueValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5282Parser();
 			case ValuePinInCreateLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5283Parser();
-
 			case ActionInputPinInCreateLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5278Parser();
 			case ActionInputPinInCreateLinkActionAsInputValueValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5279Parser();
 			case ActionInputPinInCreateLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5280Parser();
-
 			case ReadLinkActionNameEditPart.VISUAL_ID:
 				return getReadLinkActionName_5194Parser();
 			case ReadLinkActionFloatingNameEditPart.VISUAL_ID:
 				return getReadLinkActionName_5398Parser();
-
 			case OutputPinInReadLinkActionLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5209Parser();
 			case OutputPinInReadLinkActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5210Parser();
-
 			case InputPinInReadLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5229Parser();
 			case InputPinInReadLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5230Parser();
-
 			case ValuePinInReadLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5287Parser();
 			case ValuePinInReadLinkActionAsInputValueValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5288Parser();
 			case ValuePinInReadLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5289Parser();
-
 			case ActionInputPinInReadLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5284Parser();
 			case ActionInputPinInReadLinkActionAsInputValueValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5285Parser();
 			case ActionInputPinInReadLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5286Parser();
-
 			case DestroyLinkActionNameEditPart.VISUAL_ID:
 				return getDestroyLinkActionName_5196Parser();
 			case DestroyLinkActionFloatingNameEditPart.VISUAL_ID:
 				return getDestroyLinkActionName_5399Parser();
-
 			case InputPinInDestroyLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5231Parser();
 			case InputPinInDestroyLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5232Parser();
-
 			case ValuePinInDestroyLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5290Parser();
 			case ValuePinInDestroyLinkActionAsInputValueValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5291Parser();
 			case ValuePinInDestroyLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5292Parser();
-
 			case ActionInputPinInDestroyLinkActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5293Parser();
 			case ActionInputPinInDestroyLinkActionAsInputValueValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5294Parser();
 			case ActionInputPinInDestroyLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5295Parser();
-
 			case ClearAssociationActionNameEditPart.VISUAL_ID:
 				return getClearAssociationActionName_5197Parser();
 			case ClearAssociationActionFloatingNameEditPart.VISUAL_ID:
 				return getClearAssociationActionName_5400Parser();
-
 			case InputPinInClearAssociationActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5235Parser();
 			case InputPinInClearAssociationActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5236Parser();
-
 			case ValuePinInClearAssociationActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5296Parser();
 			case ValuePinInClearAssociationActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5297Parser();
 			case ValuePinInClearAssociationActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5298Parser();
-
 			case ActionPinInClearAssociationActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5299Parser();
 			case ActionPinInClearAssociationActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5300Parser();
 			case ActionPinInClearAssociationActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5301Parser();
-
 			case ReadExtentActionNameEditPart.VISUAL_ID:
 				return getReadExtentActionName_5198Parser();
 			case ReadExtentActionFloatingNameEditPart.VISUAL_ID:
 				return getReadExtentActionName_5402Parser();
-
 			case OutputPinInReadExtentActionLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5211Parser();
 			case OutputPinInReadExtentActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5212Parser();
-
 			case ReclassifyObjectActionNameEditPart.VISUAL_ID:
 				return getReclassifyObjectActionName_5199Parser();
 			case ReclassifyObjectActionFloatingNameEditPart.VISUAL_ID:
 				return getReclassifyObjectActionName_5401Parser();
-
 			case InputPinInReclassifyObjectActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5237Parser();
 			case InputPinInReclassifyObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5238Parser();
-
 			case ValuePinInReclassifyObjectActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5302Parser();
 			case ValuePinInReclassifyObjectActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5303Parser();
 			case ValuePinInReclassifyObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5304Parser();
-
 			case ActionPinInReclassifyObjectActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5305Parser();
 			case ActionPinInReclassifyObjectActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5306Parser();
 			case ActionPinInReclassifyObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5307Parser();
-
 			case ReadIsClassifiedObjectActionNameEditPart.VISUAL_ID:
 				return getReadIsClassifiedObjectActionName_5200Parser();
 			case ReadIsClassifiedObjectActionFloatingNameEditPart.VISUAL_ID:
 				return getReadIsClassifiedObjectActionName_5403Parser();
-
 			case OutputPinInReadIsClassifiedObjectActionLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5213Parser();
 			case OutputPinInReadIsClassifiedObjectActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5214Parser();
-
 			case InputPinInReadIsClassifiedObjectActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5239Parser();
 			case InputPinInReadIsClassifiedObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5240Parser();
-
 			case ValuePinInReadIsClassifiedObjectActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5308Parser();
 			case ValuePinInReadIsClassifiedObjectActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5309Parser();
 			case ValuePinInReadIsClassifiedObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5310Parser();
-
 			case ActionPinInReadIsClassifiedObjectActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5311Parser();
 			case ActionPinInReadIsClassifiedObjectActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5312Parser();
 			case ActionPinInReadIsClassifiedObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5313Parser();
-
 			case ReduceActionNameEditPart.VISUAL_ID:
 				return getReduceActionName_5201Parser();
 			case ReduceActionFloatingNameEditPart.VISUAL_ID:
 				return getReduceActionName_5404Parser();
-
 			case OutputPinInReduceActionLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5215Parser();
 			case OutputPinInReduceActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5216Parser();
-
 			case InputPinInReduceActionAsCollectionLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5241Parser();
 			case InputPinInReduceActionAsCollectionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5242Parser();
-
 			case ValuePinInReduceActionAsCollectionLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5314Parser();
 			case ValuePinInReduceActionAsCollectionValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5315Parser();
 			case ValuePinInReduceActionAsCollectionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5316Parser();
-
 			case ActionPinInReduceActionAsCollectionLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5317Parser();
 			case ActionPinInReduceActionAsCollectionValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5318Parser();
 			case ActionPinInReduceActionAsCollectionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5319Parser();
-
 			case StartClassifierBehaviorActionNameEditPart.VISUAL_ID:
 				return getStartClassifierBehaviorActionName_5202Parser();
 			case StartClassifierBehaviorActionFloatingNameEditPart.VISUAL_ID:
 				return getStartClassifierBehaviorActionName_5405Parser();
-
 			case InputPinInStartClassifierBehaviorActionAsObjectLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5243Parser();
 			case InputPinInStartClassifierBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5244Parser();
-
 			case ValuePinInStartClassifierBehaviorActionAsObjectLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5320Parser();
 			case ValuePinInStartClassifierBehaviorActionAsObjectValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5321Parser();
 			case ValuePinInStartClassifierBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5322Parser();
-
 			case ActionPinInStartClassifierBehaviorActionAsObjectLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5323Parser();
 			case ActionPinInStartClassifierBehaviorActionAsObjectValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5324Parser();
 			case ActionPinInStartClassifierBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5325Parser();
-
 			case CreateLinkObjectActionNameEditPart.VISUAL_ID:
 				return getCreateLinkObjectActionName_5406Parser();
 			case CreateLinkObjectActionFloatingNameEditPart.VISUAL_ID:
 				return getCreateLinkObjectActionName_5407Parser();
-
 			case InputPinInCreateLinkObjectActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5408Parser();
 			case InputPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getInputPinLabel_5409Parser();
-
 			case ValuePinInCreateLinkObjectActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5410Parser();
 			case ValuePinInCreateLinkObjectActionAsInputValueValueEditPart.VISUAL_ID:
 				return getValuePinLabel_5411Parser();
 			case ValuePinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getValuePinLabel_5412Parser();
-
 			case ActionPinInCreateLinkObjectActionAsInputValueLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5413Parser();
 			case ActionPinInCreateLinkObjectActionAsInputValueValueEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5414Parser();
 			case ActionPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getActionInputPinLabel_5415Parser();
-
 			case OutputPinInCreateLinkObjectActionLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5416Parser();
 			case OutputPinInCreateLinkObjectActionAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return getOutputPinLabel_5417Parser();
-
-
-
 			case ObjectFlowNameEditPart.VISUAL_ID:
 				return getObjectFlowName_6001Parser();
 			case ObjectFlowWeightEditPart.VISUAL_ID:
@@ -7839,7 +7505,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getObjectFlowLabel_6008Parser();
 			case ObjectFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return getObjectFlowLabel_6010Parser();
-
 			case ControlFlowNameEditPart.VISUAL_ID:
 				return getControlFlowName_6003Parser();
 			case ControlFlowWeightEditPart.VISUAL_ID:
@@ -7848,12 +7513,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getControlFlowLabel_6009Parser();
 			case ControlFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return getControlFlowLabel_6011Parser();
-
 			case ExceptionHandlerTypeEditPart.VISUAL_ID:
 				return getExceptionHandlerLabel_6012Parser();
-
-
-
 			}
 		}
 		return null;

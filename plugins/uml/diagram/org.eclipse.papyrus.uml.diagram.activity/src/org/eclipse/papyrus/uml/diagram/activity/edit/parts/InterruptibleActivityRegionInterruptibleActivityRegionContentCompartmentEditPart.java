@@ -81,7 +81,6 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new
 		// org.eclipse.papyrus.uml.diagram.activity.edit.policies.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ActivityGroupCustomDragAndDropEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new InterruptibleActivityRegionCompartmentCreationEditPolicy());
@@ -102,7 +101,6 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-
 		return super.getTargetEditPart(request);
 	}
 
@@ -112,10 +110,7 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
-				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);
@@ -131,10 +126,7 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(
-				this,
-				getFigure(),
-				new Rectangle(loc, size));
+		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
 	/**

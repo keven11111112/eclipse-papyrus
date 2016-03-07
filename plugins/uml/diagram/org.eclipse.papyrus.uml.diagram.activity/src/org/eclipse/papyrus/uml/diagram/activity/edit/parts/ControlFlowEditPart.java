@@ -63,8 +63,7 @@ public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ControlFlowAppliedStereotypeEditPart) {
-			((ControlFlowAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((ControlFlowAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
