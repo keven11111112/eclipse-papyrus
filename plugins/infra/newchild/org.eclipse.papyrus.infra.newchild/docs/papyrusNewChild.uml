@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADL4Eclipse="http:///schemas/ADL4Eclipse/_rk7nwOqKEeOfTcbrnCq2oQ/3" xmlns:Document="http:///schemas/Document/_qR4REMn0EeO9CYUoXDRplw/0" xmlns:ModuleLayer="http://OSGI/schemas/ModuleLayer/_0xHxU4DEEeKQG4TlBAn6bg/3" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:structure="http://DeveloperProcess/schemas/structure/_VA9p4McPEeO9CYUoXDRplw/1" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADL4Eclipse/_rk7nwOqKEeOfTcbrnCq2oQ/3 pathmap://ADL4ECLIPSE_PROFILES/adl4eclipse.profile.uml#_rlFYwOqKEeOfTcbrnCq2oQ http:///schemas/Document/_qR4REMn0EeO9CYUoXDRplw/0 pathmap://DEVELOPER_PROFILES/Document.profile.uml#_qR44IMn0EeO9CYUoXDRplw http://OSGI/schemas/ModuleLayer/_0xHxU4DEEeKQG4TlBAn6bg/3 pathmap://OSGI_PROFILES/osgi.profile.uml#_0xRiUIDEEeKQG4TlBAn6bg http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements http://DeveloperProcess/schemas/structure/_VA9p4McPEeO9CYUoXDRplw/1 pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_VA-4AMcPEeO9CYUoXDRplw">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ADL4Eclipse="http:///schemas/ADL4Eclipse/_Ww-fcFMUEeWmCZVdWNq14A/41" xmlns:Document="http:///schemas/Document/_RQrLoGwBEeSIYu1Ih2FYyQ/10" xmlns:ModuleLayer="http://OSGI/schemas/ModuleLayer/_vEc8UFChEeWCedWm4kJ8pQ/31" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:structure="http://DeveloperProcess/schemas/structure/_rpmLUHVxEeSZ-fQGFkyJeQ/6" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/ADL4Eclipse/_Ww-fcFMUEeWmCZVdWNq14A/41 pathmap://ADL4ECLIPSE_PROFILES/adl4eclipse.profile.uml#_WxCw4FMUEeWmCZVdWNq14A http:///schemas/Document/_RQrLoGwBEeSIYu1Ih2FYyQ/10 pathmap://DEVELOPER_PROFILES_MDE/Document.profile.uml#_RQrLoWwBEeSIYu1Ih2FYyQ http://OSGI/schemas/ModuleLayer/_vEc8UFChEeWCedWm4kJ8pQ/31 pathmap://OSGI_PROFILES/osgi.profile.uml#_vEf_oFChEeWCedWm4kJ8pQ http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements http://DeveloperProcess/schemas/structure/_rpmLUHVxEeSZ-fQGFkyJeQ/6 pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml#_rpmyYHVxEeSZ-fQGFkyJeQ">
   <uml:Model xmi:id="_a0QCwFOCEeOE6bh9v5dYKg" name="PapyrusNewChild">
     <packagedElement xmi:type="uml:Model" xmi:id="_52hvUPCDEeOEP-VOZrQAkw" name="Requirements">
       <packagedElement xmi:type="uml:Class" xmi:id="_6Pfk0FOGEeOuspyO4PzXCg" name="AddNewChild"/>
@@ -7,6 +7,10 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_cj5MsFOIEeOuspyO4PzXCg" name="newChildFromProfile"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_1sxP4FgNEeOKQOyOw2l5lw" name="newChildMenuDisplay"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_Dm5BYFgOEeOKQOyOw2l5lw" name="RoleAndElementCreation"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_wD1scPspEeWfd8HYkrLHlg" name="deployProgrammaticallyNewChild"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_okFg4PsqEeWfd8HYkrLHlg" name="undeployProgrammaticallyNewChild"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_OztywPstEeWfd8HYkrLHlg" name="deployNewChildFromWorkspace"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Peo_EPstEeWfd8HYkrLHlg" name="undeployNewChildFromWorkspace"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Model" xmi:id="_u8E-gPCEEeOEP-VOZrQAkw" name="UseCases">
       <packagedElement xmi:type="uml:Abstraction" xmi:id="_MEYgMFgQEeOKQOyOw2l5lw" name="Refine1" client="_EPnUAFOJEeOuspyO4PzXCg" supplier="_6Pfk0FOGEeOuspyO4PzXCg"/>
@@ -45,7 +49,7 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PBVKJlOJEeOuspyO4PzXCg" value="1"/>
         </ownedEnd>
       </packagedElement>
-      <packagedElement xmi:type="uml:Component" xmi:id="_uxF88FOIEeOuspyO4PzXCg" name="NewChildMenu" useCase="_-bickFOIEeOuspyO4PzXCg _EPnUAFOJEeOuspyO4PzXCg _WZ_ZwFOJEeOuspyO4PzXCg _uSMlAFOJEeOuspyO4PzXCg _cXBM8FW6EeOhVe6k7yzS3A">
+      <packagedElement xmi:type="uml:Component" xmi:id="_uxF88FOIEeOuspyO4PzXCg" name="NewChildMenu" useCase="_-bickFOIEeOuspyO4PzXCg _EPnUAFOJEeOuspyO4PzXCg _WZ_ZwFOJEeOuspyO4PzXCg _uSMlAFOJEeOuspyO4PzXCg _cXBM8FW6EeOhVe6k7yzS3A _B5MLIPsvEeWfd8HYkrLHlg">
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_-bickFOIEeOuspyO4PzXCg" name="UseCreateMenu" subject="_uxF88FOIEeOuspyO4PzXCg">
           <ownedComment xmi:type="uml:Comment" xmi:id="_Cu5MQPCGEeOEP-VOZrQAkw">
             <body>The Papyrus User shall use this functionality from the model explorer in order to create elements in the model. It can decide to display or not this element creation</body>
@@ -90,6 +94,10 @@ In order to not display a menu,  a user can edit the model that represents the c
             <body>In the followin examplen a creation menu is created for activities. In this case, all roles are displayed. Thanks to this, when we want to associate an activity to a state, 3 roles are proposed. </body>
           </ownedComment>
           <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_lYRLAVW6EeOhVe6k7yzS3A" name="point"/>
+          <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_jIiE4PsvEeWfd8HYkrLHlg" name="ExtensionPoint1"/>
+          <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_nfCLEPsvEeWfd8HYkrLHlg" name="ExtensionPoint2"/>
+          <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_uDv1QfsvEeWfd8HYkrLHlg" name="ExtensionPoint3"/>
+          <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_uzOKYPsvEeWfd8HYkrLHlg" name="ExtensionPoint4"/>
           <include xmi:type="uml:Include" xmi:id="_aEB2oFW6EeOhVe6k7yzS3A" addition="_uSMlAFOJEeOuspyO4PzXCg"/>
         </ownedUseCase>
         <ownedUseCase xmi:type="uml:UseCase" xmi:id="_WZ_ZwFOJEeOuspyO4PzXCg" name="Generate &quot;ElementCreationModel&quot; from a profile" subject="_uxF88FOIEeOuspyO4PzXCg">
@@ -113,10 +121,26 @@ For the moment this function is not implemented.</body>
           </ownedComment>
           <extend xmi:type="uml:Extend" xmi:id="_lX9pAFW6EeOhVe6k7yzS3A" extendedCase="_EPnUAFOJEeOuspyO4PzXCg" extensionLocation="_lYRLAVW6EeOhVe6k7yzS3A"/>
         </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_B5MLIPsvEeWfd8HYkrLHlg" name="Deploy or undeploy ElementCreationModel programatically" subject="_uxF88FOIEeOuspyO4PzXCg">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_02QxQPs3EeWfd8HYkrLHlg">
+            <body>An advance user shall have the possibility to deploy or undeploy creationMenuChild Model programmatically. This can be done using org.eclipse.papyrus.infra.newchild.CreationMenuRegistry.loadCreationMenuModel(URI uri).</body>
+          </ownedComment>
+          <extend xmi:type="uml:Extend" xmi:id="_uDv1QPsvEeWfd8HYkrLHlg" extendedCase="_EPnUAFOJEeOuspyO4PzXCg" extensionLocation="_uDv1QfsvEeWfd8HYkrLHlg"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_RrHLwPsvEeWfd8HYkrLHlg" name="Deploy or undeploy ElementCreationModel from workspace">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_9W4HcPs3EeWfd8HYkrLHlg">
+            <body>An advance user shall have the possibility to deploy or undeploy creationMenuChild Model from workspace. This can be done with the contextuelle menu at the right click.</body>
+          </ownedComment>
+          <extend xmi:type="uml:Extend" xmi:id="_uzNjUPsvEeWfd8HYkrLHlg" extendedCase="_EPnUAFOJEeOuspyO4PzXCg" extensionLocation="_uzOKYPsvEeWfd8HYkrLHlg"/>
+        </ownedUseCase>
       </packagedElement>
       <packagedElement xmi:type="uml:Actor" xmi:id="_zYtoUFOIEeOuspyO4PzXCg" name="ModelDesigner"/>
       <packagedElement xmi:type="uml:Actor" xmi:id="_3P0cwFOIEeOuspyO4PzXCg" name="PapyrusCustomizer"/>
       <packagedElement xmi:type="uml:Abstraction" xmi:id="_XPLO4PCFEeOEP-VOZrQAkw" name="Abstraction1" client="_u8E-gPCEEeOEP-VOZrQAkw" supplier="_52hvUPCDEeOEP-VOZrQAkw"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_ALMUEPs2EeWfd8HYkrLHlg" name="Satisfies_deployProgrammaticallyNewChild" client="_B5MLIPsvEeWfd8HYkrLHlg" supplier="_wD1scPspEeWfd8HYkrLHlg"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_Ly1FkPs2EeWfd8HYkrLHlg" name="Satisfies_undeployProgrammaticallyNewChild" client="_B5MLIPsvEeWfd8HYkrLHlg" supplier="_okFg4PsqEeWfd8HYkrLHlg"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_4op6QPs2EeWfd8HYkrLHlg" name="Satisfies_deployNewChildFromWorkspace" client="_RrHLwPsvEeWfd8HYkrLHlg" supplier="_OztywPstEeWfd8HYkrLHlg"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_6t4hYPs2EeWfd8HYkrLHlg" name="Satisfies_undeployNewChildFromWorkspace" client="_RrHLwPsvEeWfd8HYkrLHlg" supplier="_Peo_EPstEeWfd8HYkrLHlg"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Model" xmi:id="_vmIgwPCHEeOEP-VOZrQAkw" name="Design">
       <ownedComment xmi:type="uml:Comment" xmi:id="_g71cQPCXEeOEP-VOZrQAkw">
@@ -593,15 +617,26 @@ For the moment this function is not implemented.</body>
         <packagedElement xmi:type="uml:Package" xmi:id="_KgU5gPCMEeOEP-VOZrQAkw" name="org.eclipse.papyrus.infra.tools.util"/>
       </packagedElement>
       <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_J07zIPCMEeOEP-VOZrQAkw">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uYMU4PsnEeWfd8HYkrLHlg" source="PapyrusVersion">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uYMU4fsnEeWfd8HYkrLHlg" key="Version" value="0.0.31"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uYMU4vsnEeWfd8HYkrLHlg" key="Comment" value=""/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uYMU4_snEeWfd8HYkrLHlg" key="Copyright" value=""/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uYMU5PsnEeWfd8HYkrLHlg" key="Date" value="2015-09-04"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uYMU5fsnEeWfd8HYkrLHlg" key="Author" value=""/>
+        </eAnnotations>
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_J2ocQPCMEeOEP-VOZrQAkw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-          <references xmi:type="ecore:EPackage" href="pathmap://ADL4ECLIPSE_PROFILES/adl4eclipse.profile.uml#_rlFYwOqKEeOfTcbrnCq2oQ"/>
+          <references xmi:type="ecore:EPackage" href="pathmap://ADL4ECLIPSE_PROFILES/adl4eclipse.profile.uml#_WxCw4FMUEeWmCZVdWNq14A"/>
         </eAnnotations>
         <appliedProfile xmi:type="uml:Profile" href="pathmap://ADL4ECLIPSE_PROFILES/adl4eclipse.profile.uml#_nE1m0Hz7EeKfO4elN3J5Fw"/>
       </profileApplication>
     </packagedElement>
     <packagedElement xmi:type="uml:Model" xmi:id="_SJaO8PCFEeOEP-VOZrQAkw" name="Tests">
       <packagedElement xmi:type="uml:Package" xmi:id="_fMeMwFXeEeOW-JPqZK_EZg" name="Test AboutCreateModifyElementCreationModel">
-        <packagedElement xmi:type="uml:UseCase" xmi:id="_HTgzkFXeEeOW-JPqZK_EZg" name="Create a model without nothing"/>
+        <packagedElement xmi:type="uml:UseCase" xmi:id="_HTgzkFXeEeOW-JPqZK_EZg" name="Create a model without nothing">
+          <ownedComment xmi:type="uml:Comment" xmi:id="__Ie1sPs8EeWfd8HYkrLHlg">
+            <body>org.eclipse.papyrus.infra.newchild.tests.NewChildExtensionPointTests.NewChildExtensionPointTest() test if a creationMenuModel is well deployed using extension point.</body>
+          </ownedComment>
+        </packagedElement>
         <packagedElement xmi:type="uml:UseCase" xmi:id="_KdZ8sFXeEeOW-JPqZK_EZg" name="createa model with only a root"/>
         <packagedElement xmi:type="uml:UseCase" xmi:id="_M6gRQFXeEeOW-JPqZK_EZg" name="create a model with elementType as String"/>
         <packagedElement xmi:type="uml:Usage" xmi:id="_TYirsFXeEeOW-JPqZK_EZg" name="Usage4" client="_M6gRQFXeEeOW-JPqZK_EZg" supplier="_EPnUAFOJEeOuspyO4PzXCg"/>
@@ -617,182 +652,37 @@ For the moment this function is not implemented.</body>
         <packagedElement xmi:type="uml:Usage" xmi:id="_-0Vn0FXdEeOW-JPqZK_EZg" name="Usage3" client="_1vrJYFXdEeOW-JPqZK_EZg" supplier="_-bickFOIEeOuspyO4PzXCg"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Abstraction" xmi:id="_cIl04PCFEeOEP-VOZrQAkw" name="Abstraction1" client="_SJaO8PCFEeOEP-VOZrQAkw" supplier="_u8E-gPCEEeOEP-VOZrQAkw"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Model" xmi:id="_C04U4PFJEeOieZKVW9xRxg" name="New Child Menu into the model explorer">
-      <packagedElement xmi:type="uml:Package" xmi:id="_C090cPFJEeOieZKVW9xRxg" name="Requirements">
-        <ownedComment xmi:type="uml:Comment" xmi:id="_C1D7EPFJEeOieZKVW9xRxg">
-          <body>- AddNewChild (id=newChild001): 
- Papyrus shall add in the menu new child for new customized elements by using extended type</body>
-        </ownedComment>
-        <ownedComment xmi:type="uml:Comment" xmi:id="_C1JaoPFJEeOieZKVW9xRxg">
-          <body>- HideElement (id=newChild002): 
- Papyrus shall not display all UML or SysML element creation</body>
-        </ownedComment>
-        <ownedComment xmi:type="uml:Comment" xmi:id="_C1OTIPFJEeOieZKVW9xRxg">
-          <body>- newChildFromProfile (id=newChild003): 
- Papyrus shall add the creation of new element from a subset of profile</body>
-        </ownedComment>
-        <ownedComment xmi:type="uml:Comment" xmi:id="_C1SkkPFJEeOieZKVW9xRxg">
-          <body>- newChildMenuDisplay (id=newChild004): 
- Papyrus shall be able to associated icons to folder or creation menu</body>
-        </ownedComment>
-        <ownedComment xmi:type="uml:Comment" xmi:id="_C1W2APFJEeOieZKVW9xRxg">
-          <body>- RoleAndElementCreation (id=newChild005): 
- When an element can created from several  roles for a container, Papyrus shall let the possibility to choose the role or to let to the possibility to be created from all role.</body>
-        </ownedComment>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_C1bHcPFJEeOieZKVW9xRxg" name="Use Cases">
-        <ownedComment xmi:type="uml:Comment" xmi:id="_C3wCsPFJEeOieZKVW9xRxg">
-          <body>UseCaseDiagram</body>
-        </ownedComment>
-        <packagedElement xmi:type="uml:Package" xmi:id="_C3zGAPFJEeOieZKVW9xRxg" name="UseCreateMenu">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_C32JUPFJEeOieZKVW9xRxg">
-            <body>The Papyrus User shall use this functionality from the model explorer in order to create elements in the model. It can decide to display or not this element creation</body>
-          </ownedComment>
-          <packagedElement xmi:type="uml:Package" xmi:id="_C33-gPFJEeOieZKVW9xRxg" name="How to">
-            <ownedComment xmi:type="uml:Comment" xmi:id="_C36awPFJEeOieZKVW9xRxg">
-              <body>A user can create an element by  select element in the model explorer, click on it ant then click on the diagram.&#xD;
-In order to not display a menu,  a user can edit the model that represent the creation menu and set the attribute visibility to false. </body>
-            </ownedComment>
-            <ownedComment xmi:type="uml:Comment" xmi:id="_C383APFJEeOieZKVW9xRxg">
-              <body>EnableCreationMenu</body>
-            </ownedComment>
-          </packagedElement>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Package" xmi:id="_C3_TQPFJEeOieZKVW9xRxg" name="Create or modify ElementCreationModel">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_C4BvgPFJEeOieZKVW9xRxg">
-            <body>An advanced User is able to create of modify creation menu. This menu is a model that can be edited </body>
-          </ownedComment>
-          <packagedElement xmi:type="uml:Package" xmi:id="_C4ELwPFJEeOieZKVW9xRxg" name="How to">
-            <ownedComment xmi:type="uml:Comment" xmi:id="_C4GoAPFJEeOieZKVW9xRxg">
-              <body>An advanced user can contribuate to the menu by adding a new plugin that contains:&#xD;
-	-a xmi file that represents a creation menu. The model must be a instance of org.eclipse.papyrus.infra.newchild/resource/elementCreationMenuModel.ecore. It contains&#xD;
-		•	CreationMenu&#xD;
-			o	It correspond to a menu&#xD;
-			o	The ElemenTypeIDRef correspond a reference to the element Type.&#xD;
-			o	The role can be filled in order to specify the role play by the element.&#xD;
-			o	If displayAllRole is set to true, it displays all roles played by the element if the number of roles is greater than 1. By default this property is true;&#xD;
-		•	Folder&#xD;
-			o	It is possible to add owns label an icon.&#xD;
-			o  Visibilty to specify if the folder is visible.&#xD;
-	-a reference to an extension point, to specify that papyrus must take in account this file display the menu&#xD;
-&lt;code>&#xD;
-&lt;extension&#xD;
-         point=&quot;org.eclipse.papyrus.infra.newchild&quot;>&#xD;
-      &lt;menuCreationModel&#xD;
-            model=&quot;YourCreationMenu.xmi&quot;>&#xD;
-      &lt;/menuCreationModel>&#xD;
-&lt;/extension>&#xD;
-&lt;/code></body>
-            </ownedComment>
-            <ownedComment xmi:type="uml:Comment" xmi:id="_C4IdMPFJEeOieZKVW9xRxg">
-              <body>In the following example, a menu creation for a package is presented. This menu is contained in the folder SimpleUMLTest. We have associated a image for this menu.</body>
-            </ownedComment>
-            <ownedComment xmi:type="uml:Comment" xmi:id="_C4K5cPFJEeOieZKVW9xRxg">
-              <body>Creation menu for a package with a specific icon</body>
-            </ownedComment>
-            <ownedComment xmi:type="uml:Comment" xmi:id="_C4NVsPFJEeOieZKVW9xRxg">
-              <body>Result for this menu</body>
-            </ownedComment>
-            <ownedComment xmi:type="uml:Comment" xmi:id="_C4Px8PFJEeOieZKVW9xRxg">
-              <body>In this following example, a creation menu will be specify  to allow creation of nested classifier. That 's why the role &quot;nestedClassifier&quot; is precised. The label for this creation is &quot;nestedClass&quot;</body>
-            </ownedComment>
-            <ownedComment xmi:type="uml:Comment" xmi:id="_C4SOMPFJEeOieZKVW9xRxg">
-              <body>Result for the menu nestedClass</body>
-            </ownedComment>
-            <ownedComment xmi:type="uml:Comment" xmi:id="_C4UqcPFJEeOieZKVW9xRxg">
-              <body>Creation menu model for nested class</body>
-            </ownedComment>
-            <ownedComment xmi:type="uml:Comment" xmi:id="_C4XtwPFJEeOieZKVW9xRxg">
-              <body>In the followin examplen a creation menu is created for activities. In this case, all roles are displayed. Thanks to this, when we want to associate an activity to a state, 3 roles are proposed. </body>
-            </ownedComment>
-            <ownedComment xmi:type="uml:Comment" xmi:id="_C4aKAPFJEeOieZKVW9xRxg">
-              <body>Creation menu model for activity</body>
-            </ownedComment>
-            <ownedComment xmi:type="uml:Comment" xmi:id="_C4cmQPFJEeOieZKVW9xRxg">
-              <body>Result for this menu activity</body>
-            </ownedComment>
-          </packagedElement>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Package" xmi:id="_C4fCgPFJEeOieZKVW9xRxg" name="Generate &quot;ElementCreationModel&quot; from a profile">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_C4hewPFJEeOieZKVW9xRxg">
-            <body>From a stereotyped profile, a model of new child menu can be generated.&#xD;
-For example a user after designing a profile, want to have a dedicated menu  from this profile/&#xD;
-For the moment this function is not implemented.</body>
+      <packagedElement xmi:type="uml:Package" xmi:id="_1GIj0Ps4EeWfd8HYkrLHlg" name="TestAboutDeployUndeployCreationMenuModel">
+        <packagedElement xmi:type="uml:UseCase" xmi:id="_HMVUMPs5EeWfd8HYkrLHlg" name="Use deploy programmatically">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_j1atIPs8EeWfd8HYkrLHlg">
+            <body>Test done in org.eclipse.papyrus.infra.newchild.tests.DeployUndeployTests.DeployUndeployTest()</body>
           </ownedComment>
         </packagedElement>
-        <packagedElement xmi:type="uml:Package" xmi:id="_C4j7APFJEeOieZKVW9xRxg" name="Hide, change order or add submenus">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_C4mXQPFJEeOieZKVW9xRxg">
-            <body>The User can modify the creation menu by adding submenus: order about new child menu, precise if the role must be displayed.</body>
-          </ownedComment>
-          <packagedElement xmi:type="uml:Package" xmi:id="_C4oMcPFJEeOieZKVW9xRxg" name="How to">
-            <ownedComment xmi:type="uml:Comment" xmi:id="_C4qosPFJEeOieZKVW9xRxg">
-              <body>test</body>
-            </ownedComment>
-          </packagedElement>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Package" xmi:id="_C4tE8PFJEeOieZKVW9xRxg" name="Create or modify ElementCreationModel at runtime thanks to a GUI">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_C4u6IPFJEeOieZKVW9xRxg">
-            <body>A user  can edit a the model that represent the creation menu  at runtime for papyrus thanks to a dedicated UI.</body>
+        <packagedElement xmi:type="uml:UseCase" xmi:id="_LH7AAPs5EeWfd8HYkrLHlg" name="Use undeploy programmatically">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_knhfgPs8EeWfd8HYkrLHlg">
+            <body>Test done in org.eclipse.papyrus.infra.newchild.tests.DeployUndeployTests.DeployUndeployTest()</body>
           </ownedComment>
         </packagedElement>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_C4xWYPFJEeOieZKVW9xRxg" name="Design">
-        <ownedComment xmi:type="uml:Comment" xmi:id="_C6RyQPFJEeOieZKVW9xRxg">
-          <body>Architecture</body>
-        </ownedComment>
-        <ownedComment xmi:type="uml:Comment" xmi:id="_C6U1kPFJEeOieZKVW9xRxg">
-          <body>The system is done by two plugins:&#xD;
-	•	org.eclipse.papyrus.infra.newchild&#xD;
-	It has in charge to provide and construct swt.Menu from the ecore model. To do that the developer has to:&#xD;
-		o	instantiate a CreationMenuFactory, &#xD;
-		o	ask to get all Root model and populate it&#xD;
-	&lt;code>&#xD;
-		CreationMenuFactory creationMenuFactory= new CreationMenuFactory(editingDomain);&#xD;
-		ArrayList&lt;Folder> folders= creationMenuRegistry.getRootFolder();&#xD;
-		Iterator&lt;Folder> iterFolder= folders.iterator();&#xD;
-		while (iterFolder.hasNext()) {&#xD;
-			Folder currentFolder= iterFolder.next();&#xD;
-			creationMenuFactory.populateMenu(menu, currentFolder,eObject);&#xD;
-		}&#xD;
-&lt;/code>&#xD;
-	•	org.eclipse.papyrus.views.modelexplorer.newchild&#xD;
-	It has in charge to add menu in the model explorer of papyrus.&#xD;
-</body>
-        </ownedComment>
-        <ownedComment xmi:type="uml:Comment" xmi:id="_C7WwUPFJEeOieZKVW9xRxg">
-          <body>NewDiagram</body>
-        </ownedComment>
-        <ownedComment xmi:type="uml:Comment" xmi:id="_C7ZzoPFJEeOieZKVW9xRxg">
-          <body>This the structure of EMF model for model&#xD;
-	•	CreationMenu&#xD;
-		o	It correspond to a menu&#xD;
-		o	The ElemenTypeIDRef correspond a reference to the element Type.&#xD;
-		o	The role can be filled in order to specify the role play by the element.&#xD;
-		o	If displayAllRole is set to true, it displays all roles played by the element if the number of roles is greater than 1. By default this property is true;&#xD;
-	•	Folder&#xD;
-		o	It is possible to add owns label an icon.&#xD;
-</body>
-        </ownedComment>
-        <ownedComment xmi:type="uml:Comment" xmi:id="_C7cP4PFJEeOieZKVW9xRxg">
-          <body>Example of obtained Menu</body>
-        </ownedComment>
-        <ownedComment xmi:type="uml:Comment" xmi:id="_C7esIPFJEeOieZKVW9xRxg">
-          <body>Example of xml for a creation menu</body>
-        </ownedComment>
-        <ownedComment xmi:type="uml:Comment" xmi:id="_C7hIYPFJEeOieZKVW9xRxg">
-          <body>Here an example of xml of creation menu.</body>
-        </ownedComment>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="_C7i9kPFJEeOieZKVW9xRxg" name="Tests">
-        <packagedElement xmi:type="uml:Package" xmi:id="_C7lZ0PFJEeOieZKVW9xRxg" name="Create a model without nothing"/>
-        <packagedElement xmi:type="uml:Package" xmi:id="_C7n2EPFJEeOieZKVW9xRxg" name="createa model with only a root"/>
-        <packagedElement xmi:type="uml:Package" xmi:id="_C7qSUPFJEeOieZKVW9xRxg" name="create a model with elementType as String"/>
-        <packagedElement xmi:type="uml:Package" xmi:id="_C7tVoPFJEeOieZKVW9xRxg" name="Use a menu from a model without ElementType model"/>
-        <packagedElement xmi:type="uml:Package" xmi:id="_C7vx4PFJEeOieZKVW9xRxg" name="Use a menu with elementType model"/>
-        <packagedElement xmi:type="uml:Package" xmi:id="_C7yOIPFJEeOieZKVW9xRxg" name="Use a menu with stereotyped element"/>
+        <packagedElement xmi:type="uml:UseCase" xmi:id="_SOyVAPs5EeWfd8HYkrLHlg" name="Use deploy from workspace">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_FLZ24Ps8EeWfd8HYkrLHlg">
+            <body>TODO with rcptt when available for Papyrus.</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:UseCase" xmi:id="_SOy8EPs5EeWfd8HYkrLHlg" name="Use undeploy from workspace">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_F3EqEPs8EeWfd8HYkrLHlg">
+            <body>TODO with rcptt when available for Papyrus.</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Abstraction" xmi:id="_cqdpsPs5EeWfd8HYkrLHlg" name="Verifies_deployProgrammaticallyNewChild" client="_HMVUMPs5EeWfd8HYkrLHlg" supplier="_wD1scPspEeWfd8HYkrLHlg"/>
+        <packagedElement xmi:type="uml:Abstraction" xmi:id="_gq4yMPs5EeWfd8HYkrLHlg" name="Verifies_undeployProgrammaticallyNewChild" client="_LH7AAPs5EeWfd8HYkrLHlg" supplier="_okFg4PsqEeWfd8HYkrLHlg"/>
+        <packagedElement xmi:type="uml:Abstraction" xmi:id="_id7dIPs5EeWfd8HYkrLHlg" name="Verifies_deployNewChildFromWorkspace" client="_SOyVAPs5EeWfd8HYkrLHlg" supplier="_OztywPstEeWfd8HYkrLHlg"/>
+        <packagedElement xmi:type="uml:Abstraction" xmi:id="_kdzqMPs5EeWfd8HYkrLHlg" name="Verifies_undeployNewChildFromWorkspace" client="_SOy8EPs5EeWfd8HYkrLHlg" supplier="_Peo_EPstEeWfd8HYkrLHlg"/>
       </packagedElement>
     </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_ZfbboPs6EeWfd8HYkrLHlg" client="_HMVUMPs5EeWfd8HYkrLHlg" supplier="_B5MLIPsvEeWfd8HYkrLHlg"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_Z9MVsPs6EeWfd8HYkrLHlg" client="_LH7AAPs5EeWfd8HYkrLHlg" supplier="_B5MLIPsvEeWfd8HYkrLHlg"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_aZcz4Ps6EeWfd8HYkrLHlg" client="_SOyVAPs5EeWfd8HYkrLHlg" supplier="_RrHLwPsvEeWfd8HYkrLHlg"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_a0g_QPs6EeWfd8HYkrLHlg" client="_SOy8EPs5EeWfd8HYkrLHlg" supplier="_RrHLwPsvEeWfd8HYkrLHlg"/>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_d8uIMFOFEeOuspyO4PzXCg">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d9I-8FOFEeOuspyO4PzXCg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
@@ -806,20 +696,41 @@ For the moment this function is not implemented.</body>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/StandardL2.profile.uml#_0"/>
     </profileApplication>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_L-OWgLXWEeOnr8r0UtVlaQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uS160PsnEeWfd8HYkrLHlg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uS160fsnEeWfd8HYkrLHlg" key="Version" value="0.0.31"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uS160vsnEeWfd8HYkrLHlg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uS160_snEeWfd8HYkrLHlg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uS161PsnEeWfd8HYkrLHlg" key="Date" value="2015-09-04"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uS161fsnEeWfd8HYkrLHlg" key="Author" value=""/>
+      </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_L_ycwLXWEeOnr8r0UtVlaQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://ADL4ECLIPSE_PROFILES/adl4eclipse.profile.uml#_rlFYwOqKEeOfTcbrnCq2oQ"/>
+        <references xmi:type="ecore:EPackage" href="pathmap://ADL4ECLIPSE_PROFILES/adl4eclipse.profile.uml#_WxCw4FMUEeWmCZVdWNq14A"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://ADL4ECLIPSE_PROFILES/adl4eclipse.profile.uml#_nE1m0Hz7EeKfO4elN3J5Fw"/>
     </profileApplication>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_L_5xgLXWEeOnr8r0UtVlaQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uS9PkPsnEeWfd8HYkrLHlg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uS92oPsnEeWfd8HYkrLHlg" key="Version" value="0.0.30"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uS92ofsnEeWfd8HYkrLHlg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uS92ovsnEeWfd8HYkrLHlg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uS92o_snEeWfd8HYkrLHlg" key="Date" value="2015-09-01"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uS92pPsnEeWfd8HYkrLHlg" key="Author" value=""/>
+      </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_MBnBsLXWEeOnr8r0UtVlaQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://OSGI_PROFILES/osgi.profile.uml#_0xHxUYDEEeKQG4TlBAn6bg"/>
+        <references xmi:type="ecore:EPackage" href="pathmap://OSGI_PROFILES/osgi.profile.uml#_vESkQFChEeWCedWm4kJ8pQ"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://OSGI_PROFILES/osgi.profile.uml#_OKU8EHtxEeKcL-wrhM9ICg"/>
     </profileApplication>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_MBshQLXWEeOnr8r0UtVlaQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uTR_sPsnEeWfd8HYkrLHlg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uTR_sfsnEeWfd8HYkrLHlg" key="Version" value="0.0.30"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uTR_svsnEeWfd8HYkrLHlg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uTR_s_snEeWfd8HYkrLHlg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uTR_tPsnEeWfd8HYkrLHlg" key="Date" value="2015-09-01"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uTR_tfsnEeWfd8HYkrLHlg" key="Author" value=""/>
+      </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_MDc0wLXWEeOnr8r0UtVlaQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://OSGI_PROFILES/osgi.profile.uml#_0xRiUIDEEeKQG4TlBAn6bg"/>
+        <references xmi:type="ecore:EPackage" href="pathmap://OSGI_PROFILES/osgi.profile.uml#_vEf_oFChEeWCedWm4kJ8pQ"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://OSGI_PROFILES/osgi.profile.uml#_YbhfEHtxEeKcL-wrhM9ICg"/>
     </profileApplication>
@@ -847,6 +758,18 @@ For the moment this function is not implemented.</body>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES/Document.profile.uml#_D0JcUMnzEeO9CYUoXDRplw"/>
     </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_03Z0APsnEeWfd8HYkrLHlg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_03bCIPsnEeWfd8HYkrLHlg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml#_rpmyYHVxEeSZ-fQGFkyJeQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml#_qCT3MMbXEeO09JBvNFZRNw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_2fiPcPsnEeWfd8HYkrLHlg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2fi2gPsnEeWfd8HYkrLHlg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES_MDE/Document.profile.uml#_RQrLoWwBEeSIYu1Ih2FYyQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES_MDE/Document.profile.uml#_D0JcUMnzEeO9CYUoXDRplw"/>
+    </profileApplication>
   </uml:Model>
   <Requirements:Requirement xmi:id="_6Pfk0VOGEeOuspyO4PzXCg" text="Papyrus shall add in the menu new child for new customized elements by using extended type" id="newChild001" base_Class="_6Pfk0FOGEeOuspyO4PzXCg"/>
   <Requirements:Requirement xmi:id="_FQleQVOIEeOuspyO4PzXCg" text="Papyrus shall not display all UML or SysML element creation" id="newChild002" base_Class="_FQleQFOIEeOuspyO4PzXCg"/>
@@ -865,18 +788,18 @@ For the moment this function is not implemented.</body>
   <structure:Tests xmi:id="_ikJjEPCFEeOEP-VOZrQAkw" base_Model="_SJaO8PCFEeOEP-VOZrQAkw"/>
   <Document:Content xmi:id="_EAjBYPCGEeOEP-VOZrQAkw" base_Comment="_Cu5MQPCGEeOEP-VOZrQAkw"/>
   <structure:Design xmi:id="_xTidwPCHEeOEP-VOZrQAkw" base_Model="_vmIgwPCHEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_J2tUwPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.papyrus.infra.newchild.Activator" classPath="." description="The purpose of this plugin is to offer the model and means to create new menu in the model explorer. More documentation (models and file.doc) has been store in the docs directory. The plugin in charge to do the connection with the model explorer is org.eclipse.papyrus.view.modelexplorer.newchild" localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.newchild" vendor="Eclipse Modeling Project" version="1.0.0.qualifier" exportPackage="_Kd6esPCMEeOEP-VOZrQAkw _Kd868PCMEeOEP-VOZrQAkw _Kd-wIPCMEeOEP-VOZrQAkw _KeAlUPCMEeOEP-VOZrQAkw" base_Component="_J2qRcPCMEeOEP-VOZrQAkw" name="Papyrus infra new child"/>
-  <ADL4Eclipse:Plugin xmi:id="_KR1KgPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.ui.internal.UIPlugin" classPath="." localization="plugin" requiredExecutionEnvironment="J2SE-1.4" symbolicName="org.eclipse.ui" vendor="Eclipse.org" version="3.106.0.v20140519-0906" exportPackage="_KR9GUPCMEeOEP-VOZrQAkw" base_Component="_KRyHMPCMEeOEP-VOZrQAkw" name="Eclipse UI"/>
+  <ADL4Eclipse:Plugin xmi:id="_J2tUwPCMEeOEP-VOZrQAkw" base_Component="_J2qRcPCMEeOEP-VOZrQAkw" activator="org.eclipse.papyrus.infra.newchild.Activator" classPath="." description="The purpose of this plugin is to offer the model and means to create new menu in the model explorer. More documentation (models and file.doc) has been store in the docs directory. The plugin in charge to do the connection with the model explorer is org.eclipse.papyrus.view.modelexplorer.newchild" exportPackage="_Kd6esPCMEeOEP-VOZrQAkw _Kd868PCMEeOEP-VOZrQAkw _Kd-wIPCMEeOEP-VOZrQAkw _KeAlUPCMEeOEP-VOZrQAkw" localization="plugin" name="Papyrus infra new child" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.newchild" version="1.0.0.qualifier" vendor="Eclipse Modeling Project" bundleShape="jar"/>
+  <ADL4Eclipse:Plugin xmi:id="_KR1KgPCMEeOEP-VOZrQAkw" base_Component="_KRyHMPCMEeOEP-VOZrQAkw" activator="org.eclipse.ui.internal.UIPlugin" classPath="." exportPackage="_KR9GUPCMEeOEP-VOZrQAkw" localization="plugin" name="Eclipse UI" requiredExecutionEnvironment="J2SE-1.4" symbolicName="org.eclipse.ui" version="3.106.0.v20140519-0906" vendor="Eclipse.org" bundleShape="jar"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KR9GUPCMEeOEP-VOZrQAkw" base_Package="_KR6qEPCMEeOEP-VOZrQAkw" isInternal="true"/>
   <ModuleLayer:BundleReference xmi:id="_KSB-0PCMEeOEP-VOZrQAkw" base_Dependency="_KR-7gPCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KSFCIPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.core.internal.runtime.PlatformActivator" localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.core.runtime" vendor="Eclipse.org" version="3.10.0.v20140318-2214" exportPackage="_KSLv0PCMEeOEP-VOZrQAkw _KSOzIPCMEeOEP-VOZrQAkw _KSR2cPCMEeOEP-VOZrQAkw" base_Component="_KSCl4PCMEeOEP-VOZrQAkw" name="Core Runtime"/>
+  <ADL4Eclipse:Plugin xmi:id="_KSFCIPCMEeOEP-VOZrQAkw" base_Component="_KSCl4PCMEeOEP-VOZrQAkw" activator="org.eclipse.core.internal.runtime.PlatformActivator" exportPackage="_KSLv0PCMEeOEP-VOZrQAkw _KSOzIPCMEeOEP-VOZrQAkw _KSR2cPCMEeOEP-VOZrQAkw" localization="plugin" name="Core Runtime" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.core.runtime" version="3.10.0.v20140318-2214" vendor="Eclipse.org" bundleShape="jar"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KSLv0PCMEeOEP-VOZrQAkw" base_Package="_KSJTkPCMEeOEP-VOZrQAkw" isInternal="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KSOzIPCMEeOEP-VOZrQAkw" base_Package="_KSMW4PCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KSR2cPCMEeOEP-VOZrQAkw" atleast="3.4.0" base_Package="_KSPaMPCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KSVg0PCMEeOEP-VOZrQAkw" base_Dependency="_KSSdgPCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KSYkIPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" localization="plugin" symbolicName="org.eclipse.emf" vendor="Eclipse Modeling Project" version="2.6.0.v20140519-0339" base_Component="_KSWH4PCMEeOEP-VOZrQAkw" name="EMF - Eclipse Modeling Framework Runtime and Tools" lazyStart="true"/>
+  <ADL4Eclipse:Plugin xmi:id="_KSYkIPCMEeOEP-VOZrQAkw" base_Component="_KSWH4PCMEeOEP-VOZrQAkw" localization="plugin" name="EMF - Eclipse Modeling Framework Runtime and Tools" symbolicName="org.eclipse.emf" version="2.6.0.v20140519-0339" vendor="Eclipse Modeling Project" bundleShape="jar" lazyStart="true"/>
   <ModuleLayer:BundleReference xmi:id="_KSfR0PCMEeOEP-VOZrQAkw" base_Dependency="_KSc1kPCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KSiVIPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.emf.ecore.plugin.EcorePlugin$Implementation$Activator" classPath="." localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.emf.ecore" vendor="Eclipse Modeling Project" version="2.10.0.v20140514-1158" exportPackage="_KSpC0PCMEeOEP-VOZrQAkw _KSsGIPCMEeOEP-VOZrQAkw _KSvJcPCMEeOEP-VOZrQAkw _KSxlsPCMEeOEP-VOZrQAkw _KS0pAPCMEeOEP-VOZrQAkw _KS3FQPCMEeOEP-VOZrQAkw _KS5hgPCMEeOEP-VOZrQAkw _KS8k0PCMEeOEP-VOZrQAkw _KS_BEPCMEeOEP-VOZrQAkw _KTBdUPCMEeOEP-VOZrQAkw _KTEgoPCMEeOEP-VOZrQAkw _KTG84PCMEeOEP-VOZrQAkw _KTKAMPCMEeOEP-VOZrQAkw" base_Component="_KSf44PCMEeOEP-VOZrQAkw" name="EMF Ecore" lazyStart="true"/>
+  <ADL4Eclipse:Plugin xmi:id="_KSiVIPCMEeOEP-VOZrQAkw" base_Component="_KSf44PCMEeOEP-VOZrQAkw" activator="org.eclipse.emf.ecore.plugin.EcorePlugin$Implementation$Activator" classPath="." exportPackage="_KSpC0PCMEeOEP-VOZrQAkw _KSsGIPCMEeOEP-VOZrQAkw _KSvJcPCMEeOEP-VOZrQAkw _KSxlsPCMEeOEP-VOZrQAkw _KS0pAPCMEeOEP-VOZrQAkw _KS3FQPCMEeOEP-VOZrQAkw _KS5hgPCMEeOEP-VOZrQAkw _KS8k0PCMEeOEP-VOZrQAkw _KS_BEPCMEeOEP-VOZrQAkw _KTBdUPCMEeOEP-VOZrQAkw _KTEgoPCMEeOEP-VOZrQAkw _KTG84PCMEeOEP-VOZrQAkw _KTKAMPCMEeOEP-VOZrQAkw" localization="plugin" name="EMF Ecore" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.emf.ecore" version="2.10.0.v20140514-1158" vendor="Eclipse Modeling Project" bundleShape="jar" lazyStart="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KSpC0PCMEeOEP-VOZrQAkw" base_Package="_KSmmkPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KSsGIPCMEeOEP-VOZrQAkw" base_Package="_KSpp4PCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KSvJcPCMEeOEP-VOZrQAkw" base_Package="_KSstMPCMEeOEP-VOZrQAkw"/>
@@ -891,7 +814,7 @@ For the moment this function is not implemented.</body>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KTG84PCMEeOEP-VOZrQAkw" base_Package="_KTFHsPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KTKAMPCMEeOEP-VOZrQAkw" base_Package="_KTHj8PCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KTNDgPCMEeOEP-VOZrQAkw" base_Dependency="_KTKnQPCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KTQG0PCMEeOEP-VOZrQAkw" activator="org.eclipse.osgi.internal.framework.SystemBundleActivator" copyright="Copyright (c) 2003, 2014 IBM Corporation and others. All rights reserved. This program and the accompanying materials  are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html" description="OSGi System Bundle" docURL="http://www.eclipse.org" localization="systembundle" symbolicName="org.eclipse.osgi" vendor="Eclipse.org - Equinox" version="3.10.0.v20140513-1456" exportPackage="_KTXbkPCMEeOEP-VOZrQAkw _KTZ30PCMEeOEP-VOZrQAkw _KTc7IPCMEeOEP-VOZrQAkw _KTf-cPCMEeOEP-VOZrQAkw _KTiasPCMEeOEP-VOZrQAkw _KTleAPCMEeOEP-VOZrQAkw _KTohUPCMEeOEP-VOZrQAkw _KTq9kPCMEeOEP-VOZrQAkw _KTuA4PCMEeOEP-VOZrQAkw _KTwdIPCMEeOEP-VOZrQAkw _KTzgcPCMEeOEP-VOZrQAkw _KT18sPCMEeOEP-VOZrQAkw _KT5AAPCMEeOEP-VOZrQAkw _KT8DUPCMEeOEP-VOZrQAkw _KT-fkPCMEeOEP-VOZrQAkw _KUBi4PCMEeOEP-VOZrQAkw _KUD_IPCMEeOEP-VOZrQAkw _KUHCcPCMEeOEP-VOZrQAkw _KUJesPCMEeOEP-VOZrQAkw _KUMiAPCMEeOEP-VOZrQAkw _KUPlUPCMEeOEP-VOZrQAkw _KUSBkPCMEeOEP-VOZrQAkw _KUVE4PCMEeOEP-VOZrQAkw _KUXhIPCMEeOEP-VOZrQAkw _KUZ9YPCMEeOEP-VOZrQAkw _KUdAsPCMEeOEP-VOZrQAkw _KUgEAPCMEeOEP-VOZrQAkw _KUkVcPCMEeOEP-VOZrQAkw _KUnYwPCMEeOEP-VOZrQAkw _KUqcEPCMEeOEP-VOZrQAkw _KUs4UPCMEeOEP-VOZrQAkw _KUv7oPCMEeOEP-VOZrQAkw _KUyX4PCMEeOEP-VOZrQAkw _KU1bMPCMEeOEP-VOZrQAkw _KU33cPCMEeOEP-VOZrQAkw _KU66wPCMEeOEP-VOZrQAkw _KU-lIPCMEeOEP-VOZrQAkw _KVBBYPCMEeOEP-VOZrQAkw _KVEEsPCMEeOEP-VOZrQAkw _KVGg8PCMEeOEP-VOZrQAkw _KVI9MPCMEeOEP-VOZrQAkw _KVMAgPCMEeOEP-VOZrQAkw _KVOcwPCMEeOEP-VOZrQAkw _KVQ5APCMEeOEP-VOZrQAkw _KVT8UPCMEeOEP-VOZrQAkw _KVWYkPCMEeOEP-VOZrQAkw _KVZb4PCMEeOEP-VOZrQAkw _KVb4IPCMEeOEP-VOZrQAkw _KVeUYPCMEeOEP-VOZrQAkw _KVhXsPCMEeOEP-VOZrQAkw _KVjz8PCMEeOEP-VOZrQAkw _KVmQMPCMEeOEP-VOZrQAkw _KVpTgPCMEeOEP-VOZrQAkw _KVrvwPCMEeOEP-VOZrQAkw _KVuzEPCMEeOEP-VOZrQAkw _KVxPUPCMEeOEP-VOZrQAkw _KVzrkPCMEeOEP-VOZrQAkw _KV2u4PCMEeOEP-VOZrQAkw _KV5LIPCMEeOEP-VOZrQAkw _KV7nYPCMEeOEP-VOZrQAkw _KV-qsPCMEeOEP-VOZrQAkw _KWBG8PCMEeOEP-VOZrQAkw _KWDjMPCMEeOEP-VOZrQAkw _KWGmgPCMEeOEP-VOZrQAkw _KWJCwPCMEeOEP-VOZrQAkw _KWLfAPCMEeOEP-VOZrQAkw _KWN7QPCMEeOEP-VOZrQAkw _KWQXgPCMEeOEP-VOZrQAkw _KWSzwPCMEeOEP-VOZrQAkw _KWVQAPCMEeOEP-VOZrQAkw _KWXFMPCMEeOEP-VOZrQAkw _KWZhcPCMEeOEP-VOZrQAkw _KWb9sPCMEeOEP-VOZrQAkw _KWeZ8PCMEeOEP-VOZrQAkw _KWg2MPCMEeOEP-VOZrQAkw _KWirYPCMEeOEP-VOZrQAkw _KWlHoPCMEeOEP-VOZrQAkw _KWnj4PCMEeOEP-VOZrQAkw _KWqAIPCMEeOEP-VOZrQAkw _KWscYPCMEeOEP-VOZrQAkw _KWuRkPCMEeOEP-VOZrQAkw _KWwt0PCMEeOEP-VOZrQAkw _KWyjAPCMEeOEP-VOZrQAkw _KW0_QPCMEeOEP-VOZrQAkw _KW20cPCMEeOEP-VOZrQAkw _KW5QsPCMEeOEP-VOZrQAkw _KW7F4PCMEeOEP-VOZrQAkw _KW9iIPCMEeOEP-VOZrQAkw _KW_-YPCMEeOEP-VOZrQAkw _KXBzkPCMEeOEP-VOZrQAkw _KXEP0PCMEeOEP-VOZrQAkw _KXGFAPCMEeOEP-VOZrQAkw _KXH6MPCMEeOEP-VOZrQAkw _KXKWcPCMEeOEP-VOZrQAkw _KXMLoPCMEeOEP-VOZrQAkw _KXOn4PCMEeOEP-VOZrQAkw _KXQdEPCMEeOEP-VOZrQAkw _KXSSQPCMEeOEP-VOZrQAkw _KXUugPCMEeOEP-VOZrQAkw _KXWjsPCMEeOEP-VOZrQAkw _KXYY4PCMEeOEP-VOZrQAkw _KXa1IPCMEeOEP-VOZrQAkw _KXcqUPCMEeOEP-VOZrQAkw _KXefgPCMEeOEP-VOZrQAkw _KXgUsPCMEeOEP-VOZrQAkw _KXiJ4PCMEeOEP-VOZrQAkw _KXkmIPCMEeOEP-VOZrQAkw _KXmbUPCMEeOEP-VOZrQAkw _KXoQgPCMEeOEP-VOZrQAkw _KXqFsPCMEeOEP-VOZrQAkw _KXsh8PCMEeOEP-VOZrQAkw _KXuXIPCMEeOEP-VOZrQAkw _KXwMUPCMEeOEP-VOZrQAkw _KXyBgPCMEeOEP-VOZrQAkw _KX0dwPCMEeOEP-VOZrQAkw _KX2S8PCMEeOEP-VOZrQAkw _KX4IIPCMEeOEP-VOZrQAkw _KX6kYPCMEeOEP-VOZrQAkw _KX8ZkPCMEeOEP-VOZrQAkw _KX-OwPCMEeOEP-VOZrQAkw _KYArAPCMEeOEP-VOZrQAkw _KYCgMPCMEeOEP-VOZrQAkw _KYEVYPCMEeOEP-VOZrQAkw _KYGxoPCMEeOEP-VOZrQAkw _KYIm0PCMEeOEP-VOZrQAkw _KYKcAPCMEeOEP-VOZrQAkw _KYMRMPCMEeOEP-VOZrQAkw _KYOGYPCMEeOEP-VOZrQAkw _KYQioPCMEeOEP-VOZrQAkw _KYSX0PCMEeOEP-VOZrQAkw _KYUNAPCMEeOEP-VOZrQAkw _KYWCMPCMEeOEP-VOZrQAkw _KYX3YPCMEeOEP-VOZrQAkw _KYaToPCMEeOEP-VOZrQAkw _KYcI0PCMEeOEP-VOZrQAkw _KYd-APCMEeOEP-VOZrQAkw _KYfzMPCMEeOEP-VOZrQAkw _KYiPcPCMEeOEP-VOZrQAkw _KYkEoPCMEeOEP-VOZrQAkw _KYl50PCMEeOEP-VOZrQAkw _KYnvAPCMEeOEP-VOZrQAkw _KYpkMPCMEeOEP-VOZrQAkw _KYsAcPCMEeOEP-VOZrQAkw _KYt1oPCMEeOEP-VOZrQAkw _KYvq0PCMEeOEP-VOZrQAkw _KYxgAPCMEeOEP-VOZrQAkw _KYzVMPCMEeOEP-VOZrQAkw _KY1KYPCMEeOEP-VOZrQAkw _KY2_kPCMEeOEP-VOZrQAkw _KY40wPCMEeOEP-VOZrQAkw _KY6p8PCMEeOEP-VOZrQAkw _KY8fIPCMEeOEP-VOZrQAkw _KY-UUPCMEeOEP-VOZrQAkw _KZAwkPCMEeOEP-VOZrQAkw _KZClwPCMEeOEP-VOZrQAkw _KZEa8PCMEeOEP-VOZrQAkw _KZGQIPCMEeOEP-VOZrQAkw _KZIFUPCMEeOEP-VOZrQAkw _KZJ6gPCMEeOEP-VOZrQAkw _KZLvsPCMEeOEP-VOZrQAkw _KZNk4PCMEeOEP-VOZrQAkw _KZPaEPCMEeOEP-VOZrQAkw _KZRPQPCMEeOEP-VOZrQAkw _KZTEcPCMEeOEP-VOZrQAkw _KZU5oPCMEeOEP-VOZrQAkw _KZWu0PCMEeOEP-VOZrQAkw _KZYkAPCMEeOEP-VOZrQAkw _KZaZMPCMEeOEP-VOZrQAkw _KZcOYPCMEeOEP-VOZrQAkw _KZeDkPCMEeOEP-VOZrQAkw _KZf4wPCMEeOEP-VOZrQAkw _KZht8PCMEeOEP-VOZrQAkw _KZjjIPCMEeOEP-VOZrQAkw _KZlYUPCMEeOEP-VOZrQAkw _KZnNgPCMEeOEP-VOZrQAkw _KZpCsPCMEeOEP-VOZrQAkw _KZq34PCMEeOEP-VOZrQAkw _KZstEPCMEeOEP-VOZrQAkw _KZuiQPCMEeOEP-VOZrQAkw _KZwXcPCMEeOEP-VOZrQAkw _KZyMoPCMEeOEP-VOZrQAkw _KZ0B0PCMEeOEP-VOZrQAkw _KZ1P8PCMEeOEP-VOZrQAkw _KZ3FIPCMEeOEP-VOZrQAkw _KZ46UPCMEeOEP-VOZrQAkw _KZ6vgPCMEeOEP-VOZrQAkw _KZ8ksPCMEeOEP-VOZrQAkw _KZ-Z4PCMEeOEP-VOZrQAkw _KaAPEPCMEeOEP-VOZrQAkw _KaCEQPCMEeOEP-VOZrQAkw _KaD5cPCMEeOEP-VOZrQAkw _KaFuoPCMEeOEP-VOZrQAkw _KaHj0PCMEeOEP-VOZrQAkw _KaJZAPCMEeOEP-VOZrQAkw _KaLOMPCMEeOEP-VOZrQAkw _KaNDYPCMEeOEP-VOZrQAkw _KaO4kPCMEeOEP-VOZrQAkw _KaQtwPCMEeOEP-VOZrQAkw _KaSi8PCMEeOEP-VOZrQAkw _KaUYIPCMEeOEP-VOZrQAkw _KaWNUPCMEeOEP-VOZrQAkw _KaYCgPCMEeOEP-VOZrQAkw _KaZ3sPCMEeOEP-VOZrQAkw _Kabs4PCMEeOEP-VOZrQAkw _Kac7APCMEeOEP-VOZrQAkw _KaewMPCMEeOEP-VOZrQAkw _KaglYPCMEeOEP-VOZrQAkw _KaiakPCMEeOEP-VOZrQAkw _KakPwPCMEeOEP-VOZrQAkw _KamE8PCMEeOEP-VOZrQAkw _Kan6IPCMEeOEP-VOZrQAkw _KapvUPCMEeOEP-VOZrQAkw _Kaq9cPCMEeOEP-VOZrQAkw _KasyoPCMEeOEP-VOZrQAkw _Kaun0PCMEeOEP-VOZrQAkw _KawdAPCMEeOEP-VOZrQAkw _KaySMPCMEeOEP-VOZrQAkw _Ka0HYPCMEeOEP-VOZrQAkw _Ka18kPCMEeOEP-VOZrQAkw _Ka3KsPCMEeOEP-VOZrQAkw _Ka4_4PCMEeOEP-VOZrQAkw _Ka61EPCMEeOEP-VOZrQAkw _Ka8qQPCMEeOEP-VOZrQAkw _Ka-fcPCMEeOEP-VOZrQAkw _KbAUoPCMEeOEP-VOZrQAkw _KbCJ0PCMEeOEP-VOZrQAkw" base_Component="_KTNqkPCMEeOEP-VOZrQAkw" name="OSGi System Bundle"/>
+  <ADL4Eclipse:Plugin xmi:id="_KTQG0PCMEeOEP-VOZrQAkw" base_Component="_KTNqkPCMEeOEP-VOZrQAkw" activator="org.eclipse.osgi.internal.framework.SystemBundleActivator" copyright="Copyright (c) 2003, 2014 IBM Corporation and others. All rights reserved. This program and the accompanying materials  are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html" description="OSGi System Bundle" docURL="http://www.eclipse.org" exportPackage="_KTXbkPCMEeOEP-VOZrQAkw _KTZ30PCMEeOEP-VOZrQAkw _KTc7IPCMEeOEP-VOZrQAkw _KTf-cPCMEeOEP-VOZrQAkw _KTiasPCMEeOEP-VOZrQAkw _KTleAPCMEeOEP-VOZrQAkw _KTohUPCMEeOEP-VOZrQAkw _KTq9kPCMEeOEP-VOZrQAkw _KTuA4PCMEeOEP-VOZrQAkw _KTwdIPCMEeOEP-VOZrQAkw _KTzgcPCMEeOEP-VOZrQAkw _KT18sPCMEeOEP-VOZrQAkw _KT5AAPCMEeOEP-VOZrQAkw _KT8DUPCMEeOEP-VOZrQAkw _KT-fkPCMEeOEP-VOZrQAkw _KUBi4PCMEeOEP-VOZrQAkw _KUD_IPCMEeOEP-VOZrQAkw _KUHCcPCMEeOEP-VOZrQAkw _KUJesPCMEeOEP-VOZrQAkw _KUMiAPCMEeOEP-VOZrQAkw _KUPlUPCMEeOEP-VOZrQAkw _KUSBkPCMEeOEP-VOZrQAkw _KUVE4PCMEeOEP-VOZrQAkw _KUXhIPCMEeOEP-VOZrQAkw _KUZ9YPCMEeOEP-VOZrQAkw _KUdAsPCMEeOEP-VOZrQAkw _KUgEAPCMEeOEP-VOZrQAkw _KUkVcPCMEeOEP-VOZrQAkw _KUnYwPCMEeOEP-VOZrQAkw _KUqcEPCMEeOEP-VOZrQAkw _KUs4UPCMEeOEP-VOZrQAkw _KUv7oPCMEeOEP-VOZrQAkw _KUyX4PCMEeOEP-VOZrQAkw _KU1bMPCMEeOEP-VOZrQAkw _KU33cPCMEeOEP-VOZrQAkw _KU66wPCMEeOEP-VOZrQAkw _KU-lIPCMEeOEP-VOZrQAkw _KVBBYPCMEeOEP-VOZrQAkw _KVEEsPCMEeOEP-VOZrQAkw _KVGg8PCMEeOEP-VOZrQAkw _KVI9MPCMEeOEP-VOZrQAkw _KVMAgPCMEeOEP-VOZrQAkw _KVOcwPCMEeOEP-VOZrQAkw _KVQ5APCMEeOEP-VOZrQAkw _KVT8UPCMEeOEP-VOZrQAkw _KVWYkPCMEeOEP-VOZrQAkw _KVZb4PCMEeOEP-VOZrQAkw _KVb4IPCMEeOEP-VOZrQAkw _KVeUYPCMEeOEP-VOZrQAkw _KVhXsPCMEeOEP-VOZrQAkw _KVjz8PCMEeOEP-VOZrQAkw _KVmQMPCMEeOEP-VOZrQAkw _KVpTgPCMEeOEP-VOZrQAkw _KVrvwPCMEeOEP-VOZrQAkw _KVuzEPCMEeOEP-VOZrQAkw _KVxPUPCMEeOEP-VOZrQAkw _KVzrkPCMEeOEP-VOZrQAkw _KV2u4PCMEeOEP-VOZrQAkw _KV5LIPCMEeOEP-VOZrQAkw _KV7nYPCMEeOEP-VOZrQAkw _KV-qsPCMEeOEP-VOZrQAkw _KWBG8PCMEeOEP-VOZrQAkw _KWDjMPCMEeOEP-VOZrQAkw _KWGmgPCMEeOEP-VOZrQAkw _KWJCwPCMEeOEP-VOZrQAkw _KWLfAPCMEeOEP-VOZrQAkw _KWN7QPCMEeOEP-VOZrQAkw _KWQXgPCMEeOEP-VOZrQAkw _KWSzwPCMEeOEP-VOZrQAkw _KWVQAPCMEeOEP-VOZrQAkw _KWXFMPCMEeOEP-VOZrQAkw _KWZhcPCMEeOEP-VOZrQAkw _KWb9sPCMEeOEP-VOZrQAkw _KWeZ8PCMEeOEP-VOZrQAkw _KWg2MPCMEeOEP-VOZrQAkw _KWirYPCMEeOEP-VOZrQAkw _KWlHoPCMEeOEP-VOZrQAkw _KWnj4PCMEeOEP-VOZrQAkw _KWqAIPCMEeOEP-VOZrQAkw _KWscYPCMEeOEP-VOZrQAkw _KWuRkPCMEeOEP-VOZrQAkw _KWwt0PCMEeOEP-VOZrQAkw _KWyjAPCMEeOEP-VOZrQAkw _KW0_QPCMEeOEP-VOZrQAkw _KW20cPCMEeOEP-VOZrQAkw _KW5QsPCMEeOEP-VOZrQAkw _KW7F4PCMEeOEP-VOZrQAkw _KW9iIPCMEeOEP-VOZrQAkw _KW_-YPCMEeOEP-VOZrQAkw _KXBzkPCMEeOEP-VOZrQAkw _KXEP0PCMEeOEP-VOZrQAkw _KXGFAPCMEeOEP-VOZrQAkw _KXH6MPCMEeOEP-VOZrQAkw _KXKWcPCMEeOEP-VOZrQAkw _KXMLoPCMEeOEP-VOZrQAkw _KXOn4PCMEeOEP-VOZrQAkw _KXQdEPCMEeOEP-VOZrQAkw _KXSSQPCMEeOEP-VOZrQAkw _KXUugPCMEeOEP-VOZrQAkw _KXWjsPCMEeOEP-VOZrQAkw _KXYY4PCMEeOEP-VOZrQAkw _KXa1IPCMEeOEP-VOZrQAkw _KXcqUPCMEeOEP-VOZrQAkw _KXefgPCMEeOEP-VOZrQAkw _KXgUsPCMEeOEP-VOZrQAkw _KXiJ4PCMEeOEP-VOZrQAkw _KXkmIPCMEeOEP-VOZrQAkw _KXmbUPCMEeOEP-VOZrQAkw _KXoQgPCMEeOEP-VOZrQAkw _KXqFsPCMEeOEP-VOZrQAkw _KXsh8PCMEeOEP-VOZrQAkw _KXuXIPCMEeOEP-VOZrQAkw _KXwMUPCMEeOEP-VOZrQAkw _KXyBgPCMEeOEP-VOZrQAkw _KX0dwPCMEeOEP-VOZrQAkw _KX2S8PCMEeOEP-VOZrQAkw _KX4IIPCMEeOEP-VOZrQAkw _KX6kYPCMEeOEP-VOZrQAkw _KX8ZkPCMEeOEP-VOZrQAkw _KX-OwPCMEeOEP-VOZrQAkw _KYArAPCMEeOEP-VOZrQAkw _KYCgMPCMEeOEP-VOZrQAkw _KYEVYPCMEeOEP-VOZrQAkw _KYGxoPCMEeOEP-VOZrQAkw _KYIm0PCMEeOEP-VOZrQAkw _KYKcAPCMEeOEP-VOZrQAkw _KYMRMPCMEeOEP-VOZrQAkw _KYOGYPCMEeOEP-VOZrQAkw _KYQioPCMEeOEP-VOZrQAkw _KYSX0PCMEeOEP-VOZrQAkw _KYUNAPCMEeOEP-VOZrQAkw _KYWCMPCMEeOEP-VOZrQAkw _KYX3YPCMEeOEP-VOZrQAkw _KYaToPCMEeOEP-VOZrQAkw _KYcI0PCMEeOEP-VOZrQAkw _KYd-APCMEeOEP-VOZrQAkw _KYfzMPCMEeOEP-VOZrQAkw _KYiPcPCMEeOEP-VOZrQAkw _KYkEoPCMEeOEP-VOZrQAkw _KYl50PCMEeOEP-VOZrQAkw _KYnvAPCMEeOEP-VOZrQAkw _KYpkMPCMEeOEP-VOZrQAkw _KYsAcPCMEeOEP-VOZrQAkw _KYt1oPCMEeOEP-VOZrQAkw _KYvq0PCMEeOEP-VOZrQAkw _KYxgAPCMEeOEP-VOZrQAkw _KYzVMPCMEeOEP-VOZrQAkw _KY1KYPCMEeOEP-VOZrQAkw _KY2_kPCMEeOEP-VOZrQAkw _KY40wPCMEeOEP-VOZrQAkw _KY6p8PCMEeOEP-VOZrQAkw _KY8fIPCMEeOEP-VOZrQAkw _KY-UUPCMEeOEP-VOZrQAkw _KZAwkPCMEeOEP-VOZrQAkw _KZClwPCMEeOEP-VOZrQAkw _KZEa8PCMEeOEP-VOZrQAkw _KZGQIPCMEeOEP-VOZrQAkw _KZIFUPCMEeOEP-VOZrQAkw _KZJ6gPCMEeOEP-VOZrQAkw _KZLvsPCMEeOEP-VOZrQAkw _KZNk4PCMEeOEP-VOZrQAkw _KZPaEPCMEeOEP-VOZrQAkw _KZRPQPCMEeOEP-VOZrQAkw _KZTEcPCMEeOEP-VOZrQAkw _KZU5oPCMEeOEP-VOZrQAkw _KZWu0PCMEeOEP-VOZrQAkw _KZYkAPCMEeOEP-VOZrQAkw _KZaZMPCMEeOEP-VOZrQAkw _KZcOYPCMEeOEP-VOZrQAkw _KZeDkPCMEeOEP-VOZrQAkw _KZf4wPCMEeOEP-VOZrQAkw _KZht8PCMEeOEP-VOZrQAkw _KZjjIPCMEeOEP-VOZrQAkw _KZlYUPCMEeOEP-VOZrQAkw _KZnNgPCMEeOEP-VOZrQAkw _KZpCsPCMEeOEP-VOZrQAkw _KZq34PCMEeOEP-VOZrQAkw _KZstEPCMEeOEP-VOZrQAkw _KZuiQPCMEeOEP-VOZrQAkw _KZwXcPCMEeOEP-VOZrQAkw _KZyMoPCMEeOEP-VOZrQAkw _KZ0B0PCMEeOEP-VOZrQAkw _KZ1P8PCMEeOEP-VOZrQAkw _KZ3FIPCMEeOEP-VOZrQAkw _KZ46UPCMEeOEP-VOZrQAkw _KZ6vgPCMEeOEP-VOZrQAkw _KZ8ksPCMEeOEP-VOZrQAkw _KZ-Z4PCMEeOEP-VOZrQAkw _KaAPEPCMEeOEP-VOZrQAkw _KaCEQPCMEeOEP-VOZrQAkw _KaD5cPCMEeOEP-VOZrQAkw _KaFuoPCMEeOEP-VOZrQAkw _KaHj0PCMEeOEP-VOZrQAkw _KaJZAPCMEeOEP-VOZrQAkw _KaLOMPCMEeOEP-VOZrQAkw _KaNDYPCMEeOEP-VOZrQAkw _KaO4kPCMEeOEP-VOZrQAkw _KaQtwPCMEeOEP-VOZrQAkw _KaSi8PCMEeOEP-VOZrQAkw _KaUYIPCMEeOEP-VOZrQAkw _KaWNUPCMEeOEP-VOZrQAkw _KaYCgPCMEeOEP-VOZrQAkw _KaZ3sPCMEeOEP-VOZrQAkw _Kabs4PCMEeOEP-VOZrQAkw _Kac7APCMEeOEP-VOZrQAkw _KaewMPCMEeOEP-VOZrQAkw _KaglYPCMEeOEP-VOZrQAkw _KaiakPCMEeOEP-VOZrQAkw _KakPwPCMEeOEP-VOZrQAkw _KamE8PCMEeOEP-VOZrQAkw _Kan6IPCMEeOEP-VOZrQAkw _KapvUPCMEeOEP-VOZrQAkw _Kaq9cPCMEeOEP-VOZrQAkw _KasyoPCMEeOEP-VOZrQAkw _Kaun0PCMEeOEP-VOZrQAkw _KawdAPCMEeOEP-VOZrQAkw _KaySMPCMEeOEP-VOZrQAkw _Ka0HYPCMEeOEP-VOZrQAkw _Ka18kPCMEeOEP-VOZrQAkw _Ka3KsPCMEeOEP-VOZrQAkw _Ka4_4PCMEeOEP-VOZrQAkw _Ka61EPCMEeOEP-VOZrQAkw _Ka8qQPCMEeOEP-VOZrQAkw _Ka-fcPCMEeOEP-VOZrQAkw _KbAUoPCMEeOEP-VOZrQAkw _KbCJ0PCMEeOEP-VOZrQAkw" localization="systembundle" name="OSGi System Bundle" symbolicName="org.eclipse.osgi" version="3.10.0.v20140513-1456" vendor="Eclipse.org - Equinox" bundleShape="jar"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KTXbkPCMEeOEP-VOZrQAkw" base_Package="_KTU_UPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KTZ30PCMEeOEP-VOZrQAkw" base_Package="_KTYCoPCMEeOEP-VOZrQAkw" isInternal="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KTc7IPCMEeOEP-VOZrQAkw" atleast="1.0.0" base_Package="_KTae4PCMEeOEP-VOZrQAkw"/>
@@ -1119,12 +1042,12 @@ For the moment this function is not implemented.</body>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KbAUoPCMEeOEP-VOZrQAkw" base_Package="_Ka_GgPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KbCJ0PCMEeOEP-VOZrQAkw" base_Package="_KbA7sPCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KbFNIPCMEeOEP-VOZrQAkw" base_Dependency="_KbD_APCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KbHCUPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.emf.ecore.xmi.XMIPlugin$Implementation$Activator" classPath="." localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.emf.ecore.xmi" vendor="Eclipse Modeling Project" version="2.10.0.v20140514-1158" exportPackage="_KbNI8PCMEeOEP-VOZrQAkw _KbOXEPCMEeOEP-VOZrQAkw _KbQMQPCMEeOEP-VOZrQAkw" base_Component="_KbF0MPCMEeOEP-VOZrQAkw" name="EMF XML/XMI Persistence" lazyStart="true"/>
+  <ADL4Eclipse:Plugin xmi:id="_KbHCUPCMEeOEP-VOZrQAkw" base_Component="_KbF0MPCMEeOEP-VOZrQAkw" activator="org.eclipse.emf.ecore.xmi.XMIPlugin$Implementation$Activator" classPath="." exportPackage="_KbNI8PCMEeOEP-VOZrQAkw _KbOXEPCMEeOEP-VOZrQAkw _KbQMQPCMEeOEP-VOZrQAkw" localization="plugin" name="EMF XML/XMI Persistence" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.emf.ecore.xmi" version="2.10.0.v20140514-1158" vendor="Eclipse Modeling Project" bundleShape="jar" lazyStart="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KbNI8PCMEeOEP-VOZrQAkw" base_Package="_KbLTwPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KbOXEPCMEeOEP-VOZrQAkw" base_Package="_KbNI8fCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KbQMQPCMEeOEP-VOZrQAkw" base_Package="_KbO-IPCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KbTPkPCMEeOEP-VOZrQAkw" base_Dependency="_KbRaYPCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KbUdsPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.papyrus.infra.extendedtypes.Activator" classPath="." localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.extendedtypes" vendor="Eclipse Modeling Project" version="1.0.0.v201406030454" exportPackage="_KbakUPCMEeOEP-VOZrQAkw _KbbycPCMEeOEP-VOZrQAkw _KbdnoPCMEeOEP-VOZrQAkw _Kbfc0PCMEeOEP-VOZrQAkw _KbhSAPCMEeOEP-VOZrQAkw _KbjHMPCMEeOEP-VOZrQAkw _Kbk8YPCMEeOEP-VOZrQAkw _KbmxkPCMEeOEP-VOZrQAkw _Kbn_sPCMEeOEP-VOZrQAkw _Kbp04PCMEeOEP-VOZrQAkw _KbrqEPCMEeOEP-VOZrQAkw _KbtfQPCMEeOEP-VOZrQAkw _KbvUcPCMEeOEP-VOZrQAkw _KbxJoPCMEeOEP-VOZrQAkw _Kby-0PCMEeOEP-VOZrQAkw" base_Component="_KbTPkfCMEeOEP-VOZrQAkw" name="Papyrus enhanced types metamodel plugin" isIncubation="true"/>
+  <ADL4Eclipse:Plugin xmi:id="_KbUdsPCMEeOEP-VOZrQAkw" base_Component="_KbTPkfCMEeOEP-VOZrQAkw" activator="org.eclipse.papyrus.infra.extendedtypes.Activator" classPath="." exportPackage="_KbakUPCMEeOEP-VOZrQAkw _KbbycPCMEeOEP-VOZrQAkw _KbdnoPCMEeOEP-VOZrQAkw _Kbfc0PCMEeOEP-VOZrQAkw _KbhSAPCMEeOEP-VOZrQAkw _KbjHMPCMEeOEP-VOZrQAkw _Kbk8YPCMEeOEP-VOZrQAkw _KbmxkPCMEeOEP-VOZrQAkw _Kbn_sPCMEeOEP-VOZrQAkw _Kbp04PCMEeOEP-VOZrQAkw _KbrqEPCMEeOEP-VOZrQAkw _KbtfQPCMEeOEP-VOZrQAkw _KbvUcPCMEeOEP-VOZrQAkw _KbxJoPCMEeOEP-VOZrQAkw _Kby-0PCMEeOEP-VOZrQAkw" localization="plugin" name="Papyrus enhanced types metamodel plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.extendedtypes" version="1.0.0.v201406030454" vendor="Eclipse Modeling Project" bundleShape="jar" isIncubation="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KbakUPCMEeOEP-VOZrQAkw" base_Package="_KbYvIPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KbbycPCMEeOEP-VOZrQAkw" base_Package="_KbakUfCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KbdnoPCMEeOEP-VOZrQAkw" base_Package="_KbcZgPCMEeOEP-VOZrQAkw"/>
@@ -1141,20 +1064,20 @@ For the moment this function is not implemented.</body>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KbxJoPCMEeOEP-VOZrQAkw" base_Package="_Kbv7gPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kby-0PCMEeOEP-VOZrQAkw" base_Package="_KbxJofCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_Kb1bEPCMEeOEP-VOZrQAkw" base_Dependency="_Kbzl4PCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_Kb3QQPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.papyrus.infra.services.resourceloading.Activator" localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.services.resourceloading" vendor="Eclipse Modeling Project" version="1.0.0.v201406030454" exportPackage="_Kb8v0PCMEeOEP-VOZrQAkw _Kb-lAPCMEeOEP-VOZrQAkw _Kb_zIPCMEeOEP-VOZrQAkw _KcBoUPCMEeOEP-VOZrQAkw" base_Component="_Kb1bEfCMEeOEP-VOZrQAkw" name="Papyrus Resource Loading" isIncubation="true"/>
+  <ADL4Eclipse:Plugin xmi:id="_Kb3QQPCMEeOEP-VOZrQAkw" base_Component="_Kb1bEfCMEeOEP-VOZrQAkw" activator="org.eclipse.papyrus.infra.services.resourceloading.Activator" exportPackage="_Kb8v0PCMEeOEP-VOZrQAkw _Kb-lAPCMEeOEP-VOZrQAkw _Kb_zIPCMEeOEP-VOZrQAkw _KcBoUPCMEeOEP-VOZrQAkw" localization="plugin" name="Papyrus Resource Loading" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.services.resourceloading" version="1.0.0.v201406030454" vendor="Eclipse Modeling Project" bundleShape="jar" isIncubation="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kb8v0PCMEeOEP-VOZrQAkw" base_Package="_Kb7hsPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kb-lAPCMEeOEP-VOZrQAkw" base_Package="_Kb8v0fCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kb_zIPCMEeOEP-VOZrQAkw" base_Package="_Kb-lAfCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KcBoUPCMEeOEP-VOZrQAkw" base_Package="_KcAaMPCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KcEEkPCMEeOEP-VOZrQAkw" base_Dependency="_KcC2cPCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KcF5wPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.emf.transaction.internal.EMFTransactionPlugin$Implementation" localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.emf.transaction" vendor="Eclipse Modeling Project" version="1.8.0.201405281451" exportPackage="_KcLZUPCMEeOEP-VOZrQAkw _KcNOgPCMEeOEP-VOZrQAkw _KcPDsPCMEeOEP-VOZrQAkw _KcQ44PCMEeOEP-VOZrQAkw _KcSuEPCMEeOEP-VOZrQAkw" base_Component="_KcEroPCMEeOEP-VOZrQAkw" name="EMF Model Transaction Core" lazyStart="true"/>
+  <ADL4Eclipse:Plugin xmi:id="_KcF5wPCMEeOEP-VOZrQAkw" base_Component="_KcEroPCMEeOEP-VOZrQAkw" activator="org.eclipse.emf.transaction.internal.EMFTransactionPlugin$Implementation" exportPackage="_KcLZUPCMEeOEP-VOZrQAkw _KcNOgPCMEeOEP-VOZrQAkw _KcPDsPCMEeOEP-VOZrQAkw _KcQ44PCMEeOEP-VOZrQAkw _KcSuEPCMEeOEP-VOZrQAkw" localization="plugin" name="EMF Model Transaction Core" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.emf.transaction" version="1.8.0.201405281451" vendor="Eclipse Modeling Project" bundleShape="jar" lazyStart="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KcLZUPCMEeOEP-VOZrQAkw" base_Package="_KcKLMPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KcNOgPCMEeOEP-VOZrQAkw" base_Package="_KcMAYPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KcPDsPCMEeOEP-VOZrQAkw" base_Package="_KcN1kPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KcQ44PCMEeOEP-VOZrQAkw" base_Package="_KcPqwPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KcSuEPCMEeOEP-VOZrQAkw" base_Package="_KcQ44fCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KcVKUPCMEeOEP-VOZrQAkw" base_Dependency="_KcTVIPCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KcW_gPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.gmf.runtime.emf.type.core.internal.EMFTypePlugin" localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.gmf.runtime.emf.type.core" vendor="Eclipse Modeling Project" version="1.7.0.201405281701" exportPackage="_KccfEPCMEeOEP-VOZrQAkw _KcdtMPCMEeOEP-VOZrQAkw _KcfiYPCMEeOEP-VOZrQAkw _KchXkPCMEeOEP-VOZrQAkw _KcjMwPCMEeOEP-VOZrQAkw _KclB8PCMEeOEP-VOZrQAkw _Kcm3IPCMEeOEP-VOZrQAkw _KcosUPCMEeOEP-VOZrQAkw" base_Component="_KcVKUfCMEeOEP-VOZrQAkw" name="GMF EMF Type Core"/>
+  <ADL4Eclipse:Plugin xmi:id="_KcW_gPCMEeOEP-VOZrQAkw" base_Component="_KcVKUfCMEeOEP-VOZrQAkw" activator="org.eclipse.gmf.runtime.emf.type.core.internal.EMFTypePlugin" exportPackage="_KccfEPCMEeOEP-VOZrQAkw _KcdtMPCMEeOEP-VOZrQAkw _KcfiYPCMEeOEP-VOZrQAkw _KchXkPCMEeOEP-VOZrQAkw _KcjMwPCMEeOEP-VOZrQAkw _KclB8PCMEeOEP-VOZrQAkw _Kcm3IPCMEeOEP-VOZrQAkw _KcosUPCMEeOEP-VOZrQAkw" localization="plugin" name="GMF EMF Type Core" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.gmf.runtime.emf.type.core" version="1.7.0.201405281701" vendor="Eclipse Modeling Project" bundleShape="jar"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KccfEPCMEeOEP-VOZrQAkw" base_Package="_Kcap4PCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KcdtMPCMEeOEP-VOZrQAkw" base_Package="_KccfEfCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KcfiYPCMEeOEP-VOZrQAkw" base_Package="_KceUQPCMEeOEP-VOZrQAkw"/>
@@ -1164,7 +1087,7 @@ For the moment this function is not implemented.</body>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kcm3IPCMEeOEP-VOZrQAkw" base_Package="_KclpAPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KcosUPCMEeOEP-VOZrQAkw" base_Package="_Kcm3IfCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KcrIkPCMEeOEP-VOZrQAkw" base_Dependency="_KcpTYPCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KcsWsPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.papyrus.infra.services.edit.Activator" localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.services.edit" vendor="Eclipse Modeling Project" version="1.0.0.v201406030454" exportPackage="_KcydUPCMEeOEP-VOZrQAkw _KczrcPCMEeOEP-VOZrQAkw _Kc1goPCMEeOEP-VOZrQAkw _Kc3V0PCMEeOEP-VOZrQAkw _Kc6ZIPCMEeOEP-VOZrQAkw _Kc8OUPCMEeOEP-VOZrQAkw _Kc-DgPCMEeOEP-VOZrQAkw _Kc_4sPCMEeOEP-VOZrQAkw" base_Component="_KcrIkfCMEeOEP-VOZrQAkw" name="Papyrus Edit Service" isIncubation="true"/>
+  <ADL4Eclipse:Plugin xmi:id="_KcsWsPCMEeOEP-VOZrQAkw" base_Component="_KcrIkfCMEeOEP-VOZrQAkw" activator="org.eclipse.papyrus.infra.services.edit.Activator" exportPackage="_KcydUPCMEeOEP-VOZrQAkw _KczrcPCMEeOEP-VOZrQAkw _Kc1goPCMEeOEP-VOZrQAkw _Kc3V0PCMEeOEP-VOZrQAkw _Kc6ZIPCMEeOEP-VOZrQAkw _Kc8OUPCMEeOEP-VOZrQAkw _Kc-DgPCMEeOEP-VOZrQAkw _Kc_4sPCMEeOEP-VOZrQAkw" localization="plugin" name="Papyrus Edit Service" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.services.edit" version="1.0.0.v201406030454" vendor="Eclipse Modeling Project" bundleShape="jar" isIncubation="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KcydUPCMEeOEP-VOZrQAkw" base_Package="_KcwoIPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KczrcPCMEeOEP-VOZrQAkw" base_Package="_KcydUfCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kc1goPCMEeOEP-VOZrQAkw" base_Package="_Kc0SgPCMEeOEP-VOZrQAkw" isInternal="true"/>
@@ -1174,15 +1097,15 @@ For the moment this function is not implemented.</body>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kc-DgPCMEeOEP-VOZrQAkw" base_Package="_Kc81YPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kc_4sPCMEeOEP-VOZrQAkw" base_Package="_Kc-DgfCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KdCU8PCMEeOEP-VOZrQAkw" base_Dependency="_KdAfwPCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KdEKIPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.papyrus.commands.Activator" localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.gmfdiag.commands" vendor="Eclipse Modeling Project" version="1.0.0.v201406030454" exportPackage="_KdJpsPCMEeOEP-VOZrQAkw _KdK30PCMEeOEP-VOZrQAkw _KdMtAPCMEeOEP-VOZrQAkw" base_Component="_KdCU8fCMEeOEP-VOZrQAkw" name="Papyrus Commands Tools" isIncubation="true"/>
+  <ADL4Eclipse:Plugin xmi:id="_KdEKIPCMEeOEP-VOZrQAkw" base_Component="_KdCU8fCMEeOEP-VOZrQAkw" activator="org.eclipse.papyrus.commands.Activator" exportPackage="_KdJpsPCMEeOEP-VOZrQAkw _KdK30PCMEeOEP-VOZrQAkw _KdMtAPCMEeOEP-VOZrQAkw" localization="plugin" name="Papyrus Commands Tools" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.gmfdiag.commands" version="1.0.0.v201406030454" vendor="Eclipse Modeling Project" bundleShape="jar" isIncubation="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KdJpsPCMEeOEP-VOZrQAkw" base_Package="_KdH0gPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KdK30PCMEeOEP-VOZrQAkw" base_Package="_KdJpsfCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KdMtAPCMEeOEP-VOZrQAkw" base_Package="_KdLe4PCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KdPJQPCMEeOEP-VOZrQAkw" base_Dependency="_KdN7IPCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KdQ-cPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.papyrus.infra.core.log.internal.Activator" localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.core.log" vendor="Eclipse Modeling Project" version="1.0.0.v201406030454" exportPackage="_KdWeAPCMEeOEP-VOZrQAkw" base_Component="_KdPwUPCMEeOEP-VOZrQAkw" name="Papyrus Logging plugin" isIncubation="true"/>
+  <ADL4Eclipse:Plugin xmi:id="_KdQ-cPCMEeOEP-VOZrQAkw" base_Component="_KdPwUPCMEeOEP-VOZrQAkw" activator="org.eclipse.papyrus.infra.core.log.internal.Activator" exportPackage="_KdWeAPCMEeOEP-VOZrQAkw" localization="plugin" name="Papyrus Logging plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.core.log" version="1.0.0.v201406030454" vendor="Eclipse Modeling Project" bundleShape="jar" isIncubation="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KdWeAPCMEeOEP-VOZrQAkw" base_Package="_KdVP4PCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KdY6QPCMEeOEP-VOZrQAkw" base_Dependency="_KdXFEPCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KdavcPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.papyrus.infra.widgets.Activator" localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.widgets" vendor="Eclipse Modeling Project" version="1.0.0.v201406030454" exportPackage="_KdgPAPCMEeOEP-VOZrQAkw _KdiEMPCMEeOEP-VOZrQAkw _Kdj5YPCMEeOEP-VOZrQAkw _KdlukPCMEeOEP-VOZrQAkw _KdnjwPCMEeOEP-VOZrQAkw _Kdox4PCMEeOEP-VOZrQAkw _KdqnEPCMEeOEP-VOZrQAkw _KdscQPCMEeOEP-VOZrQAkw _KduRcPCMEeOEP-VOZrQAkw _KdwGoPCMEeOEP-VOZrQAkw" base_Component="_KdZhUPCMEeOEP-VOZrQAkw" name="Papyrus widgets" isIncubation="true"/>
+  <ADL4Eclipse:Plugin xmi:id="_KdavcPCMEeOEP-VOZrQAkw" base_Component="_KdZhUPCMEeOEP-VOZrQAkw" activator="org.eclipse.papyrus.infra.widgets.Activator" exportPackage="_KdgPAPCMEeOEP-VOZrQAkw _KdiEMPCMEeOEP-VOZrQAkw _Kdj5YPCMEeOEP-VOZrQAkw _KdlukPCMEeOEP-VOZrQAkw _KdnjwPCMEeOEP-VOZrQAkw _Kdox4PCMEeOEP-VOZrQAkw _KdqnEPCMEeOEP-VOZrQAkw _KdscQPCMEeOEP-VOZrQAkw _KduRcPCMEeOEP-VOZrQAkw _KdwGoPCMEeOEP-VOZrQAkw" localization="plugin" name="Papyrus widgets" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.widgets" version="1.0.0.v201406030454" vendor="Eclipse Modeling Project" bundleShape="jar" isIncubation="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KdgPAPCMEeOEP-VOZrQAkw" base_Package="_KdfA4PCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KdiEMPCMEeOEP-VOZrQAkw" base_Package="_Kdg2EPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kdj5YPCMEeOEP-VOZrQAkw" base_Package="_KdirQPCMEeOEP-VOZrQAkw"/>
@@ -1198,11 +1121,11 @@ For the moment this function is not implemented.</body>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kd868PCMEeOEP-VOZrQAkw" base_Package="_Kd7s0PCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kd-wIPCMEeOEP-VOZrQAkw" base_Package="_Kd9iAPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KeAlUPCMEeOEP-VOZrQAkw" base_Package="_Kd_XMPCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KeKWUPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.papyrus.views.modelexplorer.newchild.Activator" description="The purpose of this plugin  is to do the connection with the model explorer is org.eclipse.papyrus.view.modelexplorer.newchild. More documentation (models and file.doc) has been store in the docs directory of the plugin org.eclipse.papyrus.infra.newchild" localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.views.modelexplorer.newchild" vendor="Eclipse Modeling Project" version="1.0.0.qualifier" base_Component="_KeJIMPCMEeOEP-VOZrQAkw" name="Papyrus view model explorer new child"/>
+  <ADL4Eclipse:Plugin xmi:id="_KeKWUPCMEeOEP-VOZrQAkw" base_Component="_KeJIMPCMEeOEP-VOZrQAkw" activator="org.eclipse.papyrus.views.modelexplorer.newchild.Activator" description="The purpose of this plugin  is to do the connection with the model explorer is org.eclipse.papyrus.view.modelexplorer.newchild. More documentation (models and file.doc) has been store in the docs directory of the plugin org.eclipse.papyrus.infra.newchild" localization="plugin" name="Papyrus view model explorer new child" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.views.modelexplorer.newchild" version="1.0.0.qualifier" vendor="Eclipse Modeling Project" bundleShape="jar"/>
   <ModuleLayer:BundleReference xmi:id="_KeMLgPCMEeOEP-VOZrQAkw" base_Dependency="_KeK9YPCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KeOnwPCMEeOEP-VOZrQAkw" base_Dependency="_KeMykPCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KeQc8PCMEeOEP-VOZrQAkw" base_Dependency="_KeOnwfCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KeSSIPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.papyrus.infra.core.Activator" localization="plugin" requiredExecutionEnvironment="JavaSE-1.6" symbolicName="org.eclipse.papyrus.infra.core" vendor="Eclipse Modeling Project" version="1.0.0.v201406030454" exportPackage="_KeXxsPCMEeOEP-VOZrQAkw _KeZm4PCMEeOEP-VOZrQAkw _KebcEPCMEeOEP-VOZrQAkw _KecqMPCMEeOEP-VOZrQAkw _KeefYPCMEeOEP-VOZrQAkw _KegUkPCMEeOEP-VOZrQAkw _KeiJwPCMEeOEP-VOZrQAkw _Kej-8PCMEeOEP-VOZrQAkw _Kel0IPCMEeOEP-VOZrQAkw _KenpUPCMEeOEP-VOZrQAkw _Keo3cPCMEeOEP-VOZrQAkw _KeqsoPCMEeOEP-VOZrQAkw _Kesh0PCMEeOEP-VOZrQAkw _KeuXAPCMEeOEP-VOZrQAkw _KewMMPCMEeOEP-VOZrQAkw _KeyBYPCMEeOEP-VOZrQAkw _KezPgPCMEeOEP-VOZrQAkw _Ke1EsPCMEeOEP-VOZrQAkw _Ke254PCMEeOEP-VOZrQAkw" base_Component="_KeREAPCMEeOEP-VOZrQAkw" name="Papyrus Backbone" isIncubation="true"/>
+  <ADL4Eclipse:Plugin xmi:id="_KeSSIPCMEeOEP-VOZrQAkw" base_Component="_KeREAPCMEeOEP-VOZrQAkw" activator="org.eclipse.papyrus.infra.core.Activator" exportPackage="_KeXxsPCMEeOEP-VOZrQAkw _KeZm4PCMEeOEP-VOZrQAkw _KebcEPCMEeOEP-VOZrQAkw _KecqMPCMEeOEP-VOZrQAkw _KeefYPCMEeOEP-VOZrQAkw _KegUkPCMEeOEP-VOZrQAkw _KeiJwPCMEeOEP-VOZrQAkw _Kej-8PCMEeOEP-VOZrQAkw _Kel0IPCMEeOEP-VOZrQAkw _KenpUPCMEeOEP-VOZrQAkw _Keo3cPCMEeOEP-VOZrQAkw _KeqsoPCMEeOEP-VOZrQAkw _Kesh0PCMEeOEP-VOZrQAkw _KeuXAPCMEeOEP-VOZrQAkw _KewMMPCMEeOEP-VOZrQAkw _KeyBYPCMEeOEP-VOZrQAkw _KezPgPCMEeOEP-VOZrQAkw _Ke1EsPCMEeOEP-VOZrQAkw _Ke254PCMEeOEP-VOZrQAkw" localization="plugin" name="Papyrus Backbone" requiredExecutionEnvironment="JavaSE-1.6" symbolicName="org.eclipse.papyrus.infra.core" version="1.0.0.v201406030454" vendor="Eclipse Modeling Project" bundleShape="jar" isIncubation="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KeXxsPCMEeOEP-VOZrQAkw" base_Package="_KeWjkPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KeZm4PCMEeOEP-VOZrQAkw" base_Package="_KeYYwPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KebcEPCMEeOEP-VOZrQAkw" base_Package="_KeZm4fCMEeOEP-VOZrQAkw"/>
@@ -1223,7 +1146,7 @@ For the moment this function is not implemented.</body>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Ke1EsPCMEeOEP-VOZrQAkw" base_Package="_Kez2kPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Ke254PCMEeOEP-VOZrQAkw" base_Package="_Ke1rwPCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_Ke5WIPCMEeOEP-VOZrQAkw" base_Dependency="_Ke4IAPCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_Ke7LUPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.papyrus.infra.emf.Activator" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.emf" vendor="Eclipse Modeling Project" version="1.0.0.v201406030454" exportPackage="_KfAq4PCMEeOEP-VOZrQAkw _KfCgEPCMEeOEP-VOZrQAkw _KfEVQPCMEeOEP-VOZrQAkw _KfGKcPCMEeOEP-VOZrQAkw _KfH_oPCMEeOEP-VOZrQAkw _KfJ00PCMEeOEP-VOZrQAkw _KfLqAPCMEeOEP-VOZrQAkw _KfOGQPCMEeOEP-VOZrQAkw _KfP7cPCMEeOEP-VOZrQAkw _KfRJkPCMEeOEP-VOZrQAkw" base_Component="_Ke59MPCMEeOEP-VOZrQAkw" name="EMF Tools" isIncubation="true"/>
+  <ADL4Eclipse:Plugin xmi:id="_Ke7LUPCMEeOEP-VOZrQAkw" base_Component="_Ke59MPCMEeOEP-VOZrQAkw" activator="org.eclipse.papyrus.infra.emf.Activator" exportPackage="_KfAq4PCMEeOEP-VOZrQAkw _KfCgEPCMEeOEP-VOZrQAkw _KfEVQPCMEeOEP-VOZrQAkw _KfGKcPCMEeOEP-VOZrQAkw _KfH_oPCMEeOEP-VOZrQAkw _KfJ00PCMEeOEP-VOZrQAkw _KfLqAPCMEeOEP-VOZrQAkw _KfOGQPCMEeOEP-VOZrQAkw _KfP7cPCMEeOEP-VOZrQAkw _KfRJkPCMEeOEP-VOZrQAkw" name="EMF Tools" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.emf" version="1.0.0.v201406030454" vendor="Eclipse Modeling Project" bundleShape="jar" isIncubation="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KfAq4PCMEeOEP-VOZrQAkw" base_Package="_Ke_cwPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KfCgEPCMEeOEP-VOZrQAkw" base_Package="_KfBR8PCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KfEVQPCMEeOEP-VOZrQAkw" base_Package="_KfDHIPCMEeOEP-VOZrQAkw"/>
@@ -1235,7 +1158,7 @@ For the moment this function is not implemented.</body>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KfP7cPCMEeOEP-VOZrQAkw" base_Package="_KfOGQfCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KfRJkPCMEeOEP-VOZrQAkw" base_Package="_KfP7cfCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KfTl0PCMEeOEP-VOZrQAkw" base_Dependency="_KfSXsPCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KfVbAPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.papyrus.uml.service.types.Activator" localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.uml.service.types" vendor="Eclipse Modeling Project" version="1.0.0.v201406030454" exportPackage="_Kfa6kPCMEeOEP-VOZrQAkw _KfcvwPCMEeOEP-VOZrQAkw _Kfek8PCMEeOEP-VOZrQAkw _KfgaIPCMEeOEP-VOZrQAkw _KfiPUPCMEeOEP-VOZrQAkw _KfkEgPCMEeOEP-VOZrQAkw _Kfl5sPCMEeOEP-VOZrQAkw _Kfnu4PCMEeOEP-VOZrQAkw _KfpkEPCMEeOEP-VOZrQAkw" base_Component="_KfUM4PCMEeOEP-VOZrQAkw" name="Papyrus UML ElementType Service" isIncubation="true"/>
+  <ADL4Eclipse:Plugin xmi:id="_KfVbAPCMEeOEP-VOZrQAkw" base_Component="_KfUM4PCMEeOEP-VOZrQAkw" activator="org.eclipse.papyrus.uml.service.types.Activator" exportPackage="_Kfa6kPCMEeOEP-VOZrQAkw _KfcvwPCMEeOEP-VOZrQAkw _Kfek8PCMEeOEP-VOZrQAkw _KfgaIPCMEeOEP-VOZrQAkw _KfiPUPCMEeOEP-VOZrQAkw _KfkEgPCMEeOEP-VOZrQAkw _Kfl5sPCMEeOEP-VOZrQAkw _Kfnu4PCMEeOEP-VOZrQAkw _KfpkEPCMEeOEP-VOZrQAkw" localization="plugin" name="Papyrus UML ElementType Service" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.uml.service.types" version="1.0.0.v201406030454" vendor="Eclipse Modeling Project" bundleShape="jar" isIncubation="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kfa6kPCMEeOEP-VOZrQAkw" base_Package="_KfZscPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KfcvwPCMEeOEP-VOZrQAkw" base_Package="_KfbhoPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kfek8PCMEeOEP-VOZrQAkw" base_Package="_KfdW0PCMEeOEP-VOZrQAkw"/>
@@ -1247,7 +1170,7 @@ For the moment this function is not implemented.</body>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KfpkEPCMEeOEP-VOZrQAkw" base_Package="_KfoV8PCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KfsAUPCMEeOEP-VOZrQAkw" base_Dependency="_KfqLIPCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_Kft1gPCMEeOEP-VOZrQAkw" base_Dependency="_KfsAUfCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KfvqsPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.gmf.runtime.common.core.internal.CommonCorePlugin" localization="plugin" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.gmf.runtime.common.core" vendor="Eclipse Modeling Project" version="1.7.0.201405281701" exportPackage="_Kf1KQPCMEeOEP-VOZrQAkw _Kf2_cPCMEeOEP-VOZrQAkw _Kf40oPCMEeOEP-VOZrQAkw _Kf6p0PCMEeOEP-VOZrQAkw _Kf8fAPCMEeOEP-VOZrQAkw _Kf-UMPCMEeOEP-VOZrQAkw _KgAJYPCMEeOEP-VOZrQAkw" base_Component="_KfuckPCMEeOEP-VOZrQAkw" name="GMF Common Core"/>
+  <ADL4Eclipse:Plugin xmi:id="_KfvqsPCMEeOEP-VOZrQAkw" base_Component="_KfuckPCMEeOEP-VOZrQAkw" activator="org.eclipse.gmf.runtime.common.core.internal.CommonCorePlugin" exportPackage="_Kf1KQPCMEeOEP-VOZrQAkw _Kf2_cPCMEeOEP-VOZrQAkw _Kf40oPCMEeOEP-VOZrQAkw _Kf6p0PCMEeOEP-VOZrQAkw _Kf8fAPCMEeOEP-VOZrQAkw _Kf-UMPCMEeOEP-VOZrQAkw _KgAJYPCMEeOEP-VOZrQAkw" localization="plugin" name="GMF Common Core" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.gmf.runtime.common.core" version="1.7.0.201405281701" vendor="Eclipse Modeling Project" bundleShape="jar"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kf1KQPCMEeOEP-VOZrQAkw" base_Package="_Kfz8IPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kf2_cPCMEeOEP-VOZrQAkw" base_Package="_Kf1xUPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_Kf40oPCMEeOEP-VOZrQAkw" base_Package="_Kf3mgPCMEeOEP-VOZrQAkw"/>
@@ -1258,7 +1181,7 @@ For the moment this function is not implemented.</body>
   <ModuleLayer:BundleReference xmi:id="_KgCloPCMEeOEP-VOZrQAkw" base_Dependency="_KgAwcPCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KgEa0PCMEeOEP-VOZrQAkw" base_Dependency="_KgClofCMEeOEP-VOZrQAkw"/>
   <ModuleLayer:BundleReference xmi:id="_KgGQAPCMEeOEP-VOZrQAkw" base_Dependency="_KgFB4PCMEeOEP-VOZrQAkw"/>
-  <ADL4Eclipse:Plugin xmi:id="_KgIFMPCMEeOEP-VOZrQAkw" hasLazyActivationPolicy="true" activator="org.eclipse.papyrus.infra.tools.Activator" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.tools" vendor="Eclipse Modeling Project" version="1.0.0.v201406030454" exportPackage="_KgNkwPCMEeOEP-VOZrQAkw _KgPZ8PCMEeOEP-VOZrQAkw _KgRPIPCMEeOEP-VOZrQAkw _KgTEUPCMEeOEP-VOZrQAkw _KgUScPCMEeOEP-VOZrQAkw _KgWusPCMEeOEP-VOZrQAkw" base_Component="_KgG3EPCMEeOEP-VOZrQAkw" name="Papyrus Tools" isIncubation="true"/>
+  <ADL4Eclipse:Plugin xmi:id="_KgIFMPCMEeOEP-VOZrQAkw" base_Component="_KgG3EPCMEeOEP-VOZrQAkw" activator="org.eclipse.papyrus.infra.tools.Activator" exportPackage="_KgNkwPCMEeOEP-VOZrQAkw _KgPZ8PCMEeOEP-VOZrQAkw _KgRPIPCMEeOEP-VOZrQAkw _KgTEUPCMEeOEP-VOZrQAkw _KgUScPCMEeOEP-VOZrQAkw _KgWusPCMEeOEP-VOZrQAkw" name="Papyrus Tools" requiredExecutionEnvironment="J2SE-1.5" symbolicName="org.eclipse.papyrus.infra.tools" version="1.0.0.v201406030454" vendor="Eclipse Modeling Project" bundleShape="jar" isIncubation="true"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KgNkwPCMEeOEP-VOZrQAkw" base_Package="_KgMWoPCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KgPZ8PCMEeOEP-VOZrQAkw" base_Package="_KgOL0PCMEeOEP-VOZrQAkw"/>
   <ADL4Eclipse:EclipseExportedPackage xmi:id="_KgRPIPCMEeOEP-VOZrQAkw" base_Package="_KgQBAPCMEeOEP-VOZrQAkw"/>
@@ -1274,54 +1197,16 @@ For the moment this function is not implemented.</body>
   <structure:UserDoc xmi:id="_nud3UPE_EeOsMc9uAZsKjQ" base_Comment="_Y6GWAPE9EeOsMc9uAZsKjQ"/>
   <structure:UserDoc xmi:id="_omHRAPE_EeOsMc9uAZsKjQ" base_Comment="_Zlv7EPE9EeOsMc9uAZsKjQ"/>
   <structure:UserDoc xmi:id="_pV-nsPE_EeOsMc9uAZsKjQ" base_Comment="_aJwAAPE9EeOsMc9uAZsKjQ"/>
-  <Document:Document xmi:id="_C07_QPFJEeOieZKVW9xRxg" base_Model="_C04U4PFJEeOieZKVW9xRxg" author="CEA LIST" version="0.2"/>
-  <Document:Section xmi:id="_C1AQsPFJEeOieZKVW9xRxg" base_Package="_C090cPFJEeOieZKVW9xRxg"/>
-  <Document:Content xmi:id="_C1GXUPFJEeOieZKVW9xRxg" base_Comment="_C1D7EPFJEeOieZKVW9xRxg"/>
-  <Document:Content xmi:id="_C1L24PFJEeOieZKVW9xRxg" base_Comment="_C1JaoPFJEeOieZKVW9xRxg"/>
-  <Document:Content xmi:id="_C1QIUPFJEeOieZKVW9xRxg" base_Comment="_C1OTIPFJEeOieZKVW9xRxg"/>
-  <Document:Content xmi:id="_C1UZwPFJEeOieZKVW9xRxg" base_Comment="_C1SkkPFJEeOieZKVW9xRxg"/>
-  <Document:Content xmi:id="_C1Z5UPFJEeOieZKVW9xRxg" base_Comment="_C1W2APFJEeOieZKVW9xRxg"/>
-  <Document:Section xmi:id="_C1djsPFJEeOieZKVW9xRxg" base_Package="_C1bHcPFJEeOieZKVW9xRxg"/>
-  <Document:ImageRef xmi:id="_C3ye8PFJEeOieZKVW9xRxg" base_Comment="_C3wCsPFJEeOieZKVW9xRxg" ref="C:/git/org.eclipse.papyrus/plugins/infra/org.eclipse.papyrus.infra.newchild/doc/imgDOC/UseCaseDiagram.png"/>
-  <Document:Section xmi:id="_C307MPFJEeOieZKVW9xRxg" base_Package="_C3zGAPFJEeOieZKVW9xRxg"/>
-  <Document:Content xmi:id="_C33XcPFJEeOieZKVW9xRxg" base_Comment="_C32JUPFJEeOieZKVW9xRxg"/>
-  <Document:Section xmi:id="_C35zsPFJEeOieZKVW9xRxg" base_Package="_C33-gPFJEeOieZKVW9xRxg"/>
-  <Document:Content xmi:id="_C38P8PFJEeOieZKVW9xRxg" base_Comment="_C36awPFJEeOieZKVW9xRxg"/>
-  <Document:ImageRef xmi:id="_C3-sMPFJEeOieZKVW9xRxg" base_Comment="_C383APFJEeOieZKVW9xRxg" ref="C:\git\org.eclipse.papyrus\plugins\infra\org.eclipse.papyrus.infra.newchild\doc\imgDOC\EnableCreationMenu.png"/>
-  <Document:Section xmi:id="_C4BIcPFJEeOieZKVW9xRxg" base_Package="_C3_TQPFJEeOieZKVW9xRxg"/>
-  <Document:Content xmi:id="_C4DksPFJEeOieZKVW9xRxg" base_Comment="_C4BvgPFJEeOieZKVW9xRxg"/>
-  <Document:Section xmi:id="_C4GA8PFJEeOieZKVW9xRxg" base_Package="_C4ELwPFJEeOieZKVW9xRxg"/>
-  <Document:Content xmi:id="_C4H2IPFJEeOieZKVW9xRxg" base_Comment="_C4GoAPFJEeOieZKVW9xRxg"/>
-  <Document:Content xmi:id="_C4KSYPFJEeOieZKVW9xRxg" base_Comment="_C4IdMPFJEeOieZKVW9xRxg"/>
-  <Document:ImageRef xmi:id="_C4MuoPFJEeOieZKVW9xRxg" base_Comment="_C4K5cPFJEeOieZKVW9xRxg" ref="C:\git\org.eclipse.papyrus\plugins\infra\org.eclipse.papyrus.infra.newchild\doc\imgDOC\PackageWithIconO.png"/>
-  <Document:ImageRef xmi:id="_C4PK4PFJEeOieZKVW9xRxg" base_Comment="_C4NVsPFJEeOieZKVW9xRxg" ref="C:\git\org.eclipse.papyrus\plugins\infra\org.eclipse.papyrus.infra.newchild\doc\imgDOC\PackageWithIconOIllustration.png"/>
-  <Document:Content xmi:id="_C4RnIPFJEeOieZKVW9xRxg" base_Comment="_C4Px8PFJEeOieZKVW9xRxg"/>
-  <Document:ImageRef xmi:id="_C4UDYPFJEeOieZKVW9xRxg" base_Comment="_C4SOMPFJEeOieZKVW9xRxg" ref="C:\git\org.eclipse.papyrus\plugins\infra\org.eclipse.papyrus.infra.newchild\doc\imgDOC\NestedClassifierIllustration.png"/>
-  <Document:ImageRef xmi:id="_C4XGsPFJEeOieZKVW9xRxg" base_Comment="_C4UqcPFJEeOieZKVW9xRxg" ref="C:\git\org.eclipse.papyrus\plugins\infra\org.eclipse.papyrus.infra.newchild\doc\imgDOC\NestedClassifier.png"/>
-  <Document:Content xmi:id="_C4Zi8PFJEeOieZKVW9xRxg" base_Comment="_C4XtwPFJEeOieZKVW9xRxg"/>
-  <Document:ImageRef xmi:id="_C4b_MPFJEeOieZKVW9xRxg" base_Comment="_C4aKAPFJEeOieZKVW9xRxg" ref="C:\git\org.eclipse.papyrus\plugins\infra\org.eclipse.papyrus.infra.newchild\doc\imgDOC\AllPossibleActivities.png"/>
-  <Document:ImageRef xmi:id="_C4ebcPFJEeOieZKVW9xRxg" base_Comment="_C4cmQPFJEeOieZKVW9xRxg" ref="C:\git\org.eclipse.papyrus\plugins\infra\org.eclipse.papyrus.infra.newchild\doc\imgDOC\AllPossibleActivitiesIllustration.png"/>
-  <Document:Section xmi:id="_C4g3sPFJEeOieZKVW9xRxg" base_Package="_C4fCgPFJEeOieZKVW9xRxg"/>
-  <Document:Content xmi:id="_C4jT8PFJEeOieZKVW9xRxg" base_Comment="_C4hewPFJEeOieZKVW9xRxg"/>
-  <Document:Section xmi:id="_C4lwMPFJEeOieZKVW9xRxg" base_Package="_C4j7APFJEeOieZKVW9xRxg"/>
-  <Document:Content xmi:id="_C4nlYPFJEeOieZKVW9xRxg" base_Comment="_C4mXQPFJEeOieZKVW9xRxg"/>
-  <Document:Section xmi:id="_C4qBoPFJEeOieZKVW9xRxg" base_Package="_C4oMcPFJEeOieZKVW9xRxg"/>
-  <Document:Content xmi:id="_C4sd4PFJEeOieZKVW9xRxg" base_Comment="_C4qosPFJEeOieZKVW9xRxg"/>
-  <Document:Section xmi:id="_C4uTEPFJEeOieZKVW9xRxg" base_Package="_C4tE8PFJEeOieZKVW9xRxg"/>
-  <Document:Content xmi:id="_C4wvUPFJEeOieZKVW9xRxg" base_Comment="_C4u6IPFJEeOieZKVW9xRxg"/>
-  <Document:Section xmi:id="_C4zLkPFJEeOieZKVW9xRxg" base_Package="_C4xWYPFJEeOieZKVW9xRxg"/>
-  <Document:ImageRef xmi:id="_C6TncPFJEeOieZKVW9xRxg" base_Comment="_C6RyQPFJEeOieZKVW9xRxg" ref="C:/git/org.eclipse.papyrus/plugins/infra/org.eclipse.papyrus.infra.newchild/doc/imgDOC/Architecture.png"/>
-  <Document:Content xmi:id="_C6WDsPFJEeOieZKVW9xRxg" base_Comment="_C6U1kPFJEeOieZKVW9xRxg"/>
-  <Document:ImageRef xmi:id="_C7YlgPFJEeOieZKVW9xRxg" base_Comment="_C7WwUPFJEeOieZKVW9xRxg" ref="C:/git/org.eclipse.papyrus/plugins/infra/org.eclipse.papyrus.infra.newchild/doc/imgDOC/NewDiagram.png"/>
-  <Document:Content xmi:id="_C7bBwPFJEeOieZKVW9xRxg" base_Comment="_C7ZzoPFJEeOieZKVW9xRxg"/>
-  <Document:ImageRef xmi:id="_C7deAPFJEeOieZKVW9xRxg" base_Comment="_C7cP4PFJEeOieZKVW9xRxg" ref="C:\git\org.eclipse.papyrus\plugins\infra\org.eclipse.papyrus.infra.newchild\doc\imgDOC\MenuExample.png"/>
-  <Document:ImageRef xmi:id="_C7f6QPFJEeOieZKVW9xRxg" base_Comment="_C7esIPFJEeOieZKVW9xRxg" ref="C:\git\org.eclipse.papyrus\plugins\infra\org.eclipse.papyrus.infra.newchild\doc\imgDOC\codeXML.PNG"/>
-  <Document:Content xmi:id="_C7iWgPFJEeOieZKVW9xRxg" base_Comment="_C7hIYPFJEeOieZKVW9xRxg"/>
-  <Document:Section xmi:id="_C7kywPFJEeOieZKVW9xRxg" base_Package="_C7i9kPFJEeOieZKVW9xRxg"/>
-  <Document:Section xmi:id="_C7nPAPFJEeOieZKVW9xRxg" base_Package="_C7lZ0PFJEeOieZKVW9xRxg"/>
-  <Document:Section xmi:id="_C7prQPFJEeOieZKVW9xRxg" base_Package="_C7n2EPFJEeOieZKVW9xRxg"/>
-  <Document:Section xmi:id="_C7sHgPFJEeOieZKVW9xRxg" base_Package="_C7qSUPFJEeOieZKVW9xRxg"/>
-  <Document:Section xmi:id="_C7ujwPFJEeOieZKVW9xRxg" base_Package="_C7tVoPFJEeOieZKVW9xRxg"/>
-  <Document:Section xmi:id="_C7xAAPFJEeOieZKVW9xRxg" base_Package="_C7vx4PFJEeOieZKVW9xRxg"/>
-  <Document:Section xmi:id="_C7zcQPFJEeOieZKVW9xRxg" base_Package="_C7yOIPFJEeOieZKVW9xRxg"/>
+  <Requirements:Requirement xmi:id="_wD4IsPspEeWfd8HYkrLHlg" text="A creationMenuModel shall be deployed programmatically." id="newChild006" base_Class="_wD1scPspEeWfd8HYkrLHlg"/>
+  <Requirements:Requirement xmi:id="_okH9IPsqEeWfd8HYkrLHlg" text="A creationMenuModel shall be undeployed programmatically." id="newChild007" base_Class="_okFg4PsqEeWfd8HYkrLHlg"/>
+  <Requirements:Requirement xmi:id="_Ozvn8PstEeWfd8HYkrLHlg" text="A creationMenuModel shall be deployed from the workspace." id="newChild008" base_Class="_OztywPstEeWfd8HYkrLHlg"/>
+  <Requirements:Requirement xmi:id="_PeqNMPstEeWfd8HYkrLHlg" text="A creationMenuModel shall be undeployed from the workspace." id="newChild010" base_Class="_Peo_EPstEeWfd8HYkrLHlg"/>
+  <Requirements:Satisfy xmi:id="_AL3pgPs2EeWfd8HYkrLHlg" base_Abstraction="_ALMUEPs2EeWfd8HYkrLHlg"/>
+  <Requirements:Satisfy xmi:id="_Ly26wPs2EeWfd8HYkrLHlg" base_Abstraction="_Ly1FkPs2EeWfd8HYkrLHlg"/>
+  <Requirements:Satisfy xmi:id="_4orvcPs2EeWfd8HYkrLHlg" base_Abstraction="_4op6QPs2EeWfd8HYkrLHlg"/>
+  <Requirements:Satisfy xmi:id="_6t69oPs2EeWfd8HYkrLHlg" base_Abstraction="_6t4hYPs2EeWfd8HYkrLHlg"/>
+  <Requirements:Verify xmi:id="_crdvQPs5EeWfd8HYkrLHlg" base_Abstraction="_cqdpsPs5EeWfd8HYkrLHlg"/>
+  <Requirements:Verify xmi:id="_gq6nYPs5EeWfd8HYkrLHlg" base_Abstraction="_gq4yMPs5EeWfd8HYkrLHlg"/>
+  <Requirements:Verify xmi:id="_id9SUPs5EeWfd8HYkrLHlg" base_Abstraction="_id7dIPs5EeWfd8HYkrLHlg"/>
+  <Requirements:Verify xmi:id="_kd04UPs5EeWfd8HYkrLHlg" base_Abstraction="_kdzqMPs5EeWfd8HYkrLHlg"/>
 </xmi:XMI>

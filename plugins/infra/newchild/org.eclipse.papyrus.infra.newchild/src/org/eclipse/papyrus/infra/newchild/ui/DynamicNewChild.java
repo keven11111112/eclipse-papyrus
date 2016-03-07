@@ -15,9 +15,9 @@
 package org.eclipse.papyrus.infra.newchild.ui;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
@@ -30,10 +30,10 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.jface.viewers.TreePath;
+import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.newchild.Activator;
 import org.eclipse.papyrus.infra.newchild.CreationMenuFactory;
 import org.eclipse.papyrus.infra.newchild.CreationMenuRegistry;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
@@ -58,7 +58,7 @@ public class DynamicNewChild extends ContributionItem {
 	 *
 	 */
 	public DynamicNewChild() {
-		creationMenuRegistry = new CreationMenuRegistry();
+		creationMenuRegistry = CreationMenuRegistry.getInstance();
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class DynamicNewChild extends ContributionItem {
 	 */
 	public DynamicNewChild(String id) {
 		super(id);
-		creationMenuRegistry = new CreationMenuRegistry();
+		creationMenuRegistry = CreationMenuRegistry.getInstance();
 	}
 
 
@@ -98,7 +98,7 @@ public class DynamicNewChild extends ContributionItem {
 			}
 
 			CreationMenuFactory creationMenuFactory = new CreationMenuFactory(editingDomain);
-			ArrayList<Folder> folders = creationMenuRegistry.getRootFolder();
+			List<Folder> folders = creationMenuRegistry.getRootFolder();
 			Iterator<Folder> iterFolder = folders.iterator();
 			while (iterFolder.hasNext()) {
 				Folder currentFolder = iterFolder.next();

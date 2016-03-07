@@ -16,9 +16,9 @@
 package org.eclipse.papyrus.views.modelexplorer.newchild;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
@@ -65,7 +65,7 @@ public class ModelExplorerDynamicNewChild extends org.eclipse.papyrus.infra.newc
 			cacheMap.put(eObject, adviceCache);
 
 			CreationMenuFactory creationMenuFactory = new ModelExplorerMenuFactory(editingDomain);
-			ArrayList<Folder> folders = creationMenuRegistry.getRootFolder();
+			List<Folder> folders = creationMenuRegistry.getRootFolder();
 			Iterator<Folder> iterFolder = folders.iterator();
 			while (iterFolder.hasNext()) {
 				Folder currentFolder = iterFolder.next();

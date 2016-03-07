@@ -38,6 +38,7 @@
 		<module>../../tests/junit/plugins/customization/org.eclipse.papyrus.customization.properties.tests</module>
 		<module>../../tests/junit/plugins/editor/org.eclipse.papyrus.eclipse.project.editors.tests</module>
 		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.filters.tests</module>
+		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.newchild.tests</module>
 		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.tools.tests</module>
 		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.ui.tests</module>
 		<module>../../tests/junit/plugins/infra/editor/org.eclipse.papyrus.infra.editor.welcome.tests</module>

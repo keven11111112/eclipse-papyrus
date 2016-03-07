@@ -2,6 +2,72 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="org.eclipse.papyrus.infra.newchild" name="ElementCreationMenuModel" schema="schema/org.eclipse.papyrus.infra.newchild.exsd"/>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="org.eclipse.papyrus.infra.newchild.deploy"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <adapt
+                           type="org.eclipse.core.resources.IFile">
+                        <or>
+                           <test
+                                 property="org.eclipse.core.resources.extension"
+                                 value="creationmenumodel">
+                           </test>
+                        </or>
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.infra.newchild.undeploy"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <adapt
+                           type="org.eclipse.core.resources.IFile">
+                        <or>
+                           <test
+                                 property="org.eclipse.core.resources.extension"
+                                 value="creationmenumodel">
+                           </test>
+                        </or>
+                     </adapt>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+ <extension
+       point="org.eclipse.ui.commands">
+    <command
+          defaultHandler="org.eclipse.papyrus.infra.newchild.handler.DeployCreationMenuModelHandler"
+          id="org.eclipse.papyrus.infra.newchild.deploy"
+          name="Deploy Creation Menu Model">
+    </command>
+    <command
+          defaultHandler="org.eclipse.papyrus.infra.newchild.handler.UndeployCreationMenuModelHandler"
+          id="org.eclipse.papyrus.infra.newchild.undeploy"
+          name="Undeploy Creation Menu Model">
+    </command>
+ </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated elementCreationMenuModel -->
@@ -25,8 +91,6 @@
             class="org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage"
             genModel="resource/elementCreationMenuModel.genmodel"/>
    </extension>
-   
-
 </plugin>
 
 
