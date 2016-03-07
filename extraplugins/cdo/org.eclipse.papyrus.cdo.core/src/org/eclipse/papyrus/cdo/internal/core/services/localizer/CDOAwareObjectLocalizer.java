@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 488558
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.services.localizer;
 
@@ -18,9 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.infra.core.services.IServiceFactory;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.services.SharedServiceFactory;
 import org.eclipse.papyrus.infra.services.localizer.DefaultObjectLocalizer;
 import org.eclipse.papyrus.infra.services.localizer.IObjectLocalizer;
 
@@ -87,32 +86,10 @@ public class CDOAwareObjectLocalizer extends DefaultObjectLocalizer {
 	// Nested types
 	//
 
-	public static class Factory implements IServiceFactory {
-
-		private static final IObjectLocalizer LOCALIZER = new CDOAwareObjectLocalizer();
+	public static class Factory extends SharedServiceFactory<IObjectLocalizer> {
 
 		public Factory() {
-			super();
-		}
-
-		@Override
-		public void init(ServicesRegistry servicesRegistry) throws ServiceException {
-			// pass. The localizer is stateless and requires no initialization
-		}
-
-		@Override
-		public void startService() throws ServiceException {
-			// pass. The localizer is stateless and requires no starting
-		}
-
-		@Override
-		public void disposeService() throws ServiceException {
-			// pass. The localizer is stateless and requires no disposal
-		}
-
-		@Override
-		public Object createServiceInstance() throws ServiceException {
-			return LOCALIZER;
+			super(IObjectLocalizer.class, CDOAwareObjectLocalizer::new);
 		}
 
 	}

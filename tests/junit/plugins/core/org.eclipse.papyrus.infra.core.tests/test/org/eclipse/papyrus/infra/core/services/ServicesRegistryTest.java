@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   LIFL - Initial API and implementation
- *   Christian W. Damus - bug 488791
+ *   Christian W. Damus - bugs 488791, 488558
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.services;
@@ -739,7 +739,7 @@ public class ServicesRegistryTest extends AbstractPapyrusTest {
 	/**
 	 * General purpose descriptor.
 	 */
-	public class ServiceFactoryDesc extends TestServiceDescriptor {
+	public static class ServiceFactoryDesc extends TestServiceDescriptor {
 
 
 		public ServiceFactoryDesc(String key, ServiceStartKind startKind) {
