@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.tests.suites;
 
+import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.altdrop.DropNestedPartOnPartTest;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.altdrop.TestTypeDropOnBlock;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.altdrop.TestTypeDropOnTypedElement;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.altdrop.TestTypeDropOnTypedElementCompartment;
@@ -25,7 +26,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ 
 	TestTypeDropOnBlock.class,
 	TestTypeDropOnTypedElement.class,
-	TestTypeDropOnTypedElementCompartment.class
+	TestTypeDropOnTypedElementCompartment.class,
+	DropNestedPartOnPartTest.class
 })
 public class AllAlternateDropTests {
 }

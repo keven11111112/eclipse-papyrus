@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * <pre>
@@ -54,11 +55,9 @@ public class DeleteViewDuringMoveHelperAdvice extends AbstractEditHelperAdvice {
 			EObject eObject = it.next();
 
 			// If current eObject is a Block do nothing.
-			if (((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches(eObject)) {
-				continue;
+			if (!((eObject instanceof Property && ((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches(((Property) eObject).getType())))) {
+				viewsToDestroy.addAll(getViewsToDestroy(eObject));
 			}
-
-			viewsToDestroy.addAll(getViewsToDestroy(eObject));
 		}
 
 		if (!viewsToDestroy.isEmpty()) {
