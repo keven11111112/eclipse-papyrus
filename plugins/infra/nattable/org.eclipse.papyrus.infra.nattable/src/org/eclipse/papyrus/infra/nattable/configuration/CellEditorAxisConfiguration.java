@@ -29,8 +29,6 @@ import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ColumnOverrideLabelAccumulator;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.accumulator.CustomRowOverrideLabelAccumulator;
 import org.eclipse.papyrus.infra.nattable.celleditor.config.CellAxisConfigurationRegistry;
 import org.eclipse.papyrus.infra.nattable.celleditor.config.CellEditorConfigurationFactory;
@@ -59,7 +57,7 @@ public class CellEditorAxisConfiguration extends AbstractRegistryConfiguration {
 
 	private static final String CELL_ID = "_cellId"; //$NON-NLS-1$
 
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.nebula.widgets.nattable.config.IConfiguration#configureRegistry(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
@@ -79,13 +77,13 @@ public class CellEditorAxisConfiguration extends AbstractRegistryConfiguration {
 			// Bug 483000: Manage the accumulator with the bodyDataLayer instead of the bodyLayerStack
 			final ColumnOverrideLabelAccumulator accumulator = new ColumnOverrideLabelAccumulator(bodyLayerStack.getBodyDataLayer());
 			declaredCellEditors(modelManager.getColumnElementsList(), configRegistry, accumulator, null);
-			//bodyLayerStack.getBodyDataLayer().setConfigLabelAccumulator instead of  bodyLayerStack.setConfigLabelAccumulator to fix bug 480190
+			// bodyLayerStack.getBodyDataLayer().setConfigLabelAccumulator instead of bodyLayerStack.setConfigLabelAccumulator to fix bug 480190
 			bodyLayerStack.getBodyDataLayer().setConfigLabelAccumulator(accumulator);
 		} else if (editorDeclaration.equals(CellEditorDeclaration.ROW)) {
 			// Bug 483000: Manage the accumulator with the bodyDataLayer instead of the bodyLayerStack
 			final CustomRowOverrideLabelAccumulator accumulator = new CustomRowOverrideLabelAccumulator(bodyLayerStack.getBodyDataLayer());
 			declaredCellEditors(modelManager.getRowElementsList(), configRegistry, null, accumulator);
-			//bodyLayerStack.getBodyDataLayer().setConfigLabelAccumulator instead of  bodyLayerStack.setConfigLabelAccumulator to fix bug 480190
+			// bodyLayerStack.getBodyDataLayer().setConfigLabelAccumulator instead of bodyLayerStack.setConfigLabelAccumulator to fix bug 480190
 			bodyLayerStack.getBodyDataLayer().setConfigLabelAccumulator(accumulator);
 		} else if (editorDeclaration.equals(CellEditorDeclaration.CELL)) {
 			// not yet supported
@@ -115,18 +113,20 @@ public class CellEditorAxisConfiguration extends AbstractRegistryConfiguration {
 				current = ((IAxis) current).getElement();
 			}
 			boolean configWithNewRegistry = configureWithNewRegistry(configRegistry, current, i, columnAccumulator, rowAccumulator);
-			boolean configWithOldFactory = false;
+			// boolean configWithOldFactory = false;
 			if (!configWithNewRegistry) {
-				configWithOldFactory = configureWithOldFactory(configRegistry, current, i, columnAccumulator, rowAccumulator);
+				// configWithOldFactory = configureWithOldFactory(configRegistry, current, i, columnAccumulator, rowAccumulator);
+				configureWithOldFactory(configRegistry, current, i, columnAccumulator, rowAccumulator);
 			}
 
-			if (!configWithNewRegistry && !configWithOldFactory) {
-				final String errorMessage = NLS.bind(Messages.EditConfiguration_ConfigurationNotFound, current);
-				if (!this.messagesAlreadyDisplayed.contains(errorMessage)) {
-					Activator.log.warn(errorMessage);
-					this.messagesAlreadyDisplayed.add(errorMessage);
-				}
-			}
+			// Bug 488691: We comment this to deny the log spam of the operation cell editor configuration not found problem
+			// if (!configWithNewRegistry && !configWithOldFactory) {
+			// final String errorMessage = NLS.bind(Messages.EditConfiguration_ConfigurationNotFound, current);
+			// if (!this.messagesAlreadyDisplayed.contains(errorMessage)) {
+			// Activator.log.warn(errorMessage);
+			// this.messagesAlreadyDisplayed.add(errorMessage);
+			// }
+			// }
 		}
 	}
 
@@ -140,19 +140,19 @@ public class CellEditorAxisConfiguration extends AbstractRegistryConfiguration {
 		final INattableModelManager modelManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 		final Table table = modelManager.getTable();
 		final IAxisCellEditorConfiguration config = CellEditorConfigurationFactory.INSTANCE.getFirstCellEditorConfiguration(table, current);
-		
-		if(null != config){
+
+		if (null != config) {
 			final ICellEditor editor = config.getICellEditor(table, current, modelManager.getTableAxisElementProvider());
 			if (editor != null) {
 				final String editorId = config.getEditorConfigId() + Integer.toString(indexOfTheAxis);
 				final StringBuilder builder = new StringBuilder(editorId);
 				builder.append(CELL_ID);
 				final String cellId = builder.toString();
-	
+
 				final ICellPainter painter = config.getCellPainter(table, current);
 				final String displayMode = config.getDisplayMode(table, current);
 				final IDisplayConverter converter = config.getDisplayConvert(table, current, new EMFLabelProvider());// TODO : label provider
-	
+
 				final IDataValidator validator = config.getDataValidator(table, current);
 				if (columnAccumulator != null) {
 					columnAccumulator.registerColumnOverrides(indexOfTheAxis, editorId, cellId, GridRegion.BODY);
@@ -163,11 +163,11 @@ public class CellEditorAxisConfiguration extends AbstractRegistryConfiguration {
 					configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, painter, displayMode, cellId);
 				}
 				configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, editor, displayMode, editorId);
-	
+
 				if (converter != null) {
 					configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, converter, displayMode, cellId);
 				}
-	
+
 				if (validator != null) {
 					configRegistry.registerConfigAttribute(EditConfigAttributes.DATA_VALIDATOR, validator, displayMode, cellId);
 				}
