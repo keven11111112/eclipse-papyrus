@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.uml.nattable.config;
 
+import org.eclipse.papyrus.infra.emf.utils.EMFContants;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.tools.util.TypesConstants;
@@ -57,7 +58,7 @@ public class UMLStereotypeMultiStringCellEditorConfiguration extends MultiString
 				Type type = prop.getType();
 				if (type instanceof DataType) {
 					final String name = type.getName();
-					result = TypesConstants.STRING.equals(name) || TypesConstants.ESTRING.equals(name);
+					result = TypesConstants.STRING.equals(name) || EMFContants.ESTRING.equals(name);
 				}
 			}
 		}

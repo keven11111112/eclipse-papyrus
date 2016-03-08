@@ -21,6 +21,7 @@ import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
+import org.eclipse.papyrus.infra.emf.utils.EMFContants;
 import org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -75,7 +76,7 @@ public class MultiIntegerCellEditorConfiguration implements ICellAxisConfigurati
 				EClassifier etype = feature.getEType();
 				if (etype instanceof EDataType) {
 					EDataType datatype = (EDataType) etype;
-					result = TypesConstants.INTEGER.equals(datatype.getName()) || TypesConstants.EINT.equals(datatype.getName());
+					result = TypesConstants.INTEGER.equals(datatype.getName()) || EMFContants.EINT.equals(datatype.getName());
 				}
 			}
 		}

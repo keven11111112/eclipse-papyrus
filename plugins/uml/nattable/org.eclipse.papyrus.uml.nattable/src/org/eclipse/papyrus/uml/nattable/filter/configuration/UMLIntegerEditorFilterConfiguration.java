@@ -15,12 +15,12 @@ package org.eclipse.papyrus.uml.nattable.filter.configuration;
 
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
+import org.eclipse.papyrus.infra.emf.utils.EMFContants;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.AbstractIntegerEditorFilterConfiguration;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
-import org.eclipse.papyrus.infra.tools.util.TypesConstants;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.tools.utils.PrimitivesTypesUtils;
 import org.eclipse.uml2.uml.Property;
@@ -55,8 +55,8 @@ public class UMLIntegerEditorFilterConfiguration extends AbstractIntegerEditorFi
 				final Property prop = UMLTableUtils.getRealStereotypeProperty(table.getContext(), AxisUtils.getPropertyId(string));
 				if (prop != null) {
 					Type type = prop.getType();
-					if (null != type){
-						return PrimitivesTypesUtils.UML_INTEGER.equals(type.getName()) || TypesConstants.EINT.equals(type.getName());
+					if (null != type) {
+						return PrimitivesTypesUtils.UML_INTEGER.equals(type.getName()) || EMFContants.EINT.equals(type.getName());
 					}
 				}
 			}

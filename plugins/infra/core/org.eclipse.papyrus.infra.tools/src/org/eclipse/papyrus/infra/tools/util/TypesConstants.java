@@ -29,18 +29,10 @@ public class TypesConstants {
 
 	public static final String STRING = "String"; //$NON-NLS-1$
 	
-	public static final String ESTRING = "EString"; //$NON-NLS-1$
-
 	public static final String BOOLEAN = "Boolean"; //$NON-NLS-1$
 	
-	public static final String EBOOLEAN = "EBoolean"; //$NON-NLS-1$
-
 	public static final String INTEGER = "Integer"; //$NON-NLS-1$
 	
-	public static final String EINT = "EInt"; //$NON-NLS-1$
-
 	public static final String DOUBLE = "Double"; //$NON-NLS-1$
-	
-	public static final String EDOUBLE = "EDouble"; //$NON-NLS-1$
 
 }

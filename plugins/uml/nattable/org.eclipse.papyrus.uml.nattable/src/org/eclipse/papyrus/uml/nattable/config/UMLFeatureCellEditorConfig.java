@@ -38,13 +38,13 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.papyrus.infra.emf.nattable.celleditor.config.EStructuralFeatureEditorConfig;
+import org.eclipse.papyrus.infra.emf.utils.EMFContants;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.infra.tools.util.TypesConstants;
 import org.eclipse.papyrus.uml.nattable.dataprovider.UMLStereotypeSingleEnumerationComboBoxDataProvider;
 import org.eclipse.papyrus.uml.nattable.editor.MultiBooleanCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiEnumCellEditor;
@@ -210,7 +210,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 	 * @param axisElement
 	 * @param elementProvider
 	 * @return
-	 *         the combo data provider to use for the combo
+	 * 		the combo data provider to use for the combo
 	 */
 	@Override
 	protected IComboBoxDataProvider getComboDataProvider(final Table table, final Object axisElement, final ITableAxisElementProvider elementProvider) {
@@ -239,7 +239,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 	 * @param table
 	 * @param axisElement
 	 * @return
-	 *         the an id to identify the type of the element
+	 * 		the an id to identify the type of the element
 	 */
 	@Override
 	protected int getFeatureIdentifier(Table table, Object axisElement) {
@@ -306,7 +306,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 	 * @param axis
 	 *            the axis
 	 * @return
-	 *         the id for the type of stereotype property represented by the axis
+	 * 		the id for the type of stereotype property represented by the axis
 	 */
 	protected int getIAxisFeatureIdentifier(final Table table, final IAxis axis) {
 		int editorKind = -1;
@@ -337,13 +337,13 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 				if (type instanceof DataType) {
 					if (type instanceof PrimitiveType) {
 						final String name = type.getName();
-						if (PrimitivesTypesUtils.UML_BOOLEAN.equals(name) || TypesConstants.EBOOLEAN.equals(name)) {
+						if (PrimitivesTypesUtils.UML_BOOLEAN.equals(name) || EMFContants.EBOOLEAN.equals(name)) {
 							if (isMany) {
 								editorKind = MULTI_BOOLEAN;
 							} else {
 								editorKind = SINGLE_BOOLEAN;
 							}
-						} else if (PrimitivesTypesUtils.UML_INTEGER.equals(name) || TypesConstants.EINT.equals(name)) {
+						} else if (PrimitivesTypesUtils.UML_INTEGER.equals(name) || EMFContants.EINT.equals(name)) {
 							if (isMany) {
 								editorKind = MULTI_INTEGER;
 							} else {
@@ -355,7 +355,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 							} else {
 								editorKind = SINGLE_REAL;
 							}
-						} else if (PrimitivesTypesUtils.UML_STRING.equals(name) || TypesConstants.ESTRING.equals(name)) {
+						} else if (PrimitivesTypesUtils.UML_STRING.equals(name) || EMFContants.ESTRING.equals(name)) {
 							if (isMany) {
 								editorKind = MULTI_STRING;
 							} else {

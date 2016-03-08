@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.papyrus.infra.emf.utils.EMFContants;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.AbstractBooleanComboBoxCellEditorFilterConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.tools.util.TypesConstants;
@@ -48,7 +49,7 @@ public class EBooleanComboBoxCellEditorFilterConfiguration extends AbstractBoole
 			EClassifier etype = feature.getEType();
 			if (etype instanceof EDataType) {
 				EDataType datatype = (EDataType) etype;
-				return TypesConstants.BOOLEAN.equals(datatype.getName()) || TypesConstants.EBOOLEAN.equals(datatype.getName());
+				return TypesConstants.BOOLEAN.equals(datatype.getName()) || EMFContants.EBOOLEAN.equals(datatype.getName());
 			}
 		}
 		return false;

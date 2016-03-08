@@ -22,6 +22,7 @@ import org.eclipse.nebula.widgets.nattable.data.convert.DefaultBooleanDisplayCon
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.edit.editor.CheckBoxCellEditor;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
+import org.eclipse.papyrus.infra.emf.utils.EMFContants;
 import org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.painter.CustomCheckBoxPainter;
@@ -75,7 +76,7 @@ public class SingleBooleanCellEditorConfiguration implements ICellAxisConfigurat
 				EClassifier etype = feature.getEType();
 				if (etype instanceof EDataType) {
 					EDataType datatype = (EDataType) etype;
-					return TypesConstants.BOOLEAN.equals(datatype.getName()) || TypesConstants.EBOOLEAN.equals(datatype.getName());
+					return TypesConstants.BOOLEAN.equals(datatype.getName()) || EMFContants.EBOOLEAN.equals(datatype.getName());
 				}
 			}
 		}

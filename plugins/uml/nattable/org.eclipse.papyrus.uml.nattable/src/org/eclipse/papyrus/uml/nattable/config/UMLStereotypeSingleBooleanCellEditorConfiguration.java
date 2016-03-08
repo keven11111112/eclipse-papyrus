@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.nattable.config;
 
 import org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleBooleanCellEditorConfiguration;
+import org.eclipse.papyrus.infra.emf.utils.EMFContants;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.tools.util.TypesConstants;
@@ -58,7 +59,7 @@ public class UMLStereotypeSingleBooleanCellEditorConfiguration extends SingleBoo
 				Type type = prop.getType();
 				if (type instanceof DataType) {
 					final String name = type.getName();
-					result = TypesConstants.BOOLEAN.equals(name) || TypesConstants.EBOOLEAN.equals(name);
+					result = TypesConstants.BOOLEAN.equals(name) || EMFContants.EBOOLEAN.equals(name);
 				}
 			}
 		}

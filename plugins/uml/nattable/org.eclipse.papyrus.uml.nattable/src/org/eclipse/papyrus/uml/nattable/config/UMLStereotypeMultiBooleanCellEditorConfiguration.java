@@ -13,11 +13,11 @@
 
 package org.eclipse.papyrus.uml.nattable.config;
 
+import org.eclipse.papyrus.infra.emf.utils.EMFContants;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.tools.util.TypesConstants;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
-import org.eclipse.papyrus.uml.tools.utils.PrimitivesTypesUtils;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
@@ -58,7 +58,7 @@ public class UMLStereotypeMultiBooleanCellEditorConfiguration extends MultiBoole
 				Type type = prop.getType();
 				if (type instanceof DataType) {
 					final String name = type.getName();
-					result = TypesConstants.BOOLEAN.equals(name) || TypesConstants.EBOOLEAN.equals(name);
+					result = TypesConstants.BOOLEAN.equals(name) || EMFContants.EBOOLEAN.equals(name);
 				}
 			}
 		}

@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.papyrus.infra.emf.utils.EMFContants;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.AbstractDoubleEditorFilterConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.tools.util.TypesConstants;
@@ -47,7 +48,7 @@ public class EDoubleEditorFilterConfiguration extends AbstractDoubleEditorFilter
 			EClassifier etype = feature.getEType();
 			if (etype instanceof EDataType) {
 				EDataType datatype = (EDataType) etype;
-				return TypesConstants.DOUBLE.equals(datatype.getName()) || TypesConstants.EDOUBLE.equals(datatype.getName());
+				return TypesConstants.DOUBLE.equals(datatype.getName()) || EMFContants.EDOUBLE.equals(datatype.getName());
 			}
 		}
 		return false;
