@@ -17,7 +17,7 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
 
-	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.tools.messages.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.ui.messages.messages"; //$NON-NLS-1$
 
 	public static String AbstractPreferenceKeyDialog_Level;
 
