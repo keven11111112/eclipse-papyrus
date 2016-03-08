@@ -838,18 +838,22 @@ public class StereotypeDisplayUtil {
 		if (view instanceof DecorationNode) {
 			DecorationNode node = ((DecorationNode) view);
 			if (isStereotypeProperty(node) || isStereotypeBraceProperty(node)) {
+				// maybe this is an inherited properties so the applied stereotype is not the owner of the property but the sterotype referenced by the container of sterotype properties
+				if (node.eContainer() instanceof BasicCompartment) {
+					BasicCompartment stereotypeCompartment = (BasicCompartment) node.eContainer();
+					if (stereotypeCompartment.getElement() instanceof Stereotype) {
+						final Stereotype stereotype = (Stereotype) stereotypeCompartment.getElement();
+						final Element umlElement = UMLUtil.getBaseElement(getStereotypeApplication(view, stereotype));
+						System.out.println(getStereotypeApplication(view, stereotype));
+						if (isDisplayed(node)) {
+							// if (node.isVisible()) {
 
-				final Stereotype stereotype = (Stereotype) ((Property) node.getElement()).getClass_();
-				final Element umlElement = UMLUtil.getBaseElement(getStereotypeApplication(view, stereotype));
-
-				if (isDisplayed(node)) {
-					// if (node.isVisible()) {
-
-					if (stereotype != null && property != null && umlElement != null) {
-						propertyAndValue = StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, StereotypeDisplayConstant.STEREOTYPE_PROPERTIES_SEPARATOR);
+							if (stereotype != null && property != null && umlElement != null) {
+								propertyAndValue = StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, StereotypeDisplayConstant.STEREOTYPE_PROPERTIES_SEPARATOR);
+							}
+						}
 					}
 				}
-
 			}
 		}
 		return propertyAndValue;
