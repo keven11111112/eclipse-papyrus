@@ -389,6 +389,13 @@ if the user changed the configuration
 | colspan="3" style="text-align: center;" | Yes
 | style="text-align: center;" | No
 | style="text-align: center;" | Yes
+|-
+| Display Validation Marker in Row and Column Label Header
+| colspan="5" style="text-align: center;" | Yes
+|-
+| Display Validation Marker in Row and Column Label Header
+| colspan="5" style="text-align: center;" | Yes
+|-
 |}
 
 ==Tree Table Features==
@@ -451,7 +458,7 @@ We assume that the user wants to paste rows (and not columns).
 *Select the columns to display in your table.
 *Select the table in the ModelExplorer View in order to display its Property View
 *In the Property View goes into the Paste Tab. 4 informations must be completed by the user: 
-**Detached Mode (when <code>true</code>, paste is faster but actions done by service edit will be ignored.
+**Detached Mode (when <code>true</code>), paste is faster but actions done by service edit will be ignored.
 ***if <code>false</code>, Paste action uses the service edit (initialize default values, apply stereotypes required by element id).
 ***if <code>true</code>, stereotype required by the element id will be ignored.
 **Pasted Element Id : defines the pasted element: org.eclipse.papyrus.uml.Class will create a UML Class 
@@ -459,7 +466,7 @@ We assume that the user wants to paste rows (and not columns).
 ***org.eclipse.papyrus.sysml.Requirement will create a uml.Class the name will be initialized only if the user pastes a name value and the steroetype will be applied only if a column requires it or if it is defined by opst actions)
 **ContainementFeature : the feature owning the pasted elements
 **Post Actions : a way to define 2 kinds of actions:
-***actions done just after the element creation
+***actions done just after the element creation, using the paste action
 ***actions done after have pasting all cell values
 ***currently, Papyrus provides Post Action only for stereotype application
 ***currently, Post Actions are ignored when detached mode=<code>false</code>
@@ -677,11 +684,39 @@ When the user clicks on the left most part of the merged area, under the activit
 
  [[File:images/classifierEdition.png|none|frame|classifier edition]] <br/>
 
- [[File:images/editedTable.png|none|frame|dition's result]] <br/>
+ [[File:images/editedTable.png|none|frame|edition's result]] <br/>
 
 
 The tool will then automatically detect the possibility, or impossibility, of the edition and split the merge accordingly. <br/>
 Please note that the merge selection will not be changed and the selected axis will still carry their merge booleans as other values might still be equal and therefore the user might still want those merged. <br/>
+
+== Fill cells ==
+
+The fill action is available in tables and can be used by clicking on the right bottom corner and drop until release. <br/>
+
+This action is available for 2 types:
+*numbers
+*string
+
+===Fill number values===
+It is possible to '''copy''' the initial value.
+ [[File:images/FillCopyNumber.png|none|frame|Fill Copy Number] <br/>
+
+When the initial selection before the fill is a single cell, it is possible to '''increment''' or '''decrement''' values from the initial value by adding or removing 1 to the initial value.
+ [[File:images/FillIncrementNumberOneCellSelected.png|none|frame|Fill Increment Number when one selected cell] <br/>
+
+When two cells are selected before filling the selection, it is possible to '''increment''' or '''decrement''' values from the initial value by adding or removing the initial values difference.
+ [[File:images/FillIncrementNumberTwoCellsSelected.png|none|frame|Fill Increment Number when two selected cells] <br/>
+
+===Fill string values===
+As number fill action, it is possible to '''copy''' the initial value.
+ [[File:images/FillCopyString.png|none|frame|Fill Copy String] <br/>
+
+When an integer is available at the beginning or at the ending of the value, it is possible to '''increment''' or '''decrement''' integer '''prefix''' or '''suffix''' values depending of the integer position.
+ [[File:images/FillIncrementPrefixString.png|none|frame|Fill Increment prefix String] <br/>
+ [[File:images/FillIncrementSuffixString.png|none|frame|Fill Increment suffix String] <br/>
+
+The filled integer values are calculated by the same way than the fill numbers.
 
 =Existing Cell Editors=
 Several kind of cell editors are available in Papyrus Table. Currently, the user can't choose himself the cell editor to use for a cell/row/column.
