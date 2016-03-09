@@ -12,15 +12,16 @@
  */
 package org.eclipse.papyrus.infra.nattable.modelexplorer.queries;
 
-import java.util.Iterator;
+import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.viewpoints.policy.NotationUtils;
 
 public class IsTableContainer implements IJavaQuery2<EObject, Boolean> {
 
@@ -29,18 +30,16 @@ public class IsTableContainer implements IJavaQuery2<EObject, Boolean> {
 	 */
 	@Override
 	public Boolean evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
-		Iterator<EObject> roots = NotationUtils.getNotationRoots(source);
-		if (roots == null) {
-			return false;
-		}
-
-		while (roots.hasNext()) {
-			EObject root = roots.next();
-			if (root instanceof Table) {
-				Table table = (Table) root;
-				EObject parent = table.getOwner() == null ? table.getContext() : table.getOwner();
-				if (parent == source) {
-					return true;
+		Collection<Setting> settings = EMFHelper.getUsages(source);
+		if (settings != null) {
+			for (Setting setting : settings) {
+				EObject usingElement = setting.getEObject();
+				if (usingElement instanceof Table) {
+					Table table = (Table) usingElement;
+					EObject parent = table.getOwner() == null ? table.getContext() : table.getOwner();
+					if (parent == source) {
+						return true;
+					}
 				}
 			}
 		}
