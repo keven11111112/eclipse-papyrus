@@ -39,12 +39,15 @@ public class ShowHideExceptionEditPolicy extends AbstractShowHideParameterProper
 		Parameter parameter = getHostSemantic().getParameter();
 		View streamLabel = getLabelView(ActivityParameterNodeExceptionLabelEditPart.VISUAL_ID);
 
-		if (parameter == null || !parameter.isException()) {
-			hideLabelView(streamLabel);
-		} else {
-			showLabelView(streamLabel);
+		if (streamLabel != null) {
+
+			if (parameter == null || !parameter.isException()) {
+				hideLabelView(streamLabel);
+			} else {
+				showLabelView(streamLabel);
+			}
+			getHost().refresh();
 		}
-		getHost().refresh();
 	}
 
 }

@@ -39,11 +39,14 @@ public class ShowHideStreamLabelEditPolicy extends AbstractShowHideParameterProp
 		Parameter parameter = getHostSemantic().getParameter();
 		View streamLabel = getLabelView(ActivityParameterNodeStreamLabelEditPart.VISUAL_ID);
 
-		if (parameter == null || !parameter.isStream()) {
-			hideLabelView(streamLabel);
-		} else {
-			showLabelView(streamLabel);
+		if (streamLabel != null) {
+
+			if (parameter == null || !parameter.isStream()) {
+				hideLabelView(streamLabel);
+			} else {
+				showLabelView(streamLabel);
+			}
+			getHost().refresh();
 		}
-		getHost().refresh();
 	}
 }
