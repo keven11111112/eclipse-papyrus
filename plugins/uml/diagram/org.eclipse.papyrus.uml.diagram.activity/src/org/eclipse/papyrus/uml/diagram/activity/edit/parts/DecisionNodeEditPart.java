@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
@@ -21,14 +22,18 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -37,15 +42,15 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy;
-import org.eclipse.papyrus.uml.diagram.activity.edit.policies.BehaviorPropertyNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.locator.LinkedBehaviorLocator;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
+import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -114,17 +119,30 @@ public class DecisionNodeEditPart extends RoundedCompartmentEditPart {
 	}
 
 	/**
-	 * @generated NOT use BehaviorPropertyNodeEditPolicy
+	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case DecisionInputEditPart.VISUAL_ID:
-					return new BehaviorPropertyNodeEditPolicy();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if (vid != null) {
+					switch (vid) {
+					case DecisionNodeFloatingNameEditPart.VISUAL_ID:
+					case DecisionInputEditPart.VISUAL_ID:
+					case DecisionNodeAppliedStereotypeEditPart.VISUAL_ID:
+						return new BorderItemSelectionEditPolicy() {
+
+							@Override
+							protected List<?> createSelectionHandles() {
+								MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
+								mh.setBorder(null);
+								return Collections.singletonList(mh);
+							}
+						};
+					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -163,14 +181,19 @@ public class DecisionNodeEditPart extends RoundedCompartmentEditPart {
 	}
 
 	/**
-	 * @generated NOT use custom locator
+	 * @generated
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof DecisionInputEditPart) {
-			// use custom locator
-			BorderItemLocator locator = new LinkedBehaviorLocator(getMainFigure(), PositionConstants.NORTH);
+		if (borderItemEditPart instanceof DecisionNodeFloatingNameEditPart) {
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else if (borderItemEditPart instanceof DecisionInputEditPart) {
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else if (borderItemEditPart instanceof DecisionNodeAppliedStereotypeEditPart) {
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
@@ -178,11 +201,11 @@ public class DecisionNodeEditPart extends RoundedCompartmentEditPart {
 	}
 
 	/**
-	 * @generated NOT use a diamond figure instead
+	 * @generated
 	 */
 	@Override
 	protected NodeFigure createNodePlate() {
-		NodeFigure result = new org.eclipse.gmf.runtime.gef.ui.internal.figures.DiamondFigure(new Dimension(20, 30));
+		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
 	}
 

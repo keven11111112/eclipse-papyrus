@@ -42,6 +42,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
@@ -196,11 +197,11 @@ public class MergeNodeEditPart extends RoundedCompartmentEditPart {
 	}
 
 	/**
-	 * @generated NOT use a diamond figure instead
+	 * @generated
 	 */
 	@Override
 	protected NodeFigure createNodePlate() {
-		NodeFigure result = new org.eclipse.gmf.runtime.gef.ui.internal.figures.DiamondFigure(new Dimension(20, 30));
+		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
 	}
 

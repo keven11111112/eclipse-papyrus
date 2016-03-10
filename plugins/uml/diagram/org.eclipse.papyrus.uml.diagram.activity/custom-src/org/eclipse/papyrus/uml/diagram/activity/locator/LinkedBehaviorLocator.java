@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.activity.locator;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
@@ -22,7 +23,7 @@ import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
  * This class is used to constrain the position of a linked Behavior
  */
 public class LinkedBehaviorLocator extends AdvancedBorderItemLocator {
-
+	private final static Dimension OFFSET = new Dimension(-20, -20);
 	/**
 	 * The margin to leave between the property node and its parent when
 	 * relocating
@@ -31,17 +32,19 @@ public class LinkedBehaviorLocator extends AdvancedBorderItemLocator {
 
 	/** Constructor **/
 	public LinkedBehaviorLocator(IFigure parentFigure) {
-		super(parentFigure);
+		this(parentFigure, PositionConstants.NORTH);
+		this.setBorderItemOffset(OFFSET);
 	}
 
 	/** Constructor **/
 	public LinkedBehaviorLocator(IFigure borderItem, IFigure parentFigure, Rectangle constraint) {
 		super(borderItem, parentFigure, constraint);
-	}
+		this.setBorderItemOffset(OFFSET);	}
 
 	/** Constructor **/
 	public LinkedBehaviorLocator(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);
+		this.setBorderItemOffset(OFFSET);
 	}
 
 	/**

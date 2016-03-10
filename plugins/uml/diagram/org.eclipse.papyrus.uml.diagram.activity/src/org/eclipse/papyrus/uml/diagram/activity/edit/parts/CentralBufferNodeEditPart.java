@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
@@ -32,14 +33,13 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEdit
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
-import org.eclipse.papyrus.uml.diagram.activity.edit.policies.BehaviorPropertyNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.locator.LinkedBehaviorLocator;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
+import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -85,7 +85,7 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	}
 
 	/**
-	 * @generated NOT use BehaviorPropertyNodeEditPolicy
+	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
@@ -93,19 +93,21 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case CentralBufferNodeSelectionEditPart.VISUAL_ID:
-					return new BehaviorPropertyNodeEditPolicy();
-				case CentralBufferNodeFloatingNameEditPart.VISUAL_ID:
-					return new BorderItemSelectionEditPolicy() {
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if (vid != null) {
+					switch (vid) {
+					case CentralBufferNodeSelectionEditPart.VISUAL_ID:
+					case CentralBufferNodeFloatingNameEditPart.VISUAL_ID:
+						return new BorderItemSelectionEditPolicy() {
 
-						@Override
-						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
-							mh.setBorder(null);
-							return Collections.singletonList(mh);
-						}
-					};
+							@Override
+							protected List<?> createSelectionHandles() {
+								MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
+								mh.setBorder(null);
+								return Collections.singletonList(mh);
+							}
+						};
+					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -222,20 +224,16 @@ public class CentralBufferNodeEditPart extends RoundedCompartmentEditPart {
 	}
 
 	/**
-	 * @generated NOT use custom locator
-	 *            => not used anymore: override by customCentralBufferEditPart instead
-	 *            =>
+	 * @generated
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof CentralBufferNodeSelectionEditPart) {
-			// use custom locator
-			BorderItemLocator locator = new LinkedBehaviorLocator(getMainFigure(), PositionConstants.NORTH);
-			locator.setBorderItemOffset(new Dimension(-20, -20));
-			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if (borderItemEditPart instanceof CentralBufferNodeFloatingNameEditPart) {
+		if (borderItemEditPart instanceof CentralBufferNodeFloatingNameEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else if (borderItemEditPart instanceof CentralBufferNodeSelectionEditPart) {
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
