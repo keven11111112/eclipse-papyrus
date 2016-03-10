@@ -1359,7 +1359,7 @@
                 </detail>    
               </annotation>    
             </repository>    
-            <repository url="http://download.eclipse.org/facet/updates/integration/1.0.2/I201601181335/">    
+            <repository url="http://download.eclipse.org/facet/updates/release/1.0.2/">    
               <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">    
                 <detail key="updateFrom">    
                   <value>EMF Facet</value>    
@@ -1380,6 +1380,11 @@
       <setupTask xsi:type="p2_1.0:P2Task">    
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>    
         <requirement name="org.eclipse.acceleo.feature.group"/>    
+      </setupTask>    
+      <setupTask xsi:type="projects:ProjectsImportTask">
+        <sourceLocator locateNestedProjects="true" rootFolder="${papyrus.git.clone.location/extraplugins/qompass-designer}">    
+          <predicate xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.fcm\.profile"/>    
+        </sourceLocator>
       </setupTask>    
       <stream label="master (Neon/2.0)" name="master">    
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>    
