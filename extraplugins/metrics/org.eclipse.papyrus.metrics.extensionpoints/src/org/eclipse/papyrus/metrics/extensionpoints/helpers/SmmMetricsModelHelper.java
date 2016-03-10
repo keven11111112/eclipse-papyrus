@@ -31,7 +31,7 @@ import org.omg.smm.SmmFactory;
 import org.omg.smm.SmmModel;
 import org.omg.smm.SmmPackage;
 
-public class SmmMetricsHelper {
+public class SmmMetricsModelHelper {
 	/**
 	 * Allows to users to select the xmi file containing the smm model.
 	 * 

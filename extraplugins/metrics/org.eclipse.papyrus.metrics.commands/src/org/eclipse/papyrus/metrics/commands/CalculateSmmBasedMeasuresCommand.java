@@ -21,7 +21,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.metrics.commands.helper.MetricsCalculatorHelper;
 import org.eclipse.papyrus.metrics.extensionpoints.IPrinter;
 import org.eclipse.papyrus.metrics.extensionpoints.helpers.PrintersRegistry;
-import org.eclipse.papyrus.metrics.extensionpoints.helpers.SmmMetricsHelper;
+import org.eclipse.papyrus.metrics.extensionpoints.helpers.SmmMetricsModelHelper;
 import org.omg.smm.AbstractMeasureElement;
 import org.omg.smm.Measure;
 import org.omg.smm.MeasureLibrary;
@@ -60,7 +60,7 @@ public class CalculateSmmBasedMeasuresCommand extends RecordingCommand {
 	@Override
 	protected void doExecute() {
 		SmmModel smmModel = null;
-		SmmMetricsHelper helper = new SmmMetricsHelper();
+		SmmMetricsModelHelper helper = new SmmMetricsModelHelper();
 		String smmModelLocation = helper.getSmmModelFileLocation();
 		if (smmModelLocation.isEmpty()) {
 			return;

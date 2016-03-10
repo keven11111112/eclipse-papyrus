@@ -18,9 +18,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import org.eclipse.papyrus.metrics.extensionpoints.IPrinter;
-import org.eclipse.papyrus.metrics.extensionpoints.helpers.RecognizerSwitch;
 import org.eclipse.papyrus.metrics.extensionpoints.helpers.Result;
 import org.eclipse.papyrus.requirements.metrics.library.DefaultQuerySwitch;
+import org.eclipse.papyrus.requirements.metrics.library.RecognizerSwitch;
 import org.eclipse.uml2.uml.Element;
 import org.omg.smm.Measure;
 import org.omg.smm.Operation;
@@ -49,7 +49,7 @@ public class MetricsCalculatorHelper {
 	}
 
 	/**
-	 * Calculates the measures that apply to the model itself and its owned
+	 * Calculates the smmModels that apply to the model itself and its owned
 	 * elements. The relationship between an element and its applicable
 	 * smmMetrics is saved in
 	 * {@link CalculateSmmBasedMeasuresCommand#measurementScopes}.
@@ -85,7 +85,7 @@ public class MetricsCalculatorHelper {
 
 	protected void updateMeasurementScopes(Element element, Measure measure) {
 		if (measurementScopes.containsKey(element)) {
-			// avoid repeated measures by element
+			// avoid repeated smmModels by element
 			if (!(measurementScopes.get(element)).contains(measure)) {
 				measurementScopes.get(element).add(measure);
 			}
@@ -96,7 +96,7 @@ public class MetricsCalculatorHelper {
 	}
 
 	/**
-	 * Prints the information of the measures using all the printers
+	 * Prints the information of the smmModels using all the printers
 	 */
 	public void printMeasures() {
 		for (IPrinter printer : printers) {
@@ -116,7 +116,7 @@ public class MetricsCalculatorHelper {
 	}
 
 	/**
-	 * Perform a process to obtain measures based on the map
+	 * Perform a process to obtain smmModels based on the map
 	 * {@link CalculateSmmBasedMeasuresCommand#measurementScopes} that contains
 	 * the Measurand-Metrics tuples.
 	 */

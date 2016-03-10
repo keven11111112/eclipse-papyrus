@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.metrics.commands.CalculateBasicMeasuresCommand;
+import org.eclipse.papyrus.metrics.commands.CalculateRegisteredMeasuresCommand;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -34,9 +34,9 @@ public class MeasureMetricsHandler extends PapyrusAbstractHandler {
 		if (selectedElements.size() == 1) {
 			Element selectedElement = getSelection();
 			if (selectedElement != null) {
-				CalculateBasicMeasuresCommand calculateBasicMeasuresCommand = new CalculateBasicMeasuresCommand(
+				CalculateRegisteredMeasuresCommand calculateRegisteredMeasuresCommand = new CalculateRegisteredMeasuresCommand(
 						transactionalEditingDomain, selectedElement);
-				transactionalEditingDomain.getCommandStack().execute(calculateBasicMeasuresCommand);
+				transactionalEditingDomain.getCommandStack().execute(calculateRegisteredMeasuresCommand);
 			}
 		}
 		return null;

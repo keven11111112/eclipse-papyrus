@@ -39,15 +39,15 @@
             locationURI="popup:papyrus.requirements.metrics.menu">
          <command
                commandId="org.eclipse.papyrus.metrics.handlers.MeasureMetricsHandler"
-               label="Get Measure Values from Registered Measures"
+               label="Get Measure Values"
                style="push"
-               tooltip="Calculate measure values">
+               tooltip="Get measure values from registered SMM models">
          </command>
          <command
                commandId="org.eclipse.papyrus.metrics.handlers.MeasureMetricsForSmmHandler"
                label="Get Measure Values from Smm Model"
                style="push"
-               tooltip="Get measure values from smm model saved as an .xmi file">
+               tooltip="Get measure values from an SMM model saved as an .xmi file">
          </command>
       </menuContribution>
    </extension>

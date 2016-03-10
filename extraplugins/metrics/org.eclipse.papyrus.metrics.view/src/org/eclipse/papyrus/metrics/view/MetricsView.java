@@ -45,7 +45,7 @@ public class MetricsView extends ViewPart {
 		TableColumn column2 = new TableColumn(table, SWT.LEFT);
 		TableColumn column3 = new TableColumn(table, SWT.LEFT);
 		TableColumn column4 = new TableColumn(table, SWT.LEFT);
-		column1.setWidth(200);
+		column1.setWidth(300);
 		column1.setText("Measure Name");
 		column2.setWidth(150);
 		column2.setText("Measure Value");

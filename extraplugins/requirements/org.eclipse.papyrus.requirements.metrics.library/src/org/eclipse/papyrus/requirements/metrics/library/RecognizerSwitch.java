@@ -12,7 +12,7 @@
  * 		Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.metrics.extensionpoints.helpers;
+package org.eclipse.papyrus.requirements.metrics.library;
 
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;

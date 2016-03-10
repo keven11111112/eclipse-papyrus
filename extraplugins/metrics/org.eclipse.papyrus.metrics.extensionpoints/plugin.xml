@@ -3,4 +3,5 @@
 <plugin>
    <extension-point id="org.eclipse.papyrus.metrics.extensionpoints.printer" name="Printer" schema="schema/org.eclipse.papyrus.metrics.extensionpoints.printer.exsd"/>
    <extension-point id="org.eclipse.papyrus.metrics.extensionpoints.measure" name="Measure" schema="schema/org.eclipse.papyrus.metrics.extensionpoints.measure.exsd"/>
+   <extension-point id="org.eclipse.papyrus.metrics.extensionpoints.smmmetricsmodel" name="smmmetricsmodel" schema="schema/org.eclipse.papyrus.metrics.extensionpoints.smmmetricsmodel.exsd"/>
 </plugin>

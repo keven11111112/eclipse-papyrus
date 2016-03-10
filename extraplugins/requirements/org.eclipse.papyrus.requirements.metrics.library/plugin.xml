@@ -2,9 +2,9 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.metrics.extensionpoints.measure">
+         point="org.eclipse.papyrus.metrics.extensionpoints.smmmetricsmodel">
       <element
-            class="org.eclipse.papyrus.requirements.metrics.library.NumberOfRequirements">
+            xmiFile="platform:/plugin/org.eclipse.papyrus.requirements.metrics.library/model/SmmRequirementsMetricsModel.xmi">
       </element>
    </extension>
 

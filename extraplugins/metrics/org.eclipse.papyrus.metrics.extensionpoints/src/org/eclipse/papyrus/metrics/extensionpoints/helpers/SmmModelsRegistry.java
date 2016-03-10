@@ -20,21 +20,24 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-//import org.eclipse.papyrus.metrics.extensionpoints.IAbstractMetric;
+import org.omg.smm.AbstractMeasureElement;
 import org.omg.smm.Measure;
+import org.omg.smm.MeasureLibrary;
+import org.omg.smm.NamedMeasure;
+import org.omg.smm.SmmModel;
 
 /**
  * Registry to obtain smmMetrics implementations
  */
-public class BasicMeasuresRegistry {
-	protected static BasicMeasuresRegistry basicMeasuresRegistry = null;
+public class SmmModelsRegistry {
+	protected static SmmModelsRegistry smmModelsRegistry = null;
 	protected ArrayList<Measure> measures = null;
 
 	public ArrayList<Measure> getMeasures() {
 		return measures;
 	}
 
-	private static final String EXTENSION_POINT_ID = "org.eclipse.papyrus.metrics.extensionpoints.measure";
+	private static final String EXTENSION_POINT_ID = "org.eclipse.papyrus.metrics.extensionpoints.smmmetricsmodel";
 
 	public static String getExtensionPointId() {
 		return EXTENSION_POINT_ID;
@@ -45,12 +48,12 @@ public class BasicMeasuresRegistry {
 	 *
 	 * @return the singleton instance of this registry
 	 */
-	public static synchronized BasicMeasuresRegistry getInstance() {
-		if (basicMeasuresRegistry == null) {
-			basicMeasuresRegistry = new BasicMeasuresRegistry();
-			basicMeasuresRegistry.init();
+	public static synchronized SmmModelsRegistry getInstance() {
+		if (smmModelsRegistry == null) {
+			smmModelsRegistry = new SmmModelsRegistry();
+			smmModelsRegistry.init();
 		}
-		return basicMeasuresRegistry;
+		return smmModelsRegistry;
 	}
 
 	/**
@@ -68,16 +71,27 @@ public class BasicMeasuresRegistry {
 		ArrayList<Object> extensions = new ArrayList<Object>();
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
 		IConfigurationElement[] elements = registry.getConfigurationElementsFor(EXTENSION_POINT_ID);
-		try {
-			for (IConfigurationElement element : elements) {
-				final Object o = element.createExecutableExtension("class");
-				if (o instanceof Measure) {
-					measures.add((Measure) o);
+		SmmModel smmModel = null;
+		SmmMetricsModelHelper helper = new SmmMetricsModelHelper();
+		for (IConfigurationElement element : elements) {
+			String elementName = element.getName();
+			System.out.println(elementName);
+			String fileLocation = element.getAttribute("xmiFile");
+			if (null == helper.getSmmModel(fileLocation)) {
+				System.err.println("Imposible to obtain an SMM model from "+ element.getValue());
+				return null;
+			}
+			smmModel = helper.getSmmModel(element.getAttribute("xmiFile"));
+			for (MeasureLibrary library : smmModel.getLibraries()) {
+				for (AbstractMeasureElement abstractMeasureElement : library.getMeasureElements()) {
+					if (abstractMeasureElement instanceof NamedMeasure) {
+						NamedMeasure measure = (NamedMeasure) abstractMeasureElement;
+						this.measures.add(measure);
+					}
 				}
 			}
-		} catch (CoreException ex) {
-			System.err.println(ex.getMessage());
 		}
 		return extensions;
 	}
+
 }
