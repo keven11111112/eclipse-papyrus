@@ -14,17 +14,17 @@ package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
-import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
 /** Get the collection of all contained diagrams */
@@ -33,17 +33,16 @@ public class GetContainedDiagrams extends AbstractEditorContainerQuery implement
 
 	public Collection<Diagram> evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
 		List<Diagram> result = new ArrayList<Diagram>();
-		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(source);
-		if (roots == null) {
-			return result;
-		}
 
-		while (roots.hasNext()) {
-			EObject root = roots.next();
-			if (root instanceof Diagram) {
-				Diagram diagram = (Diagram) root;
-				if (DiagramUtils.getOwner(diagram) == source) {
-					result.add(diagram);
+		Collection<Setting> settings = EMFHelper.getUsages(source);
+		if (settings != null) {
+			for (Setting setting : settings) {
+				EObject usingElement = setting.getEObject();
+				if (usingElement instanceof Diagram) {
+					Diagram diagram = (Diagram) usingElement;
+					if (DiagramUtils.getOwner(diagram) == source) {
+						result.add(diagram);
+					}
 				}
 			}
 		}
