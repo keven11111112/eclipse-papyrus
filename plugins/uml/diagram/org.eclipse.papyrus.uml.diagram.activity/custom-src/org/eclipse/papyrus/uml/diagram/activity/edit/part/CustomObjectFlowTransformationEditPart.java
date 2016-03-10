@@ -14,40 +14,27 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.part;
 
-import org.eclipse.draw2d.FigureListener;
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.PolylineShape;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.directedit.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowTransformationEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.policies.BehaviorPropertyNodeEditPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.figures.ActivityEdgeFigure;
-import org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
-import org.eclipse.swt.graphics.Color;
+import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.ObjectFlow;
 
 public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransformationEditPart {
 
+	private DirectEditManager manager;
+
 	public CustomObjectFlowTransformationEditPart(View view) {
 		super(view);
-	}
-
-	@Override
-	protected IFigure createFigurePrim() {
-		return new CustomLinkAndCornerBentWithTextFigure();
 	}
 
 	/**
@@ -55,15 +42,10 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 	 */
 	@Override
 	protected String getLabelTextHelper(IFigure figure) {
-		if (figure instanceof WrappingLabel) {
-			return ((WrappingLabel) figure).getText();
-		} else if (figure instanceof ILabelFigure) {
-			return ((ILabelFigure) figure).getText();
-		} else if (figure instanceof CustomLinkAndCornerBentWithTextFigure) {
-			return ((CustomLinkAndCornerBentWithTextFigure) figure).getCornerBentContent().getText();
-		} else {
-			return ((Label) figure).getText();
+		if (figure instanceof LinkAndCornerBentWithTextFigure) {
+			return ((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().getText();
 		}
+		return super.getLabelTextHelper(figure);
 	}
 
 	/**
@@ -71,14 +53,10 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 	 */
 	@Override
 	protected void setLabelTextHelper(IFigure figure, String text) {
-		if (figure instanceof WrappingLabel) {
-			((WrappingLabel) figure).setText(text);
-		} else if (figure instanceof ILabelFigure) {
-			((ILabelFigure) figure).setText(text);
-		} else if (figure instanceof CustomLinkAndCornerBentWithTextFigure) {
-			((CustomLinkAndCornerBentWithTextFigure) figure).getCornerBentContent().setText(text);
+		if (figure instanceof LinkAndCornerBentWithTextFigure) {
+			((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().setText(text);
 		} else {
-			((Label) figure).setText(text);
+			super.setLabelTextHelper(figure, text);
 		}
 	}
 
@@ -87,15 +65,10 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 	 */
 	@Override
 	protected Image getLabelIconHelper(IFigure figure) {
-		if (figure instanceof WrappingLabel) {
-			return ((WrappingLabel) figure).getIcon();
-		} else if (figure instanceof ILabelFigure) {
-			return ((ILabelFigure) figure).getIcon();
-		} else if (figure instanceof CustomLinkAndCornerBentWithTextFigure) {
-			return ((CustomLinkAndCornerBentWithTextFigure) figure).getCornerBentContent().getIcon();
-		} else {
-			return ((Label) figure).getIcon();
+		if (figure instanceof LinkAndCornerBentWithTextFigure) {
+			return ((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().getIcon();
 		}
+		return getLabelIconHelper(figure);
 	}
 
 	/**
@@ -103,14 +76,10 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 	 */
 	@Override
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
-		if (figure instanceof WrappingLabel) {
-			((WrappingLabel) figure).setIcon(icon);
-		} else if (figure instanceof ILabelFigure) {
-			((ILabelFigure) figure).setIcon(icon);
-		} else if (figure instanceof CustomLinkAndCornerBentWithTextFigure) {
-			((CustomLinkAndCornerBentWithTextFigure) figure).getCornerBentContent().setIcon(icon);
+		if (figure instanceof LinkAndCornerBentWithTextFigure) {
+			((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().setIcon(icon);
 		} else {
-			((Label) figure).setIcon(icon);
+			super.setLabelIconHelper(figure, icon);
 		}
 	}
 
@@ -170,108 +139,17 @@ public class CustomObjectFlowTransformationEditPart extends ObjectFlowTransforma
 		super.handleNotificationEvent(event);
 	}
 
-	/**
-	 * @generated
-	 */
-	public class CustomLinkAndCornerBentWithTextFigure extends CornerBentFigure {
-
-		final Color THIS_BACK = new Color(null, 248, 249, 214);
-
-		/**
-		 * @generated
-		 */
-		private WrappedLabel fCornerBentContent;
-
-		/**
-		 * @generated
-		 */
-		private PolylineShape fLinkToBehaviorProperty;
-
-		/**
-		 * @generated
-		 */
-		public CustomLinkAndCornerBentWithTextFigure() {
-			this.setBackgroundColor(THIS_BACK);
-			createContents();
+	protected DirectEditManager getManager() {
+		if (manager == null) {
+			setManager(new MultilineLabelDirectEditManager(this,
+					MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+					new TextCellEditorLocator(((ObjectFlowTransformationEditPart.LinkAndCornerBentWithTextFigure) this.getFigure()).getCornerBentContent())
+					));
 		}
+		return manager;
+	}
 
-		/**
-		 * Customization cause to Bug 354622 - [ActivityDiagram] Object Flows selection prevent selecting other close elements
-		 *
-		 * @see org.eclipse.draw2d.Figure#containsPoint(int, int)
-		 *
-		 * @param x
-		 * @param y
-		 * @return
-		 */
-		@Override
-		public boolean containsPoint(int x, int y) {
-			if (isVisible()) {
-				return super.containsPoint(x, y);
-			}
-			return false;
-		}
-
-		private void createContents() {
-			fCornerBentContent = new WrappedLabel();
-			this.add(fCornerBentContent);
-			fLinkToBehaviorProperty = new PolylineShape();
-			fLinkToBehaviorProperty.setLineWidth(1);
-			fLinkToBehaviorProperty.setLineStyle(Graphics.LINE_DASH);
-			// do not add link in this figure but refresh it when figure moves
-			addFigureListener(new FigureListener() {
-
-				@Override
-				public void figureMoved(IFigure source) {
-					refreshLinkToBehaviorProperty();
-				}
-			});
-		}
-
-		/**
-		 * @see org.eclipse.draw2d.Figure#setVisible(boolean)
-		 *      report visibility on the link
-		 */
-		@Override
-		public void setVisible(boolean visible) {
-			super.setVisible(visible);
-			getLinkToBehaviorProperty().setVisible(visible);
-		}
-
-		/**
-		 * Refresh the link between parent figure and this one
-		 *
-		 *
-		 */
-		private void refreshLinkToBehaviorProperty() {
-			if (getLinkToBehaviorProperty().getParent() == null) {
-				// add in appropriate figure
-				getParent().add(getLinkToBehaviorProperty());
-			}
-			if (getParent() != null && getParent() instanceof ActivityEdgeFigure) {
-				Point parentCenter = getReferencePoint();
-				Rectangle currentBounds = getBounds();
-				Point end = BehaviorPropertyNodeEditPolicy.getAppropriateBorderPoint(parentCenter, currentBounds);
-				// adapt ends to bounds
-				Rectangle linkBounds = new Rectangle(parentCenter, end);
-				getLinkToBehaviorProperty().setStart(parentCenter.translate(linkBounds.getLocation().getNegated()));
-				getLinkToBehaviorProperty().setEnd(end.translate(linkBounds.getLocation().getNegated()));
-				getLinkToBehaviorProperty().setBounds(linkBounds);
-			}
-		}
-
-		/**
-		 *
-		 */
-		public WrappedLabel getCornerBentContent() {
-			return fCornerBentContent;
-		}
-
-		/**
-		 *
-		 */
-		public PolylineShape getLinkToBehaviorProperty() {
-			return fLinkToBehaviorProperty;
-		}
+	protected void setManager(DirectEditManager manager) {
+		this.manager = manager;
 	}
 }

@@ -13,17 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.directedit.locator.LabelCellEditorLocator;
-import org.eclipse.gmf.tooling.runtime.directedit.locator.TextCellEditorLocator;
+import org.eclipse.gmf.tooling.runtime.directedit.locator.CellEditorLocatorAccess;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure;
@@ -1325,19 +1322,13 @@ public class UMLEditPartFactory implements EditPartFactory {
 	}
 
 	/**
-	 * @generated NOT handle LinkAndCornerBentWithTextFigure
+	 * @generated
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof IMultilineEditableFigure) {
 			return new MultilineCellEditorLocator((IMultilineEditableFigure) source.getFigure());
-		} else if (source.getFigure() instanceof WrappingLabel) {
-			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
-		} else if (source.getFigure() instanceof ObjectFlowSelectionEditPart.LinkAndCornerBentWithTextFigure) {
-			return new TextCellEditorLocator(((ObjectFlowSelectionEditPart.LinkAndCornerBentWithTextFigure) source.getFigure()).getCornerBentContent());
-		} else if (source.getFigure() instanceof ObjectFlowTransformationEditPart.LinkAndCornerBentWithTextFigure) {
-			return new TextCellEditorLocator(((ObjectFlowTransformationEditPart.LinkAndCornerBentWithTextFigure) source.getFigure()).getCornerBentContent());
 		} else {
-			return new LabelCellEditorLocator((Label) source.getFigure());
+			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 		}
 	}
 

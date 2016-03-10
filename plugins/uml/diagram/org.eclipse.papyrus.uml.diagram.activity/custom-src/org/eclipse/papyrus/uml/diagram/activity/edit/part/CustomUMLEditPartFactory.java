@@ -28,7 +28,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.part.ActivityGroup.CustomSe
 import org.eclipse.papyrus.uml.diagram.activity.edit.part.ActivityGroup.CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AcceptEventActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AcceptTimeEventActionAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityEditPartCN;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
@@ -66,6 +65,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.LoopNodeStructuredAct
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowInterruptibleIconEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowNameEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowTransformationEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OpaqueActionEditPart;
@@ -114,6 +114,11 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				 * To implement InterruptibleEdge interface
 				 */
 				return new CustomObjectFlowEditPart(view);
+			case ObjectFlowNameEditPart.VISUAL_ID:
+				/*
+				 * Customization to direct edit
+				 */
+				return new CustomObjectFlowNameEditPart(view);
 			case ObjectFlowInterruptibleIconEditPart.VISUAL_ID:
 				/*
 				 * Customization to handle special image label
@@ -166,7 +171,6 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				 * Custom figure
 				 */
 				return new CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart(view);
-			
 			case AcceptEventActionEditPart.VISUAL_ID:
 				return new CustomAcceptEventActionEditPart(view);
 			case AcceptTimeEventActionAppliedStereotypeEditPart.VISUAL_ID:

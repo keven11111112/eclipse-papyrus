@@ -41,23 +41,22 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.eclipse.jface.util.IPropertyChangeListener;
-import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
+import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
@@ -68,9 +67,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusLinkLabelDra
 import org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel;
-import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.uml.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
@@ -78,9 +75,11 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
+import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Feature;
 
@@ -114,20 +113,19 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 *
+	 * @generated
+	 **/
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
-	protected IDirectEditorConfiguration configuration;
-
 	/**
-	 * the preference store
+	 * configuration from a registered edit dialog
 	 *
-	 * @generated NOT
-	 */
-	private final IPreferenceStore preferenceStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-
-	private IPropertyChangeListener preferenceListener;
+	 * @generated
+	 **/
+	protected IDirectEditorConfiguration configuration;
 	/**
 	 * @generated
 	 */
@@ -136,32 +134,10 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 	}
 
 	/**
-	 * @generated NOT add preference listener to enable/disable the label
+	 * @generated
 	 */
 	public ObjectFlowNameEditPart(View view) {
 		super(view);
-		// a preference listener to enable/disable the label
-		preferenceListener = new IPropertyChangeListener() {
-
-			@Override
-			public void propertyChange(PropertyChangeEvent event) {
-				if (IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL.equals(event.getProperty())) {
-					refreshLabel();
-				}
-			}
-		};
-	}
-
-	@Override
-	public void activate() {
-		super.activate();
-		preferenceStore.addPropertyChangeListener(preferenceListener);
-	}
-
-	@Override
-	public void deactivate() {
-		preferenceStore.removePropertyChangeListener(preferenceListener);
-		super.deactivate();
 	}
 
 	/**
@@ -286,24 +262,18 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 	}
 
 	/**
-	 * @generated NOT consult preference store before displaying label
+	 * @generated
 	 */
 	protected String getLabelText() {
-		// consult preference store before displaying label
-		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
-		if (showName) {
-			String text = null;
-			EObject parserElement = getParserElement();
-			if (parserElement != null && getParser() != null) {
-				text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
-			}
-			if (text == null || text.length() == 0) {
-				text = defaultText;
-			}
-			return text;
-		} else {
-			return "";
+		String text = null;
+		EObject parserElement = getParserElement();
+		if (parserElement != null && getParser() != null) {
+			text = getParser().getPrintString(ParserUtil.getParserAdapter(getParserElement(), this), getParserOptions().intValue());
 		}
+		if (text == null || text.length() == 0) {
+			text = defaultText;
+		}
+		return text;
 	}
 
 	/**
@@ -323,16 +293,14 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 	}
 
 	/**
-	 * @generated NOT consult preference store before displaying label
+	 * @generated
 	 */
 	@Override
 	public String getEditText() {
-		// consult preference store before displaying label
-		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
-		if (getParserElement() == null || getParser() == null || !showName) {
+		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
-		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
+		return getParser().getEditString(ParserUtil.getParserAdapter(getParserElement(), this), getParserOptions().intValue());
 	}
 
 	/**
@@ -421,34 +389,32 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 	}
 
 	/**
-	 * @generated NOT consult preference store before displaying label
+	 * @generated
 	 */
 	protected void performDirectEdit() {
-		// consult preference store before displaying label
-		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
-		if (showName) {
-			getManager().show();
-		}
+		BusyIndicator.showWhile(Display.getDefault(), new java.lang.Runnable() {
+
+			@Override
+			public void run() {
+				getManager().show();
+			}
+		});
 	}
 
 	/**
-	 * @generated NOT consult preference store before displaying label
+	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		// consult preference store before displaying label
-		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
-		if (getManager() instanceof TextDirectEditManager && showName) {
+		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(eventLocation.getSWTPoint());
 		}
 	}
 
 	/**
-	 * @generated NOT consult preference store before displaying label
+	 * @generated
 	 */
 	protected void performDirectEdit(char initialCharacter) {
-		// consult preference store before displaying label
-		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
-		if (getManager() instanceof TextDirectEditManager && showName) {
+		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {
 			performDirectEdit();
@@ -456,15 +422,10 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 	}
 
 	/**
-	 * @generated NOT consult preference store before displaying label
+	 * @generated
 	 */
 	@Override
 	protected void performDirectEditRequest(Request request) {
-		// consult preference store before displaying label
-		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
-		if (!showName) {
-			return;
-		}
 		final Request theRequest = request;
 		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
@@ -476,11 +437,21 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
 			updateExtendedEditorConfiguration();
 			if (configuration == null || configuration.getLanguage() == null) {
+				// Create default edit manager
+				setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
 				Dialog dialog = null;
-				if (configuration instanceof IAdvancedEditorConfiguration) {
+				if (configuration instanceof ICustomDirectEditorConfiguration) {
+					setManager(((ICustomDirectEditorConfiguration) configuration).createDirectEditManager(this));
+					initializeDirectEditManager(theRequest);
+					return;
+				} else if (configuration instanceof IPopupEditorConfiguration) {
+					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration).createPopupEditorHelper(this);
+					helper.showEditor();
+					return;
+				} else if (configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if (configuration instanceof IDirectEditorConfiguration) {
 					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
@@ -502,28 +473,7 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-			// initialize the direct edit manager
-			try {
-				getEditingDomain().runExclusive(new Runnable() {
-
-					@Override
-					public void run() {
-						if (isActive() && isEditable()) {
-							if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-								Character initialChar = (Character) theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
-								performDirectEdit(initialChar.charValue());
-							} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-								DirectEditRequest editRequest = (DirectEditRequest) theRequest;
-								performDirectEdit(editRequest.getLocation());
-							} else {
-								performDirectEdit();
-							}
-						}
-					}
-				});
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			initializeDirectEditManager(theRequest);
 			break;
 		default:
 			break;
@@ -750,11 +700,13 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 
 	/**
 	 * Updates the preference configuration
+	 *
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}
@@ -765,6 +717,8 @@ public class ObjectFlowNameEditPart extends PapyrusLabelEditPart implements ITex
 	 *
 	 * @param theRequest
 	 *            the direct edit request that starts the direct edit system
+	 *
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager

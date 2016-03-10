@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionLocator;
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.FigureListener;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
@@ -44,6 +45,7 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -67,13 +69,13 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusLinkLabelDragPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart.ActivityEdgeDescriptor;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.BehaviorPropertyNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.figures.ActivityEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
@@ -87,9 +89,7 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Feature;
-import org.eclipse.uml2.uml.ObjectFlow;
 
 /**
  * @generated
@@ -121,11 +121,16 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
+
 	/**
 	 * @generated
 	 */
@@ -161,60 +166,52 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 	}
 
 	/**
-	 * @generated NOT handle LinkAndCornerBentWithTextFigure
+	 * @generated
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
 		if (figure instanceof WrappingLabel) {
 			return ((WrappingLabel) figure).getText();
 		} else if (figure instanceof ILabelFigure) {
 			return ((ILabelFigure) figure).getText();
-		} else if (figure instanceof LinkAndCornerBentWithTextFigure) {
-			return ((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().getText();
 		} else {
 			return ((Label) figure).getText();
 		}
 	}
 
 	/**
-	 * @generated NOT handle LinkAndCornerBentWithTextFigure
+	 * @generated
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
 		if (figure instanceof WrappingLabel) {
 			((WrappingLabel) figure).setText(text);
 		} else if (figure instanceof ILabelFigure) {
 			((ILabelFigure) figure).setText(text);
-		} else if (figure instanceof LinkAndCornerBentWithTextFigure) {
-			((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().setText(text);
 		} else {
 			((Label) figure).setText(text);
 		}
 	}
 
 	/**
-	 * @generated NOT handle LinkAndCornerBentWithTextFigure
+	 * @generated
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
 		if (figure instanceof WrappingLabel) {
 			return ((WrappingLabel) figure).getIcon();
 		} else if (figure instanceof ILabelFigure) {
 			return ((ILabelFigure) figure).getIcon();
-		} else if (figure instanceof LinkAndCornerBentWithTextFigure) {
-			return ((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().getIcon();
 		} else {
 			return ((Label) figure).getIcon();
 		}
 	}
 
 	/**
-	 * @generated NOT handle LinkAndCornerBentWithTextFigure
+	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
 		if (figure instanceof WrappingLabel) {
 			((WrappingLabel) figure).setIcon(icon);
 		} else if (figure instanceof ILabelFigure) {
 			((ILabelFigure) figure).setIcon(icon);
-		} else if (figure instanceof LinkAndCornerBentWithTextFigure) {
-			((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().setIcon(icon);
 		} else {
 			((Label) figure).setIcon(icon);
 		}
@@ -277,7 +274,9 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 		String text = null;
 		EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(ParserUtil.getParserAdapter(getParserElement(), this), getParserOptions().intValue());
+			text = getParser().getPrintString(
+					new EObjectAdapter(parserElement),
+					getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {
 			text = defaultText;
@@ -309,7 +308,9 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
-		return getParser().getEditString(ParserUtil.getParserAdapter(getParserElement(), this), getParserOptions().intValue());
+		return getParser().getEditString(
+				new EObjectAdapter(getParserElement()),
+				getParserOptions().intValue());
 	}
 
 	/**
@@ -332,18 +333,20 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(new RunnableWithResult.Impl<java.lang.Object>() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(
+								new RunnableWithResult.Impl<java.lang.Object>() {
 
-							@Override
-							public void run() {
-								setResult(parser.isValidEditString(ParserUtil.getParserAdapter(getParserElement(), ObjectFlowTransformationEditPart.this), (String) value));
-							}
-						});
+									@Override
+									public void run() {
+										setResult(parser.isValidEditString(new EObjectAdapter(element), (String) value));
+									}
+								});
 						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
 					}
 				}
+
 				// shouldn't get here
 				return null;
 			}
@@ -358,7 +361,7 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 		if (getParserElement() == null || getParser() == null) {
 			return null;
 		}
-		return getParser().getCompletionProcessor(ParserUtil.getParserAdapter(getParserElement(), this));
+		return getParser().getCompletionProcessor(new EObjectAdapter(getParserElement()));
 	}
 
 	/**
@@ -375,7 +378,7 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 	@Override
 	public IParser getParser() {
 		if (parser == null) {
-			parser = ParserUtil.getParser(UMLElementTypes.ObjectFlow_4003, getParserElement(), this, VISUAL_ID);
+			parser = UMLParserProvider.getParser(UMLElementTypes.ObjectFlow_4003, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowTransformationEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -385,7 +388,9 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
+			setManager(new MultilineLabelDirectEditManager(this,
+					MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+					UMLEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -435,7 +440,9 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 	 */
 	@Override
 	protected void performDirectEditRequest(Request request) {
+
 		final Request theRequest = request;
+
 		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -447,7 +454,9 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 			updateExtendedEditorConfiguration();
 			if (configuration == null || configuration.getLanguage() == null) {
 				// Create default edit manager
-				setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
+				setManager(new MultilineLabelDirectEditManager(this,
+						MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+						UMLEditPartFactory.getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
@@ -468,6 +477,7 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 					return;
 				}
 				final Dialog finalDialog = dialog;
+
 				if (Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
@@ -475,6 +485,7 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 						@Override
 						protected void doExecute() {
 							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog) finalDialog).getValue());
+
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -496,11 +507,11 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 		// initialize the direct edit manager
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
-
 				@Override
 				public void run() {
 					if (isActive() && isEditable()) {
-						if (request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+						if (request.getExtendedData().get(
+								RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
 							Character initialChar = (Character) request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else {
@@ -525,25 +536,6 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 		refreshFontColor();
 		refreshUnderline();
 		refreshStrikeThrough();
-	}
-
-	/**
-	 * sets the visibility of this edit part
-	 *
-	 * @param vis
-	 *            the new value of the visibility
-	 * @generated NOT
-	 */
-	@Override
-	protected void setVisibility(boolean vis) {
-		EObject element = resolveSemanticElement();
-		if (element instanceof ObjectFlow) {
-			Behavior transformation = ((ObjectFlow) element).getTransformation();
-			if (transformation == null) {
-				vis = false;
-			}
-		}
-		super.setVisibility(vis);
 	}
 
 	/**
@@ -572,7 +564,8 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
@@ -589,7 +582,8 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null && getFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
@@ -600,9 +594,13 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 	 */
 	@Override
 	protected void refreshFont() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
-			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+			FontData fontData = new FontData(
+					style.getFontName(), style.getFontHeight(),
+					(style.isBold() ? SWT.BOLD : SWT.NORMAL) |
+							(style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -683,6 +681,7 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 		if (checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
+
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -727,22 +726,20 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 	}
 
 	/**
-	 * Updates the preference configuration
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
-		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
+				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}
 	}
 
 	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 *
-	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -753,7 +750,8 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 				public void run() {
 					if (isActive() && isEditable()) {
 						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							Character initialChar = (Character) theRequest.getExtendedData().get(
+									RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
 							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
@@ -770,7 +768,7 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 	}
 
 	/**
-	 * @generated NOT refresh the visibility in case the transformation assignment changed
+	 * @generated
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {
@@ -782,8 +780,10 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 			refreshUnderline();
 		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
-				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) ||
+				NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) ||
+				NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) ||
+				NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
 			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
@@ -797,11 +797,10 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 						addSemanticListeners();
 					}
 					refreshLabel();
-					// refresh the visibility in case the transformation assignment changed
-					refreshVisibility();
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -846,7 +845,25 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 		}
 
 		/**
-		 * @generated NOT do not add link in this figure
+		 * Customization cause to Bug 354622 - [ActivityDiagram] Object Flows selection prevent selecting other close elements
+		 * 
+		 * @see Figure#containsPoint(int, int)
+		 * @generated
+		 * 
+		 * @param x
+		 * @param y
+		 * @return
+		 */
+		@Override
+		public boolean containsPoint(int x, int y) {
+			if (isVisible()) {
+				return super.containsPoint(x, y);
+			}
+			return false;
+		}
+
+		/**
+		 * @generated
 		 */
 		private void createContents() {
 			fCornerBentContent = new WrappedLabel();
@@ -865,8 +882,7 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 		}
 
 		/**
-		 * @see org.eclipse.draw2d.Figure#setVisible(boolean)
-		 * @generated NOT report visibility on the link
+		 * @generated
 		 */
 		@Override
 		public void setVisible(boolean visible) {
@@ -875,16 +891,14 @@ public class ObjectFlowTransformationEditPart extends PapyrusLabelEditPart imple
 		}
 
 		/**
-		 * Refresh the link between parent figure and this one
-		 *
-		 * @generated NOT
+		 * @generated
 		 */
 		private void refreshLinkToBehaviorProperty() {
 			if (getLinkToBehaviorProperty().getParent() == null) {
 				// add in appropriate figure
 				getParent().add(getLinkToBehaviorProperty());
 			}
-			if (getParent() != null && getParent() instanceof ActivityEdgeDescriptor) {
+			if (getParent() != null && getParent() instanceof ActivityEdgeFigure) {
 				Point parentCenter = getReferencePoint();
 				Rectangle currentBounds = getBounds();
 				Point end = BehaviorPropertyNodeEditPolicy.getAppropriateBorderPoint(parentCenter, currentBounds);

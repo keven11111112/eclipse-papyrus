@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionLocator;
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.FigureListener;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
@@ -68,9 +69,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEd
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusLinkLabelDragPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart.ActivityEdgeDescriptor;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.BehaviorPropertyNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.figures.ActivityEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -87,9 +88,7 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Feature;
-import org.eclipse.uml2.uml.ObjectFlow;
 
 /**
  * @generated
@@ -121,10 +120,14 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
 	/**
 	 * @generated
@@ -161,60 +164,52 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 	}
 
 	/**
-	 * @generated NOT handle LinkAndCornerBentWithTextFigure
+	 * @generated
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
 		if (figure instanceof WrappingLabel) {
 			return ((WrappingLabel) figure).getText();
 		} else if (figure instanceof ILabelFigure) {
 			return ((ILabelFigure) figure).getText();
-		} else if (figure instanceof LinkAndCornerBentWithTextFigure) {
-			return ((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().getText();
 		} else {
 			return ((Label) figure).getText();
 		}
 	}
 
 	/**
-	 * @generated NOT handle LinkAndCornerBentWithTextFigure
+	 * @generated
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
 		if (figure instanceof WrappingLabel) {
 			((WrappingLabel) figure).setText(text);
 		} else if (figure instanceof ILabelFigure) {
 			((ILabelFigure) figure).setText(text);
-		} else if (figure instanceof LinkAndCornerBentWithTextFigure) {
-			((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().setText(text);
 		} else {
 			((Label) figure).setText(text);
 		}
 	}
 
 	/**
-	 * @generated NOT handle LinkAndCornerBentWithTextFigure
+	 * @generated
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
 		if (figure instanceof WrappingLabel) {
 			return ((WrappingLabel) figure).getIcon();
 		} else if (figure instanceof ILabelFigure) {
 			return ((ILabelFigure) figure).getIcon();
-		} else if (figure instanceof LinkAndCornerBentWithTextFigure) {
-			return ((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().getIcon();
 		} else {
 			return ((Label) figure).getIcon();
 		}
 	}
 
 	/**
-	 * @generated NOT handle LinkAndCornerBentWithTextFigure
+	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
 		if (figure instanceof WrappingLabel) {
 			((WrappingLabel) figure).setIcon(icon);
 		} else if (figure instanceof ILabelFigure) {
 			((ILabelFigure) figure).setIcon(icon);
-		} else if (figure instanceof LinkAndCornerBentWithTextFigure) {
-			((LinkAndCornerBentWithTextFigure) figure).getCornerBentContent().setIcon(icon);
 		} else {
 			((Label) figure).setIcon(icon);
 		}
@@ -528,25 +523,6 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 	}
 
 	/**
-	 * sets the visibility of this edit part
-	 *
-	 * @param vis
-	 *            the new value of the visibility
-	 * @generated NOT
-	 */
-	@Override
-	protected void setVisibility(boolean vis) {
-		EObject element = resolveSemanticElement();
-		if (element instanceof ObjectFlow) {
-			Behavior selection = ((ObjectFlow) element).getSelection();
-			if (selection == null) {
-				vis = false;
-			}
-		}
-		super.setVisibility(vis);
-	}
-
-	/**
 	 * @generated
 	 */
 	protected void refreshLabel() {
@@ -727,22 +703,19 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 	}
 
 	/**
-	 * Updates the preference configuration
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}
 	}
 
 	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 *
-	 * @param theRequest
-	 *            the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -770,7 +743,7 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 	}
 
 	/**
-	 * @generated NOT refresh the visibility in case the selection assignment changed
+	 * @generated
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {
@@ -797,8 +770,6 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 						addSemanticListeners();
 					}
 					refreshLabel();
-					// refresh the visibility in case the selection assignment changed
-					refreshVisibility();
 				}
 			}
 		}
@@ -846,6 +817,24 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 		}
 
 		/**
+		 * Customization cause to Bug 354622 - [ActivityDiagram] Object Flows selection prevent selecting other close elements
+		 *
+		 * @see Figure#containsPoint(int, int)
+		 * @generated
+		 *
+		 * @param x
+		 * @param y
+		 * @return
+		 */
+		@Override
+		public boolean containsPoint(int x, int y) {
+			if (isVisible()) {
+				return super.containsPoint(x, y);
+			}
+			return false;
+		}
+
+		/**
 		 * @generated NOT do not add link in this figure
 		 */
 		private void createContents() {
@@ -865,8 +854,7 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 		}
 
 		/**
-		 * @see org.eclipse.draw2d.Figure#setVisible(boolean)
-		 * @generated NOT report visibility on the link
+		 * @generated
 		 */
 		@Override
 		public void setVisible(boolean visible) {
@@ -875,16 +863,14 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 		}
 
 		/**
-		 * Refresh the link between parent figure and this one
-		 *
-		 * @generated NOT
+		 * @generated
 		 */
 		private void refreshLinkToBehaviorProperty() {
 			if (getLinkToBehaviorProperty().getParent() == null) {
 				// add in appropriate figure
 				getParent().add(getLinkToBehaviorProperty());
 			}
-			if (getParent() != null && getParent() instanceof ActivityEdgeDescriptor) {
+			if (getParent() != null && getParent() instanceof ActivityEdgeFigure) {
 				Point parentCenter = getReferencePoint();
 				Rectangle currentBounds = getBounds();
 				Point end = BehaviorPropertyNodeEditPolicy.getAppropriateBorderPoint(parentCenter, currentBounds);
