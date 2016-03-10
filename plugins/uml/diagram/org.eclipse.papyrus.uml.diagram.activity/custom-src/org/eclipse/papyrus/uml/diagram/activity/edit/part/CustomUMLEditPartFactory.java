@@ -45,6 +45,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConditionalNodeEditPa
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowInterruptibleIconEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowNameEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CreateObjectActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DataStoreNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DataStoreSelectionEditPart;
@@ -99,6 +100,11 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				 * Customization to handle special image label
 				 */
 				return new CustomObjectFlowSelectionEditPart(view);
+			case ControlFlowNameEditPart.VISUAL_ID:
+				/*
+				 * Customization to direct edit
+				 */
+				return new CustomControlFlowEditPart(view);
 			case ObjectFlowTransformationEditPart.VISUAL_ID:
 				/*
 				 * Customization to handle special image label

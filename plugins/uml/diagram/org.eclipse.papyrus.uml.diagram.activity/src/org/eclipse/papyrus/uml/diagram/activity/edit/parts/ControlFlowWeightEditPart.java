@@ -112,10 +112,14 @@ public class ControlFlowWeightEditPart extends PapyrusLabelEditPart implements I
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
 	/**
 	 * @generated
@@ -217,7 +221,6 @@ public class ControlFlowWeightEditPart extends PapyrusLabelEditPart implements I
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
 	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -690,12 +693,12 @@ public class ControlFlowWeightEditPart extends PapyrusLabelEditPart implements I
 	}
 
 	/**
-	 * Updates the preference configuration
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}
@@ -706,6 +709,7 @@ public class ControlFlowWeightEditPart extends PapyrusLabelEditPart implements I
 	 *
 	 * @param theRequest
 	 *            the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -733,6 +737,33 @@ public class ControlFlowWeightEditPart extends PapyrusLabelEditPart implements I
 	}
 
 	/**
+	 * @generated
+	 * 			protected void performDefaultDirectEditorEdit(final Request theRequest) {
+	 *            // initialize the direct edit manager
+	 *            try {
+	 *            getEditingDomain().runExclusive(new Runnable() {
+	 *
+	 * @Override
+	 * 			public void run() {
+	 *           if (isActive() && isEditable()) {
+	 *           if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+	 *           Character initialChar = (Character) theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+	 *           performDirectEdit(initialChar.charValue());
+	 *           } else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+	 *           DirectEditRequest editRequest = (DirectEditRequest) theRequest;
+	 *           performDirectEdit(editRequest.getLocation());
+	 *           } else {
+	 *           performDirectEdit();
+	 *           }
+	 *           }
+	 *           }
+	 *           });
+	 *           } catch (InterruptedException e) {
+	 *           e.printStackTrace();
+	 *           }
+	 *           }
+	 *
+	 *           /**
 	 * @generated
 	 */
 	@Override

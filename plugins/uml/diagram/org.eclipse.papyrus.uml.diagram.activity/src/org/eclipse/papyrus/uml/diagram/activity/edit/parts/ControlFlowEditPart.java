@@ -14,13 +14,9 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.PolylineDecoration;
-import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.InterruptibleEdgeEditPolicy;
@@ -28,7 +24,6 @@ import org.eclipse.papyrus.uml.diagram.activity.figures.ActivityEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 
 /**
  * @generated
@@ -119,60 +114,5 @@ public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements IT
 	@Override
 	public ActivityEdgeFigure getPrimaryShape() {
 		return (ActivityEdgeFigure) getFigure();
-	}
-
-	/**
-	 * @generated NOT inherits from UMLEdgeFigure to manage stereotype label
-	 */
-	public class ActivityEdgeDescriptor extends UMLEdgeFigure {
-
-		/**
-		 * @generated NOT call the super constructor
-		 */
-		public ActivityEdgeDescriptor() {
-			super();
-			this.setLineWidth(1);
-			setTargetDecoration(createTargetDecoration());
-		}
-
-		/**
-		 * @generated NOT
-		 */
-		@Override
-		protected void createContents() {
-			super.createContents();
-			// fAppliedStereotypeLabel = new WrappingLabel();
-			// fAppliedStereotypeLabel.setText("");
-			// this.add(fAppliedStereotypeLabel);
-		}
-
-		@Override
-		public void resetStyle() {
-			super.resetStyle();
-			setTargetDecoration(createTargetDecoration());
-		}
-
-		/**
-		 * @generated NOT scale changed from default 7:3 to 5:2 to make a smaller arrow
-		 */
-		private RotatableDecoration createTargetDecoration() {
-			PolylineDecoration df = new PolylineDecoration();
-			df.setLineWidth(1);
-			PointList pl = new PointList();
-			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
-			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
-			df.setTemplate(pl);
-			df.setScale(getMapMode().DPtoLP(5), getMapMode().DPtoLP(2));
-			return df;
-		}
-
-		/**
-		 * @generated NOT get the stereotype label of super class
-		 */
-		@Override
-		public WrappingLabel getAppliedStereotypeLabel() {
-			return super.getAppliedStereotypeLabel();
-		}
 	}
 }
