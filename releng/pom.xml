@@ -29,7 +29,7 @@
 			built by this POM). -->
 
 		<!-- manualUpdate -->
-		<nattable.repo.url>${eclipse.download}/nattable/snapshots/484/repository/</nattable.repo.url>
+		<nattable.repo.url>${eclipse.download}/nattable/snapshots/488/repository/</nattable.repo.url>
 
 		<!-- manualUpdate -->
 		<nebula-tablecombo.repo.url>${eclipse.download}/technology/nebula/archives/Q12015/release/</nebula-tablecombo.repo.url>
