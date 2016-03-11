@@ -28,7 +28,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.diagram.common;bundle-version="1.1.4",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.1.4",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.1.4",
- org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.4"
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.4",
+ org.eclipse.papyrus.editor
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

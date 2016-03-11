@@ -33,8 +33,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * Abstract handler in order to connect to papyrus
@@ -58,10 +63,10 @@ public abstract class IDMAbstractHandler extends AbstractHandler {
 	 * @param elem
 	 * @return the root package
 	 */
-	public Package getToPackage(Element elem) {
-		Package tmp = elem.getNearestPackage();
-		while (tmp.getOwner() != null && (tmp.getOwner() instanceof Package)) {
-			tmp = (Package) tmp.getOwner();
+	public org.eclipse.uml2.uml.Package getToPackage(Element elem) {
+		org.eclipse.uml2.uml.Package tmp = elem.getNearestPackage();
+		while (tmp.getOwner() != null && (tmp.getOwner() instanceof org.eclipse.uml2.uml.Package)) {
+			tmp = (org.eclipse.uml2.uml.Package) tmp.getOwner();
 		}
 		return tmp;
 	}

@@ -25,6 +25,7 @@ import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.revision.tool.core.ReviewResourceManager;
 import org.eclipse.papyrus.revision.tool.ui.ReviewsEditor;
+import org.eclipse.papyrus.revision.tool.ui.SWTQualitativeInfo;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.layout.FillLayout;
@@ -32,7 +33,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.internal.Model;
+import org.eclipse.uml2.uml.Model;
 
 /**
  * This class is used to create and html developper doc file.
@@ -50,7 +51,7 @@ public class DisplayStatHandler extends IDMAbstractHandler {
 			ReviewResourceManager reviewResourceManager = ((ReviewsEditor) part).getReviewResourceManager();
 			if (reviewResourceManager.getCurrentReviewModelWithoutLoading() != null) {
 				Comparison comparison = reviewResourceManager.getDiffModel();
-				Model model = (Model) getSelection();
+				org.eclipse.uml2.uml.Model model = (org.eclipse.uml2.uml.Model) getSelection();
 				int elementNumber = 0;
 				int addedElement = 0;
 				int modifiedElement = 0;
