@@ -254,7 +254,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertTrue("The sub figure [2] of compartment of stereotype properties «Stereotype3»Class1 is not a compartment", class1figure.getChildren().get(2) instanceof RectangleFigure);
 			RectangleFigure stereotypePropertiesClass = (RectangleFigure) class1figure.getChildren().get(2);
 			assertTrue("The sub figure [2] is not the attribute compartment is not a ResizableCompartmentFigure", stereotypePropertiesClass.getChildren().get(0) instanceof ResizableCompartmentFigure);
-			assertDimension("The sub figure [2],is not good", 0, 36, 200, 306, stereotypePropertiesClass);
+			assertDimension("The sub figure [2],is not good", 0, 36, 200, 321, stereotypePropertiesClass);
 
 			// test containment of stereotype properties
 			assertTrue("The sub figure [2] is not the attribute compartment is not a ResizableCompartmentFigure", stereotypePropertiesClass.getChildren().get(0) instanceof AppliedStereotypeCompartmentFigure);
@@ -278,7 +278,7 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertDimension("The dimension of the stereotype property 14  is not good ", 5, 261, 241, 15, (Figure) content.getChildren().get(14));
 			assertDimension("The dimension of the stereotype property 15  is not good ", 5, 276, 241, 15, (Figure) content.getChildren().get(15));
 			assertDimension("The dimension of the stereotype property 16  is not good ", 5, 291, 241, 15, (Figure) content.getChildren().get(16));
-			// assertDimension("The dimension of the stereotype property 17 is not good ", 5, 306, 241, 15, (Figure) content.getChildren().get(17));
+			assertDimension("The dimension of the stereotype property 17  is not good ", 5, 306, 241, 15, (Figure) content.getChildren().get(17));
 
 
 
@@ -287,26 +287,26 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 			assertEquals("The sub figure [3] is not a RectangleFigure", RectangleFigure.class, class1figure.getChildren().get(3).getClass());
 			RectangleFigure propertiesClass = (RectangleFigure) class1figure.getChildren().get(3);
 			assertEquals("The sub figure [3] is not the attribute compartment is not a ResizableCompartmentFigure", ResizableCompartmentFigure.class, propertiesClass.getChildren().get(0).getClass());
-			assertDimension("The dimension of the properties compartment is not good ", 0, 343, 200, 52, propertiesClass);
+			assertDimension("The dimension of the properties compartment is not good ", 0, 358, 200, 47, propertiesClass);
 
 
 			// compartment for operation
 			assertEquals("The sub figure [4] of class1 is not an RectangleFigure", RectangleFigure.class, class1figure.getChildren().get(4).getClass());
 			RectangleFigure operationsClass = (RectangleFigure) class1figure.getChildren().get(4);
 			assertTrue("The sub figure [4] is not the operation compartment is not a ResizableCompartmentFigure", operationsClass.getChildren().get(0) instanceof ResizableCompartmentFigure);
-			assertDimension("The sub figure [4] has not the good dimension", 0, 396, 200, 52, operationsClass);
+			assertDimension("The sub figure [4] has not the good dimension", 0, 406, 200, 47, operationsClass);
 
 
 			// compartment for nested classifier
 			assertEquals("The sub figure [5] of class1 is not an automaticCompartmentLayoutManager", RectangleFigure.class, class1figure.getChildren().get(5).getClass());
 			RectangleFigure innerclassifiersClass = (RectangleFigure) class1figure.getChildren().get(5);
 			assertTrue("The sub figure [5] is not the nested Classifier compartment is not a ResizableCompartmentFigure", innerclassifiersClass.getChildren().get(0) instanceof ResizableCompartmentFigure);
-			assertDimension("The sub figure [5] has not the good dimension", 0, 449, 200, 52, innerclassifiersClass);
+			assertDimension("The sub figure [5] has not the good dimension", 0, 454, 200, 47, innerclassifiersClass);
 
 			// compartment for nested classifier
 			Figure notvisbleFigureClass = (Figure) class1figure.getChildren().get(6);
-			assertTrue("The sub figure [5] is not the nested Classifier compartment is not a Figure", notvisbleFigureClass instanceof Figure);
-			assertDimension("The sub figure [5] has not the good dimension", 0, 0, 0, 0, notvisbleFigureClass);
+			assertTrue("The sub figure [6] is not the nested Classifier compartment is not a Figure", notvisbleFigureClass instanceof Figure);
+			assertDimension("The sub figure [6] has not the good dimension", 0, 0, 0, 0, notvisbleFigureClass);
 
 		}
 

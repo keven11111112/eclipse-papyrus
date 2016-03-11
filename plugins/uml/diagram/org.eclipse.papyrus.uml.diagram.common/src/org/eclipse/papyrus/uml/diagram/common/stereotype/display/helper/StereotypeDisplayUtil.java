@@ -844,7 +844,6 @@ public class StereotypeDisplayUtil {
 					if (stereotypeCompartment.getElement() instanceof Stereotype) {
 						final Stereotype stereotype = (Stereotype) stereotypeCompartment.getElement();
 						final Element umlElement = UMLUtil.getBaseElement(getStereotypeApplication(view, stereotype));
-						System.out.println(getStereotypeApplication(view, stereotype));
 						if (isDisplayed(node)) {
 							// if (node.isVisible()) {
 
