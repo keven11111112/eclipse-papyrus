@@ -310,7 +310,7 @@ public class UMLElementTypes {
 	 */
 	public static synchronized ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
-		if(elements == null) {
+		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 			elements.put(Dependency_3203, UMLPackage.eINSTANCE.getDependency());
@@ -352,8 +352,8 @@ public class UMLElementTypes {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static IElementType getElementTypeByUniqueId(String id) {
 		return ElementTypeRegistry.getInstance().getType(id);
 	}
@@ -362,8 +362,8 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static IElementType getElementType(String visualID) {
-		if(visualID != null) {
-			switch(visualID) {
+		if (visualID != null) {
+			switch (visualID) {
 			case ComponentDiagramEditPart.VISUAL_ID:
 				return Package_1000;
 			case DependencyNodeEditPart.VISUAL_ID:
@@ -447,7 +447,7 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static synchronized boolean isKnownElementType(IElementType elementType) {
-		if(KNOWN_ELEMENT_TYPES == null) {
+		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Package_1000);
 			KNOWN_ELEMENT_TYPES.add(Dependency_3203);
@@ -488,9 +488,9 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Connector_4019);
 		}
 		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
-		if(!result) {
+		if (!result) {
 			IElementType[] supertypes = elementType.getAllSuperTypes();
-			for(int i = 0; !result && (i < supertypes.length); i++) {
+			for (int i = 0; !result && (i < supertypes.length); i++) {
 				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
 			}
 		}
@@ -532,9 +532,9 @@ public class UMLElementTypes {
 	 */
 	public static boolean isKindOf(IElementType subtype, IElementType supertype) {
 		boolean result = subtype == supertype;
-		if(!result) {
+		if (!result) {
 			IElementType[] supertypes = subtype.getAllSuperTypes();
-			for(int i = 0; !result && (i < supertypes.length); i++) {
+			for (int i = 0; !result && (i < supertypes.length); i++) {
 				result = supertype == supertypes[i];
 			}
 		}

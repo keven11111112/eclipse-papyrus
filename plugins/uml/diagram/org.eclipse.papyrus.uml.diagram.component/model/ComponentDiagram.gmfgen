@@ -3399,7 +3399,7 @@
         iD="org.eclipse.papyrus.uml.diagram.component"
         name="Papyrus Component Diagram "
         provider="Eclipse Modeling Project"
-        version="1.2.0.qualifier">
+        version="2.0.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>
@@ -3568,8 +3568,8 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocatorExternalLabel"
         comment="External node label locator"
-        classpath="org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator"
-        genExternalNodeLabel="/0/@diagram/@topLevelNodes.8/@labels.0 /0/@diagram/@childNodes.11/@labels.0 /0/@diagram/@childNodes.0/@labels.0 /0/@diagram/@topLevelNodes.0/@labels.0 /0/@diagram/@childNodes.0/@labels.1"/>
+        classpath="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator"
+        genExternalNodeLabel="/0/@diagram/@topLevelNodes.8/@labels.0 /0/@diagram/@childNodes.11/@labels.0 /0/@diagram/@childNodes.0/@labels.0 /0/@diagram/@topLevelNodes.0/@labels.0 /0/@diagram/@childNodes.0/@labels.1 /0/@diagram/@topLevelNodes.0/@labels.1"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:GenNodeConstraint"
         comment="Creation constraint for TopLevelNode in virtual canvas"

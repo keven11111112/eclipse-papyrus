@@ -45,7 +45,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeIcon
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.MaskManagedNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
+import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.PortLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes.PortFigure;
@@ -106,17 +106,17 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
+				View childView = (View) child.getModel();
 				String vid = UMLVisualIDRegistry.getVisualID(childView);
-				if(vid != null) {
-					switch(vid) {
+				if (vid != null) {
+					switch (vid) {
 					case PortNameEditPart.VISUAL_ID:
 					case PortAppliedStereotypeEditPart.VISUAL_ID:
 						return new BorderItemSelectionEditPolicy() {
 
 							@Override
 							protected List<?> createSelectionHandles() {
-								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 								mh.setBorder(null);
 								return Collections.singletonList(mh);
 							}
@@ -124,7 +124,7 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -154,11 +154,11 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View)getModel()).getChildren();
-			if(false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
-				if(modelChildren.contains(event.getNotifier())) {
+			List<?> modelChildren = ((View) getModel()).getChildren();
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
@@ -180,7 +180,7 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 	 */
 	@Override
 	public PortFigure getPrimaryShape() {
-		return (PortFigure)primaryShape;
+		return (PortFigure) primaryShape;
 	}
 
 	/**
@@ -188,11 +188,11 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof PortNameEditPart) {
-			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+		if (borderItemEditPart instanceof PortNameEditPart) {
+			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if(borderItemEditPart instanceof PortAppliedStereotypeEditPart) {
-			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+		} else if (borderItemEditPart instanceof PortAppliedStereotypeEditPart) {
+			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
@@ -242,7 +242,7 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -253,7 +253,7 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -271,8 +271,8 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

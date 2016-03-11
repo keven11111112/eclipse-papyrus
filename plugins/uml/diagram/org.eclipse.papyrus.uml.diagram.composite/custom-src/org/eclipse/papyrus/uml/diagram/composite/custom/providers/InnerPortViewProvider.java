@@ -41,10 +41,13 @@ public class InnerPortViewProvider extends CustomAbstractViewProvider implements
 	 */
 	@Override
 	protected boolean provides(CreateNodeViewOperation operation) {
-		String semanticHint = operation.getSemanticHint();
-		return BehaviorPortEditPart.VISUAL_ID.equals(semanticHint) || PortEditPart.VISUAL_ID.equals(semanticHint);
+		if (super.provides(operation)) {
+			String semanticHint = operation.getSemanticHint();
+			return BehaviorPortEditPart.VISUAL_ID.equals(semanticHint) || PortEditPart.VISUAL_ID.equals(semanticHint);
+		}
+		return false;
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.providers.CustomAbstractViewProvider#provides(org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation)
 	 *
@@ -67,10 +70,11 @@ public class InnerPortViewProvider extends CustomAbstractViewProvider implements
 	protected boolean provides(CreateViewForKindOperation op) {
 		return false;
 	}
-	
-	
+
+
 	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.providers.CustomAbstractViewProvider#createNode(org.eclipse.core.runtime.IAdaptable, org.eclipse.gmf.runtime.notation.View, java.lang.String, int, boolean, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.providers.CustomAbstractViewProvider#createNode(org.eclipse.core.runtime.IAdaptable, org.eclipse.gmf.runtime.notation.View, java.lang.String, int, boolean,
+	 *      org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint)
 	 *
 	 * @param semanticAdapter
 	 * @param containerView
@@ -84,13 +88,13 @@ public class InnerPortViewProvider extends CustomAbstractViewProvider implements
 	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		final EObject domainElement = getSemanticElement(semanticAdapter);
 		final String visualID;
-		if(semanticHint == null) {
+		if (semanticHint == null) {
 			visualID = UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		} else {
 			visualID = UMLVisualIDRegistry.getVisualID(semanticHint);
 		}
-		if(visualID != null) {
-			switch(visualID) {
+		if (visualID != null) {
+			switch (visualID) {
 			case BehaviorPortEditPart.VISUAL_ID:
 				return umlViewProvider.createPort_3121(domainElement, containerView, index, persisted, preferencesHint);
 			case PortEditPart.VISUAL_ID:

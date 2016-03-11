@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.GeneralizationFigure;
@@ -48,7 +49,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
@@ -57,8 +58,8 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof GeneralizationAppliedStereotypeEditPart) {
-			((GeneralizationAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof GeneralizationAppliedStereotypeEditPart) {
+			((GeneralizationAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -68,7 +69,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -78,7 +79,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof GeneralizationAppliedStereotypeEditPart) {
+		if (childEditPart instanceof GeneralizationAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -89,7 +90,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -113,6 +114,6 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	@Override
 	public GeneralizationFigure getPrimaryShape() {
-		return (GeneralizationFigure)getFigure();
+		return (GeneralizationFigure) getFigure();
 	}
 }

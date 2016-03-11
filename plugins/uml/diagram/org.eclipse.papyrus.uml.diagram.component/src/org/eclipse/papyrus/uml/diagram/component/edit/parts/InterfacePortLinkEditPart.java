@@ -65,6 +65,6 @@ public class InterfacePortLinkEditPart extends ConnectionEditPart implements ITr
 	 */
 	@Override
 	public PolylineConnectionEx getPrimaryShape() {
-		return (PolylineConnectionEx)getFigure();
+		return (PolylineConnectionEx) getFigure();
 	}
 }

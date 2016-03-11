@@ -94,8 +94,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getDependencyName_5008Parser() {
-		if(dependencyName_5008Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (dependencyName_5008Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			dependencyName_5008Parser = parser;
 		}
@@ -111,8 +111,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getDependencyName_6029Parser() {
-		if(dependencyName_6029Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (dependencyName_6029Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			dependencyName_6029Parser = parser;
 		}
@@ -128,8 +128,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getComponentName_5004Parser() {
-		if(componentName_5004Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (componentName_5004Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			componentName_5004Parser = parser;
 		}
@@ -145,8 +145,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getComponentName_6030Parser() {
-		if(componentName_6030Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (componentName_6030Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			componentName_6030Parser = parser;
 		}
@@ -162,8 +162,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getModelName_5262Parser() {
-		if(modelName_5262Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (modelName_5262Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			modelName_5262Parser = parser;
 		}
@@ -179,8 +179,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getPackageName_5254Parser() {
-		if(packageName_5254Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (packageName_5254Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			packageName_5254Parser = parser;
 		}
@@ -196,8 +196,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getInterfaceName_5266Parser() {
-		if(interfaceName_5266Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (interfaceName_5266Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interfaceName_5266Parser = parser;
 		}
@@ -213,8 +213,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getInterfaceName_6031Parser() {
-		if(interfaceName_6031Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (interfaceName_6031Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interfaceName_6031Parser = parser;
 		}
@@ -230,7 +230,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getCommentBody_5255Parser() {
-		if(commentBody_5255Parser == null) {
+		if (commentBody_5255Parser == null) {
 			commentBody_5255Parser = new CommentParser();
 		}
 		return commentBody_5255Parser;
@@ -245,8 +245,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getConstraintName_5252Parser() {
-		if(constraintName_5252Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (constraintName_5252Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			constraintName_5252Parser = parser;
 		}
@@ -262,7 +262,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getConstraintSpecification_5253Parser() {
-		if(constraintSpecification_5253Parser == null) {
+		if (constraintSpecification_5253Parser == null) {
 			constraintSpecification_5253Parser = new ConstraintParser();
 		}
 		return constraintSpecification_5253Parser;
@@ -277,8 +277,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getNamedElementName_5265Parser() {
-		if(namedElementName_5265Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (namedElementName_5265Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			namedElementName_5265Parser = parser;
 		}
@@ -294,8 +294,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getInterfaceName_5005Parser() {
-		if(interfaceName_5005Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (interfaceName_5005Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interfaceName_5005Parser = parser;
 		}
@@ -311,8 +311,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getInterfaceName_6032Parser() {
-		if(interfaceName_6032Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (interfaceName_6032Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interfaceName_6032Parser = parser;
 		}
@@ -328,8 +328,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getPortName_5006Parser() {
-		if(portName_5006Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (portName_5006Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			portName_5006Parser = parser;
 		}
@@ -345,7 +345,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getPortName_5007Parser() {
-		if(portName_5007Parser == null) {
+		if (portName_5007Parser == null) {
 			portName_5007Parser = new AppliedStereotypeParser();
 		}
 		return portName_5007Parser;
@@ -360,8 +360,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getModelName_5264Parser() {
-		if(modelName_5264Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (modelName_5264Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			modelName_5264Parser = parser;
 		}
@@ -377,8 +377,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getPackageName_5261Parser() {
-		if(packageName_5261Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (packageName_5261Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			packageName_5261Parser = parser;
 		}
@@ -394,8 +394,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getInterfaceName_5267Parser() {
-		if(interfaceName_5267Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (interfaceName_5267Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interfaceName_5267Parser = parser;
 		}
@@ -411,8 +411,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getInterfaceName_6033Parser() {
-		if(interfaceName_6033Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (interfaceName_6033Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interfaceName_6033Parser = parser;
 		}
@@ -428,8 +428,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getComponentName_5256Parser() {
-		if(componentName_5256Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (componentName_5256Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -448,8 +448,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getComponentName_6026Parser() {
-		if(componentName_6026Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (componentName_6026Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			componentName_6026Parser = parser;
 		}
@@ -465,8 +465,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getComponentName_5257Parser() {
-		if(componentName_5257Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (componentName_5257Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -485,8 +485,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getComponentName_6027Parser() {
-		if(componentName_6027Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (componentName_6027Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			componentName_6027Parser = parser;
 		}
@@ -502,7 +502,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getCommentBody_5258Parser() {
-		if(commentBody_5258Parser == null) {
+		if (commentBody_5258Parser == null) {
 			commentBody_5258Parser = new CommentParser();
 		}
 		return commentBody_5258Parser;
@@ -517,8 +517,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getConstraintName_5259Parser() {
-		if(constraintName_5259Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (constraintName_5259Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			constraintName_5259Parser = parser;
 		}
@@ -534,7 +534,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getConstraintSpecification_5260Parser() {
-		if(constraintSpecification_5260Parser == null) {
+		if (constraintSpecification_5260Parser == null) {
 			constraintSpecification_5260Parser = new ConstraintParser();
 		}
 		return constraintSpecification_5260Parser;
@@ -549,8 +549,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getProperty_1Parser() {
-		if(property_1Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (property_1Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			property_1Parser = parser;
 		}
@@ -566,8 +566,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getOperation_5Parser() {
-		if(operation_5Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (operation_5Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			operation_5Parser = parser;
 		}
@@ -583,8 +583,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getReception_6Parser() {
-		if(reception_6Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (reception_6Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("\u00ABSignal\u00BB {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -603,8 +603,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getInterfaceName_0Parser() {
-		if(interfaceName_0Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (interfaceName_0Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interfaceName_0Parser = parser;
 		}
@@ -620,8 +620,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getInterfaceName_6028Parser() {
-		if(interfaceName_6028Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (interfaceName_6028Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interfaceName_6028Parser = parser;
 		}
@@ -637,8 +637,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getPropertyName_5268Parser() {
-		if(propertyName_5268Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (propertyName_5268Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("{0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -649,16 +649,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser usageName_6016Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getUsageName_6016Parser() {
-		if(usageName_6016Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (usageName_6016Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			usageName_6016Parser = parser;
 		}
@@ -674,7 +674,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getUsageName_6017Parser() {
-		if(usageName_6017Parser == null) {
+		if (usageName_6017Parser == null) {
 			usageName_6017Parser = new AppliedStereotypeParser();
 		}
 		return usageName_6017Parser;
@@ -689,8 +689,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getInterfaceRealizationName_6010Parser() {
-		if(interfaceRealizationName_6010Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (interfaceRealizationName_6010Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			interfaceRealizationName_6010Parser = parser;
 		}
@@ -706,7 +706,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getInterfaceRealizationName_6011Parser() {
-		if(interfaceRealizationName_6011Parser == null) {
+		if (interfaceRealizationName_6011Parser == null) {
 			interfaceRealizationName_6011Parser = new AppliedStereotypeParser();
 		}
 		return interfaceRealizationName_6011Parser;
@@ -721,7 +721,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getGeneralizationIsSubstitutable_2Parser() {
-		if(generalizationIsSubstitutable_2Parser == null) {
+		if (generalizationIsSubstitutable_2Parser == null) {
 			generalizationIsSubstitutable_2Parser = new AppliedStereotypeParser();
 		}
 		return generalizationIsSubstitutable_2Parser;
@@ -736,8 +736,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getSubstitutionName_6006Parser() {
-		if(substitutionName_6006Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (substitutionName_6006Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			substitutionName_6006Parser = parser;
 		}
@@ -753,7 +753,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getSubstitutionName_6020Parser() {
-		if(substitutionName_6020Parser == null) {
+		if (substitutionName_6020Parser == null) {
 			substitutionName_6020Parser = new AppliedStereotypeParser();
 		}
 		return substitutionName_6020Parser;
@@ -768,8 +768,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getManifestationName_6008Parser() {
-		if(manifestationName_6008Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (manifestationName_6008Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			manifestationName_6008Parser = parser;
 		}
@@ -785,7 +785,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getManifestationName_6022Parser() {
-		if(manifestationName_6022Parser == null) {
+		if (manifestationName_6022Parser == null) {
 			manifestationName_6022Parser = new AppliedStereotypeParser();
 		}
 		return manifestationName_6022Parser;
@@ -800,8 +800,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getComponentRealizationName_3Parser() {
-		if(componentRealizationName_3Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (componentRealizationName_3Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			componentRealizationName_3Parser = parser;
 		}
@@ -817,7 +817,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getComponentRealizationName_4Parser() {
-		if(componentRealizationName_4Parser == null) {
+		if (componentRealizationName_4Parser == null) {
 			componentRealizationName_4Parser = new AppliedStereotypeParser();
 		}
 		return componentRealizationName_4Parser;
@@ -832,8 +832,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getAbstractionName_6007Parser() {
-		if(abstractionName_6007Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (abstractionName_6007Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			abstractionName_6007Parser = parser;
 		}
@@ -849,7 +849,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getAbstractionName_6021Parser() {
-		if(abstractionName_6021Parser == null) {
+		if (abstractionName_6021Parser == null) {
 			abstractionName_6021Parser = new AppliedStereotypeParser();
 		}
 		return abstractionName_6021Parser;
@@ -864,8 +864,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getDependencyName_6009Parser() {
-		if(dependencyName_6009Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (dependencyName_6009Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			dependencyName_6009Parser = parser;
 		}
@@ -881,7 +881,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getDependencyName_6023Parser() {
-		if(dependencyName_6023Parser == null) {
+		if (dependencyName_6023Parser == null) {
 			dependencyName_6023Parser = new AppliedStereotypeParser();
 		}
 		return dependencyName_6023Parser;
@@ -896,7 +896,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getConnectorName_6024Parser() {
-		if(connectorName_6024Parser == null) {
+		if (connectorName_6024Parser == null) {
 			connectorName_6024Parser = new AppliedStereotypeParser();
 		}
 		return connectorName_6024Parser;
@@ -911,8 +911,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 * @generated
 	 */
 	private IParser getConnectorName_6025Parser() {
-		if(connectorName_6025Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+		if (connectorName_6025Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			connectorName_6025Parser = parser;
 		}
@@ -920,11 +920,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected IParser getParser(String visualID) {
-		if(visualID != null) {
-			switch(visualID) {
+		if (visualID != null) {
+			switch (visualID) {
 			case MultiDependencyLabelEditPart.VISUAL_ID:
 				return getDependencyName_5008Parser();
 			case DependencyNodeFloatingLabelEditPart.VISUAL_ID:
@@ -1044,12 +1044,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	@Override
 	public IParser getParser(IAdaptable hint) {
-		String vid = (String)hint.getAdapter(String.class);
-		if(vid != null) {
+		String vid = hint.getAdapter(String.class);
+		if (vid != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(vid));
 		}
-		View view = (View)hint.getAdapter(View.class);
-		if(view != null) {
+		View view = hint.getAdapter(View.class);
+		if (view != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(view));
 		}
 		return null;
@@ -1060,9 +1060,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	@Override
 	public boolean provides(IOperation operation) {
-		if(operation instanceof GetParserOperation) {
-			IAdaptable hint = ((GetParserOperation)operation).getHint();
-			if(UMLElementTypes.getElement(hint) == null) {
+		if (operation instanceof GetParserOperation) {
+			IAdaptable hint = ((GetParserOperation) operation).getHint();
+			if (UMLElementTypes.getElement(hint) == null) {
 				return false;
 			}
 			return getParser(hint) != null;
@@ -1094,7 +1094,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		 */
 		@Override
 		public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-			if(IElementType.class.equals(adapter)) {
+			if (IElementType.class.equals(adapter)) {
 				return elementType;
 			}
 			return super.getAdapter(adapter);

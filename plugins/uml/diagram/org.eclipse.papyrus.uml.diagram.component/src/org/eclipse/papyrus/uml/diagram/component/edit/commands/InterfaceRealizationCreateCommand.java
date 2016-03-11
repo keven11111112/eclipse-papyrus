@@ -99,8 +99,7 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 		newElement.getClients()
 				.add(getSource());
 		newElement.setContract(
-				getTarget()
-				);
+				getTarget());
 		ElementInitializers.getInstance().init_InterfaceRealization_4006(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);

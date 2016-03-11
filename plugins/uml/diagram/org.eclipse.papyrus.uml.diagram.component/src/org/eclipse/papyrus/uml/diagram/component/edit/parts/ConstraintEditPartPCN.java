@@ -91,7 +91,7 @@ public class ConstraintEditPartPCN extends AbstractConstraintEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -135,19 +135,19 @@ public class ConstraintEditPartPCN extends AbstractConstraintEditPart {
 	 */
 	@Override
 	public ConstraintFigure getPrimaryShape() {
-		return (ConstraintFigure)primaryShape;
+		return (ConstraintFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ConstraintNameEditPartPCN) {
-			((ConstraintNameEditPartPCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof ConstraintNameEditPartPCN) {
+			((ConstraintNameEditPartPCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof ConstraintSpecificationEditPartPCN) {
-			((ConstraintSpecificationEditPartPCN)childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
+		if (childEditPart instanceof ConstraintSpecificationEditPartPCN) {
+			((ConstraintSpecificationEditPartPCN) childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
 		return false;
@@ -157,10 +157,10 @@ public class ConstraintEditPartPCN extends AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ConstraintNameEditPartPCN) {
+		if (childEditPart instanceof ConstraintNameEditPartPCN) {
 			return true;
 		}
-		if(childEditPart instanceof ConstraintSpecificationEditPartPCN) {
+		if (childEditPart instanceof ConstraintSpecificationEditPartPCN) {
 			return true;
 		}
 		return false;
@@ -171,7 +171,7 @@ public class ConstraintEditPartPCN extends AbstractConstraintEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -182,7 +182,7 @@ public class ConstraintEditPartPCN extends AbstractConstraintEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -228,7 +228,7 @@ public class ConstraintEditPartPCN extends AbstractConstraintEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -241,7 +241,7 @@ public class ConstraintEditPartPCN extends AbstractConstraintEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -252,7 +252,7 @@ public class ConstraintEditPartPCN extends AbstractConstraintEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -270,8 +270,8 @@ public class ConstraintEditPartPCN extends AbstractConstraintEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

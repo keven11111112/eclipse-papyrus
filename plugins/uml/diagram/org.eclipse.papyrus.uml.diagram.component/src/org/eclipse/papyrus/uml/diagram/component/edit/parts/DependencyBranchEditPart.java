@@ -66,6 +66,6 @@ public class DependencyBranchEditPart extends UMLConnectionNodeEditPart implemen
 	 */
 	@Override
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure)getFigure();
+		return (DashedEdgeFigure) getFigure();
 	}
 }

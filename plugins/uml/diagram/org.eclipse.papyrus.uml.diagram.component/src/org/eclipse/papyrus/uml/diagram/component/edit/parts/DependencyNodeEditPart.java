@@ -39,7 +39,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNode
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
-import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
@@ -96,17 +95,17 @@ public class DependencyNodeEditPart extends NodeEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
+				View childView = (View) child.getModel();
 				String vid = UMLVisualIDRegistry.getVisualID(childView);
-				if(vid != null) {
-					switch(vid) {
+				if (vid != null) {
+					switch (vid) {
 					case MultiDependencyLabelEditPart.VISUAL_ID:
 					case DependencyNodeFloatingLabelEditPart.VISUAL_ID:
 						return new BorderItemSelectionEditPolicy() {
 
 							@Override
 							protected List<?> createSelectionHandles() {
-								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 								mh.setBorder(null);
 								return Collections.singletonList(mh);
 							}
@@ -114,7 +113,7 @@ public class DependencyNodeEditPart extends NodeEditPart {
 					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -148,7 +147,7 @@ public class DependencyNodeEditPart extends NodeEditPart {
 	 */
 	@Override
 	public RoundedCompartmentFigure getPrimaryShape() {
-		return (RoundedCompartmentFigure)primaryShape;
+		return (RoundedCompartmentFigure) primaryShape;
 	}
 
 	/**
@@ -156,10 +155,10 @@ public class DependencyNodeEditPart extends NodeEditPart {
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof MultiDependencyLabelEditPart) {
-			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+		if (borderItemEditPart instanceof MultiDependencyLabelEditPart) {
+			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if(borderItemEditPart instanceof DependencyNodeFloatingLabelEditPart) {
+		} else if (borderItemEditPart instanceof DependencyNodeFloatingLabelEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -207,7 +206,7 @@ public class DependencyNodeEditPart extends NodeEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -218,7 +217,7 @@ public class DependencyNodeEditPart extends NodeEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -236,8 +235,8 @@ public class DependencyNodeEditPart extends NodeEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

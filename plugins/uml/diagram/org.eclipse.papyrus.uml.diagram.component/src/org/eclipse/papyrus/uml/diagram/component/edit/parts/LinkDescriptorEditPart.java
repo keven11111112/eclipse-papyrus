@@ -67,6 +67,6 @@ public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeB
 	 */
 	@Override
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure)getFigure();
+		return (SimpleDashedEdgeFigure) getFigure();
 	}
 }

@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.custom.figure.edges.InterfaceRealizationLinkFigure;
@@ -47,7 +48,7 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
@@ -55,11 +56,11 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof InterfaceRealizationNameEditPart) {
-			((InterfaceRealizationNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof InterfaceRealizationNameEditPart) {
+			((InterfaceRealizationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
-		if(childEditPart instanceof InterfaceRealizationAppliedStereotypeEditPart) {
-			((InterfaceRealizationAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof InterfaceRealizationAppliedStereotypeEditPart) {
+			((InterfaceRealizationAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -67,8 +68,9 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -78,10 +80,10 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof InterfaceRealizationNameEditPart) {
+		if (childEditPart instanceof InterfaceRealizationNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof InterfaceRealizationAppliedStereotypeEditPart) {
+		if (childEditPart instanceof InterfaceRealizationAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -90,8 +92,9 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -115,6 +118,6 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	 */
 	@Override
 	public InterfaceRealizationLinkFigure getPrimaryShape() {
-		return (InterfaceRealizationLinkFigure)getFigure();
+		return (InterfaceRealizationLinkFigure) getFigure();
 	}
 }
