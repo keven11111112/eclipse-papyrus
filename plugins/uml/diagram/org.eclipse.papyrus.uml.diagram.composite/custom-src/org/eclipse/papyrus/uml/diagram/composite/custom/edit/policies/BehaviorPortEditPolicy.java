@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *		Patrick Tessier (CEA LIST) - Initial API and implementation
  *      Christian W. Damus (CEA) - bug 323802
+ *		Christian W. Damus - bug 489457
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies;
@@ -54,14 +55,17 @@ public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements Notif
 	@Override
 	public void notifyChanged(Notification notification) {
 
-		if (UMLPackage.eINSTANCE.getPort_IsBehavior().equals(notification.getFeature())) {
+		// Don't react to notifications for unvisualized ports
+		if (UMLPackage.eINSTANCE.getPort_IsBehavior().equals(notification.getFeature())
+				&& getHost().isActive()) {
+
 			udaptePortBehavior();
 		}
 	}
 
 	public void udaptePortBehavior() {
 		GraphicalEditPart parentEditPart = (GraphicalEditPart)((GraphicalEditPart) getHost()).getParent();
-		ShapeCompartmentEditPart targetEditPart = getPossibleCompartment(parentEditPart);
+		ShapeCompartmentEditPart targetEditPart = (parentEditPart == null) ? null : getPossibleCompartment(parentEditPart);
 		if (targetEditPart != null) {
 			// remove old BehaviorPort presentation
 			View behaviorPort = getBehaviorPortNode();
