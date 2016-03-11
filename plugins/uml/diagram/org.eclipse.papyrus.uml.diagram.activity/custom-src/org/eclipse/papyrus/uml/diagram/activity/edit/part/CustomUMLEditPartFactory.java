@@ -104,7 +104,7 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				/*
 				 * Customization to direct edit
 				 */
-				return new CustomControlFlowEditPart(view);
+				return new CustomControlFlowNameEditPart(view);
 			case ObjectFlowTransformationEditPart.VISUAL_ID:
 				/*
 				 * Customization to handle special image label
