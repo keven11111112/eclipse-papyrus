@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="org.eclipse.papyrus.requirements.sysml.verification.rules.category"
+            name="Papyrus for Requirements Rules">
+      </category>
+      <constraintProvider
+            mode="Batch">
+         <package
+               namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
+         </package>
+         <constraints
+               categories="org.eclipse.papyrus.requirements.sysml.verification.rules.category">
+            <constraint
+                  class="org.eclipse.papyrus.requirements.sysml.verfication.rules.AllRequirementsMustBeSatisfied"
+                  id="org.eclipse.papyrus.requirements.sysml.verfication.rules.AllRequirementsAreSatisfied"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Papyrus 4 Requirements - Rule 1: Are all the requirements satisfied"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  Papyrus 4 Requirements - Rule 1: {0}.
+                  
+               </message>
+               <description>
+                  The requirement is not liked by any Element
+               </description>
+               <target
+                     class="Class">
+               </target>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            default="false"
+            id="org.eclipse.papyrus.requirements.sysml.verification.clientContext">
+         <selector
+               class="org.eclipse.papyrus.requirements.sysml.verification.ClientSelector">
+         </selector>
+      </clientContext>
+      <binding
+            context="org.eclipse.papyrus.requirements.sysml.verification.clientContext">
+         <category
+               ref="org.eclipse.papyrus.requirements.sysml.verification.rules.category">
+         </category>
+      </binding>
+   </extension>
+
+</plugin>
