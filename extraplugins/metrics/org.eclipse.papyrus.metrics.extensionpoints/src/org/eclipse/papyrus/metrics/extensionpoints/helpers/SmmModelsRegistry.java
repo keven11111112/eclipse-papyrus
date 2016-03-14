@@ -16,7 +16,6 @@ package org.eclipse.papyrus.metrics.extensionpoints.helpers;
 
 import java.util.ArrayList;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
@@ -78,7 +77,7 @@ public class SmmModelsRegistry {
 			System.out.println(elementName);
 			String fileLocation = element.getAttribute("xmiFile");
 			if (null == helper.getSmmModel(fileLocation)) {
-				System.err.println("Imposible to obtain an SMM model from "+ element.getValue());
+				System.err.println("Imposible to obtain an SMM model from " + element.getValue());
 				return null;
 			}
 			smmModel = helper.getSmmModel(element.getAttribute("xmiFile"));

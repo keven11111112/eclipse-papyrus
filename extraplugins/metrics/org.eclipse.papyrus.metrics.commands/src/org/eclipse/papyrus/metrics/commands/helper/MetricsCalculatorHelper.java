@@ -17,35 +17,45 @@ package org.eclipse.papyrus.metrics.commands.helper;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import org.eclipse.papyrus.metrics.extensionpoints.IPrinter;
+
 import org.eclipse.papyrus.metrics.extensionpoints.helpers.Result;
-import org.eclipse.papyrus.requirements.metrics.library.DefaultQuerySwitch;
-import org.eclipse.papyrus.requirements.metrics.library.RecognizerSwitch;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IDefaultQuerySwitch;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IRecognizerSwitch;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IResultsViewer;
 import org.eclipse.uml2.uml.Element;
 import org.omg.smm.Measure;
 import org.omg.smm.Operation;
 import org.omg.smm.Scope;
 
+/**
+ * Helper class for determining scopes and measures' values
+ *
+ */
 public class MetricsCalculatorHelper {
 	protected ArrayList<Measure> measures = new ArrayList<Measure>();
 	protected org.eclipse.uml2.uml.Element observationScope = null;
-	protected ArrayList<IPrinter> printers = null;
+	protected ArrayList<IResultsViewer> resultsViewers = null;
 	protected ArrayList<Result> observationResults = null;
 	protected HashMap<Element, ArrayList<Measure>> measurementScopes = null;
+	protected IRecognizerSwitch recognizerSwitch = null;
+	protected IDefaultQuerySwitch defaultQuerySwitch = null;
 
 	public MetricsCalculatorHelper(ArrayList<Measure> measures2, Element observationScope2,
-			ArrayList<IPrinter> printers2) {
+			ArrayList<IResultsViewer> viewers2, IRecognizerSwitch recognizerSwitch2,
+			IDefaultQuerySwitch defaultQuerySwitch2) {
 		this.measures = measures2;
 		this.observationScope = observationScope2;
-		this.printers = printers2;
+		this.resultsViewers = viewers2;
 		this.measurementScopes = new HashMap<Element, ArrayList<Measure>>();
 		this.observationResults = new ArrayList<Result>();
+		this.recognizerSwitch = recognizerSwitch2;
+		this.defaultQuerySwitch = defaultQuerySwitch2;
 	}
 
 	public void run() {
 		calculateMeasurementScopes(this.observationScope);
 		performMeasurementProcess();
-		printMeasures();
+		showMeasures();
 	}
 
 	/**
@@ -71,7 +81,7 @@ public class MetricsCalculatorHelper {
 			Operation recognizer = scope.getRecognizer();
 			if (recognizer.getLanguage().contentEquals("Java")) {
 				String operationName = recognizer.getBody();
-				if (RecognizerSwitch.isRecognized(operationName, element)) {
+				if (recognizerSwitch.isRecognized(operationName, element)) {
 					updateMeasurementScopes(element, measure);
 					if (element.allOwnedElements() != null) {
 						for (Element currentElement : element.allOwnedElements()) {
@@ -83,6 +93,14 @@ public class MetricsCalculatorHelper {
 		}
 	}
 
+	/**
+	 * Add new entries to the {@link #measurementScopes} map avoiding duplicates
+	 * 
+	 * @param element
+	 *            that can be measured using the measure
+	 * @param measure
+	 *            the measure that can be calculated for the element
+	 */
 	protected void updateMeasurementScopes(Element element, Measure measure) {
 		if (measurementScopes.containsKey(element)) {
 			// avoid repeated smmModels by element
@@ -96,23 +114,26 @@ public class MetricsCalculatorHelper {
 	}
 
 	/**
-	 * Prints the information of the smmModels using all the printers
+	 * Shows the information of the smmModels using all the registered viewers
 	 */
-	public void printMeasures() {
-		for (IPrinter printer : printers) {
-			printer.print(observationResults);
+	public void showMeasures() {
+		for (IResultsViewer resultsViewer : resultsViewers) {
+			resultsViewer.show(observationResults);
 		}
 	}
 
 	/**
 	 * Updates the results of the smmMetrics measurement process.
 	 * 
-	 * @param metric
+	 * @param measure
+	 *            the measure that measures the measurand
 	 * @param measurand
+	 *            the element measured
 	 * @param value
+	 *            the value of the measure calculated on the measurand
 	 */
-	protected void updateOpservationResults(Measure metric, Element measurand, Object value) {
-		observationResults.add(new Result(metric, measurand, value));
+	protected void updateOpservationResults(Measure measure, Element measurand, Object value) {
+		observationResults.add(new Result(measure, measurand, value));
 	}
 
 	/**
@@ -135,7 +156,7 @@ public class MetricsCalculatorHelper {
 				Operation operation = measure.getDefaultQuery();
 				if (operation.getLanguage().contentEquals("Java")) {
 					String methodNameToExecute = operation.getBody();
-					value = DefaultQuerySwitch.calculateValue(methodNameToExecute, currentKey);
+					value = defaultQuerySwitch.calculateValue(methodNameToExecute, currentKey);
 				}
 				updateOpservationResults(measure, currentKey, value);
 			}

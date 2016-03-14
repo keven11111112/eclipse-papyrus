@@ -12,17 +12,17 @@
  * 		Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.requirements.metrics.viewers;
+package org.eclipse.papyrus.metrics.viewers;
 
 import java.util.ArrayList;
 
-import org.eclipse.papyrus.metrics.extensionpoints.IPrinter;
 import org.eclipse.papyrus.metrics.extensionpoints.helpers.Result;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IResultsViewer;
 
-public class DebugConsolePrinter implements IPrinter {
+public class DebugConsoleViewer implements IResultsViewer {
 
 	@Override
-	public void print(ArrayList<Result> measuresResults) {
+	public void show(ArrayList<Result> measuresResults) {
 		for (Result line : measuresResults) {
 		System.out.printf(
 				"Metric Name: " + line.getMeasure().getName() + "%n" 

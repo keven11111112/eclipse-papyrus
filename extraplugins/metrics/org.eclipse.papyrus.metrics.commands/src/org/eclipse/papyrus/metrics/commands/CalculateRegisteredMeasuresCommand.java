@@ -17,75 +17,48 @@ package org.eclipse.papyrus.metrics.commands;
 import java.util.ArrayList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.metrics.commands.helper.MeasuresReaderHelper;
 import org.eclipse.papyrus.metrics.commands.helper.MetricsCalculatorHelper;
-import org.eclipse.papyrus.metrics.extensionpoints.IPrinter;
-import org.eclipse.papyrus.metrics.extensionpoints.helpers.BasicMeasuresRegistry;
-import org.eclipse.papyrus.metrics.extensionpoints.helpers.PrintersRegistry;
-import org.eclipse.papyrus.metrics.extensionpoints.helpers.SmmModelsRegistry;
+import org.eclipse.papyrus.metrics.commands.helper.RegistersHelper;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IDefaultQuerySwitch;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IRecognizerSwitch;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IResultsViewer;
 import org.omg.smm.Measure;
+import org.omg.smm.SmmModel;
 
 /**
- *
  * Calculates the Measures values defined by extensions of the extension points
  * org.eclipse.papyrus.metrics.extensionpoints.metric and
  * org.eclipse.papyrus.metrics.extensionpoints.smmmetricsmodel. Results are
  * shown to the user on all the Printers defined by extensions of the extension
  * point org.eclipse.papyrus.metrics.extensionpoints.printer
  *
- * @author MA244259
- *
  */
 public class CalculateRegisteredMeasuresCommand extends RecordingCommand {
 	protected ArrayList<Measure> measures = new ArrayList<Measure>();
-	protected ArrayList<IPrinter> printers = new ArrayList<IPrinter>();
+	protected ArrayList<IResultsViewer> resultsViewers = new ArrayList<IResultsViewer>();
 	protected org.eclipse.uml2.uml.Element observationScope = null;
+	protected SmmModel smmModel = null;
+	protected IRecognizerSwitch recognizerSwitch = null;
+	protected IDefaultQuerySwitch defaultQuerySwitch = null;
 
 	public CalculateRegisteredMeasuresCommand(TransactionalEditingDomain domain,
 			org.eclipse.uml2.uml.Element observationScope) {
 		super(domain, "CalculateRegisteredMeasuresCommand");
-		boolean existMeasuresFrombasicMeasuresRegistry = false;
-		boolean existMeasuresFromSmmModelsRegistry = false;
-
-		BasicMeasuresRegistry basicMeasuresRegistry = BasicMeasuresRegistry.getInstance();
-		if (null== basicMeasuresRegistry.getMeasures() || basicMeasuresRegistry.getMeasures().isEmpty()) {
-			System.err.println("There are not registered basic measures in the extension point "
-					+ BasicMeasuresRegistry.getExtensionPointId());
-			// return;
-		} else {
-			existMeasuresFrombasicMeasuresRegistry = true;
-		}
-
-		SmmModelsRegistry smmModelsRegistry = SmmModelsRegistry.getInstance();
-		if (null==smmModelsRegistry.getMeasures() || smmModelsRegistry.getMeasures().isEmpty()) {
-			System.err.println("There are not registered smm xmi models in the extension point "
-					+ SmmModelsRegistry.getExtensionPointId());
-			// return;
-		}else {
-			existMeasuresFromSmmModelsRegistry=true;
-		}
-
-		boolean foundMeasures = (Boolean.TRUE.equals(existMeasuresFrombasicMeasuresRegistry) ||
-		Boolean.TRUE.equals(existMeasuresFromSmmModelsRegistry)) ? true : false;
-		if (!foundMeasures){
-			System.err.println("Failed to find at least one registered measure definitions");
-			return;
-		}  
-		
-		PrintersRegistry printersRegistry = PrintersRegistry.getInstance();
-		if (printersRegistry.getPrinters() == null || printersRegistry.getPrinters().isEmpty()) {
-			System.err.println("There are not registered printers");
-			return;
-		}
-
-		this.measures.addAll(basicMeasuresRegistry.getMeasures());
-		this.measures.addAll(smmModelsRegistry.getMeasures());
-		this.printers = printersRegistry.getPrinters();
+		RegistersHelper registersHelper = new RegistersHelper();
+		this.resultsViewers = registersHelper.getViewers();
+		this.recognizerSwitch = registersHelper.getRecognizerSwitch();
+		this.defaultQuerySwitch = registersHelper.getDefaultQuerySwitch();
 		this.observationScope = observationScope;
 	}
 
 	@Override
 	protected void doExecute() {
-		MetricsCalculatorHelper helper = new MetricsCalculatorHelper(measures, observationScope, printers);
+		MeasuresReaderHelper measuresReaderHelper = new MeasuresReaderHelper();
+		this.measures = measuresReaderHelper.getMeasuresFromExtensions();
+		MetricsCalculatorHelper helper = new MetricsCalculatorHelper(measures, observationScope, resultsViewers,
+				recognizerSwitch, defaultQuerySwitch);
 		helper.run();
 	}
+
 }

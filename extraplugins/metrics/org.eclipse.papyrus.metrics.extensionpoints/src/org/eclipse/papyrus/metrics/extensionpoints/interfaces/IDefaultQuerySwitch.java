@@ -12,20 +12,18 @@
  * 		Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.requirements.metrics.library;
+package org.eclipse.papyrus.metrics.extensionpoints.interfaces;
 
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Model;
 
-public class RecognizerSwitch {
+/**
+ * Specifies a query operation switch that is used to determine a value for a
+ * measure during the measuring processes. See
+ * {@link org.eclipse.papyrus.metrics.commands.helper.MetricsCalculatorHelper#performMeasurementProcess}
+ *
+ */
+public interface IDefaultQuerySwitch {
 
-	public static boolean isRecognized(String operationName, Element element) {
-		switch (operationName) {
-		case "Package or Model": {
-			return (element instanceof Package || element instanceof Model);
-		}
-		}
-		return false;
-	}
+	public Object calculateValue(String operationName, Element element);
 
 }

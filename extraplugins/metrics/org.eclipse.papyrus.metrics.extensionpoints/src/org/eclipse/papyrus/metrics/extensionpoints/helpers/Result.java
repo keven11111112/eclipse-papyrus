@@ -18,6 +18,11 @@ import org.eclipse.uml2.uml.Element;
 import org.omg.smm.Measure;
 import org.omg.smm.Scope;
 
+/**
+ * Data class whose instances hold information to be viewed by
+ * users
+ *
+ */
 public class Result {
 
 	protected Measure measure;

@@ -27,11 +27,11 @@ import org.eclipse.ui.part.ViewPart;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
-public class MetricsView extends ViewPart {
+public class BasicMetricsView extends ViewPart {
 	private ArrayList<Result> measuresResults = null;
 	private static Table table;
 
-	public MetricsView() {
+	public BasicMetricsView() {
 		super();
 	}
 
@@ -51,7 +51,7 @@ public class MetricsView extends ViewPart {
 		column2.setText("Measure Value");
 		column3.setWidth(200);
 		column3.setText("Type of element measured");
-		column4.setWidth(200);
+		column4.setWidth(250);
 		column4.setText("Name of element measured");
 		clearTable();
 		if (this.getResults() != null) {

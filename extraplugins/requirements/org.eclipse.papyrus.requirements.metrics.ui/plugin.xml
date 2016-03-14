@@ -5,12 +5,12 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=org.eclipse.papyrus.requirements.common.ui.traceability.additions">
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=filtersMenu">
          <menu
-               icon="platform:/plugin/org.eclipse.papyrus.requirements.common.ui/images/Papyrus_Req_logo_16x16.png"
-               id="papyrus.requirements.metrics.menu"
-               label="Papyrus Req - Metrics"
-               tooltip="Metrics about requirements models">
+               icon="platform:/plugin/org.eclipse.papyrus.metrics.ui/images/Papyrus_Metrics_logo_16x16.png"
+               id="papyrus.metrics.menu"
+               label="Papyrus Metrics"
+               tooltip="Metrics about Papyrus models">
             <visibleWhen>
                <with
                      variable="activeEditorId">
@@ -23,12 +23,12 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.requirements.common.ui.traceability.additions">
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
          <menu
-               icon="platform:/plugin/org.eclipse.papyrus.requirements.common.ui/images/Papyrus_Req_logo_16x16.png"
-               id="papyrus.requirements.metrics.menu"
-               label="Papyrus Req - Metrics"
-               tooltip="Metrics about requirements models">
+               icon="platform:/plugin/org.eclipse.papyrus.metrics.ui/images/Papyrus_Metrics_logo_16x16.png"
+               id="papyrus.metrics.menu"
+               label="Papyrus Metrics"
+               tooltip="Metrics about Papyrus models">
          </menu>
       </menuContribution>
    </extension>
@@ -36,15 +36,17 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="popup:papyrus.requirements.metrics.menu">
+            locationURI="popup:papyrus.metrics.menu">
          <command
                commandId="org.eclipse.papyrus.metrics.handlers.MeasureMetricsHandler"
-               label="Get Measure Values"
+               icon="platform:/plugin/org.eclipse.papyrus.metrics.ui/images/MetricsGenerate_16x16.png"
+               label="Get Measure Values "
                style="push"
                tooltip="Get measure values from registered SMM models">
          </command>
          <command
                commandId="org.eclipse.papyrus.metrics.handlers.MeasureMetricsForSmmHandler"
+               icon="platform:/plugin/org.eclipse.papyrus.metrics.ui/images/MetricsGenerateFromFile_16x16.png"
                label="Get Measure Values from Smm Model"
                style="push"
                tooltip="Get measure values from an SMM model saved as an .xmi file">

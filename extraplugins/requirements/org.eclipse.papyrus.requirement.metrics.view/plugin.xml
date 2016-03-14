@@ -2,12 +2,12 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.metrics.extensionpoints.printer">
+         point="org.eclipse.papyrus.metrics.extensionpoints.measuringresultsviewer">
       <element
-            class="org.eclipse.papyrus.requirements.metrics.viewers.DebugConsolePrinter">
+            class="org.eclipse.papyrus.metrics.viewers.DebugConsoleViewer">
       </element>
       <element
-            class="org.eclipse.papyrus.requirements.metrics.viewers.ViewPrinter">
+            class="org.eclipse.papyrus.metrics.viewers.BasicEclipseViewViewer">
       </element>
    </extension>
 

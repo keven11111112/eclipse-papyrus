@@ -16,13 +16,15 @@ package org.eclipse.papyrus.requirements.metrics.library;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IDefaultQuerySwitch;
 import org.eclipse.papyrus.requirements.sysml.common.I_SysMLStereotype;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
-public class DefaultQuerySwitch {
+public class SysMLRequirementsDefaultQuerySwitch implements IDefaultQuerySwitch{
 
-	public static Object calculateValue(String operationName, Element element) {
+	@Override
+	public Object calculateValue(String operationName, Element element) {
 		switch (operationName) {
 		case "countRequirementsInAllOwnedElements":
 			return countRequirementsInAllOwnedElements(element);
@@ -66,5 +68,6 @@ public class DefaultQuerySwitch {
 		}
 		return numberOfUnsatisfiedRequirements;
 	}
+
 
 }

@@ -15,17 +15,15 @@
 package org.eclipse.papyrus.metrics.commands;
 
 import java.util.ArrayList;
-
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.metrics.commands.helper.MeasuresReaderHelper;
 import org.eclipse.papyrus.metrics.commands.helper.MetricsCalculatorHelper;
-import org.eclipse.papyrus.metrics.extensionpoints.IPrinter;
-import org.eclipse.papyrus.metrics.extensionpoints.helpers.PrintersRegistry;
-import org.eclipse.papyrus.metrics.extensionpoints.helpers.SmmMetricsModelHelper;
-import org.omg.smm.AbstractMeasureElement;
+import org.eclipse.papyrus.metrics.commands.helper.RegistersHelper;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IDefaultQuerySwitch;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IRecognizerSwitch;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IResultsViewer;
 import org.omg.smm.Measure;
-import org.omg.smm.MeasureLibrary;
-import org.omg.smm.NamedMeasure;
 import org.omg.smm.SmmModel;
 
 /**
@@ -34,50 +32,32 @@ import org.omg.smm.SmmModel;
  * shown to the user on all the Printers defined by extensions of the extension
  * point org.eclipse.papyrus.metrics.extensionpoints.printer
  *
- * @author MA244259
- *
  */
 public class CalculateSmmBasedMeasuresCommand extends RecordingCommand {
 	protected ArrayList<Measure> measures = new ArrayList<Measure>();
-	protected ArrayList<IPrinter> printers = new ArrayList<IPrinter>();
+	protected ArrayList<IResultsViewer> resultsViewers = new ArrayList<IResultsViewer>();
 	protected org.eclipse.uml2.uml.Element observationScope = null;
 	protected SmmModel smmModel = null;
+	protected IRecognizerSwitch recognizerSwitch = null;
+	protected IDefaultQuerySwitch defaultQuerySwitch = null;
 
 	public CalculateSmmBasedMeasuresCommand(TransactionalEditingDomain domain,
 			org.eclipse.uml2.uml.Element observationScope) {
 		super(domain, "CalculateSmmBasedMeasuresCommand");
-		
-		PrintersRegistry printersRegistry = PrintersRegistry.getInstance();
-		if (printersRegistry.getPrinters() == null || printersRegistry.getPrinters().isEmpty()) {
-			System.err.println("There are not registered printers");
-			return;
-		}
-		
-		this.printers = printersRegistry.getPrinters();
+		RegistersHelper registersHelper = new RegistersHelper();
+		this.resultsViewers = registersHelper.getViewers();
+		this.recognizerSwitch = registersHelper.getRecognizerSwitch();
+		this.defaultQuerySwitch = registersHelper.getDefaultQuerySwitch();
 		this.observationScope = observationScope;
 	}
 
 	@Override
 	protected void doExecute() {
-		SmmModel smmModel = null;
-		SmmMetricsModelHelper helper = new SmmMetricsModelHelper();
-		String smmModelLocation = helper.getSmmModelFileLocation();
-		if (smmModelLocation.isEmpty()) {
-			return;
-		}
-		if (helper.getSmmModel(smmModelLocation) == null) {
-			return;
-		}
-		smmModel = helper.getSmmModel(smmModelLocation);
-		for (MeasureLibrary library : smmModel.getLibraries()) {
-			for (AbstractMeasureElement abstractMeasureElement : library.getMeasureElements()) {
-				if (abstractMeasureElement instanceof NamedMeasure) {
-					NamedMeasure measure = (NamedMeasure) abstractMeasureElement;
-					this.measures.add(measure);
-				}
-			}
-		}
-		MetricsCalculatorHelper metricsCalculatorHelper = new MetricsCalculatorHelper(measures, observationScope, printers);
-		metricsCalculatorHelper.run();
+		MeasuresReaderHelper measuresReaderHelper = new MeasuresReaderHelper();
+		this.measures = measuresReaderHelper.getMeasuresFromFile();
+		MetricsCalculatorHelper helper = new MetricsCalculatorHelper(measures, observationScope, resultsViewers,
+				recognizerSwitch, defaultQuerySwitch);
+		helper.run();
 	}
+
 }

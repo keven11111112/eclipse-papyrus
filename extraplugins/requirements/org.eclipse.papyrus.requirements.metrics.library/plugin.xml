@@ -7,5 +7,17 @@
             xmiFile="platform:/plugin/org.eclipse.papyrus.requirements.metrics.library/model/SmmRequirementsMetricsModel.xmi">
       </element>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.metrics.extensionpoints.defaultqueryswitch">
+      <element
+            class="org.eclipse.papyrus.requirements.metrics.library.SysMLRequirementsDefaultQuerySwitch">
+      </element>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.metrics.extensionpoints.recognizerswitch">
+      <element
+            class="org.eclipse.papyrus.requirements.metrics.library.SysMLRequirementsRecognizerSwitch">
+      </element>
+   </extension>
 
 </plugin>

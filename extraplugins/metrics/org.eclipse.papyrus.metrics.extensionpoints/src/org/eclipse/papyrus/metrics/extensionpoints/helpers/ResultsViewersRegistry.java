@@ -15,58 +15,61 @@
 package org.eclipse.papyrus.metrics.extensionpoints.helpers;
 
 import java.util.ArrayList;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.papyrus.metrics.extensionpoints.IPrinter;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IResultsViewer;
 
 /**
- * Registry to obtain printers implementations
+ * Registry to obtain implementations of {@link IResultsViewer} 
  */
-public class PrintersRegistry {
-	protected static PrintersRegistry printersRegistry = null;
-	protected ArrayList<IPrinter> printers = null;
+public class ResultsViewersRegistry {
+	protected static ResultsViewersRegistry resultsViewersRegistry = null;
+	protected ArrayList<IResultsViewer> resultsViewers = null;
 
-	public ArrayList<IPrinter> getPrinters() {
-		return printers;
+	public ArrayList<IResultsViewer> getMeasuringResultsViewers() {
+		return resultsViewers;
 	}
 
-	private static final String IPrinter_EP_ID = "org.eclipse.papyrus.metrics.extensionpoints.printer";
+	private static final String EXTENSION_POINT_ID = "org.eclipse.papyrus.metrics.extensionpoints.measuringresultsviewer";
 
 	/**
 	 * returns the singleton instance of this registry
 	 *
 	 * @return the singleton instance of this registry
 	 */
-	public static synchronized PrintersRegistry getInstance() {
-		if (printersRegistry == null) {
-			printersRegistry = new PrintersRegistry();
-			printersRegistry.init();
+	public static synchronized ResultsViewersRegistry getInstance() {
+		if (resultsViewersRegistry == null) {
+			resultsViewersRegistry = new ResultsViewersRegistry();
+			resultsViewersRegistry.init();
 		}
-		return printersRegistry;
+		return resultsViewersRegistry;
 	}
 
 	/**
-	 * Inits the registry.
+	 * Initializes the registry.
 	 */
 	protected void init() {
 		// 0. Resets values
-		printers = null;
-		printers = new ArrayList<IPrinter>();
-		// 1. creates the list only when registry is acceded for the first time,
-		readPrintersFromExtensions();
+		resultsViewers = null;
+		resultsViewers = new ArrayList<IResultsViewer>();
+		// 1. creates the list only when the registry is acceded for the first time
+		readExtensions();
 	}
 
-	protected void readPrintersFromExtensions() {
+	/**
+	 * Reads the extensions to find classes that implement
+	 * {@link IResultsViewer}
+	 */
+	protected void readExtensions() {
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
-		IConfigurationElement[] elements = registry.getConfigurationElementsFor(IPrinter_EP_ID);
+		IConfigurationElement[] elements = registry.getConfigurationElementsFor(EXTENSION_POINT_ID);
 		try {
 			for (IConfigurationElement element : elements) {
 				final Object o = element.createExecutableExtension("class");
-				if (o instanceof IPrinter) {
-					printers.add((IPrinter) o);
+				if (o instanceof IResultsViewer) {
+					resultsViewers.add((IResultsViewer) o);
 				}
 			}
 		} catch (CoreException ex) {

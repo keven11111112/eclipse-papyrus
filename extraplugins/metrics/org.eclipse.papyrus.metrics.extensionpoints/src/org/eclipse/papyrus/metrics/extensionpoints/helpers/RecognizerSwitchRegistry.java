@@ -14,41 +14,36 @@
  *****************************************************************************/
 package org.eclipse.papyrus.metrics.extensionpoints.helpers;
 
-import java.util.ArrayList;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-import org.omg.smm.Measure;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IRecognizerSwitch;
 
 /**
- * Registry to obtain implementations of {@link Measure}
+ * Registry to obtain an implementation of {@link IRecognizerSwitch}
  */
-public class BasicMeasuresRegistry {
-	protected static BasicMeasuresRegistry basicMeasuresRegistry = null;
-	protected ArrayList<Measure> measures = null;
+public class RecognizerSwitchRegistry {
+	protected static RecognizerSwitchRegistry recognizerSwitchRegistry = null;
+	protected IRecognizerSwitch recognizerSwitch = null;
 
-	public ArrayList<Measure> getMeasures() {
-		return measures;
+	public IRecognizerSwitch getRecognizerSwitch() {
+		return recognizerSwitch;
 	}
 
-	private static final String EXTENSION_POINT_ID = "org.eclipse.papyrus.metrics.extensionpoints.measure";
-
-	public static String getExtensionPointId() {
-		return EXTENSION_POINT_ID;
-	}
+	private static final String EXTENSION_POINT_ID = "org.eclipse.papyrus.metrics.extensionpoints.recognizerswitch";
 
 	/**
 	 * Returns the singleton instance of this registry
 	 *
 	 * @return the singleton instance of this registry
 	 */
-	public static synchronized BasicMeasuresRegistry getInstance() {
-		if (basicMeasuresRegistry == null) {
-			basicMeasuresRegistry = new BasicMeasuresRegistry();
-			basicMeasuresRegistry.init();
+	public static synchronized RecognizerSwitchRegistry getInstance() {
+		if (recognizerSwitchRegistry == null) {
+			recognizerSwitchRegistry = new RecognizerSwitchRegistry();
+			recognizerSwitchRegistry.init();
 		}
-		return basicMeasuresRegistry;
+		return recognizerSwitchRegistry;
 	}
 
 	/**
@@ -56,30 +51,33 @@ public class BasicMeasuresRegistry {
 	 */
 	protected void init() {
 		// Resets values
-		measures = null;
-		measures = new ArrayList<Measure>();
-		// Creates the list only when the registry is acceded for the first time
+		recognizerSwitch = null;
+		// Reads only when the registry is acceded for the first time
 		readExtensions();
 	}
 
 	/**
-	 * Reads the extensions to find classes that implements {@link Measure}
+	 * Reads the extensions to find an class that implements
+	 * {@link IRecognizerSwitch}
 	 */
-	protected ArrayList<?> readExtensions() {
-		ArrayList<Object> extensions = new ArrayList<Object>();
+	protected void readExtensions() {
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
 		IConfigurationElement[] elements = registry.getConfigurationElementsFor(EXTENSION_POINT_ID);
+		if (elements.length > 1) {
+			System.err.println("It is not possible to user more than one recognizer operations switch");
+			return;
+		}
 		try {
 			for (IConfigurationElement element : elements) {
 				final Object o = element.createExecutableExtension("class");
-				if (o instanceof Measure) {
-					measures.add((Measure) o);
+				if (o instanceof IRecognizerSwitch) {
+					recognizerSwitch = ((IRecognizerSwitch) o);
+					return;
 				}
 			}
 		} catch (CoreException ex) {
 			System.err.println(ex.getMessage());
 		}
-		return extensions;
 	}
-	
+
 }

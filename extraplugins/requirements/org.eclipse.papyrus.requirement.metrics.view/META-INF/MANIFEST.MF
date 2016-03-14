@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Requirements Metrics Viewers
-Bundle-SymbolicName: org.eclipse.papyrus.requirements.metrics.viewers;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.metrics.viewers;singleton:=true
 Bundle-Version: 0.7.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.requirements.metrics.viewers.Activator
+Bundle-Activator: org.eclipse.papyrus.metrics.viewers.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.papyrus.metrics.extensionpoints;bundle-version="0.7.0",

@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Requirements Metrics User Interface
-Bundle-SymbolicName: org.eclipse.papyrus.requirements.metrics.ui;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.metrics.ui;singleton:=true
 Bundle-Version: 0.7.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.requirements.metrics.ui.Activator
+Bundle-Activator: org.eclipse.papyrus.metrics.ui.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.papyrus.metrics.handlers;bundle-version="0.7.0"

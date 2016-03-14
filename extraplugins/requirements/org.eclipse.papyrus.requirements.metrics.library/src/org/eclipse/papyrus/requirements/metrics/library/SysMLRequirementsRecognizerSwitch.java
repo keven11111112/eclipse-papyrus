@@ -12,18 +12,10 @@
  * 		Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.metrics.extensionpoints;
+package org.eclipse.papyrus.requirements.metrics.library;
 
-import java.util.ArrayList;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IRecognizerSwitch;
 
-import org.eclipse.papyrus.metrics.extensionpoints.helpers.Result;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.NamedElement;
-
-public interface IPrinter {
-	public default String getMeasurandName(Element measurand){
-		return (String) ((measurand instanceof NamedElement) ? ((NamedElement) measurand).getQualifiedName() : measurand);
-	};
-	public abstract void print(ArrayList<Result> measuresResults);
+public class SysMLRequirementsRecognizerSwitch implements IRecognizerSwitch{
 
 }

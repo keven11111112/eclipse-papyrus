@@ -12,7 +12,7 @@
  * 		Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.requirements.metrics.viewers;
+package org.eclipse.papyrus.metrics.ui;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

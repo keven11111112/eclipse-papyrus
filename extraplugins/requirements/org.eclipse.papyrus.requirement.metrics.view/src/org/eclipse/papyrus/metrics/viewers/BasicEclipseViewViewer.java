@@ -12,13 +12,13 @@
  * 		Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.requirements.metrics.viewers;
+package org.eclipse.papyrus.metrics.viewers;
 
 import java.util.ArrayList;
 
-import org.eclipse.papyrus.metrics.extensionpoints.IPrinter;
 import org.eclipse.papyrus.metrics.extensionpoints.helpers.Result;
-import org.eclipse.papyrus.metrics.view.MetricsView;
+import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IResultsViewer;
+import org.eclipse.papyrus.metrics.view.BasicMetricsView;
 import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
@@ -27,11 +27,11 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
 
-public class ViewPrinter implements IPrinter {
-	static final String viewId = "org.eclipse.papyrus.metrics.view.MetricsView"; //$NON-NLS-1$
+public class BasicEclipseViewViewer implements IResultsViewer {
+	static final String viewId = "org.eclipse.papyrus.metrics.view.BasicMetricsView"; //$NON-NLS-1$
 
 	@Override
-	public void print(ArrayList<Result> measuresResults) {
+	public void show(ArrayList<Result> measuresResults) {
 		
 		try {
 			IWorkbenchPage page =PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
@@ -52,7 +52,7 @@ public class ViewPrinter implements IPrinter {
 			IViewPart myView = page.showView(viewId);
 			page.activate(myView);
 			page.setEditorAreaVisible(true);
-			((MetricsView)myView).updateInformation(measuresResults);
+			((BasicMetricsView)myView).updateInformation(measuresResults);
 			page.showView(viewId);
 			page.bringToTop(myView);
 		} catch (PartInitException e) {

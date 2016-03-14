@@ -6,10 +6,10 @@
          point="org.eclipse.ui.views">
       <view
             name="Metrics View"
-            icon="platform:/plugin/org.eclipse.papyrus.requirements.common.ui/images/Papyrus_Req_logo_16x16.png"
+            icon="platform:/plugin/org.eclipse.papyrus.metrics.ui/images/Papyrus_Metrics_logo_16x16.png"
             category="org.eclipse.papyrus.views.category"
-            class="org.eclipse.papyrus.metrics.view.MetricsView"
-            id="org.eclipse.papyrus.metrics.view.MetricsView">
+            class="org.eclipse.papyrus.metrics.view.BasicMetricsView"
+            id="org.eclipse.papyrus.metrics.view.BasicMetricsView">
          <description>
             This view shows quantitative information about the selected model element.
          </description>
