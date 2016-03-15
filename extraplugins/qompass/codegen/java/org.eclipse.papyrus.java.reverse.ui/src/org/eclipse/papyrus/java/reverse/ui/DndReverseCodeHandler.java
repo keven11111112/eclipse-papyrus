@@ -125,7 +125,7 @@ public class DndReverseCodeHandler extends ReverseCodeHandler {
 
 	@Override
 	protected ReverseCodeDialog getDialog(Shell shell, String modelUid) {
-		return new DndReverseCodeDialog(shell, modelUid, null, null);
+		return new DndReverseCodeDialog(shell, modelUid, getSelectedProjectName(), null);
 	}
 
 	/**

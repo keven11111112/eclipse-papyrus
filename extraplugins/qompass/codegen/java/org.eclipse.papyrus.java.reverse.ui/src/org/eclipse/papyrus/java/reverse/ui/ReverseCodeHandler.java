@@ -15,7 +15,11 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
@@ -24,6 +28,7 @@ import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.java.reverse.ui.dialog.ReverseCodeDialog;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.uml2.uml.Package;
@@ -135,7 +140,22 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 	 * @return the dialog to show to user
 	 */
 	protected ReverseCodeDialog getDialog(Shell shell, String modelUid) {
-		return new ReverseCodeDialog(shell, modelUid, null, null);
+		return new ReverseCodeDialog(shell, modelUid, getSelectedProjectName(), null);
+	}
+	
+	/**
+	 * 
+	 * @return the name of the selected project into explorer
+	 */
+	protected String getSelectedProjectName() {
+		// Get current selection
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		final ISelection selection = page.getSelection();
+
+		TreeSelection treeSelection = (TreeSelection)selection;
+		IJavaElement selectionElement = (IJavaElement)treeSelection.getFirstElement();
+		String name = selectionElement.getAncestor(IJavaProject.JAVA_PROJECT).getElementName();
+		return name;
 	}
 
 	/**
