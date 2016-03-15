@@ -12,75 +12,8 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalAlfLexer extends Lexer {
-    public static final int RULE_ID=8;
-    public static final int T__29=29;
-    public static final int T__28=28;
-    public static final int T__27=27;
-    public static final int T__26=26;
-    public static final int T__25=25;
-    public static final int T__24=24;
-    public static final int T__23=23;
-    public static final int T__22=22;
-    public static final int T__21=21;
-    public static final int T__20=20;
-    public static final int EOF=-1;
-    public static final int T__93=93;
-    public static final int T__19=19;
-    public static final int T__94=94;
-    public static final int T__91=91;
-    public static final int T__92=92;
-    public static final int T__16=16;
-    public static final int T__90=90;
-    public static final int T__15=15;
-    public static final int T__18=18;
-    public static final int T__17=17;
-    public static final int T__99=99;
-    public static final int T__98=98;
-    public static final int T__97=97;
-    public static final int T__96=96;
-    public static final int T__95=95;
-    public static final int T__80=80;
-    public static final int T__81=81;
-    public static final int T__82=82;
-    public static final int T__83=83;
-    public static final int RULE_BOOLEAN_VALUE=5;
-    public static final int T__85=85;
-    public static final int T__84=84;
-    public static final int T__87=87;
-    public static final int T__86=86;
-    public static final int T__89=89;
-    public static final int T__88=88;
-    public static final int RULE_ML_COMMENT=12;
-    public static final int RULE_STRING=7;
-    public static final int T__71=71;
-    public static final int T__72=72;
-    public static final int T__70=70;
-    public static final int RULE_INLINE_STATEMENT=11;
-    public static final int T__76=76;
-    public static final int T__75=75;
-    public static final int T__74=74;
-    public static final int T__73=73;
-    public static final int T__79=79;
-    public static final int T__78=78;
-    public static final int T__77=77;
-    public static final int T__68=68;
-    public static final int T__69=69;
-    public static final int T__66=66;
-    public static final int T__67=67;
-    public static final int T__64=64;
-    public static final int T__65=65;
-    public static final int T__62=62;
-    public static final int T__63=63;
-    public static final int RULE_STATEMENT_ANNOTATION=10;
-    public static final int T__118=118;
-    public static final int T__119=119;
-    public static final int T__116=116;
-    public static final int T__117=117;
-    public static final int T__114=114;
-    public static final int T__115=115;
-    public static final int RULE_DOCUMENTATION_COMMENT=4;
-    public static final int T__61=61;
-    public static final int T__60=60;
+    public static final int T__50=50;
+    public static final int T__59=59;
     public static final int T__55=55;
     public static final int T__56=56;
     public static final int T__57=57;
@@ -89,46 +22,113 @@ public class InternalAlfLexer extends Lexer {
     public static final int T__52=52;
     public static final int T__53=53;
     public static final int T__54=54;
-    public static final int T__107=107;
-    public static final int T__108=108;
-    public static final int T__109=109;
-    public static final int T__103=103;
-    public static final int T__59=59;
-    public static final int T__104=104;
-    public static final int T__105=105;
-    public static final int T__106=106;
-    public static final int T__111=111;
-    public static final int T__110=110;
-    public static final int T__113=113;
-    public static final int T__112=112;
-    public static final int T__50=50;
-    public static final int T__42=42;
-    public static final int T__43=43;
-    public static final int T__40=40;
-    public static final int T__41=41;
-    public static final int T__46=46;
-    public static final int T__47=47;
-    public static final int T__44=44;
-    public static final int T__45=45;
-    public static final int T__48=48;
-    public static final int T__49=49;
-    public static final int T__102=102;
-    public static final int T__101=101;
-    public static final int RULE_UNRESTRICTED_NAME=9;
-    public static final int T__100=100;
-    public static final int RULE_SL_COMMENT=13;
-    public static final int T__30=30;
-    public static final int T__31=31;
-    public static final int T__32=32;
+    public static final int T__60=60;
+    public static final int T__61=61;
+    public static final int RULE_ID=8;
+    public static final int RULE_NATURAL_VALUE=6;
+    public static final int RULE_INLINE_STATEMENT=11;
+    public static final int T__66=66;
+    public static final int RULE_ML_COMMENT=12;
+    public static final int T__67=67;
+    public static final int T__68=68;
+    public static final int T__69=69;
+    public static final int T__62=62;
+    public static final int T__63=63;
+    public static final int T__64=64;
+    public static final int T__65=65;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
     public static final int T__33=33;
     public static final int T__34=34;
     public static final int T__35=35;
     public static final int T__36=36;
-    public static final int T__37=37;
-    public static final int T__38=38;
-    public static final int T__39=39;
-    public static final int RULE_NATURAL_VALUE=6;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int T__32=32;
+    public static final int RULE_UNRESTRICTED_NAME=9;
+    public static final int T__48=48;
+    public static final int T__49=49;
+    public static final int T__44=44;
+    public static final int T__45=45;
+    public static final int T__46=46;
+    public static final int T__47=47;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__91=91;
+    public static final int T__100=100;
+    public static final int T__92=92;
+    public static final int T__93=93;
+    public static final int T__102=102;
+    public static final int T__94=94;
+    public static final int T__101=101;
+    public static final int T__90=90;
+    public static final int T__19=19;
+    public static final int RULE_STATEMENT_ANNOTATION=10;
+    public static final int T__15=15;
+    public static final int T__16=16;
+    public static final int T__17=17;
+    public static final int T__18=18;
+    public static final int T__99=99;
+    public static final int T__95=95;
+    public static final int T__96=96;
+    public static final int T__97=97;
+    public static final int RULE_DOCUMENTATION_COMMENT=4;
+    public static final int T__98=98;
+    public static final int T__26=26;
+    public static final int T__27=27;
+    public static final int T__28=28;
+    public static final int T__29=29;
+    public static final int T__22=22;
+    public static final int T__23=23;
+    public static final int T__24=24;
+    public static final int T__25=25;
+    public static final int T__20=20;
+    public static final int T__21=21;
+    public static final int T__70=70;
+    public static final int RULE_BOOLEAN_VALUE=5;
+    public static final int T__71=71;
+    public static final int T__72=72;
+    public static final int RULE_STRING=7;
+    public static final int RULE_SL_COMMENT=13;
+    public static final int T__77=77;
+    public static final int T__119=119;
+    public static final int T__78=78;
+    public static final int T__118=118;
+    public static final int T__79=79;
+    public static final int T__73=73;
+    public static final int T__115=115;
+    public static final int EOF=-1;
+    public static final int T__74=74;
+    public static final int T__114=114;
+    public static final int T__75=75;
+    public static final int T__117=117;
+    public static final int T__76=76;
+    public static final int T__116=116;
+    public static final int T__80=80;
+    public static final int T__111=111;
+    public static final int T__81=81;
+    public static final int T__110=110;
+    public static final int T__82=82;
+    public static final int T__113=113;
+    public static final int T__83=83;
+    public static final int T__112=112;
     public static final int RULE_WS=14;
+    public static final int T__88=88;
+    public static final int T__108=108;
+    public static final int T__89=89;
+    public static final int T__107=107;
+    public static final int T__109=109;
+    public static final int T__84=84;
+    public static final int T__104=104;
+    public static final int T__85=85;
+    public static final int T__103=103;
+    public static final int T__86=86;
+    public static final int T__106=106;
+    public static final int T__87=87;
+    public static final int T__105=105;
 
     // delegates
     // delegators
@@ -141,15 +141,15 @@ public class InternalAlfLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g"; }
+    public String getGrammarFileName() { return "InternalAlf.g"; }
 
     // $ANTLR start "T__15"
     public final void mT__15() throws RecognitionException {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:11:7: ( '@' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:11:9: '@'
+            // InternalAlf.g:11:7: ( '@' )
+            // InternalAlf.g:11:9: '@'
             {
             match('@'); 
 
@@ -168,8 +168,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12:7: ( '(' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12:9: '('
+            // InternalAlf.g:12:7: ( '(' )
+            // InternalAlf.g:12:9: '('
             {
             match('('); 
 
@@ -188,8 +188,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:13:7: ( ')' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:13:9: ')'
+            // InternalAlf.g:13:7: ( ')' )
+            // InternalAlf.g:13:9: ')'
             {
             match(')'); 
 
@@ -208,8 +208,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:14:7: ( ',' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:14:9: ','
+            // InternalAlf.g:14:7: ( ',' )
+            // InternalAlf.g:14:9: ','
             {
             match(','); 
 
@@ -228,8 +228,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:15:7: ( '=>' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:15:9: '=>'
+            // InternalAlf.g:15:7: ( '=>' )
+            // InternalAlf.g:15:9: '=>'
             {
             match("=>"); 
 
@@ -249,8 +249,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:16:7: ( '*' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:16:9: '*'
+            // InternalAlf.g:16:7: ( '*' )
+            // InternalAlf.g:16:9: '*'
             {
             match('*'); 
 
@@ -269,8 +269,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:17:7: ( 'namespace' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:17:9: 'namespace'
+            // InternalAlf.g:17:7: ( 'namespace' )
+            // InternalAlf.g:17:9: 'namespace'
             {
             match("namespace"); 
 
@@ -290,8 +290,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:18:7: ( ';' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:18:9: ';'
+            // InternalAlf.g:18:7: ( ';' )
+            // InternalAlf.g:18:9: ';'
             {
             match(';'); 
 
@@ -310,8 +310,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:19:7: ( 'import' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:19:9: 'import'
+            // InternalAlf.g:19:7: ( 'import' )
+            // InternalAlf.g:19:9: 'import'
             {
             match("import"); 
 
@@ -331,8 +331,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:20:7: ( 'as' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:20:9: 'as'
+            // InternalAlf.g:20:7: ( 'as' )
+            // InternalAlf.g:20:9: 'as'
             {
             match("as"); 
 
@@ -352,8 +352,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:21:7: ( '::' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:21:9: '::'
+            // InternalAlf.g:21:7: ( '::' )
+            // InternalAlf.g:21:9: '::'
             {
             match("::"); 
 
@@ -373,8 +373,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:22:7: ( '.' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:22:9: '.'
+            // InternalAlf.g:22:7: ( '.' )
+            // InternalAlf.g:22:9: '.'
             {
             match('.'); 
 
@@ -393,8 +393,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:23:7: ( 'public' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:23:9: 'public'
+            // InternalAlf.g:23:7: ( 'public' )
+            // InternalAlf.g:23:9: 'public'
             {
             match("public"); 
 
@@ -414,8 +414,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:24:7: ( 'private' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:24:9: 'private'
+            // InternalAlf.g:24:7: ( 'private' )
+            // InternalAlf.g:24:9: 'private'
             {
             match("private"); 
 
@@ -435,8 +435,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:25:7: ( 'protected' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:25:9: 'protected'
+            // InternalAlf.g:25:7: ( 'protected' )
+            // InternalAlf.g:25:9: 'protected'
             {
             match("protected"); 
 
@@ -456,8 +456,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:26:7: ( 'package' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:26:9: 'package'
+            // InternalAlf.g:26:7: ( 'package' )
+            // InternalAlf.g:26:9: 'package'
             {
             match("package"); 
 
@@ -477,8 +477,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:27:7: ( '{' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:27:9: '{'
+            // InternalAlf.g:27:7: ( '{' )
+            // InternalAlf.g:27:9: '{'
             {
             match('{'); 
 
@@ -497,8 +497,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:28:7: ( '}' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:28:9: '}'
+            // InternalAlf.g:28:7: ( '}' )
+            // InternalAlf.g:28:9: '}'
             {
             match('}'); 
 
@@ -517,8 +517,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:29:7: ( 'specializes' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:29:9: 'specializes'
+            // InternalAlf.g:29:7: ( 'specializes' )
+            // InternalAlf.g:29:9: 'specializes'
             {
             match("specializes"); 
 
@@ -538,8 +538,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:30:7: ( 'abstract' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:30:9: 'abstract'
+            // InternalAlf.g:30:7: ( 'abstract' )
+            // InternalAlf.g:30:9: 'abstract'
             {
             match("abstract"); 
 
@@ -559,8 +559,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:31:7: ( 'class' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:31:9: 'class'
+            // InternalAlf.g:31:7: ( 'class' )
+            // InternalAlf.g:31:9: 'class'
             {
             match("class"); 
 
@@ -580,8 +580,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:32:7: ( '<' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:32:9: '<'
+            // InternalAlf.g:32:7: ( '<' )
+            // InternalAlf.g:32:9: '<'
             {
             match('<'); 
 
@@ -600,8 +600,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:33:7: ( '>' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:33:9: '>'
+            // InternalAlf.g:33:7: ( '>' )
+            // InternalAlf.g:33:9: '>'
             {
             match('>'); 
 
@@ -620,8 +620,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:34:7: ( 'active' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:34:9: 'active'
+            // InternalAlf.g:34:7: ( 'active' )
+            // InternalAlf.g:34:9: 'active'
             {
             match("active"); 
 
@@ -641,8 +641,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:35:7: ( 'do' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:35:9: 'do'
+            // InternalAlf.g:35:7: ( 'do' )
+            // InternalAlf.g:35:9: 'do'
             {
             match("do"); 
 
@@ -662,8 +662,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:36:7: ( 'datatype' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:36:9: 'datatype'
+            // InternalAlf.g:36:7: ( 'datatype' )
+            // InternalAlf.g:36:9: 'datatype'
             {
             match("datatype"); 
 
@@ -683,8 +683,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:37:7: ( 'assoc' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:37:9: 'assoc'
+            // InternalAlf.g:37:7: ( 'assoc' )
+            // InternalAlf.g:37:9: 'assoc'
             {
             match("assoc"); 
 
@@ -704,8 +704,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:38:7: ( 'enum' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:38:9: 'enum'
+            // InternalAlf.g:38:7: ( 'enum' )
+            // InternalAlf.g:38:9: 'enum'
             {
             match("enum"); 
 
@@ -725,8 +725,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:39:7: ( 'signal' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:39:9: 'signal'
+            // InternalAlf.g:39:7: ( 'signal' )
+            // InternalAlf.g:39:9: 'signal'
             {
             match("signal"); 
 
@@ -746,8 +746,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:40:7: ( 'activity' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:40:9: 'activity'
+            // InternalAlf.g:40:7: ( 'activity' )
+            // InternalAlf.g:40:9: 'activity'
             {
             match("activity"); 
 
@@ -767,8 +767,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:41:7: ( ':' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:41:9: ':'
+            // InternalAlf.g:41:7: ( ':' )
+            // InternalAlf.g:41:9: ':'
             {
             match(':'); 
 
@@ -787,8 +787,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:42:7: ( 'in' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:42:9: 'in'
+            // InternalAlf.g:42:7: ( 'in' )
+            // InternalAlf.g:42:9: 'in'
             {
             match("in"); 
 
@@ -808,8 +808,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:43:7: ( 'out' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:43:9: 'out'
+            // InternalAlf.g:43:7: ( 'out' )
+            // InternalAlf.g:43:9: 'out'
             {
             match("out"); 
 
@@ -829,8 +829,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:44:7: ( 'inout' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:44:9: 'inout'
+            // InternalAlf.g:44:7: ( 'inout' )
+            // InternalAlf.g:44:9: 'inout'
             {
             match("inout"); 
 
@@ -850,8 +850,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:45:7: ( '=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:45:9: '='
+            // InternalAlf.g:45:7: ( '=' )
+            // InternalAlf.g:45:9: '='
             {
             match('='); 
 
@@ -870,8 +870,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:46:7: ( 'compose' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:46:9: 'compose'
+            // InternalAlf.g:46:7: ( 'compose' )
+            // InternalAlf.g:46:9: 'compose'
             {
             match("compose"); 
 
@@ -891,8 +891,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:47:7: ( 'any' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:47:9: 'any'
+            // InternalAlf.g:47:7: ( 'any' )
+            // InternalAlf.g:47:9: 'any'
             {
             match("any"); 
 
@@ -912,8 +912,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:48:7: ( '[' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:48:9: '['
+            // InternalAlf.g:48:7: ( '[' )
+            // InternalAlf.g:48:9: '['
             {
             match('['); 
 
@@ -932,8 +932,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:49:7: ( ']' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:49:9: ']'
+            // InternalAlf.g:49:7: ( ']' )
+            // InternalAlf.g:49:9: ']'
             {
             match(']'); 
 
@@ -952,8 +952,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:50:7: ( '..' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:50:9: '..'
+            // InternalAlf.g:50:7: ( '..' )
+            // InternalAlf.g:50:9: '..'
             {
             match(".."); 
 
@@ -973,8 +973,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:51:7: ( 'ordered' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:51:9: 'ordered'
+            // InternalAlf.g:51:7: ( 'ordered' )
+            // InternalAlf.g:51:9: 'ordered'
             {
             match("ordered"); 
 
@@ -994,8 +994,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:52:7: ( 'nonunique' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:52:9: 'nonunique'
+            // InternalAlf.g:52:7: ( 'nonunique' )
+            // InternalAlf.g:52:9: 'nonunique'
             {
             match("nonunique"); 
 
@@ -1015,8 +1015,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:53:7: ( 'sequence' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:53:9: 'sequence'
+            // InternalAlf.g:53:7: ( 'sequence' )
+            // InternalAlf.g:53:9: 'sequence'
             {
             match("sequence"); 
 
@@ -1036,8 +1036,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:54:7: ( 'redefines' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:54:9: 'redefines'
+            // InternalAlf.g:54:7: ( 'redefines' )
+            // InternalAlf.g:54:9: 'redefines'
             {
             match("redefines"); 
 
@@ -1057,8 +1057,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:55:7: ( 'receive' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:55:9: 'receive'
+            // InternalAlf.g:55:7: ( 'receive' )
+            // InternalAlf.g:55:9: 'receive'
             {
             match("receive"); 
 
@@ -1078,8 +1078,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:56:7: ( '->' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:56:9: '->'
+            // InternalAlf.g:56:7: ( '->' )
+            // InternalAlf.g:56:9: '->'
             {
             match("->"); 
 
@@ -1099,8 +1099,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:57:7: ( 'reduce' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:57:9: 'reduce'
+            // InternalAlf.g:57:7: ( 'reduce' )
+            // InternalAlf.g:57:9: 'reduce'
             {
             match("reduce"); 
 
@@ -1120,8 +1120,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:58:7: ( 'this' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:58:9: 'this'
+            // InternalAlf.g:58:7: ( 'this' )
+            // InternalAlf.g:58:9: 'this'
             {
             match("this"); 
 
@@ -1141,8 +1141,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:59:7: ( 'super' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:59:9: 'super'
+            // InternalAlf.g:59:7: ( 'super' )
+            // InternalAlf.g:59:9: 'super'
             {
             match("super"); 
 
@@ -1162,8 +1162,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:60:7: ( 'new' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:60:9: 'new'
+            // InternalAlf.g:60:7: ( 'new' )
+            // InternalAlf.g:60:9: 'new'
             {
             match("new"); 
 
@@ -1183,8 +1183,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:61:7: ( 'createLink' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:61:9: 'createLink'
+            // InternalAlf.g:61:7: ( 'createLink' )
+            // InternalAlf.g:61:9: 'createLink'
             {
             match("createLink"); 
 
@@ -1204,8 +1204,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:62:7: ( 'destroyLink' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:62:9: 'destroyLink'
+            // InternalAlf.g:62:7: ( 'destroyLink' )
+            // InternalAlf.g:62:9: 'destroyLink'
             {
             match("destroyLink"); 
 
@@ -1225,8 +1225,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:63:7: ( 'clearAssoc' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:63:9: 'clearAssoc'
+            // InternalAlf.g:63:7: ( 'clearAssoc' )
+            // InternalAlf.g:63:9: 'clearAssoc'
             {
             match("clearAssoc"); 
 
@@ -1246,8 +1246,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:64:7: ( 'allInstances' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:64:9: 'allInstances'
+            // InternalAlf.g:64:7: ( 'allInstances' )
+            // InternalAlf.g:64:9: 'allInstances'
             {
             match("allInstances"); 
 
@@ -1267,8 +1267,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:65:7: ( 'null' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:65:9: 'null'
+            // InternalAlf.g:65:7: ( 'null' )
+            // InternalAlf.g:65:9: 'null'
             {
             match("null"); 
 
@@ -1288,8 +1288,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:66:7: ( '++' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:66:9: '++'
+            // InternalAlf.g:66:7: ( '++' )
+            // InternalAlf.g:66:9: '++'
             {
             match("++"); 
 
@@ -1309,8 +1309,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:67:7: ( '--' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:67:9: '--'
+            // InternalAlf.g:67:7: ( '--' )
+            // InternalAlf.g:67:9: '--'
             {
             match("--"); 
 
@@ -1330,8 +1330,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:68:7: ( '!' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:68:9: '!'
+            // InternalAlf.g:68:7: ( '!' )
+            // InternalAlf.g:68:9: '!'
             {
             match('!'); 
 
@@ -1350,8 +1350,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:69:7: ( '~' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:69:9: '~'
+            // InternalAlf.g:69:7: ( '~' )
+            // InternalAlf.g:69:9: '~'
             {
             match('~'); 
 
@@ -1370,8 +1370,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:70:7: ( '+' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:70:9: '+'
+            // InternalAlf.g:70:7: ( '+' )
+            // InternalAlf.g:70:9: '+'
             {
             match('+'); 
 
@@ -1390,8 +1390,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:71:7: ( '-' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:71:9: '-'
+            // InternalAlf.g:71:7: ( '-' )
+            // InternalAlf.g:71:9: '-'
             {
             match('-'); 
 
@@ -1410,8 +1410,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:72:7: ( '$' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:72:9: '$'
+            // InternalAlf.g:72:7: ( '$' )
+            // InternalAlf.g:72:9: '$'
             {
             match('$'); 
 
@@ -1430,8 +1430,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:73:7: ( '/' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:73:9: '/'
+            // InternalAlf.g:73:7: ( '/' )
+            // InternalAlf.g:73:9: '/'
             {
             match('/'); 
 
@@ -1450,8 +1450,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:74:7: ( '%' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:74:9: '%'
+            // InternalAlf.g:74:7: ( '%' )
+            // InternalAlf.g:74:9: '%'
             {
             match('%'); 
 
@@ -1470,8 +1470,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:75:7: ( '<<' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:75:9: '<<'
+            // InternalAlf.g:75:7: ( '<<' )
+            // InternalAlf.g:75:9: '<<'
             {
             match("<<"); 
 
@@ -1491,8 +1491,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__80;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:76:7: ( '>>' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:76:9: '>>'
+            // InternalAlf.g:76:7: ( '>>' )
+            // InternalAlf.g:76:9: '>>'
             {
             match(">>"); 
 
@@ -1512,8 +1512,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__81;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:77:7: ( '>>>' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:77:9: '>>>'
+            // InternalAlf.g:77:7: ( '>>>' )
+            // InternalAlf.g:77:9: '>>>'
             {
             match(">>>"); 
 
@@ -1533,8 +1533,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:78:7: ( '<=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:78:9: '<='
+            // InternalAlf.g:78:7: ( '<=' )
+            // InternalAlf.g:78:9: '<='
             {
             match("<="); 
 
@@ -1554,8 +1554,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:79:7: ( '>=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:79:9: '>='
+            // InternalAlf.g:79:7: ( '>=' )
+            // InternalAlf.g:79:9: '>='
             {
             match(">="); 
 
@@ -1575,8 +1575,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__84;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:80:7: ( 'instanceof' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:80:9: 'instanceof'
+            // InternalAlf.g:80:7: ( 'instanceof' )
+            // InternalAlf.g:80:9: 'instanceof'
             {
             match("instanceof"); 
 
@@ -1596,8 +1596,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__85;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:81:7: ( 'hastype' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:81:9: 'hastype'
+            // InternalAlf.g:81:7: ( 'hastype' )
+            // InternalAlf.g:81:9: 'hastype'
             {
             match("hastype"); 
 
@@ -1617,8 +1617,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__86;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:82:7: ( '==' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:82:9: '=='
+            // InternalAlf.g:82:7: ( '==' )
+            // InternalAlf.g:82:9: '=='
             {
             match("=="); 
 
@@ -1638,8 +1638,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__87;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:83:7: ( '!=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:83:9: '!='
+            // InternalAlf.g:83:7: ( '!=' )
+            // InternalAlf.g:83:9: '!='
             {
             match("!="); 
 
@@ -1659,8 +1659,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__88;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:84:7: ( '&' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:84:9: '&'
+            // InternalAlf.g:84:7: ( '&' )
+            // InternalAlf.g:84:9: '&'
             {
             match('&'); 
 
@@ -1679,8 +1679,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__89;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:85:7: ( '^' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:85:9: '^'
+            // InternalAlf.g:85:7: ( '^' )
+            // InternalAlf.g:85:9: '^'
             {
             match('^'); 
 
@@ -1699,8 +1699,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__90;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:86:7: ( '|' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:86:9: '|'
+            // InternalAlf.g:86:7: ( '|' )
+            // InternalAlf.g:86:9: '|'
             {
             match('|'); 
 
@@ -1719,8 +1719,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__91;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:87:7: ( '&&' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:87:9: '&&'
+            // InternalAlf.g:87:7: ( '&&' )
+            // InternalAlf.g:87:9: '&&'
             {
             match("&&"); 
 
@@ -1740,8 +1740,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:88:7: ( '||' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:88:9: '||'
+            // InternalAlf.g:88:7: ( '||' )
+            // InternalAlf.g:88:9: '||'
             {
             match("||"); 
 
@@ -1761,8 +1761,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__93;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:89:7: ( '?' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:89:9: '?'
+            // InternalAlf.g:89:7: ( '?' )
+            // InternalAlf.g:89:9: '?'
             {
             match('?'); 
 
@@ -1781,8 +1781,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__94;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:90:7: ( '+=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:90:9: '+='
+            // InternalAlf.g:90:7: ( '+=' )
+            // InternalAlf.g:90:9: '+='
             {
             match("+="); 
 
@@ -1802,8 +1802,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__95;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:91:7: ( '-=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:91:9: '-='
+            // InternalAlf.g:91:7: ( '-=' )
+            // InternalAlf.g:91:9: '-='
             {
             match("-="); 
 
@@ -1823,8 +1823,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__96;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:92:7: ( '*=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:92:9: '*='
+            // InternalAlf.g:92:7: ( '*=' )
+            // InternalAlf.g:92:9: '*='
             {
             match("*="); 
 
@@ -1844,8 +1844,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__97;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:93:7: ( '/=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:93:9: '/='
+            // InternalAlf.g:93:7: ( '/=' )
+            // InternalAlf.g:93:9: '/='
             {
             match("/="); 
 
@@ -1865,8 +1865,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__98;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:94:7: ( '%=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:94:9: '%='
+            // InternalAlf.g:94:7: ( '%=' )
+            // InternalAlf.g:94:9: '%='
             {
             match("%="); 
 
@@ -1886,8 +1886,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__99;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:95:7: ( '&=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:95:9: '&='
+            // InternalAlf.g:95:7: ( '&=' )
+            // InternalAlf.g:95:9: '&='
             {
             match("&="); 
 
@@ -1907,8 +1907,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__100;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:96:8: ( '|=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:96:10: '|='
+            // InternalAlf.g:96:8: ( '|=' )
+            // InternalAlf.g:96:10: '|='
             {
             match("|="); 
 
@@ -1928,8 +1928,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__101;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:97:8: ( '^=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:97:10: '^='
+            // InternalAlf.g:97:8: ( '^=' )
+            // InternalAlf.g:97:10: '^='
             {
             match("^="); 
 
@@ -1949,8 +1949,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__102;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:98:8: ( '<<=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:98:10: '<<='
+            // InternalAlf.g:98:8: ( '<<=' )
+            // InternalAlf.g:98:10: '<<='
             {
             match("<<="); 
 
@@ -1970,8 +1970,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__103;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:99:8: ( '>>=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:99:10: '>>='
+            // InternalAlf.g:99:8: ( '>>=' )
+            // InternalAlf.g:99:10: '>>='
             {
             match(">>="); 
 
@@ -1991,8 +1991,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__104;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:100:8: ( '>>>=' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:100:10: '>>>='
+            // InternalAlf.g:100:8: ( '>>>=' )
+            // InternalAlf.g:100:10: '>>>='
             {
             match(">>>="); 
 
@@ -2012,8 +2012,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__105;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:101:8: ( 'let' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:101:10: 'let'
+            // InternalAlf.g:101:8: ( 'let' )
+            // InternalAlf.g:101:10: 'let'
             {
             match("let"); 
 
@@ -2033,8 +2033,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__106;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:102:8: ( 'if' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:102:10: 'if'
+            // InternalAlf.g:102:8: ( 'if' )
+            // InternalAlf.g:102:10: 'if'
             {
             match("if"); 
 
@@ -2054,8 +2054,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__107;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:103:8: ( 'else' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:103:10: 'else'
+            // InternalAlf.g:103:8: ( 'else' )
+            // InternalAlf.g:103:10: 'else'
             {
             match("else"); 
 
@@ -2075,8 +2075,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__108;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:104:8: ( 'or' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:104:10: 'or'
+            // InternalAlf.g:104:8: ( 'or' )
+            // InternalAlf.g:104:10: 'or'
             {
             match("or"); 
 
@@ -2096,8 +2096,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__109;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:105:8: ( 'switch' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:105:10: 'switch'
+            // InternalAlf.g:105:8: ( 'switch' )
+            // InternalAlf.g:105:10: 'switch'
             {
             match("switch"); 
 
@@ -2117,8 +2117,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__110;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:106:8: ( 'case' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:106:10: 'case'
+            // InternalAlf.g:106:8: ( 'case' )
+            // InternalAlf.g:106:10: 'case'
             {
             match("case"); 
 
@@ -2138,8 +2138,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__111;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:107:8: ( 'default' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:107:10: 'default'
+            // InternalAlf.g:107:8: ( 'default' )
+            // InternalAlf.g:107:10: 'default'
             {
             match("default"); 
 
@@ -2159,8 +2159,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__112;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:108:8: ( 'while' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:108:10: 'while'
+            // InternalAlf.g:108:8: ( 'while' )
+            // InternalAlf.g:108:10: 'while'
             {
             match("while"); 
 
@@ -2180,8 +2180,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__113;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:109:8: ( 'for' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:109:10: 'for'
+            // InternalAlf.g:109:8: ( 'for' )
+            // InternalAlf.g:109:10: 'for'
             {
             match("for"); 
 
@@ -2201,8 +2201,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__114;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:110:8: ( 'break' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:110:10: 'break'
+            // InternalAlf.g:110:8: ( 'break' )
+            // InternalAlf.g:110:10: 'break'
             {
             match("break"); 
 
@@ -2222,8 +2222,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__115;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:111:8: ( 'return' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:111:10: 'return'
+            // InternalAlf.g:111:8: ( 'return' )
+            // InternalAlf.g:111:10: 'return'
             {
             match("return"); 
 
@@ -2243,8 +2243,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__116;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:112:8: ( 'accept' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:112:10: 'accept'
+            // InternalAlf.g:112:8: ( 'accept' )
+            // InternalAlf.g:112:10: 'accept'
             {
             match("accept"); 
 
@@ -2264,8 +2264,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__117;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:113:8: ( 'classify' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:113:10: 'classify'
+            // InternalAlf.g:113:8: ( 'classify' )
+            // InternalAlf.g:113:10: 'classify'
             {
             match("classify"); 
 
@@ -2285,8 +2285,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__118;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:114:8: ( 'from' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:114:10: 'from'
+            // InternalAlf.g:114:8: ( 'from' )
+            // InternalAlf.g:114:10: 'from'
             {
             match("from"); 
 
@@ -2306,8 +2306,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = T__119;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:115:8: ( 'to' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:115:10: 'to'
+            // InternalAlf.g:115:8: ( 'to' )
+            // InternalAlf.g:115:10: 'to'
             {
             match("to"); 
 
@@ -2327,10 +2327,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_BOOLEAN_VALUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12824:20: ( ( 'true' | 'false' ) )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12824:22: ( 'true' | 'false' )
+            // InternalAlf.g:12824:20: ( ( 'true' | 'false' ) )
+            // InternalAlf.g:12824:22: ( 'true' | 'false' )
             {
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12824:22: ( 'true' | 'false' )
+            // InternalAlf.g:12824:22: ( 'true' | 'false' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -2348,7 +2348,7 @@ public class InternalAlfLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12824:23: 'true'
+                    // InternalAlf.g:12824:23: 'true'
                     {
                     match("true"); 
 
@@ -2356,7 +2356,7 @@ public class InternalAlfLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12824:30: 'false'
+                    // InternalAlf.g:12824:30: 'false'
                     {
                     match("false"); 
 
@@ -2382,10 +2382,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_NATURAL_VALUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:20: ( ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* ) )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:22: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
+            // InternalAlf.g:12826:20: ( ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* ) )
+            // InternalAlf.g:12826:22: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
             {
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:22: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
+            // InternalAlf.g:12826:22: ( ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* ) | ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )* | ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )* | '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )* )
             int alt14=4;
             int LA14_0 = input.LA(1);
 
@@ -2431,9 +2431,9 @@ public class InternalAlfLexer extends Lexer {
             }
             switch (alt14) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:23: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
+                    // InternalAlf.g:12826:23: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
                     {
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:23: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
+                    // InternalAlf.g:12826:23: ( '0' | '1' .. '9' ( ( '_' )? '0' .. '9' )* )
                     int alt4=2;
                     int LA4_0 = input.LA(1);
 
@@ -2451,17 +2451,17 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt4) {
                         case 1 :
-                            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:24: '0'
+                            // InternalAlf.g:12826:24: '0'
                             {
                             match('0'); 
 
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:28: '1' .. '9' ( ( '_' )? '0' .. '9' )*
+                            // InternalAlf.g:12826:28: '1' .. '9' ( ( '_' )? '0' .. '9' )*
                             {
                             matchRange('1','9'); 
-                            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:37: ( ( '_' )? '0' .. '9' )*
+                            // InternalAlf.g:12826:37: ( ( '_' )? '0' .. '9' )*
                             loop3:
                             do {
                                 int alt3=2;
@@ -2474,9 +2474,9 @@ public class InternalAlfLexer extends Lexer {
 
                                 switch (alt3) {
                             	case 1 :
-                            	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:38: ( '_' )? '0' .. '9'
+                            	    // InternalAlf.g:12826:38: ( '_' )? '0' .. '9'
                             	    {
-                            	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:38: ( '_' )?
+                            	    // InternalAlf.g:12826:38: ( '_' )?
                             	    int alt2=2;
                             	    int LA2_0 = input.LA(1);
 
@@ -2485,7 +2485,7 @@ public class InternalAlfLexer extends Lexer {
                             	    }
                             	    switch (alt2) {
                             	        case 1 :
-                            	            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:38: '_'
+                            	            // InternalAlf.g:12826:38: '_'
                             	            {
                             	            match('_'); 
 
@@ -2514,9 +2514,9 @@ public class InternalAlfLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:55: ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )*
+                    // InternalAlf.g:12826:55: ( '0b' | '0B' ) '0' .. '1' ( ( '_' )? '0' .. '1' )*
                     {
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:55: ( '0b' | '0B' )
+                    // InternalAlf.g:12826:55: ( '0b' | '0B' )
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -2544,7 +2544,7 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt5) {
                         case 1 :
-                            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:56: '0b'
+                            // InternalAlf.g:12826:56: '0b'
                             {
                             match("0b"); 
 
@@ -2552,7 +2552,7 @@ public class InternalAlfLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:61: '0B'
+                            // InternalAlf.g:12826:61: '0B'
                             {
                             match("0B"); 
 
@@ -2563,7 +2563,7 @@ public class InternalAlfLexer extends Lexer {
                     }
 
                     matchRange('0','1'); 
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:76: ( ( '_' )? '0' .. '1' )*
+                    // InternalAlf.g:12826:76: ( ( '_' )? '0' .. '1' )*
                     loop7:
                     do {
                         int alt7=2;
@@ -2576,9 +2576,9 @@ public class InternalAlfLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:77: ( '_' )? '0' .. '1'
+                    	    // InternalAlf.g:12826:77: ( '_' )? '0' .. '1'
                     	    {
-                    	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:77: ( '_' )?
+                    	    // InternalAlf.g:12826:77: ( '_' )?
                     	    int alt6=2;
                     	    int LA6_0 = input.LA(1);
 
@@ -2587,7 +2587,7 @@ public class InternalAlfLexer extends Lexer {
                     	    }
                     	    switch (alt6) {
                     	        case 1 :
-                    	            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:77: '_'
+                    	            // InternalAlf.g:12826:77: '_'
                     	            {
                     	            match('_'); 
 
@@ -2610,9 +2610,9 @@ public class InternalAlfLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:93: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
+                    // InternalAlf.g:12826:93: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
                     {
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:93: ( '0x' | '0X' )
+                    // InternalAlf.g:12826:93: ( '0x' | '0X' )
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -2640,7 +2640,7 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:94: '0x'
+                            // InternalAlf.g:12826:94: '0x'
                             {
                             match("0x"); 
 
@@ -2648,7 +2648,7 @@ public class InternalAlfLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:99: '0X'
+                            // InternalAlf.g:12826:99: '0X'
                             {
                             match("0X"); 
 
@@ -2667,7 +2667,7 @@ public class InternalAlfLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:134: ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
+                    // InternalAlf.g:12826:134: ( ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )*
                     loop10:
                     do {
                         int alt10=2;
@@ -2680,9 +2680,9 @@ public class InternalAlfLexer extends Lexer {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:135: ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
+                    	    // InternalAlf.g:12826:135: ( '_' )? ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )
                     	    {
-                    	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:135: ( '_' )?
+                    	    // InternalAlf.g:12826:135: ( '_' )?
                     	    int alt9=2;
                     	    int LA9_0 = input.LA(1);
 
@@ -2691,7 +2691,7 @@ public class InternalAlfLexer extends Lexer {
                     	    }
                     	    switch (alt9) {
                     	        case 1 :
-                    	            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:135: '_'
+                    	            // InternalAlf.g:12826:135: '_'
                     	            {
                     	            match('_'); 
 
@@ -2722,10 +2722,10 @@ public class InternalAlfLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:171: '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )*
+                    // InternalAlf.g:12826:171: '0' ( '_' )? '0' .. '7' ( ( '_' )? '0' .. '7' )*
                     {
                     match('0'); 
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:175: ( '_' )?
+                    // InternalAlf.g:12826:175: ( '_' )?
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
@@ -2734,7 +2734,7 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt11) {
                         case 1 :
-                            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:175: '_'
+                            // InternalAlf.g:12826:175: '_'
                             {
                             match('_'); 
 
@@ -2744,7 +2744,7 @@ public class InternalAlfLexer extends Lexer {
                     }
 
                     matchRange('0','7'); 
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:189: ( ( '_' )? '0' .. '7' )*
+                    // InternalAlf.g:12826:189: ( ( '_' )? '0' .. '7' )*
                     loop13:
                     do {
                         int alt13=2;
@@ -2757,9 +2757,9 @@ public class InternalAlfLexer extends Lexer {
 
                         switch (alt13) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:190: ( '_' )? '0' .. '7'
+                    	    // InternalAlf.g:12826:190: ( '_' )? '0' .. '7'
                     	    {
-                    	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:190: ( '_' )?
+                    	    // InternalAlf.g:12826:190: ( '_' )?
                     	    int alt12=2;
                     	    int LA12_0 = input.LA(1);
 
@@ -2768,7 +2768,7 @@ public class InternalAlfLexer extends Lexer {
                     	    }
                     	    switch (alt12) {
                     	        case 1 :
-                    	            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12826:190: '_'
+                    	            // InternalAlf.g:12826:190: '_'
                     	            {
                     	            match('_'); 
 
@@ -2809,8 +2809,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12828:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12828:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalAlf.g:12828:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalAlf.g:12828:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -2821,7 +2821,7 @@ public class InternalAlfLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12828:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalAlf.g:12828:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop15:
             do {
                 int alt15=2;
@@ -2834,7 +2834,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:
+            	    // InternalAlf.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -2870,11 +2870,11 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_UNRESTRICTED_NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12830:24: ( '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12830:26: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+            // InternalAlf.g:12830:24: ( '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalAlf.g:12830:26: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
             {
             match('\''); 
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12830:31: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+            // InternalAlf.g:12830:31: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
             loop16:
             do {
                 int alt16=3;
@@ -2890,7 +2890,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt16) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12830:32: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+            	    // InternalAlf.g:12830:32: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2906,7 +2906,7 @@ public class InternalAlfLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12830:73: ~ ( ( '\\\\' | '\\'' ) )
+            	    // InternalAlf.g:12830:73: ~ ( ( '\\\\' | '\\'' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2943,11 +2943,11 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12832:13: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12832:15: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // InternalAlf.g:12832:13: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // InternalAlf.g:12832:15: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12832:19: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+            // InternalAlf.g:12832:19: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
             loop17:
             do {
                 int alt17=3;
@@ -2963,7 +2963,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt17) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12832:20: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+            	    // InternalAlf.g:12832:20: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2979,7 +2979,7 @@ public class InternalAlfLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12832:61: ~ ( ( '\\\\' | '\"' ) )
+            	    // InternalAlf.g:12832:61: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -3016,12 +3016,12 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_DOCUMENTATION_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12834:28: ( '/**' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12834:30: '/**' ( options {greedy=false; } : . )* '*/'
+            // InternalAlf.g:12834:28: ( '/**' ( options {greedy=false; } : . )* '*/' )
+            // InternalAlf.g:12834:30: '/**' ( options {greedy=false; } : . )* '*/'
             {
             match("/**"); 
 
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12834:36: ( options {greedy=false; } : . )*
+            // InternalAlf.g:12834:36: ( options {greedy=false; } : . )*
             loop18:
             do {
                 int alt18=2;
@@ -3046,7 +3046,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt18) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12834:64: .
+            	    // InternalAlf.g:12834:64: .
             	    {
             	    matchAny(); 
 
@@ -3076,12 +3076,12 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_STATEMENT_ANNOTATION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12836:27: ( '//@' ( options {greedy=false; } : . )* '\\n' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12836:29: '//@' ( options {greedy=false; } : . )* '\\n'
+            // InternalAlf.g:12836:27: ( '//@' ( options {greedy=false; } : . )* '\\n' )
+            // InternalAlf.g:12836:29: '//@' ( options {greedy=false; } : . )* '\\n'
             {
             match("//@"); 
 
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12836:35: ( options {greedy=false; } : . )*
+            // InternalAlf.g:12836:35: ( options {greedy=false; } : . )*
             loop19:
             do {
                 int alt19=2;
@@ -3097,7 +3097,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt19) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12836:63: .
+            	    // InternalAlf.g:12836:63: .
             	    {
             	    matchAny(); 
 
@@ -3126,12 +3126,12 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_INLINE_STATEMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12838:23: ( '/*@inline(' ( RULE_ID | RULE_UNRESTRICTED_NAME ) ')' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12838:25: '/*@inline(' ( RULE_ID | RULE_UNRESTRICTED_NAME ) ')' ( options {greedy=false; } : . )* '*/'
+            // InternalAlf.g:12838:23: ( '/*@inline(' ( RULE_ID | RULE_UNRESTRICTED_NAME ) ')' ( options {greedy=false; } : . )* '*/' )
+            // InternalAlf.g:12838:25: '/*@inline(' ( RULE_ID | RULE_UNRESTRICTED_NAME ) ')' ( options {greedy=false; } : . )* '*/'
             {
             match("/*@inline("); 
 
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12838:38: ( RULE_ID | RULE_UNRESTRICTED_NAME )
+            // InternalAlf.g:12838:38: ( RULE_ID | RULE_UNRESTRICTED_NAME )
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -3149,14 +3149,14 @@ public class InternalAlfLexer extends Lexer {
             }
             switch (alt20) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12838:39: RULE_ID
+                    // InternalAlf.g:12838:39: RULE_ID
                     {
                     mRULE_ID(); 
 
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12838:47: RULE_UNRESTRICTED_NAME
+                    // InternalAlf.g:12838:47: RULE_UNRESTRICTED_NAME
                     {
                     mRULE_UNRESTRICTED_NAME(); 
 
@@ -3166,7 +3166,7 @@ public class InternalAlfLexer extends Lexer {
             }
 
             match(')'); 
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12838:75: ( options {greedy=false; } : . )*
+            // InternalAlf.g:12838:75: ( options {greedy=false; } : . )*
             loop21:
             do {
                 int alt21=2;
@@ -3191,7 +3191,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt21) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12838:103: .
+            	    // InternalAlf.g:12838:103: .
             	    {
             	    matchAny(); 
 
@@ -3221,8 +3221,8 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12840:17: ( '/*' ~ ( ( '*' | '@' ) ) ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12840:19: '/*' ~ ( ( '*' | '@' ) ) ( options {greedy=false; } : . )* '*/'
+            // InternalAlf.g:12840:17: ( '/*' ~ ( ( '*' | '@' ) ) ( options {greedy=false; } : . )* '*/' )
+            // InternalAlf.g:12840:19: '/*' ~ ( ( '*' | '@' ) ) ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
@@ -3235,7 +3235,7 @@ public class InternalAlfLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12840:37: ( options {greedy=false; } : . )*
+            // InternalAlf.g:12840:37: ( options {greedy=false; } : . )*
             loop22:
             do {
                 int alt22=2;
@@ -3260,7 +3260,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt22) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12840:65: .
+            	    // InternalAlf.g:12840:65: .
             	    {
             	    matchAny(); 
 
@@ -3290,12 +3290,12 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12842:17: ( '//' (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )? ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12842:19: '//' (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )? ( ( '\\r' )? '\\n' )?
+            // InternalAlf.g:12842:17: ( '//' (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )? ( ( '\\r' )? '\\n' )? )
+            // InternalAlf.g:12842:19: '//' (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )? ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12842:24: (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )?
+            // InternalAlf.g:12842:24: (~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )* )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -3304,7 +3304,7 @@ public class InternalAlfLexer extends Lexer {
             }
             switch (alt24) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12842:25: ~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )*
+                    // InternalAlf.g:12842:25: ~ ( ( '@' | '\\n' | '\\r' ) ) (~ ( ( '\\n' | '\\r' ) ) )*
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='?')||(input.LA(1)>='A' && input.LA(1)<='\uFFFF') ) {
                         input.consume();
@@ -3315,7 +3315,7 @@ public class InternalAlfLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12842:44: (~ ( ( '\\n' | '\\r' ) ) )*
+                    // InternalAlf.g:12842:44: (~ ( ( '\\n' | '\\r' ) ) )*
                     loop23:
                     do {
                         int alt23=2;
@@ -3328,7 +3328,7 @@ public class InternalAlfLexer extends Lexer {
 
                         switch (alt23) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12842:44: ~ ( ( '\\n' | '\\r' ) )
+                    	    // InternalAlf.g:12842:44: ~ ( ( '\\n' | '\\r' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -3354,7 +3354,7 @@ public class InternalAlfLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12842:62: ( ( '\\r' )? '\\n' )?
+            // InternalAlf.g:12842:62: ( ( '\\r' )? '\\n' )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -3363,9 +3363,9 @@ public class InternalAlfLexer extends Lexer {
             }
             switch (alt26) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12842:63: ( '\\r' )? '\\n'
+                    // InternalAlf.g:12842:63: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12842:63: ( '\\r' )?
+                    // InternalAlf.g:12842:63: ( '\\r' )?
                     int alt25=2;
                     int LA25_0 = input.LA(1);
 
@@ -3374,7 +3374,7 @@ public class InternalAlfLexer extends Lexer {
                     }
                     switch (alt25) {
                         case 1 :
-                            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12842:63: '\\r'
+                            // InternalAlf.g:12842:63: '\\r'
                             {
                             match('\r'); 
 
@@ -3406,10 +3406,10 @@ public class InternalAlfLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12844:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12844:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalAlf.g:12844:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalAlf.g:12844:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:12844:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalAlf.g:12844:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt27=0;
             loop27:
             do {
@@ -3423,7 +3423,7 @@ public class InternalAlfLexer extends Lexer {
 
                 switch (alt27) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:
+            	    // InternalAlf.g:
             	    {
             	    if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
             	        input.consume();
@@ -3459,817 +3459,817 @@ public class InternalAlfLexer extends Lexer {
     // $ANTLR end "RULE_WS"
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:8: ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | RULE_BOOLEAN_VALUE | RULE_NATURAL_VALUE | RULE_ID | RULE_UNRESTRICTED_NAME | RULE_STRING | RULE_DOCUMENTATION_COMMENT | RULE_STATEMENT_ANNOTATION | RULE_INLINE_STATEMENT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS )
+        // InternalAlf.g:1:8: ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | RULE_BOOLEAN_VALUE | RULE_NATURAL_VALUE | RULE_ID | RULE_UNRESTRICTED_NAME | RULE_STRING | RULE_DOCUMENTATION_COMMENT | RULE_STATEMENT_ANNOTATION | RULE_INLINE_STATEMENT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS )
         int alt28=116;
         alt28 = dfa28.predict(input);
         switch (alt28) {
             case 1 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:10: T__15
+                // InternalAlf.g:1:10: T__15
                 {
                 mT__15(); 
 
                 }
                 break;
             case 2 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:16: T__16
+                // InternalAlf.g:1:16: T__16
                 {
                 mT__16(); 
 
                 }
                 break;
             case 3 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:22: T__17
+                // InternalAlf.g:1:22: T__17
                 {
                 mT__17(); 
 
                 }
                 break;
             case 4 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:28: T__18
+                // InternalAlf.g:1:28: T__18
                 {
                 mT__18(); 
 
                 }
                 break;
             case 5 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:34: T__19
+                // InternalAlf.g:1:34: T__19
                 {
                 mT__19(); 
 
                 }
                 break;
             case 6 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:40: T__20
+                // InternalAlf.g:1:40: T__20
                 {
                 mT__20(); 
 
                 }
                 break;
             case 7 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:46: T__21
+                // InternalAlf.g:1:46: T__21
                 {
                 mT__21(); 
 
                 }
                 break;
             case 8 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:52: T__22
+                // InternalAlf.g:1:52: T__22
                 {
                 mT__22(); 
 
                 }
                 break;
             case 9 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:58: T__23
+                // InternalAlf.g:1:58: T__23
                 {
                 mT__23(); 
 
                 }
                 break;
             case 10 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:64: T__24
+                // InternalAlf.g:1:64: T__24
                 {
                 mT__24(); 
 
                 }
                 break;
             case 11 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:70: T__25
+                // InternalAlf.g:1:70: T__25
                 {
                 mT__25(); 
 
                 }
                 break;
             case 12 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:76: T__26
+                // InternalAlf.g:1:76: T__26
                 {
                 mT__26(); 
 
                 }
                 break;
             case 13 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:82: T__27
+                // InternalAlf.g:1:82: T__27
                 {
                 mT__27(); 
 
                 }
                 break;
             case 14 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:88: T__28
+                // InternalAlf.g:1:88: T__28
                 {
                 mT__28(); 
 
                 }
                 break;
             case 15 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:94: T__29
+                // InternalAlf.g:1:94: T__29
                 {
                 mT__29(); 
 
                 }
                 break;
             case 16 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:100: T__30
+                // InternalAlf.g:1:100: T__30
                 {
                 mT__30(); 
 
                 }
                 break;
             case 17 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:106: T__31
+                // InternalAlf.g:1:106: T__31
                 {
                 mT__31(); 
 
                 }
                 break;
             case 18 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:112: T__32
+                // InternalAlf.g:1:112: T__32
                 {
                 mT__32(); 
 
                 }
                 break;
             case 19 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:118: T__33
+                // InternalAlf.g:1:118: T__33
                 {
                 mT__33(); 
 
                 }
                 break;
             case 20 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:124: T__34
+                // InternalAlf.g:1:124: T__34
                 {
                 mT__34(); 
 
                 }
                 break;
             case 21 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:130: T__35
+                // InternalAlf.g:1:130: T__35
                 {
                 mT__35(); 
 
                 }
                 break;
             case 22 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:136: T__36
+                // InternalAlf.g:1:136: T__36
                 {
                 mT__36(); 
 
                 }
                 break;
             case 23 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:142: T__37
+                // InternalAlf.g:1:142: T__37
                 {
                 mT__37(); 
 
                 }
                 break;
             case 24 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:148: T__38
+                // InternalAlf.g:1:148: T__38
                 {
                 mT__38(); 
 
                 }
                 break;
             case 25 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:154: T__39
+                // InternalAlf.g:1:154: T__39
                 {
                 mT__39(); 
 
                 }
                 break;
             case 26 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:160: T__40
+                // InternalAlf.g:1:160: T__40
                 {
                 mT__40(); 
 
                 }
                 break;
             case 27 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:166: T__41
+                // InternalAlf.g:1:166: T__41
                 {
                 mT__41(); 
 
                 }
                 break;
             case 28 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:172: T__42
+                // InternalAlf.g:1:172: T__42
                 {
                 mT__42(); 
 
                 }
                 break;
             case 29 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:178: T__43
+                // InternalAlf.g:1:178: T__43
                 {
                 mT__43(); 
 
                 }
                 break;
             case 30 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:184: T__44
+                // InternalAlf.g:1:184: T__44
                 {
                 mT__44(); 
 
                 }
                 break;
             case 31 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:190: T__45
+                // InternalAlf.g:1:190: T__45
                 {
                 mT__45(); 
 
                 }
                 break;
             case 32 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:196: T__46
+                // InternalAlf.g:1:196: T__46
                 {
                 mT__46(); 
 
                 }
                 break;
             case 33 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:202: T__47
+                // InternalAlf.g:1:202: T__47
                 {
                 mT__47(); 
 
                 }
                 break;
             case 34 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:208: T__48
+                // InternalAlf.g:1:208: T__48
                 {
                 mT__48(); 
 
                 }
                 break;
             case 35 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:214: T__49
+                // InternalAlf.g:1:214: T__49
                 {
                 mT__49(); 
 
                 }
                 break;
             case 36 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:220: T__50
+                // InternalAlf.g:1:220: T__50
                 {
                 mT__50(); 
 
                 }
                 break;
             case 37 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:226: T__51
+                // InternalAlf.g:1:226: T__51
                 {
                 mT__51(); 
 
                 }
                 break;
             case 38 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:232: T__52
+                // InternalAlf.g:1:232: T__52
                 {
                 mT__52(); 
 
                 }
                 break;
             case 39 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:238: T__53
+                // InternalAlf.g:1:238: T__53
                 {
                 mT__53(); 
 
                 }
                 break;
             case 40 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:244: T__54
+                // InternalAlf.g:1:244: T__54
                 {
                 mT__54(); 
 
                 }
                 break;
             case 41 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:250: T__55
+                // InternalAlf.g:1:250: T__55
                 {
                 mT__55(); 
 
                 }
                 break;
             case 42 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:256: T__56
+                // InternalAlf.g:1:256: T__56
                 {
                 mT__56(); 
 
                 }
                 break;
             case 43 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:262: T__57
+                // InternalAlf.g:1:262: T__57
                 {
                 mT__57(); 
 
                 }
                 break;
             case 44 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:268: T__58
+                // InternalAlf.g:1:268: T__58
                 {
                 mT__58(); 
 
                 }
                 break;
             case 45 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:274: T__59
+                // InternalAlf.g:1:274: T__59
                 {
                 mT__59(); 
 
                 }
                 break;
             case 46 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:280: T__60
+                // InternalAlf.g:1:280: T__60
                 {
                 mT__60(); 
 
                 }
                 break;
             case 47 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:286: T__61
+                // InternalAlf.g:1:286: T__61
                 {
                 mT__61(); 
 
                 }
                 break;
             case 48 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:292: T__62
+                // InternalAlf.g:1:292: T__62
                 {
                 mT__62(); 
 
                 }
                 break;
             case 49 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:298: T__63
+                // InternalAlf.g:1:298: T__63
                 {
                 mT__63(); 
 
                 }
                 break;
             case 50 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:304: T__64
+                // InternalAlf.g:1:304: T__64
                 {
                 mT__64(); 
 
                 }
                 break;
             case 51 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:310: T__65
+                // InternalAlf.g:1:310: T__65
                 {
                 mT__65(); 
 
                 }
                 break;
             case 52 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:316: T__66
+                // InternalAlf.g:1:316: T__66
                 {
                 mT__66(); 
 
                 }
                 break;
             case 53 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:322: T__67
+                // InternalAlf.g:1:322: T__67
                 {
                 mT__67(); 
 
                 }
                 break;
             case 54 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:328: T__68
+                // InternalAlf.g:1:328: T__68
                 {
                 mT__68(); 
 
                 }
                 break;
             case 55 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:334: T__69
+                // InternalAlf.g:1:334: T__69
                 {
                 mT__69(); 
 
                 }
                 break;
             case 56 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:340: T__70
+                // InternalAlf.g:1:340: T__70
                 {
                 mT__70(); 
 
                 }
                 break;
             case 57 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:346: T__71
+                // InternalAlf.g:1:346: T__71
                 {
                 mT__71(); 
 
                 }
                 break;
             case 58 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:352: T__72
+                // InternalAlf.g:1:352: T__72
                 {
                 mT__72(); 
 
                 }
                 break;
             case 59 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:358: T__73
+                // InternalAlf.g:1:358: T__73
                 {
                 mT__73(); 
 
                 }
                 break;
             case 60 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:364: T__74
+                // InternalAlf.g:1:364: T__74
                 {
                 mT__74(); 
 
                 }
                 break;
             case 61 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:370: T__75
+                // InternalAlf.g:1:370: T__75
                 {
                 mT__75(); 
 
                 }
                 break;
             case 62 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:376: T__76
+                // InternalAlf.g:1:376: T__76
                 {
                 mT__76(); 
 
                 }
                 break;
             case 63 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:382: T__77
+                // InternalAlf.g:1:382: T__77
                 {
                 mT__77(); 
 
                 }
                 break;
             case 64 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:388: T__78
+                // InternalAlf.g:1:388: T__78
                 {
                 mT__78(); 
 
                 }
                 break;
             case 65 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:394: T__79
+                // InternalAlf.g:1:394: T__79
                 {
                 mT__79(); 
 
                 }
                 break;
             case 66 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:400: T__80
+                // InternalAlf.g:1:400: T__80
                 {
                 mT__80(); 
 
                 }
                 break;
             case 67 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:406: T__81
+                // InternalAlf.g:1:406: T__81
                 {
                 mT__81(); 
 
                 }
                 break;
             case 68 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:412: T__82
+                // InternalAlf.g:1:412: T__82
                 {
                 mT__82(); 
 
                 }
                 break;
             case 69 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:418: T__83
+                // InternalAlf.g:1:418: T__83
                 {
                 mT__83(); 
 
                 }
                 break;
             case 70 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:424: T__84
+                // InternalAlf.g:1:424: T__84
                 {
                 mT__84(); 
 
                 }
                 break;
             case 71 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:430: T__85
+                // InternalAlf.g:1:430: T__85
                 {
                 mT__85(); 
 
                 }
                 break;
             case 72 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:436: T__86
+                // InternalAlf.g:1:436: T__86
                 {
                 mT__86(); 
 
                 }
                 break;
             case 73 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:442: T__87
+                // InternalAlf.g:1:442: T__87
                 {
                 mT__87(); 
 
                 }
                 break;
             case 74 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:448: T__88
+                // InternalAlf.g:1:448: T__88
                 {
                 mT__88(); 
 
                 }
                 break;
             case 75 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:454: T__89
+                // InternalAlf.g:1:454: T__89
                 {
                 mT__89(); 
 
                 }
                 break;
             case 76 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:460: T__90
+                // InternalAlf.g:1:460: T__90
                 {
                 mT__90(); 
 
                 }
                 break;
             case 77 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:466: T__91
+                // InternalAlf.g:1:466: T__91
                 {
                 mT__91(); 
 
                 }
                 break;
             case 78 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:472: T__92
+                // InternalAlf.g:1:472: T__92
                 {
                 mT__92(); 
 
                 }
                 break;
             case 79 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:478: T__93
+                // InternalAlf.g:1:478: T__93
                 {
                 mT__93(); 
 
                 }
                 break;
             case 80 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:484: T__94
+                // InternalAlf.g:1:484: T__94
                 {
                 mT__94(); 
 
                 }
                 break;
             case 81 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:490: T__95
+                // InternalAlf.g:1:490: T__95
                 {
                 mT__95(); 
 
                 }
                 break;
             case 82 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:496: T__96
+                // InternalAlf.g:1:496: T__96
                 {
                 mT__96(); 
 
                 }
                 break;
             case 83 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:502: T__97
+                // InternalAlf.g:1:502: T__97
                 {
                 mT__97(); 
 
                 }
                 break;
             case 84 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:508: T__98
+                // InternalAlf.g:1:508: T__98
                 {
                 mT__98(); 
 
                 }
                 break;
             case 85 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:514: T__99
+                // InternalAlf.g:1:514: T__99
                 {
                 mT__99(); 
 
                 }
                 break;
             case 86 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:520: T__100
+                // InternalAlf.g:1:520: T__100
                 {
                 mT__100(); 
 
                 }
                 break;
             case 87 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:527: T__101
+                // InternalAlf.g:1:527: T__101
                 {
                 mT__101(); 
 
                 }
                 break;
             case 88 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:534: T__102
+                // InternalAlf.g:1:534: T__102
                 {
                 mT__102(); 
 
                 }
                 break;
             case 89 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:541: T__103
+                // InternalAlf.g:1:541: T__103
                 {
                 mT__103(); 
 
                 }
                 break;
             case 90 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:548: T__104
+                // InternalAlf.g:1:548: T__104
                 {
                 mT__104(); 
 
                 }
                 break;
             case 91 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:555: T__105
+                // InternalAlf.g:1:555: T__105
                 {
                 mT__105(); 
 
                 }
                 break;
             case 92 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:562: T__106
+                // InternalAlf.g:1:562: T__106
                 {
                 mT__106(); 
 
                 }
                 break;
             case 93 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:569: T__107
+                // InternalAlf.g:1:569: T__107
                 {
                 mT__107(); 
 
                 }
                 break;
             case 94 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:576: T__108
+                // InternalAlf.g:1:576: T__108
                 {
                 mT__108(); 
 
                 }
                 break;
             case 95 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:583: T__109
+                // InternalAlf.g:1:583: T__109
                 {
                 mT__109(); 
 
                 }
                 break;
             case 96 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:590: T__110
+                // InternalAlf.g:1:590: T__110
                 {
                 mT__110(); 
 
                 }
                 break;
             case 97 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:597: T__111
+                // InternalAlf.g:1:597: T__111
                 {
                 mT__111(); 
 
                 }
                 break;
             case 98 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:604: T__112
+                // InternalAlf.g:1:604: T__112
                 {
                 mT__112(); 
 
                 }
                 break;
             case 99 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:611: T__113
+                // InternalAlf.g:1:611: T__113
                 {
                 mT__113(); 
 
                 }
                 break;
             case 100 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:618: T__114
+                // InternalAlf.g:1:618: T__114
                 {
                 mT__114(); 
 
                 }
                 break;
             case 101 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:625: T__115
+                // InternalAlf.g:1:625: T__115
                 {
                 mT__115(); 
 
                 }
                 break;
             case 102 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:632: T__116
+                // InternalAlf.g:1:632: T__116
                 {
                 mT__116(); 
 
                 }
                 break;
             case 103 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:639: T__117
+                // InternalAlf.g:1:639: T__117
                 {
                 mT__117(); 
 
                 }
                 break;
             case 104 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:646: T__118
+                // InternalAlf.g:1:646: T__118
                 {
                 mT__118(); 
 
                 }
                 break;
             case 105 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:653: T__119
+                // InternalAlf.g:1:653: T__119
                 {
                 mT__119(); 
 
                 }
                 break;
             case 106 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:660: RULE_BOOLEAN_VALUE
+                // InternalAlf.g:1:660: RULE_BOOLEAN_VALUE
                 {
                 mRULE_BOOLEAN_VALUE(); 
 
                 }
                 break;
             case 107 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:679: RULE_NATURAL_VALUE
+                // InternalAlf.g:1:679: RULE_NATURAL_VALUE
                 {
                 mRULE_NATURAL_VALUE(); 
 
                 }
                 break;
             case 108 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:698: RULE_ID
+                // InternalAlf.g:1:698: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
             case 109 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:706: RULE_UNRESTRICTED_NAME
+                // InternalAlf.g:1:706: RULE_UNRESTRICTED_NAME
                 {
                 mRULE_UNRESTRICTED_NAME(); 
 
                 }
                 break;
             case 110 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:729: RULE_STRING
+                // InternalAlf.g:1:729: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
             case 111 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:741: RULE_DOCUMENTATION_COMMENT
+                // InternalAlf.g:1:741: RULE_DOCUMENTATION_COMMENT
                 {
                 mRULE_DOCUMENTATION_COMMENT(); 
 
                 }
                 break;
             case 112 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:768: RULE_STATEMENT_ANNOTATION
+                // InternalAlf.g:1:768: RULE_STATEMENT_ANNOTATION
                 {
                 mRULE_STATEMENT_ANNOTATION(); 
 
                 }
                 break;
             case 113 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:794: RULE_INLINE_STATEMENT
+                // InternalAlf.g:1:794: RULE_INLINE_STATEMENT
                 {
                 mRULE_INLINE_STATEMENT(); 
 
                 }
                 break;
             case 114 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:816: RULE_ML_COMMENT
+                // InternalAlf.g:1:816: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
             case 115 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:832: RULE_SL_COMMENT
+                // InternalAlf.g:1:832: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
             case 116 :
-                // ../org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.g:1:848: RULE_WS
+                // InternalAlf.g:1:848: RULE_WS
                 {
                 mRULE_WS(); 
 
@@ -4283,123 +4283,19 @@ public class InternalAlfLexer extends Lexer {
 
     protected DFA28 dfa28 = new DFA28(this);
     static final String DFA28_eotS =
-        "\5\uffff\1\62\1\64\1\54\1\uffff\2\54\1\102\1\104\1\54\2\uffff\2"+
-        "\54\1\123\1\126\3\54\2\uffff\1\54\1\142\1\54\1\150\1\152\2\uffff"+
-        "\1\156\1\160\1\54\1\164\1\166\1\171\1\uffff\4\54\12\uffff\5\54\1"+
-        "\u0087\1\u0088\1\u008a\4\54\4\uffff\14\54\1\u009f\2\uffff\1\u00a2"+
-        "\2\uffff\1\u00a3\5\54\1\u00ab\1\54\4\uffff\1\54\1\u00b0\1\54\7\uffff"+
-        "\1\u00b6\3\uffff\1\54\10\uffff\10\54\1\u00c0\4\54\2\uffff\1\54\1"+
-        "\uffff\3\54\1\u00c9\17\54\2\uffff\1\u00da\3\uffff\5\54\1\u00e0\1"+
-        "\54\1\uffff\4\54\1\uffff\1\54\5\uffff\1\54\1\u00e9\1\54\1\u00eb"+
-        "\5\54\1\uffff\1\u00f1\7\54\1\uffff\16\54\1\u0107\2\uffff\3\54\1"+
-        "\u010b\1\u010c\1\uffff\5\54\1\u0112\1\u0113\1\54\1\uffff\1\54\1"+
-        "\uffff\1\u0116\4\54\1\uffff\1\54\1\u011c\1\54\1\u011e\13\54\1\u012b"+
-        "\1\54\1\u012e\3\54\1\uffff\3\54\2\uffff\5\54\2\uffff\1\54\1\u013b"+
-        "\1\uffff\1\u0113\1\u013c\2\54\1\u013f\1\uffff\1\54\1\uffff\1\54"+
-        "\1\u0142\1\54\1\u0144\1\54\1\u0146\4\54\1\u014b\1\54\1\uffff\1\u014d"+
-        "\1\54\1\uffff\10\54\1\u0157\1\54\1\u0159\1\54\2\uffff\2\54\1\uffff"+
-        "\2\54\1\uffff\1\54\1\uffff\1\54\1\uffff\1\u0161\1\54\1\u0163\1\54"+
-        "\1\uffff\1\54\1\uffff\2\54\1\u0168\3\54\1\u016c\1\u016d\1\54\1\uffff"+
-        "\1\u016f\1\uffff\1\u0170\3\54\1\u0174\1\u0175\1\54\1\uffff\1\54"+
-        "\1\uffff\1\54\1\u0179\1\u017a\1\54\1\uffff\1\54\1\u017d\1\54\2\uffff"+
-        "\1\54\2\uffff\1\u0180\1\u0181\1\54\2\uffff\1\54\1\u0184\1\54\2\uffff"+
-        "\2\54\1\uffff\1\54\1\u0189\2\uffff\1\u018a\1\54\1\uffff\1\54\1\u018d"+
-        "\1\u018e\1\54\2\uffff\1\54\1\u0191\2\uffff\1\u0192\1\u0193\3\uffff";
+        "\5\uffff\1\62\1\64\1\54\1\uffff\2\54\1\102\1\104\1\54\2\uffff\2\54\1\123\1\126\3\54\2\uffff\1\54\1\142\1\54\1\150\1\152\2\uffff\1\156\1\160\1\54\1\164\1\166\1\171\1\uffff\4\54\12\uffff\5\54\1\u0087\1\u0088\1\u008a\4\54\4\uffff\14\54\1\u009f\2\uffff\1\u00a2\2\uffff\1\u00a3\5\54\1\u00ab\1\54\4\uffff\1\54\1\u00b0\1\54\7\uffff\1\u00b6\3\uffff\1\54\10\uffff\10\54\1\u00c0\4\54\2\uffff\1\54\1\uffff\3\54\1\u00c9\17\54\2\uffff\1\u00da\3\uffff\5\54\1\u00e0\1\54\1\uffff\4\54\1\uffff\1\54\5\uffff\1\54\1\u00e9\1\54\1\u00eb\5\54\1\uffff\1\u00f1\7\54\1\uffff\16\54\1\u0107\2\uffff\3\54\1\u010b\1\u010c\1\uffff\5\54\1\u0112\1\u0113\1\54\1\uffff\1\54\1\uffff\1\u0116\4\54\1\uffff\1\54\1\u011c\1\54\1\u011e\13\54\1\u012b\1\54\1\u012e\3\54\1\uffff\3\54\2\uffff\5\54\2\uffff\1\54\1\u013b\1\uffff\1\u0113\1\u013c\2\54\1\u013f\1\uffff\1\54\1\uffff\1\54\1\u0142\1\54\1\u0144\1\54\1\u0146\4\54\1\u014b\1\54\1\uffff\1\u014d\1\54\1\uffff\10\54\1\u0157\1\54\1\u0159\1\54\2\uffff\2\54\1\uffff\2\54\1\uffff\1\54\1\uffff\1\54\1\uffff\1\u0161\1\54\1\u0163\1\54\1\uffff\1\54\1\uffff\2\54\1\u0168\3\54\1\u016c\1\u016d\1\54\1\uffff\1\u016f\1\uffff\1\u0170\3\54\1\u0174\1\u0175\1\54\1\uffff\1\54\1\uffff\1\54\1\u0179\1\u017a\1\54\1\uffff\1\54\1\u017d\1\54\2\uffff\1\54\2\uffff\1\u0180\1\u0181\1\54\2\uffff\1\54\1\u0184\1\54\2\uffff\2\54\1\uffff\1\54\1\u0189\2\uffff\1\u018a\1\54\1\uffff\1\54\1\u018d\1\u018e\1\54\2\uffff\1\54\1\u0191\2\uffff\1\u0192\1\u0193\3\uffff";
     static final String DFA28_eofS =
         "\u0194\uffff";
     static final String DFA28_minS =
-        "\1\11\4\uffff\2\75\1\141\1\uffff\1\146\1\142\1\72\1\56\1\141\2"+
-        "\uffff\1\145\1\141\1\74\1\75\1\141\1\154\1\162\2\uffff\1\145\1\55"+
-        "\1\150\1\53\1\75\2\uffff\1\52\1\75\1\141\1\46\2\75\1\uffff\1\145"+
-        "\1\150\1\141\1\162\12\uffff\1\155\1\156\1\167\1\154\1\160\3\60\1"+
-        "\163\1\143\1\171\1\154\4\uffff\1\142\1\151\1\143\1\145\1\147\1\161"+
-        "\1\160\1\151\1\141\1\155\1\145\1\163\1\75\2\uffff\1\75\2\uffff\1"+
-        "\60\1\164\1\146\1\165\1\163\1\164\1\60\1\143\4\uffff\1\151\1\60"+
-        "\1\165\6\uffff\1\0\1\100\3\uffff\1\163\10\uffff\1\164\1\151\1\162"+
-        "\1\157\1\154\2\145\1\165\1\60\1\154\1\157\1\165\1\164\2\uffff\1"+
-        "\157\1\uffff\1\164\1\151\1\145\1\60\1\111\1\154\1\166\1\164\1\153"+
-        "\1\143\1\156\1\165\1\145\1\164\1\163\1\141\1\160\1\141\1\145\2\uffff"+
-        "\1\75\3\uffff\1\141\1\164\1\141\1\155\1\145\1\60\1\145\1\uffff\2"+
-        "\145\1\165\1\163\1\uffff\1\145\5\uffff\1\164\1\60\1\154\1\60\1\155"+
-        "\1\163\1\141\1\163\1\156\1\uffff\1\60\1\162\1\164\1\141\1\143\1"+
-        "\162\1\166\1\160\1\uffff\1\156\1\151\1\141\1\145\1\141\1\151\1\141"+
-        "\1\145\1\162\1\143\1\163\1\162\1\157\1\164\1\60\2\uffff\1\164\1"+
-        "\162\1\165\2\60\1\uffff\1\162\1\146\1\143\1\151\1\162\2\60\1\171"+
-        "\1\uffff\1\145\1\uffff\1\60\1\145\1\153\1\160\1\151\1\uffff\1\164"+
-        "\1\60\1\156\1\60\1\141\1\145\1\164\1\163\1\143\1\164\1\143\1\147"+
-        "\1\141\1\154\1\156\1\60\1\150\1\60\1\101\1\163\1\145\1\uffff\1\171"+
-        "\1\157\1\154\2\uffff\1\145\1\151\1\145\1\166\1\156\2\uffff\1\160"+
-        "\1\60\1\uffff\2\60\1\141\1\161\1\60\1\uffff\1\143\1\uffff\1\143"+
-        "\1\60\1\164\1\60\1\164\1\60\1\145\1\164\1\145\1\154\1\60\1\143\1"+
-        "\uffff\1\60\1\146\1\uffff\1\163\1\145\1\114\1\160\1\171\1\164\1"+
-        "\144\1\156\1\60\1\145\1\60\1\145\2\uffff\1\143\1\165\1\uffff\1\145"+
-        "\1\164\1\uffff\1\171\1\uffff\1\141\1\uffff\1\60\1\145\1\60\1\151"+
-        "\1\uffff\1\145\1\uffff\1\171\1\163\1\60\1\151\1\145\1\114\2\60\1"+
-        "\145\1\uffff\1\60\1\uffff\1\60\2\145\1\157\2\60\1\156\1\uffff\1"+
-        "\144\1\uffff\1\172\2\60\1\157\1\uffff\1\156\1\60\1\151\2\uffff\1"+
-        "\163\2\uffff\2\60\1\146\2\uffff\1\143\1\60\1\145\2\uffff\1\143\1"+
-        "\153\1\uffff\1\156\1\60\2\uffff\1\60\1\145\1\uffff\1\163\2\60\1"+
-        "\153\2\uffff\1\163\1\60\2\uffff\2\60\3\uffff";
+        "\1\11\4\uffff\2\75\1\141\1\uffff\1\146\1\142\1\72\1\56\1\141\2\uffff\1\145\1\141\1\74\1\75\1\141\1\154\1\162\2\uffff\1\145\1\55\1\150\1\53\1\75\2\uffff\1\52\1\75\1\141\1\46\2\75\1\uffff\1\145\1\150\1\141\1\162\12\uffff\1\155\1\156\1\167\1\154\1\160\3\60\1\163\1\143\1\171\1\154\4\uffff\1\142\1\151\1\143\1\145\1\147\1\161\1\160\1\151\1\141\1\155\1\145\1\163\1\75\2\uffff\1\75\2\uffff\1\60\1\164\1\146\1\165\1\163\1\164\1\60\1\143\4\uffff\1\151\1\60\1\165\6\uffff\1\0\1\100\3\uffff\1\163\10\uffff\1\164\1\151\1\162\1\157\1\154\2\145\1\165\1\60\1\154\1\157\1\165\1\164\2\uffff\1\157\1\uffff\1\164\1\151\1\145\1\60\1\111\1\154\1\166\1\164\1\153\1\143\1\156\1\165\1\145\1\164\1\163\1\141\1\160\1\141\1\145\2\uffff\1\75\3\uffff\1\141\1\164\1\141\1\155\1\145\1\60\1\145\1\uffff\2\145\1\165\1\163\1\uffff\1\145\5\uffff\1\164\1\60\1\154\1\60\1\155\1\163\1\141\1\163\1\156\1\uffff\1\60\1\162\1\164\1\141\1\143\1\162\1\166\1\160\1\uffff\1\156\1\151\1\141\1\145\1\141\1\151\1\141\1\145\1\162\1\143\1\163\1\162\1\157\1\164\1\60\2\uffff\1\164\1\162\1\165\2\60\1\uffff\1\162\1\146\1\143\1\151\1\162\2\60\1\171\1\uffff\1\145\1\uffff\1\60\1\145\1\153\1\160\1\151\1\uffff\1\164\1\60\1\156\1\60\1\141\1\145\1\164\1\163\1\143\1\164\1\143\1\147\1\141\1\154\1\156\1\60\1\150\1\60\1\101\1\163\1\145\1\uffff\1\171\1\157\1\154\2\uffff\1\145\1\151\1\145\1\166\1\156\2\uffff\1\160\1\60\1\uffff\2\60\1\141\1\161\1\60\1\uffff\1\143\1\uffff\1\143\1\60\1\164\1\60\1\164\1\60\1\145\1\164\1\145\1\154\1\60\1\143\1\uffff\1\60\1\146\1\uffff\1\163\1\145\1\114\1\160\1\171\1\164\1\144\1\156\1\60\1\145\1\60\1\145\2\uffff\1\143\1\165\1\uffff\1\145\1\164\1\uffff\1\171\1\uffff\1\141\1\uffff\1\60\1\145\1\60\1\151\1\uffff\1\145\1\uffff\1\171\1\163\1\60\1\151\1\145\1\114\2\60\1\145\1\uffff\1\60\1\uffff\1\60\2\145\1\157\2\60\1\156\1\uffff\1\144\1\uffff\1\172\2\60\1\157\1\uffff\1\156\1\60\1\151\2\uffff\1\163\2\uffff\2\60\1\146\2\uffff\1\143\1\60\1\145\2\uffff\1\143\1\153\1\uffff\1\156\1\60\2\uffff\1\60\1\145\1\uffff\1\163\2\60\1\153\2\uffff\1\163\1\60\2\uffff\2\60\3\uffff";
     static final String DFA28_maxS =
-        "\1\176\4\uffff\1\76\1\75\1\165\1\uffff\1\156\1\163\1\72\1\56\1"+
-        "\165\2\uffff\1\167\1\162\1\75\1\76\1\157\1\156\1\165\2\uffff\1\145"+
-        "\1\76\1\162\2\75\2\uffff\2\75\1\141\2\75\1\174\1\uffff\1\145\1\150"+
-        "\2\162\12\uffff\1\155\1\156\1\167\1\154\1\160\3\172\1\163\1\164"+
-        "\1\171\1\154\4\uffff\1\142\1\157\1\143\1\145\1\147\1\161\1\160\1"+
-        "\151\1\145\1\155\1\145\1\163\1\75\2\uffff\1\76\2\uffff\1\172\1\164"+
-        "\1\163\1\165\1\163\1\164\1\172\1\164\4\uffff\1\151\1\172\1\165\6"+
-        "\uffff\1\uffff\1\100\3\uffff\1\163\10\uffff\1\164\1\151\1\162\1"+
-        "\157\1\154\2\145\1\165\1\172\1\154\1\157\1\165\1\164\2\uffff\1\157"+
-        "\1\uffff\1\164\1\151\1\145\1\172\1\111\1\154\1\166\1\164\1\153\1"+
-        "\143\1\156\1\165\1\145\1\164\1\163\1\141\1\160\1\141\1\145\2\uffff"+
-        "\1\75\3\uffff\1\141\1\164\1\141\1\155\1\145\1\172\1\145\1\uffff"+
-        "\1\165\1\145\1\165\1\163\1\uffff\1\145\5\uffff\1\164\1\172\1\154"+
-        "\1\172\1\155\1\163\1\141\1\163\1\156\1\uffff\1\172\1\162\1\164\1"+
-        "\141\1\143\1\162\1\166\1\160\1\uffff\1\156\1\151\1\141\1\145\1\141"+
-        "\1\151\1\141\1\145\1\162\1\143\1\163\1\162\1\157\1\164\1\172\2\uffff"+
-        "\1\164\1\162\1\165\2\172\1\uffff\1\162\1\146\1\143\1\151\1\162\2"+
-        "\172\1\171\1\uffff\1\145\1\uffff\1\172\1\145\1\153\1\160\1\151\1"+
-        "\uffff\1\164\1\172\1\156\1\172\1\141\1\151\1\164\1\163\1\143\1\164"+
-        "\1\143\1\147\1\141\1\154\1\156\1\172\1\150\1\172\1\101\1\163\1\145"+
-        "\1\uffff\1\171\1\157\1\154\2\uffff\1\145\1\151\1\145\1\166\1\156"+
-        "\2\uffff\1\160\1\172\1\uffff\2\172\1\141\1\161\1\172\1\uffff\1\143"+
-        "\1\uffff\1\143\1\172\1\164\1\172\1\164\1\172\1\145\1\164\1\145\1"+
-        "\154\1\172\1\143\1\uffff\1\172\1\146\1\uffff\1\163\1\145\1\114\1"+
-        "\160\1\171\1\164\1\144\1\156\1\172\1\145\1\172\1\145\2\uffff\1\143"+
-        "\1\165\1\uffff\1\145\1\164\1\uffff\1\171\1\uffff\1\141\1\uffff\1"+
-        "\172\1\145\1\172\1\151\1\uffff\1\145\1\uffff\1\171\1\163\1\172\1"+
-        "\151\1\145\1\114\2\172\1\145\1\uffff\1\172\1\uffff\1\172\2\145\1"+
-        "\157\2\172\1\156\1\uffff\1\144\1\uffff\3\172\1\157\1\uffff\1\156"+
-        "\1\172\1\151\2\uffff\1\163\2\uffff\2\172\1\146\2\uffff\1\143\1\172"+
-        "\1\145\2\uffff\1\143\1\153\1\uffff\1\156\1\172\2\uffff\1\172\1\145"+
-        "\1\uffff\1\163\2\172\1\153\2\uffff\1\163\1\172\2\uffff\2\172\3\uffff";
+        "\1\176\4\uffff\1\76\1\75\1\165\1\uffff\1\156\1\163\1\72\1\56\1\165\2\uffff\1\167\1\162\1\75\1\76\1\157\1\156\1\165\2\uffff\1\145\1\76\1\162\2\75\2\uffff\2\75\1\141\2\75\1\174\1\uffff\1\145\1\150\2\162\12\uffff\1\155\1\156\1\167\1\154\1\160\3\172\1\163\1\164\1\171\1\154\4\uffff\1\142\1\157\1\143\1\145\1\147\1\161\1\160\1\151\1\145\1\155\1\145\1\163\1\75\2\uffff\1\76\2\uffff\1\172\1\164\1\163\1\165\1\163\1\164\1\172\1\164\4\uffff\1\151\1\172\1\165\6\uffff\1\uffff\1\100\3\uffff\1\163\10\uffff\1\164\1\151\1\162\1\157\1\154\2\145\1\165\1\172\1\154\1\157\1\165\1\164\2\uffff\1\157\1\uffff\1\164\1\151\1\145\1\172\1\111\1\154\1\166\1\164\1\153\1\143\1\156\1\165\1\145\1\164\1\163\1\141\1\160\1\141\1\145\2\uffff\1\75\3\uffff\1\141\1\164\1\141\1\155\1\145\1\172\1\145\1\uffff\1\165\1\145\1\165\1\163\1\uffff\1\145\5\uffff\1\164\1\172\1\154\1\172\1\155\1\163\1\141\1\163\1\156\1\uffff\1\172\1\162\1\164\1\141\1\143\1\162\1\166\1\160\1\uffff\1\156\1\151\1\141\1\145\1\141\1\151\1\141\1\145\1\162\1\143\1\163\1\162\1\157\1\164\1\172\2\uffff\1\164\1\162\1\165\2\172\1\uffff\1\162\1\146\1\143\1\151\1\162\2\172\1\171\1\uffff\1\145\1\uffff\1\172\1\145\1\153\1\160\1\151\1\uffff\1\164\1\172\1\156\1\172\1\141\1\151\1\164\1\163\1\143\1\164\1\143\1\147\1\141\1\154\1\156\1\172\1\150\1\172\1\101\1\163\1\145\1\uffff\1\171\1\157\1\154\2\uffff\1\145\1\151\1\145\1\166\1\156\2\uffff\1\160\1\172\1\uffff\2\172\1\141\1\161\1\172\1\uffff\1\143\1\uffff\1\143\1\172\1\164\1\172\1\164\1\172\1\145\1\164\1\145\1\154\1\172\1\143\1\uffff\1\172\1\146\1\uffff\1\163\1\145\1\114\1\160\1\171\1\164\1\144\1\156\1\172\1\145\1\172\1\145\2\uffff\1\143\1\165\1\uffff\1\145\1\164\1\uffff\1\171\1\uffff\1\141\1\uffff\1\172\1\145\1\172\1\151\1\uffff\1\145\1\uffff\1\171\1\163\1\172\1\151\1\145\1\114\2\172\1\145\1\uffff\1\172\1\uffff\1\172\2\145\1\157\2\172\1\156\1\uffff\1\144\1\uffff\3\172\1\157\1\uffff\1\156\1\172\1\151\2\uffff\1\163\2\uffff\2\172\1\146\2\uffff\1\143\1\172\1\145\2\uffff\1\143\1\153\1\uffff\1\156\1\172\2\uffff\1\172\1\145\1\uffff\1\163\2\172\1\153\2\uffff\1\163\1\172\2\uffff\2\172\3\uffff";
     static final String DFA28_acceptS =
-        "\1\uffff\1\1\1\2\1\3\1\4\3\uffff\1\10\5\uffff\1\21\1\22\7\uffff"+
-        "\1\46\1\47\5\uffff\1\73\1\76\6\uffff\1\117\4\uffff\1\153\1\154\1"+
-        "\155\1\156\1\164\1\5\1\110\1\43\1\122\1\6\14\uffff\1\13\1\37\1\50"+
-        "\1\14\15\uffff\1\104\1\26\1\uffff\1\105\1\27\10\uffff\1\56\1\71"+
-        "\1\121\1\75\3\uffff\1\70\1\120\1\74\1\111\1\72\1\123\2\uffff\1\77"+
-        "\1\124\1\100\1\uffff\1\115\1\125\1\112\1\127\1\113\1\116\1\126\1"+
-        "\114\15\uffff\1\40\1\134\1\uffff\1\12\23\uffff\1\130\1\101\1\uffff"+
-        "\1\131\1\102\1\31\7\uffff\1\136\4\uffff\1\151\1\uffff\1\157\1\161"+
-        "\1\162\1\160\1\163\11\uffff\1\62\10\uffff\1\45\17\uffff\1\132\1"+
-        "\103\5\uffff\1\41\10\uffff\1\133\1\uffff\1\143\5\uffff\1\67\25\uffff"+
-        "\1\140\3\uffff\1\34\1\135\5\uffff\1\60\1\152\2\uffff\1\150\5\uffff"+
-        "\1\42\1\uffff\1\33\14\uffff\1\61\2\uffff\1\25\14\uffff\1\142\1\144"+
-        "\2\uffff\1\11\2\uffff\1\30\1\uffff\1\146\1\uffff\1\15\4\uffff\1"+
-        "\35\1\uffff\1\137\11\uffff\1\57\1\uffff\1\145\7\uffff\1\16\1\uffff"+
-        "\1\20\4\uffff\1\44\3\uffff\1\141\1\51\1\uffff\1\55\1\107\3\uffff"+
-        "\1\24\1\36\3\uffff\1\53\1\147\2\uffff\1\32\2\uffff\1\7\1\52\2\uffff"+
-        "\1\17\4\uffff\1\54\1\106\2\uffff\1\65\1\63\2\uffff\1\23\1\64\1\66";
+        "\1\uffff\1\1\1\2\1\3\1\4\3\uffff\1\10\5\uffff\1\21\1\22\7\uffff\1\46\1\47\5\uffff\1\73\1\76\6\uffff\1\117\4\uffff\1\153\1\154\1\155\1\156\1\164\1\5\1\110\1\43\1\122\1\6\14\uffff\1\13\1\37\1\50\1\14\15\uffff\1\104\1\26\1\uffff\1\105\1\27\10\uffff\1\56\1\71\1\121\1\75\3\uffff\1\70\1\120\1\74\1\111\1\72\1\123\2\uffff\1\77\1\124\1\100\1\uffff\1\115\1\125\1\112\1\127\1\113\1\116\1\126\1\114\15\uffff\1\40\1\134\1\uffff\1\12\23\uffff\1\130\1\101\1\uffff\1\131\1\102\1\31\7\uffff\1\136\4\uffff\1\151\1\uffff\1\157\1\161\1\162\1\160\1\163\11\uffff\1\62\10\uffff\1\45\17\uffff\1\132\1\103\5\uffff\1\41\10\uffff\1\133\1\uffff\1\143\5\uffff\1\67\25\uffff\1\140\3\uffff\1\34\1\135\5\uffff\1\60\1\152\2\uffff\1\150\5\uffff\1\42\1\uffff\1\33\14\uffff\1\61\2\uffff\1\25\14\uffff\1\142\1\144\2\uffff\1\11\2\uffff\1\30\1\uffff\1\146\1\uffff\1\15\4\uffff\1\35\1\uffff\1\137\11\uffff\1\57\1\uffff\1\145\7\uffff\1\16\1\uffff\1\20\4\uffff\1\44\3\uffff\1\141\1\51\1\uffff\1\55\1\107\3\uffff\1\24\1\36\3\uffff\1\53\1\147\2\uffff\1\32\2\uffff\1\7\1\52\2\uffff\1\17\4\uffff\1\54\1\106\2\uffff\1\65\1\63\2\uffff\1\23\1\64\1\66";
     static final String DFA28_specialS =
         "\154\uffff\1\0\u0127\uffff}>";
     static final String[] DFA28_transitionS = {
-            "\2\57\2\uffff\1\57\22\uffff\1\57\1\35\1\56\1\uffff\1\37\1\41"+
-            "\1\43\1\55\1\2\1\3\1\6\1\34\1\4\1\32\1\14\1\40\12\53\1\13\1"+
-            "\10\1\22\1\5\1\23\1\46\1\1\32\54\1\27\1\uffff\1\30\1\44\1\54"+
-            "\1\uffff\1\12\1\52\1\21\1\24\1\25\1\51\1\54\1\42\1\11\2\54\1"+
-            "\47\1\54\1\7\1\26\1\15\1\54\1\31\1\20\1\33\2\54\1\50\3\54\1"+
-            "\16\1\45\1\17\1\36",
+            "\2\57\2\uffff\1\57\22\uffff\1\57\1\35\1\56\1\uffff\1\37\1\41\1\43\1\55\1\2\1\3\1\6\1\34\1\4\1\32\1\14\1\40\12\53\1\13\1\10\1\22\1\5\1\23\1\46\1\1\32\54\1\27\1\uffff\1\30\1\44\1\54\1\uffff\1\12\1\52\1\21\1\24\1\25\1\51\1\54\1\42\1\11\2\54\1\47\1\54\1\7\1\26\1\15\1\54\1\31\1\20\1\33\2\54\1\50\3\54\1\16\1\45\1\17\1\36",
             "",
             "",
             "",
@@ -4415,8 +4311,7 @@ public class InternalAlfLexer extends Lexer {
             "\1\107\20\uffff\1\106\2\uffff\1\105",
             "",
             "",
-            "\1\112\3\uffff\1\111\6\uffff\1\110\4\uffff\1\113\1\uffff\1"+
-            "\114",
+            "\1\112\3\uffff\1\111\6\uffff\1\110\4\uffff\1\113\1\uffff\1\114",
             "\1\120\12\uffff\1\115\2\uffff\1\116\2\uffff\1\117",
             "\1\121\1\122",
             "\1\125\1\124",
@@ -4458,11 +4353,9 @@ public class InternalAlfLexer extends Lexer {
             "\1\u0082",
             "\1\u0083",
             "\1\u0084",
-            "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\16\54\1\u0085\3"+
-            "\54\1\u0086\7\54",
+            "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\16\54\1\u0085\3\54\1\u0086\7\54",
             "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\32\54",
-            "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\22\54\1\u0089\7"+
-            "\54",
+            "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\22\54\1\u0089\7\54",
             "\1\u008b",
             "\1\u008d\20\uffff\1\u008c",
             "\1\u008e",
@@ -4495,8 +4388,7 @@ public class InternalAlfLexer extends Lexer {
             "\1\u00a7",
             "\1\u00a8",
             "\1\u00a9",
-            "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\3\54\1\u00aa\26"+
-            "\54",
+            "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\3\54\1\u00aa\26\54",
             "\1\u00ad\1\u00ac\17\uffff\1\u00ae",
             "",
             "",
@@ -4662,8 +4554,7 @@ public class InternalAlfLexer extends Lexer {
             "\1\u012a",
             "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\32\54",
             "\1\u012c",
-            "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\10\54\1\u012d\21"+
-            "\54",
+            "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\10\54\1\u012d\21\54",
             "\1\u012f",
             "\1\u0130",
             "\1\u0131",

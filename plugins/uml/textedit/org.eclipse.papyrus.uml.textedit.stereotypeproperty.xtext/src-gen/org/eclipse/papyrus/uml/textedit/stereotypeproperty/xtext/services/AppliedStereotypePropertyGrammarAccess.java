@@ -19,7 +19,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	
 	
 	public class AppliedStereotypePropertyRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AppliedStereotypePropertyRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.AppliedStereotypePropertyRule");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueExpressionValueRuleParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
@@ -35,20 +35,20 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	public class ExpressionValueRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExpressionValueRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypeProperty.ExpressionValueRule");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cEqualsSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cExpressionAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cExpressionSequenceElementParserRuleCall_1_0 = (RuleCall)cExpressionAssignment_1.eContents().get(0);
 		
 		//ExpressionValueRule:
-		//	"=" expression=SequenceElement;
+		//	'=' expression=SequenceElement;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"=" expression=SequenceElement
+		//'=' expression=SequenceElement
 		public Group getGroup() { return cGroup; }
 
-		//"="
+		//'='
 		public Keyword getEqualsSignKeyword_0() { return cEqualsSignKeyword_0; }
 
 		//expression=SequenceElement
@@ -113,7 +113,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//ExpressionValueRule:
-	//	"=" expression=SequenceElement;
+	//	'=' expression=SequenceElement;
 	public ExpressionValueRuleElements getExpressionValueRuleAccess() {
 		return pExpressionValueRule;
 	}
@@ -125,8 +125,11 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	/// *********
 	// * UNITS *
 	// ********* / UnitDefinition:
-	//	namespaceName=NamespaceDeclaration? ^import+=ImportDeclaration* documentation+=DOCUMENTATION_COMMENT?
-	//	annotation+=StereotypeAnnotation* definition=NamespaceDefinition;
+	//	namespaceName=NamespaceDeclaration?
+	//	^import+=ImportDeclaration*
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	annotation+=StereotypeAnnotation*
+	//	definition=NamespaceDefinition;
 	public AlfGrammarAccess.UnitDefinitionElements getUnitDefinitionAccess() {
 		return gaAlf.getUnitDefinitionAccess();
 	}
@@ -136,7 +139,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//StereotypeAnnotation:
-	//	"@" stereotypeName=QualifiedName ("(" (names=QualifiedNameList | taggedValues=TaggedValueList) ")")?;
+	//	'@' stereotypeName=QualifiedName ('(' (names=QualifiedNameList | taggedValues=TaggedValueList) ')')?;
 	public AlfGrammarAccess.StereotypeAnnotationElements getStereotypeAnnotationAccess() {
 		return gaAlf.getStereotypeAnnotationAccess();
 	}
@@ -145,7 +148,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getStereotypeAnnotationAccess().getRule();
 	}
 
-	//TaggedValueList: // CHANGE: Made taggedValue composite in the metamodel.
+	//TaggedValueList:
 	//	taggedValue+=TaggedValue ("," taggedValue+=TaggedValue)*;
 	public AlfGrammarAccess.TaggedValueListElements getTaggedValueListAccess() {
 		return gaAlf.getTaggedValueListAccess();
@@ -156,7 +159,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//TaggedValue:
-	//	name=Name "=>" (value=BOOLEAN_VALUE | operator=NumericUnaryOperator? value=NATURAL_VALUE | value="*" | value=STRING);
+	//	name=Name '=>' (value=BOOLEAN_VALUE | operator=NumericUnaryOperator? value=NATURAL_VALUE | value='*' | value=STRING);
 	public AlfGrammarAccess.TaggedValueElements getTaggedValueAccess() {
 		return gaAlf.getTaggedValueAccess();
 	}
@@ -165,8 +168,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getTaggedValueAccess().getRule();
 	}
 
-	//NamespaceDeclaration returns QualifiedName:
-	//	"namespace" QualifiedName ";";
+	//NamespaceDeclaration QualifiedName:
+	//	'namespace' QualifiedName ';'
 	public AlfGrammarAccess.NamespaceDeclarationElements getNamespaceDeclarationAccess() {
 		return gaAlf.getNamespaceDeclarationAccess();
 	}
@@ -175,8 +178,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getNamespaceDeclarationAccess().getRule();
 	}
 
-	//ImportDeclaration returns ImportReference:
-	//	(PackageImportReference | ElementImportReference) ";";
+	//ImportDeclaration ImportReference:
+	//	(PackageImportReference | ElementImportReference) ';'
 	public AlfGrammarAccess.ImportDeclarationElements getImportDeclarationAccess() {
 		return gaAlf.getImportDeclarationAccess();
 	}
@@ -186,7 +189,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//ElementImportReference:
-	//	visibility=ImportVisibilityIndicator "import" referentName=QualifiedName ("as" alias=Name)?;
+	//	visibility=ImportVisibilityIndicator 'import' referentName=QualifiedName ('as' alias=Name)?;
 	public AlfGrammarAccess.ElementImportReferenceElements getElementImportReferenceAccess() {
 		return gaAlf.getElementImportReferenceAccess();
 	}
@@ -195,13 +198,14 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getElementImportReferenceAccess().getRule();
 	}
 
-	////  ( 
-	////    referentName = UnqualifiedName ('::' | '.') '*' |
-	////    referentName = ColonQualifiedName '::' '*' | 
-	////    referentName = DotQualifiedName '.' '*'
-	////  )
 	//PackageImportReference:
-	//	visibility=ImportVisibilityIndicator "import" referentName=PackageImportQualifiedName;
+	//	visibility=ImportVisibilityIndicator 'import' referentName=PackageImportQualifiedName
+	//	//  ( 
+	//	//    referentName = UnqualifiedName ('::' | '.') '*' |
+	//	//    referentName = ColonQualifiedName '::' '*' | 
+	//	//    referentName = DotQualifiedName '.' '*'
+	//	//  )
+	//;
 	public AlfGrammarAccess.PackageImportReferenceElements getPackageImportReferenceAccess() {
 		return gaAlf.getPackageImportReferenceAccess();
 	}
@@ -210,8 +214,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getPackageImportReferenceAccess().getRule();
 	}
 
-	//PackageImportQualifiedName returns QualifiedName:
-	//	nameBinding+=NameBinding (("::" nameBinding+=NameBinding)* "::" "*" | ("." nameBinding+=NameBinding)* "." "*");
+	//PackageImportQualifiedName QualifiedName:
+	//	nameBinding+=NameBinding (('::' nameBinding+=NameBinding)* '::' '*' | ('.' nameBinding+=NameBinding)* '.' '*')
 	public AlfGrammarAccess.PackageImportQualifiedNameElements getPackageImportQualifiedNameAccess() {
 		return gaAlf.getPackageImportQualifiedNameAccess();
 	}
@@ -221,7 +225,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//ImportVisibilityIndicator:
-	//	"public" | "private";
+	//	'public' | 'private';
 	public AlfGrammarAccess.ImportVisibilityIndicatorElements getImportVisibilityIndicatorAccess() {
 		return gaAlf.getImportVisibilityIndicatorAccess();
 	}
@@ -241,7 +245,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//VisibilityIndicator:
-	//	ImportVisibilityIndicator | "protected";
+	//	ImportVisibilityIndicator | 'protected';
 	public AlfGrammarAccess.VisibilityIndicatorElements getVisibilityIndicatorAccess() {
 		return gaAlf.getVisibilityIndicatorAccess();
 	}
@@ -252,7 +256,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 
 	//// CHANGE: Separated Member into Member with a composite reference to MemberDefinition.
 	/// * PACKAGES * / PackageDefinition:
-	//	"package" name=Name "{" ownedMember+=PackagedElement* "}";
+	//	'package' name=Name '{' ownedMember+=PackagedElement* '}';
 	public AlfGrammarAccess.PackageDefinitionElements getPackageDefinitionAccess() {
 		return gaAlf.getPackageDefinitionAccess();
 	}
@@ -261,8 +265,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getPackageDefinitionAccess().getRule();
 	}
 
-	//PackageDefinitionOrStub returns PackageDefinition:
-	//	"package" name=Name (isStub?=";" | "{" ownedMember+=PackagedElement* "}");
+	//PackageDefinitionOrStub PackageDefinition:
+	//	'package' name=Name (isStub?=';' | '{' ownedMember+=PackagedElement* '}')
 	public AlfGrammarAccess.PackageDefinitionOrStubElements getPackageDefinitionOrStubAccess() {
 		return gaAlf.getPackageDefinitionOrStubAccess();
 	}
@@ -274,9 +278,11 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	//// PackageBody : 
 	//// 	{PackageBody}'{' ( packagedElement += PackagedElement )* '}'
 	//// ;
-	//PackagedElement returns Member:
-	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=ImportVisibilityIndicator
-	//	definition=PackagedElementDefinition;
+	//PackagedElement Member:
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	annotation+=StereotypeAnnotation*
+	//	visibility=ImportVisibilityIndicator
+	//	definition=PackagedElementDefinition
 	public AlfGrammarAccess.PackagedElementElements getPackagedElementAccess() {
 		return gaAlf.getPackagedElementAccess();
 	}
@@ -285,8 +291,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getPackagedElementAccess().getRule();
 	}
 
-	//PackagedElementDefinition returns MemberDefinition:
-	//	PackageDefinitionOrStub | ClassifierDefinitionOrStub;
+	//PackagedElementDefinition MemberDefinition:
+	//	PackageDefinitionOrStub | ClassifierDefinitionOrStub
 	public AlfGrammarAccess.PackagedElementDefinitionElements getPackagedElementDefinitionAccess() {
 		return gaAlf.getPackagedElementDefinitionAccess();
 	}
@@ -308,9 +314,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getClassifierDefinitionAccess().getRule();
 	}
 
-	//ClassifierDefinitionOrStub returns ClassifierDefinition:
+	//ClassifierDefinitionOrStub ClassifierDefinition:
 	//	ClassDefinitionOrStub | ActiveClassDefinitionOrStub | DataTypeDefinitionOrStub | EnumerationDefinitionOrStub |
-	//	AssociationDefinitionOrStub | SignalDefinitionOrStub | ActivityDefinitionOrStub;
+	//	AssociationDefinitionOrStub | SignalDefinitionOrStub | ActivityDefinitionOrStub
 	public AlfGrammarAccess.ClassifierDefinitionOrStubElements getClassifierDefinitionOrStubAccess() {
 		return gaAlf.getClassifierDefinitionOrStubAccess();
 	}
@@ -319,9 +325,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getClassifierDefinitionOrStubAccess().getRule();
 	}
 
-	//ClassifierSignature returns ClassifierDefinition:
-	//	name=Name ("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)* ">")?
-	//	specialization=SpecializationClause?;
+	//ClassifierSignature ClassifierDefinition:
+	//	name=Name ('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)* '>')?
+	//	specialization=SpecializationClause?
 	public AlfGrammarAccess.ClassifierSignatureElements getClassifierSignatureAccess() {
 		return gaAlf.getClassifierSignatureAccess();
 	}
@@ -330,9 +336,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getClassifierSignatureAccess().getRule();
 	}
 
-	//// TODO: isAbstract = true visibility = 'private'
-	//ClassifierTemplateParameter returns Member:
-	//	documentation+=DOCUMENTATION_COMMENT? definition=ClassifierTemplateParameterDefinition;
+	//ClassifierTemplateParameter Member:
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	definition=ClassifierTemplateParameterDefinition
 	public AlfGrammarAccess.ClassifierTemplateParameterElements getClassifierTemplateParameterAccess() {
 		return gaAlf.getClassifierTemplateParameterAccess();
 	}
@@ -341,8 +347,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getClassifierTemplateParameterAccess().getRule();
 	}
 
-	//ClassifierTemplateParameterDefinition returns ClassifierTemplateParameter:
-	//	name=Name ("specializes" specialization=TemplateParameterConstraint)?;
+	//ClassifierTemplateParameterDefinition ClassifierTemplateParameter:
+	//	name=Name ('specializes' specialization=TemplateParameterConstraint)?
 	public AlfGrammarAccess.ClassifierTemplateParameterDefinitionElements getClassifierTemplateParameterDefinitionAccess() {
 		return gaAlf.getClassifierTemplateParameterDefinitionAccess();
 	}
@@ -351,8 +357,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getClassifierTemplateParameterDefinitionAccess().getRule();
 	}
 
-	//TemplateParameterConstraint returns QualifiedNameList:
-	//	name+=QualifiedName;
+	//TemplateParameterConstraint QualifiedNameList:
+	//	name+=QualifiedName
 	public AlfGrammarAccess.TemplateParameterConstraintElements getTemplateParameterConstraintAccess() {
 		return gaAlf.getTemplateParameterConstraintAccess();
 	}
@@ -361,8 +367,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getTemplateParameterConstraintAccess().getRule();
 	}
 
-	//SpecializationClause returns QualifiedNameList:
-	//	"specializes" QualifiedNameList;
+	//SpecializationClause QualifiedNameList:
+	//	'specializes' QualifiedNameList
 	public AlfGrammarAccess.SpecializationClauseElements getSpecializationClauseAccess() {
 		return gaAlf.getSpecializationClauseAccess();
 	}
@@ -371,9 +377,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getSpecializationClauseAccess().getRule();
 	}
 
-	/// * CLASSES * / ClassDeclaration returns ClassDefinition:
-	//	isAbstract?="abstract"? "class" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	/// * CLASSES * / ClassDeclaration ClassDefinition:
+	//	isAbstract?='abstract'? 'class' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+	//	ownedMember+=ClassifierTemplateParameter)* '>')?
+	//	specialization=SpecializationClause?
 	public AlfGrammarAccess.ClassDeclarationElements getClassDeclarationAccess() {
 		return gaAlf.getClassDeclarationAccess();
 	}
@@ -383,7 +390,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//ClassDefinition:
-	//	ClassDeclaration "{" ownedMember+=ClassMember* "}";
+	//	ClassDeclaration
+	//	'{' ownedMember+=ClassMember* '}';
 	public AlfGrammarAccess.ClassDefinitionElements getClassDefinitionAccess() {
 		return gaAlf.getClassDefinitionAccess();
 	}
@@ -392,8 +400,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getClassDefinitionAccess().getRule();
 	}
 
-	//ClassDefinitionOrStub returns ClassDefinition:
-	//	ClassDeclaration (isStub?=";" | "{" ownedMember+=ClassMember* "}");
+	//ClassDefinitionOrStub ClassDefinition:
+	//	ClassDeclaration (isStub?=';' | '{' ownedMember+=ClassMember* '}')
 	public AlfGrammarAccess.ClassDefinitionOrStubElements getClassDefinitionOrStubAccess() {
 		return gaAlf.getClassDefinitionOrStubAccess();
 	}
@@ -402,9 +410,11 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getClassDefinitionOrStubAccess().getRule();
 	}
 
-	//ClassMember returns Member:
-	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=VisibilityIndicator?
-	//	definition=ClassMemberDefinition;
+	//ClassMember Member:
+	//	documentation+=DOCUMENTATION_COMMENT*
+	//	annotation+=StereotypeAnnotation*
+	//	visibility=VisibilityIndicator?
+	//	definition=ClassMemberDefinition
 	public AlfGrammarAccess.ClassMemberElements getClassMemberAccess() {
 		return gaAlf.getClassMemberAccess();
 	}
@@ -413,8 +423,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getClassMemberAccess().getRule();
 	}
 
-	//ClassMemberDefinition returns MemberDefinition:
-	//	ClassifierDefinitionOrStub | FeatureDefinitionOrStub;
+	//ClassMemberDefinition MemberDefinition:
+	//	ClassifierDefinitionOrStub | FeatureDefinitionOrStub
 	public AlfGrammarAccess.ClassMemberDefinitionElements getClassMemberDefinitionAccess() {
 		return gaAlf.getClassMemberDefinitionAccess();
 	}
@@ -423,9 +433,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getClassMemberDefinitionAccess().getRule();
 	}
 
-	/// * ACTIVE CLASSES * / ActiveClassDeclaration returns ActiveClassDefinition:
-	//	isAbstract?="abstract"? "active" "class" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	/// * ACTIVE CLASSES * / ActiveClassDeclaration ActiveClassDefinition:
+	//	isAbstract?='abstract'? 'active' 'class' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+	//	ownedMember+=ClassifierTemplateParameter)* '>')?
+	//	specialization=SpecializationClause?
 	public AlfGrammarAccess.ActiveClassDeclarationElements getActiveClassDeclarationAccess() {
 		return gaAlf.getActiveClassDeclarationAccess();
 	}
@@ -435,8 +446,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//ActiveClassDefinition:
-	//	ActiveClassDeclaration "{" ownedMember+=ActiveClassMember* "}" // CHANGE: Made classifierBehavior composite (and classifierBehavior isn't added to ownedMembers)
-	//	("do" classifierBehavior=BehaviorClause)?;
+	//	ActiveClassDeclaration
+	//	'{' ownedMember+=ActiveClassMember* '}' ('do' classifierBehavior=BehaviorClause)?;
 	public AlfGrammarAccess.ActiveClassDefinitionElements getActiveClassDefinitionAccess() {
 		return gaAlf.getActiveClassDefinitionAccess();
 	}
@@ -445,9 +456,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getActiveClassDefinitionAccess().getRule();
 	}
 
-	//ActiveClassDefinitionOrStub returns ActiveClassDefinition:
-	//	ActiveClassDeclaration (isStub?=";" | "{" ownedMember+=ActiveClassMember* "}" ("do"
-	//	classifierBehavior=BehaviorClause)?);
+	//ActiveClassDefinitionOrStub ActiveClassDefinition:
+	//	ActiveClassDeclaration (isStub?=';' |
+	//	'{' ownedMember+=ActiveClassMember* '}' ('do' classifierBehavior=BehaviorClause)?)
 	public AlfGrammarAccess.ActiveClassDefinitionOrStubElements getActiveClassDefinitionOrStubAccess() {
 		return gaAlf.getActiveClassDefinitionOrStubAccess();
 	}
@@ -456,9 +467,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getActiveClassDefinitionOrStubAccess().getRule();
 	}
 
-	//BehaviorClause returns ActivityDefinition:
-	//	body=Block | name= // TODO: isStub = true
-	//	Name;
+	//BehaviorClause ActivityDefinition:
+	//	body=Block | name=Name
 	public AlfGrammarAccess.BehaviorClauseElements getBehaviorClauseAccess() {
 		return gaAlf.getBehaviorClauseAccess();
 	}
@@ -467,9 +477,11 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getBehaviorClauseAccess().getRule();
 	}
 
-	//ActiveClassMember returns Member:
-	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=VisibilityIndicator?
-	//	definition=ActiveClassMemberDefinition;
+	//ActiveClassMember Member:
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	annotation+=StereotypeAnnotation*
+	//	visibility=VisibilityIndicator?
+	//	definition=ActiveClassMemberDefinition
 	public AlfGrammarAccess.ActiveClassMemberElements getActiveClassMemberAccess() {
 		return gaAlf.getActiveClassMemberAccess();
 	}
@@ -478,8 +490,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getActiveClassMemberAccess().getRule();
 	}
 
-	//ActiveClassMemberDefinition returns MemberDefinition:
-	//	ClassMemberDefinition | ActiveFeatureDefinitionOrStub;
+	//ActiveClassMemberDefinition MemberDefinition:
+	//	ClassMemberDefinition | ActiveFeatureDefinitionOrStub
 	public AlfGrammarAccess.ActiveClassMemberDefinitionElements getActiveClassMemberDefinitionAccess() {
 		return gaAlf.getActiveClassMemberDefinitionAccess();
 	}
@@ -488,9 +500,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getActiveClassMemberDefinitionAccess().getRule();
 	}
 
-	/// * DATA TYPES * / DataTypeDeclaration returns DataTypeDefinition:
-	//	isAbstract?="abstract"? "datatype" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	/// * DATA TYPES * / DataTypeDeclaration DataTypeDefinition:
+	//	isAbstract?='abstract'? 'datatype' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+	//	ownedMember+=ClassifierTemplateParameter)* '>')?
+	//	specialization=SpecializationClause?
 	public AlfGrammarAccess.DataTypeDeclarationElements getDataTypeDeclarationAccess() {
 		return gaAlf.getDataTypeDeclarationAccess();
 	}
@@ -500,7 +513,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//DataTypeDefinition:
-	//	DataTypeDeclaration "{" ownedMember+=StructuredMember* "}";
+	//	DataTypeDeclaration
+	//	'{' ownedMember+=StructuredMember* '}';
 	public AlfGrammarAccess.DataTypeDefinitionElements getDataTypeDefinitionAccess() {
 		return gaAlf.getDataTypeDefinitionAccess();
 	}
@@ -509,8 +523,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getDataTypeDefinitionAccess().getRule();
 	}
 
-	//DataTypeDefinitionOrStub returns DataTypeDefinition:
-	//	DataTypeDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+	//DataTypeDefinitionOrStub DataTypeDefinition:
+	//	DataTypeDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 	public AlfGrammarAccess.DataTypeDefinitionOrStubElements getDataTypeDefinitionOrStubAccess() {
 		return gaAlf.getDataTypeDefinitionOrStubAccess();
 	}
@@ -519,9 +533,11 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getDataTypeDefinitionOrStubAccess().getRule();
 	}
 
-	//StructuredMember returns Member:
-	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility="public"?
-	//	definition=PropertyDefinition;
+	//StructuredMember Member:
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	annotation+=StereotypeAnnotation*
+	//	visibility='public'?
+	//	definition=PropertyDefinition
 	public AlfGrammarAccess.StructuredMemberElements getStructuredMemberAccess() {
 		return gaAlf.getStructuredMemberAccess();
 	}
@@ -530,9 +546,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getStructuredMemberAccess().getRule();
 	}
 
-	/// * ASSOCIATIONS * / AssociationDeclaration returns AssociationDefinition:
-	//	isAbstract?="abstract"? "assoc" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	/// * ASSOCIATIONS * / AssociationDeclaration AssociationDefinition:
+	//	isAbstract?='abstract'? 'assoc' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+	//	ownedMember+=ClassifierTemplateParameter)* '>')?
+	//	specialization=SpecializationClause?
 	public AlfGrammarAccess.AssociationDeclarationElements getAssociationDeclarationAccess() {
 		return gaAlf.getAssociationDeclarationAccess();
 	}
@@ -542,7 +559,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//AssociationDefinition:
-	//	AssociationDeclaration "{" ownedMember+=StructuredMember* "}";
+	//	AssociationDeclaration
+	//	'{' ownedMember+=StructuredMember* '}';
 	public AlfGrammarAccess.AssociationDefinitionElements getAssociationDefinitionAccess() {
 		return gaAlf.getAssociationDefinitionAccess();
 	}
@@ -551,8 +569,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getAssociationDefinitionAccess().getRule();
 	}
 
-	//AssociationDefinitionOrStub returns AssociationDefinition:
-	//	AssociationDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+	//AssociationDefinitionOrStub AssociationDefinition:
+	//	AssociationDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 	public AlfGrammarAccess.AssociationDefinitionOrStubElements getAssociationDefinitionOrStubAccess() {
 		return gaAlf.getAssociationDefinitionOrStubAccess();
 	}
@@ -561,8 +579,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getAssociationDefinitionOrStubAccess().getRule();
 	}
 
-	/// * ENUMERATIONS * / EnumerationDeclaration returns EnumerationDefinition:
-	//	"enum" name=Name specialization=SpecializationClause?;
+	/// * ENUMERATIONS * / EnumerationDeclaration EnumerationDefinition:
+	//	'enum' name=Name specialization=SpecializationClause?
 	public AlfGrammarAccess.EnumerationDeclarationElements getEnumerationDeclarationAccess() {
 		return gaAlf.getEnumerationDeclarationAccess();
 	}
@@ -572,7 +590,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//EnumerationDefinition:
-	//	EnumerationDeclaration "{" (ownedMember+=EnumerationLiteralName ("," ownedMember+=EnumerationLiteralName)*)? "}";
+	//	EnumerationDeclaration
+	//	'{' (ownedMember+=EnumerationLiteralName (',' ownedMember+=EnumerationLiteralName)*)? '}';
 	public AlfGrammarAccess.EnumerationDefinitionElements getEnumerationDefinitionAccess() {
 		return gaAlf.getEnumerationDefinitionAccess();
 	}
@@ -581,9 +600,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getEnumerationDefinitionAccess().getRule();
 	}
 
-	//EnumerationDefinitionOrStub returns EnumerationDefinition:
-	//	EnumerationDeclaration (isStub?=";" | "{" (ownedMember+=EnumerationLiteralName (","
-	//	ownedMember+=EnumerationLiteralName)*)? "}");
+	//EnumerationDefinitionOrStub EnumerationDefinition:
+	//	EnumerationDeclaration (isStub?=';' | '{' (ownedMember+=EnumerationLiteralName (','
+	//	ownedMember+=EnumerationLiteralName)*)? '}')
 	public AlfGrammarAccess.EnumerationDefinitionOrStubElements getEnumerationDefinitionOrStubAccess() {
 		return gaAlf.getEnumerationDefinitionOrStubAccess();
 	}
@@ -592,9 +611,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getEnumerationDefinitionOrStubAccess().getRule();
 	}
 
-	//EnumerationLiteralName returns Member:
-	//	documentation+=DOCUMENTATION_COMMENT? // TODO: visibility = 'public'
-	//	definition=EnumerationLiteralNameDefinition;
+	//EnumerationLiteralName Member:
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	// TODO: visibility = 'public'
+	//	definition=EnumerationLiteralNameDefinition
 	public AlfGrammarAccess.EnumerationLiteralNameElements getEnumerationLiteralNameAccess() {
 		return gaAlf.getEnumerationLiteralNameAccess();
 	}
@@ -603,8 +623,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getEnumerationLiteralNameAccess().getRule();
 	}
 
-	//EnumerationLiteralNameDefinition returns EnumerationLiteralName:
-	//	name=Name;
+	//EnumerationLiteralNameDefinition EnumerationLiteralName:
+	//	name=Name
 	public AlfGrammarAccess.EnumerationLiteralNameDefinitionElements getEnumerationLiteralNameDefinitionAccess() {
 		return gaAlf.getEnumerationLiteralNameDefinitionAccess();
 	}
@@ -613,9 +633,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getEnumerationLiteralNameDefinitionAccess().getRule();
 	}
 
-	/// * SIGNALS * / SignalDeclaration returns SignalDefinition:
-	//	isAbstract?="abstract"? "signal" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	/// * SIGNALS * / SignalDeclaration SignalDefinition:
+	//	isAbstract?='abstract'? 'signal' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+	//	ownedMember+=ClassifierTemplateParameter)* '>')?
+	//	specialization=SpecializationClause?
 	public AlfGrammarAccess.SignalDeclarationElements getSignalDeclarationAccess() {
 		return gaAlf.getSignalDeclarationAccess();
 	}
@@ -625,7 +646,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//SignalDefinition:
-	//	SignalDeclaration "{" ownedMember+=StructuredMember* "}";
+	//	SignalDeclaration
+	//	'{' ownedMember+=StructuredMember* '}';
 	public AlfGrammarAccess.SignalDefinitionElements getSignalDefinitionAccess() {
 		return gaAlf.getSignalDefinitionAccess();
 	}
@@ -634,8 +656,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getSignalDefinitionAccess().getRule();
 	}
 
-	//SignalDefinitionOrStub returns SignalDefinition:
-	//	SignalDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+	//SignalDefinitionOrStub SignalDefinition:
+	//	SignalDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 	public AlfGrammarAccess.SignalDefinitionOrStubElements getSignalDefinitionOrStubAccess() {
 		return gaAlf.getSignalDefinitionOrStubAccess();
 	}
@@ -644,9 +666,11 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getSignalDefinitionOrStubAccess().getRule();
 	}
 
-	/// * ACTIVITIES * / ActivityDeclaration returns ActivityDefinition:
-	//	"activity" name=Name ("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)*
-	//	">")? "(" (ownedMember+=FormalParameter ("," ownedMember+=FormalParameter)*)? ")" ownedMember+=ReturnParameter?;
+	/// * ACTIVITIES * / ActivityDeclaration ActivityDefinition:
+	//	'activity' name=Name ('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)*
+	//	'>')?
+	//	'(' (ownedMember+=FormalParameter (',' ownedMember+=FormalParameter)*)? ')'
+	//	ownedMember+=ReturnParameter?
 	public AlfGrammarAccess.ActivityDeclarationElements getActivityDeclarationAccess() {
 		return gaAlf.getActivityDeclarationAccess();
 	}
@@ -656,7 +680,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//ActivityDefinition:
-	//	ActivityDeclaration body=Block;
+	//	ActivityDeclaration
+	//	body=Block;
 	public AlfGrammarAccess.ActivityDefinitionElements getActivityDefinitionAccess() {
 		return gaAlf.getActivityDefinitionAccess();
 	}
@@ -665,8 +690,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getActivityDefinitionAccess().getRule();
 	}
 
-	//ActivityDefinitionOrStub returns ActivityDefinition:
-	//	ActivityDeclaration (isStub?=";" | body=Block);
+	//ActivityDefinitionOrStub ActivityDefinition:
+	//	ActivityDeclaration (isStub?=';' | body=Block)
 	public AlfGrammarAccess.ActivityDefinitionOrStubElements getActivityDefinitionOrStubAccess() {
 		return gaAlf.getActivityDefinitionOrStubAccess();
 	}
@@ -675,8 +700,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getActivityDefinitionOrStubAccess().getRule();
 	}
 
-	//FormalParameter returns Member:
-	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* definition=FormalParameterDefinition;
+	//FormalParameter Member:
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	annotation+=StereotypeAnnotation*
+	//	definition=FormalParameterDefinition
 	public AlfGrammarAccess.FormalParameterElements getFormalParameterAccess() {
 		return gaAlf.getFormalParameterAccess();
 	}
@@ -685,9 +712,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getFormalParameterAccess().getRule();
 	}
 
-	//FormalParameterDefinition returns NonReturnParameter: // CHANGE: Added the NonReturnParameter subtype of FormalParameter to accomodate Xtext serialization.
-	//	direction=ParameterDirection name=Name ":" // CHANGE: Made TypedElementDefinition a composite part of FormalParameter, rather than the supertype
-	//	typePart=TypePart;
+	//FormalParameterDefinition NonReturnParameter:
+	//	direction=ParameterDirection name=Name ':'
+	//	// CHANGE: Made TypedElementDefinition a composite part of FormalParameter, rather than the supertype
+	//	typePart=TypePart
 	public AlfGrammarAccess.FormalParameterDefinitionElements getFormalParameterDefinitionAccess() {
 		return gaAlf.getFormalParameterDefinitionAccess();
 	}
@@ -696,8 +724,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getFormalParameterDefinitionAccess().getRule();
 	}
 
-	//ReturnParameter returns Member:
-	//	definition=ReturnParameterDefinition;
+	//ReturnParameter Member:
+	//	definition=ReturnParameterDefinition
 	public AlfGrammarAccess.ReturnParameterElements getReturnParameterAccess() {
 		return gaAlf.getReturnParameterAccess();
 	}
@@ -706,9 +734,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getReturnParameterAccess().getRule();
 	}
 
-	//// CHANGE: Made return the default for direction
-	//ReturnParameterDefinition returns ReturnParameter: // CHANGE: Added the NonReturnParameter subtype of FormalParameter to accomodate Xtext serialization.
-	//	":" typePart=TypePart;
+	//ReturnParameterDefinition ReturnParameter: // CHANGE: Added the NonReturnParameter subtype of FormalParameter to accomodate Xtext serialization.
+	//	':' typePart=TypePart
 	public AlfGrammarAccess.ReturnParameterDefinitionElements getReturnParameterDefinitionAccess() {
 		return gaAlf.getReturnParameterDefinitionAccess();
 	}
@@ -718,7 +745,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//ParameterDirection:
-	//	"in" | "out" | "inout";
+	//	'in' | 'out' | 'inout';
 	public AlfGrammarAccess.ParameterDirectionElements getParameterDirectionAccess() {
 		return gaAlf.getParameterDirectionAccess();
 	}
@@ -727,8 +754,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getParameterDirectionAccess().getRule();
 	}
 
-	/// * FEATURES * / FeatureDefinitionOrStub returns MemberDefinition:
-	//	AttributeDefinition | OperationDefinitionOrStub;
+	/// * FEATURES * / FeatureDefinitionOrStub MemberDefinition:
+	//	AttributeDefinition | OperationDefinitionOrStub
 	public AlfGrammarAccess.FeatureDefinitionOrStubElements getFeatureDefinitionOrStubAccess() {
 		return gaAlf.getFeatureDefinitionOrStubAccess();
 	}
@@ -737,8 +764,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getFeatureDefinitionOrStubAccess().getRule();
 	}
 
-	//ActiveFeatureDefinitionOrStub returns MemberDefinition:
-	//	ReceptionDefinition | SignalReceptionDefinitionOrStub;
+	//ActiveFeatureDefinitionOrStub MemberDefinition:
+	//	ReceptionDefinition | SignalReceptionDefinitionOrStub
 	public AlfGrammarAccess.ActiveFeatureDefinitionOrStubElements getActiveFeatureDefinitionOrStubAccess() {
 		return gaAlf.getActiveFeatureDefinitionOrStubAccess();
 	}
@@ -748,7 +775,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * PROPERTIES * / PropertyDefinition:
-	//	PropertyDeclaration ";";
+	//	PropertyDeclaration ';';
 	public AlfGrammarAccess.PropertyDefinitionElements getPropertyDefinitionAccess() {
 		return gaAlf.getPropertyDefinitionAccess();
 	}
@@ -757,8 +784,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getPropertyDefinitionAccess().getRule();
 	}
 
-	//AttributeDefinition returns PropertyDefinition:
-	//	PropertyDeclaration initializer=AttributeInitializer? ";";
+	//AttributeDefinition PropertyDefinition:
+	//	PropertyDeclaration initializer=AttributeInitializer? ';'
 	public AlfGrammarAccess.AttributeDefinitionElements getAttributeDefinitionAccess() {
 		return gaAlf.getAttributeDefinitionAccess();
 	}
@@ -767,8 +794,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getAttributeDefinitionAccess().getRule();
 	}
 
-	//AttributeInitializer returns Expression:
-	//	"=" InitializationExpression;
+	//AttributeInitializer Expression:
+	//	'=' InitializationExpression
 	public AlfGrammarAccess.AttributeInitializerElements getAttributeInitializerAccess() {
 		return gaAlf.getAttributeInitializerAccess();
 	}
@@ -777,9 +804,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getAttributeInitializerAccess().getRule();
 	}
 
-	//PropertyDeclaration returns PropertyDefinition:
-	//	name=Name ":" isComposite?="compose"? // CHANGE: Made TypedElementDefinition a composite part of PropertyDefinition instead of the supertype
-	//	typePart=TypePart;
+	//PropertyDeclaration PropertyDefinition:
+	//	name=Name ':' isComposite?='compose'?
+	//	// CHANGE: Made TypedElementDefinition a composite part of PropertyDefinition instead of the supertype
+	//	typePart=TypePart
 	public AlfGrammarAccess.PropertyDeclarationElements getPropertyDeclarationAccess() {
 		return gaAlf.getPropertyDeclarationAccess();
 	}
@@ -788,13 +816,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getPropertyDeclarationAccess().getRule();
 	}
 
-	//TypePart returns TypedElementDefinition:
-	//	(isAny?="any" // CHANGE: Added isAny attribute to TypedElementDefinition to allow Xtext serialization.
-	//	// CHANGE: Added isMultiplicity attribute to TypedElementDefinition.
-	//	// CHANGE: Added isSequence attribute to TypedElementDefinition.
-	//	| typeName=QualifiedName) (("[" (isMultiplicity?="]" | (lowerBound=NATURAL_VALUE "..")?
-	//	upperBound=UnlimitedNaturalLiteral "]"))? (isOrdered?="ordered" isNonunique?="nonunique"? | isNonunique?="nonunique"
-	//	isOrdered?="ordered"? | isSequence?="sequence")?)?;
+	//TypePart TypedElementDefinition:
+	//	(isAny?='any' | typeName=QualifiedName) (('[' (isMultiplicity?=']' | (lowerBound=NATURAL_VALUE '..')?
+	//	upperBound=UnlimitedNaturalLiteral ']'))? (isOrdered?='ordered' isNonunique?='nonunique'? | isNonunique?='nonunique'
+	//	isOrdered?='ordered'? | isSequence?='sequence')?)?
 	public AlfGrammarAccess.TypePartElements getTypePartAccess() {
 		return gaAlf.getTypePartAccess();
 	}
@@ -808,7 +833,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	//	'any' | QualifiedName
 	//;
 	// * / UnlimitedNaturalLiteral:
-	//	NATURAL_VALUE | "*";
+	//	NATURAL_VALUE | '*';
 	public AlfGrammarAccess.UnlimitedNaturalLiteralElements getUnlimitedNaturalLiteralAccess() {
 		return gaAlf.getUnlimitedNaturalLiteralAccess();
 	}
@@ -817,9 +842,11 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getUnlimitedNaturalLiteralAccess().getRule();
 	}
 
-	/// * OPERATIONS * / OperationDeclaration returns OperationDefinition:
-	//	isAbstract?="abstract"? name=Name "(" (ownedMember+=FormalParameter ("," ownedMember+=FormalParameter)*)? ")"
-	//	ownedMember+=ReturnParameter? redefinition=RedefinitionClause?;
+	/// * OPERATIONS * / OperationDeclaration OperationDefinition:
+	//	isAbstract?='abstract'? name=Name
+	//	'(' (ownedMember+=FormalParameter (',' ownedMember+=FormalParameter)*)? ')'
+	//	ownedMember+=ReturnParameter?
+	//	redefinition=RedefinitionClause?
 	public AlfGrammarAccess.OperationDeclarationElements getOperationDeclarationAccess() {
 		return gaAlf.getOperationDeclarationAccess();
 	}
@@ -828,8 +855,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getOperationDeclarationAccess().getRule();
 	}
 
-	//OperationDefinitionOrStub returns OperationDefinition:
-	//	OperationDeclaration (isStub?=";" | body=Block);
+	//OperationDefinitionOrStub OperationDefinition:
+	//	OperationDeclaration (isStub?=';' | body=Block)
 	public AlfGrammarAccess.OperationDefinitionOrStubElements getOperationDefinitionOrStubAccess() {
 		return gaAlf.getOperationDefinitionOrStubAccess();
 	}
@@ -838,8 +865,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getOperationDefinitionOrStubAccess().getRule();
 	}
 
-	//RedefinitionClause returns QualifiedNameList:
-	//	"redefines" QualifiedNameList;
+	//RedefinitionClause QualifiedNameList:
+	//	'redefines' QualifiedNameList
 	public AlfGrammarAccess.RedefinitionClauseElements getRedefinitionClauseAccess() {
 		return gaAlf.getRedefinitionClauseAccess();
 	}
@@ -848,9 +875,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getRedefinitionClauseAccess().getRule();
 	}
 
-	/// * RECEPTIONS * / // TODO: name = signal.nameBinding->last().name
-	//ReceptionDefinition:
-	//	"receive" signalName=QualifiedName ";";
+	/// * RECEPTIONS * / ReceptionDefinition:
+	//	'receive' signalName=QualifiedName ';'
+	//	// TODO: name = signal.nameBinding->last().name
+	//;
 	public AlfGrammarAccess.ReceptionDefinitionElements getReceptionDefinitionAccess() {
 		return gaAlf.getReceptionDefinitionAccess();
 	}
@@ -859,8 +887,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getReceptionDefinitionAccess().getRule();
 	}
 
-	//SignalReceptionDeclaration returns SignalReceptionDefinition:
-	//	"receive" "signal" name=Name specialization=SpecializationClause?;
+	//SignalReceptionDeclaration SignalReceptionDefinition:
+	//	'receive' 'signal' name=Name specialization=SpecializationClause?
 	public AlfGrammarAccess.SignalReceptionDeclarationElements getSignalReceptionDeclarationAccess() {
 		return gaAlf.getSignalReceptionDeclarationAccess();
 	}
@@ -869,8 +897,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getSignalReceptionDeclarationAccess().getRule();
 	}
 
-	//SignalReceptionDefinitionOrStub returns SignalReceptionDefinition:
-	//	SignalReceptionDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+	//SignalReceptionDefinitionOrStub SignalReceptionDefinition:
+	//	SignalReceptionDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 	public AlfGrammarAccess.SignalReceptionDefinitionOrStubElements getSignalReceptionDefinitionOrStubAccess() {
 		return gaAlf.getSignalReceptionDefinitionOrStubAccess();
 	}
@@ -892,7 +920,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//QualifiedName:
-	//	UnqualifiedName (("::" nameBinding+=NameBinding)+ | ("." nameBinding+=NameBinding)+)?;
+	//	UnqualifiedName (('::' nameBinding+=NameBinding)+ | ('.' nameBinding+=NameBinding)+)?;
 	public AlfGrammarAccess.QualifiedNameElements getQualifiedNameAccess() {
 		return gaAlf.getQualifiedNameAccess();
 	}
@@ -901,9 +929,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getQualifiedNameAccess().getRule();
 	}
 
-	//PotentiallyAmbiguousQualifiedName returns QualifiedName:
-	//	UnqualifiedName (("::" nameBinding+=NameBinding)+ | isAmbiguous?="." nameBinding+=NameBinding ("."
-	//	nameBinding+=NameBinding)*)?;
+	//PotentiallyAmbiguousQualifiedName QualifiedName:
+	//	UnqualifiedName (('::' nameBinding+=NameBinding)+ | isAmbiguous?='.' nameBinding+=NameBinding ('.'
+	//	nameBinding+=NameBinding)*)?
 	public AlfGrammarAccess.PotentiallyAmbiguousQualifiedNameElements getPotentiallyAmbiguousQualifiedNameAccess() {
 		return gaAlf.getPotentiallyAmbiguousQualifiedNameAccess();
 	}
@@ -912,8 +940,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getPotentiallyAmbiguousQualifiedNameAccess().getRule();
 	}
 
-	//ColonQualifiedName returns QualifiedName:
-	//	UnqualifiedName ("::" nameBinding+=NameBinding)+;
+	//ColonQualifiedName QualifiedName:
+	//	UnqualifiedName ('::' nameBinding+=NameBinding)+
 	public AlfGrammarAccess.ColonQualifiedNameElements getColonQualifiedNameAccess() {
 		return gaAlf.getColonQualifiedNameAccess();
 	}
@@ -922,8 +950,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getColonQualifiedNameAccess().getRule();
 	}
 
-	//DotQualifiedName returns QualifiedName:
-	//	UnqualifiedName ("." nameBinding+=NameBinding)+;
+	//DotQualifiedName QualifiedName:
+	//	UnqualifiedName ('.' nameBinding+=NameBinding)+
 	public AlfGrammarAccess.DotQualifiedNameElements getDotQualifiedNameAccess() {
 		return gaAlf.getDotQualifiedNameAccess();
 	}
@@ -932,8 +960,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getDotQualifiedNameAccess().getRule();
 	}
 
-	//UnqualifiedName returns QualifiedName:
-	//	nameBinding+=NameBinding;
+	//UnqualifiedName QualifiedName:
+	//	nameBinding+=NameBinding
 	public AlfGrammarAccess.UnqualifiedNameElements getUnqualifiedNameAccess() {
 		return gaAlf.getUnqualifiedNameAccess();
 	}
@@ -962,7 +990,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	//	( '::' names+=Name)+
 	//;
 	// * / / * Unbounded lookahead required here * / TemplateBinding:
-	//	"<" (NamedTemplateBinding | PositionalTemplateBinding) ">";
+	//	'<' (NamedTemplateBinding | PositionalTemplateBinding) '>';
 	public AlfGrammarAccess.TemplateBindingElements getTemplateBindingAccess() {
 		return gaAlf.getTemplateBindingAccess();
 	}
@@ -972,7 +1000,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//PositionalTemplateBinding:
-	//	argumentName+=QualifiedName ("," argumentName+=QualifiedName)*;
+	//	argumentName+=QualifiedName (',' argumentName+=QualifiedName)*;
 	public AlfGrammarAccess.PositionalTemplateBindingElements getPositionalTemplateBindingAccess() {
 		return gaAlf.getPositionalTemplateBindingAccess();
 	}
@@ -982,7 +1010,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//NamedTemplateBinding:
-	//	substitution+=TemplateParameterSubstitution ("," substitution+=TemplateParameterSubstitution)*;
+	//	substitution+=TemplateParameterSubstitution (',' substitution+=TemplateParameterSubstitution)*;
 	public AlfGrammarAccess.NamedTemplateBindingElements getNamedTemplateBindingAccess() {
 		return gaAlf.getNamedTemplateBindingAccess();
 	}
@@ -1013,15 +1041,16 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getExpressionAccess().getRule();
 	}
 
-	/// * PRIMARY EXPRESSIONS * / PrimaryExpression returns Expression:
-	//	BaseExpression ({FeatureReference.expression=current} "." nameBinding=NameBinding
-	//	{FeatureInvocationExpression.target=current} tuple=Tuple // CHANGE: Made FeatureReference and ExtentOrExpression subtypes of Expression.
-	//	| {FeatureReference.expression=current} "." nameBinding=NameBinding {PropertyAccessExpression.featureReference=current}
-	//	| {ExtentOrExpression.nonNameExpression=current} "->" ({SequenceOperationExpression.primary=current}
-	//	operation=QualifiedName tuple=Tuple // CHANGE: Made SequenceExpansionExpression concrete.
-	//	| {SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName |
-	//	{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")") |
-	//	{SequenceAccessExpression.primary=current} index=Index)*;
+	/// * PRIMARY EXPRESSIONS * / PrimaryExpression Expression:
+	//	BaseExpression ({FeatureReference.expression=current} '.' nameBinding=NameBinding
+	//	{FeatureInvocationExpression.target=current} tuple=Tuple | {FeatureReference.expression=current} '.'
+	//	nameBinding=NameBinding {PropertyAccessExpression.featureReference=current} |
+	//	{ExtentOrExpression.nonNameExpression=current} '->' ({SequenceOperationExpression.primary=current}
+	//	operation=QualifiedName tuple=Tuple
+	//	| {SequenceReductionExpression.primary=current} 'reduce' isOrdered?='ordered'? behaviorName=QualifiedName
+	//	// CHANGE: Made SequenceExpansionExpression concrete.
+	//	| {SequenceExpansionExpression.primary=current} operation=ID variable=Name '(' argument=Expression ')') |
+	//	{SequenceAccessExpression.primary=current} index=Index)*
 	public AlfGrammarAccess.PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return gaAlf.getPrimaryExpressionAccess();
 	}
@@ -1045,11 +1074,11 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	////    {SequenceAccessExpression.primary = current} index = Index
 	////  )+
 	////;
-	//BaseExpression returns Expression:
+	//BaseExpression Expression:
 	//	LiteralExpression | ThisExpression | SuperInvocationExpression | InstanceCreationOrSequenceConstructionExpression |
 	//	ClassExtentExpression | LinkOperationExpression | SequenceConstructionExpression |
 	//	SequenceOperationOrReductionOrExpansionExpression | BehaviorInvocationExpression | NameExpression |
-	//	ParenthesizedExpression;
+	//	ParenthesizedExpression
 	public AlfGrammarAccess.BaseExpressionElements getBaseExpressionAccess() {
 		return gaAlf.getBaseExpressionAccess();
 	}
@@ -1089,7 +1118,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//UnboundedLiteralExpression:
-	//	{UnboundedLiteralExpression} "*";
+	//	{UnboundedLiteralExpression} '*';
 	public AlfGrammarAccess.UnboundedLiteralExpressionElements getUnboundedLiteralExpressionAccess() {
 		return gaAlf.getUnboundedLiteralExpressionAccess();
 	}
@@ -1118,8 +1147,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getNameExpressionAccess().getRule();
 	}
 
-	/// * THIS EXPRESSIONS * / ThisExpression returns Expression:
-	//	{FeatureInvocationExpression} "this" tuple=Tuple | {ThisExpression} "this";
+	/// * THIS EXPRESSIONS * / ThisExpression Expression:
+	//	{FeatureInvocationExpression} 'this' tuple=Tuple | {ThisExpression} 'this'
 	public AlfGrammarAccess.ThisExpressionElements getThisExpressionAccess() {
 		return gaAlf.getThisExpressionAccess();
 	}
@@ -1128,8 +1157,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getThisExpressionAccess().getRule();
 	}
 
-	/// * PARENTHESIZED EXPRESSIONS * / ParenthesizedExpression returns Expression:
-	//	"(" Expression ")";
+	/// * PARENTHESIZED EXPRESSIONS * / ParenthesizedExpression Expression:
+	//	'(' Expression ')'
 	public AlfGrammarAccess.ParenthesizedExpressionElements getParenthesizedExpressionAccess() {
 		return gaAlf.getParenthesizedExpressionAccess();
 	}
@@ -1160,7 +1189,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 
 	//Tuple:
 	/// * {Tuple}'(' ( namedTupleExpressionList = NamedTupleExpressionList | ( positionalTupleExpressionList = PositionalTupleExpressionList )? ) ')' * /
-	//	"(" (NamedTupleExpressionList | PositionalTupleExpressionList) ")";
+	//	'(' (NamedTupleExpressionList | PositionalTupleExpressionList) ')';
 	public AlfGrammarAccess.TupleElements getTupleAccess() {
 		return gaAlf.getTupleAccess();
 	}
@@ -1169,8 +1198,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getTupleAccess().getRule();
 	}
 
-	//PositionalTupleExpressionList returns PositionalTuple:
-	//	{PositionalTuple} (expression+=Expression ("," expression+=Expression)*)?;
+	//PositionalTupleExpressionList PositionalTuple:
+	//	{PositionalTuple} (expression+=Expression (',' expression+=Expression)*)?
 	public AlfGrammarAccess.PositionalTupleExpressionListElements getPositionalTupleExpressionListAccess() {
 		return gaAlf.getPositionalTupleExpressionListAccess();
 	}
@@ -1179,8 +1208,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getPositionalTupleExpressionListAccess().getRule();
 	}
 
-	//NamedTupleExpressionList returns NamedTuple:
-	//	namedExpression+=NamedExpression ("," namedExpression+=NamedExpression)*;
+	//NamedTupleExpressionList NamedTuple:
+	//	namedExpression+=NamedExpression (',' namedExpression+=NamedExpression)*
 	public AlfGrammarAccess.NamedTupleExpressionListElements getNamedTupleExpressionListAccess() {
 		return gaAlf.getNamedTupleExpressionListAccess();
 	}
@@ -1190,7 +1219,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//NamedExpression:
-	//	name=Name "=>" expression=Expression;
+	//	name=Name '=>' expression=Expression;
 	public AlfGrammarAccess.NamedExpressionElements getNamedExpressionAccess() {
 		return gaAlf.getNamedExpressionAccess();
 	}
@@ -1200,7 +1229,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//SuperInvocationExpression:
-	//	"super" ("." target=QualifiedName)? tuple=Tuple;
+	//	'super' ('.' target=QualifiedName)? tuple=Tuple;
 	public AlfGrammarAccess.SuperInvocationExpressionElements getSuperInvocationExpressionAccess() {
 		return gaAlf.getSuperInvocationExpressionAccess();
 	}
@@ -1209,9 +1238,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getSuperInvocationExpressionAccess().getRule();
 	}
 
-	/// * INSTANCE CREATION EXPRESSIONS * / InstanceCreationOrSequenceConstructionExpression returns Expression:
-	//	"new" ({SequenceConstructionExpression} typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? "{"
-	//	elements=SequenceElements? "}" | {InstanceCreationExpression} constructor=QualifiedName tuple=Tuple);
+	/// * INSTANCE CREATION EXPRESSIONS * / InstanceCreationOrSequenceConstructionExpression Expression:
+	//	'new' ({SequenceConstructionExpression} typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? '{'
+	//	elements=SequenceElements? '}' | {InstanceCreationExpression} constructor=QualifiedName tuple=Tuple)
 	public AlfGrammarAccess.InstanceCreationOrSequenceConstructionExpressionElements getInstanceCreationOrSequenceConstructionExpressionAccess() {
 		return gaAlf.getInstanceCreationOrSequenceConstructionExpressionAccess();
 	}
@@ -1221,7 +1250,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * LINK OPERATION EXPRESSIONS * / LinkOperationExpression:
-	//	associationName=PotentiallyAmbiguousQualifiedName "." operation=LinkOperation tuple=LinkOperationTuple;
+	//	associationName=PotentiallyAmbiguousQualifiedName '.' operation=LinkOperation tuple=LinkOperationTuple;
 	public AlfGrammarAccess.LinkOperationExpressionElements getLinkOperationExpressionAccess() {
 		return gaAlf.getLinkOperationExpressionAccess();
 	}
@@ -1231,7 +1260,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//LinkOperation:
-	//	"createLink" | "destroyLink" | "clearAssoc";
+	//	'createLink' | 'destroyLink' | 'clearAssoc';
 	public AlfGrammarAccess.LinkOperationElements getLinkOperationAccess() {
 		return gaAlf.getLinkOperationAccess();
 	}
@@ -1240,8 +1269,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getLinkOperationAccess().getRule();
 	}
 
-	//LinkOperationTuple returns Tuple:
-	//	"(" (IndexedNamedTupleExpressionList | PositionalTupleExpressionList) ")";
+	//LinkOperationTuple Tuple:
+	//	'(' (IndexedNamedTupleExpressionList | PositionalTupleExpressionList) ')'
 	public AlfGrammarAccess.LinkOperationTupleElements getLinkOperationTupleAccess() {
 		return gaAlf.getLinkOperationTupleAccess();
 	}
@@ -1250,8 +1279,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getLinkOperationTupleAccess().getRule();
 	}
 
-	//IndexedNamedTupleExpressionList returns NamedTuple:
-	//	namedExpression+=IndexedNamedExpression ("," namedExpression+=IndexedNamedExpression)*;
+	//IndexedNamedTupleExpressionList NamedTuple:
+	//	namedExpression+=IndexedNamedExpression (',' namedExpression+=IndexedNamedExpression)*
 	public AlfGrammarAccess.IndexedNamedTupleExpressionListElements getIndexedNamedTupleExpressionListAccess() {
 		return gaAlf.getIndexedNamedTupleExpressionListAccess();
 	}
@@ -1260,8 +1289,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getIndexedNamedTupleExpressionListAccess().getRule();
 	}
 
-	//IndexedNamedExpression returns NamedExpression:
-	//	name=Name index=Index? "=>" expression=Expression;
+	//IndexedNamedExpression NamedExpression:
+	//	name=Name index=Index? '=>' expression=Expression
 	public AlfGrammarAccess.IndexedNamedExpressionElements getIndexedNamedExpressionAccess() {
 		return gaAlf.getIndexedNamedExpressionAccess();
 	}
@@ -1271,7 +1300,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * CLASS EXTENT EXPRESSIONS * / ClassExtentExpression:
-	//	className=PotentiallyAmbiguousQualifiedName "." "allInstances" "(" ")";
+	//	className=PotentiallyAmbiguousQualifiedName '.' 'allInstances' '(' ')';
 	public AlfGrammarAccess.ClassExtentExpressionElements getClassExtentExpressionAccess() {
 		return gaAlf.getClassExtentExpressionAccess();
 	}
@@ -1281,9 +1310,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * SEQUENCE CONSTRUCTION EXPRESSIONS * / SequenceConstructionExpression:
-	//	(isAny?="any" // CHANGE: Added isAny attribute to SequenceConstructionExpression in order to allow Xtext serialization.
-	//	| typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? "{" elements=SequenceElements? "}" |
-	//	hasMultiplicity?="null";
+	//	(isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? '{' elements=SequenceElements? '}' |
+	//	hasMultiplicity?='null';
 	public AlfGrammarAccess.SequenceConstructionExpressionElements getSequenceConstructionExpressionAccess() {
 		return gaAlf.getSequenceConstructionExpressionAccess();
 	}
@@ -1293,7 +1321,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//MultiplicityIndicator:
-	//	"[" "]";
+	//	'[' ']';
 	public AlfGrammarAccess.MultiplicityIndicatorElements getMultiplicityIndicatorAccess() {
 		return gaAlf.getMultiplicityIndicatorAccess();
 	}
@@ -1313,7 +1341,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//SequenceRange:
-	//	rangeLower=Expression ".." rangeUpper=Expression;
+	//	rangeLower=Expression '..' rangeUpper=Expression;
 	public AlfGrammarAccess.SequenceRangeElements getSequenceRangeAccess() {
 		return gaAlf.getSequenceRangeAccess();
 	}
@@ -1323,7 +1351,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//SequenceExpressionList:
-	//	element+=SequenceElement ("," element+=SequenceElement)* ","?;
+	//	element+=SequenceElement (',' element+=SequenceElement)* ','?;
 	public AlfGrammarAccess.SequenceExpressionListElements getSequenceExpressionListAccess() {
 		return gaAlf.getSequenceExpressionListAccess();
 	}
@@ -1332,8 +1360,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getSequenceExpressionListAccess().getRule();
 	}
 
-	//SequenceElement returns Expression:
-	//	Expression | SequenceInitializationExpression;
+	//SequenceElement Expression:
+	//	Expression | SequenceInitializationExpression
 	public AlfGrammarAccess.SequenceElementElements getSequenceElementAccess() {
 		return gaAlf.getSequenceElementAccess();
 	}
@@ -1342,8 +1370,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getSequenceElementAccess().getRule();
 	}
 
-	//SequenceInitializationExpression returns SequenceConstructionExpression:
-	//	"new"? "{" elements=SequenceElements "}";
+	//SequenceInitializationExpression SequenceConstructionExpression:
+	//	'new'? '{' elements=SequenceElements '}'
 	public AlfGrammarAccess.SequenceInitializationExpressionElements getSequenceInitializationExpressionAccess() {
 		return gaAlf.getSequenceInitializationExpressionAccess();
 	}
@@ -1352,8 +1380,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getSequenceInitializationExpressionAccess().getRule();
 	}
 
-	/// * SEQUENCE ACCESS EXPRESSIONS * / Index returns Expression:
-	//	"[" Expression "]";
+	/// * SEQUENCE ACCESS EXPRESSIONS * / Index Expression:
+	//	'[' Expression ']'
 	public AlfGrammarAccess.IndexElements getIndexAccess() {
 		return gaAlf.getIndexAccess();
 	}
@@ -1363,11 +1391,12 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * SEQUENCE OPERATION, REDUCTION AND EXPANSION EXPRESSIONS * / // NOTE: This only covers the case when the primary is a class extent shorthand.
-	//SequenceOperationOrReductionOrExpansionExpression returns Expression:
-	//	{ExtentOrExpression} name=PotentiallyAmbiguousQualifiedName "->" ({SequenceOperationExpression.primary=current}
-	//	operation=QualifiedName tuple=Tuple // CHANGE: Made SequenceExpansionExpression concrete.
-	//	| {SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName |
-	//	{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")");
+	//SequenceOperationOrReductionOrExpansionExpression Expression:
+	//	{ExtentOrExpression} name=PotentiallyAmbiguousQualifiedName '->' ({SequenceOperationExpression.primary=current}
+	//	operation=QualifiedName tuple=Tuple
+	//	| {SequenceReductionExpression.primary=current} 'reduce' isOrdered?='ordered'? behaviorName=QualifiedName
+	//	// CHANGE: Made SequenceExpansionExpression concrete.
+	//	| {SequenceExpansionExpression.primary=current} operation=ID variable=Name '(' argument=Expression ')')
 	public AlfGrammarAccess.SequenceOperationOrReductionOrExpansionExpressionElements getSequenceOperationOrReductionOrExpansionExpressionAccess() {
 		return gaAlf.getSequenceOperationOrReductionOrExpansionExpressionAccess();
 	}
@@ -1376,9 +1405,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getSequenceOperationOrReductionOrExpansionExpressionAccess().getRule();
 	}
 
-	/// * INCREMENT OR DECREMENT EXPRESSIONS * / PrefixExpression returns IncrementOrDecrementExpression: // CHANGE: Added operator to IncrementOrDecrementExpression in the metamodel.
-	//	operator=AffixOperator operand= // isPrefix ?= ''
-	//	LeftHandSide;
+	/// * INCREMENT OR DECREMENT EXPRESSIONS * / PrefixExpression IncrementOrDecrementExpression:
+	//	operator=AffixOperator operand=LeftHandSide
 	public AlfGrammarAccess.PrefixExpressionElements getPrefixExpressionAccess() {
 		return gaAlf.getPrefixExpressionAccess();
 	}
@@ -1388,7 +1416,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//AffixOperator:
-	//	"++" | "--";
+	//	'++' | '--';
 	public AlfGrammarAccess.AffixOperatorElements getAffixOperatorAccess() {
 		return gaAlf.getAffixOperatorAccess();
 	}
@@ -1397,8 +1425,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getAffixOperatorAccess().getRule();
 	}
 
-	/// * UNARY EXPRESSIONS * / UnaryExpression returns Expression:
-	//	PostfixOrCastExpression | NonPostfixNonCastUnaryExpression;
+	/// * UNARY EXPRESSIONS * / UnaryExpression Expression:
+	//	PostfixOrCastExpression | NonPostfixNonCastUnaryExpression
 	public AlfGrammarAccess.UnaryExpressionElements getUnaryExpressionAccess() {
 		return gaAlf.getUnaryExpressionAccess();
 	}
@@ -1407,8 +1435,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getUnaryExpressionAccess().getRule();
 	}
 
-	//PostfixOrCastExpression returns Expression:
-	//	PostfixExpression | CastExpression | PrimaryExpression;
+	//PostfixOrCastExpression Expression:
+	//	PostfixExpression | CastExpression | PrimaryExpression
 	public AlfGrammarAccess.PostfixOrCastExpressionElements getPostfixOrCastExpressionAccess() {
 		return gaAlf.getPostfixOrCastExpressionAccess();
 	}
@@ -1417,8 +1445,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getPostfixOrCastExpressionAccess().getRule();
 	}
 
-	//PostfixExpression returns IncrementOrDecrementExpression:
-	//	operand=LeftHandSide operator=AffixOperator;
+	//PostfixExpression IncrementOrDecrementExpression:
+	//	operand=LeftHandSide operator=AffixOperator
 	public AlfGrammarAccess.PostfixExpressionElements getPostfixExpressionAccess() {
 		return gaAlf.getPostfixExpressionAccess();
 	}
@@ -1427,8 +1455,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getPostfixExpressionAccess().getRule();
 	}
 
-	//NonPostfixNonCastUnaryExpression returns Expression:
-	//	PrefixExpression | NumericUnaryExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression;
+	//NonPostfixNonCastUnaryExpression Expression:
+	//	PrefixExpression | NumericUnaryExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression
 	public AlfGrammarAccess.NonPostfixNonCastUnaryExpressionElements getNonPostfixNonCastUnaryExpressionAccess() {
 		return gaAlf.getNonPostfixNonCastUnaryExpressionAccess();
 	}
@@ -1438,7 +1466,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//BooleanUnaryExpression:
-	//	operator="!" operand=UnaryExpression;
+	//	operator='!' operand=UnaryExpression;
 	public AlfGrammarAccess.BooleanUnaryExpressionElements getBooleanUnaryExpressionAccess() {
 		return gaAlf.getBooleanUnaryExpressionAccess();
 	}
@@ -1448,7 +1476,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//BitStringUnaryExpression:
-	//	operator="~" operand=UnaryExpression;
+	//	operator='~' operand=UnaryExpression;
 	public AlfGrammarAccess.BitStringUnaryExpressionElements getBitStringUnaryExpressionAccess() {
 		return gaAlf.getBitStringUnaryExpressionAccess();
 	}
@@ -1468,7 +1496,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//NumericUnaryOperator:
-	//	"+" | "-";
+	//	'+' | '-';
 	public AlfGrammarAccess.NumericUnaryOperatorElements getNumericUnaryOperatorAccess() {
 		return gaAlf.getNumericUnaryOperatorAccess();
 	}
@@ -1478,7 +1506,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//IsolationExpression:
-	//	operator="$" operand=UnaryExpression;
+	//	operator='$' operand=UnaryExpression;
 	public AlfGrammarAccess.IsolationExpressionElements getIsolationExpressionAccess() {
 		return gaAlf.getIsolationExpressionAccess();
 	}
@@ -1488,7 +1516,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//CastExpression: // CHANGE: Added isAny attribute to CastExpression in order to allow Xtext serialization.
-	//	"(" (isAny?="any" | typeName=QualifiedName) ")" operand=CastCompletion;
+	//	'(' (isAny?='any' | typeName=QualifiedName) ')' operand=CastCompletion;
 	public AlfGrammarAccess.CastExpressionElements getCastExpressionAccess() {
 		return gaAlf.getCastExpressionAccess();
 	}
@@ -1497,8 +1525,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getCastExpressionAccess().getRule();
 	}
 
-	//CastCompletion returns Expression:
-	//	PostfixOrCastExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression;
+	//CastCompletion Expression:
+	//	PostfixOrCastExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression
 	public AlfGrammarAccess.CastCompletionElements getCastCompletionAccess() {
 		return gaAlf.getCastCompletionAccess();
 	}
@@ -1507,8 +1535,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getCastCompletionAccess().getRule();
 	}
 
-	/// * ARITHMETIC EXPRESSIONS * / MultiplicativeExpression returns Expression:
-	//	UnaryExpression ({ArithmeticExpression.operand1=current} operator=MultiplicativeOperator operand2=UnaryExpression)*;
+	/// * ARITHMETIC EXPRESSIONS * / MultiplicativeExpression Expression:
+	//	UnaryExpression ({ArithmeticExpression.operand1=current} operator=MultiplicativeOperator operand2=UnaryExpression)*
 	public AlfGrammarAccess.MultiplicativeExpressionElements getMultiplicativeExpressionAccess() {
 		return gaAlf.getMultiplicativeExpressionAccess();
 	}
@@ -1518,7 +1546,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//MultiplicativeOperator:
-	//	"*" | "/" | "%";
+	//	'*' | '/' | '%';
 	public AlfGrammarAccess.MultiplicativeOperatorElements getMultiplicativeOperatorAccess() {
 		return gaAlf.getMultiplicativeOperatorAccess();
 	}
@@ -1527,9 +1555,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getMultiplicativeOperatorAccess().getRule();
 	}
 
-	//AdditiveExpression returns Expression:
+	//AdditiveExpression Expression:
 	//	MultiplicativeExpression ({ArithmeticExpression.operand1=current} operator=AdditiveOperator
-	//	operand2=MultiplicativeExpression)*;
+	//	operand2=MultiplicativeExpression)*
 	public AlfGrammarAccess.AdditiveExpressionElements getAdditiveExpressionAccess() {
 		return gaAlf.getAdditiveExpressionAccess();
 	}
@@ -1539,7 +1567,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//AdditiveOperator:
-	//	"+" | "-";
+	//	'+' | '-';
 	public AlfGrammarAccess.AdditiveOperatorElements getAdditiveOperatorAccess() {
 		return gaAlf.getAdditiveOperatorAccess();
 	}
@@ -1548,8 +1576,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getAdditiveOperatorAccess().getRule();
 	}
 
-	/// * SHIFT EXPRESSIONS * / ShiftExpression returns Expression:
-	//	AdditiveExpression ({ShiftExpression.operand1=current} operator=ShiftOperator operand2=AdditiveExpression)*;
+	/// * SHIFT EXPRESSIONS * / ShiftExpression Expression:
+	//	AdditiveExpression ({ShiftExpression.operand1=current} operator=ShiftOperator operand2=AdditiveExpression)*
 	public AlfGrammarAccess.ShiftExpressionElements getShiftExpressionAccess() {
 		return gaAlf.getShiftExpressionAccess();
 	}
@@ -1559,7 +1587,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//ShiftOperator:
-	//	"<<" | ">>" | ">>>";
+	//	'<<' | '>>' | '>>>';
 	public AlfGrammarAccess.ShiftOperatorElements getShiftOperatorAccess() {
 		return gaAlf.getShiftOperatorAccess();
 	}
@@ -1568,8 +1596,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getShiftOperatorAccess().getRule();
 	}
 
-	/// * RELATIONAL EXPRESSIONS * / RelationalExpression returns Expression:
-	//	ShiftExpression ({RelationalExpression.operand1=current} operator=RelationalOperator operand2=ShiftExpression)?;
+	/// * RELATIONAL EXPRESSIONS * / RelationalExpression Expression:
+	//	ShiftExpression ({RelationalExpression.operand1=current} operator=RelationalOperator operand2=ShiftExpression)?
 	public AlfGrammarAccess.RelationalExpressionElements getRelationalExpressionAccess() {
 		return gaAlf.getRelationalExpressionAccess();
 	}
@@ -1579,7 +1607,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//RelationalOperator:
-	//	"<" | ">" | "<=" | ">=";
+	//	'<' | '>' | '<=' | '>=';
 	public AlfGrammarAccess.RelationalOperatorElements getRelationalOperatorAccess() {
 		return gaAlf.getRelationalOperatorAccess();
 	}
@@ -1588,9 +1616,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getRelationalOperatorAccess().getRule();
 	}
 
-	/// * CLASSIFICATION EXPRESSIONS * / ClassificationExpression returns Expression:
+	/// * CLASSIFICATION EXPRESSIONS * / ClassificationExpression Expression:
 	//	RelationalExpression ({ClassificationExpression.operand=current} operator=ClassificationOperator
-	//	typeName=QualifiedName)?;
+	//	typeName=QualifiedName)?
 	public AlfGrammarAccess.ClassificationExpressionElements getClassificationExpressionAccess() {
 		return gaAlf.getClassificationExpressionAccess();
 	}
@@ -1600,7 +1628,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//ClassificationOperator:
-	//	"instanceof" | "hastype";
+	//	'instanceof' | 'hastype';
 	public AlfGrammarAccess.ClassificationOperatorElements getClassificationOperatorAccess() {
 		return gaAlf.getClassificationOperatorAccess();
 	}
@@ -1609,9 +1637,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getClassificationOperatorAccess().getRule();
 	}
 
-	/// * EQUALITY EXPRESSIONS * / EqualityExpression returns Expression:
+	/// * EQUALITY EXPRESSIONS * / EqualityExpression Expression:
 	//	ClassificationExpression ({EqualityExpression.operand1=current} operator=EqualityOperator
-	//	operand2=ClassificationExpression)*;
+	//	operand2=ClassificationExpression)*
 	public AlfGrammarAccess.EqualityExpressionElements getEqualityExpressionAccess() {
 		return gaAlf.getEqualityExpressionAccess();
 	}
@@ -1621,7 +1649,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//EqualityOperator:
-	//	"==" | "!=";
+	//	'==' | '!=';
 	public AlfGrammarAccess.EqualityOperatorElements getEqualityOperatorAccess() {
 		return gaAlf.getEqualityOperatorAccess();
 	}
@@ -1630,8 +1658,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getEqualityOperatorAccess().getRule();
 	}
 
-	/// * LOGICAL EXPRESSIONS * / AndExpression returns Expression:
-	//	EqualityExpression ({LogicalExpression.operand1=current} operator="&" operand2=EqualityExpression)*;
+	/// * LOGICAL EXPRESSIONS * / AndExpression Expression:
+	//	EqualityExpression ({LogicalExpression.operand1=current} operator='&' operand2=EqualityExpression)*
 	public AlfGrammarAccess.AndExpressionElements getAndExpressionAccess() {
 		return gaAlf.getAndExpressionAccess();
 	}
@@ -1640,8 +1668,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getAndExpressionAccess().getRule();
 	}
 
-	//ExclusiveOrExpression returns Expression:
-	//	AndExpression ({LogicalExpression.operand1=current} operator="^" operand2=AndExpression)*;
+	//ExclusiveOrExpression Expression:
+	//	AndExpression ({LogicalExpression.operand1=current} operator='^' operand2=AndExpression)*
 	public AlfGrammarAccess.ExclusiveOrExpressionElements getExclusiveOrExpressionAccess() {
 		return gaAlf.getExclusiveOrExpressionAccess();
 	}
@@ -1650,8 +1678,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getExclusiveOrExpressionAccess().getRule();
 	}
 
-	//InclusiveOrExpression returns Expression:
-	//	ExclusiveOrExpression ({LogicalExpression.operand1=current} operator="|" operand2=ExclusiveOrExpression)*;
+	//InclusiveOrExpression Expression:
+	//	ExclusiveOrExpression ({LogicalExpression.operand1=current} operator='|' operand2=ExclusiveOrExpression)*
 	public AlfGrammarAccess.InclusiveOrExpressionElements getInclusiveOrExpressionAccess() {
 		return gaAlf.getInclusiveOrExpressionAccess();
 	}
@@ -1660,9 +1688,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getInclusiveOrExpressionAccess().getRule();
 	}
 
-	/// * CONDITIONAL LOGICAL EXPRESSIONS * / ConditionalAndExpression returns Expression:
-	//	InclusiveOrExpression ({ConditionalLogicalExpression.operand1=current} operator="&&"
-	//	operand2=InclusiveOrExpression)*;
+	/// * CONDITIONAL LOGICAL EXPRESSIONS * / ConditionalAndExpression Expression:
+	//	InclusiveOrExpression ({ConditionalLogicalExpression.operand1=current} operator='&&' operand2=InclusiveOrExpression)*
 	public AlfGrammarAccess.ConditionalAndExpressionElements getConditionalAndExpressionAccess() {
 		return gaAlf.getConditionalAndExpressionAccess();
 	}
@@ -1671,9 +1698,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getConditionalAndExpressionAccess().getRule();
 	}
 
-	//ConditionalOrExpression returns Expression:
-	//	ConditionalAndExpression ({ConditionalLogicalExpression.operand1=current} operator="||"
-	//	operand2=ConditionalAndExpression)*;
+	//ConditionalOrExpression Expression:
+	//	ConditionalAndExpression ({ConditionalLogicalExpression.operand1=current} operator='||'
+	//	operand2=ConditionalAndExpression)*
 	public AlfGrammarAccess.ConditionalOrExpressionElements getConditionalOrExpressionAccess() {
 		return gaAlf.getConditionalOrExpressionAccess();
 	}
@@ -1682,9 +1709,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getConditionalOrExpressionAccess().getRule();
 	}
 
-	/// * CONDITIONAL-TEST EXPRESSIONS * / ConditionalExpression returns Expression:
-	//	ConditionalOrExpression ({ConditionalTestExpression.operand1=current} "?" operand2=Expression ":"
-	//	operand3=ConditionalExpression)?;
+	/// * CONDITIONAL-TEST EXPRESSIONS * / ConditionalExpression Expression:
+	//	ConditionalOrExpression ({ConditionalTestExpression.operand1=current}
+	//	'?' operand2=Expression ':' operand3=ConditionalExpression)?
 	public AlfGrammarAccess.ConditionalExpressionElements getConditionalExpressionAccess() {
 		return gaAlf.getConditionalExpressionAccess();
 	}
@@ -1703,10 +1730,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getAssignmentExpressionAccess().getRule();
 	}
 
-	////  "(" LeftHandSide ")"
 	//LeftHandSide:
-	//	NameLeftHandSide | // ( index = Index )? |
-	//	FeatureLeftHandSide;
+	//	NameLeftHandSide | FeatureLeftHandSide // ( index = Index )? |
+	//	//  "(" LeftHandSide ")"
+	//;
 	public AlfGrammarAccess.LeftHandSideElements getLeftHandSideAccess() {
 		return gaAlf.getLeftHandSideAccess();
 	}
@@ -1715,7 +1742,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getLeftHandSideAccess().getRule();
 	}
 
-	//NameLeftHandSide: // CHANGE: Moved the index property from LeftHandSide down to just NameLeftHandSide.
+	//NameLeftHandSide:
 	//	target=PotentiallyAmbiguousQualifiedName index=Index?;
 	public AlfGrammarAccess.NameLeftHandSideElements getNameLeftHandSideAccess() {
 		return gaAlf.getNameLeftHandSideAccess();
@@ -1725,7 +1752,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getNameLeftHandSideAccess().getRule();
 	}
 
-	//FeatureLeftHandSide: // CHANGE: Replaced the feature property of a FeatureLeftHandSide with expression.
+	//FeatureLeftHandSide:
 	//	expression=PrimaryExpression;
 	public AlfGrammarAccess.FeatureLeftHandSideElements getFeatureLeftHandSideAccess() {
 		return gaAlf.getFeatureLeftHandSideAccess();
@@ -1736,7 +1763,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//AssignmentOperator:
-	//	"=" | "+=" | "-=" | "*=" | "/=" | "%=" | "&=" | "|=" | "^=" | "<<=" | ">>=" | ">>>=";
+	//	'=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '|=' | '^=' | '<<=' | '>>=' | '>>>=';
 	public AlfGrammarAccess.AssignmentOperatorElements getAssignmentOperatorAccess() {
 		return gaAlf.getAssignmentOperatorAccess();
 	}
@@ -1747,8 +1774,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 
 	/// **************
 	// * STATEMENTS *
-	// ************** / StatementSequence returns Block:
-	//	{Block} statement+=DocumentedStatement*;
+	// ************** / StatementSequence Block:
+	//	{Block} statement+=DocumentedStatement*
 	public AlfGrammarAccess.StatementSequenceElements getStatementSequenceAccess() {
 		return gaAlf.getStatementSequenceAccess();
 	}
@@ -1757,8 +1784,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getStatementSequenceAccess().getRule();
 	}
 
-	//DocumentedStatement returns AnnotatedStatement: // CHANGE: Made AnnotatedStatement a subtype of DocumentedStatement with annotations and a statement reference. 
-	//	AnnotatedStatement;
+	//DocumentedStatement AnnotatedStatement:
+	//	AnnotatedStatement
 	public AlfGrammarAccess.DocumentedStatementElements getDocumentedStatementAccess() {
 		return gaAlf.getDocumentedStatementAccess();
 	}
@@ -1767,10 +1794,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getDocumentedStatementAccess().getRule();
 	}
 
-	//Statement: // AnnotatedStatement | 
-	//	InLineStatement | BlockStatement | EmptyStatement | LocalNameDeclarationStatement | ExpressionStatement | IfStatement |
-	//	SwitchStatement | WhileStatement | ForStatement | DoStatement | BreakStatement | ReturnStatement | AcceptStatement |
-	//	ClassifyStatement;
+	//Statement:
+	//	InLineStatement | BlockStatement | EmptyStatement | LocalNameDeclarationStatement | ExpressionStatement | IfStatement
+	//	| SwitchStatement | WhileStatement | ForStatement | DoStatement | BreakStatement | ReturnStatement | AcceptStatement
+	//	| ClassifyStatement;
 	public AlfGrammarAccess.StatementElements getStatementAccess() {
 		return gaAlf.getStatementAccess();
 	}
@@ -1780,7 +1807,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * BLOCK * / Block:
-	//	{Block} "{" statement+=DocumentedStatement* "}";
+	//	{Block} '{' statement+=DocumentedStatement* '}';
 	public AlfGrammarAccess.BlockElements getBlockAccess() {
 		return gaAlf.getBlockAccess();
 	}
@@ -1790,8 +1817,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * ANNOTATED STATEMENTS * / AnnotatedStatement:
-	//	documentation+=DOCUMENTATION_COMMENT? // CHANGE: Include text line in annotation statement.
-	//	annotation+=STATEMENT_ANNOTATION* // ( '//@' annotation += Annotation ( '@' annotation += Annotation )+ '\r'? '\n' )*
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	// CHANGE: Include text line in annotation statement.
+	//	annotation+=STATEMENT_ANNOTATION*
+	//	// ( '//@' annotation += Annotation ( '@' annotation += Annotation )+ '\r'? '\n' )*
 	//	statement=Statement;
 	public AlfGrammarAccess.AnnotatedStatementElements getAnnotatedStatementAccess() {
 		return gaAlf.getAnnotatedStatementAccess();
@@ -1805,9 +1834,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	//Annotation : 
 	//	identifier = ID ( '(' argument += Name ( ',' argument += Name )* ')' )?
 	//;
-	// * / / * IN-LINE STATEMENTS * / //'/ *@' 'inline' '(' language = Name ')' '* /'
-	//InLineStatement: // CHANGE: Include all text lexically in one attribute of InLineStatement.
-	//	code=INLINE_STATEMENT;
+	// * / / * IN-LINE STATEMENTS * / InLineStatement:
+	//	code=INLINE_STATEMENT
+	//	//'/ *@' 'inline' '(' language = Name ')' '* /'
+	//;
 	public AlfGrammarAccess.InLineStatementElements getInLineStatementAccess() {
 		return gaAlf.getInLineStatementAccess();
 	}
@@ -1827,7 +1857,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * EMPTY STATEMENTS * / EmptyStatement:
-	//	{EmptyStatement} ";";
+	//	{EmptyStatement}
+	//	';';
 	public AlfGrammarAccess.EmptyStatementElements getEmptyStatementAccess() {
 		return gaAlf.getEmptyStatementAccess();
 	}
@@ -1837,9 +1868,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * LOCAL NAME DECLARATION STATEMENTS * / LocalNameDeclarationStatement:
-	//	("let" name=Name ":" (isAny?="any" | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? // CHANGE: Added isAny attribute to localNameDeclarationStatement in order to allow Xtext serialization.
-	//	| (isAny?="any" | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? name=Name) "="
-	//	expression=InitializationExpression ";";
+	//	('let' name=Name ':' (isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? | (isAny?='any'
+	//	| typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? name=Name)
+	//	'=' expression=InitializationExpression ';';
 	public AlfGrammarAccess.LocalNameDeclarationStatementElements getLocalNameDeclarationStatementAccess() {
 		return gaAlf.getLocalNameDeclarationStatementAccess();
 	}
@@ -1848,8 +1879,10 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getLocalNameDeclarationStatementAccess().getRule();
 	}
 
-	//InitializationExpression returns Expression:
-	//	Expression | SequenceInitializationExpression | InstanceInitializationExpression;
+	//InitializationExpression Expression:
+	//	Expression
+	//	| SequenceInitializationExpression
+	//	| InstanceInitializationExpression
 	public AlfGrammarAccess.InitializationExpressionElements getInitializationExpressionAccess() {
 		return gaAlf.getInitializationExpressionAccess();
 	}
@@ -1858,8 +1891,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getInitializationExpressionAccess().getRule();
 	}
 
-	//InstanceInitializationExpression returns InstanceCreationExpression:
-	//	"new" tuple=Tuple;
+	//InstanceInitializationExpression InstanceCreationExpression:
+	//	'new' tuple=Tuple
 	public AlfGrammarAccess.InstanceInitializationExpressionElements getInstanceInitializationExpressionAccess() {
 		return gaAlf.getInstanceInitializationExpressionAccess();
 	}
@@ -1869,7 +1902,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * EXPRESSION STATEMENTS * / ExpressionStatement:
-	//	expression=Expression ";";
+	//	expression=Expression ';';
 	public AlfGrammarAccess.ExpressionStatementElements getExpressionStatementAccess() {
 		return gaAlf.getExpressionStatementAccess();
 	}
@@ -1879,7 +1912,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * IF STATEMENTS * / IfStatement:
-	//	"if" nonFinalClauses+=ConcurrentClauses ("else" "if" nonFinalClauses+=ConcurrentClauses)* ("else"
+	//	'if' nonFinalClauses+=ConcurrentClauses ('else' 'if' nonFinalClauses+=ConcurrentClauses)* ('else'
 	//	finalClause=Block)?;
 	public AlfGrammarAccess.IfStatementElements getIfStatementAccess() {
 		return gaAlf.getIfStatementAccess();
@@ -1890,7 +1923,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//ConcurrentClauses:
-	//	clause+=NonFinalClause ("or" "if" clause+=NonFinalClause)*;
+	//	clause+=NonFinalClause ('or' 'if' clause+=NonFinalClause)*;
 	public AlfGrammarAccess.ConcurrentClausesElements getConcurrentClausesAccess() {
 		return gaAlf.getConcurrentClausesAccess();
 	}
@@ -1900,7 +1933,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//NonFinalClause:
-	//	"(" condition=Expression ")" body=Block;
+	//	'(' condition=Expression ')' body=Block;
 	public AlfGrammarAccess.NonFinalClauseElements getNonFinalClauseAccess() {
 		return gaAlf.getNonFinalClauseAccess();
 	}
@@ -1910,7 +1943,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * SWITCH STATEMENTS * / SwitchStatement:
-	//	"switch" "(" expression=Expression ")" "{" nonDefaultClause+=SwitchClause* defaultClause=SwitchDefaultClause? "}";
+	//	'switch' '(' expression=Expression ')'
+	//	'{' nonDefaultClause+=SwitchClause*
+	//	defaultClause=SwitchDefaultClause? '}';
 	public AlfGrammarAccess.SwitchStatementElements getSwitchStatementAccess() {
 		return gaAlf.getSwitchStatementAccess();
 	}
@@ -1920,7 +1955,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//SwitchClause:
-	//	case+=SwitchCase case+=SwitchCase* block=NonEmptyStatementSequence;
+	//	case+=SwitchCase case+=SwitchCase*
+	//	block=NonEmptyStatementSequence;
 	public AlfGrammarAccess.SwitchClauseElements getSwitchClauseAccess() {
 		return gaAlf.getSwitchClauseAccess();
 	}
@@ -1929,8 +1965,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getSwitchClauseAccess().getRule();
 	}
 
-	//SwitchCase returns Expression:
-	//	"case" Expression ":";
+	//SwitchCase Expression:
+	//	'case' Expression ':'
 	public AlfGrammarAccess.SwitchCaseElements getSwitchCaseAccess() {
 		return gaAlf.getSwitchCaseAccess();
 	}
@@ -1939,8 +1975,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getSwitchCaseAccess().getRule();
 	}
 
-	//SwitchDefaultClause returns Block:
-	//	"default" ":" NonEmptyStatementSequence;
+	//SwitchDefaultClause Block:
+	//	'default' ':' NonEmptyStatementSequence
 	public AlfGrammarAccess.SwitchDefaultClauseElements getSwitchDefaultClauseAccess() {
 		return gaAlf.getSwitchDefaultClauseAccess();
 	}
@@ -1949,8 +1985,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getSwitchDefaultClauseAccess().getRule();
 	}
 
-	//NonEmptyStatementSequence returns Block:
-	//	statement+=DocumentedStatement+;
+	//NonEmptyStatementSequence Block:
+	//	statement+=DocumentedStatement+
 	public AlfGrammarAccess.NonEmptyStatementSequenceElements getNonEmptyStatementSequenceAccess() {
 		return gaAlf.getNonEmptyStatementSequenceAccess();
 	}
@@ -1960,7 +1996,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * WHILE STATEMENTS * / WhileStatement:
-	//	"while" "(" condition=Expression ")" body=Block;
+	//	'while' '(' condition=Expression ')' body=Block;
 	public AlfGrammarAccess.WhileStatementElements getWhileStatementAccess() {
 		return gaAlf.getWhileStatementAccess();
 	}
@@ -1970,7 +2006,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * DO STATEMENTS * / DoStatement:
-	//	"do" body=Block "while" "(" condition=Expression ")" ";";
+	//	'do' body=Block 'while' '(' condition=Expression ')' ';';
 	public AlfGrammarAccess.DoStatementElements getDoStatementAccess() {
 		return gaAlf.getDoStatementAccess();
 	}
@@ -1980,7 +2016,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * FOR STATEMENTS * / ForStatement:
-	//	"for" "(" variableDefinition+=LoopVariableDefinition ("," variableDefinition+=LoopVariableDefinition)* ")"
+	//	'for' '(' variableDefinition+=LoopVariableDefinition (',' variableDefinition+=LoopVariableDefinition)* ')'
 	//	body=Block;
 	public AlfGrammarAccess.ForStatementElements getForStatementAccess() {
 		return gaAlf.getForStatementAccess();
@@ -1990,10 +2026,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getForStatementAccess().getRule();
 	}
 
-	//LoopVariableDefinition: // CHANGE: Added isAny attribute to LoopVariableDefinition in order to allow Xtext serialization.
-	//// NOTE: Default for typeIsInferred must be false.
-	//	variable=Name typeIsInferred?="in" expression1=Expression (".." expression2=Expression)? | (isAny?="any" |
-	//	typeName=QualifiedName) variable=Name ":" expression1=Expression;
+	//LoopVariableDefinition:
+	//	variable=Name typeIsInferred?='in' expression1=Expression ('..' expression2=Expression)? | (isAny?='any' |
+	//	typeName=QualifiedName) variable=Name ':' expression1=Expression;
 	public AlfGrammarAccess.LoopVariableDefinitionElements getLoopVariableDefinitionAccess() {
 		return gaAlf.getLoopVariableDefinitionAccess();
 	}
@@ -2003,7 +2038,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * BREAK STATEMENTS * / BreakStatement:
-	//	{BreakStatement} "break" ";";
+	//	{BreakStatement}
+	//	'break' ';';
 	public AlfGrammarAccess.BreakStatementElements getBreakStatementAccess() {
 		return gaAlf.getBreakStatementAccess();
 	}
@@ -2013,7 +2049,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * RETURN STATEMENTS * / ReturnStatement:
-	//	{ReturnStatement} "return" expression=Expression? ";";
+	//	{ReturnStatement}
+	//	'return' expression=Expression? ';';
 	public AlfGrammarAccess.ReturnStatementElements getReturnStatementAccess() {
 		return gaAlf.getReturnStatementAccess();
 	}
@@ -2023,7 +2060,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * ACCEPT STATEMENTS * / AcceptStatement:
-	//	acceptBlock+=AcceptClause ";" | acceptBlock+=AcceptBlock ("or" acceptBlock+=AcceptBlock)*;
+	//	acceptBlock+=AcceptClause ';' | acceptBlock+=AcceptBlock ('or' acceptBlock+=AcceptBlock)*;
 	public AlfGrammarAccess.AcceptStatementElements getAcceptStatementAccess() {
 		return gaAlf.getAcceptStatementAccess();
 	}
@@ -2042,8 +2079,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getAcceptBlockAccess().getRule();
 	}
 
-	//AcceptClause returns AcceptBlock:
-	//	"accept" "(" (name=Name ":")? signalNames=QualifiedNameList ")";
+	//AcceptClause AcceptBlock:
+	//	'accept' '(' (name=Name ':')? signalNames=QualifiedNameList ')'
 	public AlfGrammarAccess.AcceptClauseElements getAcceptClauseAccess() {
 		return gaAlf.getAcceptClauseAccess();
 	}
@@ -2053,8 +2090,9 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	/// * CLASSIFY STATEMENTS * / ClassifyStatement:
-	//	"classify" expression=Expression (fromList=ClassificationFromClause toList=ClassificationToClause? |
-	//	isReclassifyAll?=ReclassifyAllClause? toList=ClassificationToClause) ";";
+	//	'classify' expression=Expression (fromList=ClassificationFromClause toList=ClassificationToClause? |
+	//	isReclassifyAll?=ReclassifyAllClause? toList=ClassificationToClause)
+	//	';';
 	public AlfGrammarAccess.ClassifyStatementElements getClassifyStatementAccess() {
 		return gaAlf.getClassifyStatementAccess();
 	}
@@ -2063,8 +2101,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getClassifyStatementAccess().getRule();
 	}
 
-	//ClassificationFromClause returns QualifiedNameList:
-	//	"from" QualifiedNameList;
+	//ClassificationFromClause QualifiedNameList:
+	//	'from' QualifiedNameList
 	public AlfGrammarAccess.ClassificationFromClauseElements getClassificationFromClauseAccess() {
 		return gaAlf.getClassificationFromClauseAccess();
 	}
@@ -2073,8 +2111,8 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getClassificationFromClauseAccess().getRule();
 	}
 
-	//ClassificationToClause returns QualifiedNameList:
-	//	"to" QualifiedNameList;
+	//ClassificationToClause QualifiedNameList:
+	//	'to' QualifiedNameList
 	public AlfGrammarAccess.ClassificationToClauseElements getClassificationToClauseAccess() {
 		return gaAlf.getClassificationToClauseAccess();
 	}
@@ -2084,7 +2122,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//ReclassifyAllClause:
-	//	"from" "*";
+	//	'from' '*';
 	public AlfGrammarAccess.ReclassifyAllClauseElements getReclassifyAllClauseAccess() {
 		return gaAlf.getReclassifyAllClauseAccess();
 	}
@@ -2094,7 +2132,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	}
 
 	//QualifiedNameList:
-	//	name+=QualifiedName ("," name+=QualifiedName)*;
+	//	name+=QualifiedName (',' name+=QualifiedName)*;
 	public AlfGrammarAccess.QualifiedNameListElements getQualifiedNameListAccess() {
 		return gaAlf.getQualifiedNameListAccess();
 	}
@@ -2103,77 +2141,72 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getQualifiedNameListAccess().getRule();
 	}
 
-	/// ****************
-	// * Terminals
-	// ***************** / terminal BOOLEAN_VALUE:
-	//	"true" | "false";
+	//terminal BOOLEAN_VALUE:
+	//	'true' | 'false';
 	public TerminalRule getBOOLEAN_VALUERule() {
 		return gaAlf.getBOOLEAN_VALUERule();
 	} 
 
 	//terminal NATURAL_VALUE:
-	//	("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL 
-	//	// BINARY
-	//	// HEX
-	//	// OCT
-	//	| ("0b" | "0B") "0".."1" ("_"? "0".."1")* | ("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" |
-	//	"A".."F"))* | "0" "_"? "0".."7" ("_"? "0".."7")*;
+	//	('0' | '1'..'9' ('_'? '0'..'9')*) | ('0b' | '0B') '0'..'1' ('_'? '0'..'1')* | ('0x' | '0X') ('0'..'9' | 'a'..'f' |
+	//	'A'..'F') ('_'? ('0'..'9' | 'a'..'f' | 'A'..'F'))* | '0' '_'? '0'..'7' ('_'? '0'..'7')*;
 	public TerminalRule getNATURAL_VALUERule() {
 		return gaAlf.getNATURAL_VALUERule();
 	} 
 
 	//terminal ID:
-	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	//	('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 	public TerminalRule getIDRule() {
 		return gaAlf.getIDRule();
 	} 
 
 	//terminal UNRESTRICTED_NAME:
-	//	"\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
+	//	'\'' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | "'" | '\\') | !('\\' | '\''))* '\'';
 	public TerminalRule getUNRESTRICTED_NAMERule() {
 		return gaAlf.getUNRESTRICTED_NAMERule();
 	} 
 
 	//terminal STRING:
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
+	//	'"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | "'" | '\\') | !('\\' | '"'))* '"';
 	public TerminalRule getSTRINGRule() {
 		return gaAlf.getSTRINGRule();
 	} 
 
 	//terminal DOCUMENTATION_COMMENT:
-	//	"/ **"->"* /";
+	//	'/ **'->'* /';
 	public TerminalRule getDOCUMENTATION_COMMENTRule() {
 		return gaAlf.getDOCUMENTATION_COMMENTRule();
 	} 
 
-	////  '//@' WS? ID (WS? '(' WS? (ID | UNRESTRICTED_NAME) (WS? ',' WS? (ID | UNRESTRICTED_NAME))* WS? ')')? 
-	////  (WS? '@' WS? ID (WS? '(' WS? (ID | UNRESTRICTED_NAME) (WS? ',' WS? (ID | UNRESTRICTED_NAME))* WS? ')')?)* (' '|'\t')* ('\r'? '\n')
 	//terminal STATEMENT_ANNOTATION:
-	//	"//@"->"\n";
+	//	'//@'->'\n'
+	//	//  '//@' WS? ID (WS? '(' WS? (ID | UNRESTRICTED_NAME) (WS? ',' WS? (ID | UNRESTRICTED_NAME))* WS? ')')? 
+	//	//  (WS? '@' WS? ID (WS? '(' WS? (ID | UNRESTRICTED_NAME) (WS? ',' WS? (ID | UNRESTRICTED_NAME))* WS? ')')?)* (' '|'\t')* ('\r'? '\n')
+	//;
 	public TerminalRule getSTATEMENT_ANNOTATIONRule() {
 		return gaAlf.getSTATEMENT_ANNOTATIONRule();
 	} 
 
 	//terminal INLINE_STATEMENT:
-	//	"/ *@inline(" (ID | UNRESTRICTED_NAME) ")"->"* /";
+	//	'/ *@inline(' (ID | UNRESTRICTED_NAME) ')'->'* /';
 	public TerminalRule getINLINE_STATEMENTRule() {
 		return gaAlf.getINLINE_STATEMENTRule();
 	} 
 
 	//terminal ML_COMMENT:
-	//	"/ *" !("*" | "@")->"* /";
+	//	'/ *' !('*' | '@')->'* /';
 	public TerminalRule getML_COMMENTRule() {
 		return gaAlf.getML_COMMENTRule();
 	} 
 
 	//terminal SL_COMMENT:
-	//	"//" (!("@" | "\n" | "\r") !("\n" | "\r")*)? ("\r"? "\n")?;
+	//	'//' (!('@' | '\n' | '\r') !('\n' | '\r')*)? ('\r'? '\n')?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaAlf.getSL_COMMENTRule();
 	} 
 
 	//terminal WS:
-	//	(" " | "\t" | "\r" | "\n")+;
+	//	' ' | '\t' | '\r' | '\n'+;
 	public TerminalRule getWSRule() {
 		return gaAlf.getWSRule();
 	} 

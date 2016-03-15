@@ -32,4 +32,4 @@ Bundle-Name: ALF XText Properties (Incubation)
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.alf.properties.xtext.ActivatorALFProperties
 Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.properties.xtext;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

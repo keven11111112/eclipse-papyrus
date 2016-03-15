@@ -18,7 +18,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	public class UnitDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnitDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.UnitDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNamespaceNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNamespaceNameNamespaceDeclarationParserRuleCall_0_0 = (RuleCall)cNamespaceNameAssignment_0.eContents().get(0);
@@ -34,8 +34,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		/// *********
 		// * UNITS *
 		// ********* / UnitDefinition:
-		//	namespaceName=NamespaceDeclaration? ^import+=ImportDeclaration* documentation+=DOCUMENTATION_COMMENT?
-		//	annotation+=StereotypeAnnotation* definition=NamespaceDefinition;
+		//	namespaceName=NamespaceDeclaration?
+		//	^import+=ImportDeclaration*
+		//	documentation+=DOCUMENTATION_COMMENT?
+		//	annotation+=StereotypeAnnotation*
+		//	definition=NamespaceDefinition;
 		@Override public ParserRule getRule() { return rule; }
 
 		//namespaceName=NamespaceDeclaration? ^import+=ImportDeclaration* documentation+=DOCUMENTATION_COMMENT?
@@ -74,7 +77,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class StereotypeAnnotationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StereotypeAnnotation");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.StereotypeAnnotation");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cCommercialAtKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cStereotypeNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -89,13 +92,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
 		
 		//StereotypeAnnotation:
-		//	"@" stereotypeName=QualifiedName ("(" (names=QualifiedNameList | taggedValues=TaggedValueList) ")")?;
+		//	'@' stereotypeName=QualifiedName ('(' (names=QualifiedNameList | taggedValues=TaggedValueList) ')')?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"@" stereotypeName=QualifiedName ("(" (names=QualifiedNameList | taggedValues=TaggedValueList) ")")?
+		//'@' stereotypeName=QualifiedName ('(' (names=QualifiedNameList | taggedValues=TaggedValueList) ')')?
 		public Group getGroup() { return cGroup; }
 
-		//"@"
+		//'@'
 		public Keyword getCommercialAtKeyword_0() { return cCommercialAtKeyword_0; }
 
 		//stereotypeName=QualifiedName
@@ -104,13 +107,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getStereotypeNameQualifiedNameParserRuleCall_1_0() { return cStereotypeNameQualifiedNameParserRuleCall_1_0; }
 
-		//("(" (names=QualifiedNameList | taggedValues=TaggedValueList) ")")?
+		//('(' (names=QualifiedNameList | taggedValues=TaggedValueList) ')')?
 		public Group getGroup_2() { return cGroup_2; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_2_0() { return cLeftParenthesisKeyword_2_0; }
 
-		//names=QualifiedNameList | taggedValues=TaggedValueList
+		//(names=QualifiedNameList | taggedValues=TaggedValueList)
 		public Alternatives getAlternatives_2_1() { return cAlternatives_2_1; }
 
 		//names=QualifiedNameList
@@ -125,12 +128,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//TaggedValueList
 		public RuleCall getTaggedValuesTaggedValueListParserRuleCall_2_1_1_0() { return cTaggedValuesTaggedValueListParserRuleCall_2_1_1_0; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_2_2() { return cRightParenthesisKeyword_2_2; }
 	}
 
 	public class TaggedValueListElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TaggedValueList");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.TaggedValueList");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cTaggedValueAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cTaggedValueTaggedValueParserRuleCall_0_0 = (RuleCall)cTaggedValueAssignment_0.eContents().get(0);
@@ -139,7 +142,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTaggedValueAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cTaggedValueTaggedValueParserRuleCall_1_1_0 = (RuleCall)cTaggedValueAssignment_1_1.eContents().get(0);
 		
-		//TaggedValueList: // CHANGE: Made taggedValue composite in the metamodel.
+		//TaggedValueList:
 		//	taggedValue+=TaggedValue ("," taggedValue+=TaggedValue)*;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -168,7 +171,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class TaggedValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TaggedValue");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.TaggedValue");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -187,10 +190,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueSTRINGTerminalRuleCall_2_3_0 = (RuleCall)cValueAssignment_2_3.eContents().get(0);
 		
 		//TaggedValue:
-		//	name=Name "=>" (value=BOOLEAN_VALUE | operator=NumericUnaryOperator? value=NATURAL_VALUE | value="*" | value=STRING);
+		//	name=Name '=>' (value=BOOLEAN_VALUE | operator=NumericUnaryOperator? value=NATURAL_VALUE | value='*' | value=STRING);
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=Name "=>" (value=BOOLEAN_VALUE | operator=NumericUnaryOperator? value=NATURAL_VALUE | value="*" | value=STRING)
+		//name=Name '=>' (value=BOOLEAN_VALUE | operator=NumericUnaryOperator? value=NATURAL_VALUE | value='*' | value=STRING)
 		public Group getGroup() { return cGroup; }
 
 		//name=Name
@@ -199,10 +202,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_0_0() { return cNameNameParserRuleCall_0_0; }
 
-		//"=>"
+		//'=>'
 		public Keyword getEqualsSignGreaterThanSignKeyword_1() { return cEqualsSignGreaterThanSignKeyword_1; }
 
-		//value=BOOLEAN_VALUE | operator=NumericUnaryOperator? value=NATURAL_VALUE | value="*" | value=STRING
+		//(value=BOOLEAN_VALUE | operator=NumericUnaryOperator? value=NATURAL_VALUE | value='*' | value=STRING)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//value=BOOLEAN_VALUE
@@ -226,10 +229,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//NATURAL_VALUE
 		public RuleCall getValueNATURAL_VALUETerminalRuleCall_2_1_1_0() { return cValueNATURAL_VALUETerminalRuleCall_2_1_1_0; }
 
-		//value="*"
+		//value='*'
 		public Assignment getValueAssignment_2_2() { return cValueAssignment_2_2; }
 
-		//"*"
+		//'*'
 		public Keyword getValueAsteriskKeyword_2_2_0() { return cValueAsteriskKeyword_2_2_0; }
 
 		//value=STRING
@@ -240,45 +243,45 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NamespaceDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NamespaceDeclaration");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NamespaceDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cNamespaceKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cQualifiedNameParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//NamespaceDeclaration returns QualifiedName:
-		//	"namespace" QualifiedName ";";
+		//NamespaceDeclaration QualifiedName:
+		//	'namespace' QualifiedName ';'
 		@Override public ParserRule getRule() { return rule; }
 
-		//"namespace" QualifiedName ";"
+		//'namespace' QualifiedName ';'
 		public Group getGroup() { return cGroup; }
 
-		//"namespace"
+		//'namespace'
 		public Keyword getNamespaceKeyword_0() { return cNamespaceKeyword_0; }
 
 		//QualifiedName
 		public RuleCall getQualifiedNameParserRuleCall_1() { return cQualifiedNameParserRuleCall_1; }
 
-		//";"
+		//';'
 		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
 	}
 
 	public class ImportDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ImportDeclaration");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ImportDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
 		private final RuleCall cPackageImportReferenceParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cElementImportReferenceParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
-		//ImportDeclaration returns ImportReference:
-		//	(PackageImportReference | ElementImportReference) ";";
+		//ImportDeclaration ImportReference:
+		//	(PackageImportReference | ElementImportReference) ';'
 		@Override public ParserRule getRule() { return rule; }
 
-		//(PackageImportReference | ElementImportReference) ";"
+		//(PackageImportReference | ElementImportReference) ';'
 		public Group getGroup() { return cGroup; }
 
-		//PackageImportReference | ElementImportReference
+		//(PackageImportReference | ElementImportReference)
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
 		//PackageImportReference
@@ -287,12 +290,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ElementImportReference
 		public RuleCall getElementImportReferenceParserRuleCall_0_1() { return cElementImportReferenceParserRuleCall_0_1; }
 
-		//";"
+		//';'
 		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
 	}
 
 	public class ElementImportReferenceElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ElementImportReference");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ElementImportReference");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cVisibilityImportVisibilityIndicatorParserRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
@@ -305,10 +308,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAliasNameParserRuleCall_3_1_0 = (RuleCall)cAliasAssignment_3_1.eContents().get(0);
 		
 		//ElementImportReference:
-		//	visibility=ImportVisibilityIndicator "import" referentName=QualifiedName ("as" alias=Name)?;
+		//	visibility=ImportVisibilityIndicator 'import' referentName=QualifiedName ('as' alias=Name)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//visibility=ImportVisibilityIndicator "import" referentName=QualifiedName ("as" alias=Name)?
+		//visibility=ImportVisibilityIndicator 'import' referentName=QualifiedName ('as' alias=Name)?
 		public Group getGroup() { return cGroup; }
 
 		//visibility=ImportVisibilityIndicator
@@ -317,7 +320,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ImportVisibilityIndicator
 		public RuleCall getVisibilityImportVisibilityIndicatorParserRuleCall_0_0() { return cVisibilityImportVisibilityIndicatorParserRuleCall_0_0; }
 
-		//"import"
+		//'import'
 		public Keyword getImportKeyword_1() { return cImportKeyword_1; }
 
 		//referentName=QualifiedName
@@ -326,10 +329,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getReferentNameQualifiedNameParserRuleCall_2_0() { return cReferentNameQualifiedNameParserRuleCall_2_0; }
 
-		//("as" alias=Name)?
+		//('as' alias=Name)?
 		public Group getGroup_3() { return cGroup_3; }
 
-		//"as"
+		//'as'
 		public Keyword getAsKeyword_3_0() { return cAsKeyword_3_0; }
 
 		//alias=Name
@@ -340,7 +343,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class PackageImportReferenceElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PackageImportReference");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PackageImportReference");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cVisibilityImportVisibilityIndicatorParserRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
@@ -348,16 +351,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cReferentNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cReferentNamePackageImportQualifiedNameParserRuleCall_2_0 = (RuleCall)cReferentNameAssignment_2.eContents().get(0);
 		
-		////  ( 
-		////    referentName = UnqualifiedName ('::' | '.') '*' |
-		////    referentName = ColonQualifiedName '::' '*' | 
-		////    referentName = DotQualifiedName '.' '*'
-		////  )
 		//PackageImportReference:
-		//	visibility=ImportVisibilityIndicator "import" referentName=PackageImportQualifiedName;
+		//	visibility=ImportVisibilityIndicator 'import' referentName=PackageImportQualifiedName
+		//	//  ( 
+		//	//    referentName = UnqualifiedName ('::' | '.') '*' |
+		//	//    referentName = ColonQualifiedName '::' '*' | 
+		//	//    referentName = DotQualifiedName '.' '*'
+		//	//  )
+		//;
 		@Override public ParserRule getRule() { return rule; }
 
-		//visibility=ImportVisibilityIndicator "import" referentName=PackageImportQualifiedName
+		//visibility=ImportVisibilityIndicator 'import' referentName=PackageImportQualifiedName
 		public Group getGroup() { return cGroup; }
 
 		//visibility=ImportVisibilityIndicator
@@ -366,7 +370,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ImportVisibilityIndicator
 		public RuleCall getVisibilityImportVisibilityIndicatorParserRuleCall_0_0() { return cVisibilityImportVisibilityIndicatorParserRuleCall_0_0; }
 
-		//"import"
+		//'import'
 		public Keyword getImportKeyword_1() { return cImportKeyword_1; }
 
 		//referentName=PackageImportQualifiedName
@@ -377,7 +381,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class PackageImportQualifiedNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PackageImportQualifiedName");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PackageImportQualifiedName");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameBindingAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameBindingNameBindingParserRuleCall_0_0 = (RuleCall)cNameBindingAssignment_0.eContents().get(0);
@@ -397,11 +401,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFullStopKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
 		private final Keyword cAsteriskKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
-		//PackageImportQualifiedName returns QualifiedName:
-		//	nameBinding+=NameBinding (("::" nameBinding+=NameBinding)* "::" "*" | ("." nameBinding+=NameBinding)* "." "*");
+		//PackageImportQualifiedName QualifiedName:
+		//	nameBinding+=NameBinding (('::' nameBinding+=NameBinding)* '::' '*' | ('.' nameBinding+=NameBinding)* '.' '*')
 		@Override public ParserRule getRule() { return rule; }
 
-		//nameBinding+=NameBinding (("::" nameBinding+=NameBinding)* "::" "*" | ("." nameBinding+=NameBinding)* "." "*")
+		//nameBinding+=NameBinding (('::' nameBinding+=NameBinding)* '::' '*' | ('.' nameBinding+=NameBinding)* '.' '*')
 		public Group getGroup() { return cGroup; }
 
 		//nameBinding+=NameBinding
@@ -410,16 +414,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//NameBinding
 		public RuleCall getNameBindingNameBindingParserRuleCall_0_0() { return cNameBindingNameBindingParserRuleCall_0_0; }
 
-		//("::" nameBinding+=NameBinding)* "::" "*" | ("." nameBinding+=NameBinding)* "." "*"
+		//(('::' nameBinding+=NameBinding)* '::' '*' | ('.' nameBinding+=NameBinding)* '.' '*')
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//("::" nameBinding+=NameBinding)* "::" "*"
+		//('::' nameBinding+=NameBinding)* '::' '*'
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
-		//("::" nameBinding+=NameBinding)*
+		//('::' nameBinding+=NameBinding)*
 		public Group getGroup_1_0_0() { return cGroup_1_0_0; }
 
-		//"::"
+		//'::'
 		public Keyword getColonColonKeyword_1_0_0_0() { return cColonColonKeyword_1_0_0_0; }
 
 		//nameBinding+=NameBinding
@@ -428,19 +432,19 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//NameBinding
 		public RuleCall getNameBindingNameBindingParserRuleCall_1_0_0_1_0() { return cNameBindingNameBindingParserRuleCall_1_0_0_1_0; }
 
-		//"::"
+		//'::'
 		public Keyword getColonColonKeyword_1_0_1() { return cColonColonKeyword_1_0_1; }
 
-		//"*"
+		//'*'
 		public Keyword getAsteriskKeyword_1_0_2() { return cAsteriskKeyword_1_0_2; }
 
-		//("." nameBinding+=NameBinding)* "." "*"
+		//('.' nameBinding+=NameBinding)* '.' '*'
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
-		//("." nameBinding+=NameBinding)*
+		//('.' nameBinding+=NameBinding)*
 		public Group getGroup_1_1_0() { return cGroup_1_1_0; }
 
-		//"."
+		//'.'
 		public Keyword getFullStopKeyword_1_1_0_0() { return cFullStopKeyword_1_1_0_0; }
 
 		//nameBinding+=NameBinding
@@ -449,35 +453,35 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//NameBinding
 		public RuleCall getNameBindingNameBindingParserRuleCall_1_1_0_1_0() { return cNameBindingNameBindingParserRuleCall_1_1_0_1_0; }
 
-		//"."
+		//'.'
 		public Keyword getFullStopKeyword_1_1_1() { return cFullStopKeyword_1_1_1; }
 
-		//"*"
+		//'*'
 		public Keyword getAsteriskKeyword_1_1_2() { return cAsteriskKeyword_1_1_2; }
 	}
 
 	public class ImportVisibilityIndicatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ImportVisibilityIndicator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ImportVisibilityIndicator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cPublicKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cPrivateKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
 		//ImportVisibilityIndicator:
-		//	"public" | "private";
+		//	'public' | 'private';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"public" | "private"
+		//'public' | 'private'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"public"
+		//'public'
 		public Keyword getPublicKeyword_0() { return cPublicKeyword_0; }
 
-		//"private"
+		//'private'
 		public Keyword getPrivateKeyword_1() { return cPrivateKeyword_1; }
 	}
 
 	public class NamespaceDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NamespaceDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NamespaceDefinition");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cPackageDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cClassifierDefinitionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -497,27 +501,27 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class VisibilityIndicatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "VisibilityIndicator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.VisibilityIndicator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cImportVisibilityIndicatorParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final Keyword cProtectedKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
 		//VisibilityIndicator:
-		//	ImportVisibilityIndicator | "protected";
+		//	ImportVisibilityIndicator | 'protected';
 		@Override public ParserRule getRule() { return rule; }
 
-		//ImportVisibilityIndicator | "protected"
+		//ImportVisibilityIndicator | 'protected'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ImportVisibilityIndicator
 		public RuleCall getImportVisibilityIndicatorParserRuleCall_0() { return cImportVisibilityIndicatorParserRuleCall_0; }
 
-		//"protected"
+		//'protected'
 		public Keyword getProtectedKeyword_1() { return cProtectedKeyword_1; }
 	}
 
 	public class PackageDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PackageDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PackageDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -529,13 +533,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//// CHANGE: Separated Member into Member with a composite reference to MemberDefinition.
 		/// * PACKAGES * / PackageDefinition:
-		//	"package" name=Name "{" ownedMember+=PackagedElement* "}";
+		//	'package' name=Name '{' ownedMember+=PackagedElement* '}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"package" name=Name "{" ownedMember+=PackagedElement* "}"
+		//'package' name=Name '{' ownedMember+=PackagedElement* '}'
 		public Group getGroup() { return cGroup; }
 
-		//"package"
+		//'package'
 		public Keyword getPackageKeyword_0() { return cPackageKeyword_0; }
 
 		//name=Name
@@ -544,7 +548,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 
 		//ownedMember+=PackagedElement*
@@ -553,12 +557,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//PackagedElement
 		public RuleCall getOwnedMemberPackagedElementParserRuleCall_3_0() { return cOwnedMemberPackagedElementParserRuleCall_3_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 
 	public class PackageDefinitionOrStubElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PackageDefinitionOrStub");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PackageDefinitionOrStub");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -572,14 +576,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedMemberPackagedElementParserRuleCall_2_1_1_0 = (RuleCall)cOwnedMemberAssignment_2_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_2_1_2 = (Keyword)cGroup_2_1.eContents().get(2);
 		
-		//PackageDefinitionOrStub returns PackageDefinition:
-		//	"package" name=Name (isStub?=";" | "{" ownedMember+=PackagedElement* "}");
+		//PackageDefinitionOrStub PackageDefinition:
+		//	'package' name=Name (isStub?=';' | '{' ownedMember+=PackagedElement* '}')
 		@Override public ParserRule getRule() { return rule; }
 
-		//"package" name=Name (isStub?=";" | "{" ownedMember+=PackagedElement* "}")
+		//'package' name=Name (isStub?=';' | '{' ownedMember+=PackagedElement* '}')
 		public Group getGroup() { return cGroup; }
 
-		//"package"
+		//'package'
 		public Keyword getPackageKeyword_0() { return cPackageKeyword_0; }
 
 		//name=Name
@@ -588,19 +592,19 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
 
-		//isStub?=";" | "{" ownedMember+=PackagedElement* "}"
+		//(isStub?=';' | '{' ownedMember+=PackagedElement* '}')
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
-		//isStub?=";"
+		//isStub?=';'
 		public Assignment getIsStubAssignment_2_0() { return cIsStubAssignment_2_0; }
 
-		//";"
+		//';'
 		public Keyword getIsStubSemicolonKeyword_2_0_0() { return cIsStubSemicolonKeyword_2_0_0; }
 
-		//"{" ownedMember+=PackagedElement* "}"
+		//'{' ownedMember+=PackagedElement* '}'
 		public Group getGroup_2_1() { return cGroup_2_1; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2_1_0() { return cLeftCurlyBracketKeyword_2_1_0; }
 
 		//ownedMember+=PackagedElement*
@@ -609,12 +613,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//PackagedElement
 		public RuleCall getOwnedMemberPackagedElementParserRuleCall_2_1_1_0() { return cOwnedMemberPackagedElementParserRuleCall_2_1_1_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_2_1_2() { return cRightCurlyBracketKeyword_2_1_2; }
 	}
 
 	public class PackagedElementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PackagedElement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PackagedElement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDocumentationAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDocumentationDOCUMENTATION_COMMENTTerminalRuleCall_0_0 = (RuleCall)cDocumentationAssignment_0.eContents().get(0);
@@ -628,9 +632,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//// PackageBody : 
 		//// 	{PackageBody}'{' ( packagedElement += PackagedElement )* '}'
 		//// ;
-		//PackagedElement returns Member:
-		//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=ImportVisibilityIndicator
-		//	definition=PackagedElementDefinition;
+		//PackagedElement Member:
+		//	documentation+=DOCUMENTATION_COMMENT?
+		//	annotation+=StereotypeAnnotation*
+		//	visibility=ImportVisibilityIndicator
+		//	definition=PackagedElementDefinition
 		@Override public ParserRule getRule() { return rule; }
 
 		//documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=ImportVisibilityIndicator
@@ -663,13 +669,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class PackagedElementDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PackagedElementDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PackagedElementDefinition");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cPackageDefinitionOrStubParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cClassifierDefinitionOrStubParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//PackagedElementDefinition returns MemberDefinition:
-		//	PackageDefinitionOrStub | ClassifierDefinitionOrStub;
+		//PackagedElementDefinition MemberDefinition:
+		//	PackageDefinitionOrStub | ClassifierDefinitionOrStub
 		@Override public ParserRule getRule() { return rule; }
 
 		//PackageDefinitionOrStub | ClassifierDefinitionOrStub
@@ -683,7 +689,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ClassifierDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassifierDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassifierDefinition");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cClassDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cActiveClassDefinitionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -727,7 +733,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ClassifierDefinitionOrStubElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassifierDefinitionOrStub");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassifierDefinitionOrStub");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cClassDefinitionOrStubParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cActiveClassDefinitionOrStubParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -737,9 +743,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSignalDefinitionOrStubParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cActivityDefinitionOrStubParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
-		//ClassifierDefinitionOrStub returns ClassifierDefinition:
+		//ClassifierDefinitionOrStub ClassifierDefinition:
 		//	ClassDefinitionOrStub | ActiveClassDefinitionOrStub | DataTypeDefinitionOrStub | EnumerationDefinitionOrStub |
-		//	AssociationDefinitionOrStub | SignalDefinitionOrStub | ActivityDefinitionOrStub;
+		//	AssociationDefinitionOrStub | SignalDefinitionOrStub | ActivityDefinitionOrStub
 		@Override public ParserRule getRule() { return rule; }
 
 		//ClassDefinitionOrStub | ActiveClassDefinitionOrStub | DataTypeDefinitionOrStub | EnumerationDefinitionOrStub |
@@ -769,7 +775,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ClassifierSignatureElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassifierSignature");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassifierSignature");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -785,12 +791,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSpecializationAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cSpecializationSpecializationClauseParserRuleCall_2_0 = (RuleCall)cSpecializationAssignment_2.eContents().get(0);
 		
-		//ClassifierSignature returns ClassifierDefinition:
-		//	name=Name ("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)* ">")?
-		//	specialization=SpecializationClause?;
+		//ClassifierSignature ClassifierDefinition:
+		//	name=Name ('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)* '>')?
+		//	specialization=SpecializationClause?
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=Name ("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)* ">")?
+		//name=Name ('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)* '>')?
 		//specialization=SpecializationClause?
 		public Group getGroup() { return cGroup; }
 
@@ -800,10 +806,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_0_0() { return cNameNameParserRuleCall_0_0; }
 
-		//("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)* ">")?
+		//('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)* '>')?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//"<"
+		//'<'
 		public Keyword getLessThanSignKeyword_1_0() { return cLessThanSignKeyword_1_0; }
 
 		//ownedMember+=ClassifierTemplateParameter
@@ -812,10 +818,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierTemplateParameter
 		public RuleCall getOwnedMemberClassifierTemplateParameterParserRuleCall_1_1_0() { return cOwnedMemberClassifierTemplateParameterParserRuleCall_1_1_0; }
 
-		//("," ownedMember+=ClassifierTemplateParameter)*
+		//(',' ownedMember+=ClassifierTemplateParameter)*
 		public Group getGroup_1_2() { return cGroup_1_2; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
 
 		//ownedMember+=ClassifierTemplateParameter
@@ -824,7 +830,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierTemplateParameter
 		public RuleCall getOwnedMemberClassifierTemplateParameterParserRuleCall_1_2_1_0() { return cOwnedMemberClassifierTemplateParameterParserRuleCall_1_2_1_0; }
 
-		//">"
+		//'>'
 		public Keyword getGreaterThanSignKeyword_1_3() { return cGreaterThanSignKeyword_1_3; }
 
 		//specialization=SpecializationClause?
@@ -835,16 +841,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ClassifierTemplateParameterElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassifierTemplateParameter");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameter");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDocumentationAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDocumentationDOCUMENTATION_COMMENTTerminalRuleCall_0_0 = (RuleCall)cDocumentationAssignment_0.eContents().get(0);
 		private final Assignment cDefinitionAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cDefinitionClassifierTemplateParameterDefinitionParserRuleCall_1_0 = (RuleCall)cDefinitionAssignment_1.eContents().get(0);
 		
-		//// TODO: isAbstract = true visibility = 'private'
-		//ClassifierTemplateParameter returns Member:
-		//	documentation+=DOCUMENTATION_COMMENT? definition=ClassifierTemplateParameterDefinition;
+		//ClassifierTemplateParameter Member:
+		//	documentation+=DOCUMENTATION_COMMENT?
+		//	definition=ClassifierTemplateParameterDefinition
 		@Override public ParserRule getRule() { return rule; }
 
 		//documentation+=DOCUMENTATION_COMMENT? definition=ClassifierTemplateParameterDefinition
@@ -864,7 +870,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ClassifierTemplateParameterDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassifierTemplateParameterDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameterDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -873,11 +879,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSpecializationAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cSpecializationTemplateParameterConstraintParserRuleCall_1_1_0 = (RuleCall)cSpecializationAssignment_1_1.eContents().get(0);
 		
-		//ClassifierTemplateParameterDefinition returns ClassifierTemplateParameter:
-		//	name=Name ("specializes" specialization=TemplateParameterConstraint)?;
+		//ClassifierTemplateParameterDefinition ClassifierTemplateParameter:
+		//	name=Name ('specializes' specialization=TemplateParameterConstraint)?
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=Name ("specializes" specialization=TemplateParameterConstraint)?
+		//name=Name ('specializes' specialization=TemplateParameterConstraint)?
 		public Group getGroup() { return cGroup; }
 
 		//name=Name
@@ -886,10 +892,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_0_0() { return cNameNameParserRuleCall_0_0; }
 
-		//("specializes" specialization=TemplateParameterConstraint)?
+		//('specializes' specialization=TemplateParameterConstraint)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//"specializes"
+		//'specializes'
 		public Keyword getSpecializesKeyword_1_0() { return cSpecializesKeyword_1_0; }
 
 		//specialization=TemplateParameterConstraint
@@ -900,12 +906,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class TemplateParameterConstraintElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateParameterConstraint");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.TemplateParameterConstraint");
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cNameQualifiedNameParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
-		//TemplateParameterConstraint returns QualifiedNameList:
-		//	name+=QualifiedName;
+		//TemplateParameterConstraint QualifiedNameList:
+		//	name+=QualifiedName
 		@Override public ParserRule getRule() { return rule; }
 
 		//name+=QualifiedName
@@ -916,19 +922,19 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SpecializationClauseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SpecializationClause");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SpecializationClause");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cSpecializesKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cQualifiedNameListParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		//SpecializationClause returns QualifiedNameList:
-		//	"specializes" QualifiedNameList;
+		//SpecializationClause QualifiedNameList:
+		//	'specializes' QualifiedNameList
 		@Override public ParserRule getRule() { return rule; }
 
-		//"specializes" QualifiedNameList
+		//'specializes' QualifiedNameList
 		public Group getGroup() { return cGroup; }
 
-		//"specializes"
+		//'specializes'
 		public Keyword getSpecializesKeyword_0() { return cSpecializesKeyword_0; }
 
 		//QualifiedNameList
@@ -936,7 +942,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ClassDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassDeclaration");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cIsAbstractAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cIsAbstractAbstractKeyword_0_0 = (Keyword)cIsAbstractAssignment_0.eContents().get(0);
@@ -955,22 +961,23 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSpecializationAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cSpecializationSpecializationClauseParserRuleCall_4_0 = (RuleCall)cSpecializationAssignment_4.eContents().get(0);
 		
-		/// * CLASSES * / ClassDeclaration returns ClassDefinition:
-		//	isAbstract?="abstract"? "class" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-		//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+		/// * CLASSES * / ClassDeclaration ClassDefinition:
+		//	isAbstract?='abstract'? 'class' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+		//	ownedMember+=ClassifierTemplateParameter)* '>')?
+		//	specialization=SpecializationClause?
 		@Override public ParserRule getRule() { return rule; }
 
-		//isAbstract?="abstract"? "class" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-		//ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?
+		//isAbstract?='abstract'? 'class' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+		//ownedMember+=ClassifierTemplateParameter)* '>')? specialization=SpecializationClause?
 		public Group getGroup() { return cGroup; }
 
-		//isAbstract?="abstract"?
+		//isAbstract?='abstract'?
 		public Assignment getIsAbstractAssignment_0() { return cIsAbstractAssignment_0; }
 
-		//"abstract"
+		//'abstract'
 		public Keyword getIsAbstractAbstractKeyword_0_0() { return cIsAbstractAbstractKeyword_0_0; }
 
-		//"class"
+		//'class'
 		public Keyword getClassKeyword_1() { return cClassKeyword_1; }
 
 		//name=Name
@@ -979,10 +986,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_2_0() { return cNameNameParserRuleCall_2_0; }
 
-		//("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)* ">")?
+		//('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)* '>')?
 		public Group getGroup_3() { return cGroup_3; }
 
-		//"<"
+		//'<'
 		public Keyword getLessThanSignKeyword_3_0() { return cLessThanSignKeyword_3_0; }
 
 		//ownedMember+=ClassifierTemplateParameter
@@ -991,10 +998,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierTemplateParameter
 		public RuleCall getOwnedMemberClassifierTemplateParameterParserRuleCall_3_1_0() { return cOwnedMemberClassifierTemplateParameterParserRuleCall_3_1_0; }
 
-		//("," ownedMember+=ClassifierTemplateParameter)*
+		//(',' ownedMember+=ClassifierTemplateParameter)*
 		public Group getGroup_3_2() { return cGroup_3_2; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
 
 		//ownedMember+=ClassifierTemplateParameter
@@ -1003,7 +1010,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierTemplateParameter
 		public RuleCall getOwnedMemberClassifierTemplateParameterParserRuleCall_3_2_1_0() { return cOwnedMemberClassifierTemplateParameterParserRuleCall_3_2_1_0; }
 
-		//">"
+		//'>'
 		public Keyword getGreaterThanSignKeyword_3_3() { return cGreaterThanSignKeyword_3_3; }
 
 		//specialization=SpecializationClause?
@@ -1014,7 +1021,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ClassDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cClassDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -1023,16 +1030,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//ClassDefinition:
-		//	ClassDeclaration "{" ownedMember+=ClassMember* "}";
+		//	ClassDeclaration
+		//	'{' ownedMember+=ClassMember* '}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//ClassDeclaration "{" ownedMember+=ClassMember* "}"
+		//ClassDeclaration '{' ownedMember+=ClassMember* '}'
 		public Group getGroup() { return cGroup; }
 
 		//ClassDeclaration
 		public RuleCall getClassDeclarationParserRuleCall_0() { return cClassDeclarationParserRuleCall_0; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
 		//ownedMember+=ClassMember*
@@ -1041,12 +1049,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassMember
 		public RuleCall getOwnedMemberClassMemberParserRuleCall_2_0() { return cOwnedMemberClassMemberParserRuleCall_2_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 
 	public class ClassDefinitionOrStubElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassDefinitionOrStub");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassDefinitionOrStub");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cClassDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -1058,29 +1066,29 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedMemberClassMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedMemberAssignment_1_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
-		//ClassDefinitionOrStub returns ClassDefinition:
-		//	ClassDeclaration (isStub?=";" | "{" ownedMember+=ClassMember* "}");
+		//ClassDefinitionOrStub ClassDefinition:
+		//	ClassDeclaration (isStub?=';' | '{' ownedMember+=ClassMember* '}')
 		@Override public ParserRule getRule() { return rule; }
 
-		//ClassDeclaration (isStub?=";" | "{" ownedMember+=ClassMember* "}")
+		//ClassDeclaration (isStub?=';' | '{' ownedMember+=ClassMember* '}')
 		public Group getGroup() { return cGroup; }
 
 		//ClassDeclaration
 		public RuleCall getClassDeclarationParserRuleCall_0() { return cClassDeclarationParserRuleCall_0; }
 
-		//isStub?=";" | "{" ownedMember+=ClassMember* "}"
+		//(isStub?=';' | '{' ownedMember+=ClassMember* '}')
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//isStub?=";"
+		//isStub?=';'
 		public Assignment getIsStubAssignment_1_0() { return cIsStubAssignment_1_0; }
 
-		//";"
+		//';'
 		public Keyword getIsStubSemicolonKeyword_1_0_0() { return cIsStubSemicolonKeyword_1_0_0; }
 
-		//"{" ownedMember+=ClassMember* "}"
+		//'{' ownedMember+=ClassMember* '}'
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1_1_0() { return cLeftCurlyBracketKeyword_1_1_0; }
 
 		//ownedMember+=ClassMember*
@@ -1089,12 +1097,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassMember
 		public RuleCall getOwnedMemberClassMemberParserRuleCall_1_1_1_0() { return cOwnedMemberClassMemberParserRuleCall_1_1_1_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_1_2() { return cRightCurlyBracketKeyword_1_1_2; }
 	}
 
 	public class ClassMemberElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassMember");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassMember");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDocumentationAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDocumentationDOCUMENTATION_COMMENTTerminalRuleCall_0_0 = (RuleCall)cDocumentationAssignment_0.eContents().get(0);
@@ -1105,16 +1113,18 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDefinitionAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cDefinitionClassMemberDefinitionParserRuleCall_3_0 = (RuleCall)cDefinitionAssignment_3.eContents().get(0);
 		
-		//ClassMember returns Member:
-		//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=VisibilityIndicator?
-		//	definition=ClassMemberDefinition;
+		//ClassMember Member:
+		//	documentation+=DOCUMENTATION_COMMENT*
+		//	annotation+=StereotypeAnnotation*
+		//	visibility=VisibilityIndicator?
+		//	definition=ClassMemberDefinition
 		@Override public ParserRule getRule() { return rule; }
 
-		//documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=VisibilityIndicator?
+		//documentation+=DOCUMENTATION_COMMENT* annotation+=StereotypeAnnotation* visibility=VisibilityIndicator?
 		//definition=ClassMemberDefinition
 		public Group getGroup() { return cGroup; }
 
-		//documentation+=DOCUMENTATION_COMMENT?
+		//documentation+=DOCUMENTATION_COMMENT*
 		public Assignment getDocumentationAssignment_0() { return cDocumentationAssignment_0; }
 
 		//DOCUMENTATION_COMMENT
@@ -1140,13 +1150,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ClassMemberDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassMemberDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassMemberDefinition");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cClassifierDefinitionOrStubParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cFeatureDefinitionOrStubParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//ClassMemberDefinition returns MemberDefinition:
-		//	ClassifierDefinitionOrStub | FeatureDefinitionOrStub;
+		//ClassMemberDefinition MemberDefinition:
+		//	ClassifierDefinitionOrStub | FeatureDefinitionOrStub
 		@Override public ParserRule getRule() { return rule; }
 
 		//ClassifierDefinitionOrStub | FeatureDefinitionOrStub
@@ -1160,7 +1170,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ActiveClassDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ActiveClassDeclaration");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ActiveClassDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cIsAbstractAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cIsAbstractAbstractKeyword_0_0 = (Keyword)cIsAbstractAssignment_0.eContents().get(0);
@@ -1180,25 +1190,26 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSpecializationAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cSpecializationSpecializationClauseParserRuleCall_5_0 = (RuleCall)cSpecializationAssignment_5.eContents().get(0);
 		
-		/// * ACTIVE CLASSES * / ActiveClassDeclaration returns ActiveClassDefinition:
-		//	isAbstract?="abstract"? "active" "class" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-		//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+		/// * ACTIVE CLASSES * / ActiveClassDeclaration ActiveClassDefinition:
+		//	isAbstract?='abstract'? 'active' 'class' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+		//	ownedMember+=ClassifierTemplateParameter)* '>')?
+		//	specialization=SpecializationClause?
 		@Override public ParserRule getRule() { return rule; }
 
-		//isAbstract?="abstract"? "active" "class" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-		//ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?
+		//isAbstract?='abstract'? 'active' 'class' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+		//ownedMember+=ClassifierTemplateParameter)* '>')? specialization=SpecializationClause?
 		public Group getGroup() { return cGroup; }
 
-		//isAbstract?="abstract"?
+		//isAbstract?='abstract'?
 		public Assignment getIsAbstractAssignment_0() { return cIsAbstractAssignment_0; }
 
-		//"abstract"
+		//'abstract'
 		public Keyword getIsAbstractAbstractKeyword_0_0() { return cIsAbstractAbstractKeyword_0_0; }
 
-		//"active"
+		//'active'
 		public Keyword getActiveKeyword_1() { return cActiveKeyword_1; }
 
-		//"class"
+		//'class'
 		public Keyword getClassKeyword_2() { return cClassKeyword_2; }
 
 		//name=Name
@@ -1207,10 +1218,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_3_0() { return cNameNameParserRuleCall_3_0; }
 
-		//("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)* ">")?
+		//('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)* '>')?
 		public Group getGroup_4() { return cGroup_4; }
 
-		//"<"
+		//'<'
 		public Keyword getLessThanSignKeyword_4_0() { return cLessThanSignKeyword_4_0; }
 
 		//ownedMember+=ClassifierTemplateParameter
@@ -1219,10 +1230,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierTemplateParameter
 		public RuleCall getOwnedMemberClassifierTemplateParameterParserRuleCall_4_1_0() { return cOwnedMemberClassifierTemplateParameterParserRuleCall_4_1_0; }
 
-		//("," ownedMember+=ClassifierTemplateParameter)*
+		//(',' ownedMember+=ClassifierTemplateParameter)*
 		public Group getGroup_4_2() { return cGroup_4_2; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_4_2_0() { return cCommaKeyword_4_2_0; }
 
 		//ownedMember+=ClassifierTemplateParameter
@@ -1231,7 +1242,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierTemplateParameter
 		public RuleCall getOwnedMemberClassifierTemplateParameterParserRuleCall_4_2_1_0() { return cOwnedMemberClassifierTemplateParameterParserRuleCall_4_2_1_0; }
 
-		//">"
+		//'>'
 		public Keyword getGreaterThanSignKeyword_4_3() { return cGreaterThanSignKeyword_4_3; }
 
 		//specialization=SpecializationClause?
@@ -1242,7 +1253,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ActiveClassDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ActiveClassDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ActiveClassDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cActiveClassDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -1255,18 +1266,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cClassifierBehaviorBehaviorClauseParserRuleCall_4_1_0 = (RuleCall)cClassifierBehaviorAssignment_4_1.eContents().get(0);
 		
 		//ActiveClassDefinition:
-		//	ActiveClassDeclaration "{" ownedMember+=ActiveClassMember* "}" // CHANGE: Made classifierBehavior composite (and classifierBehavior isn't added to ownedMembers)
-		//	("do" classifierBehavior=BehaviorClause)?;
+		//	ActiveClassDeclaration
+		//	'{' ownedMember+=ActiveClassMember* '}' ('do' classifierBehavior=BehaviorClause)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//ActiveClassDeclaration "{" ownedMember+=ActiveClassMember* "}" // CHANGE: Made classifierBehavior composite (and classifierBehavior isn't added to ownedMembers)
-		//("do" classifierBehavior=BehaviorClause)?
+		//ActiveClassDeclaration '{' ownedMember+=ActiveClassMember* '}' ('do' classifierBehavior=BehaviorClause)?
 		public Group getGroup() { return cGroup; }
 
 		//ActiveClassDeclaration
 		public RuleCall getActiveClassDeclarationParserRuleCall_0() { return cActiveClassDeclarationParserRuleCall_0; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
 		//ownedMember+=ActiveClassMember*
@@ -1275,13 +1285,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ActiveClassMember
 		public RuleCall getOwnedMemberActiveClassMemberParserRuleCall_2_0() { return cOwnedMemberActiveClassMemberParserRuleCall_2_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 
-		//("do" classifierBehavior=BehaviorClause)?
+		//('do' classifierBehavior=BehaviorClause)?
 		public Group getGroup_4() { return cGroup_4; }
 
-		//"do"
+		//'do'
 		public Keyword getDoKeyword_4_0() { return cDoKeyword_4_0; }
 
 		//classifierBehavior=BehaviorClause
@@ -1292,7 +1302,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ActiveClassDefinitionOrStubElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ActiveClassDefinitionOrStub");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ActiveClassDefinitionOrStub");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cActiveClassDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -1308,30 +1318,30 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cClassifierBehaviorAssignment_1_1_3_1 = (Assignment)cGroup_1_1_3.eContents().get(1);
 		private final RuleCall cClassifierBehaviorBehaviorClauseParserRuleCall_1_1_3_1_0 = (RuleCall)cClassifierBehaviorAssignment_1_1_3_1.eContents().get(0);
 		
-		//ActiveClassDefinitionOrStub returns ActiveClassDefinition:
-		//	ActiveClassDeclaration (isStub?=";" | "{" ownedMember+=ActiveClassMember* "}" ("do"
-		//	classifierBehavior=BehaviorClause)?);
+		//ActiveClassDefinitionOrStub ActiveClassDefinition:
+		//	ActiveClassDeclaration (isStub?=';' |
+		//	'{' ownedMember+=ActiveClassMember* '}' ('do' classifierBehavior=BehaviorClause)?)
 		@Override public ParserRule getRule() { return rule; }
 
-		//ActiveClassDeclaration (isStub?=";" | "{" ownedMember+=ActiveClassMember* "}" ("do" classifierBehavior=BehaviorClause)?)
+		//ActiveClassDeclaration (isStub?=';' | '{' ownedMember+=ActiveClassMember* '}' ('do' classifierBehavior=BehaviorClause)?)
 		public Group getGroup() { return cGroup; }
 
 		//ActiveClassDeclaration
 		public RuleCall getActiveClassDeclarationParserRuleCall_0() { return cActiveClassDeclarationParserRuleCall_0; }
 
-		//isStub?=";" | "{" ownedMember+=ActiveClassMember* "}" ("do" classifierBehavior=BehaviorClause)?
+		//(isStub?=';' | '{' ownedMember+=ActiveClassMember* '}' ('do' classifierBehavior=BehaviorClause)?)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//isStub?=";"
+		//isStub?=';'
 		public Assignment getIsStubAssignment_1_0() { return cIsStubAssignment_1_0; }
 
-		//";"
+		//';'
 		public Keyword getIsStubSemicolonKeyword_1_0_0() { return cIsStubSemicolonKeyword_1_0_0; }
 
-		//"{" ownedMember+=ActiveClassMember* "}" ("do" classifierBehavior=BehaviorClause)?
+		//'{' ownedMember+=ActiveClassMember* '}' ('do' classifierBehavior=BehaviorClause)?
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1_1_0() { return cLeftCurlyBracketKeyword_1_1_0; }
 
 		//ownedMember+=ActiveClassMember*
@@ -1340,13 +1350,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ActiveClassMember
 		public RuleCall getOwnedMemberActiveClassMemberParserRuleCall_1_1_1_0() { return cOwnedMemberActiveClassMemberParserRuleCall_1_1_1_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_1_2() { return cRightCurlyBracketKeyword_1_1_2; }
 
-		//("do" classifierBehavior=BehaviorClause)?
+		//('do' classifierBehavior=BehaviorClause)?
 		public Group getGroup_1_1_3() { return cGroup_1_1_3; }
 
-		//"do"
+		//'do'
 		public Keyword getDoKeyword_1_1_3_0() { return cDoKeyword_1_1_3_0; }
 
 		//classifierBehavior=BehaviorClause
@@ -1357,20 +1367,18 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class BehaviorClauseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BehaviorClause");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.BehaviorClause");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Assignment cBodyAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
 		private final RuleCall cBodyBlockParserRuleCall_0_0 = (RuleCall)cBodyAssignment_0.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
-		//BehaviorClause returns ActivityDefinition:
-		//	body=Block | name= // TODO: isStub = true
-		//	Name;
+		//BehaviorClause ActivityDefinition:
+		//	body=Block | name=Name
 		@Override public ParserRule getRule() { return rule; }
 
-		//body=Block | name= // TODO: isStub = true
-		//Name
+		//body=Block | name=Name
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//body=Block
@@ -1379,17 +1387,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Block
 		public RuleCall getBodyBlockParserRuleCall_0_0() { return cBodyBlockParserRuleCall_0_0; }
 
-		//name= // TODO: isStub = true
-		//Name
+		//name=Name
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 
-		//// TODO: isStub = true
 		//Name
 		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
 	}
 
 	public class ActiveClassMemberElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ActiveClassMember");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ActiveClassMember");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDocumentationAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDocumentationDOCUMENTATION_COMMENTTerminalRuleCall_0_0 = (RuleCall)cDocumentationAssignment_0.eContents().get(0);
@@ -1400,9 +1406,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDefinitionAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cDefinitionActiveClassMemberDefinitionParserRuleCall_3_0 = (RuleCall)cDefinitionAssignment_3.eContents().get(0);
 		
-		//ActiveClassMember returns Member:
-		//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=VisibilityIndicator?
-		//	definition=ActiveClassMemberDefinition;
+		//ActiveClassMember Member:
+		//	documentation+=DOCUMENTATION_COMMENT?
+		//	annotation+=StereotypeAnnotation*
+		//	visibility=VisibilityIndicator?
+		//	definition=ActiveClassMemberDefinition
 		@Override public ParserRule getRule() { return rule; }
 
 		//documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=VisibilityIndicator?
@@ -1435,13 +1443,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ActiveClassMemberDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ActiveClassMemberDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ActiveClassMemberDefinition");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cClassMemberDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cActiveFeatureDefinitionOrStubParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//ActiveClassMemberDefinition returns MemberDefinition:
-		//	ClassMemberDefinition | ActiveFeatureDefinitionOrStub;
+		//ActiveClassMemberDefinition MemberDefinition:
+		//	ClassMemberDefinition | ActiveFeatureDefinitionOrStub
 		@Override public ParserRule getRule() { return rule; }
 
 		//ClassMemberDefinition | ActiveFeatureDefinitionOrStub
@@ -1455,7 +1463,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class DataTypeDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DataTypeDeclaration");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.DataTypeDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cIsAbstractAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cIsAbstractAbstractKeyword_0_0 = (Keyword)cIsAbstractAssignment_0.eContents().get(0);
@@ -1474,22 +1482,23 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSpecializationAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cSpecializationSpecializationClauseParserRuleCall_4_0 = (RuleCall)cSpecializationAssignment_4.eContents().get(0);
 		
-		/// * DATA TYPES * / DataTypeDeclaration returns DataTypeDefinition:
-		//	isAbstract?="abstract"? "datatype" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-		//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+		/// * DATA TYPES * / DataTypeDeclaration DataTypeDefinition:
+		//	isAbstract?='abstract'? 'datatype' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+		//	ownedMember+=ClassifierTemplateParameter)* '>')?
+		//	specialization=SpecializationClause?
 		@Override public ParserRule getRule() { return rule; }
 
-		//isAbstract?="abstract"? "datatype" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-		//ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?
+		//isAbstract?='abstract'? 'datatype' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+		//ownedMember+=ClassifierTemplateParameter)* '>')? specialization=SpecializationClause?
 		public Group getGroup() { return cGroup; }
 
-		//isAbstract?="abstract"?
+		//isAbstract?='abstract'?
 		public Assignment getIsAbstractAssignment_0() { return cIsAbstractAssignment_0; }
 
-		//"abstract"
+		//'abstract'
 		public Keyword getIsAbstractAbstractKeyword_0_0() { return cIsAbstractAbstractKeyword_0_0; }
 
-		//"datatype"
+		//'datatype'
 		public Keyword getDatatypeKeyword_1() { return cDatatypeKeyword_1; }
 
 		//name=Name
@@ -1498,10 +1507,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_2_0() { return cNameNameParserRuleCall_2_0; }
 
-		//("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)* ">")?
+		//('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)* '>')?
 		public Group getGroup_3() { return cGroup_3; }
 
-		//"<"
+		//'<'
 		public Keyword getLessThanSignKeyword_3_0() { return cLessThanSignKeyword_3_0; }
 
 		//ownedMember+=ClassifierTemplateParameter
@@ -1510,10 +1519,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierTemplateParameter
 		public RuleCall getOwnedMemberClassifierTemplateParameterParserRuleCall_3_1_0() { return cOwnedMemberClassifierTemplateParameterParserRuleCall_3_1_0; }
 
-		//("," ownedMember+=ClassifierTemplateParameter)*
+		//(',' ownedMember+=ClassifierTemplateParameter)*
 		public Group getGroup_3_2() { return cGroup_3_2; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
 
 		//ownedMember+=ClassifierTemplateParameter
@@ -1522,7 +1531,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierTemplateParameter
 		public RuleCall getOwnedMemberClassifierTemplateParameterParserRuleCall_3_2_1_0() { return cOwnedMemberClassifierTemplateParameterParserRuleCall_3_2_1_0; }
 
-		//">"
+		//'>'
 		public Keyword getGreaterThanSignKeyword_3_3() { return cGreaterThanSignKeyword_3_3; }
 
 		//specialization=SpecializationClause?
@@ -1533,7 +1542,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class DataTypeDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DataTypeDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.DataTypeDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cDataTypeDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -1542,16 +1551,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//DataTypeDefinition:
-		//	DataTypeDeclaration "{" ownedMember+=StructuredMember* "}";
+		//	DataTypeDeclaration
+		//	'{' ownedMember+=StructuredMember* '}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//DataTypeDeclaration "{" ownedMember+=StructuredMember* "}"
+		//DataTypeDeclaration '{' ownedMember+=StructuredMember* '}'
 		public Group getGroup() { return cGroup; }
 
 		//DataTypeDeclaration
 		public RuleCall getDataTypeDeclarationParserRuleCall_0() { return cDataTypeDeclarationParserRuleCall_0; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
 		//ownedMember+=StructuredMember*
@@ -1560,12 +1570,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//StructuredMember
 		public RuleCall getOwnedMemberStructuredMemberParserRuleCall_2_0() { return cOwnedMemberStructuredMemberParserRuleCall_2_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 
 	public class DataTypeDefinitionOrStubElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DataTypeDefinitionOrStub");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.DataTypeDefinitionOrStub");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cDataTypeDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -1577,29 +1587,29 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedMemberStructuredMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedMemberAssignment_1_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
-		//DataTypeDefinitionOrStub returns DataTypeDefinition:
-		//	DataTypeDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+		//DataTypeDefinitionOrStub DataTypeDefinition:
+		//	DataTypeDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 		@Override public ParserRule getRule() { return rule; }
 
-		//DataTypeDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}")
+		//DataTypeDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 		public Group getGroup() { return cGroup; }
 
 		//DataTypeDeclaration
 		public RuleCall getDataTypeDeclarationParserRuleCall_0() { return cDataTypeDeclarationParserRuleCall_0; }
 
-		//isStub?=";" | "{" ownedMember+=StructuredMember* "}"
+		//(isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//isStub?=";"
+		//isStub?=';'
 		public Assignment getIsStubAssignment_1_0() { return cIsStubAssignment_1_0; }
 
-		//";"
+		//';'
 		public Keyword getIsStubSemicolonKeyword_1_0_0() { return cIsStubSemicolonKeyword_1_0_0; }
 
-		//"{" ownedMember+=StructuredMember* "}"
+		//'{' ownedMember+=StructuredMember* '}'
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1_1_0() { return cLeftCurlyBracketKeyword_1_1_0; }
 
 		//ownedMember+=StructuredMember*
@@ -1608,12 +1618,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//StructuredMember
 		public RuleCall getOwnedMemberStructuredMemberParserRuleCall_1_1_1_0() { return cOwnedMemberStructuredMemberParserRuleCall_1_1_1_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_1_2() { return cRightCurlyBracketKeyword_1_1_2; }
 	}
 
 	public class StructuredMemberElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StructuredMember");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.StructuredMember");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDocumentationAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDocumentationDOCUMENTATION_COMMENTTerminalRuleCall_0_0 = (RuleCall)cDocumentationAssignment_0.eContents().get(0);
@@ -1624,12 +1634,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDefinitionAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cDefinitionPropertyDefinitionParserRuleCall_3_0 = (RuleCall)cDefinitionAssignment_3.eContents().get(0);
 		
-		//StructuredMember returns Member:
-		//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility="public"?
-		//	definition=PropertyDefinition;
+		//StructuredMember Member:
+		//	documentation+=DOCUMENTATION_COMMENT?
+		//	annotation+=StereotypeAnnotation*
+		//	visibility='public'?
+		//	definition=PropertyDefinition
 		@Override public ParserRule getRule() { return rule; }
 
-		//documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility="public"?
+		//documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility='public'?
 		//definition=PropertyDefinition
 		public Group getGroup() { return cGroup; }
 
@@ -1645,10 +1657,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//StereotypeAnnotation
 		public RuleCall getAnnotationStereotypeAnnotationParserRuleCall_1_0() { return cAnnotationStereotypeAnnotationParserRuleCall_1_0; }
 
-		//visibility="public"?
+		//visibility='public'?
 		public Assignment getVisibilityAssignment_2() { return cVisibilityAssignment_2; }
 
-		//"public"
+		//'public'
 		public Keyword getVisibilityPublicKeyword_2_0() { return cVisibilityPublicKeyword_2_0; }
 
 		//definition=PropertyDefinition
@@ -1659,7 +1671,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class AssociationDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AssociationDeclaration");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AssociationDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cIsAbstractAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cIsAbstractAbstractKeyword_0_0 = (Keyword)cIsAbstractAssignment_0.eContents().get(0);
@@ -1678,22 +1690,23 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSpecializationAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cSpecializationSpecializationClauseParserRuleCall_4_0 = (RuleCall)cSpecializationAssignment_4.eContents().get(0);
 		
-		/// * ASSOCIATIONS * / AssociationDeclaration returns AssociationDefinition:
-		//	isAbstract?="abstract"? "assoc" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-		//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+		/// * ASSOCIATIONS * / AssociationDeclaration AssociationDefinition:
+		//	isAbstract?='abstract'? 'assoc' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+		//	ownedMember+=ClassifierTemplateParameter)* '>')?
+		//	specialization=SpecializationClause?
 		@Override public ParserRule getRule() { return rule; }
 
-		//isAbstract?="abstract"? "assoc" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-		//ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?
+		//isAbstract?='abstract'? 'assoc' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+		//ownedMember+=ClassifierTemplateParameter)* '>')? specialization=SpecializationClause?
 		public Group getGroup() { return cGroup; }
 
-		//isAbstract?="abstract"?
+		//isAbstract?='abstract'?
 		public Assignment getIsAbstractAssignment_0() { return cIsAbstractAssignment_0; }
 
-		//"abstract"
+		//'abstract'
 		public Keyword getIsAbstractAbstractKeyword_0_0() { return cIsAbstractAbstractKeyword_0_0; }
 
-		//"assoc"
+		//'assoc'
 		public Keyword getAssocKeyword_1() { return cAssocKeyword_1; }
 
 		//name=Name
@@ -1702,10 +1715,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_2_0() { return cNameNameParserRuleCall_2_0; }
 
-		//("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)* ">")?
+		//('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)* '>')?
 		public Group getGroup_3() { return cGroup_3; }
 
-		//"<"
+		//'<'
 		public Keyword getLessThanSignKeyword_3_0() { return cLessThanSignKeyword_3_0; }
 
 		//ownedMember+=ClassifierTemplateParameter
@@ -1714,10 +1727,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierTemplateParameter
 		public RuleCall getOwnedMemberClassifierTemplateParameterParserRuleCall_3_1_0() { return cOwnedMemberClassifierTemplateParameterParserRuleCall_3_1_0; }
 
-		//("," ownedMember+=ClassifierTemplateParameter)*
+		//(',' ownedMember+=ClassifierTemplateParameter)*
 		public Group getGroup_3_2() { return cGroup_3_2; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
 
 		//ownedMember+=ClassifierTemplateParameter
@@ -1726,7 +1739,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierTemplateParameter
 		public RuleCall getOwnedMemberClassifierTemplateParameterParserRuleCall_3_2_1_0() { return cOwnedMemberClassifierTemplateParameterParserRuleCall_3_2_1_0; }
 
-		//">"
+		//'>'
 		public Keyword getGreaterThanSignKeyword_3_3() { return cGreaterThanSignKeyword_3_3; }
 
 		//specialization=SpecializationClause?
@@ -1737,7 +1750,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class AssociationDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AssociationDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AssociationDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cAssociationDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -1746,16 +1759,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//AssociationDefinition:
-		//	AssociationDeclaration "{" ownedMember+=StructuredMember* "}";
+		//	AssociationDeclaration
+		//	'{' ownedMember+=StructuredMember* '}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//AssociationDeclaration "{" ownedMember+=StructuredMember* "}"
+		//AssociationDeclaration '{' ownedMember+=StructuredMember* '}'
 		public Group getGroup() { return cGroup; }
 
 		//AssociationDeclaration
 		public RuleCall getAssociationDeclarationParserRuleCall_0() { return cAssociationDeclarationParserRuleCall_0; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
 		//ownedMember+=StructuredMember*
@@ -1764,12 +1778,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//StructuredMember
 		public RuleCall getOwnedMemberStructuredMemberParserRuleCall_2_0() { return cOwnedMemberStructuredMemberParserRuleCall_2_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 
 	public class AssociationDefinitionOrStubElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AssociationDefinitionOrStub");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AssociationDefinitionOrStub");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cAssociationDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -1781,29 +1795,29 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedMemberStructuredMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedMemberAssignment_1_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
-		//AssociationDefinitionOrStub returns AssociationDefinition:
-		//	AssociationDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+		//AssociationDefinitionOrStub AssociationDefinition:
+		//	AssociationDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 		@Override public ParserRule getRule() { return rule; }
 
-		//AssociationDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}")
+		//AssociationDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 		public Group getGroup() { return cGroup; }
 
 		//AssociationDeclaration
 		public RuleCall getAssociationDeclarationParserRuleCall_0() { return cAssociationDeclarationParserRuleCall_0; }
 
-		//isStub?=";" | "{" ownedMember+=StructuredMember* "}"
+		//(isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//isStub?=";"
+		//isStub?=';'
 		public Assignment getIsStubAssignment_1_0() { return cIsStubAssignment_1_0; }
 
-		//";"
+		//';'
 		public Keyword getIsStubSemicolonKeyword_1_0_0() { return cIsStubSemicolonKeyword_1_0_0; }
 
-		//"{" ownedMember+=StructuredMember* "}"
+		//'{' ownedMember+=StructuredMember* '}'
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1_1_0() { return cLeftCurlyBracketKeyword_1_1_0; }
 
 		//ownedMember+=StructuredMember*
@@ -1812,12 +1826,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//StructuredMember
 		public RuleCall getOwnedMemberStructuredMemberParserRuleCall_1_1_1_0() { return cOwnedMemberStructuredMemberParserRuleCall_1_1_1_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_1_2() { return cRightCurlyBracketKeyword_1_1_2; }
 	}
 
 	public class EnumerationDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumerationDeclaration");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.EnumerationDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cEnumKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -1825,14 +1839,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSpecializationAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cSpecializationSpecializationClauseParserRuleCall_2_0 = (RuleCall)cSpecializationAssignment_2.eContents().get(0);
 		
-		/// * ENUMERATIONS * / EnumerationDeclaration returns EnumerationDefinition:
-		//	"enum" name=Name specialization=SpecializationClause?;
+		/// * ENUMERATIONS * / EnumerationDeclaration EnumerationDefinition:
+		//	'enum' name=Name specialization=SpecializationClause?
 		@Override public ParserRule getRule() { return rule; }
 
-		//"enum" name=Name specialization=SpecializationClause?
+		//'enum' name=Name specialization=SpecializationClause?
 		public Group getGroup() { return cGroup; }
 
-		//"enum"
+		//'enum'
 		public Keyword getEnumKeyword_0() { return cEnumKeyword_0; }
 
 		//name=Name
@@ -1849,7 +1863,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class EnumerationDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumerationDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.EnumerationDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cEnumerationDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -1863,19 +1877,20 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//EnumerationDefinition:
-		//	EnumerationDeclaration "{" (ownedMember+=EnumerationLiteralName ("," ownedMember+=EnumerationLiteralName)*)? "}";
+		//	EnumerationDeclaration
+		//	'{' (ownedMember+=EnumerationLiteralName (',' ownedMember+=EnumerationLiteralName)*)? '}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//EnumerationDeclaration "{" (ownedMember+=EnumerationLiteralName ("," ownedMember+=EnumerationLiteralName)*)? "}"
+		//EnumerationDeclaration '{' (ownedMember+=EnumerationLiteralName (',' ownedMember+=EnumerationLiteralName)*)? '}'
 		public Group getGroup() { return cGroup; }
 
 		//EnumerationDeclaration
 		public RuleCall getEnumerationDeclarationParserRuleCall_0() { return cEnumerationDeclarationParserRuleCall_0; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
-		//(ownedMember+=EnumerationLiteralName ("," ownedMember+=EnumerationLiteralName)*)?
+		//(ownedMember+=EnumerationLiteralName (',' ownedMember+=EnumerationLiteralName)*)?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//ownedMember+=EnumerationLiteralName
@@ -1884,10 +1899,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//EnumerationLiteralName
 		public RuleCall getOwnedMemberEnumerationLiteralNameParserRuleCall_2_0_0() { return cOwnedMemberEnumerationLiteralNameParserRuleCall_2_0_0; }
 
-		//("," ownedMember+=EnumerationLiteralName)*
+		//(',' ownedMember+=EnumerationLiteralName)*
 		public Group getGroup_2_1() { return cGroup_2_1; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
 
 		//ownedMember+=EnumerationLiteralName
@@ -1896,12 +1911,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//EnumerationLiteralName
 		public RuleCall getOwnedMemberEnumerationLiteralNameParserRuleCall_2_1_1_0() { return cOwnedMemberEnumerationLiteralNameParserRuleCall_2_1_1_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 
 	public class EnumerationDefinitionOrStubElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumerationDefinitionOrStub");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.EnumerationDefinitionOrStub");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cEnumerationDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -1918,34 +1933,34 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedMemberEnumerationLiteralNameParserRuleCall_1_1_1_1_1_0 = (RuleCall)cOwnedMemberAssignment_1_1_1_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
-		//EnumerationDefinitionOrStub returns EnumerationDefinition:
-		//	EnumerationDeclaration (isStub?=";" | "{" (ownedMember+=EnumerationLiteralName (","
-		//	ownedMember+=EnumerationLiteralName)*)? "}");
+		//EnumerationDefinitionOrStub EnumerationDefinition:
+		//	EnumerationDeclaration (isStub?=';' | '{' (ownedMember+=EnumerationLiteralName (','
+		//	ownedMember+=EnumerationLiteralName)*)? '}')
 		@Override public ParserRule getRule() { return rule; }
 
-		//EnumerationDeclaration (isStub?=";" | "{" (ownedMember+=EnumerationLiteralName (","
-		//ownedMember+=EnumerationLiteralName)*)? "}")
+		//EnumerationDeclaration (isStub?=';' | '{' (ownedMember+=EnumerationLiteralName (','
+		//ownedMember+=EnumerationLiteralName)*)? '}')
 		public Group getGroup() { return cGroup; }
 
 		//EnumerationDeclaration
 		public RuleCall getEnumerationDeclarationParserRuleCall_0() { return cEnumerationDeclarationParserRuleCall_0; }
 
-		//isStub?=";" | "{" (ownedMember+=EnumerationLiteralName ("," ownedMember+=EnumerationLiteralName)*)? "}"
+		//(isStub?=';' | '{' (ownedMember+=EnumerationLiteralName (',' ownedMember+=EnumerationLiteralName)*)? '}')
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//isStub?=";"
+		//isStub?=';'
 		public Assignment getIsStubAssignment_1_0() { return cIsStubAssignment_1_0; }
 
-		//";"
+		//';'
 		public Keyword getIsStubSemicolonKeyword_1_0_0() { return cIsStubSemicolonKeyword_1_0_0; }
 
-		//"{" (ownedMember+=EnumerationLiteralName ("," ownedMember+=EnumerationLiteralName)*)? "}"
+		//'{' (ownedMember+=EnumerationLiteralName (',' ownedMember+=EnumerationLiteralName)*)? '}'
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1_1_0() { return cLeftCurlyBracketKeyword_1_1_0; }
 
-		//(ownedMember+=EnumerationLiteralName ("," ownedMember+=EnumerationLiteralName)*)?
+		//(ownedMember+=EnumerationLiteralName (',' ownedMember+=EnumerationLiteralName)*)?
 		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
 
 		//ownedMember+=EnumerationLiteralName
@@ -1954,10 +1969,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//EnumerationLiteralName
 		public RuleCall getOwnedMemberEnumerationLiteralNameParserRuleCall_1_1_1_0_0() { return cOwnedMemberEnumerationLiteralNameParserRuleCall_1_1_1_0_0; }
 
-		//("," ownedMember+=EnumerationLiteralName)*
+		//(',' ownedMember+=EnumerationLiteralName)*
 		public Group getGroup_1_1_1_1() { return cGroup_1_1_1_1; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_1_1_1_1_0() { return cCommaKeyword_1_1_1_1_0; }
 
 		//ownedMember+=EnumerationLiteralName
@@ -1966,21 +1981,22 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//EnumerationLiteralName
 		public RuleCall getOwnedMemberEnumerationLiteralNameParserRuleCall_1_1_1_1_1_0() { return cOwnedMemberEnumerationLiteralNameParserRuleCall_1_1_1_1_1_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_1_2() { return cRightCurlyBracketKeyword_1_1_2; }
 	}
 
 	public class EnumerationLiteralNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumerationLiteralName");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.EnumerationLiteralName");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDocumentationAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDocumentationDOCUMENTATION_COMMENTTerminalRuleCall_0_0 = (RuleCall)cDocumentationAssignment_0.eContents().get(0);
 		private final Assignment cDefinitionAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cDefinitionEnumerationLiteralNameDefinitionParserRuleCall_1_0 = (RuleCall)cDefinitionAssignment_1.eContents().get(0);
 		
-		//EnumerationLiteralName returns Member:
-		//	documentation+=DOCUMENTATION_COMMENT? // TODO: visibility = 'public'
-		//	definition=EnumerationLiteralNameDefinition;
+		//EnumerationLiteralName Member:
+		//	documentation+=DOCUMENTATION_COMMENT?
+		//	// TODO: visibility = 'public'
+		//	definition=EnumerationLiteralNameDefinition
 		@Override public ParserRule getRule() { return rule; }
 
 		//documentation+=DOCUMENTATION_COMMENT? // TODO: visibility = 'public'
@@ -2002,12 +2018,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class EnumerationLiteralNameDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumerationLiteralNameDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.EnumerationLiteralNameDefinition");
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cNameNameParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
-		//EnumerationLiteralNameDefinition returns EnumerationLiteralName:
-		//	name=Name;
+		//EnumerationLiteralNameDefinition EnumerationLiteralName:
+		//	name=Name
 		@Override public ParserRule getRule() { return rule; }
 
 		//name=Name
@@ -2018,7 +2034,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SignalDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SignalDeclaration");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SignalDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cIsAbstractAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cIsAbstractAbstractKeyword_0_0 = (Keyword)cIsAbstractAssignment_0.eContents().get(0);
@@ -2037,22 +2053,23 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSpecializationAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cSpecializationSpecializationClauseParserRuleCall_4_0 = (RuleCall)cSpecializationAssignment_4.eContents().get(0);
 		
-		/// * SIGNALS * / SignalDeclaration returns SignalDefinition:
-		//	isAbstract?="abstract"? "signal" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-		//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+		/// * SIGNALS * / SignalDeclaration SignalDefinition:
+		//	isAbstract?='abstract'? 'signal' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+		//	ownedMember+=ClassifierTemplateParameter)* '>')?
+		//	specialization=SpecializationClause?
 		@Override public ParserRule getRule() { return rule; }
 
-		//isAbstract?="abstract"? "signal" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-		//ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?
+		//isAbstract?='abstract'? 'signal' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+		//ownedMember+=ClassifierTemplateParameter)* '>')? specialization=SpecializationClause?
 		public Group getGroup() { return cGroup; }
 
-		//isAbstract?="abstract"?
+		//isAbstract?='abstract'?
 		public Assignment getIsAbstractAssignment_0() { return cIsAbstractAssignment_0; }
 
-		//"abstract"
+		//'abstract'
 		public Keyword getIsAbstractAbstractKeyword_0_0() { return cIsAbstractAbstractKeyword_0_0; }
 
-		//"signal"
+		//'signal'
 		public Keyword getSignalKeyword_1() { return cSignalKeyword_1; }
 
 		//name=Name
@@ -2061,10 +2078,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_2_0() { return cNameNameParserRuleCall_2_0; }
 
-		//("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)* ">")?
+		//('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)* '>')?
 		public Group getGroup_3() { return cGroup_3; }
 
-		//"<"
+		//'<'
 		public Keyword getLessThanSignKeyword_3_0() { return cLessThanSignKeyword_3_0; }
 
 		//ownedMember+=ClassifierTemplateParameter
@@ -2073,10 +2090,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierTemplateParameter
 		public RuleCall getOwnedMemberClassifierTemplateParameterParserRuleCall_3_1_0() { return cOwnedMemberClassifierTemplateParameterParserRuleCall_3_1_0; }
 
-		//("," ownedMember+=ClassifierTemplateParameter)*
+		//(',' ownedMember+=ClassifierTemplateParameter)*
 		public Group getGroup_3_2() { return cGroup_3_2; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
 
 		//ownedMember+=ClassifierTemplateParameter
@@ -2085,7 +2102,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierTemplateParameter
 		public RuleCall getOwnedMemberClassifierTemplateParameterParserRuleCall_3_2_1_0() { return cOwnedMemberClassifierTemplateParameterParserRuleCall_3_2_1_0; }
 
-		//">"
+		//'>'
 		public Keyword getGreaterThanSignKeyword_3_3() { return cGreaterThanSignKeyword_3_3; }
 
 		//specialization=SpecializationClause?
@@ -2096,7 +2113,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SignalDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SignalDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SignalDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cSignalDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -2105,16 +2122,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//SignalDefinition:
-		//	SignalDeclaration "{" ownedMember+=StructuredMember* "}";
+		//	SignalDeclaration
+		//	'{' ownedMember+=StructuredMember* '}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//SignalDeclaration "{" ownedMember+=StructuredMember* "}"
+		//SignalDeclaration '{' ownedMember+=StructuredMember* '}'
 		public Group getGroup() { return cGroup; }
 
 		//SignalDeclaration
 		public RuleCall getSignalDeclarationParserRuleCall_0() { return cSignalDeclarationParserRuleCall_0; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
 		//ownedMember+=StructuredMember*
@@ -2123,12 +2141,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//StructuredMember
 		public RuleCall getOwnedMemberStructuredMemberParserRuleCall_2_0() { return cOwnedMemberStructuredMemberParserRuleCall_2_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 
 	public class SignalDefinitionOrStubElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SignalDefinitionOrStub");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SignalDefinitionOrStub");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cSignalDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -2140,29 +2158,29 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedMemberStructuredMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedMemberAssignment_1_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
-		//SignalDefinitionOrStub returns SignalDefinition:
-		//	SignalDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+		//SignalDefinitionOrStub SignalDefinition:
+		//	SignalDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 		@Override public ParserRule getRule() { return rule; }
 
-		//SignalDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}")
+		//SignalDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 		public Group getGroup() { return cGroup; }
 
 		//SignalDeclaration
 		public RuleCall getSignalDeclarationParserRuleCall_0() { return cSignalDeclarationParserRuleCall_0; }
 
-		//isStub?=";" | "{" ownedMember+=StructuredMember* "}"
+		//(isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//isStub?=";"
+		//isStub?=';'
 		public Assignment getIsStubAssignment_1_0() { return cIsStubAssignment_1_0; }
 
-		//";"
+		//';'
 		public Keyword getIsStubSemicolonKeyword_1_0_0() { return cIsStubSemicolonKeyword_1_0_0; }
 
-		//"{" ownedMember+=StructuredMember* "}"
+		//'{' ownedMember+=StructuredMember* '}'
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1_1_0() { return cLeftCurlyBracketKeyword_1_1_0; }
 
 		//ownedMember+=StructuredMember*
@@ -2171,12 +2189,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//StructuredMember
 		public RuleCall getOwnedMemberStructuredMemberParserRuleCall_1_1_1_0() { return cOwnedMemberStructuredMemberParserRuleCall_1_1_1_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_1_2() { return cRightCurlyBracketKeyword_1_1_2; }
 	}
 
 	public class ActivityDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ActivityDeclaration");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ActivityDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cActivityKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -2202,16 +2220,18 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedMemberAssignment_6 = (Assignment)cGroup.eContents().get(6);
 		private final RuleCall cOwnedMemberReturnParameterParserRuleCall_6_0 = (RuleCall)cOwnedMemberAssignment_6.eContents().get(0);
 		
-		/// * ACTIVITIES * / ActivityDeclaration returns ActivityDefinition:
-		//	"activity" name=Name ("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)*
-		//	">")? "(" (ownedMember+=FormalParameter ("," ownedMember+=FormalParameter)*)? ")" ownedMember+=ReturnParameter?;
+		/// * ACTIVITIES * / ActivityDeclaration ActivityDefinition:
+		//	'activity' name=Name ('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)*
+		//	'>')?
+		//	'(' (ownedMember+=FormalParameter (',' ownedMember+=FormalParameter)*)? ')'
+		//	ownedMember+=ReturnParameter?
 		@Override public ParserRule getRule() { return rule; }
 
-		//"activity" name=Name ("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)* ">")?
-		//"(" (ownedMember+=FormalParameter ("," ownedMember+=FormalParameter)*)? ")" ownedMember+=ReturnParameter?
+		//'activity' name=Name ('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)* '>')?
+		//'(' (ownedMember+=FormalParameter (',' ownedMember+=FormalParameter)*)? ')' ownedMember+=ReturnParameter?
 		public Group getGroup() { return cGroup; }
 
-		//"activity"
+		//'activity'
 		public Keyword getActivityKeyword_0() { return cActivityKeyword_0; }
 
 		//name=Name
@@ -2220,10 +2240,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
 
-		//("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)* ">")?
+		//('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)* '>')?
 		public Group getGroup_2() { return cGroup_2; }
 
-		//"<"
+		//'<'
 		public Keyword getLessThanSignKeyword_2_0() { return cLessThanSignKeyword_2_0; }
 
 		//ownedMember+=ClassifierTemplateParameter
@@ -2232,10 +2252,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierTemplateParameter
 		public RuleCall getOwnedMemberClassifierTemplateParameterParserRuleCall_2_1_0() { return cOwnedMemberClassifierTemplateParameterParserRuleCall_2_1_0; }
 
-		//("," ownedMember+=ClassifierTemplateParameter)*
+		//(',' ownedMember+=ClassifierTemplateParameter)*
 		public Group getGroup_2_2() { return cGroup_2_2; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_2_2_0() { return cCommaKeyword_2_2_0; }
 
 		//ownedMember+=ClassifierTemplateParameter
@@ -2244,13 +2264,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassifierTemplateParameter
 		public RuleCall getOwnedMemberClassifierTemplateParameterParserRuleCall_2_2_1_0() { return cOwnedMemberClassifierTemplateParameterParserRuleCall_2_2_1_0; }
 
-		//">"
+		//'>'
 		public Keyword getGreaterThanSignKeyword_2_3() { return cGreaterThanSignKeyword_2_3; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
 
-		//(ownedMember+=FormalParameter ("," ownedMember+=FormalParameter)*)?
+		//(ownedMember+=FormalParameter (',' ownedMember+=FormalParameter)*)?
 		public Group getGroup_4() { return cGroup_4; }
 
 		//ownedMember+=FormalParameter
@@ -2259,10 +2279,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//FormalParameter
 		public RuleCall getOwnedMemberFormalParameterParserRuleCall_4_0_0() { return cOwnedMemberFormalParameterParserRuleCall_4_0_0; }
 
-		//("," ownedMember+=FormalParameter)*
+		//(',' ownedMember+=FormalParameter)*
 		public Group getGroup_4_1() { return cGroup_4_1; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_4_1_0() { return cCommaKeyword_4_1_0; }
 
 		//ownedMember+=FormalParameter
@@ -2271,7 +2291,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//FormalParameter
 		public RuleCall getOwnedMemberFormalParameterParserRuleCall_4_1_1_0() { return cOwnedMemberFormalParameterParserRuleCall_4_1_1_0; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 
 		//ownedMember+=ReturnParameter?
@@ -2282,14 +2302,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ActivityDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ActivityDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ActivityDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cActivityDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Assignment cBodyAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cBodyBlockParserRuleCall_1_0 = (RuleCall)cBodyAssignment_1.eContents().get(0);
 		
 		//ActivityDefinition:
-		//	ActivityDeclaration body=Block;
+		//	ActivityDeclaration
+		//	body=Block;
 		@Override public ParserRule getRule() { return rule; }
 
 		//ActivityDeclaration body=Block
@@ -2306,7 +2327,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ActivityDefinitionOrStubElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ActivityDefinitionOrStub");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ActivityDefinitionOrStub");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cActivityDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -2315,23 +2336,23 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cBodyAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
 		private final RuleCall cBodyBlockParserRuleCall_1_1_0 = (RuleCall)cBodyAssignment_1_1.eContents().get(0);
 		
-		//ActivityDefinitionOrStub returns ActivityDefinition:
-		//	ActivityDeclaration (isStub?=";" | body=Block);
+		//ActivityDefinitionOrStub ActivityDefinition:
+		//	ActivityDeclaration (isStub?=';' | body=Block)
 		@Override public ParserRule getRule() { return rule; }
 
-		//ActivityDeclaration (isStub?=";" | body=Block)
+		//ActivityDeclaration (isStub?=';' | body=Block)
 		public Group getGroup() { return cGroup; }
 
 		//ActivityDeclaration
 		public RuleCall getActivityDeclarationParserRuleCall_0() { return cActivityDeclarationParserRuleCall_0; }
 
-		//isStub?=";" | body=Block
+		//(isStub?=';' | body=Block)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//isStub?=";"
+		//isStub?=';'
 		public Assignment getIsStubAssignment_1_0() { return cIsStubAssignment_1_0; }
 
-		//";"
+		//';'
 		public Keyword getIsStubSemicolonKeyword_1_0_0() { return cIsStubSemicolonKeyword_1_0_0; }
 
 		//body=Block
@@ -2342,7 +2363,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class FormalParameterElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FormalParameter");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.FormalParameter");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDocumentationAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDocumentationDOCUMENTATION_COMMENTTerminalRuleCall_0_0 = (RuleCall)cDocumentationAssignment_0.eContents().get(0);
@@ -2351,8 +2372,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDefinitionAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cDefinitionFormalParameterDefinitionParserRuleCall_2_0 = (RuleCall)cDefinitionAssignment_2.eContents().get(0);
 		
-		//FormalParameter returns Member:
-		//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* definition=FormalParameterDefinition;
+		//FormalParameter Member:
+		//	documentation+=DOCUMENTATION_COMMENT?
+		//	annotation+=StereotypeAnnotation*
+		//	definition=FormalParameterDefinition
 		@Override public ParserRule getRule() { return rule; }
 
 		//documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* definition=FormalParameterDefinition
@@ -2378,7 +2401,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class FormalParameterDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FormalParameterDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.FormalParameterDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDirectionAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDirectionParameterDirectionParserRuleCall_0_0 = (RuleCall)cDirectionAssignment_0.eContents().get(0);
@@ -2388,13 +2411,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTypePartAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cTypePartTypePartParserRuleCall_3_0 = (RuleCall)cTypePartAssignment_3.eContents().get(0);
 		
-		//FormalParameterDefinition returns NonReturnParameter: // CHANGE: Added the NonReturnParameter subtype of FormalParameter to accomodate Xtext serialization.
-		//	direction=ParameterDirection name=Name ":" // CHANGE: Made TypedElementDefinition a composite part of FormalParameter, rather than the supertype
-		//	typePart=TypePart;
+		//FormalParameterDefinition NonReturnParameter:
+		//	direction=ParameterDirection name=Name ':'
+		//	// CHANGE: Made TypedElementDefinition a composite part of FormalParameter, rather than the supertype
+		//	typePart=TypePart
 		@Override public ParserRule getRule() { return rule; }
 
 		//// CHANGE: Added the NonReturnParameter subtype of FormalParameter to accomodate Xtext serialization.
-		//direction=ParameterDirection name=Name ":" // CHANGE: Made TypedElementDefinition a composite part of FormalParameter, rather than the supertype
+		//direction=ParameterDirection name=Name ':' // CHANGE: Made TypedElementDefinition a composite part of FormalParameter, rather than the supertype
 		//typePart=TypePart
 		public Group getGroup() { return cGroup; }
 
@@ -2411,7 +2435,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
 
-		//":"
+		//':'
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 
 		//// CHANGE: Made TypedElementDefinition a composite part of FormalParameter, rather than the supertype
@@ -2423,12 +2447,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ReturnParameterElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ReturnParameter");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ReturnParameter");
 		private final Assignment cDefinitionAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cDefinitionReturnParameterDefinitionParserRuleCall_0 = (RuleCall)cDefinitionAssignment.eContents().get(0);
 		
-		//ReturnParameter returns Member:
-		//	definition=ReturnParameterDefinition;
+		//ReturnParameter Member:
+		//	definition=ReturnParameterDefinition
 		@Override public ParserRule getRule() { return rule; }
 
 		//definition=ReturnParameterDefinition
@@ -2439,23 +2463,22 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ReturnParameterDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ReturnParameterDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ReturnParameterDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cColonKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cTypePartAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cTypePartTypePartParserRuleCall_1_0 = (RuleCall)cTypePartAssignment_1.eContents().get(0);
 		
-		//// CHANGE: Made return the default for direction
-		//ReturnParameterDefinition returns ReturnParameter: // CHANGE: Added the NonReturnParameter subtype of FormalParameter to accomodate Xtext serialization.
-		//	":" typePart=TypePart;
+		//ReturnParameterDefinition ReturnParameter: // CHANGE: Added the NonReturnParameter subtype of FormalParameter to accomodate Xtext serialization.
+		//	':' typePart=TypePart
 		@Override public ParserRule getRule() { return rule; }
 
 		//// CHANGE: Added the NonReturnParameter subtype of FormalParameter to accomodate Xtext serialization.
-		//":" typePart=TypePart
+		//':' typePart=TypePart
 		public Group getGroup() { return cGroup; }
 
 		//// CHANGE: Added the NonReturnParameter subtype of FormalParameter to accomodate Xtext serialization.
-		//":"
+		//':'
 		public Keyword getColonKeyword_0() { return cColonKeyword_0; }
 
 		//typePart=TypePart
@@ -2466,37 +2489,37 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ParameterDirectionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ParameterDirection");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ParameterDirection");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cInKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cOutKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cInoutKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		
 		//ParameterDirection:
-		//	"in" | "out" | "inout";
+		//	'in' | 'out' | 'inout';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"in" | "out" | "inout"
+		//'in' | 'out' | 'inout'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"in"
+		//'in'
 		public Keyword getInKeyword_0() { return cInKeyword_0; }
 
-		//"out"
+		//'out'
 		public Keyword getOutKeyword_1() { return cOutKeyword_1; }
 
-		//"inout"
+		//'inout'
 		public Keyword getInoutKeyword_2() { return cInoutKeyword_2; }
 	}
 
 	public class FeatureDefinitionOrStubElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FeatureDefinitionOrStub");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.FeatureDefinitionOrStub");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cAttributeDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cOperationDefinitionOrStubParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		/// * FEATURES * / FeatureDefinitionOrStub returns MemberDefinition:
-		//	AttributeDefinition | OperationDefinitionOrStub;
+		/// * FEATURES * / FeatureDefinitionOrStub MemberDefinition:
+		//	AttributeDefinition | OperationDefinitionOrStub
 		@Override public ParserRule getRule() { return rule; }
 
 		//AttributeDefinition | OperationDefinitionOrStub
@@ -2510,13 +2533,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ActiveFeatureDefinitionOrStubElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ActiveFeatureDefinitionOrStub");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ActiveFeatureDefinitionOrStub");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cReceptionDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cSignalReceptionDefinitionOrStubParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//ActiveFeatureDefinitionOrStub returns MemberDefinition:
-		//	ReceptionDefinition | SignalReceptionDefinitionOrStub;
+		//ActiveFeatureDefinitionOrStub MemberDefinition:
+		//	ReceptionDefinition | SignalReceptionDefinitionOrStub
 		@Override public ParserRule getRule() { return rule; }
 
 		//ReceptionDefinition | SignalReceptionDefinitionOrStub
@@ -2530,38 +2553,38 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class PropertyDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PropertyDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cPropertyDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		/// * PROPERTIES * / PropertyDefinition:
-		//	PropertyDeclaration ";";
+		//	PropertyDeclaration ';';
 		@Override public ParserRule getRule() { return rule; }
 
-		//PropertyDeclaration ";"
+		//PropertyDeclaration ';'
 		public Group getGroup() { return cGroup; }
 
 		//PropertyDeclaration
 		public RuleCall getPropertyDeclarationParserRuleCall_0() { return cPropertyDeclarationParserRuleCall_0; }
 
-		//";"
+		//';'
 		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
 	}
 
 	public class AttributeDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AttributeDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AttributeDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cPropertyDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Assignment cInitializerAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cInitializerAttributeInitializerParserRuleCall_1_0 = (RuleCall)cInitializerAssignment_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//AttributeDefinition returns PropertyDefinition:
-		//	PropertyDeclaration initializer=AttributeInitializer? ";";
+		//AttributeDefinition PropertyDefinition:
+		//	PropertyDeclaration initializer=AttributeInitializer? ';'
 		@Override public ParserRule getRule() { return rule; }
 
-		//PropertyDeclaration initializer=AttributeInitializer? ";"
+		//PropertyDeclaration initializer=AttributeInitializer? ';'
 		public Group getGroup() { return cGroup; }
 
 		//PropertyDeclaration
@@ -2573,24 +2596,24 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//AttributeInitializer
 		public RuleCall getInitializerAttributeInitializerParserRuleCall_1_0() { return cInitializerAttributeInitializerParserRuleCall_1_0; }
 
-		//";"
+		//';'
 		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
 	}
 
 	public class AttributeInitializerElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AttributeInitializer");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AttributeInitializer");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cEqualsSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cInitializationExpressionParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		//AttributeInitializer returns Expression:
-		//	"=" InitializationExpression;
+		//AttributeInitializer Expression:
+		//	'=' InitializationExpression
 		@Override public ParserRule getRule() { return rule; }
 
-		//"=" InitializationExpression
+		//'=' InitializationExpression
 		public Group getGroup() { return cGroup; }
 
-		//"="
+		//'='
 		public Keyword getEqualsSignKeyword_0() { return cEqualsSignKeyword_0; }
 
 		//InitializationExpression
@@ -2598,7 +2621,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class PropertyDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyDeclaration");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PropertyDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -2608,12 +2631,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTypePartAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cTypePartTypePartParserRuleCall_3_0 = (RuleCall)cTypePartAssignment_3.eContents().get(0);
 		
-		//PropertyDeclaration returns PropertyDefinition:
-		//	name=Name ":" isComposite?="compose"? // CHANGE: Made TypedElementDefinition a composite part of PropertyDefinition instead of the supertype
-		//	typePart=TypePart;
+		//PropertyDeclaration PropertyDefinition:
+		//	name=Name ':' isComposite?='compose'?
+		//	// CHANGE: Made TypedElementDefinition a composite part of PropertyDefinition instead of the supertype
+		//	typePart=TypePart
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=Name ":" isComposite?="compose"? // CHANGE: Made TypedElementDefinition a composite part of PropertyDefinition instead of the supertype
+		//name=Name ':' isComposite?='compose'? // CHANGE: Made TypedElementDefinition a composite part of PropertyDefinition instead of the supertype
 		//typePart=TypePart
 		public Group getGroup() { return cGroup; }
 
@@ -2623,13 +2647,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_0_0() { return cNameNameParserRuleCall_0_0; }
 
-		//":"
+		//':'
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 
-		//isComposite?="compose"?
+		//isComposite?='compose'?
 		public Assignment getIsCompositeAssignment_2() { return cIsCompositeAssignment_2; }
 
-		//"compose"
+		//'compose'
 		public Keyword getIsCompositeComposeKeyword_2_0() { return cIsCompositeComposeKeyword_2_0; }
 
 		//// CHANGE: Made TypedElementDefinition a composite part of PropertyDefinition instead of the supertype
@@ -2641,7 +2665,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class TypePartElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypePart");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.TypePart");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
 		private final Assignment cIsAnyAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
@@ -2676,33 +2700,24 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cIsSequenceAssignment_1_1_2 = (Assignment)cAlternatives_1_1.eContents().get(2);
 		private final Keyword cIsSequenceSequenceKeyword_1_1_2_0 = (Keyword)cIsSequenceAssignment_1_1_2.eContents().get(0);
 		
-		//TypePart returns TypedElementDefinition:
-		//	(isAny?="any" // CHANGE: Added isAny attribute to TypedElementDefinition to allow Xtext serialization.
-		//	// CHANGE: Added isMultiplicity attribute to TypedElementDefinition.
-		//	// CHANGE: Added isSequence attribute to TypedElementDefinition.
-		//	| typeName=QualifiedName) (("[" (isMultiplicity?="]" | (lowerBound=NATURAL_VALUE "..")?
-		//	upperBound=UnlimitedNaturalLiteral "]"))? (isOrdered?="ordered" isNonunique?="nonunique"? | isNonunique?="nonunique"
-		//	isOrdered?="ordered"? | isSequence?="sequence")?)?;
+		//TypePart TypedElementDefinition:
+		//	(isAny?='any' | typeName=QualifiedName) (('[' (isMultiplicity?=']' | (lowerBound=NATURAL_VALUE '..')?
+		//	upperBound=UnlimitedNaturalLiteral ']'))? (isOrdered?='ordered' isNonunique?='nonunique'? | isNonunique?='nonunique'
+		//	isOrdered?='ordered'? | isSequence?='sequence')?)?
 		@Override public ParserRule getRule() { return rule; }
 
-		//(isAny?="any" // CHANGE: Added isAny attribute to TypedElementDefinition to allow Xtext serialization.
-		//// CHANGE: Added isMultiplicity attribute to TypedElementDefinition.
-		//// CHANGE: Added isSequence attribute to TypedElementDefinition.
-		//| typeName=QualifiedName) (("[" (isMultiplicity?="]" | (lowerBound=NATURAL_VALUE "..")?
-		//upperBound=UnlimitedNaturalLiteral "]"))? (isOrdered?="ordered" isNonunique?="nonunique"? | isNonunique?="nonunique"
-		//isOrdered?="ordered"? | isSequence?="sequence")?)?
+		//(isAny?='any' | typeName=QualifiedName) (('[' (isMultiplicity?=']' | (lowerBound=NATURAL_VALUE '..')?
+		//upperBound=UnlimitedNaturalLiteral ']'))? (isOrdered?='ordered' isNonunique?='nonunique'? | isNonunique?='nonunique'
+		//isOrdered?='ordered'? | isSequence?='sequence')?)?
 		public Group getGroup() { return cGroup; }
 
-		//isAny?="any" // CHANGE: Added isAny attribute to TypedElementDefinition to allow Xtext serialization.
-		//// CHANGE: Added isMultiplicity attribute to TypedElementDefinition.
-		//// CHANGE: Added isSequence attribute to TypedElementDefinition.
-		//| typeName=QualifiedName
+		//(isAny?='any' | typeName=QualifiedName)
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
-		//isAny?="any"
+		//isAny?='any'
 		public Assignment getIsAnyAssignment_0_0() { return cIsAnyAssignment_0_0; }
 
-		//"any"
+		//'any'
 		public Keyword getIsAnyAnyKeyword_0_0_0() { return cIsAnyAnyKeyword_0_0_0; }
 
 		//typeName=QualifiedName
@@ -2711,30 +2726,30 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getTypeNameQualifiedNameParserRuleCall_0_1_0() { return cTypeNameQualifiedNameParserRuleCall_0_1_0; }
 
-		//(("[" (isMultiplicity?="]" | (lowerBound=NATURAL_VALUE "..")? upperBound=UnlimitedNaturalLiteral "]"))?
-		//(isOrdered?="ordered" isNonunique?="nonunique"? | isNonunique?="nonunique" isOrdered?="ordered"? |
-		//isSequence?="sequence")?)?
+		//(('[' (isMultiplicity?=']' | (lowerBound=NATURAL_VALUE '..')? upperBound=UnlimitedNaturalLiteral ']'))?
+		//(isOrdered?='ordered' isNonunique?='nonunique'? | isNonunique?='nonunique' isOrdered?='ordered'? |
+		//isSequence?='sequence')?)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//("[" (isMultiplicity?="]" | (lowerBound=NATURAL_VALUE "..")? upperBound=UnlimitedNaturalLiteral "]"))?
+		//('[' (isMultiplicity?=']' | (lowerBound=NATURAL_VALUE '..')? upperBound=UnlimitedNaturalLiteral ']'))?
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
-		//"["
+		//'['
 		public Keyword getLeftSquareBracketKeyword_1_0_0() { return cLeftSquareBracketKeyword_1_0_0; }
 
-		//isMultiplicity?="]" | (lowerBound=NATURAL_VALUE "..")? upperBound=UnlimitedNaturalLiteral "]"
+		//(isMultiplicity?=']' | (lowerBound=NATURAL_VALUE '..')? upperBound=UnlimitedNaturalLiteral ']')
 		public Alternatives getAlternatives_1_0_1() { return cAlternatives_1_0_1; }
 
-		//isMultiplicity?="]"
+		//isMultiplicity?=']'
 		public Assignment getIsMultiplicityAssignment_1_0_1_0() { return cIsMultiplicityAssignment_1_0_1_0; }
 
-		//"]"
+		//']'
 		public Keyword getIsMultiplicityRightSquareBracketKeyword_1_0_1_0_0() { return cIsMultiplicityRightSquareBracketKeyword_1_0_1_0_0; }
 
-		//(lowerBound=NATURAL_VALUE "..")? upperBound=UnlimitedNaturalLiteral "]"
+		//(lowerBound=NATURAL_VALUE '..')? upperBound=UnlimitedNaturalLiteral ']'
 		public Group getGroup_1_0_1_1() { return cGroup_1_0_1_1; }
 
-		//(lowerBound=NATURAL_VALUE "..")?
+		//(lowerBound=NATURAL_VALUE '..')?
 		public Group getGroup_1_0_1_1_0() { return cGroup_1_0_1_1_0; }
 
 		//lowerBound=NATURAL_VALUE
@@ -2743,7 +2758,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//NATURAL_VALUE
 		public RuleCall getLowerBoundNATURAL_VALUETerminalRuleCall_1_0_1_1_0_0_0() { return cLowerBoundNATURAL_VALUETerminalRuleCall_1_0_1_1_0_0_0; }
 
-		//".."
+		//'..'
 		public Keyword getFullStopFullStopKeyword_1_0_1_1_0_1() { return cFullStopFullStopKeyword_1_0_1_1_0_1; }
 
 		//upperBound=UnlimitedNaturalLiteral
@@ -2752,52 +2767,52 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//UnlimitedNaturalLiteral
 		public RuleCall getUpperBoundUnlimitedNaturalLiteralParserRuleCall_1_0_1_1_1_0() { return cUpperBoundUnlimitedNaturalLiteralParserRuleCall_1_0_1_1_1_0; }
 
-		//"]"
+		//']'
 		public Keyword getRightSquareBracketKeyword_1_0_1_1_2() { return cRightSquareBracketKeyword_1_0_1_1_2; }
 
-		//(isOrdered?="ordered" isNonunique?="nonunique"? | isNonunique?="nonunique" isOrdered?="ordered"? |
-		//isSequence?="sequence")?
+		//(isOrdered?='ordered' isNonunique?='nonunique'? | isNonunique?='nonunique' isOrdered?='ordered'? |
+		//isSequence?='sequence')?
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 
-		//isOrdered?="ordered" isNonunique?="nonunique"?
+		//isOrdered?='ordered' isNonunique?='nonunique'?
 		public Group getGroup_1_1_0() { return cGroup_1_1_0; }
 
-		//isOrdered?="ordered"
+		//isOrdered?='ordered'
 		public Assignment getIsOrderedAssignment_1_1_0_0() { return cIsOrderedAssignment_1_1_0_0; }
 
-		//"ordered"
+		//'ordered'
 		public Keyword getIsOrderedOrderedKeyword_1_1_0_0_0() { return cIsOrderedOrderedKeyword_1_1_0_0_0; }
 
-		//isNonunique?="nonunique"?
+		//isNonunique?='nonunique'?
 		public Assignment getIsNonuniqueAssignment_1_1_0_1() { return cIsNonuniqueAssignment_1_1_0_1; }
 
-		//"nonunique"
+		//'nonunique'
 		public Keyword getIsNonuniqueNonuniqueKeyword_1_1_0_1_0() { return cIsNonuniqueNonuniqueKeyword_1_1_0_1_0; }
 
-		//isNonunique?="nonunique" isOrdered?="ordered"?
+		//isNonunique?='nonunique' isOrdered?='ordered'?
 		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
 
-		//isNonunique?="nonunique"
+		//isNonunique?='nonunique'
 		public Assignment getIsNonuniqueAssignment_1_1_1_0() { return cIsNonuniqueAssignment_1_1_1_0; }
 
-		//"nonunique"
+		//'nonunique'
 		public Keyword getIsNonuniqueNonuniqueKeyword_1_1_1_0_0() { return cIsNonuniqueNonuniqueKeyword_1_1_1_0_0; }
 
-		//isOrdered?="ordered"?
+		//isOrdered?='ordered'?
 		public Assignment getIsOrderedAssignment_1_1_1_1() { return cIsOrderedAssignment_1_1_1_1; }
 
-		//"ordered"
+		//'ordered'
 		public Keyword getIsOrderedOrderedKeyword_1_1_1_1_0() { return cIsOrderedOrderedKeyword_1_1_1_1_0; }
 
-		//isSequence?="sequence"
+		//isSequence?='sequence'
 		public Assignment getIsSequenceAssignment_1_1_2() { return cIsSequenceAssignment_1_1_2; }
 
-		//"sequence"
+		//'sequence'
 		public Keyword getIsSequenceSequenceKeyword_1_1_2_0() { return cIsSequenceSequenceKeyword_1_1_2_0; }
 	}
 
 	public class UnlimitedNaturalLiteralElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnlimitedNaturalLiteral");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.UnlimitedNaturalLiteral");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNATURAL_VALUETerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final Keyword cAsteriskKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
@@ -2807,21 +2822,21 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//	'any' | QualifiedName
 		//;
 		// * / UnlimitedNaturalLiteral:
-		//	NATURAL_VALUE | "*";
+		//	NATURAL_VALUE | '*';
 		@Override public ParserRule getRule() { return rule; }
 
-		//NATURAL_VALUE | "*"
+		//NATURAL_VALUE | '*'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//NATURAL_VALUE
 		public RuleCall getNATURAL_VALUETerminalRuleCall_0() { return cNATURAL_VALUETerminalRuleCall_0; }
 
-		//"*"
+		//'*'
 		public Keyword getAsteriskKeyword_1() { return cAsteriskKeyword_1; }
 	}
 
 	public class OperationDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OperationDeclaration");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.OperationDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cIsAbstractAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cIsAbstractAbstractKeyword_0_0 = (Keyword)cIsAbstractAssignment_0.eContents().get(0);
@@ -2841,19 +2856,21 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cRedefinitionAssignment_6 = (Assignment)cGroup.eContents().get(6);
 		private final RuleCall cRedefinitionRedefinitionClauseParserRuleCall_6_0 = (RuleCall)cRedefinitionAssignment_6.eContents().get(0);
 		
-		/// * OPERATIONS * / OperationDeclaration returns OperationDefinition:
-		//	isAbstract?="abstract"? name=Name "(" (ownedMember+=FormalParameter ("," ownedMember+=FormalParameter)*)? ")"
-		//	ownedMember+=ReturnParameter? redefinition=RedefinitionClause?;
+		/// * OPERATIONS * / OperationDeclaration OperationDefinition:
+		//	isAbstract?='abstract'? name=Name
+		//	'(' (ownedMember+=FormalParameter (',' ownedMember+=FormalParameter)*)? ')'
+		//	ownedMember+=ReturnParameter?
+		//	redefinition=RedefinitionClause?
 		@Override public ParserRule getRule() { return rule; }
 
-		//isAbstract?="abstract"? name=Name "(" (ownedMember+=FormalParameter ("," ownedMember+=FormalParameter)*)? ")"
+		//isAbstract?='abstract'? name=Name '(' (ownedMember+=FormalParameter (',' ownedMember+=FormalParameter)*)? ')'
 		//ownedMember+=ReturnParameter? redefinition=RedefinitionClause?
 		public Group getGroup() { return cGroup; }
 
-		//isAbstract?="abstract"?
+		//isAbstract?='abstract'?
 		public Assignment getIsAbstractAssignment_0() { return cIsAbstractAssignment_0; }
 
-		//"abstract"
+		//'abstract'
 		public Keyword getIsAbstractAbstractKeyword_0_0() { return cIsAbstractAbstractKeyword_0_0; }
 
 		//name=Name
@@ -2862,10 +2879,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 
-		//(ownedMember+=FormalParameter ("," ownedMember+=FormalParameter)*)?
+		//(ownedMember+=FormalParameter (',' ownedMember+=FormalParameter)*)?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//ownedMember+=FormalParameter
@@ -2874,10 +2891,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//FormalParameter
 		public RuleCall getOwnedMemberFormalParameterParserRuleCall_3_0_0() { return cOwnedMemberFormalParameterParserRuleCall_3_0_0; }
 
-		//("," ownedMember+=FormalParameter)*
+		//(',' ownedMember+=FormalParameter)*
 		public Group getGroup_3_1() { return cGroup_3_1; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_3_1_0() { return cCommaKeyword_3_1_0; }
 
 		//ownedMember+=FormalParameter
@@ -2886,7 +2903,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//FormalParameter
 		public RuleCall getOwnedMemberFormalParameterParserRuleCall_3_1_1_0() { return cOwnedMemberFormalParameterParserRuleCall_3_1_1_0; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 
 		//ownedMember+=ReturnParameter?
@@ -2903,7 +2920,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class OperationDefinitionOrStubElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OperationDefinitionOrStub");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.OperationDefinitionOrStub");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cOperationDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -2912,23 +2929,23 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cBodyAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
 		private final RuleCall cBodyBlockParserRuleCall_1_1_0 = (RuleCall)cBodyAssignment_1_1.eContents().get(0);
 		
-		//OperationDefinitionOrStub returns OperationDefinition:
-		//	OperationDeclaration (isStub?=";" | body=Block);
+		//OperationDefinitionOrStub OperationDefinition:
+		//	OperationDeclaration (isStub?=';' | body=Block)
 		@Override public ParserRule getRule() { return rule; }
 
-		//OperationDeclaration (isStub?=";" | body=Block)
+		//OperationDeclaration (isStub?=';' | body=Block)
 		public Group getGroup() { return cGroup; }
 
 		//OperationDeclaration
 		public RuleCall getOperationDeclarationParserRuleCall_0() { return cOperationDeclarationParserRuleCall_0; }
 
-		//isStub?=";" | body=Block
+		//(isStub?=';' | body=Block)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//isStub?=";"
+		//isStub?=';'
 		public Assignment getIsStubAssignment_1_0() { return cIsStubAssignment_1_0; }
 
-		//";"
+		//';'
 		public Keyword getIsStubSemicolonKeyword_1_0_0() { return cIsStubSemicolonKeyword_1_0_0; }
 
 		//body=Block
@@ -2939,19 +2956,19 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class RedefinitionClauseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RedefinitionClause");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.RedefinitionClause");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cRedefinesKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cQualifiedNameListParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		//RedefinitionClause returns QualifiedNameList:
-		//	"redefines" QualifiedNameList;
+		//RedefinitionClause QualifiedNameList:
+		//	'redefines' QualifiedNameList
 		@Override public ParserRule getRule() { return rule; }
 
-		//"redefines" QualifiedNameList
+		//'redefines' QualifiedNameList
 		public Group getGroup() { return cGroup; }
 
-		//"redefines"
+		//'redefines'
 		public Keyword getRedefinesKeyword_0() { return cRedefinesKeyword_0; }
 
 		//QualifiedNameList
@@ -2959,22 +2976,23 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ReceptionDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ReceptionDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ReceptionDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cReceiveKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cSignalNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cSignalNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cSignalNameAssignment_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		/// * RECEPTIONS * / // TODO: name = signal.nameBinding->last().name
-		//ReceptionDefinition:
-		//	"receive" signalName=QualifiedName ";";
+		/// * RECEPTIONS * / ReceptionDefinition:
+		//	'receive' signalName=QualifiedName ';'
+		//	// TODO: name = signal.nameBinding->last().name
+		//;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"receive" signalName=QualifiedName ";"
+		//'receive' signalName=QualifiedName ';'
 		public Group getGroup() { return cGroup; }
 
-		//"receive"
+		//'receive'
 		public Keyword getReceiveKeyword_0() { return cReceiveKeyword_0; }
 
 		//signalName=QualifiedName
@@ -2983,12 +3001,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getSignalNameQualifiedNameParserRuleCall_1_0() { return cSignalNameQualifiedNameParserRuleCall_1_0; }
 
-		//";"
+		//';'
 		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
 	}
 
 	public class SignalReceptionDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SignalReceptionDeclaration");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SignalReceptionDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cReceiveKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cSignalKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -2997,17 +3015,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSpecializationAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cSpecializationSpecializationClauseParserRuleCall_3_0 = (RuleCall)cSpecializationAssignment_3.eContents().get(0);
 		
-		//SignalReceptionDeclaration returns SignalReceptionDefinition:
-		//	"receive" "signal" name=Name specialization=SpecializationClause?;
+		//SignalReceptionDeclaration SignalReceptionDefinition:
+		//	'receive' 'signal' name=Name specialization=SpecializationClause?
 		@Override public ParserRule getRule() { return rule; }
 
-		//"receive" "signal" name=Name specialization=SpecializationClause?
+		//'receive' 'signal' name=Name specialization=SpecializationClause?
 		public Group getGroup() { return cGroup; }
 
-		//"receive"
+		//'receive'
 		public Keyword getReceiveKeyword_0() { return cReceiveKeyword_0; }
 
-		//"signal"
+		//'signal'
 		public Keyword getSignalKeyword_1() { return cSignalKeyword_1; }
 
 		//name=Name
@@ -3024,7 +3042,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SignalReceptionDefinitionOrStubElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SignalReceptionDefinitionOrStub");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SignalReceptionDefinitionOrStub");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cSignalReceptionDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -3036,29 +3054,29 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedMemberStructuredMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedMemberAssignment_1_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
-		//SignalReceptionDefinitionOrStub returns SignalReceptionDefinition:
-		//	SignalReceptionDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+		//SignalReceptionDefinitionOrStub SignalReceptionDefinition:
+		//	SignalReceptionDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 		@Override public ParserRule getRule() { return rule; }
 
-		//SignalReceptionDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}")
+		//SignalReceptionDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 		public Group getGroup() { return cGroup; }
 
 		//SignalReceptionDeclaration
 		public RuleCall getSignalReceptionDeclarationParserRuleCall_0() { return cSignalReceptionDeclarationParserRuleCall_0; }
 
-		//isStub?=";" | "{" ownedMember+=StructuredMember* "}"
+		//(isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//isStub?=";"
+		//isStub?=';'
 		public Assignment getIsStubAssignment_1_0() { return cIsStubAssignment_1_0; }
 
-		//";"
+		//';'
 		public Keyword getIsStubSemicolonKeyword_1_0_0() { return cIsStubSemicolonKeyword_1_0_0; }
 
-		//"{" ownedMember+=StructuredMember* "}"
+		//'{' ownedMember+=StructuredMember* '}'
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1_1_0() { return cLeftCurlyBracketKeyword_1_1_0; }
 
 		//ownedMember+=StructuredMember*
@@ -3067,12 +3085,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//StructuredMember
 		public RuleCall getOwnedMemberStructuredMemberParserRuleCall_1_1_1_0() { return cOwnedMemberStructuredMemberParserRuleCall_1_1_1_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_1_2() { return cRightCurlyBracketKeyword_1_1_2; }
 	}
 
 	public class NameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Name");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.Name");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cUNRESTRICTED_NAMETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -3094,7 +3112,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedName");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cUnqualifiedNameParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -3108,22 +3126,22 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameBindingNameBindingParserRuleCall_1_1_1_0 = (RuleCall)cNameBindingAssignment_1_1_1.eContents().get(0);
 		
 		//QualifiedName:
-		//	UnqualifiedName (("::" nameBinding+=NameBinding)+ | ("." nameBinding+=NameBinding)+)?;
+		//	UnqualifiedName (('::' nameBinding+=NameBinding)+ | ('.' nameBinding+=NameBinding)+)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//UnqualifiedName (("::" nameBinding+=NameBinding)+ | ("." nameBinding+=NameBinding)+)?
+		//UnqualifiedName (('::' nameBinding+=NameBinding)+ | ('.' nameBinding+=NameBinding)+)?
 		public Group getGroup() { return cGroup; }
 
 		//UnqualifiedName
 		public RuleCall getUnqualifiedNameParserRuleCall_0() { return cUnqualifiedNameParserRuleCall_0; }
 
-		//(("::" nameBinding+=NameBinding)+ | ("." nameBinding+=NameBinding)+)?
+		//(('::' nameBinding+=NameBinding)+ | ('.' nameBinding+=NameBinding)+)?
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//("::" nameBinding+=NameBinding)+
+		//('::' nameBinding+=NameBinding)+
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
-		//"::"
+		//'::'
 		public Keyword getColonColonKeyword_1_0_0() { return cColonColonKeyword_1_0_0; }
 
 		//nameBinding+=NameBinding
@@ -3132,10 +3150,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//NameBinding
 		public RuleCall getNameBindingNameBindingParserRuleCall_1_0_1_0() { return cNameBindingNameBindingParserRuleCall_1_0_1_0; }
 
-		//("." nameBinding+=NameBinding)+
+		//('.' nameBinding+=NameBinding)+
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
-		//"."
+		//'.'
 		public Keyword getFullStopKeyword_1_1_0() { return cFullStopKeyword_1_1_0; }
 
 		//nameBinding+=NameBinding
@@ -3146,7 +3164,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class PotentiallyAmbiguousQualifiedNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PotentiallyAmbiguousQualifiedName");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PotentiallyAmbiguousQualifiedName");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cUnqualifiedNameParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -3164,25 +3182,25 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameBindingAssignment_1_1_2_1 = (Assignment)cGroup_1_1_2.eContents().get(1);
 		private final RuleCall cNameBindingNameBindingParserRuleCall_1_1_2_1_0 = (RuleCall)cNameBindingAssignment_1_1_2_1.eContents().get(0);
 		
-		//PotentiallyAmbiguousQualifiedName returns QualifiedName:
-		//	UnqualifiedName (("::" nameBinding+=NameBinding)+ | isAmbiguous?="." nameBinding+=NameBinding ("."
-		//	nameBinding+=NameBinding)*)?;
+		//PotentiallyAmbiguousQualifiedName QualifiedName:
+		//	UnqualifiedName (('::' nameBinding+=NameBinding)+ | isAmbiguous?='.' nameBinding+=NameBinding ('.'
+		//	nameBinding+=NameBinding)*)?
 		@Override public ParserRule getRule() { return rule; }
 
-		//UnqualifiedName (("::" nameBinding+=NameBinding)+ | isAmbiguous?="." nameBinding+=NameBinding ("."
+		//UnqualifiedName (('::' nameBinding+=NameBinding)+ | isAmbiguous?='.' nameBinding+=NameBinding ('.'
 		//nameBinding+=NameBinding)*)?
 		public Group getGroup() { return cGroup; }
 
 		//UnqualifiedName
 		public RuleCall getUnqualifiedNameParserRuleCall_0() { return cUnqualifiedNameParserRuleCall_0; }
 
-		//(("::" nameBinding+=NameBinding)+ | isAmbiguous?="." nameBinding+=NameBinding ("." nameBinding+=NameBinding)*)?
+		//(('::' nameBinding+=NameBinding)+ | isAmbiguous?='.' nameBinding+=NameBinding ('.' nameBinding+=NameBinding)*)?
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//("::" nameBinding+=NameBinding)+
+		//('::' nameBinding+=NameBinding)+
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
-		//"::"
+		//'::'
 		public Keyword getColonColonKeyword_1_0_0() { return cColonColonKeyword_1_0_0; }
 
 		//nameBinding+=NameBinding
@@ -3191,13 +3209,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//NameBinding
 		public RuleCall getNameBindingNameBindingParserRuleCall_1_0_1_0() { return cNameBindingNameBindingParserRuleCall_1_0_1_0; }
 
-		//isAmbiguous?="." nameBinding+=NameBinding ("." nameBinding+=NameBinding)*
+		//isAmbiguous?='.' nameBinding+=NameBinding ('.' nameBinding+=NameBinding)*
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
-		//isAmbiguous?="."
+		//isAmbiguous?='.'
 		public Assignment getIsAmbiguousAssignment_1_1_0() { return cIsAmbiguousAssignment_1_1_0; }
 
-		//"."
+		//'.'
 		public Keyword getIsAmbiguousFullStopKeyword_1_1_0_0() { return cIsAmbiguousFullStopKeyword_1_1_0_0; }
 
 		//nameBinding+=NameBinding
@@ -3206,10 +3224,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//NameBinding
 		public RuleCall getNameBindingNameBindingParserRuleCall_1_1_1_0() { return cNameBindingNameBindingParserRuleCall_1_1_1_0; }
 
-		//("." nameBinding+=NameBinding)*
+		//('.' nameBinding+=NameBinding)*
 		public Group getGroup_1_1_2() { return cGroup_1_1_2; }
 
-		//"."
+		//'.'
 		public Keyword getFullStopKeyword_1_1_2_0() { return cFullStopKeyword_1_1_2_0; }
 
 		//nameBinding+=NameBinding
@@ -3220,7 +3238,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ColonQualifiedNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ColonQualifiedName");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ColonQualifiedName");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cUnqualifiedNameParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -3228,20 +3246,20 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameBindingAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cNameBindingNameBindingParserRuleCall_1_1_0 = (RuleCall)cNameBindingAssignment_1_1.eContents().get(0);
 		
-		//ColonQualifiedName returns QualifiedName:
-		//	UnqualifiedName ("::" nameBinding+=NameBinding)+;
+		//ColonQualifiedName QualifiedName:
+		//	UnqualifiedName ('::' nameBinding+=NameBinding)+
 		@Override public ParserRule getRule() { return rule; }
 
-		//UnqualifiedName ("::" nameBinding+=NameBinding)+
+		//UnqualifiedName ('::' nameBinding+=NameBinding)+
 		public Group getGroup() { return cGroup; }
 
 		//UnqualifiedName
 		public RuleCall getUnqualifiedNameParserRuleCall_0() { return cUnqualifiedNameParserRuleCall_0; }
 
-		//("::" nameBinding+=NameBinding)+
+		//('::' nameBinding+=NameBinding)+
 		public Group getGroup_1() { return cGroup_1; }
 
-		//"::"
+		//'::'
 		public Keyword getColonColonKeyword_1_0() { return cColonColonKeyword_1_0; }
 
 		//nameBinding+=NameBinding
@@ -3252,7 +3270,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class DotQualifiedNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DotQualifiedName");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.DotQualifiedName");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cUnqualifiedNameParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -3260,20 +3278,20 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameBindingAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cNameBindingNameBindingParserRuleCall_1_1_0 = (RuleCall)cNameBindingAssignment_1_1.eContents().get(0);
 		
-		//DotQualifiedName returns QualifiedName:
-		//	UnqualifiedName ("." nameBinding+=NameBinding)+;
+		//DotQualifiedName QualifiedName:
+		//	UnqualifiedName ('.' nameBinding+=NameBinding)+
 		@Override public ParserRule getRule() { return rule; }
 
-		//UnqualifiedName ("." nameBinding+=NameBinding)+
+		//UnqualifiedName ('.' nameBinding+=NameBinding)+
 		public Group getGroup() { return cGroup; }
 
 		//UnqualifiedName
 		public RuleCall getUnqualifiedNameParserRuleCall_0() { return cUnqualifiedNameParserRuleCall_0; }
 
-		//("." nameBinding+=NameBinding)+
+		//('.' nameBinding+=NameBinding)+
 		public Group getGroup_1() { return cGroup_1; }
 
-		//"."
+		//'.'
 		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
 
 		//nameBinding+=NameBinding
@@ -3284,12 +3302,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class UnqualifiedNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnqualifiedName");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.UnqualifiedName");
 		private final Assignment cNameBindingAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cNameBindingNameBindingParserRuleCall_0 = (RuleCall)cNameBindingAssignment.eContents().get(0);
 		
-		//UnqualifiedName returns QualifiedName:
-		//	nameBinding+=NameBinding;
+		//UnqualifiedName QualifiedName:
+		//	nameBinding+=NameBinding
 		@Override public ParserRule getRule() { return rule; }
 
 		//nameBinding+=NameBinding
@@ -3300,7 +3318,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NameBindingElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NameBinding");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NameBinding");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -3328,7 +3346,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class TemplateBindingElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateBinding");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.TemplateBinding");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLessThanSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -3346,16 +3364,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//	( '::' names+=Name)+
 		//;
 		// * / / * Unbounded lookahead required here * / TemplateBinding:
-		//	"<" (NamedTemplateBinding | PositionalTemplateBinding) ">";
+		//	'<' (NamedTemplateBinding | PositionalTemplateBinding) '>';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"<" (NamedTemplateBinding | PositionalTemplateBinding) ">"
+		//'<' (NamedTemplateBinding | PositionalTemplateBinding) '>'
 		public Group getGroup() { return cGroup; }
 
-		//"<"
+		//'<'
 		public Keyword getLessThanSignKeyword_0() { return cLessThanSignKeyword_0; }
 
-		//NamedTemplateBinding | PositionalTemplateBinding
+		//(NamedTemplateBinding | PositionalTemplateBinding)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//NamedTemplateBinding
@@ -3364,12 +3382,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//PositionalTemplateBinding
 		public RuleCall getPositionalTemplateBindingParserRuleCall_1_1() { return cPositionalTemplateBindingParserRuleCall_1_1; }
 
-		//">"
+		//'>'
 		public Keyword getGreaterThanSignKeyword_2() { return cGreaterThanSignKeyword_2; }
 	}
 
 	public class PositionalTemplateBindingElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PositionalTemplateBinding");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PositionalTemplateBinding");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cArgumentNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cArgumentNameQualifiedNameParserRuleCall_0_0 = (RuleCall)cArgumentNameAssignment_0.eContents().get(0);
@@ -3379,10 +3397,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgumentNameQualifiedNameParserRuleCall_1_1_0 = (RuleCall)cArgumentNameAssignment_1_1.eContents().get(0);
 		
 		//PositionalTemplateBinding:
-		//	argumentName+=QualifiedName ("," argumentName+=QualifiedName)*;
+		//	argumentName+=QualifiedName (',' argumentName+=QualifiedName)*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//argumentName+=QualifiedName ("," argumentName+=QualifiedName)*
+		//argumentName+=QualifiedName (',' argumentName+=QualifiedName)*
 		public Group getGroup() { return cGroup; }
 
 		//argumentName+=QualifiedName
@@ -3391,10 +3409,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getArgumentNameQualifiedNameParserRuleCall_0_0() { return cArgumentNameQualifiedNameParserRuleCall_0_0; }
 
-		//("," argumentName+=QualifiedName)*
+		//(',' argumentName+=QualifiedName)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
 
 		//argumentName+=QualifiedName
@@ -3405,7 +3423,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NamedTemplateBindingElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NamedTemplateBinding");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NamedTemplateBinding");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cSubstitutionAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cSubstitutionTemplateParameterSubstitutionParserRuleCall_0_0 = (RuleCall)cSubstitutionAssignment_0.eContents().get(0);
@@ -3415,10 +3433,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSubstitutionTemplateParameterSubstitutionParserRuleCall_1_1_0 = (RuleCall)cSubstitutionAssignment_1_1.eContents().get(0);
 		
 		//NamedTemplateBinding:
-		//	substitution+=TemplateParameterSubstitution ("," substitution+=TemplateParameterSubstitution)*;
+		//	substitution+=TemplateParameterSubstitution (',' substitution+=TemplateParameterSubstitution)*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//substitution+=TemplateParameterSubstitution ("," substitution+=TemplateParameterSubstitution)*
+		//substitution+=TemplateParameterSubstitution (',' substitution+=TemplateParameterSubstitution)*
 		public Group getGroup() { return cGroup; }
 
 		//substitution+=TemplateParameterSubstitution
@@ -3427,10 +3445,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//TemplateParameterSubstitution
 		public RuleCall getSubstitutionTemplateParameterSubstitutionParserRuleCall_0_0() { return cSubstitutionTemplateParameterSubstitutionParserRuleCall_0_0; }
 
-		//("," substitution+=TemplateParameterSubstitution)*
+		//(',' substitution+=TemplateParameterSubstitution)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
 
 		//substitution+=TemplateParameterSubstitution
@@ -3441,7 +3459,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class TemplateParameterSubstitutionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateParameterSubstitution");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.TemplateParameterSubstitution");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cParameterNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cParameterNameNameParserRuleCall_0_0 = (RuleCall)cParameterNameAssignment_0.eContents().get(0);
@@ -3473,7 +3491,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Expression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.Expression");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cAssignmentExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cConditionalExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -3495,7 +3513,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class PrimaryExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PrimaryExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PrimaryExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cBaseExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -3545,48 +3563,48 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cIndexAssignment_1_3_1 = (Assignment)cGroup_1_3.eContents().get(1);
 		private final RuleCall cIndexIndexParserRuleCall_1_3_1_0 = (RuleCall)cIndexAssignment_1_3_1.eContents().get(0);
 		
-		/// * PRIMARY EXPRESSIONS * / PrimaryExpression returns Expression:
-		//	BaseExpression ({FeatureReference.expression=current} "." nameBinding=NameBinding
-		//	{FeatureInvocationExpression.target=current} tuple=Tuple // CHANGE: Made FeatureReference and ExtentOrExpression subtypes of Expression.
-		//	| {FeatureReference.expression=current} "." nameBinding=NameBinding {PropertyAccessExpression.featureReference=current}
-		//	| {ExtentOrExpression.nonNameExpression=current} "->" ({SequenceOperationExpression.primary=current}
-		//	operation=QualifiedName tuple=Tuple // CHANGE: Made SequenceExpansionExpression concrete.
-		//	| {SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName |
-		//	{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")") |
-		//	{SequenceAccessExpression.primary=current} index=Index)*;
+		/// * PRIMARY EXPRESSIONS * / PrimaryExpression Expression:
+		//	BaseExpression ({FeatureReference.expression=current} '.' nameBinding=NameBinding
+		//	{FeatureInvocationExpression.target=current} tuple=Tuple | {FeatureReference.expression=current} '.'
+		//	nameBinding=NameBinding {PropertyAccessExpression.featureReference=current} |
+		//	{ExtentOrExpression.nonNameExpression=current} '->' ({SequenceOperationExpression.primary=current}
+		//	operation=QualifiedName tuple=Tuple
+		//	| {SequenceReductionExpression.primary=current} 'reduce' isOrdered?='ordered'? behaviorName=QualifiedName
+		//	// CHANGE: Made SequenceExpansionExpression concrete.
+		//	| {SequenceExpansionExpression.primary=current} operation=ID variable=Name '(' argument=Expression ')') |
+		//	{SequenceAccessExpression.primary=current} index=Index)*
 		@Override public ParserRule getRule() { return rule; }
 
-		//BaseExpression ({FeatureReference.expression=current} "." nameBinding=NameBinding
-		//{FeatureInvocationExpression.target=current} tuple=Tuple // CHANGE: Made FeatureReference and ExtentOrExpression subtypes of Expression.
-		//| {FeatureReference.expression=current} "." nameBinding=NameBinding {PropertyAccessExpression.featureReference=current}
-		//| {ExtentOrExpression.nonNameExpression=current} "->" ({SequenceOperationExpression.primary=current}
-		//operation=QualifiedName tuple=Tuple // CHANGE: Made SequenceExpansionExpression concrete.
-		//| {SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName |
-		//{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")") |
+		//BaseExpression ({FeatureReference.expression=current} '.' nameBinding=NameBinding
+		//{FeatureInvocationExpression.target=current} tuple=Tuple | {FeatureReference.expression=current} '.'
+		//nameBinding=NameBinding {PropertyAccessExpression.featureReference=current} |
+		//{ExtentOrExpression.nonNameExpression=current} '->' ({SequenceOperationExpression.primary=current}
+		//operation=QualifiedName tuple=Tuple | {SequenceReductionExpression.primary=current} 'reduce' isOrdered?='ordered'?
+		//behaviorName=QualifiedName // CHANGE: Made SequenceExpansionExpression concrete.
+		//| {SequenceExpansionExpression.primary=current} operation=ID variable=Name '(' argument=Expression ')') |
 		//{SequenceAccessExpression.primary=current} index=Index)*
 		public Group getGroup() { return cGroup; }
 
 		//BaseExpression
 		public RuleCall getBaseExpressionParserRuleCall_0() { return cBaseExpressionParserRuleCall_0; }
 
-		//({FeatureReference.expression=current} "." nameBinding=NameBinding {FeatureInvocationExpression.target=current}
-		//tuple=Tuple // CHANGE: Made FeatureReference and ExtentOrExpression subtypes of Expression.
-		//| {FeatureReference.expression=current} "." nameBinding=NameBinding {PropertyAccessExpression.featureReference=current}
-		//| {ExtentOrExpression.nonNameExpression=current} "->" ({SequenceOperationExpression.primary=current}
-		//operation=QualifiedName tuple=Tuple // CHANGE: Made SequenceExpansionExpression concrete.
-		//| {SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName |
-		//{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")") |
+		//({FeatureReference.expression=current} '.' nameBinding=NameBinding {FeatureInvocationExpression.target=current}
+		//tuple=Tuple | {FeatureReference.expression=current} '.' nameBinding=NameBinding
+		//{PropertyAccessExpression.featureReference=current} | {ExtentOrExpression.nonNameExpression=current} '->'
+		//({SequenceOperationExpression.primary=current} operation=QualifiedName tuple=Tuple |
+		//{SequenceReductionExpression.primary=current} 'reduce' isOrdered?='ordered'? behaviorName=QualifiedName // CHANGE: Made SequenceExpansionExpression concrete.
+		//| {SequenceExpansionExpression.primary=current} operation=ID variable=Name '(' argument=Expression ')') |
 		//{SequenceAccessExpression.primary=current} index=Index)*
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//{FeatureReference.expression=current} "." nameBinding=NameBinding {FeatureInvocationExpression.target=current}
+		//{FeatureReference.expression=current} '.' nameBinding=NameBinding {FeatureInvocationExpression.target=current}
 		//tuple=Tuple
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
 		//{FeatureReference.expression=current}
 		public Action getFeatureReferenceExpressionAction_1_0_0() { return cFeatureReferenceExpressionAction_1_0_0; }
 
-		//"."
+		//'.'
 		public Keyword getFullStopKeyword_1_0_1() { return cFullStopKeyword_1_0_1; }
 
 		//nameBinding=NameBinding
@@ -3604,13 +3622,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Tuple
 		public RuleCall getTupleTupleParserRuleCall_1_0_4_0() { return cTupleTupleParserRuleCall_1_0_4_0; }
 
-		//{FeatureReference.expression=current} "." nameBinding=NameBinding {PropertyAccessExpression.featureReference=current}
+		//{FeatureReference.expression=current} '.' nameBinding=NameBinding {PropertyAccessExpression.featureReference=current}
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
 		//{FeatureReference.expression=current}
 		public Action getFeatureReferenceExpressionAction_1_1_0() { return cFeatureReferenceExpressionAction_1_1_0; }
 
-		//"."
+		//'.'
 		public Keyword getFullStopKeyword_1_1_1() { return cFullStopKeyword_1_1_1; }
 
 		//nameBinding=NameBinding
@@ -3622,21 +3640,21 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//{PropertyAccessExpression.featureReference=current}
 		public Action getPropertyAccessExpressionFeatureReferenceAction_1_1_3() { return cPropertyAccessExpressionFeatureReferenceAction_1_1_3; }
 
-		//{ExtentOrExpression.nonNameExpression=current} "->" ({SequenceOperationExpression.primary=current}
-		//operation=QualifiedName tuple=Tuple // CHANGE: Made SequenceExpansionExpression concrete.
-		//| {SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName |
-		//{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")")
+		//{ExtentOrExpression.nonNameExpression=current} '->' ({SequenceOperationExpression.primary=current}
+		//operation=QualifiedName tuple=Tuple | {SequenceReductionExpression.primary=current} 'reduce' isOrdered?='ordered'?
+		//behaviorName=QualifiedName // CHANGE: Made SequenceExpansionExpression concrete.
+		//| {SequenceExpansionExpression.primary=current} operation=ID variable=Name '(' argument=Expression ')')
 		public Group getGroup_1_2() { return cGroup_1_2; }
 
 		//{ExtentOrExpression.nonNameExpression=current}
 		public Action getExtentOrExpressionNonNameExpressionAction_1_2_0() { return cExtentOrExpressionNonNameExpressionAction_1_2_0; }
 
-		//"->"
+		//'->'
 		public Keyword getHyphenMinusGreaterThanSignKeyword_1_2_1() { return cHyphenMinusGreaterThanSignKeyword_1_2_1; }
 
-		//{SequenceOperationExpression.primary=current} operation=QualifiedName tuple=Tuple // CHANGE: Made SequenceExpansionExpression concrete.
-		//| {SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName |
-		//{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")"
+		//({SequenceOperationExpression.primary=current} operation=QualifiedName tuple=Tuple |
+		//{SequenceReductionExpression.primary=current} 'reduce' isOrdered?='ordered'? behaviorName=QualifiedName // CHANGE: Made SequenceExpansionExpression concrete.
+		//| {SequenceExpansionExpression.primary=current} operation=ID variable=Name '(' argument=Expression ')')
 		public Alternatives getAlternatives_1_2_2() { return cAlternatives_1_2_2; }
 
 		//{SequenceOperationExpression.primary=current} operation=QualifiedName tuple=Tuple
@@ -3657,19 +3675,19 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Tuple
 		public RuleCall getTupleTupleParserRuleCall_1_2_2_0_2_0() { return cTupleTupleParserRuleCall_1_2_2_0_2_0; }
 
-		//{SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName
+		//{SequenceReductionExpression.primary=current} 'reduce' isOrdered?='ordered'? behaviorName=QualifiedName
 		public Group getGroup_1_2_2_1() { return cGroup_1_2_2_1; }
 
 		//{SequenceReductionExpression.primary=current}
 		public Action getSequenceReductionExpressionPrimaryAction_1_2_2_1_0() { return cSequenceReductionExpressionPrimaryAction_1_2_2_1_0; }
 
-		//"reduce"
+		//'reduce'
 		public Keyword getReduceKeyword_1_2_2_1_1() { return cReduceKeyword_1_2_2_1_1; }
 
-		//isOrdered?="ordered"?
+		//isOrdered?='ordered'?
 		public Assignment getIsOrderedAssignment_1_2_2_1_2() { return cIsOrderedAssignment_1_2_2_1_2; }
 
-		//"ordered"
+		//'ordered'
 		public Keyword getIsOrderedOrderedKeyword_1_2_2_1_2_0() { return cIsOrderedOrderedKeyword_1_2_2_1_2_0; }
 
 		//behaviorName=QualifiedName
@@ -3678,7 +3696,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getBehaviorNameQualifiedNameParserRuleCall_1_2_2_1_3_0() { return cBehaviorNameQualifiedNameParserRuleCall_1_2_2_1_3_0; }
 
-		//{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")"
+		//{SequenceExpansionExpression.primary=current} operation=ID variable=Name '(' argument=Expression ')'
 		public Group getGroup_1_2_2_2() { return cGroup_1_2_2_2; }
 
 		//{SequenceExpansionExpression.primary=current}
@@ -3696,7 +3714,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getVariableNameParserRuleCall_1_2_2_2_2_0() { return cVariableNameParserRuleCall_1_2_2_2_2_0; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_1_2_2_2_3() { return cLeftParenthesisKeyword_1_2_2_2_3; }
 
 		//argument=Expression
@@ -3705,7 +3723,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getArgumentExpressionParserRuleCall_1_2_2_2_4_0() { return cArgumentExpressionParserRuleCall_1_2_2_2_4_0; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_1_2_2_2_5() { return cRightParenthesisKeyword_1_2_2_2_5; }
 
 		//{SequenceAccessExpression.primary=current} index=Index
@@ -3722,7 +3740,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class BaseExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BaseExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.BaseExpression");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cLiteralExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cThisExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -3751,11 +3769,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		////    {SequenceAccessExpression.primary = current} index = Index
 		////  )+
 		////;
-		//BaseExpression returns Expression:
+		//BaseExpression Expression:
 		//	LiteralExpression | ThisExpression | SuperInvocationExpression | InstanceCreationOrSequenceConstructionExpression |
 		//	ClassExtentExpression | LinkOperationExpression | SequenceConstructionExpression |
 		//	SequenceOperationOrReductionOrExpansionExpression | BehaviorInvocationExpression | NameExpression |
-		//	ParenthesizedExpression;
+		//	ParenthesizedExpression
 		@Override public ParserRule getRule() { return rule; }
 
 		//LiteralExpression | ThisExpression | SuperInvocationExpression | InstanceCreationOrSequenceConstructionExpression |
@@ -3799,7 +3817,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class LiteralExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LiteralExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.LiteralExpression");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cBooleanLiteralExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cNaturalLiteralExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -3827,7 +3845,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class BooleanLiteralExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BooleanLiteralExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.BooleanLiteralExpression");
 		private final Assignment cImageAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cImageBOOLEAN_VALUETerminalRuleCall_0 = (RuleCall)cImageAssignment.eContents().get(0);
 		
@@ -3843,7 +3861,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NaturalLiteralExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NaturalLiteralExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NaturalLiteralExpression");
 		private final Assignment cImageAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cImageNATURAL_VALUETerminalRuleCall_0 = (RuleCall)cImageAssignment.eContents().get(0);
 		
@@ -3859,27 +3877,27 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class UnboundedLiteralExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnboundedLiteralExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.UnboundedLiteralExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cUnboundedLiteralExpressionAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cAsteriskKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//UnboundedLiteralExpression:
-		//	{UnboundedLiteralExpression} "*";
+		//	{UnboundedLiteralExpression} '*';
 		@Override public ParserRule getRule() { return rule; }
 
-		//{UnboundedLiteralExpression} "*"
+		//{UnboundedLiteralExpression} '*'
 		public Group getGroup() { return cGroup; }
 
 		//{UnboundedLiteralExpression}
 		public Action getUnboundedLiteralExpressionAction_0() { return cUnboundedLiteralExpressionAction_0; }
 
-		//"*"
+		//'*'
 		public Keyword getAsteriskKeyword_1() { return cAsteriskKeyword_1; }
 	}
 
 	public class StringLiteralExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringLiteralExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.StringLiteralExpression");
 		private final Assignment cImageAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cImageSTRINGTerminalRuleCall_0 = (RuleCall)cImageAssignment.eContents().get(0);
 		
@@ -3895,7 +3913,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NameExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NameExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NameExpression");
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cNamePotentiallyAmbiguousQualifiedNameParserRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
@@ -3911,7 +3929,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ThisExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ThisExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ThisExpression");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Action cFeatureInvocationExpressionAction_0_0 = (Action)cGroup_0.eContents().get(0);
@@ -3922,20 +3940,20 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cThisExpressionAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cThisKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		
-		/// * THIS EXPRESSIONS * / ThisExpression returns Expression:
-		//	{FeatureInvocationExpression} "this" tuple=Tuple | {ThisExpression} "this";
+		/// * THIS EXPRESSIONS * / ThisExpression Expression:
+		//	{FeatureInvocationExpression} 'this' tuple=Tuple | {ThisExpression} 'this'
 		@Override public ParserRule getRule() { return rule; }
 
-		//{FeatureInvocationExpression} "this" tuple=Tuple | {ThisExpression} "this"
+		//{FeatureInvocationExpression} 'this' tuple=Tuple | {ThisExpression} 'this'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//{FeatureInvocationExpression} "this" tuple=Tuple
+		//{FeatureInvocationExpression} 'this' tuple=Tuple
 		public Group getGroup_0() { return cGroup_0; }
 
 		//{FeatureInvocationExpression}
 		public Action getFeatureInvocationExpressionAction_0_0() { return cFeatureInvocationExpressionAction_0_0; }
 
-		//"this"
+		//'this'
 		public Keyword getThisKeyword_0_1() { return cThisKeyword_0_1; }
 
 		//tuple=Tuple
@@ -3944,42 +3962,42 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Tuple
 		public RuleCall getTupleTupleParserRuleCall_0_2_0() { return cTupleTupleParserRuleCall_0_2_0; }
 
-		//{ThisExpression} "this"
+		//{ThisExpression} 'this'
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{ThisExpression}
 		public Action getThisExpressionAction_1_0() { return cThisExpressionAction_1_0; }
 
-		//"this"
+		//'this'
 		public Keyword getThisKeyword_1_1() { return cThisKeyword_1_1; }
 	}
 
 	public class ParenthesizedExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ParenthesizedExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ParenthesizedExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cExpressionParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		/// * PARENTHESIZED EXPRESSIONS * / ParenthesizedExpression returns Expression:
-		//	"(" Expression ")";
+		/// * PARENTHESIZED EXPRESSIONS * / ParenthesizedExpression Expression:
+		//	'(' Expression ')'
 		@Override public ParserRule getRule() { return rule; }
 
-		//"(" Expression ")"
+		//'(' Expression ')'
 		public Group getGroup() { return cGroup; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
 
 		//Expression
 		public RuleCall getExpressionParserRuleCall_1() { return cExpressionParserRuleCall_1; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
 	}
 
 	public class BehaviorInvocationExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BehaviorInvocationExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.BehaviorInvocationExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cTargetAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cTargetPotentiallyAmbiguousQualifiedNameParserRuleCall_0_0 = (RuleCall)cTargetAssignment_0.eContents().get(0);
@@ -4017,7 +4035,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class TupleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Tuple");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.Tuple");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -4027,18 +4045,18 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Tuple:
 		/// * {Tuple}'(' ( namedTupleExpressionList = NamedTupleExpressionList | ( positionalTupleExpressionList = PositionalTupleExpressionList )? ) ')' * /
-		//	"(" (NamedTupleExpressionList | PositionalTupleExpressionList) ")";
+		//	'(' (NamedTupleExpressionList | PositionalTupleExpressionList) ')';
 		@Override public ParserRule getRule() { return rule; }
 
 		/// * {Tuple}'(' ( namedTupleExpressionList = NamedTupleExpressionList | ( positionalTupleExpressionList = PositionalTupleExpressionList )? ) ')' * /
-		//"(" (NamedTupleExpressionList | PositionalTupleExpressionList) ")"
+		//'(' (NamedTupleExpressionList | PositionalTupleExpressionList) ')'
 		public Group getGroup() { return cGroup; }
 
 		/// * {Tuple}'(' ( namedTupleExpressionList = NamedTupleExpressionList | ( positionalTupleExpressionList = PositionalTupleExpressionList )? ) ')' * /
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
 
-		//NamedTupleExpressionList | PositionalTupleExpressionList
+		//(NamedTupleExpressionList | PositionalTupleExpressionList)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//NamedTupleExpressionList
@@ -4047,12 +4065,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//PositionalTupleExpressionList
 		public RuleCall getPositionalTupleExpressionListParserRuleCall_1_1() { return cPositionalTupleExpressionListParserRuleCall_1_1; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
 	}
 
 	public class PositionalTupleExpressionListElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PositionalTupleExpressionList");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PositionalTupleExpressionList");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cPositionalTupleAction_0 = (Action)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -4063,17 +4081,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cExpressionAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
 		private final RuleCall cExpressionExpressionParserRuleCall_1_1_1_0 = (RuleCall)cExpressionAssignment_1_1_1.eContents().get(0);
 		
-		//PositionalTupleExpressionList returns PositionalTuple:
-		//	{PositionalTuple} (expression+=Expression ("," expression+=Expression)*)?;
+		//PositionalTupleExpressionList PositionalTuple:
+		//	{PositionalTuple} (expression+=Expression (',' expression+=Expression)*)?
 		@Override public ParserRule getRule() { return rule; }
 
-		//{PositionalTuple} (expression+=Expression ("," expression+=Expression)*)?
+		//{PositionalTuple} (expression+=Expression (',' expression+=Expression)*)?
 		public Group getGroup() { return cGroup; }
 
 		//{PositionalTuple}
 		public Action getPositionalTupleAction_0() { return cPositionalTupleAction_0; }
 
-		//(expression+=Expression ("," expression+=Expression)*)?
+		//(expression+=Expression (',' expression+=Expression)*)?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//expression+=Expression
@@ -4082,10 +4100,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getExpressionExpressionParserRuleCall_1_0_0() { return cExpressionExpressionParserRuleCall_1_0_0; }
 
-		//("," expression+=Expression)*
+		//(',' expression+=Expression)*
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_1_1_0() { return cCommaKeyword_1_1_0; }
 
 		//expression+=Expression
@@ -4096,7 +4114,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NamedTupleExpressionListElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NamedTupleExpressionList");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NamedTupleExpressionList");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNamedExpressionAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNamedExpressionNamedExpressionParserRuleCall_0_0 = (RuleCall)cNamedExpressionAssignment_0.eContents().get(0);
@@ -4105,11 +4123,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNamedExpressionAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cNamedExpressionNamedExpressionParserRuleCall_1_1_0 = (RuleCall)cNamedExpressionAssignment_1_1.eContents().get(0);
 		
-		//NamedTupleExpressionList returns NamedTuple:
-		//	namedExpression+=NamedExpression ("," namedExpression+=NamedExpression)*;
+		//NamedTupleExpressionList NamedTuple:
+		//	namedExpression+=NamedExpression (',' namedExpression+=NamedExpression)*
 		@Override public ParserRule getRule() { return rule; }
 
-		//namedExpression+=NamedExpression ("," namedExpression+=NamedExpression)*
+		//namedExpression+=NamedExpression (',' namedExpression+=NamedExpression)*
 		public Group getGroup() { return cGroup; }
 
 		//namedExpression+=NamedExpression
@@ -4118,10 +4136,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//NamedExpression
 		public RuleCall getNamedExpressionNamedExpressionParserRuleCall_0_0() { return cNamedExpressionNamedExpressionParserRuleCall_0_0; }
 
-		//("," namedExpression+=NamedExpression)*
+		//(',' namedExpression+=NamedExpression)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
 
 		//namedExpression+=NamedExpression
@@ -4132,7 +4150,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NamedExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NamedExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NamedExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -4141,10 +4159,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpressionExpressionParserRuleCall_2_0 = (RuleCall)cExpressionAssignment_2.eContents().get(0);
 		
 		//NamedExpression:
-		//	name=Name "=>" expression=Expression;
+		//	name=Name '=>' expression=Expression;
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=Name "=>" expression=Expression
+		//name=Name '=>' expression=Expression
 		public Group getGroup() { return cGroup; }
 
 		//name=Name
@@ -4153,7 +4171,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_0_0() { return cNameNameParserRuleCall_0_0; }
 
-		//"=>"
+		//'=>'
 		public Keyword getEqualsSignGreaterThanSignKeyword_1() { return cEqualsSignGreaterThanSignKeyword_1; }
 
 		//expression=Expression
@@ -4164,7 +4182,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SuperInvocationExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SuperInvocationExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SuperInvocationExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cSuperKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -4175,19 +4193,19 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTupleTupleParserRuleCall_2_0 = (RuleCall)cTupleAssignment_2.eContents().get(0);
 		
 		//SuperInvocationExpression:
-		//	"super" ("." target=QualifiedName)? tuple=Tuple;
+		//	'super' ('.' target=QualifiedName)? tuple=Tuple;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"super" ("." target=QualifiedName)? tuple=Tuple
+		//'super' ('.' target=QualifiedName)? tuple=Tuple
 		public Group getGroup() { return cGroup; }
 
-		//"super"
+		//'super'
 		public Keyword getSuperKeyword_0() { return cSuperKeyword_0; }
 
-		//("." target=QualifiedName)?
+		//('.' target=QualifiedName)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//"."
+		//'.'
 		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
 
 		//target=QualifiedName
@@ -4204,7 +4222,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class InstanceCreationOrSequenceConstructionExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "InstanceCreationOrSequenceConstructionExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.InstanceCreationOrSequenceConstructionExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cNewKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -4225,24 +4243,24 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTupleAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
 		private final RuleCall cTupleTupleParserRuleCall_1_1_2_0 = (RuleCall)cTupleAssignment_1_1_2.eContents().get(0);
 		
-		/// * INSTANCE CREATION EXPRESSIONS * / InstanceCreationOrSequenceConstructionExpression returns Expression:
-		//	"new" ({SequenceConstructionExpression} typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? "{"
-		//	elements=SequenceElements? "}" | {InstanceCreationExpression} constructor=QualifiedName tuple=Tuple);
+		/// * INSTANCE CREATION EXPRESSIONS * / InstanceCreationOrSequenceConstructionExpression Expression:
+		//	'new' ({SequenceConstructionExpression} typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? '{'
+		//	elements=SequenceElements? '}' | {InstanceCreationExpression} constructor=QualifiedName tuple=Tuple)
 		@Override public ParserRule getRule() { return rule; }
 
-		//"new" ({SequenceConstructionExpression} typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? "{"
-		//elements=SequenceElements? "}" | {InstanceCreationExpression} constructor=QualifiedName tuple=Tuple)
+		//'new' ({SequenceConstructionExpression} typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? '{'
+		//elements=SequenceElements? '}' | {InstanceCreationExpression} constructor=QualifiedName tuple=Tuple)
 		public Group getGroup() { return cGroup; }
 
-		//"new"
+		//'new'
 		public Keyword getNewKeyword_0() { return cNewKeyword_0; }
 
-		//{SequenceConstructionExpression} typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? "{"
-		//elements=SequenceElements? "}" | {InstanceCreationExpression} constructor=QualifiedName tuple=Tuple
+		//({SequenceConstructionExpression} typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? '{'
+		//elements=SequenceElements? '}' | {InstanceCreationExpression} constructor=QualifiedName tuple=Tuple)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//{SequenceConstructionExpression} typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? "{"
-		//elements=SequenceElements? "}"
+		//{SequenceConstructionExpression} typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? '{'
+		//elements=SequenceElements? '}'
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
 		//{SequenceConstructionExpression}
@@ -4260,7 +4278,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//MultiplicityIndicator
 		public RuleCall getHasMultiplicityMultiplicityIndicatorParserRuleCall_1_0_2_0() { return cHasMultiplicityMultiplicityIndicatorParserRuleCall_1_0_2_0; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1_0_3() { return cLeftCurlyBracketKeyword_1_0_3; }
 
 		//elements=SequenceElements?
@@ -4269,7 +4287,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//SequenceElements
 		public RuleCall getElementsSequenceElementsParserRuleCall_1_0_4_0() { return cElementsSequenceElementsParserRuleCall_1_0_4_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_0_5() { return cRightCurlyBracketKeyword_1_0_5; }
 
 		//{InstanceCreationExpression} constructor=QualifiedName tuple=Tuple
@@ -4292,7 +4310,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class LinkOperationExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LinkOperationExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.LinkOperationExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cAssociationNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cAssociationNamePotentiallyAmbiguousQualifiedNameParserRuleCall_0_0 = (RuleCall)cAssociationNameAssignment_0.eContents().get(0);
@@ -4303,10 +4321,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTupleLinkOperationTupleParserRuleCall_3_0 = (RuleCall)cTupleAssignment_3.eContents().get(0);
 		
 		/// * LINK OPERATION EXPRESSIONS * / LinkOperationExpression:
-		//	associationName=PotentiallyAmbiguousQualifiedName "." operation=LinkOperation tuple=LinkOperationTuple;
+		//	associationName=PotentiallyAmbiguousQualifiedName '.' operation=LinkOperation tuple=LinkOperationTuple;
 		@Override public ParserRule getRule() { return rule; }
 
-		//associationName=PotentiallyAmbiguousQualifiedName "." operation=LinkOperation tuple=LinkOperationTuple
+		//associationName=PotentiallyAmbiguousQualifiedName '.' operation=LinkOperation tuple=LinkOperationTuple
 		public Group getGroup() { return cGroup; }
 
 		//associationName=PotentiallyAmbiguousQualifiedName
@@ -4315,7 +4333,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//PotentiallyAmbiguousQualifiedName
 		public RuleCall getAssociationNamePotentiallyAmbiguousQualifiedNameParserRuleCall_0_0() { return cAssociationNamePotentiallyAmbiguousQualifiedNameParserRuleCall_0_0; }
 
-		//"."
+		//'.'
 		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
 
 		//operation=LinkOperation
@@ -4332,31 +4350,31 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class LinkOperationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LinkOperation");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.LinkOperation");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cCreateLinkKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cDestroyLinkKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cClearAssocKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		
 		//LinkOperation:
-		//	"createLink" | "destroyLink" | "clearAssoc";
+		//	'createLink' | 'destroyLink' | 'clearAssoc';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"createLink" | "destroyLink" | "clearAssoc"
+		//'createLink' | 'destroyLink' | 'clearAssoc'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"createLink"
+		//'createLink'
 		public Keyword getCreateLinkKeyword_0() { return cCreateLinkKeyword_0; }
 
-		//"destroyLink"
+		//'destroyLink'
 		public Keyword getDestroyLinkKeyword_1() { return cDestroyLinkKeyword_1; }
 
-		//"clearAssoc"
+		//'clearAssoc'
 		public Keyword getClearAssocKeyword_2() { return cClearAssocKeyword_2; }
 	}
 
 	public class LinkOperationTupleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LinkOperationTuple");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.LinkOperationTuple");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -4364,17 +4382,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPositionalTupleExpressionListParserRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//LinkOperationTuple returns Tuple:
-		//	"(" (IndexedNamedTupleExpressionList | PositionalTupleExpressionList) ")";
+		//LinkOperationTuple Tuple:
+		//	'(' (IndexedNamedTupleExpressionList | PositionalTupleExpressionList) ')'
 		@Override public ParserRule getRule() { return rule; }
 
-		//"(" (IndexedNamedTupleExpressionList | PositionalTupleExpressionList) ")"
+		//'(' (IndexedNamedTupleExpressionList | PositionalTupleExpressionList) ')'
 		public Group getGroup() { return cGroup; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
 
-		//IndexedNamedTupleExpressionList | PositionalTupleExpressionList
+		//(IndexedNamedTupleExpressionList | PositionalTupleExpressionList)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//IndexedNamedTupleExpressionList
@@ -4383,12 +4401,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//PositionalTupleExpressionList
 		public RuleCall getPositionalTupleExpressionListParserRuleCall_1_1() { return cPositionalTupleExpressionListParserRuleCall_1_1; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
 	}
 
 	public class IndexedNamedTupleExpressionListElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IndexedNamedTupleExpressionList");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.IndexedNamedTupleExpressionList");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNamedExpressionAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNamedExpressionIndexedNamedExpressionParserRuleCall_0_0 = (RuleCall)cNamedExpressionAssignment_0.eContents().get(0);
@@ -4397,11 +4415,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNamedExpressionAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cNamedExpressionIndexedNamedExpressionParserRuleCall_1_1_0 = (RuleCall)cNamedExpressionAssignment_1_1.eContents().get(0);
 		
-		//IndexedNamedTupleExpressionList returns NamedTuple:
-		//	namedExpression+=IndexedNamedExpression ("," namedExpression+=IndexedNamedExpression)*;
+		//IndexedNamedTupleExpressionList NamedTuple:
+		//	namedExpression+=IndexedNamedExpression (',' namedExpression+=IndexedNamedExpression)*
 		@Override public ParserRule getRule() { return rule; }
 
-		//namedExpression+=IndexedNamedExpression ("," namedExpression+=IndexedNamedExpression)*
+		//namedExpression+=IndexedNamedExpression (',' namedExpression+=IndexedNamedExpression)*
 		public Group getGroup() { return cGroup; }
 
 		//namedExpression+=IndexedNamedExpression
@@ -4410,10 +4428,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//IndexedNamedExpression
 		public RuleCall getNamedExpressionIndexedNamedExpressionParserRuleCall_0_0() { return cNamedExpressionIndexedNamedExpressionParserRuleCall_0_0; }
 
-		//("," namedExpression+=IndexedNamedExpression)*
+		//(',' namedExpression+=IndexedNamedExpression)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
 
 		//namedExpression+=IndexedNamedExpression
@@ -4424,7 +4442,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class IndexedNamedExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IndexedNamedExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.IndexedNamedExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -4434,11 +4452,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cExpressionAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cExpressionExpressionParserRuleCall_3_0 = (RuleCall)cExpressionAssignment_3.eContents().get(0);
 		
-		//IndexedNamedExpression returns NamedExpression:
-		//	name=Name index=Index? "=>" expression=Expression;
+		//IndexedNamedExpression NamedExpression:
+		//	name=Name index=Index? '=>' expression=Expression
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=Name index=Index? "=>" expression=Expression
+		//name=Name index=Index? '=>' expression=Expression
 		public Group getGroup() { return cGroup; }
 
 		//name=Name
@@ -4453,7 +4471,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Index
 		public RuleCall getIndexIndexParserRuleCall_1_0() { return cIndexIndexParserRuleCall_1_0; }
 
-		//"=>"
+		//'=>'
 		public Keyword getEqualsSignGreaterThanSignKeyword_2() { return cEqualsSignGreaterThanSignKeyword_2; }
 
 		//expression=Expression
@@ -4464,7 +4482,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ClassExtentExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassExtentExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassExtentExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cClassNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cClassNamePotentiallyAmbiguousQualifiedNameParserRuleCall_0_0 = (RuleCall)cClassNameAssignment_0.eContents().get(0);
@@ -4474,10 +4492,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		/// * CLASS EXTENT EXPRESSIONS * / ClassExtentExpression:
-		//	className=PotentiallyAmbiguousQualifiedName "." "allInstances" "(" ")";
+		//	className=PotentiallyAmbiguousQualifiedName '.' 'allInstances' '(' ')';
 		@Override public ParserRule getRule() { return rule; }
 
-		//className=PotentiallyAmbiguousQualifiedName "." "allInstances" "(" ")"
+		//className=PotentiallyAmbiguousQualifiedName '.' 'allInstances' '(' ')'
 		public Group getGroup() { return cGroup; }
 
 		//className=PotentiallyAmbiguousQualifiedName
@@ -4486,21 +4504,21 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//PotentiallyAmbiguousQualifiedName
 		public RuleCall getClassNamePotentiallyAmbiguousQualifiedNameParserRuleCall_0_0() { return cClassNamePotentiallyAmbiguousQualifiedNameParserRuleCall_0_0; }
 
-		//"."
+		//'.'
 		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
 
-		//"allInstances"
+		//'allInstances'
 		public Keyword getAllInstancesKeyword_2() { return cAllInstancesKeyword_2; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
 
 	public class SequenceConstructionExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SequenceConstructionExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SequenceConstructionExpression");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Alternatives cAlternatives_0_0 = (Alternatives)cGroup_0.eContents().get(0);
@@ -4518,28 +4536,24 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cHasMultiplicityNullKeyword_1_0 = (Keyword)cHasMultiplicityAssignment_1.eContents().get(0);
 		
 		/// * SEQUENCE CONSTRUCTION EXPRESSIONS * / SequenceConstructionExpression:
-		//	(isAny?="any" // CHANGE: Added isAny attribute to SequenceConstructionExpression in order to allow Xtext serialization.
-		//	| typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? "{" elements=SequenceElements? "}" |
-		//	hasMultiplicity?="null";
+		//	(isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? '{' elements=SequenceElements? '}' |
+		//	hasMultiplicity?='null';
 		@Override public ParserRule getRule() { return rule; }
 
-		//(isAny?="any" // CHANGE: Added isAny attribute to SequenceConstructionExpression in order to allow Xtext serialization.
-		//| typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? "{" elements=SequenceElements? "}" |
-		//hasMultiplicity?="null"
+		//(isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? '{' elements=SequenceElements? '}' |
+		//hasMultiplicity?='null'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//(isAny?="any" // CHANGE: Added isAny attribute to SequenceConstructionExpression in order to allow Xtext serialization.
-		//| typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? "{" elements=SequenceElements? "}"
+		//(isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? '{' elements=SequenceElements? '}'
 		public Group getGroup_0() { return cGroup_0; }
 
-		//isAny?="any" // CHANGE: Added isAny attribute to SequenceConstructionExpression in order to allow Xtext serialization.
-		//| typeName=QualifiedName
+		//(isAny?='any' | typeName=QualifiedName)
 		public Alternatives getAlternatives_0_0() { return cAlternatives_0_0; }
 
-		//isAny?="any"
+		//isAny?='any'
 		public Assignment getIsAnyAssignment_0_0_0() { return cIsAnyAssignment_0_0_0; }
 
-		//"any"
+		//'any'
 		public Keyword getIsAnyAnyKeyword_0_0_0_0() { return cIsAnyAnyKeyword_0_0_0_0; }
 
 		//typeName=QualifiedName
@@ -4554,7 +4568,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//MultiplicityIndicator
 		public RuleCall getHasMultiplicityMultiplicityIndicatorParserRuleCall_0_1_0() { return cHasMultiplicityMultiplicityIndicatorParserRuleCall_0_1_0; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_0_2() { return cLeftCurlyBracketKeyword_0_2; }
 
 		//elements=SequenceElements?
@@ -4563,38 +4577,38 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//SequenceElements
 		public RuleCall getElementsSequenceElementsParserRuleCall_0_3_0() { return cElementsSequenceElementsParserRuleCall_0_3_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_0_4() { return cRightCurlyBracketKeyword_0_4; }
 
-		//hasMultiplicity?="null"
+		//hasMultiplicity?='null'
 		public Assignment getHasMultiplicityAssignment_1() { return cHasMultiplicityAssignment_1; }
 
-		//"null"
+		//'null'
 		public Keyword getHasMultiplicityNullKeyword_1_0() { return cHasMultiplicityNullKeyword_1_0; }
 	}
 
 	public class MultiplicityIndicatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MultiplicityIndicator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.MultiplicityIndicator");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//MultiplicityIndicator:
-		//	"[" "]";
+		//	'[' ']';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"[" "]"
+		//'[' ']'
 		public Group getGroup() { return cGroup; }
 
-		//"["
+		//'['
 		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
 
-		//"]"
+		//']'
 		public Keyword getRightSquareBracketKeyword_1() { return cRightSquareBracketKeyword_1; }
 	}
 
 	public class SequenceElementsElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SequenceElements");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SequenceElements");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cSequenceRangeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cSequenceExpressionListParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -4614,7 +4628,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SequenceRangeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SequenceRange");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SequenceRange");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cRangeLowerAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cRangeLowerExpressionParserRuleCall_0_0 = (RuleCall)cRangeLowerAssignment_0.eContents().get(0);
@@ -4623,10 +4637,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRangeUpperExpressionParserRuleCall_2_0 = (RuleCall)cRangeUpperAssignment_2.eContents().get(0);
 		
 		//SequenceRange:
-		//	rangeLower=Expression ".." rangeUpper=Expression;
+		//	rangeLower=Expression '..' rangeUpper=Expression;
 		@Override public ParserRule getRule() { return rule; }
 
-		//rangeLower=Expression ".." rangeUpper=Expression
+		//rangeLower=Expression '..' rangeUpper=Expression
 		public Group getGroup() { return cGroup; }
 
 		//rangeLower=Expression
@@ -4635,7 +4649,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getRangeLowerExpressionParserRuleCall_0_0() { return cRangeLowerExpressionParserRuleCall_0_0; }
 
-		//".."
+		//'..'
 		public Keyword getFullStopFullStopKeyword_1() { return cFullStopFullStopKeyword_1; }
 
 		//rangeUpper=Expression
@@ -4646,7 +4660,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SequenceExpressionListElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SequenceExpressionList");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SequenceExpressionList");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cElementAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cElementSequenceElementParserRuleCall_0_0 = (RuleCall)cElementAssignment_0.eContents().get(0);
@@ -4657,10 +4671,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//SequenceExpressionList:
-		//	element+=SequenceElement ("," element+=SequenceElement)* ","?;
+		//	element+=SequenceElement (',' element+=SequenceElement)* ','?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//element+=SequenceElement ("," element+=SequenceElement)* ","?
+		//element+=SequenceElement (',' element+=SequenceElement)* ','?
 		public Group getGroup() { return cGroup; }
 
 		//element+=SequenceElement
@@ -4669,10 +4683,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//SequenceElement
 		public RuleCall getElementSequenceElementParserRuleCall_0_0() { return cElementSequenceElementParserRuleCall_0_0; }
 
-		//("," element+=SequenceElement)*
+		//(',' element+=SequenceElement)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
 
 		//element+=SequenceElement
@@ -4681,18 +4695,18 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//SequenceElement
 		public RuleCall getElementSequenceElementParserRuleCall_1_1_0() { return cElementSequenceElementParserRuleCall_1_1_0; }
 
-		//","?
+		//','?
 		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
 	}
 
 	public class SequenceElementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SequenceElement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SequenceElement");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cSequenceInitializationExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//SequenceElement returns Expression:
-		//	Expression | SequenceInitializationExpression;
+		//SequenceElement Expression:
+		//	Expression | SequenceInitializationExpression
 		@Override public ParserRule getRule() { return rule; }
 
 		//Expression | SequenceInitializationExpression
@@ -4706,7 +4720,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SequenceInitializationExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SequenceInitializationExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SequenceInitializationExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cNewKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -4714,17 +4728,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cElementsSequenceElementsParserRuleCall_2_0 = (RuleCall)cElementsAssignment_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//SequenceInitializationExpression returns SequenceConstructionExpression:
-		//	"new"? "{" elements=SequenceElements "}";
+		//SequenceInitializationExpression SequenceConstructionExpression:
+		//	'new'? '{' elements=SequenceElements '}'
 		@Override public ParserRule getRule() { return rule; }
 
-		//"new"? "{" elements=SequenceElements "}"
+		//'new'? '{' elements=SequenceElements '}'
 		public Group getGroup() { return cGroup; }
 
-		//"new"?
+		//'new'?
 		public Keyword getNewKeyword_0() { return cNewKeyword_0; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
 		//elements=SequenceElements
@@ -4733,36 +4747,36 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//SequenceElements
 		public RuleCall getElementsSequenceElementsParserRuleCall_2_0() { return cElementsSequenceElementsParserRuleCall_2_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 
 	public class IndexElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Index");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.Index");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cExpressionParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		/// * SEQUENCE ACCESS EXPRESSIONS * / Index returns Expression:
-		//	"[" Expression "]";
+		/// * SEQUENCE ACCESS EXPRESSIONS * / Index Expression:
+		//	'[' Expression ']'
 		@Override public ParserRule getRule() { return rule; }
 
-		//"[" Expression "]"
+		//'[' Expression ']'
 		public Group getGroup() { return cGroup; }
 
-		//"["
+		//'['
 		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
 
 		//Expression
 		public RuleCall getExpressionParserRuleCall_1() { return cExpressionParserRuleCall_1; }
 
-		//"]"
+		//']'
 		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
 	}
 
 	public class SequenceOperationOrReductionOrExpansionExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SequenceOperationOrReductionOrExpansionExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SequenceOperationOrReductionOrExpansionExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cExtentOrExpressionAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -4794,17 +4808,18 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_3_2_5 = (Keyword)cGroup_3_2.eContents().get(5);
 		
 		/// * SEQUENCE OPERATION, REDUCTION AND EXPANSION EXPRESSIONS * / // NOTE: This only covers the case when the primary is a class extent shorthand.
-		//SequenceOperationOrReductionOrExpansionExpression returns Expression:
-		//	{ExtentOrExpression} name=PotentiallyAmbiguousQualifiedName "->" ({SequenceOperationExpression.primary=current}
-		//	operation=QualifiedName tuple=Tuple // CHANGE: Made SequenceExpansionExpression concrete.
-		//	| {SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName |
-		//	{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")");
+		//SequenceOperationOrReductionOrExpansionExpression Expression:
+		//	{ExtentOrExpression} name=PotentiallyAmbiguousQualifiedName '->' ({SequenceOperationExpression.primary=current}
+		//	operation=QualifiedName tuple=Tuple
+		//	| {SequenceReductionExpression.primary=current} 'reduce' isOrdered?='ordered'? behaviorName=QualifiedName
+		//	// CHANGE: Made SequenceExpansionExpression concrete.
+		//	| {SequenceExpansionExpression.primary=current} operation=ID variable=Name '(' argument=Expression ')')
 		@Override public ParserRule getRule() { return rule; }
 
-		//{ExtentOrExpression} name=PotentiallyAmbiguousQualifiedName "->" ({SequenceOperationExpression.primary=current}
-		//operation=QualifiedName tuple=Tuple // CHANGE: Made SequenceExpansionExpression concrete.
-		//| {SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName |
-		//{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")")
+		//{ExtentOrExpression} name=PotentiallyAmbiguousQualifiedName '->' ({SequenceOperationExpression.primary=current}
+		//operation=QualifiedName tuple=Tuple | {SequenceReductionExpression.primary=current} 'reduce' isOrdered?='ordered'?
+		//behaviorName=QualifiedName // CHANGE: Made SequenceExpansionExpression concrete.
+		//| {SequenceExpansionExpression.primary=current} operation=ID variable=Name '(' argument=Expression ')')
 		public Group getGroup() { return cGroup; }
 
 		//{ExtentOrExpression}
@@ -4816,12 +4831,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//PotentiallyAmbiguousQualifiedName
 		public RuleCall getNamePotentiallyAmbiguousQualifiedNameParserRuleCall_1_0() { return cNamePotentiallyAmbiguousQualifiedNameParserRuleCall_1_0; }
 
-		//"->"
+		//'->'
 		public Keyword getHyphenMinusGreaterThanSignKeyword_2() { return cHyphenMinusGreaterThanSignKeyword_2; }
 
-		//{SequenceOperationExpression.primary=current} operation=QualifiedName tuple=Tuple // CHANGE: Made SequenceExpansionExpression concrete.
-		//| {SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName |
-		//{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")"
+		//({SequenceOperationExpression.primary=current} operation=QualifiedName tuple=Tuple |
+		//{SequenceReductionExpression.primary=current} 'reduce' isOrdered?='ordered'? behaviorName=QualifiedName // CHANGE: Made SequenceExpansionExpression concrete.
+		//| {SequenceExpansionExpression.primary=current} operation=ID variable=Name '(' argument=Expression ')')
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 
 		//{SequenceOperationExpression.primary=current} operation=QualifiedName tuple=Tuple
@@ -4842,19 +4857,19 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Tuple
 		public RuleCall getTupleTupleParserRuleCall_3_0_2_0() { return cTupleTupleParserRuleCall_3_0_2_0; }
 
-		//{SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName
+		//{SequenceReductionExpression.primary=current} 'reduce' isOrdered?='ordered'? behaviorName=QualifiedName
 		public Group getGroup_3_1() { return cGroup_3_1; }
 
 		//{SequenceReductionExpression.primary=current}
 		public Action getSequenceReductionExpressionPrimaryAction_3_1_0() { return cSequenceReductionExpressionPrimaryAction_3_1_0; }
 
-		//"reduce"
+		//'reduce'
 		public Keyword getReduceKeyword_3_1_1() { return cReduceKeyword_3_1_1; }
 
-		//isOrdered?="ordered"?
+		//isOrdered?='ordered'?
 		public Assignment getIsOrderedAssignment_3_1_2() { return cIsOrderedAssignment_3_1_2; }
 
-		//"ordered"
+		//'ordered'
 		public Keyword getIsOrderedOrderedKeyword_3_1_2_0() { return cIsOrderedOrderedKeyword_3_1_2_0; }
 
 		//behaviorName=QualifiedName
@@ -4863,7 +4878,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getBehaviorNameQualifiedNameParserRuleCall_3_1_3_0() { return cBehaviorNameQualifiedNameParserRuleCall_3_1_3_0; }
 
-		//{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")"
+		//{SequenceExpansionExpression.primary=current} operation=ID variable=Name '(' argument=Expression ')'
 		public Group getGroup_3_2() { return cGroup_3_2; }
 
 		//{SequenceExpansionExpression.primary=current}
@@ -4881,7 +4896,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getVariableNameParserRuleCall_3_2_2_0() { return cVariableNameParserRuleCall_3_2_2_0; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_3_2_3() { return cLeftParenthesisKeyword_3_2_3; }
 
 		//argument=Expression
@@ -4890,26 +4905,24 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getArgumentExpressionParserRuleCall_3_2_4_0() { return cArgumentExpressionParserRuleCall_3_2_4_0; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_3_2_5() { return cRightParenthesisKeyword_3_2_5; }
 	}
 
 	public class PrefixExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PrefixExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PrefixExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOperatorAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOperatorAffixOperatorParserRuleCall_0_0 = (RuleCall)cOperatorAssignment_0.eContents().get(0);
 		private final Assignment cOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOperandLeftHandSideParserRuleCall_1_0 = (RuleCall)cOperandAssignment_1.eContents().get(0);
 		
-		/// * INCREMENT OR DECREMENT EXPRESSIONS * / PrefixExpression returns IncrementOrDecrementExpression: // CHANGE: Added operator to IncrementOrDecrementExpression in the metamodel.
-		//	operator=AffixOperator operand= // isPrefix ?= ''
-		//	LeftHandSide;
+		/// * INCREMENT OR DECREMENT EXPRESSIONS * / PrefixExpression IncrementOrDecrementExpression:
+		//	operator=AffixOperator operand=LeftHandSide
 		@Override public ParserRule getRule() { return rule; }
 
 		//// CHANGE: Added operator to IncrementOrDecrementExpression in the metamodel.
-		//operator=AffixOperator operand= // isPrefix ?= ''
-		//LeftHandSide
+		//operator=AffixOperator operand=LeftHandSide
 		public Group getGroup() { return cGroup; }
 
 		//// CHANGE: Added operator to IncrementOrDecrementExpression in the metamodel.
@@ -4919,43 +4932,41 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//AffixOperator
 		public RuleCall getOperatorAffixOperatorParserRuleCall_0_0() { return cOperatorAffixOperatorParserRuleCall_0_0; }
 
-		//operand= // isPrefix ?= ''
-		//LeftHandSide
+		//operand=LeftHandSide
 		public Assignment getOperandAssignment_1() { return cOperandAssignment_1; }
 
-		//// isPrefix ?= ''
 		//LeftHandSide
 		public RuleCall getOperandLeftHandSideParserRuleCall_1_0() { return cOperandLeftHandSideParserRuleCall_1_0; }
 	}
 
 	public class AffixOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AffixOperator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AffixOperator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cPlusSignPlusSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cHyphenMinusHyphenMinusKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
 		//AffixOperator:
-		//	"++" | "--";
+		//	'++' | '--';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"++" | "--"
+		//'++' | '--'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"++"
+		//'++'
 		public Keyword getPlusSignPlusSignKeyword_0() { return cPlusSignPlusSignKeyword_0; }
 
-		//"--"
+		//'--'
 		public Keyword getHyphenMinusHyphenMinusKeyword_1() { return cHyphenMinusHyphenMinusKeyword_1; }
 	}
 
 	public class UnaryExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnaryExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.UnaryExpression");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cPostfixOrCastExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cNonPostfixNonCastUnaryExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		/// * UNARY EXPRESSIONS * / UnaryExpression returns Expression:
-		//	PostfixOrCastExpression | NonPostfixNonCastUnaryExpression;
+		/// * UNARY EXPRESSIONS * / UnaryExpression Expression:
+		//	PostfixOrCastExpression | NonPostfixNonCastUnaryExpression
 		@Override public ParserRule getRule() { return rule; }
 
 		//PostfixOrCastExpression | NonPostfixNonCastUnaryExpression
@@ -4969,14 +4980,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class PostfixOrCastExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PostfixOrCastExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PostfixOrCastExpression");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cPostfixExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cCastExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cPrimaryExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
-		//PostfixOrCastExpression returns Expression:
-		//	PostfixExpression | CastExpression | PrimaryExpression;
+		//PostfixOrCastExpression Expression:
+		//	PostfixExpression | CastExpression | PrimaryExpression
 		@Override public ParserRule getRule() { return rule; }
 
 		//PostfixExpression | CastExpression | PrimaryExpression
@@ -4993,15 +5004,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class PostfixExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PostfixExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.PostfixExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOperandAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOperandLeftHandSideParserRuleCall_0_0 = (RuleCall)cOperandAssignment_0.eContents().get(0);
 		private final Assignment cOperatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOperatorAffixOperatorParserRuleCall_1_0 = (RuleCall)cOperatorAssignment_1.eContents().get(0);
 		
-		//PostfixExpression returns IncrementOrDecrementExpression:
-		//	operand=LeftHandSide operator=AffixOperator;
+		//PostfixExpression IncrementOrDecrementExpression:
+		//	operand=LeftHandSide operator=AffixOperator
 		@Override public ParserRule getRule() { return rule; }
 
 		//operand=LeftHandSide operator=AffixOperator
@@ -5021,7 +5032,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NonPostfixNonCastUnaryExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NonPostfixNonCastUnaryExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NonPostfixNonCastUnaryExpression");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cPrefixExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cNumericUnaryExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -5029,8 +5040,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBitStringUnaryExpressionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cIsolationExpressionParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
-		//NonPostfixNonCastUnaryExpression returns Expression:
-		//	PrefixExpression | NumericUnaryExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression;
+		//NonPostfixNonCastUnaryExpression Expression:
+		//	PrefixExpression | NumericUnaryExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression
 		@Override public ParserRule getRule() { return rule; }
 
 		//PrefixExpression | NumericUnaryExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression
@@ -5053,7 +5064,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class BooleanUnaryExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BooleanUnaryExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.BooleanUnaryExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOperatorAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cOperatorExclamationMarkKeyword_0_0 = (Keyword)cOperatorAssignment_0.eContents().get(0);
@@ -5061,16 +5072,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOperandUnaryExpressionParserRuleCall_1_0 = (RuleCall)cOperandAssignment_1.eContents().get(0);
 		
 		//BooleanUnaryExpression:
-		//	operator="!" operand=UnaryExpression;
+		//	operator='!' operand=UnaryExpression;
 		@Override public ParserRule getRule() { return rule; }
 
-		//operator="!" operand=UnaryExpression
+		//operator='!' operand=UnaryExpression
 		public Group getGroup() { return cGroup; }
 
-		//operator="!"
+		//operator='!'
 		public Assignment getOperatorAssignment_0() { return cOperatorAssignment_0; }
 
-		//"!"
+		//'!'
 		public Keyword getOperatorExclamationMarkKeyword_0_0() { return cOperatorExclamationMarkKeyword_0_0; }
 
 		//operand=UnaryExpression
@@ -5081,7 +5092,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class BitStringUnaryExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BitStringUnaryExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.BitStringUnaryExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOperatorAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cOperatorTildeKeyword_0_0 = (Keyword)cOperatorAssignment_0.eContents().get(0);
@@ -5089,16 +5100,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOperandUnaryExpressionParserRuleCall_1_0 = (RuleCall)cOperandAssignment_1.eContents().get(0);
 		
 		//BitStringUnaryExpression:
-		//	operator="~" operand=UnaryExpression;
+		//	operator='~' operand=UnaryExpression;
 		@Override public ParserRule getRule() { return rule; }
 
-		//operator="~" operand=UnaryExpression
+		//operator='~' operand=UnaryExpression
 		public Group getGroup() { return cGroup; }
 
-		//operator="~"
+		//operator='~'
 		public Assignment getOperatorAssignment_0() { return cOperatorAssignment_0; }
 
-		//"~"
+		//'~'
 		public Keyword getOperatorTildeKeyword_0_0() { return cOperatorTildeKeyword_0_0; }
 
 		//operand=UnaryExpression
@@ -5109,7 +5120,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NumericUnaryExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NumericUnaryExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NumericUnaryExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOperatorAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cOperatorNumericUnaryOperatorParserRuleCall_0_0 = (RuleCall)cOperatorAssignment_0.eContents().get(0);
@@ -5137,27 +5148,27 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NumericUnaryOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NumericUnaryOperator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NumericUnaryOperator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cPlusSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cHyphenMinusKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
 		//NumericUnaryOperator:
-		//	"+" | "-";
+		//	'+' | '-';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"+" | "-"
+		//'+' | '-'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"+"
+		//'+'
 		public Keyword getPlusSignKeyword_0() { return cPlusSignKeyword_0; }
 
-		//"-"
+		//'-'
 		public Keyword getHyphenMinusKeyword_1() { return cHyphenMinusKeyword_1; }
 	}
 
 	public class IsolationExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IsolationExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.IsolationExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOperatorAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cOperatorDollarSignKeyword_0_0 = (Keyword)cOperatorAssignment_0.eContents().get(0);
@@ -5165,16 +5176,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOperandUnaryExpressionParserRuleCall_1_0 = (RuleCall)cOperandAssignment_1.eContents().get(0);
 		
 		//IsolationExpression:
-		//	operator="$" operand=UnaryExpression;
+		//	operator='$' operand=UnaryExpression;
 		@Override public ParserRule getRule() { return rule; }
 
-		//operator="$" operand=UnaryExpression
+		//operator='$' operand=UnaryExpression
 		public Group getGroup() { return cGroup; }
 
-		//operator="$"
+		//operator='$'
 		public Assignment getOperatorAssignment_0() { return cOperatorAssignment_0; }
 
-		//"$"
+		//'$'
 		public Keyword getOperatorDollarSignKeyword_0_0() { return cOperatorDollarSignKeyword_0_0; }
 
 		//operand=UnaryExpression
@@ -5185,7 +5196,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class CastExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CastExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.CastExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
@@ -5198,24 +5209,24 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOperandCastCompletionParserRuleCall_3_0 = (RuleCall)cOperandAssignment_3.eContents().get(0);
 		
 		//CastExpression: // CHANGE: Added isAny attribute to CastExpression in order to allow Xtext serialization.
-		//	"(" (isAny?="any" | typeName=QualifiedName) ")" operand=CastCompletion;
+		//	'(' (isAny?='any' | typeName=QualifiedName) ')' operand=CastCompletion;
 		@Override public ParserRule getRule() { return rule; }
 
 		//// CHANGE: Added isAny attribute to CastExpression in order to allow Xtext serialization.
-		//"(" (isAny?="any" | typeName=QualifiedName) ")" operand=CastCompletion
+		//'(' (isAny?='any' | typeName=QualifiedName) ')' operand=CastCompletion
 		public Group getGroup() { return cGroup; }
 
 		//// CHANGE: Added isAny attribute to CastExpression in order to allow Xtext serialization.
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
 
-		//isAny?="any" | typeName=QualifiedName
+		//(isAny?='any' | typeName=QualifiedName)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//isAny?="any"
+		//isAny?='any'
 		public Assignment getIsAnyAssignment_1_0() { return cIsAnyAssignment_1_0; }
 
-		//"any"
+		//'any'
 		public Keyword getIsAnyAnyKeyword_1_0_0() { return cIsAnyAnyKeyword_1_0_0; }
 
 		//typeName=QualifiedName
@@ -5224,7 +5235,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getTypeNameQualifiedNameParserRuleCall_1_1_0() { return cTypeNameQualifiedNameParserRuleCall_1_1_0; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
 
 		//operand=CastCompletion
@@ -5235,15 +5246,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class CastCompletionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CastCompletion");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.CastCompletion");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cPostfixOrCastExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cBooleanUnaryExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cBitStringUnaryExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cIsolationExpressionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
-		//CastCompletion returns Expression:
-		//	PostfixOrCastExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression;
+		//CastCompletion Expression:
+		//	PostfixOrCastExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression
 		@Override public ParserRule getRule() { return rule; }
 
 		//PostfixOrCastExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression
@@ -5263,7 +5274,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class MultiplicativeExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MultiplicativeExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.MultiplicativeExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cUnaryExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -5273,8 +5284,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperand2Assignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOperand2UnaryExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand2Assignment_1_2.eContents().get(0);
 		
-		/// * ARITHMETIC EXPRESSIONS * / MultiplicativeExpression returns Expression:
-		//	UnaryExpression ({ArithmeticExpression.operand1=current} operator=MultiplicativeOperator operand2=UnaryExpression)*;
+		/// * ARITHMETIC EXPRESSIONS * / MultiplicativeExpression Expression:
+		//	UnaryExpression ({ArithmeticExpression.operand1=current} operator=MultiplicativeOperator operand2=UnaryExpression)*
 		@Override public ParserRule getRule() { return rule; }
 
 		//UnaryExpression ({ArithmeticExpression.operand1=current} operator=MultiplicativeOperator operand2=UnaryExpression)*
@@ -5303,31 +5314,31 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class MultiplicativeOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MultiplicativeOperator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.MultiplicativeOperator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cAsteriskKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cSolidusKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cPercentSignKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		
 		//MultiplicativeOperator:
-		//	"*" | "/" | "%";
+		//	'*' | '/' | '%';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"*" | "/" | "%"
+		//'*' | '/' | '%'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"*"
+		//'*'
 		public Keyword getAsteriskKeyword_0() { return cAsteriskKeyword_0; }
 
-		//"/"
+		//'/'
 		public Keyword getSolidusKeyword_1() { return cSolidusKeyword_1; }
 
-		//"%"
+		//'%'
 		public Keyword getPercentSignKeyword_2() { return cPercentSignKeyword_2; }
 	}
 
 	public class AdditiveExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AdditiveExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AdditiveExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cMultiplicativeExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -5337,9 +5348,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperand2Assignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOperand2MultiplicativeExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand2Assignment_1_2.eContents().get(0);
 		
-		//AdditiveExpression returns Expression:
+		//AdditiveExpression Expression:
 		//	MultiplicativeExpression ({ArithmeticExpression.operand1=current} operator=AdditiveOperator
-		//	operand2=MultiplicativeExpression)*;
+		//	operand2=MultiplicativeExpression)*
 		@Override public ParserRule getRule() { return rule; }
 
 		//MultiplicativeExpression ({ArithmeticExpression.operand1=current} operator=AdditiveOperator
@@ -5369,27 +5380,27 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class AdditiveOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AdditiveOperator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AdditiveOperator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cPlusSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cHyphenMinusKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
 		//AdditiveOperator:
-		//	"+" | "-";
+		//	'+' | '-';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"+" | "-"
+		//'+' | '-'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"+"
+		//'+'
 		public Keyword getPlusSignKeyword_0() { return cPlusSignKeyword_0; }
 
-		//"-"
+		//'-'
 		public Keyword getHyphenMinusKeyword_1() { return cHyphenMinusKeyword_1; }
 	}
 
 	public class ShiftExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ShiftExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ShiftExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cAdditiveExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -5399,8 +5410,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperand2Assignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOperand2AdditiveExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand2Assignment_1_2.eContents().get(0);
 		
-		/// * SHIFT EXPRESSIONS * / ShiftExpression returns Expression:
-		//	AdditiveExpression ({ShiftExpression.operand1=current} operator=ShiftOperator operand2=AdditiveExpression)*;
+		/// * SHIFT EXPRESSIONS * / ShiftExpression Expression:
+		//	AdditiveExpression ({ShiftExpression.operand1=current} operator=ShiftOperator operand2=AdditiveExpression)*
 		@Override public ParserRule getRule() { return rule; }
 
 		//AdditiveExpression ({ShiftExpression.operand1=current} operator=ShiftOperator operand2=AdditiveExpression)*
@@ -5429,31 +5440,31 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ShiftOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ShiftOperator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ShiftOperator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cLessThanSignLessThanSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cGreaterThanSignGreaterThanSignKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cGreaterThanSignGreaterThanSignGreaterThanSignKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		
 		//ShiftOperator:
-		//	"<<" | ">>" | ">>>";
+		//	'<<' | '>>' | '>>>';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"<<" | ">>" | ">>>"
+		//'<<' | '>>' | '>>>'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"<<"
+		//'<<'
 		public Keyword getLessThanSignLessThanSignKeyword_0() { return cLessThanSignLessThanSignKeyword_0; }
 
-		//">>"
+		//'>>'
 		public Keyword getGreaterThanSignGreaterThanSignKeyword_1() { return cGreaterThanSignGreaterThanSignKeyword_1; }
 
-		//">>>"
+		//'>>>'
 		public Keyword getGreaterThanSignGreaterThanSignGreaterThanSignKeyword_2() { return cGreaterThanSignGreaterThanSignGreaterThanSignKeyword_2; }
 	}
 
 	public class RelationalExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RelationalExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.RelationalExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cShiftExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -5463,8 +5474,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperand2Assignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOperand2ShiftExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand2Assignment_1_2.eContents().get(0);
 		
-		/// * RELATIONAL EXPRESSIONS * / RelationalExpression returns Expression:
-		//	ShiftExpression ({RelationalExpression.operand1=current} operator=RelationalOperator operand2=ShiftExpression)?;
+		/// * RELATIONAL EXPRESSIONS * / RelationalExpression Expression:
+		//	ShiftExpression ({RelationalExpression.operand1=current} operator=RelationalOperator operand2=ShiftExpression)?
 		@Override public ParserRule getRule() { return rule; }
 
 		//ShiftExpression ({RelationalExpression.operand1=current} operator=RelationalOperator operand2=ShiftExpression)?
@@ -5493,7 +5504,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class RelationalOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RelationalOperator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.RelationalOperator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cLessThanSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cGreaterThanSignKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
@@ -5501,27 +5512,27 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cGreaterThanSignEqualsSignKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
 		//RelationalOperator:
-		//	"<" | ">" | "<=" | ">=";
+		//	'<' | '>' | '<=' | '>=';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"<" | ">" | "<=" | ">="
+		//'<' | '>' | '<=' | '>='
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"<"
+		//'<'
 		public Keyword getLessThanSignKeyword_0() { return cLessThanSignKeyword_0; }
 
-		//">"
+		//'>'
 		public Keyword getGreaterThanSignKeyword_1() { return cGreaterThanSignKeyword_1; }
 
-		//"<="
+		//'<='
 		public Keyword getLessThanSignEqualsSignKeyword_2() { return cLessThanSignEqualsSignKeyword_2; }
 
-		//">="
+		//'>='
 		public Keyword getGreaterThanSignEqualsSignKeyword_3() { return cGreaterThanSignEqualsSignKeyword_3; }
 	}
 
 	public class ClassificationExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassificationExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassificationExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cRelationalExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -5531,9 +5542,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTypeNameAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cTypeNameQualifiedNameParserRuleCall_1_2_0 = (RuleCall)cTypeNameAssignment_1_2.eContents().get(0);
 		
-		/// * CLASSIFICATION EXPRESSIONS * / ClassificationExpression returns Expression:
+		/// * CLASSIFICATION EXPRESSIONS * / ClassificationExpression Expression:
 		//	RelationalExpression ({ClassificationExpression.operand=current} operator=ClassificationOperator
-		//	typeName=QualifiedName)?;
+		//	typeName=QualifiedName)?
 		@Override public ParserRule getRule() { return rule; }
 
 		//RelationalExpression ({ClassificationExpression.operand=current} operator=ClassificationOperator
@@ -5563,27 +5574,27 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ClassificationOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassificationOperator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassificationOperator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cInstanceofKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cHastypeKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
 		//ClassificationOperator:
-		//	"instanceof" | "hastype";
+		//	'instanceof' | 'hastype';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"instanceof" | "hastype"
+		//'instanceof' | 'hastype'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"instanceof"
+		//'instanceof'
 		public Keyword getInstanceofKeyword_0() { return cInstanceofKeyword_0; }
 
-		//"hastype"
+		//'hastype'
 		public Keyword getHastypeKeyword_1() { return cHastypeKeyword_1; }
 	}
 
 	public class EqualityExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EqualityExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.EqualityExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cClassificationExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -5593,9 +5604,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperand2Assignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOperand2ClassificationExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand2Assignment_1_2.eContents().get(0);
 		
-		/// * EQUALITY EXPRESSIONS * / EqualityExpression returns Expression:
+		/// * EQUALITY EXPRESSIONS * / EqualityExpression Expression:
 		//	ClassificationExpression ({EqualityExpression.operand1=current} operator=EqualityOperator
-		//	operand2=ClassificationExpression)*;
+		//	operand2=ClassificationExpression)*
 		@Override public ParserRule getRule() { return rule; }
 
 		//ClassificationExpression ({EqualityExpression.operand1=current} operator=EqualityOperator
@@ -5625,27 +5636,27 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class EqualityOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EqualityOperator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.EqualityOperator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cEqualsSignEqualsSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cExclamationMarkEqualsSignKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		
 		//EqualityOperator:
-		//	"==" | "!=";
+		//	'==' | '!=';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"==" | "!="
+		//'==' | '!='
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"=="
+		//'=='
 		public Keyword getEqualsSignEqualsSignKeyword_0() { return cEqualsSignEqualsSignKeyword_0; }
 
-		//"!="
+		//'!='
 		public Keyword getExclamationMarkEqualsSignKeyword_1() { return cExclamationMarkEqualsSignKeyword_1; }
 	}
 
 	public class AndExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AndExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AndExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cEqualityExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -5655,26 +5666,26 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperand2Assignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOperand2EqualityExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand2Assignment_1_2.eContents().get(0);
 		
-		/// * LOGICAL EXPRESSIONS * / AndExpression returns Expression:
-		//	EqualityExpression ({LogicalExpression.operand1=current} operator="&" operand2=EqualityExpression)*;
+		/// * LOGICAL EXPRESSIONS * / AndExpression Expression:
+		//	EqualityExpression ({LogicalExpression.operand1=current} operator='&' operand2=EqualityExpression)*
 		@Override public ParserRule getRule() { return rule; }
 
-		//EqualityExpression ({LogicalExpression.operand1=current} operator="&" operand2=EqualityExpression)*
+		//EqualityExpression ({LogicalExpression.operand1=current} operator='&' operand2=EqualityExpression)*
 		public Group getGroup() { return cGroup; }
 
 		//EqualityExpression
 		public RuleCall getEqualityExpressionParserRuleCall_0() { return cEqualityExpressionParserRuleCall_0; }
 
-		//({LogicalExpression.operand1=current} operator="&" operand2=EqualityExpression)*
+		//({LogicalExpression.operand1=current} operator='&' operand2=EqualityExpression)*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{LogicalExpression.operand1=current}
 		public Action getLogicalExpressionOperand1Action_1_0() { return cLogicalExpressionOperand1Action_1_0; }
 
-		//operator="&"
+		//operator='&'
 		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
 
-		//"&"
+		//'&'
 		public Keyword getOperatorAmpersandKeyword_1_1_0() { return cOperatorAmpersandKeyword_1_1_0; }
 
 		//operand2=EqualityExpression
@@ -5685,7 +5696,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ExclusiveOrExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExclusiveOrExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ExclusiveOrExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cAndExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -5695,26 +5706,26 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperand2Assignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOperand2AndExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand2Assignment_1_2.eContents().get(0);
 		
-		//ExclusiveOrExpression returns Expression:
-		//	AndExpression ({LogicalExpression.operand1=current} operator="^" operand2=AndExpression)*;
+		//ExclusiveOrExpression Expression:
+		//	AndExpression ({LogicalExpression.operand1=current} operator='^' operand2=AndExpression)*
 		@Override public ParserRule getRule() { return rule; }
 
-		//AndExpression ({LogicalExpression.operand1=current} operator="^" operand2=AndExpression)*
+		//AndExpression ({LogicalExpression.operand1=current} operator='^' operand2=AndExpression)*
 		public Group getGroup() { return cGroup; }
 
 		//AndExpression
 		public RuleCall getAndExpressionParserRuleCall_0() { return cAndExpressionParserRuleCall_0; }
 
-		//({LogicalExpression.operand1=current} operator="^" operand2=AndExpression)*
+		//({LogicalExpression.operand1=current} operator='^' operand2=AndExpression)*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{LogicalExpression.operand1=current}
 		public Action getLogicalExpressionOperand1Action_1_0() { return cLogicalExpressionOperand1Action_1_0; }
 
-		//operator="^"
+		//operator='^'
 		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
 
-		//"^"
+		//'^'
 		public Keyword getOperatorCircumflexAccentKeyword_1_1_0() { return cOperatorCircumflexAccentKeyword_1_1_0; }
 
 		//operand2=AndExpression
@@ -5725,7 +5736,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class InclusiveOrExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "InclusiveOrExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.InclusiveOrExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cExclusiveOrExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -5735,26 +5746,26 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperand2Assignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOperand2ExclusiveOrExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand2Assignment_1_2.eContents().get(0);
 		
-		//InclusiveOrExpression returns Expression:
-		//	ExclusiveOrExpression ({LogicalExpression.operand1=current} operator="|" operand2=ExclusiveOrExpression)*;
+		//InclusiveOrExpression Expression:
+		//	ExclusiveOrExpression ({LogicalExpression.operand1=current} operator='|' operand2=ExclusiveOrExpression)*
 		@Override public ParserRule getRule() { return rule; }
 
-		//ExclusiveOrExpression ({LogicalExpression.operand1=current} operator="|" operand2=ExclusiveOrExpression)*
+		//ExclusiveOrExpression ({LogicalExpression.operand1=current} operator='|' operand2=ExclusiveOrExpression)*
 		public Group getGroup() { return cGroup; }
 
 		//ExclusiveOrExpression
 		public RuleCall getExclusiveOrExpressionParserRuleCall_0() { return cExclusiveOrExpressionParserRuleCall_0; }
 
-		//({LogicalExpression.operand1=current} operator="|" operand2=ExclusiveOrExpression)*
+		//({LogicalExpression.operand1=current} operator='|' operand2=ExclusiveOrExpression)*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{LogicalExpression.operand1=current}
 		public Action getLogicalExpressionOperand1Action_1_0() { return cLogicalExpressionOperand1Action_1_0; }
 
-		//operator="|"
+		//operator='|'
 		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
 
-		//"|"
+		//'|'
 		public Keyword getOperatorVerticalLineKeyword_1_1_0() { return cOperatorVerticalLineKeyword_1_1_0; }
 
 		//operand2=ExclusiveOrExpression
@@ -5765,7 +5776,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ConditionalAndExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConditionalAndExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ConditionalAndExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cInclusiveOrExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -5775,27 +5786,26 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperand2Assignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOperand2InclusiveOrExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand2Assignment_1_2.eContents().get(0);
 		
-		/// * CONDITIONAL LOGICAL EXPRESSIONS * / ConditionalAndExpression returns Expression:
-		//	InclusiveOrExpression ({ConditionalLogicalExpression.operand1=current} operator="&&"
-		//	operand2=InclusiveOrExpression)*;
+		/// * CONDITIONAL LOGICAL EXPRESSIONS * / ConditionalAndExpression Expression:
+		//	InclusiveOrExpression ({ConditionalLogicalExpression.operand1=current} operator='&&' operand2=InclusiveOrExpression)*
 		@Override public ParserRule getRule() { return rule; }
 
-		//InclusiveOrExpression ({ConditionalLogicalExpression.operand1=current} operator="&&" operand2=InclusiveOrExpression)*
+		//InclusiveOrExpression ({ConditionalLogicalExpression.operand1=current} operator='&&' operand2=InclusiveOrExpression)*
 		public Group getGroup() { return cGroup; }
 
 		//InclusiveOrExpression
 		public RuleCall getInclusiveOrExpressionParserRuleCall_0() { return cInclusiveOrExpressionParserRuleCall_0; }
 
-		//({ConditionalLogicalExpression.operand1=current} operator="&&" operand2=InclusiveOrExpression)*
+		//({ConditionalLogicalExpression.operand1=current} operator='&&' operand2=InclusiveOrExpression)*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{ConditionalLogicalExpression.operand1=current}
 		public Action getConditionalLogicalExpressionOperand1Action_1_0() { return cConditionalLogicalExpressionOperand1Action_1_0; }
 
-		//operator="&&"
+		//operator='&&'
 		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
 
-		//"&&"
+		//'&&'
 		public Keyword getOperatorAmpersandAmpersandKeyword_1_1_0() { return cOperatorAmpersandAmpersandKeyword_1_1_0; }
 
 		//operand2=InclusiveOrExpression
@@ -5806,7 +5816,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ConditionalOrExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConditionalOrExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ConditionalOrExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cConditionalAndExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -5816,28 +5826,28 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperand2Assignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOperand2ConditionalAndExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand2Assignment_1_2.eContents().get(0);
 		
-		//ConditionalOrExpression returns Expression:
-		//	ConditionalAndExpression ({ConditionalLogicalExpression.operand1=current} operator="||"
-		//	operand2=ConditionalAndExpression)*;
+		//ConditionalOrExpression Expression:
+		//	ConditionalAndExpression ({ConditionalLogicalExpression.operand1=current} operator='||'
+		//	operand2=ConditionalAndExpression)*
 		@Override public ParserRule getRule() { return rule; }
 
-		//ConditionalAndExpression ({ConditionalLogicalExpression.operand1=current} operator="||"
+		//ConditionalAndExpression ({ConditionalLogicalExpression.operand1=current} operator='||'
 		//operand2=ConditionalAndExpression)*
 		public Group getGroup() { return cGroup; }
 
 		//ConditionalAndExpression
 		public RuleCall getConditionalAndExpressionParserRuleCall_0() { return cConditionalAndExpressionParserRuleCall_0; }
 
-		//({ConditionalLogicalExpression.operand1=current} operator="||" operand2=ConditionalAndExpression)*
+		//({ConditionalLogicalExpression.operand1=current} operator='||' operand2=ConditionalAndExpression)*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{ConditionalLogicalExpression.operand1=current}
 		public Action getConditionalLogicalExpressionOperand1Action_1_0() { return cConditionalLogicalExpressionOperand1Action_1_0; }
 
-		//operator="||"
+		//operator='||'
 		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
 
-		//"||"
+		//'||'
 		public Keyword getOperatorVerticalLineVerticalLineKeyword_1_1_0() { return cOperatorVerticalLineVerticalLineKeyword_1_1_0; }
 
 		//operand2=ConditionalAndExpression
@@ -5848,7 +5858,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ConditionalExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConditionalExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ConditionalExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cConditionalOrExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -5860,25 +5870,25 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperand3Assignment_1_4 = (Assignment)cGroup_1.eContents().get(4);
 		private final RuleCall cOperand3ConditionalExpressionParserRuleCall_1_4_0 = (RuleCall)cOperand3Assignment_1_4.eContents().get(0);
 		
-		/// * CONDITIONAL-TEST EXPRESSIONS * / ConditionalExpression returns Expression:
-		//	ConditionalOrExpression ({ConditionalTestExpression.operand1=current} "?" operand2=Expression ":"
-		//	operand3=ConditionalExpression)?;
+		/// * CONDITIONAL-TEST EXPRESSIONS * / ConditionalExpression Expression:
+		//	ConditionalOrExpression ({ConditionalTestExpression.operand1=current}
+		//	'?' operand2=Expression ':' operand3=ConditionalExpression)?
 		@Override public ParserRule getRule() { return rule; }
 
-		//ConditionalOrExpression ({ConditionalTestExpression.operand1=current} "?" operand2=Expression ":"
+		//ConditionalOrExpression ({ConditionalTestExpression.operand1=current} '?' operand2=Expression ':'
 		//operand3=ConditionalExpression)?
 		public Group getGroup() { return cGroup; }
 
 		//ConditionalOrExpression
 		public RuleCall getConditionalOrExpressionParserRuleCall_0() { return cConditionalOrExpressionParserRuleCall_0; }
 
-		//({ConditionalTestExpression.operand1=current} "?" operand2=Expression ":" operand3=ConditionalExpression)?
+		//({ConditionalTestExpression.operand1=current} '?' operand2=Expression ':' operand3=ConditionalExpression)?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{ConditionalTestExpression.operand1=current}
 		public Action getConditionalTestExpressionOperand1Action_1_0() { return cConditionalTestExpressionOperand1Action_1_0; }
 
-		//"?"
+		//'?'
 		public Keyword getQuestionMarkKeyword_1_1() { return cQuestionMarkKeyword_1_1; }
 
 		//operand2=Expression
@@ -5887,7 +5897,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getOperand2ExpressionParserRuleCall_1_2_0() { return cOperand2ExpressionParserRuleCall_1_2_0; }
 
-		//":"
+		//':'
 		public Keyword getColonKeyword_1_3() { return cColonKeyword_1_3; }
 
 		//operand3=ConditionalExpression
@@ -5898,7 +5908,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class AssignmentExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AssignmentExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AssignmentExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cLeftHandSideAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cLeftHandSideLeftHandSideParserRuleCall_0_0 = (RuleCall)cLeftHandSideAssignment_0.eContents().get(0);
@@ -5934,38 +5944,36 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class LeftHandSideElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LeftHandSide");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.LeftHandSide");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNameLeftHandSideParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cFeatureLeftHandSideParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		////  "(" LeftHandSide ")"
 		//LeftHandSide:
-		//	NameLeftHandSide | // ( index = Index )? |
-		//	FeatureLeftHandSide;
+		//	NameLeftHandSide | FeatureLeftHandSide // ( index = Index )? |
+		//	//  "(" LeftHandSide ")"
+		//;
 		@Override public ParserRule getRule() { return rule; }
 
-		//NameLeftHandSide | // ( index = Index )? |
-		//FeatureLeftHandSide
+		//NameLeftHandSide | FeatureLeftHandSide
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//NameLeftHandSide
 		public RuleCall getNameLeftHandSideParserRuleCall_0() { return cNameLeftHandSideParserRuleCall_0; }
 
-		//// ( index = Index )? |
 		//FeatureLeftHandSide
 		public RuleCall getFeatureLeftHandSideParserRuleCall_1() { return cFeatureLeftHandSideParserRuleCall_1; }
 	}
 
 	public class NameLeftHandSideElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NameLeftHandSide");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NameLeftHandSide");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cTargetAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cTargetPotentiallyAmbiguousQualifiedNameParserRuleCall_0_0 = (RuleCall)cTargetAssignment_0.eContents().get(0);
 		private final Assignment cIndexAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cIndexIndexParserRuleCall_1_0 = (RuleCall)cIndexAssignment_1.eContents().get(0);
 		
-		//NameLeftHandSide: // CHANGE: Moved the index property from LeftHandSide down to just NameLeftHandSide.
+		//NameLeftHandSide:
 		//	target=PotentiallyAmbiguousQualifiedName index=Index?;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -5988,11 +5996,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class FeatureLeftHandSideElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FeatureLeftHandSide");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.FeatureLeftHandSide");
 		private final Assignment cExpressionAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cExpressionPrimaryExpressionParserRuleCall_0 = (RuleCall)cExpressionAssignment.eContents().get(0);
 		
-		//FeatureLeftHandSide: // CHANGE: Replaced the feature property of a FeatureLeftHandSide with expression.
+		//FeatureLeftHandSide:
 		//	expression=PrimaryExpression;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -6005,7 +6013,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class AssignmentOperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AssignmentOperator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AssignmentOperator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cEqualsSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cPlusSignEqualsSignKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
@@ -6021,51 +6029,51 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cGreaterThanSignGreaterThanSignGreaterThanSignEqualsSignKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
 		
 		//AssignmentOperator:
-		//	"=" | "+=" | "-=" | "*=" | "/=" | "%=" | "&=" | "|=" | "^=" | "<<=" | ">>=" | ">>>=";
+		//	'=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '|=' | '^=' | '<<=' | '>>=' | '>>>=';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"=" | "+=" | "-=" | "*=" | "/=" | "%=" | "&=" | "|=" | "^=" | "<<=" | ">>=" | ">>>="
+		//'=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '|=' | '^=' | '<<=' | '>>=' | '>>>='
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"="
+		//'='
 		public Keyword getEqualsSignKeyword_0() { return cEqualsSignKeyword_0; }
 
-		//"+="
+		//'+='
 		public Keyword getPlusSignEqualsSignKeyword_1() { return cPlusSignEqualsSignKeyword_1; }
 
-		//"-="
+		//'-='
 		public Keyword getHyphenMinusEqualsSignKeyword_2() { return cHyphenMinusEqualsSignKeyword_2; }
 
-		//"*="
+		//'*='
 		public Keyword getAsteriskEqualsSignKeyword_3() { return cAsteriskEqualsSignKeyword_3; }
 
-		//"/="
+		//'/='
 		public Keyword getSolidusEqualsSignKeyword_4() { return cSolidusEqualsSignKeyword_4; }
 
-		//"%="
+		//'%='
 		public Keyword getPercentSignEqualsSignKeyword_5() { return cPercentSignEqualsSignKeyword_5; }
 
-		//"&="
+		//'&='
 		public Keyword getAmpersandEqualsSignKeyword_6() { return cAmpersandEqualsSignKeyword_6; }
 
-		//"|="
+		//'|='
 		public Keyword getVerticalLineEqualsSignKeyword_7() { return cVerticalLineEqualsSignKeyword_7; }
 
-		//"^="
+		//'^='
 		public Keyword getCircumflexAccentEqualsSignKeyword_8() { return cCircumflexAccentEqualsSignKeyword_8; }
 
-		//"<<="
+		//'<<='
 		public Keyword getLessThanSignLessThanSignEqualsSignKeyword_9() { return cLessThanSignLessThanSignEqualsSignKeyword_9; }
 
-		//">>="
+		//'>>='
 		public Keyword getGreaterThanSignGreaterThanSignEqualsSignKeyword_10() { return cGreaterThanSignGreaterThanSignEqualsSignKeyword_10; }
 
-		//">>>="
+		//'>>>='
 		public Keyword getGreaterThanSignGreaterThanSignGreaterThanSignEqualsSignKeyword_11() { return cGreaterThanSignGreaterThanSignGreaterThanSignEqualsSignKeyword_11; }
 	}
 
 	public class StatementSequenceElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StatementSequence");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.StatementSequence");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cBlockAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cStatementAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -6073,8 +6081,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		
 		/// **************
 		// * STATEMENTS *
-		// ************** / StatementSequence returns Block:
-		//	{Block} statement+=DocumentedStatement*;
+		// ************** / StatementSequence Block:
+		//	{Block} statement+=DocumentedStatement*
 		@Override public ParserRule getRule() { return rule; }
 
 		//{Block} statement+=DocumentedStatement*
@@ -6091,11 +6099,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class DocumentedStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DocumentedStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.DocumentedStatement");
 		private final RuleCall cAnnotatedStatementParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//DocumentedStatement returns AnnotatedStatement: // CHANGE: Made AnnotatedStatement a subtype of DocumentedStatement with annotations and a statement reference. 
-		//	AnnotatedStatement;
+		//DocumentedStatement AnnotatedStatement:
+		//	AnnotatedStatement
 		@Override public ParserRule getRule() { return rule; }
 
 		//// CHANGE: Made AnnotatedStatement a subtype of DocumentedStatement with annotations and a statement reference. 
@@ -6104,7 +6112,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class StatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Statement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.Statement");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cInLineStatementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cBlockStatementParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -6121,10 +6129,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAcceptStatementParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
 		private final RuleCall cClassifyStatementParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
 		
-		//Statement: // AnnotatedStatement | 
-		//	InLineStatement | BlockStatement | EmptyStatement | LocalNameDeclarationStatement | ExpressionStatement | IfStatement |
-		//	SwitchStatement | WhileStatement | ForStatement | DoStatement | BreakStatement | ReturnStatement | AcceptStatement |
-		//	ClassifyStatement;
+		//Statement:
+		//	InLineStatement | BlockStatement | EmptyStatement | LocalNameDeclarationStatement | ExpressionStatement | IfStatement
+		//	| SwitchStatement | WhileStatement | ForStatement | DoStatement | BreakStatement | ReturnStatement | AcceptStatement
+		//	| ClassifyStatement;
 		@Override public ParserRule getRule() { return rule; }
 
 		//// AnnotatedStatement | 
@@ -6178,7 +6186,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class BlockElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Block");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.Block");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cBlockAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -6187,16 +6195,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		/// * BLOCK * / Block:
-		//	{Block} "{" statement+=DocumentedStatement* "}";
+		//	{Block} '{' statement+=DocumentedStatement* '}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//{Block} "{" statement+=DocumentedStatement* "}"
+		//{Block} '{' statement+=DocumentedStatement* '}'
 		public Group getGroup() { return cGroup; }
 
 		//{Block}
 		public Action getBlockAction_0() { return cBlockAction_0; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
 		//statement+=DocumentedStatement*
@@ -6205,12 +6213,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//DocumentedStatement
 		public RuleCall getStatementDocumentedStatementParserRuleCall_2_0() { return cStatementDocumentedStatementParserRuleCall_2_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 
 	public class AnnotatedStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AnnotatedStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AnnotatedStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDocumentationAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDocumentationDOCUMENTATION_COMMENTTerminalRuleCall_0_0 = (RuleCall)cDocumentationAssignment_0.eContents().get(0);
@@ -6220,8 +6228,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStatementStatementParserRuleCall_2_0 = (RuleCall)cStatementAssignment_2.eContents().get(0);
 		
 		/// * ANNOTATED STATEMENTS * / AnnotatedStatement:
-		//	documentation+=DOCUMENTATION_COMMENT? // CHANGE: Include text line in annotation statement.
-		//	annotation+=STATEMENT_ANNOTATION* // ( '//@' annotation += Annotation ( '@' annotation += Annotation )+ '\r'? '\n' )*
+		//	documentation+=DOCUMENTATION_COMMENT?
+		//	// CHANGE: Include text line in annotation statement.
+		//	annotation+=STATEMENT_ANNOTATION*
+		//	// ( '//@' annotation += Annotation ( '@' annotation += Annotation )+ '\r'? '\n' )*
 		//	statement=Statement;
 		@Override public ParserRule getRule() { return rule; }
 
@@ -6236,6 +6246,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//DOCUMENTATION_COMMENT
 		public RuleCall getDocumentationDOCUMENTATION_COMMENTTerminalRuleCall_0_0() { return cDocumentationDOCUMENTATION_COMMENTTerminalRuleCall_0_0; }
 
+		//// CHANGE: Include text line in annotation statement.
 		//annotation+=STATEMENT_ANNOTATION*
 		public Assignment getAnnotationAssignment_1() { return cAnnotationAssignment_1; }
 
@@ -6251,7 +6262,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class InLineStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "InLineStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.InLineStatement");
 		private final Assignment cCodeAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cCodeINLINE_STATEMENTTerminalRuleCall_0 = (RuleCall)cCodeAssignment.eContents().get(0);
 		
@@ -6259,9 +6270,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Annotation : 
 		//	identifier = ID ( '(' argument += Name ( ',' argument += Name )* ')' )?
 		//;
-		// * / / * IN-LINE STATEMENTS * / //'/ *@' 'inline' '(' language = Name ')' '* /'
-		//InLineStatement: // CHANGE: Include all text lexically in one attribute of InLineStatement.
-		//	code=INLINE_STATEMENT;
+		// * / / * IN-LINE STATEMENTS * / InLineStatement:
+		//	code=INLINE_STATEMENT
+		//	//'/ *@' 'inline' '(' language = Name ')' '* /'
+		//;
 		@Override public ParserRule getRule() { return rule; }
 
 		//// CHANGE: Include all text lexically in one attribute of InLineStatement.
@@ -6273,7 +6285,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class BlockStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BlockStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.BlockStatement");
 		private final Assignment cBlockAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cBlockBlockParserRuleCall_0 = (RuleCall)cBlockAssignment.eContents().get(0);
 		
@@ -6289,27 +6301,28 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class EmptyStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EmptyStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.EmptyStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cEmptyStatementAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		/// * EMPTY STATEMENTS * / EmptyStatement:
-		//	{EmptyStatement} ";";
+		//	{EmptyStatement}
+		//	';';
 		@Override public ParserRule getRule() { return rule; }
 
-		//{EmptyStatement} ";"
+		//{EmptyStatement} ';'
 		public Group getGroup() { return cGroup; }
 
 		//{EmptyStatement}
 		public Action getEmptyStatementAction_0() { return cEmptyStatementAction_0; }
 
-		//";"
+		//';'
 		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
 	}
 
 	public class LocalNameDeclarationStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LocalNameDeclarationStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.LocalNameDeclarationStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
 		private final Group cGroup_0_0 = (Group)cAlternatives_0.eContents().get(0);
@@ -6340,24 +6353,23 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		/// * LOCAL NAME DECLARATION STATEMENTS * / LocalNameDeclarationStatement:
-		//	("let" name=Name ":" (isAny?="any" | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? // CHANGE: Added isAny attribute to localNameDeclarationStatement in order to allow Xtext serialization.
-		//	| (isAny?="any" | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? name=Name) "="
-		//	expression=InitializationExpression ";";
+		//	('let' name=Name ':' (isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? | (isAny?='any'
+		//	| typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? name=Name)
+		//	'=' expression=InitializationExpression ';';
 		@Override public ParserRule getRule() { return rule; }
 
-		//("let" name=Name ":" (isAny?="any" | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? // CHANGE: Added isAny attribute to localNameDeclarationStatement in order to allow Xtext serialization.
-		//| (isAny?="any" | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? name=Name) "="
-		//expression=InitializationExpression ";"
+		//('let' name=Name ':' (isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? | (isAny?='any' |
+		//typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? name=Name) '=' expression=InitializationExpression ';'
 		public Group getGroup() { return cGroup; }
 
-		//"let" name=Name ":" (isAny?="any" | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? // CHANGE: Added isAny attribute to localNameDeclarationStatement in order to allow Xtext serialization.
-		//| (isAny?="any" | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? name=Name
+		//('let' name=Name ':' (isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? | (isAny?='any' |
+		//typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? name=Name)
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
-		//"let" name=Name ":" (isAny?="any" | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator?
+		//'let' name=Name ':' (isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator?
 		public Group getGroup_0_0() { return cGroup_0_0; }
 
-		//"let"
+		//'let'
 		public Keyword getLetKeyword_0_0_0() { return cLetKeyword_0_0_0; }
 
 		//name=Name
@@ -6366,16 +6378,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_0_0_1_0() { return cNameNameParserRuleCall_0_0_1_0; }
 
-		//":"
+		//':'
 		public Keyword getColonKeyword_0_0_2() { return cColonKeyword_0_0_2; }
 
-		//isAny?="any" | typeName=QualifiedName
+		//(isAny?='any' | typeName=QualifiedName)
 		public Alternatives getAlternatives_0_0_3() { return cAlternatives_0_0_3; }
 
-		//isAny?="any"
+		//isAny?='any'
 		public Assignment getIsAnyAssignment_0_0_3_0() { return cIsAnyAssignment_0_0_3_0; }
 
-		//"any"
+		//'any'
 		public Keyword getIsAnyAnyKeyword_0_0_3_0_0() { return cIsAnyAnyKeyword_0_0_3_0_0; }
 
 		//typeName=QualifiedName
@@ -6390,16 +6402,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//MultiplicityIndicator
 		public RuleCall getHasMultiplicityMultiplicityIndicatorParserRuleCall_0_0_4_0() { return cHasMultiplicityMultiplicityIndicatorParserRuleCall_0_0_4_0; }
 
-		//(isAny?="any" | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? name=Name
+		//(isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? name=Name
 		public Group getGroup_0_1() { return cGroup_0_1; }
 
-		//isAny?="any" | typeName=QualifiedName
+		//(isAny?='any' | typeName=QualifiedName)
 		public Alternatives getAlternatives_0_1_0() { return cAlternatives_0_1_0; }
 
-		//isAny?="any"
+		//isAny?='any'
 		public Assignment getIsAnyAssignment_0_1_0_0() { return cIsAnyAssignment_0_1_0_0; }
 
-		//"any"
+		//'any'
 		public Keyword getIsAnyAnyKeyword_0_1_0_0_0() { return cIsAnyAnyKeyword_0_1_0_0_0; }
 
 		//typeName=QualifiedName
@@ -6420,7 +6432,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_0_1_2_0() { return cNameNameParserRuleCall_0_1_2_0; }
 
-		//"="
+		//'='
 		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 
 		//expression=InitializationExpression
@@ -6429,19 +6441,21 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//InitializationExpression
 		public RuleCall getExpressionInitializationExpressionParserRuleCall_2_0() { return cExpressionInitializationExpressionParserRuleCall_2_0; }
 
-		//";"
+		//';'
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 
 	public class InitializationExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "InitializationExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.InitializationExpression");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cSequenceInitializationExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cInstanceInitializationExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
-		//InitializationExpression returns Expression:
-		//	Expression | SequenceInitializationExpression | InstanceInitializationExpression;
+		//InitializationExpression Expression:
+		//	Expression
+		//	| SequenceInitializationExpression
+		//	| InstanceInitializationExpression
 		@Override public ParserRule getRule() { return rule; }
 
 		//Expression | SequenceInitializationExpression | InstanceInitializationExpression
@@ -6458,20 +6472,20 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class InstanceInitializationExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "InstanceInitializationExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.InstanceInitializationExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cNewKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cTupleAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cTupleTupleParserRuleCall_1_0 = (RuleCall)cTupleAssignment_1.eContents().get(0);
 		
-		//InstanceInitializationExpression returns InstanceCreationExpression:
-		//	"new" tuple=Tuple;
+		//InstanceInitializationExpression InstanceCreationExpression:
+		//	'new' tuple=Tuple
 		@Override public ParserRule getRule() { return rule; }
 
-		//"new" tuple=Tuple
+		//'new' tuple=Tuple
 		public Group getGroup() { return cGroup; }
 
-		//"new"
+		//'new'
 		public Keyword getNewKeyword_0() { return cNewKeyword_0; }
 
 		//tuple=Tuple
@@ -6482,17 +6496,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ExpressionStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExpressionStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ExpressionStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cExpressionAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cExpressionExpressionParserRuleCall_0_0 = (RuleCall)cExpressionAssignment_0.eContents().get(0);
 		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		/// * EXPRESSION STATEMENTS * / ExpressionStatement:
-		//	expression=Expression ";";
+		//	expression=Expression ';';
 		@Override public ParserRule getRule() { return rule; }
 
-		//expression=Expression ";"
+		//expression=Expression ';'
 		public Group getGroup() { return cGroup; }
 
 		//expression=Expression
@@ -6501,12 +6515,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getExpressionExpressionParserRuleCall_0_0() { return cExpressionExpressionParserRuleCall_0_0; }
 
-		//";"
+		//';'
 		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
 	}
 
 	public class IfStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IfStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.IfStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cIfKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNonFinalClausesAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -6522,14 +6536,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFinalClauseBlockParserRuleCall_3_1_0 = (RuleCall)cFinalClauseAssignment_3_1.eContents().get(0);
 		
 		/// * IF STATEMENTS * / IfStatement:
-		//	"if" nonFinalClauses+=ConcurrentClauses ("else" "if" nonFinalClauses+=ConcurrentClauses)* ("else"
+		//	'if' nonFinalClauses+=ConcurrentClauses ('else' 'if' nonFinalClauses+=ConcurrentClauses)* ('else'
 		//	finalClause=Block)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"if" nonFinalClauses+=ConcurrentClauses ("else" "if" nonFinalClauses+=ConcurrentClauses)* ("else" finalClause=Block)?
+		//'if' nonFinalClauses+=ConcurrentClauses ('else' 'if' nonFinalClauses+=ConcurrentClauses)* ('else' finalClause=Block)?
 		public Group getGroup() { return cGroup; }
 
-		//"if"
+		//'if'
 		public Keyword getIfKeyword_0() { return cIfKeyword_0; }
 
 		//nonFinalClauses+=ConcurrentClauses
@@ -6538,13 +6552,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ConcurrentClauses
 		public RuleCall getNonFinalClausesConcurrentClausesParserRuleCall_1_0() { return cNonFinalClausesConcurrentClausesParserRuleCall_1_0; }
 
-		//("else" "if" nonFinalClauses+=ConcurrentClauses)*
+		//('else' 'if' nonFinalClauses+=ConcurrentClauses)*
 		public Group getGroup_2() { return cGroup_2; }
 
-		//"else"
+		//'else'
 		public Keyword getElseKeyword_2_0() { return cElseKeyword_2_0; }
 
-		//"if"
+		//'if'
 		public Keyword getIfKeyword_2_1() { return cIfKeyword_2_1; }
 
 		//nonFinalClauses+=ConcurrentClauses
@@ -6553,10 +6567,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ConcurrentClauses
 		public RuleCall getNonFinalClausesConcurrentClausesParserRuleCall_2_2_0() { return cNonFinalClausesConcurrentClausesParserRuleCall_2_2_0; }
 
-		//("else" finalClause=Block)?
+		//('else' finalClause=Block)?
 		public Group getGroup_3() { return cGroup_3; }
 
-		//"else"
+		//'else'
 		public Keyword getElseKeyword_3_0() { return cElseKeyword_3_0; }
 
 		//finalClause=Block
@@ -6567,7 +6581,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ConcurrentClausesElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConcurrentClauses");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ConcurrentClauses");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cClauseAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cClauseNonFinalClauseParserRuleCall_0_0 = (RuleCall)cClauseAssignment_0.eContents().get(0);
@@ -6578,10 +6592,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cClauseNonFinalClauseParserRuleCall_1_2_0 = (RuleCall)cClauseAssignment_1_2.eContents().get(0);
 		
 		//ConcurrentClauses:
-		//	clause+=NonFinalClause ("or" "if" clause+=NonFinalClause)*;
+		//	clause+=NonFinalClause ('or' 'if' clause+=NonFinalClause)*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//clause+=NonFinalClause ("or" "if" clause+=NonFinalClause)*
+		//clause+=NonFinalClause ('or' 'if' clause+=NonFinalClause)*
 		public Group getGroup() { return cGroup; }
 
 		//clause+=NonFinalClause
@@ -6590,13 +6604,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//NonFinalClause
 		public RuleCall getClauseNonFinalClauseParserRuleCall_0_0() { return cClauseNonFinalClauseParserRuleCall_0_0; }
 
-		//("or" "if" clause+=NonFinalClause)*
+		//('or' 'if' clause+=NonFinalClause)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//"or"
+		//'or'
 		public Keyword getOrKeyword_1_0() { return cOrKeyword_1_0; }
 
-		//"if"
+		//'if'
 		public Keyword getIfKeyword_1_1() { return cIfKeyword_1_1; }
 
 		//clause+=NonFinalClause
@@ -6607,7 +6621,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NonFinalClauseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NonFinalClause");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NonFinalClause");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cConditionAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -6617,13 +6631,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBodyBlockParserRuleCall_3_0 = (RuleCall)cBodyAssignment_3.eContents().get(0);
 		
 		//NonFinalClause:
-		//	"(" condition=Expression ")" body=Block;
+		//	'(' condition=Expression ')' body=Block;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"(" condition=Expression ")" body=Block
+		//'(' condition=Expression ')' body=Block
 		public Group getGroup() { return cGroup; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
 
 		//condition=Expression
@@ -6632,7 +6646,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getConditionExpressionParserRuleCall_1_0() { return cConditionExpressionParserRuleCall_1_0; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
 
 		//body=Block
@@ -6643,7 +6657,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SwitchStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SwitchStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SwitchStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cSwitchKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -6658,16 +6672,18 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		/// * SWITCH STATEMENTS * / SwitchStatement:
-		//	"switch" "(" expression=Expression ")" "{" nonDefaultClause+=SwitchClause* defaultClause=SwitchDefaultClause? "}";
+		//	'switch' '(' expression=Expression ')'
+		//	'{' nonDefaultClause+=SwitchClause*
+		//	defaultClause=SwitchDefaultClause? '}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"switch" "(" expression=Expression ")" "{" nonDefaultClause+=SwitchClause* defaultClause=SwitchDefaultClause? "}"
+		//'switch' '(' expression=Expression ')' '{' nonDefaultClause+=SwitchClause* defaultClause=SwitchDefaultClause? '}'
 		public Group getGroup() { return cGroup; }
 
-		//"switch"
+		//'switch'
 		public Keyword getSwitchKeyword_0() { return cSwitchKeyword_0; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
 		//expression=Expression
@@ -6676,10 +6692,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getExpressionExpressionParserRuleCall_2_0() { return cExpressionExpressionParserRuleCall_2_0; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 
-		//"{"
+		//'{'
 		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 
 		//nonDefaultClause+=SwitchClause*
@@ -6694,12 +6710,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//SwitchDefaultClause
 		public RuleCall getDefaultClauseSwitchDefaultClauseParserRuleCall_6_0() { return cDefaultClauseSwitchDefaultClauseParserRuleCall_6_0; }
 
-		//"}"
+		//'}'
 		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
 
 	public class SwitchClauseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SwitchClause");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SwitchClause");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cCaseAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cCaseSwitchCaseParserRuleCall_0_0 = (RuleCall)cCaseAssignment_0.eContents().get(0);
@@ -6709,7 +6725,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBlockNonEmptyStatementSequenceParserRuleCall_2_0 = (RuleCall)cBlockAssignment_2.eContents().get(0);
 		
 		//SwitchClause:
-		//	case+=SwitchCase case+=SwitchCase* block=NonEmptyStatementSequence;
+		//	case+=SwitchCase case+=SwitchCase*
+		//	block=NonEmptyStatementSequence;
 		@Override public ParserRule getRule() { return rule; }
 
 		//case+=SwitchCase case+=SwitchCase* block=NonEmptyStatementSequence
@@ -6735,47 +6752,47 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SwitchCaseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SwitchCase");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SwitchCase");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cCaseKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cExpressionParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//SwitchCase returns Expression:
-		//	"case" Expression ":";
+		//SwitchCase Expression:
+		//	'case' Expression ':'
 		@Override public ParserRule getRule() { return rule; }
 
-		//"case" Expression ":"
+		//'case' Expression ':'
 		public Group getGroup() { return cGroup; }
 
-		//"case"
+		//'case'
 		public Keyword getCaseKeyword_0() { return cCaseKeyword_0; }
 
 		//Expression
 		public RuleCall getExpressionParserRuleCall_1() { return cExpressionParserRuleCall_1; }
 
-		//":"
+		//':'
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 	}
 
 	public class SwitchDefaultClauseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SwitchDefaultClause");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SwitchDefaultClause");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cDefaultKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final RuleCall cNonEmptyStatementSequenceParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
-		//SwitchDefaultClause returns Block:
-		//	"default" ":" NonEmptyStatementSequence;
+		//SwitchDefaultClause Block:
+		//	'default' ':' NonEmptyStatementSequence
 		@Override public ParserRule getRule() { return rule; }
 
-		//"default" ":" NonEmptyStatementSequence
+		//'default' ':' NonEmptyStatementSequence
 		public Group getGroup() { return cGroup; }
 
-		//"default"
+		//'default'
 		public Keyword getDefaultKeyword_0() { return cDefaultKeyword_0; }
 
-		//":"
+		//':'
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 
 		//NonEmptyStatementSequence
@@ -6783,12 +6800,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NonEmptyStatementSequenceElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NonEmptyStatementSequence");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NonEmptyStatementSequence");
 		private final Assignment cStatementAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cStatementDocumentedStatementParserRuleCall_0 = (RuleCall)cStatementAssignment.eContents().get(0);
 		
-		//NonEmptyStatementSequence returns Block:
-		//	statement+=DocumentedStatement+;
+		//NonEmptyStatementSequence Block:
+		//	statement+=DocumentedStatement+
 		@Override public ParserRule getRule() { return rule; }
 
 		//statement+=DocumentedStatement+
@@ -6799,7 +6816,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class WhileStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "WhileStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.WhileStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cWhileKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -6810,16 +6827,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBodyBlockParserRuleCall_4_0 = (RuleCall)cBodyAssignment_4.eContents().get(0);
 		
 		/// * WHILE STATEMENTS * / WhileStatement:
-		//	"while" "(" condition=Expression ")" body=Block;
+		//	'while' '(' condition=Expression ')' body=Block;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"while" "(" condition=Expression ")" body=Block
+		//'while' '(' condition=Expression ')' body=Block
 		public Group getGroup() { return cGroup; }
 
-		//"while"
+		//'while'
 		public Keyword getWhileKeyword_0() { return cWhileKeyword_0; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
 		//condition=Expression
@@ -6828,7 +6845,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getConditionExpressionParserRuleCall_2_0() { return cConditionExpressionParserRuleCall_2_0; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 
 		//body=Block
@@ -6839,7 +6856,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class DoStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DoStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.DoStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cDoKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cBodyAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -6852,13 +6869,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		/// * DO STATEMENTS * / DoStatement:
-		//	"do" body=Block "while" "(" condition=Expression ")" ";";
+		//	'do' body=Block 'while' '(' condition=Expression ')' ';';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"do" body=Block "while" "(" condition=Expression ")" ";"
+		//'do' body=Block 'while' '(' condition=Expression ')' ';'
 		public Group getGroup() { return cGroup; }
 
-		//"do"
+		//'do'
 		public Keyword getDoKeyword_0() { return cDoKeyword_0; }
 
 		//body=Block
@@ -6867,10 +6884,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Block
 		public RuleCall getBodyBlockParserRuleCall_1_0() { return cBodyBlockParserRuleCall_1_0; }
 
-		//"while"
+		//'while'
 		public Keyword getWhileKeyword_2() { return cWhileKeyword_2; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
 
 		//condition=Expression
@@ -6879,15 +6896,15 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getConditionExpressionParserRuleCall_4_0() { return cConditionExpressionParserRuleCall_4_0; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 
-		//";"
+		//';'
 		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
 	}
 
 	public class ForStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ForStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ForStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cForKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -6902,17 +6919,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBodyBlockParserRuleCall_5_0 = (RuleCall)cBodyAssignment_5.eContents().get(0);
 		
 		/// * FOR STATEMENTS * / ForStatement:
-		//	"for" "(" variableDefinition+=LoopVariableDefinition ("," variableDefinition+=LoopVariableDefinition)* ")"
+		//	'for' '(' variableDefinition+=LoopVariableDefinition (',' variableDefinition+=LoopVariableDefinition)* ')'
 		//	body=Block;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"for" "(" variableDefinition+=LoopVariableDefinition ("," variableDefinition+=LoopVariableDefinition)* ")" body=Block
+		//'for' '(' variableDefinition+=LoopVariableDefinition (',' variableDefinition+=LoopVariableDefinition)* ')' body=Block
 		public Group getGroup() { return cGroup; }
 
-		//"for"
+		//'for'
 		public Keyword getForKeyword_0() { return cForKeyword_0; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
 		//variableDefinition+=LoopVariableDefinition
@@ -6921,10 +6938,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//LoopVariableDefinition
 		public RuleCall getVariableDefinitionLoopVariableDefinitionParserRuleCall_2_0() { return cVariableDefinitionLoopVariableDefinitionParserRuleCall_2_0; }
 
-		//("," variableDefinition+=LoopVariableDefinition)*
+		//(',' variableDefinition+=LoopVariableDefinition)*
 		public Group getGroup_3() { return cGroup_3; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
 
 		//variableDefinition+=LoopVariableDefinition
@@ -6933,7 +6950,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//LoopVariableDefinition
 		public RuleCall getVariableDefinitionLoopVariableDefinitionParserRuleCall_3_1_0() { return cVariableDefinitionLoopVariableDefinitionParserRuleCall_3_1_0; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 
 		//body=Block
@@ -6944,7 +6961,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class LoopVariableDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LoopVariableDefinition");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.LoopVariableDefinition");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Assignment cVariableAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
@@ -6969,21 +6986,20 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cExpression1Assignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
 		private final RuleCall cExpression1ExpressionParserRuleCall_1_3_0 = (RuleCall)cExpression1Assignment_1_3.eContents().get(0);
 		
-		//LoopVariableDefinition: // CHANGE: Added isAny attribute to LoopVariableDefinition in order to allow Xtext serialization.
-		//// NOTE: Default for typeIsInferred must be false.
-		//	variable=Name typeIsInferred?="in" expression1=Expression (".." expression2=Expression)? | (isAny?="any" |
-		//	typeName=QualifiedName) variable=Name ":" expression1=Expression;
+		//LoopVariableDefinition:
+		//	variable=Name typeIsInferred?='in' expression1=Expression ('..' expression2=Expression)? | (isAny?='any' |
+		//	typeName=QualifiedName) variable=Name ':' expression1=Expression;
 		@Override public ParserRule getRule() { return rule; }
 
 		//// CHANGE: Added isAny attribute to LoopVariableDefinition in order to allow Xtext serialization.
 		//// NOTE: Default for typeIsInferred must be false.
-		//variable=Name typeIsInferred?="in" expression1=Expression (".." expression2=Expression)? | (isAny?="any" |
-		//typeName=QualifiedName) variable=Name ":" expression1=Expression
+		//variable=Name typeIsInferred?='in' expression1=Expression ('..' expression2=Expression)? | (isAny?='any' |
+		//typeName=QualifiedName) variable=Name ':' expression1=Expression
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//// CHANGE: Added isAny attribute to LoopVariableDefinition in order to allow Xtext serialization.
 		//// NOTE: Default for typeIsInferred must be false.
-		//variable=Name typeIsInferred?="in" expression1=Expression (".." expression2=Expression)?
+		//variable=Name typeIsInferred?='in' expression1=Expression ('..' expression2=Expression)?
 		public Group getGroup_0() { return cGroup_0; }
 
 		//// CHANGE: Added isAny attribute to LoopVariableDefinition in order to allow Xtext serialization.
@@ -6994,10 +7010,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getVariableNameParserRuleCall_0_0_0() { return cVariableNameParserRuleCall_0_0_0; }
 
-		//typeIsInferred?="in"
+		//typeIsInferred?='in'
 		public Assignment getTypeIsInferredAssignment_0_1() { return cTypeIsInferredAssignment_0_1; }
 
-		//"in"
+		//'in'
 		public Keyword getTypeIsInferredInKeyword_0_1_0() { return cTypeIsInferredInKeyword_0_1_0; }
 
 		//expression1=Expression
@@ -7006,10 +7022,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getExpression1ExpressionParserRuleCall_0_2_0() { return cExpression1ExpressionParserRuleCall_0_2_0; }
 
-		//(".." expression2=Expression)?
+		//('..' expression2=Expression)?
 		public Group getGroup_0_3() { return cGroup_0_3; }
 
-		//".."
+		//'..'
 		public Keyword getFullStopFullStopKeyword_0_3_0() { return cFullStopFullStopKeyword_0_3_0; }
 
 		//expression2=Expression
@@ -7018,16 +7034,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getExpression2ExpressionParserRuleCall_0_3_1_0() { return cExpression2ExpressionParserRuleCall_0_3_1_0; }
 
-		//(isAny?="any" | typeName=QualifiedName) variable=Name ":" expression1=Expression
+		//(isAny?='any' | typeName=QualifiedName) variable=Name ':' expression1=Expression
 		public Group getGroup_1() { return cGroup_1; }
 
-		//isAny?="any" | typeName=QualifiedName
+		//(isAny?='any' | typeName=QualifiedName)
 		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
 
-		//isAny?="any"
+		//isAny?='any'
 		public Assignment getIsAnyAssignment_1_0_0() { return cIsAnyAssignment_1_0_0; }
 
-		//"any"
+		//'any'
 		public Keyword getIsAnyAnyKeyword_1_0_0_0() { return cIsAnyAnyKeyword_1_0_0_0; }
 
 		//typeName=QualifiedName
@@ -7042,7 +7058,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getVariableNameParserRuleCall_1_1_0() { return cVariableNameParserRuleCall_1_1_0; }
 
-		//":"
+		//':'
 		public Keyword getColonKeyword_1_2() { return cColonKeyword_1_2; }
 
 		//expression1=Expression
@@ -7053,31 +7069,32 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class BreakStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BreakStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.BreakStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cBreakStatementAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cBreakKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		/// * BREAK STATEMENTS * / BreakStatement:
-		//	{BreakStatement} "break" ";";
+		//	{BreakStatement}
+		//	'break' ';';
 		@Override public ParserRule getRule() { return rule; }
 
-		//{BreakStatement} "break" ";"
+		//{BreakStatement} 'break' ';'
 		public Group getGroup() { return cGroup; }
 
 		//{BreakStatement}
 		public Action getBreakStatementAction_0() { return cBreakStatementAction_0; }
 
-		//"break"
+		//'break'
 		public Keyword getBreakKeyword_1() { return cBreakKeyword_1; }
 
-		//";"
+		//';'
 		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
 	}
 
 	public class ReturnStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ReturnStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ReturnStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cReturnStatementAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cReturnKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -7086,16 +7103,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		/// * RETURN STATEMENTS * / ReturnStatement:
-		//	{ReturnStatement} "return" expression=Expression? ";";
+		//	{ReturnStatement}
+		//	'return' expression=Expression? ';';
 		@Override public ParserRule getRule() { return rule; }
 
-		//{ReturnStatement} "return" expression=Expression? ";"
+		//{ReturnStatement} 'return' expression=Expression? ';'
 		public Group getGroup() { return cGroup; }
 
 		//{ReturnStatement}
 		public Action getReturnStatementAction_0() { return cReturnStatementAction_0; }
 
-		//"return"
+		//'return'
 		public Keyword getReturnKeyword_1() { return cReturnKeyword_1; }
 
 		//expression=Expression?
@@ -7104,12 +7122,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getExpressionExpressionParserRuleCall_2_0() { return cExpressionExpressionParserRuleCall_2_0; }
 
-		//";"
+		//';'
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 
 	public class AcceptStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AcceptStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AcceptStatement");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Assignment cAcceptBlockAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
@@ -7124,13 +7142,13 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAcceptBlockAcceptBlockParserRuleCall_1_1_1_0 = (RuleCall)cAcceptBlockAssignment_1_1_1.eContents().get(0);
 		
 		/// * ACCEPT STATEMENTS * / AcceptStatement:
-		//	acceptBlock+=AcceptClause ";" | acceptBlock+=AcceptBlock ("or" acceptBlock+=AcceptBlock)*;
+		//	acceptBlock+=AcceptClause ';' | acceptBlock+=AcceptBlock ('or' acceptBlock+=AcceptBlock)*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//acceptBlock+=AcceptClause ";" | acceptBlock+=AcceptBlock ("or" acceptBlock+=AcceptBlock)*
+		//acceptBlock+=AcceptClause ';' | acceptBlock+=AcceptBlock ('or' acceptBlock+=AcceptBlock)*
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//acceptBlock+=AcceptClause ";"
+		//acceptBlock+=AcceptClause ';'
 		public Group getGroup_0() { return cGroup_0; }
 
 		//acceptBlock+=AcceptClause
@@ -7139,10 +7157,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//AcceptClause
 		public RuleCall getAcceptBlockAcceptClauseParserRuleCall_0_0_0() { return cAcceptBlockAcceptClauseParserRuleCall_0_0_0; }
 
-		//";"
+		//';'
 		public Keyword getSemicolonKeyword_0_1() { return cSemicolonKeyword_0_1; }
 
-		//acceptBlock+=AcceptBlock ("or" acceptBlock+=AcceptBlock)*
+		//acceptBlock+=AcceptBlock ('or' acceptBlock+=AcceptBlock)*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//acceptBlock+=AcceptBlock
@@ -7151,10 +7169,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//AcceptBlock
 		public RuleCall getAcceptBlockAcceptBlockParserRuleCall_1_0_0() { return cAcceptBlockAcceptBlockParserRuleCall_1_0_0; }
 
-		//("or" acceptBlock+=AcceptBlock)*
+		//('or' acceptBlock+=AcceptBlock)*
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
-		//"or"
+		//'or'
 		public Keyword getOrKeyword_1_1_0() { return cOrKeyword_1_1_0; }
 
 		//acceptBlock+=AcceptBlock
@@ -7165,7 +7183,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class AcceptBlockElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AcceptBlock");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AcceptBlock");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cAcceptClauseParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Assignment cBlockAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -7189,7 +7207,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class AcceptClauseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AcceptClause");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.AcceptClause");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cAcceptKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -7201,20 +7219,20 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSignalNamesQualifiedNameListParserRuleCall_3_0 = (RuleCall)cSignalNamesAssignment_3.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		//AcceptClause returns AcceptBlock:
-		//	"accept" "(" (name=Name ":")? signalNames=QualifiedNameList ")";
+		//AcceptClause AcceptBlock:
+		//	'accept' '(' (name=Name ':')? signalNames=QualifiedNameList ')'
 		@Override public ParserRule getRule() { return rule; }
 
-		//"accept" "(" (name=Name ":")? signalNames=QualifiedNameList ")"
+		//'accept' '(' (name=Name ':')? signalNames=QualifiedNameList ')'
 		public Group getGroup() { return cGroup; }
 
-		//"accept"
+		//'accept'
 		public Keyword getAcceptKeyword_0() { return cAcceptKeyword_0; }
 
-		//"("
+		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
-		//(name=Name ":")?
+		//(name=Name ':')?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//name=Name
@@ -7223,7 +7241,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_2_0_0() { return cNameNameParserRuleCall_2_0_0; }
 
-		//":"
+		//':'
 		public Keyword getColonKeyword_2_1() { return cColonKeyword_2_1; }
 
 		//signalNames=QualifiedNameList
@@ -7232,12 +7250,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedNameList
 		public RuleCall getSignalNamesQualifiedNameListParserRuleCall_3_0() { return cSignalNamesQualifiedNameListParserRuleCall_3_0; }
 
-		//")"
+		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
 
 	public class ClassifyStatementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassifyStatement");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassifyStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cClassifyKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cExpressionAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -7256,15 +7274,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		/// * CLASSIFY STATEMENTS * / ClassifyStatement:
-		//	"classify" expression=Expression (fromList=ClassificationFromClause toList=ClassificationToClause? |
-		//	isReclassifyAll?=ReclassifyAllClause? toList=ClassificationToClause) ";";
+		//	'classify' expression=Expression (fromList=ClassificationFromClause toList=ClassificationToClause? |
+		//	isReclassifyAll?=ReclassifyAllClause? toList=ClassificationToClause)
+		//	';';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"classify" expression=Expression (fromList=ClassificationFromClause toList=ClassificationToClause? |
-		//isReclassifyAll?=ReclassifyAllClause? toList=ClassificationToClause) ";"
+		//'classify' expression=Expression (fromList=ClassificationFromClause toList=ClassificationToClause? |
+		//isReclassifyAll?=ReclassifyAllClause? toList=ClassificationToClause) ';'
 		public Group getGroup() { return cGroup; }
 
-		//"classify"
+		//'classify'
 		public Keyword getClassifyKeyword_0() { return cClassifyKeyword_0; }
 
 		//expression=Expression
@@ -7273,8 +7292,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getExpressionExpressionParserRuleCall_1_0() { return cExpressionExpressionParserRuleCall_1_0; }
 
-		//fromList=ClassificationFromClause toList=ClassificationToClause? | isReclassifyAll?=ReclassifyAllClause?
-		//toList=ClassificationToClause
+		//(fromList=ClassificationFromClause toList=ClassificationToClause? | isReclassifyAll?=ReclassifyAllClause?
+		//toList=ClassificationToClause)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//fromList=ClassificationFromClause toList=ClassificationToClause?
@@ -7307,24 +7326,24 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//ClassificationToClause
 		public RuleCall getToListClassificationToClauseParserRuleCall_2_1_1_0() { return cToListClassificationToClauseParserRuleCall_2_1_1_0; }
 
-		//";"
+		//';'
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 
 	public class ClassificationFromClauseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassificationFromClause");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassificationFromClause");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cFromKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cQualifiedNameListParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		//ClassificationFromClause returns QualifiedNameList:
-		//	"from" QualifiedNameList;
+		//ClassificationFromClause QualifiedNameList:
+		//	'from' QualifiedNameList
 		@Override public ParserRule getRule() { return rule; }
 
-		//"from" QualifiedNameList
+		//'from' QualifiedNameList
 		public Group getGroup() { return cGroup; }
 
-		//"from"
+		//'from'
 		public Keyword getFromKeyword_0() { return cFromKeyword_0; }
 
 		//QualifiedNameList
@@ -7332,19 +7351,19 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ClassificationToClauseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassificationToClause");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ClassificationToClause");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cToKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cQualifiedNameListParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		//ClassificationToClause returns QualifiedNameList:
-		//	"to" QualifiedNameList;
+		//ClassificationToClause QualifiedNameList:
+		//	'to' QualifiedNameList
 		@Override public ParserRule getRule() { return rule; }
 
-		//"to" QualifiedNameList
+		//'to' QualifiedNameList
 		public Group getGroup() { return cGroup; }
 
-		//"to"
+		//'to'
 		public Keyword getToKeyword_0() { return cToKeyword_0; }
 
 		//QualifiedNameList
@@ -7352,27 +7371,27 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ReclassifyAllClauseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ReclassifyAllClause");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ReclassifyAllClause");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cFromKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cAsteriskKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//ReclassifyAllClause:
-		//	"from" "*";
+		//	'from' '*';
 		@Override public ParserRule getRule() { return rule; }
 
-		//"from" "*"
+		//'from' '*'
 		public Group getGroup() { return cGroup; }
 
-		//"from"
+		//'from'
 		public Keyword getFromKeyword_0() { return cFromKeyword_0; }
 
-		//"*"
+		//'*'
 		public Keyword getAsteriskKeyword_1() { return cAsteriskKeyword_1; }
 	}
 
 	public class QualifiedNameListElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedNameList");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.QualifiedNameList");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameQualifiedNameParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -7382,10 +7401,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameQualifiedNameParserRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
 		
 		//QualifiedNameList:
-		//	name+=QualifiedName ("," name+=QualifiedName)*;
+		//	name+=QualifiedName (',' name+=QualifiedName)*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//name+=QualifiedName ("," name+=QualifiedName)*
+		//name+=QualifiedName (',' name+=QualifiedName)*
 		public Group getGroup() { return cGroup; }
 
 		//name+=QualifiedName
@@ -7394,10 +7413,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getNameQualifiedNameParserRuleCall_0_0() { return cNameQualifiedNameParserRuleCall_0_0; }
 
-		//("," name+=QualifiedName)*
+		//(',' name+=QualifiedName)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//","
+		//','
 		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
 
 		//name+=QualifiedName
@@ -7795,17 +7814,17 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		this.pClassificationToClause = new ClassificationToClauseElements();
 		this.pReclassifyAllClause = new ReclassifyAllClauseElements();
 		this.pQualifiedNameList = new QualifiedNameListElements();
-		this.tBOOLEAN_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "BOOLEAN_VALUE");
-		this.tNATURAL_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NATURAL_VALUE");
-		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID");
-		this.tUNRESTRICTED_NAME = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UNRESTRICTED_NAME");
-		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING");
-		this.tDOCUMENTATION_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOCUMENTATION_COMMENT");
-		this.tSTATEMENT_ANNOTATION = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STATEMENT_ANNOTATION");
-		this.tINLINE_STATEMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INLINE_STATEMENT");
-		this.tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT");
-		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT");
-		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS");
+		this.tBOOLEAN_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.BOOLEAN_VALUE");
+		this.tNATURAL_VALUE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.NATURAL_VALUE");
+		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ID");
+		this.tUNRESTRICTED_NAME = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.UNRESTRICTED_NAME");
+		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.STRING");
+		this.tDOCUMENTATION_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.DOCUMENTATION_COMMENT");
+		this.tSTATEMENT_ANNOTATION = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.STATEMENT_ANNOTATION");
+		this.tINLINE_STATEMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.INLINE_STATEMENT");
+		this.tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.ML_COMMENT");
+		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.SL_COMMENT");
+		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.alf.Alf.WS");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -7834,8 +7853,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	/// *********
 	// * UNITS *
 	// ********* / UnitDefinition:
-	//	namespaceName=NamespaceDeclaration? ^import+=ImportDeclaration* documentation+=DOCUMENTATION_COMMENT?
-	//	annotation+=StereotypeAnnotation* definition=NamespaceDefinition;
+	//	namespaceName=NamespaceDeclaration?
+	//	^import+=ImportDeclaration*
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	annotation+=StereotypeAnnotation*
+	//	definition=NamespaceDefinition;
 	public UnitDefinitionElements getUnitDefinitionAccess() {
 		return pUnitDefinition;
 	}
@@ -7845,7 +7867,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StereotypeAnnotation:
-	//	"@" stereotypeName=QualifiedName ("(" (names=QualifiedNameList | taggedValues=TaggedValueList) ")")?;
+	//	'@' stereotypeName=QualifiedName ('(' (names=QualifiedNameList | taggedValues=TaggedValueList) ')')?;
 	public StereotypeAnnotationElements getStereotypeAnnotationAccess() {
 		return pStereotypeAnnotation;
 	}
@@ -7854,7 +7876,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getStereotypeAnnotationAccess().getRule();
 	}
 
-	//TaggedValueList: // CHANGE: Made taggedValue composite in the metamodel.
+	//TaggedValueList:
 	//	taggedValue+=TaggedValue ("," taggedValue+=TaggedValue)*;
 	public TaggedValueListElements getTaggedValueListAccess() {
 		return pTaggedValueList;
@@ -7865,7 +7887,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TaggedValue:
-	//	name=Name "=>" (value=BOOLEAN_VALUE | operator=NumericUnaryOperator? value=NATURAL_VALUE | value="*" | value=STRING);
+	//	name=Name '=>' (value=BOOLEAN_VALUE | operator=NumericUnaryOperator? value=NATURAL_VALUE | value='*' | value=STRING);
 	public TaggedValueElements getTaggedValueAccess() {
 		return pTaggedValue;
 	}
@@ -7874,8 +7896,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getTaggedValueAccess().getRule();
 	}
 
-	//NamespaceDeclaration returns QualifiedName:
-	//	"namespace" QualifiedName ";";
+	//NamespaceDeclaration QualifiedName:
+	//	'namespace' QualifiedName ';'
 	public NamespaceDeclarationElements getNamespaceDeclarationAccess() {
 		return pNamespaceDeclaration;
 	}
@@ -7884,8 +7906,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getNamespaceDeclarationAccess().getRule();
 	}
 
-	//ImportDeclaration returns ImportReference:
-	//	(PackageImportReference | ElementImportReference) ";";
+	//ImportDeclaration ImportReference:
+	//	(PackageImportReference | ElementImportReference) ';'
 	public ImportDeclarationElements getImportDeclarationAccess() {
 		return pImportDeclaration;
 	}
@@ -7895,7 +7917,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ElementImportReference:
-	//	visibility=ImportVisibilityIndicator "import" referentName=QualifiedName ("as" alias=Name)?;
+	//	visibility=ImportVisibilityIndicator 'import' referentName=QualifiedName ('as' alias=Name)?;
 	public ElementImportReferenceElements getElementImportReferenceAccess() {
 		return pElementImportReference;
 	}
@@ -7904,13 +7926,14 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getElementImportReferenceAccess().getRule();
 	}
 
-	////  ( 
-	////    referentName = UnqualifiedName ('::' | '.') '*' |
-	////    referentName = ColonQualifiedName '::' '*' | 
-	////    referentName = DotQualifiedName '.' '*'
-	////  )
 	//PackageImportReference:
-	//	visibility=ImportVisibilityIndicator "import" referentName=PackageImportQualifiedName;
+	//	visibility=ImportVisibilityIndicator 'import' referentName=PackageImportQualifiedName
+	//	//  ( 
+	//	//    referentName = UnqualifiedName ('::' | '.') '*' |
+	//	//    referentName = ColonQualifiedName '::' '*' | 
+	//	//    referentName = DotQualifiedName '.' '*'
+	//	//  )
+	//;
 	public PackageImportReferenceElements getPackageImportReferenceAccess() {
 		return pPackageImportReference;
 	}
@@ -7919,8 +7942,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPackageImportReferenceAccess().getRule();
 	}
 
-	//PackageImportQualifiedName returns QualifiedName:
-	//	nameBinding+=NameBinding (("::" nameBinding+=NameBinding)* "::" "*" | ("." nameBinding+=NameBinding)* "." "*");
+	//PackageImportQualifiedName QualifiedName:
+	//	nameBinding+=NameBinding (('::' nameBinding+=NameBinding)* '::' '*' | ('.' nameBinding+=NameBinding)* '.' '*')
 	public PackageImportQualifiedNameElements getPackageImportQualifiedNameAccess() {
 		return pPackageImportQualifiedName;
 	}
@@ -7930,7 +7953,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImportVisibilityIndicator:
-	//	"public" | "private";
+	//	'public' | 'private';
 	public ImportVisibilityIndicatorElements getImportVisibilityIndicatorAccess() {
 		return pImportVisibilityIndicator;
 	}
@@ -7950,7 +7973,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//VisibilityIndicator:
-	//	ImportVisibilityIndicator | "protected";
+	//	ImportVisibilityIndicator | 'protected';
 	public VisibilityIndicatorElements getVisibilityIndicatorAccess() {
 		return pVisibilityIndicator;
 	}
@@ -7961,7 +7984,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 
 	//// CHANGE: Separated Member into Member with a composite reference to MemberDefinition.
 	/// * PACKAGES * / PackageDefinition:
-	//	"package" name=Name "{" ownedMember+=PackagedElement* "}";
+	//	'package' name=Name '{' ownedMember+=PackagedElement* '}';
 	public PackageDefinitionElements getPackageDefinitionAccess() {
 		return pPackageDefinition;
 	}
@@ -7970,8 +7993,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPackageDefinitionAccess().getRule();
 	}
 
-	//PackageDefinitionOrStub returns PackageDefinition:
-	//	"package" name=Name (isStub?=";" | "{" ownedMember+=PackagedElement* "}");
+	//PackageDefinitionOrStub PackageDefinition:
+	//	'package' name=Name (isStub?=';' | '{' ownedMember+=PackagedElement* '}')
 	public PackageDefinitionOrStubElements getPackageDefinitionOrStubAccess() {
 		return pPackageDefinitionOrStub;
 	}
@@ -7983,9 +8006,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	//// PackageBody : 
 	//// 	{PackageBody}'{' ( packagedElement += PackagedElement )* '}'
 	//// ;
-	//PackagedElement returns Member:
-	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=ImportVisibilityIndicator
-	//	definition=PackagedElementDefinition;
+	//PackagedElement Member:
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	annotation+=StereotypeAnnotation*
+	//	visibility=ImportVisibilityIndicator
+	//	definition=PackagedElementDefinition
 	public PackagedElementElements getPackagedElementAccess() {
 		return pPackagedElement;
 	}
@@ -7994,8 +8019,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPackagedElementAccess().getRule();
 	}
 
-	//PackagedElementDefinition returns MemberDefinition:
-	//	PackageDefinitionOrStub | ClassifierDefinitionOrStub;
+	//PackagedElementDefinition MemberDefinition:
+	//	PackageDefinitionOrStub | ClassifierDefinitionOrStub
 	public PackagedElementDefinitionElements getPackagedElementDefinitionAccess() {
 		return pPackagedElementDefinition;
 	}
@@ -8017,9 +8042,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassifierDefinitionAccess().getRule();
 	}
 
-	//ClassifierDefinitionOrStub returns ClassifierDefinition:
+	//ClassifierDefinitionOrStub ClassifierDefinition:
 	//	ClassDefinitionOrStub | ActiveClassDefinitionOrStub | DataTypeDefinitionOrStub | EnumerationDefinitionOrStub |
-	//	AssociationDefinitionOrStub | SignalDefinitionOrStub | ActivityDefinitionOrStub;
+	//	AssociationDefinitionOrStub | SignalDefinitionOrStub | ActivityDefinitionOrStub
 	public ClassifierDefinitionOrStubElements getClassifierDefinitionOrStubAccess() {
 		return pClassifierDefinitionOrStub;
 	}
@@ -8028,9 +8053,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassifierDefinitionOrStubAccess().getRule();
 	}
 
-	//ClassifierSignature returns ClassifierDefinition:
-	//	name=Name ("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)* ">")?
-	//	specialization=SpecializationClause?;
+	//ClassifierSignature ClassifierDefinition:
+	//	name=Name ('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)* '>')?
+	//	specialization=SpecializationClause?
 	public ClassifierSignatureElements getClassifierSignatureAccess() {
 		return pClassifierSignature;
 	}
@@ -8039,9 +8064,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassifierSignatureAccess().getRule();
 	}
 
-	//// TODO: isAbstract = true visibility = 'private'
-	//ClassifierTemplateParameter returns Member:
-	//	documentation+=DOCUMENTATION_COMMENT? definition=ClassifierTemplateParameterDefinition;
+	//ClassifierTemplateParameter Member:
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	definition=ClassifierTemplateParameterDefinition
 	public ClassifierTemplateParameterElements getClassifierTemplateParameterAccess() {
 		return pClassifierTemplateParameter;
 	}
@@ -8050,8 +8075,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassifierTemplateParameterAccess().getRule();
 	}
 
-	//ClassifierTemplateParameterDefinition returns ClassifierTemplateParameter:
-	//	name=Name ("specializes" specialization=TemplateParameterConstraint)?;
+	//ClassifierTemplateParameterDefinition ClassifierTemplateParameter:
+	//	name=Name ('specializes' specialization=TemplateParameterConstraint)?
 	public ClassifierTemplateParameterDefinitionElements getClassifierTemplateParameterDefinitionAccess() {
 		return pClassifierTemplateParameterDefinition;
 	}
@@ -8060,8 +8085,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassifierTemplateParameterDefinitionAccess().getRule();
 	}
 
-	//TemplateParameterConstraint returns QualifiedNameList:
-	//	name+=QualifiedName;
+	//TemplateParameterConstraint QualifiedNameList:
+	//	name+=QualifiedName
 	public TemplateParameterConstraintElements getTemplateParameterConstraintAccess() {
 		return pTemplateParameterConstraint;
 	}
@@ -8070,8 +8095,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getTemplateParameterConstraintAccess().getRule();
 	}
 
-	//SpecializationClause returns QualifiedNameList:
-	//	"specializes" QualifiedNameList;
+	//SpecializationClause QualifiedNameList:
+	//	'specializes' QualifiedNameList
 	public SpecializationClauseElements getSpecializationClauseAccess() {
 		return pSpecializationClause;
 	}
@@ -8080,9 +8105,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getSpecializationClauseAccess().getRule();
 	}
 
-	/// * CLASSES * / ClassDeclaration returns ClassDefinition:
-	//	isAbstract?="abstract"? "class" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	/// * CLASSES * / ClassDeclaration ClassDefinition:
+	//	isAbstract?='abstract'? 'class' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+	//	ownedMember+=ClassifierTemplateParameter)* '>')?
+	//	specialization=SpecializationClause?
 	public ClassDeclarationElements getClassDeclarationAccess() {
 		return pClassDeclaration;
 	}
@@ -8092,7 +8118,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ClassDefinition:
-	//	ClassDeclaration "{" ownedMember+=ClassMember* "}";
+	//	ClassDeclaration
+	//	'{' ownedMember+=ClassMember* '}';
 	public ClassDefinitionElements getClassDefinitionAccess() {
 		return pClassDefinition;
 	}
@@ -8101,8 +8128,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassDefinitionAccess().getRule();
 	}
 
-	//ClassDefinitionOrStub returns ClassDefinition:
-	//	ClassDeclaration (isStub?=";" | "{" ownedMember+=ClassMember* "}");
+	//ClassDefinitionOrStub ClassDefinition:
+	//	ClassDeclaration (isStub?=';' | '{' ownedMember+=ClassMember* '}')
 	public ClassDefinitionOrStubElements getClassDefinitionOrStubAccess() {
 		return pClassDefinitionOrStub;
 	}
@@ -8111,9 +8138,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassDefinitionOrStubAccess().getRule();
 	}
 
-	//ClassMember returns Member:
-	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=VisibilityIndicator?
-	//	definition=ClassMemberDefinition;
+	//ClassMember Member:
+	//	documentation+=DOCUMENTATION_COMMENT*
+	//	annotation+=StereotypeAnnotation*
+	//	visibility=VisibilityIndicator?
+	//	definition=ClassMemberDefinition
 	public ClassMemberElements getClassMemberAccess() {
 		return pClassMember;
 	}
@@ -8122,8 +8151,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassMemberAccess().getRule();
 	}
 
-	//ClassMemberDefinition returns MemberDefinition:
-	//	ClassifierDefinitionOrStub | FeatureDefinitionOrStub;
+	//ClassMemberDefinition MemberDefinition:
+	//	ClassifierDefinitionOrStub | FeatureDefinitionOrStub
 	public ClassMemberDefinitionElements getClassMemberDefinitionAccess() {
 		return pClassMemberDefinition;
 	}
@@ -8132,9 +8161,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassMemberDefinitionAccess().getRule();
 	}
 
-	/// * ACTIVE CLASSES * / ActiveClassDeclaration returns ActiveClassDefinition:
-	//	isAbstract?="abstract"? "active" "class" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	/// * ACTIVE CLASSES * / ActiveClassDeclaration ActiveClassDefinition:
+	//	isAbstract?='abstract'? 'active' 'class' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+	//	ownedMember+=ClassifierTemplateParameter)* '>')?
+	//	specialization=SpecializationClause?
 	public ActiveClassDeclarationElements getActiveClassDeclarationAccess() {
 		return pActiveClassDeclaration;
 	}
@@ -8144,8 +8174,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ActiveClassDefinition:
-	//	ActiveClassDeclaration "{" ownedMember+=ActiveClassMember* "}" // CHANGE: Made classifierBehavior composite (and classifierBehavior isn't added to ownedMembers)
-	//	("do" classifierBehavior=BehaviorClause)?;
+	//	ActiveClassDeclaration
+	//	'{' ownedMember+=ActiveClassMember* '}' ('do' classifierBehavior=BehaviorClause)?;
 	public ActiveClassDefinitionElements getActiveClassDefinitionAccess() {
 		return pActiveClassDefinition;
 	}
@@ -8154,9 +8184,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getActiveClassDefinitionAccess().getRule();
 	}
 
-	//ActiveClassDefinitionOrStub returns ActiveClassDefinition:
-	//	ActiveClassDeclaration (isStub?=";" | "{" ownedMember+=ActiveClassMember* "}" ("do"
-	//	classifierBehavior=BehaviorClause)?);
+	//ActiveClassDefinitionOrStub ActiveClassDefinition:
+	//	ActiveClassDeclaration (isStub?=';' |
+	//	'{' ownedMember+=ActiveClassMember* '}' ('do' classifierBehavior=BehaviorClause)?)
 	public ActiveClassDefinitionOrStubElements getActiveClassDefinitionOrStubAccess() {
 		return pActiveClassDefinitionOrStub;
 	}
@@ -8165,9 +8195,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getActiveClassDefinitionOrStubAccess().getRule();
 	}
 
-	//BehaviorClause returns ActivityDefinition:
-	//	body=Block | name= // TODO: isStub = true
-	//	Name;
+	//BehaviorClause ActivityDefinition:
+	//	body=Block | name=Name
 	public BehaviorClauseElements getBehaviorClauseAccess() {
 		return pBehaviorClause;
 	}
@@ -8176,9 +8205,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getBehaviorClauseAccess().getRule();
 	}
 
-	//ActiveClassMember returns Member:
-	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=VisibilityIndicator?
-	//	definition=ActiveClassMemberDefinition;
+	//ActiveClassMember Member:
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	annotation+=StereotypeAnnotation*
+	//	visibility=VisibilityIndicator?
+	//	definition=ActiveClassMemberDefinition
 	public ActiveClassMemberElements getActiveClassMemberAccess() {
 		return pActiveClassMember;
 	}
@@ -8187,8 +8218,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getActiveClassMemberAccess().getRule();
 	}
 
-	//ActiveClassMemberDefinition returns MemberDefinition:
-	//	ClassMemberDefinition | ActiveFeatureDefinitionOrStub;
+	//ActiveClassMemberDefinition MemberDefinition:
+	//	ClassMemberDefinition | ActiveFeatureDefinitionOrStub
 	public ActiveClassMemberDefinitionElements getActiveClassMemberDefinitionAccess() {
 		return pActiveClassMemberDefinition;
 	}
@@ -8197,9 +8228,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getActiveClassMemberDefinitionAccess().getRule();
 	}
 
-	/// * DATA TYPES * / DataTypeDeclaration returns DataTypeDefinition:
-	//	isAbstract?="abstract"? "datatype" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	/// * DATA TYPES * / DataTypeDeclaration DataTypeDefinition:
+	//	isAbstract?='abstract'? 'datatype' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+	//	ownedMember+=ClassifierTemplateParameter)* '>')?
+	//	specialization=SpecializationClause?
 	public DataTypeDeclarationElements getDataTypeDeclarationAccess() {
 		return pDataTypeDeclaration;
 	}
@@ -8209,7 +8241,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DataTypeDefinition:
-	//	DataTypeDeclaration "{" ownedMember+=StructuredMember* "}";
+	//	DataTypeDeclaration
+	//	'{' ownedMember+=StructuredMember* '}';
 	public DataTypeDefinitionElements getDataTypeDefinitionAccess() {
 		return pDataTypeDefinition;
 	}
@@ -8218,8 +8251,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getDataTypeDefinitionAccess().getRule();
 	}
 
-	//DataTypeDefinitionOrStub returns DataTypeDefinition:
-	//	DataTypeDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+	//DataTypeDefinitionOrStub DataTypeDefinition:
+	//	DataTypeDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 	public DataTypeDefinitionOrStubElements getDataTypeDefinitionOrStubAccess() {
 		return pDataTypeDefinitionOrStub;
 	}
@@ -8228,9 +8261,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getDataTypeDefinitionOrStubAccess().getRule();
 	}
 
-	//StructuredMember returns Member:
-	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility="public"?
-	//	definition=PropertyDefinition;
+	//StructuredMember Member:
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	annotation+=StereotypeAnnotation*
+	//	visibility='public'?
+	//	definition=PropertyDefinition
 	public StructuredMemberElements getStructuredMemberAccess() {
 		return pStructuredMember;
 	}
@@ -8239,9 +8274,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getStructuredMemberAccess().getRule();
 	}
 
-	/// * ASSOCIATIONS * / AssociationDeclaration returns AssociationDefinition:
-	//	isAbstract?="abstract"? "assoc" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	/// * ASSOCIATIONS * / AssociationDeclaration AssociationDefinition:
+	//	isAbstract?='abstract'? 'assoc' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+	//	ownedMember+=ClassifierTemplateParameter)* '>')?
+	//	specialization=SpecializationClause?
 	public AssociationDeclarationElements getAssociationDeclarationAccess() {
 		return pAssociationDeclaration;
 	}
@@ -8251,7 +8287,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AssociationDefinition:
-	//	AssociationDeclaration "{" ownedMember+=StructuredMember* "}";
+	//	AssociationDeclaration
+	//	'{' ownedMember+=StructuredMember* '}';
 	public AssociationDefinitionElements getAssociationDefinitionAccess() {
 		return pAssociationDefinition;
 	}
@@ -8260,8 +8297,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getAssociationDefinitionAccess().getRule();
 	}
 
-	//AssociationDefinitionOrStub returns AssociationDefinition:
-	//	AssociationDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+	//AssociationDefinitionOrStub AssociationDefinition:
+	//	AssociationDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 	public AssociationDefinitionOrStubElements getAssociationDefinitionOrStubAccess() {
 		return pAssociationDefinitionOrStub;
 	}
@@ -8270,8 +8307,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getAssociationDefinitionOrStubAccess().getRule();
 	}
 
-	/// * ENUMERATIONS * / EnumerationDeclaration returns EnumerationDefinition:
-	//	"enum" name=Name specialization=SpecializationClause?;
+	/// * ENUMERATIONS * / EnumerationDeclaration EnumerationDefinition:
+	//	'enum' name=Name specialization=SpecializationClause?
 	public EnumerationDeclarationElements getEnumerationDeclarationAccess() {
 		return pEnumerationDeclaration;
 	}
@@ -8281,7 +8318,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EnumerationDefinition:
-	//	EnumerationDeclaration "{" (ownedMember+=EnumerationLiteralName ("," ownedMember+=EnumerationLiteralName)*)? "}";
+	//	EnumerationDeclaration
+	//	'{' (ownedMember+=EnumerationLiteralName (',' ownedMember+=EnumerationLiteralName)*)? '}';
 	public EnumerationDefinitionElements getEnumerationDefinitionAccess() {
 		return pEnumerationDefinition;
 	}
@@ -8290,9 +8328,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getEnumerationDefinitionAccess().getRule();
 	}
 
-	//EnumerationDefinitionOrStub returns EnumerationDefinition:
-	//	EnumerationDeclaration (isStub?=";" | "{" (ownedMember+=EnumerationLiteralName (","
-	//	ownedMember+=EnumerationLiteralName)*)? "}");
+	//EnumerationDefinitionOrStub EnumerationDefinition:
+	//	EnumerationDeclaration (isStub?=';' | '{' (ownedMember+=EnumerationLiteralName (','
+	//	ownedMember+=EnumerationLiteralName)*)? '}')
 	public EnumerationDefinitionOrStubElements getEnumerationDefinitionOrStubAccess() {
 		return pEnumerationDefinitionOrStub;
 	}
@@ -8301,9 +8339,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getEnumerationDefinitionOrStubAccess().getRule();
 	}
 
-	//EnumerationLiteralName returns Member:
-	//	documentation+=DOCUMENTATION_COMMENT? // TODO: visibility = 'public'
-	//	definition=EnumerationLiteralNameDefinition;
+	//EnumerationLiteralName Member:
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	// TODO: visibility = 'public'
+	//	definition=EnumerationLiteralNameDefinition
 	public EnumerationLiteralNameElements getEnumerationLiteralNameAccess() {
 		return pEnumerationLiteralName;
 	}
@@ -8312,8 +8351,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getEnumerationLiteralNameAccess().getRule();
 	}
 
-	//EnumerationLiteralNameDefinition returns EnumerationLiteralName:
-	//	name=Name;
+	//EnumerationLiteralNameDefinition EnumerationLiteralName:
+	//	name=Name
 	public EnumerationLiteralNameDefinitionElements getEnumerationLiteralNameDefinitionAccess() {
 		return pEnumerationLiteralNameDefinition;
 	}
@@ -8322,9 +8361,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getEnumerationLiteralNameDefinitionAccess().getRule();
 	}
 
-	/// * SIGNALS * / SignalDeclaration returns SignalDefinition:
-	//	isAbstract?="abstract"? "signal" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
-	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	/// * SIGNALS * / SignalDeclaration SignalDefinition:
+	//	isAbstract?='abstract'? 'signal' name=Name ('<' ownedMember+=ClassifierTemplateParameter (','
+	//	ownedMember+=ClassifierTemplateParameter)* '>')?
+	//	specialization=SpecializationClause?
 	public SignalDeclarationElements getSignalDeclarationAccess() {
 		return pSignalDeclaration;
 	}
@@ -8334,7 +8374,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SignalDefinition:
-	//	SignalDeclaration "{" ownedMember+=StructuredMember* "}";
+	//	SignalDeclaration
+	//	'{' ownedMember+=StructuredMember* '}';
 	public SignalDefinitionElements getSignalDefinitionAccess() {
 		return pSignalDefinition;
 	}
@@ -8343,8 +8384,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getSignalDefinitionAccess().getRule();
 	}
 
-	//SignalDefinitionOrStub returns SignalDefinition:
-	//	SignalDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+	//SignalDefinitionOrStub SignalDefinition:
+	//	SignalDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 	public SignalDefinitionOrStubElements getSignalDefinitionOrStubAccess() {
 		return pSignalDefinitionOrStub;
 	}
@@ -8353,9 +8394,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getSignalDefinitionOrStubAccess().getRule();
 	}
 
-	/// * ACTIVITIES * / ActivityDeclaration returns ActivityDefinition:
-	//	"activity" name=Name ("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)*
-	//	">")? "(" (ownedMember+=FormalParameter ("," ownedMember+=FormalParameter)*)? ")" ownedMember+=ReturnParameter?;
+	/// * ACTIVITIES * / ActivityDeclaration ActivityDefinition:
+	//	'activity' name=Name ('<' ownedMember+=ClassifierTemplateParameter (',' ownedMember+=ClassifierTemplateParameter)*
+	//	'>')?
+	//	'(' (ownedMember+=FormalParameter (',' ownedMember+=FormalParameter)*)? ')'
+	//	ownedMember+=ReturnParameter?
 	public ActivityDeclarationElements getActivityDeclarationAccess() {
 		return pActivityDeclaration;
 	}
@@ -8365,7 +8408,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ActivityDefinition:
-	//	ActivityDeclaration body=Block;
+	//	ActivityDeclaration
+	//	body=Block;
 	public ActivityDefinitionElements getActivityDefinitionAccess() {
 		return pActivityDefinition;
 	}
@@ -8374,8 +8418,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getActivityDefinitionAccess().getRule();
 	}
 
-	//ActivityDefinitionOrStub returns ActivityDefinition:
-	//	ActivityDeclaration (isStub?=";" | body=Block);
+	//ActivityDefinitionOrStub ActivityDefinition:
+	//	ActivityDeclaration (isStub?=';' | body=Block)
 	public ActivityDefinitionOrStubElements getActivityDefinitionOrStubAccess() {
 		return pActivityDefinitionOrStub;
 	}
@@ -8384,8 +8428,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getActivityDefinitionOrStubAccess().getRule();
 	}
 
-	//FormalParameter returns Member:
-	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* definition=FormalParameterDefinition;
+	//FormalParameter Member:
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	annotation+=StereotypeAnnotation*
+	//	definition=FormalParameterDefinition
 	public FormalParameterElements getFormalParameterAccess() {
 		return pFormalParameter;
 	}
@@ -8394,9 +8440,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getFormalParameterAccess().getRule();
 	}
 
-	//FormalParameterDefinition returns NonReturnParameter: // CHANGE: Added the NonReturnParameter subtype of FormalParameter to accomodate Xtext serialization.
-	//	direction=ParameterDirection name=Name ":" // CHANGE: Made TypedElementDefinition a composite part of FormalParameter, rather than the supertype
-	//	typePart=TypePart;
+	//FormalParameterDefinition NonReturnParameter:
+	//	direction=ParameterDirection name=Name ':'
+	//	// CHANGE: Made TypedElementDefinition a composite part of FormalParameter, rather than the supertype
+	//	typePart=TypePart
 	public FormalParameterDefinitionElements getFormalParameterDefinitionAccess() {
 		return pFormalParameterDefinition;
 	}
@@ -8405,8 +8452,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getFormalParameterDefinitionAccess().getRule();
 	}
 
-	//ReturnParameter returns Member:
-	//	definition=ReturnParameterDefinition;
+	//ReturnParameter Member:
+	//	definition=ReturnParameterDefinition
 	public ReturnParameterElements getReturnParameterAccess() {
 		return pReturnParameter;
 	}
@@ -8415,9 +8462,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getReturnParameterAccess().getRule();
 	}
 
-	//// CHANGE: Made return the default for direction
-	//ReturnParameterDefinition returns ReturnParameter: // CHANGE: Added the NonReturnParameter subtype of FormalParameter to accomodate Xtext serialization.
-	//	":" typePart=TypePart;
+	//ReturnParameterDefinition ReturnParameter: // CHANGE: Added the NonReturnParameter subtype of FormalParameter to accomodate Xtext serialization.
+	//	':' typePart=TypePart
 	public ReturnParameterDefinitionElements getReturnParameterDefinitionAccess() {
 		return pReturnParameterDefinition;
 	}
@@ -8427,7 +8473,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ParameterDirection:
-	//	"in" | "out" | "inout";
+	//	'in' | 'out' | 'inout';
 	public ParameterDirectionElements getParameterDirectionAccess() {
 		return pParameterDirection;
 	}
@@ -8436,8 +8482,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getParameterDirectionAccess().getRule();
 	}
 
-	/// * FEATURES * / FeatureDefinitionOrStub returns MemberDefinition:
-	//	AttributeDefinition | OperationDefinitionOrStub;
+	/// * FEATURES * / FeatureDefinitionOrStub MemberDefinition:
+	//	AttributeDefinition | OperationDefinitionOrStub
 	public FeatureDefinitionOrStubElements getFeatureDefinitionOrStubAccess() {
 		return pFeatureDefinitionOrStub;
 	}
@@ -8446,8 +8492,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getFeatureDefinitionOrStubAccess().getRule();
 	}
 
-	//ActiveFeatureDefinitionOrStub returns MemberDefinition:
-	//	ReceptionDefinition | SignalReceptionDefinitionOrStub;
+	//ActiveFeatureDefinitionOrStub MemberDefinition:
+	//	ReceptionDefinition | SignalReceptionDefinitionOrStub
 	public ActiveFeatureDefinitionOrStubElements getActiveFeatureDefinitionOrStubAccess() {
 		return pActiveFeatureDefinitionOrStub;
 	}
@@ -8457,7 +8503,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * PROPERTIES * / PropertyDefinition:
-	//	PropertyDeclaration ";";
+	//	PropertyDeclaration ';';
 	public PropertyDefinitionElements getPropertyDefinitionAccess() {
 		return pPropertyDefinition;
 	}
@@ -8466,8 +8512,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPropertyDefinitionAccess().getRule();
 	}
 
-	//AttributeDefinition returns PropertyDefinition:
-	//	PropertyDeclaration initializer=AttributeInitializer? ";";
+	//AttributeDefinition PropertyDefinition:
+	//	PropertyDeclaration initializer=AttributeInitializer? ';'
 	public AttributeDefinitionElements getAttributeDefinitionAccess() {
 		return pAttributeDefinition;
 	}
@@ -8476,8 +8522,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getAttributeDefinitionAccess().getRule();
 	}
 
-	//AttributeInitializer returns Expression:
-	//	"=" InitializationExpression;
+	//AttributeInitializer Expression:
+	//	'=' InitializationExpression
 	public AttributeInitializerElements getAttributeInitializerAccess() {
 		return pAttributeInitializer;
 	}
@@ -8486,9 +8532,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getAttributeInitializerAccess().getRule();
 	}
 
-	//PropertyDeclaration returns PropertyDefinition:
-	//	name=Name ":" isComposite?="compose"? // CHANGE: Made TypedElementDefinition a composite part of PropertyDefinition instead of the supertype
-	//	typePart=TypePart;
+	//PropertyDeclaration PropertyDefinition:
+	//	name=Name ':' isComposite?='compose'?
+	//	// CHANGE: Made TypedElementDefinition a composite part of PropertyDefinition instead of the supertype
+	//	typePart=TypePart
 	public PropertyDeclarationElements getPropertyDeclarationAccess() {
 		return pPropertyDeclaration;
 	}
@@ -8497,13 +8544,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPropertyDeclarationAccess().getRule();
 	}
 
-	//TypePart returns TypedElementDefinition:
-	//	(isAny?="any" // CHANGE: Added isAny attribute to TypedElementDefinition to allow Xtext serialization.
-	//	// CHANGE: Added isMultiplicity attribute to TypedElementDefinition.
-	//	// CHANGE: Added isSequence attribute to TypedElementDefinition.
-	//	| typeName=QualifiedName) (("[" (isMultiplicity?="]" | (lowerBound=NATURAL_VALUE "..")?
-	//	upperBound=UnlimitedNaturalLiteral "]"))? (isOrdered?="ordered" isNonunique?="nonunique"? | isNonunique?="nonunique"
-	//	isOrdered?="ordered"? | isSequence?="sequence")?)?;
+	//TypePart TypedElementDefinition:
+	//	(isAny?='any' | typeName=QualifiedName) (('[' (isMultiplicity?=']' | (lowerBound=NATURAL_VALUE '..')?
+	//	upperBound=UnlimitedNaturalLiteral ']'))? (isOrdered?='ordered' isNonunique?='nonunique'? | isNonunique?='nonunique'
+	//	isOrdered?='ordered'? | isSequence?='sequence')?)?
 	public TypePartElements getTypePartAccess() {
 		return pTypePart;
 	}
@@ -8517,7 +8561,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	//	'any' | QualifiedName
 	//;
 	// * / UnlimitedNaturalLiteral:
-	//	NATURAL_VALUE | "*";
+	//	NATURAL_VALUE | '*';
 	public UnlimitedNaturalLiteralElements getUnlimitedNaturalLiteralAccess() {
 		return pUnlimitedNaturalLiteral;
 	}
@@ -8526,9 +8570,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnlimitedNaturalLiteralAccess().getRule();
 	}
 
-	/// * OPERATIONS * / OperationDeclaration returns OperationDefinition:
-	//	isAbstract?="abstract"? name=Name "(" (ownedMember+=FormalParameter ("," ownedMember+=FormalParameter)*)? ")"
-	//	ownedMember+=ReturnParameter? redefinition=RedefinitionClause?;
+	/// * OPERATIONS * / OperationDeclaration OperationDefinition:
+	//	isAbstract?='abstract'? name=Name
+	//	'(' (ownedMember+=FormalParameter (',' ownedMember+=FormalParameter)*)? ')'
+	//	ownedMember+=ReturnParameter?
+	//	redefinition=RedefinitionClause?
 	public OperationDeclarationElements getOperationDeclarationAccess() {
 		return pOperationDeclaration;
 	}
@@ -8537,8 +8583,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getOperationDeclarationAccess().getRule();
 	}
 
-	//OperationDefinitionOrStub returns OperationDefinition:
-	//	OperationDeclaration (isStub?=";" | body=Block);
+	//OperationDefinitionOrStub OperationDefinition:
+	//	OperationDeclaration (isStub?=';' | body=Block)
 	public OperationDefinitionOrStubElements getOperationDefinitionOrStubAccess() {
 		return pOperationDefinitionOrStub;
 	}
@@ -8547,8 +8593,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getOperationDefinitionOrStubAccess().getRule();
 	}
 
-	//RedefinitionClause returns QualifiedNameList:
-	//	"redefines" QualifiedNameList;
+	//RedefinitionClause QualifiedNameList:
+	//	'redefines' QualifiedNameList
 	public RedefinitionClauseElements getRedefinitionClauseAccess() {
 		return pRedefinitionClause;
 	}
@@ -8557,9 +8603,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getRedefinitionClauseAccess().getRule();
 	}
 
-	/// * RECEPTIONS * / // TODO: name = signal.nameBinding->last().name
-	//ReceptionDefinition:
-	//	"receive" signalName=QualifiedName ";";
+	/// * RECEPTIONS * / ReceptionDefinition:
+	//	'receive' signalName=QualifiedName ';'
+	//	// TODO: name = signal.nameBinding->last().name
+	//;
 	public ReceptionDefinitionElements getReceptionDefinitionAccess() {
 		return pReceptionDefinition;
 	}
@@ -8568,8 +8615,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getReceptionDefinitionAccess().getRule();
 	}
 
-	//SignalReceptionDeclaration returns SignalReceptionDefinition:
-	//	"receive" "signal" name=Name specialization=SpecializationClause?;
+	//SignalReceptionDeclaration SignalReceptionDefinition:
+	//	'receive' 'signal' name=Name specialization=SpecializationClause?
 	public SignalReceptionDeclarationElements getSignalReceptionDeclarationAccess() {
 		return pSignalReceptionDeclaration;
 	}
@@ -8578,8 +8625,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getSignalReceptionDeclarationAccess().getRule();
 	}
 
-	//SignalReceptionDefinitionOrStub returns SignalReceptionDefinition:
-	//	SignalReceptionDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+	//SignalReceptionDefinitionOrStub SignalReceptionDefinition:
+	//	SignalReceptionDeclaration (isStub?=';' | '{' ownedMember+=StructuredMember* '}')
 	public SignalReceptionDefinitionOrStubElements getSignalReceptionDefinitionOrStubAccess() {
 		return pSignalReceptionDefinitionOrStub;
 	}
@@ -8601,7 +8648,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedName:
-	//	UnqualifiedName (("::" nameBinding+=NameBinding)+ | ("." nameBinding+=NameBinding)+)?;
+	//	UnqualifiedName (('::' nameBinding+=NameBinding)+ | ('.' nameBinding+=NameBinding)+)?;
 	public QualifiedNameElements getQualifiedNameAccess() {
 		return pQualifiedName;
 	}
@@ -8610,9 +8657,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getQualifiedNameAccess().getRule();
 	}
 
-	//PotentiallyAmbiguousQualifiedName returns QualifiedName:
-	//	UnqualifiedName (("::" nameBinding+=NameBinding)+ | isAmbiguous?="." nameBinding+=NameBinding ("."
-	//	nameBinding+=NameBinding)*)?;
+	//PotentiallyAmbiguousQualifiedName QualifiedName:
+	//	UnqualifiedName (('::' nameBinding+=NameBinding)+ | isAmbiguous?='.' nameBinding+=NameBinding ('.'
+	//	nameBinding+=NameBinding)*)?
 	public PotentiallyAmbiguousQualifiedNameElements getPotentiallyAmbiguousQualifiedNameAccess() {
 		return pPotentiallyAmbiguousQualifiedName;
 	}
@@ -8621,8 +8668,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPotentiallyAmbiguousQualifiedNameAccess().getRule();
 	}
 
-	//ColonQualifiedName returns QualifiedName:
-	//	UnqualifiedName ("::" nameBinding+=NameBinding)+;
+	//ColonQualifiedName QualifiedName:
+	//	UnqualifiedName ('::' nameBinding+=NameBinding)+
 	public ColonQualifiedNameElements getColonQualifiedNameAccess() {
 		return pColonQualifiedName;
 	}
@@ -8631,8 +8678,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getColonQualifiedNameAccess().getRule();
 	}
 
-	//DotQualifiedName returns QualifiedName:
-	//	UnqualifiedName ("." nameBinding+=NameBinding)+;
+	//DotQualifiedName QualifiedName:
+	//	UnqualifiedName ('.' nameBinding+=NameBinding)+
 	public DotQualifiedNameElements getDotQualifiedNameAccess() {
 		return pDotQualifiedName;
 	}
@@ -8641,8 +8688,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getDotQualifiedNameAccess().getRule();
 	}
 
-	//UnqualifiedName returns QualifiedName:
-	//	nameBinding+=NameBinding;
+	//UnqualifiedName QualifiedName:
+	//	nameBinding+=NameBinding
 	public UnqualifiedNameElements getUnqualifiedNameAccess() {
 		return pUnqualifiedName;
 	}
@@ -8671,7 +8718,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	//	( '::' names+=Name)+
 	//;
 	// * / / * Unbounded lookahead required here * / TemplateBinding:
-	//	"<" (NamedTemplateBinding | PositionalTemplateBinding) ">";
+	//	'<' (NamedTemplateBinding | PositionalTemplateBinding) '>';
 	public TemplateBindingElements getTemplateBindingAccess() {
 		return pTemplateBinding;
 	}
@@ -8681,7 +8728,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PositionalTemplateBinding:
-	//	argumentName+=QualifiedName ("," argumentName+=QualifiedName)*;
+	//	argumentName+=QualifiedName (',' argumentName+=QualifiedName)*;
 	public PositionalTemplateBindingElements getPositionalTemplateBindingAccess() {
 		return pPositionalTemplateBinding;
 	}
@@ -8691,7 +8738,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NamedTemplateBinding:
-	//	substitution+=TemplateParameterSubstitution ("," substitution+=TemplateParameterSubstitution)*;
+	//	substitution+=TemplateParameterSubstitution (',' substitution+=TemplateParameterSubstitution)*;
 	public NamedTemplateBindingElements getNamedTemplateBindingAccess() {
 		return pNamedTemplateBinding;
 	}
@@ -8722,15 +8769,16 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpressionAccess().getRule();
 	}
 
-	/// * PRIMARY EXPRESSIONS * / PrimaryExpression returns Expression:
-	//	BaseExpression ({FeatureReference.expression=current} "." nameBinding=NameBinding
-	//	{FeatureInvocationExpression.target=current} tuple=Tuple // CHANGE: Made FeatureReference and ExtentOrExpression subtypes of Expression.
-	//	| {FeatureReference.expression=current} "." nameBinding=NameBinding {PropertyAccessExpression.featureReference=current}
-	//	| {ExtentOrExpression.nonNameExpression=current} "->" ({SequenceOperationExpression.primary=current}
-	//	operation=QualifiedName tuple=Tuple // CHANGE: Made SequenceExpansionExpression concrete.
-	//	| {SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName |
-	//	{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")") |
-	//	{SequenceAccessExpression.primary=current} index=Index)*;
+	/// * PRIMARY EXPRESSIONS * / PrimaryExpression Expression:
+	//	BaseExpression ({FeatureReference.expression=current} '.' nameBinding=NameBinding
+	//	{FeatureInvocationExpression.target=current} tuple=Tuple | {FeatureReference.expression=current} '.'
+	//	nameBinding=NameBinding {PropertyAccessExpression.featureReference=current} |
+	//	{ExtentOrExpression.nonNameExpression=current} '->' ({SequenceOperationExpression.primary=current}
+	//	operation=QualifiedName tuple=Tuple
+	//	| {SequenceReductionExpression.primary=current} 'reduce' isOrdered?='ordered'? behaviorName=QualifiedName
+	//	// CHANGE: Made SequenceExpansionExpression concrete.
+	//	| {SequenceExpansionExpression.primary=current} operation=ID variable=Name '(' argument=Expression ')') |
+	//	{SequenceAccessExpression.primary=current} index=Index)*
 	public PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return pPrimaryExpression;
 	}
@@ -8754,11 +8802,11 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	////    {SequenceAccessExpression.primary = current} index = Index
 	////  )+
 	////;
-	//BaseExpression returns Expression:
+	//BaseExpression Expression:
 	//	LiteralExpression | ThisExpression | SuperInvocationExpression | InstanceCreationOrSequenceConstructionExpression |
 	//	ClassExtentExpression | LinkOperationExpression | SequenceConstructionExpression |
 	//	SequenceOperationOrReductionOrExpansionExpression | BehaviorInvocationExpression | NameExpression |
-	//	ParenthesizedExpression;
+	//	ParenthesizedExpression
 	public BaseExpressionElements getBaseExpressionAccess() {
 		return pBaseExpression;
 	}
@@ -8798,7 +8846,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnboundedLiteralExpression:
-	//	{UnboundedLiteralExpression} "*";
+	//	{UnboundedLiteralExpression} '*';
 	public UnboundedLiteralExpressionElements getUnboundedLiteralExpressionAccess() {
 		return pUnboundedLiteralExpression;
 	}
@@ -8827,8 +8875,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getNameExpressionAccess().getRule();
 	}
 
-	/// * THIS EXPRESSIONS * / ThisExpression returns Expression:
-	//	{FeatureInvocationExpression} "this" tuple=Tuple | {ThisExpression} "this";
+	/// * THIS EXPRESSIONS * / ThisExpression Expression:
+	//	{FeatureInvocationExpression} 'this' tuple=Tuple | {ThisExpression} 'this'
 	public ThisExpressionElements getThisExpressionAccess() {
 		return pThisExpression;
 	}
@@ -8837,8 +8885,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getThisExpressionAccess().getRule();
 	}
 
-	/// * PARENTHESIZED EXPRESSIONS * / ParenthesizedExpression returns Expression:
-	//	"(" Expression ")";
+	/// * PARENTHESIZED EXPRESSIONS * / ParenthesizedExpression Expression:
+	//	'(' Expression ')'
 	public ParenthesizedExpressionElements getParenthesizedExpressionAccess() {
 		return pParenthesizedExpression;
 	}
@@ -8869,7 +8917,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Tuple:
 	/// * {Tuple}'(' ( namedTupleExpressionList = NamedTupleExpressionList | ( positionalTupleExpressionList = PositionalTupleExpressionList )? ) ')' * /
-	//	"(" (NamedTupleExpressionList | PositionalTupleExpressionList) ")";
+	//	'(' (NamedTupleExpressionList | PositionalTupleExpressionList) ')';
 	public TupleElements getTupleAccess() {
 		return pTuple;
 	}
@@ -8878,8 +8926,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getTupleAccess().getRule();
 	}
 
-	//PositionalTupleExpressionList returns PositionalTuple:
-	//	{PositionalTuple} (expression+=Expression ("," expression+=Expression)*)?;
+	//PositionalTupleExpressionList PositionalTuple:
+	//	{PositionalTuple} (expression+=Expression (',' expression+=Expression)*)?
 	public PositionalTupleExpressionListElements getPositionalTupleExpressionListAccess() {
 		return pPositionalTupleExpressionList;
 	}
@@ -8888,8 +8936,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPositionalTupleExpressionListAccess().getRule();
 	}
 
-	//NamedTupleExpressionList returns NamedTuple:
-	//	namedExpression+=NamedExpression ("," namedExpression+=NamedExpression)*;
+	//NamedTupleExpressionList NamedTuple:
+	//	namedExpression+=NamedExpression (',' namedExpression+=NamedExpression)*
 	public NamedTupleExpressionListElements getNamedTupleExpressionListAccess() {
 		return pNamedTupleExpressionList;
 	}
@@ -8899,7 +8947,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NamedExpression:
-	//	name=Name "=>" expression=Expression;
+	//	name=Name '=>' expression=Expression;
 	public NamedExpressionElements getNamedExpressionAccess() {
 		return pNamedExpression;
 	}
@@ -8909,7 +8957,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SuperInvocationExpression:
-	//	"super" ("." target=QualifiedName)? tuple=Tuple;
+	//	'super' ('.' target=QualifiedName)? tuple=Tuple;
 	public SuperInvocationExpressionElements getSuperInvocationExpressionAccess() {
 		return pSuperInvocationExpression;
 	}
@@ -8918,9 +8966,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getSuperInvocationExpressionAccess().getRule();
 	}
 
-	/// * INSTANCE CREATION EXPRESSIONS * / InstanceCreationOrSequenceConstructionExpression returns Expression:
-	//	"new" ({SequenceConstructionExpression} typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? "{"
-	//	elements=SequenceElements? "}" | {InstanceCreationExpression} constructor=QualifiedName tuple=Tuple);
+	/// * INSTANCE CREATION EXPRESSIONS * / InstanceCreationOrSequenceConstructionExpression Expression:
+	//	'new' ({SequenceConstructionExpression} typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? '{'
+	//	elements=SequenceElements? '}' | {InstanceCreationExpression} constructor=QualifiedName tuple=Tuple)
 	public InstanceCreationOrSequenceConstructionExpressionElements getInstanceCreationOrSequenceConstructionExpressionAccess() {
 		return pInstanceCreationOrSequenceConstructionExpression;
 	}
@@ -8930,7 +8978,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * LINK OPERATION EXPRESSIONS * / LinkOperationExpression:
-	//	associationName=PotentiallyAmbiguousQualifiedName "." operation=LinkOperation tuple=LinkOperationTuple;
+	//	associationName=PotentiallyAmbiguousQualifiedName '.' operation=LinkOperation tuple=LinkOperationTuple;
 	public LinkOperationExpressionElements getLinkOperationExpressionAccess() {
 		return pLinkOperationExpression;
 	}
@@ -8940,7 +8988,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LinkOperation:
-	//	"createLink" | "destroyLink" | "clearAssoc";
+	//	'createLink' | 'destroyLink' | 'clearAssoc';
 	public LinkOperationElements getLinkOperationAccess() {
 		return pLinkOperation;
 	}
@@ -8949,8 +8997,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getLinkOperationAccess().getRule();
 	}
 
-	//LinkOperationTuple returns Tuple:
-	//	"(" (IndexedNamedTupleExpressionList | PositionalTupleExpressionList) ")";
+	//LinkOperationTuple Tuple:
+	//	'(' (IndexedNamedTupleExpressionList | PositionalTupleExpressionList) ')'
 	public LinkOperationTupleElements getLinkOperationTupleAccess() {
 		return pLinkOperationTuple;
 	}
@@ -8959,8 +9007,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getLinkOperationTupleAccess().getRule();
 	}
 
-	//IndexedNamedTupleExpressionList returns NamedTuple:
-	//	namedExpression+=IndexedNamedExpression ("," namedExpression+=IndexedNamedExpression)*;
+	//IndexedNamedTupleExpressionList NamedTuple:
+	//	namedExpression+=IndexedNamedExpression (',' namedExpression+=IndexedNamedExpression)*
 	public IndexedNamedTupleExpressionListElements getIndexedNamedTupleExpressionListAccess() {
 		return pIndexedNamedTupleExpressionList;
 	}
@@ -8969,8 +9017,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getIndexedNamedTupleExpressionListAccess().getRule();
 	}
 
-	//IndexedNamedExpression returns NamedExpression:
-	//	name=Name index=Index? "=>" expression=Expression;
+	//IndexedNamedExpression NamedExpression:
+	//	name=Name index=Index? '=>' expression=Expression
 	public IndexedNamedExpressionElements getIndexedNamedExpressionAccess() {
 		return pIndexedNamedExpression;
 	}
@@ -8980,7 +9028,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * CLASS EXTENT EXPRESSIONS * / ClassExtentExpression:
-	//	className=PotentiallyAmbiguousQualifiedName "." "allInstances" "(" ")";
+	//	className=PotentiallyAmbiguousQualifiedName '.' 'allInstances' '(' ')';
 	public ClassExtentExpressionElements getClassExtentExpressionAccess() {
 		return pClassExtentExpression;
 	}
@@ -8990,9 +9038,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * SEQUENCE CONSTRUCTION EXPRESSIONS * / SequenceConstructionExpression:
-	//	(isAny?="any" // CHANGE: Added isAny attribute to SequenceConstructionExpression in order to allow Xtext serialization.
-	//	| typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? "{" elements=SequenceElements? "}" |
-	//	hasMultiplicity?="null";
+	//	(isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? '{' elements=SequenceElements? '}' |
+	//	hasMultiplicity?='null';
 	public SequenceConstructionExpressionElements getSequenceConstructionExpressionAccess() {
 		return pSequenceConstructionExpression;
 	}
@@ -9002,7 +9049,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MultiplicityIndicator:
-	//	"[" "]";
+	//	'[' ']';
 	public MultiplicityIndicatorElements getMultiplicityIndicatorAccess() {
 		return pMultiplicityIndicator;
 	}
@@ -9022,7 +9069,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SequenceRange:
-	//	rangeLower=Expression ".." rangeUpper=Expression;
+	//	rangeLower=Expression '..' rangeUpper=Expression;
 	public SequenceRangeElements getSequenceRangeAccess() {
 		return pSequenceRange;
 	}
@@ -9032,7 +9079,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SequenceExpressionList:
-	//	element+=SequenceElement ("," element+=SequenceElement)* ","?;
+	//	element+=SequenceElement (',' element+=SequenceElement)* ','?;
 	public SequenceExpressionListElements getSequenceExpressionListAccess() {
 		return pSequenceExpressionList;
 	}
@@ -9041,8 +9088,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getSequenceExpressionListAccess().getRule();
 	}
 
-	//SequenceElement returns Expression:
-	//	Expression | SequenceInitializationExpression;
+	//SequenceElement Expression:
+	//	Expression | SequenceInitializationExpression
 	public SequenceElementElements getSequenceElementAccess() {
 		return pSequenceElement;
 	}
@@ -9051,8 +9098,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getSequenceElementAccess().getRule();
 	}
 
-	//SequenceInitializationExpression returns SequenceConstructionExpression:
-	//	"new"? "{" elements=SequenceElements "}";
+	//SequenceInitializationExpression SequenceConstructionExpression:
+	//	'new'? '{' elements=SequenceElements '}'
 	public SequenceInitializationExpressionElements getSequenceInitializationExpressionAccess() {
 		return pSequenceInitializationExpression;
 	}
@@ -9061,8 +9108,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getSequenceInitializationExpressionAccess().getRule();
 	}
 
-	/// * SEQUENCE ACCESS EXPRESSIONS * / Index returns Expression:
-	//	"[" Expression "]";
+	/// * SEQUENCE ACCESS EXPRESSIONS * / Index Expression:
+	//	'[' Expression ']'
 	public IndexElements getIndexAccess() {
 		return pIndex;
 	}
@@ -9072,11 +9119,12 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * SEQUENCE OPERATION, REDUCTION AND EXPANSION EXPRESSIONS * / // NOTE: This only covers the case when the primary is a class extent shorthand.
-	//SequenceOperationOrReductionOrExpansionExpression returns Expression:
-	//	{ExtentOrExpression} name=PotentiallyAmbiguousQualifiedName "->" ({SequenceOperationExpression.primary=current}
-	//	operation=QualifiedName tuple=Tuple // CHANGE: Made SequenceExpansionExpression concrete.
-	//	| {SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName |
-	//	{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")");
+	//SequenceOperationOrReductionOrExpansionExpression Expression:
+	//	{ExtentOrExpression} name=PotentiallyAmbiguousQualifiedName '->' ({SequenceOperationExpression.primary=current}
+	//	operation=QualifiedName tuple=Tuple
+	//	| {SequenceReductionExpression.primary=current} 'reduce' isOrdered?='ordered'? behaviorName=QualifiedName
+	//	// CHANGE: Made SequenceExpansionExpression concrete.
+	//	| {SequenceExpansionExpression.primary=current} operation=ID variable=Name '(' argument=Expression ')')
 	public SequenceOperationOrReductionOrExpansionExpressionElements getSequenceOperationOrReductionOrExpansionExpressionAccess() {
 		return pSequenceOperationOrReductionOrExpansionExpression;
 	}
@@ -9085,9 +9133,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getSequenceOperationOrReductionOrExpansionExpressionAccess().getRule();
 	}
 
-	/// * INCREMENT OR DECREMENT EXPRESSIONS * / PrefixExpression returns IncrementOrDecrementExpression: // CHANGE: Added operator to IncrementOrDecrementExpression in the metamodel.
-	//	operator=AffixOperator operand= // isPrefix ?= ''
-	//	LeftHandSide;
+	/// * INCREMENT OR DECREMENT EXPRESSIONS * / PrefixExpression IncrementOrDecrementExpression:
+	//	operator=AffixOperator operand=LeftHandSide
 	public PrefixExpressionElements getPrefixExpressionAccess() {
 		return pPrefixExpression;
 	}
@@ -9097,7 +9144,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AffixOperator:
-	//	"++" | "--";
+	//	'++' | '--';
 	public AffixOperatorElements getAffixOperatorAccess() {
 		return pAffixOperator;
 	}
@@ -9106,8 +9153,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getAffixOperatorAccess().getRule();
 	}
 
-	/// * UNARY EXPRESSIONS * / UnaryExpression returns Expression:
-	//	PostfixOrCastExpression | NonPostfixNonCastUnaryExpression;
+	/// * UNARY EXPRESSIONS * / UnaryExpression Expression:
+	//	PostfixOrCastExpression | NonPostfixNonCastUnaryExpression
 	public UnaryExpressionElements getUnaryExpressionAccess() {
 		return pUnaryExpression;
 	}
@@ -9116,8 +9163,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnaryExpressionAccess().getRule();
 	}
 
-	//PostfixOrCastExpression returns Expression:
-	//	PostfixExpression | CastExpression | PrimaryExpression;
+	//PostfixOrCastExpression Expression:
+	//	PostfixExpression | CastExpression | PrimaryExpression
 	public PostfixOrCastExpressionElements getPostfixOrCastExpressionAccess() {
 		return pPostfixOrCastExpression;
 	}
@@ -9126,8 +9173,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPostfixOrCastExpressionAccess().getRule();
 	}
 
-	//PostfixExpression returns IncrementOrDecrementExpression:
-	//	operand=LeftHandSide operator=AffixOperator;
+	//PostfixExpression IncrementOrDecrementExpression:
+	//	operand=LeftHandSide operator=AffixOperator
 	public PostfixExpressionElements getPostfixExpressionAccess() {
 		return pPostfixExpression;
 	}
@@ -9136,8 +9183,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getPostfixExpressionAccess().getRule();
 	}
 
-	//NonPostfixNonCastUnaryExpression returns Expression:
-	//	PrefixExpression | NumericUnaryExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression;
+	//NonPostfixNonCastUnaryExpression Expression:
+	//	PrefixExpression | NumericUnaryExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression
 	public NonPostfixNonCastUnaryExpressionElements getNonPostfixNonCastUnaryExpressionAccess() {
 		return pNonPostfixNonCastUnaryExpression;
 	}
@@ -9147,7 +9194,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BooleanUnaryExpression:
-	//	operator="!" operand=UnaryExpression;
+	//	operator='!' operand=UnaryExpression;
 	public BooleanUnaryExpressionElements getBooleanUnaryExpressionAccess() {
 		return pBooleanUnaryExpression;
 	}
@@ -9157,7 +9204,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BitStringUnaryExpression:
-	//	operator="~" operand=UnaryExpression;
+	//	operator='~' operand=UnaryExpression;
 	public BitStringUnaryExpressionElements getBitStringUnaryExpressionAccess() {
 		return pBitStringUnaryExpression;
 	}
@@ -9177,7 +9224,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NumericUnaryOperator:
-	//	"+" | "-";
+	//	'+' | '-';
 	public NumericUnaryOperatorElements getNumericUnaryOperatorAccess() {
 		return pNumericUnaryOperator;
 	}
@@ -9187,7 +9234,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IsolationExpression:
-	//	operator="$" operand=UnaryExpression;
+	//	operator='$' operand=UnaryExpression;
 	public IsolationExpressionElements getIsolationExpressionAccess() {
 		return pIsolationExpression;
 	}
@@ -9197,7 +9244,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CastExpression: // CHANGE: Added isAny attribute to CastExpression in order to allow Xtext serialization.
-	//	"(" (isAny?="any" | typeName=QualifiedName) ")" operand=CastCompletion;
+	//	'(' (isAny?='any' | typeName=QualifiedName) ')' operand=CastCompletion;
 	public CastExpressionElements getCastExpressionAccess() {
 		return pCastExpression;
 	}
@@ -9206,8 +9253,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getCastExpressionAccess().getRule();
 	}
 
-	//CastCompletion returns Expression:
-	//	PostfixOrCastExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression;
+	//CastCompletion Expression:
+	//	PostfixOrCastExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression
 	public CastCompletionElements getCastCompletionAccess() {
 		return pCastCompletion;
 	}
@@ -9216,8 +9263,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getCastCompletionAccess().getRule();
 	}
 
-	/// * ARITHMETIC EXPRESSIONS * / MultiplicativeExpression returns Expression:
-	//	UnaryExpression ({ArithmeticExpression.operand1=current} operator=MultiplicativeOperator operand2=UnaryExpression)*;
+	/// * ARITHMETIC EXPRESSIONS * / MultiplicativeExpression Expression:
+	//	UnaryExpression ({ArithmeticExpression.operand1=current} operator=MultiplicativeOperator operand2=UnaryExpression)*
 	public MultiplicativeExpressionElements getMultiplicativeExpressionAccess() {
 		return pMultiplicativeExpression;
 	}
@@ -9227,7 +9274,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MultiplicativeOperator:
-	//	"*" | "/" | "%";
+	//	'*' | '/' | '%';
 	public MultiplicativeOperatorElements getMultiplicativeOperatorAccess() {
 		return pMultiplicativeOperator;
 	}
@@ -9236,9 +9283,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getMultiplicativeOperatorAccess().getRule();
 	}
 
-	//AdditiveExpression returns Expression:
+	//AdditiveExpression Expression:
 	//	MultiplicativeExpression ({ArithmeticExpression.operand1=current} operator=AdditiveOperator
-	//	operand2=MultiplicativeExpression)*;
+	//	operand2=MultiplicativeExpression)*
 	public AdditiveExpressionElements getAdditiveExpressionAccess() {
 		return pAdditiveExpression;
 	}
@@ -9248,7 +9295,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AdditiveOperator:
-	//	"+" | "-";
+	//	'+' | '-';
 	public AdditiveOperatorElements getAdditiveOperatorAccess() {
 		return pAdditiveOperator;
 	}
@@ -9257,8 +9304,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getAdditiveOperatorAccess().getRule();
 	}
 
-	/// * SHIFT EXPRESSIONS * / ShiftExpression returns Expression:
-	//	AdditiveExpression ({ShiftExpression.operand1=current} operator=ShiftOperator operand2=AdditiveExpression)*;
+	/// * SHIFT EXPRESSIONS * / ShiftExpression Expression:
+	//	AdditiveExpression ({ShiftExpression.operand1=current} operator=ShiftOperator operand2=AdditiveExpression)*
 	public ShiftExpressionElements getShiftExpressionAccess() {
 		return pShiftExpression;
 	}
@@ -9268,7 +9315,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ShiftOperator:
-	//	"<<" | ">>" | ">>>";
+	//	'<<' | '>>' | '>>>';
 	public ShiftOperatorElements getShiftOperatorAccess() {
 		return pShiftOperator;
 	}
@@ -9277,8 +9324,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getShiftOperatorAccess().getRule();
 	}
 
-	/// * RELATIONAL EXPRESSIONS * / RelationalExpression returns Expression:
-	//	ShiftExpression ({RelationalExpression.operand1=current} operator=RelationalOperator operand2=ShiftExpression)?;
+	/// * RELATIONAL EXPRESSIONS * / RelationalExpression Expression:
+	//	ShiftExpression ({RelationalExpression.operand1=current} operator=RelationalOperator operand2=ShiftExpression)?
 	public RelationalExpressionElements getRelationalExpressionAccess() {
 		return pRelationalExpression;
 	}
@@ -9288,7 +9335,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RelationalOperator:
-	//	"<" | ">" | "<=" | ">=";
+	//	'<' | '>' | '<=' | '>=';
 	public RelationalOperatorElements getRelationalOperatorAccess() {
 		return pRelationalOperator;
 	}
@@ -9297,9 +9344,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getRelationalOperatorAccess().getRule();
 	}
 
-	/// * CLASSIFICATION EXPRESSIONS * / ClassificationExpression returns Expression:
+	/// * CLASSIFICATION EXPRESSIONS * / ClassificationExpression Expression:
 	//	RelationalExpression ({ClassificationExpression.operand=current} operator=ClassificationOperator
-	//	typeName=QualifiedName)?;
+	//	typeName=QualifiedName)?
 	public ClassificationExpressionElements getClassificationExpressionAccess() {
 		return pClassificationExpression;
 	}
@@ -9309,7 +9356,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ClassificationOperator:
-	//	"instanceof" | "hastype";
+	//	'instanceof' | 'hastype';
 	public ClassificationOperatorElements getClassificationOperatorAccess() {
 		return pClassificationOperator;
 	}
@@ -9318,9 +9365,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassificationOperatorAccess().getRule();
 	}
 
-	/// * EQUALITY EXPRESSIONS * / EqualityExpression returns Expression:
+	/// * EQUALITY EXPRESSIONS * / EqualityExpression Expression:
 	//	ClassificationExpression ({EqualityExpression.operand1=current} operator=EqualityOperator
-	//	operand2=ClassificationExpression)*;
+	//	operand2=ClassificationExpression)*
 	public EqualityExpressionElements getEqualityExpressionAccess() {
 		return pEqualityExpression;
 	}
@@ -9330,7 +9377,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EqualityOperator:
-	//	"==" | "!=";
+	//	'==' | '!=';
 	public EqualityOperatorElements getEqualityOperatorAccess() {
 		return pEqualityOperator;
 	}
@@ -9339,8 +9386,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getEqualityOperatorAccess().getRule();
 	}
 
-	/// * LOGICAL EXPRESSIONS * / AndExpression returns Expression:
-	//	EqualityExpression ({LogicalExpression.operand1=current} operator="&" operand2=EqualityExpression)*;
+	/// * LOGICAL EXPRESSIONS * / AndExpression Expression:
+	//	EqualityExpression ({LogicalExpression.operand1=current} operator='&' operand2=EqualityExpression)*
 	public AndExpressionElements getAndExpressionAccess() {
 		return pAndExpression;
 	}
@@ -9349,8 +9396,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getAndExpressionAccess().getRule();
 	}
 
-	//ExclusiveOrExpression returns Expression:
-	//	AndExpression ({LogicalExpression.operand1=current} operator="^" operand2=AndExpression)*;
+	//ExclusiveOrExpression Expression:
+	//	AndExpression ({LogicalExpression.operand1=current} operator='^' operand2=AndExpression)*
 	public ExclusiveOrExpressionElements getExclusiveOrExpressionAccess() {
 		return pExclusiveOrExpression;
 	}
@@ -9359,8 +9406,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getExclusiveOrExpressionAccess().getRule();
 	}
 
-	//InclusiveOrExpression returns Expression:
-	//	ExclusiveOrExpression ({LogicalExpression.operand1=current} operator="|" operand2=ExclusiveOrExpression)*;
+	//InclusiveOrExpression Expression:
+	//	ExclusiveOrExpression ({LogicalExpression.operand1=current} operator='|' operand2=ExclusiveOrExpression)*
 	public InclusiveOrExpressionElements getInclusiveOrExpressionAccess() {
 		return pInclusiveOrExpression;
 	}
@@ -9369,9 +9416,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getInclusiveOrExpressionAccess().getRule();
 	}
 
-	/// * CONDITIONAL LOGICAL EXPRESSIONS * / ConditionalAndExpression returns Expression:
-	//	InclusiveOrExpression ({ConditionalLogicalExpression.operand1=current} operator="&&"
-	//	operand2=InclusiveOrExpression)*;
+	/// * CONDITIONAL LOGICAL EXPRESSIONS * / ConditionalAndExpression Expression:
+	//	InclusiveOrExpression ({ConditionalLogicalExpression.operand1=current} operator='&&' operand2=InclusiveOrExpression)*
 	public ConditionalAndExpressionElements getConditionalAndExpressionAccess() {
 		return pConditionalAndExpression;
 	}
@@ -9380,9 +9426,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getConditionalAndExpressionAccess().getRule();
 	}
 
-	//ConditionalOrExpression returns Expression:
-	//	ConditionalAndExpression ({ConditionalLogicalExpression.operand1=current} operator="||"
-	//	operand2=ConditionalAndExpression)*;
+	//ConditionalOrExpression Expression:
+	//	ConditionalAndExpression ({ConditionalLogicalExpression.operand1=current} operator='||'
+	//	operand2=ConditionalAndExpression)*
 	public ConditionalOrExpressionElements getConditionalOrExpressionAccess() {
 		return pConditionalOrExpression;
 	}
@@ -9391,9 +9437,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getConditionalOrExpressionAccess().getRule();
 	}
 
-	/// * CONDITIONAL-TEST EXPRESSIONS * / ConditionalExpression returns Expression:
-	//	ConditionalOrExpression ({ConditionalTestExpression.operand1=current} "?" operand2=Expression ":"
-	//	operand3=ConditionalExpression)?;
+	/// * CONDITIONAL-TEST EXPRESSIONS * / ConditionalExpression Expression:
+	//	ConditionalOrExpression ({ConditionalTestExpression.operand1=current}
+	//	'?' operand2=Expression ':' operand3=ConditionalExpression)?
 	public ConditionalExpressionElements getConditionalExpressionAccess() {
 		return pConditionalExpression;
 	}
@@ -9412,10 +9458,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getAssignmentExpressionAccess().getRule();
 	}
 
-	////  "(" LeftHandSide ")"
 	//LeftHandSide:
-	//	NameLeftHandSide | // ( index = Index )? |
-	//	FeatureLeftHandSide;
+	//	NameLeftHandSide | FeatureLeftHandSide // ( index = Index )? |
+	//	//  "(" LeftHandSide ")"
+	//;
 	public LeftHandSideElements getLeftHandSideAccess() {
 		return pLeftHandSide;
 	}
@@ -9424,7 +9470,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getLeftHandSideAccess().getRule();
 	}
 
-	//NameLeftHandSide: // CHANGE: Moved the index property from LeftHandSide down to just NameLeftHandSide.
+	//NameLeftHandSide:
 	//	target=PotentiallyAmbiguousQualifiedName index=Index?;
 	public NameLeftHandSideElements getNameLeftHandSideAccess() {
 		return pNameLeftHandSide;
@@ -9434,7 +9480,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getNameLeftHandSideAccess().getRule();
 	}
 
-	//FeatureLeftHandSide: // CHANGE: Replaced the feature property of a FeatureLeftHandSide with expression.
+	//FeatureLeftHandSide:
 	//	expression=PrimaryExpression;
 	public FeatureLeftHandSideElements getFeatureLeftHandSideAccess() {
 		return pFeatureLeftHandSide;
@@ -9445,7 +9491,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AssignmentOperator:
-	//	"=" | "+=" | "-=" | "*=" | "/=" | "%=" | "&=" | "|=" | "^=" | "<<=" | ">>=" | ">>>=";
+	//	'=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '|=' | '^=' | '<<=' | '>>=' | '>>>=';
 	public AssignmentOperatorElements getAssignmentOperatorAccess() {
 		return pAssignmentOperator;
 	}
@@ -9456,8 +9502,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// **************
 	// * STATEMENTS *
-	// ************** / StatementSequence returns Block:
-	//	{Block} statement+=DocumentedStatement*;
+	// ************** / StatementSequence Block:
+	//	{Block} statement+=DocumentedStatement*
 	public StatementSequenceElements getStatementSequenceAccess() {
 		return pStatementSequence;
 	}
@@ -9466,8 +9512,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getStatementSequenceAccess().getRule();
 	}
 
-	//DocumentedStatement returns AnnotatedStatement: // CHANGE: Made AnnotatedStatement a subtype of DocumentedStatement with annotations and a statement reference. 
-	//	AnnotatedStatement;
+	//DocumentedStatement AnnotatedStatement:
+	//	AnnotatedStatement
 	public DocumentedStatementElements getDocumentedStatementAccess() {
 		return pDocumentedStatement;
 	}
@@ -9476,10 +9522,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getDocumentedStatementAccess().getRule();
 	}
 
-	//Statement: // AnnotatedStatement | 
-	//	InLineStatement | BlockStatement | EmptyStatement | LocalNameDeclarationStatement | ExpressionStatement | IfStatement |
-	//	SwitchStatement | WhileStatement | ForStatement | DoStatement | BreakStatement | ReturnStatement | AcceptStatement |
-	//	ClassifyStatement;
+	//Statement:
+	//	InLineStatement | BlockStatement | EmptyStatement | LocalNameDeclarationStatement | ExpressionStatement | IfStatement
+	//	| SwitchStatement | WhileStatement | ForStatement | DoStatement | BreakStatement | ReturnStatement | AcceptStatement
+	//	| ClassifyStatement;
 	public StatementElements getStatementAccess() {
 		return pStatement;
 	}
@@ -9489,7 +9535,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * BLOCK * / Block:
-	//	{Block} "{" statement+=DocumentedStatement* "}";
+	//	{Block} '{' statement+=DocumentedStatement* '}';
 	public BlockElements getBlockAccess() {
 		return pBlock;
 	}
@@ -9499,8 +9545,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * ANNOTATED STATEMENTS * / AnnotatedStatement:
-	//	documentation+=DOCUMENTATION_COMMENT? // CHANGE: Include text line in annotation statement.
-	//	annotation+=STATEMENT_ANNOTATION* // ( '//@' annotation += Annotation ( '@' annotation += Annotation )+ '\r'? '\n' )*
+	//	documentation+=DOCUMENTATION_COMMENT?
+	//	// CHANGE: Include text line in annotation statement.
+	//	annotation+=STATEMENT_ANNOTATION*
+	//	// ( '//@' annotation += Annotation ( '@' annotation += Annotation )+ '\r'? '\n' )*
 	//	statement=Statement;
 	public AnnotatedStatementElements getAnnotatedStatementAccess() {
 		return pAnnotatedStatement;
@@ -9514,9 +9562,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	//Annotation : 
 	//	identifier = ID ( '(' argument += Name ( ',' argument += Name )* ')' )?
 	//;
-	// * / / * IN-LINE STATEMENTS * / //'/ *@' 'inline' '(' language = Name ')' '* /'
-	//InLineStatement: // CHANGE: Include all text lexically in one attribute of InLineStatement.
-	//	code=INLINE_STATEMENT;
+	// * / / * IN-LINE STATEMENTS * / InLineStatement:
+	//	code=INLINE_STATEMENT
+	//	//'/ *@' 'inline' '(' language = Name ')' '* /'
+	//;
 	public InLineStatementElements getInLineStatementAccess() {
 		return pInLineStatement;
 	}
@@ -9536,7 +9585,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * EMPTY STATEMENTS * / EmptyStatement:
-	//	{EmptyStatement} ";";
+	//	{EmptyStatement}
+	//	';';
 	public EmptyStatementElements getEmptyStatementAccess() {
 		return pEmptyStatement;
 	}
@@ -9546,9 +9596,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * LOCAL NAME DECLARATION STATEMENTS * / LocalNameDeclarationStatement:
-	//	("let" name=Name ":" (isAny?="any" | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? // CHANGE: Added isAny attribute to localNameDeclarationStatement in order to allow Xtext serialization.
-	//	| (isAny?="any" | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? name=Name) "="
-	//	expression=InitializationExpression ";";
+	//	('let' name=Name ':' (isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? | (isAny?='any'
+	//	| typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? name=Name)
+	//	'=' expression=InitializationExpression ';';
 	public LocalNameDeclarationStatementElements getLocalNameDeclarationStatementAccess() {
 		return pLocalNameDeclarationStatement;
 	}
@@ -9557,8 +9607,10 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getLocalNameDeclarationStatementAccess().getRule();
 	}
 
-	//InitializationExpression returns Expression:
-	//	Expression | SequenceInitializationExpression | InstanceInitializationExpression;
+	//InitializationExpression Expression:
+	//	Expression
+	//	| SequenceInitializationExpression
+	//	| InstanceInitializationExpression
 	public InitializationExpressionElements getInitializationExpressionAccess() {
 		return pInitializationExpression;
 	}
@@ -9567,8 +9619,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getInitializationExpressionAccess().getRule();
 	}
 
-	//InstanceInitializationExpression returns InstanceCreationExpression:
-	//	"new" tuple=Tuple;
+	//InstanceInitializationExpression InstanceCreationExpression:
+	//	'new' tuple=Tuple
 	public InstanceInitializationExpressionElements getInstanceInitializationExpressionAccess() {
 		return pInstanceInitializationExpression;
 	}
@@ -9578,7 +9630,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * EXPRESSION STATEMENTS * / ExpressionStatement:
-	//	expression=Expression ";";
+	//	expression=Expression ';';
 	public ExpressionStatementElements getExpressionStatementAccess() {
 		return pExpressionStatement;
 	}
@@ -9588,7 +9640,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * IF STATEMENTS * / IfStatement:
-	//	"if" nonFinalClauses+=ConcurrentClauses ("else" "if" nonFinalClauses+=ConcurrentClauses)* ("else"
+	//	'if' nonFinalClauses+=ConcurrentClauses ('else' 'if' nonFinalClauses+=ConcurrentClauses)* ('else'
 	//	finalClause=Block)?;
 	public IfStatementElements getIfStatementAccess() {
 		return pIfStatement;
@@ -9599,7 +9651,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConcurrentClauses:
-	//	clause+=NonFinalClause ("or" "if" clause+=NonFinalClause)*;
+	//	clause+=NonFinalClause ('or' 'if' clause+=NonFinalClause)*;
 	public ConcurrentClausesElements getConcurrentClausesAccess() {
 		return pConcurrentClauses;
 	}
@@ -9609,7 +9661,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NonFinalClause:
-	//	"(" condition=Expression ")" body=Block;
+	//	'(' condition=Expression ')' body=Block;
 	public NonFinalClauseElements getNonFinalClauseAccess() {
 		return pNonFinalClause;
 	}
@@ -9619,7 +9671,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * SWITCH STATEMENTS * / SwitchStatement:
-	//	"switch" "(" expression=Expression ")" "{" nonDefaultClause+=SwitchClause* defaultClause=SwitchDefaultClause? "}";
+	//	'switch' '(' expression=Expression ')'
+	//	'{' nonDefaultClause+=SwitchClause*
+	//	defaultClause=SwitchDefaultClause? '}';
 	public SwitchStatementElements getSwitchStatementAccess() {
 		return pSwitchStatement;
 	}
@@ -9629,7 +9683,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SwitchClause:
-	//	case+=SwitchCase case+=SwitchCase* block=NonEmptyStatementSequence;
+	//	case+=SwitchCase case+=SwitchCase*
+	//	block=NonEmptyStatementSequence;
 	public SwitchClauseElements getSwitchClauseAccess() {
 		return pSwitchClause;
 	}
@@ -9638,8 +9693,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getSwitchClauseAccess().getRule();
 	}
 
-	//SwitchCase returns Expression:
-	//	"case" Expression ":";
+	//SwitchCase Expression:
+	//	'case' Expression ':'
 	public SwitchCaseElements getSwitchCaseAccess() {
 		return pSwitchCase;
 	}
@@ -9648,8 +9703,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getSwitchCaseAccess().getRule();
 	}
 
-	//SwitchDefaultClause returns Block:
-	//	"default" ":" NonEmptyStatementSequence;
+	//SwitchDefaultClause Block:
+	//	'default' ':' NonEmptyStatementSequence
 	public SwitchDefaultClauseElements getSwitchDefaultClauseAccess() {
 		return pSwitchDefaultClause;
 	}
@@ -9658,8 +9713,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getSwitchDefaultClauseAccess().getRule();
 	}
 
-	//NonEmptyStatementSequence returns Block:
-	//	statement+=DocumentedStatement+;
+	//NonEmptyStatementSequence Block:
+	//	statement+=DocumentedStatement+
 	public NonEmptyStatementSequenceElements getNonEmptyStatementSequenceAccess() {
 		return pNonEmptyStatementSequence;
 	}
@@ -9669,7 +9724,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * WHILE STATEMENTS * / WhileStatement:
-	//	"while" "(" condition=Expression ")" body=Block;
+	//	'while' '(' condition=Expression ')' body=Block;
 	public WhileStatementElements getWhileStatementAccess() {
 		return pWhileStatement;
 	}
@@ -9679,7 +9734,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * DO STATEMENTS * / DoStatement:
-	//	"do" body=Block "while" "(" condition=Expression ")" ";";
+	//	'do' body=Block 'while' '(' condition=Expression ')' ';';
 	public DoStatementElements getDoStatementAccess() {
 		return pDoStatement;
 	}
@@ -9689,7 +9744,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * FOR STATEMENTS * / ForStatement:
-	//	"for" "(" variableDefinition+=LoopVariableDefinition ("," variableDefinition+=LoopVariableDefinition)* ")"
+	//	'for' '(' variableDefinition+=LoopVariableDefinition (',' variableDefinition+=LoopVariableDefinition)* ')'
 	//	body=Block;
 	public ForStatementElements getForStatementAccess() {
 		return pForStatement;
@@ -9699,10 +9754,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getForStatementAccess().getRule();
 	}
 
-	//LoopVariableDefinition: // CHANGE: Added isAny attribute to LoopVariableDefinition in order to allow Xtext serialization.
-	//// NOTE: Default for typeIsInferred must be false.
-	//	variable=Name typeIsInferred?="in" expression1=Expression (".." expression2=Expression)? | (isAny?="any" |
-	//	typeName=QualifiedName) variable=Name ":" expression1=Expression;
+	//LoopVariableDefinition:
+	//	variable=Name typeIsInferred?='in' expression1=Expression ('..' expression2=Expression)? | (isAny?='any' |
+	//	typeName=QualifiedName) variable=Name ':' expression1=Expression;
 	public LoopVariableDefinitionElements getLoopVariableDefinitionAccess() {
 		return pLoopVariableDefinition;
 	}
@@ -9712,7 +9766,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * BREAK STATEMENTS * / BreakStatement:
-	//	{BreakStatement} "break" ";";
+	//	{BreakStatement}
+	//	'break' ';';
 	public BreakStatementElements getBreakStatementAccess() {
 		return pBreakStatement;
 	}
@@ -9722,7 +9777,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * RETURN STATEMENTS * / ReturnStatement:
-	//	{ReturnStatement} "return" expression=Expression? ";";
+	//	{ReturnStatement}
+	//	'return' expression=Expression? ';';
 	public ReturnStatementElements getReturnStatementAccess() {
 		return pReturnStatement;
 	}
@@ -9732,7 +9788,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * ACCEPT STATEMENTS * / AcceptStatement:
-	//	acceptBlock+=AcceptClause ";" | acceptBlock+=AcceptBlock ("or" acceptBlock+=AcceptBlock)*;
+	//	acceptBlock+=AcceptClause ';' | acceptBlock+=AcceptBlock ('or' acceptBlock+=AcceptBlock)*;
 	public AcceptStatementElements getAcceptStatementAccess() {
 		return pAcceptStatement;
 	}
@@ -9751,8 +9807,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getAcceptBlockAccess().getRule();
 	}
 
-	//AcceptClause returns AcceptBlock:
-	//	"accept" "(" (name=Name ":")? signalNames=QualifiedNameList ")";
+	//AcceptClause AcceptBlock:
+	//	'accept' '(' (name=Name ':')? signalNames=QualifiedNameList ')'
 	public AcceptClauseElements getAcceptClauseAccess() {
 		return pAcceptClause;
 	}
@@ -9762,8 +9818,9 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// * CLASSIFY STATEMENTS * / ClassifyStatement:
-	//	"classify" expression=Expression (fromList=ClassificationFromClause toList=ClassificationToClause? |
-	//	isReclassifyAll?=ReclassifyAllClause? toList=ClassificationToClause) ";";
+	//	'classify' expression=Expression (fromList=ClassificationFromClause toList=ClassificationToClause? |
+	//	isReclassifyAll?=ReclassifyAllClause? toList=ClassificationToClause)
+	//	';';
 	public ClassifyStatementElements getClassifyStatementAccess() {
 		return pClassifyStatement;
 	}
@@ -9772,8 +9829,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassifyStatementAccess().getRule();
 	}
 
-	//ClassificationFromClause returns QualifiedNameList:
-	//	"from" QualifiedNameList;
+	//ClassificationFromClause QualifiedNameList:
+	//	'from' QualifiedNameList
 	public ClassificationFromClauseElements getClassificationFromClauseAccess() {
 		return pClassificationFromClause;
 	}
@@ -9782,8 +9839,8 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getClassificationFromClauseAccess().getRule();
 	}
 
-	//ClassificationToClause returns QualifiedNameList:
-	//	"to" QualifiedNameList;
+	//ClassificationToClause QualifiedNameList:
+	//	'to' QualifiedNameList
 	public ClassificationToClauseElements getClassificationToClauseAccess() {
 		return pClassificationToClause;
 	}
@@ -9793,7 +9850,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ReclassifyAllClause:
-	//	"from" "*";
+	//	'from' '*';
 	public ReclassifyAllClauseElements getReclassifyAllClauseAccess() {
 		return pReclassifyAllClause;
 	}
@@ -9803,7 +9860,7 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedNameList:
-	//	name+=QualifiedName ("," name+=QualifiedName)*;
+	//	name+=QualifiedName (',' name+=QualifiedName)*;
 	public QualifiedNameListElements getQualifiedNameListAccess() {
 		return pQualifiedNameList;
 	}
@@ -9812,77 +9869,72 @@ public class AlfGrammarAccess extends AbstractGrammarElementFinder {
 		return getQualifiedNameListAccess().getRule();
 	}
 
-	/// ****************
-	// * Terminals
-	// ***************** / terminal BOOLEAN_VALUE:
-	//	"true" | "false";
+	//terminal BOOLEAN_VALUE:
+	//	'true' | 'false';
 	public TerminalRule getBOOLEAN_VALUERule() {
 		return tBOOLEAN_VALUE;
 	} 
 
 	//terminal NATURAL_VALUE:
-	//	("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL 
-	//	// BINARY
-	//	// HEX
-	//	// OCT
-	//	| ("0b" | "0B") "0".."1" ("_"? "0".."1")* | ("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" |
-	//	"A".."F"))* | "0" "_"? "0".."7" ("_"? "0".."7")*;
+	//	('0' | '1'..'9' ('_'? '0'..'9')*) | ('0b' | '0B') '0'..'1' ('_'? '0'..'1')* | ('0x' | '0X') ('0'..'9' | 'a'..'f' |
+	//	'A'..'F') ('_'? ('0'..'9' | 'a'..'f' | 'A'..'F'))* | '0' '_'? '0'..'7' ('_'? '0'..'7')*;
 	public TerminalRule getNATURAL_VALUERule() {
 		return tNATURAL_VALUE;
 	} 
 
 	//terminal ID:
-	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	//	('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 	public TerminalRule getIDRule() {
 		return tID;
 	} 
 
 	//terminal UNRESTRICTED_NAME:
-	//	"\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
+	//	'\'' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | "'" | '\\') | !('\\' | '\''))* '\'';
 	public TerminalRule getUNRESTRICTED_NAMERule() {
 		return tUNRESTRICTED_NAME;
 	} 
 
 	//terminal STRING:
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
+	//	'"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | "'" | '\\') | !('\\' | '"'))* '"';
 	public TerminalRule getSTRINGRule() {
 		return tSTRING;
 	} 
 
 	//terminal DOCUMENTATION_COMMENT:
-	//	"/ **"->"* /";
+	//	'/ **'->'* /';
 	public TerminalRule getDOCUMENTATION_COMMENTRule() {
 		return tDOCUMENTATION_COMMENT;
 	} 
 
-	////  '//@' WS? ID (WS? '(' WS? (ID | UNRESTRICTED_NAME) (WS? ',' WS? (ID | UNRESTRICTED_NAME))* WS? ')')? 
-	////  (WS? '@' WS? ID (WS? '(' WS? (ID | UNRESTRICTED_NAME) (WS? ',' WS? (ID | UNRESTRICTED_NAME))* WS? ')')?)* (' '|'\t')* ('\r'? '\n')
 	//terminal STATEMENT_ANNOTATION:
-	//	"//@"->"\n";
+	//	'//@'->'\n'
+	//	//  '//@' WS? ID (WS? '(' WS? (ID | UNRESTRICTED_NAME) (WS? ',' WS? (ID | UNRESTRICTED_NAME))* WS? ')')? 
+	//	//  (WS? '@' WS? ID (WS? '(' WS? (ID | UNRESTRICTED_NAME) (WS? ',' WS? (ID | UNRESTRICTED_NAME))* WS? ')')?)* (' '|'\t')* ('\r'? '\n')
+	//;
 	public TerminalRule getSTATEMENT_ANNOTATIONRule() {
 		return tSTATEMENT_ANNOTATION;
 	} 
 
 	//terminal INLINE_STATEMENT:
-	//	"/ *@inline(" (ID | UNRESTRICTED_NAME) ")"->"* /";
+	//	'/ *@inline(' (ID | UNRESTRICTED_NAME) ')'->'* /';
 	public TerminalRule getINLINE_STATEMENTRule() {
 		return tINLINE_STATEMENT;
 	} 
 
 	//terminal ML_COMMENT:
-	//	"/ *" !("*" | "@")->"* /";
+	//	'/ *' !('*' | '@')->'* /';
 	public TerminalRule getML_COMMENTRule() {
 		return tML_COMMENT;
 	} 
 
 	//terminal SL_COMMENT:
-	//	"//" (!("@" | "\n" | "\r") !("\n" | "\r")*)? ("\r"? "\n")?;
+	//	'//' (!('@' | '\n' | '\r') !('\n' | '\r')*)? ('\r'? '\n')?;
 	public TerminalRule getSL_COMMENTRule() {
 		return tSL_COMMENT;
 	} 
 
 	//terminal WS:
-	//	(" " | "\t" | "\r" | "\n")+;
+	//	' ' | '\t' | '\r' | '\n'+;
 	public TerminalRule getWSRule() {
 		return tWS;
 	} 

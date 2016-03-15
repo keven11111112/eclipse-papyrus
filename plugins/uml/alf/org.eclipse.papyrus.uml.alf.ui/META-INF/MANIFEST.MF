@@ -5,7 +5,7 @@ Require-Bundle: org.eclipse.xtext.ui;bundle-version="[2.10.0,3.0.0)";visibility:
  org.eclipse.xtext.common.types.ui;bundle-version="[2.10.0,3.0.0)",
  org.eclipse.xtext.ui.codetemplates.ui;bundle-version="[2.10.0,3.0.0)",
  org.eclipse.compare;bundle-version="[3.5.0,4.0.0)",
- org.eclipse.papyrus.uml.alf;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.uml.alf;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.apache.log4j;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.infra.emf;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.extensionpoints;bundle-version="[1.2.0,2.0.0)",
@@ -16,19 +16,23 @@ Require-Bundle: org.eclipse.xtext.ui;bundle-version="[2.10.0,3.0.0)";visibility:
  org.eclipse.papyrus.uml.service.validation;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.ocl.ecore;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.uml.alf.libraries;bundle-version="[2.0.0,3.0.0)"
+ org.eclipse.papyrus.uml.alf.libraries;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.ui.editors;bundle-version="[3.10.0,4.0.0)",
+ org.eclipse.ui;bundle-version="[3.107.0,4.0.0)",
+ org.eclipse.xtext.xbase.lib;bundle-version="[2.10.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.uml.alf.ui.contentassist,
  org.eclipse.papyrus.uml.alf.ui.contentassist.antlr,
  org.eclipse.papyrus.uml.alf.ui.editor,
  org.eclipse.papyrus.uml.alf.ui.internal,
- org.eclipse.papyrus.uml.alf.ui.quickfix
+ org.eclipse.papyrus.uml.alf.ui.quickfix,
+ org.eclipse.papyrus.uml.alf.ui.contentassist.antlr.internal
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Name: ALF Language (UI)
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.alf.ui.internal.AlfActivator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.ui;singleton:=true
 Import-Package: org.apache.log4j;version="[1.2.0,2.0.0)",
  org.eclipse.xtext.xbase.lib;version="[2.10.0,3.0.0)"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

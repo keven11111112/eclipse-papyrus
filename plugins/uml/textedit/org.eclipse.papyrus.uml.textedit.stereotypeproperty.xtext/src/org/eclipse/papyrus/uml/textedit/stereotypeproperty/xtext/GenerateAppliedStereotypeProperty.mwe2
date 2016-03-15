@@ -71,7 +71,7 @@ Workflow {
 		//LOAD ALF XTEXT
 		 
 		 registerGeneratedEPackage = "org.eclipse.papyrus.uml.alf.AlfPackage"
-		 registerGenModelFile="platform:/resource/org.eclipse.papyrus.uml.alf/src/org/eclipse/papyrus/uml/alf/alf.genmodel"
+		 registerGenModelFile="platform:/resource/org.eclipse.papyrus.uml.alf/model/alf.genmodel"
 	
 	}
    component = DirectoryCleaner {

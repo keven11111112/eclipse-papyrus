@@ -4,8 +4,9 @@
 package org.eclipse.papyrus.uml.alf.serializer;
 
 import com.google.inject.Inject;
-import com.google.inject.Provider;
+import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.uml.alf.AcceptBlock;
 import org.eclipse.papyrus.uml.alf.AcceptStatement;
 import org.eclipse.papyrus.uml.alf.ActiveClassDefinition;
@@ -102,13 +103,13 @@ import org.eclipse.papyrus.uml.alf.UnboundedLiteralExpression;
 import org.eclipse.papyrus.uml.alf.UnitDefinition;
 import org.eclipse.papyrus.uml.alf.WhileStatement;
 import org.eclipse.papyrus.uml.alf.services.AlfGrammarAccess;
-import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
-import org.eclipse.xtext.serializer.diagnostic.ISemanticSequencerDiagnosticProvider;
-import org.eclipse.xtext.serializer.diagnostic.ISerializationDiagnostic.Acceptor;
+import org.eclipse.xtext.Action;
+import org.eclipse.xtext.Parameter;
+import org.eclipse.xtext.ParserRule;
+import org.eclipse.xtext.serializer.ISerializationContext;
+import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
-import org.eclipse.xtext.serializer.sequencer.GenericSequencer;
-import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
-import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
+import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 
 @SuppressWarnings("all")
 public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -117,14 +118,19 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	private AlfGrammarAccess grammarAccess;
 	
 	@Override
-	public void createSequence(EObject context, EObject semanticObject) {
-		if(semanticObject.eClass().getEPackage() == AlfPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+	public void sequence(ISerializationContext context, EObject semanticObject) {
+		EPackage epackage = semanticObject.eClass().getEPackage();
+		ParserRule rule = context.getParserRule();
+		Action action = context.getAssignedAction();
+		Set<Parameter> parameters = context.getEnabledBooleanParameters();
+		if (epackage == AlfPackage.eINSTANCE)
+			switch (semanticObject.eClass().getClassifierID()) {
 			case AlfPackage.ACCEPT_BLOCK:
-				if(context == grammarAccess.getAcceptBlockRule()) {
+				if (rule == grammarAccess.getAcceptBlockRule()) {
 					sequence_AcceptBlock_AcceptClause(context, (AcceptBlock) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getAcceptClauseRule()) {
+				else if (rule == grammarAccess.getAcceptClauseRule()) {
 					sequence_AcceptClause(context, (AcceptBlock) semanticObject); 
 					return; 
 				}
@@ -133,45 +139,45 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_AcceptStatement(context, (AcceptStatement) semanticObject); 
 				return; 
 			case AlfPackage.ACTIVE_CLASS_DEFINITION:
-				if(context == grammarAccess.getActiveClassDeclarationRule()) {
+				if (rule == grammarAccess.getActiveClassDeclarationRule()) {
 					sequence_ActiveClassDeclaration(context, (ActiveClassDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassDefinitionOrStubRule() ||
-				   context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule()) {
+				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassDefinitionOrStubRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()) {
 					sequence_ActiveClassDeclaration_ActiveClassDefinitionOrStub(context, (ActiveClassDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionRule() ||
-				   context == grammarAccess.getNamespaceDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionRule()
+						|| rule == grammarAccess.getActiveClassDefinitionRule()) {
 					sequence_ActiveClassDeclaration_ActiveClassDefinition(context, (ActiveClassDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.ACTIVITY_DEFINITION:
-				if(context == grammarAccess.getActivityDeclarationRule()) {
+				if (rule == grammarAccess.getActivityDeclarationRule()) {
 					sequence_ActivityDeclaration(context, (ActivityDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getActivityDefinitionOrStubRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule()) {
+				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActivityDefinitionOrStubRule()) {
 					sequence_ActivityDeclaration_ActivityDefinitionOrStub(context, (ActivityDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActivityDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionRule() ||
-				   context == grammarAccess.getNamespaceDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionRule()
+						|| rule == grammarAccess.getActivityDefinitionRule()) {
 					sequence_ActivityDeclaration_ActivityDefinition(context, (ActivityDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getBehaviorClauseRule()) {
+				else if (rule == grammarAccess.getBehaviorClauseRule()) {
 					sequence_BehaviorClause(context, (ActivityDefinition) semanticObject); 
 					return; 
 				}
@@ -186,21 +192,21 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_AssignmentExpression(context, (AssignmentExpression) semanticObject); 
 				return; 
 			case AlfPackage.ASSOCIATION_DEFINITION:
-				if(context == grammarAccess.getAssociationDeclarationRule()) {
+				if (rule == grammarAccess.getAssociationDeclarationRule()) {
 					sequence_AssociationDeclaration(context, (AssociationDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getAssociationDefinitionOrStubRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule()) {
+				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getAssociationDefinitionOrStubRule()) {
 					sequence_AssociationDeclaration_AssociationDefinitionOrStub(context, (AssociationDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getAssociationDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionRule() ||
-				   context == grammarAccess.getNamespaceDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionRule()
+						|| rule == grammarAccess.getAssociationDefinitionRule()) {
 					sequence_AssociationDeclaration_AssociationDefinition(context, (AssociationDefinition) semanticObject); 
 					return; 
 				}
@@ -212,16 +218,16 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_BitStringUnaryExpression(context, (BitStringUnaryExpression) semanticObject); 
 				return; 
 			case AlfPackage.BLOCK:
-				if(context == grammarAccess.getBlockRule()) {
+				if (rule == grammarAccess.getBlockRule()) {
 					sequence_Block(context, (Block) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getNonEmptyStatementSequenceRule() ||
-				   context == grammarAccess.getSwitchDefaultClauseRule()) {
+				else if (rule == grammarAccess.getSwitchDefaultClauseRule()
+						|| rule == grammarAccess.getNonEmptyStatementSequenceRule()) {
 					sequence_NonEmptyStatementSequence(context, (Block) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getStatementSequenceRule()) {
+				else if (rule == grammarAccess.getStatementSequenceRule()) {
 					sequence_StatementSequence(context, (Block) semanticObject); 
 					return; 
 				}
@@ -242,21 +248,21 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_CastExpression(context, (CastExpression) semanticObject); 
 				return; 
 			case AlfPackage.CLASS_DEFINITION:
-				if(context == grammarAccess.getClassDeclarationRule()) {
+				if (rule == grammarAccess.getClassDeclarationRule()) {
 					sequence_ClassDeclaration(context, (ClassDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassDefinitionOrStubRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule()) {
+				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()) {
 					sequence_ClassDeclaration_ClassDefinitionOrStub(context, (ClassDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getClassDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionRule() ||
-				   context == grammarAccess.getNamespaceDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionRule()
+						|| rule == grammarAccess.getClassDefinitionRule()) {
 					sequence_ClassDeclaration_ClassDefinition(context, (ClassDefinition) semanticObject); 
 					return; 
 				}
@@ -286,21 +292,21 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_ConditionalExpression(context, (ConditionalTestExpression) semanticObject); 
 				return; 
 			case AlfPackage.DATA_TYPE_DEFINITION:
-				if(context == grammarAccess.getDataTypeDeclarationRule()) {
+				if (rule == grammarAccess.getDataTypeDeclarationRule()) {
 					sequence_DataTypeDeclaration(context, (DataTypeDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionOrStubRule() ||
-				   context == grammarAccess.getDataTypeDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule()) {
+				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getDataTypeDefinitionOrStubRule()) {
 					sequence_DataTypeDeclaration_DataTypeDefinitionOrStub(context, (DataTypeDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getClassifierDefinitionRule() ||
-				   context == grammarAccess.getDataTypeDefinitionRule() ||
-				   context == grammarAccess.getNamespaceDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionRule()
+						|| rule == grammarAccess.getDataTypeDefinitionRule()) {
 					sequence_DataTypeDeclaration_DataTypeDefinition(context, (DataTypeDefinition) semanticObject); 
 					return; 
 				}
@@ -315,21 +321,21 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_EmptyStatement(context, (EmptyStatement) semanticObject); 
 				return; 
 			case AlfPackage.ENUMERATION_DEFINITION:
-				if(context == grammarAccess.getEnumerationDeclarationRule()) {
+				if (rule == grammarAccess.getEnumerationDeclarationRule()) {
 					sequence_EnumerationDeclaration(context, (EnumerationDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionOrStubRule() ||
-				   context == grammarAccess.getEnumerationDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule()) {
+				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getEnumerationDefinitionOrStubRule()) {
 					sequence_EnumerationDeclaration_EnumerationDefinitionOrStub(context, (EnumerationDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getClassifierDefinitionRule() ||
-				   context == grammarAccess.getEnumerationDefinitionRule() ||
-				   context == grammarAccess.getNamespaceDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionRule()
+						|| rule == grammarAccess.getEnumerationDefinitionRule()) {
 					sequence_EnumerationDeclaration_EnumerationDefinition(context, (EnumerationDefinition) semanticObject); 
 					return; 
 				}
@@ -344,64 +350,64 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_ExpressionStatement(context, (ExpressionStatement) semanticObject); 
 				return; 
 			case AlfPackage.EXTENT_OR_EXPRESSION:
-				if(context == grammarAccess.getPrimaryExpressionAccess().getSequenceExpansionExpressionPrimaryAction_1_2_2_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceOperationExpressionPrimaryAction_1_2_2_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceReductionExpressionPrimaryAction_1_2_2_1_0()) {
+				if (action == grammarAccess.getPrimaryExpressionAccess().getSequenceOperationExpressionPrimaryAction_1_2_2_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceReductionExpressionPrimaryAction_1_2_2_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceExpansionExpressionPrimaryAction_1_2_2_2_0()) {
 					sequence_PrimaryExpression_SequenceExpansionExpression_1_2_2_2_0_SequenceOperationExpression_1_2_2_0_0_SequenceReductionExpression_1_2_2_1_0(context, (ExtentOrExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceExpansionExpressionPrimaryAction_3_2_0() ||
-				   context == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceOperationExpressionPrimaryAction_3_0_0() ||
-				   context == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceReductionExpressionPrimaryAction_3_1_0()) {
+				else if (action == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceOperationExpressionPrimaryAction_3_0_0()
+						|| action == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceReductionExpressionPrimaryAction_3_1_0()
+						|| action == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceExpansionExpressionPrimaryAction_3_2_0()) {
 					sequence_SequenceOperationOrReductionOrExpansionExpression_SequenceExpansionExpression_3_2_0_SequenceOperationExpression_3_0_0_SequenceReductionExpression_3_1_0(context, (ExtentOrExpression) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.FEATURE_INVOCATION_EXPRESSION:
-				if(context == grammarAccess.getAdditiveExpressionRule() ||
-				   context == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAndExpressionRule() ||
-				   context == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAttributeInitializerRule() ||
-				   context == grammarAccess.getBaseExpressionRule() ||
-				   context == grammarAccess.getCastCompletionRule() ||
-				   context == grammarAccess.getClassificationExpressionRule() ||
-				   context == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0() ||
-				   context == grammarAccess.getConditionalAndExpressionRule() ||
-				   context == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalExpressionRule() ||
-				   context == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalOrExpressionRule() ||
-				   context == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getEqualityExpressionRule() ||
-				   context == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExclusiveOrExpressionRule() ||
-				   context == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getIndexRule() ||
-				   context == grammarAccess.getInitializationExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getParenthesizedExpressionRule() ||
-				   context == grammarAccess.getPostfixOrCastExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0() ||
-				   context == grammarAccess.getRelationalExpressionRule() ||
-				   context == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSequenceElementRule() ||
-				   context == grammarAccess.getShiftExpressionRule() ||
-				   context == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSwitchCaseRule() ||
-				   context == grammarAccess.getUnaryExpressionRule()) {
+				if (rule == grammarAccess.getAttributeInitializerRule()
+						|| rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getParenthesizedExpressionRule()
+						|| rule == grammarAccess.getSequenceElementRule()
+						|| rule == grammarAccess.getIndexRule()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getPostfixOrCastExpressionRule()
+						|| rule == grammarAccess.getCastCompletionRule()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getShiftExpressionRule()
+						|| action == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getExclusiveOrExpressionRule()
+						|| action == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInclusiveOrExpressionRule()
+						|| action == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInitializationExpressionRule()
+						|| rule == grammarAccess.getSwitchCaseRule()) {
 					sequence_PrimaryExpression_ThisExpression(context, (FeatureInvocationExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getThisExpressionRule()) {
+				else if (rule == grammarAccess.getThisExpressionRule()) {
 					sequence_ThisExpression(context, (FeatureInvocationExpression) semanticObject); 
 					return; 
 				}
@@ -410,11 +416,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_FeatureLeftHandSide(context, (FeatureLeftHandSide) semanticObject); 
 				return; 
 			case AlfPackage.FEATURE_REFERENCE:
-				if(context == grammarAccess.getPrimaryExpressionAccess().getFeatureInvocationExpressionTargetAction_1_0_3()) {
+				if (action == grammarAccess.getPrimaryExpressionAccess().getFeatureInvocationExpressionTargetAction_1_0_3()) {
 					sequence_PrimaryExpression_FeatureInvocationExpression_1_0_3(context, (FeatureReference) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getPrimaryExpressionAccess().getPropertyAccessExpressionFeatureReferenceAction_1_1_3()) {
+				else if (action == grammarAccess.getPrimaryExpressionAccess().getPropertyAccessExpressionFeatureReferenceAction_1_1_3()) {
 					sequence_PrimaryExpression_PropertyAccessExpression_1_1_3(context, (FeatureReference) semanticObject); 
 					return; 
 				}
@@ -429,108 +435,108 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_InLineStatement(context, (InLineStatement) semanticObject); 
 				return; 
 			case AlfPackage.INCREMENT_OR_DECREMENT_EXPRESSION:
-				if(context == grammarAccess.getPostfixExpressionRule()) {
+				if (rule == grammarAccess.getPostfixExpressionRule()) {
 					sequence_PostfixExpression(context, (IncrementOrDecrementExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getAdditiveExpressionRule() ||
-				   context == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAndExpressionRule() ||
-				   context == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAttributeInitializerRule() ||
-				   context == grammarAccess.getBaseExpressionRule() ||
-				   context == grammarAccess.getCastCompletionRule() ||
-				   context == grammarAccess.getClassificationExpressionRule() ||
-				   context == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0() ||
-				   context == grammarAccess.getConditionalAndExpressionRule() ||
-				   context == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalExpressionRule() ||
-				   context == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalOrExpressionRule() ||
-				   context == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getEqualityExpressionRule() ||
-				   context == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExclusiveOrExpressionRule() ||
-				   context == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getIndexRule() ||
-				   context == grammarAccess.getInitializationExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getParenthesizedExpressionRule() ||
-				   context == grammarAccess.getPostfixOrCastExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0() ||
-				   context == grammarAccess.getRelationalExpressionRule() ||
-				   context == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSequenceElementRule() ||
-				   context == grammarAccess.getShiftExpressionRule() ||
-				   context == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSwitchCaseRule() ||
-				   context == grammarAccess.getUnaryExpressionRule()) {
-					sequence_PostfixExpression_PrefixExpression_UnaryExpression(context, (IncrementOrDecrementExpression) semanticObject); 
+				else if (rule == grammarAccess.getAttributeInitializerRule()
+						|| rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getParenthesizedExpressionRule()
+						|| rule == grammarAccess.getSequenceElementRule()
+						|| rule == grammarAccess.getIndexRule()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getPostfixOrCastExpressionRule()
+						|| rule == grammarAccess.getCastCompletionRule()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getShiftExpressionRule()
+						|| action == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getExclusiveOrExpressionRule()
+						|| action == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInclusiveOrExpressionRule()
+						|| action == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInitializationExpressionRule()
+						|| rule == grammarAccess.getSwitchCaseRule()) {
+					sequence_PostfixExpression_PrefixExpression(context, (IncrementOrDecrementExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getNonPostfixNonCastUnaryExpressionRule() ||
-				   context == grammarAccess.getPrefixExpressionRule()) {
+				else if (rule == grammarAccess.getPrefixExpressionRule()
+						|| rule == grammarAccess.getNonPostfixNonCastUnaryExpressionRule()) {
 					sequence_PrefixExpression(context, (IncrementOrDecrementExpression) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.INSTANCE_CREATION_EXPRESSION:
-				if(context == grammarAccess.getAttributeInitializerRule() ||
-				   context == grammarAccess.getInitializationExpressionRule()) {
-					sequence_InitializationExpression_InstanceCreationOrSequenceConstructionExpression_InstanceInitializationExpression(context, (InstanceCreationExpression) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getAdditiveExpressionRule() ||
-				   context == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAndExpressionRule() ||
-				   context == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getBaseExpressionRule() ||
-				   context == grammarAccess.getCastCompletionRule() ||
-				   context == grammarAccess.getClassificationExpressionRule() ||
-				   context == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0() ||
-				   context == grammarAccess.getConditionalAndExpressionRule() ||
-				   context == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalExpressionRule() ||
-				   context == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalOrExpressionRule() ||
-				   context == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getEqualityExpressionRule() ||
-				   context == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExclusiveOrExpressionRule() ||
-				   context == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getIndexRule() ||
-				   context == grammarAccess.getInstanceCreationOrSequenceConstructionExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getParenthesizedExpressionRule() ||
-				   context == grammarAccess.getPostfixOrCastExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0() ||
-				   context == grammarAccess.getRelationalExpressionRule() ||
-				   context == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSequenceElementRule() ||
-				   context == grammarAccess.getShiftExpressionRule() ||
-				   context == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSwitchCaseRule() ||
-				   context == grammarAccess.getUnaryExpressionRule()) {
+				if (rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getParenthesizedExpressionRule()
+						|| rule == grammarAccess.getInstanceCreationOrSequenceConstructionExpressionRule()
+						|| rule == grammarAccess.getSequenceElementRule()
+						|| rule == grammarAccess.getIndexRule()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getPostfixOrCastExpressionRule()
+						|| rule == grammarAccess.getCastCompletionRule()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getShiftExpressionRule()
+						|| action == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getExclusiveOrExpressionRule()
+						|| action == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInclusiveOrExpressionRule()
+						|| action == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getSwitchCaseRule()) {
 					sequence_InstanceCreationOrSequenceConstructionExpression(context, (InstanceCreationExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getInstanceInitializationExpressionRule()) {
+				else if (rule == grammarAccess.getAttributeInitializerRule()
+						|| rule == grammarAccess.getInitializationExpressionRule()) {
+					sequence_InstanceCreationOrSequenceConstructionExpression_InstanceInitializationExpression(context, (InstanceCreationExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getInstanceInitializationExpressionRule()) {
 					sequence_InstanceInitializationExpression(context, (InstanceCreationExpression) semanticObject); 
 					return; 
 				}
@@ -551,35 +557,35 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_LoopVariableDefinition(context, (LoopVariableDefinition) semanticObject); 
 				return; 
 			case AlfPackage.MEMBER:
-				if(context == grammarAccess.getActiveClassMemberRule()) {
+				if (rule == grammarAccess.getActiveClassMemberRule()) {
 					sequence_ActiveClassMember(context, (Member) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getClassMemberRule()) {
+				else if (rule == grammarAccess.getClassMemberRule()) {
 					sequence_ClassMember(context, (Member) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getClassifierTemplateParameterRule()) {
+				else if (rule == grammarAccess.getClassifierTemplateParameterRule()) {
 					sequence_ClassifierTemplateParameter(context, (Member) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getEnumerationLiteralNameRule()) {
+				else if (rule == grammarAccess.getEnumerationLiteralNameRule()) {
 					sequence_EnumerationLiteralName(context, (Member) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getFormalParameterRule()) {
+				else if (rule == grammarAccess.getFormalParameterRule()) {
 					sequence_FormalParameter(context, (Member) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getPackagedElementRule()) {
+				else if (rule == grammarAccess.getPackagedElementRule()) {
 					sequence_PackagedElement(context, (Member) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getReturnParameterRule()) {
+				else if (rule == grammarAccess.getReturnParameterRule()) {
 					sequence_ReturnParameter(context, (Member) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getStructuredMemberRule()) {
+				else if (rule == grammarAccess.getStructuredMemberRule()) {
 					sequence_StructuredMember(context, (Member) semanticObject); 
 					return; 
 				}
@@ -594,11 +600,11 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_NameLeftHandSide(context, (NameLeftHandSide) semanticObject); 
 				return; 
 			case AlfPackage.NAMED_EXPRESSION:
-				if(context == grammarAccess.getIndexedNamedExpressionRule()) {
+				if (rule == grammarAccess.getIndexedNamedExpressionRule()) {
 					sequence_IndexedNamedExpression(context, (NamedExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getNamedExpressionRule()) {
+				else if (rule == grammarAccess.getNamedExpressionRule()) {
 					sequence_NamedExpression(context, (NamedExpression) semanticObject); 
 					return; 
 				}
@@ -607,13 +613,13 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_NamedTemplateBinding(context, (NamedTemplateBinding) semanticObject); 
 				return; 
 			case AlfPackage.NAMED_TUPLE:
-				if(context == grammarAccess.getIndexedNamedTupleExpressionListRule() ||
-				   context == grammarAccess.getLinkOperationTupleRule()) {
+				if (rule == grammarAccess.getLinkOperationTupleRule()
+						|| rule == grammarAccess.getIndexedNamedTupleExpressionListRule()) {
 					sequence_IndexedNamedTupleExpressionList(context, (NamedTuple) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getNamedTupleExpressionListRule() ||
-				   context == grammarAccess.getTupleRule()) {
+				else if (rule == grammarAccess.getTupleRule()
+						|| rule == grammarAccess.getNamedTupleExpressionListRule()) {
 					sequence_NamedTupleExpressionList(context, (NamedTuple) semanticObject); 
 					return; 
 				}
@@ -631,26 +637,26 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_NumericUnaryExpression(context, (NumericUnaryExpression) semanticObject); 
 				return; 
 			case AlfPackage.OPERATION_DEFINITION:
-				if(context == grammarAccess.getOperationDeclarationRule()) {
+				if (rule == grammarAccess.getOperationDeclarationRule()) {
 					sequence_OperationDeclaration(context, (OperationDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getFeatureDefinitionOrStubRule() ||
-				   context == grammarAccess.getOperationDefinitionOrStubRule()) {
+				else if (rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getFeatureDefinitionOrStubRule()
+						|| rule == grammarAccess.getOperationDefinitionOrStubRule()) {
 					sequence_OperationDeclaration_OperationDefinitionOrStub(context, (OperationDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.PACKAGE_DEFINITION:
-				if(context == grammarAccess.getPackageDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule()) {
+				if (rule == grammarAccess.getPackageDefinitionOrStubRule()
+						|| rule == grammarAccess.getPackagedElementDefinitionRule()) {
 					sequence_PackageDefinitionOrStub(context, (PackageDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getNamespaceDefinitionRule() ||
-				   context == grammarAccess.getPackageDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getPackageDefinitionRule()) {
 					sequence_PackageDefinition(context, (PackageDefinition) semanticObject); 
 					return; 
 				}
@@ -668,56 +674,56 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_PrimaryExpression(context, (PropertyAccessExpression) semanticObject); 
 				return; 
 			case AlfPackage.PROPERTY_DEFINITION:
-				if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getAttributeDefinitionRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getFeatureDefinitionOrStubRule()) {
+				if (rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getFeatureDefinitionOrStubRule()
+						|| rule == grammarAccess.getAttributeDefinitionRule()) {
 					sequence_AttributeDefinition_PropertyDeclaration(context, (PropertyDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getPropertyDeclarationRule() ||
-				   context == grammarAccess.getPropertyDefinitionRule()) {
+				else if (rule == grammarAccess.getPropertyDefinitionRule()
+						|| rule == grammarAccess.getPropertyDeclarationRule()) {
 					sequence_PropertyDeclaration(context, (PropertyDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.QUALIFIED_NAME:
-				if(context == grammarAccess.getColonQualifiedNameRule()) {
+				if (rule == grammarAccess.getColonQualifiedNameRule()) {
 					sequence_ColonQualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getDotQualifiedNameRule()) {
+				else if (rule == grammarAccess.getDotQualifiedNameRule()) {
 					sequence_DotQualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getPackageImportQualifiedNameRule()) {
+				else if (rule == grammarAccess.getPackageImportQualifiedNameRule()) {
 					sequence_PackageImportQualifiedName(context, (QualifiedName) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getPotentiallyAmbiguousQualifiedNameRule()) {
+				else if (rule == grammarAccess.getPotentiallyAmbiguousQualifiedNameRule()) {
 					sequence_PotentiallyAmbiguousQualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getNamespaceDeclarationRule() ||
-				   context == grammarAccess.getQualifiedNameRule()) {
+				else if (rule == grammarAccess.getNamespaceDeclarationRule()
+						|| rule == grammarAccess.getQualifiedNameRule()) {
 					sequence_QualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getUnqualifiedNameRule()) {
+				else if (rule == grammarAccess.getUnqualifiedNameRule()) {
 					sequence_UnqualifiedName(context, (QualifiedName) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.QUALIFIED_NAME_LIST:
-				if(context == grammarAccess.getClassificationFromClauseRule() ||
-				   context == grammarAccess.getClassificationToClauseRule() ||
-				   context == grammarAccess.getQualifiedNameListRule() ||
-				   context == grammarAccess.getRedefinitionClauseRule() ||
-				   context == grammarAccess.getSpecializationClauseRule()) {
+				if (rule == grammarAccess.getSpecializationClauseRule()
+						|| rule == grammarAccess.getRedefinitionClauseRule()
+						|| rule == grammarAccess.getClassificationFromClauseRule()
+						|| rule == grammarAccess.getClassificationToClauseRule()
+						|| rule == grammarAccess.getQualifiedNameListRule()) {
 					sequence_QualifiedNameList(context, (QualifiedNameList) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getTemplateParameterConstraintRule()) {
+				else if (rule == grammarAccess.getTemplateParameterConstraintRule()) {
 					sequence_TemplateParameterConstraint(context, (QualifiedNameList) semanticObject); 
 					return; 
 				}
@@ -738,110 +744,110 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_PrimaryExpression(context, (SequenceAccessExpression) semanticObject); 
 				return; 
 			case AlfPackage.SEQUENCE_CONSTRUCTION_EXPRESSION:
-				if(context == grammarAccess.getAdditiveExpressionRule() ||
-				   context == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAndExpressionRule() ||
-				   context == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getBaseExpressionRule() ||
-				   context == grammarAccess.getCastCompletionRule() ||
-				   context == grammarAccess.getClassificationExpressionRule() ||
-				   context == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0() ||
-				   context == grammarAccess.getConditionalAndExpressionRule() ||
-				   context == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalExpressionRule() ||
-				   context == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalOrExpressionRule() ||
-				   context == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getEqualityExpressionRule() ||
-				   context == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExclusiveOrExpressionRule() ||
-				   context == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getIndexRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getParenthesizedExpressionRule() ||
-				   context == grammarAccess.getPostfixOrCastExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0() ||
-				   context == grammarAccess.getRelationalExpressionRule() ||
-				   context == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getShiftExpressionRule() ||
-				   context == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSwitchCaseRule() ||
-				   context == grammarAccess.getUnaryExpressionRule()) {
-					sequence_BaseExpression_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getAttributeInitializerRule() ||
-				   context == grammarAccess.getInitializationExpressionRule() ||
-				   context == grammarAccess.getSequenceElementRule()) {
-					sequence_InitializationExpression_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression_SequenceInitializationExpression(context, (SequenceConstructionExpression) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getInstanceCreationOrSequenceConstructionExpressionRule()) {
+				if (rule == grammarAccess.getInstanceCreationOrSequenceConstructionExpressionRule()) {
 					sequence_InstanceCreationOrSequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getSequenceConstructionExpressionRule()) {
+				else if (rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getParenthesizedExpressionRule()
+						|| rule == grammarAccess.getIndexRule()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getPostfixOrCastExpressionRule()
+						|| rule == grammarAccess.getCastCompletionRule()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getShiftExpressionRule()
+						|| action == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getExclusiveOrExpressionRule()
+						|| action == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInclusiveOrExpressionRule()
+						|| action == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getSwitchCaseRule()) {
+					sequence_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getAttributeInitializerRule()
+						|| rule == grammarAccess.getSequenceElementRule()
+						|| rule == grammarAccess.getInitializationExpressionRule()) {
+					sequence_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression_SequenceInitializationExpression(context, (SequenceConstructionExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getSequenceConstructionExpressionRule()) {
 					sequence_SequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getSequenceInitializationExpressionRule()) {
+				else if (rule == grammarAccess.getSequenceInitializationExpressionRule()) {
 					sequence_SequenceInitializationExpression(context, (SequenceConstructionExpression) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.SEQUENCE_EXPANSION_EXPRESSION:
-				if(context == grammarAccess.getAdditiveExpressionRule() ||
-				   context == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAndExpressionRule() ||
-				   context == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAttributeInitializerRule() ||
-				   context == grammarAccess.getBaseExpressionRule() ||
-				   context == grammarAccess.getCastCompletionRule() ||
-				   context == grammarAccess.getClassificationExpressionRule() ||
-				   context == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0() ||
-				   context == grammarAccess.getConditionalAndExpressionRule() ||
-				   context == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalExpressionRule() ||
-				   context == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalOrExpressionRule() ||
-				   context == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getEqualityExpressionRule() ||
-				   context == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExclusiveOrExpressionRule() ||
-				   context == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getIndexRule() ||
-				   context == grammarAccess.getInitializationExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getParenthesizedExpressionRule() ||
-				   context == grammarAccess.getPostfixOrCastExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0() ||
-				   context == grammarAccess.getRelationalExpressionRule() ||
-				   context == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSequenceElementRule() ||
-				   context == grammarAccess.getShiftExpressionRule() ||
-				   context == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSwitchCaseRule() ||
-				   context == grammarAccess.getUnaryExpressionRule()) {
+				if (rule == grammarAccess.getAttributeInitializerRule()
+						|| rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getParenthesizedExpressionRule()
+						|| rule == grammarAccess.getSequenceElementRule()
+						|| rule == grammarAccess.getIndexRule()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getPostfixOrCastExpressionRule()
+						|| rule == grammarAccess.getCastCompletionRule()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getShiftExpressionRule()
+						|| action == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getExclusiveOrExpressionRule()
+						|| action == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInclusiveOrExpressionRule()
+						|| action == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInitializationExpressionRule()
+						|| rule == grammarAccess.getSwitchCaseRule()) {
 					sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceExpansionExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
+				else if (rule == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
 					sequence_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceExpansionExpression) semanticObject); 
 					return; 
 				}
@@ -850,50 +856,50 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_SequenceExpressionList(context, (SequenceExpressionList) semanticObject); 
 				return; 
 			case AlfPackage.SEQUENCE_OPERATION_EXPRESSION:
-				if(context == grammarAccess.getAdditiveExpressionRule() ||
-				   context == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAndExpressionRule() ||
-				   context == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAttributeInitializerRule() ||
-				   context == grammarAccess.getBaseExpressionRule() ||
-				   context == grammarAccess.getCastCompletionRule() ||
-				   context == grammarAccess.getClassificationExpressionRule() ||
-				   context == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0() ||
-				   context == grammarAccess.getConditionalAndExpressionRule() ||
-				   context == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalExpressionRule() ||
-				   context == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalOrExpressionRule() ||
-				   context == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getEqualityExpressionRule() ||
-				   context == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExclusiveOrExpressionRule() ||
-				   context == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getIndexRule() ||
-				   context == grammarAccess.getInitializationExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getParenthesizedExpressionRule() ||
-				   context == grammarAccess.getPostfixOrCastExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0() ||
-				   context == grammarAccess.getRelationalExpressionRule() ||
-				   context == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSequenceElementRule() ||
-				   context == grammarAccess.getShiftExpressionRule() ||
-				   context == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSwitchCaseRule() ||
-				   context == grammarAccess.getUnaryExpressionRule()) {
+				if (rule == grammarAccess.getAttributeInitializerRule()
+						|| rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getParenthesizedExpressionRule()
+						|| rule == grammarAccess.getSequenceElementRule()
+						|| rule == grammarAccess.getIndexRule()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getPostfixOrCastExpressionRule()
+						|| rule == grammarAccess.getCastCompletionRule()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getShiftExpressionRule()
+						|| action == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getExclusiveOrExpressionRule()
+						|| action == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInclusiveOrExpressionRule()
+						|| action == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInitializationExpressionRule()
+						|| rule == grammarAccess.getSwitchCaseRule()) {
 					sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceOperationExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
+				else if (rule == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
 					sequence_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceOperationExpression) semanticObject); 
 					return; 
 				}
@@ -902,53 +908,50 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_SequenceRange(context, (SequenceRange) semanticObject); 
 				return; 
 			case AlfPackage.SEQUENCE_REDUCTION_EXPRESSION:
-				if(context == grammarAccess.getBaseExpressionRule()) {
-					sequence_BaseExpression_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceReductionExpression) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getAdditiveExpressionRule() ||
-				   context == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAndExpressionRule() ||
-				   context == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAttributeInitializerRule() ||
-				   context == grammarAccess.getCastCompletionRule() ||
-				   context == grammarAccess.getClassificationExpressionRule() ||
-				   context == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0() ||
-				   context == grammarAccess.getConditionalAndExpressionRule() ||
-				   context == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalExpressionRule() ||
-				   context == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalOrExpressionRule() ||
-				   context == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getEqualityExpressionRule() ||
-				   context == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExclusiveOrExpressionRule() ||
-				   context == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getIndexRule() ||
-				   context == grammarAccess.getInitializationExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getParenthesizedExpressionRule() ||
-				   context == grammarAccess.getPostfixOrCastExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0() ||
-				   context == grammarAccess.getRelationalExpressionRule() ||
-				   context == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSequenceElementRule() ||
-				   context == grammarAccess.getShiftExpressionRule() ||
-				   context == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSwitchCaseRule() ||
-				   context == grammarAccess.getUnaryExpressionRule()) {
+				if (rule == grammarAccess.getAttributeInitializerRule()
+						|| rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getParenthesizedExpressionRule()
+						|| rule == grammarAccess.getSequenceElementRule()
+						|| rule == grammarAccess.getIndexRule()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getPostfixOrCastExpressionRule()
+						|| rule == grammarAccess.getCastCompletionRule()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getShiftExpressionRule()
+						|| action == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getExclusiveOrExpressionRule()
+						|| action == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInclusiveOrExpressionRule()
+						|| action == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInitializationExpressionRule()
+						|| rule == grammarAccess.getSwitchCaseRule()) {
 					sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceReductionExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
+				else if (rule == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
 					sequence_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceReductionExpression) semanticObject); 
 					return; 
 				}
@@ -957,33 +960,33 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_ShiftExpression(context, (ShiftExpression) semanticObject); 
 				return; 
 			case AlfPackage.SIGNAL_DEFINITION:
-				if(context == grammarAccess.getSignalDeclarationRule()) {
+				if (rule == grammarAccess.getSignalDeclarationRule()) {
 					sequence_SignalDeclaration(context, (SignalDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule() ||
-				   context == grammarAccess.getSignalDefinitionOrStubRule()) {
+				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getSignalDefinitionOrStubRule()) {
 					sequence_SignalDeclaration_SignalDefinitionOrStub(context, (SignalDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getClassifierDefinitionRule() ||
-				   context == grammarAccess.getNamespaceDefinitionRule() ||
-				   context == grammarAccess.getSignalDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionRule()
+						|| rule == grammarAccess.getSignalDefinitionRule()) {
 					sequence_SignalDeclaration_SignalDefinition(context, (SignalDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.SIGNAL_RECEPTION_DEFINITION:
-				if(context == grammarAccess.getSignalReceptionDeclarationRule()) {
+				if (rule == grammarAccess.getSignalReceptionDeclarationRule()) {
 					sequence_SignalReceptionDeclaration(context, (SignalReceptionDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getActiveFeatureDefinitionOrStubRule() ||
-				   context == grammarAccess.getSignalReceptionDefinitionOrStubRule()) {
+				else if (rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveFeatureDefinitionOrStubRule()
+						|| rule == grammarAccess.getSignalReceptionDefinitionOrStubRule()) {
 					sequence_SignalReceptionDeclaration_SignalReceptionDefinitionOrStub(context, (SignalReceptionDefinition) semanticObject); 
 					return; 
 				}
@@ -1028,37 +1031,51 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_WhileStatement(context, (WhileStatement) semanticObject); 
 				return; 
 			}
-		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
+		if (errorAcceptor != null)
+			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
 	
 	/**
+	 * Contexts:
+	 *     AcceptBlock returns AcceptBlock
+	 *
 	 * Constraint:
 	 *     (name=Name? signalNames=QualifiedNameList block=Block)
 	 */
-	protected void sequence_AcceptBlock_AcceptClause(EObject context, AcceptBlock semanticObject) {
+	protected void sequence_AcceptBlock_AcceptClause(ISerializationContext context, AcceptBlock semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AcceptClause returns AcceptBlock
+	 *
 	 * Constraint:
 	 *     (name=Name? signalNames=QualifiedNameList)
 	 */
-	protected void sequence_AcceptClause(EObject context, AcceptBlock semanticObject) {
+	protected void sequence_AcceptClause(ISerializationContext context, AcceptBlock semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Statement returns AcceptStatement
+	 *     AcceptStatement returns AcceptStatement
+	 *
 	 * Constraint:
 	 *     (acceptBlock+=AcceptClause | (acceptBlock+=AcceptBlock acceptBlock+=AcceptBlock*))
 	 */
-	protected void sequence_AcceptStatement(EObject context, AcceptStatement semanticObject) {
+	protected void sequence_AcceptStatement(ISerializationContext context, AcceptStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ActiveClassDeclaration returns ActiveClassDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
@@ -1067,27 +1084,39 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         specialization=SpecializationClause?
 	 *     )
 	 */
-	protected void sequence_ActiveClassDeclaration(EObject context, ActiveClassDefinition semanticObject) {
+	protected void sequence_ActiveClassDeclaration(ISerializationContext context, ActiveClassDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PackagedElementDefinition returns ActiveClassDefinition
+	 *     ClassifierDefinitionOrStub returns ActiveClassDefinition
+	 *     ClassMemberDefinition returns ActiveClassDefinition
+	 *     ActiveClassDefinitionOrStub returns ActiveClassDefinition
+	 *     ActiveClassMemberDefinition returns ActiveClassDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
 	 *         (ownedMember+=ClassifierTemplateParameter ownedMember+=ClassifierTemplateParameter*)? 
 	 *         specialization=SpecializationClause? 
-	 *         (isStub?=';' | (ownedMember+=ActiveClassMember* classifierBehavior=BehaviorClause?))
+	 *         (isStub?=';' | (ownedMember+=ActiveClassMember* classifierBehavior=BehaviorClause?))?
 	 *     )
 	 */
-	protected void sequence_ActiveClassDeclaration_ActiveClassDefinitionOrStub(EObject context, ActiveClassDefinition semanticObject) {
+	protected void sequence_ActiveClassDeclaration_ActiveClassDefinitionOrStub(ISerializationContext context, ActiveClassDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     NamespaceDefinition returns ActiveClassDefinition
+	 *     ClassifierDefinition returns ActiveClassDefinition
+	 *     ActiveClassDefinition returns ActiveClassDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
@@ -1098,21 +1127,27 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         classifierBehavior=BehaviorClause?
 	 *     )
 	 */
-	protected void sequence_ActiveClassDeclaration_ActiveClassDefinition(EObject context, ActiveClassDefinition semanticObject) {
+	protected void sequence_ActiveClassDeclaration_ActiveClassDefinition(ISerializationContext context, ActiveClassDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ActiveClassMember returns Member
+	 *
 	 * Constraint:
 	 *     (documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=VisibilityIndicator? definition=ActiveClassMemberDefinition)
 	 */
-	protected void sequence_ActiveClassMember(EObject context, Member semanticObject) {
+	protected void sequence_ActiveClassMember(ISerializationContext context, Member semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ActivityDeclaration returns ActivityDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         name=Name 
@@ -1121,12 +1156,19 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         ownedMember+=ReturnParameter?
 	 *     )
 	 */
-	protected void sequence_ActivityDeclaration(EObject context, ActivityDefinition semanticObject) {
+	protected void sequence_ActivityDeclaration(ISerializationContext context, ActivityDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PackagedElementDefinition returns ActivityDefinition
+	 *     ClassifierDefinitionOrStub returns ActivityDefinition
+	 *     ClassMemberDefinition returns ActivityDefinition
+	 *     ActiveClassMemberDefinition returns ActivityDefinition
+	 *     ActivityDefinitionOrStub returns ActivityDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         name=Name 
@@ -1136,12 +1178,17 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (isStub?=';' | body=Block)
 	 *     )
 	 */
-	protected void sequence_ActivityDeclaration_ActivityDefinitionOrStub(EObject context, ActivityDefinition semanticObject) {
+	protected void sequence_ActivityDeclaration_ActivityDefinitionOrStub(ISerializationContext context, ActivityDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     NamespaceDefinition returns ActivityDefinition
+	 *     ClassifierDefinition returns ActivityDefinition
+	 *     ActivityDefinition returns ActivityDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         name=Name 
@@ -1151,55 +1198,201 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         body=Block
 	 *     )
 	 */
-	protected void sequence_ActivityDeclaration_ActivityDefinition(EObject context, ActivityDefinition semanticObject) {
+	protected void sequence_ActivityDeclaration_ActivityDefinition(ISerializationContext context, ActivityDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns ArithmeticExpression
+	 *     Expression returns ArithmeticExpression
+	 *     PrimaryExpression returns ArithmeticExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns ArithmeticExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns ArithmeticExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns ArithmeticExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns ArithmeticExpression
+	 *     BaseExpression returns ArithmeticExpression
+	 *     ParenthesizedExpression returns ArithmeticExpression
+	 *     SequenceElement returns ArithmeticExpression
+	 *     Index returns ArithmeticExpression
+	 *     UnaryExpression returns ArithmeticExpression
+	 *     PostfixOrCastExpression returns ArithmeticExpression
+	 *     CastCompletion returns ArithmeticExpression
+	 *     MultiplicativeExpression returns ArithmeticExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns ArithmeticExpression
+	 *     AdditiveExpression returns ArithmeticExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns ArithmeticExpression
+	 *     ShiftExpression returns ArithmeticExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns ArithmeticExpression
+	 *     RelationalExpression returns ArithmeticExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns ArithmeticExpression
+	 *     ClassificationExpression returns ArithmeticExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns ArithmeticExpression
+	 *     EqualityExpression returns ArithmeticExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns ArithmeticExpression
+	 *     AndExpression returns ArithmeticExpression
+	 *     AndExpression.LogicalExpression_1_0 returns ArithmeticExpression
+	 *     ExclusiveOrExpression returns ArithmeticExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns ArithmeticExpression
+	 *     InclusiveOrExpression returns ArithmeticExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns ArithmeticExpression
+	 *     ConditionalAndExpression returns ArithmeticExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns ArithmeticExpression
+	 *     ConditionalOrExpression returns ArithmeticExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns ArithmeticExpression
+	 *     ConditionalExpression returns ArithmeticExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns ArithmeticExpression
+	 *     InitializationExpression returns ArithmeticExpression
+	 *     SwitchCase returns ArithmeticExpression
+	 *
 	 * Constraint:
 	 *     (
-	 *         (operand1=AdditiveExpression_ArithmeticExpression_1_0 operator=AdditiveOperator operand2=MultiplicativeExpression) | 
-	 *         (operand1=MultiplicativeExpression_ArithmeticExpression_1_0 operator=MultiplicativeOperator operand2=UnaryExpression)
+	 *         (operand1=MultiplicativeExpression_ArithmeticExpression_1_0 operator=MultiplicativeOperator operand2=UnaryExpression) | 
+	 *         (operand1=AdditiveExpression_ArithmeticExpression_1_0 operator=AdditiveOperator operand2=MultiplicativeExpression)
 	 *     )
 	 */
-	protected void sequence_AdditiveExpression_MultiplicativeExpression(EObject context, ArithmeticExpression semanticObject) {
+	protected void sequence_AdditiveExpression_MultiplicativeExpression(ISerializationContext context, ArithmeticExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns LogicalExpression
+	 *     Expression returns LogicalExpression
+	 *     PrimaryExpression returns LogicalExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns LogicalExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns LogicalExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns LogicalExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns LogicalExpression
+	 *     BaseExpression returns LogicalExpression
+	 *     ParenthesizedExpression returns LogicalExpression
+	 *     SequenceElement returns LogicalExpression
+	 *     Index returns LogicalExpression
+	 *     UnaryExpression returns LogicalExpression
+	 *     PostfixOrCastExpression returns LogicalExpression
+	 *     CastCompletion returns LogicalExpression
+	 *     MultiplicativeExpression returns LogicalExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns LogicalExpression
+	 *     AdditiveExpression returns LogicalExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns LogicalExpression
+	 *     ShiftExpression returns LogicalExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns LogicalExpression
+	 *     RelationalExpression returns LogicalExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns LogicalExpression
+	 *     ClassificationExpression returns LogicalExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns LogicalExpression
+	 *     EqualityExpression returns LogicalExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns LogicalExpression
+	 *     AndExpression returns LogicalExpression
+	 *     AndExpression.LogicalExpression_1_0 returns LogicalExpression
+	 *     ExclusiveOrExpression returns LogicalExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns LogicalExpression
+	 *     InclusiveOrExpression returns LogicalExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns LogicalExpression
+	 *     ConditionalAndExpression returns LogicalExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns LogicalExpression
+	 *     ConditionalOrExpression returns LogicalExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns LogicalExpression
+	 *     ConditionalExpression returns LogicalExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns LogicalExpression
+	 *     InitializationExpression returns LogicalExpression
+	 *     SwitchCase returns LogicalExpression
+	 *
 	 * Constraint:
 	 *     (
-	 *         (operand1=ExclusiveOrExpression_LogicalExpression_1_0 operator='^' operand2=AndExpression) | 
 	 *         (operand1=AndExpression_LogicalExpression_1_0 operator='&' operand2=EqualityExpression) | 
+	 *         (operand1=ExclusiveOrExpression_LogicalExpression_1_0 operator='^' operand2=AndExpression) | 
 	 *         (operand1=InclusiveOrExpression_LogicalExpression_1_0 operator='|' operand2=ExclusiveOrExpression)
 	 *     )
 	 */
-	protected void sequence_AndExpression_ExclusiveOrExpression_InclusiveOrExpression(EObject context, LogicalExpression semanticObject) {
+	protected void sequence_AndExpression_ExclusiveOrExpression_InclusiveOrExpression(ISerializationContext context, LogicalExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     DocumentedStatement returns AnnotatedStatement
+	 *     AnnotatedStatement returns AnnotatedStatement
+	 *
 	 * Constraint:
 	 *     (documentation+=DOCUMENTATION_COMMENT? annotation+=STATEMENT_ANNOTATION* statement=Statement)
 	 */
-	protected void sequence_AnnotatedStatement(EObject context, AnnotatedStatement semanticObject) {
+	protected void sequence_AnnotatedStatement(ISerializationContext context, AnnotatedStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns AssignmentExpression
+	 *     Expression returns AssignmentExpression
+	 *     PrimaryExpression returns AssignmentExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns AssignmentExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns AssignmentExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns AssignmentExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns AssignmentExpression
+	 *     BaseExpression returns AssignmentExpression
+	 *     ParenthesizedExpression returns AssignmentExpression
+	 *     SequenceElement returns AssignmentExpression
+	 *     Index returns AssignmentExpression
+	 *     UnaryExpression returns AssignmentExpression
+	 *     PostfixOrCastExpression returns AssignmentExpression
+	 *     CastCompletion returns AssignmentExpression
+	 *     MultiplicativeExpression returns AssignmentExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns AssignmentExpression
+	 *     AdditiveExpression returns AssignmentExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns AssignmentExpression
+	 *     ShiftExpression returns AssignmentExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns AssignmentExpression
+	 *     RelationalExpression returns AssignmentExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns AssignmentExpression
+	 *     ClassificationExpression returns AssignmentExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns AssignmentExpression
+	 *     EqualityExpression returns AssignmentExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns AssignmentExpression
+	 *     AndExpression returns AssignmentExpression
+	 *     AndExpression.LogicalExpression_1_0 returns AssignmentExpression
+	 *     ExclusiveOrExpression returns AssignmentExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns AssignmentExpression
+	 *     InclusiveOrExpression returns AssignmentExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns AssignmentExpression
+	 *     ConditionalAndExpression returns AssignmentExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns AssignmentExpression
+	 *     ConditionalOrExpression returns AssignmentExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns AssignmentExpression
+	 *     ConditionalExpression returns AssignmentExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns AssignmentExpression
+	 *     AssignmentExpression returns AssignmentExpression
+	 *     InitializationExpression returns AssignmentExpression
+	 *     SwitchCase returns AssignmentExpression
+	 *
 	 * Constraint:
 	 *     (leftHandSide=LeftHandSide operator=AssignmentOperator rightHandSide=Expression)
 	 */
-	protected void sequence_AssignmentExpression(EObject context, AssignmentExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_AssignmentExpression(ISerializationContext context, AssignmentExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getAssignmentExpression_LeftHandSide()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getAssignmentExpression_LeftHandSide()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getAssignmentExpression_Operator()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getAssignmentExpression_Operator()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getAssignmentExpression_RightHandSide()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getAssignmentExpression_RightHandSide()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAssignmentExpressionAccess().getLeftHandSideLeftHandSideParserRuleCall_0_0(), semanticObject.getLeftHandSide());
+		feeder.accept(grammarAccess.getAssignmentExpressionAccess().getOperatorAssignmentOperatorParserRuleCall_1_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getAssignmentExpressionAccess().getRightHandSideExpressionParserRuleCall_2_0(), semanticObject.getRightHandSide());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AssociationDeclaration returns AssociationDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
@@ -1208,27 +1401,39 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         specialization=SpecializationClause?
 	 *     )
 	 */
-	protected void sequence_AssociationDeclaration(EObject context, AssociationDefinition semanticObject) {
+	protected void sequence_AssociationDeclaration(ISerializationContext context, AssociationDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PackagedElementDefinition returns AssociationDefinition
+	 *     ClassifierDefinitionOrStub returns AssociationDefinition
+	 *     ClassMemberDefinition returns AssociationDefinition
+	 *     ActiveClassMemberDefinition returns AssociationDefinition
+	 *     AssociationDefinitionOrStub returns AssociationDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
 	 *         (ownedMember+=ClassifierTemplateParameter ownedMember+=ClassifierTemplateParameter*)? 
 	 *         specialization=SpecializationClause? 
-	 *         (isStub?=';' | ownedMember+=StructuredMember*)
+	 *         (isStub?=';' | ownedMember+=StructuredMember+)?
 	 *     )
 	 */
-	protected void sequence_AssociationDeclaration_AssociationDefinitionOrStub(EObject context, AssociationDefinition semanticObject) {
+	protected void sequence_AssociationDeclaration_AssociationDefinitionOrStub(ISerializationContext context, AssociationDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     NamespaceDefinition returns AssociationDefinition
+	 *     ClassifierDefinition returns AssociationDefinition
+	 *     AssociationDefinition returns AssociationDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
@@ -1238,129 +1443,382 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         ownedMember+=StructuredMember*
 	 *     )
 	 */
-	protected void sequence_AssociationDeclaration_AssociationDefinition(EObject context, AssociationDefinition semanticObject) {
+	protected void sequence_AssociationDeclaration_AssociationDefinition(ISerializationContext context, AssociationDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ClassMemberDefinition returns PropertyDefinition
+	 *     ActiveClassMemberDefinition returns PropertyDefinition
+	 *     FeatureDefinitionOrStub returns PropertyDefinition
+	 *     AttributeDefinition returns PropertyDefinition
+	 *
 	 * Constraint:
 	 *     (name=Name isComposite?='compose'? typePart=TypePart initializer=AttributeInitializer?)
 	 */
-	protected void sequence_AttributeDefinition_PropertyDeclaration(EObject context, PropertyDefinition semanticObject) {
+	protected void sequence_AttributeDefinition_PropertyDeclaration(ISerializationContext context, PropertyDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
-	 * Constraint:
-	 *     (
-	 *         (typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? elements=SequenceElements?) | 
-	 *         ((isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? elements=SequenceElements?) | 
-	 *         hasMultiplicity?='null'
-	 *     )
-	 */
-	protected void sequence_BaseExpression_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression(EObject context, SequenceConstructionExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (
-	 *         (primary=SequenceOperationOrReductionOrExpansionExpression_SequenceReductionExpression_3_1_0 isOrdered?='ordered'? behaviorName=QualifiedName) | 
-	 *         (primary=SequenceOperationOrReductionOrExpansionExpression_SequenceReductionExpression_3_1_0 behaviorName=QualifiedName) | 
-	 *         (primary=PrimaryExpression_SequenceReductionExpression_1_2_2_1_0 isOrdered?='ordered'? behaviorName=QualifiedName) | 
-	 *         (primary=PrimaryExpression_SequenceReductionExpression_1_2_2_1_0 behaviorName=QualifiedName)
-	 *     )
-	 */
-	protected void sequence_BaseExpression_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(EObject context, SequenceReductionExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
+	 * Contexts:
+	 *     BehaviorClause returns ActivityDefinition
+	 *
 	 * Constraint:
 	 *     (body=Block | name=Name)
 	 */
-	protected void sequence_BehaviorClause(EObject context, ActivityDefinition semanticObject) {
+	protected void sequence_BehaviorClause(ISerializationContext context, ActivityDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns BehaviorInvocationExpression
+	 *     Expression returns BehaviorInvocationExpression
+	 *     PrimaryExpression returns BehaviorInvocationExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns BehaviorInvocationExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns BehaviorInvocationExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns BehaviorInvocationExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns BehaviorInvocationExpression
+	 *     BaseExpression returns BehaviorInvocationExpression
+	 *     ParenthesizedExpression returns BehaviorInvocationExpression
+	 *     BehaviorInvocationExpression returns BehaviorInvocationExpression
+	 *     SequenceElement returns BehaviorInvocationExpression
+	 *     Index returns BehaviorInvocationExpression
+	 *     UnaryExpression returns BehaviorInvocationExpression
+	 *     PostfixOrCastExpression returns BehaviorInvocationExpression
+	 *     CastCompletion returns BehaviorInvocationExpression
+	 *     MultiplicativeExpression returns BehaviorInvocationExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns BehaviorInvocationExpression
+	 *     AdditiveExpression returns BehaviorInvocationExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns BehaviorInvocationExpression
+	 *     ShiftExpression returns BehaviorInvocationExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns BehaviorInvocationExpression
+	 *     RelationalExpression returns BehaviorInvocationExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns BehaviorInvocationExpression
+	 *     ClassificationExpression returns BehaviorInvocationExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns BehaviorInvocationExpression
+	 *     EqualityExpression returns BehaviorInvocationExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns BehaviorInvocationExpression
+	 *     AndExpression returns BehaviorInvocationExpression
+	 *     AndExpression.LogicalExpression_1_0 returns BehaviorInvocationExpression
+	 *     ExclusiveOrExpression returns BehaviorInvocationExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns BehaviorInvocationExpression
+	 *     InclusiveOrExpression returns BehaviorInvocationExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns BehaviorInvocationExpression
+	 *     ConditionalAndExpression returns BehaviorInvocationExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns BehaviorInvocationExpression
+	 *     ConditionalOrExpression returns BehaviorInvocationExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns BehaviorInvocationExpression
+	 *     ConditionalExpression returns BehaviorInvocationExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns BehaviorInvocationExpression
+	 *     InitializationExpression returns BehaviorInvocationExpression
+	 *     SwitchCase returns BehaviorInvocationExpression
+	 *
 	 * Constraint:
 	 *     (target=PotentiallyAmbiguousQualifiedName tuple=Tuple)
 	 */
-	protected void sequence_BehaviorInvocationExpression(EObject context, BehaviorInvocationExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_BehaviorInvocationExpression(ISerializationContext context, BehaviorInvocationExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getBehaviorInvocationExpression_Target()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getBehaviorInvocationExpression_Target()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getInvocationExpression_Tuple()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getInvocationExpression_Tuple()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getBehaviorInvocationExpressionAccess().getTargetPotentiallyAmbiguousQualifiedNameParserRuleCall_0_0(), semanticObject.getTarget());
+		feeder.accept(grammarAccess.getBehaviorInvocationExpressionAccess().getTupleTupleParserRuleCall_1_0(), semanticObject.getTuple());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns BitStringUnaryExpression
+	 *     Expression returns BitStringUnaryExpression
+	 *     PrimaryExpression returns BitStringUnaryExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns BitStringUnaryExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns BitStringUnaryExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns BitStringUnaryExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns BitStringUnaryExpression
+	 *     BaseExpression returns BitStringUnaryExpression
+	 *     ParenthesizedExpression returns BitStringUnaryExpression
+	 *     SequenceElement returns BitStringUnaryExpression
+	 *     Index returns BitStringUnaryExpression
+	 *     UnaryExpression returns BitStringUnaryExpression
+	 *     PostfixOrCastExpression returns BitStringUnaryExpression
+	 *     NonPostfixNonCastUnaryExpression returns BitStringUnaryExpression
+	 *     BitStringUnaryExpression returns BitStringUnaryExpression
+	 *     CastCompletion returns BitStringUnaryExpression
+	 *     MultiplicativeExpression returns BitStringUnaryExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns BitStringUnaryExpression
+	 *     AdditiveExpression returns BitStringUnaryExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns BitStringUnaryExpression
+	 *     ShiftExpression returns BitStringUnaryExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns BitStringUnaryExpression
+	 *     RelationalExpression returns BitStringUnaryExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns BitStringUnaryExpression
+	 *     ClassificationExpression returns BitStringUnaryExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns BitStringUnaryExpression
+	 *     EqualityExpression returns BitStringUnaryExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns BitStringUnaryExpression
+	 *     AndExpression returns BitStringUnaryExpression
+	 *     AndExpression.LogicalExpression_1_0 returns BitStringUnaryExpression
+	 *     ExclusiveOrExpression returns BitStringUnaryExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns BitStringUnaryExpression
+	 *     InclusiveOrExpression returns BitStringUnaryExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns BitStringUnaryExpression
+	 *     ConditionalAndExpression returns BitStringUnaryExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns BitStringUnaryExpression
+	 *     ConditionalOrExpression returns BitStringUnaryExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns BitStringUnaryExpression
+	 *     ConditionalExpression returns BitStringUnaryExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns BitStringUnaryExpression
+	 *     InitializationExpression returns BitStringUnaryExpression
+	 *     SwitchCase returns BitStringUnaryExpression
+	 *
 	 * Constraint:
 	 *     (operator='~' operand=UnaryExpression)
 	 */
-	protected void sequence_BitStringUnaryExpression(EObject context, BitStringUnaryExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_BitStringUnaryExpression(ISerializationContext context, BitStringUnaryExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operator()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operator()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operand()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getBitStringUnaryExpressionAccess().getOperatorTildeKeyword_0_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getBitStringUnaryExpressionAccess().getOperandUnaryExpressionParserRuleCall_1_0(), semanticObject.getOperand());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Statement returns BlockStatement
+	 *     BlockStatement returns BlockStatement
+	 *
 	 * Constraint:
 	 *     block=Block
 	 */
-	protected void sequence_BlockStatement(EObject context, BlockStatement semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_BlockStatement(ISerializationContext context, BlockStatement semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getBlockStatement_Block()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getBlockStatement_Block()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getBlockStatementAccess().getBlockBlockParserRuleCall_0(), semanticObject.getBlock());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Block returns Block
+	 *
 	 * Constraint:
-	 *     (statement+=DocumentedStatement*)
+	 *     statement+=DocumentedStatement*
 	 */
-	protected void sequence_Block(EObject context, Block semanticObject) {
+	protected void sequence_Block(ISerializationContext context, Block semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns BooleanLiteralExpression
+	 *     Expression returns BooleanLiteralExpression
+	 *     PrimaryExpression returns BooleanLiteralExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns BooleanLiteralExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns BooleanLiteralExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns BooleanLiteralExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns BooleanLiteralExpression
+	 *     BaseExpression returns BooleanLiteralExpression
+	 *     LiteralExpression returns BooleanLiteralExpression
+	 *     BooleanLiteralExpression returns BooleanLiteralExpression
+	 *     ParenthesizedExpression returns BooleanLiteralExpression
+	 *     SequenceElement returns BooleanLiteralExpression
+	 *     Index returns BooleanLiteralExpression
+	 *     UnaryExpression returns BooleanLiteralExpression
+	 *     PostfixOrCastExpression returns BooleanLiteralExpression
+	 *     CastCompletion returns BooleanLiteralExpression
+	 *     MultiplicativeExpression returns BooleanLiteralExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns BooleanLiteralExpression
+	 *     AdditiveExpression returns BooleanLiteralExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns BooleanLiteralExpression
+	 *     ShiftExpression returns BooleanLiteralExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns BooleanLiteralExpression
+	 *     RelationalExpression returns BooleanLiteralExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns BooleanLiteralExpression
+	 *     ClassificationExpression returns BooleanLiteralExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns BooleanLiteralExpression
+	 *     EqualityExpression returns BooleanLiteralExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns BooleanLiteralExpression
+	 *     AndExpression returns BooleanLiteralExpression
+	 *     AndExpression.LogicalExpression_1_0 returns BooleanLiteralExpression
+	 *     ExclusiveOrExpression returns BooleanLiteralExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns BooleanLiteralExpression
+	 *     InclusiveOrExpression returns BooleanLiteralExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns BooleanLiteralExpression
+	 *     ConditionalAndExpression returns BooleanLiteralExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns BooleanLiteralExpression
+	 *     ConditionalOrExpression returns BooleanLiteralExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns BooleanLiteralExpression
+	 *     ConditionalExpression returns BooleanLiteralExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns BooleanLiteralExpression
+	 *     InitializationExpression returns BooleanLiteralExpression
+	 *     SwitchCase returns BooleanLiteralExpression
+	 *
 	 * Constraint:
 	 *     image=BOOLEAN_VALUE
 	 */
-	protected void sequence_BooleanLiteralExpression(EObject context, BooleanLiteralExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_BooleanLiteralExpression(ISerializationContext context, BooleanLiteralExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getBooleanLiteralExpression_Image()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getBooleanLiteralExpression_Image()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getBooleanLiteralExpressionAccess().getImageBOOLEAN_VALUETerminalRuleCall_0(), semanticObject.getImage());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns BooleanUnaryExpression
+	 *     Expression returns BooleanUnaryExpression
+	 *     PrimaryExpression returns BooleanUnaryExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns BooleanUnaryExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns BooleanUnaryExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns BooleanUnaryExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns BooleanUnaryExpression
+	 *     BaseExpression returns BooleanUnaryExpression
+	 *     ParenthesizedExpression returns BooleanUnaryExpression
+	 *     SequenceElement returns BooleanUnaryExpression
+	 *     Index returns BooleanUnaryExpression
+	 *     UnaryExpression returns BooleanUnaryExpression
+	 *     PostfixOrCastExpression returns BooleanUnaryExpression
+	 *     NonPostfixNonCastUnaryExpression returns BooleanUnaryExpression
+	 *     BooleanUnaryExpression returns BooleanUnaryExpression
+	 *     CastCompletion returns BooleanUnaryExpression
+	 *     MultiplicativeExpression returns BooleanUnaryExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns BooleanUnaryExpression
+	 *     AdditiveExpression returns BooleanUnaryExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns BooleanUnaryExpression
+	 *     ShiftExpression returns BooleanUnaryExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns BooleanUnaryExpression
+	 *     RelationalExpression returns BooleanUnaryExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns BooleanUnaryExpression
+	 *     ClassificationExpression returns BooleanUnaryExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns BooleanUnaryExpression
+	 *     EqualityExpression returns BooleanUnaryExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns BooleanUnaryExpression
+	 *     AndExpression returns BooleanUnaryExpression
+	 *     AndExpression.LogicalExpression_1_0 returns BooleanUnaryExpression
+	 *     ExclusiveOrExpression returns BooleanUnaryExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns BooleanUnaryExpression
+	 *     InclusiveOrExpression returns BooleanUnaryExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns BooleanUnaryExpression
+	 *     ConditionalAndExpression returns BooleanUnaryExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns BooleanUnaryExpression
+	 *     ConditionalOrExpression returns BooleanUnaryExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns BooleanUnaryExpression
+	 *     ConditionalExpression returns BooleanUnaryExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns BooleanUnaryExpression
+	 *     InitializationExpression returns BooleanUnaryExpression
+	 *     SwitchCase returns BooleanUnaryExpression
+	 *
 	 * Constraint:
 	 *     (operator='!' operand=UnaryExpression)
 	 */
-	protected void sequence_BooleanUnaryExpression(EObject context, BooleanUnaryExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_BooleanUnaryExpression(ISerializationContext context, BooleanUnaryExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operator()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operator()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operand()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getBooleanUnaryExpressionAccess().getOperatorExclamationMarkKeyword_0_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getBooleanUnaryExpressionAccess().getOperandUnaryExpressionParserRuleCall_1_0(), semanticObject.getOperand());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Statement returns BreakStatement
+	 *     BreakStatement returns BreakStatement
+	 *
 	 * Constraint:
 	 *     {BreakStatement}
 	 */
-	protected void sequence_BreakStatement(EObject context, BreakStatement semanticObject) {
+	protected void sequence_BreakStatement(ISerializationContext context, BreakStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns CastExpression
+	 *     Expression returns CastExpression
+	 *     PrimaryExpression returns CastExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns CastExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns CastExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns CastExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns CastExpression
+	 *     BaseExpression returns CastExpression
+	 *     ParenthesizedExpression returns CastExpression
+	 *     SequenceElement returns CastExpression
+	 *     Index returns CastExpression
+	 *     UnaryExpression returns CastExpression
+	 *     PostfixOrCastExpression returns CastExpression
+	 *     CastExpression returns CastExpression
+	 *     CastCompletion returns CastExpression
+	 *     MultiplicativeExpression returns CastExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns CastExpression
+	 *     AdditiveExpression returns CastExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns CastExpression
+	 *     ShiftExpression returns CastExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns CastExpression
+	 *     RelationalExpression returns CastExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns CastExpression
+	 *     ClassificationExpression returns CastExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns CastExpression
+	 *     EqualityExpression returns CastExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns CastExpression
+	 *     AndExpression returns CastExpression
+	 *     AndExpression.LogicalExpression_1_0 returns CastExpression
+	 *     ExclusiveOrExpression returns CastExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns CastExpression
+	 *     InclusiveOrExpression returns CastExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns CastExpression
+	 *     ConditionalAndExpression returns CastExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns CastExpression
+	 *     ConditionalOrExpression returns CastExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns CastExpression
+	 *     ConditionalExpression returns CastExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns CastExpression
+	 *     InitializationExpression returns CastExpression
+	 *     SwitchCase returns CastExpression
+	 *
 	 * Constraint:
 	 *     ((isAny?='any' | typeName=QualifiedName) operand=CastCompletion)
 	 */
-	protected void sequence_CastExpression(EObject context, CastExpression semanticObject) {
+	protected void sequence_CastExpression(ISerializationContext context, CastExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ClassDeclaration returns ClassDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
@@ -1369,27 +1827,39 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         specialization=SpecializationClause?
 	 *     )
 	 */
-	protected void sequence_ClassDeclaration(EObject context, ClassDefinition semanticObject) {
+	protected void sequence_ClassDeclaration(ISerializationContext context, ClassDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PackagedElementDefinition returns ClassDefinition
+	 *     ClassifierDefinitionOrStub returns ClassDefinition
+	 *     ClassDefinitionOrStub returns ClassDefinition
+	 *     ClassMemberDefinition returns ClassDefinition
+	 *     ActiveClassMemberDefinition returns ClassDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
 	 *         (ownedMember+=ClassifierTemplateParameter ownedMember+=ClassifierTemplateParameter*)? 
 	 *         specialization=SpecializationClause? 
-	 *         (isStub?=';' | ownedMember+=ClassMember*)
+	 *         (isStub?=';' | ownedMember+=ClassMember+)?
 	 *     )
 	 */
-	protected void sequence_ClassDeclaration_ClassDefinitionOrStub(EObject context, ClassDefinition semanticObject) {
+	protected void sequence_ClassDeclaration_ClassDefinitionOrStub(ISerializationContext context, ClassDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     NamespaceDefinition returns ClassDefinition
+	 *     ClassifierDefinition returns ClassDefinition
+	 *     ClassDefinition returns ClassDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
@@ -1399,117 +1869,341 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         ownedMember+=ClassMember*
 	 *     )
 	 */
-	protected void sequence_ClassDeclaration_ClassDefinition(EObject context, ClassDefinition semanticObject) {
+	protected void sequence_ClassDeclaration_ClassDefinition(ISerializationContext context, ClassDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns ClassExtentExpression
+	 *     Expression returns ClassExtentExpression
+	 *     PrimaryExpression returns ClassExtentExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns ClassExtentExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns ClassExtentExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns ClassExtentExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns ClassExtentExpression
+	 *     BaseExpression returns ClassExtentExpression
+	 *     ParenthesizedExpression returns ClassExtentExpression
+	 *     ClassExtentExpression returns ClassExtentExpression
+	 *     SequenceElement returns ClassExtentExpression
+	 *     Index returns ClassExtentExpression
+	 *     UnaryExpression returns ClassExtentExpression
+	 *     PostfixOrCastExpression returns ClassExtentExpression
+	 *     CastCompletion returns ClassExtentExpression
+	 *     MultiplicativeExpression returns ClassExtentExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns ClassExtentExpression
+	 *     AdditiveExpression returns ClassExtentExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns ClassExtentExpression
+	 *     ShiftExpression returns ClassExtentExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns ClassExtentExpression
+	 *     RelationalExpression returns ClassExtentExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns ClassExtentExpression
+	 *     ClassificationExpression returns ClassExtentExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns ClassExtentExpression
+	 *     EqualityExpression returns ClassExtentExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns ClassExtentExpression
+	 *     AndExpression returns ClassExtentExpression
+	 *     AndExpression.LogicalExpression_1_0 returns ClassExtentExpression
+	 *     ExclusiveOrExpression returns ClassExtentExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns ClassExtentExpression
+	 *     InclusiveOrExpression returns ClassExtentExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns ClassExtentExpression
+	 *     ConditionalAndExpression returns ClassExtentExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns ClassExtentExpression
+	 *     ConditionalOrExpression returns ClassExtentExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns ClassExtentExpression
+	 *     ConditionalExpression returns ClassExtentExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns ClassExtentExpression
+	 *     InitializationExpression returns ClassExtentExpression
+	 *     SwitchCase returns ClassExtentExpression
+	 *
 	 * Constraint:
 	 *     className=PotentiallyAmbiguousQualifiedName
 	 */
-	protected void sequence_ClassExtentExpression(EObject context, ClassExtentExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_ClassExtentExpression(ISerializationContext context, ClassExtentExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getClassExtentExpression_ClassName()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getClassExtentExpression_ClassName()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getClassExtentExpressionAccess().getClassNamePotentiallyAmbiguousQualifiedNameParserRuleCall_0_0(), semanticObject.getClassName());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ClassMember returns Member
+	 *
 	 * Constraint:
-	 *     (documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=VisibilityIndicator? definition=ClassMemberDefinition)
+	 *     (documentation+=DOCUMENTATION_COMMENT* annotation+=StereotypeAnnotation* visibility=VisibilityIndicator? definition=ClassMemberDefinition)
 	 */
-	protected void sequence_ClassMember(EObject context, Member semanticObject) {
+	protected void sequence_ClassMember(ISerializationContext context, Member semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns ClassificationExpression
+	 *     Expression returns ClassificationExpression
+	 *     PrimaryExpression returns ClassificationExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns ClassificationExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns ClassificationExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns ClassificationExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns ClassificationExpression
+	 *     BaseExpression returns ClassificationExpression
+	 *     ParenthesizedExpression returns ClassificationExpression
+	 *     SequenceElement returns ClassificationExpression
+	 *     Index returns ClassificationExpression
+	 *     UnaryExpression returns ClassificationExpression
+	 *     PostfixOrCastExpression returns ClassificationExpression
+	 *     CastCompletion returns ClassificationExpression
+	 *     MultiplicativeExpression returns ClassificationExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns ClassificationExpression
+	 *     AdditiveExpression returns ClassificationExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns ClassificationExpression
+	 *     ShiftExpression returns ClassificationExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns ClassificationExpression
+	 *     RelationalExpression returns ClassificationExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns ClassificationExpression
+	 *     ClassificationExpression returns ClassificationExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns ClassificationExpression
+	 *     EqualityExpression returns ClassificationExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns ClassificationExpression
+	 *     AndExpression returns ClassificationExpression
+	 *     AndExpression.LogicalExpression_1_0 returns ClassificationExpression
+	 *     ExclusiveOrExpression returns ClassificationExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns ClassificationExpression
+	 *     InclusiveOrExpression returns ClassificationExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns ClassificationExpression
+	 *     ConditionalAndExpression returns ClassificationExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns ClassificationExpression
+	 *     ConditionalOrExpression returns ClassificationExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns ClassificationExpression
+	 *     ConditionalExpression returns ClassificationExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns ClassificationExpression
+	 *     InitializationExpression returns ClassificationExpression
+	 *     SwitchCase returns ClassificationExpression
+	 *
 	 * Constraint:
 	 *     (operand=ClassificationExpression_ClassificationExpression_1_0 operator=ClassificationOperator typeName=QualifiedName)
 	 */
-	protected void sequence_ClassificationExpression(EObject context, ClassificationExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_ClassificationExpression(ISerializationContext context, ClassificationExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operand()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operator()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operator()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getClassificationExpression_TypeName()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getClassificationExpression_TypeName()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0(), semanticObject.getOperand());
+		feeder.accept(grammarAccess.getClassificationExpressionAccess().getOperatorClassificationOperatorParserRuleCall_1_1_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getClassificationExpressionAccess().getTypeNameQualifiedNameParserRuleCall_1_2_0(), semanticObject.getTypeName());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ClassifierSignature returns ClassifierDefinition
+	 *
 	 * Constraint:
 	 *     (name=Name (ownedMember+=ClassifierTemplateParameter ownedMember+=ClassifierTemplateParameter*)? specialization=SpecializationClause?)
 	 */
-	protected void sequence_ClassifierSignature(EObject context, ClassifierDefinition semanticObject) {
+	protected void sequence_ClassifierSignature(ISerializationContext context, ClassifierDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ClassifierTemplateParameterDefinition returns ClassifierTemplateParameter
+	 *
 	 * Constraint:
 	 *     (name=Name specialization=TemplateParameterConstraint?)
 	 */
-	protected void sequence_ClassifierTemplateParameterDefinition(EObject context, ClassifierTemplateParameter semanticObject) {
+	protected void sequence_ClassifierTemplateParameterDefinition(ISerializationContext context, ClassifierTemplateParameter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ClassifierTemplateParameter returns Member
+	 *
 	 * Constraint:
 	 *     (documentation+=DOCUMENTATION_COMMENT? definition=ClassifierTemplateParameterDefinition)
 	 */
-	protected void sequence_ClassifierTemplateParameter(EObject context, Member semanticObject) {
+	protected void sequence_ClassifierTemplateParameter(ISerializationContext context, Member semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Statement returns ClassifyStatement
+	 *     ClassifyStatement returns ClassifyStatement
+	 *
 	 * Constraint:
 	 *     (
 	 *         expression=Expression 
 	 *         ((fromList=ClassificationFromClause toList=ClassificationToClause?) | (isReclassifyAll?=ReclassifyAllClause? toList=ClassificationToClause))
 	 *     )
 	 */
-	protected void sequence_ClassifyStatement(EObject context, ClassifyStatement semanticObject) {
+	protected void sequence_ClassifyStatement(ISerializationContext context, ClassifyStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ColonQualifiedName returns QualifiedName
+	 *
 	 * Constraint:
 	 *     (nameBinding+=NameBinding nameBinding+=NameBinding+)
 	 */
-	protected void sequence_ColonQualifiedName_UnqualifiedName(EObject context, QualifiedName semanticObject) {
+	protected void sequence_ColonQualifiedName_UnqualifiedName(ISerializationContext context, QualifiedName semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ConcurrentClauses returns ConcurrentClauses
+	 *
 	 * Constraint:
 	 *     (clause+=NonFinalClause clause+=NonFinalClause*)
 	 */
-	protected void sequence_ConcurrentClauses(EObject context, ConcurrentClauses semanticObject) {
+	protected void sequence_ConcurrentClauses(ISerializationContext context, ConcurrentClauses semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns ConditionalLogicalExpression
+	 *     Expression returns ConditionalLogicalExpression
+	 *     PrimaryExpression returns ConditionalLogicalExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns ConditionalLogicalExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns ConditionalLogicalExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns ConditionalLogicalExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns ConditionalLogicalExpression
+	 *     BaseExpression returns ConditionalLogicalExpression
+	 *     ParenthesizedExpression returns ConditionalLogicalExpression
+	 *     SequenceElement returns ConditionalLogicalExpression
+	 *     Index returns ConditionalLogicalExpression
+	 *     UnaryExpression returns ConditionalLogicalExpression
+	 *     PostfixOrCastExpression returns ConditionalLogicalExpression
+	 *     CastCompletion returns ConditionalLogicalExpression
+	 *     MultiplicativeExpression returns ConditionalLogicalExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns ConditionalLogicalExpression
+	 *     AdditiveExpression returns ConditionalLogicalExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns ConditionalLogicalExpression
+	 *     ShiftExpression returns ConditionalLogicalExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns ConditionalLogicalExpression
+	 *     RelationalExpression returns ConditionalLogicalExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns ConditionalLogicalExpression
+	 *     ClassificationExpression returns ConditionalLogicalExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns ConditionalLogicalExpression
+	 *     EqualityExpression returns ConditionalLogicalExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns ConditionalLogicalExpression
+	 *     AndExpression returns ConditionalLogicalExpression
+	 *     AndExpression.LogicalExpression_1_0 returns ConditionalLogicalExpression
+	 *     ExclusiveOrExpression returns ConditionalLogicalExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns ConditionalLogicalExpression
+	 *     InclusiveOrExpression returns ConditionalLogicalExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns ConditionalLogicalExpression
+	 *     ConditionalAndExpression returns ConditionalLogicalExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns ConditionalLogicalExpression
+	 *     ConditionalOrExpression returns ConditionalLogicalExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns ConditionalLogicalExpression
+	 *     ConditionalExpression returns ConditionalLogicalExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns ConditionalLogicalExpression
+	 *     InitializationExpression returns ConditionalLogicalExpression
+	 *     SwitchCase returns ConditionalLogicalExpression
+	 *
 	 * Constraint:
 	 *     (
-	 *         (operand1=ConditionalOrExpression_ConditionalLogicalExpression_1_0 operator='||' operand2=ConditionalAndExpression) | 
-	 *         (operand1=ConditionalAndExpression_ConditionalLogicalExpression_1_0 operator='&&' operand2=InclusiveOrExpression)
+	 *         (operand1=ConditionalAndExpression_ConditionalLogicalExpression_1_0 operator='&&' operand2=InclusiveOrExpression) | 
+	 *         (operand1=ConditionalOrExpression_ConditionalLogicalExpression_1_0 operator='||' operand2=ConditionalAndExpression)
 	 *     )
 	 */
-	protected void sequence_ConditionalAndExpression_ConditionalOrExpression(EObject context, ConditionalLogicalExpression semanticObject) {
+	protected void sequence_ConditionalAndExpression_ConditionalOrExpression(ISerializationContext context, ConditionalLogicalExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns ConditionalTestExpression
+	 *     Expression returns ConditionalTestExpression
+	 *     PrimaryExpression returns ConditionalTestExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns ConditionalTestExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns ConditionalTestExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns ConditionalTestExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns ConditionalTestExpression
+	 *     BaseExpression returns ConditionalTestExpression
+	 *     ParenthesizedExpression returns ConditionalTestExpression
+	 *     SequenceElement returns ConditionalTestExpression
+	 *     Index returns ConditionalTestExpression
+	 *     UnaryExpression returns ConditionalTestExpression
+	 *     PostfixOrCastExpression returns ConditionalTestExpression
+	 *     CastCompletion returns ConditionalTestExpression
+	 *     MultiplicativeExpression returns ConditionalTestExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns ConditionalTestExpression
+	 *     AdditiveExpression returns ConditionalTestExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns ConditionalTestExpression
+	 *     ShiftExpression returns ConditionalTestExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns ConditionalTestExpression
+	 *     RelationalExpression returns ConditionalTestExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns ConditionalTestExpression
+	 *     ClassificationExpression returns ConditionalTestExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns ConditionalTestExpression
+	 *     EqualityExpression returns ConditionalTestExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns ConditionalTestExpression
+	 *     AndExpression returns ConditionalTestExpression
+	 *     AndExpression.LogicalExpression_1_0 returns ConditionalTestExpression
+	 *     ExclusiveOrExpression returns ConditionalTestExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns ConditionalTestExpression
+	 *     InclusiveOrExpression returns ConditionalTestExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns ConditionalTestExpression
+	 *     ConditionalAndExpression returns ConditionalTestExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns ConditionalTestExpression
+	 *     ConditionalOrExpression returns ConditionalTestExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns ConditionalTestExpression
+	 *     ConditionalExpression returns ConditionalTestExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns ConditionalTestExpression
+	 *     InitializationExpression returns ConditionalTestExpression
+	 *     SwitchCase returns ConditionalTestExpression
+	 *
 	 * Constraint:
 	 *     (operand1=ConditionalExpression_ConditionalTestExpression_1_0 operand2=Expression operand3=ConditionalExpression)
 	 */
-	protected void sequence_ConditionalExpression(EObject context, ConditionalTestExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_ConditionalExpression(ISerializationContext context, ConditionalTestExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getConditionalTestExpression_Operand1()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getConditionalTestExpression_Operand1()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getConditionalTestExpression_Operand2()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getConditionalTestExpression_Operand2()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getConditionalTestExpression_Operand3()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getConditionalTestExpression_Operand3()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0(), semanticObject.getOperand1());
+		feeder.accept(grammarAccess.getConditionalExpressionAccess().getOperand2ExpressionParserRuleCall_1_2_0(), semanticObject.getOperand2());
+		feeder.accept(grammarAccess.getConditionalExpressionAccess().getOperand3ConditionalExpressionParserRuleCall_1_4_0(), semanticObject.getOperand3());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     DataTypeDeclaration returns DataTypeDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
@@ -1518,27 +2212,39 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         specialization=SpecializationClause?
 	 *     )
 	 */
-	protected void sequence_DataTypeDeclaration(EObject context, DataTypeDefinition semanticObject) {
+	protected void sequence_DataTypeDeclaration(ISerializationContext context, DataTypeDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PackagedElementDefinition returns DataTypeDefinition
+	 *     ClassifierDefinitionOrStub returns DataTypeDefinition
+	 *     ClassMemberDefinition returns DataTypeDefinition
+	 *     ActiveClassMemberDefinition returns DataTypeDefinition
+	 *     DataTypeDefinitionOrStub returns DataTypeDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
 	 *         (ownedMember+=ClassifierTemplateParameter ownedMember+=ClassifierTemplateParameter*)? 
 	 *         specialization=SpecializationClause? 
-	 *         (isStub?=';' | ownedMember+=StructuredMember*)
+	 *         (isStub?=';' | ownedMember+=StructuredMember+)?
 	 *     )
 	 */
-	protected void sequence_DataTypeDeclaration_DataTypeDefinitionOrStub(EObject context, DataTypeDefinition semanticObject) {
+	protected void sequence_DataTypeDeclaration_DataTypeDefinitionOrStub(ISerializationContext context, DataTypeDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     NamespaceDefinition returns DataTypeDefinition
+	 *     ClassifierDefinition returns DataTypeDefinition
+	 *     DataTypeDefinition returns DataTypeDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
@@ -1548,192 +2254,492 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         ownedMember+=StructuredMember*
 	 *     )
 	 */
-	protected void sequence_DataTypeDeclaration_DataTypeDefinition(EObject context, DataTypeDefinition semanticObject) {
+	protected void sequence_DataTypeDeclaration_DataTypeDefinition(ISerializationContext context, DataTypeDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Statement returns DoStatement
+	 *     DoStatement returns DoStatement
+	 *
 	 * Constraint:
 	 *     (body=Block condition=Expression)
 	 */
-	protected void sequence_DoStatement(EObject context, DoStatement semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_DoStatement(ISerializationContext context, DoStatement semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getDoStatement_Body()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getDoStatement_Body()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getDoStatement_Condition()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getDoStatement_Condition()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDoStatementAccess().getBodyBlockParserRuleCall_1_0(), semanticObject.getBody());
+		feeder.accept(grammarAccess.getDoStatementAccess().getConditionExpressionParserRuleCall_4_0(), semanticObject.getCondition());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     DotQualifiedName returns QualifiedName
+	 *
 	 * Constraint:
 	 *     (nameBinding+=NameBinding nameBinding+=NameBinding+)
 	 */
-	protected void sequence_DotQualifiedName_UnqualifiedName(EObject context, QualifiedName semanticObject) {
+	protected void sequence_DotQualifiedName_UnqualifiedName(ISerializationContext context, QualifiedName semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ImportDeclaration returns ElementImportReference
+	 *     ElementImportReference returns ElementImportReference
+	 *
 	 * Constraint:
 	 *     (visibility=ImportVisibilityIndicator referentName=QualifiedName alias=Name?)
 	 */
-	protected void sequence_ElementImportReference(EObject context, ElementImportReference semanticObject) {
+	protected void sequence_ElementImportReference(ISerializationContext context, ElementImportReference semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Statement returns EmptyStatement
+	 *     EmptyStatement returns EmptyStatement
+	 *
 	 * Constraint:
 	 *     {EmptyStatement}
 	 */
-	protected void sequence_EmptyStatement(EObject context, EmptyStatement semanticObject) {
+	protected void sequence_EmptyStatement(ISerializationContext context, EmptyStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     EnumerationDeclaration returns EnumerationDefinition
+	 *
 	 * Constraint:
 	 *     (name=Name specialization=SpecializationClause?)
 	 */
-	protected void sequence_EnumerationDeclaration(EObject context, EnumerationDefinition semanticObject) {
+	protected void sequence_EnumerationDeclaration(ISerializationContext context, EnumerationDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PackagedElementDefinition returns EnumerationDefinition
+	 *     ClassifierDefinitionOrStub returns EnumerationDefinition
+	 *     ClassMemberDefinition returns EnumerationDefinition
+	 *     ActiveClassMemberDefinition returns EnumerationDefinition
+	 *     EnumerationDefinitionOrStub returns EnumerationDefinition
+	 *
 	 * Constraint:
-	 *     (name=Name specialization=SpecializationClause? (isStub?=';' | (ownedMember+=EnumerationLiteralName ownedMember+=EnumerationLiteralName*)?))
+	 *     (name=Name specialization=SpecializationClause? (isStub?=';' | (ownedMember+=EnumerationLiteralName ownedMember+=EnumerationLiteralName*))?)
 	 */
-	protected void sequence_EnumerationDeclaration_EnumerationDefinitionOrStub(EObject context, EnumerationDefinition semanticObject) {
+	protected void sequence_EnumerationDeclaration_EnumerationDefinitionOrStub(ISerializationContext context, EnumerationDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     NamespaceDefinition returns EnumerationDefinition
+	 *     ClassifierDefinition returns EnumerationDefinition
+	 *     EnumerationDefinition returns EnumerationDefinition
+	 *
 	 * Constraint:
 	 *     (name=Name specialization=SpecializationClause? (ownedMember+=EnumerationLiteralName ownedMember+=EnumerationLiteralName*)?)
 	 */
-	protected void sequence_EnumerationDeclaration_EnumerationDefinition(EObject context, EnumerationDefinition semanticObject) {
+	protected void sequence_EnumerationDeclaration_EnumerationDefinition(ISerializationContext context, EnumerationDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     EnumerationLiteralNameDefinition returns EnumerationLiteralName
+	 *
 	 * Constraint:
 	 *     name=Name
 	 */
-	protected void sequence_EnumerationLiteralNameDefinition(EObject context, EnumerationLiteralName semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_EnumerationLiteralNameDefinition(ISerializationContext context, EnumerationLiteralName semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getMemberDefinition_Name()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getMemberDefinition_Name()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEnumerationLiteralNameDefinitionAccess().getNameNameParserRuleCall_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     EnumerationLiteralName returns Member
+	 *
 	 * Constraint:
 	 *     (documentation+=DOCUMENTATION_COMMENT? definition=EnumerationLiteralNameDefinition)
 	 */
-	protected void sequence_EnumerationLiteralName(EObject context, Member semanticObject) {
+	protected void sequence_EnumerationLiteralName(ISerializationContext context, Member semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns EqualityExpression
+	 *     Expression returns EqualityExpression
+	 *     PrimaryExpression returns EqualityExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns EqualityExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns EqualityExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns EqualityExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns EqualityExpression
+	 *     BaseExpression returns EqualityExpression
+	 *     ParenthesizedExpression returns EqualityExpression
+	 *     SequenceElement returns EqualityExpression
+	 *     Index returns EqualityExpression
+	 *     UnaryExpression returns EqualityExpression
+	 *     PostfixOrCastExpression returns EqualityExpression
+	 *     CastCompletion returns EqualityExpression
+	 *     MultiplicativeExpression returns EqualityExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns EqualityExpression
+	 *     AdditiveExpression returns EqualityExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns EqualityExpression
+	 *     ShiftExpression returns EqualityExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns EqualityExpression
+	 *     RelationalExpression returns EqualityExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns EqualityExpression
+	 *     ClassificationExpression returns EqualityExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns EqualityExpression
+	 *     EqualityExpression returns EqualityExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns EqualityExpression
+	 *     AndExpression returns EqualityExpression
+	 *     AndExpression.LogicalExpression_1_0 returns EqualityExpression
+	 *     ExclusiveOrExpression returns EqualityExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns EqualityExpression
+	 *     InclusiveOrExpression returns EqualityExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns EqualityExpression
+	 *     ConditionalAndExpression returns EqualityExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns EqualityExpression
+	 *     ConditionalOrExpression returns EqualityExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns EqualityExpression
+	 *     ConditionalExpression returns EqualityExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns EqualityExpression
+	 *     InitializationExpression returns EqualityExpression
+	 *     SwitchCase returns EqualityExpression
+	 *
 	 * Constraint:
 	 *     (operand1=EqualityExpression_EqualityExpression_1_0 operator=EqualityOperator operand2=ClassificationExpression)
 	 */
-	protected void sequence_EqualityExpression(EObject context, EqualityExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_EqualityExpression(ISerializationContext context, EqualityExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operand1()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operand1()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operator()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operator()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operand2()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operand2()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0(), semanticObject.getOperand1());
+		feeder.accept(grammarAccess.getEqualityExpressionAccess().getOperatorEqualityOperatorParserRuleCall_1_1_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getEqualityExpressionAccess().getOperand2ClassificationExpressionParserRuleCall_1_2_0(), semanticObject.getOperand2());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Statement returns ExpressionStatement
+	 *     ExpressionStatement returns ExpressionStatement
+	 *
 	 * Constraint:
 	 *     expression=Expression
 	 */
-	protected void sequence_ExpressionStatement(EObject context, ExpressionStatement semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_ExpressionStatement(ISerializationContext context, ExpressionStatement semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getExpressionStatement_Expression()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getExpressionStatement_Expression()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getExpressionStatementAccess().getExpressionExpressionParserRuleCall_0_0(), semanticObject.getExpression());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     LeftHandSide returns FeatureLeftHandSide
+	 *     FeatureLeftHandSide returns FeatureLeftHandSide
+	 *
 	 * Constraint:
 	 *     expression=PrimaryExpression
 	 */
-	protected void sequence_FeatureLeftHandSide(EObject context, FeatureLeftHandSide semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_FeatureLeftHandSide(ISerializationContext context, FeatureLeftHandSide semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getFeatureLeftHandSide_Expression()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getFeatureLeftHandSide_Expression()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFeatureLeftHandSideAccess().getExpressionPrimaryExpressionParserRuleCall_0(), semanticObject.getExpression());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Statement returns ForStatement
+	 *     ForStatement returns ForStatement
+	 *
 	 * Constraint:
 	 *     (variableDefinition+=LoopVariableDefinition variableDefinition+=LoopVariableDefinition* body=Block)
 	 */
-	protected void sequence_ForStatement(EObject context, ForStatement semanticObject) {
+	protected void sequence_ForStatement(ISerializationContext context, ForStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     FormalParameterDefinition returns NonReturnParameter
+	 *
 	 * Constraint:
 	 *     (direction=ParameterDirection name=Name typePart=TypePart)
 	 */
-	protected void sequence_FormalParameterDefinition(EObject context, NonReturnParameter semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_FormalParameterDefinition(ISerializationContext context, NonReturnParameter semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getFormalParameter_Direction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getFormalParameter_Direction()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getMemberDefinition_Name()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getMemberDefinition_Name()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getFormalParameter_TypePart()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getFormalParameter_TypePart()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFormalParameterDefinitionAccess().getDirectionParameterDirectionParserRuleCall_0_0(), semanticObject.getDirection());
+		feeder.accept(grammarAccess.getFormalParameterDefinitionAccess().getNameNameParserRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getFormalParameterDefinitionAccess().getTypePartTypePartParserRuleCall_3_0(), semanticObject.getTypePart());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     FormalParameter returns Member
+	 *
 	 * Constraint:
 	 *     (documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* definition=FormalParameterDefinition)
 	 */
-	protected void sequence_FormalParameter(EObject context, Member semanticObject) {
+	protected void sequence_FormalParameter(ISerializationContext context, Member semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Statement returns IfStatement
+	 *     IfStatement returns IfStatement
+	 *
 	 * Constraint:
 	 *     (nonFinalClauses+=ConcurrentClauses nonFinalClauses+=ConcurrentClauses* finalClause=Block?)
 	 */
-	protected void sequence_IfStatement(EObject context, IfStatement semanticObject) {
+	protected void sequence_IfStatement(ISerializationContext context, IfStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Statement returns InLineStatement
+	 *     InLineStatement returns InLineStatement
+	 *
 	 * Constraint:
 	 *     code=INLINE_STATEMENT
 	 */
-	protected void sequence_InLineStatement(EObject context, InLineStatement semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_InLineStatement(ISerializationContext context, InLineStatement semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getInLineStatement_Code()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getInLineStatement_Code()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getInLineStatementAccess().getCodeINLINE_STATEMENTTerminalRuleCall_0(), semanticObject.getCode());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     IndexedNamedExpression returns NamedExpression
+	 *
 	 * Constraint:
 	 *     (name=Name index=Index? expression=Expression)
 	 */
-	protected void sequence_IndexedNamedExpression(EObject context, NamedExpression semanticObject) {
+	protected void sequence_IndexedNamedExpression(ISerializationContext context, NamedExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     LinkOperationTuple returns NamedTuple
+	 *     IndexedNamedTupleExpressionList returns NamedTuple
+	 *
 	 * Constraint:
 	 *     (namedExpression+=IndexedNamedExpression namedExpression+=IndexedNamedExpression*)
 	 */
-	protected void sequence_IndexedNamedTupleExpressionList(EObject context, NamedTuple semanticObject) {
+	protected void sequence_IndexedNamedTupleExpressionList(ISerializationContext context, NamedTuple semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Expression returns InstanceCreationExpression
+	 *     PrimaryExpression returns InstanceCreationExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns InstanceCreationExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns InstanceCreationExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns InstanceCreationExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns InstanceCreationExpression
+	 *     BaseExpression returns InstanceCreationExpression
+	 *     ParenthesizedExpression returns InstanceCreationExpression
+	 *     InstanceCreationOrSequenceConstructionExpression returns InstanceCreationExpression
+	 *     SequenceElement returns InstanceCreationExpression
+	 *     Index returns InstanceCreationExpression
+	 *     UnaryExpression returns InstanceCreationExpression
+	 *     PostfixOrCastExpression returns InstanceCreationExpression
+	 *     CastCompletion returns InstanceCreationExpression
+	 *     MultiplicativeExpression returns InstanceCreationExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns InstanceCreationExpression
+	 *     AdditiveExpression returns InstanceCreationExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns InstanceCreationExpression
+	 *     ShiftExpression returns InstanceCreationExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns InstanceCreationExpression
+	 *     RelationalExpression returns InstanceCreationExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns InstanceCreationExpression
+	 *     ClassificationExpression returns InstanceCreationExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns InstanceCreationExpression
+	 *     EqualityExpression returns InstanceCreationExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns InstanceCreationExpression
+	 *     AndExpression returns InstanceCreationExpression
+	 *     AndExpression.LogicalExpression_1_0 returns InstanceCreationExpression
+	 *     ExclusiveOrExpression returns InstanceCreationExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns InstanceCreationExpression
+	 *     InclusiveOrExpression returns InstanceCreationExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns InstanceCreationExpression
+	 *     ConditionalAndExpression returns InstanceCreationExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns InstanceCreationExpression
+	 *     ConditionalOrExpression returns InstanceCreationExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns InstanceCreationExpression
+	 *     ConditionalExpression returns InstanceCreationExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns InstanceCreationExpression
+	 *     SwitchCase returns InstanceCreationExpression
+	 *
+	 * Constraint:
+	 *     (constructor=QualifiedName tuple=Tuple)
+	 */
+	protected void sequence_InstanceCreationOrSequenceConstructionExpression(ISerializationContext context, InstanceCreationExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getInstanceCreationExpression_Constructor()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getInstanceCreationExpression_Constructor()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getInvocationExpression_Tuple()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getInvocationExpression_Tuple()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getInstanceCreationOrSequenceConstructionExpressionAccess().getConstructorQualifiedNameParserRuleCall_1_1_1_0(), semanticObject.getConstructor());
+		feeder.accept(grammarAccess.getInstanceCreationOrSequenceConstructionExpressionAccess().getTupleTupleParserRuleCall_1_1_2_0(), semanticObject.getTuple());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AttributeInitializer returns InstanceCreationExpression
+	 *     InitializationExpression returns InstanceCreationExpression
+	 *
 	 * Constraint:
 	 *     ((constructor=QualifiedName tuple=Tuple) | tuple=Tuple)
 	 */
-	protected void sequence_InitializationExpression_InstanceCreationOrSequenceConstructionExpression_InstanceInitializationExpression(EObject context, InstanceCreationExpression semanticObject) {
+	protected void sequence_InstanceCreationOrSequenceConstructionExpression_InstanceInitializationExpression(ISerializationContext context, InstanceCreationExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     InstanceCreationOrSequenceConstructionExpression returns SequenceConstructionExpression
+	 *
+	 * Constraint:
+	 *     (typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? elements=SequenceElements?)
+	 */
+	protected void sequence_InstanceCreationOrSequenceConstructionExpression(ISerializationContext context, SequenceConstructionExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Expression returns SequenceConstructionExpression
+	 *     PrimaryExpression returns SequenceConstructionExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns SequenceConstructionExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns SequenceConstructionExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns SequenceConstructionExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns SequenceConstructionExpression
+	 *     BaseExpression returns SequenceConstructionExpression
+	 *     ParenthesizedExpression returns SequenceConstructionExpression
+	 *     Index returns SequenceConstructionExpression
+	 *     UnaryExpression returns SequenceConstructionExpression
+	 *     PostfixOrCastExpression returns SequenceConstructionExpression
+	 *     CastCompletion returns SequenceConstructionExpression
+	 *     MultiplicativeExpression returns SequenceConstructionExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns SequenceConstructionExpression
+	 *     AdditiveExpression returns SequenceConstructionExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns SequenceConstructionExpression
+	 *     ShiftExpression returns SequenceConstructionExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns SequenceConstructionExpression
+	 *     RelationalExpression returns SequenceConstructionExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns SequenceConstructionExpression
+	 *     ClassificationExpression returns SequenceConstructionExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns SequenceConstructionExpression
+	 *     EqualityExpression returns SequenceConstructionExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns SequenceConstructionExpression
+	 *     AndExpression returns SequenceConstructionExpression
+	 *     AndExpression.LogicalExpression_1_0 returns SequenceConstructionExpression
+	 *     ExclusiveOrExpression returns SequenceConstructionExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns SequenceConstructionExpression
+	 *     InclusiveOrExpression returns SequenceConstructionExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns SequenceConstructionExpression
+	 *     ConditionalAndExpression returns SequenceConstructionExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns SequenceConstructionExpression
+	 *     ConditionalOrExpression returns SequenceConstructionExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns SequenceConstructionExpression
+	 *     ConditionalExpression returns SequenceConstructionExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns SequenceConstructionExpression
+	 *     SwitchCase returns SequenceConstructionExpression
+	 *
+	 * Constraint:
+	 *     (
+	 *         (typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? elements=SequenceElements?) | 
+	 *         ((isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? elements=SequenceElements?) | 
+	 *         hasMultiplicity?='null'
+	 *     )
+	 */
+	protected void sequence_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression(ISerializationContext context, SequenceConstructionExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AttributeInitializer returns SequenceConstructionExpression
+	 *     SequenceElement returns SequenceConstructionExpression
+	 *     InitializationExpression returns SequenceConstructionExpression
+	 *
 	 * Constraint:
 	 *     (
 	 *         (typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? elements=SequenceElements?) | 
@@ -1742,57 +2748,160 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         elements=SequenceElements
 	 *     )
 	 */
-	protected void sequence_InitializationExpression_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression_SequenceInitializationExpression(EObject context, SequenceConstructionExpression semanticObject) {
+	protected void sequence_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression_SequenceInitializationExpression(ISerializationContext context, SequenceConstructionExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
-	 * Constraint:
-	 *     (constructor=QualifiedName tuple=Tuple)
-	 */
-	protected void sequence_InstanceCreationOrSequenceConstructionExpression(EObject context, InstanceCreationExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? elements=SequenceElements?)
-	 */
-	protected void sequence_InstanceCreationOrSequenceConstructionExpression(EObject context, SequenceConstructionExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
+	 * Contexts:
+	 *     InstanceInitializationExpression returns InstanceCreationExpression
+	 *
 	 * Constraint:
 	 *     tuple=Tuple
 	 */
-	protected void sequence_InstanceInitializationExpression(EObject context, InstanceCreationExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_InstanceInitializationExpression(ISerializationContext context, InstanceCreationExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getInvocationExpression_Tuple()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getInvocationExpression_Tuple()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getInstanceInitializationExpressionAccess().getTupleTupleParserRuleCall_1_0(), semanticObject.getTuple());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns IsolationExpression
+	 *     Expression returns IsolationExpression
+	 *     PrimaryExpression returns IsolationExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns IsolationExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns IsolationExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns IsolationExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns IsolationExpression
+	 *     BaseExpression returns IsolationExpression
+	 *     ParenthesizedExpression returns IsolationExpression
+	 *     SequenceElement returns IsolationExpression
+	 *     Index returns IsolationExpression
+	 *     UnaryExpression returns IsolationExpression
+	 *     PostfixOrCastExpression returns IsolationExpression
+	 *     NonPostfixNonCastUnaryExpression returns IsolationExpression
+	 *     IsolationExpression returns IsolationExpression
+	 *     CastCompletion returns IsolationExpression
+	 *     MultiplicativeExpression returns IsolationExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns IsolationExpression
+	 *     AdditiveExpression returns IsolationExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns IsolationExpression
+	 *     ShiftExpression returns IsolationExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns IsolationExpression
+	 *     RelationalExpression returns IsolationExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns IsolationExpression
+	 *     ClassificationExpression returns IsolationExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns IsolationExpression
+	 *     EqualityExpression returns IsolationExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns IsolationExpression
+	 *     AndExpression returns IsolationExpression
+	 *     AndExpression.LogicalExpression_1_0 returns IsolationExpression
+	 *     ExclusiveOrExpression returns IsolationExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns IsolationExpression
+	 *     InclusiveOrExpression returns IsolationExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns IsolationExpression
+	 *     ConditionalAndExpression returns IsolationExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns IsolationExpression
+	 *     ConditionalOrExpression returns IsolationExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns IsolationExpression
+	 *     ConditionalExpression returns IsolationExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns IsolationExpression
+	 *     InitializationExpression returns IsolationExpression
+	 *     SwitchCase returns IsolationExpression
+	 *
 	 * Constraint:
 	 *     (operator='$' operand=UnaryExpression)
 	 */
-	protected void sequence_IsolationExpression(EObject context, IsolationExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_IsolationExpression(ISerializationContext context, IsolationExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operator()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operator()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operand()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIsolationExpressionAccess().getOperatorDollarSignKeyword_0_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getIsolationExpressionAccess().getOperandUnaryExpressionParserRuleCall_1_0(), semanticObject.getOperand());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns LinkOperationExpression
+	 *     Expression returns LinkOperationExpression
+	 *     PrimaryExpression returns LinkOperationExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns LinkOperationExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns LinkOperationExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns LinkOperationExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns LinkOperationExpression
+	 *     BaseExpression returns LinkOperationExpression
+	 *     ParenthesizedExpression returns LinkOperationExpression
+	 *     LinkOperationExpression returns LinkOperationExpression
+	 *     SequenceElement returns LinkOperationExpression
+	 *     Index returns LinkOperationExpression
+	 *     UnaryExpression returns LinkOperationExpression
+	 *     PostfixOrCastExpression returns LinkOperationExpression
+	 *     CastCompletion returns LinkOperationExpression
+	 *     MultiplicativeExpression returns LinkOperationExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns LinkOperationExpression
+	 *     AdditiveExpression returns LinkOperationExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns LinkOperationExpression
+	 *     ShiftExpression returns LinkOperationExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns LinkOperationExpression
+	 *     RelationalExpression returns LinkOperationExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns LinkOperationExpression
+	 *     ClassificationExpression returns LinkOperationExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns LinkOperationExpression
+	 *     EqualityExpression returns LinkOperationExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns LinkOperationExpression
+	 *     AndExpression returns LinkOperationExpression
+	 *     AndExpression.LogicalExpression_1_0 returns LinkOperationExpression
+	 *     ExclusiveOrExpression returns LinkOperationExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns LinkOperationExpression
+	 *     InclusiveOrExpression returns LinkOperationExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns LinkOperationExpression
+	 *     ConditionalAndExpression returns LinkOperationExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns LinkOperationExpression
+	 *     ConditionalOrExpression returns LinkOperationExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns LinkOperationExpression
+	 *     ConditionalExpression returns LinkOperationExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns LinkOperationExpression
+	 *     InitializationExpression returns LinkOperationExpression
+	 *     SwitchCase returns LinkOperationExpression
+	 *
 	 * Constraint:
 	 *     (associationName=PotentiallyAmbiguousQualifiedName operation=LinkOperation tuple=LinkOperationTuple)
 	 */
-	protected void sequence_LinkOperationExpression(EObject context, LinkOperationExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_LinkOperationExpression(ISerializationContext context, LinkOperationExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getLinkOperationExpression_AssociationName()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getLinkOperationExpression_AssociationName()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getLinkOperationExpression_Operation()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getLinkOperationExpression_Operation()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getInvocationExpression_Tuple()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getInvocationExpression_Tuple()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLinkOperationExpressionAccess().getAssociationNamePotentiallyAmbiguousQualifiedNameParserRuleCall_0_0(), semanticObject.getAssociationName());
+		feeder.accept(grammarAccess.getLinkOperationExpressionAccess().getOperationLinkOperationParserRuleCall_2_0(), semanticObject.getOperation());
+		feeder.accept(grammarAccess.getLinkOperationExpressionAccess().getTupleLinkOperationTupleParserRuleCall_3_0(), semanticObject.getTuple());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Statement returns LocalNameDeclarationStatement
+	 *     LocalNameDeclarationStatement returns LocalNameDeclarationStatement
+	 *
 	 * Constraint:
 	 *     (
 	 *         (
@@ -1802,114 +2911,315 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         expression=InitializationExpression
 	 *     )
 	 */
-	protected void sequence_LocalNameDeclarationStatement(EObject context, LocalNameDeclarationStatement semanticObject) {
+	protected void sequence_LocalNameDeclarationStatement(ISerializationContext context, LocalNameDeclarationStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     LoopVariableDefinition returns LoopVariableDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         (variable=Name typeIsInferred?='in' expression1=Expression expression2=Expression?) | 
 	 *         ((isAny?='any' | typeName=QualifiedName) variable=Name expression1=Expression)
 	 *     )
 	 */
-	protected void sequence_LoopVariableDefinition(EObject context, LoopVariableDefinition semanticObject) {
+	protected void sequence_LoopVariableDefinition(ISerializationContext context, LoopVariableDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     NameBinding returns NameBinding
+	 *
 	 * Constraint:
 	 *     (name=Name binding=TemplateBinding?)
 	 */
-	protected void sequence_NameBinding(EObject context, NameBinding semanticObject) {
+	protected void sequence_NameBinding(ISerializationContext context, NameBinding semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns NameExpression
+	 *     Expression returns NameExpression
+	 *     PrimaryExpression returns NameExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns NameExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns NameExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns NameExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns NameExpression
+	 *     BaseExpression returns NameExpression
+	 *     NameExpression returns NameExpression
+	 *     ParenthesizedExpression returns NameExpression
+	 *     SequenceElement returns NameExpression
+	 *     Index returns NameExpression
+	 *     UnaryExpression returns NameExpression
+	 *     PostfixOrCastExpression returns NameExpression
+	 *     CastCompletion returns NameExpression
+	 *     MultiplicativeExpression returns NameExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns NameExpression
+	 *     AdditiveExpression returns NameExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns NameExpression
+	 *     ShiftExpression returns NameExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns NameExpression
+	 *     RelationalExpression returns NameExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns NameExpression
+	 *     ClassificationExpression returns NameExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns NameExpression
+	 *     EqualityExpression returns NameExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns NameExpression
+	 *     AndExpression returns NameExpression
+	 *     AndExpression.LogicalExpression_1_0 returns NameExpression
+	 *     ExclusiveOrExpression returns NameExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns NameExpression
+	 *     InclusiveOrExpression returns NameExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns NameExpression
+	 *     ConditionalAndExpression returns NameExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns NameExpression
+	 *     ConditionalOrExpression returns NameExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns NameExpression
+	 *     ConditionalExpression returns NameExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns NameExpression
+	 *     InitializationExpression returns NameExpression
+	 *     SwitchCase returns NameExpression
+	 *
 	 * Constraint:
 	 *     name=PotentiallyAmbiguousQualifiedName
 	 */
-	protected void sequence_NameExpression(EObject context, NameExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_NameExpression(ISerializationContext context, NameExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getNameExpression_Name()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getNameExpression_Name()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNameExpressionAccess().getNamePotentiallyAmbiguousQualifiedNameParserRuleCall_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     LeftHandSide returns NameLeftHandSide
+	 *     NameLeftHandSide returns NameLeftHandSide
+	 *
 	 * Constraint:
 	 *     (target=PotentiallyAmbiguousQualifiedName index=Index?)
 	 */
-	protected void sequence_NameLeftHandSide(EObject context, NameLeftHandSide semanticObject) {
+	protected void sequence_NameLeftHandSide(ISerializationContext context, NameLeftHandSide semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     NamedExpression returns NamedExpression
+	 *
 	 * Constraint:
 	 *     (name=Name expression=Expression)
 	 */
-	protected void sequence_NamedExpression(EObject context, NamedExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_NamedExpression(ISerializationContext context, NamedExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getNamedExpression_Name()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getNamedExpression_Name()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getNamedExpression_Expression()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getNamedExpression_Expression()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNamedExpressionAccess().getNameNameParserRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getNamedExpressionAccess().getExpressionExpressionParserRuleCall_2_0(), semanticObject.getExpression());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     TemplateBinding returns NamedTemplateBinding
+	 *     NamedTemplateBinding returns NamedTemplateBinding
+	 *
 	 * Constraint:
 	 *     (substitution+=TemplateParameterSubstitution substitution+=TemplateParameterSubstitution*)
 	 */
-	protected void sequence_NamedTemplateBinding(EObject context, NamedTemplateBinding semanticObject) {
+	protected void sequence_NamedTemplateBinding(ISerializationContext context, NamedTemplateBinding semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Tuple returns NamedTuple
+	 *     NamedTupleExpressionList returns NamedTuple
+	 *
 	 * Constraint:
 	 *     (namedExpression+=NamedExpression namedExpression+=NamedExpression*)
 	 */
-	protected void sequence_NamedTupleExpressionList(EObject context, NamedTuple semanticObject) {
+	protected void sequence_NamedTupleExpressionList(ISerializationContext context, NamedTuple semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns NaturalLiteralExpression
+	 *     Expression returns NaturalLiteralExpression
+	 *     PrimaryExpression returns NaturalLiteralExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns NaturalLiteralExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns NaturalLiteralExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns NaturalLiteralExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns NaturalLiteralExpression
+	 *     BaseExpression returns NaturalLiteralExpression
+	 *     LiteralExpression returns NaturalLiteralExpression
+	 *     NaturalLiteralExpression returns NaturalLiteralExpression
+	 *     ParenthesizedExpression returns NaturalLiteralExpression
+	 *     SequenceElement returns NaturalLiteralExpression
+	 *     Index returns NaturalLiteralExpression
+	 *     UnaryExpression returns NaturalLiteralExpression
+	 *     PostfixOrCastExpression returns NaturalLiteralExpression
+	 *     CastCompletion returns NaturalLiteralExpression
+	 *     MultiplicativeExpression returns NaturalLiteralExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns NaturalLiteralExpression
+	 *     AdditiveExpression returns NaturalLiteralExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns NaturalLiteralExpression
+	 *     ShiftExpression returns NaturalLiteralExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns NaturalLiteralExpression
+	 *     RelationalExpression returns NaturalLiteralExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns NaturalLiteralExpression
+	 *     ClassificationExpression returns NaturalLiteralExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns NaturalLiteralExpression
+	 *     EqualityExpression returns NaturalLiteralExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns NaturalLiteralExpression
+	 *     AndExpression returns NaturalLiteralExpression
+	 *     AndExpression.LogicalExpression_1_0 returns NaturalLiteralExpression
+	 *     ExclusiveOrExpression returns NaturalLiteralExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns NaturalLiteralExpression
+	 *     InclusiveOrExpression returns NaturalLiteralExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns NaturalLiteralExpression
+	 *     ConditionalAndExpression returns NaturalLiteralExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns NaturalLiteralExpression
+	 *     ConditionalOrExpression returns NaturalLiteralExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns NaturalLiteralExpression
+	 *     ConditionalExpression returns NaturalLiteralExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns NaturalLiteralExpression
+	 *     InitializationExpression returns NaturalLiteralExpression
+	 *     SwitchCase returns NaturalLiteralExpression
+	 *
 	 * Constraint:
 	 *     image=NATURAL_VALUE
 	 */
-	protected void sequence_NaturalLiteralExpression(EObject context, NaturalLiteralExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_NaturalLiteralExpression(ISerializationContext context, NaturalLiteralExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getNaturalLiteralExpression_Image()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getNaturalLiteralExpression_Image()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNaturalLiteralExpressionAccess().getImageNATURAL_VALUETerminalRuleCall_0(), semanticObject.getImage());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     SwitchDefaultClause returns Block
+	 *     NonEmptyStatementSequence returns Block
+	 *
 	 * Constraint:
 	 *     statement+=DocumentedStatement+
 	 */
-	protected void sequence_NonEmptyStatementSequence(EObject context, Block semanticObject) {
+	protected void sequence_NonEmptyStatementSequence(ISerializationContext context, Block semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     NonFinalClause returns NonFinalClause
+	 *
 	 * Constraint:
 	 *     (condition=Expression body=Block)
 	 */
-	protected void sequence_NonFinalClause(EObject context, NonFinalClause semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_NonFinalClause(ISerializationContext context, NonFinalClause semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getNonFinalClause_Condition()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getNonFinalClause_Condition()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getNonFinalClause_Body()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getNonFinalClause_Body()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNonFinalClauseAccess().getConditionExpressionParserRuleCall_1_0(), semanticObject.getCondition());
+		feeder.accept(grammarAccess.getNonFinalClauseAccess().getBodyBlockParserRuleCall_3_0(), semanticObject.getBody());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns NumericUnaryExpression
+	 *     Expression returns NumericUnaryExpression
+	 *     PrimaryExpression returns NumericUnaryExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns NumericUnaryExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns NumericUnaryExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns NumericUnaryExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns NumericUnaryExpression
+	 *     BaseExpression returns NumericUnaryExpression
+	 *     ParenthesizedExpression returns NumericUnaryExpression
+	 *     SequenceElement returns NumericUnaryExpression
+	 *     Index returns NumericUnaryExpression
+	 *     UnaryExpression returns NumericUnaryExpression
+	 *     PostfixOrCastExpression returns NumericUnaryExpression
+	 *     NonPostfixNonCastUnaryExpression returns NumericUnaryExpression
+	 *     NumericUnaryExpression returns NumericUnaryExpression
+	 *     CastCompletion returns NumericUnaryExpression
+	 *     MultiplicativeExpression returns NumericUnaryExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns NumericUnaryExpression
+	 *     AdditiveExpression returns NumericUnaryExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns NumericUnaryExpression
+	 *     ShiftExpression returns NumericUnaryExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns NumericUnaryExpression
+	 *     RelationalExpression returns NumericUnaryExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns NumericUnaryExpression
+	 *     ClassificationExpression returns NumericUnaryExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns NumericUnaryExpression
+	 *     EqualityExpression returns NumericUnaryExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns NumericUnaryExpression
+	 *     AndExpression returns NumericUnaryExpression
+	 *     AndExpression.LogicalExpression_1_0 returns NumericUnaryExpression
+	 *     ExclusiveOrExpression returns NumericUnaryExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns NumericUnaryExpression
+	 *     InclusiveOrExpression returns NumericUnaryExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns NumericUnaryExpression
+	 *     ConditionalAndExpression returns NumericUnaryExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns NumericUnaryExpression
+	 *     ConditionalOrExpression returns NumericUnaryExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns NumericUnaryExpression
+	 *     ConditionalExpression returns NumericUnaryExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns NumericUnaryExpression
+	 *     InitializationExpression returns NumericUnaryExpression
+	 *     SwitchCase returns NumericUnaryExpression
+	 *
 	 * Constraint:
 	 *     (operator=NumericUnaryOperator operand=UnaryExpression)
 	 */
-	protected void sequence_NumericUnaryExpression(EObject context, NumericUnaryExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_NumericUnaryExpression(ISerializationContext context, NumericUnaryExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operator()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operator()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getUnaryExpression_Operand()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNumericUnaryExpressionAccess().getOperatorNumericUnaryOperatorParserRuleCall_0_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getNumericUnaryExpressionAccess().getOperandUnaryExpressionParserRuleCall_1_0(), semanticObject.getOperand());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     OperationDeclaration returns OperationDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
@@ -1919,12 +3229,18 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         redefinition=RedefinitionClause?
 	 *     )
 	 */
-	protected void sequence_OperationDeclaration(EObject context, OperationDefinition semanticObject) {
+	protected void sequence_OperationDeclaration(ISerializationContext context, OperationDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ClassMemberDefinition returns OperationDefinition
+	 *     ActiveClassMemberDefinition returns OperationDefinition
+	 *     FeatureDefinitionOrStub returns OperationDefinition
+	 *     OperationDefinitionOrStub returns OperationDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
@@ -1935,48 +3251,75 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         (isStub?=';' | body=Block)
 	 *     )
 	 */
-	protected void sequence_OperationDeclaration_OperationDefinitionOrStub(EObject context, OperationDefinition semanticObject) {
+	protected void sequence_OperationDeclaration_OperationDefinitionOrStub(ISerializationContext context, OperationDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PackageDefinitionOrStub returns PackageDefinition
+	 *     PackagedElementDefinition returns PackageDefinition
+	 *
 	 * Constraint:
-	 *     (name=Name (isStub?=';' | ownedMember+=PackagedElement*))
+	 *     (name=Name (isStub?=';' | ownedMember+=PackagedElement+)?)
 	 */
-	protected void sequence_PackageDefinitionOrStub(EObject context, PackageDefinition semanticObject) {
+	protected void sequence_PackageDefinitionOrStub(ISerializationContext context, PackageDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     NamespaceDefinition returns PackageDefinition
+	 *     PackageDefinition returns PackageDefinition
+	 *
 	 * Constraint:
 	 *     (name=Name ownedMember+=PackagedElement*)
 	 */
-	protected void sequence_PackageDefinition(EObject context, PackageDefinition semanticObject) {
+	protected void sequence_PackageDefinition(ISerializationContext context, PackageDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PackageImportQualifiedName returns QualifiedName
+	 *
 	 * Constraint:
-	 *     (nameBinding+=NameBinding (nameBinding+=NameBinding* | nameBinding+=NameBinding*))
+	 *     (nameBinding+=NameBinding (nameBinding+=NameBinding+ | nameBinding+=NameBinding+)?)
 	 */
-	protected void sequence_PackageImportQualifiedName(EObject context, QualifiedName semanticObject) {
+	protected void sequence_PackageImportQualifiedName(ISerializationContext context, QualifiedName semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ImportDeclaration returns PackageImportReference
+	 *     PackageImportReference returns PackageImportReference
+	 *
 	 * Constraint:
 	 *     (visibility=ImportVisibilityIndicator referentName=PackageImportQualifiedName)
 	 */
-	protected void sequence_PackageImportReference(EObject context, PackageImportReference semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_PackageImportReference(ISerializationContext context, PackageImportReference semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getImportReference_Visibility()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getImportReference_Visibility()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getImportReference_ReferentName()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getImportReference_ReferentName()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPackageImportReferenceAccess().getVisibilityImportVisibilityIndicatorParserRuleCall_0_0(), semanticObject.getVisibility());
+		feeder.accept(grammarAccess.getPackageImportReferenceAccess().getReferentNamePackageImportQualifiedNameParserRuleCall_2_0(), semanticObject.getReferentName());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PackagedElement returns Member
+	 *
 	 * Constraint:
 	 *     (
 	 *         documentation+=DOCUMENTATION_COMMENT? 
@@ -1985,316 +3328,925 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         definition=PackagedElementDefinition
 	 *     )
 	 */
-	protected void sequence_PackagedElement(EObject context, Member semanticObject) {
+	protected void sequence_PackagedElement(ISerializationContext context, Member semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     TemplateBinding returns PositionalTemplateBinding
+	 *     PositionalTemplateBinding returns PositionalTemplateBinding
+	 *
 	 * Constraint:
 	 *     (argumentName+=QualifiedName argumentName+=QualifiedName*)
 	 */
-	protected void sequence_PositionalTemplateBinding(EObject context, PositionalTemplateBinding semanticObject) {
+	protected void sequence_PositionalTemplateBinding(ISerializationContext context, PositionalTemplateBinding semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Tuple returns PositionalTuple
+	 *     PositionalTupleExpressionList returns PositionalTuple
+	 *     LinkOperationTuple returns PositionalTuple
+	 *
 	 * Constraint:
-	 *     ((expression+=Expression expression+=Expression*)?)
+	 *     (expression+=Expression expression+=Expression*)?
 	 */
-	protected void sequence_PositionalTupleExpressionList(EObject context, PositionalTuple semanticObject) {
+	protected void sequence_PositionalTupleExpressionList(ISerializationContext context, PositionalTuple semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PostfixExpression returns IncrementOrDecrementExpression
+	 *
 	 * Constraint:
 	 *     (operand=LeftHandSide operator=AffixOperator)
 	 */
-	protected void sequence_PostfixExpression(EObject context, IncrementOrDecrementExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_PostfixExpression(ISerializationContext context, IncrementOrDecrementExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getIncrementOrDecrementExpression_Operand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getIncrementOrDecrementExpression_Operand()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getIncrementOrDecrementExpression_Operator()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getIncrementOrDecrementExpression_Operator()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPostfixExpressionAccess().getOperandLeftHandSideParserRuleCall_0_0(), semanticObject.getOperand());
+		feeder.accept(grammarAccess.getPostfixExpressionAccess().getOperatorAffixOperatorParserRuleCall_1_0(), semanticObject.getOperator());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns IncrementOrDecrementExpression
+	 *     Expression returns IncrementOrDecrementExpression
+	 *     PrimaryExpression returns IncrementOrDecrementExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns IncrementOrDecrementExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns IncrementOrDecrementExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns IncrementOrDecrementExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns IncrementOrDecrementExpression
+	 *     BaseExpression returns IncrementOrDecrementExpression
+	 *     ParenthesizedExpression returns IncrementOrDecrementExpression
+	 *     SequenceElement returns IncrementOrDecrementExpression
+	 *     Index returns IncrementOrDecrementExpression
+	 *     UnaryExpression returns IncrementOrDecrementExpression
+	 *     PostfixOrCastExpression returns IncrementOrDecrementExpression
+	 *     CastCompletion returns IncrementOrDecrementExpression
+	 *     MultiplicativeExpression returns IncrementOrDecrementExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns IncrementOrDecrementExpression
+	 *     AdditiveExpression returns IncrementOrDecrementExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns IncrementOrDecrementExpression
+	 *     ShiftExpression returns IncrementOrDecrementExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns IncrementOrDecrementExpression
+	 *     RelationalExpression returns IncrementOrDecrementExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns IncrementOrDecrementExpression
+	 *     ClassificationExpression returns IncrementOrDecrementExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns IncrementOrDecrementExpression
+	 *     EqualityExpression returns IncrementOrDecrementExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns IncrementOrDecrementExpression
+	 *     AndExpression returns IncrementOrDecrementExpression
+	 *     AndExpression.LogicalExpression_1_0 returns IncrementOrDecrementExpression
+	 *     ExclusiveOrExpression returns IncrementOrDecrementExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns IncrementOrDecrementExpression
+	 *     InclusiveOrExpression returns IncrementOrDecrementExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns IncrementOrDecrementExpression
+	 *     ConditionalAndExpression returns IncrementOrDecrementExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns IncrementOrDecrementExpression
+	 *     ConditionalOrExpression returns IncrementOrDecrementExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns IncrementOrDecrementExpression
+	 *     ConditionalExpression returns IncrementOrDecrementExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns IncrementOrDecrementExpression
+	 *     InitializationExpression returns IncrementOrDecrementExpression
+	 *     SwitchCase returns IncrementOrDecrementExpression
+	 *
 	 * Constraint:
-	 *     ((operand=LeftHandSide operator=AffixOperator) | (operator=AffixOperator operand=LeftHandSide))
+	 *     ((operator=AffixOperator operand=LeftHandSide) | (operand=LeftHandSide operator=AffixOperator))
 	 */
-	protected void sequence_PostfixExpression_PrefixExpression_UnaryExpression(EObject context, IncrementOrDecrementExpression semanticObject) {
+	protected void sequence_PostfixExpression_PrefixExpression(ISerializationContext context, IncrementOrDecrementExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PotentiallyAmbiguousQualifiedName returns QualifiedName
+	 *
 	 * Constraint:
 	 *     (nameBinding+=NameBinding (nameBinding+=NameBinding+ | (isAmbiguous?='.' nameBinding+=NameBinding nameBinding+=NameBinding*))?)
 	 */
-	protected void sequence_PotentiallyAmbiguousQualifiedName_UnqualifiedName(EObject context, QualifiedName semanticObject) {
+	protected void sequence_PotentiallyAmbiguousQualifiedName_UnqualifiedName(ISerializationContext context, QualifiedName semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PrefixExpression returns IncrementOrDecrementExpression
+	 *     NonPostfixNonCastUnaryExpression returns IncrementOrDecrementExpression
+	 *
 	 * Constraint:
 	 *     (operator=AffixOperator operand=LeftHandSide)
 	 */
-	protected void sequence_PrefixExpression(EObject context, IncrementOrDecrementExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_PrefixExpression(ISerializationContext context, IncrementOrDecrementExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getIncrementOrDecrementExpression_Operator()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getIncrementOrDecrementExpression_Operator()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getIncrementOrDecrementExpression_Operand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getIncrementOrDecrementExpression_Operand()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPrefixExpressionAccess().getOperatorAffixOperatorParserRuleCall_0_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getPrefixExpressionAccess().getOperandLeftHandSideParserRuleCall_1_0(), semanticObject.getOperand());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PrimaryExpression.FeatureInvocationExpression_1_0_3 returns FeatureReference
+	 *
 	 * Constraint:
 	 *     (expression=PrimaryExpression_FeatureReference_1_0_0 nameBinding=NameBinding)
 	 */
-	protected void sequence_PrimaryExpression_FeatureInvocationExpression_1_0_3(EObject context, FeatureReference semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_PrimaryExpression_FeatureInvocationExpression_1_0_3(ISerializationContext context, FeatureReference semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getFeatureReference_Expression()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getFeatureReference_Expression()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getFeatureReference_NameBinding()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getFeatureReference_NameBinding()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0(), semanticObject.getExpression());
+		feeder.accept(grammarAccess.getPrimaryExpressionAccess().getNameBindingNameBindingParserRuleCall_1_0_2_0(), semanticObject.getNameBinding());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns PropertyAccessExpression
+	 *     Expression returns PropertyAccessExpression
+	 *     PrimaryExpression returns PropertyAccessExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns PropertyAccessExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns PropertyAccessExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns PropertyAccessExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns PropertyAccessExpression
+	 *     BaseExpression returns PropertyAccessExpression
+	 *     ParenthesizedExpression returns PropertyAccessExpression
+	 *     SequenceElement returns PropertyAccessExpression
+	 *     Index returns PropertyAccessExpression
+	 *     UnaryExpression returns PropertyAccessExpression
+	 *     PostfixOrCastExpression returns PropertyAccessExpression
+	 *     CastCompletion returns PropertyAccessExpression
+	 *     MultiplicativeExpression returns PropertyAccessExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns PropertyAccessExpression
+	 *     AdditiveExpression returns PropertyAccessExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns PropertyAccessExpression
+	 *     ShiftExpression returns PropertyAccessExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns PropertyAccessExpression
+	 *     RelationalExpression returns PropertyAccessExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns PropertyAccessExpression
+	 *     ClassificationExpression returns PropertyAccessExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns PropertyAccessExpression
+	 *     EqualityExpression returns PropertyAccessExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns PropertyAccessExpression
+	 *     AndExpression returns PropertyAccessExpression
+	 *     AndExpression.LogicalExpression_1_0 returns PropertyAccessExpression
+	 *     ExclusiveOrExpression returns PropertyAccessExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns PropertyAccessExpression
+	 *     InclusiveOrExpression returns PropertyAccessExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns PropertyAccessExpression
+	 *     ConditionalAndExpression returns PropertyAccessExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns PropertyAccessExpression
+	 *     ConditionalOrExpression returns PropertyAccessExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns PropertyAccessExpression
+	 *     ConditionalExpression returns PropertyAccessExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns PropertyAccessExpression
+	 *     InitializationExpression returns PropertyAccessExpression
+	 *     SwitchCase returns PropertyAccessExpression
+	 *
 	 * Constraint:
 	 *     featureReference=PrimaryExpression_PropertyAccessExpression_1_1_3
 	 */
-	protected void sequence_PrimaryExpression(EObject context, PropertyAccessExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_PrimaryExpression(ISerializationContext context, PropertyAccessExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getPropertyAccessExpression_FeatureReference()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getPropertyAccessExpression_FeatureReference()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPrimaryExpressionAccess().getPropertyAccessExpressionFeatureReferenceAction_1_1_3(), semanticObject.getFeatureReference());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PrimaryExpression.PropertyAccessExpression_1_1_3 returns FeatureReference
+	 *
 	 * Constraint:
 	 *     (expression=PrimaryExpression_FeatureReference_1_1_0 nameBinding=NameBinding)
 	 */
-	protected void sequence_PrimaryExpression_PropertyAccessExpression_1_1_3(EObject context, FeatureReference semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_PrimaryExpression_PropertyAccessExpression_1_1_3(ISerializationContext context, FeatureReference semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getFeatureReference_Expression()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getFeatureReference_Expression()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getFeatureReference_NameBinding()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getFeatureReference_NameBinding()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0(), semanticObject.getExpression());
+		feeder.accept(grammarAccess.getPrimaryExpressionAccess().getNameBindingNameBindingParserRuleCall_1_1_2_0(), semanticObject.getNameBinding());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns SequenceAccessExpression
+	 *     Expression returns SequenceAccessExpression
+	 *     PrimaryExpression returns SequenceAccessExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns SequenceAccessExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns SequenceAccessExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns SequenceAccessExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns SequenceAccessExpression
+	 *     BaseExpression returns SequenceAccessExpression
+	 *     ParenthesizedExpression returns SequenceAccessExpression
+	 *     SequenceElement returns SequenceAccessExpression
+	 *     Index returns SequenceAccessExpression
+	 *     UnaryExpression returns SequenceAccessExpression
+	 *     PostfixOrCastExpression returns SequenceAccessExpression
+	 *     CastCompletion returns SequenceAccessExpression
+	 *     MultiplicativeExpression returns SequenceAccessExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns SequenceAccessExpression
+	 *     AdditiveExpression returns SequenceAccessExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns SequenceAccessExpression
+	 *     ShiftExpression returns SequenceAccessExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns SequenceAccessExpression
+	 *     RelationalExpression returns SequenceAccessExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns SequenceAccessExpression
+	 *     ClassificationExpression returns SequenceAccessExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns SequenceAccessExpression
+	 *     EqualityExpression returns SequenceAccessExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns SequenceAccessExpression
+	 *     AndExpression returns SequenceAccessExpression
+	 *     AndExpression.LogicalExpression_1_0 returns SequenceAccessExpression
+	 *     ExclusiveOrExpression returns SequenceAccessExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns SequenceAccessExpression
+	 *     InclusiveOrExpression returns SequenceAccessExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns SequenceAccessExpression
+	 *     ConditionalAndExpression returns SequenceAccessExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns SequenceAccessExpression
+	 *     ConditionalOrExpression returns SequenceAccessExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns SequenceAccessExpression
+	 *     ConditionalExpression returns SequenceAccessExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns SequenceAccessExpression
+	 *     InitializationExpression returns SequenceAccessExpression
+	 *     SwitchCase returns SequenceAccessExpression
+	 *
 	 * Constraint:
 	 *     (primary=PrimaryExpression_SequenceAccessExpression_1_3_0 index=Index)
 	 */
-	protected void sequence_PrimaryExpression(EObject context, SequenceAccessExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_PrimaryExpression(ISerializationContext context, SequenceAccessExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getSequenceAccessExpression_Primary()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getSequenceAccessExpression_Primary()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getSequenceAccessExpression_Index()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getSequenceAccessExpression_Index()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0(), semanticObject.getPrimary());
+		feeder.accept(grammarAccess.getPrimaryExpressionAccess().getIndexIndexParserRuleCall_1_3_1_0(), semanticObject.getIndex());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PrimaryExpression.SequenceOperationExpression_1_2_2_0_0 returns ExtentOrExpression
+	 *     PrimaryExpression.SequenceReductionExpression_1_2_2_1_0 returns ExtentOrExpression
+	 *     PrimaryExpression.SequenceExpansionExpression_1_2_2_2_0 returns ExtentOrExpression
+	 *
 	 * Constraint:
 	 *     nonNameExpression=PrimaryExpression_ExtentOrExpression_1_2_0
 	 */
-	protected void sequence_PrimaryExpression_SequenceExpansionExpression_1_2_2_2_0_SequenceOperationExpression_1_2_2_0_0_SequenceReductionExpression_1_2_2_1_0(EObject context, ExtentOrExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_PrimaryExpression_SequenceExpansionExpression_1_2_2_2_0_SequenceOperationExpression_1_2_2_0_0_SequenceReductionExpression_1_2_2_1_0(ISerializationContext context, ExtentOrExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getExtentOrExpression_NonNameExpression()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getExtentOrExpression_NonNameExpression()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0(), semanticObject.getNonNameExpression());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns SequenceExpansionExpression
+	 *     Expression returns SequenceExpansionExpression
+	 *     PrimaryExpression returns SequenceExpansionExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns SequenceExpansionExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns SequenceExpansionExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns SequenceExpansionExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns SequenceExpansionExpression
+	 *     BaseExpression returns SequenceExpansionExpression
+	 *     ParenthesizedExpression returns SequenceExpansionExpression
+	 *     SequenceElement returns SequenceExpansionExpression
+	 *     Index returns SequenceExpansionExpression
+	 *     UnaryExpression returns SequenceExpansionExpression
+	 *     PostfixOrCastExpression returns SequenceExpansionExpression
+	 *     CastCompletion returns SequenceExpansionExpression
+	 *     MultiplicativeExpression returns SequenceExpansionExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns SequenceExpansionExpression
+	 *     AdditiveExpression returns SequenceExpansionExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns SequenceExpansionExpression
+	 *     ShiftExpression returns SequenceExpansionExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns SequenceExpansionExpression
+	 *     RelationalExpression returns SequenceExpansionExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns SequenceExpansionExpression
+	 *     ClassificationExpression returns SequenceExpansionExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns SequenceExpansionExpression
+	 *     EqualityExpression returns SequenceExpansionExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns SequenceExpansionExpression
+	 *     AndExpression returns SequenceExpansionExpression
+	 *     AndExpression.LogicalExpression_1_0 returns SequenceExpansionExpression
+	 *     ExclusiveOrExpression returns SequenceExpansionExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns SequenceExpansionExpression
+	 *     InclusiveOrExpression returns SequenceExpansionExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns SequenceExpansionExpression
+	 *     ConditionalAndExpression returns SequenceExpansionExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns SequenceExpansionExpression
+	 *     ConditionalOrExpression returns SequenceExpansionExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns SequenceExpansionExpression
+	 *     ConditionalExpression returns SequenceExpansionExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns SequenceExpansionExpression
+	 *     InitializationExpression returns SequenceExpansionExpression
+	 *     SwitchCase returns SequenceExpansionExpression
+	 *
 	 * Constraint:
 	 *     (
 	 *         (primary=PrimaryExpression_SequenceExpansionExpression_1_2_2_2_0 operation=ID variable=Name argument=Expression) | 
 	 *         (primary=SequenceOperationOrReductionOrExpansionExpression_SequenceExpansionExpression_3_2_0 operation=ID variable=Name argument=Expression)
 	 *     )
 	 */
-	protected void sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(EObject context, SequenceExpansionExpression semanticObject) {
+	protected void sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(ISerializationContext context, SequenceExpansionExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns SequenceOperationExpression
+	 *     Expression returns SequenceOperationExpression
+	 *     PrimaryExpression returns SequenceOperationExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns SequenceOperationExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns SequenceOperationExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns SequenceOperationExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns SequenceOperationExpression
+	 *     BaseExpression returns SequenceOperationExpression
+	 *     ParenthesizedExpression returns SequenceOperationExpression
+	 *     SequenceElement returns SequenceOperationExpression
+	 *     Index returns SequenceOperationExpression
+	 *     UnaryExpression returns SequenceOperationExpression
+	 *     PostfixOrCastExpression returns SequenceOperationExpression
+	 *     CastCompletion returns SequenceOperationExpression
+	 *     MultiplicativeExpression returns SequenceOperationExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns SequenceOperationExpression
+	 *     AdditiveExpression returns SequenceOperationExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns SequenceOperationExpression
+	 *     ShiftExpression returns SequenceOperationExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns SequenceOperationExpression
+	 *     RelationalExpression returns SequenceOperationExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns SequenceOperationExpression
+	 *     ClassificationExpression returns SequenceOperationExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns SequenceOperationExpression
+	 *     EqualityExpression returns SequenceOperationExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns SequenceOperationExpression
+	 *     AndExpression returns SequenceOperationExpression
+	 *     AndExpression.LogicalExpression_1_0 returns SequenceOperationExpression
+	 *     ExclusiveOrExpression returns SequenceOperationExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns SequenceOperationExpression
+	 *     InclusiveOrExpression returns SequenceOperationExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns SequenceOperationExpression
+	 *     ConditionalAndExpression returns SequenceOperationExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns SequenceOperationExpression
+	 *     ConditionalOrExpression returns SequenceOperationExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns SequenceOperationExpression
+	 *     ConditionalExpression returns SequenceOperationExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns SequenceOperationExpression
+	 *     InitializationExpression returns SequenceOperationExpression
+	 *     SwitchCase returns SequenceOperationExpression
+	 *
 	 * Constraint:
 	 *     (
 	 *         (primary=PrimaryExpression_SequenceOperationExpression_1_2_2_0_0 operation=QualifiedName tuple=Tuple) | 
 	 *         (primary=SequenceOperationOrReductionOrExpansionExpression_SequenceOperationExpression_3_0_0 operation=QualifiedName tuple=Tuple)
 	 *     )
 	 */
-	protected void sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(EObject context, SequenceOperationExpression semanticObject) {
+	protected void sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(ISerializationContext context, SequenceOperationExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns SequenceReductionExpression
+	 *     Expression returns SequenceReductionExpression
+	 *     PrimaryExpression returns SequenceReductionExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns SequenceReductionExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns SequenceReductionExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns SequenceReductionExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns SequenceReductionExpression
+	 *     BaseExpression returns SequenceReductionExpression
+	 *     ParenthesizedExpression returns SequenceReductionExpression
+	 *     SequenceElement returns SequenceReductionExpression
+	 *     Index returns SequenceReductionExpression
+	 *     UnaryExpression returns SequenceReductionExpression
+	 *     PostfixOrCastExpression returns SequenceReductionExpression
+	 *     CastCompletion returns SequenceReductionExpression
+	 *     MultiplicativeExpression returns SequenceReductionExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns SequenceReductionExpression
+	 *     AdditiveExpression returns SequenceReductionExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns SequenceReductionExpression
+	 *     ShiftExpression returns SequenceReductionExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns SequenceReductionExpression
+	 *     RelationalExpression returns SequenceReductionExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns SequenceReductionExpression
+	 *     ClassificationExpression returns SequenceReductionExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns SequenceReductionExpression
+	 *     EqualityExpression returns SequenceReductionExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns SequenceReductionExpression
+	 *     AndExpression returns SequenceReductionExpression
+	 *     AndExpression.LogicalExpression_1_0 returns SequenceReductionExpression
+	 *     ExclusiveOrExpression returns SequenceReductionExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns SequenceReductionExpression
+	 *     InclusiveOrExpression returns SequenceReductionExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns SequenceReductionExpression
+	 *     ConditionalAndExpression returns SequenceReductionExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns SequenceReductionExpression
+	 *     ConditionalOrExpression returns SequenceReductionExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns SequenceReductionExpression
+	 *     ConditionalExpression returns SequenceReductionExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns SequenceReductionExpression
+	 *     InitializationExpression returns SequenceReductionExpression
+	 *     SwitchCase returns SequenceReductionExpression
+	 *
 	 * Constraint:
 	 *     (
 	 *         (primary=PrimaryExpression_SequenceReductionExpression_1_2_2_1_0 isOrdered?='ordered'? behaviorName=QualifiedName) | 
-	 *         (primary=PrimaryExpression_SequenceReductionExpression_1_2_2_1_0 behaviorName=QualifiedName) | 
-	 *         (
-	 *             (primary=SequenceOperationOrReductionOrExpansionExpression_SequenceReductionExpression_3_1_0 isOrdered?='ordered'? behaviorName=QualifiedName) | 
-	 *             (primary=SequenceOperationOrReductionOrExpansionExpression_SequenceReductionExpression_3_1_0 behaviorName=QualifiedName)
-	 *         )
+	 *         (primary=SequenceOperationOrReductionOrExpansionExpression_SequenceReductionExpression_3_1_0 isOrdered?='ordered'? behaviorName=QualifiedName)
 	 *     )
 	 */
-	protected void sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(EObject context, SequenceReductionExpression semanticObject) {
+	protected void sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(ISerializationContext context, SequenceReductionExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns FeatureInvocationExpression
+	 *     Expression returns FeatureInvocationExpression
+	 *     PrimaryExpression returns FeatureInvocationExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns FeatureInvocationExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns FeatureInvocationExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns FeatureInvocationExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns FeatureInvocationExpression
+	 *     BaseExpression returns FeatureInvocationExpression
+	 *     ParenthesizedExpression returns FeatureInvocationExpression
+	 *     SequenceElement returns FeatureInvocationExpression
+	 *     Index returns FeatureInvocationExpression
+	 *     UnaryExpression returns FeatureInvocationExpression
+	 *     PostfixOrCastExpression returns FeatureInvocationExpression
+	 *     CastCompletion returns FeatureInvocationExpression
+	 *     MultiplicativeExpression returns FeatureInvocationExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns FeatureInvocationExpression
+	 *     AdditiveExpression returns FeatureInvocationExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns FeatureInvocationExpression
+	 *     ShiftExpression returns FeatureInvocationExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns FeatureInvocationExpression
+	 *     RelationalExpression returns FeatureInvocationExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns FeatureInvocationExpression
+	 *     ClassificationExpression returns FeatureInvocationExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns FeatureInvocationExpression
+	 *     EqualityExpression returns FeatureInvocationExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns FeatureInvocationExpression
+	 *     AndExpression returns FeatureInvocationExpression
+	 *     AndExpression.LogicalExpression_1_0 returns FeatureInvocationExpression
+	 *     ExclusiveOrExpression returns FeatureInvocationExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns FeatureInvocationExpression
+	 *     InclusiveOrExpression returns FeatureInvocationExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns FeatureInvocationExpression
+	 *     ConditionalAndExpression returns FeatureInvocationExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns FeatureInvocationExpression
+	 *     ConditionalOrExpression returns FeatureInvocationExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns FeatureInvocationExpression
+	 *     ConditionalExpression returns FeatureInvocationExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns FeatureInvocationExpression
+	 *     InitializationExpression returns FeatureInvocationExpression
+	 *     SwitchCase returns FeatureInvocationExpression
+	 *
 	 * Constraint:
 	 *     ((target=PrimaryExpression_FeatureInvocationExpression_1_0_3 tuple=Tuple) | tuple=Tuple)
 	 */
-	protected void sequence_PrimaryExpression_ThisExpression(EObject context, FeatureInvocationExpression semanticObject) {
+	protected void sequence_PrimaryExpression_ThisExpression(ISerializationContext context, FeatureInvocationExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PropertyDefinition returns PropertyDefinition
+	 *     PropertyDeclaration returns PropertyDefinition
+	 *
 	 * Constraint:
 	 *     (name=Name isComposite?='compose'? typePart=TypePart)
 	 */
-	protected void sequence_PropertyDeclaration(EObject context, PropertyDefinition semanticObject) {
+	protected void sequence_PropertyDeclaration(ISerializationContext context, PropertyDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     SpecializationClause returns QualifiedNameList
+	 *     RedefinitionClause returns QualifiedNameList
+	 *     ClassificationFromClause returns QualifiedNameList
+	 *     ClassificationToClause returns QualifiedNameList
+	 *     QualifiedNameList returns QualifiedNameList
+	 *
 	 * Constraint:
 	 *     (name+=QualifiedName name+=QualifiedName*)
 	 */
-	protected void sequence_QualifiedNameList(EObject context, QualifiedNameList semanticObject) {
+	protected void sequence_QualifiedNameList(ISerializationContext context, QualifiedNameList semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     NamespaceDeclaration returns QualifiedName
+	 *     QualifiedName returns QualifiedName
+	 *
 	 * Constraint:
 	 *     (nameBinding+=NameBinding (nameBinding+=NameBinding+ | nameBinding+=NameBinding+)?)
 	 */
-	protected void sequence_QualifiedName_UnqualifiedName(EObject context, QualifiedName semanticObject) {
+	protected void sequence_QualifiedName_UnqualifiedName(ISerializationContext context, QualifiedName semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ActiveClassMemberDefinition returns ReceptionDefinition
+	 *     ActiveFeatureDefinitionOrStub returns ReceptionDefinition
+	 *     ReceptionDefinition returns ReceptionDefinition
+	 *
 	 * Constraint:
 	 *     signalName=QualifiedName
 	 */
-	protected void sequence_ReceptionDefinition(EObject context, ReceptionDefinition semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_ReceptionDefinition(ISerializationContext context, ReceptionDefinition semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getReceptionDefinition_SignalName()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getReceptionDefinition_SignalName()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getReceptionDefinitionAccess().getSignalNameQualifiedNameParserRuleCall_1_0(), semanticObject.getSignalName());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns RelationalExpression
+	 *     Expression returns RelationalExpression
+	 *     PrimaryExpression returns RelationalExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns RelationalExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns RelationalExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns RelationalExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns RelationalExpression
+	 *     BaseExpression returns RelationalExpression
+	 *     ParenthesizedExpression returns RelationalExpression
+	 *     SequenceElement returns RelationalExpression
+	 *     Index returns RelationalExpression
+	 *     UnaryExpression returns RelationalExpression
+	 *     PostfixOrCastExpression returns RelationalExpression
+	 *     CastCompletion returns RelationalExpression
+	 *     MultiplicativeExpression returns RelationalExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns RelationalExpression
+	 *     AdditiveExpression returns RelationalExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns RelationalExpression
+	 *     ShiftExpression returns RelationalExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns RelationalExpression
+	 *     RelationalExpression returns RelationalExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns RelationalExpression
+	 *     ClassificationExpression returns RelationalExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns RelationalExpression
+	 *     EqualityExpression returns RelationalExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns RelationalExpression
+	 *     AndExpression returns RelationalExpression
+	 *     AndExpression.LogicalExpression_1_0 returns RelationalExpression
+	 *     ExclusiveOrExpression returns RelationalExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns RelationalExpression
+	 *     InclusiveOrExpression returns RelationalExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns RelationalExpression
+	 *     ConditionalAndExpression returns RelationalExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns RelationalExpression
+	 *     ConditionalOrExpression returns RelationalExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns RelationalExpression
+	 *     ConditionalExpression returns RelationalExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns RelationalExpression
+	 *     InitializationExpression returns RelationalExpression
+	 *     SwitchCase returns RelationalExpression
+	 *
 	 * Constraint:
 	 *     (operand1=RelationalExpression_RelationalExpression_1_0 operator=RelationalOperator operand2=ShiftExpression)
 	 */
-	protected void sequence_RelationalExpression(EObject context, RelationalExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_RelationalExpression(ISerializationContext context, RelationalExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operand1()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operand1()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operator()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operator()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operand2()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operand2()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0(), semanticObject.getOperand1());
+		feeder.accept(grammarAccess.getRelationalExpressionAccess().getOperatorRelationalOperatorParserRuleCall_1_1_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getRelationalExpressionAccess().getOperand2ShiftExpressionParserRuleCall_1_2_0(), semanticObject.getOperand2());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ReturnParameterDefinition returns ReturnParameter
+	 *
 	 * Constraint:
 	 *     typePart=TypePart
 	 */
-	protected void sequence_ReturnParameterDefinition(EObject context, ReturnParameter semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_ReturnParameterDefinition(ISerializationContext context, ReturnParameter semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getFormalParameter_TypePart()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getFormalParameter_TypePart()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getReturnParameterDefinitionAccess().getTypePartTypePartParserRuleCall_1_0(), semanticObject.getTypePart());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ReturnParameter returns Member
+	 *
 	 * Constraint:
 	 *     definition=ReturnParameterDefinition
 	 */
-	protected void sequence_ReturnParameter(EObject context, Member semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_ReturnParameter(ISerializationContext context, Member semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getMember_Definition()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getMember_Definition()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getReturnParameterAccess().getDefinitionReturnParameterDefinitionParserRuleCall_0(), semanticObject.getDefinition());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Statement returns ReturnStatement
+	 *     ReturnStatement returns ReturnStatement
+	 *
 	 * Constraint:
-	 *     (expression=Expression?)
+	 *     expression=Expression?
 	 */
-	protected void sequence_ReturnStatement(EObject context, ReturnStatement semanticObject) {
+	protected void sequence_ReturnStatement(ISerializationContext context, ReturnStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     SequenceConstructionExpression returns SequenceConstructionExpression
+	 *
 	 * Constraint:
 	 *     (((isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? elements=SequenceElements?) | hasMultiplicity?='null')
 	 */
-	protected void sequence_SequenceConstructionExpression(EObject context, SequenceConstructionExpression semanticObject) {
+	protected void sequence_SequenceConstructionExpression(ISerializationContext context, SequenceConstructionExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     SequenceElements returns SequenceExpressionList
+	 *     SequenceExpressionList returns SequenceExpressionList
+	 *
 	 * Constraint:
 	 *     (element+=SequenceElement element+=SequenceElement*)
 	 */
-	protected void sequence_SequenceExpressionList(EObject context, SequenceExpressionList semanticObject) {
+	protected void sequence_SequenceExpressionList(ISerializationContext context, SequenceExpressionList semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     SequenceInitializationExpression returns SequenceConstructionExpression
+	 *
 	 * Constraint:
 	 *     elements=SequenceElements
 	 */
-	protected void sequence_SequenceInitializationExpression(EObject context, SequenceConstructionExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_SequenceInitializationExpression(ISerializationContext context, SequenceConstructionExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getSequenceConstructionExpression_Elements()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getSequenceConstructionExpression_Elements()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSequenceInitializationExpressionAccess().getElementsSequenceElementsParserRuleCall_2_0(), semanticObject.getElements());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     SequenceOperationOrReductionOrExpansionExpression returns SequenceExpansionExpression
+	 *
 	 * Constraint:
 	 *     (primary=SequenceOperationOrReductionOrExpansionExpression_SequenceExpansionExpression_3_2_0 operation=ID variable=Name argument=Expression)
 	 */
-	protected void sequence_SequenceOperationOrReductionOrExpansionExpression(EObject context, SequenceExpansionExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_SequenceOperationOrReductionOrExpansionExpression(ISerializationContext context, SequenceExpansionExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getSequenceExpansionExpression_Primary()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getSequenceExpansionExpression_Primary()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getSequenceExpansionExpression_Operation()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getSequenceExpansionExpression_Operation()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getSequenceExpansionExpression_Variable()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getSequenceExpansionExpression_Variable()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getSequenceExpansionExpression_Argument()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getSequenceExpansionExpression_Argument()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceExpansionExpressionPrimaryAction_3_2_0(), semanticObject.getPrimary());
+		feeder.accept(grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getOperationIDTerminalRuleCall_3_2_1_0(), semanticObject.getOperation());
+		feeder.accept(grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getVariableNameParserRuleCall_3_2_2_0(), semanticObject.getVariable());
+		feeder.accept(grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getArgumentExpressionParserRuleCall_3_2_4_0(), semanticObject.getArgument());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     SequenceOperationOrReductionOrExpansionExpression.SequenceOperationExpression_3_0_0 returns ExtentOrExpression
+	 *     SequenceOperationOrReductionOrExpansionExpression.SequenceReductionExpression_3_1_0 returns ExtentOrExpression
+	 *     SequenceOperationOrReductionOrExpansionExpression.SequenceExpansionExpression_3_2_0 returns ExtentOrExpression
+	 *
 	 * Constraint:
 	 *     name=PotentiallyAmbiguousQualifiedName
 	 */
-	protected void sequence_SequenceOperationOrReductionOrExpansionExpression_SequenceExpansionExpression_3_2_0_SequenceOperationExpression_3_0_0_SequenceReductionExpression_3_1_0(EObject context, ExtentOrExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_SequenceOperationOrReductionOrExpansionExpression_SequenceExpansionExpression_3_2_0_SequenceOperationExpression_3_0_0_SequenceReductionExpression_3_1_0(ISerializationContext context, ExtentOrExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getExtentOrExpression_Name()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getExtentOrExpression_Name()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getNamePotentiallyAmbiguousQualifiedNameParserRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     SequenceOperationOrReductionOrExpansionExpression returns SequenceOperationExpression
+	 *
 	 * Constraint:
 	 *     (primary=SequenceOperationOrReductionOrExpansionExpression_SequenceOperationExpression_3_0_0 operation=QualifiedName tuple=Tuple)
 	 */
-	protected void sequence_SequenceOperationOrReductionOrExpansionExpression(EObject context, SequenceOperationExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_SequenceOperationOrReductionOrExpansionExpression(ISerializationContext context, SequenceOperationExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getSequenceOperationExpression_Primary()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getSequenceOperationExpression_Primary()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getSequenceOperationExpression_Operation()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getSequenceOperationExpression_Operation()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getInvocationExpression_Tuple()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getInvocationExpression_Tuple()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceOperationExpressionPrimaryAction_3_0_0(), semanticObject.getPrimary());
+		feeder.accept(grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getOperationQualifiedNameParserRuleCall_3_0_1_0(), semanticObject.getOperation());
+		feeder.accept(grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getTupleTupleParserRuleCall_3_0_2_0(), semanticObject.getTuple());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     SequenceOperationOrReductionOrExpansionExpression returns SequenceReductionExpression
+	 *
 	 * Constraint:
-	 *     (
-	 *         (primary=SequenceOperationOrReductionOrExpansionExpression_SequenceReductionExpression_3_1_0 isOrdered?='ordered'? behaviorName=QualifiedName) | 
-	 *         (primary=SequenceOperationOrReductionOrExpansionExpression_SequenceReductionExpression_3_1_0 behaviorName=QualifiedName)
-	 *     )
+	 *     (primary=SequenceOperationOrReductionOrExpansionExpression_SequenceReductionExpression_3_1_0 isOrdered?='ordered'? behaviorName=QualifiedName)
 	 */
-	protected void sequence_SequenceOperationOrReductionOrExpansionExpression(EObject context, SequenceReductionExpression semanticObject) {
+	protected void sequence_SequenceOperationOrReductionOrExpansionExpression(ISerializationContext context, SequenceReductionExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     SequenceElements returns SequenceRange
+	 *     SequenceRange returns SequenceRange
+	 *
 	 * Constraint:
 	 *     (rangeLower=Expression rangeUpper=Expression)
 	 */
-	protected void sequence_SequenceRange(EObject context, SequenceRange semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_SequenceRange(ISerializationContext context, SequenceRange semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getSequenceRange_RangeLower()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getSequenceRange_RangeLower()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getSequenceRange_RangeUpper()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getSequenceRange_RangeUpper()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSequenceRangeAccess().getRangeLowerExpressionParserRuleCall_0_0(), semanticObject.getRangeLower());
+		feeder.accept(grammarAccess.getSequenceRangeAccess().getRangeUpperExpressionParserRuleCall_2_0(), semanticObject.getRangeUpper());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns ShiftExpression
+	 *     Expression returns ShiftExpression
+	 *     PrimaryExpression returns ShiftExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns ShiftExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns ShiftExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns ShiftExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns ShiftExpression
+	 *     BaseExpression returns ShiftExpression
+	 *     ParenthesizedExpression returns ShiftExpression
+	 *     SequenceElement returns ShiftExpression
+	 *     Index returns ShiftExpression
+	 *     UnaryExpression returns ShiftExpression
+	 *     PostfixOrCastExpression returns ShiftExpression
+	 *     CastCompletion returns ShiftExpression
+	 *     MultiplicativeExpression returns ShiftExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns ShiftExpression
+	 *     AdditiveExpression returns ShiftExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns ShiftExpression
+	 *     ShiftExpression returns ShiftExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns ShiftExpression
+	 *     RelationalExpression returns ShiftExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns ShiftExpression
+	 *     ClassificationExpression returns ShiftExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns ShiftExpression
+	 *     EqualityExpression returns ShiftExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns ShiftExpression
+	 *     AndExpression returns ShiftExpression
+	 *     AndExpression.LogicalExpression_1_0 returns ShiftExpression
+	 *     ExclusiveOrExpression returns ShiftExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns ShiftExpression
+	 *     InclusiveOrExpression returns ShiftExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns ShiftExpression
+	 *     ConditionalAndExpression returns ShiftExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns ShiftExpression
+	 *     ConditionalOrExpression returns ShiftExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns ShiftExpression
+	 *     ConditionalExpression returns ShiftExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns ShiftExpression
+	 *     InitializationExpression returns ShiftExpression
+	 *     SwitchCase returns ShiftExpression
+	 *
 	 * Constraint:
 	 *     (operand1=ShiftExpression_ShiftExpression_1_0 operator=ShiftOperator operand2=AdditiveExpression)
 	 */
-	protected void sequence_ShiftExpression(EObject context, ShiftExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_ShiftExpression(ISerializationContext context, ShiftExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operand1()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operand1()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operator()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operator()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operand2()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getBinaryExpression_Operand2()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0(), semanticObject.getOperand1());
+		feeder.accept(grammarAccess.getShiftExpressionAccess().getOperatorShiftOperatorParserRuleCall_1_1_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getShiftExpressionAccess().getOperand2AdditiveExpressionParserRuleCall_1_2_0(), semanticObject.getOperand2());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     SignalDeclaration returns SignalDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
@@ -2303,27 +4255,39 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         specialization=SpecializationClause?
 	 *     )
 	 */
-	protected void sequence_SignalDeclaration(EObject context, SignalDefinition semanticObject) {
+	protected void sequence_SignalDeclaration(ISerializationContext context, SignalDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     PackagedElementDefinition returns SignalDefinition
+	 *     ClassifierDefinitionOrStub returns SignalDefinition
+	 *     ClassMemberDefinition returns SignalDefinition
+	 *     ActiveClassMemberDefinition returns SignalDefinition
+	 *     SignalDefinitionOrStub returns SignalDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
 	 *         name=Name 
 	 *         (ownedMember+=ClassifierTemplateParameter ownedMember+=ClassifierTemplateParameter*)? 
 	 *         specialization=SpecializationClause? 
-	 *         (isStub?=';' | ownedMember+=StructuredMember*)
+	 *         (isStub?=';' | ownedMember+=StructuredMember+)?
 	 *     )
 	 */
-	protected void sequence_SignalDeclaration_SignalDefinitionOrStub(EObject context, SignalDefinition semanticObject) {
+	protected void sequence_SignalDeclaration_SignalDefinitionOrStub(ISerializationContext context, SignalDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     NamespaceDefinition returns SignalDefinition
+	 *     ClassifierDefinition returns SignalDefinition
+	 *     SignalDefinition returns SignalDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
@@ -2333,171 +4297,409 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         ownedMember+=StructuredMember*
 	 *     )
 	 */
-	protected void sequence_SignalDeclaration_SignalDefinition(EObject context, SignalDefinition semanticObject) {
+	protected void sequence_SignalDeclaration_SignalDefinition(ISerializationContext context, SignalDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     SignalReceptionDeclaration returns SignalReceptionDefinition
+	 *
 	 * Constraint:
 	 *     (name=Name specialization=SpecializationClause?)
 	 */
-	protected void sequence_SignalReceptionDeclaration(EObject context, SignalReceptionDefinition semanticObject) {
+	protected void sequence_SignalReceptionDeclaration(ISerializationContext context, SignalReceptionDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ActiveClassMemberDefinition returns SignalReceptionDefinition
+	 *     ActiveFeatureDefinitionOrStub returns SignalReceptionDefinition
+	 *     SignalReceptionDefinitionOrStub returns SignalReceptionDefinition
+	 *
 	 * Constraint:
-	 *     (name=Name specialization=SpecializationClause? (isStub?=';' | ownedMember+=StructuredMember*))
+	 *     (name=Name specialization=SpecializationClause? (isStub?=';' | ownedMember+=StructuredMember+)?)
 	 */
-	protected void sequence_SignalReceptionDeclaration_SignalReceptionDefinitionOrStub(EObject context, SignalReceptionDefinition semanticObject) {
+	protected void sequence_SignalReceptionDeclaration_SignalReceptionDefinitionOrStub(ISerializationContext context, SignalReceptionDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     StatementSequence returns Block
+	 *
 	 * Constraint:
-	 *     (statement+=DocumentedStatement*)
+	 *     statement+=DocumentedStatement*
 	 */
-	protected void sequence_StatementSequence(EObject context, Block semanticObject) {
+	protected void sequence_StatementSequence(ISerializationContext context, Block semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     StereotypeAnnotation returns StereotypeAnnotation
+	 *
 	 * Constraint:
 	 *     (stereotypeName=QualifiedName (names=QualifiedNameList | taggedValues=TaggedValueList)?)
 	 */
-	protected void sequence_StereotypeAnnotation(EObject context, StereotypeAnnotation semanticObject) {
+	protected void sequence_StereotypeAnnotation(ISerializationContext context, StereotypeAnnotation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns StringLiteralExpression
+	 *     Expression returns StringLiteralExpression
+	 *     PrimaryExpression returns StringLiteralExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns StringLiteralExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns StringLiteralExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns StringLiteralExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns StringLiteralExpression
+	 *     BaseExpression returns StringLiteralExpression
+	 *     LiteralExpression returns StringLiteralExpression
+	 *     StringLiteralExpression returns StringLiteralExpression
+	 *     ParenthesizedExpression returns StringLiteralExpression
+	 *     SequenceElement returns StringLiteralExpression
+	 *     Index returns StringLiteralExpression
+	 *     UnaryExpression returns StringLiteralExpression
+	 *     PostfixOrCastExpression returns StringLiteralExpression
+	 *     CastCompletion returns StringLiteralExpression
+	 *     MultiplicativeExpression returns StringLiteralExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns StringLiteralExpression
+	 *     AdditiveExpression returns StringLiteralExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns StringLiteralExpression
+	 *     ShiftExpression returns StringLiteralExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns StringLiteralExpression
+	 *     RelationalExpression returns StringLiteralExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns StringLiteralExpression
+	 *     ClassificationExpression returns StringLiteralExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns StringLiteralExpression
+	 *     EqualityExpression returns StringLiteralExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns StringLiteralExpression
+	 *     AndExpression returns StringLiteralExpression
+	 *     AndExpression.LogicalExpression_1_0 returns StringLiteralExpression
+	 *     ExclusiveOrExpression returns StringLiteralExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns StringLiteralExpression
+	 *     InclusiveOrExpression returns StringLiteralExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns StringLiteralExpression
+	 *     ConditionalAndExpression returns StringLiteralExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns StringLiteralExpression
+	 *     ConditionalOrExpression returns StringLiteralExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns StringLiteralExpression
+	 *     ConditionalExpression returns StringLiteralExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns StringLiteralExpression
+	 *     InitializationExpression returns StringLiteralExpression
+	 *     SwitchCase returns StringLiteralExpression
+	 *
 	 * Constraint:
 	 *     image=STRING
 	 */
-	protected void sequence_StringLiteralExpression(EObject context, StringLiteralExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_StringLiteralExpression(ISerializationContext context, StringLiteralExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getStringLiteralExpression_Image()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getStringLiteralExpression_Image()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getStringLiteralExpressionAccess().getImageSTRINGTerminalRuleCall_0(), semanticObject.getImage());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     StructuredMember returns Member
+	 *
 	 * Constraint:
 	 *     (documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility='public'? definition=PropertyDefinition)
 	 */
-	protected void sequence_StructuredMember(EObject context, Member semanticObject) {
+	protected void sequence_StructuredMember(ISerializationContext context, Member semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns SuperInvocationExpression
+	 *     Expression returns SuperInvocationExpression
+	 *     PrimaryExpression returns SuperInvocationExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns SuperInvocationExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns SuperInvocationExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns SuperInvocationExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns SuperInvocationExpression
+	 *     BaseExpression returns SuperInvocationExpression
+	 *     ParenthesizedExpression returns SuperInvocationExpression
+	 *     SuperInvocationExpression returns SuperInvocationExpression
+	 *     SequenceElement returns SuperInvocationExpression
+	 *     Index returns SuperInvocationExpression
+	 *     UnaryExpression returns SuperInvocationExpression
+	 *     PostfixOrCastExpression returns SuperInvocationExpression
+	 *     CastCompletion returns SuperInvocationExpression
+	 *     MultiplicativeExpression returns SuperInvocationExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns SuperInvocationExpression
+	 *     AdditiveExpression returns SuperInvocationExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns SuperInvocationExpression
+	 *     ShiftExpression returns SuperInvocationExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns SuperInvocationExpression
+	 *     RelationalExpression returns SuperInvocationExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns SuperInvocationExpression
+	 *     ClassificationExpression returns SuperInvocationExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns SuperInvocationExpression
+	 *     EqualityExpression returns SuperInvocationExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns SuperInvocationExpression
+	 *     AndExpression returns SuperInvocationExpression
+	 *     AndExpression.LogicalExpression_1_0 returns SuperInvocationExpression
+	 *     ExclusiveOrExpression returns SuperInvocationExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns SuperInvocationExpression
+	 *     InclusiveOrExpression returns SuperInvocationExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns SuperInvocationExpression
+	 *     ConditionalAndExpression returns SuperInvocationExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns SuperInvocationExpression
+	 *     ConditionalOrExpression returns SuperInvocationExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns SuperInvocationExpression
+	 *     ConditionalExpression returns SuperInvocationExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns SuperInvocationExpression
+	 *     InitializationExpression returns SuperInvocationExpression
+	 *     SwitchCase returns SuperInvocationExpression
+	 *
 	 * Constraint:
 	 *     (target=QualifiedName? tuple=Tuple)
 	 */
-	protected void sequence_SuperInvocationExpression(EObject context, SuperInvocationExpression semanticObject) {
+	protected void sequence_SuperInvocationExpression(ISerializationContext context, SuperInvocationExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     SwitchClause returns SwitchClause
+	 *
 	 * Constraint:
 	 *     (case+=SwitchCase case+=SwitchCase* block=NonEmptyStatementSequence)
 	 */
-	protected void sequence_SwitchClause(EObject context, SwitchClause semanticObject) {
+	protected void sequence_SwitchClause(ISerializationContext context, SwitchClause semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Statement returns SwitchStatement
+	 *     SwitchStatement returns SwitchStatement
+	 *
 	 * Constraint:
 	 *     (expression=Expression nonDefaultClause+=SwitchClause* defaultClause=SwitchDefaultClause?)
 	 */
-	protected void sequence_SwitchStatement(EObject context, SwitchStatement semanticObject) {
+	protected void sequence_SwitchStatement(ISerializationContext context, SwitchStatement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     TaggedValueList returns TaggedValueList
+	 *
 	 * Constraint:
 	 *     (taggedValue+=TaggedValue taggedValue+=TaggedValue*)
 	 */
-	protected void sequence_TaggedValueList(EObject context, TaggedValueList semanticObject) {
+	protected void sequence_TaggedValueList(ISerializationContext context, TaggedValueList semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     TaggedValue returns TaggedValue
+	 *
 	 * Constraint:
 	 *     (name=Name (value=BOOLEAN_VALUE | (operator=NumericUnaryOperator? value=NATURAL_VALUE) | value='*' | value=STRING))
 	 */
-	protected void sequence_TaggedValue(EObject context, TaggedValue semanticObject) {
+	protected void sequence_TaggedValue(ISerializationContext context, TaggedValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     TemplateParameterConstraint returns QualifiedNameList
+	 *
 	 * Constraint:
 	 *     name+=QualifiedName
 	 */
-	protected void sequence_TemplateParameterConstraint(EObject context, QualifiedNameList semanticObject) {
+	protected void sequence_TemplateParameterConstraint(ISerializationContext context, QualifiedNameList semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     TemplateParameterSubstitution returns TemplateParameterSubstitution
+	 *
 	 * Constraint:
 	 *     (parameterName=Name argumentName=QualifiedName)
 	 */
-	protected void sequence_TemplateParameterSubstitution(EObject context, TemplateParameterSubstitution semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_TemplateParameterSubstitution(ISerializationContext context, TemplateParameterSubstitution semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getTemplateParameterSubstitution_ParameterName()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getTemplateParameterSubstitution_ParameterName()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getTemplateParameterSubstitution_ArgumentName()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getTemplateParameterSubstitution_ArgumentName()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTemplateParameterSubstitutionAccess().getParameterNameNameParserRuleCall_0_0(), semanticObject.getParameterName());
+		feeder.accept(grammarAccess.getTemplateParameterSubstitutionAccess().getArgumentNameQualifiedNameParserRuleCall_2_0(), semanticObject.getArgumentName());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ThisExpression returns FeatureInvocationExpression
+	 *
 	 * Constraint:
 	 *     tuple=Tuple
 	 */
-	protected void sequence_ThisExpression(EObject context, FeatureInvocationExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_ThisExpression(ISerializationContext context, FeatureInvocationExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getInvocationExpression_Tuple()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getInvocationExpression_Tuple()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getThisExpressionAccess().getTupleTupleParserRuleCall_0_2_0(), semanticObject.getTuple());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns ThisExpression
+	 *     Expression returns ThisExpression
+	 *     PrimaryExpression returns ThisExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns ThisExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns ThisExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns ThisExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns ThisExpression
+	 *     BaseExpression returns ThisExpression
+	 *     ThisExpression returns ThisExpression
+	 *     ParenthesizedExpression returns ThisExpression
+	 *     SequenceElement returns ThisExpression
+	 *     Index returns ThisExpression
+	 *     UnaryExpression returns ThisExpression
+	 *     PostfixOrCastExpression returns ThisExpression
+	 *     CastCompletion returns ThisExpression
+	 *     MultiplicativeExpression returns ThisExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns ThisExpression
+	 *     AdditiveExpression returns ThisExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns ThisExpression
+	 *     ShiftExpression returns ThisExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns ThisExpression
+	 *     RelationalExpression returns ThisExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns ThisExpression
+	 *     ClassificationExpression returns ThisExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns ThisExpression
+	 *     EqualityExpression returns ThisExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns ThisExpression
+	 *     AndExpression returns ThisExpression
+	 *     AndExpression.LogicalExpression_1_0 returns ThisExpression
+	 *     ExclusiveOrExpression returns ThisExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns ThisExpression
+	 *     InclusiveOrExpression returns ThisExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns ThisExpression
+	 *     ConditionalAndExpression returns ThisExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns ThisExpression
+	 *     ConditionalOrExpression returns ThisExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns ThisExpression
+	 *     ConditionalExpression returns ThisExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns ThisExpression
+	 *     InitializationExpression returns ThisExpression
+	 *     SwitchCase returns ThisExpression
+	 *
 	 * Constraint:
 	 *     {ThisExpression}
 	 */
-	protected void sequence_ThisExpression(EObject context, ThisExpression semanticObject) {
+	protected void sequence_ThisExpression(ISerializationContext context, ThisExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     TypePart returns TypedElementDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         (isAny?='any' | typeName=QualifiedName) 
-	 *         (
-	 *             (isMultiplicity?=']' | (lowerBound=NATURAL_VALUE? upperBound=UnlimitedNaturalLiteral))? 
-	 *             ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?) | isSequence?='sequence')?
-	 *         )?
+	 *         (isMultiplicity?=']' | (lowerBound=NATURAL_VALUE? upperBound=UnlimitedNaturalLiteral))? 
+	 *         ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?) | isSequence?='sequence')?
 	 *     )
 	 */
-	protected void sequence_TypePart(EObject context, TypedElementDefinition semanticObject) {
+	protected void sequence_TypePart(ISerializationContext context, TypedElementDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     AttributeInitializer returns UnboundedLiteralExpression
+	 *     Expression returns UnboundedLiteralExpression
+	 *     PrimaryExpression returns UnboundedLiteralExpression
+	 *     PrimaryExpression.FeatureReference_1_0_0 returns UnboundedLiteralExpression
+	 *     PrimaryExpression.FeatureReference_1_1_0 returns UnboundedLiteralExpression
+	 *     PrimaryExpression.ExtentOrExpression_1_2_0 returns UnboundedLiteralExpression
+	 *     PrimaryExpression.SequenceAccessExpression_1_3_0 returns UnboundedLiteralExpression
+	 *     BaseExpression returns UnboundedLiteralExpression
+	 *     LiteralExpression returns UnboundedLiteralExpression
+	 *     UnboundedLiteralExpression returns UnboundedLiteralExpression
+	 *     ParenthesizedExpression returns UnboundedLiteralExpression
+	 *     SequenceElement returns UnboundedLiteralExpression
+	 *     Index returns UnboundedLiteralExpression
+	 *     UnaryExpression returns UnboundedLiteralExpression
+	 *     PostfixOrCastExpression returns UnboundedLiteralExpression
+	 *     CastCompletion returns UnboundedLiteralExpression
+	 *     MultiplicativeExpression returns UnboundedLiteralExpression
+	 *     MultiplicativeExpression.ArithmeticExpression_1_0 returns UnboundedLiteralExpression
+	 *     AdditiveExpression returns UnboundedLiteralExpression
+	 *     AdditiveExpression.ArithmeticExpression_1_0 returns UnboundedLiteralExpression
+	 *     ShiftExpression returns UnboundedLiteralExpression
+	 *     ShiftExpression.ShiftExpression_1_0 returns UnboundedLiteralExpression
+	 *     RelationalExpression returns UnboundedLiteralExpression
+	 *     RelationalExpression.RelationalExpression_1_0 returns UnboundedLiteralExpression
+	 *     ClassificationExpression returns UnboundedLiteralExpression
+	 *     ClassificationExpression.ClassificationExpression_1_0 returns UnboundedLiteralExpression
+	 *     EqualityExpression returns UnboundedLiteralExpression
+	 *     EqualityExpression.EqualityExpression_1_0 returns UnboundedLiteralExpression
+	 *     AndExpression returns UnboundedLiteralExpression
+	 *     AndExpression.LogicalExpression_1_0 returns UnboundedLiteralExpression
+	 *     ExclusiveOrExpression returns UnboundedLiteralExpression
+	 *     ExclusiveOrExpression.LogicalExpression_1_0 returns UnboundedLiteralExpression
+	 *     InclusiveOrExpression returns UnboundedLiteralExpression
+	 *     InclusiveOrExpression.LogicalExpression_1_0 returns UnboundedLiteralExpression
+	 *     ConditionalAndExpression returns UnboundedLiteralExpression
+	 *     ConditionalAndExpression.ConditionalLogicalExpression_1_0 returns UnboundedLiteralExpression
+	 *     ConditionalOrExpression returns UnboundedLiteralExpression
+	 *     ConditionalOrExpression.ConditionalLogicalExpression_1_0 returns UnboundedLiteralExpression
+	 *     ConditionalExpression returns UnboundedLiteralExpression
+	 *     ConditionalExpression.ConditionalTestExpression_1_0 returns UnboundedLiteralExpression
+	 *     InitializationExpression returns UnboundedLiteralExpression
+	 *     SwitchCase returns UnboundedLiteralExpression
+	 *
 	 * Constraint:
 	 *     {UnboundedLiteralExpression}
 	 */
-	protected void sequence_UnboundedLiteralExpression(EObject context, UnboundedLiteralExpression semanticObject) {
+	protected void sequence_UnboundedLiteralExpression(ISerializationContext context, UnboundedLiteralExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     UnitDefinition returns UnitDefinition
+	 *
 	 * Constraint:
 	 *     (
 	 *         namespaceName=NamespaceDeclaration? 
@@ -2507,25 +4709,43 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         definition=NamespaceDefinition
 	 *     )
 	 */
-	protected void sequence_UnitDefinition(EObject context, UnitDefinition semanticObject) {
+	protected void sequence_UnitDefinition(ISerializationContext context, UnitDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     UnqualifiedName returns QualifiedName
+	 *
 	 * Constraint:
 	 *     nameBinding+=NameBinding
 	 */
-	protected void sequence_UnqualifiedName(EObject context, QualifiedName semanticObject) {
+	protected void sequence_UnqualifiedName(ISerializationContext context, QualifiedName semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Statement returns WhileStatement
+	 *     WhileStatement returns WhileStatement
+	 *
 	 * Constraint:
 	 *     (condition=Expression body=Block)
 	 */
-	protected void sequence_WhileStatement(EObject context, WhileStatement semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_WhileStatement(ISerializationContext context, WhileStatement semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getWhileStatement_Condition()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getWhileStatement_Condition()));
+			if (transientValues.isValueTransient(semanticObject, AlfPackage.eINSTANCE.getWhileStatement_Body()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AlfPackage.eINSTANCE.getWhileStatement_Body()));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getWhileStatementAccess().getConditionExpressionParserRuleCall_2_0(), semanticObject.getCondition());
+		feeder.accept(grammarAccess.getWhileStatementAccess().getBodyBlockParserRuleCall_4_0(), semanticObject.getBody());
+		feeder.finish();
 	}
+	
+	
 }

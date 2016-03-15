@@ -11,4 +11,4 @@ Bundle-Name: ALF Libraries
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.alf.libraries.AlfLibrariesActivator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.libraries;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

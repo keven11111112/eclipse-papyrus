@@ -22,10 +22,10 @@ import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereoty
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.impl.ExpressionValueRuleImpl#getExpression <em>Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

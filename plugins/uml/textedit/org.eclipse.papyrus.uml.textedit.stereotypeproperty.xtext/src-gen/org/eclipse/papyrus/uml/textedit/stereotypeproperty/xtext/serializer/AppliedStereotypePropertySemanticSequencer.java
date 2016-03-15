@@ -4,8 +4,9 @@
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.serializer;
 
 import com.google.inject.Inject;
-import com.google.inject.Provider;
+import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.uml.alf.AcceptBlock;
 import org.eclipse.papyrus.uml.alf.AcceptStatement;
 import org.eclipse.papyrus.uml.alf.ActiveClassDefinition;
@@ -106,14 +107,11 @@ import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereoty
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.ExpressionValueRule;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.services.AppliedStereotypePropertyGrammarAccess;
-import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
+import org.eclipse.xtext.Action;
+import org.eclipse.xtext.Parameter;
+import org.eclipse.xtext.ParserRule;
+import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
-import org.eclipse.xtext.serializer.diagnostic.ISemanticSequencerDiagnosticProvider;
-import org.eclipse.xtext.serializer.diagnostic.ISerializationDiagnostic.Acceptor;
-import org.eclipse.xtext.serializer.sequencer.GenericSequencer;
-import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEObjectProvider;
-import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
-import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 
 @SuppressWarnings("all")
@@ -123,14 +121,19 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 	private AppliedStereotypePropertyGrammarAccess grammarAccess;
 	
 	@Override
-	public void createSequence(EObject context, EObject semanticObject) {
-		if(semanticObject.eClass().getEPackage() == AlfPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+	public void sequence(ISerializationContext context, EObject semanticObject) {
+		EPackage epackage = semanticObject.eClass().getEPackage();
+		ParserRule rule = context.getParserRule();
+		Action action = context.getAssignedAction();
+		Set<Parameter> parameters = context.getEnabledBooleanParameters();
+		if (epackage == AlfPackage.eINSTANCE)
+			switch (semanticObject.eClass().getClassifierID()) {
 			case AlfPackage.ACCEPT_BLOCK:
-				if(context == grammarAccess.getAcceptBlockRule()) {
+				if (rule == grammarAccess.getAcceptBlockRule()) {
 					sequence_AcceptBlock_AcceptClause(context, (AcceptBlock) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getAcceptClauseRule()) {
+				else if (rule == grammarAccess.getAcceptClauseRule()) {
 					sequence_AcceptClause(context, (AcceptBlock) semanticObject); 
 					return; 
 				}
@@ -139,45 +142,45 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_AcceptStatement(context, (AcceptStatement) semanticObject); 
 				return; 
 			case AlfPackage.ACTIVE_CLASS_DEFINITION:
-				if(context == grammarAccess.getActiveClassDeclarationRule()) {
+				if (rule == grammarAccess.getActiveClassDeclarationRule()) {
 					sequence_ActiveClassDeclaration(context, (ActiveClassDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassDefinitionOrStubRule() ||
-				   context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule()) {
+				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassDefinitionOrStubRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()) {
 					sequence_ActiveClassDeclaration_ActiveClassDefinitionOrStub(context, (ActiveClassDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionRule() ||
-				   context == grammarAccess.getNamespaceDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionRule()
+						|| rule == grammarAccess.getActiveClassDefinitionRule()) {
 					sequence_ActiveClassDeclaration_ActiveClassDefinition(context, (ActiveClassDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.ACTIVITY_DEFINITION:
-				if(context == grammarAccess.getActivityDeclarationRule()) {
+				if (rule == grammarAccess.getActivityDeclarationRule()) {
 					sequence_ActivityDeclaration(context, (ActivityDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getActivityDefinitionOrStubRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule()) {
+				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActivityDefinitionOrStubRule()) {
 					sequence_ActivityDeclaration_ActivityDefinitionOrStub(context, (ActivityDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActivityDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionRule() ||
-				   context == grammarAccess.getNamespaceDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionRule()
+						|| rule == grammarAccess.getActivityDefinitionRule()) {
 					sequence_ActivityDeclaration_ActivityDefinition(context, (ActivityDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getBehaviorClauseRule()) {
+				else if (rule == grammarAccess.getBehaviorClauseRule()) {
 					sequence_BehaviorClause(context, (ActivityDefinition) semanticObject); 
 					return; 
 				}
@@ -192,21 +195,21 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_AssignmentExpression(context, (AssignmentExpression) semanticObject); 
 				return; 
 			case AlfPackage.ASSOCIATION_DEFINITION:
-				if(context == grammarAccess.getAssociationDeclarationRule()) {
+				if (rule == grammarAccess.getAssociationDeclarationRule()) {
 					sequence_AssociationDeclaration(context, (AssociationDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getAssociationDefinitionOrStubRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule()) {
+				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getAssociationDefinitionOrStubRule()) {
 					sequence_AssociationDeclaration_AssociationDefinitionOrStub(context, (AssociationDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getAssociationDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionRule() ||
-				   context == grammarAccess.getNamespaceDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionRule()
+						|| rule == grammarAccess.getAssociationDefinitionRule()) {
 					sequence_AssociationDeclaration_AssociationDefinition(context, (AssociationDefinition) semanticObject); 
 					return; 
 				}
@@ -218,16 +221,16 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_BitStringUnaryExpression(context, (BitStringUnaryExpression) semanticObject); 
 				return; 
 			case AlfPackage.BLOCK:
-				if(context == grammarAccess.getBlockRule()) {
+				if (rule == grammarAccess.getBlockRule()) {
 					sequence_Block(context, (Block) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getNonEmptyStatementSequenceRule() ||
-				   context == grammarAccess.getSwitchDefaultClauseRule()) {
+				else if (rule == grammarAccess.getSwitchDefaultClauseRule()
+						|| rule == grammarAccess.getNonEmptyStatementSequenceRule()) {
 					sequence_NonEmptyStatementSequence(context, (Block) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getStatementSequenceRule()) {
+				else if (rule == grammarAccess.getStatementSequenceRule()) {
 					sequence_StatementSequence(context, (Block) semanticObject); 
 					return; 
 				}
@@ -248,21 +251,21 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_CastExpression(context, (CastExpression) semanticObject); 
 				return; 
 			case AlfPackage.CLASS_DEFINITION:
-				if(context == grammarAccess.getClassDeclarationRule()) {
+				if (rule == grammarAccess.getClassDeclarationRule()) {
 					sequence_ClassDeclaration(context, (ClassDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassDefinitionOrStubRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule()) {
+				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()) {
 					sequence_ClassDeclaration_ClassDefinitionOrStub(context, (ClassDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getClassDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionRule() ||
-				   context == grammarAccess.getNamespaceDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionRule()
+						|| rule == grammarAccess.getClassDefinitionRule()) {
 					sequence_ClassDeclaration_ClassDefinition(context, (ClassDefinition) semanticObject); 
 					return; 
 				}
@@ -292,21 +295,21 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_ConditionalExpression(context, (ConditionalTestExpression) semanticObject); 
 				return; 
 			case AlfPackage.DATA_TYPE_DEFINITION:
-				if(context == grammarAccess.getDataTypeDeclarationRule()) {
+				if (rule == grammarAccess.getDataTypeDeclarationRule()) {
 					sequence_DataTypeDeclaration(context, (DataTypeDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionOrStubRule() ||
-				   context == grammarAccess.getDataTypeDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule()) {
+				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getDataTypeDefinitionOrStubRule()) {
 					sequence_DataTypeDeclaration_DataTypeDefinitionOrStub(context, (DataTypeDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getClassifierDefinitionRule() ||
-				   context == grammarAccess.getDataTypeDefinitionRule() ||
-				   context == grammarAccess.getNamespaceDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionRule()
+						|| rule == grammarAccess.getDataTypeDefinitionRule()) {
 					sequence_DataTypeDeclaration_DataTypeDefinition(context, (DataTypeDefinition) semanticObject); 
 					return; 
 				}
@@ -321,21 +324,21 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_EmptyStatement(context, (EmptyStatement) semanticObject); 
 				return; 
 			case AlfPackage.ENUMERATION_DEFINITION:
-				if(context == grammarAccess.getEnumerationDeclarationRule()) {
+				if (rule == grammarAccess.getEnumerationDeclarationRule()) {
 					sequence_EnumerationDeclaration(context, (EnumerationDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionOrStubRule() ||
-				   context == grammarAccess.getEnumerationDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule()) {
+				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getEnumerationDefinitionOrStubRule()) {
 					sequence_EnumerationDeclaration_EnumerationDefinitionOrStub(context, (EnumerationDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getClassifierDefinitionRule() ||
-				   context == grammarAccess.getEnumerationDefinitionRule() ||
-				   context == grammarAccess.getNamespaceDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionRule()
+						|| rule == grammarAccess.getEnumerationDefinitionRule()) {
 					sequence_EnumerationDeclaration_EnumerationDefinition(context, (EnumerationDefinition) semanticObject); 
 					return; 
 				}
@@ -350,64 +353,64 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_ExpressionStatement(context, (ExpressionStatement) semanticObject); 
 				return; 
 			case AlfPackage.EXTENT_OR_EXPRESSION:
-				if(context == grammarAccess.getPrimaryExpressionAccess().getSequenceExpansionExpressionPrimaryAction_1_2_2_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceOperationExpressionPrimaryAction_1_2_2_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceReductionExpressionPrimaryAction_1_2_2_1_0()) {
+				if (action == grammarAccess.getPrimaryExpressionAccess().getSequenceOperationExpressionPrimaryAction_1_2_2_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceReductionExpressionPrimaryAction_1_2_2_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceExpansionExpressionPrimaryAction_1_2_2_2_0()) {
 					sequence_PrimaryExpression_SequenceExpansionExpression_1_2_2_2_0_SequenceOperationExpression_1_2_2_0_0_SequenceReductionExpression_1_2_2_1_0(context, (ExtentOrExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceExpansionExpressionPrimaryAction_3_2_0() ||
-				   context == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceOperationExpressionPrimaryAction_3_0_0() ||
-				   context == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceReductionExpressionPrimaryAction_3_1_0()) {
+				else if (action == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceOperationExpressionPrimaryAction_3_0_0()
+						|| action == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceReductionExpressionPrimaryAction_3_1_0()
+						|| action == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceExpansionExpressionPrimaryAction_3_2_0()) {
 					sequence_SequenceOperationOrReductionOrExpansionExpression_SequenceExpansionExpression_3_2_0_SequenceOperationExpression_3_0_0_SequenceReductionExpression_3_1_0(context, (ExtentOrExpression) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.FEATURE_INVOCATION_EXPRESSION:
-				if(context == grammarAccess.getAdditiveExpressionRule() ||
-				   context == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAndExpressionRule() ||
-				   context == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAttributeInitializerRule() ||
-				   context == grammarAccess.getBaseExpressionRule() ||
-				   context == grammarAccess.getCastCompletionRule() ||
-				   context == grammarAccess.getClassificationExpressionRule() ||
-				   context == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0() ||
-				   context == grammarAccess.getConditionalAndExpressionRule() ||
-				   context == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalExpressionRule() ||
-				   context == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalOrExpressionRule() ||
-				   context == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getEqualityExpressionRule() ||
-				   context == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExclusiveOrExpressionRule() ||
-				   context == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getIndexRule() ||
-				   context == grammarAccess.getInitializationExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getParenthesizedExpressionRule() ||
-				   context == grammarAccess.getPostfixOrCastExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0() ||
-				   context == grammarAccess.getRelationalExpressionRule() ||
-				   context == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSequenceElementRule() ||
-				   context == grammarAccess.getShiftExpressionRule() ||
-				   context == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSwitchCaseRule() ||
-				   context == grammarAccess.getUnaryExpressionRule()) {
+				if (rule == grammarAccess.getAttributeInitializerRule()
+						|| rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getParenthesizedExpressionRule()
+						|| rule == grammarAccess.getSequenceElementRule()
+						|| rule == grammarAccess.getIndexRule()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getPostfixOrCastExpressionRule()
+						|| rule == grammarAccess.getCastCompletionRule()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getShiftExpressionRule()
+						|| action == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getExclusiveOrExpressionRule()
+						|| action == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInclusiveOrExpressionRule()
+						|| action == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInitializationExpressionRule()
+						|| rule == grammarAccess.getSwitchCaseRule()) {
 					sequence_PrimaryExpression_ThisExpression(context, (FeatureInvocationExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getThisExpressionRule()) {
+				else if (rule == grammarAccess.getThisExpressionRule()) {
 					sequence_ThisExpression(context, (FeatureInvocationExpression) semanticObject); 
 					return; 
 				}
@@ -416,11 +419,11 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_FeatureLeftHandSide(context, (FeatureLeftHandSide) semanticObject); 
 				return; 
 			case AlfPackage.FEATURE_REFERENCE:
-				if(context == grammarAccess.getPrimaryExpressionAccess().getFeatureInvocationExpressionTargetAction_1_0_3()) {
+				if (action == grammarAccess.getPrimaryExpressionAccess().getFeatureInvocationExpressionTargetAction_1_0_3()) {
 					sequence_PrimaryExpression_FeatureInvocationExpression_1_0_3(context, (FeatureReference) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getPrimaryExpressionAccess().getPropertyAccessExpressionFeatureReferenceAction_1_1_3()) {
+				else if (action == grammarAccess.getPrimaryExpressionAccess().getPropertyAccessExpressionFeatureReferenceAction_1_1_3()) {
 					sequence_PrimaryExpression_PropertyAccessExpression_1_1_3(context, (FeatureReference) semanticObject); 
 					return; 
 				}
@@ -435,108 +438,108 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_InLineStatement(context, (InLineStatement) semanticObject); 
 				return; 
 			case AlfPackage.INCREMENT_OR_DECREMENT_EXPRESSION:
-				if(context == grammarAccess.getPostfixExpressionRule()) {
+				if (rule == grammarAccess.getPostfixExpressionRule()) {
 					sequence_PostfixExpression(context, (IncrementOrDecrementExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getAdditiveExpressionRule() ||
-				   context == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAndExpressionRule() ||
-				   context == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAttributeInitializerRule() ||
-				   context == grammarAccess.getBaseExpressionRule() ||
-				   context == grammarAccess.getCastCompletionRule() ||
-				   context == grammarAccess.getClassificationExpressionRule() ||
-				   context == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0() ||
-				   context == grammarAccess.getConditionalAndExpressionRule() ||
-				   context == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalExpressionRule() ||
-				   context == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalOrExpressionRule() ||
-				   context == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getEqualityExpressionRule() ||
-				   context == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExclusiveOrExpressionRule() ||
-				   context == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getIndexRule() ||
-				   context == grammarAccess.getInitializationExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getParenthesizedExpressionRule() ||
-				   context == grammarAccess.getPostfixOrCastExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0() ||
-				   context == grammarAccess.getRelationalExpressionRule() ||
-				   context == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSequenceElementRule() ||
-				   context == grammarAccess.getShiftExpressionRule() ||
-				   context == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSwitchCaseRule() ||
-				   context == grammarAccess.getUnaryExpressionRule()) {
-					sequence_PostfixExpression_PrefixExpression_UnaryExpression(context, (IncrementOrDecrementExpression) semanticObject); 
+				else if (rule == grammarAccess.getAttributeInitializerRule()
+						|| rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getParenthesizedExpressionRule()
+						|| rule == grammarAccess.getSequenceElementRule()
+						|| rule == grammarAccess.getIndexRule()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getPostfixOrCastExpressionRule()
+						|| rule == grammarAccess.getCastCompletionRule()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getShiftExpressionRule()
+						|| action == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getExclusiveOrExpressionRule()
+						|| action == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInclusiveOrExpressionRule()
+						|| action == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInitializationExpressionRule()
+						|| rule == grammarAccess.getSwitchCaseRule()) {
+					sequence_PostfixExpression_PrefixExpression(context, (IncrementOrDecrementExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getNonPostfixNonCastUnaryExpressionRule() ||
-				   context == grammarAccess.getPrefixExpressionRule()) {
+				else if (rule == grammarAccess.getPrefixExpressionRule()
+						|| rule == grammarAccess.getNonPostfixNonCastUnaryExpressionRule()) {
 					sequence_PrefixExpression(context, (IncrementOrDecrementExpression) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.INSTANCE_CREATION_EXPRESSION:
-				if(context == grammarAccess.getAttributeInitializerRule() ||
-				   context == grammarAccess.getInitializationExpressionRule()) {
-					sequence_InitializationExpression_InstanceCreationOrSequenceConstructionExpression_InstanceInitializationExpression(context, (InstanceCreationExpression) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getAdditiveExpressionRule() ||
-				   context == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAndExpressionRule() ||
-				   context == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getBaseExpressionRule() ||
-				   context == grammarAccess.getCastCompletionRule() ||
-				   context == grammarAccess.getClassificationExpressionRule() ||
-				   context == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0() ||
-				   context == grammarAccess.getConditionalAndExpressionRule() ||
-				   context == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalExpressionRule() ||
-				   context == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalOrExpressionRule() ||
-				   context == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getEqualityExpressionRule() ||
-				   context == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExclusiveOrExpressionRule() ||
-				   context == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getIndexRule() ||
-				   context == grammarAccess.getInstanceCreationOrSequenceConstructionExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getParenthesizedExpressionRule() ||
-				   context == grammarAccess.getPostfixOrCastExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0() ||
-				   context == grammarAccess.getRelationalExpressionRule() ||
-				   context == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSequenceElementRule() ||
-				   context == grammarAccess.getShiftExpressionRule() ||
-				   context == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSwitchCaseRule() ||
-				   context == grammarAccess.getUnaryExpressionRule()) {
+				if (rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getParenthesizedExpressionRule()
+						|| rule == grammarAccess.getInstanceCreationOrSequenceConstructionExpressionRule()
+						|| rule == grammarAccess.getSequenceElementRule()
+						|| rule == grammarAccess.getIndexRule()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getPostfixOrCastExpressionRule()
+						|| rule == grammarAccess.getCastCompletionRule()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getShiftExpressionRule()
+						|| action == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getExclusiveOrExpressionRule()
+						|| action == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInclusiveOrExpressionRule()
+						|| action == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getSwitchCaseRule()) {
 					sequence_InstanceCreationOrSequenceConstructionExpression(context, (InstanceCreationExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getInstanceInitializationExpressionRule()) {
+				else if (rule == grammarAccess.getAttributeInitializerRule()
+						|| rule == grammarAccess.getInitializationExpressionRule()) {
+					sequence_InstanceCreationOrSequenceConstructionExpression_InstanceInitializationExpression(context, (InstanceCreationExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getInstanceInitializationExpressionRule()) {
 					sequence_InstanceInitializationExpression(context, (InstanceCreationExpression) semanticObject); 
 					return; 
 				}
@@ -557,35 +560,35 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_LoopVariableDefinition(context, (LoopVariableDefinition) semanticObject); 
 				return; 
 			case AlfPackage.MEMBER:
-				if(context == grammarAccess.getActiveClassMemberRule()) {
+				if (rule == grammarAccess.getActiveClassMemberRule()) {
 					sequence_ActiveClassMember(context, (Member) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getClassMemberRule()) {
+				else if (rule == grammarAccess.getClassMemberRule()) {
 					sequence_ClassMember(context, (Member) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getClassifierTemplateParameterRule()) {
+				else if (rule == grammarAccess.getClassifierTemplateParameterRule()) {
 					sequence_ClassifierTemplateParameter(context, (Member) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getEnumerationLiteralNameRule()) {
+				else if (rule == grammarAccess.getEnumerationLiteralNameRule()) {
 					sequence_EnumerationLiteralName(context, (Member) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getFormalParameterRule()) {
+				else if (rule == grammarAccess.getFormalParameterRule()) {
 					sequence_FormalParameter(context, (Member) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getPackagedElementRule()) {
+				else if (rule == grammarAccess.getPackagedElementRule()) {
 					sequence_PackagedElement(context, (Member) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getReturnParameterRule()) {
+				else if (rule == grammarAccess.getReturnParameterRule()) {
 					sequence_ReturnParameter(context, (Member) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getStructuredMemberRule()) {
+				else if (rule == grammarAccess.getStructuredMemberRule()) {
 					sequence_StructuredMember(context, (Member) semanticObject); 
 					return; 
 				}
@@ -600,11 +603,11 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_NameLeftHandSide(context, (NameLeftHandSide) semanticObject); 
 				return; 
 			case AlfPackage.NAMED_EXPRESSION:
-				if(context == grammarAccess.getIndexedNamedExpressionRule()) {
+				if (rule == grammarAccess.getIndexedNamedExpressionRule()) {
 					sequence_IndexedNamedExpression(context, (NamedExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getNamedExpressionRule()) {
+				else if (rule == grammarAccess.getNamedExpressionRule()) {
 					sequence_NamedExpression(context, (NamedExpression) semanticObject); 
 					return; 
 				}
@@ -613,13 +616,13 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_NamedTemplateBinding(context, (NamedTemplateBinding) semanticObject); 
 				return; 
 			case AlfPackage.NAMED_TUPLE:
-				if(context == grammarAccess.getIndexedNamedTupleExpressionListRule() ||
-				   context == grammarAccess.getLinkOperationTupleRule()) {
+				if (rule == grammarAccess.getLinkOperationTupleRule()
+						|| rule == grammarAccess.getIndexedNamedTupleExpressionListRule()) {
 					sequence_IndexedNamedTupleExpressionList(context, (NamedTuple) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getNamedTupleExpressionListRule() ||
-				   context == grammarAccess.getTupleRule()) {
+				else if (rule == grammarAccess.getTupleRule()
+						|| rule == grammarAccess.getNamedTupleExpressionListRule()) {
 					sequence_NamedTupleExpressionList(context, (NamedTuple) semanticObject); 
 					return; 
 				}
@@ -637,26 +640,26 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_NumericUnaryExpression(context, (NumericUnaryExpression) semanticObject); 
 				return; 
 			case AlfPackage.OPERATION_DEFINITION:
-				if(context == grammarAccess.getOperationDeclarationRule()) {
+				if (rule == grammarAccess.getOperationDeclarationRule()) {
 					sequence_OperationDeclaration(context, (OperationDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getFeatureDefinitionOrStubRule() ||
-				   context == grammarAccess.getOperationDefinitionOrStubRule()) {
+				else if (rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getFeatureDefinitionOrStubRule()
+						|| rule == grammarAccess.getOperationDefinitionOrStubRule()) {
 					sequence_OperationDeclaration_OperationDefinitionOrStub(context, (OperationDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.PACKAGE_DEFINITION:
-				if(context == grammarAccess.getPackageDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule()) {
+				if (rule == grammarAccess.getPackageDefinitionOrStubRule()
+						|| rule == grammarAccess.getPackagedElementDefinitionRule()) {
 					sequence_PackageDefinitionOrStub(context, (PackageDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getNamespaceDefinitionRule() ||
-				   context == grammarAccess.getPackageDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getPackageDefinitionRule()) {
 					sequence_PackageDefinition(context, (PackageDefinition) semanticObject); 
 					return; 
 				}
@@ -674,56 +677,56 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_PrimaryExpression(context, (PropertyAccessExpression) semanticObject); 
 				return; 
 			case AlfPackage.PROPERTY_DEFINITION:
-				if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getAttributeDefinitionRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getFeatureDefinitionOrStubRule()) {
+				if (rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getFeatureDefinitionOrStubRule()
+						|| rule == grammarAccess.getAttributeDefinitionRule()) {
 					sequence_AttributeDefinition_PropertyDeclaration(context, (PropertyDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getPropertyDeclarationRule() ||
-				   context == grammarAccess.getPropertyDefinitionRule()) {
+				else if (rule == grammarAccess.getPropertyDefinitionRule()
+						|| rule == grammarAccess.getPropertyDeclarationRule()) {
 					sequence_PropertyDeclaration(context, (PropertyDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.QUALIFIED_NAME:
-				if(context == grammarAccess.getColonQualifiedNameRule()) {
+				if (rule == grammarAccess.getColonQualifiedNameRule()) {
 					sequence_ColonQualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getDotQualifiedNameRule()) {
+				else if (rule == grammarAccess.getDotQualifiedNameRule()) {
 					sequence_DotQualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getPackageImportQualifiedNameRule()) {
+				else if (rule == grammarAccess.getPackageImportQualifiedNameRule()) {
 					sequence_PackageImportQualifiedName(context, (QualifiedName) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getPotentiallyAmbiguousQualifiedNameRule()) {
+				else if (rule == grammarAccess.getPotentiallyAmbiguousQualifiedNameRule()) {
 					sequence_PotentiallyAmbiguousQualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getNamespaceDeclarationRule() ||
-				   context == grammarAccess.getQualifiedNameRule()) {
+				else if (rule == grammarAccess.getNamespaceDeclarationRule()
+						|| rule == grammarAccess.getQualifiedNameRule()) {
 					sequence_QualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getUnqualifiedNameRule()) {
+				else if (rule == grammarAccess.getUnqualifiedNameRule()) {
 					sequence_UnqualifiedName(context, (QualifiedName) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.QUALIFIED_NAME_LIST:
-				if(context == grammarAccess.getClassificationFromClauseRule() ||
-				   context == grammarAccess.getClassificationToClauseRule() ||
-				   context == grammarAccess.getQualifiedNameListRule() ||
-				   context == grammarAccess.getRedefinitionClauseRule() ||
-				   context == grammarAccess.getSpecializationClauseRule()) {
+				if (rule == grammarAccess.getSpecializationClauseRule()
+						|| rule == grammarAccess.getRedefinitionClauseRule()
+						|| rule == grammarAccess.getClassificationFromClauseRule()
+						|| rule == grammarAccess.getClassificationToClauseRule()
+						|| rule == grammarAccess.getQualifiedNameListRule()) {
 					sequence_QualifiedNameList(context, (QualifiedNameList) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getTemplateParameterConstraintRule()) {
+				else if (rule == grammarAccess.getTemplateParameterConstraintRule()) {
 					sequence_TemplateParameterConstraint(context, (QualifiedNameList) semanticObject); 
 					return; 
 				}
@@ -744,110 +747,110 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_PrimaryExpression(context, (SequenceAccessExpression) semanticObject); 
 				return; 
 			case AlfPackage.SEQUENCE_CONSTRUCTION_EXPRESSION:
-				if(context == grammarAccess.getAdditiveExpressionRule() ||
-				   context == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAndExpressionRule() ||
-				   context == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getBaseExpressionRule() ||
-				   context == grammarAccess.getCastCompletionRule() ||
-				   context == grammarAccess.getClassificationExpressionRule() ||
-				   context == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0() ||
-				   context == grammarAccess.getConditionalAndExpressionRule() ||
-				   context == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalExpressionRule() ||
-				   context == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalOrExpressionRule() ||
-				   context == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getEqualityExpressionRule() ||
-				   context == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExclusiveOrExpressionRule() ||
-				   context == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getIndexRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getParenthesizedExpressionRule() ||
-				   context == grammarAccess.getPostfixOrCastExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0() ||
-				   context == grammarAccess.getRelationalExpressionRule() ||
-				   context == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getShiftExpressionRule() ||
-				   context == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSwitchCaseRule() ||
-				   context == grammarAccess.getUnaryExpressionRule()) {
-					sequence_BaseExpression_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getAttributeInitializerRule() ||
-				   context == grammarAccess.getInitializationExpressionRule() ||
-				   context == grammarAccess.getSequenceElementRule()) {
-					sequence_InitializationExpression_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression_SequenceInitializationExpression(context, (SequenceConstructionExpression) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getInstanceCreationOrSequenceConstructionExpressionRule()) {
+				if (rule == grammarAccess.getInstanceCreationOrSequenceConstructionExpressionRule()) {
 					sequence_InstanceCreationOrSequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getSequenceConstructionExpressionRule()) {
+				else if (rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getParenthesizedExpressionRule()
+						|| rule == grammarAccess.getIndexRule()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getPostfixOrCastExpressionRule()
+						|| rule == grammarAccess.getCastCompletionRule()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getShiftExpressionRule()
+						|| action == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getExclusiveOrExpressionRule()
+						|| action == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInclusiveOrExpressionRule()
+						|| action == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getSwitchCaseRule()) {
+					sequence_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getAttributeInitializerRule()
+						|| rule == grammarAccess.getSequenceElementRule()
+						|| rule == grammarAccess.getInitializationExpressionRule()) {
+					sequence_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression_SequenceInitializationExpression(context, (SequenceConstructionExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getSequenceConstructionExpressionRule()) {
 					sequence_SequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getSequenceInitializationExpressionRule()) {
+				else if (rule == grammarAccess.getSequenceInitializationExpressionRule()) {
 					sequence_SequenceInitializationExpression(context, (SequenceConstructionExpression) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.SEQUENCE_EXPANSION_EXPRESSION:
-				if(context == grammarAccess.getAdditiveExpressionRule() ||
-				   context == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAndExpressionRule() ||
-				   context == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAttributeInitializerRule() ||
-				   context == grammarAccess.getBaseExpressionRule() ||
-				   context == grammarAccess.getCastCompletionRule() ||
-				   context == grammarAccess.getClassificationExpressionRule() ||
-				   context == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0() ||
-				   context == grammarAccess.getConditionalAndExpressionRule() ||
-				   context == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalExpressionRule() ||
-				   context == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalOrExpressionRule() ||
-				   context == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getEqualityExpressionRule() ||
-				   context == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExclusiveOrExpressionRule() ||
-				   context == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getIndexRule() ||
-				   context == grammarAccess.getInitializationExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getParenthesizedExpressionRule() ||
-				   context == grammarAccess.getPostfixOrCastExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0() ||
-				   context == grammarAccess.getRelationalExpressionRule() ||
-				   context == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSequenceElementRule() ||
-				   context == grammarAccess.getShiftExpressionRule() ||
-				   context == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSwitchCaseRule() ||
-				   context == grammarAccess.getUnaryExpressionRule()) {
+				if (rule == grammarAccess.getAttributeInitializerRule()
+						|| rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getParenthesizedExpressionRule()
+						|| rule == grammarAccess.getSequenceElementRule()
+						|| rule == grammarAccess.getIndexRule()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getPostfixOrCastExpressionRule()
+						|| rule == grammarAccess.getCastCompletionRule()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getShiftExpressionRule()
+						|| action == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getExclusiveOrExpressionRule()
+						|| action == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInclusiveOrExpressionRule()
+						|| action == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInitializationExpressionRule()
+						|| rule == grammarAccess.getSwitchCaseRule()) {
 					sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceExpansionExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
+				else if (rule == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
 					sequence_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceExpansionExpression) semanticObject); 
 					return; 
 				}
@@ -856,50 +859,50 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_SequenceExpressionList(context, (SequenceExpressionList) semanticObject); 
 				return; 
 			case AlfPackage.SEQUENCE_OPERATION_EXPRESSION:
-				if(context == grammarAccess.getAdditiveExpressionRule() ||
-				   context == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAndExpressionRule() ||
-				   context == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAttributeInitializerRule() ||
-				   context == grammarAccess.getBaseExpressionRule() ||
-				   context == grammarAccess.getCastCompletionRule() ||
-				   context == grammarAccess.getClassificationExpressionRule() ||
-				   context == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0() ||
-				   context == grammarAccess.getConditionalAndExpressionRule() ||
-				   context == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalExpressionRule() ||
-				   context == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalOrExpressionRule() ||
-				   context == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getEqualityExpressionRule() ||
-				   context == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExclusiveOrExpressionRule() ||
-				   context == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getIndexRule() ||
-				   context == grammarAccess.getInitializationExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getParenthesizedExpressionRule() ||
-				   context == grammarAccess.getPostfixOrCastExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0() ||
-				   context == grammarAccess.getRelationalExpressionRule() ||
-				   context == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSequenceElementRule() ||
-				   context == grammarAccess.getShiftExpressionRule() ||
-				   context == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSwitchCaseRule() ||
-				   context == grammarAccess.getUnaryExpressionRule()) {
+				if (rule == grammarAccess.getAttributeInitializerRule()
+						|| rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getParenthesizedExpressionRule()
+						|| rule == grammarAccess.getSequenceElementRule()
+						|| rule == grammarAccess.getIndexRule()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getPostfixOrCastExpressionRule()
+						|| rule == grammarAccess.getCastCompletionRule()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getShiftExpressionRule()
+						|| action == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getExclusiveOrExpressionRule()
+						|| action == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInclusiveOrExpressionRule()
+						|| action == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInitializationExpressionRule()
+						|| rule == grammarAccess.getSwitchCaseRule()) {
 					sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceOperationExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
+				else if (rule == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
 					sequence_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceOperationExpression) semanticObject); 
 					return; 
 				}
@@ -908,53 +911,50 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_SequenceRange(context, (SequenceRange) semanticObject); 
 				return; 
 			case AlfPackage.SEQUENCE_REDUCTION_EXPRESSION:
-				if(context == grammarAccess.getBaseExpressionRule()) {
-					sequence_BaseExpression_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceReductionExpression) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getAdditiveExpressionRule() ||
-				   context == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAndExpressionRule() ||
-				   context == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getAttributeInitializerRule() ||
-				   context == grammarAccess.getCastCompletionRule() ||
-				   context == grammarAccess.getClassificationExpressionRule() ||
-				   context == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0() ||
-				   context == grammarAccess.getConditionalAndExpressionRule() ||
-				   context == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalExpressionRule() ||
-				   context == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getConditionalOrExpressionRule() ||
-				   context == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getEqualityExpressionRule() ||
-				   context == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExclusiveOrExpressionRule() ||
-				   context == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionRule() ||
-				   context == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getIndexRule() ||
-				   context == grammarAccess.getInitializationExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionRule() ||
-				   context == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getParenthesizedExpressionRule() ||
-				   context == grammarAccess.getPostfixOrCastExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionRule() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0() ||
-				   context == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0() ||
-				   context == grammarAccess.getRelationalExpressionRule() ||
-				   context == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSequenceElementRule() ||
-				   context == grammarAccess.getShiftExpressionRule() ||
-				   context == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0() ||
-				   context == grammarAccess.getSwitchCaseRule() ||
-				   context == grammarAccess.getUnaryExpressionRule()) {
+				if (rule == grammarAccess.getAttributeInitializerRule()
+						|| rule == grammarAccess.getExpressionRule()
+						|| rule == grammarAccess.getPrimaryExpressionRule()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getExtentOrExpressionNonNameExpressionAction_1_2_0()
+						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceAccessExpressionPrimaryAction_1_3_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getParenthesizedExpressionRule()
+						|| rule == grammarAccess.getSequenceElementRule()
+						|| rule == grammarAccess.getIndexRule()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getPostfixOrCastExpressionRule()
+						|| rule == grammarAccess.getCastCompletionRule()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getArithmeticExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getShiftExpressionRule()
+						|| action == grammarAccess.getShiftExpressionAccess().getShiftExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getRelationalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getClassificationExpressionOperandAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getEqualityExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getExclusiveOrExpressionRule()
+						|| action == grammarAccess.getExclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInclusiveOrExpressionRule()
+						|| action == grammarAccess.getInclusiveOrExpressionAccess().getLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getConditionalLogicalExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
+						|| rule == grammarAccess.getInitializationExpressionRule()
+						|| rule == grammarAccess.getSwitchCaseRule()) {
 					sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceReductionExpression) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
+				else if (rule == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
 					sequence_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceReductionExpression) semanticObject); 
 					return; 
 				}
@@ -963,33 +963,33 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_ShiftExpression(context, (ShiftExpression) semanticObject); 
 				return; 
 			case AlfPackage.SIGNAL_DEFINITION:
-				if(context == grammarAccess.getSignalDeclarationRule()) {
+				if (rule == grammarAccess.getSignalDeclarationRule()) {
 					sequence_SignalDeclaration(context, (SignalDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassMemberDefinitionRule() ||
-				   context == grammarAccess.getClassifierDefinitionOrStubRule() ||
-				   context == grammarAccess.getPackagedElementDefinitionRule() ||
-				   context == grammarAccess.getSignalDefinitionOrStubRule()) {
+				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
+						|| rule == grammarAccess.getClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getSignalDefinitionOrStubRule()) {
 					sequence_SignalDeclaration_SignalDefinitionOrStub(context, (SignalDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getClassifierDefinitionRule() ||
-				   context == grammarAccess.getNamespaceDefinitionRule() ||
-				   context == grammarAccess.getSignalDefinitionRule()) {
+				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+						|| rule == grammarAccess.getClassifierDefinitionRule()
+						|| rule == grammarAccess.getSignalDefinitionRule()) {
 					sequence_SignalDeclaration_SignalDefinition(context, (SignalDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case AlfPackage.SIGNAL_RECEPTION_DEFINITION:
-				if(context == grammarAccess.getSignalReceptionDeclarationRule()) {
+				if (rule == grammarAccess.getSignalReceptionDeclarationRule()) {
 					sequence_SignalReceptionDeclaration(context, (SignalReceptionDefinition) semanticObject); 
 					return; 
 				}
-				else if(context == grammarAccess.getActiveClassMemberDefinitionRule() ||
-				   context == grammarAccess.getActiveFeatureDefinitionOrStubRule() ||
-				   context == grammarAccess.getSignalReceptionDefinitionOrStubRule()) {
+				else if (rule == grammarAccess.getActiveClassMemberDefinitionRule()
+						|| rule == grammarAccess.getActiveFeatureDefinitionOrStubRule()
+						|| rule == grammarAccess.getSignalReceptionDefinitionOrStubRule()) {
 					sequence_SignalReceptionDeclaration_SignalReceptionDefinitionOrStub(context, (SignalReceptionDefinition) semanticObject); 
 					return; 
 				}
@@ -1034,7 +1034,8 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_WhileStatement(context, (WhileStatement) semanticObject); 
 				return; 
 			}
-		else if(semanticObject.eClass().getEPackage() == AppliedStereotypePropertyPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+		else if (epackage == AppliedStereotypePropertyPackage.eINSTANCE)
+			switch (semanticObject.eClass().getClassifierID()) {
 			case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE:
 				sequence_AppliedStereotypePropertyRule(context, (AppliedStereotypePropertyRule) semanticObject); 
 				return; 
@@ -1042,37 +1043,44 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 				sequence_ExpressionValueRule(context, (ExpressionValueRule) semanticObject); 
 				return; 
 			}
-		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
+		if (errorAcceptor != null)
+			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
 	
 	/**
+	 * Contexts:
+	 *     AppliedStereotypePropertyRule returns AppliedStereotypePropertyRule
+	 *
 	 * Constraint:
 	 *     value=ExpressionValueRule
 	 */
-	protected void sequence_AppliedStereotypePropertyRule(EObject context, AppliedStereotypePropertyRule semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, AppliedStereotypePropertyPackage.Literals.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE) == ValueTransient.YES)
+	protected void sequence_AppliedStereotypePropertyRule(ISerializationContext context, AppliedStereotypePropertyRule semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AppliedStereotypePropertyPackage.Literals.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AppliedStereotypePropertyPackage.Literals.APPLIED_STEREOTYPE_PROPERTY_RULE__VALUE));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueExpressionValueRuleParserRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     ExpressionValueRule returns ExpressionValueRule
+	 *
 	 * Constraint:
 	 *     expression=SequenceElement
 	 */
-	protected void sequence_ExpressionValueRule(EObject context, ExpressionValueRule semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, AppliedStereotypePropertyPackage.Literals.EXPRESSION_VALUE_RULE__EXPRESSION) == ValueTransient.YES)
+	protected void sequence_ExpressionValueRule(ISerializationContext context, ExpressionValueRule semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AppliedStereotypePropertyPackage.Literals.EXPRESSION_VALUE_RULE__EXPRESSION) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AppliedStereotypePropertyPackage.Literals.EXPRESSION_VALUE_RULE__EXPRESSION));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getExpressionValueRuleAccess().getExpressionSequenceElementParserRuleCall_1_0(), semanticObject.getExpression());
 		feeder.finish();
 	}
+	
+	
 }

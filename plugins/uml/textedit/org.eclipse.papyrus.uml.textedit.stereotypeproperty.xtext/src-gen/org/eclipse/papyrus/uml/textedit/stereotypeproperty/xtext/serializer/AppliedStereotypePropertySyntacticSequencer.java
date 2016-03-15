@@ -40,9 +40,9 @@ public class AppliedStereotypePropertySyntacticSequencer extends AbstractSyntact
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if(ruleCall.getRule() == grammarAccess.getMultiplicityIndicatorRule())
+		if (ruleCall.getRule() == grammarAccess.getMultiplicityIndicatorRule())
 			return getMultiplicityIndicatorToken(semanticObject, ruleCall, node);
-		else if(ruleCall.getRule() == grammarAccess.getReclassifyAllClauseRule())
+		else if (ruleCall.getRule() == grammarAccess.getReclassifyAllClauseRule())
 			return getReclassifyAllClauseToken(semanticObject, ruleCall, node);
 		return "";
 	}
@@ -75,15 +75,15 @@ public class AppliedStereotypePropertySyntacticSequencer extends AbstractSyntact
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if(match_PackageImportQualifiedName___ColonColonKeyword_1_0_1_AsteriskKeyword_1_0_2___or___FullStopKeyword_1_1_1_AsteriskKeyword_1_1_2__.equals(syntax))
+			if (match_PackageImportQualifiedName___ColonColonKeyword_1_0_1_AsteriskKeyword_1_0_2___or___FullStopKeyword_1_1_1_AsteriskKeyword_1_1_2__.equals(syntax))
 				emit_PackageImportQualifiedName___ColonColonKeyword_1_0_1_AsteriskKeyword_1_0_2___or___FullStopKeyword_1_1_1_AsteriskKeyword_1_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_ParenthesizedExpression_LeftParenthesisKeyword_0_a.equals(syntax))
+			else if (match_ParenthesizedExpression_LeftParenthesisKeyword_0_a.equals(syntax))
 				emit_ParenthesizedExpression_LeftParenthesisKeyword_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_ParenthesizedExpression_LeftParenthesisKeyword_0_p.equals(syntax))
+			else if (match_ParenthesizedExpression_LeftParenthesisKeyword_0_p.equals(syntax))
 				emit_ParenthesizedExpression_LeftParenthesisKeyword_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_SequenceExpressionList_CommaKeyword_2_q.equals(syntax))
+			else if (match_SequenceExpressionList_CommaKeyword_2_q.equals(syntax))
 				emit_SequenceExpressionList_CommaKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_SequenceInitializationExpression_NewKeyword_0_q.equals(syntax))
+			else if (match_SequenceInitializationExpression_NewKeyword_0_q.equals(syntax))
 				emit_SequenceInitializationExpression_NewKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}

@@ -10,4 +10,4 @@ Bundle-Name: ALF Preferences (Incubation)
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.alf.preferences.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.preferences;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

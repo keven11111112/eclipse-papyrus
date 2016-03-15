@@ -96,7 +96,7 @@ ruleUnitDefinition returns [EObject current=null]
        			$current, 
        			"namespaceName",
         		lv_namespaceName_0_0, 
-        		"NamespaceDeclaration");
+        		"org.eclipse.papyrus.uml.alf.Alf.NamespaceDeclaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -114,7 +114,7 @@ ruleUnitDefinition returns [EObject current=null]
        			$current, 
        			"import",
         		lv_import_1_0, 
-        		"ImportDeclaration");
+        		"org.eclipse.papyrus.uml.alf.Alf.ImportDeclaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -133,7 +133,7 @@ ruleUnitDefinition returns [EObject current=null]
        			$current, 
        			"documentation",
         		lv_documentation_2_0, 
-        		"DOCUMENTATION_COMMENT");
+        		"org.eclipse.papyrus.uml.alf.Alf.DOCUMENTATION_COMMENT");
 	    }
 
 )
@@ -150,7 +150,7 @@ ruleUnitDefinition returns [EObject current=null]
        			$current, 
        			"annotation",
         		lv_annotation_3_0, 
-        		"StereotypeAnnotation");
+        		"org.eclipse.papyrus.uml.alf.Alf.StereotypeAnnotation");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -168,7 +168,7 @@ ruleUnitDefinition returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_4_0, 
-        		"NamespaceDefinition");
+        		"org.eclipse.papyrus.uml.alf.Alf.NamespaceDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -211,7 +211,7 @@ ruleStereotypeAnnotation returns [EObject current=null]
        			$current, 
        			"stereotypeName",
         		lv_stereotypeName_1_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -233,7 +233,7 @@ ruleStereotypeAnnotation returns [EObject current=null]
        			$current, 
        			"names",
         		lv_names_3_0, 
-        		"QualifiedNameList");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedNameList");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -252,7 +252,7 @@ ruleStereotypeAnnotation returns [EObject current=null]
        			$current, 
        			"taggedValues",
         		lv_taggedValues_4_0, 
-        		"TaggedValueList");
+        		"org.eclipse.papyrus.uml.alf.Alf.TaggedValueList");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -295,7 +295,7 @@ ruleTaggedValueList returns [EObject current=null]
        			$current, 
        			"taggedValue",
         		lv_taggedValue_0_0, 
-        		"TaggedValue");
+        		"org.eclipse.papyrus.uml.alf.Alf.TaggedValue");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -317,7 +317,7 @@ ruleTaggedValueList returns [EObject current=null]
        			$current, 
        			"taggedValue",
         		lv_taggedValue_2_0, 
-        		"TaggedValue");
+        		"org.eclipse.papyrus.uml.alf.Alf.TaggedValue");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -356,7 +356,7 @@ ruleTaggedValue returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -379,7 +379,7 @@ ruleTaggedValue returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_2_0, 
-        		"BOOLEAN_VALUE");
+        		"org.eclipse.papyrus.uml.alf.Alf.BOOLEAN_VALUE");
 	    }
 
 )
@@ -397,7 +397,7 @@ ruleTaggedValue returns [EObject current=null]
        			$current, 
        			"operator",
         		lv_operator_3_0, 
-        		"NumericUnaryOperator");
+        		"org.eclipse.papyrus.uml.alf.Alf.NumericUnaryOperator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -416,7 +416,7 @@ ruleTaggedValue returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_4_0, 
-        		"NATURAL_VALUE");
+        		"org.eclipse.papyrus.uml.alf.Alf.NATURAL_VALUE");
 	    }
 
 )
@@ -451,7 +451,7 @@ ruleTaggedValue returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_6_0, 
-        		"STRING");
+        		"org.eclipse.papyrus.uml.alf.Alf.STRING");
 	    }
 
 )
@@ -580,7 +580,7 @@ ruleElementImportReference returns [EObject current=null]
        			$current, 
        			"visibility",
         		lv_visibility_0_0, 
-        		"ImportVisibilityIndicator");
+        		"org.eclipse.papyrus.uml.alf.Alf.ImportVisibilityIndicator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -602,7 +602,7 @@ ruleElementImportReference returns [EObject current=null]
        			$current, 
        			"referentName",
         		lv_referentName_2_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -624,7 +624,7 @@ ruleElementImportReference returns [EObject current=null]
        			$current, 
        			"alias",
         		lv_alias_4_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -663,7 +663,7 @@ rulePackageImportReference returns [EObject current=null]
        			$current, 
        			"visibility",
         		lv_visibility_0_0, 
-        		"ImportVisibilityIndicator");
+        		"org.eclipse.papyrus.uml.alf.Alf.ImportVisibilityIndicator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -685,7 +685,7 @@ rulePackageImportReference returns [EObject current=null]
        			$current, 
        			"referentName",
         		lv_referentName_2_0, 
-        		"PackageImportQualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.PackageImportQualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -724,7 +724,7 @@ rulePackageImportQualifiedName returns [EObject current=null]
        			$current, 
        			"nameBinding",
         		lv_nameBinding_0_0, 
-        		"NameBinding");
+        		"org.eclipse.papyrus.uml.alf.Alf.NameBinding");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -746,7 +746,7 @@ rulePackageImportQualifiedName returns [EObject current=null]
        			$current, 
        			"nameBinding",
         		lv_nameBinding_2_0, 
-        		"NameBinding");
+        		"org.eclipse.papyrus.uml.alf.Alf.NameBinding");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -777,7 +777,7 @@ rulePackageImportQualifiedName returns [EObject current=null]
        			$current, 
        			"nameBinding",
         		lv_nameBinding_6_0, 
-        		"NameBinding");
+        		"org.eclipse.papyrus.uml.alf.Alf.NameBinding");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -947,7 +947,7 @@ rulePackageDefinition returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -969,7 +969,7 @@ rulePackageDefinition returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_3_0, 
-        		"PackagedElement");
+        		"org.eclipse.papyrus.uml.alf.Alf.PackagedElement");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1016,7 +1016,7 @@ rulePackageDefinitionOrStub returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1054,7 +1054,7 @@ rulePackageDefinitionOrStub returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_4_0, 
-        		"PackagedElement");
+        		"org.eclipse.papyrus.uml.alf.Alf.PackagedElement");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1098,7 +1098,7 @@ rulePackagedElement returns [EObject current=null]
        			$current, 
        			"documentation",
         		lv_documentation_0_0, 
-        		"DOCUMENTATION_COMMENT");
+        		"org.eclipse.papyrus.uml.alf.Alf.DOCUMENTATION_COMMENT");
 	    }
 
 )
@@ -1115,7 +1115,7 @@ rulePackagedElement returns [EObject current=null]
        			$current, 
        			"annotation",
         		lv_annotation_1_0, 
-        		"StereotypeAnnotation");
+        		"org.eclipse.papyrus.uml.alf.Alf.StereotypeAnnotation");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1133,7 +1133,7 @@ rulePackagedElement returns [EObject current=null]
        			$current, 
        			"visibility",
         		lv_visibility_2_0, 
-        		"ImportVisibilityIndicator");
+        		"org.eclipse.papyrus.uml.alf.Alf.ImportVisibilityIndicator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1151,7 +1151,7 @@ rulePackagedElement returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_3_0, 
-        		"PackagedElementDefinition");
+        		"org.eclipse.papyrus.uml.alf.Alf.PackagedElementDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1461,7 +1461,7 @@ ruleClassifierTemplateParameter returns [EObject current=null]
        			$current, 
        			"documentation",
         		lv_documentation_0_0, 
-        		"DOCUMENTATION_COMMENT");
+        		"org.eclipse.papyrus.uml.alf.Alf.DOCUMENTATION_COMMENT");
 	    }
 
 )
@@ -1478,7 +1478,7 @@ ruleClassifierTemplateParameter returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_1_0, 
-        		"ClassifierTemplateParameterDefinition");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameterDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1517,7 +1517,7 @@ ruleClassifierTemplateParameterDefinition returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1539,7 +1539,7 @@ ruleClassifierTemplateParameterDefinition returns [EObject current=null]
        			$current, 
        			"specialization",
         		lv_specialization_2_0, 
-        		"TemplateParameterConstraint");
+        		"org.eclipse.papyrus.uml.alf.Alf.TemplateParameterConstraint");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1578,7 +1578,7 @@ ruleTemplateParameterConstraint returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1673,7 +1673,7 @@ ruleClassDeclaration returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1695,7 +1695,7 @@ ruleClassDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_4_0, 
-        		"ClassifierTemplateParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1717,7 +1717,7 @@ ruleClassDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_6_0, 
-        		"ClassifierTemplateParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1739,7 +1739,7 @@ ruleClassDeclaration returns [EObject current=null]
        			$current, 
        			"specialization",
         		lv_specialization_8_0, 
-        		"SpecializationClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.SpecializationClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1794,7 +1794,7 @@ ruleClassDefinition returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_2_0, 
-        		"ClassMember");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassMember");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1869,7 +1869,7 @@ ruleClassDefinitionOrStub returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_3_0, 
-        		"ClassMember");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassMember");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1913,11 +1913,11 @@ ruleClassMember returns [EObject current=null]
        			$current, 
        			"documentation",
         		lv_documentation_0_0, 
-        		"DOCUMENTATION_COMMENT");
+        		"org.eclipse.papyrus.uml.alf.Alf.DOCUMENTATION_COMMENT");
 	    }
 
 )
-)?(
+)*(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getClassMemberAccess().getAnnotationStereotypeAnnotationParserRuleCall_1_0()); 
@@ -1930,7 +1930,7 @@ ruleClassMember returns [EObject current=null]
        			$current, 
        			"annotation",
         		lv_annotation_1_0, 
-        		"StereotypeAnnotation");
+        		"org.eclipse.papyrus.uml.alf.Alf.StereotypeAnnotation");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1948,7 +1948,7 @@ ruleClassMember returns [EObject current=null]
        			$current, 
        			"visibility",
         		lv_visibility_2_0, 
-        		"VisibilityIndicator");
+        		"org.eclipse.papyrus.uml.alf.Alf.VisibilityIndicator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1966,7 +1966,7 @@ ruleClassMember returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_3_0, 
-        		"ClassMemberDefinition");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassMemberDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2074,7 +2074,7 @@ ruleActiveClassDeclaration returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_3_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2096,7 +2096,7 @@ ruleActiveClassDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_5_0, 
-        		"ClassifierTemplateParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2118,7 +2118,7 @@ ruleActiveClassDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_7_0, 
-        		"ClassifierTemplateParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2140,7 +2140,7 @@ ruleActiveClassDeclaration returns [EObject current=null]
        			$current, 
        			"specialization",
         		lv_specialization_9_0, 
-        		"SpecializationClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.SpecializationClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2195,7 +2195,7 @@ ruleActiveClassDefinition returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_2_0, 
-        		"ActiveClassMember");
+        		"org.eclipse.papyrus.uml.alf.Alf.ActiveClassMember");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2221,7 +2221,7 @@ ruleActiveClassDefinition returns [EObject current=null]
        			$current, 
        			"classifierBehavior",
         		lv_classifierBehavior_5_0, 
-        		"BehaviorClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.BehaviorClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2292,7 +2292,7 @@ ruleActiveClassDefinitionOrStub returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_3_0, 
-        		"ActiveClassMember");
+        		"org.eclipse.papyrus.uml.alf.Alf.ActiveClassMember");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2318,7 +2318,7 @@ ruleActiveClassDefinitionOrStub returns [EObject current=null]
        			$current, 
        			"classifierBehavior",
         		lv_classifierBehavior_6_0, 
-        		"BehaviorClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.BehaviorClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2357,7 +2357,7 @@ ruleBehaviorClause returns [EObject current=null]
        			$current, 
        			"body",
         		lv_body_0_0, 
-        		"Block");
+        		"org.eclipse.papyrus.uml.alf.Alf.Block");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2376,7 +2376,7 @@ ruleBehaviorClause returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2416,7 +2416,7 @@ ruleActiveClassMember returns [EObject current=null]
        			$current, 
        			"documentation",
         		lv_documentation_0_0, 
-        		"DOCUMENTATION_COMMENT");
+        		"org.eclipse.papyrus.uml.alf.Alf.DOCUMENTATION_COMMENT");
 	    }
 
 )
@@ -2433,7 +2433,7 @@ ruleActiveClassMember returns [EObject current=null]
        			$current, 
        			"annotation",
         		lv_annotation_1_0, 
-        		"StereotypeAnnotation");
+        		"org.eclipse.papyrus.uml.alf.Alf.StereotypeAnnotation");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2451,7 +2451,7 @@ ruleActiveClassMember returns [EObject current=null]
        			$current, 
        			"visibility",
         		lv_visibility_2_0, 
-        		"VisibilityIndicator");
+        		"org.eclipse.papyrus.uml.alf.Alf.VisibilityIndicator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2469,7 +2469,7 @@ ruleActiveClassMember returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_3_0, 
-        		"ActiveClassMemberDefinition");
+        		"org.eclipse.papyrus.uml.alf.Alf.ActiveClassMemberDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2573,7 +2573,7 @@ ruleDataTypeDeclaration returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2595,7 +2595,7 @@ ruleDataTypeDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_4_0, 
-        		"ClassifierTemplateParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2617,7 +2617,7 @@ ruleDataTypeDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_6_0, 
-        		"ClassifierTemplateParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2639,7 +2639,7 @@ ruleDataTypeDeclaration returns [EObject current=null]
        			$current, 
        			"specialization",
         		lv_specialization_8_0, 
-        		"SpecializationClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.SpecializationClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2694,7 +2694,7 @@ ruleDataTypeDefinition returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_2_0, 
-        		"StructuredMember");
+        		"org.eclipse.papyrus.uml.alf.Alf.StructuredMember");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2769,7 +2769,7 @@ ruleDataTypeDefinitionOrStub returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_3_0, 
-        		"StructuredMember");
+        		"org.eclipse.papyrus.uml.alf.Alf.StructuredMember");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2813,7 +2813,7 @@ ruleStructuredMember returns [EObject current=null]
        			$current, 
        			"documentation",
         		lv_documentation_0_0, 
-        		"DOCUMENTATION_COMMENT");
+        		"org.eclipse.papyrus.uml.alf.Alf.DOCUMENTATION_COMMENT");
 	    }
 
 )
@@ -2830,7 +2830,7 @@ ruleStructuredMember returns [EObject current=null]
        			$current, 
        			"annotation",
         		lv_annotation_1_0, 
-        		"StereotypeAnnotation");
+        		"org.eclipse.papyrus.uml.alf.Alf.StereotypeAnnotation");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2863,7 +2863,7 @@ ruleStructuredMember returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_3_0, 
-        		"PropertyDefinition");
+        		"org.eclipse.papyrus.uml.alf.Alf.PropertyDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2921,7 +2921,7 @@ ruleAssociationDeclaration returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2943,7 +2943,7 @@ ruleAssociationDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_4_0, 
-        		"ClassifierTemplateParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2965,7 +2965,7 @@ ruleAssociationDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_6_0, 
-        		"ClassifierTemplateParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2987,7 +2987,7 @@ ruleAssociationDeclaration returns [EObject current=null]
        			$current, 
        			"specialization",
         		lv_specialization_8_0, 
-        		"SpecializationClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.SpecializationClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3042,7 +3042,7 @@ ruleAssociationDefinition returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_2_0, 
-        		"StructuredMember");
+        		"org.eclipse.papyrus.uml.alf.Alf.StructuredMember");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3117,7 +3117,7 @@ ruleAssociationDefinitionOrStub returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_3_0, 
-        		"StructuredMember");
+        		"org.eclipse.papyrus.uml.alf.Alf.StructuredMember");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3164,7 +3164,7 @@ ruleEnumerationDeclaration returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3182,7 +3182,7 @@ ruleEnumerationDeclaration returns [EObject current=null]
        			$current, 
        			"specialization",
         		lv_specialization_2_0, 
-        		"SpecializationClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.SpecializationClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3237,7 +3237,7 @@ ruleEnumerationDefinition returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_2_0, 
-        		"EnumerationLiteralName");
+        		"org.eclipse.papyrus.uml.alf.Alf.EnumerationLiteralName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3259,7 +3259,7 @@ ruleEnumerationDefinition returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_4_0, 
-        		"EnumerationLiteralName");
+        		"org.eclipse.papyrus.uml.alf.Alf.EnumerationLiteralName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3334,7 +3334,7 @@ ruleEnumerationDefinitionOrStub returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_3_0, 
-        		"EnumerationLiteralName");
+        		"org.eclipse.papyrus.uml.alf.Alf.EnumerationLiteralName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3356,7 +3356,7 @@ ruleEnumerationDefinitionOrStub returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_5_0, 
-        		"EnumerationLiteralName");
+        		"org.eclipse.papyrus.uml.alf.Alf.EnumerationLiteralName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3400,7 +3400,7 @@ ruleEnumerationLiteralName returns [EObject current=null]
        			$current, 
        			"documentation",
         		lv_documentation_0_0, 
-        		"DOCUMENTATION_COMMENT");
+        		"org.eclipse.papyrus.uml.alf.Alf.DOCUMENTATION_COMMENT");
 	    }
 
 )
@@ -3417,7 +3417,7 @@ ruleEnumerationLiteralName returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_1_0, 
-        		"EnumerationLiteralNameDefinition");
+        		"org.eclipse.papyrus.uml.alf.Alf.EnumerationLiteralNameDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3456,7 +3456,7 @@ ruleEnumerationLiteralNameDefinition returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3514,7 +3514,7 @@ ruleSignalDeclaration returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3536,7 +3536,7 @@ ruleSignalDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_4_0, 
-        		"ClassifierTemplateParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3558,7 +3558,7 @@ ruleSignalDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_6_0, 
-        		"ClassifierTemplateParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3580,7 +3580,7 @@ ruleSignalDeclaration returns [EObject current=null]
        			$current, 
        			"specialization",
         		lv_specialization_8_0, 
-        		"SpecializationClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.SpecializationClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3635,7 +3635,7 @@ ruleSignalDefinition returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_2_0, 
-        		"StructuredMember");
+        		"org.eclipse.papyrus.uml.alf.Alf.StructuredMember");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3710,7 +3710,7 @@ ruleSignalDefinitionOrStub returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_3_0, 
-        		"StructuredMember");
+        		"org.eclipse.papyrus.uml.alf.Alf.StructuredMember");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3757,7 +3757,7 @@ ruleActivityDeclaration returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3779,7 +3779,7 @@ ruleActivityDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_3_0, 
-        		"ClassifierTemplateParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3801,7 +3801,7 @@ ruleActivityDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_5_0, 
-        		"ClassifierTemplateParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassifierTemplateParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3827,7 +3827,7 @@ ruleActivityDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_8_0, 
-        		"FormalParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.FormalParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3849,7 +3849,7 @@ ruleActivityDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_10_0, 
-        		"FormalParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.FormalParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3871,7 +3871,7 @@ ruleActivityDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_12_0, 
-        		"ReturnParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.ReturnParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3922,7 +3922,7 @@ ruleActivityDefinition returns [EObject current=null]
        			$current, 
        			"body",
         		lv_body_1_0, 
-        		"Block");
+        		"org.eclipse.papyrus.uml.alf.Alf.Block");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3989,7 +3989,7 @@ ruleActivityDefinitionOrStub returns [EObject current=null]
        			$current, 
        			"body",
         		lv_body_2_0, 
-        		"Block");
+        		"org.eclipse.papyrus.uml.alf.Alf.Block");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4029,7 +4029,7 @@ ruleFormalParameter returns [EObject current=null]
        			$current, 
        			"documentation",
         		lv_documentation_0_0, 
-        		"DOCUMENTATION_COMMENT");
+        		"org.eclipse.papyrus.uml.alf.Alf.DOCUMENTATION_COMMENT");
 	    }
 
 )
@@ -4046,7 +4046,7 @@ ruleFormalParameter returns [EObject current=null]
        			$current, 
        			"annotation",
         		lv_annotation_1_0, 
-        		"StereotypeAnnotation");
+        		"org.eclipse.papyrus.uml.alf.Alf.StereotypeAnnotation");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4064,7 +4064,7 @@ ruleFormalParameter returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_2_0, 
-        		"FormalParameterDefinition");
+        		"org.eclipse.papyrus.uml.alf.Alf.FormalParameterDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4103,7 +4103,7 @@ ruleFormalParameterDefinition returns [EObject current=null]
        			$current, 
        			"direction",
         		lv_direction_0_0, 
-        		"ParameterDirection");
+        		"org.eclipse.papyrus.uml.alf.Alf.ParameterDirection");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4121,7 +4121,7 @@ ruleFormalParameterDefinition returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4143,7 +4143,7 @@ ruleFormalParameterDefinition returns [EObject current=null]
        			$current, 
        			"typePart",
         		lv_typePart_3_0, 
-        		"TypePart");
+        		"org.eclipse.papyrus.uml.alf.Alf.TypePart");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4182,7 +4182,7 @@ ruleReturnParameter returns [EObject current=null]
        			$current, 
        			"definition",
         		lv_definition_0_0, 
-        		"ReturnParameterDefinition");
+        		"org.eclipse.papyrus.uml.alf.Alf.ReturnParameterDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4225,7 +4225,7 @@ ruleReturnParameterDefinition returns [EObject current=null]
        			$current, 
        			"typePart",
         		lv_typePart_1_0, 
-        		"TypePart");
+        		"org.eclipse.papyrus.uml.alf.Alf.TypePart");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4446,7 +4446,7 @@ ruleAttributeDefinition returns [EObject current=null]
        			$current, 
        			"initializer",
         		lv_initializer_1_0, 
-        		"AttributeInitializer");
+        		"org.eclipse.papyrus.uml.alf.Alf.AttributeInitializer");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4526,7 +4526,7 @@ rulePropertyDeclaration returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4563,7 +4563,7 @@ rulePropertyDeclaration returns [EObject current=null]
        			$current, 
        			"typePart",
         		lv_typePart_3_0, 
-        		"TypePart");
+        		"org.eclipse.papyrus.uml.alf.Alf.TypePart");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4618,7 +4618,7 @@ ruleTypePart returns [EObject current=null]
        			$current, 
        			"typeName",
         		lv_typeName_1_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4657,7 +4657,7 @@ ruleTypePart returns [EObject current=null]
        			$current, 
        			"lowerBound",
         		lv_lowerBound_4_0, 
-        		"NATURAL_VALUE");
+        		"org.eclipse.papyrus.uml.alf.Alf.NATURAL_VALUE");
 	    }
 
 )
@@ -4678,7 +4678,7 @@ ruleTypePart returns [EObject current=null]
        			$current, 
        			"upperBound",
         		lv_upperBound_6_0, 
-        		"UnlimitedNaturalLiteral");
+        		"org.eclipse.papyrus.uml.alf.Alf.UnlimitedNaturalLiteral");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4848,7 +4848,7 @@ ruleOperationDeclaration returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4870,7 +4870,7 @@ ruleOperationDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_3_0, 
-        		"FormalParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.FormalParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4892,7 +4892,7 @@ ruleOperationDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_5_0, 
-        		"FormalParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.FormalParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4914,7 +4914,7 @@ ruleOperationDeclaration returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_7_0, 
-        		"ReturnParameter");
+        		"org.eclipse.papyrus.uml.alf.Alf.ReturnParameter");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4932,7 +4932,7 @@ ruleOperationDeclaration returns [EObject current=null]
        			$current, 
        			"redefinition",
         		lv_redefinition_8_0, 
-        		"RedefinitionClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.RedefinitionClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4999,7 +4999,7 @@ ruleOperationDefinitionOrStub returns [EObject current=null]
        			$current, 
        			"body",
         		lv_body_2_0, 
-        		"Block");
+        		"org.eclipse.papyrus.uml.alf.Alf.Block");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5079,7 +5079,7 @@ ruleReceptionDefinition returns [EObject current=null]
        			$current, 
        			"signalName",
         		lv_signalName_1_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5130,7 +5130,7 @@ ruleSignalReceptionDeclaration returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5148,7 +5148,7 @@ ruleSignalReceptionDeclaration returns [EObject current=null]
        			$current, 
        			"specialization",
         		lv_specialization_3_0, 
-        		"SpecializationClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.SpecializationClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5219,7 +5219,7 @@ ruleSignalReceptionDefinitionOrStub returns [EObject current=null]
        			$current, 
        			"ownedMember",
         		lv_ownedMember_3_0, 
-        		"StructuredMember");
+        		"org.eclipse.papyrus.uml.alf.Alf.StructuredMember");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5314,7 +5314,7 @@ ruleQualifiedName returns [EObject current=null]
        			$current, 
        			"nameBinding",
         		lv_nameBinding_2_0, 
-        		"NameBinding");
+        		"org.eclipse.papyrus.uml.alf.Alf.NameBinding");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5337,7 +5337,7 @@ ruleQualifiedName returns [EObject current=null]
        			$current, 
        			"nameBinding",
         		lv_nameBinding_4_0, 
-        		"NameBinding");
+        		"org.eclipse.papyrus.uml.alf.Alf.NameBinding");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5392,7 +5392,7 @@ rulePotentiallyAmbiguousQualifiedName returns [EObject current=null]
        			$current, 
        			"nameBinding",
         		lv_nameBinding_2_0, 
-        		"NameBinding");
+        		"org.eclipse.papyrus.uml.alf.Alf.NameBinding");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5426,7 +5426,7 @@ rulePotentiallyAmbiguousQualifiedName returns [EObject current=null]
        			$current, 
        			"nameBinding",
         		lv_nameBinding_4_0, 
-        		"NameBinding");
+        		"org.eclipse.papyrus.uml.alf.Alf.NameBinding");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5448,7 +5448,7 @@ rulePotentiallyAmbiguousQualifiedName returns [EObject current=null]
        			$current, 
        			"nameBinding",
         		lv_nameBinding_6_0, 
-        		"NameBinding");
+        		"org.eclipse.papyrus.uml.alf.Alf.NameBinding");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5491,7 +5491,7 @@ ruleUnqualifiedName returns [EObject current=null]
        			$current, 
        			"nameBinding",
         		lv_nameBinding_0_0, 
-        		"NameBinding");
+        		"org.eclipse.papyrus.uml.alf.Alf.NameBinding");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5530,7 +5530,7 @@ ruleNameBinding returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5548,7 +5548,7 @@ ruleNameBinding returns [EObject current=null]
        			$current, 
        			"binding",
         		lv_binding_1_0, 
-        		"TemplateBinding");
+        		"org.eclipse.papyrus.uml.alf.Alf.TemplateBinding");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5641,7 +5641,7 @@ rulePositionalTemplateBinding returns [EObject current=null]
        			$current, 
        			"argumentName",
         		lv_argumentName_0_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5663,7 +5663,7 @@ rulePositionalTemplateBinding returns [EObject current=null]
        			$current, 
        			"argumentName",
         		lv_argumentName_2_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5702,7 +5702,7 @@ ruleNamedTemplateBinding returns [EObject current=null]
        			$current, 
        			"substitution",
         		lv_substitution_0_0, 
-        		"TemplateParameterSubstitution");
+        		"org.eclipse.papyrus.uml.alf.Alf.TemplateParameterSubstitution");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5724,7 +5724,7 @@ ruleNamedTemplateBinding returns [EObject current=null]
        			$current, 
        			"substitution",
         		lv_substitution_2_0, 
-        		"TemplateParameterSubstitution");
+        		"org.eclipse.papyrus.uml.alf.Alf.TemplateParameterSubstitution");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5763,7 +5763,7 @@ ruleTemplateParameterSubstitution returns [EObject current=null]
        			$current, 
        			"parameterName",
         		lv_parameterName_0_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5785,7 +5785,7 @@ ruleTemplateParameterSubstitution returns [EObject current=null]
        			$current, 
        			"argumentName",
         		lv_argumentName_2_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5895,7 +5895,7 @@ rulePrimaryExpression returns [EObject current=null]
        			$current, 
        			"nameBinding",
         		lv_nameBinding_3_0, 
-        		"NameBinding");
+        		"org.eclipse.papyrus.uml.alf.Alf.NameBinding");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5922,7 +5922,7 @@ rulePrimaryExpression returns [EObject current=null]
        			$current, 
        			"tuple",
         		lv_tuple_5_0, 
-        		"Tuple");
+        		"org.eclipse.papyrus.uml.alf.Alf.Tuple");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -5954,7 +5954,7 @@ rulePrimaryExpression returns [EObject current=null]
        			$current, 
        			"nameBinding",
         		lv_nameBinding_8_0, 
-        		"NameBinding");
+        		"org.eclipse.papyrus.uml.alf.Alf.NameBinding");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6004,7 +6004,7 @@ rulePrimaryExpression returns [EObject current=null]
        			$current, 
        			"operation",
         		lv_operation_13_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6022,7 +6022,7 @@ rulePrimaryExpression returns [EObject current=null]
        			$current, 
        			"tuple",
         		lv_tuple_14_0, 
-        		"Tuple");
+        		"org.eclipse.papyrus.uml.alf.Alf.Tuple");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6069,7 +6069,7 @@ rulePrimaryExpression returns [EObject current=null]
        			$current, 
        			"behaviorName",
         		lv_behaviorName_18_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6098,7 +6098,7 @@ rulePrimaryExpression returns [EObject current=null]
        			$current, 
        			"operation",
         		lv_operation_20_0, 
-        		"ID");
+        		"org.eclipse.papyrus.uml.alf.Alf.ID");
 	    }
 
 )
@@ -6115,7 +6115,7 @@ rulePrimaryExpression returns [EObject current=null]
        			$current, 
        			"variable",
         		lv_variable_21_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6137,7 +6137,7 @@ rulePrimaryExpression returns [EObject current=null]
        			$current, 
        			"argument",
         		lv_argument_23_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6169,7 +6169,7 @@ rulePrimaryExpression returns [EObject current=null]
        			$current, 
        			"index",
         		lv_index_26_0, 
-        		"Index");
+        		"org.eclipse.papyrus.uml.alf.Alf.Index");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6444,7 +6444,7 @@ ruleBooleanLiteralExpression returns [EObject current=null]
        			$current, 
        			"image",
         		lv_image_0_0, 
-        		"BOOLEAN_VALUE");
+        		"org.eclipse.papyrus.uml.alf.Alf.BOOLEAN_VALUE");
 	    }
 
 )
@@ -6483,7 +6483,7 @@ ruleNaturalLiteralExpression returns [EObject current=null]
        			$current, 
        			"image",
         		lv_image_0_0, 
-        		"NATURAL_VALUE");
+        		"org.eclipse.papyrus.uml.alf.Alf.NATURAL_VALUE");
 	    }
 
 )
@@ -6556,7 +6556,7 @@ ruleStringLiteralExpression returns [EObject current=null]
        			$current, 
        			"image",
         		lv_image_0_0, 
-        		"STRING");
+        		"org.eclipse.papyrus.uml.alf.Alf.STRING");
 	    }
 
 )
@@ -6594,7 +6594,7 @@ ruleNameExpression returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"PotentiallyAmbiguousQualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.PotentiallyAmbiguousQualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6646,7 +6646,7 @@ ruleThisExpression returns [EObject current=null]
        			$current, 
        			"tuple",
         		lv_tuple_2_0, 
-        		"Tuple");
+        		"org.eclipse.papyrus.uml.alf.Alf.Tuple");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6740,7 +6740,7 @@ ruleBehaviorInvocationExpression returns [EObject current=null]
        			$current, 
        			"target",
         		lv_target_0_0, 
-        		"PotentiallyAmbiguousQualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.PotentiallyAmbiguousQualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6758,7 +6758,7 @@ ruleBehaviorInvocationExpression returns [EObject current=null]
        			$current, 
        			"tuple",
         		lv_tuple_1_0, 
-        		"Tuple");
+        		"org.eclipse.papyrus.uml.alf.Alf.Tuple");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6860,7 +6860,7 @@ rulePositionalTupleExpressionList returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_1_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6882,7 +6882,7 @@ rulePositionalTupleExpressionList returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_3_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6921,7 +6921,7 @@ ruleNamedTupleExpressionList returns [EObject current=null]
        			$current, 
        			"namedExpression",
         		lv_namedExpression_0_0, 
-        		"NamedExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.NamedExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6943,7 +6943,7 @@ ruleNamedTupleExpressionList returns [EObject current=null]
        			$current, 
        			"namedExpression",
         		lv_namedExpression_2_0, 
-        		"NamedExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.NamedExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -6982,7 +6982,7 @@ ruleNamedExpression returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7004,7 +7004,7 @@ ruleNamedExpression returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_2_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7051,7 +7051,7 @@ ruleSuperInvocationExpression returns [EObject current=null]
        			$current, 
        			"target",
         		lv_target_2_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7069,7 +7069,7 @@ ruleSuperInvocationExpression returns [EObject current=null]
        			$current, 
        			"tuple",
         		lv_tuple_3_0, 
-        		"Tuple");
+        		"org.eclipse.papyrus.uml.alf.Alf.Tuple");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7121,7 +7121,7 @@ ruleInstanceCreationOrSequenceConstructionExpression returns [EObject current=nu
        			$current, 
        			"typeName",
         		lv_typeName_2_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7139,7 +7139,7 @@ ruleInstanceCreationOrSequenceConstructionExpression returns [EObject current=nu
        			$current, 
        			"hasMultiplicity",
         		true, 
-        		"MultiplicityIndicator");
+        		"org.eclipse.papyrus.uml.alf.Alf.MultiplicityIndicator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7161,7 +7161,7 @@ ruleInstanceCreationOrSequenceConstructionExpression returns [EObject current=nu
        			$current, 
        			"elements",
         		lv_elements_5_0, 
-        		"SequenceElements");
+        		"org.eclipse.papyrus.uml.alf.Alf.SequenceElements");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7193,7 +7193,7 @@ ruleInstanceCreationOrSequenceConstructionExpression returns [EObject current=nu
        			$current, 
        			"constructor",
         		lv_constructor_8_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7211,7 +7211,7 @@ ruleInstanceCreationOrSequenceConstructionExpression returns [EObject current=nu
        			$current, 
        			"tuple",
         		lv_tuple_9_0, 
-        		"Tuple");
+        		"org.eclipse.papyrus.uml.alf.Alf.Tuple");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7250,7 +7250,7 @@ ruleLinkOperationExpression returns [EObject current=null]
        			$current, 
        			"associationName",
         		lv_associationName_0_0, 
-        		"PotentiallyAmbiguousQualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.PotentiallyAmbiguousQualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7272,7 +7272,7 @@ ruleLinkOperationExpression returns [EObject current=null]
        			$current, 
        			"operation",
         		lv_operation_2_0, 
-        		"LinkOperation");
+        		"org.eclipse.papyrus.uml.alf.Alf.LinkOperation");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7290,7 +7290,7 @@ ruleLinkOperationExpression returns [EObject current=null]
        			$current, 
        			"tuple",
         		lv_tuple_3_0, 
-        		"LinkOperationTuple");
+        		"org.eclipse.papyrus.uml.alf.Alf.LinkOperationTuple");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7424,7 +7424,7 @@ ruleIndexedNamedTupleExpressionList returns [EObject current=null]
        			$current, 
        			"namedExpression",
         		lv_namedExpression_0_0, 
-        		"IndexedNamedExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.IndexedNamedExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7446,7 +7446,7 @@ ruleIndexedNamedTupleExpressionList returns [EObject current=null]
        			$current, 
        			"namedExpression",
         		lv_namedExpression_2_0, 
-        		"IndexedNamedExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.IndexedNamedExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7485,7 +7485,7 @@ ruleIndexedNamedExpression returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7503,7 +7503,7 @@ ruleIndexedNamedExpression returns [EObject current=null]
        			$current, 
        			"index",
         		lv_index_1_0, 
-        		"Index");
+        		"org.eclipse.papyrus.uml.alf.Alf.Index");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7525,7 +7525,7 @@ ruleIndexedNamedExpression returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_3_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7564,7 +7564,7 @@ ruleClassExtentExpression returns [EObject current=null]
        			$current, 
        			"className",
         		lv_className_0_0, 
-        		"PotentiallyAmbiguousQualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.PotentiallyAmbiguousQualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7635,7 +7635,7 @@ ruleSequenceConstructionExpression returns [EObject current=null]
        			$current, 
        			"typeName",
         		lv_typeName_1_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7653,7 +7653,7 @@ ruleSequenceConstructionExpression returns [EObject current=null]
        			$current, 
        			"hasMultiplicity",
         		true, 
-        		"MultiplicityIndicator");
+        		"org.eclipse.papyrus.uml.alf.Alf.MultiplicityIndicator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7675,7 +7675,7 @@ ruleSequenceConstructionExpression returns [EObject current=null]
        			$current, 
        			"elements",
         		lv_elements_4_0, 
-        		"SequenceElements");
+        		"org.eclipse.papyrus.uml.alf.Alf.SequenceElements");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7813,7 +7813,7 @@ ruleSequenceRange returns [EObject current=null]
        			$current, 
        			"rangeLower",
         		lv_rangeLower_0_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7835,7 +7835,7 @@ ruleSequenceRange returns [EObject current=null]
        			$current, 
        			"rangeUpper",
         		lv_rangeUpper_2_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7874,7 +7874,7 @@ ruleSequenceExpressionList returns [EObject current=null]
        			$current, 
        			"element",
         		lv_element_0_0, 
-        		"SequenceElement");
+        		"org.eclipse.papyrus.uml.alf.Alf.SequenceElement");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7896,7 +7896,7 @@ ruleSequenceExpressionList returns [EObject current=null]
        			$current, 
        			"element",
         		lv_element_2_0, 
-        		"SequenceElement");
+        		"org.eclipse.papyrus.uml.alf.Alf.SequenceElement");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -7993,7 +7993,7 @@ ruleSequenceInitializationExpression returns [EObject current=null]
        			$current, 
        			"elements",
         		lv_elements_2_0, 
-        		"SequenceElements");
+        		"org.eclipse.papyrus.uml.alf.Alf.SequenceElements");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8086,7 +8086,7 @@ ruleSequenceOperationOrReductionOrExpansionExpression returns [EObject current=n
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"PotentiallyAmbiguousQualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.PotentiallyAmbiguousQualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8117,7 +8117,7 @@ ruleSequenceOperationOrReductionOrExpansionExpression returns [EObject current=n
        			$current, 
        			"operation",
         		lv_operation_4_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8135,7 +8135,7 @@ ruleSequenceOperationOrReductionOrExpansionExpression returns [EObject current=n
        			$current, 
        			"tuple",
         		lv_tuple_5_0, 
-        		"Tuple");
+        		"org.eclipse.papyrus.uml.alf.Alf.Tuple");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8182,7 +8182,7 @@ ruleSequenceOperationOrReductionOrExpansionExpression returns [EObject current=n
        			$current, 
        			"behaviorName",
         		lv_behaviorName_9_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8211,7 +8211,7 @@ ruleSequenceOperationOrReductionOrExpansionExpression returns [EObject current=n
        			$current, 
        			"operation",
         		lv_operation_11_0, 
-        		"ID");
+        		"org.eclipse.papyrus.uml.alf.Alf.ID");
 	    }
 
 )
@@ -8228,7 +8228,7 @@ ruleSequenceOperationOrReductionOrExpansionExpression returns [EObject current=n
        			$current, 
        			"variable",
         		lv_variable_12_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8250,7 +8250,7 @@ ruleSequenceOperationOrReductionOrExpansionExpression returns [EObject current=n
        			$current, 
        			"argument",
         		lv_argument_14_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8293,7 +8293,7 @@ rulePrefixExpression returns [EObject current=null]
        			$current, 
        			"operator",
         		lv_operator_0_0, 
-        		"AffixOperator");
+        		"org.eclipse.papyrus.uml.alf.Alf.AffixOperator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8311,7 +8311,7 @@ rulePrefixExpression returns [EObject current=null]
        			$current, 
        			"operand",
         		lv_operand_1_0, 
-        		"LeftHandSide");
+        		"org.eclipse.papyrus.uml.alf.Alf.LeftHandSide");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8489,7 +8489,7 @@ rulePostfixExpression returns [EObject current=null]
        			$current, 
        			"operand",
         		lv_operand_0_0, 
-        		"LeftHandSide");
+        		"org.eclipse.papyrus.uml.alf.Alf.LeftHandSide");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8507,7 +8507,7 @@ rulePostfixExpression returns [EObject current=null]
        			$current, 
        			"operator",
         		lv_operator_1_0, 
-        		"AffixOperator");
+        		"org.eclipse.papyrus.uml.alf.Alf.AffixOperator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8646,7 +8646,7 @@ ruleBooleanUnaryExpression returns [EObject current=null]
        			$current, 
        			"operand",
         		lv_operand_1_0, 
-        		"UnaryExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.UnaryExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8700,7 +8700,7 @@ ruleBitStringUnaryExpression returns [EObject current=null]
        			$current, 
        			"operand",
         		lv_operand_1_0, 
-        		"UnaryExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.UnaryExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8739,7 +8739,7 @@ ruleNumericUnaryExpression returns [EObject current=null]
        			$current, 
        			"operator",
         		lv_operator_0_0, 
-        		"NumericUnaryOperator");
+        		"org.eclipse.papyrus.uml.alf.Alf.NumericUnaryOperator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8757,7 +8757,7 @@ ruleNumericUnaryExpression returns [EObject current=null]
        			$current, 
        			"operand",
         		lv_operand_1_0, 
-        		"UnaryExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.UnaryExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8845,7 +8845,7 @@ ruleIsolationExpression returns [EObject current=null]
        			$current, 
        			"operand",
         		lv_operand_1_0, 
-        		"UnaryExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.UnaryExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8904,7 +8904,7 @@ ruleCastExpression returns [EObject current=null]
        			$current, 
        			"typeName",
         		lv_typeName_2_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -8926,7 +8926,7 @@ ruleCastExpression returns [EObject current=null]
        			$current, 
        			"operand",
         		lv_operand_4_0, 
-        		"CastCompletion");
+        		"org.eclipse.papyrus.uml.alf.Alf.CastCompletion");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9058,7 +9058,7 @@ ruleMultiplicativeExpression returns [EObject current=null]
        			$current, 
        			"operator",
         		lv_operator_2_0, 
-        		"MultiplicativeOperator");
+        		"org.eclipse.papyrus.uml.alf.Alf.MultiplicativeOperator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9076,7 +9076,7 @@ ruleMultiplicativeExpression returns [EObject current=null]
        			$current, 
        			"operand2",
         		lv_operand2_3_0, 
-        		"UnaryExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.UnaryExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9177,7 +9177,7 @@ ruleAdditiveExpression returns [EObject current=null]
        			$current, 
        			"operator",
         		lv_operator_2_0, 
-        		"AdditiveOperator");
+        		"org.eclipse.papyrus.uml.alf.Alf.AdditiveOperator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9195,7 +9195,7 @@ ruleAdditiveExpression returns [EObject current=null]
        			$current, 
        			"operand2",
         		lv_operand2_3_0, 
-        		"MultiplicativeExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.MultiplicativeExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9289,7 +9289,7 @@ ruleShiftExpression returns [EObject current=null]
        			$current, 
        			"operator",
         		lv_operator_2_0, 
-        		"ShiftOperator");
+        		"org.eclipse.papyrus.uml.alf.Alf.ShiftOperator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9307,7 +9307,7 @@ ruleShiftExpression returns [EObject current=null]
        			$current, 
        			"operand2",
         		lv_operand2_3_0, 
-        		"AdditiveExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.AdditiveExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9408,7 +9408,7 @@ ruleRelationalExpression returns [EObject current=null]
        			$current, 
        			"operator",
         		lv_operator_2_0, 
-        		"RelationalOperator");
+        		"org.eclipse.papyrus.uml.alf.Alf.RelationalOperator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9426,7 +9426,7 @@ ruleRelationalExpression returns [EObject current=null]
        			$current, 
        			"operand2",
         		lv_operand2_3_0, 
-        		"ShiftExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.ShiftExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9534,7 +9534,7 @@ ruleClassificationExpression returns [EObject current=null]
        			$current, 
        			"operator",
         		lv_operator_2_0, 
-        		"ClassificationOperator");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassificationOperator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9552,7 +9552,7 @@ ruleClassificationExpression returns [EObject current=null]
        			$current, 
        			"typeName",
         		lv_typeName_3_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9646,7 +9646,7 @@ ruleEqualityExpression returns [EObject current=null]
        			$current, 
        			"operator",
         		lv_operator_2_0, 
-        		"EqualityOperator");
+        		"org.eclipse.papyrus.uml.alf.Alf.EqualityOperator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9664,7 +9664,7 @@ ruleEqualityExpression returns [EObject current=null]
        			$current, 
        			"operand2",
         		lv_operand2_3_0, 
-        		"ClassificationExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassificationExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9773,7 +9773,7 @@ ruleAndExpression returns [EObject current=null]
        			$current, 
        			"operand2",
         		lv_operand2_3_0, 
-        		"EqualityExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.EqualityExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9848,7 +9848,7 @@ ruleExclusiveOrExpression returns [EObject current=null]
        			$current, 
        			"operand2",
         		lv_operand2_3_0, 
-        		"AndExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.AndExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9923,7 +9923,7 @@ ruleInclusiveOrExpression returns [EObject current=null]
        			$current, 
        			"operand2",
         		lv_operand2_3_0, 
-        		"ExclusiveOrExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.ExclusiveOrExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -9998,7 +9998,7 @@ ruleConditionalAndExpression returns [EObject current=null]
        			$current, 
        			"operand2",
         		lv_operand2_3_0, 
-        		"InclusiveOrExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.InclusiveOrExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -10073,7 +10073,7 @@ ruleConditionalOrExpression returns [EObject current=null]
        			$current, 
        			"operand2",
         		lv_operand2_3_0, 
-        		"ConditionalAndExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.ConditionalAndExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -10137,7 +10137,7 @@ ruleConditionalExpression returns [EObject current=null]
        			$current, 
        			"operand2",
         		lv_operand2_3_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -10159,7 +10159,7 @@ ruleConditionalExpression returns [EObject current=null]
        			$current, 
        			"operand3",
         		lv_operand3_5_0, 
-        		"ConditionalExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.ConditionalExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -10198,7 +10198,7 @@ ruleAssignmentExpression returns [EObject current=null]
        			$current, 
        			"leftHandSide",
         		lv_leftHandSide_0_0, 
-        		"LeftHandSide");
+        		"org.eclipse.papyrus.uml.alf.Alf.LeftHandSide");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -10216,7 +10216,7 @@ ruleAssignmentExpression returns [EObject current=null]
        			$current, 
        			"operator",
         		lv_operator_1_0, 
-        		"AssignmentOperator");
+        		"org.eclipse.papyrus.uml.alf.Alf.AssignmentOperator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -10234,7 +10234,7 @@ ruleAssignmentExpression returns [EObject current=null]
        			$current, 
        			"rightHandSide",
         		lv_rightHandSide_2_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -10319,7 +10319,7 @@ ruleNameLeftHandSide returns [EObject current=null]
        			$current, 
        			"target",
         		lv_target_0_0, 
-        		"PotentiallyAmbiguousQualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.PotentiallyAmbiguousQualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -10337,7 +10337,7 @@ ruleNameLeftHandSide returns [EObject current=null]
        			$current, 
        			"index",
         		lv_index_1_0, 
-        		"Index");
+        		"org.eclipse.papyrus.uml.alf.Alf.Index");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -10376,7 +10376,7 @@ ruleFeatureLeftHandSide returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_0_0, 
-        		"PrimaryExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.PrimaryExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -10769,7 +10769,7 @@ ruleBlock returns [EObject current=null]
        			$current, 
        			"statement",
         		lv_statement_2_0, 
-        		"DocumentedStatement");
+        		"org.eclipse.papyrus.uml.alf.Alf.DocumentedStatement");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -10813,7 +10813,7 @@ ruleAnnotatedStatement returns [EObject current=null]
        			$current, 
        			"documentation",
         		lv_documentation_0_0, 
-        		"DOCUMENTATION_COMMENT");
+        		"org.eclipse.papyrus.uml.alf.Alf.DOCUMENTATION_COMMENT");
 	    }
 
 )
@@ -10831,7 +10831,7 @@ ruleAnnotatedStatement returns [EObject current=null]
        			$current, 
        			"annotation",
         		lv_annotation_1_0, 
-        		"STATEMENT_ANNOTATION");
+        		"org.eclipse.papyrus.uml.alf.Alf.STATEMENT_ANNOTATION");
 	    }
 
 )
@@ -10848,7 +10848,7 @@ ruleAnnotatedStatement returns [EObject current=null]
        			$current, 
        			"statement",
         		lv_statement_2_0, 
-        		"Statement");
+        		"org.eclipse.papyrus.uml.alf.Alf.Statement");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -10888,7 +10888,7 @@ ruleInLineStatement returns [EObject current=null]
        			$current, 
        			"code",
         		lv_code_0_0, 
-        		"INLINE_STATEMENT");
+        		"org.eclipse.papyrus.uml.alf.Alf.INLINE_STATEMENT");
 	    }
 
 )
@@ -10926,7 +10926,7 @@ ruleBlockStatement returns [EObject current=null]
        			$current, 
        			"block",
         		lv_block_0_0, 
-        		"Block");
+        		"org.eclipse.papyrus.uml.alf.Alf.Block");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11003,7 +11003,7 @@ ruleLocalNameDeclarationStatement returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11041,7 +11041,7 @@ ruleLocalNameDeclarationStatement returns [EObject current=null]
        			$current, 
        			"typeName",
         		lv_typeName_4_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11059,7 +11059,7 @@ ruleLocalNameDeclarationStatement returns [EObject current=null]
        			$current, 
        			"hasMultiplicity",
         		true, 
-        		"MultiplicityIndicator");
+        		"org.eclipse.papyrus.uml.alf.Alf.MultiplicityIndicator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11094,7 +11094,7 @@ ruleLocalNameDeclarationStatement returns [EObject current=null]
        			$current, 
        			"typeName",
         		lv_typeName_7_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11112,7 +11112,7 @@ ruleLocalNameDeclarationStatement returns [EObject current=null]
        			$current, 
        			"hasMultiplicity",
         		true, 
-        		"MultiplicityIndicator");
+        		"org.eclipse.papyrus.uml.alf.Alf.MultiplicityIndicator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11130,7 +11130,7 @@ ruleLocalNameDeclarationStatement returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_9_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11152,7 +11152,7 @@ ruleLocalNameDeclarationStatement returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_11_0, 
-        		"InitializationExpression");
+        		"org.eclipse.papyrus.uml.alf.Alf.InitializationExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11258,7 +11258,7 @@ ruleInstanceInitializationExpression returns [EObject current=null]
        			$current, 
        			"tuple",
         		lv_tuple_1_0, 
-        		"Tuple");
+        		"org.eclipse.papyrus.uml.alf.Alf.Tuple");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11297,7 +11297,7 @@ ruleExpressionStatement returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_0_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11344,7 +11344,7 @@ ruleIfStatement returns [EObject current=null]
        			$current, 
        			"nonFinalClauses",
         		lv_nonFinalClauses_1_0, 
-        		"ConcurrentClauses");
+        		"org.eclipse.papyrus.uml.alf.Alf.ConcurrentClauses");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11370,7 +11370,7 @@ ruleIfStatement returns [EObject current=null]
        			$current, 
        			"nonFinalClauses",
         		lv_nonFinalClauses_4_0, 
-        		"ConcurrentClauses");
+        		"org.eclipse.papyrus.uml.alf.Alf.ConcurrentClauses");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11392,7 +11392,7 @@ ruleIfStatement returns [EObject current=null]
        			$current, 
        			"finalClause",
         		lv_finalClause_6_0, 
-        		"Block");
+        		"org.eclipse.papyrus.uml.alf.Alf.Block");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11431,7 +11431,7 @@ ruleConcurrentClauses returns [EObject current=null]
        			$current, 
        			"clause",
         		lv_clause_0_0, 
-        		"NonFinalClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.NonFinalClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11457,7 +11457,7 @@ ruleConcurrentClauses returns [EObject current=null]
        			$current, 
        			"clause",
         		lv_clause_3_0, 
-        		"NonFinalClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.NonFinalClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11500,7 +11500,7 @@ ruleNonFinalClause returns [EObject current=null]
        			$current, 
        			"condition",
         		lv_condition_1_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11522,7 +11522,7 @@ ruleNonFinalClause returns [EObject current=null]
        			$current, 
        			"body",
         		lv_body_3_0, 
-        		"Block");
+        		"org.eclipse.papyrus.uml.alf.Alf.Block");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11569,7 +11569,7 @@ ruleSwitchStatement returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_2_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11595,7 +11595,7 @@ ruleSwitchStatement returns [EObject current=null]
        			$current, 
        			"nonDefaultClause",
         		lv_nonDefaultClause_5_0, 
-        		"SwitchClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.SwitchClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11613,7 +11613,7 @@ ruleSwitchStatement returns [EObject current=null]
        			$current, 
        			"defaultClause",
         		lv_defaultClause_6_0, 
-        		"SwitchDefaultClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.SwitchDefaultClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11656,7 +11656,7 @@ ruleSwitchClause returns [EObject current=null]
        			$current, 
        			"case",
         		lv_case_0_0, 
-        		"SwitchCase");
+        		"org.eclipse.papyrus.uml.alf.Alf.SwitchCase");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11674,7 +11674,7 @@ ruleSwitchClause returns [EObject current=null]
        			$current, 
        			"case",
         		lv_case_1_0, 
-        		"SwitchCase");
+        		"org.eclipse.papyrus.uml.alf.Alf.SwitchCase");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11692,7 +11692,7 @@ ruleSwitchClause returns [EObject current=null]
        			$current, 
        			"block",
         		lv_block_2_0, 
-        		"NonEmptyStatementSequence");
+        		"org.eclipse.papyrus.uml.alf.Alf.NonEmptyStatementSequence");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11813,7 +11813,7 @@ ruleNonEmptyStatementSequence returns [EObject current=null]
        			$current, 
        			"statement",
         		lv_statement_0_0, 
-        		"DocumentedStatement");
+        		"org.eclipse.papyrus.uml.alf.Alf.DocumentedStatement");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11860,7 +11860,7 @@ ruleWhileStatement returns [EObject current=null]
        			$current, 
        			"condition",
         		lv_condition_2_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11882,7 +11882,7 @@ ruleWhileStatement returns [EObject current=null]
        			$current, 
        			"body",
         		lv_body_4_0, 
-        		"Block");
+        		"org.eclipse.papyrus.uml.alf.Alf.Block");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11925,7 +11925,7 @@ ruleDoStatement returns [EObject current=null]
        			$current, 
        			"body",
         		lv_body_1_0, 
-        		"Block");
+        		"org.eclipse.papyrus.uml.alf.Alf.Block");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -11951,7 +11951,7 @@ ruleDoStatement returns [EObject current=null]
        			$current, 
        			"condition",
         		lv_condition_4_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12006,7 +12006,7 @@ ruleForStatement returns [EObject current=null]
        			$current, 
        			"variableDefinition",
         		lv_variableDefinition_2_0, 
-        		"LoopVariableDefinition");
+        		"org.eclipse.papyrus.uml.alf.Alf.LoopVariableDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12028,7 +12028,7 @@ ruleForStatement returns [EObject current=null]
        			$current, 
        			"variableDefinition",
         		lv_variableDefinition_4_0, 
-        		"LoopVariableDefinition");
+        		"org.eclipse.papyrus.uml.alf.Alf.LoopVariableDefinition");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12050,7 +12050,7 @@ ruleForStatement returns [EObject current=null]
        			$current, 
        			"body",
         		lv_body_6_0, 
-        		"Block");
+        		"org.eclipse.papyrus.uml.alf.Alf.Block");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12089,7 +12089,7 @@ ruleLoopVariableDefinition returns [EObject current=null]
        			$current, 
        			"variable",
         		lv_variable_0_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12122,7 +12122,7 @@ ruleLoopVariableDefinition returns [EObject current=null]
        			$current, 
        			"expression1",
         		lv_expression1_2_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12144,7 +12144,7 @@ ruleLoopVariableDefinition returns [EObject current=null]
        			$current, 
        			"expression2",
         		lv_expression2_4_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12179,7 +12179,7 @@ ruleLoopVariableDefinition returns [EObject current=null]
        			$current, 
        			"typeName",
         		lv_typeName_6_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12197,7 +12197,7 @@ ruleLoopVariableDefinition returns [EObject current=null]
        			$current, 
        			"variable",
         		lv_variable_7_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12219,7 +12219,7 @@ ruleLoopVariableDefinition returns [EObject current=null]
        			$current, 
        			"expression1",
         		lv_expression1_9_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12309,7 +12309,7 @@ ruleReturnStatement returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_2_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12352,7 +12352,7 @@ ruleAcceptStatement returns [EObject current=null]
        			$current, 
        			"acceptBlock",
         		lv_acceptBlock_0_0, 
-        		"AcceptClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.AcceptClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12375,7 +12375,7 @@ ruleAcceptStatement returns [EObject current=null]
        			$current, 
        			"acceptBlock",
         		lv_acceptBlock_2_0, 
-        		"AcceptBlock");
+        		"org.eclipse.papyrus.uml.alf.Alf.AcceptBlock");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12397,7 +12397,7 @@ ruleAcceptStatement returns [EObject current=null]
        			$current, 
        			"acceptBlock",
         		lv_acceptBlock_4_0, 
-        		"AcceptBlock");
+        		"org.eclipse.papyrus.uml.alf.Alf.AcceptBlock");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12448,7 +12448,7 @@ ruleAcceptBlock returns [EObject current=null]
        			$current, 
        			"block",
         		lv_block_1_0, 
-        		"Block");
+        		"org.eclipse.papyrus.uml.alf.Alf.Block");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12495,7 +12495,7 @@ ruleAcceptClause returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"Name");
+        		"org.eclipse.papyrus.uml.alf.Alf.Name");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12517,7 +12517,7 @@ ruleAcceptClause returns [EObject current=null]
        			$current, 
        			"signalNames",
         		lv_signalNames_4_0, 
-        		"QualifiedNameList");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedNameList");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12564,7 +12564,7 @@ ruleClassifyStatement returns [EObject current=null]
        			$current, 
        			"expression",
         		lv_expression_1_0, 
-        		"Expression");
+        		"org.eclipse.papyrus.uml.alf.Alf.Expression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12582,7 +12582,7 @@ ruleClassifyStatement returns [EObject current=null]
        			$current, 
        			"fromList",
         		lv_fromList_2_0, 
-        		"ClassificationFromClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassificationFromClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12600,7 +12600,7 @@ ruleClassifyStatement returns [EObject current=null]
        			$current, 
        			"toList",
         		lv_toList_3_0, 
-        		"ClassificationToClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassificationToClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12619,7 +12619,7 @@ ruleClassifyStatement returns [EObject current=null]
        			$current, 
        			"isReclassifyAll",
         		true, 
-        		"ReclassifyAllClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.ReclassifyAllClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12637,7 +12637,7 @@ ruleClassifyStatement returns [EObject current=null]
        			$current, 
        			"toList",
         		lv_toList_5_0, 
-        		"ClassificationToClause");
+        		"org.eclipse.papyrus.uml.alf.Alf.ClassificationToClause");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12787,7 +12787,7 @@ ruleQualifiedNameList returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -12809,7 +12809,7 @@ ruleQualifiedNameList returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.alf.Alf.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 

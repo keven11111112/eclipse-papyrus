@@ -9988,7 +9988,7 @@ rule__ClassMember__Group__0__Impl
 :
 (
 { before(grammarAccess.getClassMemberAccess().getDocumentationAssignment_0()); }
-(rule__ClassMember__DocumentationAssignment_0)?
+(rule__ClassMember__DocumentationAssignment_0)*
 { after(grammarAccess.getClassMemberAccess().getDocumentationAssignment_0()); }
 )
 
