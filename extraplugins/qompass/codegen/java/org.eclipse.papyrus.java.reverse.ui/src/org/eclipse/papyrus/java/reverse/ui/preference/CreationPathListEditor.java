@@ -43,14 +43,15 @@ public class CreationPathListEditor extends ListEditor {
 	@Override
 	protected String createList(String[] items) {
 		StringBuffer str = new StringBuffer();
-		for(String item : items)
+		for(String item : items) {
 			str.append(item + SPLIT_STRING);
+		}
 		return str.toString();
 	}
 
 	@Override
 	protected String getNewInputObject() {
-		InputDialog dialog = new InputDialog(getShell(), "add creation path", "add creation path", "", new CreationPathValidator());
+		InputDialog dialog = new InputDialog(getShell(), "Add creation path", "Add creation path", "", new CreationPathValidator());
 		dialog.open();
 		
 		// If user clicked on "cancel" button, return null to NOT add empty value

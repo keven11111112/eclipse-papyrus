@@ -28,6 +28,7 @@ import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.java.reverse.ui.dialog.DndReverseCodeDialog;
 import org.eclipse.papyrus.java.reverse.ui.dialog.ReverseCodeDialog;
@@ -105,18 +106,22 @@ public class DndReverseCodeHandler extends ReverseCodeHandler {
 		// Run the reverse
 		super.doExecute(dialog);
 
-		// Find model to display
-		Model model = null;
-		if (displayModel) {
-			String modelName = dndDialog.getValue();
-			model = getModelToDisplay(diagram, modelName);
-		}
-
-		// Run the reverse displayer
-		DisplayReverse displayReverse = new DisplayReverse(listSelection, diagram, getUmlResource(), model);
+		
 		try {
+			// Find model to display
+			Model model = null;
+			if (displayModel) {
+				String modelName = dndDialog.getValue();
+				model = getModelToDisplay(diagram, modelName);
+			}
+
+			// Run the reverse displayer
+			DisplayReverse displayReverse = new DisplayReverse(listSelection, diagram, getUmlResource(), model);
 			displayReverse.execute();
 		} catch (JavaModelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -184,8 +189,9 @@ public class DndReverseCodeHandler extends ReverseCodeHandler {
 	 * @param modelName
 	 *            the name of the model the find
 	 * @return the model which named <code>modelName</code>, or null if it doesn't exists into the current papyrus uml resource
+	 * @throws ServiceException 
 	 */
-	public Model getModel(String modelName) {
+	public Model getModel(String modelName) throws ServiceException {
 		TreeIterator<EObject> tree = getUmlResource().getAllContents();
 		while (tree.hasNext()) {
 			for (EObject o : tree.next().eContents()) {
@@ -214,8 +220,9 @@ public class DndReverseCodeHandler extends ReverseCodeHandler {
 	 *            the name of the model to find
 	 * @return model corresponding to the modelName if it has to be displayed, i.e. if it doesn't already displayed into the diagram, or null
 	 *         otherwise
+	 * @throws ServiceException 
 	 */
-	private Model getModelToDisplay(Diagram diagram, String modelName) {
+	private Model getModelToDisplay(Diagram diagram, String modelName) throws ServiceException {
 		Model model = getModel(modelName);
 		if (model != null && !isInDiagram(diagram, model)) {
 			System.out.println("display model " + model);

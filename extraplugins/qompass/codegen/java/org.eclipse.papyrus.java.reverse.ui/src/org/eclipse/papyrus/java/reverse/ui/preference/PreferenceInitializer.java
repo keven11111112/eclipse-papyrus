@@ -34,6 +34,10 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 
 		store.setDefault(PreferenceConstants.P_SEARCH_PATH, "java;*;osgi.*;datatype");
-		store.setDefault(PreferenceConstants.P_CREATION_PATH, "java.* ; ; java" + CreationPathListEditor.SPLIT_STRING + "org.eclipse.papyrus.* ; ; *" + CreationPathListEditor.SPLIT_STRING + "org.eclipse.* ; org.eclipse.papyrus.* ; *" + CreationPathListEditor.SPLIT_STRING + " org.osgi.* ; ; osgi.*" + CreationPathListEditor.SPLIT_STRING + " datatype.* ; ; datatype");
+		store.setDefault(PreferenceConstants.P_CREATION_PATH, "java.* ; ; java" 
+		        + CreationPathListEditor.SPLIT_STRING + "org.eclipse.papyrus.* ; ; *" 
+				+ CreationPathListEditor.SPLIT_STRING + "org.eclipse.* ; org.eclipse.papyrus.* ; *" 
+		        + CreationPathListEditor.SPLIT_STRING + " org.osgi.* ; ; osgi.*" 
+				+ CreationPathListEditor.SPLIT_STRING + " datatype.* ; ; datatype");
 	}
 }

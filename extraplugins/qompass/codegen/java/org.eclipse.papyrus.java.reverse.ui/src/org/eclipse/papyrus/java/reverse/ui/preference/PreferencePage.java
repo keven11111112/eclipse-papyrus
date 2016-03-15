@@ -52,10 +52,10 @@ public class PreferencePage extends FieldEditorPreferencePage implements IWorkbe
 	@Override
 	protected void createFieldEditors() {
 		// Search path field
-		addField(new SearchPathListEditor(PreferenceConstants.P_SEARCH_PATH, "default search path", getFieldEditorParent()));
+		addField(new SearchPathListEditor(PreferenceConstants.P_SEARCH_PATH, "Default search path", getFieldEditorParent()));
 
 		// Creation path field
-		addField(new CreationPathListEditor(PreferenceConstants.P_CREATION_PATH, "default creation path", getFieldEditorParent()));
+		addField(new CreationPathListEditor(PreferenceConstants.P_CREATION_PATH, "Default creation path", getFieldEditorParent()));
 
 	}
 

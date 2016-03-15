@@ -66,8 +66,9 @@ public class SearchPathListEditor extends ListEditor {
 	@Override
 	protected String createList(String[] items) {
 		StringBuffer str = new StringBuffer();
-		for(String item : items)
+		for(String item : items) {
 			str.append(item + ";");
+		}
 		return str.toString();
 	}
 
