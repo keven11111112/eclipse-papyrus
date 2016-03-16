@@ -1,7 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.doc.feature" label="Papyrus Documentation Feature" provider-name="Eclipse Modeling Project" version="1.2.0.qualifier">
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.doc.feature"
+      label="Papyrus Documentation Feature"
+      version="1.2.0.qualifier"
+      provider-name="Eclipse Modeling Project">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-  Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+      Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
   All rights reserved. This program and the accompanying materials
   are made available under the terms of the Eclipse Public License v1.0
   which accompanies this distribution, and is available at
@@ -12,55 +17,175 @@
       %license
    </license>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.cdo.ui.doc" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.cdo.ui.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.copypaste.ui.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.copypaste.ui.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.dsml.validation.doc" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.dsml.validation.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.gmfdiag.common.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.infra.gmfdiag.common.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.gmfdiag.css.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.infra.gmfdiag.css.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.nattable.doc" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.infra.nattable.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.newchild.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.infra.newchild.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.services.controlmode.doc" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.infra.services.controlmode.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.viewpoints.doc" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.infra.viewpoints.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.layers.documentation" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.layers.documentation"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.req.reqif.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.req.reqif.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.decoratormodel.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.decoratormodel.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.common.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.common.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.profile.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.profile.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.modelrepair.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.modelrepair.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.profile.assistants.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.profile.assistants.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.search.ui.doc" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.search.ui.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.views.properties.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.views.properties.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.doc" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.infra.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-    <plugin download-size="0" id="org.eclipse.papyrus.emf.facet.aggregate.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.emf.facet.aggregate.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.emf.facet.custom.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.emf.facet.custom.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.emf.facet.custom.metamodel.editor.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.emf.facet.custom.metamodel.editor.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.emf.facet.doc" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.emf.facet.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.emf.facet.efacet.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.emf.facet.efacet.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.emf.facet.util.emf.doc" install-size="0" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.emf.facet.util.emf.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.papyrus.views.references.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

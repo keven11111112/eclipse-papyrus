@@ -45,6 +45,7 @@
 		<module>org.eclipse.papyrus.uml.xtext.integration.feature</module>
 		<module>org.eclipse.papyrus.views.modelexplorer.feature</module>
 		<module>org.eclipse.papyrus.views.properties.feature</module>
+		<module>org.eclipse.papyrus.views.references.feature</module>
 		<module>org.eclipse.papyrus.views.search.feature</module>
 		<module>org.eclipse.papyrus.views.validation.feature</module>
 	</modules>
