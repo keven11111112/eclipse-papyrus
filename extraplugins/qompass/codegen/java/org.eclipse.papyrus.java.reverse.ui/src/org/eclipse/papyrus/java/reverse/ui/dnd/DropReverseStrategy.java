@@ -48,7 +48,7 @@ public class DropReverseStrategy implements DropStrategy {
 
 	@Override
 	public Command getCommand(final Request request, final EditPart targetEditPart) {
-		return DropReverseCommand.getInstance(request);
+		return DropReverseCommand.getInstance(request, targetEditPart);
 
 	}
 

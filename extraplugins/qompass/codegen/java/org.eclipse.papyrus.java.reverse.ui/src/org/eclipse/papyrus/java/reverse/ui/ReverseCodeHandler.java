@@ -23,16 +23,16 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.spi.IContextualServiceRegistryTracker;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.ui.util.EditorUtils;
 import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.java.reverse.ui.dialog.ReverseCodeDialog;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISources;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
@@ -63,45 +63,30 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 		
 		// Store the event in order to be able to use it from utility methods.
 		this.event = event;
-		// Lookup ServiceRegistry
-		try {
-			registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
-		} catch (ServiceException e1) {
-			try {
-				registry = getContextualServiceRegistry();
-			} catch (ServiceException e) {
-				// Can't get a Papyrus ServiceRegistry.
-				Shell shell = HandlerUtil.getActiveShell(event);
-				Status errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.ReverseCodeHandler_NoPapyrusEditor_Title);
-				ErrorDialog.openError(shell, "", Messages.ReverseCodeHandler_NoPapyrusEditor_Message, errorStatus);
-
-				// Stop the handler execution.
-				return null;
-			}
-		}
-		
-		System.err.println("ServiceRegistry = " + registry);
 		
 		// Try to find uml resource
 		final Resource umlResource;
 		try {
+			// Lookup ServiceRegistry
+			registry = lookupServiceRegistry(event);
+			
+			System.err.println("ServiceRegistry = " + registry);
 			umlResource = getUmlResource();
 		} catch (NullPointerException e) {
 			// No uml resource available. User must open a model. We open an error dialog with an explicit message to advice user.
-			Shell shell = HandlerUtil.getActiveShell(event);
+			Shell shell = getShell();
 			Status errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.ReverseCodeHandler_NoModelError_Title);
 			ErrorDialog.openError(shell, "", Messages.ReverseCodeHandler_NoModelError_Message, errorStatus);
 
 			// Stop the reverse execution.
 			return null;
 		} catch (ServiceException e) {
-			// No uml resource available. User must open a model. We open an error dialog with an explicit message to advice user.
-			Shell shell = HandlerUtil.getActiveShell(event);
-			Status errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.ReverseCodeHandler_NoModelError_Title);
-			ErrorDialog.openError(shell, "", Messages.ReverseCodeHandler_NoModelError_Message, errorStatus);
+			// Can't get a Papyrus ServiceRegistry.
+			Shell shell = getShell();
+			Status errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.ReverseCodeHandler_NoPapyrusEditor_Title);
+			ErrorDialog.openError(shell, "", Messages.ReverseCodeHandler_NoPapyrusEditor_Message, errorStatus);
 
-			e.printStackTrace();
-			// Stop the reverse execution.
+			// Stop the handler execution.
 			return null;
 		}
 		;
@@ -109,7 +94,7 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 		String modelUid = getModelUid(umlResource);
 
 		// Get reverse parameters from a dialog
-		Shell shell = HandlerUtil.getActiveShell(event);
+		Shell shell = getShell();
 		// ReverseCodeDialog dialog = new ReverseCodeDialog(shell, DefaultGenerationPackageName, Arrays.asList("generated") );
 		final ReverseCodeDialog dialog = getDialog(shell, modelUid);
 
@@ -142,6 +127,40 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 
 
 		return null;
+	}
+
+	/**
+	 * Get the active shell from the event, or from the active page if event is null.
+	 * 
+	 * @param event
+	 * @return
+	 */
+	protected Shell getShell() {
+		
+		if(event != null ) {
+			return HandlerUtil.getActiveShell(event);
+		}
+		else {
+			return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart().getSite().getShell();
+
+		}
+	}
+
+	/**
+	 * @param event
+	 * @return
+	 */
+	protected ServicesRegistry lookupServiceRegistry(ExecutionEvent event) throws ServiceException {
+		
+		ServicesRegistry registry;
+		
+		try {
+			// This utility accept null event.
+			registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
+		} catch (ServiceException e1) {
+			registry = getContextualServiceRegistry();
+		}
+		return registry;
 	}
 
 	/**
@@ -216,14 +235,17 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 	 */
 	protected ISelection getCurrentSelection() {
 		ISelection selection=null;
-		Object context = event.getApplicationContext();
 
-		if (context instanceof IEvaluationContext) {
-			IEvaluationContext evaluationContext = (IEvaluationContext) context;
-		    selection = (ISelection)evaluationContext.getVariable(ISources.ACTIVE_CURRENT_SELECTION_NAME);
+		if (event != null) {
+			// Try to get selection from context
+			Object context = event.getApplicationContext();
+			if ( context instanceof IEvaluationContext) {
+				IEvaluationContext evaluationContext = (IEvaluationContext) context;
+				selection = (ISelection)evaluationContext.getVariable(ISources.ACTIVE_CURRENT_SELECTION_NAME);
+			}
 		}
 		if( selection == null) {
-			// Get current selection
+			// Try to get selection from ActivePage
 			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			selection = page.getSelection();
 		}
@@ -270,13 +292,25 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 	}
 
 	/**
+	 * Gets the {@link IEditorPart} of the currently nested active editor.
+	 *
+	 * @param from
+	 * @return
+	 * @throws ServiceException
+	 *             If an error occurs while getting the requested service.
+	 */
+	public IEditorPart getNestedActiveIEditorPart() throws ServiceException {
+		return ServiceUtils.getInstance().getService(ISashWindowsContainer.class, registry).getActiveEditor();
+	}
+
+	/**
 	 * Get the current MultiDiagramEditor.
 	 *
 	 * @return
 	 */
-	protected IMultiDiagramEditor getMultiDiagramEditor() {
-		return EditorUtils.getMultiDiagramEditor();
-	}
+//	protected IMultiDiagramEditor getMultiDiagramEditor() {
+//		return EditorUtils.getMultiDiagramEditor();
+//	}
 
 	/**
 	 * Get the main editing doamin.
