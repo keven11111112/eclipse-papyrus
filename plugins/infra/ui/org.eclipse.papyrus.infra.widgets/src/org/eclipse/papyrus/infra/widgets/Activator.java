@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.infra.widgets;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.eclipse.core.runtime.FileLocator;
@@ -31,9 +32,27 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	/**
+	 * the bundle entry protocol prefix
+	 */
+	private static final String BUNDLEENTRY_PROTOCOL = "bundleentry://"; //$NON-NLS-1$
+
+	/**
 	 * The plug-in ID
 	 */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.widgets"; //$NON-NLS-1$
+
+
+	/** The Constant UML_VIS_ICONS_16x16. */
+	public static final String UML_VIS_ICONS_16x16 = "icons/obj16/"; //$NON-NLS-1$
+
+
+	/** Default image. */
+	public static final String DEFAULT_IMAGE = "icons/PapyrusLogo16x16.gif"; //$NON-NLS-1$
+
+	/**
+	 * the plateform protocol prefix
+	 */
+	private static final String PLUGIN_PROTOCOL = "platform:/plugin/"; //$NON-NLS-1$ ;
 
 	/**
 	 * The shared instance
@@ -62,7 +81,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
 	@Override
-	public void start(BundleContext context) throws Exception {
+	public void start(final BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(plugin);
@@ -75,7 +94,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	@Override
-	public void stop(BundleContext context) throws Exception {
+	public void stop(final BundleContext context) throws Exception {
 		plugin = null;
 		log = null;
 		imageDescriptorManager.reset();
@@ -99,8 +118,128 @@ public class Activator extends AbstractUIPlugin {
 	 *            the path of the image to be displayed
 	 * @return The Image at the given location, or null if it couldn't be found
 	 */
-	public Image getImage(String path) {
+	public Image getImage(final String path) {
 		return getImage(PLUGIN_ID, path);
+	}
+
+	/**
+	 * Returns an <code>org.eclipse.swt.graphics.Image</code> identified by its
+	 * key.<BR>
+	 * By default, it returns a default image. This image is the image placed in
+	 * the directory <em>resources/icons/default.gif</em>
+	 *
+	 * @param key
+	 *            the key of the image
+	 * @return the Image
+	 */
+	public static Image getImageFromKey(final String key) {
+		String image_id = key;
+
+		ImageRegistry registry = getDefault().getImageRegistry();
+		Image image = registry.get(image_id);
+
+		if (null == image) { // Image not yet in registry
+			// Get the descriptor of the image without visibility
+			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID, key);
+			registry.put(key, desc);
+
+			image = registry.get(image_id);
+		}
+
+		if (null == image && !image_id.equals(DEFAULT_IMAGE)) {
+			image = getDefault().getImage(DEFAULT_IMAGE);
+		}
+		return image;
+	}
+
+	/**
+	 * Get the path of a plateform entry from its plugin and its local path.
+	 * 
+	 * @param plugin
+	 *            the plugin bundle name
+	 * @param localPath
+	 *            the relative path
+	 * @return the path as {@link String}.
+	 */
+	public static String getPath(final String plugin, final String localPath) {
+		return PLUGIN_PROTOCOL + plugin + localPath;
+	}
+
+	/**
+	 * Retrieves the bundle from which the
+	 *
+	 * @param initialValue
+	 *            the initial value from which the bundle has to be retrieved
+	 * @return the bundle id
+	 */
+	public static String retrieveBundleId(final String initialValue) {
+		String result = null;
+		if (initialValue.startsWith(PLUGIN_PROTOCOL)) {
+			String tmp = initialValue.substring(PLUGIN_PROTOCOL.length());
+			int bundleIdEndIndex = tmp.indexOf("/");//$NON-NLS-1$
+			result = tmp.substring(0, bundleIdEndIndex);
+		} else if (initialValue.startsWith(BUNDLEENTRY_PROTOCOL)) {
+
+			String absolutePath = null;
+			try {
+				URL url = new URL(initialValue);
+				absolutePath = FileLocator.resolve(url).getPath();
+			} catch (MalformedURLException e) {
+				log.error(e);
+			} catch (IOException e) {
+				log.error(e);
+			}
+			/*
+			 * Workaround: TODO find a better way to find local path. url return absolute path is like
+			 * file:/C:/git/org.eclipse.papyrus/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/ContainmentConnection.gif
+			 */
+			// Remove the local path (/icons/obj16/ContainmentConnection.gif)
+			int bundleIdEndIndex = absolutePath.indexOf("/icon");//$NON-NLS-1$
+			result = absolutePath.substring(0, bundleIdEndIndex);
+
+			// remove the abolute path (file:/C:/git/org.eclipse.papyrus/plugins/uml/diagram/) to keep the last part which shall be the bundleId(org.eclipse.papyrus.uml.diagram.clazz)
+			if (-1 != result.indexOf("/")) {//$NON-NLS-1$
+				result = result.substring(result.lastIndexOf("/") + 1);//$NON-NLS-1$
+			}
+
+		} else {
+			result = "org.eclipse.uml2.uml.edit";//$NON-NLS-1$
+		}
+		return result;
+	}
+
+	/**
+	 * Retrieves the local path from which the
+	 *
+	 * @param initialValue
+	 *            the initial value from which the lacal path has to be retrieved
+	 * @return the local path
+	 */
+	public static String retrieveLocalPath(final String initialValue) {
+		String result = "";
+		if (initialValue.startsWith(PLUGIN_PROTOCOL)) {
+			String tmp = initialValue.substring(PLUGIN_PROTOCOL.length());
+			int bundleIdEndIndex = tmp.indexOf("/");//$NON-NLS-1$
+			result = tmp.substring(bundleIdEndIndex);
+		} else if (initialValue.startsWith(BUNDLEENTRY_PROTOCOL)) {
+
+			String absolutePath = null;
+			try {
+				URL url = new URL(initialValue);
+				absolutePath = FileLocator.resolve(url).getPath();
+			} catch (MalformedURLException e) {
+				log.error(e);
+			} catch (IOException e) {
+				log.error(e);
+			}
+			/*
+			 * Workaround: TODO find a better way to find local path. url return absolute path is like
+			 * file:/C:/git/org.eclipse.papyrus/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/ContainmentConnection.gif
+			 */
+			int bundleIdEndIndex = absolutePath.indexOf("/icon");//$NON-NLS-1$
+			result = absolutePath.substring(bundleIdEndIndex);
+		}
+		return result;
 	}
 
 	/**
@@ -113,25 +252,25 @@ public class Activator extends AbstractUIPlugin {
 	 * @return
 	 * 		The Image at the given location, or null if it couldn't be found
 	 */
-	public Image getImage(String pluginId, String path) {
+	public Image getImage(final String pluginId, final String path) {
 		final ImageRegistry registry = getImageRegistry();
 		String key = pluginId + "/" + path; //$NON-NLS-1$
 		Image image = registry.get(key);
-		if (image == null) {
+		if (null == image) {
 			registry.put(key, AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, path));
 			image = registry.get(key);
 		}
 		return image;
 	}
 
-	public Image getImage(ImageDescriptor descriptor) {
+	public Image getImage(final ImageDescriptor descriptor) {
 		final ImageRegistry registry = getImageRegistry();
 		if (imageDescriptorManager == null || registry == null) {
 			return null; // should never happen => is set to null when activator is not started
 		}
 		String key = imageDescriptorManager.getKey(descriptor);
 		Image image = registry.get(key);
-		if (image == null) {
+		if (null == image) {
 			registry.put(key, descriptor);
 			image = registry.get(key);
 		}
@@ -153,7 +292,7 @@ public class Activator extends AbstractUIPlugin {
 		final ImageRegistry registry = getImageRegistry();
 		String key = pluginId + "/" + path; //$NON-NLS-1$
 		ImageDescriptor descriptor = registry.getDescriptor(key);
-		if (descriptor == null) {
+		if (null == descriptor) {
 			registry.put(key, AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, path));
 			descriptor = registry.getDescriptor(key);
 		}
@@ -167,7 +306,7 @@ public class Activator extends AbstractUIPlugin {
 	 *            the path of the image to be displayed
 	 * @return The ImageDescriptor at the given location, or null if it couldn't be found
 	 */
-	public ImageDescriptor getImageDescriptor(String path) {
+	public ImageDescriptor getImageDescriptor(final String path) {
 		return getImageDescriptor(PLUGIN_ID, path);
 	}
 
@@ -179,16 +318,18 @@ public class Activator extends AbstractUIPlugin {
 	 * @return
 	 * 		The Image at the given location, or null if none was found
 	 */
-	public Image getImageFromPlugin(String imagePath) {
+	public Image getImageFromPlugin(final String imagePath) {
+		Image image;
 		if (imagePath.startsWith("/")) { //$NON-NLS-1$
 			String pluginId, path;
-			imagePath = imagePath.substring(1, imagePath.length());
-			pluginId = imagePath.substring(0, imagePath.indexOf("/")); //$NON-NLS-1$
-			path = imagePath.substring(imagePath.indexOf("/"), imagePath.length()); //$NON-NLS-1$
-			return getImage(pluginId, path);
+			path = imagePath.substring(1, imagePath.length());
+			pluginId = path.substring(0, imagePath.indexOf("/")); //$NON-NLS-1$
+			path = path.substring(path.indexOf("/"), path.length()); //$NON-NLS-1$
+			image = getImage(pluginId, path);
 		} else {
-			return getImage(imagePath);
+			image = getImage(imagePath);
 		}
+		return image;
 	}
 
 	/**

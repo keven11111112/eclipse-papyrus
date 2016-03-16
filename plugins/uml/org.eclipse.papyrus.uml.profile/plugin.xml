@@ -159,5 +159,11 @@
             class="org.eclipse.papyrus.uml.profile.UMLProfileHelper">
       </helper>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.emf.index">
+      <indexProvider
+            class="org.eclipse.papyrus.uml.profile.index.ProfileWorkspaceModelIndex$IndexProvider">
+      </indexProvider>
+   </extension>
 
 </plugin>

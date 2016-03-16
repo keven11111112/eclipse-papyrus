@@ -33,105 +33,108 @@ public interface IPapyrusPaletteConstant {
 	public final String PATH = "path"; //$NON-NLS-1$
 
 	/** name of the properties node */
-	public final String PALETTE_DESCRIPTION_PROPERTIES = "properties";
+	public final String PALETTE_DESCRIPTION_PROPERTIES = "properties";//$NON-NLS-1$
 
 	/** name of the drawer node */
-	public final String DRAWER = "drawer";
+	public final String DRAWER = "drawer";//$NON-NLS-1$
 
 	/** name of the stack node */
-	public final String STACK = "stack";
+	public final String STACK = "stack";//$NON-NLS-1$
 
 	/** name of the tool node */
-	public final String TOOL = "tool";
+	public final String TOOL = "tool";//$NON-NLS-1$
 
 	/** name of the tool node */
-	public final String ASPECT_TOOL = "aspectTool";
+	public final String ASPECT_TOOL = "aspectTool";//$NON-NLS-1$
 
 	/** name of the separator node */
-	public final String SEPARATOR = "separator";
+	public final String SEPARATOR = "separator";//$NON-NLS-1$
 
 	/** name of the ID attribute */
-	public final String ID = "id";
+	public final String ID = "id";//$NON-NLS-1$
 
 	/** name of the preAction attribute */
-	public final String PRE_ACTION = "preAction";
+	public final String PRE_ACTION = "preAction";//$NON-NLS-1$
 
 	/** name of the editor attribute */
-	public final String EDITOR = "editor";
+	public final String EDITOR = "editor";//$NON-NLS-1$
 
 	/** name of the name attribute */
-	public final String NAME = "name";
+	public final String NAME = "name";//$NON-NLS-1$
 
 	/** name of the editor id attribute */
-	public final String EDITOR_ID = "editorID";
+	public final String EDITOR_ID = "editorID";//$NON-NLS-1$
 
 	/** name of the priority attribute */
-	public final String PRIORITY = "priority";
+	public final String PRIORITY = "priority";//$NON-NLS-1$
 
 	/** name of the description attribute */
-	public final String DESCRIPTION = "description";
+	public final String DESCRIPTION = "description";//$NON-NLS-1$
 
 	/** id for the preference store for palette customizations */
-	public final String PALETTE_CUSTOMIZATIONS_ID = "paletteCustomization";
+	public final String PALETTE_CUSTOMIZATIONS_ID = "paletteCustomization";//$NON-NLS-1$
 
 	/** id for the preference store for palette redefinitions */
-	public final String PALETTE_REDEFINITIONS = "paletteRedefinitions";
+	public final String PALETTE_REDEFINITIONS = "paletteRedefinitions";//$NON-NLS-1$
 
 	/** id for the node: palette redefinition */
-	public final String PALETTE_REDEFINITION = "paletteRedefinition";
+	public final String PALETTE_REDEFINITION = "paletteRedefinition";//$NON-NLS-1$
 
 	/** id for the preference store for local palette definitions */
-	public final String PALETTE_LOCAL_DEFINITIONS = "localPaletteDefinition";
+	public final String PALETTE_LOCAL_DEFINITIONS = "localPaletteDefinition";//$NON-NLS-1$
 
 	/** id for the preference store for local palette definitions */
-	public final String PALETTE_WORKSPACE_DEFINITIONS = "workspacePaletteDefinition";
+	public final String PALETTE_WORKSPACE_DEFINITIONS = "workspacePaletteDefinition";//$NON-NLS-1$
 
 	/** id for the preference store for workspace palette definitions based on model */
-	public final String EXTENDED_PALETTE_WORKSPACE_DEFINITIONS = "workspaceExtendedPaletteDefinition";
+	public final String EXTENDED_PALETTE_WORKSPACE_DEFINITIONS = "workspaceExtendedPaletteDefinition";//$NON-NLS-1$
+
+	/** id for the preference store for palette definitions based on model */
+	public final String LOCAL_EXTENDED_PALETTE_DEFINITIONS = "extendedPaletteDefinition"; //$NON-NLS-1$
 
 	/** id for the preference definitions */
-	public final String HIDDEN_PALETTES = "hiddenPalettes";
+	public final String HIDDEN_PALETTES = "hiddenPalettes";//$NON-NLS-1$
 
 	/** id for the palette attribute */
-	public final String PALETTE = "palette";
+	public final String PALETTE = "palette";//$NON-NLS-1$
 
 	/** id for the class attribute */
-	public final String CLASS = "class";
+	public final String CLASS = "class";//$NON-NLS-1$
 
 	/** id for the icon path attribute */
-	public final String ICON_PATH = "iconpath";
+	public final String ICON_PATH = "iconpath";//$NON-NLS-1$
 
 	/** id for the referenced tool in aspect tools */
-	public final String REF_TOOL_ID = "refToolId";
+	public final String REF_TOOL_ID = "refToolId";//$NON-NLS-1$
 
 	/** id for the post action node in aspect tool definition */
-	public final String POST_ACTION = "postAction";
+	public final String POST_ACTION = "postAction";//$NON-NLS-1$
 
 	/** id for the attribute stereotypes to apply qualified name */
-	public final String STEREOTYPES_TO_APPLY = "stereotypesToApply";
+	public final String STEREOTYPES_TO_APPLY = "stereotypesToApply";//$NON-NLS-1$
 
 	/** key for the properties tool */
-	public final String STEREOTYPES_TO_APPLY_KEY = "StereotypesToApply";
+	public final String STEREOTYPES_TO_APPLY_KEY = "StereotypesToApply";//$NON-NLS-1$
 
 	/** key for the profile list attribute */
-	public final String PROFILE_LIST = "requiredProfiles";
+	public final String PROFILE_LIST = "requiredProfiles";//$NON-NLS-1$
 
 	/** key for the properties Tool */
-	public final String ASPECT_ACTION_KEY = "aspectActions";
+	public final String ASPECT_ACTION_KEY = "aspectActions";//$NON-NLS-1$
 
 	/** name of the value attribute */
-	public final String VALUE = "value";
+	public final String VALUE = "value";//$NON-NLS-1$
 
 	/** name of the feature node for features defined statically */
-	public final String FEATURE_NODE_NAME = "feature";
+	public final String FEATURE_NODE_NAME = "feature";//$NON-NLS-1$
 
 	/** name of the attribute or node for display kind */
-	public final String DISPLAY_KIND = "displayKind";
+	public final String DISPLAY_KIND = "displayKind";//$NON-NLS-1$
 
 	/** name of the attribute or node for display place */
-	public final String DISPLAY_PLACE = "displayPlace";
+	public final String DISPLAY_PLACE = "displayPlace";//$NON-NLS-1$
 
 	/** name of the feature node for features defined at runtime */
-	public final String RUNTIME_FEATURE_NODE_NAME = "runtimeFeature";
+	public final String RUNTIME_FEATURE_NODE_NAME = "runtimeFeature";//$NON-NLS-1$
 
 }

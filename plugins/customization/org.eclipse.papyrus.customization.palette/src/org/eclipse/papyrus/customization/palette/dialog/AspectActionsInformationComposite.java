@@ -25,8 +25,8 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.customization.palette.Messages;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.AspectToolService;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectAction;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectActionProvider;
@@ -141,14 +141,17 @@ public class AspectActionsInformationComposite {
 		addActionButton.setImage(Activator.getPluginIconImage(Activator.ID, ICONS_ADD));
 		addActionButton.addMouseListener(new MouseListener() {
 
+			@Override
 			public void mouseUp(MouseEvent e) {
 				addButtonPressed();
 			}
 
+			@Override
 			public void mouseDown(MouseEvent e) {
 
 			}
 
+			@Override
 			public void mouseDoubleClick(MouseEvent e) {
 
 			}
@@ -161,6 +164,7 @@ public class AspectActionsInformationComposite {
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseUp(MouseEvent e) {
 				// remove the selected aspect action(s)
 				ITreeSelection selection = (ITreeSelection) viewer.getSelection();
@@ -179,6 +183,7 @@ public class AspectActionsInformationComposite {
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseDown(MouseEvent e) {
 
 			}
@@ -186,6 +191,7 @@ public class AspectActionsInformationComposite {
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseDoubleClick(MouseEvent e) {
 
 			}
@@ -198,6 +204,7 @@ public class AspectActionsInformationComposite {
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseUp(MouseEvent e) {
 				IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
 				if (selection != null && selection.size() > 0 && selectedEntryProxy instanceof IPaletteAspectToolEntryProxy) {
@@ -227,6 +234,7 @@ public class AspectActionsInformationComposite {
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseDown(MouseEvent e) {
 
 			}
@@ -234,6 +242,7 @@ public class AspectActionsInformationComposite {
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseDoubleClick(MouseEvent e) {
 
 			}
@@ -246,6 +255,7 @@ public class AspectActionsInformationComposite {
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseUp(MouseEvent e) {
 				IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
 				if (selection != null && selection.size() > 0 && selectedEntryProxy instanceof IPaletteAspectToolEntryProxy) {
@@ -275,6 +285,7 @@ public class AspectActionsInformationComposite {
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseDown(MouseEvent e) {
 
 			}
@@ -282,6 +293,7 @@ public class AspectActionsInformationComposite {
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseDoubleClick(MouseEvent e) {
 
 			}
@@ -298,6 +310,7 @@ public class AspectActionsInformationComposite {
 		viewer.setContentProvider(new AspectActionContentProvider());
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				handleActionListSelectionChanged(event);
 			}
@@ -329,6 +342,7 @@ public class AspectActionsInformationComposite {
 					/**
 					 * @{inheritDoc
 					 */
+					@Override
 					public void widgetSelected(SelectionEvent e) {
 						IAspectActionProvider factory = (IAspectActionProvider) ((MenuItem) e.getSource()).getData();
 						IAspectAction action = factory.createAction(null);
@@ -345,6 +359,7 @@ public class AspectActionsInformationComposite {
 					/**
 					 * @{inheritDoc
 					 */
+					@Override
 					public void widgetDefaultSelected(SelectionEvent e) {
 
 					}
@@ -439,6 +454,7 @@ public class AspectActionsInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public Object[] getChildren(Object parentElement) {
 			if (parentElement instanceof IPaletteAspectToolEntryProxy) {
 				List<IAspectAction> actions = new ArrayList<IAspectAction>();
@@ -452,6 +468,7 @@ public class AspectActionsInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public Object getParent(Object element) {
 			if (element instanceof IAspectAction) {
 				return selectedEntryProxy;
@@ -462,6 +479,7 @@ public class AspectActionsInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public boolean hasChildren(Object element) {
 			return getChildren(element) != null && getChildren(element).length > 0;
 		}
@@ -469,6 +487,7 @@ public class AspectActionsInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public Object[] getElements(Object inputElement) {
 			return getChildren(inputElement);
 		}
@@ -476,6 +495,7 @@ public class AspectActionsInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void dispose() {
 
 		}
@@ -483,6 +503,7 @@ public class AspectActionsInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 
 		}
@@ -497,6 +518,7 @@ public class AspectActionsInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public Image getImage(Object element) {
 			if (element instanceof IAspectAction) {
 				return ((IAspectAction) element).getImage();
@@ -507,6 +529,7 @@ public class AspectActionsInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public String getText(Object element) {
 			if (element instanceof IAspectAction) {
 				return ((IAspectAction) element).getLabel();
@@ -517,6 +540,7 @@ public class AspectActionsInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void addListener(ILabelProviderListener listener) {
 
 		}
@@ -524,6 +548,7 @@ public class AspectActionsInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void dispose() {
 
 		}
@@ -531,6 +556,7 @@ public class AspectActionsInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public boolean isLabelProperty(Object element, String property) {
 			return false;
 		}
@@ -538,6 +564,7 @@ public class AspectActionsInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void removeListener(ILabelProviderListener listener) {
 
 		}

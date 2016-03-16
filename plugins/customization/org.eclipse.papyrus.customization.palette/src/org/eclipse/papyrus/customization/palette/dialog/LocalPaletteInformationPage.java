@@ -20,8 +20,8 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.papyrus.customization.palette.Messages;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.swt.SWT;
@@ -118,6 +118,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void createControl(Composite parent) {
 
 		// initialize dialog units
@@ -469,6 +470,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	 * The <code>WizardNewFileCreationPage</code> implementation of this <code>Listener</code> method handles all events and enablements for controls
 	 * on this page. Subclasses may extend.
 	 */
+	@Override
 	public void handleEvent(Event event) {
 		Widget widget = event.widget;
 		if (widget.equals(nameText)) {

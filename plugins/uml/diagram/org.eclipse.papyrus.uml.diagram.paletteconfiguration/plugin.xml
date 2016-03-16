@@ -22,4 +22,12 @@
             type="paletteconfiguration"
             class="org.eclipse.papyrus.uml.diagram.paletteconfiguration.util.PaletteconfigurationResourceFactoryImpl"/>
    </extension>
+   
+     <extension
+        point="org.eclipse.papyrus.infra.properties.environments">
+     <environment
+           environmentModel="model/environment.xmi">
+     </environment>
+  </extension>
+  
 </plugin>

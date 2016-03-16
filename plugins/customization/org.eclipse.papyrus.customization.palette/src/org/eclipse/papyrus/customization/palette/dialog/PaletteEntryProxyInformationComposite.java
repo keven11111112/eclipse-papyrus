@@ -17,9 +17,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.customization.palette.Messages;
 import org.eclipse.papyrus.customization.palette.dialog.LocalPaletteContentPage.EntryType;
+import org.eclipse.papyrus.infra.widgets.editors.BundleIconExplorerDialog;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
@@ -135,6 +136,7 @@ public class PaletteEntryProxyInformationComposite {
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseUp(MouseEvent e) {
 				BundleIconExplorerDialog dialog = new BundleIconExplorerDialog(parent.getShell(), iconText.getText());
 				if (Window.OK == dialog.open()) {
@@ -155,12 +157,14 @@ public class PaletteEntryProxyInformationComposite {
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseDown(MouseEvent e) {
 			}
 
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseDoubleClick(MouseEvent e) {
 			}
 		});
@@ -286,12 +290,14 @@ public class PaletteEntryProxyInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void focusGained(FocusEvent e) {
 		}
 
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void focusLost(FocusEvent e) {
 			if (selectedEntryProxy != null) {
 				selectedEntryProxy.setLabel(nameText.getText().trim());
@@ -308,12 +314,14 @@ public class PaletteEntryProxyInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void focusGained(FocusEvent e) {
 		}
 
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void focusLost(FocusEvent e) {
 			if (selectedEntryProxy != null && selectedEntryProxy.getEntry() != null) {
 				selectedEntryProxy.setDescription(descriptionText.getText().trim());
@@ -329,12 +337,14 @@ public class PaletteEntryProxyInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void focusGained(FocusEvent e) {
 		}
 
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void focusLost(FocusEvent e) {
 			if (selectedEntryProxy != null && iconText.getText() != null && !iconText.getText().equals("")) {
 				selectedEntryProxy.getEntry().setSmallIcon(Activator.getImageDescriptor(iconText.getText().trim()));

@@ -97,6 +97,20 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	}
 
 	/**
+	 * @return postActions which will be applied
+	 */
+	public List<IPostAction> getPostActions() {
+		return postActions;
+	}
+
+	/**
+	 * @return preActions which will be applied
+	 */
+	public List<IPreAction> getPreActions() {
+		return preActions;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -104,7 +118,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 		antiScroll = true;
 		boolean requiresPostCommitRun = requiresPostCommitRun();
 		// EObject to listen
-		View eObject = (View) getTargetEditPart().getAdapter(View.class);
+		View eObject = getTargetEditPart().getAdapter(View.class);
 		DiagramEventBroker eventBroker = null;
 		NotificationListener listener = null;
 		final EditPartViewer currentViewer = getCurrentViewer();
@@ -355,7 +369,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 		if (!isInState(STATE_DRAG_IN_PROGRESS) && !getCurrentInput().isModKeyDown(MODIFIER_NO_SNAPPING)) {
 			// allow to do a snap to grid for creation with one click
 			if (getTargetEditPart() != null) {
-				SnapToHelper helper = (SnapToHelper) getTargetEditPart().getAdapter(SnapToHelper.class);
+				SnapToHelper helper = getTargetEditPart().getAdapter(SnapToHelper.class);
 				Point loq = getLocation();
 				Rectangle bounds = new Rectangle(loq, loq);
 				createRequest.setSnapToEnabled(!getCurrentInput().isModKeyDown(MODIFIER_NO_SNAPPING));

@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Add createAdviceBindingConfiguration method
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.types.core.factories.impl;
@@ -63,4 +64,9 @@ public abstract class AbstractAdviceBindingFactory<T extends AbstractAdviceBindi
 	protected String getId(T adviceConfiguration) {
 		return adviceConfiguration.getIdentifier();
 	}
+
+	/**
+	 * @return an instance of the defined advice binding configuration
+	 */
+	abstract public AbstractAdviceBindingConfiguration createAdviceBindingConfiguration();
 }

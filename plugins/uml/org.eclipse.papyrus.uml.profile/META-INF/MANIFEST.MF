@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.profile,
  org.eclipse.papyrus.uml.profile.constraints,
  org.eclipse.papyrus.uml.profile.definition,
+ org.eclipse.papyrus.uml.profile.index,
  org.eclipse.papyrus.uml.profile.preference,
  org.eclipse.papyrus.uml.profile.providers,
  org.eclipse.papyrus.uml.profile.service,
@@ -30,4 +31,4 @@ Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.uml.profile.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.profile;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

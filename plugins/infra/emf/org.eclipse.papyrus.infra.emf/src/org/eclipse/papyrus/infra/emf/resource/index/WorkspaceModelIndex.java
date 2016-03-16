@@ -393,7 +393,6 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 	@Override
 	protected final void process(IFile file) throws CoreException {
 		IProject project = file.getProject();
-
 		if (match(file)) {
 			@SuppressWarnings("unchecked")
 			IndexRecord record = (IndexRecord) file.getSessionProperty(getIndexKey());
@@ -430,6 +429,9 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 			}
 		}
 
+		// Let the indexer apply its own criteria if the standard filters don't match
+		result = result && indexer.shouldIndex(file);
+
 		return result;
 	}
 
@@ -444,7 +446,6 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 
 	void add(IProject project, IFile file) throws CoreException {
 		T data = indexer.index(file);
-
 		synchronized (index) {
 			index.put(project, file);
 			file.setSessionProperty(getIndexKey(), new IndexRecord(file, data));
@@ -526,6 +527,20 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 		 *            a file that no longer exists or otherwise no longer matches our selection criteria. It is removed from the index
 		 */
 		void unindex(IFile file);
+
+		/**
+		 * Queries whether a give {@code file} should be indexed.
+		 * The default implementation just returns {@code true}, always.
+		 *
+		 * @param file
+		 *            a file proposed for indexing
+		 * @return whether the file should be indexed
+		 *
+		 * @since 2.1
+		 */
+		default boolean shouldIndex(IFile file) {
+			return true;
+		}
 	}
 
 	/**

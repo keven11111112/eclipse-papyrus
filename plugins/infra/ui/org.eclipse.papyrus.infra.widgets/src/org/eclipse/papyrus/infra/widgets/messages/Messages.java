@@ -23,6 +23,8 @@ public class Messages extends NLS {
 	/** The Constant BUNDLE_NAME. */
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.widgets.messages.messages"; //$NON-NLS-1$
 
+	public static String IconValueEditor_WaitingOneIconButFound;
+
 	public static String BooleanInputValidator_NotABoolean;
 
 	public static String CheckSpellDialog_Change;
@@ -119,13 +121,13 @@ public class Messages extends NLS {
 
 	/** Indicates that a list of elements have different values for the given property (Multi-selection) */
 	public static String ReferenceDialogObservable_Unchanged;
-	
+
 	/** The switch editors label for Multiplicity reference dialog. */
 	public static String MultiplicityReferenceDialog_SwitchEditors;
-	
+
 	/** The lower value tool tip for Multiplicity reference dialog. */
 	public static String MultiplicityReferenceDialog_LowerValueToolTip;
-	
+
 	/** The upper value tool tip for Multiplicity reference dialog. */
 	public static String MultiplicityReferenceDialog_UpperValueToolTip;
 
@@ -152,6 +154,22 @@ public class Messages extends NLS {
 	public static String StringFileSelector_Browse;
 
 	public static String StringFileSelector_BrowseWorkspace;
+
+	public static String BundleIconExplorerDialog_Bundle;
+
+	public static String BundleIconExplorerDialog_CantFindBundleIdMessage;
+
+	public static String StringWithClearEditor_ClearFilter;
+
+	public static String BundleIconExplorerDialog_Message;
+
+	public static String BundleIconExplorerDialog_Title;
+
+	public static String BundleIconExplorerDialog_UnknownFileName;
+
+	public static String BundleExplorerDialog_DialogMessage;
+
+	public static String BundleExplorerDialog_PlugInSelectionTitle;
 
 	static {
 		// initialize resource bundle

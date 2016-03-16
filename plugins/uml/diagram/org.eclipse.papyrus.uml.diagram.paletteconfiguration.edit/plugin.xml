@@ -14,7 +14,7 @@
       <!-- @generated PaletteConfiguration -->
       <factory
             uri="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"
-            class="org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider.PaletteconfigurationItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider.PaletteConfigurationItemProvider"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

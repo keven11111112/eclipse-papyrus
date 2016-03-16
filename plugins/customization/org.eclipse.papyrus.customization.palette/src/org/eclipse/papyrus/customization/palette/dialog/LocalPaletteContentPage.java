@@ -77,9 +77,9 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.customization.palette.Messages;
 import org.eclipse.papyrus.customization.palette.proxies.XMLPaletteDefinitionProxyFactory;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectCreationEntry;
@@ -260,6 +260,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void createControl(Composite parent) {
 
 		// initialize dialog units
@@ -378,6 +379,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		paletteTreeViewer.setLabelProvider(new PaletteProxyLabelProvider());
 		paletteTreeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				handlePalettePreviewSelectionChanged(event);
 			}
@@ -437,6 +439,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void doubleClick(DoubleClickEvent event) {
 				// retrieve current item double clicked...
 				ITreeSelection selection = (TreeSelection) event.getSelection();
@@ -722,6 +725,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				IStructuredSelection selection = (IStructuredSelection) paletteTreeViewer.getSelection();
 				if (selection == null || selection.size() < 1) {
@@ -751,6 +755,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				IStructuredSelection selection = (IStructuredSelection) paletteTreeViewer.getSelection();
 				if (selection == null || selection.size() < 1) {
@@ -786,6 +791,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				// retrieve selected container
 				PaletteContainerProxy containerProxy;
@@ -810,6 +816,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				// retrieve selected element
 				Object object = ((IStructuredSelection) paletteTreeViewer.getSelection()).getFirstElement();
@@ -864,6 +871,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				// retrieve selected element
 				Object object = ((IStructuredSelection) paletteTreeViewer.getSelection()).getFirstElement();
@@ -947,6 +955,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 
 				// get source and target selection
@@ -1034,6 +1043,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	protected MouseListener createAddButtonListener() {
 		return new MouseListener() {
 
+			@Override
 			public void mouseUp(MouseEvent e) {
 				// add the element selected on the left to the right tree
 				// check the selection.
@@ -1070,6 +1080,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void mouseDown(MouseEvent e) {
 				// do nothing
 			}
@@ -1077,6 +1088,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void mouseDoubleClick(MouseEvent e) {
 				// do nothing
 			}
@@ -1118,6 +1130,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	protected MouseListener createRemoveButtonListener() {
 		return new MouseListener() {
 
+			@Override
 			public void mouseUp(MouseEvent e) {
 				// remove the element selected on the right
 				// add the element selected on the left to the right tree
@@ -1140,6 +1153,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void mouseDown(MouseEvent e) {
 				// do nothing
 			}
@@ -1147,6 +1161,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void mouseDoubleClick(MouseEvent e) {
 				// do nothing
 			}
@@ -1312,6 +1327,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				if (!(event.widget instanceof ToolItem)) {
 					return;
@@ -1348,6 +1364,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				if (!(event.widget instanceof ToolItem)) {
 					return;
@@ -1376,6 +1393,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				if (!(event.widget instanceof ToolItem)) {
 					return;
@@ -1430,6 +1448,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * The <code>WizardNewFileCreationPage</code> implementation of this <code>Listener</code> method handles all events and enablements for controls
 	 * on this page. Subclasses may extend.
 	 */
+	@Override
 	public void handleEvent(Event event) {
 		setPageComplete(validatePage());
 	}
@@ -1451,6 +1470,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getElements(Object inputElement) {
 			Object[] elements = null;
 
@@ -1471,12 +1491,14 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void dispose() {
 		}
 
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 
 		}
@@ -1484,6 +1506,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getChildren(Object parentElement) {
 			Object[] elements = null;
 
@@ -1501,6 +1524,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object getParent(Object element) {
 			return null;
 		}
@@ -1508,6 +1532,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean hasChildren(Object element) {
 			return getChildren(element) != null && getChildren(element).length > 0;
 		}
@@ -1518,7 +1543,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * <P>
 	 * We should be using the Palette label provider from GEF, if it was not with visibility "package"...
 	 *
-	 * @see org.eclipse.gef.ui.palette.customize.PaletteLabelProvider </P>
+	 * @see org.eclipse.gef.ui.palette.customize.PaletteLabelProvider
+	 *      </P>
 	 *
 	 */
 	public class PaletteLabelProvider implements ILabelProvider {
@@ -1526,6 +1552,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Image getImage(Object element) {
 			if (element instanceof PaletteEntry) {
 				ImageDescriptor descriptor = ((PaletteEntry) element).getSmallIcon();
@@ -1542,6 +1569,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public String getText(Object element) {
 			if (element instanceof PaletteEntry) {
 				return ((PaletteEntry) element).getLabel();
@@ -1554,6 +1582,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void addListener(ILabelProviderListener listener) {
 
 		}
@@ -1561,6 +1590,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void dispose() {
 
 		}
@@ -1568,6 +1598,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean isLabelProperty(Object element, String property) {
 			return false;
 		}
@@ -1575,6 +1606,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void removeListener(ILabelProviderListener listener) {
 
 		}
@@ -1586,7 +1618,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * <P>
 	 * We should be using the Palette label provider from GEF, if it was not with visibility "package"...
 	 *
-	 * @see org.eclipse.gef.ui.palette.customize.PaletteLabelProvider </P>
+	 * @see org.eclipse.gef.ui.palette.customize.PaletteLabelProvider
+	 *      </P>
 	 *
 	 */
 	public class PaletteProxyLabelProvider implements ILabelProvider {
@@ -1594,6 +1627,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Image getImage(Object element) {
 			if (element instanceof PaletteEntryProxy) {
 				return ((PaletteEntryProxy) element).getImage();
@@ -1604,6 +1638,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public String getText(Object element) {
 			if (element instanceof PaletteEntryProxy) {
 				return ((PaletteEntryProxy) element).getLabel();
@@ -1614,6 +1649,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void addListener(ILabelProviderListener listener) {
 
 		}
@@ -1621,6 +1657,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void dispose() {
 
 		}
@@ -1628,6 +1665,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean isLabelProperty(Object element, String property) {
 			return false;
 		}
@@ -1635,6 +1673,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void removeListener(ILabelProviderListener listener) {
 
 		}
@@ -1691,6 +1730,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/** model listener that will listens for all modifications in the entries */
 		protected PropertyChangeListener modelListener = new PropertyChangeListener() {
 
+			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
 				handlePropertyChanged(evt);
 			}
@@ -1709,6 +1749,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void dispose() {
 			// remove all listeners
 			traverseModel(rootProxy, false);
@@ -1717,6 +1758,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getChildren(Object parentElement) {
 			if (parentElement instanceof PaletteEntryProxy) {
 				List<PaletteEntryProxy> children = ((PaletteEntryProxy) parentElement).getChildren();
@@ -1728,6 +1770,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean hasChildren(Object element) {
 			if (element instanceof PaletteEntryProxy) {
 				return ((PaletteEntryProxy) element).getChildren() != null && !((PaletteEntryProxy) element).getChildren().isEmpty();
@@ -1738,6 +1781,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getElements(Object inputElement) {
 			Object[] elements = getChildren(inputElement);
 			if (elements == null) {
@@ -1749,6 +1793,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object getParent(Object element) {
 			if (element instanceof PaletteEntryProxy) {
 				return ((PaletteEntryProxy) element).getParent();
@@ -1759,6 +1804,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			if (rootProxy != null) {
 				// warning.. the root has no entry, this is a virtual node
@@ -2054,6 +2100,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void widgetDefaultSelected(SelectionEvent e) {
 			// nothing to do
 		}
@@ -2061,6 +2108,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void widgetSelected(SelectionEvent e) {
 			handleSelectionChanged();
 		}
@@ -2068,6 +2116,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void modifyText(ModifyEvent e) {
 			handleSelectionChanged();
 		}
@@ -2132,6 +2181,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getChildren(Object parentElement) {
 			if (parentElement instanceof Profile) {
 				return ((Profile) parentElement).getOwnedStereotypes().toArray();
@@ -2174,6 +2224,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object getParent(Object element) {
 			if (element instanceof Stereotype) {
 				return ((Stereotype) element).getProfile();
@@ -2184,6 +2235,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean hasChildren(Object element) {
 			if (element instanceof Profile) {
 				return true;
@@ -2196,6 +2248,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getElements(Object inputElement) {
 			if (inputElement instanceof Profile) {
 				List<Stereotype> stereotypes = ((Profile) inputElement).getOwnedStereotypes();
@@ -2207,6 +2260,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void dispose() {
 			// nothing to do here
 		}
@@ -2214,6 +2268,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			// nothing to do here
 		}
@@ -2247,6 +2302,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getChildren(Object parentElement) {
 			if (parentElement instanceof Profile) {
 				return standardEntries.toArray();
@@ -2289,6 +2345,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object getParent(Object element) {
 			if (element instanceof Stereotype) {
 				return ((Stereotype) element).getProfile();
@@ -2299,6 +2356,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean hasChildren(Object element) {
 			if (element instanceof Profile) {
 				return true;
@@ -2313,6 +2371,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getElements(Object inputElement) {
 			if (inputElement instanceof Profile) {
 				return standardEntries.toArray();
@@ -2323,6 +2382,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void dispose() {
 			// nothing to do here
 		}
@@ -2330,6 +2390,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			// nothing to do here
 		}

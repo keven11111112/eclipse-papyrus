@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Add createAdviceBindingConfiguration method.
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.types.core.advices.settype;
@@ -20,7 +21,9 @@ import org.eclipse.papyrus.infra.types.core.impl.NullEditHelperAdvice;
 
 public class SetTypeAdviceFactory extends AbstractAdviceBindingFactory<AbstractAdviceBindingConfiguration> {
 
-
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected IEditHelperAdvice getEditHelperAdvice(AbstractAdviceBindingConfiguration adviceConfiguration) {
 		if (adviceConfiguration instanceof SetTypeAdviceConfiguration) {
@@ -28,6 +31,14 @@ public class SetTypeAdviceFactory extends AbstractAdviceBindingFactory<AbstractA
 			return editHelperAdvice;
 		}
 		return NullEditHelperAdvice.getInstance();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public AbstractAdviceBindingConfiguration createAdviceBindingConfiguration() {
+		return SetTypeAdviceConfigurationFactory.eINSTANCE.createSetTypeAdviceConfiguration();
 	}
 
 

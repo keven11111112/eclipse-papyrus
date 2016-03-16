@@ -14,8 +14,9 @@ package org.eclipse.papyrus.customization.palette.dialog;
 import java.util.List;
 
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.customization.palette.Messages;
+import org.eclipse.papyrus.infra.widgets.editors.BundleIconExplorerDialog;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.IconDescriptor;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationFactory;
@@ -138,12 +139,13 @@ public class ConfigurationInformationComposite {
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseUp(MouseEvent e) {
 				BundleIconExplorerDialog dialog = new BundleIconExplorerDialog(parent.getShell(), iconText.getText());
 				if (Window.OK == dialog.open()) {
 					Object[] values = dialog.getResult();
 					if (values.length != 1) {
-						Activator.log.error("Waiting one icon path, but found " + values.length, null);
+						Activator.log.error("Waiting one icon path, but found " + values.length, null);//$NON-NLS-1$
 					} else {
 						iconText.setText(values[0].toString());
 
@@ -157,12 +159,14 @@ public class ConfigurationInformationComposite {
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseDown(MouseEvent e) {
 			}
 
 			/**
 			 * @{inheritDoc
 			 */
+			@Override
 			public void mouseDoubleClick(MouseEvent e) {
 			}
 		});
@@ -264,12 +268,14 @@ public class ConfigurationInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void focusGained(FocusEvent e) {
 		}
 
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void focusLost(FocusEvent e) {
 			if (selectedConfiguration != null) {
 				selectedConfiguration.setLabel(nameText.getText().trim());
@@ -286,12 +292,14 @@ public class ConfigurationInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void focusGained(FocusEvent e) {
 		}
 
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void focusLost(FocusEvent e) {
 			if (selectedConfiguration != null) {
 				selectedConfiguration.setDescription(descriptionText.getText().trim());
@@ -307,12 +315,14 @@ public class ConfigurationInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void focusGained(FocusEvent e) {
 		}
 
 		/**
 		 * @{inheritDoc
 		 */
+		@Override
 		public void focusLost(FocusEvent e) {
 			String text = iconText.getText();
 			if (selectedConfiguration != null && text != null && !text.equals("")) {

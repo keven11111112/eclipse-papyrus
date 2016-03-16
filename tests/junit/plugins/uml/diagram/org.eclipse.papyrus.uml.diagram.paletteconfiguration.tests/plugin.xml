@@ -25,7 +25,7 @@
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
             name="Test Palette Configuration Profile"
-            path="/resources/TestPalette.profile.uml">
+            path="platform:/plugin/org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests/resources/TestPalette.profile.uml">
       </profile>
    </extension>
 

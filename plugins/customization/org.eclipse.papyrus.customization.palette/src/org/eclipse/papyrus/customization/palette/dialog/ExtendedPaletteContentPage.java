@@ -9,6 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 422257
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - adaptation to use paletteConfiguration model instead of eclipse palette xml file
  *
  *****************************************************************************/
 package org.eclipse.papyrus.customization.palette.dialog;
@@ -26,6 +27,7 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -61,6 +63,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.papyrus.customization.palette.Messages;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManagerFactory;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManagerFactory;
@@ -70,7 +73,6 @@ import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedLabelProvider;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPalettePreferences;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectCreationEntry;
@@ -312,6 +314,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void createControl(Composite parent) {
 
 		// initialize dialog units
@@ -441,6 +444,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		paletteTreeViewer.setLabelProvider(new ExtendedPaletteLabelProvider());
 		paletteTreeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				handlePalettePreviewSelectionChanged(event);
 			}
@@ -492,6 +496,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void doubleClick(DoubleClickEvent event) {
 				// nothing here
 			}
@@ -795,11 +800,12 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	 */
 	public void initializeContent(PapyrusPaletteService.ExtendedProviderDescriptor descriptor) {
 		resourceSet = createResourceSet();
-		resourceToEdit = getResourceSet().createResource(descriptor.getRedefinitionFileURI());
+		URI redefinitionFileURI = PaletteUtil.getRedefinitionFileURI(descriptor.getContributionID());
+		resourceToEdit = getResourceSet().createResource(redefinitionFileURI);
 
 		// check resource is not null;
 		if (resourceToEdit == null) {
-			Activator.log.error("No resource has been created for uri :" + descriptor.getRedefinitionFileURI(), null);
+			Activator.log.error("No resource has been created for uri :" + redefinitionFileURI, null);
 		}
 		try {
 			resourceToEdit.load(Collections.emptyMap());
@@ -844,6 +850,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				IStructuredSelection selection = (IStructuredSelection) paletteTreeViewer.getSelection();
 				if (selection == null || selection.size() < 1) {
@@ -875,6 +882,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				PaletteConfiguration paletteConfiguration = (PaletteConfiguration) EcoreUtil.getObjectByType(resourceToEdit.getContents(), PaletteconfigurationPackage.eINSTANCE.getPaletteConfiguration());
 				if (paletteConfiguration != null) {
@@ -899,6 +907,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				Configuration selectedConfiguration = getSelectedConfiguration();
 				if (selectedConfiguration instanceof DrawerConfiguration) {
@@ -942,6 +951,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				Configuration selectedConfiguration = getSelectedConfiguration();
 				if (selectedConfiguration instanceof DrawerConfiguration) {
@@ -1039,6 +1049,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 
 				// get source and target selection
@@ -1126,6 +1137,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	protected MouseListener createAddButtonListener() {
 		return new MouseListener() {
 
+			@Override
 			public void mouseUp(MouseEvent e) {
 				// // add the element selected on the left to the right tree
 				// // check the selection.
@@ -1162,6 +1174,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void mouseDown(MouseEvent e) {
 				// do nothing
 			}
@@ -1169,6 +1182,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void mouseDoubleClick(MouseEvent e) {
 				// do nothing
 			}
@@ -1209,6 +1223,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	protected MouseListener createRemoveButtonListener() {
 		return new MouseListener() {
 
+			@Override
 			public void mouseUp(MouseEvent e) {
 				// remove the element selected on the right
 				// add the element selected on the left to the right tree
@@ -1231,6 +1246,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void mouseDown(MouseEvent e) {
 				// do nothing
 			}
@@ -1238,6 +1254,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void mouseDoubleClick(MouseEvent e) {
 				// do nothing
 			}
@@ -1414,6 +1431,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				if (!(event.widget instanceof ToolItem)) {
 					return;
@@ -1450,6 +1468,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				if (!(event.widget instanceof ToolItem)) {
 					return;
@@ -1478,6 +1497,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			/**
 			 * {@inheritDoc}
 			 */
+			@Override
 			public void handleEvent(Event event) {
 				if (!(event.widget instanceof ToolItem)) {
 					return;
@@ -1532,6 +1552,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	 * The <code>WizardNewFileCreationPage</code> implementation of this <code>Listener</code> method handles all events and enablements for controls
 	 * on this page. Subclasses may extend.
 	 */
+	@Override
 	public void handleEvent(Event event) {
 		setPageComplete(validatePage());
 	}
@@ -1553,6 +1574,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getElements(Object inputElement) {
 			Object[] elements = null;
 
@@ -1573,12 +1595,14 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void dispose() {
 		}
 
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 
 		}
@@ -1586,6 +1610,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getChildren(Object parentElement) {
 			Object[] elements = null;
 
@@ -1603,6 +1628,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object getParent(Object element) {
 			return null;
 		}
@@ -1610,6 +1636,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean hasChildren(Object element) {
 			return getChildren(element) != null && getChildren(element).length > 0;
 		}
@@ -1620,7 +1647,8 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	 * <P>
 	 * We should be using the Palette label provider from GEF, if it was not with visibility "package"...
 	 *
-	 * @see org.eclipse.gef.ui.palette.customize.PaletteLabelProvider </P>
+	 * @see org.eclipse.gef.ui.palette.customize.PaletteLabelProvider
+	 *      </P>
 	 *
 	 */
 	public class PaletteLabelProvider implements ILabelProvider {
@@ -1628,6 +1656,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Image getImage(Object element) {
 			if (element instanceof PaletteEntry) {
 				ImageDescriptor descriptor = ((PaletteEntry) element).getSmallIcon();
@@ -1644,6 +1673,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public String getText(Object element) {
 			if (element instanceof PaletteEntry) {
 				return ((PaletteEntry) element).getLabel();
@@ -1656,6 +1686,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void addListener(ILabelProviderListener listener) {
 
 		}
@@ -1663,6 +1694,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void dispose() {
 
 		}
@@ -1670,6 +1702,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean isLabelProperty(Object element, String property) {
 			return false;
 		}
@@ -1677,6 +1710,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void removeListener(ILabelProviderListener listener) {
 
 		}
@@ -1688,7 +1722,8 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	 * <P>
 	 * We should be using the Palette label provider from GEF, if it was not with visibility "package"...
 	 *
-	 * @see org.eclipse.gef.ui.palette.customize.PaletteLabelProvider </P>
+	 * @see org.eclipse.gef.ui.palette.customize.PaletteLabelProvider
+	 *      </P>
 	 *
 	 */
 	public class ExtendedPaletteLabelProvider extends CustomizedLabelProvider {
@@ -2056,6 +2091,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void widgetDefaultSelected(SelectionEvent e) {
 			// nothing to do
 		}
@@ -2063,6 +2099,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void widgetSelected(SelectionEvent e) {
 			handleSelectionChanged();
 		}
@@ -2070,6 +2107,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void modifyText(ModifyEvent e) {
 			handleSelectionChanged();
 		}
@@ -2134,6 +2172,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getChildren(Object parentElement) {
 			if (parentElement instanceof Profile) {
 				return ((Profile) parentElement).getOwnedStereotypes().toArray();
@@ -2176,6 +2215,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object getParent(Object element) {
 			if (element instanceof Stereotype) {
 				return ((Stereotype) element).getProfile();
@@ -2186,6 +2226,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean hasChildren(Object element) {
 			if (element instanceof Profile) {
 				return true;
@@ -2198,6 +2239,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getElements(Object inputElement) {
 			if (inputElement instanceof Profile) {
 				List<Stereotype> stereotypes = ((Profile) inputElement).getOwnedStereotypes();
@@ -2209,6 +2251,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void dispose() {
 			// nothing to do here
 		}
@@ -2216,6 +2259,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			// nothing to do here
 		}
@@ -2249,6 +2293,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getChildren(Object parentElement) {
 			if (parentElement instanceof Profile) {
 				return standardEntries.toArray();
@@ -2288,6 +2333,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object getParent(Object element) {
 			if (element instanceof Stereotype) {
 				return ((Stereotype) element).getProfile();
@@ -2298,6 +2344,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean hasChildren(Object element) {
 			if (element instanceof Profile) {
 				return true;
@@ -2312,6 +2359,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getElements(Object inputElement) {
 			if (inputElement instanceof Profile) {
 				return standardEntries.toArray();
@@ -2322,6 +2370,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void dispose() {
 			// nothing to do here
 		}
@@ -2329,6 +2378,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			// nothing to do here
 		}

@@ -41,6 +41,10 @@ public class Messages extends NLS {
 
 	public static String ProfileApplicationEditor_WaitMessageTitle;
 	
+	public static String ProfileExplorerDialog_Message;
+
+	public static String ProfileExplorerDialog_Title;
+
 	/** The multiplicity Editor string text label. */
 	public static String MultiplicityPreference_MultiplicityEditor;
 	
@@ -52,6 +56,20 @@ public class Messages extends NLS {
 	
 	/** The multiplicity Editor string text label. */
 	public static String MultiplicityPreference_fieldEditorMode;
+
+	public static String StereotypeExplorerDialog_Message;
+
+	public static String StereotypeExplorerDialog_OnlyApplicableStereotypesLabel;
+
+	public static String StereotypeExplorerDialog_PluginContributionSeparatorLabel;
+
+	public static String StereotypeExplorerDialog_Title;
+
+	public static String StereotypeExplorerDialog_WokspaceContributionSeparator;
+
+	public static String StereotypeQualifyNameValueEditor_browseStereotypeButtonLabel;
+
+	public static String StereotypeQualifyNameValueEditor_ReturnErrorMessage;
 
 	static {
 		// initialize resource bundle

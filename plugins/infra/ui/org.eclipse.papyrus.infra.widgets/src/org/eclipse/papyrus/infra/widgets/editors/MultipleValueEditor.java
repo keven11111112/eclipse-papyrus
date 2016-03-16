@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 402525
  *  Christian W. Damus - bug 399859
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - manage buttons visibility and enable. 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
@@ -24,8 +25,10 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -249,8 +252,16 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 
 		add.setEnabled(!readOnly && enableAddAction);
 		remove.setEnabled(!readOnly);
-		up.setEnabled(ordered && !readOnly);
-		down.setEnabled(ordered && !readOnly);
+
+		if (ordered) {
+			up.setVisible(true);
+			down.setVisible(true);
+			up.setEnabled(!readOnly);
+			down.setEnabled(!readOnly);
+		} else {
+			up.setVisible(false);
+			down.setVisible(false);
+		}
 
 		if (edit != null) {
 			edit.setEnabled(this.referenceFactory != null && referenceFactory.canEdit() && !readOnly);
@@ -261,6 +272,8 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 				add.setEnabled(false);
 			}
 		}
+
+		updateBoutons();
 
 	}
 
@@ -404,7 +417,7 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 			editAction();
 		}
 
-		updateBoutons();
+		updateControls();
 	}
 
 	/**
@@ -522,7 +535,7 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 		for (int i = selectionArray.length - 1; i >= 0; i--) {
 			Object o = selectionArray[i];
 			int oldIndex = modelProperty.indexOf(o);
-			if (oldIndex < maxIndex) {
+			if (-1 != oldIndex && oldIndex < maxIndex) {
 				modelProperty.move(oldIndex, oldIndex + 1);
 			}
 		}
@@ -718,6 +731,42 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 				add.setEnabled(true);
 			}
 		}
+
+		// manage enable button according to the selection
+
+		Object selection = getFirstSelection();
+		if (null == selection) {
+			up.setEnabled(false);
+			down.setEnabled(false);
+			remove.setEnabled(false);
+			if (null != edit) {
+				edit.setEnabled(false);
+			}
+		} else if (null != modelProperty) {
+			int index = modelProperty.indexOf(selection);
+			if (0 == index || -1 == index) {
+				up.setEnabled(false);
+			}
+			if (modelProperty.size() == index + 1 || -1 == index) {
+				down.setEnabled(false);
+			}
+		}
+
+
+	}
+
+	/**
+	 * @return
+	 * 
+	 */
+	private Object getFirstSelection() {
+		Object firstSelection = null;
+		ISelection selection = treeViewer.getSelection();
+		if (selection instanceof ITreeSelection) {
+			firstSelection = ((ITreeSelection) selection).getFirstElement();
+
+		}
+		return firstSelection;
 	}
 
 	@Override

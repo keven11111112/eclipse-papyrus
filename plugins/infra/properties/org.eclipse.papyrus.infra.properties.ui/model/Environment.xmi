@@ -180,6 +180,10 @@
       widgetClass="CompletionStyledTextReferenceDialog"
       namespace="//@namespaces.3"
       type="Reference"/>
+  <propertyEditorTypes
+      label="Icon property editor with browser"
+      widgetClass="IconPropertyEditor"
+      namespace="//@namespaces.3"/>
   <compositeWidgetTypes
       label="Composite"
       widgetClass="Composite"/>

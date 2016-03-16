@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.widgets;
 
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
@@ -71,6 +72,10 @@ public class MultiString extends AbstractPropertyEditor {
 		IStaticContentProvider provider = input.getContentProvider(propertyPath);
 		if (provider != null) {
 			editor.setContentProvider(provider);
+		}
+		ILabelProvider labelProvider = input.getLabelProvider(propertyPath);
+		if (labelProvider != null) {
+			editor.setLabelProvider(labelProvider);
 		}
 
 		if (getInputObservableList() instanceof ICommitListener) {

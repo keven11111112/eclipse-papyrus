@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Add createAdviceBindingConfiguration method
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.types.advices.values;
@@ -19,6 +20,9 @@ import org.eclipse.papyrus.infra.types.core.impl.NullEditHelperAdvice;
 
 public class SetValuesAdviceEditHelperAdviceFactory extends AbstractAdviceBindingFactory<AbstractAdviceBindingConfiguration> {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected IEditHelperAdvice getEditHelperAdvice(AbstractAdviceBindingConfiguration adviceConfiguration) {
 		if (adviceConfiguration instanceof SetValuesAdviceConfiguration) {
@@ -26,6 +30,14 @@ public class SetValuesAdviceEditHelperAdviceFactory extends AbstractAdviceBindin
 			return editHelperAdvice;
 		}
 		return NullEditHelperAdvice.getInstance();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public AbstractAdviceBindingConfiguration createAdviceBindingConfiguration() {
+		return SetValuesAdviceFactory.eINSTANCE.createSetValuesAdviceConfiguration();
 	}
 
 }

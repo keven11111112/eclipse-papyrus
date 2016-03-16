@@ -20,5 +20,6 @@
 		<module>org.eclipse.papyrus.infra.ui.emf</module>
 		<module>org.eclipse.papyrus.infra.emf.types</module>
 		<module>org.eclipse.papyrus.infra.emf.types.ui</module>
+		<module>org.eclipse.papyrus.infra.emf.types.ui.properties</module>
 	</modules>
 </project>

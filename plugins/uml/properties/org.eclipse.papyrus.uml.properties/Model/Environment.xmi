@@ -106,6 +106,10 @@
       namespace="//@namespaces.0"
       type="Reference"
       multiplicity="-1"/>
+  <propertyEditorTypes
+      label="Stereotype Qualify Name Property Editor"
+      widgetClass="StereotypeQualifyNamePropertyEditor"
+      namespace="//@namespaces.0"/>
   <namespaces
       name="uml"
       value="org.eclipse.papyrus.uml.properties.widgets"/>

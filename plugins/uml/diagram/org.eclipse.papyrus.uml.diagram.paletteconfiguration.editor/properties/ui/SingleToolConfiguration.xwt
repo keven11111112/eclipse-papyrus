@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite
+	xmlns:edt="clr-namespace:org.eclipse.papyrus.uml.diagram.paletteconfiguration.widgets.editors"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns:j="clr-namespace:java.lang">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<ppe:StringEditor input="{Binding}"
+		property="paletteconfiguration:Configuration:label" customLabel="Name"></ppe:StringEditor>
+	<ppe:StringEditor input="{Binding}"
+		property="paletteconfiguration:Configuration:id" customLabel="Identifier"></ppe:StringEditor>
+	<ppe:StringEditor input="{Binding}"
+		property="paletteconfiguration:Configuration:description"></ppe:StringEditor>
+	<ppe:EnumCombo input="{Binding}"
+		property="paletteconfiguration:ToolConfiguration:kind" customLabel="Kind"></ppe:EnumCombo>
+	<ppe:IconPropertyEditor input="{Binding}"
+		property="paletteconfiguration:Configuration:icon" customLabel="Icon"></ppe:IconPropertyEditor>
+</Composite>

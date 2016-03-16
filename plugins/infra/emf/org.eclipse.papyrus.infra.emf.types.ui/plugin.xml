@@ -58,7 +58,8 @@
          point="org.eclipse.papyrus.infra.types.core.adviceConfigurationKind">
       <adviceConfigurationKind
             configurationClass="org.eclipse.papyrus.infra.emf.types.ui.advices.values.RuntimeValuesAdviceConfiguration"
-            factoryClass="org.eclipse.papyrus.infra.emf.types.internal.ui.advice.RuntimeValuesAdviceEditHelperAdviceFactory">
+            factoryClass="org.eclipse.papyrus.infra.emf.types.internal.ui.advice.RuntimeValuesAdviceEditHelperAdviceFactory"
+            icon="icons/full/obj16/RuntimeValuesAdviceConfiguration.gif">
       </adviceConfigurationKind>
    </extension>
 

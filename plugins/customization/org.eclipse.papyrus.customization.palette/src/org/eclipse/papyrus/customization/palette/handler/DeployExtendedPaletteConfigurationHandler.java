@@ -34,7 +34,7 @@ public class DeployExtendedPaletteConfigurationHandler extends AbstractDeployPal
 	@Override
 	protected IStatus deployPalette(String fileName, String paletteName, String path, ProviderPriority priority, String editorID, Set<String> requiredProfiles) {
 		// just add the palette
-		PapyrusPalettePreferences.addWorkspaceExtendedPalette(fileName, paletteName, path, priority, editorID, requiredProfiles);
+		PapyrusPalettePreferences.addWorkspaceExtendedPalette(paletteName, paletteName, path, priority, editorID, requiredProfiles);
 		return new Status(IStatus.OK, Activator.ID, "The palette configuration has been successfully deployed and activated");
 	}
 
@@ -43,7 +43,7 @@ public class DeployExtendedPaletteConfigurationHandler extends AbstractDeployPal
 	 */
 	@Override
 	protected IStatus activatePalette(String fileName, String paletteName, String path, ProviderPriority priority, String editorID, Set<String> requiredProfiles) {
-		PapyrusPalettePreferences.addWorkspaceExtendedPalette(fileName, paletteName, path, priority, editorID, requiredProfiles);
+		PapyrusPalettePreferences.addWorkspaceExtendedPalette(paletteName, paletteName, path, priority, editorID, requiredProfiles);
 		PapyrusPalettePreferences.changePaletteVisibility(fileName, editorID, true);
 		return new Status(IStatus.OK, Activator.ID, "The palette configuration was already deployed, it has just been activated");
 	}

@@ -102,7 +102,8 @@
          point="org.eclipse.papyrus.infra.types.core.adviceConfigurationKind">
       <adviceConfigurationKind
             configurationClass="org.eclipse.papyrus.infra.emf.types.advices.values.SetValuesAdviceConfiguration"
-            factoryClass="org.eclipse.papyrus.infra.emf.types.advices.values.SetValuesAdviceEditHelperAdviceFactory">
+            factoryClass="org.eclipse.papyrus.infra.emf.types.advices.values.SetValuesAdviceEditHelperAdviceFactory"
+            icon="icons/Values.gif">
       </adviceConfigurationKind>
    </extension>
    <extension

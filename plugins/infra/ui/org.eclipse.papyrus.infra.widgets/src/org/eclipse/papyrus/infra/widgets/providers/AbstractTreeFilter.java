@@ -129,10 +129,13 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 		if (!visitedElements.contains(element)) {
 			visitedElements.add(element);
 
-			for (Object childElement : strategy.getChildren(element)) {
-				if (isVisible(viewer, element, childElement) || hasOneVisibleChild(viewer, childElement, strategy, visitedElements)) {
-					result = true;
-					break;
+			Object[] children = strategy.getChildren(element);
+			if (null != children) {
+				for (Object childElement : children) {
+					if (isVisible(viewer, element, childElement) || hasOneVisibleChild(viewer, childElement, strategy, visitedElements)) {
+						result = true;
+						break;
+					}
 				}
 			}
 		}

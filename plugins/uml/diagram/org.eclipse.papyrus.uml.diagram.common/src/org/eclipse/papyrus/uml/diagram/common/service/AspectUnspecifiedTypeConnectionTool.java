@@ -100,6 +100,20 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 	}
 
 	/**
+	 * @return postActions which will be applied
+	 */
+	public List<IPostAction> getPostActions() {
+		return postActions;
+	}
+
+	/**
+	 * @return preActions which will be applied
+	 */
+	public List<IPreAction> getPreActions() {
+		return preActions;
+	}
+
+	/**
 	 * @return the elementDescriptors
 	 */
 	public List<IElementType> getElementTypes() {
@@ -181,9 +195,9 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 						break;
 					}
 				}
-				
-				// do nothing if you have at least one edge element, in fact the following lines have been written to take in account only nodes. 
-				if( !(sourceEditPart instanceof NodeEditPart) || !(targetEditPart instanceof NodeEditPart)){
+
+				// do nothing if you have at least one edge element, in fact the following lines have been written to take in account only nodes.
+				if (!(sourceEditPart instanceof NodeEditPart) || !(targetEditPart instanceof NodeEditPart)) {
 					break;
 				}
 
@@ -208,7 +222,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 					setTargetRequest(connectionRequest);
 
 					// inits the listener
-					View eObject = (View) targetEditPart.getAdapter(View.class);
+					View eObject = targetEditPart.getAdapter(View.class);
 
 					NotificationListener listener = null;
 					boolean requiresPostCommitRun = requiresPostCommitRun();
@@ -325,7 +339,7 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		}
 
 		// inits the listener
-		View eObject = (View) getTargetEditPart().getAdapter(View.class);
+		View eObject = getTargetEditPart().getAdapter(View.class);
 		DiagramEventBroker eventBroker = null;
 		NotificationListener listener = null;
 		boolean requiresPostCommitRun = true;

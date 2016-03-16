@@ -157,7 +157,9 @@
          point="org.eclipse.papyrus.infra.types.core.adviceConfigurationKind">
       <adviceConfigurationKind
             configurationClass="org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdviceConfiguration"
-            factoryClass="org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdviceConfigurationFactory">
+            description="Set stereotypes to apply"
+            factoryClass="org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdviceConfigurationFactory"
+            icon="icons/Stereotype.gif">
       </adviceConfigurationKind>
    </extension>
    <extension

@@ -8,12 +8,14 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Add createAdviceBindingConfiguration method
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.types.internal.ui.advice;
 
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.papyrus.infra.emf.types.ui.advices.values.RuntimeValuesAdviceConfiguration;
+import org.eclipse.papyrus.infra.emf.types.ui.advices.values.RuntimeValuesAdviceFactory;
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.core.factories.impl.AbstractAdviceBindingFactory;
 import org.eclipse.papyrus.infra.types.core.impl.NullEditHelperAdvice;
@@ -27,5 +29,13 @@ public class RuntimeValuesAdviceEditHelperAdviceFactory extends AbstractAdviceBi
 			return editHelperAdvice;
 		}
 		return NullEditHelperAdvice.getInstance();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public AbstractAdviceBindingConfiguration createAdviceBindingConfiguration() {
+		return RuntimeValuesAdviceFactory.eINSTANCE.createRuntimeValuesAdviceConfiguration();
 	}
 }

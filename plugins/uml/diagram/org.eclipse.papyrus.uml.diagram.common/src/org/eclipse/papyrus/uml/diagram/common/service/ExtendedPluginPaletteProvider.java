@@ -108,8 +108,6 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 	/** cached list of required profiles for this palette to be shown. this will be <code>null</code> until initialized */
 	protected Collection<String> requiredProfiles = null;
 
-
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -534,11 +532,12 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 
 	/**
 	 * Loads and returns the model, given the resource
+	 * 
 	 * @param resource
 	 * @return
 	 * @throws IOException
 	 */
-	protected List<PaletteConfiguration> loadConfigurationModel(Resource resource) throws IOException {
+	public List<PaletteConfiguration> loadConfigurationModel(Resource resource) throws IOException {
 		resource.load(Collections.emptyMap());
 		if (resource.getContents().size() > 0) {
 
@@ -574,7 +573,7 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 	protected Resource loadResourceFromPreferences(ResourceSet resourceSet) {
 		Resource resource = null;
 		// look in preference area
-		String path = PapyrusPalettePreferences.getPaletteRedefinition(paletteID);
+		String path = PapyrusPalettePreferences.getPaletteRedefinition(contributorID);
 		if (path != null) {
 			// read in preferences area of diagram common! Thus, it can be accessed from the common plugin...
 			IPath resourcePath = org.eclipse.papyrus.uml.diagram.common.Activator.getDefault().getStateLocation().append(path);

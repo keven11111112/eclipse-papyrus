@@ -429,6 +429,11 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				return null;
 			}
 
+			// Needs to add a / to have a correct path or the concatenation will be false.
+			if (!filePath.startsWith("/")) {//$NON-NLS-1$
+				filePath = "/" + filePath; //$NON-NLS-1$
+			}
+
 			return realId + filePath;
 		}
 
@@ -691,6 +696,32 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 	}
 
+	/**
+	 * 
+	 * Provider Descriptor for extended palette defined locally (ie not in workspace)
+	 *
+	 */
+	public static class LocalExtendedProviderDescriptor extends LocalProviderDescriptor {
+		/**
+		 * @param description
+		 */
+		public LocalExtendedProviderDescriptor(IPaletteDescription description) {
+			super(description);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public IProvider getProvider() {
+			if (null == provider) {
+				provider = new LocalExtendedPaletteProvider();
+				((LocalExtendedPaletteProvider) provider).setContributions(description);
+			}
+			return provider;
+		}
+	}
+
 	public static class WorkspaceProviderDescriptor extends LocalProviderDescriptor {
 
 		/**
@@ -814,6 +845,13 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 
 	}
 
+	/**
+	 * add providers for workspace palettes based on model
+	 */
+	protected void configureRedefinedPalettes() {
+		// Nothing to do
+	}
+
 
 	/**
 	 * gets the singleton instance
@@ -829,7 +867,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	}
 
 	/**
-	 *
+	 * Configure providers.
 	 */
 	private static void configureProviders() {
 		getInstance().configureProviders(DiagramUIPlugin.getPluginId(), "paletteProviders"); //$NON-NLS-1$
@@ -837,6 +875,31 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		getInstance().configureLocalPalettes();
 		getInstance().configureWorkspacePalettes();
 		getInstance().configureWorkspaceExtendedPalettes();
+		getInstance().configureLocalExtendedPalettes();
+		getInstance().configureRedefinedPalettes();
+	}
+
+	/**
+	 * Configure local extended palettes.
+	 */
+	protected void configureLocalExtendedPalettes() {
+		// read the preference field that indicates where the local extended palettes
+		// are, their IDs, etc...
+		List<IPaletteDescription> localExtendedPalettes = PapyrusPalettePreferences.getLocalExtendedPalettes();
+		// create the providers linked to these configuration
+		// remove all local descriptors
+		for (org.eclipse.gmf.runtime.common.core.service.Service.ProviderDescriptor descriptor : getProviders()) {
+			if (descriptor instanceof LocalExtendedProviderDescriptor) {
+				removeProvider(descriptor);
+			}
+		}
+
+		// create new list
+		for (IPaletteDescription palette : localExtendedPalettes) {
+			LocalExtendedProviderDescriptor descriptor = new LocalExtendedProviderDescriptor(palette);
+			addProvider(palette.getPriority(), descriptor);
+		}
+
 	}
 
 	/**
@@ -904,7 +967,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	public PaletteRoot createPalette(final IEditorPart editor, final Object content) {
 		final PaletteRoot root = new PaletteRoot();
 		try {
-			IEditingDomainProvider provider = (IEditingDomainProvider) editor.getAdapter(IEditingDomainProvider.class);
+			IEditingDomainProvider provider = editor.getAdapter(IEditingDomainProvider.class);
 			if (provider != null) {
 				EditingDomain domain = provider.getEditingDomain();
 				if (domain instanceof TransactionalEditingDomain) {
@@ -1110,6 +1173,10 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		} else if (IPapyrusPaletteConstant.EXTENDED_PALETTE_WORKSPACE_DEFINITIONS.equals(id)) {
 			// refresh available palette table viewer
 			getInstance().configureWorkspaceExtendedPalettes();
+			providerChanged(new ProviderChangeEvent(this));
+		} else if (IPapyrusPaletteConstant.LOCAL_EXTENDED_PALETTE_DEFINITIONS.equals(id)) {
+			// refresh available palette table viewer
+			getInstance().configureLocalExtendedPalettes();
 			providerChanged(new ProviderChangeEvent(this));
 		} else if (IPapyrusPaletteConstant.PALETTE_LOCAL_DEFINITIONS.equals(id)) {
 			// refresh available palette table viewer

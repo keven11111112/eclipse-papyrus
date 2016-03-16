@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.uml.diagram.common.part;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -23,6 +24,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.Tool;
@@ -39,6 +41,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.SpecializationType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.diagram.common.service.IPapyrusPaletteConstant;
@@ -97,6 +100,7 @@ public class PaletteUtil {
 	 * @return the type of metaclasses created by the toolentry or <code>null</code>.
 	 */
 	public static EClass getToolMetaclass(ToolEntry entry) {
+		EClass eClass = null;
 		Tool tool = entry.createTool();
 		List<IElementType> types = null;
 		if (tool instanceof AspectUnspecifiedTypeCreationTool) {
@@ -110,9 +114,12 @@ public class PaletteUtil {
 			if (type instanceof SpecializationType) {
 				type = ((SpecializationType) type).getSpecializedTypes()[0];
 			}
-			return type.getEClass();
+
+			if (null != type) {
+				eClass = type.getEClass();
+			}
 		}
-		return null;
+		return eClass;
 	}
 
 	/**
@@ -316,7 +323,7 @@ public class PaletteUtil {
 	 * @return the list of stereotypes String from a serialize string form
 	 */
 	public static List<String> getStereotypeListFromString(String serializedForm) {
-		StringTokenizer tokenizer = new StringTokenizer(serializedForm, ",");
+		StringTokenizer tokenizer = new StringTokenizer(serializedForm, ","); //$NON-NLS-1$
 		List<String> list = new ArrayList<String>();
 		while (tokenizer.hasMoreElements()) {
 			list.add(tokenizer.nextToken().trim());
@@ -360,7 +367,7 @@ public class PaletteUtil {
 	}
 
 	public static String convertToCommaSeparatedRepresentation(Collection objects) {
-		return convertToFlatRepresentation(objects, ",");
+		return convertToFlatRepresentation(objects, ","); //$NON-NLS-1$
 	}
 
 	public static String convertToFlatRepresentation(Collection objects, String separator) {
@@ -383,7 +390,7 @@ public class PaletteUtil {
 	 * @return the list of profiles String from a serialize string form
 	 */
 	public static Set<String> getProfileSetFromString(String serializedForm) {
-		StringTokenizer tokenizer = new StringTokenizer(serializedForm, ",");
+		StringTokenizer tokenizer = new StringTokenizer(serializedForm, ","); //$NON-NLS-1$
 		Set<String> list = new HashSet<String>();
 		while (tokenizer.hasMoreElements()) {
 			list.add(tokenizer.nextToken());
@@ -507,6 +514,46 @@ public class PaletteUtil {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Returns the redefinition file URI
+	 *
+	 * @return the redefinition file URI or <code>null</code> if no local
+	 *         redefinition can be found.
+	 */
+	public static URI getRedefinitionFileURI(final String contributionID) {
+		String path = PapyrusPalettePreferences.getPaletteRedefinition(contributionID);
+		StringBuilder error = new StringBuilder();
+
+		URI uri = null;
+		if (null == path) {
+			error.append(Messages.PaletteUtil_ErrorMessage_PaletteNullOnContribution);
+			error.append(contributionID);
+		} else {
+			File stateLocationRootFile = Activator.getDefault().getStateLocation().append(path).toFile();
+			if (null == stateLocationRootFile) {
+				error.append(Messages.PaletteUtil_ErrorMessage_NoRedefinitionFoundWithId);
+				error.append(contributionID);
+
+			} else if (!stateLocationRootFile.exists()) {
+				error.append(Messages.PaletteUtil_ErrorMessage_NoLocalDefinition);
+				error.append(stateLocationRootFile);
+
+			} else if (!stateLocationRootFile.canRead()) {
+				error.append(Messages.PaletteUtil_ErrorMessage_CantReadLocalDefinitionOfFile);
+				error.append(stateLocationRootFile);
+
+			} else {
+				uri = URI.createFileURI(stateLocationRootFile.getAbsolutePath());
+			}
+		}
+
+		if (!error.toString().isEmpty()) {
+			Activator.log.error(error.toString(), null);
+		}
+
+		return uri;
 	}
 
 }
