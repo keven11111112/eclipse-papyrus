@@ -42,8 +42,9 @@
             allPopups="false"
             locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
          <menu
+               icon="platform:/plugin/org.eclipse.papyrus.uml.developer.mde/img/docGeneration.png"
                id="developer.idm"
-               label="Developer">
+               label="Developer ">
             <visibleWhen
                   checkEnabled="true">
                <with
