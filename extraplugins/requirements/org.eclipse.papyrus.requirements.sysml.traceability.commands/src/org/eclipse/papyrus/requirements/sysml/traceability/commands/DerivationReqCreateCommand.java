@@ -55,7 +55,7 @@ public class DerivationReqCreateCommand extends RecordingCommand {
 		source.getNearestPackage().getPackagedElements().add(theAbstraction);
 		theAbstraction.getSuppliers().add(target);
 		theAbstraction.getClients().add(source);
-		theAbstraction.setName("Derived_from" + this.target.getName());
+		theAbstraction.setName("Derived_from_" + this.target.getName());
 		Stereotype derivedReqtStereotype = theAbstraction
 				.getApplicableStereotype((I_SysMLStereotype.DERIVEREQT_STEREOTYPE));
 		theAbstraction.applyStereotype(derivedReqtStereotype);

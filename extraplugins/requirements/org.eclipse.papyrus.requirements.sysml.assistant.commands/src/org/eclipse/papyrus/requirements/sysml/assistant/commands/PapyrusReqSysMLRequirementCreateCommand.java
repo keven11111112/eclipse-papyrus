@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * Creates a new SysML requirements based on the Papyrus Req preferences page.
+ * Creates a new SysML requirement based on the options chosen in the Papyrus Req preferences page.
  *
  */
 public class PapyrusReqSysMLRequirementCreateCommand extends RecordingCommand {

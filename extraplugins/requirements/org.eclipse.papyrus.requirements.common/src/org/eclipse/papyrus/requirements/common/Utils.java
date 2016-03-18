@@ -20,15 +20,17 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
 
 public class Utils {
-	
+
 	private Utils() {
 	}
-	
+
 	/**
-	 * @param elem UML model element
-	 * @return the highest level Package of the element 
+	 * @param elem
+	 *            UML model element
+	 * @return the highest level Package of the element
 	 */
 	public static Package getToPackage(Element elememt) {
 		Package tmp = elememt.getNearestPackage();
@@ -37,6 +39,7 @@ public class Utils {
 		}
 		return tmp;
 	}
+
 	/**
 	 * Verifies if an element applies a list of profiles
 	 * 
@@ -46,29 +49,30 @@ public class Utils {
 	 *            the qualified names of the profiles that will be verified
 	 * @return the list of missing profiles
 	 */
-	public static ArrayList<String> getMissingRequiredProfileApplications(org.eclipse.uml2.uml.Package element,
-			ArrayList<String> requiredProfiles) {
-		ArrayList<String> missingProfiles = new ArrayList<String>();
-		for (String profileQN : requiredProfiles) {
-			if (element.getAppliedProfile(profileQN) == null) {
-				missingProfiles.add(profileQN);
+	public static ArrayList<Profile> getMissingRequiredProfileApplications(org.eclipse.uml2.uml.Package element,
+			ArrayList<Profile> requiredProfiles) {
+		ArrayList<Profile> missingProfiles = new ArrayList<Profile>();
+		for (Profile profile : requiredProfiles) {
+			if (!element.isProfileApplied(profile)) {
+				missingProfiles.add(profile);
 			}
 		}
 		return missingProfiles;
 	}
-	
+
 	/**
 	 * Prints a list of missing profiles
 	 * 
-	 * @param requiredProfiles
+	 * @param missingProfiles
 	 */
-	public static void printMissingProfiles(Package thePackage, ArrayList<String> requiredProfiles) {
-		for (String missingProfileQN : Utils
-				.getMissingRequiredProfileApplications(thePackage, requiredProfiles)) {
-			MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Missing profile application",
-					"Please apply the profile " + missingProfileQN + " to "
+	public static void applyMissingProfiles(Package thePackage, ArrayList<Profile> missingProfiles) {
+		for (Profile missingProfile : Utils
+				.getMissingRequiredProfileApplications(thePackage, missingProfiles)) {
+			thePackage.applyProfile(missingProfile);
+			MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Applying missing profile",
+					"The profile " + missingProfile.getQualifiedName() + " was applied to "
 							+ thePackage.getName());
 		}
 	}
-	
+
 }

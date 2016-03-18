@@ -14,9 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.requirements.sysml.traceability.commands;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectionDialog;
@@ -29,8 +26,8 @@ import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * 
@@ -51,13 +48,6 @@ public class AddRefinesCommand extends RecordingCommand {
 	@Override
 	protected void doExecute() {
 		if (selectedElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE) == null) {
-			ArrayList<String> requiredProfiles = new ArrayList<String>(Arrays.asList("StandardProfile"));
-			ArrayList<String> missingProfiles = Utils
-					.getMissingRequiredProfileApplications(selectedElement.getNearestPackage(), requiredProfiles);
-			if (missingProfiles.size() > 0) {
-				Utils.printMissingProfiles(selectedElement.getNearestPackage(), missingProfiles);
-				return;
-			}
 			Stereotype reqStereotype = selectedElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
 			final IStaticContentProvider provider = new UMLContentProvider(Utils.getToPackage(selectedElement),
 					UMLPackage.eINSTANCE.getPackage_PackagedElement(), reqStereotype);

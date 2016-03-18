@@ -23,8 +23,11 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.requirements.common.Utils;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.profile.standard.StandardPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 
@@ -35,34 +38,41 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class RefinementCreateCommand extends RecordingCommand {
 	private NamedElement source;
 	private NamedElement target;
+
 	/**
-	 * Makes an abstraction 
-	 * @param domain the domain to execute a transaction
-	 * @param source the source of the abstraction (the more concrete element) - client. For example, a Use Case
-	 * @param target the target of the abstraction (the more abstract element) - supplier. For example, a Requirement
+	 * Makes an abstraction
+	 * 
+	 * @param domain
+	 *            the domain to execute a transaction
+	 * @param source
+	 *            the source of the abstraction (the more concrete element) - client. For example, a Use Case
+	 * @param target
+	 *            the target of the abstraction (the more abstract element) - supplier. For example, a Requirement
 	 */
-	public RefinementCreateCommand(TransactionalEditingDomain domain, NamedElement source, NamedElement target){ 
-		super(domain,"Create an Abstraction");
-		this.source=source;
-		this.target=target;
+	public RefinementCreateCommand(TransactionalEditingDomain domain, NamedElement source, NamedElement target) {
+		super(domain, "Create an Abstraction");
+		this.source = source;
+		this.target = target;
 	}
 
 	@Override
 	protected void doExecute() {
-		ArrayList<String> requiredProfiles = new ArrayList<String>(
-				Arrays.asList("StandardProfile"));
-		ArrayList<String> missingProfiles = Utils.getMissingRequiredProfileApplications(source.getNearestPackage(), requiredProfiles);
-		if (missingProfiles.size() == 0) {
-			Abstraction theAbstraction = UMLFactory.eINSTANCE.createAbstraction();
-			source.getNearestPackage().getPackagedElements().add(theAbstraction);
-			theAbstraction.getSuppliers().add(target);
-			theAbstraction.getClients().add(source);
-			theAbstraction.setName("Refines_" + this.target.getName());
-			Stereotype refineStereotype = theAbstraction.getApplicableStereotype("StandardProfile::Refine");
-			theAbstraction.applyStereotype(refineStereotype);
-		} else {
-			Utils.printMissingProfiles(source.getNearestPackage(), missingProfiles);
-			return;
+		Abstraction theAbstraction = UMLFactory.eINSTANCE.createAbstraction();
+		source.getNearestPackage().getPackagedElements().add(theAbstraction);
+		theAbstraction.getSuppliers().add(target);
+		theAbstraction.getClients().add(source);
+		theAbstraction.setName("Refines_" + this.target.getName());
+
+		Profile standardProfile = UMLUtil.getProfile(StandardPackage.eINSTANCE, source.getNearestPackage());
+
+		ArrayList<Profile> requiredProfiles = new ArrayList<Profile>(Arrays.asList(standardProfile));
+
+		ArrayList<Profile> missingProfiles = Utils.getMissingRequiredProfileApplications(source.getNearestPackage(), requiredProfiles);
+
+		if (missingProfiles.size() > 0) {
+			Utils.applyMissingProfiles(source.getNearestPackage(), missingProfiles);
 		}
+		Stereotype refineStereotype = theAbstraction.getApplicableStereotype("StandardProfile::Refine");
+		theAbstraction.applyStereotype(refineStereotype);
 	}
 }

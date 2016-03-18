@@ -15,7 +15,9 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0",
  org.eclipse.jface,
  org.eclipse.papyrus.sysml,
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.requirements.common
+ org.eclipse.papyrus.requirements.common,
+ org.eclipse.papyrus.uml.tools.utils,
+ org.eclipse.papyrus.uml.extensionpoints
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.requirements.sysml.traceability.commands;

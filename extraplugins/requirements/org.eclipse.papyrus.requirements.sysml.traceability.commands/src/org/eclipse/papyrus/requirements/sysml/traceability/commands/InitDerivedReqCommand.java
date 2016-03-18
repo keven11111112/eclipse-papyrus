@@ -16,11 +16,10 @@
 package org.eclipse.papyrus.requirements.sysml.traceability.commands;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Arrays;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.requirements.common.Utils;
 import org.eclipse.papyrus.requirements.sysml.assistant.commands.PapyrusReqSysMLRequirementCreateCommand;
@@ -32,6 +31,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -56,11 +56,10 @@ public class InitDerivedReqCommand extends RecordingCommand {
 	protected void doExecute() {
 		String concatenedString = "";
 		org.eclipse.uml2.uml.Package owner = null;
-		for (Iterator<Element> iterator = selectedElements.iterator(); iterator.hasNext();) {
-			Element currentElement = (Element) iterator.next();
+		for (Element currentElement : selectedElements) {
 			if (currentElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE) != null) {
 				Stereotype stereotype = currentElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
-				concatenedString = concatenedString + "\n"
+				concatenedString += "\n"
 						+ currentElement.getValue(stereotype, I_SysMLStereotype.REQUIREMENT_TEXT_ATT);
 				owner = currentElement.getNearestPackage();
 			}
@@ -81,29 +80,23 @@ public class InitDerivedReqCommand extends RecordingCommand {
 		} else
 			return;
 
-		
-		final String sysmlReqProfileQN = UMLUtil.getProfile(RequirementsPackage.eINSTANCE, owner).getQualifiedName();
-		ArrayList<String> requiredProfiles = new ArrayList<String>();
-		
-		requiredProfiles.add(sysmlReqProfileQN);// e.g. "SysML::Requirements"
+		final Profile sysmlReqProfile = UMLUtil.getProfile(RequirementsPackage.eINSTANCE, owner);
 
-		if (Utils.getMissingRequiredProfileApplications(owner, requiredProfiles).size() > 0) {
-			for (String missingProfileQN : Utils.getMissingRequiredProfileApplications(owner, requiredProfiles)) {
-				MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Missing profile application",
-						"Please apply the profile " + missingProfileQN + " to " + owner.getName());
-			}
-			return;
+		ArrayList<Profile> requiredProfiles = new ArrayList<Profile>(Arrays.asList(sysmlReqProfile));
+		ArrayList<Profile> missingProfiles = Utils.getMissingRequiredProfileApplications(owner, requiredProfiles);
+
+		if (missingProfiles.size() > 0) {
+			Utils.applyMissingProfiles(owner, missingProfiles);
 		}
-
+		
 		String ID = PapyrusReqSysMLRequirementCreateCommand.getNewIDReq(owner);
 		Class req = owner.createOwnedClass(ID, false);
-		Stereotype reqStereotype = req.getApplicableStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
+		final Stereotype reqStereotype = req.getApplicableStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
 		req.applyStereotype(reqStereotype);
 		req.setValue(reqStereotype, I_SysMLStereotype.REQUIREMENT_TEXT_ATT, concatenedString);
 		req.setValue(reqStereotype, I_SysMLStereotype.REQUIREMENT_ID_ATT, ID);
 
-		for (Iterator<Element> iterator = selectedElements.iterator(); iterator.hasNext();) {
-			Element currentElement = (Element) iterator.next();
+		for (Element currentElement : selectedElements) {
 			if (currentElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE) != null) {
 				DerivationReqCreateCommand derivationReqCreateCommand = new DerivationReqCreateCommand(domain, req,
 						(NamedElement) currentElement);

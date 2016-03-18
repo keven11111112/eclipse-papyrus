@@ -14,9 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.requirements.sysml.traceability.commands;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectionDialog;
@@ -70,13 +67,6 @@ public class AddRefinedByCommand extends RecordingCommand {
 					Element currentElement = (Element) result[i];
 					// chosen elements cannot be requirements
 					if (currentElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE) == null) {
-						ArrayList<String> requiredProfiles = new ArrayList<String>(Arrays.asList("StandardProfile"));
-						ArrayList<String> missingProfiles = Utils.getMissingRequiredProfileApplications(
-								currentElement.getNearestPackage(), requiredProfiles);
-						if (missingProfiles.size() > 0) {
-							Utils.printMissingProfiles(currentElement.getNearestPackage(), missingProfiles);
-							return;
-						}
 						RefinementCreateCommand refinementCreateCommand = new RefinementCreateCommand(domain,
 								(NamedElement) currentElement, (NamedElement) selectedElement);
 						refinementCreateCommand.execute();
