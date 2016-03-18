@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.papyrus.uml.alf.UnitDefinition
 import org.eclipse.papyrus.uml.alf.CachingDiagnostician
+import org.eclipse.emf.ecore.EValidator
 
 abstract class ParserTest {
 
@@ -71,7 +72,7 @@ abstract class ParserTest {
           }
           System.out.println();
         } else if (validate) {
-          val diagnostic = new CachingDiagnostician().validate(unit)
+          val diagnostic = new CachingDiagnostician(EValidator.Registry.INSTANCE).validate(unit)
           if (diagnostic.severity == Diagnostic.ERROR) {
             failures = failures + 1;
             System.out.println("SEMANTIC ERRORS:")
