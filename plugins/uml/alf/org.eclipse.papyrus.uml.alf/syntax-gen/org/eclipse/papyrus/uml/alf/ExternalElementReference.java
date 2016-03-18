@@ -818,7 +818,7 @@ public interface ExternalElementReference extends ElementReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false" stereotypeNameRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isProfile() then\n          self.element.oclAsType(uml::Profile).ownedStereotype->\n            select(name = stereotypeName)->\n            collect(e | ExternalElementReference{element = e})->asSet()\n        else\n          Set(ElementReference){}\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isProfile() then\n          self.element.oclAsType(uml::Package).ownedElement->\n            select(oclIsKindOf(uml::Stereotype) and oclAsType(uml::Stereotype).name = stereotypeName)->\n            collect(e | ExternalElementReference{element = e})->asSet()\n        else\n          Set(ElementReference){}\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> resolveStereotype(String stereotypeName);

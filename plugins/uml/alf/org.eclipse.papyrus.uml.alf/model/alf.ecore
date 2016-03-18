@@ -1410,7 +1410,7 @@
     </eOperations>
     <eOperations name="resolveStereotype" ordered="false" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isProfile() then&#xA;          self.element.oclAsType(uml::Profile).ownedStereotype->&#xA;            select(name = stereotypeName)->&#xA;            collect(e | ExternalElementReference{element = e})->asSet()&#xA;        else&#xA;          Set(ElementReference){}&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.isProfile() then&#xA;          self.element.oclAsType(uml::Package).ownedElement->&#xA;            select(oclIsKindOf(uml::Stereotype) and oclAsType(uml::Stereotype).name = stereotypeName)->&#xA;            collect(e | ExternalElementReference{element = e})->asSet()&#xA;        else&#xA;          Set(ElementReference){}&#xA;        endif"/>
       </eAnnotations>
       <eParameters name="stereotypeName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
