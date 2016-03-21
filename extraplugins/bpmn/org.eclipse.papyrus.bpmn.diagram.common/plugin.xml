@@ -98,4 +98,10 @@
    </editpartProvider>
 </extension>
    -->
+   <extension
+        point="org.eclipse.papyrus.infra.gmfdiag.css.userAgentStyleSheet">
+     <stylesheet
+           stylesheetPath="css/style.css">
+     </stylesheet>
+  </extension>
  </plugin>
