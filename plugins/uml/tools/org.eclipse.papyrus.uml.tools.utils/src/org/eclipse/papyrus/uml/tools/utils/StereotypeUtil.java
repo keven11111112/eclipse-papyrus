@@ -705,33 +705,29 @@ public class StereotypeUtil {
 		if(valueObject==null){
 			return out = property.getName() + PROPERTY_VALUE_SEPARATOR;
 		}
-		
-		if ((property.getLower() != 0)) {
-			if (property.getDefaultValue() != null) {
-				if (withDelimitator) {
-					String value = "" + valueObject;
-					out = property.getName() + EQUAL_SEPARATOR + value + PROPERTY_VALUE_SEPARATOR;
-					if (value.contains("[")) {
-						out = out.replace("[", "[" + QUOTE);
-						out = out.replace("]", QUOTE + "]");
-						out = out.replace(", ", QUOTE + "," + QUOTE);
+		else{
+				if (property.getDefaultValue() != null) {
+					if (withDelimitator) {
+						String value = "" + valueObject;
+						out = property.getName() + EQUAL_SEPARATOR + value + PROPERTY_VALUE_SEPARATOR;
+						if (value.contains("[")) {
+							out = out.replace("[", "[" + QUOTE);
+							out = out.replace("]", QUOTE + "]");
+							out = out.replace(", ", QUOTE + "," + QUOTE);
+						} else {
+							out = property.getName() + EQUAL_SEPARATOR + QUOTE + value + QUOTE + PROPERTY_VALUE_SEPARATOR;
+						}
 					} else {
-						out = property.getName() + EQUAL_SEPARATOR + QUOTE + value + QUOTE + PROPERTY_VALUE_SEPARATOR;
+						if (valueObject instanceof EObject) {
+							ILabelProvider labelProvider = getLabelProvider(property);
+							return out = property.getName() + EQUAL_SEPARATOR + labelProvider.getText(valueObject) + PROPERTY_VALUE_SEPARATOR;
+						} else {
+							out = property.getName() + EQUAL_SEPARATOR + valueObject + PROPERTY_VALUE_SEPARATOR;
+						}
 					}
 				} else {
-					if (valueObject instanceof EObject) {
-						ILabelProvider labelProvider = getLabelProvider(property);
-						return out = property.getName() + EQUAL_SEPARATOR + labelProvider.getText(valueObject) + PROPERTY_VALUE_SEPARATOR;
-					} else {
-						out = property.getName() + EQUAL_SEPARATOR + valueObject + PROPERTY_VALUE_SEPARATOR;
-					}
+					out = property.getName() + PROPERTY_VALUE_SEPARATOR;
 				}
-			} else {
-				out = property.getName() + PROPERTY_VALUE_SEPARATOR;
-			}
-		} else {
-			out = property.getName() + PROPERTY_VALUE_SEPARATOR;
-
 		}
 		return out;
 	}
@@ -1007,7 +1003,7 @@ public class StereotypeUtil {
 		}
 		return name;
 	}
-	
+
 	/**
 	 * This allows to get all stereotypes of a profile (check in sub packages).
 	 * 
@@ -1019,7 +1015,7 @@ public class StereotypeUtil {
 		stereotypes.addAll(getStereotypeInMembers(profile.getOwnedMembers()));
 		return stereotypes;
 	}
-	
+
 	/**
 	 * This allows to get all stereotypes in sub packages.
 	 * 
@@ -1028,23 +1024,23 @@ public class StereotypeUtil {
 	 */
 	protected static List<Stereotype> getStereotypeInMembers(final List<NamedElement> members){
 		final List<Stereotype> stereotypes = new ArrayList<Stereotype>();
-		
+
 		// Loop on members
 		final Iterator<NamedElement> membersIterator = members.iterator();
 		while(membersIterator.hasNext()){
 			NamedElement member = membersIterator.next();
-			
+
 			// Get stereotypes in packages
 			if(member instanceof Package){
 				stereotypes.addAll(((Package) member).getOwnedStereotypes());
 			}
-			
+
 			// Loop recursively in members
 			if(member instanceof Namespace){
 				stereotypes.addAll(getStereotypeInMembers(((Namespace) member).getOwnedMembers()));
 			}
 		}
-		
+
 		return stereotypes;
 	}
 }
