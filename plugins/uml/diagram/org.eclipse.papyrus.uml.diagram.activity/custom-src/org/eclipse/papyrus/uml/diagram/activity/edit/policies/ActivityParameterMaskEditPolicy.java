@@ -58,7 +58,7 @@ public class ActivityParameterMaskEditPolicy extends AbstractMaskManagedEditPoli
 
 	/**
 	 * Add this class to target's listners.
-	 * 
+	 *
 	 * @param target
 	 *            may be null
 	 */
@@ -240,7 +240,10 @@ public class ActivityParameterMaskEditPolicy extends AbstractMaskManagedEditPoli
 	 */
 	@Override
 	public void refreshDisplay() {
-		ActivityParameterNodeLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart) getHost());
+		EditPart labelEditPart = getLabelEditPart();
+		if (labelEditPart instanceof GraphicalEditPart) {
+			ActivityParameterNodeLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart) labelEditPart);
+		}
 	}
 
 	/**
@@ -270,10 +273,11 @@ public class ActivityParameterMaskEditPolicy extends AbstractMaskManagedEditPoli
 	}
 
 	/**
-	 * {@inheritDoc}
+	 *
+	 * @return The label edit part, managed by this edit policy. The edit policy may be applied on the top-level node
+	 * @since 2.0
 	 */
-	@Override
-	public EditPart getHost() {
+	protected EditPart getLabelEditPart() {
 		GraphicalEditPart ep = (GraphicalEditPart) super.getHost();
 		if (ep instanceof ParameterNodeNameEditPart) {
 			return ep;
