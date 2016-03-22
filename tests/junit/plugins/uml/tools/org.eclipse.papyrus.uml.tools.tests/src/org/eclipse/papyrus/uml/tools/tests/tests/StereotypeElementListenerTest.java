@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *  Christian W. Damus - bug 450523
  *  Christian W. Damus - bug 399859
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.tests.tests;
 
@@ -25,7 +25,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.services.IService;
@@ -33,11 +32,10 @@ import org.eclipse.papyrus.infra.core.services.ServiceDescriptor;
 import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
+import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.ModelSetFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
-import org.eclipse.papyrus.sysml.blocks.Block;
-import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
 import org.eclipse.papyrus.uml.tools.commands.UnapplyProfileCommand;
 import org.eclipse.papyrus.uml.tools.commands.UnapplyStereotypeCommand;
@@ -46,7 +44,6 @@ import org.eclipse.papyrus.uml.tools.service.StereotypeElementService;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -56,9 +53,9 @@ import org.junit.Test;
 
 
 /**
- * 
+ *
  * Test class for stereotype actions listener of UML element.
- * 
+ *
  * @author Gabriel Pascual
  *
  */
@@ -599,25 +596,27 @@ public class StereotypeElementListenerTest extends AbstractPapyrusTest {
 	 * Test modification of applied stereotype with static Profile.
 	 */
 	@Test
+	@InvalidTest("To be reimplemented without the SysML Dependency")
 	public void testModifiedSysMLStereotype() {
-
-		initialiseTestCase();
-
-		TransactionalEditingDomain editingDomain = modelSetFixture.getEditingDomain();
-		element.eAdapters().add(assertAppliedStereotypeNotification);
-		element.eAdapters().add(assertUnappliedStereotypeNotification);
-		element.eAdapters().add(assertModifiedStereotypeNotification);
-
-		Stereotype member = sysmlProfile.getOwnedStereotype("Block");
-		editingDomain.getCommandStack().execute(new ApplyStereotypeCommand(element, member, editingDomain));
-		assertAppliedStereotypeNotification.assertNotification(element);
-
-		Block blockApplication = UMLUtil.getStereotypeApplication(element, Block.class);
-		SetCommand setCommand = new SetCommand(editingDomain, blockApplication, BlocksPackage.eINSTANCE.getBlock_IsEncapsulated(), true);
-		editingDomain.getCommandStack().execute(setCommand);
-
-		assertModifiedStereotypeNotification.assertNotification(element);
-		assertUnappliedStereotypeNotification.assertNoNotification(element);
+		Assert.fail("SysML dependency needs to be removed");
+		//
+		// initialiseTestCase();
+		//
+		// TransactionalEditingDomain editingDomain = modelSetFixture.getEditingDomain();
+		// element.eAdapters().add(assertAppliedStereotypeNotification);
+		// element.eAdapters().add(assertUnappliedStereotypeNotification);
+		// element.eAdapters().add(assertModifiedStereotypeNotification);
+		//
+		// Stereotype member = sysmlProfile.getOwnedStereotype("Block");
+		// editingDomain.getCommandStack().execute(new ApplyStereotypeCommand(element, member, editingDomain));
+		// assertAppliedStereotypeNotification.assertNotification(element);
+		//
+		// Block blockApplication = UMLUtil.getStereotypeApplication(element, Block.class);
+		// SetCommand setCommand = new SetCommand(editingDomain, blockApplication, BlocksPackage.eINSTANCE.getBlock_IsEncapsulated(), true);
+		// editingDomain.getCommandStack().execute(setCommand);
+		//
+		// assertModifiedStereotypeNotification.assertNotification(element);
+		// assertUnappliedStereotypeNotification.assertNoNotification(element);
 
 	}
 
@@ -626,26 +625,28 @@ public class StereotypeElementListenerTest extends AbstractPapyrusTest {
 	 * Test undo action on stereotype modification with static Profile.
 	 */
 	@Test
+	@InvalidTest("To be reimplemented without the SysML Dependency")
 	public void testUndoModifiedSysMLStereotype() {
-
-		initialiseTestCase();
-
-		TransactionalEditingDomain editingDomain = modelSetFixture.getEditingDomain();
-		element.eAdapters().add(assertAppliedStereotypeNotification);
-		element.eAdapters().add(assertUnappliedStereotypeNotification);
-		element.eAdapters().add(assertModifiedStereotypeNotification);
-
-		Stereotype member = sysmlProfile.getOwnedStereotype("Block");
-		editingDomain.getCommandStack().execute(new ApplyStereotypeCommand(element, member, editingDomain));
-		assertAppliedStereotypeNotification.assertNotification(element);
-
-		Block blockApplication = UMLUtil.getStereotypeApplication(element, Block.class);
-		SetCommand setCommand = new SetCommand(editingDomain, blockApplication, BlocksPackage.eINSTANCE.getBlock_IsEncapsulated(), true);
-		editingDomain.getCommandStack().execute(setCommand);
-		editingDomain.getCommandStack().undo();
-
-		assertModifiedStereotypeNotification.assertNotification(2, element);
-		assertUnappliedStereotypeNotification.assertNoNotification(element);
+		Assert.fail("SysML dependency needs to be removed");
+		//
+		// initialiseTestCase();
+		//
+		// TransactionalEditingDomain editingDomain = modelSetFixture.getEditingDomain();
+		// element.eAdapters().add(assertAppliedStereotypeNotification);
+		// element.eAdapters().add(assertUnappliedStereotypeNotification);
+		// element.eAdapters().add(assertModifiedStereotypeNotification);
+		//
+		// Stereotype member = sysmlProfile.getOwnedStereotype("Block");
+		// editingDomain.getCommandStack().execute(new ApplyStereotypeCommand(element, member, editingDomain));
+		// assertAppliedStereotypeNotification.assertNotification(element);
+		//
+		// Block blockApplication = UMLUtil.getStereotypeApplication(element, Block.class);
+		// SetCommand setCommand = new SetCommand(editingDomain, blockApplication, BlocksPackage.eINSTANCE.getBlock_IsEncapsulated(), true);
+		// editingDomain.getCommandStack().execute(setCommand);
+		// editingDomain.getCommandStack().undo();
+		//
+		// assertModifiedStereotypeNotification.assertNotification(2, element);
+		// assertUnappliedStereotypeNotification.assertNoNotification(element);
 
 	}
 
@@ -738,7 +739,7 @@ public class StereotypeElementListenerTest extends AbstractPapyrusTest {
 	/**
 	 * Notification assertion adapter.
 	 * Verify if event type was notified.
-	 * 
+	 *
 	 * @author Gabriel Pascual
 	 *
 	 */
@@ -887,7 +888,7 @@ public class StereotypeElementListenerTest extends AbstractPapyrusTest {
 
 		/**
 		 * Assert the particular stereotype (un)applied.
-		 * 
+		 *
 		 * @param notifier
 		 *            the notifier on which to assert
 		 * @param stereotype
@@ -908,7 +909,7 @@ public class StereotypeElementListenerTest extends AbstractPapyrusTest {
 
 		/**
 		 * Assert the particular stereotypes (un)applied, in order.
-		 * 
+		 *
 		 * @param notifier
 		 *            the notifier on which to assert
 		 * @param first

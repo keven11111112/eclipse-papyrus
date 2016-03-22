@@ -29,10 +29,6 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <includes id="org.eclipse.papyrus.infra.widget.feature" version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.sysml.diagram.feature" version="0.0.0"/>
-
-   <includes id="org.eclipse.papyrus.sysml.feature" version="0.0.0"/>
-
    <includes id="org.eclipse.papyrus.uml.feature" version="0.0.0"/>
 
    <includes id="org.eclipse.papyrus.uml.modelexplorer.feature" version="0.0.0"/>
@@ -49,11 +45,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <includes id="org.eclipse.papyrus.uml.diagram.feature" version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.sysml.properties.feature" version="0.0.0"/>
-
    <includes id="org.eclipse.papyrus.infra.emf.feature" version="0.0.0"/>
-
-   <includes id="org.eclipse.papyrus.sysml.modelexplorer.feature" version="0.0.0"/>
 
    <includes id="org.eclipse.papyrus.uml.textedit.feature" version="0.0.0"/>
 
@@ -72,8 +64,6 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes id="org.eclipse.papyrus.uml.xtext.integration.feature" version="0.0.0"/>
 
    <includes id="org.eclipse.papyrus.infra.nattable.feature" version="0.0.0"/>
-
-   <includes id="org.eclipse.papyrus.sysml.nattable.feature" version="0.0.0"/>
 
    <includes id="org.eclipse.papyrus.uml.nattable.feature" version="0.0.0"/>
 

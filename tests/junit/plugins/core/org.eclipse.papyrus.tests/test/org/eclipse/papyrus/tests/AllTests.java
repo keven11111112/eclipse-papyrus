@@ -35,7 +35,7 @@ public class AllTests {
 
 	/** list of classes to launch */
 	static {
-		suiteClasses = new ArrayList<ITestSuiteClass>();
+		suiteClasses = new ArrayList<>();
 
 		/* **************** plugins *********************** */
 		/* developper */
@@ -96,11 +96,6 @@ public class AllTests {
 
 		/* Diagram Assistants test suite */
 		org.eclipse.papyrus.tests.diagramassistants.AllTests.appendTo(suiteClasses);
-
-		if (System.getProperty("no.SysML.tests") == null) {
-			// SysML tests
-			suiteClasses.addAll(AllSysMLTests.suiteClasses);
-		}
 
 		/* Profile Drafter */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.profile.drafter.tests.AllTests.class));

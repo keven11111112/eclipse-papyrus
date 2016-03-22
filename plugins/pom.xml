@@ -19,7 +19,6 @@
 		<module>views</module>
 		<module>editor</module>
 		<module>uml</module>
-		<module>sysml</module>
 		<module>customization</module>
 		<module>doc</module>
 		<module>team</module>

@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.papyrus.tests.extra.launcher.ITestSuiteClass;
-import org.eclipse.papyrus.tests.extra.launcher.PluginTestSuiteClass;
+import org.eclipse.papyrus.junit.framework.runner.ITestSuiteClass;
+import org.eclipse.papyrus.junit.framework.runner.PluginTestSuiteClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
@@ -44,6 +44,11 @@ public class AllTests {
 		/* Migration tests */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.migration.rsa.tests.AllTests.class));
 
+		if (System.getProperty("no.SysML.tests") == null) {
+			// SysML tests
+			suiteClasses.addAll(AllSysMLTests.suiteClasses);
+		}
+
 		/* UML Compare tests */
 		/**
 		 * UML Compare tests have been temporarily disabled. See:
@@ -56,7 +61,7 @@ public class AllTests {
 		// suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.diff.tests.AllTests.class));
 
 		/* **************** plugins *********************** */
-		
+
 	}
 
 	/**

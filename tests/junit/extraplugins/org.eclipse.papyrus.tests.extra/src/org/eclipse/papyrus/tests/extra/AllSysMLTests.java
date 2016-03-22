@@ -11,7 +11,7 @@
  *  Christian W. Damus - bugs 451230, 488791
  *
  *****************************************************************************/
-package org.eclipse.papyrus.tests;
+package org.eclipse.papyrus.tests.extra;
 
 import java.util.ArrayList;
 import java.util.List;

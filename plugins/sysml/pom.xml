@@ -3,10 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>org.eclipse.papyrus.sysml</artifactId>
 	<packaging>pom</packaging>
+	<version>0.0.1-SNAPSHOT</version>
 	<parent>
 	    <groupId>org.eclipse.papyrus</groupId>
-	    <artifactId>org.eclipse.papyrus.plugins</artifactId>
-	    <version>0.0.1-SNAPSHOT</version>
+		<artifactId>org.eclipse.papyrus.extra.releng</artifactId>
+		<version>1.2.0-SNAPSHOT</version>
+		<relativePath>../../releng/extra</relativePath>
     </parent>
 	<name>Papyrus SysML</name>
 	<description>Top container of the Papyrus SysML 1.1 modeler.</description>

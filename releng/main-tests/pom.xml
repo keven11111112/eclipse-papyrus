@@ -18,10 +18,7 @@
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.core.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.nattable.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.services.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.diagram.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.nattable.feature</module>
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.services.feature</module>		
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.assistants.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.decoratormodel.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.diagram.feature</module>
@@ -63,14 +60,6 @@
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.resourceloading.tests</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.semantic.tests</module>
 		<module>../../tests/junit/plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.configuration.tests</module>
-		<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.blockdefinition.tests</module>
-		<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.internalblock.tests</module>
-		<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.parametric.tests</module>
-		<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.requirement.tests</module>
-		<module>../../tests/junit/plugins/sysml/nattable</module>
-		<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.modelexplorer.tests</module>
-		<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.service.types.tests</module>
-		<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.tests</module>
 		<module>../../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.assistants.generator.tests</module>
 		<module>../../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.types.generator.tests</module>
 		<module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.tests</module>

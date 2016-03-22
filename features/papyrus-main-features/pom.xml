@@ -29,11 +29,6 @@
 		<module>org.eclipse.papyrus.infra.viewpoints.feature</module>
 		<module>org.eclipse.papyrus.infra.widget.feature</module>
 		<module>org.eclipse.papyrus.sdk.feature</module>
-		<module>org.eclipse.papyrus.sysml.diagram.feature</module>
-		<module>org.eclipse.papyrus.sysml.feature</module>
-		<module>org.eclipse.papyrus.sysml.modelexplorer.feature</module>
-		<module>org.eclipse.papyrus.sysml.nattable.feature</module>
-		<module>org.eclipse.papyrus.sysml.properties.feature</module>
 		<module>org.eclipse.papyrus.uml.alf.feature</module>
 		<module>org.eclipse.papyrus.uml.assistants.feature</module>
 		<module>org.eclipse.papyrus.uml.decoratormodel.feature</module>

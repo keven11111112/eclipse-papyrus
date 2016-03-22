@@ -28,6 +28,18 @@
     <module>../../tests/junit/extraplugins/migration/org.eclipse.papyrus.migration.rsa.tests</module>
     <!-- Tests for umlrt -->
     <module>../../tests/junit/extraplugins/umlrt/org.eclipse.papyrus.umlrt.validation.tests</module>
+    
+	<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.diagram.feature</module>
+	<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.feature</module>
+	<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.nattable.feature</module>
+	<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.blockdefinition.tests</module>
+	<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.internalblock.tests</module>
+	<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.parametric.tests</module>
+	<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.requirement.tests</module>
+	<module>../../tests/junit/plugins/sysml/nattable</module>
+	<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.modelexplorer.tests</module>
+	<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.service.types.tests</module>
+	<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.tests</module>
 	
    </modules>
 	<repositories>
