@@ -165,9 +165,14 @@ public class CustomStyleObservableList extends EMFObservableList implements ICha
 
 	@Override
 	public void dispose() {
-		view.eAdapters().remove(listener);
-		listener.dispose();
-		listener = null;
+		if (isDisposed()) {
+			return;
+		}
+		if (listener != null) {
+			view.eAdapters().remove(listener);
+			listener.dispose();
+			listener = null;
+		}
 		observableConcreteList.dispose();
 		super.dispose();
 	}
