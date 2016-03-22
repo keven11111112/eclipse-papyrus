@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Camille Letavernier - camille.letavernier@cea.fr - Bug 490054
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
@@ -24,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
+import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.uml2.uml.ActivityParameterNode;
@@ -33,8 +34,14 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Base class to show and hide stream and exception label in {@link ActivityParameterNodeEditPart}
+ *
+ * @since 2.0
  */
 public abstract class AbstractShowHideParameterPropertyEditPolicy extends AbstractEditPolicy implements NotificationListener {
+
+	protected ActivityParameterNode semanticElement;
+
+	protected Parameter currentParameter;
 
 	@Override
 	public void activate() {
@@ -54,10 +61,10 @@ public abstract class AbstractShowHideParameterPropertyEditPolicy extends Abstra
 	 * Add listeners to host semantic
 	 */
 	protected void startListen() {
-		ActivityParameterNode node = getHostSemantic();
-		addEObjectListener(node);
-		Parameter parameter = node.getParameter();
-		addEObjectListener(parameter);
+		semanticElement = findHostSemantic();
+		addEObjectListener(semanticElement);
+		currentParameter = semanticElement.getParameter();
+		addEObjectListener(currentParameter);
 		refresh();
 	}
 
@@ -67,11 +74,8 @@ public abstract class AbstractShowHideParameterPropertyEditPolicy extends Abstra
 	 * Remove listeners to host semantic
 	 */
 	protected void stopListen() {
-		ActivityParameterNode node = getHostSemantic();
-		Parameter parameter = node.getParameter();
-		removeEObjectListener(parameter);
-		removeEObjectListener(node);
-		
+		removeEObjectListener(semanticElement);
+		removeEObjectListener(currentParameter);
 	}
 
 	/**
@@ -99,10 +103,10 @@ public abstract class AbstractShowHideParameterPropertyEditPolicy extends Abstra
 
 	/**
 	 * Resolve host semantic element
-	 * 
+	 *
 	 * @return {@link ActivityParameterNode}
 	 */
-	protected ActivityParameterNode getHostSemantic() {
+	protected ActivityParameterNode findHostSemantic() {
 		return (ActivityParameterNode) getHost().resolveSemanticElement();
 	}
 
@@ -122,21 +126,23 @@ public abstract class AbstractShowHideParameterPropertyEditPolicy extends Abstra
 	@Override
 	public void notifyChanged(Notification notification) {
 		Object object = notification.getNotifier();
-		if (isActivityParameterNode(object)) {
+		if (object == semanticElement) {
 			notifyActivityParameterNode(notification);
-		} else if (isParameter(object)) {
+		} else if (object != null && object == currentParameter) {
 			notifyParameter(notification);
 		}
 	}
 
 	/**
 	 * Process notification from {@link Parameter}
+	 *
 	 * @param notification
 	 */
 	protected abstract void notifyParameter(Notification notification);
 
 	/**
 	 * Process notification from {@link ActivityParameterNode}
+	 *
 	 * @param notification
 	 */
 	protected void notifyActivityParameterNode(Notification notification) {
@@ -146,31 +152,20 @@ public abstract class AbstractShowHideParameterPropertyEditPolicy extends Abstra
 			case Notification.SET:
 				removeEObjectListener(notification.getOldValue());
 				addEObjectListener(notification.getNewValue());
+				if (notification.getFeature() == UMLPackage.Literals.ACTIVITY_PARAMETER_NODE__PARAMETER) {
+					currentParameter = (Parameter) notification.getNewValue();
+				}
 				break;
 			case Notification.UNSET:
 				removeEObjectListener(notification.getOldValue());
+				if (notification.getFeature() == UMLPackage.Literals.ACTIVITY_PARAMETER_NODE__PARAMETER) {
+					currentParameter = null;
+				}
 				break;
 			}
 			refresh();
 			break;
 		}
-	}
-
-	/**
-	 * Check is eObject equals to host {@link ActivityParameterNode}
-	 */
-	private boolean isActivityParameterNode(Object eObject) {
-		return getHostSemantic().equals(eObject);
-	}
-
-	/**
-	 * Check is eObject equals to {@link Parameter} of host {@link ActivityParameterNode}
-	 */
-	private boolean isParameter(Object eObject) {
-		if (eObject == null) {
-			return false;
-		}
-		return eObject.equals(getHostSemantic().getParameter());
 	}
 
 	/**
@@ -209,8 +204,8 @@ public abstract class AbstractShowHideParameterPropertyEditPolicy extends Abstra
 	 */
 	protected View getLabelView(String VID) {
 		View labelView = null;
-		for(Object child: getHost().getNotationView().getChildren()) {
-			View view = (View)child;
+		for (Object child : getHost().getNotationView().getChildren()) {
+			View view = (View) child;
 			if (view.getType().equals(VID)) {
 				labelView = view;
 				break;
