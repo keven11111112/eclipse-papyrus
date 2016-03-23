@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.examples.feature"
+      label="Papyrus Examples (Incubation)"
+      version="0.0.1.qualifier"
+      provider-name="Eclipse Modeling Project">
+
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+All rights reserved.   This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+   
+   <!--Examples Core-->
+
+   <plugin
+         id="org.eclipse.papyrus.example.core.lifecycleevents"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+      <plugin
+         id="org.eclipse.papyrus.example.core.sashwindows.fulleditor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+     <plugin
+         id="org.eclipse.papyrus.example.core.sashwindows.simpleeditor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+   <!--Examples EMF-->
+   
+     <plugin
+         id="org.eclipse.papyrus.outline.emftree"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+      <!--Examples INFRA-->
+
+      <plugin
+         id="org.eclipse.papyrus.infra.gmfdiag.connectionpoint.preferences"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+    <!--Examples OTHERS-->
+
+      <plugin
+         id="org.eclipse.papyrus.example.text.instance"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+         <!--Examples UML-->    
+         
+              <plugin
+         id="org.eclipse.papyrus.example.uml.comment.editor.newresource"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+               <plugin
+         id="org.eclipse.papyrus.example.uml.comment.editor.sharedresource"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+               <plugin
+         id="org.eclipse.papyrus.uml.diagram.emftree"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+               <plugin
+         id="org.eclipse.papyrus.thousandcreation"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+               <plugin
+         id="org.eclipse.papyrus.uml.diagram.example.programmaticcreation"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+        
+           <!--Examples USERS-->
+           
+                          <plugin
+         id="org.eclipse.papyrus.uml.diagram.example.programmaticcreation"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+</feature>

@@ -1,30 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>org.eclipse.papyrus</artifactId>
-		<groupId>org.eclipse.papyrus</groupId>
-		<version>1.0.1-SNAPSHOT</version>
-		<relativePath>../releng/top-pom-main.xml</relativePath>
+	    <groupId>org.eclipse.papyrus</groupId>
+	    <artifactId>org.eclipse.papyrus.releng</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../releng/main/pom.xml</relativePath>
 	</parent>
 	<artifactId>org.eclipse.papyrus.examples</artifactId>
-	<groupId>org.eclipse.papyrus</groupId>
+	<name>Papyrus Examples Plugins</name>
 	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>./core/org.eclipse.papyrus.example.core.lifecycleevents</module>
-		<module>./core/org.eclipse.papyrus.example.core.sashwindows.fulleditor</module>
-		<module>./core/org.eclipse.papyrus.example.core.sashwindows.simpleeditor</module>
-		<!-- FIXME compilation error <module>./others/org.eclipse.papyrus.example.diagram.simplediagram</module> -->
-		<module>./infra/org.eclipse.papyrus.example.infra.servicesregistry.retrieval</module>
-		<module>./org.eclipse.papyrus.example.text.instance</module>
-		<module>./org.eclipse.papyrus.example.uml.comment.editor.newresource</module>
-		<module>./org.eclipse.papyrus.example.uml.comment.editor.sharedresource</module>
-		<module>./infra/org.eclipse.papyrus.infra.gmfdiag.connectionpoint.preferences</module>
-		<module>./emf/org.eclipse.papyrus.outline.emftree</module>
-		<module>./uml/org.eclipse.papyrus.thousandcreation</module>
-		<module>./uml/org.eclipse.papyrus.uml.diagram.example.programmaticcreation</module>
-		<module>org.eclipse.papyrus.uml.diagram.emftree</module>
-		<!-- <module>../examples/uml/org.eclipse.papyrus.uml.textual.editors.example</module> -->
+		<module>core</module>
+		<module>emf</module>
+		<module>infra</module>
+		<module>others</module>
+		<module>uml</module>
+		<module>user</module>
 	</modules>
+	
+	<profiles>
+		<profile>
+			<id>defaultProfile</id>
+			<repositories>
+				<repository>
+					<id>papyrus-main</id>
+					<layout>p2</layout>
+					<url>${papyrus.repo.main}</url>
+				</repository>
+				<repository>
+					<id>papyrus-extra</id>
+					<layout>p2</layout>
+					<url>${papyrus.repo.extra}</url>
+				</repository>
+			</repositories>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
 </project>

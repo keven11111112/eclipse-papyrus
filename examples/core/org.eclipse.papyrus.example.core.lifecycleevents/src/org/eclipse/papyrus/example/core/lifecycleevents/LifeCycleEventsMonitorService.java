@@ -13,10 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.example.core.lifecycleevents;
 
-import org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent;
-import org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider;
-import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener;
-import org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.DoSaveEvent;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.ILifeCycleEventsProvider;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveEventListener;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.LifeCycleEventsProvider;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;

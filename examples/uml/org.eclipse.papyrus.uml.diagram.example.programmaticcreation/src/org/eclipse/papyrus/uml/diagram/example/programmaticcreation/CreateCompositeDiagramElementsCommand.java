@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLViewProvider;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Class;
@@ -52,9 +52,9 @@ public class CreateCompositeDiagramElementsCommand extends AbstractEMFOperation 
 	protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
 
-		try {
-			ISashWindowsContainer windowsContainer =
-				ServiceUtilsForHandlers.getInstance().getISashWindowsContainer(m_event);
+		
+			ISashWindowsContainer windowsContainer = null;
+				//ServiceUtilsForHandlers.getInstance().getISashWindowsContainer(m_event);
 			Object model = windowsContainer.getActiveSashWindowsPage().getRawModel();
 			if(model instanceof PageRef) {
 				EObject diagramEObj = ((PageRef)model).getEmfPageIdentifier();
@@ -73,10 +73,7 @@ public class CreateCompositeDiagramElementsCommand extends AbstractEMFOperation 
 					addCuToCompositeDiagram((Class) m_context, (Class) m_context, cu, view, diagram);
 				}
 			}
-		}
-		catch (ServiceException svcE) {
-			System.err.println(svcE.toString());
-		}
+		
 		return Status.OK_STATUS;
 	}
 
@@ -84,7 +81,7 @@ public class CreateCompositeDiagramElementsCommand extends AbstractEMFOperation 
 	{
 		// add CU to compartment
 		Object compartment = view.getChildren().get(1);
-		View roleBindingView = compViewProvider.createCollaborationUse_3071(cu, (BasicCompartment)compartment, -1, true,
+		View roleBindingView = compViewProvider.createCollaborationUse_Shape(cu, (BasicCompartment)compartment, -1, true,
 			UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		Location location = NotationFactory.eINSTANCE.createLocation();
 		location.setX(50);

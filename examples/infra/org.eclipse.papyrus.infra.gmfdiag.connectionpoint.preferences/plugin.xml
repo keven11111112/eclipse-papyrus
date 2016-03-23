@@ -7,9 +7,5 @@
             class="org.eclipse.papyrus.infra.gmfdiag.connectionpoint.preferences.CustomPreferenceInitializer">
       </initializer>
    </extension>
-   <extension
-         point="org.eclipse.ui.startup">
-      <startup></startup>
-   </extension>
 
 </plugin>

@@ -21,7 +21,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.ui.util.EditorUtils;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.uml2.uml.Package;
 

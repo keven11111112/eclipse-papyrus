@@ -31,7 +31,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLViewProvider;
@@ -61,9 +61,9 @@ public class CreateSequenceDiagramElementsCommand extends AbstractEMFOperation {
 	protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
 
-		try {
-			ISashWindowsContainer windowsContainer =
-				ServiceUtilsForHandlers.getInstance().getISashWindowsContainer(m_event);
+		//try {
+			ISashWindowsContainer windowsContainer = null;
+				//ServiceUtilsForHandlers.getInstance().getISashWindowsContainer(m_event);
 			Object model = windowsContainer.getActiveSashWindowsPage().getRawModel();
 			if(model instanceof PageRef) {
 				EObject diagramEObj = ((PageRef)model).getEmfPageIdentifier();
@@ -109,10 +109,10 @@ public class CreateSequenceDiagramElementsCommand extends AbstractEMFOperation {
 					addMessage(message, diagram, lifelineV1, lifelineV2);
 				}
 			}
-		}
+		/*}
 		catch (ServiceException svcE) {
 			System.err.println(svcE.toString());
-		}
+		}*/
 		return Status.OK_STATUS;
 	}
 
@@ -158,7 +158,7 @@ public class CreateSequenceDiagramElementsCommand extends AbstractEMFOperation {
 	{
 		// get first compartment of view
 		Object compartment = interactionView.getChildren().get(1);
-		Node lifelineView = sequenceDiagViewProvider.createDurationConstraint_3021(durationContraint, (View) compartment, -1, true,
+		Node lifelineView = sequenceDiagViewProvider.createDurationConstraint_Shape(durationContraint, (View) compartment, -1, true,
 			UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		Bounds location = NotationFactory.eINSTANCE.createBounds();
 		location.setX(x);
@@ -178,7 +178,7 @@ public class CreateSequenceDiagramElementsCommand extends AbstractEMFOperation {
 	 */
 	public void addMessage(Message message, Diagram diagram, View lifelineSrcV, View lifelineDstV)
 	{
-		View messageView = sequenceDiagViewProvider.createMessage_4004(message, diagram, -1, true,
+		View messageView = sequenceDiagViewProvider.createMessage_AsynchEdge(message, diagram, -1, true,
 				UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		if(messageView instanceof Edge) {
 			Edge messageEdge = (Edge) messageView;

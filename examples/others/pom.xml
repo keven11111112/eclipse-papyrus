@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.eclipse.papyrus</groupId>
+		<artifactId>org.eclipse.papyrus.examples</artifactId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>org.eclipse.papyrus.examples.others</artifactId>
+	<packaging>pom</packaging>
+	<modules>
+		<!-- FIXME compilation error <module>org.eclipse.papyrus.example.diagram.simplediagram</module>-->
+		<module>org.eclipse.papyrus.example.text.instance</module>
+	</modules>
+</project>
