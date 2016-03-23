@@ -57,12 +57,6 @@
    <feature url="features/org.eclipse.papyrus.layers.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.layers.feature" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.extra.umlrt.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.umlrt.feature" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.extra.umlrt.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.umlrt.feature.source" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
    <feature url="features/org.eclipse.papyrus.extra.eastadl.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.eastadl.feature" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>

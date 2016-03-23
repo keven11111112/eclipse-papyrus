@@ -24,7 +24,6 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.migration.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.robotml.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.uml.compare.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.umlrt.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.layers.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.robotml.generators.intempora.rtmaps.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.export.feature</module>
@@ -162,15 +161,10 @@
 		<module>../../extraplugins/alf/ui/org.eclipse.papyrus.uml.alf.properties.xtext</module>
 		<module>../../extraplugins/alf/ui/org.eclipse.papyrus.uml.alf.preferences</module>
 
-		<!-- Papyrus Uml Rt -->
-		<module>../../extraplugins/umlrt/org.eclipse.papyrus.umlrt</module>
-		<module>../../extraplugins/umlrt/org.eclipse.papyrus.umlrt.ui</module>
-		<module>../../extraplugins/umlrt/org.eclipse.papyrus.umlrt.properties</module>
-		<module>../../extraplugins/umlrt/org.eclipse.papyrus.umlrt.validation</module>
-		<module>../../extraplugins/umlrt/org.eclipse.papyrus.umlrt.wizard</module>
-
+		<!-- RSA Migration Tool -->
 		<module>../../extraplugins/migration/org.eclipse.papyrus.m2m.qvto</module>
 		<module>../../extraplugins/migration/org.eclipse.papyrus.migration.rsa</module>
+		
 		<!-- Papyrus Uml Diagram Ecore -->
 		<module>../../extraplugins/papyrus4ecore/org.eclipse.papyrus.uml.diagram.ecore</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.ecore.feature</module>

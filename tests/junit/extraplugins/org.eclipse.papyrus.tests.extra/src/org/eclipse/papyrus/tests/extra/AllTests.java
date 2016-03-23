@@ -38,9 +38,6 @@ public class AllTests {
 		/* CPP Codegen tests */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.cpp.codegen.tests.AllPapyrusCPPCodegenTests.class));
 
-		/* UmlRT tests */
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.umlrt.validation.tests.AllTests.class));
-
 		/* Migration tests */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.migration.rsa.tests.AllTests.class));
 
