@@ -297,20 +297,24 @@ public class SelectDiagramCategoryPage extends WizardPage {
 			}
 		}
 
-		Label coreLabel = new Label(group, SWT.NONE);
-		coreLabel.setText(Messages.SelectDiagramCategoryPage_umlGroup);
-		for (DiagramCategoryDescriptor diagramCategoryDescriptor : descriptorUMLSet) {
-			Button button = createCategoryButton(diagramCategoryDescriptor, group);
-			button.addSelectionListener(listener);
-			myDiagramKindButtons.add(button);
+		if (!descriptorUMLSet.isEmpty()) {
+			Label coreLabel = new Label(group, SWT.NONE);
+			coreLabel.setText(Messages.SelectDiagramCategoryPage_umlGroup);
+			for (DiagramCategoryDescriptor diagramCategoryDescriptor : descriptorUMLSet) {
+				Button button = createCategoryButton(diagramCategoryDescriptor, group);
+				button.addSelectionListener(listener);
+				myDiagramKindButtons.add(button);
+			}
 		}
 
-		Label dsmlLabel = new Label(group, SWT.NONE);
-		dsmlLabel.setText(Messages.SelectDiagramCategoryPage_dsmlGroup);
-		for (DiagramCategoryDescriptor diagramCategoryDescriptor : descriptorDSMLSet) {
-			Button button = createCategoryButton(diagramCategoryDescriptor, group);
-			button.addSelectionListener(listener);
-			myDiagramKindButtons.add(button);
+		if (!descriptorDSMLSet.isEmpty()) {
+			Label dsmlLabel = new Label(group, SWT.NONE);
+			dsmlLabel.setText(Messages.SelectDiagramCategoryPage_dsmlGroup);
+			for (DiagramCategoryDescriptor diagramCategoryDescriptor : descriptorDSMLSet) {
+				Button button = createCategoryButton(diagramCategoryDescriptor, group);
+				button.addSelectionListener(listener);
+				myDiagramKindButtons.add(button);
+			}
 		}
 
 		checkDiagramCategoryButtons();
