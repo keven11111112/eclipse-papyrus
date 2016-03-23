@@ -11,7 +11,8 @@
       modelID="PapyrusUMLSequenceDiagram"
       domainFileExtension="PapyrusUMLSequence"
       dynamicTemplates="true"
-      templateDirectory="/org.eclipse.papyrus.def/xtend/">
+      templateDirectory="/org.eclipse.papyrus.def/xtend/"
+      pluginDirectory="/org.eclipse.papyrus.uml.diagram.sequence/src-gen">
     <audits>
       <categories
           id="org.eclipse.uml2.uml.util.UMLValidator.validate"
