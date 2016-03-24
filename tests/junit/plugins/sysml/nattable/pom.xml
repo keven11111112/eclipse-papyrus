@@ -16,7 +16,9 @@
 
 	<modules>
 		<module>org.eclipse.papyrus.sysml.nattable.allocation.tests</module>
-		<module>org.eclipse.papyrus.sysml.nattable.requirement.tests</module>
+		
+		<!-- Temporarily disabled - Bug 490206 -->
+		<!-- module>org.eclipse.papyrus.sysml.nattable.requirement.tests</module-->
 	</modules>
 
 </project>

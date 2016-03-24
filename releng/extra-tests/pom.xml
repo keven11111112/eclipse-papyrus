@@ -32,7 +32,10 @@
 	<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.blockdefinition.tests</module>
 	<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.internalblock.tests</module>
 	<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.parametric.tests</module>
-	<module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.requirement.tests</module>
+	
+	<!-- Temporarily disabled - Bug 490206 -->
+	<!-- module>../../tests/junit/plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.requirement.tests</module-->
+	
 	<module>../../tests/junit/plugins/sysml/nattable</module>
 	<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.modelexplorer.tests</module>
 	<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.service.types.tests</module>
