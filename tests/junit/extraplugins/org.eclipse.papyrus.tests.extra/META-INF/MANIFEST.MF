@@ -14,10 +14,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.sysml.diagram.blockdefinition.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.sysml.diagram.internalblock.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.sysml.diagram.parametric.tests;bundle-version="1.2.0",
- org.eclipse.papyrus.sysml.diagram.requirement.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.sysml.modelexplorer.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.sysml.nattable.allocation.tests;bundle-version="1.2.0",
- org.eclipse.papyrus.sysml.nattable.requirement.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.sysml.service.types.tests;bundle-version="1.2.0"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy

@@ -37,9 +37,12 @@ public class AllSysMLTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.modelexplorer.tests.suites.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.diagram.internalblock.tests.suites.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.suites.AllTests.class));
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.diagram.requirement.test.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.diagram.parametric.tests.suites.AllTests.class));
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.nattable.requirement.tests.tests.AllTests.class));
+
+		// FIXME Disabled for Bug 490206
+		// suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.diagram.requirement.test.AllTests.class));
+		// suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.nattable.requirement.tests.tests.AllTests.class));
+
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.nattable.allocation.tests.tests.AllTests.class));
 	}
 }
