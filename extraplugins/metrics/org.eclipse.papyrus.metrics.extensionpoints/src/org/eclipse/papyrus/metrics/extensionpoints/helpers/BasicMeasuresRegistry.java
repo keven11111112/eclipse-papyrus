@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.metrics.extensionpoints.Activator;
 import org.omg.smm.Measure;
 
 /**
@@ -32,7 +33,7 @@ public class BasicMeasuresRegistry {
 		return measures;
 	}
 
-	private static final String EXTENSION_POINT_ID = "org.eclipse.papyrus.metrics.extensionpoints.measure";
+	private static final String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".measure"; //$NON-NLS-1$
 
 	public static String getExtensionPointId() {
 		return EXTENSION_POINT_ID;
@@ -52,34 +53,30 @@ public class BasicMeasuresRegistry {
 	}
 
 	/**
-	 * Initializes the registry.
+	 * Initializes the registry
 	 */
 	protected void init() {
-		// Resets values
 		measures = null;
 		measures = new ArrayList<Measure>();
-		// Creates the list only when the registry is acceded for the first time
 		readExtensions();
 	}
 
 	/**
-	 * Reads the extensions to find classes that implements {@link Measure}
+	 * Reads the extensions to find classes that implement {@link Measure}
 	 */
-	protected ArrayList<?> readExtensions() {
-		ArrayList<Object> extensions = new ArrayList<Object>();
+	protected void readExtensions() {
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
 		IConfigurationElement[] elements = registry.getConfigurationElementsFor(EXTENSION_POINT_ID);
 		try {
 			for (IConfigurationElement element : elements) {
 				final Object o = element.createExecutableExtension("class");
 				if (o instanceof Measure) {
-					measures.add((Measure) o);
+					this.measures.add((Measure) o);
 				}
 			}
 		} catch (CoreException ex) {
-			System.err.println(ex.getMessage());
+			Activator.log.error(ex);
 		}
-		return extensions;
 	}
-	
+
 }

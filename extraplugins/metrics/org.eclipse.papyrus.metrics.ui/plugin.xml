@@ -9,8 +9,8 @@
          <menu
                icon="platform:/plugin/org.eclipse.papyrus.metrics.ui/images/Papyrus_Metrics_logo_16x16.png"
                id="papyrus.metrics.menu"
-               label="Papyrus Metrics"
-               tooltip="Metrics about Papyrus models">
+               label="%menu.label"
+               tooltip="%menu.tooltip">
             <visibleWhen>
                <with
                      variable="activeEditorId">
@@ -27,8 +27,8 @@
          <menu
                icon="platform:/plugin/org.eclipse.papyrus.metrics.ui/images/Papyrus_Metrics_logo_16x16.png"
                id="papyrus.metrics.menu"
-               label="Papyrus Metrics"
-               tooltip="Metrics about Papyrus models">
+               label="%menu.label.0"
+               tooltip="%menu.tooltip.0">
          </menu>
       </menuContribution>
    </extension>
@@ -40,16 +40,16 @@
          <command
                commandId="org.eclipse.papyrus.metrics.handlers.MeasureMetricsHandler"
                icon="platform:/plugin/org.eclipse.papyrus.metrics.ui/images/MetricsGenerate_16x16.png"
-               label="Get Measure Values "
+               label="%command.label"
                style="push"
-               tooltip="Get measure values from registered SMM models">
+               tooltip="%command.tooltip">
          </command>
          <command
                commandId="org.eclipse.papyrus.metrics.handlers.MeasureMetricsForSmmHandler"
                icon="platform:/plugin/org.eclipse.papyrus.metrics.ui/images/MetricsGenerateFromFile_16x16.png"
-               label="Get Measure Values from Smm Model"
+               label="%command.label.0"
                style="push"
-               tooltip="Get measure values from an SMM model saved as an .xmi file">
+               tooltip="%command.tooltip.0">
          </command>
       </menuContribution>
    </extension>

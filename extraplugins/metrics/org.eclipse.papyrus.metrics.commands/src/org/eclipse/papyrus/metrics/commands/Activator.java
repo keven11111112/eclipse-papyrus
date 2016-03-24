@@ -14,31 +14,53 @@
  *****************************************************************************/
 package org.eclipse.papyrus.metrics.commands;
 
-import org.osgi.framework.BundleActivator;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-public class Activator implements BundleActivator {
+public class Activator extends AbstractUIPlugin {
 
-	private static BundleContext context; 
+	// The plug-in ID
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.metrics.commands"; //$NON-NLS-1$
 
-	static BundleContext getContext() {
-		return context;
+	// The shared instance
+	private static Activator plugin;
+	
+	/**
+	 * The constructor
+	 */
+	public Activator() {
+	}
+	
+	// Papyrus logger
+	public static LogHelper log;
+
+	/*
+	 * (non-Javadoc)
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
+	 */
+	public void start(BundleContext context) throws Exception {
+		super.start(context);
+		plugin = this;
+		log = new LogHelper(this);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
-	public void start(BundleContext bundleContext) throws Exception {
-		Activator.context = bundleContext;
+	public void stop(BundleContext context) throws Exception {
+		plugin = null;
+		super.stop(context);
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
+	
+	/**
+	 * Returns the shared instance
+	 *
+	 * @return the shared instance
 	 */
-	public void stop(BundleContext bundleContext) throws Exception {
-		Activator.context = null;
+	public static Activator getDefault() {
+		return plugin;
 	}
 
 }

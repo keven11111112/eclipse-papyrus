@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.eclipse.papyrus.metrics.commands.Activator;
 import org.eclipse.papyrus.metrics.extensionpoints.helpers.Result;
 import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IDefaultQuerySwitch;
 import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IRecognizerSwitch;
@@ -70,18 +71,18 @@ public class MetricsCalculatorHelper {
 	public void calculateMeasurementScopes(Element element) {
 		for (Measure measure : measures) {
 			if (null == measure.getScope()) {
-				System.err.println("There are not scopes associated to the measure " + measure.getName());
+				Activator.log.warn("There are not scopes associated to the measure " + measure.getName());
 				return;
 			}
 			Scope scope = measure.getScope();
 			if (null == scope.getRecognizer()) {
-				System.err.println("There are not recognizers associated to the scope " + scope.getName());
+				Activator.log.warn("There are not recognizers associated to the scope " + scope.getName());
 				return;
 			}
 			Operation recognizer = scope.getRecognizer();
 			if (recognizer.getLanguage().contentEquals("Java")) {
 				String operationName = recognizer.getBody();
-				if (recognizerSwitch.isRecognized(operationName, element)) {
+				if (recognizerSwitch.isRecognized(operationName, element)) { 
 					updateMeasurementScopes(element, measure);
 					if (element.allOwnedElements() != null) {
 						for (Element currentElement : element.allOwnedElements()) {
@@ -150,7 +151,7 @@ public class MetricsCalculatorHelper {
 			while (measuresIterator.hasNext()) {
 				Measure measure = measuresIterator.next();
 				if (null == measure.getDefaultQuery()) {
-					System.err.println("There are not default queries associated to the measure " + measure.getName());
+					Activator.log.warn("There are not default queries associated to the measure " + measure.getName());
 					return;
 				}
 				Operation operation = measure.getDefaultQuery();

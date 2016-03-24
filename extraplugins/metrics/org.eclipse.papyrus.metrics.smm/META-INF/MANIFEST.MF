@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: OMG Structured Metrics Meta-model (SMM) metamodel
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.metrics.smm;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

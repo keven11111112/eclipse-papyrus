@@ -16,6 +16,7 @@ package org.eclipse.papyrus.metrics.commands.helper;
 
 import java.util.ArrayList;
 
+import org.eclipse.papyrus.metrics.commands.Activator;
 import org.eclipse.papyrus.metrics.extensionpoints.helpers.DefaultQuerySwitchRegistry;
 import org.eclipse.papyrus.metrics.extensionpoints.helpers.ResultsViewersRegistry;
 import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IDefaultQuerySwitch;
@@ -36,7 +37,7 @@ public class RegistersHelper {
 	public IDefaultQuerySwitch getDefaultQuerySwitch() {
 		DefaultQuerySwitchRegistry defaultQuerySwitchRegistry = DefaultQuerySwitchRegistry.getInstance();
 		if (defaultQuerySwitchRegistry.getDefaultQuerySwitch() == null) {
-			System.err.println("There is not a registered default query switch");
+			Activator.log.warn("There is not a registered default query switch");
 			return null;
 		} else
 			return defaultQuerySwitchRegistry.getDefaultQuerySwitch();
@@ -49,7 +50,7 @@ public class RegistersHelper {
 	public IRecognizerSwitch getRecognizerSwitch() {
 		RecognizerSwitchRegistry recognizerSwitchRegistry = RecognizerSwitchRegistry.getInstance();
 		if (recognizerSwitchRegistry.getRecognizerSwitch() == null) {
-			System.err.println("There is not a registered scope recognizer switch");
+			Activator.log.warn("There is not a registered scope recognizer switch");
 			return null;
 		} else
 			return recognizerSwitchRegistry.getRecognizerSwitch();
@@ -62,7 +63,7 @@ public class RegistersHelper {
 		ResultsViewersRegistry resultsViewersRegistry = ResultsViewersRegistry.getInstance();
 		if (resultsViewersRegistry.getMeasuringResultsViewers() == null
 				|| resultsViewersRegistry.getMeasuringResultsViewers().isEmpty()) {
-			System.err.println("There are not registered measuring results viewers");
+			Activator.log.warn("There are not registered measuring results viewers");
 			return null;
 		} else
 			return resultsViewersRegistry.getMeasuringResultsViewers();

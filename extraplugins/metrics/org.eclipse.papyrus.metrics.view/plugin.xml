@@ -5,13 +5,13 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            name="Metrics View"
+            name="%view.name"
             icon="platform:/plugin/org.eclipse.papyrus.metrics.ui/images/Papyrus_Metrics_logo_16x16.png"
             category="org.eclipse.papyrus.views.category"
             class="org.eclipse.papyrus.metrics.view.BasicMetricsView"
             id="org.eclipse.papyrus.metrics.view.BasicMetricsView">
          <description>
-            This view shows quantitative information about the selected model element.
+            %view.description
          </description>
       </view>
    </extension>

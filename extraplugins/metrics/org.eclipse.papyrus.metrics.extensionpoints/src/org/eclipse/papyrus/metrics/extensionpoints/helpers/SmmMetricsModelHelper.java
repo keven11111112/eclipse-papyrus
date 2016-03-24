@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.papyrus.metrics.extensionpoints.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
@@ -33,7 +34,7 @@ import org.omg.smm.SmmPackage;
 
 public class SmmMetricsModelHelper {
 	/**
-	 * Allows to users to select the xmi file containing the smm model.
+	 * Allows to users to select the xmi file containing the smm model
 	 * 
 	 * @return a string describing the absolute path of the first selected file,
 	 *         or null if the dialog was cancelled or an error occurred.
@@ -46,7 +47,7 @@ public class SmmMetricsModelHelper {
 	}
 
 	/**
-	 * Load all the argument file path or URI as instance of the SMM model.
+	 * Loads all the argument file path or URI as an instance of the SMM model
 	 * 
 	 * @param arg
 	 *            the smm model file path or URI.
@@ -57,14 +58,15 @@ public class SmmMetricsModelHelper {
 		SmmModel model = null;
 
 		if (arg.isEmpty()) {
-			System.out.println("Enter a file path or URI that have content like this:");
+			Activator.log.warn("Users entered an empty file path or URI");
+			Activator.log.info("Users must enter a file path or URI that have content like this:");
 			try {
 				Resource resource = resourceSet.createResource(URI.createURI("http:///My.smm"));
 				Attribute root = SmmFactory.eINSTANCE.createAttribute();
 				resource.getContents().add(root);
 				resource.save(System.out, null);
 			} catch (IOException exception) {
-				exception.printStackTrace();
+				Activator.log.error(exception);
 			}
 		}
 		// Register the appropriate resource factory to handle all file
@@ -84,11 +86,11 @@ public class SmmMetricsModelHelper {
 		try {
 			// Demand load resource for this file.
 			Resource resource = resourceSet.getResource(uri, true);
-			System.out.println("Loaded " + uri);
+			Activator.log.info("Loaded " + uri);
 			model = (SmmModel) resource.getContents().get(0);
 		} catch (RuntimeException exception) {
-			System.out.println("Problem loading " + uri);
-			exception.printStackTrace();
+			Activator.log.warn(String.format("Problem loading %s", uri));
+			Activator.log.error(exception);
 		}
 		return model;
 	}

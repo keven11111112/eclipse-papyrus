@@ -36,19 +36,19 @@ public class BasicEclipseViewViewer implements IResultsViewer {
 		try {
 			IWorkbenchPage page =PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			
-			// ensure the Papyrus perspective
+			// Ensure the Papyrus perspective
 			IPerspectiveDescriptor perspective = page.getWorkbenchWindow().getWorkbench().getPerspectiveRegistry().findPerspectiveWithId("org.eclipse.papyrus.infra.core.perspective");
 			if (!perspective.getId().equals(page.getPerspective().getId())) {
 				page.setPerspective(perspective);
 			}
-			// minimize the Welcome view
+			// Minimize the Welcome view
 			for (IViewReference next : page.getViewReferences()) {
 				if ("org.eclipse.ui.internal.introview".equals(next.getId())) {
 					page.setPartState(next, IWorkbenchPage.STATE_MINIMIZED);
 					break;
 				}
 			}
-			// bring the View forward
+			// Bring the View forward
 			IViewPart myView = page.showView(viewId);
 			page.activate(myView);
 			page.setEditorAreaVisible(true);

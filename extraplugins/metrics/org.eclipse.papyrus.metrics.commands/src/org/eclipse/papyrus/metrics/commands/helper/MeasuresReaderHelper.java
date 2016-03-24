@@ -16,9 +16,10 @@ package org.eclipse.papyrus.metrics.commands.helper;
 
 import java.util.ArrayList;
 
+import org.eclipse.papyrus.metrics.commands.Activator;
 import org.eclipse.papyrus.metrics.extensionpoints.helpers.BasicMeasuresRegistry;
 import org.eclipse.papyrus.metrics.extensionpoints.helpers.SmmMetricsModelHelper;
-import org.eclipse.papyrus.metrics.extensionpoints.helpers.SmmModelsRegistry;
+import org.eclipse.papyrus.metrics.extensionpoints.helpers.SmmModelRegistry;
 import org.omg.smm.AbstractMeasureElement;
 import org.omg.smm.Measure;
 import org.omg.smm.MeasureLibrary;
@@ -35,7 +36,8 @@ public class MeasuresReaderHelper {
 	 * Reads instances of {@link Measure} defined in a file selected by the user
 	 * at runtime
 	 * 
-	 * @return a list of {@link Measure} whose value should be calculated
+	 * @return a list of instances of {@link Measure} whose value should be
+	 *         calculated
 	 */
 	public ArrayList<Measure> getMeasuresFromFile() {
 		ArrayList<Measure> measures = new ArrayList<Measure>();
@@ -66,40 +68,43 @@ public class MeasuresReaderHelper {
 	 * org.eclipse.papyrus.metrics.extensionpoints.smmmetricsmodel.
 	 * 
 	 * @return a list of instances of {@link Measure} whose value should be
-	 *         calculated or null if it does not find at least one type of
-	 *         extension that defines measures
+	 *         calculated
 	 */
 	public ArrayList<Measure> getMeasuresFromExtensions() {
 		ArrayList<Measure> measures = new ArrayList<Measure>();
 		boolean existMeasuresFrombasicMeasuresRegistry = false;
-		boolean existMeasuresFromSmmModelsRegistry = false;
+		boolean existMeasuresFromSmmModelRegistry = false;
+
 		BasicMeasuresRegistry basicMeasuresRegistry = BasicMeasuresRegistry.getInstance();
-		
 		if (null == basicMeasuresRegistry.getMeasures() || basicMeasuresRegistry.getMeasures().isEmpty()) {
-			System.err.println("There are not registered basic measures in the extension point "
-					+ BasicMeasuresRegistry.getExtensionPointId());
+			Activator.log.warn("There are not registered implementations of " + Measure.class.toGenericString()
+					+ " in the extension point " + BasicMeasuresRegistry.getExtensionPointId());
 		} else {
+			Activator.log.info("Found registered implementations of " + Measure.class.toGenericString()
+					+ " in the extension point " + BasicMeasuresRegistry.getExtensionPointId());
 			existMeasuresFrombasicMeasuresRegistry = true;
 		}
 
-		SmmModelsRegistry smmModelsRegistry = SmmModelsRegistry.getInstance();
+		SmmModelRegistry smmModelsRegistry = SmmModelRegistry.getInstance();
 		if (null == smmModelsRegistry.getMeasures() || smmModelsRegistry.getMeasures().isEmpty()) {
-			System.err.println("There are not registered smm xmi models in the extension point "
-					+ SmmModelsRegistry.getExtensionPointId());
+			Activator.log.warn("There are not registered smm models in the extension point "
+					+ SmmModelRegistry.getExtensionPointId());
 		} else {
-			existMeasuresFromSmmModelsRegistry = true;
+			Activator.log.info("Found registered implementations of " + Measure.class.toGenericString()
+					+ " in the extension point " + SmmModelRegistry.getExtensionPointId());
+			existMeasuresFromSmmModelRegistry = true;
 		}
 
 		boolean foundMeasures = (Boolean.TRUE.equals(existMeasuresFrombasicMeasuresRegistry)
-				|| Boolean.TRUE.equals(existMeasuresFromSmmModelsRegistry)) ? true : false;
+				|| Boolean.TRUE.equals(existMeasuresFromSmmModelRegistry)) ? true : false;
 		if (!foundMeasures) {
-			System.err.println("Failed to find at least one registered measure definitions ");
+			Activator.log.warn("Failed to find at least one registered measure definitions ");
 			return null;
 		}
 
 		measures.addAll(basicMeasuresRegistry.getMeasures());
 		measures.addAll(smmModelsRegistry.getMeasures());
-		
+
 		return measures;
 	}
 }

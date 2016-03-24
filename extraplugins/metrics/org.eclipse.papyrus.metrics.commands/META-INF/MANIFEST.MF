@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Metrics Commands
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.metrics.commands;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.metrics.commands.Activator
@@ -9,8 +9,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.transaction,
  org.eclipse.papyrus.metrics.extensionpoints,
  org.eclipse.papyrus.metrics.smm,
- org.eclipse.papyrus.requirements.metrics.library
+ org.eclipse.papyrus.infra.core.log
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.metrics.commands,
  org.eclipse.papyrus.metrics.commands.helper
+Bundle-Localization: bundle

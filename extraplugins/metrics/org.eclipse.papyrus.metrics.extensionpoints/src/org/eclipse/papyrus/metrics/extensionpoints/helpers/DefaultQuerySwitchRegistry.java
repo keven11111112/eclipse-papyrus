@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.metrics.extensionpoints.Activator;
 import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IDefaultQuerySwitch;
 
 /**
@@ -31,8 +32,7 @@ public class DefaultQuerySwitchRegistry {
 		return defaultQuerySwitch;
 	}
 
-	private static final String EXTENSION_POINT_ID = "org.eclipse.papyrus.metrics.extensionpoints.defaultqueryswitch";
-
+	private static final String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".defaultqueryswitch"; //$NON-NLS-1$
 	/**
 	 * Returns the singleton instance of this registry
 	 *
@@ -47,12 +47,10 @@ public class DefaultQuerySwitchRegistry {
 	}
 
 	/**
-	 * Initializes the registry.
+	 * Initializes the registry
 	 */
 	protected void init() {
-		// Resets values
 		defaultQuerySwitch = null;
-		// Reads only when the registry is acceded for the first time
 		readExtensions();
 	}
 
@@ -64,7 +62,7 @@ public class DefaultQuerySwitchRegistry {
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
 		IConfigurationElement[] elements = registry.getConfigurationElementsFor(EXTENSION_POINT_ID);
 		if (elements.length > 1) {
-			System.err.println("It is not possible to user more than one default query operations switch");
+			Activator.log.warn("It is not possible to register more than one default query operations switch");
 			return;
 		}
 		try {
@@ -76,8 +74,8 @@ public class DefaultQuerySwitchRegistry {
 				}
 			}
 		} catch (CoreException ex) {
-			System.err.println(ex.getMessage());
+			Activator.log.error(ex);
 		}
 	}
-	
+
 }

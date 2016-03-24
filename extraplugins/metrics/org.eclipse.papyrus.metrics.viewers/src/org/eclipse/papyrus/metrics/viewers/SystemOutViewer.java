@@ -15,21 +15,31 @@
 package org.eclipse.papyrus.metrics.viewers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.eclipse.papyrus.metrics.extensionpoints.helpers.Result;
 import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IResultsViewer;
 
-public class DebugConsoleViewer implements IResultsViewer {
+public class SystemOutViewer implements IResultsViewer {
 
 	@Override
 	public void show(ArrayList<Result> measuresResults) {
-		for (Result line : measuresResults) {
-		System.out.printf(
-				"Metric Name: " + line.getMeasure().getName() + "%n" 
-				+ "Measurand: " + getMeasurandName(line.getMeasurand()) + "%n" 
-				+ "Type of element measured: " + line.getMeasurand().eClass().getName() 
-				+ "%n" + "Value: " + line.getValue().toString() 
-				+ "%n%n");
-		}
+
+		List<List<String>> rows = new ArrayList<List<String>>();
+		// Print the labels
+		System.out.println();
+		Arrays.asList("Metric Name", "Measurand", "Type of element measured", "Value")
+				.forEach(columnLabel -> System.out.printf("%-35s|", columnLabel));
+		// Obtain the values
+		System.out.println();
+		measuresResults.forEach(
+				result -> rows.add(Arrays.asList(result.getMeasure().getName(), getMeasurandName(result.getMeasurand()),
+						result.getMeasurand().eClass().getName(), result.getValue().toString())));
+		// Print the values
+		rows.forEach(row -> {
+			row.forEach(cellValue -> System.out.printf("%-35s|", cellValue));
+			System.out.println();
+		});
 	}
 }

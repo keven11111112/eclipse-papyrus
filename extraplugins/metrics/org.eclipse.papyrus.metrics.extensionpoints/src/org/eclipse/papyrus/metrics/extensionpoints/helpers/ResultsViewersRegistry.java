@@ -19,10 +19,11 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.metrics.extensionpoints.Activator;
 import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IResultsViewer;
 
 /**
- * Registry to obtain implementations of {@link IResultsViewer} 
+ * Registry to obtain implementations of {@link IResultsViewer}
  */
 public class ResultsViewersRegistry {
 	protected static ResultsViewersRegistry resultsViewersRegistry = null;
@@ -32,7 +33,7 @@ public class ResultsViewersRegistry {
 		return resultsViewers;
 	}
 
-	private static final String EXTENSION_POINT_ID = "org.eclipse.papyrus.metrics.extensionpoints.measuringresultsviewer";
+	private static final String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".measuringresultsviewer"; //$NON-NLS-1$
 
 	/**
 	 * returns the singleton instance of this registry
@@ -48,13 +49,11 @@ public class ResultsViewersRegistry {
 	}
 
 	/**
-	 * Initializes the registry.
+	 * Initializes the registry
 	 */
 	protected void init() {
-		// 0. Resets values
 		resultsViewers = null;
 		resultsViewers = new ArrayList<IResultsViewer>();
-		// 1. creates the list only when the registry is acceded for the first time
 		readExtensions();
 	}
 
@@ -73,7 +72,7 @@ public class ResultsViewersRegistry {
 				}
 			}
 		} catch (CoreException ex) {
-			System.err.println(ex.getMessage());
+			Activator.log.error(ex);
 		}
 	}
 

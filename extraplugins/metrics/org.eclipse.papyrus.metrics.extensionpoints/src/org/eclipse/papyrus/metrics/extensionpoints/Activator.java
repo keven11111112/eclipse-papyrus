@@ -14,9 +14,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.metrics.extensionpoints;
 
-import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+
 
 /**
  * The activator class controls the plug-in life cycle
@@ -34,6 +35,9 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public Activator() {
 	}
+	
+	// Papyrus logger
+	public static LogHelper log;
 
 	/*
 	 * (non-Javadoc)
@@ -42,11 +46,14 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		log = new LogHelper(this);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
+	 * 
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.
+	 * BundleContext)
 	 */
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -61,15 +68,5 @@ public class Activator extends AbstractUIPlugin {
 	public static Activator getDefault() {
 		return plugin;
 	}
-
-	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path
-	 *
-	 * @param path the path
-	 * @return the image descriptor
-	 */
-	public static ImageDescriptor getImageDescriptor(String path) {
-		return imageDescriptorFromPlugin(PLUGIN_ID, path);
-	}
+	
 }

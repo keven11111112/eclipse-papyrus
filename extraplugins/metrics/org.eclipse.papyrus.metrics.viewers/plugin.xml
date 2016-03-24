@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.papyrus.metrics.extensionpoints.measuringresultsviewer">
       <element
-            class="org.eclipse.papyrus.metrics.viewers.DebugConsoleViewer">
+            class="org.eclipse.papyrus.metrics.viewers.SystemOutViewer">
       </element>
       <element
             class="org.eclipse.papyrus.metrics.viewers.BasicEclipseViewViewer">

@@ -27,10 +27,9 @@ import org.omg.smm.Measure;
 import org.omg.smm.SmmModel;
 
 /**
- *
- * Calculates the Measures values defined in an external smm model. Results are
- * shown to the user on all the Printers defined by extensions of the extension
- * point org.eclipse.papyrus.metrics.extensionpoints.printer
+ * Calculates the Measures values defined in an external file containing an SMM
+ * model. Results are shown to the users by means of the all the registered
+ * viewers implementing {@link IResultsViewer}
  *
  */
 public class CalculateSmmBasedMeasuresCommand extends RecordingCommand {
@@ -55,9 +54,13 @@ public class CalculateSmmBasedMeasuresCommand extends RecordingCommand {
 	protected void doExecute() {
 		MeasuresReaderHelper measuresReaderHelper = new MeasuresReaderHelper();
 		this.measures = measuresReaderHelper.getMeasuresFromFile();
-		MetricsCalculatorHelper helper = new MetricsCalculatorHelper(measures, observationScope, resultsViewers,
-				recognizerSwitch, defaultQuerySwitch);
-		helper.run();
+		if (null == this.measures) {
+			return;
+		} else {
+			MetricsCalculatorHelper helper = new MetricsCalculatorHelper(measures, observationScope, resultsViewers,
+					recognizerSwitch, defaultQuerySwitch);
+			helper.run();
+		}
 	}
 
 }

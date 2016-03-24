@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.metrics.extensionpoints.Activator;
 import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IRecognizerSwitch;
 
 /**
@@ -31,7 +32,7 @@ public class RecognizerSwitchRegistry {
 		return recognizerSwitch;
 	}
 
-	private static final String EXTENSION_POINT_ID = "org.eclipse.papyrus.metrics.extensionpoints.recognizerswitch";
+	private static final String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".recognizerswitch"; //$NON-NLS-1$
 
 	/**
 	 * Returns the singleton instance of this registry
@@ -47,12 +48,10 @@ public class RecognizerSwitchRegistry {
 	}
 
 	/**
-	 * Initializes the registry.
+	 * Initializes the registry
 	 */
 	protected void init() {
-		// Resets values
 		recognizerSwitch = null;
-		// Reads only when the registry is acceded for the first time
 		readExtensions();
 	}
 
@@ -64,7 +63,7 @@ public class RecognizerSwitchRegistry {
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
 		IConfigurationElement[] elements = registry.getConfigurationElementsFor(EXTENSION_POINT_ID);
 		if (elements.length > 1) {
-			System.err.println("It is not possible to user more than one recognizer operations switch");
+			Activator.log.warn("It is not possible to register more than one recognizer operations switch");
 			return;
 		}
 		try {
@@ -76,7 +75,7 @@ public class RecognizerSwitchRegistry {
 				}
 			}
 		} catch (CoreException ex) {
-			System.err.println(ex.getMessage());
+			Activator.log.error(ex);
 		}
 	}
 

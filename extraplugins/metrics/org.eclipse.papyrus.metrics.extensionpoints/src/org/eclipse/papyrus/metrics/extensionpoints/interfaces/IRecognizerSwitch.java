@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.metrics.extensionpoints.interfaces;
 
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Model;
 
 /**
