@@ -23,6 +23,7 @@ import java.util.StringTokenizer;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -179,12 +180,12 @@ public class StereotypeUtil {
 					return "No value";
 				}
 				propValues += displayPropertyValue(stereotype, currentProp, umlElement, PROPERTY_VALUE_SEPARATOR);
-			}// display each property
+			} // display each property
 			if (propValues.endsWith(PROPERTY_VALUE_SEPARATOR)) {
 				propValues = propValues.substring(0, propValues.lastIndexOf(PROPERTY_VALUE_SEPARATOR));
 			}
 			propValues = propValues + SETREOTYPE_WITH_VALUE_SEPARATOR;
-		}// end display each property
+		} // end display each property
 
 		return propValues;
 	}
@@ -422,7 +423,7 @@ public class StereotypeUtil {
 			else {
 				buffer.append(getPropertyValue(currentProp, stereotype, umlElement, ",", false));
 			}
-		}// display each property
+		} // display each property
 
 		String propValues = buffer.toString();
 		if (propValues.endsWith(",")) {
@@ -702,32 +703,35 @@ public class StereotypeUtil {
 		String out = "";
 		Object valueObject = umlElement.getValue(stereotype, property.getName());
 
-		if(valueObject==null){
+		if (valueObject == null) {
 			return out = property.getName() + PROPERTY_VALUE_SEPARATOR;
 		}
-		else{
-				if (property.getDefaultValue() != null) {
-					if (withDelimitator) {
-						String value = "" + valueObject;
-						out = property.getName() + EQUAL_SEPARATOR + value + PROPERTY_VALUE_SEPARATOR;
-						if (value.contains("[")) {
-							out = out.replace("[", "[" + QUOTE);
-							out = out.replace("]", QUOTE + "]");
-							out = out.replace(", ", QUOTE + "," + QUOTE);
-						} else {
-							out = property.getName() + EQUAL_SEPARATOR + QUOTE + value + QUOTE + PROPERTY_VALUE_SEPARATOR;
-						}
-					} else {
-						if (valueObject instanceof EObject) {
-							ILabelProvider labelProvider = getLabelProvider(property);
-							return out = property.getName() + EQUAL_SEPARATOR + labelProvider.getText(valueObject) + PROPERTY_VALUE_SEPARATOR;
-						} else {
-							out = property.getName() + EQUAL_SEPARATOR + valueObject + PROPERTY_VALUE_SEPARATOR;
-						}
+		else {
+			if (property.getDefaultValue() != null) {
+				if (withDelimitator) {
+					String value = "" + valueObject;
+					out = property.getName() + EQUAL_SEPARATOR + value + PROPERTY_VALUE_SEPARATOR;
+					if (value.contains("[")) {
+						out = out.replace("[", "[" + QUOTE);
+						out = out.replace("]", QUOTE + "]");
+						out = out.replace(", ", QUOTE + "," + QUOTE);
 					}
-				} else {
-					out = property.getName() + PROPERTY_VALUE_SEPARATOR;
+					else {
+						out = property.getName() + EQUAL_SEPARATOR + QUOTE + value + QUOTE + PROPERTY_VALUE_SEPARATOR;
+					}
 				}
+				else {
+					if (valueObject instanceof EObject) {
+						ILabelProvider labelProvider = getLabelProvider(property);
+						return out = property.getName() + EQUAL_SEPARATOR + labelProvider.getText(valueObject) + PROPERTY_VALUE_SEPARATOR;
+					} else {
+						out = property.getName() + EQUAL_SEPARATOR + valueObject + PROPERTY_VALUE_SEPARATOR;
+					}
+				}
+			}
+			else {
+				out = property.getName() + PROPERTY_VALUE_SEPARATOR;
+			}
 		}
 		return out;
 	}
@@ -960,11 +964,17 @@ public class StereotypeUtil {
 	 *
 	 * @param element
 	 *            the element
-	 * @param class a class of a static profile
+	 * @param class
+	 *            a class of a static profile
 	 * @return
 	 */
 	public static Stereotype apply(Element element, java.lang.Class<? extends EObject> clazz) {
-		return apply(element, getStereoName(element, clazz));
+		String qualifiedSN = getStereoName(element, clazz);
+		if (qualifiedSN != null) {
+			return apply(element, qualifiedSN);
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -980,37 +990,47 @@ public class StereotypeUtil {
 	 * @return
 	 */
 	public static void unapply(Element element, java.lang.Class<? extends EObject> clazz) {
-		unapply(element, getStereoName(element, clazz));
+		String qualifiedSN = getStereoName(element, clazz);
+		if (qualifiedSN != null) {
+			unapply(element, qualifiedSN);
+		}
 	}
 
 
 	/**
-	 * Get the stereotype-name that may relate to the name of an interface within a static profile.
-	 * Note that the class name within a static profile might have a prefix, such as org.eclipse.papyrus. This
-	 * functions tries to remove prefixes iteratively, if a stereotype is not applicable.
+	 * Get the qualified stereotype-name when given a class from a static profile.
+	 * The comparison is based on the qualified names of the definition of the profiles that
+	 * are already applied (i.e. it would fail, if the profile is not already applied).
 	 *
+	 * @param element
+	 *            an element to which a stereotype should be applied
 	 * @param clazz
-	 * @return
+	 *            a class from a static profile
+	 * @return the qualified stereotype name, associated with the passed class from the static profile (or null, if none could be found)
 	 */
 	public static String getStereoName(Element element, java.lang.Class<? extends EObject> clazz) {
-		String name = clazz.getName().replace(".", "::"); //$NON-NLS-1$ //$NON-NLS-2$;
-		while (element.getApplicableStereotype(name) == null) {
-			int index = name.indexOf("::"); //$NON-NLS-1$
-			if (index == -1) {
-				return null;
+		String pkgName = clazz.getPackage().getName();
+		EList<Profile> appliedProfiles = element.getNearestPackage().getAllAppliedProfiles();
+		for (Profile appliedProfile : appliedProfiles) {
+			EPackage definition = appliedProfile.getDefinition();
+			if (definition != null) {
+				String defClassName = definition.getClass().getName();
+				if (defClassName != null && defClassName.startsWith(pkgName)) {
+					return appliedProfile.getQualifiedName() + NamedElement.SEPARATOR + clazz.getSimpleName();
+				}
 			}
-			name = name.substring(index + 2);
 		}
-		return name;
+		return null;
 	}
 
 	/**
 	 * This allows to get all stereotypes of a profile (check in sub packages).
 	 * 
-	 * @param profile the profile.
+	 * @param profile
+	 *            the profile.
 	 * @return The list of stereotypes corresponding to the profile.
 	 */
-	public static List<Stereotype> getAllStereotypes(final Profile profile){
+	public static List<Stereotype> getAllStereotypes(final Profile profile) {
 		final List<Stereotype> stereotypes = new ArrayList<Stereotype>(profile.getOwnedStereotypes());
 		stereotypes.addAll(getStereotypeInMembers(profile.getOwnedMembers()));
 		return stereotypes;
@@ -1019,24 +1039,25 @@ public class StereotypeUtil {
 	/**
 	 * This allows to get all stereotypes in sub packages.
 	 * 
-	 * @param members The owned members of an element.
+	 * @param members
+	 *            The owned members of an element.
 	 * @return The list of stereotypes in sub packages.
 	 */
-	protected static List<Stereotype> getStereotypeInMembers(final List<NamedElement> members){
+	protected static List<Stereotype> getStereotypeInMembers(final List<NamedElement> members) {
 		final List<Stereotype> stereotypes = new ArrayList<Stereotype>();
 
 		// Loop on members
 		final Iterator<NamedElement> membersIterator = members.iterator();
-		while(membersIterator.hasNext()){
+		while (membersIterator.hasNext()) {
 			NamedElement member = membersIterator.next();
 
 			// Get stereotypes in packages
-			if(member instanceof Package){
+			if (member instanceof Package) {
 				stereotypes.addAll(((Package) member).getOwnedStereotypes());
 			}
 
 			// Loop recursively in members
-			if(member instanceof Namespace){
+			if (member instanceof Namespace) {
 				stereotypes.addAll(getStereotypeInMembers(((Namespace) member).getOwnedMembers()));
 			}
 		}
