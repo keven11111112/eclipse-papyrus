@@ -333,7 +333,7 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 			}
 		}
 
-		// createRef diagram
+		// createRef diagram;
 		if (containedDiagrams(designPackageIn).size() > 0) {
 			Diagram currentDiagram = containedDiagrams(designPackageIn).get(0);
 			generateImg(copyImageUtil, designPackageOUT, currentDiagram);

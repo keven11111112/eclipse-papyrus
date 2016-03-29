@@ -1,8 +1,8 @@
 <html>
 <link rel="stylesheet" href="default.css" type="text/css">
 <H1>How to use MDE to develop Papyrus</H1>
-<H2 id ="_OBWz4fWqEeWL87HLnAAa-A">Table of Contents</H2>
-<H2 id ="_OBWz4_WqEeWL87HLnAAa-A">Requirements</H2>
+<H2 id ="_kmZaMfXCEeWzTLgJvBjJCA">Table of Contents</H2>
+<H2 id ="_kmaBQfXCEeWzTLgJvBjJCA">Requirements</H2>
 <p>- REQ_001 (id=REQ_001): <BR/> The tool must help to model papyrus development</p>
 <p>- REQ_0011 (id=REQ_0011): <BR/> The tool must help to model requirements.<BR/></p>
 <p>- REQ_0012 (id=REQ_0012): <BR/> The tool must help to make the design</p>
@@ -12,20 +12,20 @@
 <p>- REQ_002 (id=REQ_002): <BR/> From the model, it must be able to generate documentation</p>
 <p>- REQ_0021 (id=REQ_0021): <BR/> From the model, it must be able to generate HTML documentation</p>
 <p>- REQ_0022 (id=REQ_0022): <BR/> From the model, it must be able to generate WKIMEDIA documentation</p>
-<H2 id ="_OBgk5_WqEeWL87HLnAAa-A">Use Cases</H2>
+<H2 id ="_kmhWAfXCEeWzTLgJvBjJCA">Use Cases</H2>
 <P align="middle"><img src=./imgDOC/UseCases.png alt=UseCases ></P><P align="middle">UseCases</P></BR>
 <p>In order to model your development and generate your documentation.<BR/>You must install a version of SysML and the plugin org.eclipse.papyrus.uml.developer.mde that can been found in the git org.eclipse.papyrus\plugins\developer<BR/></p>
-<H3 id ="_ODT7tPWqEeWL87HLnAAa-A">PapyrusMDE</H3>
-<H4 id ="_ODT7tvWqEeWL87HLnAAa-A">Model Requirements</H4>
-<p>  - traces to <a href="#_OBWz5_WqEeWL87HLnAAa-A" title="Requirement REQ_0011">REQ_0011</a></p>
+<H3 id ="_koS3oPXCEeWzTLgJvBjJCA">PapyrusMDE</H3>
+<H4 id ="_koTesfXCEeWzTLgJvBjJCA">Model Requirements</H4>
+<p>  - traces to <a href="#_kmb2cPXCEeWzTLgJvBjJCA" title="Requirement REQ_0011">REQ_0011</a></p>
 <p>The Designer has to create a use case inside the "requirements" model.<BR/>The requirement may be functional or non functional.<BR/>Requirements has to be refined or decompose until it can be tested.<BR/> </p>
-<H5 id ="_ODdssfWqEeWL87HLnAAa-A">How to</H5>
+<H5 id ="_koV68fXCEeWzTLgJvBjJCA">How to</H5>
 <p>In order to create requirement, the Designer can use the module "Papyrus Requirement" that help to create requirements</p>
 <P align="middle"><img src=./imgDOC/createRequirements.png alt=Create a requirement ></P><P align="middle">Create a requirement</P></BR>
-<H4 id ="_ODdst_WqEeWL87HLnAAa-A">Model Use Cases</H4>
-<p>  - traces to <a href="#_OBWz7_WqEeWL87HLnAAa-A" title="Requirement REQ_0015">REQ_0015</a>, <a href="#_OBWz7fWqEeWL87HLnAAa-A" title="Requirement REQ_0014">REQ_0014</a></p>
+<H4 id ="_koY-QfXCEeWzTLgJvBjJCA">Model Use Cases</H4>
+<p>  - traces to <a href="#_kmeSsfXCEeWzTLgJvBjJCA" title="Requirement REQ_0015">REQ_0015</a>, <a href="#_kmdrofXCEeWzTLgJvBjJCA" title="Requirement REQ_0014">REQ_0014</a></p>
 <p>The "Designer" has to develop Use cases  that are refinement of the functional requirements.<BR/>In each use case, a comment has to be added in order to explain the use case.<BR/>In each use case,  the designer has to add a set of comment stereotyped "userDoc" in order to write the how to.<BR/>Each Use case must have a link "satisfy" with the  refined requirement </p>
-<H5 id ="_ODdsvfWqEeWL87HLnAAa-A">How to</H5>
+<H5 id ="_kobagfXCEeWzTLgJvBjJCA">How to</H5>
 <p>In order to create a use case, the designer has to create a use case in the component inside the UseCase model.</p>
 <P align="middle"><img src=./imgDOC/usecaseCreation.png alt=Create a Use Case ></P><P align="middle">Create a Use Case</P></BR>
 <p>In each Use case, the designer has to add a nested comment in order to explain the goal of the use case, (it can be also an activity diagram or sequence diagram)</p>
@@ -33,21 +33,21 @@
 <p>The designer has also to explain how  a user can execute this function. This is the "how to" section, the purpose is to explain step by step how the user can do in order to run the  functionality. <BR/>To do that, create a comment stereotyped "UserDoc" write you text inside or associate a screenshot of your execution by adding a hyperlink on this comment.</p>
 <P align="middle"><img src=./imgDOC/UserDoc.png alt=Add a comment for the user doc ></P><P align="middle">Add a comment for the user doc</P></BR>
 <P align="middle"><img src=./imgDOC/AddHyperlinkToTheImage.png alt=Reference an image by using hyperlinks ></P><P align="middle">Reference an image by using hyperlinks</P></BR>
-<H4 id ="_ODdszfWqEeWL87HLnAAa-A">Model the design</H4>
-<p>  - traces to <a href="#_OBWz6fWqEeWL87HLnAAa-A" title="Requirement REQ_0012">REQ_0012</a>, <a href="#_OBWz7fWqEeWL87HLnAAa-A" title="Requirement REQ_0014">REQ_0014</a></p>
+<H4 id ="_koivQPXCEeWzTLgJvBjJCA">Model the design</H4>
+<p>  - traces to <a href="#_kmcdgfXCEeWzTLgJvBjJCA" title="Requirement REQ_0012">REQ_0012</a>, <a href="#_kmdrofXCEeWzTLgJvBjJCA" title="Requirement REQ_0014">REQ_0014</a></p>
 <p>The designer must model its development in order to be able to explain its architecture, the behavior, choices of its tool.<BR/></p>
-<H5 id ="_ODm2pPWqEeWL87HLnAAa-A">How to</H5>
+<H5 id ="_kolLgfXCEeWzTLgJvBjJCA">How to</H5>
 <p>To do that, the designer can design the model or make a retro-engineering of the code. To that papyrus provides in papyrus designer a generator and retro tool for the java  or C++code. </p>
-<H4 id ="_ODm2qPWqEeWL87HLnAAa-A">Model Tests</H4>
-<p>  - traces to <a href="#_OBWz6_WqEeWL87HLnAAa-A" title="Requirement REQ_0013">REQ_0013</a>, <a href="#_OBWz7fWqEeWL87HLnAAa-A" title="Requirement REQ_0014">REQ_0014</a></p>
+<H4 id ="_konAsfXCEeWzTLgJvBjJCA">Model Tests</H4>
+<p>  - traces to <a href="#_kmdEkfXCEeWzTLgJvBjJCA" title="Requirement REQ_0013">REQ_0013</a>, <a href="#_kmdrofXCEeWzTLgJvBjJCA" title="Requirement REQ_0014">REQ_0014</a></p>
 <p>The Designer must add a least one test case for each use case.<BR/>A test case is  a use case stereotyped "UseCaseTest".  The Use case must contain an activity that represents the  java class that represents the code of you test.</p>
-<H5 id ="_ODm2rvWqEeWL87HLnAAa-A">How to</H5>
+<H5 id ="_kopc8fXCEeWzTLgJvBjJCA">How to</H5>
 <p>To do that, go to the "Test" model, create use case and stereotype it "Use case Test". This is the scenario to test a use case.<BR/>In the use case add a comment and explain the scenario.<BR/>In the code you must have a JUnit or a java class that corresponds tho this test. Copy qualified name of your test and add it as an activity.<BR/>Then add a verify link from the test the use case to the requirement. Use papyrus requirement in order to simplify creation of links.</p>
 <P align="middle"><img src=./imgDOC/UsecaseTestCreation.png alt=Use Case Test ></P><P align="middle">Use Case Test</P></BR>
-<H4 id ="_ODm2tPWqEeWL87HLnAAa-A">Generate the documentation</H4>
-<p>  - traces to <a href="#_OBgk4fWqEeWL87HLnAAa-A" title="Requirement REQ_002">REQ_002</a>, <a href="#_OBgk4_WqEeWL87HLnAAa-A" title="Requirement REQ_0021">REQ_0021</a>, <a href="#_OBgk5fWqEeWL87HLnAAa-A" title="Requirement REQ_0022">REQ_0022</a></p>
+<H4 id ="_kor5MfXCEeWzTLgJvBjJCA">Generate the documentation</H4>
+<p>  - traces to <a href="#_kmfg0PXCEeWzTLgJvBjJCA" title="Requirement REQ_002">REQ_002</a>, <a href="#_kmgH4PXCEeWzTLgJvBjJCA" title="Requirement REQ_0021">REQ_0021</a>, <a href="#_kmgu8PXCEeWzTLgJvBjJCA" title="Requirement REQ_0022">REQ_0022</a></p>
 <p>From the model, it possible to generate the developer Document.<BR/>This generation is done in two steps: first the tool generate a document model and from the document model it generates a document.<BR/>The document model contains only package stereotyped "section" and comment stereotyped "content" or "imageRef".<BR/><BR/>Transformation to the document model:<BR/>Each package requirements, UseCases, Design and Test become a section.<BR/>Each requirement becomes a paragraph.<BR/>Each Use Case becomes a section with its comments a paragraph of the section. <BR/>The comment stereotyped user doc becomes a sub-section "How to".<BR/>Each diagram will be serialized and become an image inside the  container section.<BR/>Each image hyperlink associated to a comment becomes an image  after the paragraph.<BR/><BR/>The transformation from the model of document to the document is bijective.<BR/></p>
-<H5 id ="_ODm2uvWqEeWL87HLnAAa-A">How to</H5>
+<H5 id ="_kouVcPXCEeWzTLgJvBjJCA">How to</H5>
 <p>In order to generate the code: Ensure that the following profile are applied.</p>
 <P align="middle"><img src=./imgDOC/appliedProfiles.png alt=Applied Profiles ></P><P align="middle">Applied Profiles</P></BR>
 <p>Fill properties of stereotype "Project " for the root model.</p>
@@ -58,44 +58,84 @@
 <P align="middle"><img src=./imgDOC/generateHTML.png alt=HTML generation ></P><P align="middle">HTML generation</P></BR>
 <p>Open the html document, use a css file, called default css, and you can obtain the following document.<BR/><BR/>Note that this doc has been obtained by using the tool on itself. You can notice that a new model element with the stereotype Document is also generated. You can remove it. I let it in order to demonstrate that is possible to make all in model.  </p>
 <P align="middle"><img src=./imgDOC/generatedHTMLpage.png alt=Generated HTML page ></P><P align="middle">Generated HTML page</P></BR>
-<H2 id ="_ODwnsPWqEeWL87HLnAAa-A">Design</H2>
-<H2 id ="_ODwnsvWqEeWL87HLnAAa-A">Tests</H2>
-<H3 id ="_ODwntPWqEeWL87HLnAAa-A">UseCaseTest Test creation of requirements</H3>
+<H2 id ="_ko1DIfXCEeWzTLgJvBjJCA">Design</H2>
+<H3 id ="_ko1qMfXCEeWzTLgJvBjJCA">Package org.eclipse.papyrus.uml.developer.mde</H3>
+<H4 id ="_ko2RQfXCEeWzTLgJvBjJCA">Class Activator</H4>
+<p>  - specializes <a href="#_-vApM_W_EeWzTLgJvBjJCA" title="Class AbstractUIPlugin">AbstractUIPlugin</a></p>
+<p>The activator class controls the plug-in life cycle<BR/> </p>
+<H4 id ="_ko4tgPXCEeWzTLgJvBjJCA">Interface I_DeveloperIDMStereotype</H4>
+<p>constant included in the MDE process profile<BR/><BR/> </p>
+<H4 id ="_ko57ofXCEeWzTLgJvBjJCA">Interface I_DocumentStereotype</H4>
+<p>list of constant contained in the document profile<BR/><BR/> </p>
+<H4 id ="_ko7JwfXCEeWzTLgJvBjJCA">Package command</H4>
+<P align="middle"><img src=./imgDOC/Command_ClassDiagram.png alt=Command ClassDiagram ></P><P align="middle">Command ClassDiagram</P></BR>
+<H5 id ="_ktaoMfXCEeWzTLgJvBjJCA">Class CreateDocumentModelCommand</H5>
+<p>  - specializes <a href="#_-2i0lfW_EeWzTLgJvBjJCA" title="Class RecordingCommand">RecordingCommand</a></p>
+<p> this command transform a model to document model<BR/><BR/> </p>
+<H4 id ="_ktcdYfXCEeWzTLgJvBjJCA">Package handler</H4>
+<P align="middle"><img src=./imgDOC/Handler_ClassDiagram.png alt=Handler ClassDiagram ></P><P align="middle">Handler ClassDiagram</P></BR>
+<H5 id ="_ku7rIfXCEeWzTLgJvBjJCA">Class GetHTMLTextHandler</H5>
+<p>  - specializes <a href="#_ku9gUfXCEeWzTLgJvBjJCA" title="Class IDMAbstractHandler">IDMAbstractHandler</a></p>
+<p>This class is used to create and html developper doc file.<BR/> </p>
+<H5 id ="_ku9gUfXCEeWzTLgJvBjJCA">Class IDMAbstractHandler</H5>
+<p>  - specializes <a href="#_-44W4fW_EeWzTLgJvBjJCA" title="Class AbstractHandler">AbstractHandler</a></p>
+<p>Abstract handler in order to connect to papyrus<BR/> </p>
+<H5 id ="_ku_VgfXCEeWzTLgJvBjJCA">Class GetWikiTextHandler</H5>
+<p>  - specializes <a href="#_ku9gUfXCEeWzTLgJvBjJCA" title="Class IDMAbstractHandler">IDMAbstractHandler</a></p>
+<p> This class is used to create and wiki developper doc file.<BR/><BR/> </p>
+<H4 id ="_kvBKsfXCEeWzTLgJvBjJCA">Package transcription</H4>
+<P align="middle"><img src=./imgDOC/Transcription_ClassDiagram.png alt=Transcription ClassDiagram ></P><P align="middle">Transcription ClassDiagram</P></BR>
+<H5 id ="_kypGcfXCEeWzTLgJvBjJCA">Class HTMLTranscription</H5>
+<p>  - realizes <a href="#_kyq7ofXCEeWzTLgJvBjJCA" title="Interface ITranscription">ITranscription</a></p>
+<p>This class is a specialization to generate html files.<BR/><BR/> </p>
+<H5 id ="_kyq7ofXCEeWzTLgJvBjJCA">Interface ITranscription</H5>
+<p>This class is used to generated very swiftly a document from the document model<BR/><BR/> </p>
+<H5 id ="_kysJwfXCEeWzTLgJvBjJCA">Class TranscriptionEngine</H5>
+<p> This class is an engine to traduce a document model into files<BR/> </p>
+<H5 id ="_kytX4fXCEeWzTLgJvBjJCA">Class WikiTranscription</H5>
+<p>This class is a specialization to generate mediawiki files.<BR/> </p>
+<H3 id ="_kyumAfXCEeWzTLgJvBjJCA">Package com</H3>
+<H4 id ="_kyvNEfXCEeWzTLgJvBjJCA">Package google</H4>
+<H5 id ="_kyv0IfXCEeWzTLgJvBjJCA">Package common</H5>
+<H6 id ="_kywbMfXCEeWzTLgJvBjJCA">Package base</H6>
+<H7 id ="_kyxCQfXCEeWzTLgJvBjJCA">Class Function</H7>
+<H2 id ="_kyxpUfXCEeWzTLgJvBjJCA">Tests</H2>
+<H3 id ="_kyyQYfXCEeWzTLgJvBjJCA">UseCaseTest Test creation of requirements</H3>
 <p>Go inside package requirement an try to create a SysML requirements</p>
-<H2 id ="_ODwnuPWqEeWL87HLnAAa-A">Requirements Coverage</H2>
+<H2 id ="_kyzegfXCEeWzTLgJvBjJCA">Requirements Coverage</H2>
 <table style="border-collapse: collapse;"><caption style="caption-side: bottom;">RequirementsCoverageTable</caption><tr><th style="border: 1px solid black">Id</th><th style="border: 1px solid black">Satisfied by</th><th style="border: 1px solid black">Verified by</th></tr>
-<tr><td style="border : 1px solid black"><a href="#_OBWz5fWqEeWL87HLnAAa-A" title="REQ_001">REQ_001</a><BR/>
+<tr><td style="border : 1px solid black"><a href="#_kmbPYPXCEeWzTLgJvBjJCA" title="REQ_001">REQ_001</a><BR/>
 </td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_OBWz5_WqEeWL87HLnAAa-A" title="REQ_0011">REQ_0011</a><BR/>
+<tr><td style="border : 1px solid black"><a href="#_kmb2cPXCEeWzTLgJvBjJCA" title="REQ_0011">REQ_0011</a><BR/>
 </td><td style="border : 1px solid black">Model Requirements<BR/>
-</td><td style="border : 1px solid black"><a href="#_ODwntPWqEeWL87HLnAAa-A" title="Test creation of requirements">Test creation of requirements</a><BR/>
+</td><td style="border : 1px solid black"><a href="#_kyyQYfXCEeWzTLgJvBjJCA" title="Test creation of requirements">Test creation of requirements</a><BR/>
 </td></tr>
-<tr><td style="border : 1px solid black"><a href="#_OBWz6fWqEeWL87HLnAAa-A" title="REQ_0012">REQ_0012</a><BR/>
+<tr><td style="border : 1px solid black"><a href="#_kmcdgfXCEeWzTLgJvBjJCA" title="REQ_0012">REQ_0012</a><BR/>
 </td><td style="border : 1px solid black">Model the design<BR/>
 </td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_OBWz6_WqEeWL87HLnAAa-A" title="REQ_0013">REQ_0013</a><BR/>
+<tr><td style="border : 1px solid black"><a href="#_kmdEkfXCEeWzTLgJvBjJCA" title="REQ_0013">REQ_0013</a><BR/>
 </td><td style="border : 1px solid black">Model Tests<BR/>
 </td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_OBWz7fWqEeWL87HLnAAa-A" title="REQ_0014">REQ_0014</a><BR/>
+<tr><td style="border : 1px solid black"><a href="#_kmdrofXCEeWzTLgJvBjJCA" title="REQ_0014">REQ_0014</a><BR/>
 </td><td style="border : 1px solid black">Model Use Cases, 
 <BR/>
 Model the design, 
 <BR/>
 Model Tests<BR/>
 </td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_OBWz7_WqEeWL87HLnAAa-A" title="REQ_0015">REQ_0015</a><BR/>
+<tr><td style="border : 1px solid black"><a href="#_kmeSsfXCEeWzTLgJvBjJCA" title="REQ_0015">REQ_0015</a><BR/>
 </td><td style="border : 1px solid black">Model Use Cases<BR/>
 </td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_OBgk4fWqEeWL87HLnAAa-A" title="REQ_002">REQ_002</a><BR/>
+<tr><td style="border : 1px solid black"><a href="#_kmfg0PXCEeWzTLgJvBjJCA" title="REQ_002">REQ_002</a><BR/>
 </td><td style="border : 1px solid black">Generate the documentation<BR/>
 </td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_OBgk4_WqEeWL87HLnAAa-A" title="REQ_0021">REQ_0021</a><BR/>
+<tr><td style="border : 1px solid black"><a href="#_kmgH4PXCEeWzTLgJvBjJCA" title="REQ_0021">REQ_0021</a><BR/>
 </td><td style="border : 1px solid black">Generate the documentation<BR/>
 </td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_OBgk5fWqEeWL87HLnAAa-A" title="REQ_0022">REQ_0022</a><BR/>
+<tr><td style="border : 1px solid black"><a href="#_kmgu8PXCEeWzTLgJvBjJCA" title="REQ_0022">REQ_0022</a><BR/>
 </td><td style="border : 1px solid black">Generate the documentation<BR/>
 </td><td style="border : 1px solid black"></td></tr>
 </table>
 <p>Unsatisfied requirements (1 out of 9) : </p>
-<a href="#_OBWz5fWqEeWL87HLnAAa-A" title="REQ_001">REQ_001</a><p>Unverified requirements (8 out of 9) : </p>
-<a href="#_OBWz5fWqEeWL87HLnAAa-A" title="REQ_001">REQ_001, </a><a href="#_OBWz6fWqEeWL87HLnAAa-A" title="REQ_0012">REQ_0012, </a><a href="#_OBWz6_WqEeWL87HLnAAa-A" title="REQ_0013">REQ_0013, </a><a href="#_OBWz7fWqEeWL87HLnAAa-A" title="REQ_0014">REQ_0014, </a><a href="#_OBWz7_WqEeWL87HLnAAa-A" title="REQ_0015">REQ_0015, </a><a href="#_OBgk4fWqEeWL87HLnAAa-A" title="REQ_002">REQ_002, </a><a href="#_OBgk4_WqEeWL87HLnAAa-A" title="REQ_0021">REQ_0021, </a><a href="#_OBgk5fWqEeWL87HLnAAa-A" title="REQ_0022">REQ_0022</a></html>
+<a href="#_kmbPYPXCEeWzTLgJvBjJCA" title="REQ_001">REQ_001</a><p>Unverified requirements (8 out of 9) : </p>
+<a href="#_kmbPYPXCEeWzTLgJvBjJCA" title="REQ_001">REQ_001, </a><a href="#_kmcdgfXCEeWzTLgJvBjJCA" title="REQ_0012">REQ_0012, </a><a href="#_kmdEkfXCEeWzTLgJvBjJCA" title="REQ_0013">REQ_0013, </a><a href="#_kmdrofXCEeWzTLgJvBjJCA" title="REQ_0014">REQ_0014, </a><a href="#_kmeSsfXCEeWzTLgJvBjJCA" title="REQ_0015">REQ_0015, </a><a href="#_kmfg0PXCEeWzTLgJvBjJCA" title="REQ_002">REQ_002, </a><a href="#_kmgH4PXCEeWzTLgJvBjJCA" title="REQ_0021">REQ_0021, </a><a href="#_kmgu8PXCEeWzTLgJvBjJCA" title="REQ_0022">REQ_0022</a></html>

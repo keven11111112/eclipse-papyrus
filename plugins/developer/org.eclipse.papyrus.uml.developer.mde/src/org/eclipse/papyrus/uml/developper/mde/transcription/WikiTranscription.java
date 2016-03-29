@@ -103,6 +103,12 @@ public class WikiTranscription implements ITranscription {
 		if (level == 4) {
 			out.append("\n====<span" + getId(packageableElement) + ">" + ((Package) packageableElement).getName() + "</span>===="); //$NON-NLS-1$ //$NON-NLS-2$
 		}
+		if (level == 5) {
+			out.append("\n=====<span" + getId(packageableElement) + ">" + ((Package) packageableElement).getName() + "</span>====="); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		if (level == 4) {
+			out.append("\n======<span" + getId(packageableElement) + ">" + ((Package) packageableElement).getName() + "</span>======"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
 
 	}
 

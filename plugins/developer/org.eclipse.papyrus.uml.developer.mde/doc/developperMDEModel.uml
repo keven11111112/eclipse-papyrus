@@ -168,6 +168,1441 @@ Note that this doc has been obtained by using the tool on itself. You can notice
     </packagedElement>
     <packagedElement xmi:type="uml:Model" xmi:id="_3his1vWGEeWtjMWb98HWsA" name="Design">
       <packagedElement xmi:type="uml:Abstraction" xmi:id="_3his1_WGEeWtjMWb98HWsA" name="DesignAbstraction" client="_3his1vWGEeWtjMWb98HWsA" supplier="_3his0_WGEeWtjMWb98HWsA"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_-vACIPW_EeWzTLgJvBjJCA" name="org.eclipse.papyrus.uml.developer.mde">
+        <packagedElement xmi:type="uml:Class" xmi:id="_-vACIfW_EeWzTLgJvBjJCA" name="Activator" visibility="public">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_-vACIvW_EeWzTLgJvBjJCA">
+            <body>The activator class controls the plug-in life cycle&#xD;
+ </body>
+          </ownedComment>
+          <generalization xmi:type="uml:Generalization" xmi:id="_-vApNPW_EeWzTLgJvBjJCA" general="_-vApM_W_EeWzTLgJvBjJCA"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vBQQfW_EeWzTLgJvBjJCA" name="PLUGIN_ID" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vBQQvW_EeWzTLgJvBjJCA">
+              <body> The plug-in ID *</body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vBQQ_W_EeWzTLgJvBjJCA" name="plugin" visibility="private" isStatic="true" type="_-vACIfW_EeWzTLgJvBjJCA" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vB3VvW_EeWzTLgJvBjJCA" name="log" visibility="public" isStatic="true" type="_-vB3VfW_EeWzTLgJvBjJCA" isUnique="false"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_-vCeZfW_EeWzTLgJvBjJCA" name="start" visibility="public">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_-vCeZvW_EeWzTLgJvBjJCA" name="context" type="_-vCeZPW_EeWzTLgJvBjJCA"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_-vDFcPW_EeWzTLgJvBjJCA" name="stop" visibility="public">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_-vDFcfW_EeWzTLgJvBjJCA" name="context" type="_-vCeZPW_EeWzTLgJvBjJCA"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_-vDFcvW_EeWzTLgJvBjJCA" name="getDefault" visibility="public" isStatic="true">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vDFc_W_EeWzTLgJvBjJCA">
+              <body>&#xD;
+	 * Returns the shared instance&#xD;
+	 *&#xD;
+	 * @return the shared instance&#xD;
+	 </body>
+            </ownedComment>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_-vDFdPW_EeWzTLgJvBjJCA" type="_-vACIfW_EeWzTLgJvBjJCA" direction="return"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Interface" xmi:id="_-vGIwPW_EeWzTLgJvBjJCA" name="I_DeveloperIDMStereotype" visibility="public">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_-vGIwfW_EeWzTLgJvBjJCA">
+            <body>constant included in the MDE process profile&#xD;
+&#xD;
+ </body>
+          </ownedComment>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vGIwvW_EeWzTLgJvBjJCA" name="PROJECT_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vGIw_W_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype Project </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vGIxPW_EeWzTLgJvBjJCA" name="PROJECT_AUTHOR_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vGIxfW_EeWzTLgJvBjJCA">
+              <body> name of property author of the stereotype Project </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vGv0PW_EeWzTLgJvBjJCA" name="PROJECT_TITLE_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vGv0fW_EeWzTLgJvBjJCA">
+              <body> name of property title of the stereotype Project </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vGv0vW_EeWzTLgJvBjJCA" name="PROJECT_VERSION_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vGv0_W_EeWzTLgJvBjJCA">
+              <body> name of property version of the stereotype Project </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vGv1PW_EeWzTLgJvBjJCA" name="PROJECT_BASE_MODEL_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vGv1fW_EeWzTLgJvBjJCA">
+              <body> name of property base_Model of the stereotype Project </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vHW4PW_EeWzTLgJvBjJCA" name="USERDOC_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vHW4fW_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype UserDoc </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vHW4vW_EeWzTLgJvBjJCA" name="USERDOC_BASE_COMMENT_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vHW4_W_EeWzTLgJvBjJCA">
+              <body> name of property base_Comment of the stereotype UserDoc </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vHW5PW_EeWzTLgJvBjJCA" name="DEVELOPERDOC_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vHW5fW_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype DeveloperDoc </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vHW5vW_EeWzTLgJvBjJCA" name="DEVELOPERDOC_BASE_COMMENT_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vH98PW_EeWzTLgJvBjJCA">
+              <body> name of property base_Comment of the stereotype DeveloperDoc </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vH98fW_EeWzTLgJvBjJCA" name="REQUIREMENTS_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vH98vW_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype Requirements </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vH98_W_EeWzTLgJvBjJCA" name="REQUIREMENTS_BASE_MODEL_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vH99PW_EeWzTLgJvBjJCA">
+              <body> name of property base_Model of the stereotype Requirements </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vH99fW_EeWzTLgJvBjJCA" name="DESIGN_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vIlAPW_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype Design </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vIlAfW_EeWzTLgJvBjJCA" name="DESIGN_BASE_MODEL_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vIlAvW_EeWzTLgJvBjJCA">
+              <body> name of property base_Model of the stereotype Design </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vIlA_W_EeWzTLgJvBjJCA" name="USECASES_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vIlBPW_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype UseCases </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vIlBfW_EeWzTLgJvBjJCA" name="USECASES_BASE_MODEL_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vIlBvW_EeWzTLgJvBjJCA">
+              <body> name of property base_Model of the stereotype UseCases </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vJMEPW_EeWzTLgJvBjJCA" name="TESTS_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vJMEfW_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype Tests </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vJMEvW_EeWzTLgJvBjJCA" name="TESTS_BASE_MODEL_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vJME_W_EeWzTLgJvBjJCA">
+              <body> name of property base_Model of the stereotype Tests </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vJMFPW_EeWzTLgJvBjJCA" name="USECASETEST_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vJMFfW_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype UseCaseTest </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vJzIPW_EeWzTLgJvBjJCA" name="USECASETEST_BASE_USECASE_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vJzIfW_EeWzTLgJvBjJCA">
+              <body> name of property base_UseCase of the stereotype UseCaseTest </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vJzIvW_EeWzTLgJvBjJCA" name="MANUALTEST_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vJzI_W_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype ManualTest </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vJzJPW_EeWzTLgJvBjJCA" name="MANUALTEST_PATH_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vJzJfW_EeWzTLgJvBjJCA">
+              <body> name of property path of the stereotype ManualTest </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vJzJvW_EeWzTLgJvBjJCA" name="MANUALTEST_BASE_MODEL_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vKaMPW_EeWzTLgJvBjJCA">
+              <body> name of property base_Model of the stereotype ManualTest </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vKaMfW_EeWzTLgJvBjJCA" name="EXECUTABLETEST_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vKaMvW_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype ExecutableTest </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vKaM_W_EeWzTLgJvBjJCA" name="EXECUTABLETEST_BASE_CLASS_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vKaNPW_EeWzTLgJvBjJCA">
+              <body> name of property base_Class of the stereotype ExecutableTest </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vKaNfW_EeWzTLgJvBjJCA" name="EXECUTABLETEST_BASE_MODEL_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vLBQPW_EeWzTLgJvBjJCA">
+              <body> name of property base_Model of the stereotype ExecutableTest </body>
+            </ownedComment>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Interface" xmi:id="_-vNdgPW_EeWzTLgJvBjJCA" name="I_DocumentStereotype" visibility="public">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_-vNdgfW_EeWzTLgJvBjJCA">
+            <body>list of constant contained in the document profile&#xD;
+&#xD;
+ </body>
+          </ownedComment>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vNdgvW_EeWzTLgJvBjJCA" name="SECTION_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vNdg_W_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype Section </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vNdhPW_EeWzTLgJvBjJCA" name="SECTION_BASE_PACKAGE_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vOEkPW_EeWzTLgJvBjJCA">
+              <body> name of property base_Package of the stereotype Section </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vOEkfW_EeWzTLgJvBjJCA" name="TABLE_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vOEkvW_EeWzTLgJvBjJCA" name="TABLE_BASE_PACKAGE_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vOEk_W_EeWzTLgJvBjJCA" name="TABLE_CAPTION_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vOElPW_EeWzTLgJvBjJCA" name="DOCUMENT_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vOElfW_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype Document </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vOroPW_EeWzTLgJvBjJCA" name="DOCUMENT_BASE_MODEL_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vOrofW_EeWzTLgJvBjJCA">
+              <body> name of property base_Model of the stereotype Document </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vOrovW_EeWzTLgJvBjJCA" name="DOCUMENT_AUTHOR_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vOro_W_EeWzTLgJvBjJCA">
+              <body> name of property author of the stereotype Document </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vOrpPW_EeWzTLgJvBjJCA" name="DOCUMENT_VERSION_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vOrpfW_EeWzTLgJvBjJCA">
+              <body> name of property version of the stereotype Document </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vPSsPW_EeWzTLgJvBjJCA" name="IMAGEREF_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vPSsfW_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype ImageRef </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vPSsvW_EeWzTLgJvBjJCA" name="IMAGEREF_BASE_COMMENT_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vPSs_W_EeWzTLgJvBjJCA">
+              <body> name of property base_Comment of the stereotype ImageRef </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vPStPW_EeWzTLgJvBjJCA" name="IMAGEREF_REF_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vPStfW_EeWzTLgJvBjJCA">
+              <body> name of property ref of the stereotype ImageRef </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vPStvW_EeWzTLgJvBjJCA" name="CONTENT_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vP5wPW_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype Content </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vP5wfW_EeWzTLgJvBjJCA" name="CONTENT_BASE_COMMENT_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vP5wvW_EeWzTLgJvBjJCA">
+              <body> name of property base_Comment of the stereotype Content </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vP5w_W_EeWzTLgJvBjJCA" name="LINE_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vP5xPW_EeWzTLgJvBjJCA" name="LINE_BASE_PACKAGE_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vP5xfW_EeWzTLgJvBjJCA" name="CELL_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vQg0PW_EeWzTLgJvBjJCA" name="CELL_BASE_PACKAGE_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vQg0fW_EeWzTLgJvBjJCA" name="REF_CONTENT_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vQg0vW_EeWzTLgJvBjJCA" name="REF_CONTENT_BASE_PACKAGE_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vQg0_W_EeWzTLgJvBjJCA" name="REF_CONTENT_REF_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vQg1PW_EeWzTLgJvBjJCA" name="TABLEOFCONTENT_STEREOTYPE" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vQg1fW_EeWzTLgJvBjJCA">
+              <body> Qualified name of the stereotype TableOfContent </body>
+            </ownedComment>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_-vRH4PW_EeWzTLgJvBjJCA" name="TABLEOFCONTENT_BASE_COMMENT_ATT" visibility="public" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-vRH4fW_EeWzTLgJvBjJCA">
+              <body> name of property base_Comment of the stereotype TableOfContent </body>
+            </ownedComment>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_-2iNgPW_EeWzTLgJvBjJCA" name="command">
+          <packagedElement xmi:type="uml:Class" xmi:id="_-2iNgfW_EeWzTLgJvBjJCA" name="CreateDocumentModelCommand" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-2iNgvW_EeWzTLgJvBjJCA">
+              <body> this command transform a model to document model&#xD;
+&#xD;
+ </body>
+            </ownedComment>
+            <generalization xmi:type="uml:Generalization" xmi:id="_-2jboPW_EeWzTLgJvBjJCA" general="_-2i0lfW_EeWzTLgJvBjJCA"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2jbofW_EeWzTLgJvBjJCA" name="TESTS" visibility="protected" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2jbovW_EeWzTLgJvBjJCA" name="DESIGN" visibility="protected" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2jbo_W_EeWzTLgJvBjJCA" name="HOW_TO" visibility="protected" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2jbpPW_EeWzTLgJvBjJCA" name="USE_CASES" visibility="protected" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2kCsPW_EeWzTLgJvBjJCA" name="SYS_ML_REQUIREMENTS_REQUIREMENT" visibility="private" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2kCsfW_EeWzTLgJvBjJCA" name="SYS_ML_REQUIREMENTS_TESTCASE" visibility="private" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2kCsvW_EeWzTLgJvBjJCA" name="REQUIREMENTS" visibility="protected" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2kCtPW_EeWzTLgJvBjJCA" name="topModel" visibility="protected" type="_-2kCs_W_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2kCtfW_EeWzTLgJvBjJCA" name="directoryPath" visibility="protected" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2kpw_W_EeWzTLgJvBjJCA" name="hyperlinkHelperFactory" visibility="protected" type="_-2kpwvW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2kpxPW_EeWzTLgJvBjJCA" name="nbUnsatisfiedRequirement" visibility="protected" type="_-wTpsfW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2lQ0PW_EeWzTLgJvBjJCA" name="nbUnverifiedRequirement" visibility="protected" type="_-wTpsfW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2lQ0fW_EeWzTLgJvBjJCA" name="nbRequirement" visibility="protected" type="_-wTpsfW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2lQ1fW_EeWzTLgJvBjJCA" name="adapterFactory" visibility="private" type="_-2lQ1PW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2lQ1vW_EeWzTLgJvBjJCA" name="linkUtil" visibility="private" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-2l34vW_EeWzTLgJvBjJCA" name="diagramFileNames" visibility="private" type="_-2l34fW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2l34_W_EeWzTLgJvBjJCA" name="doExecute" visibility="protected"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2l35fW_EeWzTLgJvBjJCA" name="setTableOfContents" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-2me8PW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * &#xD;
+	 * Generate a package which represents a sub section on the table of content&#xD;
+	 * This is the same algorithm as @see {@link CreateDocumentModelCommand}.generateTableOfContents()&#xD;
+	 * This method is recursive.&#xD;
+	 * &#xD;
+	 * @param packageElement&#xD;
+	 * @param chapterPackage&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2me8fW_EeWzTLgJvBjJCA" name="packageElement" type="_-2l35PW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2me8vW_EeWzTLgJvBjJCA" name="chapterPackage" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2me9PW_EeWzTLgJvBjJCA" name="generateRequirements" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2nGAPW_EeWzTLgJvBjJCA" name="requirementsIn" type="_-2me8_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2nGAfW_EeWzTLgJvBjJCA" name="requirementsOUT" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2ntFvW_EeWzTLgJvBjJCA" name="generateUseCases" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2ntF_W_EeWzTLgJvBjJCA" name="copyImageUtil" type="_-2ntFfW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2oUIPW_EeWzTLgJvBjJCA" name="useCaseIN" type="_-2me8_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2oUIfW_EeWzTLgJvBjJCA" name="useCaseModelOUT" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2oUI_W_EeWzTLgJvBjJCA" name="generateUseCaseFromSubject" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2oUJPW_EeWzTLgJvBjJCA" name="copyImageUtil" type="_-2ntFfW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2o7MPW_EeWzTLgJvBjJCA" name="subjectIN" type="_-2oUIvW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2o7MfW_EeWzTLgJvBjJCA" name="useCaseModelOUT" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2o7M_W_EeWzTLgJvBjJCA" name="transformToContentWithUser" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2o7NPW_EeWzTLgJvBjJCA" name="copyImageUtil" type="_-2ntFfW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2piQPW_EeWzTLgJvBjJCA" name="useCaseSectionOUT" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2piQfW_EeWzTLgJvBjJCA" name="currentComment" type="_-2o7MvW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2piQvW_EeWzTLgJvBjJCA" name="generateDesign" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2piQ_W_EeWzTLgJvBjJCA" name="copyImageUtil" type="_-2ntFfW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2piRPW_EeWzTLgJvBjJCA" name="designPackageIn" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2piRfW_EeWzTLgJvBjJCA" name="designPackageOUT" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2qJUfW_EeWzTLgJvBjJCA" name="generateDesignCollaboration" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2qJUvW_EeWzTLgJvBjJCA" name="copyImageUtil" type="_-2ntFfW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2qJU_W_EeWzTLgJvBjJCA" name="designPackage" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2qJVPW_EeWzTLgJvBjJCA" name="collaboration" type="_-2qJUPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2qwYPW_EeWzTLgJvBjJCA" name="title" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2qwYfW_EeWzTLgJvBjJCA" type="_-vBQQPW_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2qwYvW_EeWzTLgJvBjJCA" name="element" type="_-wSbkvW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2qwY_W_EeWzTLgJvBjJCA" name="getMetaclassLabel" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2qwZPW_EeWzTLgJvBjJCA" type="_-vBQQPW_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2qwZfW_EeWzTLgJvBjJCA" name="element" type="_-2l35PW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2rXcPW_EeWzTLgJvBjJCA" name="generateTaxonomy" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2rXcfW_EeWzTLgJvBjJCA" name="designSection" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2rXcvW_EeWzTLgJvBjJCA" name="classifier" type="_-2oUIvW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2rXc_W_EeWzTLgJvBjJCA" name="generateTraceability" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2rXdPW_EeWzTLgJvBjJCA" name="sectionPackage" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2r-gPW_EeWzTLgJvBjJCA" name="concept" type="_-wSbkvW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2r-gfW_EeWzTLgJvBjJCA" name="getTracesTo" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-2r-gvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * Gets the elements that a {@code concept} traces to via {@literal Â«traceÂ» Abstractions}.&#xD;
+	 * &#xD;
+	 * @param concept&#xD;
+	 *            a concept in the model&#xD;
+	 * @return its trace-to elements&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2r-g_W_EeWzTLgJvBjJCA" type="_-wSbkvW_EeWzTLgJvBjJCA" direction="return">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-2r-hPW_EeWzTLgJvBjJCA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-2r-hfW_EeWzTLgJvBjJCA" value="*"/>
+              </ownedParameter>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2slkPW_EeWzTLgJvBjJCA" name="concept" type="_-wSbkvW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2slkfW_EeWzTLgJvBjJCA" name="getTracesFrom" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-2slkvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * Gets the elements that a {@code concept} traces from via {@literal Â«traceÂ» Abstractions}.&#xD;
+	 * &#xD;
+	 * @param concept&#xD;
+	 *            a concept in the model&#xD;
+	 * @return its trace-from elements&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2slk_W_EeWzTLgJvBjJCA" type="_-wSbkvW_EeWzTLgJvBjJCA" direction="return">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-2sllPW_EeWzTLgJvBjJCA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-2sllfW_EeWzTLgJvBjJCA" value="*"/>
+              </ownedParameter>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2sllvW_EeWzTLgJvBjJCA" name="concept" type="_-wSbkvW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2tMoPW_EeWzTLgJvBjJCA" name="generateTests" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2tMofW_EeWzTLgJvBjJCA" name="copyImageUtil" type="_-2ntFfW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2tMovW_EeWzTLgJvBjJCA" name="testIN" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2tMo_W_EeWzTLgJvBjJCA" name="testModelOUT" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2tMpPW_EeWzTLgJvBjJCA" name="generateTableCoverage" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-2tzsPW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * &#xD;
+	 * Generate the Requirements Coverage &quot;Section&quot; Package in the document model.&#xD;
+	 * First, retrieves the requirements package in the model.&#xD;
+	 * Then, for each requirement, create a comment with &quot;Line&quot; stereotype.&#xD;
+	 * A line has cells, and those cells are represented by a comment with the &quot;Cell&quot; stereotype.&#xD;
+	 * And a cell has contents, those contents are represented by a comment with the &quot;CellContent&quot; stereotype&#xD;
+	 * &#xD;
+	 * @param documentModel&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2tzsfW_EeWzTLgJvBjJCA" name="requirementsModel" type="_-2me8_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2tzsvW_EeWzTLgJvBjJCA" name="requirementsCoverageOUT" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2tzs_W_EeWzTLgJvBjJCA" name="setTableCoverage" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2tztPW_EeWzTLgJvBjJCA" name="requirementsModel" type="_-2me8_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2uawPW_EeWzTLgJvBjJCA" name="requirementsCoverageOUT" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2uawfW_EeWzTLgJvBjJCA" name="table" type="_-2o7MvW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2uawvW_EeWzTLgJvBjJCA" name="unsatisfiedRequirementComment" type="_-2o7MvW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2uaw_W_EeWzTLgJvBjJCA" name="unverifiedRequirementComment" type="_-2o7MvW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2uaxPW_EeWzTLgJvBjJCA" name="getStereotypedPackage" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-2uaxfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * &#xD;
+	 * Return the stereotyped model element.&#xD;
+	 * &#xD;
+	 * @param stereotypeName&#xD;
+	 * @return&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2vB0PW_EeWzTLgJvBjJCA" type="_-2me8_W_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2vB0fW_EeWzTLgJvBjJCA" name="stereotypeName" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2vB0vW_EeWzTLgJvBjJCA" name="getAllDependentElement" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-2vB0_W_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 *&#xD;
+	 * @param namedElement&#xD;
+	 * @param topModel&#xD;
+	 * @return the list of elements that depends of the given named element (never null, empty list)&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2vB1PW_EeWzTLgJvBjJCA" type="_-wSbkvW_EeWzTLgJvBjJCA" direction="return">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-2vB1fW_EeWzTLgJvBjJCA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-2vo4PW_EeWzTLgJvBjJCA" value="*"/>
+              </ownedParameter>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2vo4fW_EeWzTLgJvBjJCA" name="namedElement" type="_-wSbkvW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2vo4vW_EeWzTLgJvBjJCA" name="topModel" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2vo4_W_EeWzTLgJvBjJCA" name="createImageFromHyperLink" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2vo5PW_EeWzTLgJvBjJCA" name="copyImageUtil" type="_-2ntFfW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2vo5fW_EeWzTLgJvBjJCA" name="designPackageOUT" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2wP8PW_EeWzTLgJvBjJCA" name="currentComment" type="_-2o7MvW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2wP8fW_EeWzTLgJvBjJCA" name="createTableOfContents" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-2wP8vW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * create the element table of content from the package&#xD;
+	 * &#xD;
+	 * @param documentModelOUT&#xD;
+	 * @param title&#xD;
+	 * @return&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2wP8_W_EeWzTLgJvBjJCA" type="_-2kCs_W_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2wP9PW_EeWzTLgJvBjJCA" name="documentModelOUT" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2wP9fW_EeWzTLgJvBjJCA" name="title" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2w3APW_EeWzTLgJvBjJCA" name="createSection" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-2w3AfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * create the element section from the package&#xD;
+	 *&#xD;
+	 * @param documentModelOUT&#xD;
+	 * @param sectionTitle&#xD;
+	 * @return&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2w3AvW_EeWzTLgJvBjJCA" type="_-2kCs_W_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2w3A_W_EeWzTLgJvBjJCA" name="documentModelOUT" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2w3BPW_EeWzTLgJvBjJCA" name="sectionTitle" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2xeEPW_EeWzTLgJvBjJCA" name="transformToContentComment" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-2xeEfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * transform a comment to content Comment&#xD;
+	 *&#xD;
+	 * @param documentModel&#xD;
+	 * @param currentComment&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2xeEvW_EeWzTLgJvBjJCA" name="documentModel" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2xeE_W_EeWzTLgJvBjJCA" name="currentComment" type="_-2o7MvW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2yFIPW_EeWzTLgJvBjJCA" name="generateImg" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-2yFIfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * Transform a diagram to imageRefComment&#xD;
+	 *&#xD;
+	 * @param copyImageUtil&#xD;
+	 * @param currentModel&#xD;
+	 * @param currentDiagram&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2yFIvW_EeWzTLgJvBjJCA" name="copyImageUtil" type="_-2ntFfW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2yFI_W_EeWzTLgJvBjJCA" name="currentModel" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2yFJPW_EeWzTLgJvBjJCA" name="currentDiagram" type="_-2xeFfW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2ysMPW_EeWzTLgJvBjJCA" name="getDiagramImageFileName" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2ysMfW_EeWzTLgJvBjJCA" type="_-vBQQPW_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2ysMvW_EeWzTLgJvBjJCA" name="diagram" type="_-2xeFfW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-2ysNfW_EeWzTLgJvBjJCA" name="containedDiagrams" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-2ysNvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 *&#xD;
+	 * @param source&#xD;
+	 * @return the list of referenced diagram&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2zTQPW_EeWzTLgJvBjJCA" type="_-2xeFfW_EeWzTLgJvBjJCA" direction="return">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-2zTQfW_EeWzTLgJvBjJCA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-2zTQvW_EeWzTLgJvBjJCA" value="*"/>
+              </ownedParameter>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-2zTQ_W_EeWzTLgJvBjJCA" name="source" type="_-2ysNPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_-3Ni8PW_EeWzTLgJvBjJCA" name="handler">
+          <packagedElement xmi:type="uml:Class" xmi:id="_-3Ni8fW_EeWzTLgJvBjJCA" name="GetHTMLTextHandler" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-3Ni8vW_EeWzTLgJvBjJCA">
+              <body>This class is used to create and html developper doc file.&#xD;
+ </body>
+            </ownedComment>
+            <generalization xmi:type="uml:Generalization" xmi:id="_-3OKAfW_EeWzTLgJvBjJCA" general="_-3OKAPW_EeWzTLgJvBjJCA"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-3OKAvW_EeWzTLgJvBjJCA" name="INTERNAL_DIRECTORY_NAME" visibility="protected" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-3OxFfW_EeWzTLgJvBjJCA" name="execute" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-3PYIPW_EeWzTLgJvBjJCA" type="_-3OxFvW_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-3PYIfW_EeWzTLgJvBjJCA" name="event" type="_-3OxFPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-3PYIvW_EeWzTLgJvBjJCA" name="isEnabled" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-3PYJPW_EeWzTLgJvBjJCA" type="_-3PYI_W_EeWzTLgJvBjJCA" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_-3OKAPW_EeWzTLgJvBjJCA" name="IDMAbstractHandler" visibility="public" isAbstract="true">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-44W4PW_EeWzTLgJvBjJCA">
+              <body>Abstract handler in order to connect to papyrus&#xD;
+ </body>
+            </ownedComment>
+            <generalization xmi:type="uml:Generalization" xmi:id="_-44W4vW_EeWzTLgJvBjJCA" general="_-44W4fW_EeWzTLgJvBjJCA"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-4498fW_EeWzTLgJvBjJCA" name="transactionalEditingDomain" visibility="protected" type="_-4498PW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-45lAvW_EeWzTLgJvBjJCA" name="papyrusEditor" visibility="protected" type="_-45lAfW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-45lBPW_EeWzTLgJvBjJCA" name="elt2DocElt" visibility="private" isStatic="true" type="_-45lA_W_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-45lBfW_EeWzTLgJvBjJCA" name="href2DocHREF" visibility="private" isStatic="true" type="_-45lA_W_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-45lBvW_EeWzTLgJvBjJCA" name="Toc2DocElt" visibility="private" isStatic="true" type="_-45lA_W_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-46MEPW_EeWzTLgJvBjJCA" name="getToPackage" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-46MEfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * get the root package&#xD;
+	 *&#xD;
+	 * @param elem&#xD;
+	 * @return the root package&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-46MEvW_EeWzTLgJvBjJCA" type="_-2kCs_W_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-46ME_W_EeWzTLgJvBjJCA" name="elem" type="_-2l35PW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-46MFPW_EeWzTLgJvBjJCA" name="execute" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-46MFfW_EeWzTLgJvBjJCA" type="_-3OxFvW_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-46zIPW_EeWzTLgJvBjJCA" name="event" type="_-3OxFPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-46zIfW_EeWzTLgJvBjJCA" name="getSelection" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-46zIvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * getSelected element in the diagram or in hte model explorer&#xD;
+	 *&#xD;
+	 * @return Element or null&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-46zI_W_EeWzTLgJvBjJCA" type="_-2l35PW_EeWzTLgJvBjJCA" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-46zJPW_EeWzTLgJvBjJCA" name="getSelectionSet" visibility="protected">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-46zJfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * getSelected element in the diagram or in hte model explorer&#xD;
+	 *&#xD;
+	 * @return Element or null&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-46zJvW_EeWzTLgJvBjJCA" type="_-2l35PW_EeWzTLgJvBjJCA" direction="return">
+                <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-47aMPW_EeWzTLgJvBjJCA"/>
+                <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-47aMfW_EeWzTLgJvBjJCA" value="*"/>
+              </ownedParameter>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-47aMvW_EeWzTLgJvBjJCA" name="getCurrentProject" visibility="protected">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-47aNfW_EeWzTLgJvBjJCA" type="_-47aNPW_EeWzTLgJvBjJCA" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-47aNvW_EeWzTLgJvBjJCA" name="clear" visibility="public" isStatic="true"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-48BQPW_EeWzTLgJvBjJCA" name="getDocElement" visibility="public" isStatic="true">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-48BQfW_EeWzTLgJvBjJCA" type="_-2l35PW_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-48BQvW_EeWzTLgJvBjJCA" name="modelElement" type="_-2l35PW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-48BQ_W_EeWzTLgJvBjJCA" name="getDocHREF" visibility="public" isStatic="true">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-48BRPW_EeWzTLgJvBjJCA" type="_-vBQQPW_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-48BRfW_EeWzTLgJvBjJCA" name="href" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-48oUPW_EeWzTLgJvBjJCA" name="putDocElement" visibility="public" isStatic="true">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-48oUfW_EeWzTLgJvBjJCA" name="modelElement" type="_-2l35PW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-48oUvW_EeWzTLgJvBjJCA" name="docElement" type="_-2l35PW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-48oU_W_EeWzTLgJvBjJCA" name="getDocPackageForTOC" visibility="public" isStatic="true">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-48oVPW_EeWzTLgJvBjJCA" type="_-2kCs_W_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-48oVfW_EeWzTLgJvBjJCA" name="tocPackage" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-49PYPW_EeWzTLgJvBjJCA" name="putTOCPackage" visibility="public" isStatic="true">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-49PYfW_EeWzTLgJvBjJCA" name="tocPackage" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-49PYvW_EeWzTLgJvBjJCA" name="docPackage" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_-3mkgPW_EeWzTLgJvBjJCA" name="GetWikiTextHandler" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-3nLkPW_EeWzTLgJvBjJCA">
+              <body> This class is used to create and wiki developper doc file.&#xD;
+&#xD;
+ </body>
+            </ownedComment>
+            <generalization xmi:type="uml:Generalization" xmi:id="_-3nLkfW_EeWzTLgJvBjJCA" general="_-3OKAPW_EeWzTLgJvBjJCA"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-3nLkvW_EeWzTLgJvBjJCA" name="INTERNAL_DIRECTORY_NAME" visibility="protected" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-3nLk_W_EeWzTLgJvBjJCA" name="execute" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-3nLlPW_EeWzTLgJvBjJCA" type="_-3OxFvW_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-3nyoPW_EeWzTLgJvBjJCA" name="event" type="_-3OxFPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-3nyofW_EeWzTLgJvBjJCA" name="isEnabled" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-3nyovW_EeWzTLgJvBjJCA" type="_-3PYI_W_EeWzTLgJvBjJCA" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_-6F30PW_EeWzTLgJvBjJCA" name="transcription">
+          <packagedElement xmi:type="uml:Class" xmi:id="_-6Ge4PW_EeWzTLgJvBjJCA" name="HTMLTranscription" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-6Ge4fW_EeWzTLgJvBjJCA">
+              <body>This class is a specialization to generate html files.&#xD;
+&#xD;
+ </body>
+            </ownedComment>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-6HF8PW_EeWzTLgJvBjJCA" name="hyperlinkFunction" visibility="private" isLeaf="true" type="_-wRNd_W_EeWzTLgJvBjJCA" isUnique="false"/>
+            <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_-6Ge4_W_EeWzTLgJvBjJCA" name="HTMLTranscription implements ITranscription" client="_-6Ge4PW_EeWzTLgJvBjJCA" supplier="_-6Ge4vW_EeWzTLgJvBjJCA" contract="_-6Ge4vW_EeWzTLgJvBjJCA"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6HF8fW_EeWzTLgJvBjJCA" name="getHyperlinkTranscoder" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6HF8vW_EeWzTLgJvBjJCA" type="_-wRNd_W_EeWzTLgJvBjJCA" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6HF9PW_EeWzTLgJvBjJCA" name="writeEndingDocument" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6HF9fW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndingDocument(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6HtAPW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6HtAfW_EeWzTLgJvBjJCA" name="writeBeginningDocument" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6HtAvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeBeginningDocument(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @return the string buffer after adding the prefix for the document&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6HtA_W_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6HtBPW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6HtBfW_EeWzTLgJvBjJCA" name="writeDocumentTitle" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6HtBvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeDocumentTitle(java.lang.StringBuffer, org.eclipse.uml2.uml.Model)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param documentModel&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6HtB_W_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6IUEPW_EeWzTLgJvBjJCA" name="documentModel" type="_-2me8_W_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6IUEfW_EeWzTLgJvBjJCA" name="writeSectionTitle" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6IUEvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writesectionTitle(java.lang.StringBuffer, int, org.eclipse.uml2.uml.Element)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param level&#xD;
+	 * @param packageableElement&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6IUE_W_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6IUFPW_EeWzTLgJvBjJCA" name="level" type="_-wTpsfW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6IUFfW_EeWzTLgJvBjJCA" name="packageableElement" type="_-2l35PW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6I7IfW_EeWzTLgJvBjJCA" name="writeImageRef" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6I7IvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeImageRef(java.lang.StringBuffer, org.eclipse.uml2.uml.Element, org.eclipse.uml2.uml.Stereotype)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param packageableElement&#xD;
+	 * @param imgRefStereotype&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6I7I_W_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6I7JPW_EeWzTLgJvBjJCA" name="packageableElement" type="_-2l35PW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6I7JfW_EeWzTLgJvBjJCA" name="imgRefStereotype" type="_-6I7IPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6JiMPW_EeWzTLgJvBjJCA" name="writeParagraph" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6JiMfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeParagraph(java.lang.StringBuffer, org.eclipse.uml2.uml.Element)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param packageableElement&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6JiMvW_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6JiM_W_EeWzTLgJvBjJCA" name="packageableElement" type="_-2l35PW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6JiNPW_EeWzTLgJvBjJCA" name="getId" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6JiNfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @return&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6JiNvW_EeWzTLgJvBjJCA" type="_-vBQQPW_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6KJQPW_EeWzTLgJvBjJCA" name="packageableElement" type="_-2l35PW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6KJQfW_EeWzTLgJvBjJCA" name="getNameFile" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6KJQvW_EeWzTLgJvBjJCA" type="_-vBQQPW_EeWzTLgJvBjJCA" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6KJQ_W_EeWzTLgJvBjJCA" name="writeTable" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6KJRPW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeTable(java.lang.StringBuffer, org.eclipse.uml2.uml.Element)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param packElement&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6KJRfW_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6KJRvW_EeWzTLgJvBjJCA" name="tableCaption" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6KwUPW_EeWzTLgJvBjJCA" name="writeLine" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6KwUfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * &#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeLine(java.lang.StringBuffer, java.lang.String, java.lang.String, java.lang.String)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param uri&#xD;
+	 * @param referenceName&#xD;
+	 * @param text&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6KwUvW_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6KwU_W_EeWzTLgJvBjJCA" name="uri" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6KwVPW_EeWzTLgJvBjJCA" name="referenceName" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6KwVfW_EeWzTLgJvBjJCA" name="text" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6KwVvW_EeWzTLgJvBjJCA" name="writeNewLine" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6KwV_W_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeNewLine(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6LXYPW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6LXYfW_EeWzTLgJvBjJCA" name="writeBeginTDTag" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6LXYvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * &#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeBeginTDTag(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6LXY_W_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6LXZPW_EeWzTLgJvBjJCA" name="writeEndTDTag" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6LXZfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * &#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndTDTag(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6LXZvW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6LXZ_W_EeWzTLgJvBjJCA" name="writeBeginTRTag" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6L-cPW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * &#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeBeginTRTag(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6L-cfW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6L-cvW_EeWzTLgJvBjJCA" name="writeEndTRTag" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6L-c_W_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * &#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndTRTag(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6L-dPW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6L-dfW_EeWzTLgJvBjJCA" name="writeEndingTable" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6L-dvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndingTable(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6L-d_W_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6MlgPW_EeWzTLgJvBjJCA" name="writeBeginParagraph" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6MlgfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * &#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeBeginParagraph(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6MlgvW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6Mlg_W_EeWzTLgJvBjJCA" name="writeEndingParagraph" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6MlhPW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * &#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndingParagraph(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6MlhfW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6MlhvW_EeWzTLgJvBjJCA" name="writeRefContent" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6NMkPW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * &#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeRefContent(java.lang.StringBuffer, java.lang.String, java.lang.String, java.lang.String)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param uri&#xD;
+	 * @param requirementName&#xD;
+	 * @param reqID&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6NMkfW_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6NMkvW_EeWzTLgJvBjJCA" name="uri" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6NMk_W_EeWzTLgJvBjJCA" name="requirementName" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6NMlPW_EeWzTLgJvBjJCA" name="reqID" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6NMlfW_EeWzTLgJvBjJCA" name="writeTOCSection" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6NMlvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeTOCSection(java.lang.StringBuffer, java.lang.String, java.lang.String, int)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param chapterName&#xD;
+	 * @param uri&#xD;
+	 * @param chapterNb&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6NzoPW_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6NzofW_EeWzTLgJvBjJCA" name="chapterName" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6NzovW_EeWzTLgJvBjJCA" name="uri" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_-6Ge4vW_EeWzTLgJvBjJCA" name="ITranscription" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-6dEMPW_EeWzTLgJvBjJCA">
+              <body>This class is used to generated very swiftly a document from the document model&#xD;
+&#xD;
+ </body>
+            </ownedComment>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6dEMfW_EeWzTLgJvBjJCA" name="getHyperlinkTranscoder" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6dEMvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * Obtains a function that generates the output format of an element hyperlink.&#xD;
+	 * &#xD;
+	 * @return&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6dEM_W_EeWzTLgJvBjJCA" type="_-wRNd_W_EeWzTLgJvBjJCA" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6drQPW_EeWzTLgJvBjJCA" name="writeEndingDocument" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6drQfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * finalize the document&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6drQvW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6drQ_W_EeWzTLgJvBjJCA" name="writeBeginningDocument" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6drRPW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * init the document&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @return the string buffer after adding the prefix for the document&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6drRfW_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6drRvW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6eSUPW_EeWzTLgJvBjJCA" name="writeDocumentTitle" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6eSUfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * write the document title&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param documentModel&#xD;
+	 *            the package&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6eSUvW_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6eSU_W_EeWzTLgJvBjJCA" name="documentModel" type="_-2me8_W_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6eSVPW_EeWzTLgJvBjJCA" name="writeSectionTitle" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6eSVfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * withe the section title from a package&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param level&#xD;
+	 *            the heap of the package&#xD;
+	 * @param packageableElement&#xD;
+	 *            the package&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6e5YPW_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6e5YfW_EeWzTLgJvBjJCA" name="level" type="_-wTpsfW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6e5YvW_EeWzTLgJvBjJCA" name="packageableElement" type="_-2l35PW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6e5Y_W_EeWzTLgJvBjJCA" name="writeImageRef" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6e5ZPW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * write a image&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param packageableElement&#xD;
+	 *            form a comment that contains the ref to the&#xD;
+	 * @param imgRefStereotype&#xD;
+	 *            the stereotype in charge to reference the image&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6e5ZfW_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6e5ZvW_EeWzTLgJvBjJCA" name="packageableElement" type="_-2l35PW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6fgcPW_EeWzTLgJvBjJCA" name="imgRefStereotype" type="_-6I7IPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6fgcfW_EeWzTLgJvBjJCA" name="writeParagraph" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6fgcvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * write a paragraph&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param packageableElement&#xD;
+	 *            from a comment&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6fgc_W_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6fgdPW_EeWzTLgJvBjJCA" name="packageableElement" type="_-2l35PW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6fgdfW_EeWzTLgJvBjJCA" name="getNameFile" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6fgdvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 *&#xD;
+	 * @return the name of the document to generate&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6gHgPW_EeWzTLgJvBjJCA" type="_-vBQQPW_EeWzTLgJvBjJCA" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6gHgfW_EeWzTLgJvBjJCA" name="writeTable" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6gHgvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * write the beginning of the table (header, style)&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 * @param tableCaption&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6gHg_W_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6gHhPW_EeWzTLgJvBjJCA" name="tableCaption" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6gHhfW_EeWzTLgJvBjJCA" name="writeLine" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6gHhvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * write line in the table&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 * @param uri&#xD;
+	 *            represents the uri of the referent element&#xD;
+	 * @param referenceName&#xD;
+	 *            name of the referent element&#xD;
+	 * @param text&#xD;
+	 *            represents content of the line&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6gukPW_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6gukfW_EeWzTLgJvBjJCA" name="uri" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6gukvW_EeWzTLgJvBjJCA" name="referenceName" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6guk_W_EeWzTLgJvBjJCA" name="text" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6gulPW_EeWzTLgJvBjJCA" name="writeBeginTRTag" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6gulfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * &#xD;
+	 * write the beginning of a line&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6hVoPW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6hVofW_EeWzTLgJvBjJCA" name="writeEndTRTag" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6hVovW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * write the ending of a line&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6hVo_W_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6hVpPW_EeWzTLgJvBjJCA" name="writeEndingTable" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6hVpfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * finalize the table&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6hVpvW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6h8sPW_EeWzTLgJvBjJCA" name="writeBeginTDTag" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6h8sfW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * write the beginning of a column&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6h8svW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6h8s_W_EeWzTLgJvBjJCA" name="writeEndTDTag" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6h8tPW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * write the ending of a column&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6h8tfW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6h8tvW_EeWzTLgJvBjJCA" name="writeRefContent" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6ijwPW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * write the requirements which aren't covered&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 * @param uri&#xD;
+	 *            represents the uri of the Requirements Doc Element&#xD;
+	 * @param requirementName&#xD;
+	 *            the requirement name&#xD;
+	 * @param reqID&#xD;
+	 *            id of the requirement&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6ijwfW_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6ijwvW_EeWzTLgJvBjJCA" name="uri" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6ijw_W_EeWzTLgJvBjJCA" name="requirementName" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6ijxPW_EeWzTLgJvBjJCA" name="reqID" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6ijxfW_EeWzTLgJvBjJCA" name="writeBeginParagraph" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6ijxvW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * write beginning of a paragraph&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6jK0PW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6jK0fW_EeWzTLgJvBjJCA" name="writeEndingParagraph" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6jK0vW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * write ending of a paragraph&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6jK0_W_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6jK1PW_EeWzTLgJvBjJCA" name="writeTOCSection" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6jK1fW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * write section in table of contents&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 * @param chapterName&#xD;
+	 *            represents the name of the section&#xD;
+	 * @param uri&#xD;
+	 *            represents the uri of the Section Doc Element&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6jx4PW_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6jx4fW_EeWzTLgJvBjJCA" name="chapterName" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6jx4vW_EeWzTLgJvBjJCA" name="uri" type="_-vBQQPW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-6jx4_W_EeWzTLgJvBjJCA" name="writeNewLine" visibility="public" isAbstract="true">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-6jx5PW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-6jx5fW_EeWzTLgJvBjJCA" name="out"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_-80bsPW_EeWzTLgJvBjJCA" name="TranscriptionEngine" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_-81CwPW_EeWzTLgJvBjJCA">
+              <body> This class is an engine to traduce a document model into files&#xD;
+ </body>
+            </ownedComment>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-81CwfW_EeWzTLgJvBjJCA" name="INTERNAL_DIRECTORY" visibility="protected" isLeaf="true" isStatic="true" type="_-vBQQPW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-81CwvW_EeWzTLgJvBjJCA" name="model" type="_-2me8_W_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-81Cw_W_EeWzTLgJvBjJCA" name="project" type="_-47aNPW_EeWzTLgJvBjJCA" isUnique="false"/>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_-81CxPW_EeWzTLgJvBjJCA" name="transcription" type="_-6Ge4vW_EeWzTLgJvBjJCA" isUnique="false" aggregation="composite" association="_Dyc4cPXBEeWzTLgJvBjJCA"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-81p0PW_EeWzTLgJvBjJCA" name="traduce" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-81p0fW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * execute the transcription&#xD;
+	 </body>
+              </ownedComment>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-81p0vW_EeWzTLgJvBjJCA" name="getText" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-81p0_W_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 *&#xD;
+	 * @param model&#xD;
+	 *            that will be traduced&#xD;
+	 * @return the stringBuffer that will be obtained from the transcription&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-81p1PW_EeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-81p1fW_EeWzTLgJvBjJCA" name="model" type="_-2me8_W_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-81p1vW_EeWzTLgJvBjJCA" name="writeContent" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-82Q4PW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * create a content from a package&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 *            the result&#xD;
+	 * @param documentModel&#xD;
+	 *            the package where its content will be translated&#xD;
+	 * @param level&#xD;
+	 *            the depth of the current package&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-82Q4fW_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-82Q4vW_EeWzTLgJvBjJCA" name="documentModel" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-82Q4_W_EeWzTLgJvBjJCA" name="level" type="_-wTpsfW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-82Q5PW_EeWzTLgJvBjJCA" name="writeRefContent" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-82Q5fW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * Iterates on ownedComments of a comment stereotyped by {@link I_DocumentStereotype}.CONTENT_STEREOTYPE&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 * @param commentModel&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-82Q5vW_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-8238PW_EeWzTLgJvBjJCA" name="commentModel" type="_-2o7MvW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-8238fW_EeWzTLgJvBjJCA" name="writeTOC" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-8238vW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * Retrieves the Table of Contents &quot;Section&quot; Package&#xD;
+	 * and iterates on it &quot;Section&quot; package.&#xD;
+	 * For each, write it name and URI in the output file.&#xD;
+	 * Then, iterates on it child&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 * @param packageableElement&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-8238_W_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-8239PW_EeWzTLgJvBjJCA" name="packageableElement" type="_-2kCs_W_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_-8239fW_EeWzTLgJvBjJCA" name="writeTable" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_-83fAPW_EeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * &#xD;
+	 * This method generates the requirement table in the Requirements Coverage section.&#xD;
+	 * First, retrieves the comment with the &quot;Table&quot; stereotype.&#xD;
+	 * After that, iterates on it ownedComment and retrieves those which have the Line stereotype applied.&#xD;
+	 * For each &quot;line&quot;, writes the ID of the requirement, element(s) which satisfied and verified the requirement.&#xD;
+	 * &#xD;
+	 * @param out&#xD;
+	 * @param packageableElement&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-83fAfW_EeWzTLgJvBjJCA" name="out"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_-83fAvW_EeWzTLgJvBjJCA" name="packageableElement" type="_-2l35PW_EeWzTLgJvBjJCA"/>
+            </ownedOperation>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Association" xmi:id="_Dyc4cPXBEeWzTLgJvBjJCA" name="A_transcription_transcriptionEngine" memberEnd="_-81CxPW_EeWzTLgJvBjJCA _DyfUsPXBEeWzTLgJvBjJCA">
+            <ownedEnd xmi:type="uml:Property" xmi:id="_DyfUsPXBEeWzTLgJvBjJCA" name="transcriptionEngine" type="_-80bsPW_EeWzTLgJvBjJCA" association="_Dyc4cPXBEeWzTLgJvBjJCA">
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Dygi0PXBEeWzTLgJvBjJCA"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Dygi0fXBEeWzTLgJvBjJCA" value="1"/>
+            </ownedEnd>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Class" xmi:id="_b4uU4PXBEeWzTLgJvBjJCA" name="WikiTranscription" visibility="public">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_b4uU4fXBEeWzTLgJvBjJCA">
+              <body>This class is a specialization to generate mediawiki files.&#xD;
+ </body>
+            </ownedComment>
+            <ownedAttribute xmi:type="uml:Property" xmi:id="_b4wKEfXBEeWzTLgJvBjJCA" name="hyperlinkFunction" visibility="private" isLeaf="true" isUnique="false"/>
+            <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_b4u78fXBEeWzTLgJvBjJCA" name="WikiTranscription implements ITranscription" client="_b4uU4PXBEeWzTLgJvBjJCA" supplier="_-6Ge4vW_EeWzTLgJvBjJCA"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b4wxIPXBEeWzTLgJvBjJCA" name="getHyperlinkTranscoder" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b4wxIfXBEeWzTLgJvBjJCA" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b4xYMPXBEeWzTLgJvBjJCA" name="writeEndingDocument" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b4xYMfXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndingDocument(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b4xYMvXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b4xYM_XBEeWzTLgJvBjJCA" name="writeBeginningDocument" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b4xYNPXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeBeginningDocument(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @return the string buffer after adding the prefix for the document&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b4xYNfXBEeWzTLgJvBjJCA" type="_b4wxIvXBEeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b4x_QPXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b4ymU_XBEeWzTLgJvBjJCA" name="writeDocumentTitle" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b4ymVPXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeDocumentTitle(java.lang.StringBuffer, org.eclipse.uml2.uml.Model)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param documentModel&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b4ymVfXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b4zNYPXBEeWzTLgJvBjJCA" name="documentModel" type="_b4ymUvXBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b4z0cfXBEeWzTLgJvBjJCA" name="writeSectionTitle" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b4z0cvXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writesectionTitle(java.lang.StringBuffer, int, org.eclipse.uml2.uml.Element)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param level&#xD;
+	 * @param packageableElement&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b40bgPXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b40bgfXBEeWzTLgJvBjJCA" name="level" type="_b4zNY_XBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b40bgvXBEeWzTLgJvBjJCA" name="packageableElement" type="_b4z0cPXBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b41CkPXBEeWzTLgJvBjJCA" name="writeImageRef" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b41CkfXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeImageRef(java.lang.StringBuffer, org.eclipse.uml2.uml.Element, org.eclipse.uml2.uml.Stereotype)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param packageableElement&#xD;
+	 * @param imgRefStereotype&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b41CkvXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b41Ck_XBEeWzTLgJvBjJCA" name="packageableElement" type="_b4z0cPXBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b41ClPXBEeWzTLgJvBjJCA" name="imgRefStereotype" type="_b40bg_XBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b41poPXBEeWzTLgJvBjJCA" name="writeParagraph" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b41pofXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeParagraph(java.lang.StringBuffer, org.eclipse.uml2.uml.Element)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param packageableElement&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b41povXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b41po_XBEeWzTLgJvBjJCA" name="packageableElement" type="_b4z0cPXBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b41ppPXBEeWzTLgJvBjJCA" name="getNameFile" visibility="public">
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b42QtPXBEeWzTLgJvBjJCA" type="_b42Qs_XBEeWzTLgJvBjJCA" direction="return"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b423wPXBEeWzTLgJvBjJCA" name="getId" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b423wfXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @return&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b423wvXBEeWzTLgJvBjJCA" type="_b42Qs_XBEeWzTLgJvBjJCA" direction="return"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b43e0PXBEeWzTLgJvBjJCA" name="packageableElement" type="_b4z0cPXBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b43e0fXBEeWzTLgJvBjJCA" name="writeTable" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b43e0vXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeTable(java.lang.StringBuffer, java.lang.String)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param tableCaption&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b43e0_XBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b43e1PXBEeWzTLgJvBjJCA" name="tableCaption" type="_b42Qs_XBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b43e1fXBEeWzTLgJvBjJCA" name="writeLine" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b44F4PXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeLine(java.lang.StringBuffer, java.lang.String, java.lang.String)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param uri&#xD;
+	 * @param text&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b44F4fXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b44F4vXBEeWzTLgJvBjJCA" name="uri" type="_b42Qs_XBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b44F4_XBEeWzTLgJvBjJCA" name="requirementName" type="_b42Qs_XBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b44F5PXBEeWzTLgJvBjJCA" name="text" type="_b42Qs_XBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b44s8PXBEeWzTLgJvBjJCA" name="writeNewLine" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b44s8fXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeNewLine(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b44s8vXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b44s8_XBEeWzTLgJvBjJCA" name="writeBeginTRTag" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b44s9PXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeBeginTRTag(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b45UAPXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b45UAfXBEeWzTLgJvBjJCA" name="writeEndTRTag" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b45UAvXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndTRTag(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b45UA_XBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b45UBPXBEeWzTLgJvBjJCA" name="writeEndingTable" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b457EPXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndingTable(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b457EfXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b457EvXBEeWzTLgJvBjJCA" name="writeBeginTDTag" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b457E_XBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeBeginTDTag(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b457FPXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b457FfXBEeWzTLgJvBjJCA" name="writeEndTDTag" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b46iIPXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndTDTag(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b46iIfXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b46iIvXBEeWzTLgJvBjJCA" name="writeRefContent" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b46iI_XBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeUncoveredRequirement(java.lang.StringBuffer, java.lang.String, java.lang.String)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param uri&#xD;
+	 * @param reqID&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b46iJPXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b47JMPXBEeWzTLgJvBjJCA" name="uri" type="_b42Qs_XBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b47JMfXBEeWzTLgJvBjJCA" name="requirementName" type="_b42Qs_XBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b47JMvXBEeWzTLgJvBjJCA" name="reqID" type="_b42Qs_XBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b47JM_XBEeWzTLgJvBjJCA" name="writeBeginParagraph" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b47JNPXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeBeginParagraph(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b47wQPXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b47wQfXBEeWzTLgJvBjJCA" name="writeEndingParagraph" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b47wQvXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndingParagraph(java.lang.StringBuffer)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b47wQ_XBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_b47wRPXBEeWzTLgJvBjJCA" name="writeTOCSection" visibility="public">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_b48XUPXBEeWzTLgJvBjJCA">
+                <body>&#xD;
+	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeTOCSection(java.lang.StringBuffer, java.lang.String, java.lang.String, int)&#xD;
+	 *&#xD;
+	 * @param out&#xD;
+	 * @param chapterName&#xD;
+	 * @param uri&#xD;
+	 * @param chapterNb&#xD;
+	 </body>
+              </ownedComment>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b48XUfXBEeWzTLgJvBjJCA" name="out" type="_b4wxIvXBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b48XUvXBEeWzTLgJvBjJCA" name="chapterName" type="_b42Qs_XBEeWzTLgJvBjJCA"/>
+              <ownedParameter xmi:type="uml:Parameter" xmi:id="_b48XU_XBEeWzTLgJvBjJCA" name="uri" type="_b42Qs_XBEeWzTLgJvBjJCA"/>
+            </ownedOperation>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Model" xmi:id="_3his2PWGEeWtjMWb98HWsA" name="Test">
       <packagedElement xmi:type="uml:Dependency" xmi:id="_3his2fWGEeWtjMWb98HWsA" name="Dependency1" client="_3his2PWGEeWtjMWb98HWsA" supplier="_3his0_WGEeWtjMWb98HWsA"/>
@@ -592,6 +2027,220 @@ Note that this doc has been obtained by using the tool on itself. You can notice
         </ownedComment>
       </packagedElement>
     </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_E0jEEPXAEeWzTLgJvBjJCA" name="libraries">
+      <packagedElement xmi:type="uml:Model" xmi:id="_-u-0APW_EeWzTLgJvBjJCA" name="uml">
+        <packagedElement xmi:type="uml:Package" xmi:id="_-u_bEPW_EeWzTLgJvBjJCA" name="org">
+          <packagedElement xmi:type="uml:Package" xmi:id="_-u_bEfW_EeWzTLgJvBjJCA" name="eclipse">
+            <packagedElement xmi:type="uml:Package" xmi:id="_-u_bEvW_EeWzTLgJvBjJCA" name="papyrus">
+              <packagedElement xmi:type="uml:Package" xmi:id="_-u_bE_W_EeWzTLgJvBjJCA" name="uml">
+                <packagedElement xmi:type="uml:Package" xmi:id="_-u_bFPW_EeWzTLgJvBjJCA" name="developper"/>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_-vACI_W_EeWzTLgJvBjJCA" name="ui">
+        <packagedElement xmi:type="uml:Package" xmi:id="_-vACJPW_EeWzTLgJvBjJCA" name="org">
+          <packagedElement xmi:type="uml:Package" xmi:id="_-vApMPW_EeWzTLgJvBjJCA" name="eclipse">
+            <packagedElement xmi:type="uml:Package" xmi:id="_-vApMfW_EeWzTLgJvBjJCA" name="ui">
+              <packagedElement xmi:type="uml:Package" xmi:id="_-vApMvW_EeWzTLgJvBjJCA" name="plugin">
+                <packagedElement xmi:type="uml:Class" xmi:id="_-vApM_W_EeWzTLgJvBjJCA" name="AbstractUIPlugin"/>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_-vApNfW_EeWzTLgJvBjJCA" name="java">
+        <packagedElement xmi:type="uml:Package" xmi:id="_-vApNvW_EeWzTLgJvBjJCA" name="java">
+          <packagedElement xmi:type="uml:Package" xmi:id="_-vApN_W_EeWzTLgJvBjJCA" name="lang">
+            <packagedElement xmi:type="uml:Class" xmi:id="_-vBQQPW_EeWzTLgJvBjJCA" name="String"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_-3OxFvW_EeWzTLgJvBjJCA" name="Object"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_-wQmYvW_EeWzTLgJvBjJCA" name="util">
+            <packagedElement xmi:type="uml:Class" xmi:id="_-45lA_W_EeWzTLgJvBjJCA" name="Map"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_-wRNcPW_EeWzTLgJvBjJCA" name="regex">
+              <packagedElement xmi:type="uml:Class" xmi:id="_-wRNcfW_EeWzTLgJvBjJCA" name="Pattern"/>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_-vBQRPW_EeWzTLgJvBjJCA" name="infra">
+        <packagedElement xmi:type="uml:Package" xmi:id="_-vBQRfW_EeWzTLgJvBjJCA" name="org">
+          <packagedElement xmi:type="uml:Package" xmi:id="_-vB3UPW_EeWzTLgJvBjJCA" name="eclipse">
+            <packagedElement xmi:type="uml:Package" xmi:id="_-vB3UfW_EeWzTLgJvBjJCA" name="papyrus">
+              <packagedElement xmi:type="uml:Package" xmi:id="_-vB3UvW_EeWzTLgJvBjJCA" name="infra">
+                <packagedElement xmi:type="uml:Package" xmi:id="_-vB3U_W_EeWzTLgJvBjJCA" name="core">
+                  <packagedElement xmi:type="uml:Package" xmi:id="_-vB3VPW_EeWzTLgJvBjJCA" name="log">
+                    <packagedElement xmi:type="uml:Class" xmi:id="_-vB3VfW_EeWzTLgJvBjJCA" name="LogHelper"/>
+                  </packagedElement>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Package" xmi:id="_-2kpwPW_EeWzTLgJvBjJCA" name="hyperlink">
+                  <packagedElement xmi:type="uml:Package" xmi:id="_-2kpwfW_EeWzTLgJvBjJCA" name="helper">
+                    <packagedElement xmi:type="uml:Class" xmi:id="_-2kpwvW_EeWzTLgJvBjJCA" name="HyperLinkHelperFactory"/>
+                  </packagedElement>
+                </packagedElement>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_-vB3V_W_EeWzTLgJvBjJCA" name="osgi">
+        <packagedElement xmi:type="uml:Model" xmi:id="_-vCeYPW_EeWzTLgJvBjJCA" name="framework">
+          <packagedElement xmi:type="uml:Package" xmi:id="_-vCeYfW_EeWzTLgJvBjJCA" name="org">
+            <packagedElement xmi:type="uml:Package" xmi:id="_-vCeYvW_EeWzTLgJvBjJCA" name="osgi">
+              <packagedElement xmi:type="uml:Package" xmi:id="_-vCeY_W_EeWzTLgJvBjJCA" name="framework">
+                <packagedElement xmi:type="uml:Class" xmi:id="_-vCeZPW_EeWzTLgJvBjJCA" name="BundleContext"/>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_-wR0g_W_EeWzTLgJvBjJCA" name="uml2">
+        <packagedElement xmi:type="uml:Package" xmi:id="_-wR0hPW_EeWzTLgJvBjJCA" name="org">
+          <packagedElement xmi:type="uml:Package" xmi:id="_-wR0hfW_EeWzTLgJvBjJCA" name="eclipse">
+            <packagedElement xmi:type="uml:Package" xmi:id="_-wSbkPW_EeWzTLgJvBjJCA" name="uml2">
+              <packagedElement xmi:type="uml:Package" xmi:id="_-wSbkfW_EeWzTLgJvBjJCA" name="uml">
+                <packagedElement xmi:type="uml:Class" xmi:id="_-wSbkvW_EeWzTLgJvBjJCA" name="NamedElement"/>
+                <packagedElement xmi:type="uml:Class" xmi:id="_-2kCs_W_EeWzTLgJvBjJCA" name="Package"/>
+                <packagedElement xmi:type="uml:Class" xmi:id="_-2l35PW_EeWzTLgJvBjJCA" name="Element"/>
+                <packagedElement xmi:type="uml:Class" xmi:id="_-2me8_W_EeWzTLgJvBjJCA" name="Model"/>
+                <packagedElement xmi:type="uml:Class" xmi:id="_-2oUIvW_EeWzTLgJvBjJCA" name="Classifier"/>
+                <packagedElement xmi:type="uml:Class" xmi:id="_-2o7MvW_EeWzTLgJvBjJCA" name="Comment"/>
+                <packagedElement xmi:type="uml:Class" xmi:id="_-2qJUPW_EeWzTLgJvBjJCA" name="Collaboration"/>
+                <packagedElement xmi:type="uml:Class" xmi:id="_-6I7IPW_EeWzTLgJvBjJCA" name="Stereotype"/>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_-wTCpfW_EeWzTLgJvBjJCA" name="datatype">
+        <packagedElement xmi:type="uml:Package" xmi:id="_-wTpsPW_EeWzTLgJvBjJCA" name="datatype">
+          <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_-wTpsfW_EeWzTLgJvBjJCA" name="Integer"/>
+          <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_-3PYI_W_EeWzTLgJvBjJCA" name="Boolean"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_-2i0kPW_EeWzTLgJvBjJCA" name="emf">
+        <packagedElement xmi:type="uml:Package" xmi:id="_-2i0kfW_EeWzTLgJvBjJCA" name="org">
+          <packagedElement xmi:type="uml:Package" xmi:id="_-2i0kvW_EeWzTLgJvBjJCA" name="eclipse">
+            <packagedElement xmi:type="uml:Package" xmi:id="_-2i0k_W_EeWzTLgJvBjJCA" name="emf">
+              <packagedElement xmi:type="uml:Package" xmi:id="_-2i0lPW_EeWzTLgJvBjJCA" name="transaction">
+                <packagedElement xmi:type="uml:Class" xmi:id="_-2i0lfW_EeWzTLgJvBjJCA" name="RecordingCommand"/>
+                <packagedElement xmi:type="uml:Class" xmi:id="_-4498PW_EeWzTLgJvBjJCA" name="TransactionalEditingDomain"/>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Package" xmi:id="_-2lQ0vW_EeWzTLgJvBjJCA" name="common">
+                <packagedElement xmi:type="uml:Package" xmi:id="_-2lQ0_W_EeWzTLgJvBjJCA" name="notify">
+                  <packagedElement xmi:type="uml:Class" xmi:id="_-2lQ1PW_EeWzTLgJvBjJCA" name="AdapterFactory"/>
+                </packagedElement>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Package" xmi:id="_-2ysM_W_EeWzTLgJvBjJCA" name="ecore">
+                <packagedElement xmi:type="uml:Class" xmi:id="_-2ysNPW_EeWzTLgJvBjJCA" name="EObject"/>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_-2nGAvW_EeWzTLgJvBjJCA" name="gmf">
+        <packagedElement xmi:type="uml:Package" xmi:id="_-2nGA_W_EeWzTLgJvBjJCA" name="org">
+          <packagedElement xmi:type="uml:Package" xmi:id="_-2nGBPW_EeWzTLgJvBjJCA" name="eclipse">
+            <packagedElement xmi:type="uml:Package" xmi:id="_-2nGBfW_EeWzTLgJvBjJCA" name="gmf">
+              <packagedElement xmi:type="uml:Package" xmi:id="_-2ntEPW_EeWzTLgJvBjJCA" name="runtime">
+                <packagedElement xmi:type="uml:Package" xmi:id="_-2ntEfW_EeWzTLgJvBjJCA" name="diagram">
+                  <packagedElement xmi:type="uml:Package" xmi:id="_-2ntEvW_EeWzTLgJvBjJCA" name="ui">
+                    <packagedElement xmi:type="uml:Package" xmi:id="_-2ntE_W_EeWzTLgJvBjJCA" name="render">
+                      <packagedElement xmi:type="uml:Package" xmi:id="_-2ntFPW_EeWzTLgJvBjJCA" name="util">
+                        <packagedElement xmi:type="uml:Class" xmi:id="_-2ntFfW_EeWzTLgJvBjJCA" name="CopyToImageUtil"/>
+                      </packagedElement>
+                    </packagedElement>
+                  </packagedElement>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Package" xmi:id="_-2xeFPW_EeWzTLgJvBjJCA" name="notation">
+                  <packagedElement xmi:type="uml:Class" xmi:id="_-2xeFfW_EeWzTLgJvBjJCA" name="Diagram"/>
+                </packagedElement>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_-3OKA_W_EeWzTLgJvBjJCA" name="core">
+        <packagedElement xmi:type="uml:Package" xmi:id="_-3OxEPW_EeWzTLgJvBjJCA" name="org">
+          <packagedElement xmi:type="uml:Package" xmi:id="_-3OxEfW_EeWzTLgJvBjJCA" name="eclipse">
+            <packagedElement xmi:type="uml:Package" xmi:id="_-3OxEvW_EeWzTLgJvBjJCA" name="core">
+              <packagedElement xmi:type="uml:Package" xmi:id="_-3OxE_W_EeWzTLgJvBjJCA" name="commands">
+                <packagedElement xmi:type="uml:Class" xmi:id="_-3OxFPW_EeWzTLgJvBjJCA" name="ExecutionEvent"/>
+                <packagedElement xmi:type="uml:Class" xmi:id="_-44W4fW_EeWzTLgJvBjJCA" name="AbstractHandler"/>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Package" xmi:id="_-47aM_W_EeWzTLgJvBjJCA" name="resources">
+                <packagedElement xmi:type="uml:Interface" xmi:id="_-47aNPW_EeWzTLgJvBjJCA" name="IProject"/>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_-4498vW_EeWzTLgJvBjJCA" name="editor">
+        <packagedElement xmi:type="uml:Package" xmi:id="_-4498_W_EeWzTLgJvBjJCA" name="org">
+          <packagedElement xmi:type="uml:Package" xmi:id="_-4499PW_EeWzTLgJvBjJCA" name="eclipse">
+            <packagedElement xmi:type="uml:Package" xmi:id="_-4499fW_EeWzTLgJvBjJCA" name="papyrus">
+              <packagedElement xmi:type="uml:Package" xmi:id="_-45lAPW_EeWzTLgJvBjJCA" name="editor">
+                <packagedElement xmi:type="uml:Class" xmi:id="_-45lAfW_EeWzTLgJvBjJCA" name="PapyrusMultiDiagramEditor"/>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_-wRNdPW_EeWzTLgJvBjJCA" name="google">
+        <packagedElement xmi:type="uml:Package" xmi:id="_-wRNdfW_EeWzTLgJvBjJCA" name="common">
+          <packagedElement xmi:type="uml:Package" xmi:id="_-wRNdvW_EeWzTLgJvBjJCA" name="base">
+            <packagedElement xmi:type="uml:Class" xmi:id="_-wRNd_W_EeWzTLgJvBjJCA" name="Function"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_-2l34PW_EeWzTLgJvBjJCA" name="collect">
+            <packagedElement xmi:type="uml:Class" xmi:id="_-2l34fW_EeWzTLgJvBjJCA" name="BiMap"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_b4r4oPXBEeWzTLgJvBjJCA" name="uml">
+        <packagedElement xmi:type="uml:Package" xmi:id="_b4tGwPXBEeWzTLgJvBjJCA" name="org">
+          <packagedElement xmi:type="uml:Package" xmi:id="_b4tt0PXBEeWzTLgJvBjJCA" name="eclipse">
+            <packagedElement xmi:type="uml:Package" xmi:id="_b4tt0fXBEeWzTLgJvBjJCA" name="papyrus">
+              <packagedElement xmi:type="uml:Package" xmi:id="_b4tt0vXBEeWzTLgJvBjJCA" name="uml">
+                <packagedElement xmi:type="uml:Package" xmi:id="_b4tt0_XBEeWzTLgJvBjJCA" name="developper">
+                  <packagedElement xmi:type="uml:Package" xmi:id="_b4tt1PXBEeWzTLgJvBjJCA" name="mde">
+                    <packagedElement xmi:type="uml:Package" xmi:id="_b4tt1fXBEeWzTLgJvBjJCA" name="transcription">
+                      <packagedElement xmi:type="uml:Interface" xmi:id="_b4u78PXBEeWzTLgJvBjJCA" name="ITranscription"/>
+                      <packagedElement xmi:type="uml:Class" xmi:id="_b4wxIvXBEeWzTLgJvBjJCA" name="StringBuffer"/>
+                    </packagedElement>
+                  </packagedElement>
+                </packagedElement>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_b4x_QfXBEeWzTLgJvBjJCA" name="uml2">
+        <packagedElement xmi:type="uml:Package" xmi:id="_b4x_QvXBEeWzTLgJvBjJCA" name="org">
+          <packagedElement xmi:type="uml:Package" xmi:id="_b4x_Q_XBEeWzTLgJvBjJCA" name="eclipse">
+            <packagedElement xmi:type="uml:Package" xmi:id="_b4ymUPXBEeWzTLgJvBjJCA" name="uml2">
+              <packagedElement xmi:type="uml:Package" xmi:id="_b4ymUfXBEeWzTLgJvBjJCA" name="uml">
+                <packagedElement xmi:type="uml:Class" xmi:id="_b4ymUvXBEeWzTLgJvBjJCA" name="Model"/>
+                <packagedElement xmi:type="uml:Class" xmi:id="_b4z0cPXBEeWzTLgJvBjJCA" name="Element"/>
+                <packagedElement xmi:type="uml:Class" xmi:id="_b40bg_XBEeWzTLgJvBjJCA" name="Stereotype"/>
+              </packagedElement>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_b4zNYfXBEeWzTLgJvBjJCA" name="datatype">
+        <packagedElement xmi:type="uml:Package" xmi:id="_b4zNYvXBEeWzTLgJvBjJCA" name="datatype">
+          <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_b4zNY_XBEeWzTLgJvBjJCA" name="Integer"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Model" xmi:id="_b42QsPXBEeWzTLgJvBjJCA" name="java">
+        <packagedElement xmi:type="uml:Package" xmi:id="_b42QsfXBEeWzTLgJvBjJCA" name="java">
+          <packagedElement xmi:type="uml:Package" xmi:id="_b42QsvXBEeWzTLgJvBjJCA" name="lang">
+            <packagedElement xmi:type="uml:Class" xmi:id="_b42Qs_XBEeWzTLgJvBjJCA" name="String"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3his2_WGEeWtjMWb98HWsA">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9tPaEPWGEeWtjMWb98HWsA" source="PapyrusVersion">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tPaEfWGEeWtjMWb98HWsA" key="Version" value="0.0.7"/>
@@ -660,7 +2309,6 @@ Note that this doc has been obtained by using the tool on itself. You can notice
   <structure:Requirements xmi:id="__7R-8PWGEeWtjMWb98HWsA" base_Model="_3his0vWGEeWtjMWb98HWsA"/>
   <structure:UseCases xmi:id="_AxCiQPWHEeWtjMWb98HWsA" base_Model="_3his0_WGEeWtjMWb98HWsA"/>
   <structure:Design xmi:id="_BcHfkPWHEeWtjMWb98HWsA" base_Model="_3his1vWGEeWtjMWb98HWsA"/>
-  <structure:Design xmi:id="_CTnvUPWHEeWtjMWb98HWsA" base_Model="_3his2PWGEeWtjMWb98HWsA"/>
   <Requirements:Requirement xmi:id="_XG370PWHEeWtjMWb98HWsA" text="The tool must help to model papyrus development" id="REQ_001" base_Class="_XD9KsPWHEeWtjMWb98HWsA"/>
   <Requirements:Requirement xmi:id="_maw8oPWHEeWtjMWb98HWsA" text="The tool must help to model requirements.&#xD;&#xA;" id="REQ_0011" base_Class="_mat5UPWHEeWtjMWb98HWsA"/>
   <Requirements:Requirement xmi:id="_rYmvoPWHEeWtjMWb98HWsA" text="The tool must help to make the design" id="REQ_0012" base_Class="_rYkTYPWHEeWtjMWb98HWsA"/>
