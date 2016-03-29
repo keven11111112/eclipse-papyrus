@@ -320,7 +320,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	 *            The previously filled bound
 	 */
 	protected void fillBoundsForOther(IFigure container, Rectangle bound, Rectangle previous) {
-		bound.x = container.getBounds().x;
+		bound.x = container.getBounds().x + 1; //+1, see bug 490318, restore +1 to fix shift from Papyrus Luna to Papyrus Mars
 		bound.width = container.getBounds().width;
 		if (previous == null) {
 			bound.y = container.getBounds().y + 3;
