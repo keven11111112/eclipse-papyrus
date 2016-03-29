@@ -18,7 +18,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -80,7 +79,6 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Maps;
 
 /**
  * this command transform a model to document model
@@ -194,35 +192,13 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 			generateTableCoverage(requirementsModel, requirementsCoverageOUT);
 		}
 
-		// Generate content of the Table of Contents package
-		generateTableOfContents(documentModel);
+
 
 		diagramFileNames.clear();
 	}
 
 
-	/**
-	 * Generate a package which represents a section on the table of content.
-	 * First, iterates on each "Section" Package of the document model.
-	 * Then, retrieves if the section has owned "section" package.
-	 * 
-	 * @param documentModel
-	 */
-	protected void generateTableOfContents(Model documentModel) {
-		for (Iterator<Element> sections = documentModel.getOwnedElements().iterator(); sections.hasNext();) {
-			Element section = sections.next();
-			Stereotype sectionStereotype = section.getAppliedStereotype(I_DocumentStereotype.SECTION_STEREOTYPE);
-			if (sectionStereotype != null) {
-				Package toc = (Package) documentModel.getPackagedElement("Table of Contents");
-				Stereotype tableOfContentStereotype = toc.getAppliedStereotype(I_DocumentStereotype.TABLEOFCONTENT_STEREOTYPE);
-				if (!(section.isStereotypeApplied(tableOfContentStereotype))) {
-					Package chapter = createSection(toc, ((Package) section).getName());
-					IDMAbstractHandler.putTOCPackage(chapter, (Package) section);
-					setTableOfContents(section, chapter);
-				}
-			}
-		}
-	}
+
 
 	/**
 	 * 
@@ -822,11 +798,13 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 							commentImg.applyStereotype(refStereotype);
 							String tmpDirectoryPath = directoryPath.substring(1);
 							String path = IMGpath.replace("\\", "/").toString();
-							int index = path.indexOf(tmpDirectoryPath);
+							IMGpath = IMGpath.replace("../", "").toString();
+							tmpDirectoryPath = tmpDirectoryPath.substring(tmpDirectoryPath.indexOf(":/") + 2, tmpDirectoryPath.length());
+							int index = IMGpath.indexOf(tmpDirectoryPath);
 							if (index == 0) {
-								path = "." + path.substring(tmpDirectoryPath.length());
+								IMGpath = "." + IMGpath.substring(tmpDirectoryPath.length());
 							}
-							commentImg.setValue(refStereotype, I_DocumentStereotype.IMAGEREF_REF_ATT, path);
+							commentImg.setValue(refStereotype, I_DocumentStereotype.IMAGEREF_REF_ATT, IMGpath);
 							commentImg.setBody(hyperLinkObject.getTooltipText());
 						}
 					}

@@ -156,10 +156,6 @@ public interface ITranscription {
 	 */
 	public abstract void writeEndTDTag(StringBuffer out);
 
-	public abstract void writeBeginTOC(StringBuffer out);
-
-	public abstract void writeEndTOC(StringBuffer out);
-
 
 	/**
 	 * write the requirements which aren't covered
@@ -200,15 +196,6 @@ public interface ITranscription {
 
 	public abstract void writeTOCSection(StringBuffer out, String chapterName, String uri);
 
-	/**
-	 * 
-	 * @param out
-	 * @param subSectionName
-	 *            represents the name of the sub section
-	 * @param uri
-	 *            represents the uri of the sub section doc element
-	 */
-	public abstract void writeTOCSubSection(StringBuffer out, String subSectionName, String uri);
 
 	/**
 	 * 

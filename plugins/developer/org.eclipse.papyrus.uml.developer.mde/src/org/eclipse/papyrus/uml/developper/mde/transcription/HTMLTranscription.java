@@ -127,7 +127,7 @@ public class HTMLTranscription implements ITranscription {
 
 	@Override
 	public void writeParagraph(StringBuffer out, Element packageableElement) {
-		out.append("<pre" + getId(packageableElement) + ">" + ((Comment) packageableElement).getBody().replaceAll("\n", "<BR/>") + "</pre>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		out.append("<p>" + ((Comment) packageableElement).getBody().replaceAll("\n", "<BR/>") + "</p>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		out.append(System.lineSeparator());
 	}
 
@@ -258,7 +258,7 @@ public class HTMLTranscription implements ITranscription {
 	 */
 	@Override
 	public void writeBeginParagraph(StringBuffer out) {
-		out.append("<pre>");
+		out.append("<p>");
 	}
 
 	/**
@@ -269,7 +269,7 @@ public class HTMLTranscription implements ITranscription {
 	 */
 	@Override
 	public void writeEndingParagraph(StringBuffer out) {
-		out.append("</pre>");
+		out.append("</p>");
 		out.append(System.lineSeparator());
 	}
 
@@ -304,45 +304,6 @@ public class HTMLTranscription implements ITranscription {
 	@Override
 	public void writeTOCSection(StringBuffer out, String chapterName, String uri) {
 		out.append("<a href=\"#" + uri + "\">" + chapterName + "</a>");
-	}
-
-
-	/**
-	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeTOCSubSection(java.lang.StringBuffer, java.lang.String, java.lang.String, int, int)
-	 *
-	 * @param out
-	 * @param subSectionName
-	 * @param uri
-	 * @param chapterNb
-	 * @param subSectionNb
-	 */
-	@Override
-	public void writeTOCSubSection(StringBuffer out, String subSectionName, String uri) {
-		out.append("<li><a href=\"#" + uri + "\"> " + subSectionName + "</a></li>");
-		out.append(System.lineSeparator());
-	}
-
-
-	/**
-	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeBeginTOC(java.lang.StringBuffer)
-	 *
-	 * @param out
-	 */
-	@Override
-	public void writeBeginTOC(StringBuffer out) {
-		out.append("<ul>");
-	}
-
-
-	/**
-	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndTOC(java.lang.StringBuffer)
-	 *
-	 * @param out
-	 */
-	@Override
-	public void writeEndTOC(StringBuffer out) {
-		out.append("</ul>");
-		out.append(System.lineSeparator());
 	}
 
 }

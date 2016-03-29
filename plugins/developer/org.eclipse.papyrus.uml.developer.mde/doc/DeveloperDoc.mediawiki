@@ -1,0 +1,210 @@
+
+__TOC__
+= How to use MDE to develop Papyrus =
+==<span id="_DDKLgPWrEeWL87HLnAAa-A">Table of Contents</span>==
+==<span id="_DDKLgvWrEeWL87HLnAAa-A">Requirements</span>==
+<span id="_DDKLhPWrEeWL87HLnAAa-A">- REQ_001 (id=REQ_001): 
+ The tool must help to model papyrus development</span><br>
+<span id="_DDKLhvWrEeWL87HLnAAa-A">- REQ_0011 (id=REQ_0011): 
+ The tool must help to model requirements.
+</span><br>
+<span id="_DDKLiPWrEeWL87HLnAAa-A">- REQ_0012 (id=REQ_0012): 
+ The tool must help to make the design</span><br>
+<span id="_DDKLivWrEeWL87HLnAAa-A">- REQ_0013 (id=REQ_0013): 
+ The tool must help to model test</span><br>
+<span id="_DDKLjPWrEeWL87HLnAAa-A">- REQ_0014 (id=REQ_0014): 
+ The model of development must contain traceability</span><br>
+<span id="_DDKLjvWrEeWL87HLnAAa-A">- REQ_0015 (id=REQ_0015): 
+ The tool must help to model use cases.
+</span><br>
+<span id="_DDKLkPWrEeWL87HLnAAa-A">- REQ_002 (id=REQ_002): 
+ From the model, it must be able to generate documentation</span><br>
+<span id="_DDKLkvWrEeWL87HLnAAa-A">- REQ_0021 (id=REQ_0021): 
+ From the model, it must be able to generate HTML documentation</span><br>
+<span id="_DDKLlPWrEeWL87HLnAAa-A">- REQ_0022 (id=REQ_0022): 
+ From the model, it must be able to generate WKIMEDIA documentation</span><br>
+==<span id="_DDT8gfWrEeWL87HLnAAa-A">Use Cases</span>==
+<br>
+[[Image:./imgDOC/UseCases.png|UseCases]]
+<br>''UseCases''<br>
+<br>
+<span id="_DFGFMfWrEeWL87HLnAAa-A">In order to model your development and generate your documentation.
+You must install a version of SysML and the plugin org.eclipse.papyrus.uml.developer.mde that can been found in the git org.eclipse.papyrus\plugins\developer
+</span><br>
+===<span id="_DFGFM_WrEeWL87HLnAAa-A">PapyrusMDE</span>===
+====<span id="_DFGFNfWrEeWL87HLnAAa-A">Model Requirements</span>====
+<span id="_DFGFN_WrEeWL87HLnAAa-A">  - traces to [[#_DDKLhvWrEeWL87HLnAAa-A|REQ_0011]]</span><br>
+<span id="_DFGFOfWrEeWL87HLnAAa-A">The Designer has to create a use case inside the "requirements" model.
+The requirement may be functional or non functional.
+Requirements has to be refined or decompose until it can be tested.
+ </span><br>
+<span id="_DFGFPfWrEeWL87HLnAAa-A">In order to create requirement, the Designer can use the module "Papyrus Requirement" that help to create requirements</span><br>
+<br>
+[[Image:./imgDOC/createRequirements.png|Create a requirement]]
+<br>''Create a requirement''<br>
+<br>
+====<span id="_DFGFQfWrEeWL87HLnAAa-A">Model Use Cases</span>====
+<span id="_DFGFQ_WrEeWL87HLnAAa-A">  - traces to [[#_DDKLjvWrEeWL87HLnAAa-A|REQ_0015]], [[#_DDKLjPWrEeWL87HLnAAa-A|REQ_0014]]</span><br>
+<span id="_DFGFRfWrEeWL87HLnAAa-A">The "Designer" has to develop Use cases  that are refinement of the functional requirements.
+In each use case, a comment has to be added in order to explain the use case.
+In each use case,  the designer has to add a set of comment stereotyped "userDoc" in order to write the how to.
+Each Use case must have a link "satisfy" with the  refined requirement </span><br>
+<span id="_DFGFSfWrEeWL87HLnAAa-A">In order to create a use case, the designer has to create a use case in the component inside the UseCase model.</span><br>
+<br>
+[[Image:./imgDOC/usecaseCreation.png|Create a Use Case]]
+<br>''Create a Use Case''<br>
+<br>
+<span id="_DFPPI_WrEeWL87HLnAAa-A">In each Use case, the designer has to add a nested comment in order to explain the goal of the use case, (it can be also an activity diagram or sequence diagram)</span><br>
+<br>
+[[Image:./imgDOC/createCommentOnUseCase.png|Create a comment]]
+<br>''Create a comment''<br>
+<br>
+<span id="_DFPPJ_WrEeWL87HLnAAa-A">The designer has also to explain how  a user can execute this function. This is the "how to" section, the purpose is to explain step by step how the user can do in order to run the  functionality. 
+To do that, create a comment stereotyped "UserDoc" write you text inside or associate a screenshot of your execution by adding a hyperlink on this comment.</span><br>
+<br>
+[[Image:./imgDOC/UserDoc.png|Add a comment for the user doc]]
+<br>''Add a comment for the user doc''<br>
+<br>
+<br>
+[[Image:./imgDOC/AddHyperlinkToTheImage.png|Reference an image by using hyperlinks]]
+<br>''Reference an image by using hyperlinks''<br>
+<br>
+====<span id="_DFPPLfWrEeWL87HLnAAa-A">Model the design</span>====
+<span id="_DFPPL_WrEeWL87HLnAAa-A">  - traces to [[#_DDKLiPWrEeWL87HLnAAa-A|REQ_0012]], [[#_DDKLjPWrEeWL87HLnAAa-A|REQ_0014]]</span><br>
+<span id="_DFPPMfWrEeWL87HLnAAa-A">The designer must model its development in order to be able to explain its architecture, the behavior, choices of its tool.
+</span><br>
+<span id="_DFPPNfWrEeWL87HLnAAa-A">To do that, the designer can design the model or make a retro-engineering of the code. To that papyrus provides in papyrus designer a generator and retro tool for the java  or C++code. </span><br>
+====<span id="_DFPPN_WrEeWL87HLnAAa-A">Model Tests</span>====
+<span id="_DFPPOfWrEeWL87HLnAAa-A">  - traces to [[#_DDKLivWrEeWL87HLnAAa-A|REQ_0013]], [[#_DDKLjPWrEeWL87HLnAAa-A|REQ_0014]]</span><br>
+<span id="_DFPPO_WrEeWL87HLnAAa-A">The Designer must add a least one test case for each use case.
+A test case is  a use case stereotyped "UseCaseTest".  The Use case must contain an activity that represents the  java class that represents the code of you test.</span><br>
+<span id="_DFPPP_WrEeWL87HLnAAa-A">To do that, go to the "Test" model, create use case and stereotype it "Use case Test". This is the scenario to test a use case.
+In the use case add a comment and explain the scenario.
+In the code you must have a JUnit or a java class that corresponds tho this test. Copy qualified name of your test and add it as an activity.
+Then add a verify link from the test the use case to the requirement. Use papyrus requirement in order to simplify creation of links.</span><br>
+<br>
+[[Image:./imgDOC/UsecaseTestCreation.png|Use Case Test]]
+<br>''Use Case Test''<br>
+<br>
+====<span id="_DFZAI_WrEeWL87HLnAAa-A">Generate the documentation</span>====
+<span id="_DFZAJfWrEeWL87HLnAAa-A">  - traces to [[#_DDKLkPWrEeWL87HLnAAa-A|REQ_002]], [[#_DDKLkvWrEeWL87HLnAAa-A|REQ_0021]], [[#_DDKLlPWrEeWL87HLnAAa-A|REQ_0022]]</span><br>
+<span id="_DFZAJ_WrEeWL87HLnAAa-A">From the model, it possible to generate the developer Document.
+This generation is done in two steps: first the tool generate a document model and from the document model it generates a document.
+The document model contains only package stereotyped "section" and comment stereotyped "content" or "imageRef".
+
+Transformation to the document model:
+Each package requirements, UseCases, Design and Test become a section.
+Each requirement becomes a paragraph.
+Each Use Case becomes a section with its comments a paragraph of the section. 
+The comment stereotyped user doc becomes a sub-section "How to".
+Each diagram will be serialized and become an image inside the  container section.
+Each image hyperlink associated to a comment becomes an image  after the paragraph.
+
+The transformation from the model of document to the document is bijective.
+</span><br>
+<span id="_DFZAK_WrEeWL87HLnAAa-A">In order to generate the code: Ensure that the following profile are applied.</span><br>
+<br>
+[[Image:./imgDOC/appliedProfiles.png|Applied Profiles]]
+<br>''Applied Profiles''<br>
+<br>
+<span id="_DFZAL_WrEeWL87HLnAAa-A">Fill properties of stereotype "Project " for the root model.</span><br>
+<br>
+[[Image:./imgDOC/fillModelMetaInfo.png|Project stereotype properties]]
+<br>''Project stereotype properties''<br>
+<br>
+<span id="_DFZAM_WrEeWL87HLnAAa-A">Ensure that the model are in directory doc, all images are in the directory doc/imgDOC </span><br>
+<br>
+[[Image:./imgDOC/PluginStrucuture.png|PluginStructure.png]]
+<br>''PluginStructure.png''<br>
+<br>
+<span id="_DFZAN_WrEeWL87HLnAAa-A">Select the root model in the model explorer and click right to generate html or media wiki</span><br>
+<br>
+[[Image:./imgDOC/generateHTML.png|HTML generation]]
+<br>''HTML generation''<br>
+<br>
+<span id="_DFZAO_WrEeWL87HLnAAa-A">Open the html document, use a css file, called default css, and you can obtain the following document.
+
+Note that this doc has been obtained by using the tool on itself. You can notice that a new model element with the stereotype Document is also generated. You can remove it. I let it in order to demonstrate that is possible to make all in model.  </span><br>
+<br>
+[[Image:./imgDOC/generatedHTMLpage.png|Generated HTML page]]
+<br>''Generated HTML page''<br>
+<br>
+==<span id="_DFZAP_WrEeWL87HLnAAa-A">Design</span>==
+==<span id="_DFZAQfWrEeWL87HLnAAa-A">Tests</span>==
+===<span id="_DFixIfWrEeWL87HLnAAa-A">UseCaseTest Test creation of requirements</span>===
+<span id="_DFixI_WrEeWL87HLnAAa-A">Go inside package requirement an try to create a SysML requirements</span><br>
+==<span id="_DFixJfWrEeWL87HLnAAa-A">Requirements Coverage</span>==
+{| border="1" cellpadding="20" cellspacing="0"
+!ID
+!Satisfied by
+!Verified by
+|-
+|[[#_DDKLhPWrEeWL87HLnAAa-A|REQ_001]]
+
+|
+|
+
+|-
+|[[#_DDKLhvWrEeWL87HLnAAa-A|REQ_0011]]
+
+|Model Requirements
+
+|[[#_DFixIfWrEeWL87HLnAAa-A|Test creation of requirements]]
+
+
+|-
+|[[#_DDKLiPWrEeWL87HLnAAa-A|REQ_0012]]
+
+|Model the design
+
+|
+
+|-
+|[[#_DDKLivWrEeWL87HLnAAa-A|REQ_0013]]
+
+|Model Tests
+
+|
+
+|-
+|[[#_DDKLjPWrEeWL87HLnAAa-A|REQ_0014]]
+
+|Model Use Cases, 
+
+Model the design, 
+
+Model Tests
+
+|
+
+|-
+|[[#_DDKLjvWrEeWL87HLnAAa-A|REQ_0015]]
+
+|Model Use Cases
+
+|
+
+|-
+|[[#_DDKLkPWrEeWL87HLnAAa-A|REQ_002]]
+
+|Generate the documentation
+
+|
+
+|-
+|[[#_DDKLkvWrEeWL87HLnAAa-A|REQ_0021]]
+
+|Generate the documentation
+
+|
+
+|-
+|[[#_DDKLlPWrEeWL87HLnAAa-A|REQ_0022]]
+
+|Generate the documentation
+
+|
+
+|}
+<span id="_DFixKPWrEeWL87HLnAAa-A">Unsatisfied requirements (1 out of 9) : </span><br>[[#_DDKLhPWrEeWL87HLnAAa-A|REQ_001]]
+<span id="_DFixKvWrEeWL87HLnAAa-A">Unverified requirements (8 out of 9) : </span><br>[[#_DDKLhPWrEeWL87HLnAAa-A|REQ_001, ]][[#_DDKLiPWrEeWL87HLnAAa-A|REQ_0012, ]][[#_DDKLivWrEeWL87HLnAAa-A|REQ_0013, ]][[#_DDKLjPWrEeWL87HLnAAa-A|REQ_0014, ]][[#_DDKLjvWrEeWL87HLnAAa-A|REQ_0015, ]][[#_DDKLkPWrEeWL87HLnAAa-A|REQ_002, ]][[#_DDKLkvWrEeWL87HLnAAa-A|REQ_0021, ]][[#_DDKLlPWrEeWL87HLnAAa-A|REQ_0022]]

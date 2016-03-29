@@ -23,10 +23,13 @@ import java.util.Map;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EObject;
@@ -76,6 +79,23 @@ public abstract class IDMAbstractHandler extends AbstractHandler {
 			transactionalEditingDomain = ServiceUtilsForHandlers.getInstance().getService(org.eclipse.emf.transaction.TransactionalEditingDomain.class, event);
 		} catch (Exception e) {
 			System.err.println("impossible to get the Transactional Editing Domain " + e); //$NON-NLS-1$
+		}
+		IProject project = getCurrentProject();
+		IFolder docFolder = project.getFolder("doc");
+		if (!docFolder.exists()) {
+			try {
+				docFolder.create(IResource.NONE, true, null);
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+		}
+		IFolder imgDoc = docFolder.getFolder("imgDOC");
+		if (!imgDoc.exists()) {
+			try {
+				imgDoc.create(IResource.NONE, true, null);
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}

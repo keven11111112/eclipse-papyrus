@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Document="http:///schemas/Document/_RQrLoGwBEeSIYu1Ih2FYyQ/10" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:structure="http://DeveloperProcess/schemas/structure/_rpmLUHVxEeSZ-fQGFkyJeQ/6" xmlns:trace="http://DeveloperProcess/schemas/trace/_rpnZcHVxEeSZ-fQGFkyJeQ/6" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/Document/_RQrLoGwBEeSIYu1Ih2FYyQ/10 pathmap://DEVELOPER_PROFILES/Document.profile.uml#_RQrLoWwBEeSIYu1Ih2FYyQ http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements http://DeveloperProcess/schemas/structure/_rpmLUHVxEeSZ-fQGFkyJeQ/6 pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_rpmyYHVxEeSZ-fQGFkyJeQ http://DeveloperProcess/schemas/trace/_rpnZcHVxEeSZ-fQGFkyJeQ/6 pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_rpnZcXVxEeSZ-fQGFkyJeQ">
+  <uml:Model xmi:id="_3his0PWGEeWtjMWb98HWsA" name="PapyrusMDE">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_3his0fWGEeWtjMWb98HWsA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Model" xmi:id="_3his0vWGEeWtjMWb98HWsA" name="Requirements">
+      <packagedElement xmi:type="uml:Class" xmi:id="_XD9KsPWHEeWtjMWb98HWsA" name="REQ_001">
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_mat5UPWHEeWtjMWb98HWsA" name="REQ_0011"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_rYkTYPWHEeWtjMWb98HWsA" name="REQ_0012"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_xNEBkPWHEeWtjMWb98HWsA" name="REQ_0013"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_0iYXkPWHEeWtjMWb98HWsA" name="REQ_0014"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_2EffAPWREeWtjMWb98HWsA" name="REQ_0015"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_6T8GgPWHEeWtjMWb98HWsA" name="REQ_002">
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_AMPWoPWIEeWtjMWb98HWsA" name="REQ_0021"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_ChBcsPWIEeWtjMWb98HWsA" name="REQ_0022"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_3his0_WGEeWtjMWb98HWsA" name="UseCases">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_22BSgPWlEeWL87HLnAAa-A">
+        <body>In order to model your development and generate your documentation.&#xD;
+You must install a version of SysML and the plugin org.eclipse.papyrus.uml.developer.mde that can been found in the git org.eclipse.papyrus\plugins\developer&#xD;
+</body>
+      </ownedComment>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_3his1PWGEeWtjMWb98HWsA" name="useCasesAbstraction" client="_3his0_WGEeWtjMWb98HWsA" supplier="_3his0vWGEeWtjMWb98HWsA"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_3his1fWGEeWtjMWb98HWsA" name="PapyrusMDE" useCase="_jo4OYPWIEeWtjMWb98HWsA _YrtugPWOEeWtjMWb98HWsA _ERg-YPWSEeWtjMWb98HWsA _G9SBEPWSEeWtjMWb98HWsA _BLGVIPWUEeWtjMWb98HWsA">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_jo4OYPWIEeWtjMWb98HWsA" name="Model Requirements" subject="_3his1fWGEeWtjMWb98HWsA">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_cuaEsPWKEeWtjMWb98HWsA">
+            <body>The Designer has to create a use case inside the &quot;requirements&quot; model.&#xD;
+The requirement may be functional or non functional.&#xD;
+Requirements has to be refined or decompose until it can be tested.&#xD;
+ </body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_eZMykPWKEeWtjMWb98HWsA">
+            <body>In order to create requirement, the Designer can use the module &quot;Papyrus Requirement&quot; that help to create requirements</body>
+          </ownedComment>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_YrtugPWOEeWtjMWb98HWsA" name="Model Use Cases" subject="_3his1fWGEeWtjMWb98HWsA">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_dQh9gPWOEeWtjMWb98HWsA">
+            <body>The &quot;Designer&quot; has to develop Use cases  that are refinement of the functional requirements.&#xD;
+In each use case, a comment has to be added in order to explain the use case.&#xD;
+In each use case,  the designer has to add a set of comment stereotyped &quot;userDoc&quot; in order to write the how to.&#xD;
+Each Use case must have a link &quot;satisfy&quot; with the  refined requirement </body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_1gT7QPWOEeWtjMWb98HWsA">
+            <body>In order to create a use case, the designer has to create a use case in the component inside the UseCase model.</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_UYABIPWPEeWtjMWb98HWsA">
+            <body>In each Use case, the designer has to add a nested comment in order to explain the goal of the use case, (it can be also an activity diagram or sequence diagram)</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_FqJ3MPWQEeWtjMWb98HWsA">
+            <body>The designer has also to explain how  a user can execute this function. This is the &quot;how to&quot; section, the purpose is to explain step by step how the user can do in order to run the  functionality. &#xD;
+To do that, create a comment stereotyped &quot;UserDoc&quot; write you text inside or associate a screenshot of your execution by adding a hyperlink on this comment.</body>
+          </ownedComment>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_ERg-YPWSEeWtjMWb98HWsA" name="Model the design" subject="_3his1fWGEeWtjMWb98HWsA">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_P3KWYPWTEeWtjMWb98HWsA">
+            <body>The designer must model its development in order to be able to explain its architecture, the behavior, choices of its tool.&#xD;
+</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_evfckPWTEeWtjMWb98HWsA">
+            <body>To do that, the designer can design the model or make a retro-engineering of the code. To that papyrus provides in papyrus designer a generator and retro tool for the java  or C++code. </body>
+          </ownedComment>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_BLGVIPWUEeWtjMWb98HWsA" name="Model Tests" subject="_3his1fWGEeWtjMWb98HWsA">
+          <ownedComment xmi:type="uml:Comment" xmi:id="__7rfMPWUEeWL87HLnAAa-A">
+            <body>The Designer must add a least one test case for each use case.&#xD;
+A test case is  a use case stereotyped &quot;UseCaseTest&quot;.  The Use case must contain an activity that represents the  java class that represents the code of you test.</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_z8R4gPWVEeWL87HLnAAa-A">
+            <body>To do that, go to the &quot;Test&quot; model, create use case and stereotype it &quot;Use case Test&quot;. This is the scenario to test a use case.&#xD;
+In the use case add a comment and explain the scenario.&#xD;
+In the code you must have a JUnit or a java class that corresponds tho this test. Copy qualified name of your test and add it as an activity.&#xD;
+Then add a verify link from the test the use case to the requirement. Use papyrus requirement in order to simplify creation of links.</body>
+          </ownedComment>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_G9SBEPWSEeWtjMWb98HWsA" name="Generate the documentation" subject="_3his1fWGEeWtjMWb98HWsA">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_7CapMPWfEeWL87HLnAAa-A">
+            <body>From the model, it possible to generate the developer Document.&#xD;
+This generation is done in two steps: first the tool generate a document model and from the document model it generates a document.&#xD;
+The document model contains only package stereotyped &quot;section&quot; and comment stereotyped &quot;content&quot; or &quot;imageRef&quot;.&#xD;
+&#xD;
+Transformation to the document model:&#xD;
+Each package requirements, UseCases, Design and Test become a section.&#xD;
+Each requirement becomes a paragraph.&#xD;
+Each Use Case becomes a section with its comments a paragraph of the section. &#xD;
+The comment stereotyped user doc becomes a sub-section &quot;How to&quot;.&#xD;
+Each diagram will be serialized and become an image inside the  container section.&#xD;
+Each image hyperlink associated to a comment becomes an image  after the paragraph.&#xD;
+&#xD;
+The transformation from the model of document to the document is bijective.&#xD;
+</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_IUjYMPWhEeWL87HLnAAa-A">
+            <body>In order to generate the code: Ensure that the following profile are applied.</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_bkh0EPWhEeWL87HLnAAa-A">
+            <body>Fill properties of stereotype &quot;Project &quot; for the root model.</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_tDEHgPWhEeWL87HLnAAa-A">
+            <body>Ensure that the model are in directory doc, all images are in the directory doc/imgDOC </body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_TuU3YPWiEeWL87HLnAAa-A">
+            <body>Select the root model in the model explorer and click right to generate html or media wiki</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_o0R9cPWiEeWL87HLnAAa-A">
+            <body>Open the html document, use a css file, called default css, and you can obtain the following document.&#xD;
+&#xD;
+Note that this doc has been obtained by using the tool on itself. You can notice that a new model element with the stereotype Document is also generated. You can remove it. I let it in order to demonstrate that is possible to make all in model.  </body>
+          </ownedComment>
+        </ownedUseCase>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_lMFtkPWIEeWtjMWb98HWsA" name="Designer"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_o5i2wPWIEeWtjMWb98HWsA" memberEnd="_o5mhIPWIEeWtjMWb98HWsA _o5mhIfWIEeWtjMWb98HWsA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_o5kr8PWIEeWtjMWb98HWsA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_o5lTAPWIEeWtjMWb98HWsA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_o5mhIPWIEeWtjMWb98HWsA" name="model requirements" type="_jo4OYPWIEeWtjMWb98HWsA" association="_o5i2wPWIEeWtjMWb98HWsA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_o5mhIfWIEeWtjMWb98HWsA" name="designer" type="_lMFtkPWIEeWtjMWb98HWsA" association="_o5i2wPWIEeWtjMWb98HWsA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_aOQfUPWOEeWtjMWb98HWsA" memberEnd="_aOQfU_WOEeWtjMWb98HWsA _aOQfVPWOEeWtjMWb98HWsA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aOQfUfWOEeWtjMWb98HWsA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aOQfUvWOEeWtjMWb98HWsA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_aOQfU_WOEeWtjMWb98HWsA" name="model use cases" type="_YrtugPWOEeWtjMWb98HWsA" association="_aOQfUPWOEeWtjMWb98HWsA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_aOQfVPWOEeWtjMWb98HWsA" name="designer" type="_lMFtkPWIEeWtjMWb98HWsA" association="_aOQfUPWOEeWtjMWb98HWsA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_wdgoYPWREeWtjMWb98HWsA" name="Satisfies_REQ_0011" client="_jo4OYPWIEeWtjMWb98HWsA" supplier="_mat5UPWHEeWtjMWb98HWsA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_7y_S4PWREeWtjMWb98HWsA" name="Satisfies_REQ_0015" client="_YrtugPWOEeWtjMWb98HWsA" supplier="_2EffAPWREeWtjMWb98HWsA"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_GXo9YPWSEeWtjMWb98HWsA" memberEnd="_GXo9Y_WSEeWtjMWb98HWsA _GXo9ZPWSEeWtjMWb98HWsA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GXo9YfWSEeWtjMWb98HWsA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GXo9YvWSEeWtjMWb98HWsA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_GXo9Y_WSEeWtjMWb98HWsA" name="model the design" type="_ERg-YPWSEeWtjMWb98HWsA" association="_GXo9YPWSEeWtjMWb98HWsA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_GXo9ZPWSEeWtjMWb98HWsA" name="designer" type="_lMFtkPWIEeWtjMWb98HWsA" association="_GXo9YPWSEeWtjMWb98HWsA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_LskasPWSEeWtjMWb98HWsA" name="User"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_NfdUoPWSEeWtjMWb98HWsA" memberEnd="_NfdUo_WSEeWtjMWb98HWsA _NfdUpPWSEeWtjMWb98HWsA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_NfdUofWSEeWtjMWb98HWsA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_NfdUovWSEeWtjMWb98HWsA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_NfdUo_WSEeWtjMWb98HWsA" name="user" type="_LskasPWSEeWtjMWb98HWsA" association="_NfdUoPWSEeWtjMWb98HWsA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_NfdUpPWSEeWtjMWb98HWsA" name="generate the documentation" type="_G9SBEPWSEeWtjMWb98HWsA" association="_NfdUoPWSEeWtjMWb98HWsA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_OqxRMPWSEeWtjMWb98HWsA" memberEnd="_OqxRM_WSEeWtjMWb98HWsA _OqxRNPWSEeWtjMWb98HWsA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_OqxRMfWSEeWtjMWb98HWsA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_OqxRMvWSEeWtjMWb98HWsA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_OqxRM_WSEeWtjMWb98HWsA" name="generate the documentation" type="_G9SBEPWSEeWtjMWb98HWsA" association="_OqxRMPWSEeWtjMWb98HWsA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_OqxRNPWSEeWtjMWb98HWsA" name="designer" type="_lMFtkPWIEeWtjMWb98HWsA" association="_OqxRMPWSEeWtjMWb98HWsA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_6ZyZYPWTEeWtjMWb98HWsA" name="Satisfies_REQ_0012" client="_ERg-YPWSEeWtjMWb98HWsA" supplier="_rYkTYPWHEeWtjMWb98HWsA"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_EitKIPWUEeWtjMWb98HWsA" memberEnd="_EitKI_WUEeWtjMWb98HWsA _EitKJPWUEeWtjMWb98HWsA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_EitKIfWUEeWtjMWb98HWsA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_EitKIvWUEeWtjMWb98HWsA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_EitKI_WUEeWtjMWb98HWsA" name="model tests" type="_BLGVIPWUEeWtjMWb98HWsA" association="_EitKIPWUEeWtjMWb98HWsA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_EitKJPWUEeWtjMWb98HWsA" name="designer" type="_lMFtkPWIEeWtjMWb98HWsA" association="_EitKIPWUEeWtjMWb98HWsA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_UbEhQPWlEeWL87HLnAAa-A" name="Satisfies_REQ_0013" client="_BLGVIPWUEeWtjMWb98HWsA" supplier="_xNEBkPWHEeWtjMWb98HWsA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_ZAsokPWlEeWL87HLnAAa-A" name="Satisfies_REQ_002" client="_G9SBEPWSEeWtjMWb98HWsA" supplier="_6T8GgPWHEeWtjMWb98HWsA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_ZA2ZkPWlEeWL87HLnAAa-A" name="Satisfies_REQ_0021" client="_G9SBEPWSEeWtjMWb98HWsA" supplier="_AMPWoPWIEeWtjMWb98HWsA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_ZA2ZkvWlEeWL87HLnAAa-A" name="Satisfies_REQ_0022" client="_G9SBEPWSEeWtjMWb98HWsA" supplier="_ChBcsPWIEeWtjMWb98HWsA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_clPtYPWlEeWL87HLnAAa-A" name="Satisfies_REQ_0014" client="_YrtugPWOEeWtjMWb98HWsA" supplier="_0iYXkPWHEeWtjMWb98HWsA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_gAKVEPWlEeWL87HLnAAa-A" name="Satisfies_REQ_0014" client="_ERg-YPWSEeWtjMWb98HWsA" supplier="_0iYXkPWHEeWtjMWb98HWsA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_hgT5MPWlEeWL87HLnAAa-A" name="Satisfies_REQ_0014" client="_BLGVIPWUEeWtjMWb98HWsA" supplier="_0iYXkPWHEeWtjMWb98HWsA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_3his1vWGEeWtjMWb98HWsA" name="Design">
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_3his1_WGEeWtjMWb98HWsA" name="DesignAbstraction" client="_3his1vWGEeWtjMWb98HWsA" supplier="_3his0_WGEeWtjMWb98HWsA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_3his2PWGEeWtjMWb98HWsA" name="Test">
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_3his2fWGEeWtjMWb98HWsA" name="Dependency1" client="_3his2PWGEeWtjMWb98HWsA" supplier="_3his0_WGEeWtjMWb98HWsA"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_3his2vWGEeWtjMWb98HWsA" name="Dependency2" client="_3his2PWGEeWtjMWb98HWsA" supplier="_3his1vWGEeWtjMWb98HWsA"/>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_Nrs5gPWVEeWL87HLnAAa-A" name="Test creation of requirements">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_G6M7EPWWEeWL87HLnAAa-A">
+          <body>Go inside package requirement an try to create a SysML requirements</body>
+        </ownedComment>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_fLFhgPWVEeWL87HLnAAa-A" name="org.eclipse.papyrus.uml.developer.mde.test.RequirementCreationTest"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_yJoPIPWVEeWL87HLnAAa-A" name="Verifies_REQ_0011" client="_Nrs5gPWVEeWL87HLnAAa-A" supplier="_mat5UPWHEeWtjMWb98HWsA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_DC3QkPWrEeWL87HLnAAa-A" name="How to use MDE to develop Papyrus">
+      <packagedElement xmi:type="uml:Package" xmi:id="_DDKLgPWrEeWL87HLnAAa-A" name="Table of Contents"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_DDKLgvWrEeWL87HLnAAa-A" name="Requirements">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_DDKLhPWrEeWL87HLnAAa-A">
+          <body>- REQ_001 (id=REQ_001): 
+ The tool must help to model papyrus development</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_DDKLhvWrEeWL87HLnAAa-A">
+          <body>- REQ_0011 (id=REQ_0011): 
+ The tool must help to model requirements.&#xD;
+</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_DDKLiPWrEeWL87HLnAAa-A">
+          <body>- REQ_0012 (id=REQ_0012): 
+ The tool must help to make the design</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_DDKLivWrEeWL87HLnAAa-A">
+          <body>- REQ_0013 (id=REQ_0013): 
+ The tool must help to model test</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_DDKLjPWrEeWL87HLnAAa-A">
+          <body>- REQ_0014 (id=REQ_0014): 
+ The model of development must contain traceability</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_DDKLjvWrEeWL87HLnAAa-A">
+          <body>- REQ_0015 (id=REQ_0015): 
+ The tool must help to model use cases.&#xD;
+</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_DDKLkPWrEeWL87HLnAAa-A">
+          <body>- REQ_002 (id=REQ_002): 
+ From the model, it must be able to generate documentation</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_DDKLkvWrEeWL87HLnAAa-A">
+          <body>- REQ_0021 (id=REQ_0021): 
+ From the model, it must be able to generate HTML documentation</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_DDKLlPWrEeWL87HLnAAa-A">
+          <body>- REQ_0022 (id=REQ_0022): 
+ From the model, it must be able to generate WKIMEDIA documentation</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_DDT8gfWrEeWL87HLnAAa-A" name="Use Cases">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_DE8UMPWrEeWL87HLnAAa-A">
+          <body>UseCases</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_DFGFMfWrEeWL87HLnAAa-A">
+          <body>In order to model your development and generate your documentation.&#xD;
+You must install a version of SysML and the plugin org.eclipse.papyrus.uml.developer.mde that can been found in the git org.eclipse.papyrus\plugins\developer&#xD;
+</body>
+        </ownedComment>
+        <packagedElement xmi:type="uml:Package" xmi:id="_DFGFM_WrEeWL87HLnAAa-A" name="PapyrusMDE">
+          <packagedElement xmi:type="uml:Package" xmi:id="_DFGFNfWrEeWL87HLnAAa-A" name="Model Requirements">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFGFN_WrEeWL87HLnAAa-A">
+              <body>  - traces to ${link:_mat5UPWHEeWtjMWb98HWsA|Requirement REQ_0011|REQ_0011}</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFGFOfWrEeWL87HLnAAa-A">
+              <body>The Designer has to create a use case inside the &quot;requirements&quot; model.&#xD;
+The requirement may be functional or non functional.&#xD;
+Requirements has to be refined or decompose until it can be tested.&#xD;
+ </body>
+            </ownedComment>
+            <packagedElement xmi:type="uml:Package" xmi:id="_DFGFO_WrEeWL87HLnAAa-A" name="How to">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFGFPfWrEeWL87HLnAAa-A">
+                <body>In order to create requirement, the Designer can use the module &quot;Papyrus Requirement&quot; that help to create requirements</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFGFP_WrEeWL87HLnAAa-A">
+                <body>Create a requirement</body>
+              </ownedComment>
+            </packagedElement>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_DFGFQfWrEeWL87HLnAAa-A" name="Model Use Cases">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFGFQ_WrEeWL87HLnAAa-A">
+              <body>  - traces to ${link:_2EffAPWREeWtjMWb98HWsA|Requirement REQ_0015|REQ_0015}, ${link:_0iYXkPWHEeWtjMWb98HWsA|Requirement REQ_0014|REQ_0014}</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFGFRfWrEeWL87HLnAAa-A">
+              <body>The &quot;Designer&quot; has to develop Use cases  that are refinement of the functional requirements.&#xD;
+In each use case, a comment has to be added in order to explain the use case.&#xD;
+In each use case,  the designer has to add a set of comment stereotyped &quot;userDoc&quot; in order to write the how to.&#xD;
+Each Use case must have a link &quot;satisfy&quot; with the  refined requirement </body>
+            </ownedComment>
+            <packagedElement xmi:type="uml:Package" xmi:id="_DFGFR_WrEeWL87HLnAAa-A" name="How to">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFGFSfWrEeWL87HLnAAa-A">
+                <body>In order to create a use case, the designer has to create a use case in the component inside the UseCase model.</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFPPIfWrEeWL87HLnAAa-A">
+                <body>Create a Use Case</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFPPI_WrEeWL87HLnAAa-A">
+                <body>In each Use case, the designer has to add a nested comment in order to explain the goal of the use case, (it can be also an activity diagram or sequence diagram)</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFPPJfWrEeWL87HLnAAa-A">
+                <body>Create a comment</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFPPJ_WrEeWL87HLnAAa-A">
+                <body>The designer has also to explain how  a user can execute this function. This is the &quot;how to&quot; section, the purpose is to explain step by step how the user can do in order to run the  functionality. &#xD;
+To do that, create a comment stereotyped &quot;UserDoc&quot; write you text inside or associate a screenshot of your execution by adding a hyperlink on this comment.</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFPPKfWrEeWL87HLnAAa-A">
+                <body>Add a comment for the user doc</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFPPK_WrEeWL87HLnAAa-A">
+                <body>Reference an image by using hyperlinks</body>
+              </ownedComment>
+            </packagedElement>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_DFPPLfWrEeWL87HLnAAa-A" name="Model the design">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFPPL_WrEeWL87HLnAAa-A">
+              <body>  - traces to ${link:_rYkTYPWHEeWtjMWb98HWsA|Requirement REQ_0012|REQ_0012}, ${link:_0iYXkPWHEeWtjMWb98HWsA|Requirement REQ_0014|REQ_0014}</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFPPMfWrEeWL87HLnAAa-A">
+              <body>The designer must model its development in order to be able to explain its architecture, the behavior, choices of its tool.&#xD;
+</body>
+            </ownedComment>
+            <packagedElement xmi:type="uml:Package" xmi:id="_DFPPM_WrEeWL87HLnAAa-A" name="How to">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFPPNfWrEeWL87HLnAAa-A">
+                <body>To do that, the designer can design the model or make a retro-engineering of the code. To that papyrus provides in papyrus designer a generator and retro tool for the java  or C++code. </body>
+              </ownedComment>
+            </packagedElement>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_DFPPN_WrEeWL87HLnAAa-A" name="Model Tests">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFPPOfWrEeWL87HLnAAa-A">
+              <body>  - traces to ${link:_xNEBkPWHEeWtjMWb98HWsA|Requirement REQ_0013|REQ_0013}, ${link:_0iYXkPWHEeWtjMWb98HWsA|Requirement REQ_0014|REQ_0014}</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFPPO_WrEeWL87HLnAAa-A">
+              <body>The Designer must add a least one test case for each use case.&#xD;
+A test case is  a use case stereotyped &quot;UseCaseTest&quot;.  The Use case must contain an activity that represents the  java class that represents the code of you test.</body>
+            </ownedComment>
+            <packagedElement xmi:type="uml:Package" xmi:id="_DFPPPfWrEeWL87HLnAAa-A" name="How to">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFPPP_WrEeWL87HLnAAa-A">
+                <body>To do that, go to the &quot;Test&quot; model, create use case and stereotype it &quot;Use case Test&quot;. This is the scenario to test a use case.&#xD;
+In the use case add a comment and explain the scenario.&#xD;
+In the code you must have a JUnit or a java class that corresponds tho this test. Copy qualified name of your test and add it as an activity.&#xD;
+Then add a verify link from the test the use case to the requirement. Use papyrus requirement in order to simplify creation of links.</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFZAIfWrEeWL87HLnAAa-A">
+                <body>Use Case Test</body>
+              </ownedComment>
+            </packagedElement>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Package" xmi:id="_DFZAI_WrEeWL87HLnAAa-A" name="Generate the documentation">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFZAJfWrEeWL87HLnAAa-A">
+              <body>  - traces to ${link:_6T8GgPWHEeWtjMWb98HWsA|Requirement REQ_002|REQ_002}, ${link:_AMPWoPWIEeWtjMWb98HWsA|Requirement REQ_0021|REQ_0021}, ${link:_ChBcsPWIEeWtjMWb98HWsA|Requirement REQ_0022|REQ_0022}</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFZAJ_WrEeWL87HLnAAa-A">
+              <body>From the model, it possible to generate the developer Document.&#xD;
+This generation is done in two steps: first the tool generate a document model and from the document model it generates a document.&#xD;
+The document model contains only package stereotyped &quot;section&quot; and comment stereotyped &quot;content&quot; or &quot;imageRef&quot;.&#xD;
+&#xD;
+Transformation to the document model:&#xD;
+Each package requirements, UseCases, Design and Test become a section.&#xD;
+Each requirement becomes a paragraph.&#xD;
+Each Use Case becomes a section with its comments a paragraph of the section. &#xD;
+The comment stereotyped user doc becomes a sub-section &quot;How to&quot;.&#xD;
+Each diagram will be serialized and become an image inside the  container section.&#xD;
+Each image hyperlink associated to a comment becomes an image  after the paragraph.&#xD;
+&#xD;
+The transformation from the model of document to the document is bijective.&#xD;
+</body>
+            </ownedComment>
+            <packagedElement xmi:type="uml:Package" xmi:id="_DFZAKfWrEeWL87HLnAAa-A" name="How to">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFZAK_WrEeWL87HLnAAa-A">
+                <body>In order to generate the code: Ensure that the following profile are applied.</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFZALfWrEeWL87HLnAAa-A">
+                <body>Applied Profiles</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFZAL_WrEeWL87HLnAAa-A">
+                <body>Fill properties of stereotype &quot;Project &quot; for the root model.</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFZAMfWrEeWL87HLnAAa-A">
+                <body>Project stereotype properties</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFZAM_WrEeWL87HLnAAa-A">
+                <body>Ensure that the model are in directory doc, all images are in the directory doc/imgDOC </body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFZANfWrEeWL87HLnAAa-A">
+                <body>PluginStructure.png</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFZAN_WrEeWL87HLnAAa-A">
+                <body>Select the root model in the model explorer and click right to generate html or media wiki</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFZAOfWrEeWL87HLnAAa-A">
+                <body>HTML generation</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFZAO_WrEeWL87HLnAAa-A">
+                <body>Open the html document, use a css file, called default css, and you can obtain the following document.&#xD;
+&#xD;
+Note that this doc has been obtained by using the tool on itself. You can notice that a new model element with the stereotype Document is also generated. You can remove it. I let it in order to demonstrate that is possible to make all in model.  </body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFZAPfWrEeWL87HLnAAa-A">
+                <body>Generated HTML page</body>
+              </ownedComment>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_DFZAP_WrEeWL87HLnAAa-A" name="Design"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_DFZAQfWrEeWL87HLnAAa-A" name="Tests">
+        <packagedElement xmi:type="uml:Package" xmi:id="_DFixIfWrEeWL87HLnAAa-A" name="UseCaseTest Test creation of requirements">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFixI_WrEeWL87HLnAAa-A">
+            <body>Go inside package requirement an try to create a SysML requirements</body>
+          </ownedComment>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_DFixJfWrEeWL87HLnAAa-A" name="Requirements Coverage">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_DFixJ_WrEeWL87HLnAAa-A">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFixLfWrEeWL87HLnAAa-A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFixL_WrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFixMfWrEeWL87HLnAAa-A">
+                <body>REQ_001</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFixM_WrEeWL87HLnAAa-A">
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFixN_WrEeWL87HLnAAa-A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with REQ_001 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFixO_WrEeWL87HLnAAa-A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFixPfWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFixP_WrEeWL87HLnAAa-A">
+                <body>REQ_0011</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFixQfWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFixQ_WrEeWL87HLnAAa-A">
+                <body>Model Requirements</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFixRfWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFixR_WrEeWL87HLnAAa-A">
+                <body>Test creation of requirements</body>
+              </ownedComment>
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with REQ_0011 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFixSfWrEeWL87HLnAAa-A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFixS_WrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFixTfWrEeWL87HLnAAa-A">
+                <body>REQ_0012</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFixT_WrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFixUfWrEeWL87HLnAAa-A">
+                <body>Model the design</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFixU_WrEeWL87HLnAAa-A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with REQ_0012 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7EPWrEeWL87HLnAAa-A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7EvWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7FPWrEeWL87HLnAAa-A">
+                <body>REQ_0013</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7FvWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7GPWrEeWL87HLnAAa-A">
+                <body>Model Tests</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7GvWrEeWL87HLnAAa-A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with REQ_0013 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7HvWrEeWL87HLnAAa-A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7IPWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7IvWrEeWL87HLnAAa-A">
+                <body>REQ_0014</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7JPWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7JvWrEeWL87HLnAAa-A">
+                <body>Model Use Cases</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7KPWrEeWL87HLnAAa-A">
+                <body>Model the design</body>
+              </ownedComment>
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7KvWrEeWL87HLnAAa-A">
+                <body>Model Tests</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7LPWrEeWL87HLnAAa-A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with REQ_0014 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7MPWrEeWL87HLnAAa-A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7MvWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7NPWrEeWL87HLnAAa-A">
+                <body>REQ_0015</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7NvWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7OPWrEeWL87HLnAAa-A">
+                <body>Model Use Cases</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7OvWrEeWL87HLnAAa-A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with REQ_0015 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7PvWrEeWL87HLnAAa-A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7QPWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7QvWrEeWL87HLnAAa-A">
+                <body>REQ_002</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7RPWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7RvWrEeWL87HLnAAa-A">
+                <body>Generate the documentation</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7SPWrEeWL87HLnAAa-A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with REQ_002 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7TPWrEeWL87HLnAAa-A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7TvWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7UPWrEeWL87HLnAAa-A">
+                <body>REQ_0021</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7UvWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7VPWrEeWL87HLnAAa-A">
+                <body>Generate the documentation</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7VvWrEeWL87HLnAAa-A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with REQ_0021 as id</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DF1sE_WrEeWL87HLnAAa-A">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DF1sFfWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DF1sF_WrEeWL87HLnAAa-A">
+                <body>REQ_0022</body>
+              </ownedComment>
+              <body>Requirement ID</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DF1sGfWrEeWL87HLnAAa-A">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_DF1sG_WrEeWL87HLnAAa-A">
+                <body>Generate the documentation</body>
+              </ownedComment>
+              <body>Satisfied elements</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_DF1sHfWrEeWL87HLnAAa-A">
+              <body>Verified elements</body>
+            </ownedComment>
+            <body>Line for the requirement with REQ_0022 as id</body>
+          </ownedComment>
+          <body>Requirements Coverage Table</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_DFixKPWrEeWL87HLnAAa-A">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFixNfWrEeWL87HLnAAa-A">
+            <body>REQ_001</body>
+          </ownedComment>
+          <body>Unsatisfied requirements (1 out of 9) : </body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_DFixKvWrEeWL87HLnAAa-A">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFixOfWrEeWL87HLnAAa-A">
+            <body>REQ_001</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFixVfWrEeWL87HLnAAa-A">
+            <body>REQ_0012</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7HPWrEeWL87HLnAAa-A">
+            <body>REQ_0013</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7LvWrEeWL87HLnAAa-A">
+            <body>REQ_0014</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7PPWrEeWL87HLnAAa-A">
+            <body>REQ_0015</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DFr7SvWrEeWL87HLnAAa-A">
+            <body>REQ_002</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DF1sEfWrEeWL87HLnAAa-A">
+            <body>REQ_0021</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_DF1sH_WrEeWL87HLnAAa-A">
+            <body>REQ_0022</body>
+          </ownedComment>
+          <body>Unverified requirements (8 out of 9) : </body>
+        </ownedComment>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3his2_WGEeWtjMWb98HWsA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9tPaEPWGEeWtjMWb98HWsA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tPaEfWGEeWtjMWb98HWsA" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tPaEvWGEeWtjMWb98HWsA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tPaE_WGEeWtjMWb98HWsA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tPaFPWGEeWtjMWb98HWsA" key="Date" value="2014-11-26"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tPaFfWGEeWtjMWb98HWsA" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3his4vWGEeWtjMWb98HWsA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_rplkQXVxEeSZ-fQGFkyJeQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_kWqjAMbXEeO09JBvNFZRNw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3his4_WGEeWtjMWb98HWsA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9tTEcPWGEeWtjMWb98HWsA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tTEcfWGEeWtjMWb98HWsA" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tTEcvWGEeWtjMWb98HWsA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tTEc_WGEeWtjMWb98HWsA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tTEdPWGEeWtjMWb98HWsA" key="Date" value="2014-11-26"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tTEdfWGEeWtjMWb98HWsA" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3his6vWGEeWtjMWb98HWsA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_rpmyYHVxEeSZ-fQGFkyJeQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_qCT3MMbXEeO09JBvNFZRNw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3his6_WGEeWtjMWb98HWsA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9tTrgPWGEeWtjMWb98HWsA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tTrgfWGEeWtjMWb98HWsA" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tTrgvWGEeWtjMWb98HWsA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tTrg_WGEeWtjMWb98HWsA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tTrhPWGEeWtjMWb98HWsA" key="Date" value="2014-11-26"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tTrhfWGEeWtjMWb98HWsA" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3his8vWGEeWtjMWb98HWsA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_rpnZcXVxEeSZ-fQGFkyJeQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_2LNtQMbYEeO09JBvNFZRNw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3his8_WGEeWtjMWb98HWsA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3his9PWGEeWtjMWb98HWsA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_3his9fWGEeWtjMWb98HWsA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9tUSkPWGEeWtjMWb98HWsA" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tUSkfWGEeWtjMWb98HWsA" key="Version" value="0.0.11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tUSkvWGEeWtjMWb98HWsA" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tUSk_WGEeWtjMWb98HWsA" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tUSlPWGEeWtjMWb98HWsA" key="Date" value="2014-11-14"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9tUSlfWGEeWtjMWb98HWsA" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3his_PWGEeWtjMWb98HWsA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES/Document.profile.uml#_RQrLoWwBEeSIYu1Ih2FYyQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES/Document.profile.uml#_D0JcUMnzEeO9CYUoXDRplw"/>
+    </profileApplication>
+  </uml:Model>
+  <structure:Project xmi:id="_3his_fWGEeWtjMWb98HWsA" author="P. Tessier" version="0.1" base_Model="_3his0PWGEeWtjMWb98HWsA" title="How to use MDE to develop Papyrus"/>
+  <structure:Requirements xmi:id="_3his_vWGEeWtjMWb98HWsA" base_Model="_3his0vWGEeWtjMWb98HWsA"/>
+  <structure:UseCases xmi:id="_3his__WGEeWtjMWb98HWsA" base_Model="_3his0_WGEeWtjMWb98HWsA"/>
+  <structure:Design xmi:id="_3hitAPWGEeWtjMWb98HWsA" base_Model="_3his1vWGEeWtjMWb98HWsA"/>
+  <structure:Tests xmi:id="_3hitAfWGEeWtjMWb98HWsA" base_Model="_3his2PWGEeWtjMWb98HWsA"/>
+  <structure:Project xmi:id="__ItSgPWGEeWtjMWb98HWsA" base_Model="_3his0PWGEeWtjMWb98HWsA"/>
+  <structure:Requirements xmi:id="__7R-8PWGEeWtjMWb98HWsA" base_Model="_3his0vWGEeWtjMWb98HWsA"/>
+  <structure:UseCases xmi:id="_AxCiQPWHEeWtjMWb98HWsA" base_Model="_3his0_WGEeWtjMWb98HWsA"/>
+  <structure:Design xmi:id="_BcHfkPWHEeWtjMWb98HWsA" base_Model="_3his1vWGEeWtjMWb98HWsA"/>
+  <structure:Design xmi:id="_CTnvUPWHEeWtjMWb98HWsA" base_Model="_3his2PWGEeWtjMWb98HWsA"/>
+  <Requirements:Requirement xmi:id="_XG370PWHEeWtjMWb98HWsA" text="The tool must help to model papyrus development" id="REQ_001" base_Class="_XD9KsPWHEeWtjMWb98HWsA"/>
+  <Requirements:Requirement xmi:id="_maw8oPWHEeWtjMWb98HWsA" text="The tool must help to model requirements.&#xD;&#xA;" id="REQ_0011" base_Class="_mat5UPWHEeWtjMWb98HWsA"/>
+  <Requirements:Requirement xmi:id="_rYmvoPWHEeWtjMWb98HWsA" text="The tool must help to make the design" id="REQ_0012" base_Class="_rYkTYPWHEeWtjMWb98HWsA"/>
+  <Requirements:Requirement xmi:id="_xNGd0PWHEeWtjMWb98HWsA" text="The tool must help to model test" id="REQ_0013" base_Class="_xNEBkPWHEeWtjMWb98HWsA"/>
+  <Requirements:Requirement xmi:id="_0iba4PWHEeWtjMWb98HWsA" text="The model of development must contain traceability" id="REQ_0014" base_Class="_0iYXkPWHEeWtjMWb98HWsA"/>
+  <Requirements:Requirement xmi:id="_6T-iwPWHEeWtjMWb98HWsA" text="From the model, it must be able to generate documentation" id="REQ_002" base_Class="_6T8GgPWHEeWtjMWb98HWsA"/>
+  <Requirements:Requirement xmi:id="_AMRy4PWIEeWtjMWb98HWsA" text="From the model, it must be able to generate HTML documentation" id="REQ_0021" base_Class="_AMPWoPWIEeWtjMWb98HWsA"/>
+  <Requirements:Requirement xmi:id="_ChD48PWIEeWtjMWb98HWsA" text="From the model, it must be able to generate WKIMEDIA documentation" id="REQ_0022" base_Class="_ChBcsPWIEeWtjMWb98HWsA"/>
+  <structure:UserDoc xmi:id="_qw69MPWKEeWtjMWb98HWsA" base_Comment="_eZMykPWKEeWtjMWb98HWsA"/>
+  <structure:UserDoc xmi:id="_2a8-kPWOEeWtjMWb98HWsA" base_Comment="_1gT7QPWOEeWtjMWb98HWsA"/>
+  <structure:UserDoc xmi:id="_Waut4PWPEeWtjMWb98HWsA" base_Comment="_UYABIPWPEeWtjMWb98HWsA"/>
+  <structure:UserDoc xmi:id="_GmuNIPWQEeWtjMWb98HWsA" base_Comment="_FqJ3MPWQEeWtjMWb98HWsA"/>
+  <Requirements:Satisfy xmi:id="_wdzjUPWREeWtjMWb98HWsA" base_Abstraction="_wdgoYPWREeWtjMWb98HWsA"/>
+  <Requirements:Requirement xmi:id="_2EffAfWREeWtjMWb98HWsA" text="The tool must help to model use cases.&#xD;&#xA;" id="REQ_0015" base_Class="_2EffAPWREeWtjMWb98HWsA"/>
+  <Requirements:Satisfy xmi:id="_7y_S4fWREeWtjMWb98HWsA" base_Abstraction="_7y_S4PWREeWtjMWb98HWsA"/>
+  <structure:UserDoc xmi:id="_g2DgcPWTEeWtjMWb98HWsA" base_Comment="_evfckPWTEeWtjMWb98HWsA"/>
+  <Requirements:Satisfy xmi:id="_6ZyZYfWTEeWtjMWb98HWsA" base_Abstraction="_6ZyZYPWTEeWtjMWb98HWsA"/>
+  <trace:UseCaseTest xmi:id="_OghosPWVEeWL87HLnAAa-A" base_UseCase="_Nrs5gPWVEeWL87HLnAAa-A"/>
+  <Requirements:Verify xmi:id="_yJxZEPWVEeWL87HLnAAa-A" base_Abstraction="_yJoPIPWVEeWL87HLnAAa-A"/>
+  <structure:UserDoc xmi:id="_1CboQPWVEeWL87HLnAAa-A" base_Comment="_z8R4gPWVEeWL87HLnAAa-A"/>
+  <structure:UserDoc xmi:id="_J698YPWhEeWL87HLnAAa-A" base_Comment="_IUjYMPWhEeWL87HLnAAa-A"/>
+  <structure:UserDoc xmi:id="_c7MFAPWhEeWL87HLnAAa-A" base_Comment="_bkh0EPWhEeWL87HLnAAa-A"/>
+  <structure:UserDoc xmi:id="_t9270PWhEeWL87HLnAAa-A" base_Comment="_tDEHgPWhEeWL87HLnAAa-A"/>
+  <structure:UserDoc xmi:id="_V6RKgPWiEeWL87HLnAAa-A" base_Comment="_TuU3YPWiEeWL87HLnAAa-A"/>
+  <structure:UserDoc xmi:id="_qdIKkPWiEeWL87HLnAAa-A" base_Comment="_o0R9cPWiEeWL87HLnAAa-A"/>
+  <Requirements:Satisfy xmi:id="_UbEhQfWlEeWL87HLnAAa-A" base_Abstraction="_UbEhQPWlEeWL87HLnAAa-A"/>
+  <Requirements:Satisfy xmi:id="_ZAsokfWlEeWL87HLnAAa-A" base_Abstraction="_ZAsokPWlEeWL87HLnAAa-A"/>
+  <Requirements:Satisfy xmi:id="_ZA2ZkfWlEeWL87HLnAAa-A" base_Abstraction="_ZA2ZkPWlEeWL87HLnAAa-A"/>
+  <Requirements:Satisfy xmi:id="_ZA2Zk_WlEeWL87HLnAAa-A" base_Abstraction="_ZA2ZkvWlEeWL87HLnAAa-A"/>
+  <Requirements:Satisfy xmi:id="_clPtYfWlEeWL87HLnAAa-A" base_Abstraction="_clPtYPWlEeWL87HLnAAa-A"/>
+  <Requirements:Satisfy xmi:id="_gAKVEfWlEeWL87HLnAAa-A" base_Abstraction="_gAKVEPWlEeWL87HLnAAa-A"/>
+  <Requirements:Satisfy xmi:id="_hgT5MfWlEeWL87HLnAAa-A" base_Abstraction="_hgT5MPWlEeWL87HLnAAa-A"/>
+  <Document:Document xmi:id="_DDAagPWrEeWL87HLnAAa-A" base_Model="_DC3QkPWrEeWL87HLnAAa-A" author="P. Tessier" version="0.1"/>
+  <Document:TableOfContent xmi:id="_DDKLgfWrEeWL87HLnAAa-A" base_Package="_DDKLgPWrEeWL87HLnAAa-A"/>
+  <Document:Section xmi:id="_DDKLg_WrEeWL87HLnAAa-A" base_Package="_DDKLgvWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DDKLhfWrEeWL87HLnAAa-A" base_Comment="_DDKLhPWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DDKLh_WrEeWL87HLnAAa-A" base_Comment="_DDKLhvWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DDKLifWrEeWL87HLnAAa-A" base_Comment="_DDKLiPWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DDKLi_WrEeWL87HLnAAa-A" base_Comment="_DDKLivWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DDKLjfWrEeWL87HLnAAa-A" base_Comment="_DDKLjPWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DDKLj_WrEeWL87HLnAAa-A" base_Comment="_DDKLjvWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DDKLkfWrEeWL87HLnAAa-A" base_Comment="_DDKLkPWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DDKLk_WrEeWL87HLnAAa-A" base_Comment="_DDKLkvWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DDT8gPWrEeWL87HLnAAa-A" base_Comment="_DDKLlPWrEeWL87HLnAAa-A"/>
+  <Document:Section xmi:id="_DDT8gvWrEeWL87HLnAAa-A" base_Package="_DDT8gfWrEeWL87HLnAAa-A"/>
+  <Document:ImageRef xmi:id="_DFGFMPWrEeWL87HLnAAa-A" base_Comment="_DE8UMPWrEeWL87HLnAAa-A" ref="./imgDOC/UseCases.png"/>
+  <Document:Content xmi:id="_DFGFMvWrEeWL87HLnAAa-A" base_Comment="_DFGFMfWrEeWL87HLnAAa-A"/>
+  <Document:Section xmi:id="_DFGFNPWrEeWL87HLnAAa-A" base_Package="_DFGFM_WrEeWL87HLnAAa-A"/>
+  <Document:Section xmi:id="_DFGFNvWrEeWL87HLnAAa-A" base_Package="_DFGFNfWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFGFOPWrEeWL87HLnAAa-A" base_Comment="_DFGFN_WrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFGFOvWrEeWL87HLnAAa-A" base_Comment="_DFGFOfWrEeWL87HLnAAa-A"/>
+  <Document:Section xmi:id="_DFGFPPWrEeWL87HLnAAa-A" base_Package="_DFGFO_WrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFGFPvWrEeWL87HLnAAa-A" base_Comment="_DFGFPfWrEeWL87HLnAAa-A"/>
+  <Document:ImageRef xmi:id="_DFGFQPWrEeWL87HLnAAa-A" base_Comment="_DFGFP_WrEeWL87HLnAAa-A" ref="./imgDOC/createRequirements.png"/>
+  <Document:Section xmi:id="_DFGFQvWrEeWL87HLnAAa-A" base_Package="_DFGFQfWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFGFRPWrEeWL87HLnAAa-A" base_Comment="_DFGFQ_WrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFGFRvWrEeWL87HLnAAa-A" base_Comment="_DFGFRfWrEeWL87HLnAAa-A"/>
+  <Document:Section xmi:id="_DFGFSPWrEeWL87HLnAAa-A" base_Package="_DFGFR_WrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFPPIPWrEeWL87HLnAAa-A" base_Comment="_DFGFSfWrEeWL87HLnAAa-A"/>
+  <Document:ImageRef xmi:id="_DFPPIvWrEeWL87HLnAAa-A" base_Comment="_DFPPIfWrEeWL87HLnAAa-A" ref="./imgDOC/usecaseCreation.png"/>
+  <Document:Content xmi:id="_DFPPJPWrEeWL87HLnAAa-A" base_Comment="_DFPPI_WrEeWL87HLnAAa-A"/>
+  <Document:ImageRef xmi:id="_DFPPJvWrEeWL87HLnAAa-A" base_Comment="_DFPPJfWrEeWL87HLnAAa-A" ref="./imgDOC/createCommentOnUseCase.png"/>
+  <Document:Content xmi:id="_DFPPKPWrEeWL87HLnAAa-A" base_Comment="_DFPPJ_WrEeWL87HLnAAa-A"/>
+  <Document:ImageRef xmi:id="_DFPPKvWrEeWL87HLnAAa-A" base_Comment="_DFPPKfWrEeWL87HLnAAa-A" ref="./imgDOC/UserDoc.png"/>
+  <Document:ImageRef xmi:id="_DFPPLPWrEeWL87HLnAAa-A" base_Comment="_DFPPK_WrEeWL87HLnAAa-A" ref="./imgDOC/AddHyperlinkToTheImage.png"/>
+  <Document:Section xmi:id="_DFPPLvWrEeWL87HLnAAa-A" base_Package="_DFPPLfWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFPPMPWrEeWL87HLnAAa-A" base_Comment="_DFPPL_WrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFPPMvWrEeWL87HLnAAa-A" base_Comment="_DFPPMfWrEeWL87HLnAAa-A"/>
+  <Document:Section xmi:id="_DFPPNPWrEeWL87HLnAAa-A" base_Package="_DFPPM_WrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFPPNvWrEeWL87HLnAAa-A" base_Comment="_DFPPNfWrEeWL87HLnAAa-A"/>
+  <Document:Section xmi:id="_DFPPOPWrEeWL87HLnAAa-A" base_Package="_DFPPN_WrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFPPOvWrEeWL87HLnAAa-A" base_Comment="_DFPPOfWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFPPPPWrEeWL87HLnAAa-A" base_Comment="_DFPPO_WrEeWL87HLnAAa-A"/>
+  <Document:Section xmi:id="_DFPPPvWrEeWL87HLnAAa-A" base_Package="_DFPPPfWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFZAIPWrEeWL87HLnAAa-A" base_Comment="_DFPPP_WrEeWL87HLnAAa-A"/>
+  <Document:ImageRef xmi:id="_DFZAIvWrEeWL87HLnAAa-A" base_Comment="_DFZAIfWrEeWL87HLnAAa-A" ref="./imgDOC/UsecaseTestCreation.png"/>
+  <Document:Section xmi:id="_DFZAJPWrEeWL87HLnAAa-A" base_Package="_DFZAI_WrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFZAJvWrEeWL87HLnAAa-A" base_Comment="_DFZAJfWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFZAKPWrEeWL87HLnAAa-A" base_Comment="_DFZAJ_WrEeWL87HLnAAa-A"/>
+  <Document:Section xmi:id="_DFZAKvWrEeWL87HLnAAa-A" base_Package="_DFZAKfWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFZALPWrEeWL87HLnAAa-A" base_Comment="_DFZAK_WrEeWL87HLnAAa-A"/>
+  <Document:ImageRef xmi:id="_DFZALvWrEeWL87HLnAAa-A" base_Comment="_DFZALfWrEeWL87HLnAAa-A" ref="./imgDOC/appliedProfiles.png"/>
+  <Document:Content xmi:id="_DFZAMPWrEeWL87HLnAAa-A" base_Comment="_DFZAL_WrEeWL87HLnAAa-A"/>
+  <Document:ImageRef xmi:id="_DFZAMvWrEeWL87HLnAAa-A" base_Comment="_DFZAMfWrEeWL87HLnAAa-A" ref="./imgDOC/fillModelMetaInfo.png"/>
+  <Document:Content xmi:id="_DFZANPWrEeWL87HLnAAa-A" base_Comment="_DFZAM_WrEeWL87HLnAAa-A"/>
+  <Document:ImageRef xmi:id="_DFZANvWrEeWL87HLnAAa-A" base_Comment="_DFZANfWrEeWL87HLnAAa-A" ref="./imgDOC/PluginStrucuture.png"/>
+  <Document:Content xmi:id="_DFZAOPWrEeWL87HLnAAa-A" base_Comment="_DFZAN_WrEeWL87HLnAAa-A"/>
+  <Document:ImageRef xmi:id="_DFZAOvWrEeWL87HLnAAa-A" base_Comment="_DFZAOfWrEeWL87HLnAAa-A" ref="./imgDOC/generateHTML.png"/>
+  <Document:Content xmi:id="_DFZAPPWrEeWL87HLnAAa-A" base_Comment="_DFZAO_WrEeWL87HLnAAa-A"/>
+  <Document:ImageRef xmi:id="_DFZAPvWrEeWL87HLnAAa-A" base_Comment="_DFZAPfWrEeWL87HLnAAa-A" ref="./imgDOC/generatedHTMLpage.png"/>
+  <Document:Section xmi:id="_DFZAQPWrEeWL87HLnAAa-A" base_Package="_DFZAP_WrEeWL87HLnAAa-A"/>
+  <Document:Section xmi:id="_DFixIPWrEeWL87HLnAAa-A" base_Package="_DFZAQfWrEeWL87HLnAAa-A"/>
+  <Document:Section xmi:id="_DFixIvWrEeWL87HLnAAa-A" base_Package="_DFixIfWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFixJPWrEeWL87HLnAAa-A" base_Comment="_DFixI_WrEeWL87HLnAAa-A"/>
+  <Document:Section xmi:id="_DFixJvWrEeWL87HLnAAa-A" base_Package="_DFixJfWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFixKfWrEeWL87HLnAAa-A" base_Comment="_DFixKPWrEeWL87HLnAAa-A"/>
+  <Document:Content xmi:id="_DFixK_WrEeWL87HLnAAa-A" base_Comment="_DFixKvWrEeWL87HLnAAa-A"/>
+  <Document:Table xmi:id="_DFixLPWrEeWL87HLnAAa-A" caption="RequirementsCoverageTable" base_Comment="_DFixJ_WrEeWL87HLnAAa-A"/>
+  <Document:Line xmi:id="_DFixLvWrEeWL87HLnAAa-A" base_Comment="_DFixLfWrEeWL87HLnAAa-A"/>
+  <Document:Cell xmi:id="_DFixMPWrEeWL87HLnAAa-A" base_Comment="_DFixL_WrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFixMvWrEeWL87HLnAAa-A" base_Comment="_DFixMfWrEeWL87HLnAAa-A" ref="_XD9KsPWHEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFixNPWrEeWL87HLnAAa-A" base_Comment="_DFixM_WrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFixNvWrEeWL87HLnAAa-A" base_Comment="_DFixNfWrEeWL87HLnAAa-A" ref="_XD9KsPWHEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFixOPWrEeWL87HLnAAa-A" base_Comment="_DFixN_WrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFixOvWrEeWL87HLnAAa-A" base_Comment="_DFixOfWrEeWL87HLnAAa-A" ref="_XD9KsPWHEeWtjMWb98HWsA"/>
+  <Document:Line xmi:id="_DFixPPWrEeWL87HLnAAa-A" base_Comment="_DFixO_WrEeWL87HLnAAa-A"/>
+  <Document:Cell xmi:id="_DFixPvWrEeWL87HLnAAa-A" base_Comment="_DFixPfWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFixQPWrEeWL87HLnAAa-A" base_Comment="_DFixP_WrEeWL87HLnAAa-A" ref="_mat5UPWHEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFixQvWrEeWL87HLnAAa-A" base_Comment="_DFixQfWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFixRPWrEeWL87HLnAAa-A" base_Comment="_DFixQ_WrEeWL87HLnAAa-A" ref="_jo4OYPWIEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFixRvWrEeWL87HLnAAa-A" base_Comment="_DFixRfWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFixSPWrEeWL87HLnAAa-A" base_Comment="_DFixR_WrEeWL87HLnAAa-A" ref="_Nrs5gPWVEeWL87HLnAAa-A"/>
+  <Document:Line xmi:id="_DFixSvWrEeWL87HLnAAa-A" base_Comment="_DFixSfWrEeWL87HLnAAa-A"/>
+  <Document:Cell xmi:id="_DFixTPWrEeWL87HLnAAa-A" base_Comment="_DFixS_WrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFixTvWrEeWL87HLnAAa-A" base_Comment="_DFixTfWrEeWL87HLnAAa-A" ref="_rYkTYPWHEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFixUPWrEeWL87HLnAAa-A" base_Comment="_DFixT_WrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFixUvWrEeWL87HLnAAa-A" base_Comment="_DFixUfWrEeWL87HLnAAa-A" ref="_ERg-YPWSEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFixVPWrEeWL87HLnAAa-A" base_Comment="_DFixU_WrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFixVvWrEeWL87HLnAAa-A" base_Comment="_DFixVfWrEeWL87HLnAAa-A" ref="_rYkTYPWHEeWtjMWb98HWsA"/>
+  <Document:Line xmi:id="_DFr7EfWrEeWL87HLnAAa-A" base_Comment="_DFr7EPWrEeWL87HLnAAa-A"/>
+  <Document:Cell xmi:id="_DFr7E_WrEeWL87HLnAAa-A" base_Comment="_DFr7EvWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFr7FfWrEeWL87HLnAAa-A" base_Comment="_DFr7FPWrEeWL87HLnAAa-A" ref="_xNEBkPWHEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFr7F_WrEeWL87HLnAAa-A" base_Comment="_DFr7FvWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFr7GfWrEeWL87HLnAAa-A" base_Comment="_DFr7GPWrEeWL87HLnAAa-A" ref="_BLGVIPWUEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFr7G_WrEeWL87HLnAAa-A" base_Comment="_DFr7GvWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFr7HfWrEeWL87HLnAAa-A" base_Comment="_DFr7HPWrEeWL87HLnAAa-A" ref="_xNEBkPWHEeWtjMWb98HWsA"/>
+  <Document:Line xmi:id="_DFr7H_WrEeWL87HLnAAa-A" base_Comment="_DFr7HvWrEeWL87HLnAAa-A"/>
+  <Document:Cell xmi:id="_DFr7IfWrEeWL87HLnAAa-A" base_Comment="_DFr7IPWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFr7I_WrEeWL87HLnAAa-A" base_Comment="_DFr7IvWrEeWL87HLnAAa-A" ref="_0iYXkPWHEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFr7JfWrEeWL87HLnAAa-A" base_Comment="_DFr7JPWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFr7J_WrEeWL87HLnAAa-A" base_Comment="_DFr7JvWrEeWL87HLnAAa-A" ref="_YrtugPWOEeWtjMWb98HWsA"/>
+  <Document:RefContent xmi:id="_DFr7KfWrEeWL87HLnAAa-A" base_Comment="_DFr7KPWrEeWL87HLnAAa-A" ref="_ERg-YPWSEeWtjMWb98HWsA"/>
+  <Document:RefContent xmi:id="_DFr7K_WrEeWL87HLnAAa-A" base_Comment="_DFr7KvWrEeWL87HLnAAa-A" ref="_BLGVIPWUEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFr7LfWrEeWL87HLnAAa-A" base_Comment="_DFr7LPWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFr7L_WrEeWL87HLnAAa-A" base_Comment="_DFr7LvWrEeWL87HLnAAa-A" ref="_0iYXkPWHEeWtjMWb98HWsA"/>
+  <Document:Line xmi:id="_DFr7MfWrEeWL87HLnAAa-A" base_Comment="_DFr7MPWrEeWL87HLnAAa-A"/>
+  <Document:Cell xmi:id="_DFr7M_WrEeWL87HLnAAa-A" base_Comment="_DFr7MvWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFr7NfWrEeWL87HLnAAa-A" base_Comment="_DFr7NPWrEeWL87HLnAAa-A" ref="_2EffAPWREeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFr7N_WrEeWL87HLnAAa-A" base_Comment="_DFr7NvWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFr7OfWrEeWL87HLnAAa-A" base_Comment="_DFr7OPWrEeWL87HLnAAa-A" ref="_YrtugPWOEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFr7O_WrEeWL87HLnAAa-A" base_Comment="_DFr7OvWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFr7PfWrEeWL87HLnAAa-A" base_Comment="_DFr7PPWrEeWL87HLnAAa-A" ref="_2EffAPWREeWtjMWb98HWsA"/>
+  <Document:Line xmi:id="_DFr7P_WrEeWL87HLnAAa-A" base_Comment="_DFr7PvWrEeWL87HLnAAa-A"/>
+  <Document:Cell xmi:id="_DFr7QfWrEeWL87HLnAAa-A" base_Comment="_DFr7QPWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFr7Q_WrEeWL87HLnAAa-A" base_Comment="_DFr7QvWrEeWL87HLnAAa-A" ref="_6T8GgPWHEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFr7RfWrEeWL87HLnAAa-A" base_Comment="_DFr7RPWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFr7R_WrEeWL87HLnAAa-A" base_Comment="_DFr7RvWrEeWL87HLnAAa-A" ref="_G9SBEPWSEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFr7SfWrEeWL87HLnAAa-A" base_Comment="_DFr7SPWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFr7S_WrEeWL87HLnAAa-A" base_Comment="_DFr7SvWrEeWL87HLnAAa-A" ref="_6T8GgPWHEeWtjMWb98HWsA"/>
+  <Document:Line xmi:id="_DFr7TfWrEeWL87HLnAAa-A" base_Comment="_DFr7TPWrEeWL87HLnAAa-A"/>
+  <Document:Cell xmi:id="_DFr7T_WrEeWL87HLnAAa-A" base_Comment="_DFr7TvWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFr7UfWrEeWL87HLnAAa-A" base_Comment="_DFr7UPWrEeWL87HLnAAa-A" ref="_AMPWoPWIEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DFr7U_WrEeWL87HLnAAa-A" base_Comment="_DFr7UvWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DFr7VfWrEeWL87HLnAAa-A" base_Comment="_DFr7VPWrEeWL87HLnAAa-A" ref="_G9SBEPWSEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DF1sEPWrEeWL87HLnAAa-A" base_Comment="_DFr7VvWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DF1sEvWrEeWL87HLnAAa-A" base_Comment="_DF1sEfWrEeWL87HLnAAa-A" ref="_AMPWoPWIEeWtjMWb98HWsA"/>
+  <Document:Line xmi:id="_DF1sFPWrEeWL87HLnAAa-A" base_Comment="_DF1sE_WrEeWL87HLnAAa-A"/>
+  <Document:Cell xmi:id="_DF1sFvWrEeWL87HLnAAa-A" base_Comment="_DF1sFfWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DF1sGPWrEeWL87HLnAAa-A" base_Comment="_DF1sF_WrEeWL87HLnAAa-A" ref="_ChBcsPWIEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DF1sGvWrEeWL87HLnAAa-A" base_Comment="_DF1sGfWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DF1sHPWrEeWL87HLnAAa-A" base_Comment="_DF1sG_WrEeWL87HLnAAa-A" ref="_G9SBEPWSEeWtjMWb98HWsA"/>
+  <Document:Cell xmi:id="_DF1sHvWrEeWL87HLnAAa-A" base_Comment="_DF1sHfWrEeWL87HLnAAa-A"/>
+  <Document:RefContent xmi:id="_DF1sIPWrEeWL87HLnAAa-A" base_Comment="_DF1sH_WrEeWL87HLnAAa-A" ref="_ChBcsPWIEeWtjMWb98HWsA"/>
+</xmi:XMI>

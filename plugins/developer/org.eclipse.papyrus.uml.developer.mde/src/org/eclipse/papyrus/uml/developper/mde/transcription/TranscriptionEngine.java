@@ -217,41 +217,9 @@ public class TranscriptionEngine {
 		for (Iterator<Element> elements = packageableElement.getOwnedElements().iterator(); elements.hasNext();) {
 			Element cddPackageableElement = elements.next();
 			Stereotype sectionStereotype = cddPackageableElement.getAppliedStereotype(I_DocumentStereotype.SECTION_STEREOTYPE);
-			if (sectionStereotype != null) {
-				transcription.writeBeginTOC(out);
-				Package chapter = (Package) cddPackageableElement;
-				Package chapterDocElt = IDMAbstractHandler.getDocPackageForTOC(chapter);
-				String URI = ((XMIResource) chapterDocElt.eResource()).getID(chapterDocElt);
-				transcription.writeTOCSection(out, chapter.getName(), URI);
-				writeSubSectionTOC(out, chapter);
-				transcription.writeEndTOC(out);
-			}
 		}
 	}
 
-	/**
-	 * Retrieves the sub section of a "Section" package.
-	 * Then for each, writes it name and URI on the output file.
-	 * It's a recursive method, so call it again with this package as argument.
-	 *
-	 * @param out
-	 * @param chapter
-	 */
-	public void writeSubSectionTOC(StringBuffer out, Package chapter) {
-		for (Iterator<Element> elements = chapter.getOwnedElements().iterator(); elements.hasNext();) {
-			Element cddSubSection = elements.next();
-			Stereotype sectionStereotype = cddSubSection.getAppliedStereotype(I_DocumentStereotype.SECTION_STEREOTYPE);
-			if (sectionStereotype != null) {
-				Package subSection = (Package) cddSubSection;
-				Package subSectionDocElt = IDMAbstractHandler.getDocPackageForTOC(subSection);
-				String URI = ((XMIResource) subSectionDocElt.eResource()).getID(subSectionDocElt);
-				transcription.writeTOCSubSection(out, subSection.getName(), URI);
-				transcription.writeBeginTOC(out);
-				writeSubSectionTOC(out, subSection);
-				transcription.writeEndTOC(out);
-			}
-		}
-	}
 
 	/**
 	 * 

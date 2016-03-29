@@ -117,7 +117,7 @@ public class WikiTranscription implements ITranscription {
 
 	@Override
 	public void writeImageRef(StringBuffer out, Element packageableElement, Stereotype imgRefStereotype) {
-		out.append("\n[[Image:" + packageableElement.getValue(imgRefStereotype, I_DocumentStereotype.IMAGEREF_REF_ATT) + "|" + ((Comment) packageableElement).getBody() + "]]<br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		out.append("\n<br>\n[[Image:" + packageableElement.getValue(imgRefStereotype, I_DocumentStereotype.IMAGEREF_REF_ATT) + "|" + ((Comment) packageableElement).getBody() + "]]\n<br>''" + ((Comment) packageableElement).getBody() + "''<br>\n<br>"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 
@@ -130,7 +130,7 @@ public class WikiTranscription implements ITranscription {
 
 	@Override
 	public void writeParagraph(StringBuffer out, Element packageableElement) {
-		out.append("\n<span" + getId(packageableElement) + ">" + ((Comment) packageableElement).getBody() + "</span>"); //$NON-NLS-1$
+		out.append("\n<span" + getId(packageableElement) + ">" + ((Comment) packageableElement).getBody() + "</span><br>"); //$NON-NLS-1$
 	}
 
 
@@ -306,43 +306,6 @@ public class WikiTranscription implements ITranscription {
 	}
 
 
-	/**
-	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeTOCSubSection(java.lang.StringBuffer, java.lang.String, java.lang.String, int, int)
-	 *
-	 * @param out
-	 * @param subSectionName
-	 * @param uri
-	 * @param chapterNb
-	 * @param subSectionNb
-	 */
-	@Override
-	public void writeTOCSubSection(StringBuffer out, String subSectionName, String uri) {
-		out.append("\n::[[#" + uri + "|" + subSectionName + "]]");
-	}
-
-
-	/**
-	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeBeginTOC(java.lang.StringBuffer)
-	 *
-	 * @param out
-	 */
-	@Override
-	public void writeBeginTOC(StringBuffer out) {
-		// TODO Auto-generated method stub
-
-	}
-
-
-	/**
-	 * @see org.eclipse.papyrus.uml.developper.mde.transcription.ITranscription#writeEndTOC(java.lang.StringBuffer)
-	 *
-	 * @param out
-	 */
-	@Override
-	public void writeEndTOC(StringBuffer out) {
-		// TODO Auto-generated method stub
-
-	}
 
 
 }
