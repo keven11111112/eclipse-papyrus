@@ -30,11 +30,17 @@ public class PseudostateExitPointFigure extends AffixedNamedElementFigure {
 	public void paint(Graphics graphics) {
 		super.paint(graphics);
 		graphics.pushState();
-		// Draw the cross.
-		int x = (int) (bounds.width / (2 * Math.sqrt(2)));
-		int y = (int) (bounds.height / (2 * Math.sqrt(2)));
-		graphics.drawLine(bounds.getCenter().translate(x, -y), bounds.getCenter().translate(-x, y));
-		graphics.drawLine(bounds.getCenter().translate(-x, -y), bounds.getCenter().translate(x, y));
+		// Draw the cross 
+		double delta = 0.5; // assure that the cross does not pass over the circle border
+		double x = bounds.width / (2 * Math.sqrt(2)) - delta;
+		double y = bounds.height / (2 * Math.sqrt(2)) - delta;
+		graphics.setLineWidth(getLineWidth() < 1 ?
+				1 :
+				getLineWidth());
+		int cx = bounds.getCenter().x;
+		int cy = bounds.getCenter().y;
+		graphics.drawLine((int) (cx+x), (int) (cy-y), (int) (cx-x), (int) (cy+y));
+		graphics.drawLine((int) (cx-x), (int) (cy-y), (int) (cx+x), (int) (cy+y));
 		graphics.popState();
 	}
 }

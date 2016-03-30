@@ -24,10 +24,8 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.FigureUtilities;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -82,7 +80,6 @@ import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomRegio
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.RegionFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.StateMachineLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
-import org.eclipse.papyrus.uml.diagram.statemachine.custom.locators.CustomEntryExitPointPositionLocator;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.FinalStateEditPart;
@@ -181,30 +178,12 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 			// Replace compartment edit part by its ancestor StateMachineEditPart or StateEditPart
 			graphicalParentEditPart = (GraphicalEditPart) graphicalParentEditPart.getParent().getParent().getParent();
 
-			dropLocation.translate(regionFigure.getLocation());
-			if (graphicalParentEditPart instanceof StateMachineEditPart) {
-				regionFigure.translateToAbsolute(dropLocation);
-			}
 		} else if (graphicalParentEditPart instanceof StateCompartmentEditPart) {
 			isCompartmentTarget = true;
 			// Replace compartment edit part by its ancestor StateMachineEditPart or StateEditPart
 			graphicalParentEditPart = (GraphicalEditPart) graphicalParentEditPart.getParent();
 		}
 		// Manage Element drop in compartment
-
-		// Create proposed creation bounds and use the locator to find the expected position
-		Point parentLoc = graphicalParentEditPart.getFigure().getBounds().getLocation().getCopy();
-
-		CustomEntryExitPointPositionLocator locator = new CustomEntryExitPointPositionLocator(graphicalParentEditPart.getFigure(), PositionConstants.NONE);
-
-		Rectangle proposedBounds = new Rectangle(dropLocation, new Dimension(20, 20));
-		Rectangle preferredBounds = locator.getPreferredLocation(proposedBounds);
-
-		// Convert the calculated preferred bounds as relative to parent location
-		Rectangle creationBounds = preferredBounds.getTranslated(parentLoc.getNegated());
-		if (graphicalParentEditPart instanceof StateMachineEditPart) {
-			dropLocation = creationBounds.getLocation();
-		}
 
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 
@@ -463,7 +442,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 			Rectangle parentBounds = graphicalParentEditPart.getFigure().getBounds().getCopy();
 			graphicalParentEditPart.getFigure().translateToAbsolute(parentBounds);
 			Point relLocation = new Point(location.x - parentBounds.x, location.y - parentBounds.y);
-			
+
 			// take care of the case when a simple state is dropped, then we should provide a reasonable size
 			if (droppedElement.getRegions().isEmpty()) {
 				// final state has default size 20

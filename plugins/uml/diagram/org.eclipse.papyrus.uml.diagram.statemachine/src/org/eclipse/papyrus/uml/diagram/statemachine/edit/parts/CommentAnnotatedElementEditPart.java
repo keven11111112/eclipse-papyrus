@@ -63,6 +63,6 @@ public class CommentAnnotatedElementEditPart extends UMLConnectionNodeEditPart i
 	 */
 	@Override
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure) getFigure();
+		return (SimpleDashedEdgeFigure)getFigure();
 	}
 }

@@ -47,8 +47,7 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ContextLinkSemanticEditPolicy());
 	}
 
@@ -56,9 +55,8 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
-			((ContextLinkAppliedStereotypeEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
+			((ContextLinkAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -68,7 +66,7 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -78,7 +76,7 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
+		if(childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -89,7 +87,7 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -113,6 +111,6 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	@Override
 	public CustomContextLinkFigure getPrimaryShape() {
-		return (CustomContextLinkFigure) getFigure();
+		return (CustomContextLinkFigure)getFigure();
 	}
 }

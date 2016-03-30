@@ -27,7 +27,6 @@ import org.eclipse.gmf.runtime.diagram.core.commands.SetPropertyCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
@@ -36,6 +35,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.SideAffixedNodesCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomFirstRegionInCompositeStateCreateElementCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomVertexCreateElementCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomStateEditPart;
@@ -45,7 +45,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentE
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.State;
 
-public class CustomStateCreationEditPolicy extends CreationEditPolicy {
+public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditPolicy {
 	IFigure sizeOnDropFeedback = null;
 	String dropLocation = Zone.NONE;
 
