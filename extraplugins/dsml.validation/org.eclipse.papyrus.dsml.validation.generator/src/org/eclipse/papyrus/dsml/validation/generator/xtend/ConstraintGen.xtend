@@ -3,7 +3,7 @@ package org.eclipse.papyrus.dsml.validation.generator.xtend;
 import org.eclipse.uml2.uml.Constraint
 import org.eclipse.papyrus.dsml.validation.model.profilenames.Utils
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.papyrus.codegen.base.IPFileSystemAccess
+import org.eclipse.papyrus.infra.tools.file.IPFileSystemAccess
 
 /**
  * A generator for Java based constraints

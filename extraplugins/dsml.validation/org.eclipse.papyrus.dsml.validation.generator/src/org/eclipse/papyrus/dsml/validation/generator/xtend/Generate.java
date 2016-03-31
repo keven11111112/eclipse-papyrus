@@ -27,7 +27,7 @@ import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.papyrus.codegen.base.ProjectBasedFileAccess;
+import org.eclipse.papyrus.infra.tools.file.ProjectBasedFileAccess;
 
 /**
  * Entry point of the 'Generate' generation module.

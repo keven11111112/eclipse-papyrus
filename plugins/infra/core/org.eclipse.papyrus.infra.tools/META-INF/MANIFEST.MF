@@ -2,13 +2,15 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.tools,
  org.eclipse.papyrus.infra.tools.comparator,
  org.eclipse.papyrus.infra.tools.databinding,
+ org.eclipse.papyrus.infra.tools.file,
  org.eclipse.papyrus.infra.tools.notify,
  org.eclipse.papyrus.infra.tools.spi,
  org.eclipse.papyrus.infra.tools.util
 Require-Bundle: org.eclipse.papyrus.infra.core.log;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
  com.google.guava;bundle-version="11.0.0";visibility:=reexport,
  org.eclipse.core.databinding.observable;bundle-version="[1.6.0,2.0.0)";visibility:=reexport,
- org.eclipse.emf.common;bundle-version="[2.12.0,3.0.0)";visibility:=reexport
+ org.eclipse.emf.common;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
+ org.eclipse.core.resources;bundle-version="3.11.0"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 2.0.0.qualifier
