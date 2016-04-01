@@ -53,7 +53,10 @@ import org.eclipse.uml2.uml.Stereotype;
  * - refresh the Comment content based on the UML information
  * by using NamedStyle mechanism into Notation model
  *
- *
+ * As soon as one stereotype is applied a shape that represent the comment of the applied stereotype is created. it will also
+ * create the edge between the shape and the comment of the shape.
+ * 
+ * This shape is serialized in the notation file, and its not associated to 1 applied stereotype.
  */
 public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
 

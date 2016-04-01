@@ -41,17 +41,20 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.junit.utils.DisplayUtils;
+import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AutomaticCompartmentLayoutManager;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayCommandExecution;
+import org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusTestCase;
 import org.eclipse.papyrus.uml.extensionpoints.profile.IRegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
@@ -70,6 +73,12 @@ import org.junit.Test;
  * "Works on Linux, Fails on Windows"
  **/
 public class TestLayoutWithStereotypeOnEclipseHIPPInstance extends AbstractPapyrusTestCase {
+
+	/** name of the test project */
+	public final String PROJECT_NAME = "StereotypeTestProject";
+
+	/** name of the test model */
+	public final String FILE_NAME = "StereotypeTest.di";
 
 	protected static final String ST_LEFT = String.valueOf("\u00AB");
 
@@ -364,5 +373,37 @@ public class TestLayoutWithStereotypeOnEclipseHIPPInstance extends AbstractPapyr
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(appliedProfileCommand));
 
 
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusTestCase#getDiagramCommandCreation()
+	 *
+	 * @return
+	 */
+	@Override
+	protected ICreationCommand getDiagramCommandCreation() {
+		return new CreateClassDiagramCommand();
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusTestCase#getProjectName()
+	 *
+	 * @return
+	 */
+	@Override
+	protected String getProjectName() {
+		return PROJECT_NAME;
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusTestCase#getFileName()
+	 *
+	 * @return
+	 */
+	@Override
+	protected String getFileName() {
+		return FILE_NAME;
 	}
 }

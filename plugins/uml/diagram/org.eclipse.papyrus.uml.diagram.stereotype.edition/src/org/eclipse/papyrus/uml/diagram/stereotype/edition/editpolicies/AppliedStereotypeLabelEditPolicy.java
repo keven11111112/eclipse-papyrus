@@ -17,8 +17,9 @@ package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 
 /**
- * @author Céline JANSSENS
- *         This Policy is in charge of create and delete the applied Stereotype Label Node into the Notation model
+ * This Policy is in charge of create and delete the applied Stereotype Label Node into the Notation model.
+ * When a stereotype is applied a node associate to the stereotype is created.
+ * the created is transient and associated to only one stereotype.
  */
 public class AppliedStereotypeLabelEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
 

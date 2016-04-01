@@ -1,83 +1,169 @@
 <html>
 <link rel="stylesheet" href="default.css" type="text/css">
 <H1>Document about stereotype application display</H1>
-<p>Patrick Tessier (CEA LIST)<BR/>Version 0.2</p>
-<H2 id ="_1DR7IfHXEeWxfJc8tP3QkA">Table of Contents</H2>
-<H2 id ="_1DSiMfHXEeWxfJc8tP3QkA">Requirements</H2>
+<H2 id ="_yw664PdREeWfXdmtYb4ggQ">Table of Contents</H2>
+<H2 id ="_yw8JAfdREeWfXdmtYb4ggQ">Requirements</H2>
 <p>- Stereotype application properties dipslay (id=REQ_001): <BR/> Stereotype application properties could be displayed as "comment" inside a compartment, or as brace label</p>
 <p>- Display Requirement as a "comment" (id=REQ_0011): <BR/> When the applied stereotype properties are displayed as a comment, a shape " comment " is created with a dashed line form the comment to the representation of the stereotyped element. The comment contains the a label with the name of the stereotype, and contain as a stack list all wanted properties of applied stereotype that the user wnat to display.</p>
-<p>- REQ_0012 (id=REQ_0012): <BR/> When the applied stereotype properties are displayed as a compartment, a compartment is created inside the representation of the stereotyped element , under the label of the name. The comment contains the a label with the name of the stereotype, and contain as a stack list all wanted properties of applied stereotype that the user wnat to display.</p>
-<p>- REQ_0013 (id=REQ_0013): <BR/> When the applied stereotype properties are displayed as brace, all this data is display in a label under the name label.</p>
+<p>- Display Requirement as a "compartment" (id=REQ_0012): <BR/> When the applied stereotype properties are displayed as a compartment, a compartment is created inside the representation of the stereotyped element , under the label of the name. The comment contains the a label with the name of the stereotype, and contain as a stack list all wanted properties of applied stereotype that the user wnat to display.</p>
+<p>- Display Requirement as a "brace" (id=REQ_0013): <BR/> When the applied stereotype properties are displayed as brace, all this data is display in a label under the name label.</p>
 <p>- Display stereotype name (id=REQ_002): <BR/> The shape can display the name of the stereotypes that are applied on the UML element</p>
 <p>- Apply a stereotype (id=REQ_0021): <BR/> When the stereotype is applied, the shape displays automatically the name of the sterotypes in the label of stereotype</p>
-<p>- Drop from  the model explorer (id=REQ_0022): <BR/> When a element is dropped form the model explorer to the diagram, the shape of the element must display the name of the applied sterotype in the label of stereotype</p>
+<p>- Drop from  the model explorer (id=REQ_0022): <BR/> When a element is dropped form the model explorer to the diagram, the shape of the element must display the name of the applied stereotype in the label of stereotype</p>
 <p>- Display the name of the stereotype  (id=REQ_0023): <BR/> Each applied stereotype can be either displayed with a short name or with the Qualified Name in the label of stereotype</p>
 <p>- Display Each applied stereotype  name differently (id=REQ_0024): <BR/> The displayed qualified name depth can be defined for each stereotype.</p>
 <p>- Qualified name depth (id=REQ_003): <BR/> The user must be able to chose the depth of the QN to be displayed</p>
-<p>- REQ_004 (id=REQ_004): <BR/> The user can choose the applied stereotype properties to display </p>
-<p>- REQ_0041 (id=REQ_0041): <BR/> The user can choose the applied stereotype properties to display by using a css file.</p>
-<p>- REQ_0042 (id=REQ_0042): <BR/> The user can choose the applied stereotype properties to display by using the property view appearance </p>
-<H2 id ="_1DkPAfHXEeWxfJc8tP3QkA">Use Cases</H2>
+<p>- Choice on Stereotype properties to display (id=REQ_004): <BR/> The user can choose the applied stereotype properties to display </p>
+<p>- Use CSS file (id=REQ_0041): <BR/> The user can choose the applied stereotype properties to display by using a css file.</p>
+<p>- Use property view (id=REQ_0042): <BR/> The user can choose the applied stereotype properties to display by using the property view appearance </p>
+<p>- Remove display of applied stereotype  (id=REQ_005): <BR/> A display of applied stereotype or display of applied sterotype properties can be removed when a stereotype or a profile is unapplied </p>
+<p>- REQ_006 (id=REQ_006): <BR/> Update the display of applied sterotype properties when the affected values have changed</p>
+<H2 id ="_yxRgMfdREeWfXdmtYb4ggQ">Use Cases</H2>
 <P align="middle"><img src=./imgDOC/UseCases.png alt=UseCases ></P><P align="middle">UseCases</P></BR>
-<H3 id ="_1GLeIPHXEeWxfJc8tP3QkA">Papyrus stereotype display</H3>
-<H4 id ="_1GMFMfHXEeWxfJc8tP3QkA">Choose properties to display</H4>
-<H4 id ="_1GNTUfHXEeWxfJc8tP3QkA">Display stereotype properties</H4>
-<H4 id ="_1GOhcfHXEeWxfJc8tP3QkA">As "brace"</H4>
-<H4 id ="_1GPvkfHXEeWxfJc8tP3QkA">as "compartment"</H4>
-<H4 id ="_1GQ9sfHXEeWxfJc8tP3QkA">Display applied stereotype name</H4>
-<H4 id ="_1GSL0fHXEeWxfJc8tP3QkA">as "Comment"</H4>
-<H4 id ="_1GTZ8fHXEeWxfJc8tP3QkA">Choose QN depth</H4>
-<H4 id ="_1GUoEPHXEeWxfJc8tP3QkA">Remove display of stereotype properties</H4>
-<H2 id ="_1GVPIfHXEeWxfJc8tP3QkA">Design</H2>
-<H3 id ="_1GWdQfHXEeWxfJc8tP3QkA">Package SolutionProposition</H3>
-<P align="middle"><img src=./imgDOC/NewDiagram.png alt=NewDiagram ></P><P align="middle">NewDiagram</P></BR>
-<p>The  applied stereotypes properties “comment”  is represented by:<BR/>The editpart  AppliedStereotypesCommentEditpart,  the comment shape that will contains the editpart in charge of the edition of sterotype (AppliedStereotypeConpartmentEditPart, AppliedStereotypePropertyEditPart).<BR/>The editpart  AppliedSterotypesCommentLinkEditPart, the link between the stereotyped element and the comment.<BR/></p>
-<p>The Applied StereotypeCommentEdipart and the appliedStereotypeCommentLinkEditPart are connected to the semantic element. Thanks to this, if the semantic element is deleted the comment will be also deleted.<BR/>The Applied StereotypeCommentEdipart will be contains eannotation about stereotype application exactly as the editpart that represents the semantic element. In this manner, it is possible to reuse mechanism of stereotype edition.<BR/>To ensure the creation of the comment and the synchronization of eannotation information from the Semantic editpart an editpolicy will be added: the AppliedStereotypeCommentEditPolicy.<BR/></p>
-<P align="middle"><img src=file:/D:/Tessier/PROTO/SEQUOIA/Workspace/AppliedStereotypesComment/Mes%20images/TechnicalProposition.PNG alt=D:\Tessier\PROTO\SEQUOIA\Workspace\AppliedStereotypesComment\Mes images\TechnicalProposition.PNG ></P><P align="middle">D:\Tessier\PROTO\SEQUOIA\Workspace\AppliedStereotypesComment\Mes images\TechnicalProposition.PNG</P></BR>
-<p>Explaination of the example:<BR/>Two stereotypes are applied on the Class1. By default two ApplicationStereotypeCompartment are created (one references stapp1, and the second references stapp2). By default there are not visible. This is the normal behavior.<BR/>The user has decided to display a property if the applied stereotype stapp1.<BR/>An AppliedStereotypesCommentEditpart and AppliedStereotypeCommentLinkEditPart are created. (They references Class1). The AppliedStereotypesCommentEditpart reuse the standard mechanism of stereotype displaying:<BR/>Two ApplicationStereotypeCompartment are created (one references stapp1 with visibility=true, and the second references stapp2 with the visibility=false).<BR/>An appliedStereotypePropertyEditpart is created because we want to see a property of stapp1<BR/></p>
-<p>•	CommentShapeForAppliedStereotypeEditPolicy : this editpolicy attached to StereotypeCommentEdipart has in charge to prevent the remove form model and launch command of deletion if it detect that any properties of applied stereotype are displayed.</p>
-<p> •	AppliedStereotypeCompartmentForCommentShapeEditPolicy is another editpolicy attached to StereotypeCommentEdipart. It does the same work as AppliedStereotypeCompartmentEditPolicy. Because the StereotypeCommentEdipart  is not attached to a semantic element by the attribute element of the notation view. It specializes the method getUMLElement to find the semantic element </p>
-<H4 id ="_1M-CofHXEeWxfJc8tP3QkA">Class AppliedStereotypeConpartmentEditPart</H4>
-<H4 id ="_1M_QwfHXEeWxfJc8tP3QkA">Class AppliedStereotypePropertyEditPart</H4>
-<H4 id ="_1NAe4fHXEeWxfJc8tP3QkA">Class AppliedStereotypesCommentEditPart</H4>
-<H4 id ="_1NBtAfHXEeWxfJc8tP3QkA">Class AppliedStereotypesCommentLinkEditPart</H4>
-<p>To ensure the creation of the comment and the synchronization of eannotation information from the Semantic editpart an editpolicy will be added: the AppliedStereotypeCommentCreationEditPolicy.<BR/>This editpolicy has in charge to:<BR/>-	Create by using the command CreateAppliedStereotypeCommentViewCommand<BR/>-	 Destroy the AppliedStereotypesCommentEditpart<BR/>-	Adapt the information about stereotype display into AppliedstereotypeCommentEditPart by using eannotation existing mechanism<BR/></p>
-<H4 id ="_1NEJQfHXEeWxfJc8tP3QkA">Class AppliedStereotypeCommentCreationEditPolicy</H4>
-<H4 id ="_1NFXYfHXEeWxfJc8tP3QkA">Class CreateAppliedStereotypeCommentViewCommand</H4>
-<H4 id ="_1NGlgfHXEeWxfJc8tP3QkA">Class AppliedStereotypeCompartmentForCommentShapeEditPolicy</H4>
-<p>  - specializes <a href="#_1NKP4PHXEeWxfJc8tP3QkA" title="Class AppliedStereotypeCompartmentEditPolicy">AppliedStereotypeCompartmentEditPolicy</a></p>
-<H4 id ="_1NJBwPHXEeWxfJc8tP3QkA">Class CommentShapeForAppliedStereotypeEditPolicy</H4>
-<H4 id ="_1NKP4PHXEeWxfJc8tP3QkA">Class AppliedStereotypeCompartmentEditPolicy</H4>
-<H2 id ="_1NLeAPHXEeWxfJc8tP3QkA">Tests</H2>
-<H2 id ="_1NMsIPHXEeWxfJc8tP3QkA">Requirements Coverage</H2>
+<H3 id ="_y0OtkfdREeWfXdmtYb4ggQ">Papyrus stereotype display</H3>
+<H4 id ="_y0P7sfdREeWfXdmtYb4ggQ">Choose properties to display</H4>
+<p>  - traces to <a href="#_yxMnsPdREeWfXdmtYb4ggQ" title="Requirement Use CSS file">Use CSS file</a>, <a href="#_yxN10PdREeWfXdmtYb4ggQ" title="Requirement Use property view">Use property view</a>, <a href="#_yxLZkPdREeWfXdmtYb4ggQ" title="Requirement Choice on Stereotype properties to display">Choice on Stereotype properties to display</a></p>
+<H4 id ="_y0TmEfdREeWfXdmtYb4ggQ">Display stereotype properties</H4>
+<p>  - traces to <a href="#_yw9-MPdREeWfXdmtYb4ggQ" title="Requirement Stereotype application properties dipslay">Stereotype application properties dipslay</a></p>
+<H4 id ="_y0WCUfdREeWfXdmtYb4ggQ">As "brace"</H4>
+<p>  - traces to <a href="#_yxBokfdREeWfXdmtYb4ggQ" title="Requirement Display Requirement as a "brace"">Display Requirement as a "brace"</a></p>
+<H4 id ="_y0YekfdREeWfXdmtYb4ggQ">As "compartment"</H4>
+<p>  - traces to <a href="#_yxAacfdREeWfXdmtYb4ggQ" title="Requirement Display Requirement as a "compartment"">Display Requirement as a "compartment"</a></p>
+<H4 id ="_y0a60fdREeWfXdmtYb4ggQ">Display applied stereotype name</H4>
+<p>  - traces to <a href="#_yxEr4PdREeWfXdmtYb4ggQ" title="Requirement Apply a stereotype">Apply a stereotype</a>, <a href="#_yxF6APdREeWfXdmtYb4ggQ" title="Requirement Drop from  the model explorer">Drop from  the model explorer</a>, <a href="#_yxHIIPdREeWfXdmtYb4ggQ" title="Requirement Display the name of the stereotype ">Display the name of the stereotype </a>, <a href="#_yxIWQfdREeWfXdmtYb4ggQ" title="Requirement Display Each applied stereotype  name differently">Display Each applied stereotype  name differently</a>, <a href="#_yxC2sfdREeWfXdmtYb4ggQ" title="Requirement Display stereotype name">Display stereotype name</a></p>
+<p>The diagram contains a shape. when you applied a stereotype on the element, the applied stereotype name is displayed on the shape below the name of the element.<BR/>When an element is dropped form the model explorer to the diagram, the applied stereotype named is diplayed on the shape.<BR/>This is the same behavior for links. </p>
+<H4 id ="_y0fMQfdREeWfXdmtYb4ggQ">As "Comment"</H4>
+<p>  - traces to <a href="#_yw_MUPdREeWfXdmtYb4ggQ" title="Requirement Display Requirement as a "comment"">Display Requirement as a "comment"</a></p>
+<H4 id ="_y0hogfdREeWfXdmtYb4ggQ">Choose QN depth</H4>
+<p>  - traces to <a href="#_yxJkYfdREeWfXdmtYb4ggQ" title="Requirement Qualified name depth">Qualified name depth</a></p>
+<H4 id ="_y0kEwfdREeWfXdmtYb4ggQ">Remove display of stereotype properties</H4>
+<p>  - traces to <a href="#_yxPD8PdREeWfXdmtYb4ggQ" title="Requirement Remove display of applied stereotype ">Remove display of applied stereotype </a></p>
+<H4 id ="_y0mhAfdREeWfXdmtYb4ggQ">Update the display of applied stereotuep properties</H4>
+<p>  - traces to <a href="#_yxQSEfdREeWfXdmtYb4ggQ" title="Requirement REQ_006">REQ_006</a></p>
+<H2 id ="_y0o9QfdREeWfXdmtYb4ggQ">Design</H2>
+<H3 id ="_y0qLYfdREeWfXdmtYb4ggQ">Package org.eclipse.papyrus.uml.diagram.stereotype.edition</H3>
+<H4 id ="_y0rZgfdREeWfXdmtYb4ggQ">Class Activator</H4>
+<p>  - specializes <a href="#_IufLAvZ5EeWfXdmtYb4ggQ" title="Class AbstractUIPlugin">AbstractUIPlugin</a></p>
+<p><BR/> * The activator class controls the plug-in life cycle<BR/> </p>
+<H4 id ="_y0vq8PdREeWfXdmtYb4ggQ">Package editpart</H4>
+<H5 id ="_y0w5EPdREeWfXdmtYb4ggQ">Class AppliedStereotypeCommentEditPart</H5>
+<p>  - specializes <a href="#_IvnMYvZ5EeWfXdmtYb4ggQ" title="Class NodeEditPart">NodeEditPart</a><BR/><BR/>  - realizes <a href="#_IvpBkvZ5EeWfXdmtYb4ggQ" title="Interface IGraphicalEditPart">IGraphicalEditPart</a>, <a href="#_IvvvQPZ5EeWfXdmtYb4ggQ" title="Interface IPrimaryEditPart">IPrimaryEditPart</a></p>
+<p><BR/> * The Applied StereotypeCommentEdipart and the appliedStereotypeCommentLinkEditPart are connected to the semantic element.<BR/> * Thanks to this, if the semantic element is deleted the comment will be also deleted.<BR/> * The Applied StereotypeCommentEdipart will be contains eannotation about stereotype application exactly as the editpart<BR/> * that represents the semantic element. In this manner, it is possible to reuse mechanism of stereotype edition.<BR/> * To ensure the creation of the comment and the synchronization of eannotation information from the Semantic editpart<BR/> * an editpolicy will be added: the AppliedStereotypeCommentEditPolicy.<BR/> *<BR/> </p>
+<H5 id ="_y00jcPdREeWfXdmtYb4ggQ">Class AppliedStereotypeCompartmentEditPart</H5>
+<p>  - specializes <a href="#_IxT1gfZ5EeWfXdmtYb4ggQ" title="Class ResizeableListCompartmentEditPart">ResizeableListCompartmentEditPart</a></p>
+<p><BR/> * this compartment is the an editpart associated to an applied stereotype<BR/> </p>
+<H5 id ="_y04N0PdREeWfXdmtYb4ggQ">Class Double</H5>
+<H5 id ="_y05b8PdREeWfXdmtYb4ggQ">Class AppliedStereotypeEmptyEditPart</H5>
+<p>  - specializes <a href="#_Ix4dQvZ5EeWfXdmtYb4ggQ" title="Class GraphicalEditPart">GraphicalEditPart</a></p>
+<p><BR/> * This Edit Part is a dummy edit part with no figure to be linked to a Notation View that is not representing a graphical object.<BR/> * The Views related to this edit Part are Views of type StereotypeBrace, StereotypeLabel and StereotypeBraceProperty<BR/> * <BR/> * @see StereotypePropertiesEditPartProvider<BR/> * <BR/> * @author Celine JANSSENS<BR/> *<BR/> </p>
+<H5 id ="_y08fQfdREeWfXdmtYb4ggQ">Class AppliedStereotypeMultilinePropertyEditPart</H5>
+<p>  - specializes <a href="#_I34-ofZ5EeWfXdmtYb4ggQ" title="Class CompartmentEditPart">CompartmentEditPart</a><BR/><BR/>  - realizes <a href="#_I35lsPZ5EeWfXdmtYb4ggQ" title="Interface ITextAwareEditPart">ITextAwareEditPart</a>, <a href="#_I36z0fZ5EeWfXdmtYb4ggQ" title="Interface NotificationListener">NotificationListener</a>, <a href="#_I37a4fZ5EeWfXdmtYb4ggQ" title="Interface IPapyrusListener">IPapyrusListener</a>, <a href="#_I38B8PZ5EeWfXdmtYb4ggQ" title="Interface IControlParserForDirectEdit">IControlParserForDirectEdit</a></p>
+<p><BR/> * the goal of this editpart is to edit a property of an application of the stereotype into a text area<BR/> *<BR/> </p>
+<H5 id ="_y1AJofdREeWfXdmtYb4ggQ">Class AppliedStereotypePropertyEditPart</H5>
+<p>  - specializes <a href="#_I9OKkPZ5EeWfXdmtYb4ggQ" title="Class UMLCompartmentEditPart">UMLCompartmentEditPart</a><BR/><BR/>  - realizes <a href="#_I35lsPZ5EeWfXdmtYb4ggQ" title="Interface ITextAwareEditPart">ITextAwareEditPart</a>, <a href="#_IvvvQPZ5EeWfXdmtYb4ggQ" title="Interface IPrimaryEditPart">IPrimaryEditPart</a></p>
+<p><BR/> * the goal of this editpart is to display property of stereotype in on line<BR/> *<BR/> </p>
+<H5 id ="_y1D0AfdREeWfXdmtYb4ggQ">Class AppliedStereotypesCommentLinkEditPart</H5>
+<p>  - specializes <a href="#_I-NpEfZ5EeWfXdmtYb4ggQ" title="Class ConnectionEditPart">ConnectionEditPart</a></p>
+<p><BR/> *<BR/> * The editpart AppliedSterotypesCommentLinkEditPart, the link between the stereotyped element and the comment.<BR/> *<BR/> </p>
+<H4 id ="_y1HeYfdREeWfXdmtYb4ggQ">Package editpolicies</H4>
+<H5 id ="_y1IsgfdREeWfXdmtYb4ggQ">Class AppliedStereotypeCommentEditPolicy</H5>
+<p>  - specializes <a href="#_JAjLYvZ5EeWfXdmtYb4ggQ" title="Class AppliedStereotypeNodeLabelDisplayEditPolicy">AppliedStereotypeNodeLabelDisplayEditPolicy</a></p>
+<p><BR/> * This editpolicy has in charge to :<BR/> * - create or destroy the appliedStereotypesCommentEditpart<BR/> * - create notation view associated to this CommentEditPart<BR/> * - refresh the Comment content based on the UML information<BR/> * by using NamedStyle mechanism into Notation model<BR/> *<BR/> *<BR/> </p>
+<H5 id ="_y1MW4fdREeWfXdmtYb4ggQ">Class AppliedStereotypeCompartmentEditPolicy</H5>
+<p>  - specializes <a href="#_JAjLYvZ5EeWfXdmtYb4ggQ" title="Class AppliedStereotypeNodeLabelDisplayEditPolicy">AppliedStereotypeNodeLabelDisplayEditPolicy</a></p>
+<p><BR/> * this edit policy can be apply only on {@link IPapyrusEditPart} in order to<BR/> * access to primary figure. the primary figure has to be a {@link IPapyrusNodeUMLElementFigure}<BR/> *<BR/> </p>
+<H5 id ="_y1QBQfdREeWfXdmtYb4ggQ">Class AppliedStereotypeCompartmentForCommentShapeEditPolicy</H5>
+<p>  - specializes <a href="#_y1MW4fdREeWfXdmtYb4ggQ" title="Class AppliedStereotypeCompartmentEditPolicy">AppliedStereotypeCompartmentEditPolicy</a></p>
+<p><BR/> * â€¢ AppliedStereotypeCompartmentForCommentShapeEditPolicy is another editpolicy attached<BR/> * to StereotypeCommentEdipart. It does the same work as AppliedStereotypeCompartmentEditPolicy.<BR/> * Because the StereotypeCommentEdipart is not attached to a semantic element by the attribute element of the notation view.<BR/> * It specializes the method getUMLElement to find the semantic element<BR/> *<BR/> </p>
+<H5 id ="_y1TrofdREeWfXdmtYb4ggQ">Class AppliedStereotypeLabelEditPolicy</H5>
+<p>  - specializes <a href="#_JAjLYvZ5EeWfXdmtYb4ggQ" title="Class AppliedStereotypeNodeLabelDisplayEditPolicy">AppliedStereotypeNodeLabelDisplayEditPolicy</a></p>
+<p><BR/> * @author CÃ©line JANSSENS<BR/> *         This Policy is in charge of create and delete the applied Stereotype Label Node into the Notation model<BR/> </p>
+<H5 id ="_y1XWAPdREeWfXdmtYb4ggQ">Class AppliedStereotypePropertiesEditPolicy</H5>
+<p>  - specializes <a href="#_JAjLYvZ5EeWfXdmtYb4ggQ" title="Class AppliedStereotypeNodeLabelDisplayEditPolicy">AppliedStereotypeNodeLabelDisplayEditPolicy</a></p>
+<p><BR/> * This editPolicy is used to add dynamically labels of stereotypes into nodes in the context of AppliedStereorypeCompartmentEditpart<BR/> * <BR/> * @deprecated. Use {@link AppliedStereotypeCompartmentEditPolicy} instead.<BR/> </p>
+<H4 id ="_y1aZUfdREeWfXdmtYb4ggQ">Package provider</H4>
+<H5 id ="_y1bncfdREeWfXdmtYb4ggQ">Class CustomEditPolicyProvider</H5>
+<p>  - specializes <a href="#_JEVfMvZ5EeWfXdmtYb4ggQ" title="Class AbstractProvider">AbstractProvider</a><BR/><BR/>  - realizes <a href="#_JEWGQfZ5EeWfXdmtYb4ggQ" title="Interface IEditPolicyProvider">IEditPolicyProvider</a></p>
+<p><BR/> * this is an editpolicy provider in charge to install a policy to create a AssociationClass<BR/> *<BR/> * @author Patrick Tessier<BR/> </p>
+<H5 id ="_y1fR0fdREeWfXdmtYb4ggQ">Class DisplayedProfileElementLabelProvider</H5>
+<p>  - specializes <a href="#_JHIUgvZ5EeWfXdmtYb4ggQ" title="Class LabelProvider">LabelProvider</a></p>
+<p><BR/> * The Class ProfileElementLabelProvider.<BR/> </p>
+<H5 id ="_y1i8MfdREeWfXdmtYb4ggQ">Class StereotypeDisplayMigrationEditPolicyProvider</H5>
+<p>  - specializes <a href="#_JEVfMvZ5EeWfXdmtYb4ggQ" title="Class AbstractProvider">AbstractProvider</a><BR/><BR/>  - realizes <a href="#_JEWGQfZ5EeWfXdmtYb4ggQ" title="Interface IEditPolicyProvider">IEditPolicyProvider</a></p>
+<p><BR/> * @author CÃ©line JANSSENS<BR/> *<BR/> </p>
+<H5 id ="_y1mmkfdREeWfXdmtYb4ggQ">Class StereotypePropertiesEditPartProvider</H5>
+<p>  - specializes <a href="#_JJQbcPZ5EeWfXdmtYb4ggQ" title="Class RestrictedAbstractEditPartProvider">RestrictedAbstractEditPartProvider</a></p>
+<H2 id ="_y1pC0fdREeWfXdmtYb4ggQ">Tests</H2>
+<H3 id ="_y1qQ8fdREeWfXdmtYb4ggQ">Use Case Apply a stereotype</H3>
+<p>Create a class on the class diagram, apply "stereotype1" on this class. Test if the "stereotype1" is displayed under the name.</p>
+<H3 id ="_y1stMPdREeWfXdmtYb4ggQ">Use Case Drop a stereotyped class</H3>
+<p>Create a class in the model explorer, stereotype it by "stereotype1", drop it into the class diagram.<BR/>Test if the label of the applied stereotype name  is displayed </p>
+<H3 id ="_y1uiYfdREeWfXdmtYb4ggQ">Use Case Apply two stereotypes</H3>
+<p>Create a class, apply stereotype1 and stereotype2, verify if their names are displayed</p>
+<H3 id ="_y1w-ofdREeWfXdmtYb4ggQ">Use Case Display stereotype as Comment</H3>
+<p>Create a class on the class diagram, apply "stereotype3" on this class. Display property of sterotype as comment.<BR/>Verify that all properties fo the applied stereotype  are displayed.</p>
+<H3 id ="_y1yz0fdREeWfXdmtYb4ggQ">Use Case Reopen file with a display of  stereotype as Comment</H3>
+<H3 id ="_y10B8fdREeWfXdmtYb4ggQ">Use Case Display stereotype as brace</H3>
+<H3 id ="_y11QEfdREeWfXdmtYb4ggQ">Use Case Reopen file with a display of  stereotype as brace</H3>
+<H3 id ="_y12eMfdREeWfXdmtYb4ggQ">Use Case Display stereotype as compartment</H3>
+<H3 id ="_y13sUfdREeWfXdmtYb4ggQ">Use Case Reopen file with a display of  stereotype as compartment</H3>
+<H2 id ="_y146cfdREeWfXdmtYb4ggQ">Requirements Coverage</H2>
 <table style="border-collapse: collapse;"><caption style="caption-side: bottom;">RequirementsCoverageTable</caption><tr><th style="border: 1px solid black">Id</th><th style="border: 1px solid black">Satisfied by</th><th style="border: 1px solid black">Verified by</th></tr>
-<tr><td style="border : 1px solid black"><a href="#_1DTwUfHXEeWxfJc8tP3QkA" title="Stereotype application properties dipslay">REQ_001</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_1DU-cfHXEeWxfJc8tP3QkA" title="Display Requirement as a "comment"">REQ_0011</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_1DWMkfHXEeWxfJc8tP3QkA" title="REQ_0012">REQ_0012</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_1DXasfHXEeWxfJc8tP3QkA" title="REQ_0013">REQ_0013</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_1DZP4PHXEeWxfJc8tP3QkA" title="Display stereotype name">REQ_002</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_1DaeAPHXEeWxfJc8tP3QkA" title="Apply a stereotype">REQ_0021</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_1DbsIPHXEeWxfJc8tP3QkA" title="Drop from  the model explorer">REQ_0022</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_1Dc6QfHXEeWxfJc8tP3QkA" title="Display the name of the stereotype ">REQ_0023</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_1DeIYfHXEeWxfJc8tP3QkA" title="Display Each applied stereotype  name differently">REQ_0024</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_1DfWgfHXEeWxfJc8tP3QkA" title="Qualified name depth">REQ_003</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_1DgkofHXEeWxfJc8tP3QkA" title="REQ_004">REQ_004</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_1DhywfHXEeWxfJc8tP3QkA" title="REQ_0041">REQ_0041</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_1DjA4fHXEeWxfJc8tP3QkA" title="REQ_0042">REQ_0042</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yw9-MPdREeWfXdmtYb4ggQ" title="Stereotype application properties dipslay">REQ_001</a><BR/>
+</td><td style="border : 1px solid black">Display stereotype properties<BR/>
+</td><td style="border : 1px solid black"></td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yw_MUPdREeWfXdmtYb4ggQ" title="Display Requirement as a "comment"">REQ_0011</a><BR/>
+</td><td style="border : 1px solid black">As "Comment"<BR/>
+</td><td style="border : 1px solid black"></td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yxAacfdREeWfXdmtYb4ggQ" title="Display Requirement as a "compartment"">REQ_0012</a><BR/>
+</td><td style="border : 1px solid black">As "compartment"<BR/>
+</td><td style="border : 1px solid black"></td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yxBokfdREeWfXdmtYb4ggQ" title="Display Requirement as a "brace"">REQ_0013</a><BR/>
+</td><td style="border : 1px solid black">As "brace"<BR/>
+</td><td style="border : 1px solid black"></td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yxC2sfdREeWfXdmtYb4ggQ" title="Display stereotype name">REQ_002</a><BR/>
+</td><td style="border : 1px solid black">Display applied stereotype name<BR/>
+</td><td style="border : 1px solid black"><a href="#_y1qQ8fdREeWfXdmtYb4ggQ" title="Apply a stereotype">Apply a stereotype</a><BR/>
+</td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yxEr4PdREeWfXdmtYb4ggQ" title="Apply a stereotype">REQ_0021</a><BR/>
+</td><td style="border : 1px solid black">Display applied stereotype name<BR/>
+</td><td style="border : 1px solid black"><a href="#_y1qQ8fdREeWfXdmtYb4ggQ" title="Apply a stereotype">Apply a stereotype</a><BR/>
+</td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yxF6APdREeWfXdmtYb4ggQ" title="Drop from  the model explorer">REQ_0022</a><BR/>
+</td><td style="border : 1px solid black">Display applied stereotype name<BR/>
+</td><td style="border : 1px solid black"><a href="#_y1stMPdREeWfXdmtYb4ggQ" title="Drop a stereotyped class">Drop a stereotyped class</a><BR/>
+</td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yxHIIPdREeWfXdmtYb4ggQ" title="Display the name of the stereotype ">REQ_0023</a><BR/>
+</td><td style="border : 1px solid black">Display applied stereotype name<BR/>
+</td><td style="border : 1px solid black"><a href="#_y1qQ8fdREeWfXdmtYb4ggQ" title="Apply a stereotype">Apply a stereotype, 
+</a><BR/>
+<a href="#_y1stMPdREeWfXdmtYb4ggQ" title="Drop a stereotyped class">Drop a stereotyped class, 
+</a><BR/>
+<a href="#_y1uiYfdREeWfXdmtYb4ggQ" title="Apply two stereotypes">Apply two stereotypes</a><BR/>
+</td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yxIWQfdREeWfXdmtYb4ggQ" title="Display Each applied stereotype  name differently">REQ_0024</a><BR/>
+</td><td style="border : 1px solid black">Display applied stereotype name<BR/>
+</td><td style="border : 1px solid black"><a href="#_y1uiYfdREeWfXdmtYb4ggQ" title="Apply two stereotypes">Apply two stereotypes</a><BR/>
+</td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yxJkYfdREeWfXdmtYb4ggQ" title="Qualified name depth">REQ_003</a><BR/>
+</td><td style="border : 1px solid black">Choose QN depth<BR/>
+</td><td style="border : 1px solid black"></td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yxLZkPdREeWfXdmtYb4ggQ" title="Choice on Stereotype properties to display">REQ_004</a><BR/>
+</td><td style="border : 1px solid black">Choose properties to display<BR/>
+</td><td style="border : 1px solid black"></td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yxMnsPdREeWfXdmtYb4ggQ" title="Use CSS file">REQ_0041</a><BR/>
+</td><td style="border : 1px solid black">Choose properties to display<BR/>
+</td><td style="border : 1px solid black"></td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yxN10PdREeWfXdmtYb4ggQ" title="Use property view">REQ_0042</a><BR/>
+</td><td style="border : 1px solid black">Choose properties to display<BR/>
+</td><td style="border : 1px solid black"></td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yxPD8PdREeWfXdmtYb4ggQ" title="Remove display of applied stereotype ">REQ_005</a><BR/>
+</td><td style="border : 1px solid black">Remove display of stereotype properties<BR/>
+</td><td style="border : 1px solid black"></td></tr>
+<tr><td style="border : 1px solid black"><a href="#_yxQSEfdREeWfXdmtYb4ggQ" title="REQ_006">REQ_006</a><BR/>
+</td><td style="border : 1px solid black">Update the display of applied stereotuep properties<BR/>
+</td><td style="border : 1px solid black"></td></tr>
 </table>
-<p>Unsatisfied requirements (13 out of 13) : </p>
-<a href="#_1DTwUfHXEeWxfJc8tP3QkA" title="Stereotype application properties dipslay">REQ_001, </a><a href="#_1DU-cfHXEeWxfJc8tP3QkA" title="Display Requirement as a "comment"">REQ_0011, </a><a href="#_1DWMkfHXEeWxfJc8tP3QkA" title="REQ_0012">REQ_0012, </a><a href="#_1DXasfHXEeWxfJc8tP3QkA" title="REQ_0013">REQ_0013, </a><a href="#_1DZP4PHXEeWxfJc8tP3QkA" title="Display stereotype name">REQ_002, </a><a href="#_1DaeAPHXEeWxfJc8tP3QkA" title="Apply a stereotype">REQ_0021, </a><a href="#_1DbsIPHXEeWxfJc8tP3QkA" title="Drop from  the model explorer">REQ_0022, </a><a href="#_1Dc6QfHXEeWxfJc8tP3QkA" title="Display the name of the stereotype ">REQ_0023, </a><a href="#_1DeIYfHXEeWxfJc8tP3QkA" title="Display Each applied stereotype  name differently">REQ_0024, </a><a href="#_1DfWgfHXEeWxfJc8tP3QkA" title="Qualified name depth">REQ_003, </a><a href="#_1DgkofHXEeWxfJc8tP3QkA" title="REQ_004">REQ_004, </a><a href="#_1DhywfHXEeWxfJc8tP3QkA" title="REQ_0041">REQ_0041, </a><a href="#_1DjA4fHXEeWxfJc8tP3QkA" title="REQ_0042">REQ_0042</a><p>Unverified requirements (13 out of 13) : </p>
-<a href="#_1DTwUfHXEeWxfJc8tP3QkA" title="Stereotype application properties dipslay">REQ_001, </a><a href="#_1DU-cfHXEeWxfJc8tP3QkA" title="Display Requirement as a "comment"">REQ_0011, </a><a href="#_1DWMkfHXEeWxfJc8tP3QkA" title="REQ_0012">REQ_0012, </a><a href="#_1DXasfHXEeWxfJc8tP3QkA" title="REQ_0013">REQ_0013, </a><a href="#_1DZP4PHXEeWxfJc8tP3QkA" title="Display stereotype name">REQ_002, </a><a href="#_1DaeAPHXEeWxfJc8tP3QkA" title="Apply a stereotype">REQ_0021, </a><a href="#_1DbsIPHXEeWxfJc8tP3QkA" title="Drop from  the model explorer">REQ_0022, </a><a href="#_1Dc6QfHXEeWxfJc8tP3QkA" title="Display the name of the stereotype ">REQ_0023, </a><a href="#_1DeIYfHXEeWxfJc8tP3QkA" title="Display Each applied stereotype  name differently">REQ_0024, </a><a href="#_1DfWgfHXEeWxfJc8tP3QkA" title="Qualified name depth">REQ_003, </a><a href="#_1DgkofHXEeWxfJc8tP3QkA" title="REQ_004">REQ_004, </a><a href="#_1DhywfHXEeWxfJc8tP3QkA" title="REQ_0041">REQ_0041, </a><a href="#_1DjA4fHXEeWxfJc8tP3QkA" title="REQ_0042">REQ_0042</a></html>
+<p>Unsatisfied requirements (0 out of 15) : </p>
+<p>Unverified requirements (10 out of 15) : </p>
+<a href="#_yw9-MPdREeWfXdmtYb4ggQ" title="Stereotype application properties dipslay">REQ_001, </a><a href="#_yw_MUPdREeWfXdmtYb4ggQ" title="Display Requirement as a "comment"">REQ_0011, </a><a href="#_yxAacfdREeWfXdmtYb4ggQ" title="Display Requirement as a "compartment"">REQ_0012, </a><a href="#_yxBokfdREeWfXdmtYb4ggQ" title="Display Requirement as a "brace"">REQ_0013, </a><a href="#_yxJkYfdREeWfXdmtYb4ggQ" title="Qualified name depth">REQ_003, </a><a href="#_yxLZkPdREeWfXdmtYb4ggQ" title="Choice on Stereotype properties to display">REQ_004, </a><a href="#_yxMnsPdREeWfXdmtYb4ggQ" title="Use CSS file">REQ_0041, </a><a href="#_yxN10PdREeWfXdmtYb4ggQ" title="Use property view">REQ_0042, </a><a href="#_yxPD8PdREeWfXdmtYb4ggQ" title="Remove display of applied stereotype ">REQ_005, </a><a href="#_yxQSEfdREeWfXdmtYb4ggQ" title="REQ_006">REQ_006</a></html>
