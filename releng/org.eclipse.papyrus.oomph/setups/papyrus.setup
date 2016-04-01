@@ -208,7 +208,7 @@
         </repository>    
       </repositoryList>    
       <repositoryList name="Mars">    
-        <repository url="http://download.eclipse.org/eclipse/updates/4.5-M-builds/M-4.5.2RC2-201601281800/">    
+        <repository url="http://download.eclipse.org/eclipse/updates/4.5-M-builds/">    
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">    
             <detail key="updateFrom">    
               <value>Eclipse</value>    
