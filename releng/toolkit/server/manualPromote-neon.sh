@@ -35,6 +35,7 @@ source "$PROMOTE_FUNCTIONS_SH"
 echo "-------------------- user parameters --------------------"
 mainBuildNumber=""
 extrasBuildNumber=""
+devBuildNumber=""
 testsBuildNumber=""
 version=""
 updateSite=""
@@ -50,6 +51,12 @@ echo "extrasBuildNumber (the number of the \"Papyrus-Master-Extra\" Hudson build
 while [[ ! "$extrasBuildNumber" =~ ^[0-9]+$ || "$extrasBuildNumber" < 0 ]]; do
 	echo -n "? "
 	read extrasBuildNumber
+done
+
+echo "devBuildNumber (the number of the \"Papyrus-Master-Developer\" Hudson build from which to publish the dev Papyrus plug-ins, or 0 to not publish): "
+while [[ ! "$devBuildNumber" =~ ^[0-9]+$ || "$devBuildNumber" < 0 ]]; do
+	echo -n "? "
+	read devBuildNumber
 done
 
 echo "testsBuildNumber (the number of the \"Papyrus-Master-Tests\" Hudson build from which to publish the test results, or 0 to not publish): "
@@ -128,9 +135,10 @@ cat > "$updateSiteDir/compositeArtifacts.xml" <<EOF
   <properties size="1">
     <property name="p2.timestamp" value="$(date +%s000)"/>
   </properties>
-  <children size="2">
+  <children size="3">
     <child location="main"/>
     <child location="extra"/>
+    <child location="dev"/>
   </children>
 </repository>
 EOF
@@ -141,9 +149,10 @@ cat > "$updateSiteDir/compositeContent.xml" <<EOF
   <properties size="1">
     <property name="p2.timestamp" value="$(date +%s000)"/>
   </properties>
-  <children size="2">
+  <children size="3">
     <child location="main"/>
     <child location="extra"/>
+    <child location="dev"/>
   </children>
 </repository>
 EOF
@@ -162,6 +171,24 @@ if [[ "$extrasBuildNumber" != "0" ]]; then
 	unzip -o "$buildsDir/$folderName/extra/$updateZipName" -d "$updateSiteDir/extra"
 	
 	$ADD_DOWNLOAD_STATS "$updateSiteDir/extra" "extra"
+fi
+
+# ============================== PUBLISH DEV ==============================
+if [[ "$devBuildNumber" != "0" ]]; then
+	//variable
+	nfsURL="" ## Not supported for HIPP builds. Leave the variable since the promote functions are still shared with the Shared Hudson Instance builds
+	hudsonURL="https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/$devBuildNumber/artifact/"
+	zipName="Papyrus-Developer.zip"
+	updateZipName="Papyrus-Developer-Update.zip"
+	//pre-conditions
+	mkdir -p "$updateSiteDir/dev"
+	//actions
+	getZip "$zipName" "$nfsURL" "$hudsonURL"
+	# unzips under an "dev" folder under the main build's folder
+	unzip -o "$zipName" -d "$buildsDir/$folderName"
+	unzip -o "$buildsDir/$folderName/dev/$updateZipName" -d "$updateSiteDir/dev"
+	//post-actions
+	$ADD_DOWNLOAD_STATS "$updateSiteDir/dev" "dev"
 fi
 
 # ============================== PUBLISH TESTS ==============================
