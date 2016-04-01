@@ -172,8 +172,8 @@
 		<module>../../extraplugins/papyrus4education/org.eclipse.papyrus.uml.diagram.education</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.education.feature</module>
 		<!-- Module EPF -->
-		<!-- <module>../../extraplugins/epf-richtext/org.eclipse.papyrus.infra.widgets.epf.richtext.extension</module> -->
-		<!-- <module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.epf.richtext.feature</module> -->
+		<module>../../extraplugins/epf-richtext/org.eclipse.papyrus.infra.widgets.epf.richtext.extension</module>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.epf.richtext.feature</module>
 
 		<module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipse.profile</module>
 		<module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool.assistant</module>
@@ -286,9 +286,11 @@
 	</modules>
 
 	<repositories>
-		<!-- <repository> <id>org.eclipse.epf.richtext_1.5.1.6-update-site</id> 
-			<layout>p2</layout> <url>http://download.eclipse.org/modeling/mdt/papyrus/updates/epf/main</url> 
-			</repository> -->
+		<repository>
+			<id>org.eclipse.epf.richtext_1.5.1.6-update-site</id> 
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/epf/main</url> 
+		</repository>
 		<repository>
 			<id>cdt</id>
 			<layout>p2</layout>

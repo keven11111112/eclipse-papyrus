@@ -17,7 +17,7 @@ import org.eclipse.papyrus.infra.emf.utils.TextReferencesHelper;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.epf.richtext.extension.RichTextValueEditor;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor;
+import org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor;
 import org.eclipse.swt.widgets.Composite;
 
 /**

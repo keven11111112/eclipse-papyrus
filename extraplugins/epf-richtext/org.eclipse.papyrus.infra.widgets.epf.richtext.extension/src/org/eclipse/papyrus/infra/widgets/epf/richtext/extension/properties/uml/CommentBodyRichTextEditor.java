@@ -17,22 +17,22 @@ import java.util.Collections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.infra.widgets.epf.richtext.extension.properties.RichTextWithReferences;
 import org.eclipse.papyrus.uml.tools.namereferences.NameReferencesHelper;
 import org.eclipse.papyrus.uml.tools.providers.SemanticUMLContentProvider;
 import org.eclipse.papyrus.uml.tools.util.UMLProviderHelper;
-import org.eclipse.papyrus.views.properties.creation.CreationContext;
-import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
-import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
+import org.eclipse.papyrus.infra.properties.ui.creation.CreationContext;
+import org.eclipse.papyrus.infra.properties.ui.creation.EcorePropertyEditorFactory;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * A Widget for editing the Rich Text Body of Comments.
  *
- * @author Mickaël ADAM
+ * @author Mickaï¿½l ADAM
  */
 public class CommentBodyRichTextEditor extends RichTextWithReferences {
 
