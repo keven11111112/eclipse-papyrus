@@ -34,6 +34,10 @@
             class="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddSatisfiedByLinkHandler"
             commandId="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddSatisfiedByLinkHandler">
       </handler>
+      <handler
+            class="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddAbstractionByLinkHandler"
+            commandId="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddAbstractionByLinkHandler">
+      </handler>
   </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -48,6 +52,10 @@
       <handler
             class="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddRefinesLinkHandler"
             commandId="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddRefinesLinkHandler">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddAbstractionLinkHandler"
+            commandId="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddAbstractionLinkHandler">
       </handler>
    </extension>
 </plugin>

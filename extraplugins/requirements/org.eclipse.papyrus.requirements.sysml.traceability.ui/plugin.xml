@@ -145,6 +145,24 @@
                </with>
             </visibleWhen>
          </command>
+         <command
+               commandId="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddAbstractionByLinkHandler"
+               icon="images/Abstraction.gif"
+               label="%addAbstractionByLink.command.label"
+               style="push"
+               tooltip="%addAbstractionByLink.command.tooltip">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.requirements.sysml.testers.isNamedElement"
+                        value="true">
+                  </test>
+               </with>
+            </visibleWhen>
+         </command>
       </menuContribution>
    </extension>
    <extension
@@ -202,6 +220,24 @@
                         forcePluginActivation="true"
                         property="org.eclipse.papyrus.requirements.sysml.testers.isRequirementElement"
                         value="false">
+                  </test>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.requirements.sysml.traceability.handlers.AddAbstractionLinkHandler"
+               icon="images/Abstraction.gif"
+               label="%addAbstractionLink.command.label"
+               style="push"
+               tooltip="%addAbstractionLink.command.tooltip">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.requirements.sysml.testers.isNamedElement"
+                        value="true">
                   </test>
                </with>
             </visibleWhen>

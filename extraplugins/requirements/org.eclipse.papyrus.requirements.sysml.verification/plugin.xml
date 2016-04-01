@@ -34,6 +34,25 @@
                      class="Class">
                </target>
             </constraint>
+            <constraint
+                  class="org.eclipse.papyrus.requirements.sysml.verfication.rules.AllRequirementsMustBeVerified"
+                  id="org.eclipse.papyrus.requirements.sysml.verfication.rules.AllRequirementsMustBeVerified"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Papyrus 4 Requirements - Rule 2: Are all the requirements verified"
+                  severity="WARNING"
+                  statusCode="2">
+               <message>
+                  Papyrus 4 Requirements - Rule 1: {0}.
+               </message>
+               <description>
+                  The requirement is not liked by any Element
+               </description>
+               <target
+                     class="Class">
+               </target>
+            </constraint>
          </constraints>
       </constraintProvider>
    </extension>

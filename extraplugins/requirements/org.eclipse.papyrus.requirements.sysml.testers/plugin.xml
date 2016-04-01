@@ -38,6 +38,13 @@
             properties="isModel"
             type="org.eclipse.jface.viewers.IStructuredSelection">
       </propertyTester>
+      <propertyTester
+            class="org.eclipse.papyrus.requirements.sysml.testers.NamedElementTester"
+            id="org.eclipse.papyrus.requirements.sysml.testers.NamedElementTester"
+            namespace="org.eclipse.papyrus.requirements.sysml.testers"
+            properties="isNamedElement"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
    </extension>
 
 </plugin>
