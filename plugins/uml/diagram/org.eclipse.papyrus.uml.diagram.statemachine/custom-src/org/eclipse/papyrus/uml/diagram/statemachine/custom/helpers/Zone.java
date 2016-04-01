@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 468207
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers;
 
@@ -27,6 +28,8 @@ import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.Stereoty
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;
+
+import com.google.common.base.Strings;
 
 /**
  * Helper class used to manage the encoding of a region position within a state
@@ -567,18 +570,20 @@ public class Zone {
 	 * @return the counterpart zone
 	 */
 	private static String getZoneCounterpart(String s) {
-		String cs = s.substring(0, s.length() - 1);
-		if (Zone.isRight(s)) {
-			return Zone.setLeft(cs);
-		}
-		if (Zone.isLeft(s)) {
-			return Zone.setRight(cs);
-		}
-		if (Zone.isBottom(s)) {
-			return Zone.setTop(cs);
-		}
-		if (Zone.isTop(s)) {
-			return Zone.setBottom(cs);
+		if (!Strings.isNullOrEmpty(s)) {
+			String cs = s.substring(0, s.length() - 1);
+			if (Zone.isRight(s)) {
+				return Zone.setLeft(cs);
+			}
+			if (Zone.isLeft(s)) {
+				return Zone.setRight(cs);
+			}
+			if (Zone.isBottom(s)) {
+				return Zone.setTop(cs);
+			}
+			if (Zone.isTop(s)) {
+				return Zone.setBottom(cs);
+			}
 		}
 		return s;
 	}
@@ -806,7 +811,7 @@ public class Zone {
 		// get the region zone
 		String zone = getZone(region);
 		// get its counterpart
-		if (zone == null) {
+		if (Strings.isNullOrEmpty(zone)) {
 			return;
 		}
 		String cZone = getZoneCounterpart(zone);
