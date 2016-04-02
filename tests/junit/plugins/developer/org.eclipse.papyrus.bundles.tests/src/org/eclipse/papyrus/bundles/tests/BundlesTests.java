@@ -9,7 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus - Skip the feature-version test when running in development mode
- *  Christian W. Damus - bugs 433206, 485220
+ *  Christian W. Damus - bugs 433206, 485220, 440910
  *
  *****************************************************************************/
 package org.eclipse.papyrus.bundles.tests;
@@ -438,5 +438,4 @@ public class BundlesTests extends AbstractPapyrusTest {
 		// Do not fail on warnings
 		// Assert.assertTrue(nbWarning + "warning!" + warningMessage, nbWarning == 0);//$NON-NLS-1$
 	}
-
 }
