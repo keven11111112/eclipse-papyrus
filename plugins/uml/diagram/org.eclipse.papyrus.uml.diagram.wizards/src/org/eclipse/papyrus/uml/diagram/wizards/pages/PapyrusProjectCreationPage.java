@@ -112,23 +112,29 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage {
 		// retrieve the selected elements and get its children
 		boolean canFlip = true;
 
-		IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
-		if (canFlip != false) {
-			for (IProject iproject : projects) {
-				if (this.getProjectName().equalsIgnoreCase(iproject.getName())) {
-					canFlip = false;
-					this.setErrorMessage(Messages.PapyrusProjectCreationPage_page_same_case_desc + iproject.getName());
-					// A conflict has been found, no need to go further
-					break;
-				}
-			}
-		}
-
 		if (!validatePage()) {
 			canFlip = false;
 		}
 
+		if (!verifyProjectName()) {
+			canFlip = false;
+		}
+
 		return canFlip;
+	}
+
+	private boolean verifyProjectName() {
+
+		IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
+		for (IProject iproject : projects) {
+			if (this.getProjectName().equalsIgnoreCase(iproject.getName())) {
+				this.setErrorMessage(Messages.PapyrusProjectCreationPage_page_same_case_desc + iproject.getName());
+				// A conflict has been found, no need to go further
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	@Override
