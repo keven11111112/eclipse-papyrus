@@ -22,7 +22,7 @@ import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementEx
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
 public class IsDiagramContainer extends AbstractEditorContainerQuery implements IJavaQuery2<EObject, Boolean> {
@@ -35,12 +35,9 @@ public class IsDiagramContainer extends AbstractEditorContainerQuery implements 
 		Collection<Setting> settings = EMFHelper.getUsages(source);
 		if (settings != null) {
 			for (Setting setting : settings) {
-				EObject usingElement = setting.getEObject();
-				if (usingElement instanceof Diagram) {
-					Diagram diagram = (Diagram) usingElement;
-					if (DiagramUtils.getOwner(diagram) == source) {
-						return true;
-					}
+				Diagram diagram = NotationUtils.getOwnedDiagram(setting.getEObject(), source);
+				if (diagram != null) {
+					return true;
 				}
 			}
 		}

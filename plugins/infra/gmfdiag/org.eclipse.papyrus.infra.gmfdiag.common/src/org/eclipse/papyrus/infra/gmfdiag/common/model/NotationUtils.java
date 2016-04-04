@@ -42,6 +42,7 @@ import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.viewpoints.style.PapyrusViewStyle;
 
 /**
  * Utilities method to manage notation models. Should be moved in a more
@@ -174,6 +175,30 @@ public class NotationUtils {
 			}
 		}
 		return diagrams;
+	}
+
+	/**
+	 * @param diagOrViewStyle
+	 *            a diagram or its view-style
+	 * @param owner
+	 *            a semantic owner of a diagram
+	 * @return the diagram owned by the 'semantic owner' if it actually is owned by it, null otherwise
+	 */
+	public static Diagram getOwnedDiagram(EObject diagOrViewStyle, EObject owner) {
+		if (diagOrViewStyle instanceof Diagram) {
+			Diagram diagram = (Diagram) diagOrViewStyle;
+			if (DiagramUtils.getOwner(diagram) == owner) {
+				return diagram;
+			}
+		} else if (diagOrViewStyle instanceof PapyrusViewStyle) {
+			PapyrusViewStyle viewStyle = (PapyrusViewStyle) diagOrViewStyle;
+			if (viewStyle.getOwner() == owner) {
+				if (viewStyle.eContainer() instanceof Diagram) {
+					return (Diagram) viewStyle.eContainer();
+				}
+			}
+		}
+		return null;
 	}
 
 	/**

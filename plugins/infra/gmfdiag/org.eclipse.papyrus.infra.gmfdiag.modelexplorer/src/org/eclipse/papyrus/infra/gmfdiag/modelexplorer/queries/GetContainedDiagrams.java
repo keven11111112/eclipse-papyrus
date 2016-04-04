@@ -24,7 +24,7 @@ import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementEx
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
 /** Get the collection of all contained diagrams */
@@ -37,12 +37,9 @@ public class GetContainedDiagrams extends AbstractEditorContainerQuery implement
 		Collection<Setting> settings = EMFHelper.getUsages(source);
 		if (settings != null) {
 			for (Setting setting : settings) {
-				EObject usingElement = setting.getEObject();
-				if (usingElement instanceof Diagram) {
-					Diagram diagram = (Diagram) usingElement;
-					if (DiagramUtils.getOwner(diagram) == source) {
-						result.add(diagram);
-					}
+				Diagram diagram = NotationUtils.getOwnedDiagram(setting.getEObject(), source);
+				if (diagram != null) {
+					result.add(diagram);
 				}
 			}
 		}
