@@ -11,7 +11,7 @@
     <axis xmi:type="nattableaxis:FeatureIdAxis" xmi:id="_98WP8aYDEeSEj5euN5QFZw" element="property_of_stereotype:/profile::Task::p">
       <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/configs/generic.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.1"/>
     </axis>
-    <axis xmi:type="nattableaxis:FeatureIdAxis" xmi:id="_GsQeMKY3EeSNjoKaw0eOqQ" element="property_of_stereotype:/SysML::PortAndFlows::FlowPort::direction">
+    <axis xmi:type="nattableaxis:FeatureIdAxis" xmi:id="_GsQeMKY3EeSNjoKaw0eOqQ" element="property_of_stereotype:/SysMLCopy::PortAndFlows::FlowPort::direction">
       <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/configs/generic.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.1"/>
     </axis>
   </columnAxisProvidersHistory>

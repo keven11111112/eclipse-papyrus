@@ -4,7 +4,7 @@
     <children xmi:type="notation:Shape" xmi:id="_66fuwE-vEeSh_JAKhK0MSw" type="2008">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_a9g0sFBzEeSwHc1gAhe1OQ" source="Stereotype_Annotation">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_a9g0sVBzEeSwHc1gAhe1OQ" key="StereotypeWithQualifiedNameList" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_a9g0slBzEeSwHc1gAhe1OQ" key="StereotypeList" value="SysML::Blocks::Block"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_a9g0slBzEeSwHc1gAhe1OQ" key="StereotypeList" value="SysMLCopy::Blocks::Block"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_a9g0s1BzEeSwHc1gAhe1OQ" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_a9g0tFBzEeSwHc1gAhe1OQ" key="PropStereoDisplay" value=""/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_a9hbwFBzEeSwHc1gAhe1OQ" key="StereotypePropertyLocation" value="Compartment"/>
@@ -34,7 +34,7 @@
     <children xmi:type="notation:Shape" xmi:id="_8kWBcE-vEeSh_JAKhK0MSw" type="2008">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bpHWcFBzEeSwHc1gAhe1OQ" source="Stereotype_Annotation">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bpHWcVBzEeSwHc1gAhe1OQ" key="StereotypeWithQualifiedNameList" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bpH9gFBzEeSwHc1gAhe1OQ" key="StereotypeList" value="SysML::Blocks::Block"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bpH9gFBzEeSwHc1gAhe1OQ" key="StereotypeList" value="SysMLCopy::Blocks::Block"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bpH9gVBzEeSwHc1gAhe1OQ" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bpH9glBzEeSwHc1gAhe1OQ" key="PropStereoDisplay" value=""/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bpH9g1BzEeSwHc1gAhe1OQ" key="StereotypePropertyLocation" value="Compartment"/>
@@ -64,7 +64,7 @@
     <children xmi:type="notation:Shape" xmi:id="_--9CsE-vEeSh_JAKhK0MSw" type="2008">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_caYbUFBzEeSwHc1gAhe1OQ" source="Stereotype_Annotation">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_caZCYFBzEeSwHc1gAhe1OQ" key="StereotypeWithQualifiedNameList" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_caZCYVBzEeSwHc1gAhe1OQ" key="StereotypeList" value="SysML::Blocks::Block"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_caZCYVBzEeSwHc1gAhe1OQ" key="StereotypeList" value="SysMLCopy::Blocks::Block"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_caZCYlBzEeSwHc1gAhe1OQ" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_caZCY1BzEeSwHc1gAhe1OQ" key="PropStereoDisplay" value=""/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_caZCZFBzEeSwHc1gAhe1OQ" key="StereotypePropertyLocation" value="Compartment"/>
@@ -94,7 +94,7 @@
     <children xmi:type="notation:Shape" xmi:id="_BEKbsE-wEeSh_JAKhK0MSw" type="2008">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_c76bEFBzEeSwHc1gAhe1OQ" source="Stereotype_Annotation">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_c77CIFBzEeSwHc1gAhe1OQ" key="StereotypeWithQualifiedNameList" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_c77CIVBzEeSwHc1gAhe1OQ" key="StereotypeList" value="SysML::Blocks::Block"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_c77CIVBzEeSwHc1gAhe1OQ" key="StereotypeList" value="SysMLCopy::Blocks::Block"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_c77CIlBzEeSwHc1gAhe1OQ" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_c77CI1BzEeSwHc1gAhe1OQ" key="PropStereoDisplay" value=""/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_c77CJFBzEeSwHc1gAhe1OQ" key="StereotypePropertyLocation" value="Compartment"/>

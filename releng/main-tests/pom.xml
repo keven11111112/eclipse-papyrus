@@ -33,8 +33,6 @@
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.sasheditor.di.tests</module>
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.sasheditor.tests</module>
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.tests</module>
-		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.extendedtypes.tests</module>
-		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.extendedtypes.ui.tests</module>
 		<module>../../tests/junit/plugins/infra/types/org.eclipse.papyrus.infra.types.tests</module>
 		<module>../../tests/junit/plugins/infra/types/org.eclipse.papyrus.infra.types.ui.tests</module>
 		<module>../../tests/junit/plugins/customization/org.eclipse.papyrus.customization.properties.tests</module>

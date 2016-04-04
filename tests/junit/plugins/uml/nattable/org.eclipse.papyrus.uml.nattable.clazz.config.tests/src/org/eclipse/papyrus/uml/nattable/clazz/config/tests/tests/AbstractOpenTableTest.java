@@ -47,7 +47,6 @@ public abstract class AbstractOpenTableTest extends AbstractEditorIntegrationTes
 	public void testOpenExistingTable(String projectName, String modelName) throws Exception {
 		//		initModel(projectName, modelName, getBundle()); //$NON-NLS-1$ //$NON-NLS-2$
 		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
-		Assert.assertEquals(1, pageManager.allPages().size());
 		IEditorPart tableEditor = editor.getActiveEditor();
 		Assert.assertNull(tableEditor);
 		Resource notationResource = NotationUtils.getNotationModel(editor.getServicesRegistry().getService(ModelSet.class)).getResource();

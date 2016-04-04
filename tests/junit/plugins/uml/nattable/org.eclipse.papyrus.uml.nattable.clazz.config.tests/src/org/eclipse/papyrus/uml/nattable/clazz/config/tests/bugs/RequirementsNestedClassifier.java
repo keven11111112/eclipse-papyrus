@@ -128,7 +128,7 @@ public class RequirementsNestedClassifier {
 		final CompoundCommand compoundCommand = new CompoundCommand("Add class with requirement stereotype"); //$NON-NLS-1$
 		final TransactionalEditingDomain editingDomain = fixture.getEditingDomain();
 		compoundCommand.append(AddCommand.create(editingDomain, requirement1, UMLPackage.Literals.CLASS__NESTED_CLASSIFIER, nestedClassifierRequirement1));
-		final Stereotype requirement = (Stereotype) root.getProfileApplications().get(0).getAppliedProfile().getPackagedElement("Requirement"); //$NON-NLS-1$
+		final Stereotype requirement = requirement1.getAppliedStereotypes().get(0);
 		compoundCommand.append(new RecordingCommand(editingDomain) {
 			public void doExecute() {
 				nestedClassifierRequirement1.applyStereotype(requirement);

@@ -32,8 +32,8 @@ import org.junit.Test;
  * Test cases for the {@link UMLUtil} class.
  */
 public class UMLUtilTest extends AbstractPapyrusTest {
-	static final String BLOCK = "SysML::Blocks::Block";
-	static final String CONSTRAINT_BLOCK = "SysML::Constraints::ConstraintBlock";
+	static final String BLOCK = "SysMLCopy::Blocks::Block";
+	static final String CONSTRAINT_BLOCK = "SysMLCopy::Constraints::ConstraintBlock";
 
 	@Rule
 	public final HouseKeeper houseKeeper = new HouseKeeper();
@@ -117,7 +117,7 @@ public class UMLUtilTest extends AbstractPapyrusTest {
 		block2 = (Class) model.getModel().getOwnedType("Block2");
 		constraintblock1 = (Class) model.getModel().getOwnedType("ConstraintBlock1");
 
-		block = model.getModel().getAppliedProfile("SysML::Blocks").getOwnedStereotype("Block");
-		constraintBlock = model.getModel().getAppliedProfile("SysML::Constraints").getOwnedStereotype("ConstraintBlock");
+		block = model.getModel().getAppliedProfile("SysMLCopy::Blocks").getOwnedStereotype("Block");
+		constraintBlock = model.getModel().getAppliedProfile("SysMLCopy::Constraints").getOwnedStereotype("ConstraintBlock");
 	}
 }

@@ -288,23 +288,6 @@
       </axis>
     </rowAxisProvidersHistory>
   </nattable:Table>
-  <nattable:Table xmi:id="_DvI-MNm5EeKhMIaB2_NRKQ" name="RequirementTable0" currentRowAxisProvider="_DvI-Ndm5EeKhMIaB2_NRKQ" currentColumnAxisProvider="_DvI-Mdm5EeKhMIaB2_NRKQ">
-    <context xmi:type="uml:Package" href="delete_contained_table.uml#_11d4oNm4EeKhMIaB2_NRKQ"/>
-    <tableConfiguration xmi:type="nattableconfiguration:TableConfiguration" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/configs/requirement.nattableconfiguration#/"/>
-    <columnAxisProvidersHistory xmi:type="nattableaxisprovider:SlaveObjectAxisProvider" xmi:id="_DvI-Mdm5EeKhMIaB2_NRKQ" description="Provides the columns of the tables with a default configuration" name="Requirements Feature Columns Provider">
-      <axis xmi:type="nattableaxis:FeatureIdAxis" xmi:id="_DvI-Mtm5EeKhMIaB2_NRKQ" element="property_of_stereotype:/SysML::Requirements::Requirement::id">
-        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/configs/requirement.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.1"/>
-      </axis>
-      <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_DvI-M9m5EeKhMIaB2_NRKQ">
-        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/configs/requirement.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
-        <element xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
-      </axis>
-      <axis xmi:type="nattableaxis:FeatureIdAxis" xmi:id="_DvI-NNm5EeKhMIaB2_NRKQ" element="property_of_stereotype:/SysML::Requirements::Requirement::text">
-        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/configs/requirement.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.1"/>
-      </axis>
-    </columnAxisProvidersHistory>
-    <rowAxisProvidersHistory xmi:type="nattableaxisprovider:MasterObjectAxisProvider" xmi:id="_DvI-Ndm5EeKhMIaB2_NRKQ" description="Provides the requirements directly owned by the context of the table" name="Requirement Axis Provider" disconnectSlave="true"/>
-  </nattable:Table>
   <nattable:Table xmi:id="_JE2eoNm5EeKhMIaB2_NRKQ" name="TableOfViews0" currentRowAxisProvider="_JE2eptm5EeKhMIaB2_NRKQ" currentColumnAxisProvider="_JE2eodm5EeKhMIaB2_NRKQ">
     <context xmi:type="uml:Package" href="delete_contained_table.uml#_02ZBQNm4EeKhMIaB2_NRKQ"/>
     <tableConfiguration xmi:type="nattableconfiguration:TableConfiguration" href="platform:/plugin/org.eclipse.papyrus.infra.nattable.views.config/resources/viewpage.nattableconfiguration#/"/>
@@ -323,29 +306,6 @@
       </axis>
     </columnAxisProvidersHistory>
     <rowAxisProvidersHistory xmi:type="nattableaxisprovider:MasterObjectAxisProvider" xmi:id="_JE2eptm5EeKhMIaB2_NRKQ"/>
-  </nattable:Table>
-  <nattable:Table xmi:id="_QRymcNm5EeKhMIaB2_NRKQ" name="AllocationTable0" currentRowAxisProvider="_QRymdtm5EeKhMIaB2_NRKQ" currentColumnAxisProvider="_QRymcdm5EeKhMIaB2_NRKQ">
-    <context xmi:type="uml:Package" href="delete_contained_table.uml#_zXYsoNm4EeKhMIaB2_NRKQ"/>
-    <tableConfiguration xmi:type="nattableconfiguration:TableConfiguration" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.allocation.config/resources/allocation.nattableconfiguration#/"/>
-    <columnAxisProvidersHistory xmi:type="nattableaxisprovider:SlaveObjectAxisProvider" xmi:id="_QRymcdm5EeKhMIaB2_NRKQ" description="This provider provides the default columns for the SysML Allocation Table" name="SysMLAllocationFeatureProvider">
-      <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_QRymctm5EeKhMIaB2_NRKQ">
-        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.allocation.config/resources/allocation.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
-        <element xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
-      </axis>
-      <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_QRymc9m5EeKhMIaB2_NRKQ">
-        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.allocation.config/resources/allocation.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
-        <element xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Dependency/client"/>
-      </axis>
-      <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_QRymdNm5EeKhMIaB2_NRKQ">
-        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.allocation.config/resources/allocation.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
-        <element xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Dependency/supplier"/>
-      </axis>
-      <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_QRymddm5EeKhMIaB2_NRKQ">
-        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.allocation.config/resources/allocation.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
-        <element xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element/owner"/>
-      </axis>
-    </columnAxisProvidersHistory>
-    <rowAxisProvidersHistory xmi:type="nattableaxisprovider:MasterObjectAxisProvider" xmi:id="_QRymdtm5EeKhMIaB2_NRKQ" description="This row providers allows to display all Allocation in a Table" name="SysMLAllocationProvider" disconnectSlave="true"/>
   </nattable:Table>
   <nattable:Table xmi:id="_TziO4Nm5EeKhMIaB2_NRKQ" name="GenericTable0" currentRowAxisProvider="_TziO4tm5EeKhMIaB2_NRKQ" currentColumnAxisProvider="_TziO4dm5EeKhMIaB2_NRKQ">
     <context xmi:type="uml:Package" href="delete_contained_table.uml#_zXYsoNm4EeKhMIaB2_NRKQ"/>

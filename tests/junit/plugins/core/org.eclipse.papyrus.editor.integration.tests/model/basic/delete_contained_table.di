@@ -4,15 +4,11 @@
     <availablePage>
       <emfPageIdentifier href="delete_contained_table.notation#_xS-k4Nm4EeKhMIaB2_NRKQ"/>
     </availablePage>
-    <availablePage>
-      <emfPageIdentifier href="delete_contained_table.notation#_DvI-MNm5EeKhMIaB2_NRKQ"/>
-    </availablePage>
+    <availablePage/>
     <availablePage>
       <emfPageIdentifier href="delete_contained_table.notation#_JE2eoNm5EeKhMIaB2_NRKQ"/>
     </availablePage>
-    <availablePage>
-      <emfPageIdentifier href="delete_contained_table.notation#_QRymcNm5EeKhMIaB2_NRKQ"/>
-    </availablePage>
+    <availablePage/>
     <availablePage>
       <emfPageIdentifier href="delete_contained_table.notation#_TziO4Nm5EeKhMIaB2_NRKQ"/>
     </availablePage>
@@ -24,13 +20,7 @@
           <emfPageIdentifier href="delete_contained_table.notation#_xS-k4Nm4EeKhMIaB2_NRKQ"/>
         </children>
         <children>
-          <emfPageIdentifier href="delete_contained_table.notation#_DvI-MNm5EeKhMIaB2_NRKQ"/>
-        </children>
-        <children>
           <emfPageIdentifier href="delete_contained_table.notation#_JE2eoNm5EeKhMIaB2_NRKQ"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="delete_contained_table.notation#_QRymcNm5EeKhMIaB2_NRKQ"/>
         </children>
         <children>
           <emfPageIdentifier href="delete_contained_table.notation#_TziO4Nm5EeKhMIaB2_NRKQ"/>

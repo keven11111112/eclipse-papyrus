@@ -61,7 +61,6 @@ public class TableHelperAPITests extends AbstractTableHelperAPITest {
 		// these can always be created in Papyrus, using a SysML Model an a
 		// Package
 		tableCreationToTest.add("PapyrusClassTreeTable"); //$NON-NLS-1$
-		tableCreationToTest.add("PapyrusSysMLRequirementTable"); //$NON-NLS-1$
 		tableCreationToTest.add("PapyrusUMLGenericTreeTable"); //$NON-NLS-1$
 		tableCreationToTest.add("PapyrusGenericTable"); //$NON-NLS-1$
 	}
