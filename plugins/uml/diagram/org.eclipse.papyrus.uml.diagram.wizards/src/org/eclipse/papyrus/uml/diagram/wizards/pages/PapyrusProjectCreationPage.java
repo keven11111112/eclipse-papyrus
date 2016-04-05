@@ -134,7 +134,25 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage {
 			canFlip = false;
 		}
 
+		if (!verifyProjectName()) {
+			canFlip = false;
+		}
+
 		return canFlip;
+	}
+
+	private boolean verifyProjectName() {
+
+		IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
+		for (IProject iproject : projects) {
+			if (this.getProjectName().equalsIgnoreCase(iproject.getName())) {
+				this.setErrorMessage(Messages.PapyrusProjectCreationPage_page_same_case_desc + iproject.getName());
+				// A conflict has been found, no need to go further
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	@Override
