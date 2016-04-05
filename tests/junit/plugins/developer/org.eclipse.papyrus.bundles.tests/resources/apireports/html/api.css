@@ -28,3 +28,7 @@ a:hover {
   margin-top: 2px;
   margin-bottom: 2px;
 }
+
+.apiname {
+	font-family: Courier, Courier New, monospace;
+}

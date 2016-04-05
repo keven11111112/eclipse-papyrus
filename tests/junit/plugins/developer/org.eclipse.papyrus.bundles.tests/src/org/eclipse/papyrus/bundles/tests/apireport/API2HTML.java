@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2015 Eike Stepper (Berlin, Germany) and others.
+ * Copyright (c) 2012, 2016 Eike Stepper (Berlin, Germany) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -68,11 +68,11 @@ public class API2HTML extends DefaultHandler {
 
 	private int lastNodeID;
 
-	private Category breaking = new Category("Breaking API Changes");
+	private Category breaking = new Category(CategoryKind.BREAKING, "Breaking API Changes");
 
-	private Category compatible = new Category("Compatible API Changes");
+	private Category compatible = new Category(CategoryKind.COMPATIBLE, "Compatible API Changes");
 
-	private Category reexports = new Category("Re-Exported API Changes");
+	private Category reexports = new Category(CategoryKind.REEXPORTS, "Re-exported API Changes");
 
 	private String buildQualifier;
 
@@ -153,7 +153,7 @@ public class API2HTML extends DefaultHandler {
 
 				Component component = components.get(componentID);
 				if (component == null) {
-					component = new Component(componentID);
+					component = new Component(category, componentID);
 					components.put(componentID, component);
 				}
 
@@ -162,7 +162,7 @@ public class API2HTML extends DefaultHandler {
 				}
 
 				if (componentChange != null) {
-					component.getChanges().add(new Change(componentChange, kind));
+					component.getChanges().add(new Change(component, componentChange, kind));
 				} else {
 					if (typeName == null || typeName.length() == 0) {
 						System.out.println("No typeName: " + message);
@@ -176,7 +176,7 @@ public class API2HTML extends DefaultHandler {
 					}
 
 					type.setElementType(elementType);
-					type.getChanges().add(new Change(message, kind));
+					type.getChanges().add(new Change(type, message, kind));
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -323,9 +323,12 @@ public class API2HTML extends DefaultHandler {
 	 * @author Eike Stepper
 	 */
 	protected abstract class AbstractNode {
+		private final AbstractNode parent;
+
 		private final String text;
 
-		public AbstractNode(String text) {
+		public AbstractNode(AbstractNode parent, String text) {
+			this.parent = parent;
 			this.text = text;
 		}
 
@@ -338,13 +341,41 @@ public class API2HTML extends DefaultHandler {
 		}
 
 		public void generate(PrintStream out, String indent) throws Exception {
+			out.print(indent + getIcon() + " ");
+
 			String href = getHref();
-			out.print(indent + getIcon() + " " + (href != null ? "<a href='" + href + "' target='_blank'>" : "") + getText()
-					+ (href != null ? "</a>" : ""));
+			if (href == null) {
+				out.print(getText());
+			} else {
+				out.print("<a href='" + href + "' target='_blank'>");
+				out.print(getText());
+				out.print("</a>");
+			}
 		}
 
 		protected String getHref() throws Exception {
 			return null;
+		}
+
+		AbstractNode getParent() {
+			return parent;
+		}
+
+		<N extends AbstractNode> N getAncestor(Class<N> type) {
+			N result = null;
+
+			for (AbstractNode node = this; (node != null); node = node.getParent()) {
+				if (type.isInstance(node)) {
+					result = type.cast(node);
+					break;
+				}
+			}
+
+			return result;
+		}
+
+		Category getCategory() {
+			return getAncestor(Category.class);
 		}
 	}
 
@@ -354,16 +385,21 @@ public class API2HTML extends DefaultHandler {
 	protected abstract class AbstractTreeNode extends AbstractNode {
 		private int id;
 
-		public AbstractTreeNode(String text) {
-			super(text);
+		public AbstractTreeNode(AbstractNode parent, String text) {
+			super(parent, text);
 			id = ++lastNodeID;
 		}
 
 		@Override
 		public void generate(PrintStream out, String indent) throws Exception {
-			out.print(
-					indent + "<div class='" + getClass().getSimpleName().toLowerCase() + "'><a href=\"javascript:toggle('node"
-							+ id + "')\"><img src='" + (isCollapsed() ? PLUS : MINUS) + "' id='img_node" + id + "'></a>");
+			out.print(indent + "<div class='" + getClass().getSimpleName().toLowerCase() + "'>");
+
+			if (isCollapsible()) {
+				out.print("<a href=\"javascript:toggle('node" + id + "')\">");
+				out.print("<img src='" + (isCollapsed() ? PLUS : MINUS) + "' id='img_node" + id + "'>");
+				out.print("</a>");
+			}
+
 			super.generate(out, "");
 			out.println("</div>");
 
@@ -377,9 +413,17 @@ public class API2HTML extends DefaultHandler {
 
 		protected abstract void generateChildren(PrintStream out, String indent) throws Exception;
 
-		protected boolean isCollapsed() {
-			return true;
+		protected boolean isCollapsible() {
+			return false;
 		}
+
+		protected boolean isCollapsed() {
+			return isCollapsible();
+		}
+	}
+
+	private enum CategoryKind {
+		BREAKING, COMPATIBLE, REEXPORTS;
 	}
 
 	/**
@@ -387,9 +431,16 @@ public class API2HTML extends DefaultHandler {
 	 */
 	private final class Category extends AbstractTreeNode {
 		private final Map<String, Component> components = new HashMap<String, Component>();
+		private final CategoryKind kind;
 
-		public Category(String text) {
-			super(text);
+		public Category(CategoryKind kind, String text) {
+			super(null, text); // root node
+
+			this.kind = kind;
+		}
+
+		CategoryKind kind() {
+			return kind;
 		}
 
 		public Map<String, Component> getComponents() {
@@ -409,8 +460,13 @@ public class API2HTML extends DefaultHandler {
 		}
 
 		@Override
+		protected boolean isCollapsible() {
+			return true;
+		}
+
+		@Override
 		protected boolean isCollapsed() {
-			return false;
+			return kind() != CategoryKind.BREAKING;
 		}
 	}
 
@@ -424,8 +480,8 @@ public class API2HTML extends DefaultHandler {
 
 		private Version componentVersion;
 
-		public Component(String componentID) {
-			super(componentID);
+		public Component(AbstractNode parent, String componentID) {
+			super(parent, componentID);
 		}
 
 		public String getComponentID() {
@@ -478,6 +534,16 @@ public class API2HTML extends DefaultHandler {
 		protected String getHref() throws Exception {
 			return null;
 		}
+
+		@Override
+		protected boolean isCollapsible() {
+			return true;
+		}
+
+		@Override
+		protected boolean isCollapsed() {
+			return getCategory().isCollapsed();
+		}
 	}
 
 	/**
@@ -492,7 +558,7 @@ public class API2HTML extends DefaultHandler {
 		private String elementType;
 
 		public Type(Component component, String text) {
-			super(text);
+			super(component, text);
 			this.component = component;
 		}
 
@@ -604,8 +670,8 @@ public class API2HTML extends DefaultHandler {
 	private final class Change extends AbstractNode {
 		private final String kind;
 
-		public Change(String text, String kind) {
-			super(text);
+		public Change(AbstractNode parent, String text, String kind) {
+			super(parent, text);
 			if ("REMOVED".equals(kind)) {
 				this.kind = "removal";
 			} else if ("ADDED".equals(kind)) {
@@ -622,6 +688,25 @@ public class API2HTML extends DefaultHandler {
 			} catch (Exception ex) {
 				return super.getIcon();
 			}
+		}
+
+		@Override
+		public String getText() {
+			String result = super.getText();
+
+			// Highlight API names in a different font
+			result = result.replaceAll("type ([A-Z]\\w+|[a-zA-Z0-9_]+\\.[a-zA-Z0-9_.]+)", "type <span class=\"apiname\">$1</span>");
+			result = result.replaceAll("(field|interface) (?!that)(\\S+)", "$1 <span class=\"apiname\">$2</span>");
+			result = result.replaceAll("constant value (.*?) of the field", "constant value <span class=\"apiname\">$1</span> of the field");
+			result = result.replaceAll("(constructor|method) (\\S+\\([^)]*\\))", "$1 <span class=\"apiname\">$2</span>");
+			result = result.replaceAll("(@\\w+)", "<span class=\"apiname\">$1</span>");
+
+			result = result.replaceAll("'(\\w+)' keyword", "'<span class=\"apiname\">$1</span>' keyword");
+
+			// And correct some syntax
+			result = result.replaceAll("The type argument have been changed for (\\S+); was (\\S+) and is now (\\S+)",
+					"A type argument as been changed for <span class=\"apiname\">$1</span>; was <span class=\"apiname\">$2</span> and is now <span class=\"apiname\">$3</span>");
+			return result;
 		}
 
 		@Override
