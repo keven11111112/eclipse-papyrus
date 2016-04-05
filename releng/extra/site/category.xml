@@ -183,6 +183,36 @@
    <feature url="features/org.eclipse.papyrus.requirements.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.requirements.feature" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
+   <feature url="features/org.eclipse.papyrus.sysml.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.sysml.feature" version="1.2.0.qualifier">
+      <category name="org.eclipse.papyrus.category.sysml11"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.sysml.diagram.feature_2.0.0.qualifier.jar" id="org.eclipse.papyrus.sysml.diagram.feature" version="2.0.0.qualifier">
+      <category name="org.eclipse.papyrus.category.sysml11"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.sysml.modelexplorer.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.sysml.modelexplorer.feature" version="1.2.0.qualifier">
+      <category name="org.eclipse.papyrus.category.sysml11"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.sysml.nattable.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.sysml.nattable.feature" version="1.2.0.qualifier">
+      <category name="org.eclipse.papyrus.category.sysml11"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.sysml.properties.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.sysml.properties.feature" version="1.2.0.qualifier">
+      <category name="org.eclipse.papyrus.category.sysml11"/>
+   </feature>
+    <feature url="features/org.eclipse.papyrus.sysml.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.sysml.feature.source" version="1.2.0.qualifier">
+      <category name="org.eclipse.papyrus.category.sysml11"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.sysml.diagram.feature_2.0.0.qualifier.jar" id="org.eclipse.papyrus.sysml.diagram.feature.source" version="2.0.0.qualifier">
+      <category name="org.eclipse.papyrus.category.sysml11"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.sysml.modelexplorer.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.sysml.modelexplorer.feature.source" version="1.2.0.qualifier">
+      <category name="org.eclipse.papyrus.category.sysml11"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.sysml.nattable.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.sysml.nattable.feature.source" version="1.2.0.qualifier">
+      <category name="org.eclipse.papyrus.category.sysml11"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.sysml.properties.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.sysml.properties.feature.source" version="1.2.0.qualifier">
+      <category name="org.eclipse.papyrus.category.sysml11"/>
+   </feature>
    <category-def name="org.eclipse.papyrus.extra.category" label="Papyrus Extra (All - Not recommended)">
       <description>
          Papyrus Extra Category
@@ -212,6 +242,11 @@
    <category-def name="org.eclipse.papyrus.extra.dd.category" label="Papyrus Diagram Definition">
       <description>
          Diagram Definition Category
+      </description>
+   </category-def>
+   <category-def name="org.eclipse.papyrus.category.sysml11" label="Papyrus SysML 1.1">
+      <description>
+         Papyrus SysML 1.1 Category
       </description>
    </category-def>
 </site>
