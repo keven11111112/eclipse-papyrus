@@ -84,11 +84,11 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	/** Y postion offset from shape where the balloon top begin. */
 	static private int ACTION_WIDTH_HGT = 30;
 
-	static private int ACTION_BUTTON_START_X = 5;
+	static protected int ACTION_BUTTON_START_X = 5;
 
-	static private int ACTION_BUTTON_START_Y = 5;
+	static protected int ACTION_BUTTON_START_Y = 5;
 
-	static private int ACTION_MARGIN_RIGHT = 10;
+	static protected int ACTION_MARGIN_RIGHT = 10;
 
 	/** popup bar bits */
 	static private int POPUPBAR_ACTIVATEONHOVER = 0x01; /* Display the action when hovering */
@@ -103,7 +103,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	private double myBallonOffsetPercent = BALLOON_X_OFFSET_RHS;
 
 	/** the figure used to surround the action buttons */
-	private IFigure myBalloon = null;
+	protected IFigure myBalloon = null;
 
 	/** The popup bar descriptors for the popup bar buttons */
 	private List<PopupBarDescriptor> myPopupBarDescriptors = new ArrayList<PopupBarDescriptor>();
@@ -112,7 +112,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	protected List<Image> imagesToBeDisposed = null;
 
 	/** mouse keys listener for the owner shape */
-	private PopupBarMouseListener myMouseKeyListener = new PopupBarMouseListener();
+	protected PopupBarMouseListener myMouseKeyListener = new PopupBarMouseListener();
 
 	/** listener for owner shape movement */
 	private OwnerMovedListener myOwnerMovedListener = new OwnerMovedListener();
@@ -425,7 +425,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	/**
 	 * initialize the popup bars from the list of action descriptors.
 	 */
-	private void initPopupBars() {
+	protected void initPopupBars() {
 
 		List<PopupBarDescriptor> theList = getPopupBarDescriptors();
 		if (theList.isEmpty()) {
@@ -489,7 +489,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		return getBalloon() != null;
 	}
 
-	private IFigure getBalloon() {
+	protected IFigure getBalloon() {
 		return myBalloon;
 	}
 
@@ -776,7 +776,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 *
 	 * @author affrantz@us.ibm.com
 	 */
-	private class PopupBarDescriptor {
+	protected class PopupBarDescriptor {
 
 		/** The action button tooltip */
 		private String _tooltip = new String();
@@ -845,12 +845,12 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 *
 	 * @author affrantz@us.ibm.com
 	 */
-	private class PopupBarLabelHandle extends Label implements Handle {
+	protected class PopupBarLabelHandle extends Label implements Handle {
 		/**
 		 * flag to drawFocus rect around the handle when the mouse rolls over
 		 * it
 		 */
-		private boolean myMouseOver = false;
+		protected boolean myMouseOver = false;
 
 		private Image myDisabledImage = null;
 
@@ -980,7 +980,7 @@ public class PapyrusPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			super.handleMousePressed(event);
 		}
 
-		private void calculateEnabled() {
+		protected void calculateEnabled() {
 			if ((myDragTracker != null) && (myDragTracker instanceof AbstractPopupBarTool)) {
 				AbstractPopupBarTool abarTool = (AbstractPopupBarTool) myDragTracker;
 				setEnabled(abarTool.isCommandEnabled());

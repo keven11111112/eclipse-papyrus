@@ -22,6 +22,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -30,6 +31,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.ui.editorsfactory.PageIconsRegistry;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShortCutPreviewEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.DiagramNodeFigure;
 
 /**
@@ -80,7 +82,7 @@ public abstract class AbstractShortCutDiagramEditPart extends NodeEditPart imple
 		EObject eObject = resolveSemanticElement();
 		resourceToListen = eObject.eResource();
 		resourceToListen.eAdapters().add(this);
-
+		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new ShortCutPreviewEditPolicy());
 	}
 
 	/**
