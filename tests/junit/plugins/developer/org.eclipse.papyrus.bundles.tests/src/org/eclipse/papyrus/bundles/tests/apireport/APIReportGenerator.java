@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2015 Eike Stepper (Berlin, Germany) and others.
+ * Copyright (c) 2012, 2016 Eike Stepper (Berlin, Germany), Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  * Contributors:
  *    Eike Stepper - initial API and implementation
  *    Christian W. Damus - adapt for Papyrus bundle tests (bug 440910)
+ *    Christian W. Damus - bug 491116
  */
 package org.eclipse.papyrus.bundles.tests.apireport;
 
@@ -47,7 +48,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.papyrus.bundles.tests.Activator;
 import org.eclipse.papyrus.bundles.tests.BundleTestsUtils;
-import org.eclipse.pde.api.tools.internal.comparator.DeltaXmlVisitor;
 import org.eclipse.pde.api.tools.internal.model.ApiModelFactory;
 import org.eclipse.pde.api.tools.internal.model.BundleComponent;
 import org.eclipse.pde.api.tools.internal.provisional.VisibilityModifiers;
@@ -143,10 +143,10 @@ public class APIReportGenerator {
 					if (delta != null) {
 						checkCancellation(progress);
 
-						DeltaXmlVisitor visitor = new DeltaXmlVisitor();
+						Java8DeltaXMLVisitor visitor = new Java8DeltaXMLVisitor();
 						delta.accept(visitor);
 
-						writer.write(visitor.getXML());
+						visitor.appendTo(writer);
 						writer.flush();
 
 						progress.done();
