@@ -13,9 +13,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotypeproperty;
 
-import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.creation.TestCreationReopen2Comment;
-import org.junit.runner.RunWith;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.asbrace.TestDisplayAsBrace;
+import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.asbrace.TestReopenAsBrace;
+import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.ascomment.TestDisplayAsComment;
+import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.ascomment.TestReopenAsComment;
+import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.ascompartment.TestDisplayAsCompartment;
+import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.ascompartment.TestReopenAsCompartment;
+import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.displayname.Test2StereotypeApplications;
+import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.displayname.TestStereotypeApplication;
+import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.displayname.TestStereotypeApplicationQualifiedName;
+import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.layout.TestLayoutWithStereotypeOnEclipseHIPPInstance;
+import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
@@ -23,16 +32,20 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
-	// canonical
-	TestProfileApplication.class,
-	TestStereotypeApplication.class,
-	TestLayoutWithStereotype.class,
-	TestUnapplyProfile2ClosedDiagComment.class,
-	TestUnapplyProfile2Comment.class,
-	TestLayoutWithStereotypeOnEclipseHIPPInstance.class,
-	TestUnapplyStereotypeComment.class,
-	TestBadUnapplyProfile2ClosedDiagComment.class,
-	TestCreationReopen2Comment.class
+		TestBadUnapplyProfile2ClosedDiagComment.class,
+		TestDropStereotypedClass.class,
+		TestProfileApplication.class,
+		TestDisplayAsBrace.class,
+		TestReopenAsBrace.class,
+		TestDisplayAsComment.class,
+		TestReopenAsComment.class,
+		TestDisplayAsCompartment.class,
+		TestReopenAsCompartment.class,
+		Test2StereotypeApplications.class,
+		TestStereotypeApplication.class,
+		TestStereotypeApplicationQualifiedName.class,
+		TestLayoutWithStereotypeOnEclipseHIPPInstance.class,
+
 })
 public class AllTests {
 

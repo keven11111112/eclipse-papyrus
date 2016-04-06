@@ -5,7 +5,7 @@
          point="org.eclipse.emf.ecore.uri_mapping">
  
       <mapping
-            source="pathmap://DEVELOPER_PROFILES/"
+            source="pathmap://DEVELOPER_PROFILES_MDE/"
             target="platform:/plugin/org.eclipse.papyrus.uml.developer.mde/resource/">
       </mapping>
    </extension>
@@ -15,13 +15,13 @@
       <profile
             description="Developer Process Profile"
             name="Developer Process Profil"
-            path="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml"
+            path="pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml"
             provider="Eclipse Modeling Project">
       </profile>
       <profile
             description="Document Profile"
             name="Document  Profil"
-            path="pathmap://DEVELOPER_PROFILES/Document.profile.uml"
+            path="pathmap://DEVELOPER_PROFILES_MDE/Document.profile.uml"
             provider="Eclipse Modeling Project">
       </profile>
    </extension>

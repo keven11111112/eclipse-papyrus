@@ -11,21 +11,11 @@
     <availablePage>
       <emfPageIdentifier href="StereotypeEdition.notation#_eoHxwBwaEeKjG5zMFxAVTA"/>
     </availablePage>
-    <availablePage>
-      <emfPageIdentifier href="StereotypeEdition.notation#_rIoE8BwaEeKjG5zMFxAVTA"/>
-    </availablePage>
-    <availablePage>
-      <emfPageIdentifier href="StereotypeEdition.notation#_2r76oBwbEeKjG5zMFxAVTA"/>
-    </availablePage>
-    <availablePage>
-      <emfPageIdentifier href="StereotypeEdition.notation#_Iy448BwcEeKjG5zMFxAVTA"/>
-    </availablePage>
-    <availablePage>
-      <emfPageIdentifier href="StereotypeEdition.notation#_sa4sIBwcEeKjG5zMFxAVTA"/>
-    </availablePage>
-    <availablePage>
-      <emfPageIdentifier href="StereotypeEdition.notation#_okdFwBwfEeKjG5zMFxAVTA"/>
-    </availablePage>
+    <availablePage/>
+    <availablePage/>
+    <availablePage/>
+    <availablePage/>
+    <availablePage/>
     <availablePage>
       <emfPageIdentifier href="StereotypeEdition.notation#_c2ivQBzyEeK0rNOLRzw-aQ"/>
     </availablePage>
@@ -35,6 +25,9 @@
       <children xsi:type="di:TabFolder">
         <children>
           <emfPageIdentifier href="StereotypeEdition.notation#_78hiYBaoEeK2bPy_5yA69Q"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="StereotypeEdition.notation#_mFZaYPv6EeWkK6hum4lQXg"/>
         </children>
       </children>
     </windows>
