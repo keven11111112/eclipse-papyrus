@@ -23,7 +23,6 @@
     <module>../../tests/junit/extraplugins/cdo/org.eclipse.papyrus.cdo.uml.search.ui.tests</module>
     <module>../../tests/junit/extraplugins/cdo/org.eclipse.papyrus.cdo.uml.ui.tests</module>
     <module>../../tests/junit/extraplugins/cdo/org.eclipse.papyrus.cdo.validation.problems.tests</module>
-    <module>../../tests/junit/extraplugins/codegen/org.eclipse.papyrus.cpp.codegen.tests</module>
     <module>../../tests/junit/extraplugins/org.eclipse.papyrus.tests.extra</module>
     <module>../../tests/junit/extraplugins/migration/org.eclipse.papyrus.migration.rsa.tests</module>
 	<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.diagram.feature</module>

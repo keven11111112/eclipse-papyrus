@@ -76,63 +76,6 @@
 		<module>../../extraplugins/marte/org.eclipse.papyrus.marte.vsl.ui</module>
 		<module>../../extraplugins/migration/org.eclipse.papyrus.migration.properties.model</module>
 
-		<!-- Papyrus qompass -->
-		<module>../../extraplugins/qompass/org.eclipse.papyrus.qompass.ui</module>
-
-		<!-- Papyrus qompass/codegen -->
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.codegen.feature</module>
-		<module>../../extraplugins/qompass/codegen/org.eclipse.papyrus.codegen.base</module>
-		<module>../../extraplugins/qompass/codegen/org.eclipse.papyrus.codegen.extensionpoints</module>
-		<module>../../extraplugins/qompass/codegen/org.eclipse.papyrus.texteditor.model</module>
-		<module>../../extraplugins/qompass/codegen/org.eclipse.papyrus.texteditor.modelexplorer</module>
-
-		<!-- Papyrus qompass/codegen/cpp -->
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.codegen.cpp.feature</module>
-		<module>../../extraplugins/qompass/codegen/cpp/org.eclipse.papyrus.cpp.cdtproject</module>
-		<module>../../extraplugins/qompass/codegen/cpp/org.eclipse.papyrus.cpp.codegen</module>
-		<module>../../extraplugins/qompass/codegen/cpp/org.eclipse.papyrus.cpp.codegen.ui</module>
-		<module>../../extraplugins/qompass/codegen/cpp/org.eclipse.papyrus.cpp.examples</module>
-		<module>../../extraplugins/qompass/codegen/cpp/org.eclipse.papyrus.cpp.profile</module>
-		<module>../../extraplugins/qompass/codegen/cpp/org.eclipse.papyrus.cpp.profile.ui</module>
-		<module>../../extraplugins/qompass/codegen/cpp/org.eclipse.papyrus.cpp.library</module>
-		<module>../../extraplugins/qompass/codegen/cpp/org.eclipse.papyrus.cpp.library.ui</module>
-		<module>../../extraplugins/qompass/codegen/cpp/org.eclipse.papyrus.texteditor.cdt</module>
-		<module>../../extraplugins/qompass/codegen/cpp/org.eclipse.papyrus.views.cpp</module>
-
-		<!-- Papyrus qompass/codegen/java -->
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.java.generator.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.java.profile.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.java.reverse.feature</module>
-		<module>../../extraplugins/qompass/codegen/java/org.eclipse.papyrus.java.generator.jdtsynchronizer</module>
-		<module>../../extraplugins/qompass/codegen/java/org.eclipse.papyrus.java.generator.metamodel.jdt</module>
-		<module>../../extraplugins/qompass/codegen/java/org.eclipse.papyrus.java.generator.metamodel.jdt.edit</module>
-		<module>../../extraplugins/qompass/codegen/java/org.eclipse.papyrus.java.generator.metamodel.jdt.editor</module>
-		<module>../../extraplugins/qompass/codegen/java/org.eclipse.papyrus.java.generator.transfo.umltojdt</module>
-		<module>../../extraplugins/qompass/codegen/java/org.eclipse.papyrus.java.generator.ui</module>
-		<module>../../extraplugins/qompass/codegen/java/org.eclipse.papyrus.java.profile</module>
-		<module>../../extraplugins/qompass/codegen/java/org.eclipse.papyrus.java.profile.edit</module>
-		<module>../../extraplugins/qompass/codegen/java/org.eclipse.papyrus.java.profile.editor</module>
-		<module>../../extraplugins/qompass/codegen/java/org.eclipse.papyrus.java.reverse</module>
-		<module>../../extraplugins/qompass/codegen/java/org.eclipse.papyrus.java.reverse.ui</module>
-
-		<!-- Papyrus qompass/designer -->
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.qompass.designer.basic.feature</module>
-		<module>../../extraplugins/qompass/designer/org.eclipse.papyrus.fcm.profile</module>
-
-		<module>../../extraplugins/qompass/designer/org.eclipse.papyrus.qompass.designer.core</module>
-		<module>../../extraplugins/qompass/designer/org.eclipse.papyrus.qompass.designer.cpp</module>
-		<module>../../extraplugins/qompass/designer/org.eclipse.papyrus.qompass.designer.java</module>
-		<module>../../extraplugins/qompass/designer/org.eclipse.papyrus.qompass.designer.doc</module>
-		<module>../../extraplugins/qompass/designer/org.eclipse.papyrus.qompass.designer.ui</module>
-		<module>../../extraplugins/qompass/designer/org.eclipse.papyrus.qompass.designer.validation</module>
-		<module>../../extraplugins/qompass/designer/org.eclipse.papyrus.qompass.designer.vsl</module>
-		<module>../../extraplugins/qompass/designer/org.eclipse.papyrus.qompass.modellibs.core</module>
-		<module>../../extraplugins/qompass/designer/tracing/org.eclipse.papyrus.qompass.modellibs.tracing</module>
-
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.qompass.designer.tracing.feature</module>
-		<module>../../extraplugins/qompass/designer/tracing/org.eclipse.papyrus.views.tracepoints</module>
-		<module>../../extraplugins/qompass/designer/tracing/org.eclipse.papyrus.infra.services.tracepoints</module>
-
 		<!-- Papyrus RobotML -->
 		<module>../../extraplugins/robotml/org.eclipse.papyrus.robotml</module>
 		<module>../../extraplugins/robotml/org.eclipse.papyrus.robotml.deployment</module>

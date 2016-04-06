@@ -35,9 +35,6 @@ public class AllTests {
 		/* CDO tests */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.cdo.tests.AllTests.class));
 
-		/* CPP Codegen tests */
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.cpp.codegen.tests.AllPapyrusCPPCodegenTests.class));
-
 		/* Migration tests */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.migration.rsa.tests.AllTests.class));
 

@@ -33,15 +33,6 @@
    <feature url="features/org.eclipse.papyrus.extra.dsml.validation.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.dsml.validation.feature.source" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.java.generator.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.java.generator.feature" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.java.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.java.profile.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.java.profile.feature" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.java.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.java.reverse.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.java.reverse.feature" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.java.category"/>
-   </feature>
    <feature url="features/org.eclipse.papyrus.extra.robotml.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.robotml.feature" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.robotml"/>
    </feature>
@@ -60,46 +51,13 @@
    <feature url="features/org.eclipse.papyrus.extra.eastadl.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.eastadl.feature" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.extra.codegen.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.codegen.feature" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.extra.codegen.cpp.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.codegen.cpp.feature" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.extra.qompass.designer.basic.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.qompass.designer.basic.feature" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.qompass.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.extra.qompass.designer.tracing.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.qompass.designer.tracing.feature" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.qompass.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.java.generator.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.java.generator.feature.source" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.java.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.java.profile.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.java.profile.feature.source" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.java.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.java.reverse.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.java.reverse.feature.source" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.java.category"/>
-   </feature>
    <feature url="features/org.eclipse.papyrus.extra.robotml.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.robotml.feature.source" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.robotml"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.robotml.generators.intempora.rtmaps.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.robotml.generators.intempora.rtmaps.feature.source" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.robotml"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.extra.qompass.designer.basic.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.qompass.designer.basic.feature.source" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.qompass.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.extra.qompass.designer.tracing.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.qompass.designer.tracing.feature.source" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.qompass.category"/>
-   </feature>
    <feature url="features/org.eclipse.papyrus.migration.rsa.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.migration.rsa.feature.source" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.extra.codegen.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.codegen.feature.source" version="1.2.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.extra.codegen.cpp.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.codegen.cpp.feature.source" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.uml.alf.extra.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.uml.alf.extra.feature.source" version="0.7.0.qualifier">
@@ -224,19 +182,9 @@
       </description>
    </category-def>
    <category-def name="org.eclipse.papyrus.extra.others.category" label="Papyrus Extra (Others)"/>
-   <category-def name="org.eclipse.papyrus.extra.java.category" label="Papyrus Java">
-      <description>
-         Papyrus Java Category
-      </description>
-   </category-def>
    <category-def name="org.eclipse.papyrus.extra.robotml" label="Papyrus RobotML">
       <description>
          Papyrus RobotML Category
-      </description>
-   </category-def>
-   <category-def name="org.eclipse.papyrus.extra.qompass.category" label="Papyrus Qompass Designer">
-      <description>
-         Papyrus Qompass Designer Category
       </description>
    </category-def>
    <category-def name="org.eclipse.papyrus.extra.dd.category" label="Papyrus Diagram Definition">
