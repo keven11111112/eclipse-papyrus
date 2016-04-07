@@ -76,7 +76,7 @@
       <menuContribution
             locationURI="toolbar:org.eclipse.ui.main.toolbar">
          <toolbar
-               id="org.eclipse.papyrus.ui.toolbar">
+               id="org.eclipse.ui.workbench.navigate">
             <command
                   commandId="org.eclipse.papyrus.editor.previousTabCommand"
                   icon="icons/arrow_left.gif"
