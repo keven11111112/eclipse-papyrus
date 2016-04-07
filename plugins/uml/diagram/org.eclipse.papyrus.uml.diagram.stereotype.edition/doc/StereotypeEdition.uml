@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:structure="http://DeveloperProcess/schemas/structure/_XDm_4Pp-EeWGNbbFZQo3Jw/7" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements http://DeveloperProcess/schemas/structure/_XDm_4Pp-EeWGNbbFZQo3Jw/7 pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml#_XDqDMPp-EeWGNbbFZQo3Jw">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:structure="http://DeveloperProcess/schemas/structure/_rpmLUHVxEeSZ-fQGFkyJeQ/6" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements http://DeveloperProcess/schemas/structure/_rpmLUHVxEeSZ-fQGFkyJeQ/6 pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml#_rpmyYHVxEeSZ-fQGFkyJeQ">
   <uml:Model xmi:id="_y6DcUBaoEeK2bPy_5yA69Q" name="DiagramDisplayStereotypeApplication">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_y6DcURaoEeK2bPy_5yA69Q">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -2333,7 +2333,7 @@ This choice runs for the 3 representations of applied stereotypes: brace, compar
             <body>By using the property view, it is possible to select the list of property of stereotype.&#xD;
 To do that:&#xD;
 1. Select your element.&#xD;
-2. The stereotype must displayed as brace, compartment or comment&#xD;
+2. Check that the applied stereotype has been displayed as brace, compartment or comment&#xD;
 3. Select lines that correspond to wanted properties of stereotype.</body>
           </ownedComment>
           <ownedComment xmi:type="uml:Comment" xmi:id="_seudgPwGEeWkK6hum4lQXg">
@@ -3049,41 +3049,41 @@ The display must have changed.</body>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES_MDE/Document.profile.uml#_D0JcUMnzEeO9CYUoXDRplw"/>
     </profileApplication>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_9S3mYPvVEeW418RdyH5mGQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gjA6QPvWEeW418RdyH5mGQ" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gjA6QfvWEeW418RdyH5mGQ" key="Version" value="0.0.8"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gjA6QvvWEeW418RdyH5mGQ" key="Comment" value="change property base_* to 0..1"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gjA6Q_vWEeW418RdyH5mGQ" key="Copyright" value="CEA LIST"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gjA6RPvWEeW418RdyH5mGQ" key="Date" value="2016-04-04"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gjA6RfvWEeW418RdyH5mGQ" key="Author" value="CEA LIST"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_f2PfgPy1EeWMIr2UMud8Pw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2Pfgfy1EeWMIr2UMud8Pw" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2Pfgvy1EeWMIr2UMud8Pw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2Pfg_y1EeWMIr2UMud8Pw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2PfhPy1EeWMIr2UMud8Pw" key="Date" value="2014-11-26"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2Pfhfy1EeWMIr2UMud8Pw" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9S40gPvVEeW418RdyH5mGQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml#_XDqDMPp-EeWGNbbFZQo3Jw"/>
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml#_rpmyYHVxEeSZ-fQGFkyJeQ"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml#_qCT3MMbXEeO09JBvNFZRNw"/>
     </profileApplication>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_giofwPvWEeW418RdyH5mGQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_giy30PvWEeW418RdyH5mGQ" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_giy30fvWEeW418RdyH5mGQ" key="Version" value="0.0.8"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_giy30vvWEeW418RdyH5mGQ" key="Comment" value="change property base_* to 0..1"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_giy30_vWEeW418RdyH5mGQ" key="Copyright" value="CEA LIST"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_giy31PvWEeW418RdyH5mGQ" key="Date" value="2016-04-04"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_giy31fvWEeW418RdyH5mGQ" key="Author" value="CEA LIST"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_f2glQPy1EeWMIr2UMud8Pw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2glQfy1EeWMIr2UMud8Pw" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2glQvy1EeWMIr2UMud8Pw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2glQ_y1EeWMIr2UMud8Pw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2glRPy1EeWMIr2UMud8Pw" key="Date" value="2014-11-26"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2glRfy1EeWMIr2UMud8Pw" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_giqU8PvWEeW418RdyH5mGQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml#_XDiHYPp-EeWGNbbFZQo3Jw"/>
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml#_rplkQXVxEeSZ-fQGFkyJeQ"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml#_kWqjAMbXEeO09JBvNFZRNw"/>
     </profileApplication>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_gjDWgPvWEeW418RdyH5mGQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gjLSUPvWEeW418RdyH5mGQ" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gjLSUfvWEeW418RdyH5mGQ" key="Version" value="0.0.8"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gjLSUvvWEeW418RdyH5mGQ" key="Comment" value="change property base_* to 0..1"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gjLSU_vWEeW418RdyH5mGQ" key="Copyright" value="CEA LIST"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gjLSVPvWEeW418RdyH5mGQ" key="Date" value="2016-04-04"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gjLSVfvWEeW418RdyH5mGQ" key="Author" value="CEA LIST"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_f2vOwPy1EeWMIr2UMud8Pw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2vOwfy1EeWMIr2UMud8Pw" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2vOwvy1EeWMIr2UMud8Pw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2vOw_y1EeWMIr2UMud8Pw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2vOxPy1EeWMIr2UMud8Pw" key="Date" value="2014-11-26"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_f2vOxfy1EeWMIr2UMud8Pw" key="Author" value=""/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gjD9kPvWEeW418RdyH5mGQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml#_XDsfcfp-EeWGNbbFZQo3Jw"/>
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml#_rpnZcXVxEeSZ-fQGFkyJeQ"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES_MDE/developerprocess.profile.uml#_2LNtQMbYEeO09JBvNFZRNw"/>
     </profileApplication>

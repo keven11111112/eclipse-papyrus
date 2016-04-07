@@ -13,8 +13,8 @@ This is the same behavior for links. </span><br>
 =====<span id="_uchtUfwOEeWkK6hum4lQXg">How to</span>=====
 <span id="_uci7cfwOEeWkK6hum4lQXg">Inside  papyrus, it is possible to display the name of applied stereotype. 
 To do that:
-1. Apply the profile  that contains the stereotype on your model.
-2. Apply the wanted stereotype on the element.</span><br>
+ 1. Apply the profile  that contains the stereotype on your model.
+ 2. Apply the wanted stereotype on the element.</span><br>
 <br>
 [[Image:./imgDOC/ApplyProfile.png|Apply a profile]]
 <br>''Apply a profile''<br>
@@ -37,9 +37,9 @@ To do that:
 <span id="_uctTgfwOEeWkK6hum4lQXg">Properties of applied stereotype can be displayed as "brace". This is label that is set below the name, and contains a sequence of properties name with their values.</span><br>
 =====<span id="_ucuhofwOEeWkK6hum4lQXg">How to</span>=====
 <span id="_ucvvwPwOEeWkK6hum4lQXg">To do that:
-1. Select your Element
-2. Select the Appearance Tab in the property view
-3. Select "In braces" for the line of your applied stereotype</span><br>
+ 1. Select your Element
+ 2. Select the Appearance Tab in the property view
+ 3. Select "In braces" for the line of your applied stereotype</span><br>
 <br>
 [[Image:./imgDOC/DisplayInBrace.png|Sequence of actions to display in brace]]
 <br>''Sequence of actions to display in brace''<br>
@@ -54,9 +54,9 @@ To do that:
 <span id="_uc1PUfwOEeWkK6hum4lQXg">Properties of applied stereotype can be displayed as a compartment. This compartment contains all labels that are properties of the applied stereotype.</span><br>
 =====<span id="_uc12YfwOEeWkK6hum4lQXg">How to</span>=====
 <span id="_uc3EgfwOEeWkK6hum4lQXg">To do that:
-1. Select your Element
-2. Select the Appearance Tab in the property view
-3. Select "In Compartment" for the line of your applied stereotype</span><br>
+ 1. Select your Element
+ 2. Select the Appearance Tab in the property view
+ 3. Select "In Compartment" for the line of your applied stereotype</span><br>
 <br>
 [[Image:./imgDOC/DisplayInCompartment.png|Sequence of actions to display in compartment]]
 <br>''Sequence of actions to display in compartment''<br>
@@ -70,9 +70,9 @@ To do that:
 <span id="_uc79APwOEeWkK6hum4lQXg">  - traces to [[#_uZfAYfwOEeWkK6hum4lQXg|Display Requirement as a "comment"]]</span><br>
 <span id="_uc8kEfwOEeWkK6hum4lQXg">Properties of applied stereotype can be displayed as a comment. This comment representation that contains all labels that are properties of the applied stereotype.</span><br>
 <span id="_uc9yMfwOEeWkK6hum4lQXg">To do that:
-1. Select your Element
-2. Select the Appearance Tab in the property view
-3. Select "In Comment" for the line of your applied stereotype</span><br>
+ 1. Select your Element
+ 2. Select the Appearance Tab in the property view
+ 3. Select "In Comment" for the line of your applied stereotype</span><br>
 <br>
 [[Image:./imgDOC/DisplayInComment.png|Sequence of actions to display in comment]]
 <br>''Sequence of actions to display in comment''<br>
@@ -89,9 +89,9 @@ This choice runs for the 3 representations of applied stereotypes: brace, compar
 =====<span id="_udEf4fwOEeWkK6hum4lQXg">How to</span>=====
 <span id="_udFuAfwOEeWkK6hum4lQXg">By using the property view, it is possible to select the list of property of stereotype.
 To do that:
-1. Select your element.
-2. The stereotype must displayed as brace, compartment or comment
-3. Select lines that correspond to wanted properties of stereotype.</span><br>
+ 1. Select your element.
+ 2. Check that the applied stereotype has been displayed as brace, compartment or comment
+ 3. Select lines that correspond to wanted properties of stereotype.</span><br>
 <br>
 [[Image:./imgDOC/ChooseProperties_PV.png|Select properties by using the property view]]
 <br>''Select properties by using the property view''<br>
@@ -179,13 +179,13 @@ full = all the qualified name
 -1= the name of its parent + the name of the stereotype
 -2=the name of its great-parent+ the name of its parent + the name of the stereotype</span><br>
 <span id="_udO38fwOEeWkK6hum4lQXg">Using Css: 
-Label[type=StereotypeLabel]{
-	depth:"-1";
-}
+ Label[type=StereotypeLabel]{
+ 	depth:"-1";
+ }
 By using the property view:
-1. Select the element.
-2. Select the appearance Tab
-3. Select the name depth and choose the size</span><br>
+ 1. Select the element.
+ 2. Select the appearance Tab
+ 3. Select the name depth and choose the size</span><br>
 <br>
 [[Image:./imgDOC/depth.png|Select the depth the applied stereotype name]]
 <br>''Select the depth the applied stereotype name''<br>
@@ -206,11 +206,11 @@ Important: the property must be writable and Real are not yet editable. </span><
 <br>
 =====<span id="_udaeIfwOEeWkK6hum4lQXg">How to</span>=====
 <span id="_udbsQPwOEeWkK6hum4lQXg">It is possible to edit property of applied stereotype by using the property view:
-1. Select your element
-2. Select the Profile tab
-3. Expand the stereotype
-4. Select the property
-5. Edit at right the property of the stereotype</span><br>
+ 1. Select your element
+ 2. Select the Profile tab
+ 3. Expand the stereotype
+ 4. Select the property
+ 5. Edit at right the property of the stereotype</span><br>
 <br>
 [[Image:./imgDOC/PropertyEdition_PV.png|Property edition for applied stereotypes in the property view]]
 <br>''Property edition for applied stereotypes in the property view''<br>
