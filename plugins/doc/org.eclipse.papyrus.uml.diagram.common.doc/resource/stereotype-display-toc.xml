@@ -1,8 +1,6 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <toc label="stereotype-display" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
 	<topic label="Display Stereotype">
-		<topic href="target/generated-eclipse-help/stereotype-display-css.html" label="Display Stereotypes via CSS"></topic>
-  <topic href="target/generated-eclipse-help/stereotype-display-propertyview.html" label="Display Stereotypes via Property View">
-  </topic>
+		<topic href="org.eclipse.papyrus.uml.diagram.common.doc/resource/DisplayStereotypes.html" label="Display Stereotypes"></topic>
 	</topic>
 </toc>
