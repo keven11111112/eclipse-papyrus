@@ -61,7 +61,7 @@ public class PapyrusFillHandleConfiguration extends FillHandleConfiguration {
         // configureUiBindings()
         this.clipboard = natTable.getInternalCellClipboard();
 
-        this.painter = new FillHandleLayerPainter();
+        this.painter = new FillHandleLayerPainter(true, false);
         this.selectionLayer.setLayerPainter(this.painter);
 
         this.selectionLayer.addLayerListener(new FillHandleMarkupListener(this.selectionLayer));
