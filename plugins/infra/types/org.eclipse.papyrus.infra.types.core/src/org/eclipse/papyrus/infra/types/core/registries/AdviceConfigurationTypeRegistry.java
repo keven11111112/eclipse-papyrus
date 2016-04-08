@@ -70,6 +70,7 @@ public class AdviceConfigurationTypeRegistry {
 		// Register default interpretations
 		adviceConfigurationTypeToFactory.put(ElementTypesConfigurationsPackage.eINSTANCE.getEditHelperAdviceConfiguration().getInstanceTypeName(), new DefaultEditHelperAdviceFactory());
 		adviceConfigurationTypeToFactory.put(ElementTypesConfigurationsPackage.eINSTANCE.getAdviceBindingConfiguration().getInstanceTypeName(), new DefaultAdviceBindingFactory());
+		adviceConfigurationTypeToFactory.put(ElementTypesConfigurationsPackage.eINSTANCE.getExternallyRegisteredAdvice().getInstanceTypeName(), new DefaultAdviceBindingFactory());
 	}
 
 	public <T extends AdviceConfiguration> IEditHelperAdviceFactory<T> getFactory(AdviceConfiguration adviceConfiguration) {

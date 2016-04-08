@@ -15,32 +15,16 @@
 -->
 <plugin>
 
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-	
-	<!-- Papyrus single IClientContext declaration
-	     This context can only be used explicitely as its matcher always return false ( in order
-	     to avoid undesired activation and possible side effects)
-	  -->
-	<clientContext id="org.eclipse.papyrus.infra.services.edit.TypeContext">
-		<matcher class="org.eclipse.papyrus.infra.services.edit.internal.matcher.NoContextEnablementMatcher"/>
-	</clientContext>
-
-</extension>
-
 <extension
-      point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-   <metamodel
-         nsURI="http://www.eclipse.org/emf/2002/Ecore">
-         
-      <!-- Delete markers attached to objects being deleted. -->
-      <adviceBinding
-            id="org.eclipse.papyrus.infra.services.edit.markerDeletionAdvice"
-            class="org.eclipse.papyrus.infra.services.edit.internal.advice.MarkerDeletionAdvice"
-            typeId="*"
-            inheritance="none">
-      </adviceBinding>
-   </metamodel>
+      point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+   <clientContext
+         id="org.eclipse.papyrus.infra.services.edit.TypeContext">
+      <matcher
+            class="org.eclipse.papyrus.infra.services.edit.internal.matcher.NoContextEnablementMatcher">
+      </matcher>
+   </clientContext>
 </extension>
+
 
 <!-- Binds general (non-UML specific) advices
 
@@ -73,7 +57,6 @@
         <advice ref="org.eclipse.papyrus.infra.emf.readOnlyAdvice" />
         
         <!-- Delete markers attached to objects being deleted. -->
-        <advice ref="org.eclipse.papyrus.infra.services.edit.markerDeletionAdvice" />
 	</binding>
 	
 	<!-- 
@@ -97,6 +80,13 @@
 		priority="1" startKind="startup">
  	</serviceFactory>
 
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
+   <elementTypeSet
+         clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+         path="model/marker.elementtypesconfigurations">
+   </elementTypeSet>
 </extension>
    
    

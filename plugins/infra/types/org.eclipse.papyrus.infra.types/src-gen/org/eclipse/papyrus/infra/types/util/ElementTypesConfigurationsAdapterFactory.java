@@ -142,6 +142,14 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 				return createNamedConfigurationAdapter();
 			}
 			@Override
+			public Adapter caseExternallyRegisteredType(ExternallyRegisteredType object) {
+				return createExternallyRegisteredTypeAdapter();
+			}
+			@Override
+			public Adapter caseExternallyRegisteredAdvice(ExternallyRegisteredAdvice object) {
+				return createExternallyRegisteredAdviceAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -382,6 +390,34 @@ public class ElementTypesConfigurationsAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createNamedConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.ExternallyRegisteredType <em>Externally Registered Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.types.ExternallyRegisteredType
+	 * @generated
+	 */
+	public Adapter createExternallyRegisteredTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.types.ExternallyRegisteredAdvice <em>Externally Registered Advice</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.types.ExternallyRegisteredAdvice
+	 * @generated
+	 */
+	public Adapter createExternallyRegisteredAdviceAdapter() {
 		return null;
 	}
 

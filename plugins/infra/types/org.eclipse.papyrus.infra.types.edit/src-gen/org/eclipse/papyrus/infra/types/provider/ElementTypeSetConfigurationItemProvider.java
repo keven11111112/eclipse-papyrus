@@ -236,8 +236,18 @@ public class ElementTypeSetConfigurationItemProvider extends ConfigurationElemen
 
 		newChildDescriptors.add
 			(createChildParameter
+				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS,
+				 ElementTypesConfigurationsFactory.eINSTANCE.createExternallyRegisteredType()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS,
 				 ElementTypesConfigurationsFactory.eINSTANCE.createAdviceBindingConfiguration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS,
+				 ElementTypesConfigurationsFactory.eINSTANCE.createExternallyRegisteredAdvice()));
 	}
 
 }

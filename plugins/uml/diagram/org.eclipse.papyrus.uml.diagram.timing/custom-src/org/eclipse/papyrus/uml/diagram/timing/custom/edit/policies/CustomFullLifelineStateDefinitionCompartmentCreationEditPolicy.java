@@ -21,11 +21,11 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.timing.custom.Messages;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.RefreshCommandForDo;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.RefreshCommandForUndo;
@@ -41,7 +41,7 @@ import org.eclipse.uml2.uml.Lifeline;
  * This EditPolicy creates a StateInvariant when the first StateDefinition is created, and links the StateInvariant to
  * the StateDefinition.
  */
-public class CustomFullLifelineStateDefinitionCompartmentCreationEditPolicy extends CreationEditPolicy {
+public class CustomFullLifelineStateDefinitionCompartmentCreationEditPolicy extends DefaultCreationEditPolicy {
 
 	public CustomFullLifelineStateDefinitionCompartmentCreationEditPolicy() {
 	}

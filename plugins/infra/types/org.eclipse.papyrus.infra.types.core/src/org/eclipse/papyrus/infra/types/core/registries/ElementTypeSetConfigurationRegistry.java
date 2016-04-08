@@ -46,6 +46,7 @@ import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.AdviceConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
+import org.eclipse.papyrus.infra.types.ExternallyRegisteredAdvice;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.types.core.Activator;
 import org.eclipse.papyrus.infra.types.core.extensionpoints.IElementTypeSetExtensionPoint;
@@ -249,7 +250,7 @@ public class ElementTypeSetConfigurationRegistry {
 
 		IClientContext context = ClientContextManager.getInstance().getClientContext(contexId);
 		if (context == null) {
-			Activator.log.warn("contexId couldn't be found. Loading aborted. ");
+			Activator.log.warn("contexId couldn't be found. Loading aborted: " + contexId);
 			return false;
 		}
 
@@ -345,9 +346,13 @@ public class ElementTypeSetConfigurationRegistry {
 		for (ElementTypeSetConfiguration elementTypeSetConfiguration : registrableElementTypeSetConfiguration) {
 			List<AbstractAdviceBindingConfiguration> adviceBindingConfigurations = elementTypeSetConfiguration.getAdviceBindingsConfigurations();
 			for (AbstractAdviceBindingConfiguration adviceBindingConfiguration : adviceBindingConfigurations) {
-				IAdviceBindingDescriptor editHelperAdviceDecriptor = AdviceConfigurationTypeRegistry.getInstance().getEditHelperAdviceDecriptor(adviceBindingConfiguration);
-				ElementTypeRegistryUtils.registerAdviceBinding(editHelperAdviceDecriptor);
-				context.bindId(editHelperAdviceDecriptor.getId());
+				if (adviceBindingConfiguration instanceof ExternallyRegisteredAdvice) {
+					context.bindId(adviceBindingConfiguration.getIdentifier());
+				} else {
+					IAdviceBindingDescriptor editHelperAdviceDecriptor = AdviceConfigurationTypeRegistry.getInstance().getEditHelperAdviceDecriptor(adviceBindingConfiguration);
+					ElementTypeRegistryUtils.registerAdviceBinding(editHelperAdviceDecriptor);
+					context.bindId(editHelperAdviceDecriptor.getId());
+				}
 			}
 		}
 

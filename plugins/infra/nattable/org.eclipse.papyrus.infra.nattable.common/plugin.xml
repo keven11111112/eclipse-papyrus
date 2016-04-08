@@ -130,26 +130,7 @@
     </handler>
  </extension>
      <!-- ElementType bindings for table duplication with paste command -->
- <extension
-         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-      <metamodel
-            nsURI="http://www.eclipse.org/emf/2002/Ecore">
-         <adviceBinding
-               class="org.eclipse.papyrus.infra.nattable.common.helper.advice.NatTableDuplicateEditHelperAdvice"
-               id="org.eclipse.papyrus.infra.nattable.common.helper.advice.NatTableDuplicateEditHelperAdvice"
-               inheritance="all"
-               typeId="*">
-         </adviceBinding>
-      </metamodel>
-   </extension>
    
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-
-	<!-- Bindings declaration -->
-	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">
-		<advice ref="org.eclipse.papyrus.infra.nattable.common.helper.advice.NatTableDuplicateEditHelperAdvice" />
-	</binding>
-</extension>
 <extension
       point="org.eclipse.ui.commandImages">
    <image
@@ -289,5 +270,12 @@
          </with>
       </activeWhen>
    </handler>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
+   <elementTypeSet
+         clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+         path="model/nattable-common.elementtypesconfigurations">
+   </elementTypeSet>
 </extension>
 </plugin>

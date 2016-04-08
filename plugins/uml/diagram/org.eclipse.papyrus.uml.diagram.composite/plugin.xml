@@ -953,19 +953,6 @@
    </elementTypeSet>
 </extension>
 
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
-      <?gmfgen generated="true"?>
-      <clientContext id="org.eclipse.papyrus.uml.diagram.composite.TypeContext">
-         <enablement>
-            <test
-               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.eclipse.papyrus.uml.diagram.composite.EditingDomain"/>
-         </enablement>
-      </clientContext> 
-      <binding context="org.eclipse.papyrus.uml.diagram.composite.TypeContext">
-         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
-      </binding>
-   </extension>
 <extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
    <?gmfgen generated="true"?>
    <diagramMappings diagramID="CompositeStructure">

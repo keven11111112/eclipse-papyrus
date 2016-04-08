@@ -122,8 +122,8 @@ public class ElementTypesConfigurationsSwitch<T> extends Switch<T> {
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION: {
 				AbstractAdviceBindingConfiguration abstractAdviceBindingConfiguration = (AbstractAdviceBindingConfiguration)theEObject;
 				T result = caseAbstractAdviceBindingConfiguration(abstractAdviceBindingConfiguration);
-				if (result == null) result = caseAdviceConfiguration(abstractAdviceBindingConfiguration);
 				if (result == null) result = caseIdentifiedConfiguration(abstractAdviceBindingConfiguration);
+				if (result == null) result = caseAdviceConfiguration(abstractAdviceBindingConfiguration);
 				if (result == null) result = caseConfigurationElement(abstractAdviceBindingConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -175,8 +175,8 @@ public class ElementTypesConfigurationsSwitch<T> extends Switch<T> {
 				AdviceBindingConfiguration adviceBindingConfiguration = (AdviceBindingConfiguration)theEObject;
 				T result = caseAdviceBindingConfiguration(adviceBindingConfiguration);
 				if (result == null) result = caseAbstractAdviceBindingConfiguration(adviceBindingConfiguration);
-				if (result == null) result = caseAdviceConfiguration(adviceBindingConfiguration);
 				if (result == null) result = caseIdentifiedConfiguration(adviceBindingConfiguration);
+				if (result == null) result = caseAdviceConfiguration(adviceBindingConfiguration);
 				if (result == null) result = caseConfigurationElement(adviceBindingConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -197,6 +197,27 @@ public class ElementTypesConfigurationsSwitch<T> extends Switch<T> {
 			case ElementTypesConfigurationsPackage.NAMED_CONFIGURATION: {
 				NamedConfiguration namedConfiguration = (NamedConfiguration)theEObject;
 				T result = caseNamedConfiguration(namedConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ElementTypesConfigurationsPackage.EXTERNALLY_REGISTERED_TYPE: {
+				ExternallyRegisteredType externallyRegisteredType = (ExternallyRegisteredType)theEObject;
+				T result = caseExternallyRegisteredType(externallyRegisteredType);
+				if (result == null) result = caseElementTypeConfiguration(externallyRegisteredType);
+				if (result == null) result = caseConfigurationElement(externallyRegisteredType);
+				if (result == null) result = caseIdentifiedConfiguration(externallyRegisteredType);
+				if (result == null) result = caseNamedConfiguration(externallyRegisteredType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ElementTypesConfigurationsPackage.EXTERNALLY_REGISTERED_ADVICE: {
+				ExternallyRegisteredAdvice externallyRegisteredAdvice = (ExternallyRegisteredAdvice)theEObject;
+				T result = caseExternallyRegisteredAdvice(externallyRegisteredAdvice);
+				if (result == null) result = caseAdviceBindingConfiguration(externallyRegisteredAdvice);
+				if (result == null) result = caseAbstractAdviceBindingConfiguration(externallyRegisteredAdvice);
+				if (result == null) result = caseIdentifiedConfiguration(externallyRegisteredAdvice);
+				if (result == null) result = caseAdviceConfiguration(externallyRegisteredAdvice);
+				if (result == null) result = caseConfigurationElement(externallyRegisteredAdvice);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -441,6 +462,36 @@ public class ElementTypesConfigurationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedConfiguration(NamedConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Externally Registered Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Externally Registered Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExternallyRegisteredType(ExternallyRegisteredType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Externally Registered Advice</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Externally Registered Advice</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExternallyRegisteredAdvice(ExternallyRegisteredAdvice object) {
 		return null;
 	}
 

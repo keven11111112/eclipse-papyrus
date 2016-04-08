@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface AdviceConfiguration extends ConfigurationElement {
+
 	/**
 	 * Returns the value of the '<em><b>Before</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.

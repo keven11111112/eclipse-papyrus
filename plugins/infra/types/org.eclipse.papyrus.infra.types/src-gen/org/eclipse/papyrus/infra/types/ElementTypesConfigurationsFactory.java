@@ -104,6 +104,24 @@ public interface ElementTypesConfigurationsFactory extends EFactory {
 	MatcherConfiguration createMatcherConfiguration();
 
 	/**
+	 * Returns a new object of class '<em>Externally Registered Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Externally Registered Type</em>'.
+	 * @generated
+	 */
+	ExternallyRegisteredType createExternallyRegisteredType();
+
+	/**
+	 * Returns a new object of class '<em>Externally Registered Advice</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Externally Registered Advice</em>'.
+	 * @generated
+	 */
+	ExternallyRegisteredAdvice createExternallyRegisteredAdvice();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

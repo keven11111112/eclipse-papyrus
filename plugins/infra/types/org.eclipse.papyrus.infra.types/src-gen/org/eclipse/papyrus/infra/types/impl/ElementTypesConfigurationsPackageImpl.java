@@ -32,6 +32,8 @@ import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
+import org.eclipse.papyrus.infra.types.ExternallyRegisteredAdvice;
+import org.eclipse.papyrus.infra.types.ExternallyRegisteredType;
 import org.eclipse.papyrus.infra.types.IconEntry;
 import org.eclipse.papyrus.infra.types.IdentifiedConfiguration;
 import org.eclipse.papyrus.infra.types.InheritanceKind;
@@ -158,6 +160,20 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * @generated
 	 */
 	private EClass namedConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass externallyRegisteredTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass externallyRegisteredAdviceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -637,6 +653,24 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getExternallyRegisteredType() {
+		return externallyRegisteredTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExternallyRegisteredAdvice() {
+		return externallyRegisteredAdviceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getInheritanceKind() {
 		return inheritanceKindEEnum;
 	}
@@ -730,6 +764,10 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		namedConfigurationEClass = createEClass(NAMED_CONFIGURATION);
 		createEAttribute(namedConfigurationEClass, NAMED_CONFIGURATION__NAME);
 
+		externallyRegisteredTypeEClass = createEClass(EXTERNALLY_REGISTERED_TYPE);
+
+		externallyRegisteredAdviceEClass = createEClass(EXTERNALLY_REGISTERED_ADVICE);
+
 		// Create enums
 		inheritanceKindEEnum = createEEnum(INHERITANCE_KIND);
 	}
@@ -769,14 +807,16 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		elementTypeConfigurationEClass.getESuperTypes().add(this.getIdentifiedConfiguration());
 		elementTypeConfigurationEClass.getESuperTypes().add(this.getNamedConfiguration());
 		adviceConfigurationEClass.getESuperTypes().add(this.getConfigurationElement());
-		abstractAdviceBindingConfigurationEClass.getESuperTypes().add(this.getAdviceConfiguration());
 		abstractAdviceBindingConfigurationEClass.getESuperTypes().add(this.getIdentifiedConfiguration());
+		abstractAdviceBindingConfigurationEClass.getESuperTypes().add(this.getAdviceConfiguration());
 		specializationTypeConfigurationEClass.getESuperTypes().add(this.getElementTypeConfiguration());
 		metamodelTypeConfigurationEClass.getESuperTypes().add(this.getElementTypeConfiguration());
 		abstractEditHelperAdviceConfigurationEClass.getESuperTypes().add(this.getAdviceConfiguration());
 		editHelperAdviceConfigurationEClass.getESuperTypes().add(this.getAbstractEditHelperAdviceConfiguration());
 		adviceBindingConfigurationEClass.getESuperTypes().add(this.getAbstractAdviceBindingConfiguration());
 		matcherConfigurationEClass.getESuperTypes().add(this.getAbstractMatcherConfiguration());
+		externallyRegisteredTypeEClass.getESuperTypes().add(this.getElementTypeConfiguration());
+		externallyRegisteredAdviceEClass.getESuperTypes().add(this.getAdviceBindingConfiguration());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(elementTypeSetConfigurationEClass, ElementTypeSetConfiguration.class, "ElementTypeSetConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -803,7 +843,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		initEAttribute(getAdviceConfiguration_After(), ecorePackage.getEString(), "after", null, 0, -1, AdviceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractAdviceBindingConfigurationEClass, AbstractAdviceBindingConfiguration.class, "AbstractAdviceBindingConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractAdviceBindingConfiguration_Target(), this.getElementTypeConfiguration(), null, "target", null, 1, 1, AbstractAdviceBindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAbstractAdviceBindingConfiguration_Target(), this.getElementTypeConfiguration(), null, "target", null, 0, 1, AbstractAdviceBindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractAdviceBindingConfiguration_ContainerConfiguration(), this.getContainerConfiguration(), null, "containerConfiguration", null, 0, 1, AbstractAdviceBindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAbstractAdviceBindingConfiguration_MatcherConfiguration(), this.getAbstractMatcherConfiguration(), null, "matcherConfiguration", null, 0, 1, AbstractAdviceBindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractAdviceBindingConfiguration_Inheritance(), this.getInheritanceKind(), "inheritance", null, 1, 1, AbstractAdviceBindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -839,6 +879,10 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 
 		initEClass(namedConfigurationEClass, NamedConfiguration.class, "NamedConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedConfiguration_Name(), ecorePackage.getEString(), "name", null, 1, 1, NamedConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(externallyRegisteredTypeEClass, ExternallyRegisteredType.class, "ExternallyRegisteredType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(externallyRegisteredAdviceEClass, ExternallyRegisteredAdvice.class, "ExternallyRegisteredAdvice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(inheritanceKindEEnum, InheritanceKind.class, "InheritanceKind");

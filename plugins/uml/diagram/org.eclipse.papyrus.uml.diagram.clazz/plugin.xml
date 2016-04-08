@@ -1258,29 +1258,6 @@
 				      </decoratorProvider>
 				   </extension>
 
-<!-- Diagram specific advices -->
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-
-	<metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-          
- <adviceBinding
-       class="org.eclipse.papyrus.uml.diagram.clazz.custom.helper.advice.NamespaceHelperAdvice"
-       id="org.eclipse.papyrus.uml.diagram.class.NamespaceHelperAdvice"
-       inheritance="all"
-       typeId="org.eclipse.papyrus.uml.Namespace">
- </adviceBinding>
- <adviceBinding
-       class="org.eclipse.papyrus.uml.diagram.clazz.custom.helper.advice.ConstraintHelperAdvice"
-       id="org.eclipse.papyrus.uml.diagram.class.ConstraintHelperAdvice"
-       inheritance="none"
-       typeId="org.eclipse.papyrus.uml.Constraint">
- </adviceBinding>
-		
-	</metamodel>
-</extension>
-	
-<!-- UML ElementType bindings to Papyrus shared IClientContext -->
-
 <extension
       point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
    <contributionItemProvider
@@ -1745,19 +1722,7 @@
          target="1.2.0">
    </diagramReconciler>
 </extension>
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
-      <?gmfgen generated="true"?>
-      <clientContext id="org.eclipse.papyrus.uml.diagram.clazz.TypeContext">
-         <enablement>
-            <test
-               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.eclipse.papyrus.uml.diagram.clazz.EditingDomain"/>
-         </enablement>
-      </clientContext> 
-      <binding context="org.eclipse.papyrus.uml.diagram.clazz.TypeContext">
-         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
-      </binding>
-   </extension>
+
    <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
       <?gmfgen generated="true"?>
       <visualTypeProvider

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ASCII"?>
+<elementtypesconfigurations:ElementTypeSetConfiguration
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
+    xmi:id="_rWI4YHPzEeSnGJwaJWHCSg"
+    description=""
+    identifier="org.eclipse.papyrus.infra.emf.elementTypeSet"
+    name="Infra-EMF"
+    metamodelNsURI="http://www.eclipse.org/emf/2002/Ecore">
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_H1ejUPvzEeWw0r4E4rSXyw"
+      identifier="org.eclipse.papyrus.infra.emf.page"
+      name="EObject"
+      hint="EObject"
+      editHelperClassName="org.eclipse.papyrus.infra.emf.advice.DeletePageEditHelper">
+    <eClass
+        href="../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+  </elementTypeConfigurations>
+  <adviceBindingsConfigurations
+      xsi:type="elementtypesconfigurations:AdviceBindingConfiguration"
+      xmi:id="_fdf5EGBZEeWbqYFeFvN0SQ"
+      description=""
+      identifier="org.eclipse.papyrus.infra.emf.deletePageAdvice"
+      inheritance="all"
+      editHelperAdviceClassName="org.eclipse.papyrus.infra.emf.advice.DeletePageAdvice"/>
+  <adviceBindingsConfigurations
+      xsi:type="elementtypesconfigurations:AdviceBindingConfiguration"
+      xmi:id="_jxuLwPvzEeWw0r4E4rSXyw"
+      description=""
+      identifier="org.eclipse.papyrus.infra.emf.readOnlyAdvice"
+      editHelperAdviceClassName="org.eclipse.papyrus.infra.emf.advice.ReadOnlyObjectEditAdvice"/>
+</elementtypesconfigurations:ElementTypeSetConfiguration>

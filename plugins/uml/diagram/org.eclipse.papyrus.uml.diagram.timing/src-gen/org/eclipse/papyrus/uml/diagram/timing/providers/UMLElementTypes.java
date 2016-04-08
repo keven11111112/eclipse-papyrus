@@ -86,169 +86,169 @@ public class UMLElementTypes {
 	* @generated
 	*/
 	public static final IElementType Package_TimingDiagram = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Package_TimingDiagram"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Package_TimingDiagram"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Interaction_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Interaction_Shape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Interaction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Lifeline_FullShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Lifeline_FullShape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Lifeline_FullShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Lifeline_CompactShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Lifeline_CompactShape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Lifeline_CompactShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType StateInvariant_FullShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.StateInvariant_FullShape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.StateInvariant_FullShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType StateInvariant_CompactShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.StateInvariant_CompactShape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.StateInvariant_CompactShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType OccurrenceSpecification_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.OccurrenceSpecification_Shape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.OccurrenceSpecification_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType MessageOccurrenceSpecification_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.MessageOccurrenceSpecification_Shape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.MessageOccurrenceSpecification_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Node_StateDefinitionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Node_StateDefinitionShape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Node_StateDefinitionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Node_StateInvariantTransitionShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Node_StateInvariantTransitionShape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Node_StateInvariantTransitionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeConstraint_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.TimeConstraint_Shape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.TimeConstraint_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType TimeObservation_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.TimeObservation_Shape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.TimeObservation_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType DurationConstraint_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.DurationConstraint_Shape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.DurationConstraint_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType DurationObservation_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.DurationObservation_Shape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.DurationObservation_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType GeneralOrdering_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.GeneralOrdering_Shape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.GeneralOrdering_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Node_FreeTimeRulerShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Node_FreeTimeRulerShape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Node_FreeTimeRulerShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Node_LinearTimeRulerShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Node_LinearTimeRulerShape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Node_LinearTimeRulerShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Node_TickShape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Node_TickShape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Node_TickShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType DestructionOccurrenceSpecification_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.DestructionOccurrenceSpecification_Shape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.DestructionOccurrenceSpecification_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Lifeline_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Lifeline_Shape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Lifeline_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Gate_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Gate_Shape"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Gate_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_SynchEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Message_SynchEdge"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Message_SynchEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_AsynchEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Message_AsynchEdge"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Message_AsynchEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_ReplyEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Message_ReplyEdge"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Message_ReplyEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_CreateEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Message_CreateEdge"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Message_CreateEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_DeleteEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Message_DeleteEdge"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Message_DeleteEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_LostEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Message_LostEdge"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Message_LostEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Message_FoundEdge = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.uml.diagram.timing.Message_FoundEdge"); //$NON-NLS-1$
+			"org.eclipse.papyrus.umldi.Message_FoundEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated

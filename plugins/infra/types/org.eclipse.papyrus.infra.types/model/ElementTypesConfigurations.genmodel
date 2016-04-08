@@ -80,5 +80,8 @@
     <genClasses image="false" ecoreClass="ElementTypesConfigurations.ecore#//NamedConfiguration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//NamedConfiguration/name"/>
     </genClasses>
+    <genClasses ecoreClass="ElementTypesConfigurations.ecore#//ExternallyRegisteredType"/>
+    <genClasses ecoreClass="ElementTypesConfigurations.ecore#//ExternallyRegisteredAdvice"
+        labelFeature="#//types/IdentifiedConfiguration/identifier"/>
   </genPackages>
 </genmodel:GenModel>

@@ -416,96 +416,6 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ABSTRACT_ADVICE_BINDING_CONFIGURATION = 6;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__DESCRIPTION = ADVICE_CONFIGURATION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Before</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE = ADVICE_CONFIGURATION__BEFORE;
-
-	/**
-	 * The feature id for the '<em><b>After</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER = ADVICE_CONFIGURATION__AFTER;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__IDENTIFIER = ADVICE_CONFIGURATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET = ADVICE_CONFIGURATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Container Configuration</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION = ADVICE_CONFIGURATION_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION = ADVICE_CONFIGURATION_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Inheritance</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE = ADVICE_CONFIGURATION_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>Abstract Advice Binding Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT = ADVICE_CONFIGURATION_FEATURE_COUNT + 5;
-
-	/**
-	 * The number of operations of the '<em>Abstract Advice Binding Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_ADVICE_BINDING_CONFIGURATION_OPERATION_COUNT = ADVICE_CONFIGURATION_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.SpecializationTypeConfigurationImpl <em>Specialization Type Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -514,6 +424,193 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @generated
 	 */
 	int SPECIALIZATION_TYPE_CONFIGURATION = 7;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.ContainerConfigurationImpl <em>Container Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.types.impl.ContainerConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getContainerConfiguration()
+	 * @generated
+	 */
+	int CONTAINER_CONFIGURATION = 8;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.MetamodelTypeConfigurationImpl <em>Metamodel Type Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.types.impl.MetamodelTypeConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getMetamodelTypeConfiguration()
+	 * @generated
+	 */
+	int METAMODEL_TYPE_CONFIGURATION = 9;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.AbstractEditHelperAdviceConfigurationImpl <em>Abstract Edit Helper Advice Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.types.impl.AbstractEditHelperAdviceConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getAbstractEditHelperAdviceConfiguration()
+	 * @generated
+	 */
+	int ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION = 10;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.EditHelperAdviceConfigurationImpl <em>Edit Helper Advice Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.types.impl.EditHelperAdviceConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getEditHelperAdviceConfiguration()
+	 * @generated
+	 */
+	int EDIT_HELPER_ADVICE_CONFIGURATION = 11;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.AdviceBindingConfigurationImpl <em>Advice Binding Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.types.impl.AdviceBindingConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getAdviceBindingConfiguration()
+	 * @generated
+	 */
+	int ADVICE_BINDING_CONFIGURATION = 12;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.MatcherConfigurationImpl <em>Matcher Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.types.impl.MatcherConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getMatcherConfiguration()
+	 * @generated
+	 */
+	int MATCHER_CONFIGURATION = 13;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.IdentifiedConfiguration <em>Identified Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.types.IdentifiedConfiguration
+	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getIdentifiedConfiguration()
+	 * @generated
+	 */
+	int IDENTIFIED_CONFIGURATION = 14;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIED_CONFIGURATION__IDENTIFIER = 0;
+
+	/**
+	 * The number of structural features of the '<em>Identified Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIED_CONFIGURATION_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Identified Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIED_CONFIGURATION_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__IDENTIFIER = IDENTIFIED_CONFIGURATION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__DESCRIPTION = IDENTIFIED_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Before</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE = IDENTIFIED_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>After</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER = IDENTIFIED_CONFIGURATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET = IDENTIFIED_CONFIGURATION_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Container Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION = IDENTIFIED_CONFIGURATION_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION = IDENTIFIED_CONFIGURATION_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Inheritance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE = IDENTIFIED_CONFIGURATION_FEATURE_COUNT + 6;
+
+	/**
+	 * The number of structural features of the '<em>Abstract Advice Binding Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT = IDENTIFIED_CONFIGURATION_FEATURE_COUNT + 7;
+
+	/**
+	 * The number of operations of the '<em>Abstract Advice Binding Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION_OPERATION_COUNT = IDENTIFIED_CONFIGURATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -624,16 +721,6 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int SPECIALIZATION_TYPE_CONFIGURATION_OPERATION_COUNT = ELEMENT_TYPE_CONFIGURATION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.ContainerConfigurationImpl <em>Container Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.types.impl.ContainerConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getContainerConfiguration()
-	 * @generated
-	 */
-	int CONTAINER_CONFIGURATION = 8;
-
-	/**
 	 * The feature id for the '<em><b>Container Matcher Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -668,16 +755,6 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTAINER_CONFIGURATION_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.MetamodelTypeConfigurationImpl <em>Metamodel Type Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.types.impl.MetamodelTypeConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getMetamodelTypeConfiguration()
-	 * @generated
-	 */
-	int METAMODEL_TYPE_CONFIGURATION = 9;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -770,16 +847,6 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int METAMODEL_TYPE_CONFIGURATION_OPERATION_COUNT = ELEMENT_TYPE_CONFIGURATION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.AbstractEditHelperAdviceConfigurationImpl <em>Abstract Edit Helper Advice Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.types.impl.AbstractEditHelperAdviceConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getAbstractEditHelperAdviceConfiguration()
-	 * @generated
-	 */
-	int ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION = 10;
-
-	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -832,16 +899,6 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION_OPERATION_COUNT = ADVICE_CONFIGURATION_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.EditHelperAdviceConfigurationImpl <em>Edit Helper Advice Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.types.impl.EditHelperAdviceConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getEditHelperAdviceConfiguration()
-	 * @generated
-	 */
-	int EDIT_HELPER_ADVICE_CONFIGURATION = 11;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -907,14 +964,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int EDIT_HELPER_ADVICE_CONFIGURATION_OPERATION_COUNT = ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.AdviceBindingConfigurationImpl <em>Advice Binding Configuration</em>}' class.
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.types.impl.AdviceBindingConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getAdviceBindingConfiguration()
 	 * @generated
+	 * @ordered
 	 */
-	int ADVICE_BINDING_CONFIGURATION = 12;
+	int ADVICE_BINDING_CONFIGURATION__IDENTIFIER = ABSTRACT_ADVICE_BINDING_CONFIGURATION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -942,15 +998,6 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ADVICE_BINDING_CONFIGURATION__AFTER = ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ADVICE_BINDING_CONFIGURATION__IDENTIFIER = ABSTRACT_ADVICE_BINDING_CONFIGURATION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -1016,16 +1063,6 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ADVICE_BINDING_CONFIGURATION_OPERATION_COUNT = ABSTRACT_ADVICE_BINDING_CONFIGURATION_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.MatcherConfigurationImpl <em>Matcher Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.types.impl.MatcherConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getMatcherConfiguration()
-	 * @generated
-	 */
-	int MATCHER_CONFIGURATION = 13;
-
-	/**
 	 * The feature id for the '<em><b>Matcher Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1051,43 +1088,6 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int MATCHER_CONFIGURATION_OPERATION_COUNT = ABSTRACT_MATCHER_CONFIGURATION_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.IdentifiedConfiguration <em>Identified Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.infra.types.IdentifiedConfiguration
-	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getIdentifiedConfiguration()
-	 * @generated
-	 */
-	int IDENTIFIED_CONFIGURATION = 14;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDENTIFIED_CONFIGURATION__IDENTIFIER = 0;
-
-	/**
-	 * The number of structural features of the '<em>Identified Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDENTIFIED_CONFIGURATION_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Identified Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IDENTIFIED_CONFIGURATION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.NamedConfiguration <em>Named Configuration</em>}' class.
@@ -1127,6 +1127,197 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int NAMED_CONFIGURATION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.ExternallyRegisteredTypeImpl <em>Externally Registered Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.types.impl.ExternallyRegisteredTypeImpl
+	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getExternallyRegisteredType()
+	 * @generated
+	 */
+	int EXTERNALLY_REGISTERED_TYPE = 16;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_TYPE__DESCRIPTION = ELEMENT_TYPE_CONFIGURATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_TYPE__IDENTIFIER = ELEMENT_TYPE_CONFIGURATION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_TYPE__NAME = ELEMENT_TYPE_CONFIGURATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_TYPE__HINT = ELEMENT_TYPE_CONFIGURATION__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_TYPE__KIND = ELEMENT_TYPE_CONFIGURATION__KIND;
+
+	/**
+	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_TYPE__ICON_ENTRY = ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY;
+
+	/**
+	 * The number of structural features of the '<em>Externally Registered Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_TYPE_FEATURE_COUNT = ELEMENT_TYPE_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Externally Registered Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_TYPE_OPERATION_COUNT = ELEMENT_TYPE_CONFIGURATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.ExternallyRegisteredAdviceImpl <em>Externally Registered Advice</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.types.impl.ExternallyRegisteredAdviceImpl
+	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getExternallyRegisteredAdvice()
+	 * @generated
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE = 17;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE__IDENTIFIER = ADVICE_BINDING_CONFIGURATION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE__DESCRIPTION = ADVICE_BINDING_CONFIGURATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Before</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE__BEFORE = ADVICE_BINDING_CONFIGURATION__BEFORE;
+
+	/**
+	 * The feature id for the '<em><b>After</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE__AFTER = ADVICE_BINDING_CONFIGURATION__AFTER;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE__TARGET = ADVICE_BINDING_CONFIGURATION__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Container Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE__CONTAINER_CONFIGURATION = ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION;
+
+	/**
+	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE__MATCHER_CONFIGURATION = ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION;
+
+	/**
+	 * The feature id for the '<em><b>Inheritance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE__INHERITANCE = ADVICE_BINDING_CONFIGURATION__INHERITANCE;
+
+	/**
+	 * The feature id for the '<em><b>Edit Helper Advice Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE__EDIT_HELPER_ADVICE_CLASS_NAME = ADVICE_BINDING_CONFIGURATION__EDIT_HELPER_ADVICE_CLASS_NAME;
+
+	/**
+	 * The number of structural features of the '<em>Externally Registered Advice</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE_FEATURE_COUNT = ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Externally Registered Advice</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE_OPERATION_COUNT = ADVICE_BINDING_CONFIGURATION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.InheritanceKind <em>Inheritance Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1134,7 +1325,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getInheritanceKind()
 	 * @generated
 	 */
-	int INHERITANCE_KIND = 16;
+	int INHERITANCE_KIND = 18;
 
 
 	/**
@@ -1617,6 +1808,26 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	EAttribute getNamedConfiguration_Name();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.types.ExternallyRegisteredType <em>Externally Registered Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Externally Registered Type</em>'.
+	 * @see org.eclipse.papyrus.infra.types.ExternallyRegisteredType
+	 * @generated
+	 */
+	EClass getExternallyRegisteredType();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.types.ExternallyRegisteredAdvice <em>Externally Registered Advice</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Externally Registered Advice</em>'.
+	 * @see org.eclipse.papyrus.infra.types.ExternallyRegisteredAdvice
+	 * @generated
+	 */
+	EClass getExternallyRegisteredAdvice();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.infra.types.InheritanceKind <em>Inheritance Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2040,6 +2251,26 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NAMED_CONFIGURATION__NAME = eINSTANCE.getNamedConfiguration_Name();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.types.impl.ExternallyRegisteredTypeImpl <em>Externally Registered Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.types.impl.ExternallyRegisteredTypeImpl
+		 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getExternallyRegisteredType()
+		 * @generated
+		 */
+		EClass EXTERNALLY_REGISTERED_TYPE = eINSTANCE.getExternallyRegisteredType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.types.impl.ExternallyRegisteredAdviceImpl <em>Externally Registered Advice</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.types.impl.ExternallyRegisteredAdviceImpl
+		 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getExternallyRegisteredAdvice()
+		 * @generated
+		 */
+		EClass EXTERNALLY_REGISTERED_ADVICE = eINSTANCE.getExternallyRegisteredAdvice();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.types.InheritanceKind <em>Inheritance Kind</em>}' enum.

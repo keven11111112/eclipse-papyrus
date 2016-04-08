@@ -285,19 +285,6 @@
 
    
    
-   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
-      <?gmfgen generated="true"?>
-      <clientContext id="org.eclipse.papyrus.uml.diagram.component.TypeContext">
-         <enablement>
-            <test
-               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.eclipse.papyrus.uml.diagram.component.EditingDomain"/>
-         </enablement>
-      </clientContext> 
-      <binding context="org.eclipse.papyrus.uml.diagram.component.TypeContext">
-         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
-      </binding>
-   </extension>
 	   
 	   
       

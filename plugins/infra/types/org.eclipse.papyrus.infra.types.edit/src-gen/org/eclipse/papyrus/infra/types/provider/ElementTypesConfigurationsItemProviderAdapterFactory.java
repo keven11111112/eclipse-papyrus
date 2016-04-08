@@ -283,6 +283,52 @@ public class ElementTypesConfigurationsItemProviderAdapterFactory extends Elemen
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.types.ExternallyRegisteredType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExternallyRegisteredTypeItemProvider externallyRegisteredTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.types.ExternallyRegisteredType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExternallyRegisteredTypeAdapter() {
+		if (externallyRegisteredTypeItemProvider == null) {
+			externallyRegisteredTypeItemProvider = new ExternallyRegisteredTypeItemProvider(this);
+		}
+
+		return externallyRegisteredTypeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.types.ExternallyRegisteredAdvice} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExternallyRegisteredAdviceItemProvider externallyRegisteredAdviceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.types.ExternallyRegisteredAdvice}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExternallyRegisteredAdviceAdapter() {
+		if (externallyRegisteredAdviceItemProvider == null) {
+			externallyRegisteredAdviceItemProvider = new ExternallyRegisteredAdviceItemProvider(this);
+		}
+
+		return externallyRegisteredAdviceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -416,6 +462,8 @@ public class ElementTypesConfigurationsItemProviderAdapterFactory extends Elemen
 		if (editHelperAdviceConfigurationItemProvider != null) editHelperAdviceConfigurationItemProvider.dispose();
 		if (adviceBindingConfigurationItemProvider != null) adviceBindingConfigurationItemProvider.dispose();
 		if (matcherConfigurationItemProvider != null) matcherConfigurationItemProvider.dispose();
+		if (externallyRegisteredTypeItemProvider != null) externallyRegisteredTypeItemProvider.dispose();
+		if (externallyRegisteredAdviceItemProvider != null) externallyRegisteredAdviceItemProvider.dispose();
 	}
 
 }

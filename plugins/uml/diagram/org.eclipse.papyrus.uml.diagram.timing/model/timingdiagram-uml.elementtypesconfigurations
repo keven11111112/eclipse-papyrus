@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<elementtypesconfigurations:ElementTypeSetConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1" xmi:id="_BJMa0PyeEeWbo9Y7g2MLdw" identifier="org.eclipse.papyrus.uml.diagram.timing.uml.elementTypeSet" name="PapyrusUMLTimingDiagramUML" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:ExternallyRegisteredType" xmi:id="_m5cHEACHEeauW73l_j0dpw" identifier="org.eclipse.gmf.runtime.emf.type.core.default" name="DefaultMetamodelType"/>
+  <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_nL7yIPyeEeWbo9Y7g2MLdw" identifier="org.eclipse.papyrus.uml.diagram.timing.GateHelperAdvice" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.timing.custom.helper.advice.GateHelperAdvice">
+    <target xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sclz6lYCEeS0WsAAtVmToA"/>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_PIoBwPysEeWbo9Y7g2MLdw" identifier="org.eclipse.papyrus.uml.diagram.timing.OccurrenceSpecificationHelperAdvice" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.timing.custom.helper.advice.OccurrenceSpecificationHelperAdvice">
+    <target xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sc6kKlYCEeS0WsAAtVmToA"/>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_jztwwPysEeWbo9Y7g2MLdw" identifier="org.eclipse.papyrus.uml.diagram.timing.StateInvariantHelperAdvice" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.timing.custom.helper.advice.StateInvariantHelperAdvice">
+    <target xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_SdCf9lYCEeS0WsAAtVmToA"/>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_InLNAACIEeauW73l_j0dpw" identifier="org.eclipse.papyrus.uml.diagram.timing.DefaultTypeHelperAdvice" target="_m5cHEACHEeauW73l_j0dpw" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.timing.custom.helper.advice.DefaultTypeHelperAdvice"/>
+  <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_upuh0ACuEeaVcbLzq0LlyQ" identifier="org.eclipse.papyrus.uml.diagram.timing.StateDefinitionHelperAdvice" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.timing.custom.helper.advice.StateDefinitionHelperAdvice">
+    <target xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="../../org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_eu5p8dx0EeWVxMf7SXAfhg"/>
+  </adviceBindingsConfigurations>
+</elementtypesconfigurations:ElementTypeSetConfiguration>

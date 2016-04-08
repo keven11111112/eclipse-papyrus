@@ -23,9 +23,15 @@ import org.eclipse.papyrus.infra.types.core.registries.MatcherConfigurationTypeR
 
 public abstract class AbstractAdviceBindingFactory<T extends AbstractAdviceBindingConfiguration> extends AbstractAdviceFactory<T> {
 
+	private final String ALL_TYPE_ID = "*";
+
 	@Override
 	protected String getTypeId(T adviceConfiguration) {
-		return adviceConfiguration.getTarget().getIdentifier();
+		if (adviceConfiguration.getTarget() != null) {
+			return adviceConfiguration.getTarget().getIdentifier();
+		} else {
+			return ALL_TYPE_ID;
+		}
 	}
 
 	@Override

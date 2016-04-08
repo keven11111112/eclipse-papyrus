@@ -3297,14 +3297,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
          path="model/activityDiagram.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
-      <?gmfgen generated="false"?>
-   </extension>
 
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
-      <?gmfgen generated="false"?>
-   </extension>
-   
    <extension
       point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
    <diagramReconciler

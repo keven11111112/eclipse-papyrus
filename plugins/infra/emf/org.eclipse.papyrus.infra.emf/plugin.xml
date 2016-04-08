@@ -19,42 +19,11 @@
 <plugin>
    <extension-point id="dependencyUpdateParticipant" name="Dependency Update Participants" schema="schema/dependencyUpdateParticipant.exsd"/>
    <extension
-         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-      <metamodel
-            nsURI="http://www.eclipse.org/emf/2002/Ecore">
-         <adviceBinding
-               class="org.eclipse.papyrus.infra.emf.advice.DeletePageAdvice"
-               id="org.eclipse.papyrus.infra.emf.deletePageAdvice"
-               inheritance="all"
-               typeId="*">
-         </adviceBinding>
-         <metamodelType
-               eclass="EObject"
-               edithelper="org.eclipse.papyrus.infra.emf.advice.DeletePageEditHelper"
-               id="org.eclipse.papyrus.infra.emf.page">
-         </metamodelType>
-      </metamodel>
-      <metamodel
-            nsURI="http://www.eclipse.org/emf/2002/Ecore">
-         <adviceBinding
-               id="org.eclipse.papyrus.infra.emf.readOnlyAdvice"
-               class="org.eclipse.papyrus.infra.emf.advice.ReadOnlyObjectEditAdvice"
-               typeId="*"
-               inheritance="none">
-         </adviceBinding>
-      </metamodel>
-   </extension>
-   <extension
-         point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-      <binding
-            context="org.eclipse.papyrus.infra.services.edit.TypeContext">
-         <elementType
-               ref="org.eclipse.papyrus.infra.emf.page">
-         </elementType>
-         <advice
-               ref="org.eclipse.papyrus.infra.emf.deletePageAdvice">
-         </advice>
-      </binding>
+         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
+      <elementTypeSet
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+            path="model/infra-emf.elementtypesconfigurations">
+      </elementTypeSet>
    </extension>
 
 </plugin>

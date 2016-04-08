@@ -75,6 +75,8 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 			case ElementTypesConfigurationsPackage.EDIT_HELPER_ADVICE_CONFIGURATION: return createEditHelperAdviceConfiguration();
 			case ElementTypesConfigurationsPackage.ADVICE_BINDING_CONFIGURATION: return createAdviceBindingConfiguration();
 			case ElementTypesConfigurationsPackage.MATCHER_CONFIGURATION: return createMatcherConfiguration();
+			case ElementTypesConfigurationsPackage.EXTERNALLY_REGISTERED_TYPE: return createExternallyRegisteredType();
+			case ElementTypesConfigurationsPackage.EXTERNALLY_REGISTERED_ADVICE: return createExternallyRegisteredAdvice();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -188,6 +190,26 @@ public class ElementTypesConfigurationsFactoryImpl extends EFactoryImpl implemen
 	public MatcherConfiguration createMatcherConfiguration() {
 		MatcherConfigurationImpl matcherConfiguration = new MatcherConfigurationImpl();
 		return matcherConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternallyRegisteredType createExternallyRegisteredType() {
+		ExternallyRegisteredTypeImpl externallyRegisteredType = new ExternallyRegisteredTypeImpl();
+		return externallyRegisteredType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternallyRegisteredAdvice createExternallyRegisteredAdvice() {
+		ExternallyRegisteredAdviceImpl externallyRegisteredAdvice = new ExternallyRegisteredAdviceImpl();
+		return externallyRegisteredAdvice;
 	}
 
 	/**

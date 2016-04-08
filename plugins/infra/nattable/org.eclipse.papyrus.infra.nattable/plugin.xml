@@ -1013,28 +1013,8 @@
      </context>
  </extension>
  
- <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-
-	<metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore">
-
-	<!-- Generalizarion specific advices (remove inconsistent views when a Generalization is deleted -->		
-	<adviceBinding id="org.eclipse.papyrus.infra.nattable.common.helper.advice.TableContentsAdviceHelper"
-		class="org.eclipse.papyrus.infra.nattable.helper.advice.TableContentsAdviceHelper"
-		inheritance="all" typeId="*">
-	</adviceBinding>
-		
-	</metamodel>
-</extension>
 	
 <!-- UML ElementType bindings to Papyrus shared IClientContext -->
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-
-	<!-- Bindings declaration to shared IClientContext -->
-	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
-		<elementType ref="org.eclipse.papyrus.infra.nattable.common.helper.advice.TableContentsAdviceHelper"/>
-	</binding>
-		
-</extension>
 <extension
       point="org.eclipse.ui.commands">
    <category
@@ -1386,27 +1366,6 @@
          provider="org.eclipse.papyrus.infra.nattable.provider.ProblemLabelProvider">
    </labelProvider>
 </extension>
-  <extension
-         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-      <metamodel
-            nsURI="http://www.eclipse.org/papyrus/nattable/model">
-         <adviceBinding
-               class="org.eclipse.papyrus.infra.nattable.advice.DeleteNatTableContextAdvice"
-               id="org.eclipse.papyrus.infra.nattable.advice.DeleteNatTableAdvice"
-               inheritance="all"
-               typeId="*">
-         </adviceBinding>
-      </metamodel>
-   </extension>
-   <extension
-         point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-      <binding
-            context="org.eclipse.papyrus.infra.services.edit.TypeContext">
-         <elementType
-               ref="org.eclipse.papyrus.infra.nattable.advice.DeleteNatTableAdvice">
-         </elementType>
-      </binding>
-   </extension>
    <extension
          point="org.eclipse.ui.commandImages">
       <image
@@ -1774,5 +1733,19 @@
             properties="canInsert"
             type="java.lang.Object">
       </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
+      <elementTypeSet
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+            path="model/nattable-tablecontents.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
+      <elementTypeSet
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+            path="model/nattable-tablecontext.elementtypesconfigurations">
+      </elementTypeSet>
    </extension>
 </plugin>

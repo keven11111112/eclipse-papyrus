@@ -13,13 +13,9 @@
 package org.eclipse.papyrus.infra.types.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-
 import org.eclipse.papyrus.infra.types.AdviceConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
@@ -47,7 +43,6 @@ public abstract class AdviceConfigurationImpl extends ConfigurationElementImpl i
 	 * @ordered
 	 */
 	protected EList<String> before;
-
 	/**
 	 * The cached value of the '{@link #getAfter() <em>After</em>}' attribute list.
 	 * <!-- begin-user-doc -->

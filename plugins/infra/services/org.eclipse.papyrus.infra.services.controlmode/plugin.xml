@@ -128,24 +128,10 @@
       </menuContribution>
    </extension>
  <extension
-       point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-    <binding
-          context="org.eclipse.papyrus.infra.services.edit.TypeContext">
-       <advice
-             ref="org.eclipse.papyrus.infra.services.controlmode.advice.ControlModeAdviceHelper">
-       </advice>
-    </binding>
- </extension>
- <extension
-       point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-    <metamodel
-          nsURI="http://www.eclipse.org/emf/2002/Ecore">
-       <adviceBinding
-             class="org.eclipse.papyrus.infra.services.controlmode.helper.advice.ControlModeEditHelperAdvice"
-             id="org.eclipse.papyrus.infra.services.controlmode.advice.ControlModeAdviceHelper"
-             inheritance="all"
-             typeId="*">
-       </adviceBinding>
-    </metamodel>
+       point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
+    <elementTypeSet
+          clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+          path="model/controlmode.elementtypesconfigurations">
+    </elementTypeSet>
  </extension>
 </plugin>
