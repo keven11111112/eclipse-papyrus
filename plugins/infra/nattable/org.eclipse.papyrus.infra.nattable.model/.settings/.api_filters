@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.papyrus.infra.nattable.model" version="2">
-    <resource path="META-INF/MANIFEST.MF">
-        <filter comment="Dependencies had implicit upper bounds in Mars" id="927989779">
-            <message_arguments>
-                <message_argument value="1.2.0"/>
-                <message_argument value="org.eclipse.emf.ecore"/>
-            </message_arguments>
-        </filter>
-    </resource>
     <resource path="src-gen/org/eclipse/papyrus/infra/nattable/model/nattable/nattableaxisconfiguration/NattableaxisconfigurationPackage.java" type="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage">
         <filter comment="The feature count constants are notAPI" id="388194388">
             <message_arguments>
