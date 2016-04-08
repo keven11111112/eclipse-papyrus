@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2013 Obeo, CEA LIST.
+ * Copyright (c) 2008, 2016 Obeo, CEA LIST, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,7 @@
  *     Saadia Dhouib (CEA LIST) - Implementation of loading diagrams from template files  (.uml, .di , .notation)
  *     Christian W. Damus (CEA) - create models by URI, not IFile (CDO)
  *     Christian W. Damus (CEA) - Support creating models in repositories (CDO)
+ *     Christian W. Damus - bug 490936
  *
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.wizards;
@@ -252,6 +253,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		if (diagramCategoryIds.length == 0) {
 			return false;
 		}
+		// This won't be null if we got categories, above
+		getSelectDiagramCategoryPage().performFinish();
 		String diagramCategoryId = diagramCategoryIds[0];
 		final URI newURI = createNewModelURI(diagramCategoryId);
 
@@ -377,13 +380,19 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * @return the diagram category ids
 	 */
 	protected String[] getDiagramCategoryIds() {
-		if (selectDiagramCategoryPage != null) {
-			return selectDiagramCategoryPage.getDiagramCategories();
-		}
-		if (selectedStorageProvider.getDiagramCategoryPage() != null) {
-			return selectedStorageProvider.getDiagramCategoryPage().getDiagramCategories();
+		SelectDiagramCategoryPage page = getSelectDiagramCategoryPage();
+		if (page != null) {
+			return page.getDiagramCategories();
 		}
 		return null;
+	}
+
+	private SelectDiagramCategoryPage getSelectDiagramCategoryPage() {
+		return (selectDiagramCategoryPage != null)
+				? selectDiagramCategoryPage
+				: (selectedStorageProvider != null)
+						? selectedStorageProvider.getDiagramCategoryPage()
+						: null;
 	}
 
 	/**
@@ -868,8 +877,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 				result = pages.get(index - 1);
 			} else {
 				// get the last page before the provider pages
-				if (startProviderPageIndex >= 0) {
-					result = allPages.get(startProviderPageIndex);
+				if (startProviderPageIndex > 0) {
+					result = allPages.get(startProviderPageIndex - 1);
 				}
 			}
 		} else if (allPages.indexOf(page) == endProviderPageIndex) {

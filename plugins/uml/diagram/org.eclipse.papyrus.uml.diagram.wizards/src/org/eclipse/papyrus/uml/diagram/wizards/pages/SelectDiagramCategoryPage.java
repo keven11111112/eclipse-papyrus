@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
- *  Christian W. Damus - bug 466850
+ *  Christian W. Damus - bugs 466850, 490936
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
@@ -21,7 +21,6 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -59,6 +58,9 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 	/** The diagram category. */
 	private final List<String> mySelectedDiagramCategoryIds = new LinkedList<String>();
+
+	/** The most recently selected category, even if multiple selection is permitted. */
+	private String lastSelectedCategory;
 
 	/** The Constant PAGE_ID. */
 	public static final String PAGE_ID = "SelectDiagramCategory"; //$NON-NLS-1$
@@ -350,15 +352,20 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	protected void diagramCategorySelected(String category, boolean checked) {
 		if (checked) {
 			if (!mySelectedDiagramCategoryIds.contains(category)) {
+				if (!myAllowSeveralCategories) {
+					// Can only have one selection
+					mySelectedDiagramCategoryIds.clear();
+				}
 				mySelectedDiagramCategoryIds.add(category);
 			}
+			lastSelectedCategory = category;
 		} else {
 			mySelectedDiagramCategoryIds.remove(category);
+			lastSelectedCategory = mySelectedDiagramCategoryIds.isEmpty()
+					? null
+					: mySelectedDiagramCategoryIds.get(mySelectedDiagramCategoryIds.size() - 1);
 		}
 
-		// Notifies the settings file that the selection has been set and to what
-		settingsHelper.setCurrentSelection(category);
-		settingsHelper.saveRememberCurrentSelection(true);
 	}
 
 	/**
@@ -449,5 +456,16 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 	}
 
+	/**
+	 * Respond to completion of the wizard. Includes saving settings for the next
+	 * invocation of the wizard.
+	 * 
+	 * @since 2.0
+	 */
+	public void performFinish() {
+		// Notifies the settings file that the selection has been set and to what
+		settingsHelper.setCurrentSelection(lastSelectedCategory);
+		settingsHelper.saveRememberCurrentSelection(true);
 
+	}
 }
