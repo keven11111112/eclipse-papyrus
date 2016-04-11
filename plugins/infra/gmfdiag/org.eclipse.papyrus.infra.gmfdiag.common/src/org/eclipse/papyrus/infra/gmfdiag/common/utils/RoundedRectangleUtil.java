@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
+import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
@@ -130,6 +132,44 @@ public class RoundedRectangleUtil {
 			}
 		}
 		return intersections;
+	}
+
+	/**
+	 * Get the position of the location relative to a rounded rectangle.
+	 * 
+	 * @param rectangle
+	 *            The parent rectangle.
+	 * @param cornerDimension
+	 *            The dimension of rectangle corners
+	 * @param location
+	 *            The location of the position.
+	 * @return The position as a {@link PositionConstants}
+	 */
+	public static int getPosition(final Rectangle rectangle, final Dimension cornerDimension, final Point location) {
+		int position = PositionConstants.NONE;
+
+		// Get the position of the proposed location on the parent figure
+		final Rectangle maxRect = rectangle.getCopy();
+		while (maxRect.contains(location)) {
+			maxRect.shrink(1, 1);
+		}
+
+		Rectangle shrinkedParent = new Rectangle(rectangle);
+		shrinkedParent.shrink(cornerDimension.width / 2, cornerDimension.height / 2);
+
+		if (location.x < shrinkedParent.getTopLeft().x && location.y < shrinkedParent.getTopLeft().y) {
+			position = PositionConstants.NORTH_WEST;
+		} else if (location.x > shrinkedParent.getTopRight().x && location.y < shrinkedParent.getTopRight().y) {
+			position = PositionConstants.NORTH_EAST;
+		} else if (location.x > shrinkedParent.getBottomRight().x && location.y > shrinkedParent.getBottomRight().y) {
+			position = PositionConstants.SOUTH_EAST;
+		} else if (location.x < shrinkedParent.getBottomLeft().x && location.y > shrinkedParent.getBottomLeft().y) {
+			position = PositionConstants.SOUTH_WEST;
+		} else {
+			// not on a corner
+			position = maxRect.getPosition(location);
+		}
+		return position;
 	}
 
 }

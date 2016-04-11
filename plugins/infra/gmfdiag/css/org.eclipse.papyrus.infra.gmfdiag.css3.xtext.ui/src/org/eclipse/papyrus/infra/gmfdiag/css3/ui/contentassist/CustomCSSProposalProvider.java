@@ -269,7 +269,8 @@ public class CustomCSSProposalProvider extends AbstractCSSProposalProvider {
 				NamedStyleProperties.TOP_MARGIN_PROPERTY,
 				NamedStyleProperties.USE_ORIGINAL_COLORS,
 				NamedStyleProperties.WRAP_NAME,
-				NamedStyleProperties.NAME_BACKGROUND_COLOR
+				NamedStyleProperties.NAME_BACKGROUND_COLOR,
+				NamedStyleProperties.IS_PORT_RESIZABLE
 		};
 
 		return Arrays.asList(properties);

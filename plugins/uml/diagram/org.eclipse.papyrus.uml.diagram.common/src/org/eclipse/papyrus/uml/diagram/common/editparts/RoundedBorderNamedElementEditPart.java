@@ -19,8 +19,11 @@ import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomBooleanStyleObservableValue;
@@ -32,6 +35,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.helper.PapyrusRoundedEditPartHel
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.PortPositionEnum;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AllowResizeAffixedNodeAlignmentEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PortResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 
@@ -130,6 +136,9 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 		super.createDefaultEditPolicies();
 		// Install Edit Policy to Hide/show compartment, in particular for the symbol compartment
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		// edit policy for the resize behavior
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PortResizableEditPolicy());
+		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AllowResizeAffixedNodeAlignmentEditPolicy());
 	}
 
 	/**
@@ -335,5 +344,22 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 	 */
 	protected boolean getDefaultHasHeader() {
 		return DEFAULT_HAS_HEADER;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.BorderNamedElementEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
+	 */
+	@Override
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+		// relocate the figure in case of resize.
+		Object feature = event.getFeature();
+		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature) |
+				NotationPackage.eINSTANCE.getSize_Height().equals(feature)) {
+			getBorderItemLocator().relocate(getFigure());
+		}
 	}
 }

@@ -8,22 +8,17 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Fix some port location issue.
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts;
 
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AllowResizeAffixedNodeAlignmentEditPolicy;
-import org.eclipse.papyrus.uml.diagram.composite.custom.locators.CustomPortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
 
 
 /**
@@ -33,7 +28,7 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
  * @author Trung-Truc Nguyen
  *
  */
-public class CustomClassCompositeEditPart extends ClassCompositeEditPart{
+public class CustomClassCompositeEditPart extends ClassCompositeEditPart {
 
 	/**
 	 * Constructor.
@@ -45,22 +40,12 @@ public class CustomClassCompositeEditPart extends ClassCompositeEditPart{
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AllowResizeAffixedNodeAlignmentEditPolicy());
 	}
 
+	@Override
 	public void installEditPolicy(Object key, EditPolicy editPolicy) {
 		if (AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE.equals(key)) {
 			if (editPolicy instanceof AllowResizeAffixedNodeAlignmentEditPolicy)
 				super.installEditPolicy(key, editPolicy);
-		}
-		else 
+		} else
 			super.installEditPolicy(key, editPolicy);
-	}
-	
-	protected boolean addFixedChild(EditPart childEditPart) {
-		//Papyrus Gencode :Affixed Port locator
-		if(childEditPart instanceof PortEditPart) {
-			IBorderItemLocator locator = new CustomPortPositionLocator(getMainFigure(), (RoundedBorderNamedElementEditPart) childEditPart, PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((PortEditPart)childEditPart).getFigure(), locator);
-			return true;
-		}
-		return super.addFixedChild(childEditPart);
 	}
 }

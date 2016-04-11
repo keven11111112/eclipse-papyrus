@@ -1,17 +1,15 @@
-/*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
- * 
+/**
+ * Copyright (c) 2016 CEA LIST.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *   Benoit maggi (CEA LIST) benoit.maggi@cea.fr - Allow InnerPort (Visual : Port in Port) 
- *****************************************************************************/
-
-package org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts;
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - copy of ResizablePortEditPart from composite diagram to enable resizing.
+ */
+package org.eclipse.papyrus.uml.diagram.component.custom.edit.part;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
@@ -25,10 +23,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PortResizableEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.SideAffixedNodesCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
-import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.BehaviorPortEditPolicy;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 
 
 /**
@@ -101,18 +97,6 @@ public class ResizablePortEditPart extends PortEditPart {
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart#refreshVisuals()
-	 */
-	@Override
-	protected void refreshVisuals() {
-		BehaviorPortEditPolicy policy = (BehaviorPortEditPolicy) getEditPolicy(BehaviorPortEditPolicy.BEHAVIOR_PORT);
-		policy.udaptePortBehavior();
-		super.refreshVisuals();
 	}
 
 }

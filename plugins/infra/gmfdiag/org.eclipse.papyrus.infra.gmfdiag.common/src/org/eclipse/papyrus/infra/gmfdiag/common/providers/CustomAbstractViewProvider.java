@@ -61,7 +61,7 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 	 */
 	@Override
 	protected boolean provides(CreateViewForKindOperation op) {
-		if (! isRelevantDiagram(op.getContainerView().getDiagram())) {
+		if (!isRelevantDiagram(op.getContainerView().getDiagram())) {
 			return false;
 		}
 		// if(op.getViewKind() == Node.class) {
@@ -81,7 +81,7 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 	 */
 	@Override
 	protected boolean provides(CreateEdgeViewOperation operation) {
-		if (! isRelevantDiagram(operation.getContainerView().getDiagram())) {
+		if (!isRelevantDiagram(operation.getContainerView().getDiagram())) {
 			return false;
 		}
 		String graphicalType = getEdgeGraphicalType(operation.getSemanticAdapter(), operation.getContainerView(), operation.getSemanticHint());
@@ -93,7 +93,7 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 	 */
 	@Override
 	protected boolean provides(CreateNodeViewOperation operation) {
-		if (! isRelevantDiagram(operation.getContainerView().getDiagram())) {
+		if (!isRelevantDiagram(operation.getContainerView().getDiagram())) {
 			return false;
 		}
 		String graphicalType = getNodeGraphicalType(operation.getSemanticAdapter(), operation.getContainerView(), operation.getSemanticHint());
@@ -106,11 +106,11 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 		if ((semanticHint != null) && (!"".equals(semanticHint))) {
 			graphicalType = registry.getNodeGraphicalType(semanticHint, containerView.getType());
 		} else {
-			EObject domainElement = (EObject) semanticAdapter.getAdapter(EObject.class);
+			EObject domainElement = semanticAdapter.getAdapter(EObject.class);
 			if (domainElement != null) {
 				graphicalType = registry.getNodeGraphicalType(domainElement, containerView.getType());
 			}
-			IElementType elementType = (IElementType) semanticAdapter.getAdapter(IElementType.class);
+			IElementType elementType = semanticAdapter.getAdapter(IElementType.class);
 			if (elementType != null) {
 				graphicalType = registry.getNodeGraphicalType(elementType, containerView.getType());
 			}
@@ -124,31 +124,32 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 		if ((semanticHint != null) && (!"".equals(semanticHint))) {
 			graphicalType = registry.getEdgeGraphicalType(semanticHint);
 		} else {
-			EObject domainElement = (EObject) semanticAdapter.getAdapter(EObject.class);
+			EObject domainElement = semanticAdapter.getAdapter(EObject.class);
 			if (domainElement != null) {
 				graphicalType = registry.getEdgeGraphicalType(domainElement);
 			}
-			IElementType elementType = (IElementType) semanticAdapter.getAdapter(IElementType.class);
+			IElementType elementType = semanticAdapter.getAdapter(IElementType.class);
 			if (elementType != null) {
 				graphicalType = registry.getEdgeGraphicalType(elementType);
 			}
 		}
 		return graphicalType;
 	}
-	
+
 	/**
-	 * This method is used to know id the diagram is conform to type, it may be a prototype view, or a generatedDiagram 
+	 * This method is used to know id the diagram is conform to type, it may be a prototype view, or a generatedDiagram
+	 * 
 	 * @param diagram
 	 * @return
 	 */
-	protected boolean isRelevantDiagram (Diagram diagram){
-		ViewPrototype viewPrototype=org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
-		if(viewPrototype!=null){
-			if(diagramType.equals(viewPrototype.getLabel())){
+	protected boolean isRelevantDiagram(Diagram diagram) {
+		ViewPrototype viewPrototype = org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
+		if (viewPrototype != null) {
+			if ((diagramType != null) && diagramType.equals(viewPrototype.getLabel())) {
 				return true;
 			}
 			return false;
-			
+
 		}
 		if ((diagramType != null) && (diagramType.equals(diagram.getType()))) {
 			return true;

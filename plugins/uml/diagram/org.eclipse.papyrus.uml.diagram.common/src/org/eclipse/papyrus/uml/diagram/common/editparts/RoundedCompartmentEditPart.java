@@ -19,6 +19,7 @@ import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomBooleanStyleObservableValue;
@@ -26,6 +27,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomIntStyl
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStringStyleObservableList;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStringStyleObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.PapyrusRoundedEditPartHelper;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AllowResizeAffixedNodeAlignmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 
 /**
@@ -141,6 +144,21 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 		super.createDefaultEditPolicies();
 		// Install Edit Policy to Hide/show compartment, in particular for the symbol compartment
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AllowResizeAffixedNodeAlignmentEditPolicy());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.gef.editparts.AbstractEditPart#installEditPolicy(java.lang.Object, org.eclipse.gef.EditPolicy)
+	 */
+	@Override
+	public void installEditPolicy(Object key, EditPolicy editPolicy) {
+		if (AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE.equals(key)) {
+			if (editPolicy instanceof AllowResizeAffixedNodeAlignmentEditPolicy)
+				super.installEditPolicy(key, editPolicy);
+		} else
+			super.installEditPolicy(key, editPolicy);
 	}
 
 	/**

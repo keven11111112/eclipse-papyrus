@@ -62,7 +62,7 @@ public class PortAffixedLabelNameEditPart extends AbstractElementLabelEditPart i
 		IFigure parentFigure = getFigure().getParent();
 		if (parentFigure != null && parentFigure.getLayoutManager() != null) {
 			Object constraint = parentFigure.getLayoutManager().getConstraint(getFigure());
-			return (IBorderItemLocator) constraint;
+			return constraint instanceof IBorderItemLocator ? (IBorderItemLocator) constraint : null;
 		}
 		return null;
 	}

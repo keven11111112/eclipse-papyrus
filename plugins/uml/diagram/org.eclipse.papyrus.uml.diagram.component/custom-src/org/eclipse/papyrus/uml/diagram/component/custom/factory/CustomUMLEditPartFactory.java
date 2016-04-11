@@ -23,6 +23,7 @@ import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomModelEdi
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomPortAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomPortNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomUsageEditPart;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.ResizablePortEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart;
@@ -31,6 +32,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealization
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
@@ -69,6 +71,8 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				return new CustomPortNameEditPart(view);
 			case PortAppliedStereotypeEditPart.VISUAL_ID:
 				return new CustomPortAppliedStereotypeEditPart(view);
+			case PortEditPart.VISUAL_ID:
+				return new ResizablePortEditPart(view);
 			}
 		}
 		return super.createEditPart(context, model);

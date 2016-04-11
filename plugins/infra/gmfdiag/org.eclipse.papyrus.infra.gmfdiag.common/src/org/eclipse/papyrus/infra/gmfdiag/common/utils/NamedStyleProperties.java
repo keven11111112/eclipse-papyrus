@@ -161,4 +161,7 @@ public interface NamedStyleProperties {
 	/** The port position namedStyle property */
 	public static final String PORT_POSITION = "portPosition"; //$NON-NLS-1$
 
+	/** The port resizable namestyle propery. */
+	public static final String IS_PORT_RESIZABLE = "isPortResizable";//$NON-NLS-1$
+
 }

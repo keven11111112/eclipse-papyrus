@@ -392,6 +392,10 @@ CompositeStructureDiagram Collaboration > Compartment[kind=internalstructure] > 
 	visible:false;
 }
 
+CompositeStructureDiagram Port{
+	isPortResizable:true;
+}
+
 /*---------- Interaction Overview Diagram ----------*/
 
 InteractionOverviewDiagram MergeNode, 
