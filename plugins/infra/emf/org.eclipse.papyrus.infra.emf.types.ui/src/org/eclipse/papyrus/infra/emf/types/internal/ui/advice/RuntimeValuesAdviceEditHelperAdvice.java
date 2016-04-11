@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 491478
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.types.internal.ui.advice;
@@ -29,6 +30,7 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.emf.types.ui.advices.values.RuntimeValuesAdviceConfiguration;
 import org.eclipse.papyrus.infra.emf.types.ui.advices.values.ViewToDisplay;
 import org.eclipse.papyrus.infra.properties.contexts.View;
@@ -108,6 +110,7 @@ public class RuntimeValuesAdviceEditHelperAdvice extends AbstractEditHelperAdvic
 			 */
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				int dialogResult = Window.OK;
 				Set<View> viewsToDisplay = getViewsToDisplay();
 				if (!viewsToDisplay.isEmpty()) {
 					EditionDialog dialog = new EditionDialog(Display.getCurrent().getActiveShell(), dialogCancellable) {
@@ -117,10 +120,12 @@ public class RuntimeValuesAdviceEditHelperAdvice extends AbstractEditHelperAdvic
 					dialog.setViews(viewsToDisplay);
 					dialog.setInput(elementToConfigure);
 
-					dialog.open();
+					dialogResult = dialog.open();
 				}
 
-				return CommandResult.newOKCommandResult(elementToConfigure);
+				return (dialogResult == Window.OK)
+						? CommandResult.newOKCommandResult(elementToConfigure)
+						: CommandResult.newCancelledCommandResult();
 			}
 		};
 
