@@ -38,8 +38,10 @@ import org.junit.runners.Suite.SuiteClasses;
 		ValueSpecificationUtilTestCase.class,
 		CanonicalRegressionTest.class,
 		ShapeCustomisationTest.class,
-		Bug476873_MoveCommandTest.class
+		Bug476873_MoveCommandTest.class,
+		Bug488744_PortPositionTest.class
 })
+
 public class AllTests {
 	// JUnit 4 test suite
 }
