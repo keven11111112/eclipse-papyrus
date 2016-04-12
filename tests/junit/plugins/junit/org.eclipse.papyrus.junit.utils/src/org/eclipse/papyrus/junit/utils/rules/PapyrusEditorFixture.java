@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220
+ *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IOperationHistoryListener;
 import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.commands.operations.IUndoableOperation;
@@ -133,6 +134,8 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	private final List<String> excludedTypeView = Arrays.asList(new String[] { "Note" });
 
+	private final boolean ensureOperationHistoryIntegrity;
+
 	@SuppressWarnings("restriction")
 	private org.eclipse.papyrus.infra.ui.internal.preferences.YesNo initialEditorLayoutStorageMigrationPreference;
 
@@ -152,14 +155,47 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	private ListMultimap<Description, IFile> modelFiles;
 
+	private IOperationHistoryListener operationHistoryIntegrityListener;
+	private IOperationHistory operationHistory;
+
+	/**
+	 * Initializes me with the assurance of undo/redo correspondence in the
+	 * diagram and EMF views of the command history.
+	 */
 	public PapyrusEditorFixture() {
-		super();
+		this(true);
 	}
 
+	/**
+	 * Initializes me with the option to ensure integrity of the operation history
+	 * by listening for command execution in the diagram context and, if an operation
+	 * executed in the diagram does not have the editing-domain context, adds that
+	 * context. This ensures that the diagram editor and the model explorer, for
+	 * example, see the same undo/redo history (which they would not if some
+	 * diagram-only commands were only in the diagram's history). Some tests do
+	 * need to suppress this convenience in order to accurately represent the
+	 * normal Papyrus run-time environment.
+	 *
+	 * @param ensureOperationHistoryIntegrity
+	 * 
+	 * @since 2.0
+	 */
+	public PapyrusEditorFixture(boolean ensureOperationHistoryIntegrity) {
+		super();
+
+		this.ensureOperationHistoryIntegrity = ensureOperationHistoryIntegrity;
+	}
+
+	/**
+	 * @since 2.0
+	 */
 	public IMultiDiagramEditor getEditor() {
 		return editor;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public IMultiDiagramEditor getEditor(String path) {
 		IMultiDiagramEditor result = null;
 
@@ -212,24 +248,28 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 		super.starting(description);
 
-		// Ensure consistency of undo/redo with EMF operations
-		final IWorkspaceCommandStack stack = (IWorkspaceCommandStack) getEditingDomain().getCommandStack();
-		final IUndoContext emfContext = stack.getDefaultUndoContext();
-		stack.getOperationHistory().addOperationHistoryListener(new IOperationHistoryListener() {
-			@Override
-			public void historyNotification(OperationHistoryEvent event) {
-				if ((event.getEventType() == OperationHistoryEvent.DONE) && (activeDiagramEditor != null)) {
-					IUndoContext diagramContext = activeDiagramEditor.getDiagramEditDomain().getDiagramCommandStack().getUndoContext();
-					if (diagramContext != null) {
-						IUndoableOperation undo = event.getOperation();
-						if ((undo != null) && !undo.hasContext(emfContext)) {
-							undo.addContext(emfContext);
+		if (ensureOperationHistoryIntegrity) {
+			// Ensure consistency of undo/redo with EMF operations
+			final IWorkspaceCommandStack stack = (IWorkspaceCommandStack) getEditingDomain().getCommandStack();
+			final IUndoContext emfContext = stack.getDefaultUndoContext();
+			operationHistory = stack.getOperationHistory();
+			operationHistoryIntegrityListener = new IOperationHistoryListener() {
+				@Override
+				public void historyNotification(OperationHistoryEvent event) {
+					if ((event.getEventType() == OperationHistoryEvent.DONE) && (activeDiagramEditor != null)) {
+						IUndoContext diagramContext = activeDiagramEditor.getDiagramEditDomain().getDiagramCommandStack().getUndoContext();
+						if (diagramContext != null) {
+							IUndoableOperation undo = event.getOperation();
+							if ((undo != null) && !undo.hasContext(emfContext)) {
+								undo.addContext(emfContext);
+							}
 						}
 					}
+					// nothing to do for table
 				}
-				// nothing to do for table
-			}
-		});
+			};
+			operationHistory.addOperationHistoryListener(operationHistoryIntegrityListener);
+		}
 	}
 
 	@SuppressWarnings("restriction")
@@ -255,18 +295,27 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 				fail("Failed to close an editor: " + exception.getLocalizedMessage());
 			}
 		} finally {
-			editorsToClose.clear();
-			editor = null;
-			activeDiagramEditor = null;
-
-			org.eclipse.papyrus.infra.ui.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(initialEditorLayoutStorageMigrationPreference);
-
 			try {
-				if (hasRequiredViews()) {
-					closeRequiredViews();
+				if (operationHistoryIntegrityListener != null) {
+					operationHistory.removeOperationHistoryListener(operationHistoryIntegrityListener);
+					operationHistoryIntegrityListener = null;
+					operationHistory = null;
 				}
+
 			} finally {
-				super.finished(description);
+				editorsToClose.clear();
+				editor = null;
+				activeDiagramEditor = null;
+
+				org.eclipse.papyrus.infra.ui.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(initialEditorLayoutStorageMigrationPreference);
+
+				try {
+					if (hasRequiredViews()) {
+						closeRequiredViews();
+					}
+				} finally {
+					super.finished(description);
+				}
 			}
 		}
 	}
@@ -282,6 +331,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return result;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public TransactionalEditingDomain getEditingDomain(IMultiDiagramEditor editor) {
 		TransactionalEditingDomain result = null;
 
@@ -301,6 +353,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return null;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	protected IMultiDiagramEditor open(final IFile modelFile) {
 		final boolean firstEditor = editorsToClose.isEmpty();
 
@@ -362,6 +417,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return editor;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	protected IMultiDiagramEditor openOne(Description description) {
 		IFile papyrusModel = getProject().getFile(Iterables.getOnlyElement(initModelResources(description)).getURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION));
 		modelFiles.put(description, papyrusModel);
@@ -380,23 +438,38 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return result;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	protected IMultiDiagramEditor reopenOne(Description description) {
 		IFile papyrusModel = modelFiles.get(description).get(0);
 		return open(papyrusModel);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public IMultiDiagramEditor open() {
 		return openOne(testDescription);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public IMultiDiagramEditor open(String resourcePath) {
 		return open(new Path(resourcePath).removeFileExtension().lastSegment(), ResourceKind.BUNDLE, resourcePath);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public IMultiDiagramEditor open(String targetPath, String resourcePath) {
 		return open(targetPath, ResourceKind.BUNDLE, resourcePath);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public IMultiDiagramEditor open(String targetPath, ResourceKind resourceKind, String resourcePath) {
 		final IFile papyrusModel = getProject().getFile(initModelResource(targetPath, resourceKind, resourcePath).getURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION));
 		return open(papyrusModel);
@@ -410,6 +483,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 * that may be significant to the test.
 	 * 
 	 * @return the re-opened editor
+	 * @since 2.0
 	 */
 	public IMultiDiagramEditor reopen() {
 		return reopenOne(testDescription);
@@ -479,6 +553,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return getServiceRegistry(editor);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public ServicesRegistry getServiceRegistry(IMultiDiagramEditor editor) {
 		return editor.getServicesRegistry();
 	}
@@ -487,6 +564,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return getModelSet(editor);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public ModelSet getModelSet(IMultiDiagramEditor editor) {
 		try {
 			return getServiceRegistry(editor).getService(ModelSet.class);
@@ -502,6 +582,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return getModel(editor);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public Package getModel(IMultiDiagramEditor editor) {
 		Package result = null;
 
@@ -515,10 +598,16 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return result;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public IPageManager getPageManager() {
 		return getPageManager(editor);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public IPageManager getPageManager(IMultiDiagramEditor editor) {
 		try {
 			return getServiceRegistry(editor).getService(IPageManager.class);
@@ -537,6 +626,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return activateTable(editor, name);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public PapyrusEditorFixture activateDiagram(IMultiDiagramEditor editor, final String name) {
 		activate(editor);
 
@@ -567,6 +659,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return this;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public PapyrusEditorFixture activateTable(IMultiDiagramEditor editor, final String name) {
 		activate(editor);
 
@@ -611,6 +706,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return activateDiagram(editor, diagram);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public PapyrusEditorFixture activateDiagram(IMultiDiagramEditor editor, final DiagramEditPart diagram) {
 		activate(editor);
 
@@ -650,6 +748,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return openTable(editor, name);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public PapyrusEditorFixture openDiagram(IMultiDiagramEditor editor, final String name) {
 		activate(editor);
 
@@ -668,6 +769,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return this;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public PapyrusEditorFixture openTable(IMultiDiagramEditor editor, final String name) {
 		activate(editor);
 
@@ -696,6 +800,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return closeDiagram(editor, name);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public PapyrusEditorFixture closeDiagram(IMultiDiagramEditor editor, final String name) {
 		try {
 			ModelSet modelSet = ServiceUtils.getInstance().getModelSet(editor.getServicesRegistry());
@@ -764,6 +871,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return getDiagram(editor, name);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public DiagramEditPart getDiagram(IMultiDiagramEditor editor, final String name) {
 		final ISashWindowsContainer sashContainer = PlatformHelper.getAdapter(editor, ISashWindowsContainer.class);
 		final org.eclipse.papyrus.infra.core.sasheditor.editor.IPage[] matchedPage = { null };
@@ -792,6 +902,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return findEditPart(getActiveDiagramEditor(), modelElement);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public EditPart findEditPart(IMultiDiagramEditor editor, EObject modelElement) {
 		IEditorPart activeEditor = editor.getActiveEditor();
 		assertThat("No diagram active", activeEditor, instanceOf(DiagramEditor.class));
@@ -939,6 +1052,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return findEditPart(getActiveDiagramEditor(), name, type);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public EditPart findEditPart(IMultiDiagramEditor editor, String name, Class<? extends NamedElement> type) {
 		IEditorPart activeEditor = editor.getActiveEditor();
 		assertThat("No diagram active", activeEditor, instanceOf(DiagramEditor.class));
@@ -1011,6 +1127,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return getPalette(getActiveDiagramEditor());
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public PaletteViewer getPalette(IMultiDiagramEditor editor) {
 		IEditorPart activeEditor = editor.getActiveEditor();
 		assertThat("No diagram active", activeEditor, instanceOf(DiagramEditor.class));
@@ -1261,6 +1380,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return result;
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public void ensurePapyrusPerspective() {
 		Display.getDefault().syncExec(new Runnable() {
 

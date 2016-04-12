@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,16 +8,16 @@
  *
  * Contributors:
  *  Christian W. Damus (CEA) - initial API and implementation
- *  Christian W. Damus - bug 459746
- *  Christian W. Damus - bug 433206
+ *  Christian W. Damus - bugs 459746, 433206, 491542
  */
 package org.eclipse.papyrus.infra.gmfdiag.commands.tests;
 
+import org.eclipse.papyrus.commands.CheckedDiagramCommandStackTest;
 import org.eclipse.papyrus.commands.NestingNotifyingWorkspaceCommandStackTest;
 import org.eclipse.papyrus.commands.NotifyingWorkspaceCommandStackTest;
 import org.eclipse.papyrus.commands.util.CommandTreeIteratorTest;
-import org.junit.runner.RunWith;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 
@@ -29,7 +29,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		// {oep.commands}
 		NotifyingWorkspaceCommandStackTest.class, NestingNotifyingWorkspaceCommandStackTest.class,
 		// {oep.commands.util}
-		CommandTreeIteratorTest.class })
+		CommandTreeIteratorTest.class,
+		CheckedDiagramCommandStackTest.class })
 public class AllTests {
 
 }

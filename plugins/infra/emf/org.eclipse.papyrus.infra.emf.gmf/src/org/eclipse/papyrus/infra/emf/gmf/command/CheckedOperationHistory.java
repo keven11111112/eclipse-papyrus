@@ -9,7 +9,7 @@
  * Contributors:
  *  Mathieu Velten (Atos) - Initial API and implementation
  *  Christian W. Damus (CEA) - bugs 357250, 323802
- *  Christian W. Damus - bug 485220
+ *  Christian W. Damus - bugs 485220, 491542
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.gmf.command;
@@ -55,6 +55,9 @@ public class CheckedOperationHistory implements IOperationHistory {
 	protected static final IOperationApprover2[] approversArray;
 
 	protected IOperationHistory history;
+
+	// Whether the current thread is executing an operation
+	private ThreadLocal<IUndoableOperation> executing = new ThreadLocal<>();
 
 	private static class ApproverPriorityPair implements Comparable<ApproverPriorityPair> {
 
@@ -189,7 +192,49 @@ public class CheckedOperationHistory implements IOperationHistory {
 			// not approved. No notifications are sent, just return the status.
 			return status;
 		}
-		return history.execute(operation, monitor, info);
+		return doExecute(operation, monitor, info);
+	}
+
+	protected IStatus doExecute(IUndoableOperation operation, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		IStatus result;
+
+		final IUndoableOperation current = executing.get();
+		if (current == null) {
+			// Initial execution. Fine
+			executing.set(operation);
+			try {
+				result = history.execute(operation, monitor, info);
+			} finally {
+				executing.remove();
+			}
+		} else {
+			// Re-entrant operation execution is done free-floating
+			try {
+				// Don't notify start/done events because the reconciliation
+				// between resource-set changes and operation contexts
+				// performed by various listeners will lose information or
+				// it won't bubble up to the top operation where it belongs
+				result = operation.execute(monitor, info);
+				
+				// On successful execution, propagate any contexts that may
+				// not already be on currently executing operation
+				if (result.isOK()) {
+					for (IUndoContext next : operation.getContexts()) {
+						if (!current.hasContext(next)) {
+							current.addContext(next);
+						}
+					}
+				}
+			} finally {
+				// Dispose the operation because we're not adding it
+				// to the history. Recorded EMF operations that know
+				// they are not the root operation will not dispose
+				// their change-descriptions, so they are safe
+				operation.dispose();
+			}
+		}
+
+		return result;
 	}
 
 	@Override
