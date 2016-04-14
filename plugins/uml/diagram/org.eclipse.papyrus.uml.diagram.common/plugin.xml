@@ -567,9 +567,21 @@
       </contributor>
       <contributor
             contributor="org.eclipse.papyrus.uml.diagram.common.hyperlink.DirectedRelationshipSourceHyperlinkContributor"
-            description="Creates hyperlinks referencing sources of directed relationships for which the clicekd element is a target"
+            description="Creates hyperlinks referencing sources of directed relationships for which the clicked element is a target"
             id="org.eclipse.papyrus.uml.diagram.common.DirectedRelationshipSourceHyperlinkContributor"
             label="Directed relationship source hyperlinks">
+      </contributor>
+      <contributor
+            contributor="org.eclipse.papyrus.uml.diagram.common.hyperlink.DirectedRelationshipTargetEndHyperlinkContributor"
+            description="Creates hyperlinks referencing target ends of double-clicked directed relationship"
+            id="org.eclipse.papyrus.uml.diagram.common.DirectedRelationshipTargetEndHyperlinkContributor"
+            label="Directed relationship target end hyperlinks">
+      </contributor>
+      <contributor
+            contributor="org.eclipse.papyrus.uml.diagram.common.hyperlink.DirectedRelationshipSourceEndHyperlinkContributor"
+            description="Creates hyperlinks referencing source ends of double-clicked directed relationship"
+            id="org.eclipse.papyrus.uml.diagram.common.DirectedRelationshipSourceEndHyperlinkContributor"
+            label="Directed relationship source end hyperlinks">
       </contributor>
 </extension>
 </plugin>

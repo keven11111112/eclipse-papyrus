@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2016 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -20,44 +20,29 @@ import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Generalization;
 
 /**
  * Navigates from a NamedElementdElement to its NamedElement declaration
- * 
+ *
  */
-public class NamedNavigableElement implements ExtendedNavigableElement {
-
-	protected final NamedElement element;
+public class GeneralizationNavigableElement implements ExtendedNavigableElement {
+	protected final Generalization element;
 
 	/**
-	 *
 	 * @param element
-	 *            The NamedElement to navigate to. May be null.
 	 */
-	public NamedNavigableElement(NamedElement element) {
+	public GeneralizationNavigableElement(Generalization element) {
 		this.element = element;
 	}
 
 	public String getLabel() {
-		String label = "Go to element" + getNamedElementLabel() + "...";
+		String label = "Go to generalization...";
 		return label;
 	}
 
 	public String getDescription() {
-		return "Go to the element declaration of this NamedElement" + getNamedElementLabel();
-	}
-
-	protected String getNamedElementLabel() {
-		if (element == null) {
-			return "";
-		} else {
-			if (element.getName() != null) {
-				return " (" + element.getName() + ")";
-			} else {
-				return "";
-			}
-		}
+		return "Go to the element declaration of this Generalization";
 	}
 
 	@Deprecated
