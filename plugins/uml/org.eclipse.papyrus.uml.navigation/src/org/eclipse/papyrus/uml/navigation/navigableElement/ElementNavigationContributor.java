@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2015 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -18,19 +18,19 @@ import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationContributor;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * NavigationContributor to navigate from Generalization
- * 
+ * NavigationContributor to navigate from NamedElement
  */
-public class GeneralizationNavigationContributor implements NavigationContributor {
+public class ElementNavigationContributor implements NavigationContributor {
+
 	public List<NavigableElement> getNavigableElements(Object fromElement) {
 		List<NavigableElement> result = new LinkedList<NavigableElement>();
 
 		Element element = UMLUtil.resolveUMLElement(fromElement);
-		if (element instanceof Generalization) {
-			result.add(new GeneralizationNavigableElement(((Generalization) element)));
+		if (element instanceof Element) {
+			result.add(new GenericNavigableElement(((Element) element)));
 		}
 
 		return result;

@@ -71,6 +71,8 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	private boolean wasUnderlined;
 
 	private WrappingLabel lastWrappingLabel;
+	
+	private static boolean altReleasedPostNavigation = true;
 
 	public class NavigationMenuInitializationException extends Exception {
 		private static final long serialVersionUID = 1094797103244873186L;
@@ -132,6 +134,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 
 	protected boolean isExitState(SelectionRequest request, EObject model) {
 		if (!request.isAltKeyPressed()) {
+			altReleasedPostNavigation = true;
 			return true;
 		}
 
@@ -140,6 +143,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 
 	private boolean isExitState(MouseEvent e, EObject model) {
 		if ((e.stateMask & SWT.ALT) == 0) {
+			altReleasedPostNavigation = true;
 			return true;
 		}
 
@@ -163,7 +167,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	}
 
 	protected boolean isEnterState(SelectionRequest request, EObject model) {
-		if (!request.isAltKeyPressed()) {
+		if (!request.isAltKeyPressed() || !altReleasedPostNavigation) {
 			return false;
 		}
 
@@ -171,7 +175,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	}
 
 	protected boolean isEnterState(MouseEvent e, EObject model) {
-		if ((e.stateMask & SWT.ALT) == 0) {
+		if ((e.stateMask & SWT.ALT) == 0 || !altReleasedPostNavigation) {
 			return false;
 		}
 
@@ -358,6 +362,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 			}
 		}
 
+		altReleasedPostNavigation = false;
 		exitItem();
 	}
 
@@ -380,6 +385,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 			Activator.log.error(e);
 		}
 
+		altReleasedPostNavigation = false;
 		exitItem();
 	}
 
@@ -562,5 +568,9 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	 */
 	public void setParentShell(Shell parentShell) {
 		this.parentShell = parentShell;
+	}
+	
+	public void altReleased() {
+		this.altReleasedPostNavigation = true;
 	}
 }

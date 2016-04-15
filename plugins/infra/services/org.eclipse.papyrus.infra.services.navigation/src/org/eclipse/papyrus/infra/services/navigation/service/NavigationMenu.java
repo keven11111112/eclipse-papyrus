@@ -27,4 +27,5 @@ public interface NavigationMenu {
 	public List<Object> getPrependObjects();
 	public void setServicesRegistry(ServicesRegistry registry);
 	public void setParentShell(Shell parentShell);
+	public void altReleased();
 }

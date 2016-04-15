@@ -27,91 +27,22 @@ import org.eclipse.uml2.uml.Type;
  *
  * @author Camille Letavernier
  */
-public class TypedNavigableElement implements ExtendedNavigableElement {
-
-	protected final Type type;
-
+public class TypedNavigableElement extends GenericNavigableElement {
 	/**
 	 *
 	 * @param type
 	 *            The Type to navigate to. May be null.
 	 */
 	public TypedNavigableElement(Type type) {
-		this.type = type;
+		super(type);
 	}
 
 	public String getLabel() {
-		String label = "Go to type" + getTypeLabel() + "...";
+		String label = "Go to type" + getElementLabel() + "...";
 		return label;
 	}
 
 	public String getDescription() {
-		return "Go to the type declaration of this TypedElement: " + getTypeLabel();
-	}
-
-	protected String getTypeLabel() {
-		if (type == null) {
-			return " (Undefined)";
-		} else if (type.getName() == null) {
-			return " (Unnamed)"; // Often happens for Associations, as their name is derived in the UI
-		} else {
-			return " (" + type.getName() + ")";
-		}
-	}
-
-	@Deprecated
-	public void navigate(IRevealSemanticElement navigationContext) {
-		if (!isEnabled()) {
-			return;
-		}
-
-		navigationContext.revealSemanticElement(Collections.singletonList(type));
-	}
-
-	public Image getImage() {
-		if (type == null) {
-			return null;
-		}
-
-		try {
-			return ServiceUtilsForEObject.getInstance().getServiceRegistry(type).getService(LabelProviderService.class).getLabelProvider().getImage(type);
-		} catch (Exception ex) {
-			return null;
-		}
-	}
-
-	/**
-	 * Enabled when the type is defined
-	 */
-	public boolean isEnabled() {
-		return type != null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public boolean navigate(NavigationTarget navigationContext) {
-		if (!isEnabled()) {
-			return false;
-		}
-		return navigationContext.revealElement(type);
-	}
-
-	/**
-	 * Returns the type (UML Element) of the TypedNavigableElement
-	 *
-	 * @return type
-	 */
-	public Element getType() {
-		return this.type;
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.infra.services.navigation.service.NavigableElement#getSemanticElement()
-	 *
-	 * @return
-	 */
-	public Object getSemanticElement() {
-		return getType();
+		return "Go to the type of this typed element: " + getElementLabel();
 	}
 }

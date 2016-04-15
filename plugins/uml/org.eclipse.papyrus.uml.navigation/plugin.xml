@@ -4,6 +4,12 @@
    <extension
          point="org.eclipse.papyrus.infra.services.navigation.navigationContributor">
       <contributor
+            contributor="org.eclipse.papyrus.uml.navigation.navigableElement.ElementNavigationContributor"
+            description="Navigates to the selected UML Element"
+            id="org.eclipse.papyrus.uml.navigation.element"
+            label="UML Element navigation">
+      </contributor>
+      <contributor
             contributor="org.eclipse.papyrus.uml.navigation.navigableElement.TypedElementNavigationContributor"
             description="Navigates to the type of the current UML Element"
             id="org.eclipse.papyrus.uml.navigation.typedElement"
@@ -16,16 +22,22 @@
             label="UML Call Behavior Action navigation">
       </contributor>
       <contributor
-            contributor="org.eclipse.papyrus.uml.navigation.navigableElement.NamedElementNavigationContributor"
-            description="Navigates to the current UML Named Element"
-            id="org.eclipse.papyrus.uml.navigation.namedElement"
-            label="UML Named Element navigation">
+            contributor="org.eclipse.papyrus.uml.navigation.navigableElement.RelationshipNavigationContributor"
+            description="Navigates from a relationship"
+            id="org.eclipse.papyrus.uml.navigation.relationship"
+            label="UML Relationship navigation">
       </contributor>
       <contributor
-            contributor="org.eclipse.papyrus.uml.navigation.navigableElement.GeneralizationNavigationContributor"
-            description="Navigates from a generalization"
-            id="org.eclipse.papyrus.uml.navigation.generalization"
-            label="UML Generalization navigation">
+            contributor="org.eclipse.papyrus.uml.navigation.navigableElement.ConnectorNavigationContributor"
+            description="Navigates from a connector"
+            id="org.eclipse.papyrus.uml.navigation.connector"
+            label="UML Connector navigation">
+      </contributor>
+      <contributor
+            contributor="org.eclipse.papyrus.uml.navigation.navigableElement.ActivityEdgeNavigationContributor"
+            description="Navigates from an activity edge"
+            id="org.eclipse.papyrus.uml.navigation.activityEdge"
+            label="UML ActivityEdge navigation">
       </contributor>
    </extension>
    <extension
@@ -59,18 +71,6 @@
             description="Navigate to sources of relationships for which the selected element is a target"
             id="org.eclipse.papyrus.uml.navigation.menuContributor.sourcesButton"
             label="Sources">
-      </contributor>
-      <contributor
-            contributor="org.eclipse.papyrus.uml.navigation.menuContributor.TargetEndsButton"
-            description="Navigate to target ends of the selected directed relationship"
-            id="org.eclipse.papyrus.uml.navigation.menuContributor.targetEndsButton"
-            label="Target Ends">
-      </contributor>
-      <contributor
-            contributor="org.eclipse.papyrus.uml.navigation.menuContributor.SourceEndsButton"
-            description="Navigate to source ends of the selected directed relationship"
-            id="org.eclipse.papyrus.uml.navigation.menuContributor.sourceEndsButton"
-            label="Source Ends">
       </contributor>
       <!--<contributor
             contributor="org.eclipse.papyrus.uml.navigation.menuContributor.ViewsButton"

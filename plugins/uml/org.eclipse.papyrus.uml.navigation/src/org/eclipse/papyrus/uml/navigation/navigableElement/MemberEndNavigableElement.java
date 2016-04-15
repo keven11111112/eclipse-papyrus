@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2016 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,31 +7,29 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Shuai Li (CEA LIST) shuai.li@cea.fr - Initial API and implementation
  *****************************************************************************/
 package org.eclipse.papyrus.uml.navigation.navigableElement;
 
-import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Property;
 
 /**
- * Navigates from an Operation to it's return type declaration
- *
- * @author Camille Letavernier
+ * Navigable element representing the target of a directed relationship
  *
  */
-public class OperationTypeNavigableElement extends TypedNavigableElement {
+public class MemberEndNavigableElement extends GenericNavigableElement {
 
-	public OperationTypeNavigableElement(Operation operation) {
-		super(operation.getType());
+	public MemberEndNavigableElement(Property property) {
+		super(property.getType());
 	}
 
 	@Override
 	public String getLabel() {
-		return "Go to return type" + getElementLabel() + "...";
+		return "Go to member end type" + getElementLabel() + "...";
 	}
 
 	@Override
 	public String getDescription() {
-		return "Go to the return type of this operation:" + getElementLabel();
+		return "Go to the member end type of this association:" + getElementLabel();
 	}
 }

@@ -33,7 +33,7 @@ public class ConnectorTypeNavigableElement extends TypedNavigableElement {
 
 	@Override
 	public String getDescription() {
-		return "Go to the type declaration of this Connector: " + getTypeLabel();
+		return "Go to the type of this Connector: " + getElementLabel();
 	}
 
 }

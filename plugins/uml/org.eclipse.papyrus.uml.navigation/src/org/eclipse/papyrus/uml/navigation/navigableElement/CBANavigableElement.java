@@ -48,7 +48,7 @@ public class CBANavigableElement implements ExtendedNavigableElement {
 	}
 
 	public String getDescription() {
-		return "Go to the Behavior linked with to this CallBehaviorAction" + getCBALabel();
+		return "Go to the behavior linked to this call behavior action" + getCBALabel();
 	}
 
 	protected String getCBALabel() {

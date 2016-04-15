@@ -26,37 +26,39 @@ import org.eclipse.uml2.uml.NamedElement;
  * Navigates from a NamedElementdElement to its NamedElement declaration
  * 
  */
-public class NamedNavigableElement implements ExtendedNavigableElement {
+public class GenericNavigableElement implements ExtendedNavigableElement {
 
-	protected final NamedElement element;
+	protected Element element;
 
 	/**
 	 *
 	 * @param element
 	 *            The NamedElement to navigate to. May be null.
 	 */
-	public NamedNavigableElement(NamedElement element) {
+	public GenericNavigableElement(Element element) {
 		this.element = element;
 	}
 
 	public String getLabel() {
-		String label = "Go to element" + getNamedElementLabel() + "...";
+		String label = "Go to element" + getElementLabel() + "...";
 		return label;
 	}
 
 	public String getDescription() {
-		return "Go to the element declaration of this NamedElement" + getNamedElementLabel();
+		return "Go to the element " + getElementLabel();
 	}
 
-	protected String getNamedElementLabel() {
+	protected String getElementLabel() {
 		if (element == null) {
-			return "";
-		} else {
-			if (element.getName() != null) {
-				return " (" + element.getName() + ")";
+			return " (Undefined)";
+		} else if (element instanceof NamedElement) {
+			if (((NamedElement) element).getName() == null || ((NamedElement) element).getName().isEmpty()) {
+				return " (Unnamed)"; // Often happens for Associations, as their name is derived in the UI
 			} else {
-				return "";
+				return " (" + ((NamedElement) element).getName() + ")";
 			}
+		} else {
+			return " (Unnamed)";
 		}
 	}
 
@@ -102,7 +104,7 @@ public class NamedNavigableElement implements ExtendedNavigableElement {
 	 * Returns the element (UML Element) of the NamedElementdNavigableElement
 	 * @return element
 	 */
-	public Element getNamedElement() {
+	public Element getElement() {
 		return this.element;
 	}
 
@@ -112,6 +114,6 @@ public class NamedNavigableElement implements ExtendedNavigableElement {
 	 * @return
 	 */
 	public Object getSemanticElement() {
-		return getNamedElement();
+		return getElement();
 	}
 }

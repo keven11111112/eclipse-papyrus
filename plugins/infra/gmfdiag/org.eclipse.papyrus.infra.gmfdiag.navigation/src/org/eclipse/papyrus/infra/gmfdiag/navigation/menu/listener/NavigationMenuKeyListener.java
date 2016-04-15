@@ -35,10 +35,12 @@ public class NavigationMenuKeyListener implements KeyListener {
 
 	public void keyPressed(KeyEvent e) {
 		// Nothing
+		// TODO get the hovered over EObject
 	}
 
 	public void keyReleased(KeyEvent e) {
 		if (e.keyCode == SWT.ALT) {
+			navigationMenu.altReleased();
 			navigationMenu.exitItem();
 		}
 	}

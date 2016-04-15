@@ -479,6 +479,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			public void keyReleased(KeyEvent e) {
 				if (navigationMenu != null) {
 					if (e.keyCode == SWT.ALT) {
+						navigationMenu.altReleased();
 						navigationMenu.exitItem();
 					}
 				}
@@ -505,34 +506,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 					MouseEvent mouseEvent = new MouseEvent(event);
 					navigationMenu.handleRequest(mouseEvent, getTreeItem(mouseEvent));
-				}
-			}
-		});
-
-		tree.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseUp(MouseEvent e) {
-				if ((e.stateMask & SWT.ALT) == 0) {
-					return;
-				}
-
-				TreeItem currentItem = getTreeItem(e);
-				if (currentItem != null) {
-					Object data = currentItem.getData();
-					try {
-						NavigationService service = serviceRegistry.getService(NavigationService.class);
-						List<NavigableElement> navigableElements = service.getNavigableElements(data);
-
-						// TODO: Implement a priority on NavigableElements and navigate the element with the highest priority
-						for (NavigableElement navigableElement : navigableElements) {
-							if (navigableElement.isEnabled()) {
-								service.navigate(navigableElement);
-							}
-						}
-					} catch (ServiceException ex) {
-						Activator.log.error(ex);
-					}
 				}
 			}
 		});
