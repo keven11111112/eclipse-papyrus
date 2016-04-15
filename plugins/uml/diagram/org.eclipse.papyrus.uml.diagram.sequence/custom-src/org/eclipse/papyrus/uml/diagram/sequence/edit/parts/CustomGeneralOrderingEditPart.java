@@ -30,13 +30,11 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomGeneralOrderingItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.GeneralOrderingDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -54,15 +52,6 @@ public class CustomGeneralOrderingEditPart extends GeneralOrderingEditPart imple
 	 */
 	public CustomGeneralOrderingEditPart(View view) {
 		super(view);
-	}
-
-	/**
-	 * @Override
-	 */
-	@Override
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomGeneralOrderingItemSemanticEditPolicy());
 	}
 
 	@Override

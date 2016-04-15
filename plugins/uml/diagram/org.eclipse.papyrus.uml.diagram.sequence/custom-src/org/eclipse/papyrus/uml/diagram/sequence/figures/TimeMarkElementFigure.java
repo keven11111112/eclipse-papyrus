@@ -19,8 +19,8 @@ import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
-import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 
 public class TimeMarkElementFigure extends SequencePolylineShape {
@@ -82,10 +82,10 @@ public class TimeMarkElementFigure extends SequencePolylineShape {
 							locator.relocate(label.getFigure());
 						} catch (InterruptedException e) {
 							// log and skip update
-							UMLDiagramEditorPlugin.log.error(e);
+							Activator.log.error(e);
 						} catch (RollbackException e) {
 							// log and skip update
-							UMLDiagramEditorPlugin.log.error(e);
+							Activator.log.error(e);
 						}
 					}
 				}

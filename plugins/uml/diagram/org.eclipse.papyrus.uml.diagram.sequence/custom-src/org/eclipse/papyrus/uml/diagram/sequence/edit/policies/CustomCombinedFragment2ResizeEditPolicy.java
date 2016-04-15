@@ -25,7 +25,7 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
 
@@ -37,7 +37,7 @@ public class CustomCombinedFragment2ResizeEditPolicy extends ResizableShapeEditP
 
  	@Override
 	protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
-		CustomLifelineEditPart lifelineEP = (CustomLifelineEditPart) getHost().getParent();
+		OLDLifelineEditPart lifelineEP = (OLDLifelineEditPart) getHost().getParent();
 		request.getMoveDelta().x = 0; // reset offset
 		request.getSizeDelta().width = 0; // reset offset
 		IFigure feedback = getDragSourceFeedbackFigure();
@@ -70,7 +70,7 @@ public class CustomCombinedFragment2ResizeEditPolicy extends ResizableShapeEditP
 		IFigure dotlineFigure = ((LifelineFigure)lifelineEP.getPrimaryShape()).getFigureLifelineDotLineFigure();
 		Rectangle rectParent = dotlineFigure.getBounds().getCopy();
 		lifelineEP.getPrimaryShape().translateToAbsolute(rectParent);
-		int minLifelineY = rectParent.y + LifelineXYLayoutEditPolicy.SPACING_HEIGHT;
+		int minLifelineY = rectParent.y + OLDLifelineXYLayoutEditPolicy.SPACING_HEIGHT;
 		if (rect.y < minLifelineY) {
 			request.getMoveDelta().y += minLifelineY - rect.y;
 			rect.y = minLifelineY;

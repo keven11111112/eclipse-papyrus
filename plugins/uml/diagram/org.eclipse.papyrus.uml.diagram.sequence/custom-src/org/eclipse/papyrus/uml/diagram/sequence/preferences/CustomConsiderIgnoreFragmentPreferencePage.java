@@ -17,19 +17,21 @@ import java.util.TreeMap;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.BackgroundColor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.DecorationGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.LabelGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.NodeColorGroup;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomCombinedFragmentPreferencePage.NodeCompartmentGroupEx;
 import org.eclipse.swt.widgets.Composite;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomConsiderIgnoreFragmentPreferencePage extends ConsiderIgnoreFragmentPreferencePage {
+public class CustomConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	public static final String compartments[] = { Messages.CombinedFragmentCombinedFragmentCompartmentEditPart_title };
 
@@ -39,14 +41,14 @@ public class CustomConsiderIgnoreFragmentPreferencePage extends ConsiderIgnoreFr
 	 */
 	public CustomConsiderIgnoreFragmentPreferencePage() {
 		super();
-		setPreferenceKey(PackageEditPart.MODEL_ID + "_ConsiderIgnoreFragment");
+		setPreferenceKey(SequenceDiagramEditPart.MODEL_ID + "_ConsiderIgnoreFragment");
 	}
 
 	/**
 	 * @Override
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-		String key = PackageEditPart.MODEL_ID + "_ConsiderIgnoreFragment";
+		String key = SequenceDiagramEditPart.MODEL_ID + "_ConsiderIgnoreFragment";
 		store.setDefault(PreferencesConstantsHelper.getElementConstant(key, PreferencesConstantsHelper.WIDTH), 40);
 		store.setDefault(PreferencesConstantsHelper.getElementConstant(key, PreferencesConstantsHelper.HEIGHT), 40);
 		for (String name : compartments) {
@@ -94,5 +96,15 @@ public class CustomConsiderIgnoreFragmentPreferencePage extends ConsiderIgnoreFr
 			LabelGroup compartmentGroup = new LabelGroup(parent, getPreferenceKey(), this, getLabelRole());
 			addPreferenceGroup(compartmentGroup);
 		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.ui.preferences.AbstractPapyrusPreferencePage#getBundleId()
+	 *
+	 * @return
+	 */
+	@Override
+	protected String getBundleId() {
+		return UMLDiagramEditorPlugin.ID;
 	}
 }

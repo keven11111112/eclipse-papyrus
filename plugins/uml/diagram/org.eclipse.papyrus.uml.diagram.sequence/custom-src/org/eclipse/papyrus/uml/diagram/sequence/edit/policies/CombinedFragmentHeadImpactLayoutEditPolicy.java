@@ -51,7 +51,7 @@ public class CombinedFragmentHeadImpactLayoutEditPolicy extends AbstractHeadImpa
 	protected int getHeadHeight() {
 		IFigure primaryShape = getPrimaryShape();
 		if (primaryShape instanceof StereotypeInteractionFigure) {
-			IFigure headContainer = ((StereotypeInteractionFigure) primaryShape).getHeaderLabel().getParent();
+			IFigure headContainer = ((StereotypeInteractionFigure) primaryShape).getNameLabel().getParent();
 			Rectangle boundsRect = getBoundsRect();
 			return headContainer.getPreferredSize(boundsRect.width, -1).height;
 		}

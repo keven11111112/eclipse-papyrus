@@ -9,10 +9,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CreationOnMessageEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageAsyncItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDMessageConnectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageConnectionLineSegEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageAsync;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectEdgeToGrillingEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGrillingEditPolicy;
 
 /**
 	 * @generated
@@ -38,11 +39,11 @@ public class MessageAsyncEditPart extends AbstractMessageEditPart implements ITr
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationOnMessageEditPolicy());
-		installEditPolicy(EditPolicy.CONNECTION_ROLE, new MessageConnectionEditPolicy());
+		//installEditPolicy(EditPolicy.CONNECTION_ROLE, new OLDMessageConnectionEditPolicy());
 		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
 				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new MessageConnectionLineSegEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MessageAsyncItemSemanticEditPolicy());
+		installEditPolicy(ConnectNodeToGrillingEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectEdgeToGrillingEditPolicy());
 	}
 
 	/**

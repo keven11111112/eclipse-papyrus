@@ -16,8 +16,8 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart.CustomLifelineFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart.CustomLifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineHeadUtil;
 
@@ -29,7 +29,7 @@ public class LifelineHeadImpactLayoutEditPolicy extends AbstractHeadImpactLayout
 
 	@Override
 	protected int getHeadHeight() {
-		CustomLifelineFigure primaryShape = ((CustomLifelineEditPart) getHost()).getPrimaryShape();
+		CustomLifelineFigure primaryShape = ((OLDLifelineEditPart) getHost()).getPrimaryShape();
 		RectangleFigure figure = primaryShape.getFigureLifelineNameContainerFigure();
 		Rectangle r = getBoundsRect();
 		Dimension preferredSize = figure.getPreferredSize(r.width, -1);

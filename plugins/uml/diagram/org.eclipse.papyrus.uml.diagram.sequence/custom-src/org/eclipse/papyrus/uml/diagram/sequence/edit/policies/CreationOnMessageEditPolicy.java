@@ -70,7 +70,7 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 				if (extendedData.containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2)) {
 					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2, events);
 				} else {
-					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, events);
+					extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, events);
 				}
 				if (extendedData.containsKey(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION_2)) {
 					extendedData.put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION_2, location);

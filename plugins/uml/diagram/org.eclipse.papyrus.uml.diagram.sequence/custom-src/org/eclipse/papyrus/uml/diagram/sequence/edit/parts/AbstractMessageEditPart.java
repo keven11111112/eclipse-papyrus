@@ -10,6 +10,7 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.ReconnectRequest;
@@ -25,6 +26,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.selection.SelectSeveralLinksEditPartTracker;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionFragmentsOrderingEditPolicy;
@@ -32,6 +34,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineChildGraph
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectEdgeToGrillingEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectLifeLineToGrillingEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SelectMessagesEditPartTracker;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelfMessageHelper;
 import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.graphics.Cursor;
@@ -71,6 +76,22 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		}
 	}
 
+	/**
+	 *  This method has been added in order to satisfy the requirement Diagram.UML.Sequence.REQ_004:
+	 * <I>"It should be possible to select and move several messages at the same time."</I>
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart#getDragTracker(org.eclipse.gef.Request)
+	 *
+	 *
+	 * @param req
+	 * @return the drag tracker
+	 * 
+	 */
+	@Override
+	public DragTracker getDragTracker(Request req) {
+		return new SelectMessagesEditPartTracker(this);
+	}
+	
+	
 	private void hookGraphicalViewer() {
 		if (SelfMessageHelper.isSelfLink(this)) {
 			getViewer().getControl().addMouseMoveListener(mouseMoveListener = new MouseMoveListener() {
@@ -227,6 +248,8 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new MessageLabelEditPolicy());
 		// Ordering Message Occurrence Specification. See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
 		installEditPolicy(InteractionFragmentsOrderingEditPolicy.ORDERING_ROLE, new InteractionFragmentsOrderingEditPolicy());
+		installEditPolicy(ConnectLifeLineToGrillingEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectEdgeToGrillingEditPolicy());
+		
 	}
 
 	@Override

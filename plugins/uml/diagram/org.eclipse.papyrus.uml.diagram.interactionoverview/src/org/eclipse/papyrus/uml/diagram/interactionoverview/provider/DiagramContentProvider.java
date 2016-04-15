@@ -24,7 +24,7 @@ import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.Activator;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.InteractionOverviewDiagramEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.TimingDiagramEditPart;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Interaction;
@@ -78,7 +78,7 @@ public class DiagramContentProvider extends MoDiscoContentProvider implements IH
 
 	private boolean isValidDiagram(final Diagram diagram) {
 		// seqDiagram or comDiagram
-		if (diagram.getType().equals(PackageEditPart.MODEL_ID) || diagram.getType().equals(ModelEditPart.MODEL_ID)) {
+		if (diagram.getType().equals(SequenceDiagramEditPart.MODEL_ID) || diagram.getType().equals(ModelEditPart.MODEL_ID)) {
 			if (diagram.getElement().equals(interaction)) {
 				return true;
 			}

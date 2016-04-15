@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2016 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -24,16 +24,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
 
-/**
- * {@link ElementEditHelper} for {@link ConsiderIgnoreFragment}.
- */
 public class ConsiderIgnoreFragmentEditHelper extends CombinedFragmentEditHelper {
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.uml.service.types.helper.CombinedFragmentEditHelper#getConfigureCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest)
-	 */
+
 	protected ICommand getConfigureCommand(final ConfigureRequest req) {
 		ICommand configureCommand = new ConfigureElementCommand(req) {
 

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.providers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
@@ -49,6 +50,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEd
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
@@ -56,6 +58,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.Lifeline;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -68,10 +71,11 @@ public class CustomViewProvider extends UMLViewProvider {
 			return false;
 		}
 		String visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
-		if (DurationConstraintEditPart.VISUAL_ID.equals(visualID)) { // avoid to
-																// modify
-																// UMLVisualIDRegistry.getNodeVisualID(View,
-																// EObject)
+		if (DurationConstraintEditPart.VISUAL_ID.equals(visualID)) { 
+			// avoid to
+			// modify
+			// UMLVisualIDRegistry.getNodeVisualID(View,
+			// EObject)
 			if (InteractionInteractionCompartmentEditPart.VISUAL_ID.equals(UMLVisualIDRegistry
 					.getVisualID(op.getContainerView()))) {
 				return true;
@@ -202,41 +206,54 @@ public class CustomViewProvider extends UMLViewProvider {
 		return node;
 	}
 
+	/**
+	 *  This class has bee overloaded in order to set the combined fragment under the lifelines 
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.providers.UMLViewProvider#createCombinedFragment_Shape(org.eclipse.emf.ecore.EObject, org.eclipse.gmf.runtime.notation.View, int, boolean, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint)
+	 */
 	@Override
-	public Node createCombinedFragment_Shape(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
+	public Node createCombinedFragment_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		int position=LifelinePosition(containerView);
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry
-				.getType(CombinedFragmentEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setType(UMLVisualIDRegistry.getType(CombinedFragmentEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, position, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
-				prefStore, "CombinedFragment");
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
-				prefStore, "CombinedFragment");
-		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
-				prefStore, "CombinedFragment");
-		Node compartment = createCompartment(
-				node,
-				UMLVisualIDRegistry
-						.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID),
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "CombinedFragment");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CombinedFragment");
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "CombinedFragment");
+		Node compartment = createCompartment(node,UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID),
 				false, false, true, true);
 		// Add by default InteractionOperand
-		for (InteractionOperand interactionOperand : ((CombinedFragment) domainElement)
-				.getOperands()) {
-			createInteractionOperand_Shape(interactionOperand, compartment, -1,
-					true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		for (InteractionOperand interactionOperand : ((CombinedFragment) domainElement).getOperands()) {
+			createInteractionOperand_Shape(interactionOperand, compartment, -1,	true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		}
 		// initialization for the compartment visibility
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(
 				node, prefStore, "CombinedFragment");
 		return node;
 	}
+	/**
+	 * @param containerView the view that can contains lifeline representation 	
+	 *  @return the position of the first lifeline in the notation
+	 * 
+	 */
+	protected int LifelinePosition(View containerView){
+		@SuppressWarnings("unchecked")
+		List<Object> children= containerView.getChildren();
+		int i=0;
+		while (i<children.size()){
+			if(children.get(i) instanceof View){
+				if( ((View)children.get(i)).getElement() instanceof Lifeline){
+				return i;}
+			}
+			i++;
+		}
+		return i;
+	}
+	
 
 	@Override
 	public Node createDurationConstraint_Shape_CN(EObject domainElement,
@@ -415,4 +432,7 @@ public class CustomViewProvider extends UMLViewProvider {
 		label.setLayoutConstraint(location);
 		return node;
 	}
+	
+	
+
 }

@@ -40,7 +40,6 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
@@ -64,7 +63,6 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElement
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart.DummyCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomStateInvariantItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ContinuationFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.CenterLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
@@ -150,7 +148,6 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomStateInvariantItemSemanticEditPolicy());
 		// install a editpolicy to display stereotypes
 		installEditPolicy(AppliedStereotypeCommentEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicyEx());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -642,13 +639,13 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 			borderItemEP.getFigure().translateToAbsolute(realLocation);
 			Rectangle bounds = ep.getPrimaryShape().getBounds().getCopy();
 			ep.getPrimaryShape().translateToAbsolute(bounds);
-			int nameHeight = ep.getPrimaryShape().getFigureLifelineNameContainerFigure().getBounds().height;
-			if (realLocation.y - nameHeight < bounds.y) {
-				return false;
-			}
-			if (realLocation.getBottom().y > bounds.getBottom().y) {
-				return false;
-			}
+//			int nameHeight = ep.getPrimaryShape().getFigureLifelineNameContainerFigure().getBounds().height;
+//			if (realLocation.y - nameHeight < bounds.y) {
+//				return false;
+//			}
+//			if (realLocation.getBottom().y > bounds.getBottom().y) {
+//				return false;
+//			}
 			return true;
 		}
 	}

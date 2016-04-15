@@ -62,7 +62,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationConstra
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayoutEditPolicy;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.DurationConstraint;
@@ -728,7 +728,7 @@ public class OccurrenceSpecificationMoveHelper {
 		req.setEditParts(editPart);
 		// Make sure do not coming again to update duration constraints...
 		req.getExtendedData().put(SequenceRequestConstant.DO_NOT_MOVE_EDIT_PARTS, true);
-		return LifelineXYLayoutEditPolicy.getResizeOrMoveChildrenCommand((LifelineEditPart) editPart.getParent(), req, true, false, true);
+		return OLDLifelineXYLayoutEditPolicy.getResizeOrMoveChildrenCommand((LifelineEditPart) editPart.getParent(), req, true, false, true);
 	}
 
 	/**

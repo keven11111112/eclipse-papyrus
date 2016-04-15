@@ -19,7 +19,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
@@ -52,6 +56,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.FixEdgeAnchorsDeferredC
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.FixAnchorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.omg.CORBA.Bounds;
 
 /**
  *
@@ -143,6 +148,7 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 		}
 		return chainGuideAttachmentCommands(request, new ICommandProxy(cc.reduce()));
 	}
+	
 
 	/**
 	 * Returns the <code>Command</code> to resize a group of children.

@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationObservationHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -80,6 +81,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncAppliedSte
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
@@ -117,8 +119,8 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getVisualID(View view) {
 		if (view instanceof Diagram) {
-			if (PackageEditPart.MODEL_ID.equals(view.getType())) {
-				return PackageEditPart.VISUAL_ID;
+			if (SequenceDiagramEditPart.MODEL_ID.equals(view.getType())) {
+				return SequenceDiagramEditPart.VISUAL_ID;
 			} else {
 				return "";
 			}
@@ -162,7 +164,7 @@ public class UMLVisualIDRegistry {
 		if (domainElement == null) {
 			return "";
 		}
-		return PackageEditPart.VISUAL_ID;
+		return SequenceDiagramEditPart.VISUAL_ID;
 	}
 
 	/**
@@ -220,7 +222,7 @@ public class UMLVisualIDRegistry {
 			break;
 		case LifelineEditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getActionExecutionSpecification().isSuperTypeOf(domainElement.eClass())) {
-				return ActionExecutionSpecificationEditPart.VISUAL_ID;
+				return CCombinedCompartmentEditPart.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getBehaviorExecutionSpecification().isSuperTypeOf(domainElement.eClass())) {
 				return BehaviorExecutionSpecificationEditPart.VISUAL_ID;
@@ -406,10 +408,13 @@ public class UMLVisualIDRegistry {
 			if (LifelineNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
-			if (ActionExecutionSpecificationEditPart.VISUAL_ID.equals(nodeVisualID)) {
+			if (CCombinedCompartmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			if (BehaviorExecutionSpecificationEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				return true;
+			}
+			if (ActionExecutionSpecificationEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			if (StateInvariantEditPart.VISUAL_ID.equals(nodeVisualID)) {
@@ -728,11 +733,11 @@ public class UMLVisualIDRegistry {
 	public static boolean isSemanticLeafVisualID(String visualID) {
 		if (visualID != null) {
 			switch (visualID) {
-			case PackageEditPart.VISUAL_ID:
+			case SequenceDiagramEditPart.VISUAL_ID:
 				return false;
 			case InteractionUseEditPart.VISUAL_ID:
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
-			case ActionExecutionSpecificationEditPart.VISUAL_ID:
+			case CCombinedCompartmentEditPart.VISUAL_ID:
 			case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
 			case ConstraintEditPart.VISUAL_ID:
 			case CommentEditPart.VISUAL_ID:

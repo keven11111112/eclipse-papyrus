@@ -23,7 +23,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayoutEditPolicy;
 
 public class CoRegionCombinedFragmentFigure extends RoundedCompartmentFigure {
 
@@ -117,7 +117,7 @@ public class CoRegionCombinedFragmentFigure extends RoundedCompartmentFigure {
 	@Override
 	public Dimension getMinimumSize(int wHint, int hHint) {
 		Rectangle bounds = new Rectangle();
-		bounds.height = BRACKET_HEIGHT * 2 + LifelineXYLayoutEditPolicy.SPACING_HEIGHT;
+		bounds.height = BRACKET_HEIGHT * 2 + OLDLifelineXYLayoutEditPolicy.SPACING_HEIGHT;
 		bounds.width = -1;
 		return bounds.getSize();
 	}

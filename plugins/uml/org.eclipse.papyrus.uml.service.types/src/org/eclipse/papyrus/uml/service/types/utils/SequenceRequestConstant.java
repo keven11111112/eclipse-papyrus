@@ -37,5 +37,5 @@ public interface SequenceRequestConstant {
 	public static final String REPLACE_EXECUTION_SPECIFICATION_START = "REPLACE_EXECUTION_SPECIFICATION_START"; //$NON-NLS-1$
 	/** the finish of Execution specification can be replace by an event of a message */
 	public static final String REPLACE_EXECUTION_SPECIFICATION_FINISH = "REPLACE_EXECUTION_SPECIFICATION_FINISH"; //$NON-NLS-1$
-
+ 
 }

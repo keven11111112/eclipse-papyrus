@@ -30,28 +30,10 @@ public class CustomDiagramPreferenceInitializer extends DiagramPreferenceInitial
 	public void initializeDefaultPreferences() {
 		super.initializeDefaultPreferences();
 		IPreferenceStore store = getPreferenceStore();
-		TimeObservationPreferencePage.initDefaults(store);
-		CommentPreferencePage.initDefaults(store);
-		StateInvariantPreferencePage.initDefaults(store);
-		CombinedFragmentPreferencePage.initDefaults(store);
-		ConstraintPreferencePage.initDefaults(store);
-		ActionExecutionSpecificationPreferencePage.initDefaults(store);
-		InteractionOperandPreferencePage.initDefaults(store);
-		DestructionEventPreferencePage.initDefaults(store);
-		InteractionPreferencePage.initDefaults(store);
-		DurationConstraintPreferencePage.initDefaults(store);
-		InteractionUsePreferencePage.initDefaults(store);
-		ContinuationPreferencePage.initDefaults(store);
-		ConsiderIgnoreFragmentPreferencePage.initDefaults(store);
-		DurationObservationPreferencePage.initDefaults(store);
-		TimeConstraintPreferencePage.initDefaults(store);
-		LifelinePreferencePage.initDefaults(store);
-		BehaviorExecutionSpecificationPreferencePage.initDefaults(store);
-		MessagePreferencePage.initDefaults(store);
-		GeneralOrderingPreferencePage.initDefaults(store);
+
 		// diagram preference page
 		DiagramsPreferencePage.initDefaults(store);
-		DestructionOccurrenceSpecificationPreferencePage.initDefaults(store);
+
 
 		// Custom preference pages.
 		CustomCombinedFragmentPreferencePage.initDefaults(store);

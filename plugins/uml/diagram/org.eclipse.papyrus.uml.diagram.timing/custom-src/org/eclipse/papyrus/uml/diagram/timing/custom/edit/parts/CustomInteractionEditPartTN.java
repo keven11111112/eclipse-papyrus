@@ -50,7 +50,7 @@ public class CustomInteractionEditPartTN extends InteractionEditPartTN {
 	@Override
 	protected IFigure createNodeShape() {
 		final CustomInteractionRectangleFigure interactionRectangleFigure = new CustomInteractionRectangleFigure();
-		interactionRectangleFigure.getCompartmentFigure().setOutline(false);
+		//interactionRectangleFigure.getCompartmentFigure().setOutline(false);
 		interactionRectangleFigure.getNameLabel().setVisible(false);
 		// disable the shadow because it stays behind after move then Ctrl+Z
 		interactionRectangleFigure.setShadow(false);
@@ -67,8 +67,8 @@ public class CustomInteractionEditPartTN extends InteractionEditPartTN {
 				int consumedHeight = 0;
 				for (int i = 0; i < children.size(); i++) {
 					final IFigure child = children.get(i);
-					if (child.equals(interactionRectangleFigure.getHeaderLabelContainer())) {
-						final int height = Math.max(interactionRectangleFigure.getHeaderLabel().getPreferredSize().height + HEADER_HEIGHT_PADDING, MIN_HEADER_HEIGHT);
+					if (child.equals(interactionRectangleFigure.getNameLabel())) {
+						final int height = Math.max(interactionRectangleFigure.getNameLabel().getPreferredSize().height + HEADER_HEIGHT_PADDING, MIN_HEADER_HEIGHT);
 						child.setBounds(new Rectangle(clientArea.x, clientArea.y + consumedHeight, clientArea.width, height));
 						consumedHeight = consumedHeight + height;
 					} else if (child.equals(interactionRectangleFigure.getCompartmentFigure())) {

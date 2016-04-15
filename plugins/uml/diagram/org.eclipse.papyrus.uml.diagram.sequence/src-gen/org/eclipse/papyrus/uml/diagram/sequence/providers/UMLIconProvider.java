@@ -8,9 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+  *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.sequence.providers;
 
 import org.eclipse.gmf.runtime.common.ui.services.icon.IIconProvider;

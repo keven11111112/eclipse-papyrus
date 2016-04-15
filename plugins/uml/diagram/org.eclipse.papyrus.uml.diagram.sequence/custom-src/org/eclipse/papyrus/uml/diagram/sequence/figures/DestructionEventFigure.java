@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.geometry.Dimension;
 
 /**
  * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -29,7 +30,14 @@ public class DestructionEventFigure extends org.eclipse.draw2d.Figure {
 	public DestructionEventFigure() {
 		super();
 	}
-
+	/**
+	 * @return a <code>Dimension</code> that represents the minimum or default size of 
+	 * this figure.
+	 * @since 3.0
+	 */
+	public Dimension getDefaultSize() {
+		return new Dimension(40,40);
+	}
 	/**
 	 * The stop is a cross
 	 *
@@ -39,18 +47,9 @@ public class DestructionEventFigure extends org.eclipse.draw2d.Figure {
 	protected void paintFigure(Graphics graphics) {
 		super.paintFigure(graphics);
 		graphics.pushState();
-		int width = bounds.width;
-		int height = bounds.height;
-		if (width > height) {
-			width = height;
-		} else if (width < height) {
-			height = width;
-		}
-		int x = bounds.x + bounds.width / 2 - width / 2;
-		int y = bounds.y + bounds.height / 2 - height / 2;
-		graphics.setLineWidth(lineWidth);
-		graphics.drawLine(x, y, x + width, y + height);
-		graphics.drawLine(x + width, y, x, y + height);
+		graphics.setLineWidth(2);
+		graphics.drawLine(bounds.x, bounds.y, bounds.x + bounds.width,  bounds.y + bounds.height);
+		graphics.drawLine(bounds.x, bounds.y+ bounds.height, bounds.x + bounds.width,  bounds.y);
 		graphics.popState();
 	}
 

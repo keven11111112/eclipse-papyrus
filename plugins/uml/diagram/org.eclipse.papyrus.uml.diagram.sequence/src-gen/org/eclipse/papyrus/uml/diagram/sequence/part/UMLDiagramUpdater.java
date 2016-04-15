@@ -28,7 +28,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.TimeConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.TimeObservationHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
@@ -57,7 +57,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
@@ -114,7 +114,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
 		if (vid != null) {
 			switch (vid) {
-			case PackageEditPart.VISUAL_ID:
+			case SequenceDiagramEditPart.VISUAL_ID:
 				return getPackage_SequenceDiagram_SemanticChildren(view);
 			case InteractionEditPart.VISUAL_ID:
 				return getInteraction_Shape_SemanticChildren(view);
@@ -163,22 +163,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		for (Iterator<?> it = modelElement.getFragments().iterator(); it.hasNext();) {
 			InteractionFragment childElement = (InteractionFragment) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (InteractionUseEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if (ConsiderIgnoreFragmentEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if (CombinedFragmentEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		for (Iterator<?> it = modelElement.getFragments().iterator(); it.hasNext();) {
-			InteractionFragment childElement = (InteractionFragment) it.next();
-			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if (ContinuationEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -191,80 +175,14 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getInteraction_SubfragmentCompartment_SemanticChildren(View view) {
-		if (false == view.eContainer() instanceof View) {
-			return Collections.emptyList();
-		}
-		View containerView = (View) view.eContainer();
-		if (!containerView.isSetElement()) {
-			return Collections.emptyList();
-		}
-		Interaction modelElement = (Interaction) containerView.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getFragments().iterator(); it.hasNext();) {
-			InteractionFragment childElement = (InteractionFragment) it.next();
-			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (ConsiderIgnoreFragmentEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if (CombinedFragmentEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if (InteractionUseEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		for (Iterator<?> it = modelElement.getLifelines().iterator(); it.hasNext();) {
-			Lifeline childElement = (Lifeline) it.next();
-			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (LifelineEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		for (Iterator<?> it = modelElement.getOwnedRules().iterator(); it.hasNext();) {
-			Constraint childElement = (Constraint) it.next();
-			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (ConstraintEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		for (Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
-			Comment childElement = (Comment) it.next();
-			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (CommentEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<UMLNodeDescriptor> getCombinedFragment_SubfragmentCompartment_SemanticChildren(View view) {
-		if (false == view.eContainer() instanceof View) {
-			return Collections.emptyList();
-		}
-		View containerView = (View) view.eContainer();
-		if (!containerView.isSetElement()) {
-			return Collections.emptyList();
-		}
-		CombinedFragment modelElement = (CombinedFragment) containerView.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getOperands().iterator(); it.hasNext();) {
-			InteractionOperand childElement = (InteractionOperand) it.next();
-			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (InteractionOperandEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		return result;
+		return Collections.emptyList();
 	}
 
 	/**
@@ -303,7 +221,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 							// result.add(nextValue);
 							result.add(new UMLNodeDescriptor(be, visualID));
 						}
-					} else if (ActionExecutionSpecificationEditPart.VISUAL_ID.equals(visualID)) {
+					} else if (CCombinedCompartmentEditPart.VISUAL_ID.equals(visualID)) {
 						ActionExecutionSpecification ae = (ActionExecutionSpecification) nextValue;
 						if (ae.getCovereds().size() > 0 && ae.getCovereds().get(0) == modelElement) {
 							result.add(new UMLNodeDescriptor(ae, visualID));
@@ -374,7 +292,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
 		if (vid != null) {
 			switch (vid) {
-			case PackageEditPart.VISUAL_ID:
+			case SequenceDiagramEditPart.VISUAL_ID:
 				return getPackage_SequenceDiagram_ContainedLinks(view);
 			case InteractionEditPart.VISUAL_ID:
 				return getInteraction_Shape_ContainedLinks(view);
@@ -390,7 +308,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getContinuation_Shape_ContainedLinks(view);
 			case LifelineEditPart.VISUAL_ID:
 				return getLifeline_Shape_ContainedLinks(view);
-			case ActionExecutionSpecificationEditPart.VISUAL_ID:
+			case CCombinedCompartmentEditPart.VISUAL_ID:
 				return getActionExecutionSpecification_Shape_ContainedLinks(view);
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				return getBehaviorExecutionSpecification_Shape_ContainedLinks(view);
@@ -457,7 +375,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getContinuation_Shape_IncomingLinks(view);
 			case LifelineEditPart.VISUAL_ID:
 				return getLifeline_Shape_IncomingLinks(view);
-			case ActionExecutionSpecificationEditPart.VISUAL_ID:
+			case CCombinedCompartmentEditPart.VISUAL_ID:
 				return getActionExecutionSpecification_Shape_IncomingLinks(view);
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				return getBehaviorExecutionSpecification_Shape_IncomingLinks(view);
@@ -524,7 +442,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getContinuation_Shape_OutgoingLinks(view);
 			case LifelineEditPart.VISUAL_ID:
 				return getLifeline_Shape_OutgoingLinks(view);
-			case ActionExecutionSpecificationEditPart.VISUAL_ID:
+			case CCombinedCompartmentEditPart.VISUAL_ID:
 				return getActionExecutionSpecification_Shape_OutgoingLinks(view);
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				return getBehaviorExecutionSpecification_Shape_OutgoingLinks(view);
@@ -2655,4 +2573,5 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				ContextLinkEditPart.VISUAL_ID));
 		return result;
 	}
+
 }

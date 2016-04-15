@@ -31,9 +31,6 @@ public interface SequenceRequestConstant {
 	/** A key used in the creation of a CORegion to identify the lifeline graphically containing the CoRegion */
 	public static final String LIFELINE_GRAPHICAL_CONTAINER = "Lifeline graphical container"; //$NON-NLS-1$
 
-	/** The occurrence specification(s) which are the nearest from a creation request */
-	public static final String NEAREST_OCCURRENCE_SPECIFICATION = "Nearest occurrence specification"; //$NON-NLS-1$
-
 	/** The location of the occurrence specification which is the nearest from a creation request */
 	public static final String OCCURRENCE_SPECIFICATION_LOCATION = "Nearest occurrence specification location"; //$NON-NLS-1$
 

@@ -43,10 +43,12 @@ public class MessageFound extends MessageFigure {
 		setSourceDecoration(createSourceDecoration());
 	}
 
-	private RotatableDecoration createSourceDecoration() {
+	/**
+	 * @since 3.0
+	 */
+	protected RotatableDecoration createSourceDecoration() {
 		EllipseDecoration df = new EllipseDecoration();
 		df.setAlwaysFill(true);
-		df.setPreferredSize(new Dimension(10, 10));
 		return df;
 	}
 
@@ -59,12 +61,6 @@ public class MessageFound extends MessageFigure {
 	protected RotatableDecoration createTargetDecoration() {
 		PolylineDecoration df = new PolylineDecoration();
 		df.setForegroundColor(getForegroundColor());
-		PointList pl = new PointList();
-		pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
-		pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-		pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
-		df.setTemplate(pl);
-		df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
 		return df;
 	}
 }

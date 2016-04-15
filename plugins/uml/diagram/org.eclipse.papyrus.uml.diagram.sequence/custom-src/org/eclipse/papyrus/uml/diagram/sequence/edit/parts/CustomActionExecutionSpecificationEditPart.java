@@ -13,17 +13,22 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionGraphicalNodeEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomActionExecutionSpecificationItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.ILifelineInternalFigure;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomActionExecutionSpecificationEditPart extends ActionExecutionSpecificationEditPart {
+public class CustomActionExecutionSpecificationEditPart extends CCombinedCompartmentEditPart {
 
+	public static int DEFAULT_HEIGHT=100;
 	/**
 	 * Constructor.
 	 *
@@ -39,9 +44,39 @@ public class CustomActionExecutionSpecificationEditPart extends ActionExecutionS
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomActionExecutionSpecificationItemSemanticEditPolicy());
 		// Fixed bug about reconnect message when the ends of execution were MessageOccurrenceSpecification.
 		removeEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE);
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ExecutionGraphicalNodeEditPolicy());
+	}
+	
+	
+	
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart#refreshBounds()
+	 *
+	 */
+	@Override
+	protected void refreshBounds() {
+		// TODO Auto-generated method stub
+		super.refreshBounds();
+	}
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart#refreshVisuals()
+	 *
+	 */
+	@Override
+	protected void refreshVisuals() {
+		// TODO Auto-generated method stub
+		super.refreshVisuals();
+	}
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
+	 *
+	 * @param event
+	 */
+	@Override
+	protected void handleNotificationEvent(Notification event) {
+		// TODO Auto-generated method stub
+		super.handleNotificationEvent(event);
 	}
 }

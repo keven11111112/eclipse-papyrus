@@ -219,16 +219,16 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 
 	private Command getCreateAdditionalESCommand(CreateConnectionRequest request) {
 		INodeEditPart sourceEP = getSourceEditPart(request.getSourceEditPart());
-		INodeEditPart targetEP = getConnectionCompleteEditPart(request);
-		View targetView = (View) targetEP.getModel();
+		INodeEditPart targetEditPart = getConnectionCompleteEditPart(request);
+		View targetView = (View) targetEditPart.getModel();
 		EObject target = ViewUtil.resolveSemanticElement(targetView);
 		if (target == null) {
 			target = targetView;
 		}
-		if (targetEP == sourceEP) {
+		if (targetEditPart == sourceEP) {
 			return null;
 		}
-		if (!(targetEP instanceof AbstractExecutionSpecificationEditPart
+		if (!(targetEditPart instanceof AbstractExecutionSpecificationEditPart
 				&& getHost() instanceof ExecutionSpecificationEndEditPart)) {
 			return null;
 		}
@@ -248,13 +248,16 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 		if (false == ((IHintedType) UMLElementTypes.Message_SynchEdge).getSemanticHint().equals(((CreateConnectionViewRequest) request).getConnectionViewDescriptor().getSemanticHint())) {
 			return null;
 		}
-		InteractionFragment ift = SequenceUtil.findInteractionFragmentContainerAt(request.getLocation(), getHost());
-		EObject parentElement = ((AbstractExecutionSpecificationEditPart) targetEP).resolveSemanticElement();
-		EObject element = ((ExecutionSpecificationEndEditPart) getHost()).resolveSemanticElement();
-		boolean executionLinkedAlready = parentElement instanceof ExecutionSpecification && element instanceof MessageOccurrenceSpecification;
+		
+		//find semantic container
+		InteractionFragment semanticContainer = SequenceUtil.findInteractionFragmentContainerAt(request.getLocation(), getHost());
+		EObject executionTarget = ((AbstractExecutionSpecificationEditPart) targetEditPart).resolveSemanticElement();
+		EObject executionEnd = ((ExecutionSpecificationEndEditPart) getHost()).resolveSemanticElement();
+		boolean executionLinkedAlready = executionTarget instanceof ExecutionSpecification && executionEnd instanceof MessageOccurrenceSpecification;
+		
 		// Check if we go uphill
 		ConnectionAnchor sourceAnchor = getActualSourceConnectionAnchor(request);
-		ConnectionAnchor targetAnchor = getSourceConnectionAnchor(targetEP, request);
+		ConnectionAnchor targetAnchor = getSourceConnectionAnchor(targetEditPart, request);
 		Point sourceLocation = sourceAnchor.getLocation(targetAnchor.getReferencePoint()).getCopy();
 		if (sourceEP instanceof GateEditPart) {
 			// Changing target for Gates changes anchor location - we're taking care of it
@@ -262,30 +265,30 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 			sourceEP.getFigure().translateToAbsolute(gateBounds);
 			sourceLocation.y = gateBounds.y + gateBounds.height/2;			
 		}
-		Point targetLocation = targetEP.getFigure().getBounds().getTopLeft().getCopy();
-		targetEP.getFigure().translateToAbsolute(targetLocation);
+		Point targetLocation = targetEditPart.getFigure().getBounds().getTopLeft().getCopy();
+		targetEditPart.getFigure().translateToAbsolute(targetLocation);
 		boolean messageGoUphill = targetLocation.y < sourceLocation.y;
 		if (!executionLinkedAlready && !messageGoUphill) {
 			return null;
 		}
 		CompositeCommand compound = new CompositeCommand(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
 		Point newExecutionLocation = targetLocation.getCopy();
-		INodeEditPart targetLifelineEP = (INodeEditPart)targetEP.getParent();
+		INodeEditPart targetLifelineEP = (INodeEditPart)targetEditPart.getParent();
 		if (messageGoUphill) {
 			newExecutionLocation.y = sourceLocation.y;
 			// Calc resize amount
-			org.eclipse.draw2d.geometry.Rectangle targetBounds = targetEP.getFigure().getBounds().getCopy();
-			targetEP.getFigure().translateToAbsolute(targetBounds);
+			org.eclipse.draw2d.geometry.Rectangle targetBounds = targetEditPart.getFigure().getBounds().getCopy();
+			targetEditPart.getFigure().translateToAbsolute(targetBounds);
 			int resizeAmount = newExecutionLocation.y 
-					+ LifelineXYLayoutEditPolicy.EXECUTION_INIT_HEIGHT + LifelineXYLayoutEditPolicy.SPACING_HEIGHT 
+					+ OLDLifelineXYLayoutEditPolicy.EXECUTION_INIT_HEIGHT + OLDLifelineXYLayoutEditPolicy.SPACING_HEIGHT 
 					- targetBounds.bottom();
 			if (resizeAmount > 0) {
 				// Resize parent ES
 				ChangeBoundsRequest esRequest = new ChangeBoundsRequest(org.eclipse.gef.RequestConstants.REQ_MOVE);
-				esRequest.setEditParts(targetEP);
+				esRequest.setEditParts(targetEditPart);
 				esRequest.setResizeDirection(PositionConstants.SOUTH);
 				esRequest.setSizeDelta(new Dimension(0, resizeAmount));
-				Command moveESCommand = LifelineXYLayoutEditPolicy.getResizeOrMoveChildrenCommand((LifelineEditPart) targetLifelineEP, esRequest, false, false, true);
+				Command moveESCommand = OLDLifelineXYLayoutEditPolicy.getResizeOrMoveChildrenCommand((LifelineEditPart) targetLifelineEP, esRequest, false, false, true);
 				if (moveESCommand != null && !moveESCommand.canExecute()) {
 					// forbid creation of the message if the es can't be moved correctly
 					return UnexecutableCommand.INSTANCE;
@@ -294,13 +297,14 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 				}
 			}
 		}
-		EObject targetLifeline = ViewUtil.resolveSemanticElement((View) targetEP.getParent().getModel());
-		CreateElementAndNodeCommand createExecutionSpecificationCommand = new CreateElementAndNodeCommand(getEditingDomain(), (ShapeNodeEditPart)targetLifelineEP, targetLifeline, elementType, newExecutionLocation);
-		createExecutionSpecificationCommand.putCreateElementRequestParameter(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, ift);
-		compound.compose(createExecutionSpecificationCommand);
+		EObject targetLifeline = ViewUtil.resolveSemanticElement((View) targetEditPart.getParent().getModel());
+		//create a DestructionOccurence 
+		//CreateElementAndNodeCommand createExecutionSpecificationCommand = new CreateElementAndNodeCommand(getEditingDomain(), (ShapeNodeEditPart)targetLifelineEP, semanticContainer, elementType, newExecutionLocation);
+		//createExecutionSpecificationCommand.putCreateElementRequestParameter(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.COVERED, targetLifeline);
+		//compound.compose(createExecutionSpecificationCommand);
 		// put the anchor at the top of the figure
-		ChangeEdgeTargetCommand changeTargetCommand = new ChangeEdgeTargetCommand(getEditingDomain(), createExecutionSpecificationCommand, viewRequest.getConnectionViewDescriptor(), "(0.5, 0.0)");
-		compound.compose(changeTargetCommand);
+		//ChangeEdgeTargetCommand changeTargetCommand = new ChangeEdgeTargetCommand(getEditingDomain(), createExecutionSpecificationCommand, viewRequest.getConnectionViewDescriptor(), "(0.5, 0.0)");
+		//compound.compose(changeTargetCommand);
 		return new ICommandProxy(compound);
 	}
 	

@@ -42,7 +42,7 @@ public class CustomInteractionNameEditPart extends InteractionNameEditPart {
 		Object p = getParent();
 		if (p instanceof InteractionEditPart) {
 			InteractionEditPart iep = (InteractionEditPart) p;
-			IFigure container = iep.getPrimaryShape().getHeaderLabel().getParent();
+			IFigure container = iep.getPrimaryShape().getNameLabel().getParent();
 			if (container != null) {
 				container.revalidate();
 				container.repaint();

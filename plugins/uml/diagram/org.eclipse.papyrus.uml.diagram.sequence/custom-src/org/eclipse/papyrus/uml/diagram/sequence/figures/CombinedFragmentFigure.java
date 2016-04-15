@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *   Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 440230 : Label Margin
+ *   Cï¿½line Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 440230 : Label Margin
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
@@ -33,25 +33,25 @@ public class CombinedFragmentFigure extends StereotypeInteractionFigure {
 	private WrappingLabel titleLabel;
 	private RectangleFigure header;
 
-	@Override
-	protected void createContents() {
-		super.createContents();
-		setShadow(false);
-		interactionContentPane.setOutline(false);
-		interactionContentPane.setOpaque(false);
-		interactionContentPane.setBorder(null);
-	}
+//	@Override
+//	protected void createContents() {
+//		super.createContents();
+//		setShadow(false);
+//		interactionContentPane.setOutline(false);
+//		interactionContentPane.setOpaque(false);
+//		interactionContentPane.setBorder(null);
+//	}
 
-	@Override
-	protected RectangleFigure createHeader() {
-		header = super.createHeader();
-		titleLabel = new PapyrusWrappingLabel();
-		titleLabel.setAlignment(PositionConstants.RIGHT);
-		titleLabel.setBorder(new MarginBorder(3, 0, 0, 3));
-		titleLabel.setTextWrap(false);
-		header.add(titleLabel, BorderLayout.RIGHT);
-		return header;
-	}
+//	@Override
+//	protected RectangleFigure createHeader() {
+//		header = super.createHeader();
+//		titleLabel = new PapyrusWrappingLabel();
+//		titleLabel.setAlignment(PositionConstants.RIGHT);
+//		titleLabel.setBorder(new MarginBorder(3, 0, 0, 3));
+//		titleLabel.setTextWrap(false);
+//		header.add(titleLabel, BorderLayout.RIGHT);
+//		return header;
+//	}
 
 	public WrappingLabel getTitleLabel() {
 		return titleLabel;

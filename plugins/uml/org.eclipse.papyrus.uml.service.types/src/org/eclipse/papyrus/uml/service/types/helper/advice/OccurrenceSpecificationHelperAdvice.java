@@ -109,7 +109,7 @@ public class OccurrenceSpecificationHelperAdvice extends AbstractEditHelperAdvic
 
 		if(!dependentsToDestroy.isEmpty()) {
 			return request.getDestroyDependentsCommand(dependentsToDestroy);
-		}
+		} 
 
 		return null;
 	}

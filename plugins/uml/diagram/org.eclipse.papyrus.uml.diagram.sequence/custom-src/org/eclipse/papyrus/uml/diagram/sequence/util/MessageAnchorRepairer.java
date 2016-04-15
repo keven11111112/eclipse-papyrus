@@ -31,7 +31,7 @@ import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 
 /**
@@ -46,7 +46,7 @@ public class MessageAnchorRepairer {
 		Dimension sizeDelta = new Dimension(0, heightDelta);
 		int preserveAxis = PreserveAnchorsPositionCommand.PRESERVE_Y;
 		if (editPart instanceof LifelineEditPart) {
-			return new CustomLifelineEditPart.PreserveAnchorsPositionCommandEx(editPart, sizeDelta, preserveAxis);
+			return new OLDLifelineEditPart.PreserveAnchorsPositionCommandEx(editPart, sizeDelta, preserveAxis);
 		}
 		return new PreserveAnchorsPositionCommand(editPart, sizeDelta, preserveAxis);
 	}
@@ -57,7 +57,7 @@ public class MessageAnchorRepairer {
 		}
 		Dimension sizeDelta = new Dimension(0, heightDelta);
 		if (editPart instanceof LifelineEditPart) {
-			return new CustomLifelineEditPart.PreserveAnchorsPositionCommandEx(editPart, sizeDelta, PreserveAnchorsPositionCommand.PRESERVE_Y, editPart.getFigure(), direction);
+			return new OLDLifelineEditPart.PreserveAnchorsPositionCommandEx(editPart, sizeDelta, PreserveAnchorsPositionCommand.PRESERVE_Y, editPart.getFigure(), direction);
 		}
 		return new PreserveAnchorsPositionCommand(editPart, sizeDelta, PreserveAnchorsPositionCommand.PRESERVE_Y, editPart.getFigure(), direction);
 	}

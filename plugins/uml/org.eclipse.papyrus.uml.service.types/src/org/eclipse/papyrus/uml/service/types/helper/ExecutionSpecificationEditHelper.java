@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2016 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -17,16 +17,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -35,20 +44,22 @@ import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.UMLFactory;
 
-/**
- * {@link ElementEditHelper} for {@link ExecutionSpecification}.
- */
 public abstract class ExecutionSpecificationEditHelper extends ElementEditHelper {
 
 
+
+	
+
 	/**
-	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper#getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest)
+	 *
+	 * @param req
+	 * @return
 	 */
 	@Override
-	protected ICommand getDestroyElementCommand(final DestroyElementRequest req) {
+	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
 		CompositeCommand deleteElementsCommand = new CompositeCommand(req.getLabel());
 		EObject elementToDestroy = req.getElementToDestroy();
 
@@ -80,14 +91,9 @@ public abstract class ExecutionSpecificationEditHelper extends ElementEditHelper
 	}
 
 	/**
-	 * Destroy Intermediate Interaction fragments.
-	 * 
 	 * @param es
-	 *            The ExecutionSpecification to clear.
 	 * @param editingDomain
-	 *            the editing domain
 	 * @param compositeCommand
-	 *            The command to complete
 	 */
 	protected void destroyIntermediateInteractionFragments(ExecutionSpecification es, TransactionalEditingDomain editingDomain, CompositeCommand compositeCommand) {
 		OccurrenceSpecification start = es.getStart();
@@ -138,19 +144,6 @@ public abstract class ExecutionSpecificationEditHelper extends ElementEditHelper
 		}
 	}
 
-	/**
-	 * Find the intermediates.
-	 * 
-	 * @param fragments
-	 *            THe list of {@link InteractionFragment}
-	 * @param finish
-	 *            the finish {@link OccurrenceSpecification}
-	 * @param coveredLifeline
-	 *            the covered {@link Lifeline}
-	 * @param found
-	 *            true if intermediates have been found
-	 * @return the list intermediates InteractionFragment
-	 */
 	protected List<InteractionFragment> findIntermediates(List<InteractionFragment> fragments, OccurrenceSpecification finish, Lifeline coveredLifeline, boolean found) {
 		List<InteractionFragment> result = new ArrayList<InteractionFragment>();
 		for (InteractionFragment interactionFragment : fragments) {

@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2016 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+  *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.sequence.expressions;
 
 import java.util.Collections;
@@ -111,6 +109,8 @@ public class UMLOCLFactory {
 	}
 
 	/**
+	 * This is factory method, callers are responsible to keep reference to the return value if they want to reuse parsed expression
+	 * 
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context,
@@ -119,6 +119,8 @@ public class UMLOCLFactory {
 	}
 
 	/**
+	 * This method will become private in the next release
+	 * 
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context) {
@@ -160,7 +162,6 @@ public class UMLOCLFactory {
 		/**
 		 * @generated
 		 */
-		@Override
 		@SuppressWarnings("rawtypes")
 		protected Object doEvaluate(Object context, Map env) {
 			if (oclExpression == null) {

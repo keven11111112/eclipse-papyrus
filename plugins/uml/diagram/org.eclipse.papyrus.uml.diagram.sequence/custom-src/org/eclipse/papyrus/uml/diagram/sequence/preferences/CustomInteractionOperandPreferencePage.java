@@ -14,7 +14,10 @@
 package org.eclipse.papyrus.uml.diagram.sequence.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -28,12 +31,14 @@ import org.eclipse.swt.widgets.Group;
  *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomInteractionOperandPreferencePage extends InteractionOperandPreferencePage {
+public class CustomInteractionOperandPreferencePage extends AbstractPapyrusNodePreferencePage {
 
-	public static final String GUARD_VISIBILITY = PackageEditPart.MODEL_ID + "_InteractionOperand.guard.visibility";
+	public static final String GUARD_VISIBILITY = SequenceDiagramEditPart.MODEL_ID + "_InteractionOperand.guard.visibility";
 
 	public static void initDefaults(IPreferenceStore store) {
-		InteractionOperandPreferencePage.initDefaults(store);
+		String key = SequenceDiagramEditPart.MODEL_ID + "_InteractionOperand";
+		store.setDefault(PreferencesConstantsHelper.getElementConstant(key, PreferencesConstantsHelper.WIDTH), 40);
+		store.setDefault(PreferencesConstantsHelper.getElementConstant(key, PreferencesConstantsHelper.HEIGHT), 40);
 		store.setDefault(GUARD_VISIBILITY, Boolean.TRUE);
 	}
 
@@ -85,5 +90,15 @@ public class CustomInteractionOperandPreferencePage extends InteractionOperandPr
 		if (guardVisibleButton != null && !guardVisibleButton.isDisposed()) {
 			getPreferenceStore().setValue(GUARD_VISIBILITY, guardVisibleButton.getSelection());
 		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.ui.preferences.AbstractPapyrusPreferencePage#getBundleId()
+	 *
+	 * @return
+	 */
+	@Override
+	protected String getBundleId() {
+		return UMLDiagramEditorPlugin.ID;
 	}
 }

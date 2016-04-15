@@ -21,13 +21,15 @@ import org.eclipse.gmf.runtime.common.ui.preferences.CheckBoxFieldEditor;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.AbstractGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.BackgroundColor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.DecorationGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.LabelGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.NodeColorGroup;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -41,7 +43,7 @@ import org.eclipse.swt.widgets.Group;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomCombinedFragmentPreferencePage extends CombinedFragmentPreferencePage {
+public class CustomCombinedFragmentPreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	public static final String compartments[] = { Messages.CombinedFragmentCombinedFragmentCompartmentEditPart_title };
 
@@ -57,7 +59,7 @@ public class CustomCombinedFragmentPreferencePage extends CombinedFragmentPrefer
 	 * @Override
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-		String key = PackageEditPart.MODEL_ID + "_CombinedFragment";
+		String key = SequenceDiagramEditPart.MODEL_ID + "_CombinedFragment";
 		store.setDefault(PreferencesConstantsHelper.getElementConstant(key, PreferencesConstantsHelper.WIDTH), 40);
 		store.setDefault(PreferencesConstantsHelper.getElementConstant(key, PreferencesConstantsHelper.HEIGHT), 40);
 		for (String name : compartments) {
@@ -199,5 +201,15 @@ public class CustomCombinedFragmentPreferencePage extends CombinedFragmentPrefer
 			};
 			master.addSelectionListener(dependencyListener);
 		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.ui.preferences.AbstractPapyrusPreferencePage#getBundleId()
+	 *
+	 * @return
+	 */
+	@Override
+	protected String getBundleId() {
+		return UMLDiagramEditorPlugin.ID;
 	}
 }

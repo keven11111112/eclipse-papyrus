@@ -69,6 +69,6 @@ public class InteractionOperandFigure extends RoundedCompartmentFigure {
 		IMapMode mapMode = SequenceMapModeUtil.getMapModel(this);
 		fInteractionConstraintLabel = new WrappingLabel();
 		fInteractionConstraintLabel.setText("");
-		this.add(fInteractionConstraintLabel, new Rectangle(mapMode.DPtoLP(10), mapMode.DPtoLP(10), mapMode.DPtoLP(200), mapMode.DPtoLP(20)));
+		this.add(fInteractionConstraintLabel, new Rectangle(10,10,200,20));
 	}
 }

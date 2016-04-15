@@ -40,26 +40,27 @@ public class InteractionOperandDragDropEditPolicy extends ResizableEditPolicy {
 	 */
 	@Override
 	protected Command getResizeCommand(ChangeBoundsRequest request) {
-		boolean isVertResize = (request.getResizeDirection() & PositionConstants.NORTH_SOUTH) != 0;
-		boolean isHorResize = (request.getResizeDirection() & PositionConstants.EAST_WEST) != 0;
-		boolean isNorthResize = (request.getResizeDirection() & PositionConstants.NORTH) != 0;
-		boolean isSouthResize = (request.getResizeDirection() & PositionConstants.SOUTH) != 0;
-		if (isHorResize && !isVertResize) {
-			EditPart parent = getHost().getParent().getParent();
-			return parent.getCommand(request);
-		} else if (isVertResize) {
-			if (this.getHost() instanceof InteractionOperandEditPart && this.getHost().getParent() instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
-				InteractionOperandEditPart currentIOEP = (InteractionOperandEditPart) this.getHost();
-				CombinedFragmentCombinedFragmentCompartmentEditPart compartEP = (CombinedFragmentCombinedFragmentCompartmentEditPart) this.getHost().getParent();
-				// if the OP's border same as/linked to the CF's border 
-				if (this.getHost() == OperandBoundsComputeHelper.findFirstIOEP(compartEP) && isNorthResize
-						|| this.getHost() == OperandBoundsComputeHelper.findLastIOEP(compartEP) && isSouthResize) {
-					return getHost().getParent().getParent().getCommand(request);
-				} else {
-					return OperandBoundsComputeHelper.createIOEPResizeCommand(currentIOEP, request, compartEP);
-				}
-			}
-		}
-		return null;
+		Command cmd= super.getResizeCommand(request);
+//		boolean isVertResize = (request.getResizeDirection() & PositionConstants.NORTH_SOUTH) != 0;
+//		boolean isHorResize = (request.getResizeDirection() & PositionConstants.EAST_WEST) != 0;
+//		boolean isNorthResize = (request.getResizeDirection() & PositionConstants.NORTH) != 0;
+//		boolean isSouthResize = (request.getResizeDirection() & PositionConstants.SOUTH) != 0;
+//		if (isHorResize && !isVertResize) {
+//			EditPart parent = getHost().getParent().getParent();
+//			return parent.getCommand(request);
+//		} else if (isVertResize) {
+//			if (this.getHost() instanceof InteractionOperandEditPart && this.getHost().getParent() instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
+//				InteractionOperandEditPart currentIOEP = (InteractionOperandEditPart) this.getHost();
+//				CombinedFragmentCombinedFragmentCompartmentEditPart compartEP = (CombinedFragmentCombinedFragmentCompartmentEditPart) this.getHost().getParent();
+//				// if the OP's border same as/linked to the CF's border 
+//				if (this.getHost() == OperandBoundsComputeHelper.findFirstIOEP(compartEP) && isNorthResize
+//						|| this.getHost() == OperandBoundsComputeHelper.findLastIOEP(compartEP) && isSouthResize) {
+//					return getHost().getParent().getParent().getCommand(request);
+//				} else {
+//					return OperandBoundsComputeHelper.createIOEPResizeCommand(currentIOEP, request, compartEP);
+//				}
+//			}
+//		}
+		return cmd;
 	}
 }

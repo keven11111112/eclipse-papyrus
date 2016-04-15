@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.tests.canonical;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateBehavioredClassifierDiagramCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -31,7 +31,7 @@ public class CreateSequenceDiagramCommand extends CreateBehavioredClassifierDiag
 	 */
 	@Override
 	protected String getDiagramNotationID() {
-		return PackageEditPart.MODEL_ID;
+		return SequenceDiagramEditPart.MODEL_ID;
 	}
 
 	/**

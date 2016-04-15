@@ -68,13 +68,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpec
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomCombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomCombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.common.util.CacheAdapter;
@@ -383,7 +383,8 @@ public class OperandBoundsComputeHelper {
 	 * @param sizeDelta
 	 * @param direction
 	 */
-	private static void updateIOBoundsForCFResize(final ChangeBoundsRequest request, CompoundCommand compoundCmd, List<EditPart> combinedFragmentChildrenEditParts, CombinedFragment cf, InteractionOperand targetOperand, final Dimension sizeDelta, int direction) {
+	private static void updateIOBoundsForCFResize(final ChangeBoundsRequest request, CompoundCommand compoundCmd, List<EditPart> combinedFragmentChildrenEditParts, CombinedFragment cf, InteractionOperand targetOperand, final Dimension sizeDelta,
+			int direction) {
 		InteractionOperandEditPart targetOperandEditPart = findTargetOperandEditPart(cf, targetOperand, combinedFragmentChildrenEditParts);
 		for (EditPart ep : combinedFragmentChildrenEditParts) {
 			if (ep instanceof InteractionOperandEditPart) {
@@ -583,9 +584,9 @@ public class OperandBoundsComputeHelper {
 			reqEastWest.setLocation(request.getLocation());
 			reqEastWest.setExtendedData(request.getExtendedData());
 			reqEastWest.setResizeDirection(directionEastWest);
-			ICommand horResizeCommand = new CommandProxy(currentIOEP.getParent().getParent().getCommand(reqEastWest)); 
+			ICommand horResizeCommand = new CommandProxy(currentIOEP.getParent().getParent().getCommand(reqEastWest));
 			compositeCommand.add(horResizeCommand);
-		}		
+		}
 		Bounds targetIOEPBounds = OperandBoundsComputeHelper.getEditPartBounds(targetIOEP);
 		if (targetIOEPBounds == null) {
 			return null;
@@ -728,7 +729,7 @@ public class OperandBoundsComputeHelper {
 				groupRect.union(rect);
 			}
 		}
-		List<ShapeNodeEditPart> affixedExecutionSpecificationEditParts = LifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts((ShapeNodeEditPart) currentExecutionPart);
+		List<ShapeNodeEditPart> affixedExecutionSpecificationEditParts = OLDLifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts((ShapeNodeEditPart) currentExecutionPart);
 		for (ShapeNodeEditPart shapeNodeEditPart : affixedExecutionSpecificationEditParts) {
 			List<ExecutionSpecification> myCheckingList = new ArrayList<ExecutionSpecification>(toCheckExecutions);
 			myCheckingList.remove(shapeNodeEditPart);
@@ -768,33 +769,33 @@ public class OperandBoundsComputeHelper {
 	}
 
 	public static Command getForcedShiftEnclosedFragmentsCommand(InteractionOperandEditPart editPart, int movedY, Set<Object> alreadyMovedItems) {
-		if(editPart == null || movedY == 0) {
+		if (editPart == null || movedY == 0) {
 			return null;
 		}
 		// Recursively process children
 		CompoundCommand cc = new CompoundCommand("shift inner CFs' exec blocks"); //$NON-NLS-1$
 		List<?> children = editPart.getChildren();
 		for (int i = 0; i < children.size(); i++) {
-			if (false == children.get(i) instanceof CustomCombinedFragmentEditPart) {
+			if (false == children.get(i) instanceof OLDCustomCombinedFragmentEditPart) {
 				continue;
 			}
-			CustomCombinedFragmentEditPart childCF = (CustomCombinedFragmentEditPart)children.get(i);
+			OLDCustomCombinedFragmentEditPart childCF = (OLDCustomCombinedFragmentEditPart) children.get(i);
 			List<CustomInteractionOperandEditPart> childOperands = childCF.getOperandChildrenEditParts();
 			for (CustomInteractionOperandEditPart childOperand : childOperands) {
 				cc.add(getForcedShiftEnclosedFragmentsCommand(childOperand, movedY, alreadyMovedItems));
 			}
 		}
-		
+
 		List<OperandBlock> operandBlocks = getOperandBlocks(editPart);
-		if(operandBlocks.isEmpty()) {
+		if (operandBlocks.isEmpty()) {
 			return null;
 		}
 
 		final Map<OperandBlock, Integer> blockToMove = new HashMap<OperandBoundsComputeHelper.OperandBlock, Integer>();
-		for(OperandBlock blk : operandBlocks) {
+		for (OperandBlock blk : operandBlocks) {
 			blockToMove.put(blk, movedY);
 		}
-		if(blockToMove.isEmpty()) {
+		if (blockToMove.isEmpty()) {
 			return null;
 		}
 		cc.add(new ICommandProxy(new MoveOperandBlockCommand(editPart.getEditingDomain(), blockToMove, alreadyMovedItems)));
@@ -1233,12 +1234,12 @@ public class OperandBoundsComputeHelper {
 			// 1. parent bar
 			List<ShapeNodeEditPart> childShapeNodeEditPart = LifelineEditPartUtil.getChildShapeNodeEditPart(parent);
 			childShapeNodeEditPart.remove(child);
-			ShapeNodeEditPart parentNode = LifelineXYLayoutEditPolicy.getParent(parent, child.getFigure().getBounds().getCopy(), childShapeNodeEditPart);
+			ShapeNodeEditPart parentNode = OLDLifelineXYLayoutEditPolicy.getParent(parent, child.getFigure().getBounds().getCopy(), childShapeNodeEditPart);
 			if (parentNode != null) {
 				fillWith(parentNode, executions);
 			}
 			// 2. children
-			List<ShapeNodeEditPart> affixedEditParts = LifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts(child);
+			List<ShapeNodeEditPart> affixedEditParts = OLDLifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts(child);
 			for (ShapeNodeEditPart affixedChild : affixedEditParts) {
 				if (executions.contains(affixedChild.resolveSemanticElement())) {
 					fillWith(affixedChild, executions);
@@ -1512,7 +1513,7 @@ public class OperandBoundsComputeHelper {
 		 */
 		public MoveOperandBlockCommand(TransactionalEditingDomain domain, Map<OperandBlock, Integer> blockToMove, Set<Object> alreadyMovedItems) {
 			this(domain, blockToMove);
-			this.alreadyMovedItems = alreadyMovedItems; 
+			this.alreadyMovedItems = alreadyMovedItems;
 		}
 
 		/**
@@ -1574,10 +1575,9 @@ public class OperandBoundsComputeHelper {
 					if (alreadyMovedItems != null) {
 						if (alreadyMovedItems.contains(child)) {
 							continue;
-						}
-						else {
+						} else {
 							alreadyMovedItems.add(child);
-						}						
+						}
 					}
 					Bounds bounds = getInteractionOperandEPBounds(child);
 					Rectangle newBounds = fillRectangle(bounds);

@@ -27,7 +27,7 @@ import org.eclipse.gef.tools.ResizeTracker;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
@@ -94,9 +94,9 @@ public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
 		boolean skipMinSize = false;
 		// Only enable horizontal dragging on lifelines(except lifelines that are result of a create message).
 		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=364688
-		if (this.getHost() instanceof CustomLifelineEditPart) {
+		if (this.getHost() instanceof OLDLifelineEditPart) {
 			skipMinSize = true;
-			CustomLifelineEditPart lifelineEP = (CustomLifelineEditPart) this.getHost();
+			OLDLifelineEditPart lifelineEP = (OLDLifelineEditPart) this.getHost();
 			if (!SequenceUtil.isCreateMessageEndLifeline(lifelineEP)) {
 				request.getMoveDelta().y = 0;
 			}

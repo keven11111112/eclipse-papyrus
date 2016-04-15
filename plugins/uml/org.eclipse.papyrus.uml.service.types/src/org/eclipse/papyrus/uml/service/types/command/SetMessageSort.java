@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.MessageSort;
 public class SetMessageSort extends EditElementCommand {
 
 	/** The {@link MessageSort} to set. */
-	private final MessageSort messageSort;
+	private final MessageSort messageSort; 
 
 	/** The {@link Message} to set. */
 	private Message message;

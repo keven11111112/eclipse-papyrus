@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
  *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 512207
  *
  *****************************************************************************/

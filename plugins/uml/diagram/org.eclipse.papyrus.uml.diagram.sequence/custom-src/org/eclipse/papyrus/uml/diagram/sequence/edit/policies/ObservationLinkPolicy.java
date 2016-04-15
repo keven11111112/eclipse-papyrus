@@ -343,7 +343,7 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 			}
 			Map<String, Object> extendedData = request.getExtendedData();
 			// assign the occurrence specification
-			Object paramOcc1 = extendedData.get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
+			Object paramOcc1 = extendedData.get(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
 			Object paramOcc2 = extendedData.get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
 			if (paramOcc1 != null && paramOcc2 != null) {
 				events.add((OccurrenceSpecification) paramOcc1);
@@ -361,13 +361,13 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 					View view = (View) messageEP.getModel();
 					Message message = (Message) view.getElement();
 					if (message.getSendEvent() != null) {
-						extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, message.getSendEvent());
+						extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, message.getSendEvent());
 					}
 					if (message.getReceiveEvent() != null) {
 						extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2, message.getReceiveEvent());
 					}
 				}
-				if (extendedData.containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION) && extendedData.containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2)) {
+				if (extendedData.containsKey(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION) && extendedData.containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2)) {
 					return true;
 				}
 			}

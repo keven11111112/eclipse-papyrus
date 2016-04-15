@@ -538,7 +538,7 @@
     <iconEntry xmi:id="_Scr6klYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/InstanceValue.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceValue"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SctIsVYCEeS0WsAAtVmToA" identifier="org.eclipse.papyrus.uml.Interaction" name="UML::Interaction" hint="UML::Interaction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SctIsVYCEeS0WsAAtVmToA" identifier="org.eclipse.papyrus.uml.Interaction" name="UML::Interaction" hint="UML::Interaction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.InteractionEditHelper">
     <iconEntry xmi:id="_SctIslYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Interaction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Interaction"/>
   </elementTypeConfigurations>
@@ -586,7 +586,7 @@
     <iconEntry xmi:id="_Scz2VlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/JoinNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//JoinNode"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scz2V1YCEeS0WsAAtVmToA" identifier="org.eclipse.papyrus.uml.Lifeline" name="UML::Lifeline" hint="UML::Lifeline" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.LifelineEditHelper">
+   <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scz2V1YCEeS0WsAAtVmToA" identifier="org.eclipse.papyrus.uml.Lifeline" name="UML::Lifeline" hint="UML::Lifeline" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.LifelineEditHelper">
     <iconEntry xmi:id="_Scz2WFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Lifeline.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Lifeline"/>
   </elementTypeConfigurations>

@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Message;
 
 /**
- * Utility class for {@link Message}.
+ * Utility class for {@link Message}. 
  *
  */
 public class MessageUtils {

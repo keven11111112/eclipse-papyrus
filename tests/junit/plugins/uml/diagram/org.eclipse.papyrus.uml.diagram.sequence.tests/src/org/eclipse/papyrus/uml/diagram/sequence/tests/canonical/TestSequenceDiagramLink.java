@@ -114,6 +114,7 @@ public class TestSequenceDiagramLink extends TestLink {
 		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_CreateEdge, lifelineProvider, false);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public CreateConnectionViewRequest createConnectionViewRequest(IElementType type, EditPart source, EditPart target, ILinkTestProvider provider) {
 		CreateConnectionViewRequest request = super.createConnectionViewRequest(type, source, target, provider);
@@ -227,7 +228,7 @@ public class TestSequenceDiagramLink extends TestLink {
 
 		public Point getConnectionSourceLocation(EditPart part) {
 			if(part instanceof LifelineEditPart) {
-				IFigure f = ((LifelineEditPart)part).getPrimaryShape().getFigureLifelineDotLineFigure();
+				IFigure f = ((LifelineEditPart)part).getPrimaryShape();
 				return getCenter(f);
 			}
 			if(part instanceof AbstractExecutionSpecificationEditPart || part instanceof InteractionEditPart) { // found message
@@ -238,7 +239,7 @@ public class TestSequenceDiagramLink extends TestLink {
 
 		public Point getConnectionTargetLocation(EditPart part) {
 			if(part instanceof LifelineEditPart) {
-				IFigure f = ((LifelineEditPart)part).getPrimaryShape().getFigureLifelineDotLineFigure();
+				IFigure f = ((LifelineEditPart)part).getPrimaryShape();
 				return getCenter(f);
 			}
 			if(part instanceof AbstractExecutionSpecificationEditPart || part instanceof InteractionEditPart) {
@@ -253,7 +254,7 @@ public class TestSequenceDiagramLink extends TestLink {
 		}
 
 		public Point getChildLocation(GraphicalEditPart parentEditPart) {
-			IFigure f = ((LifelineEditPart)parentEditPart).getPrimaryShape().getFigureLifelineDotLineFigure();
+			IFigure f = ((LifelineEditPart)parentEditPart).getPrimaryShape();
 			return getCenter(f).translate(0, 1);
 		}
 

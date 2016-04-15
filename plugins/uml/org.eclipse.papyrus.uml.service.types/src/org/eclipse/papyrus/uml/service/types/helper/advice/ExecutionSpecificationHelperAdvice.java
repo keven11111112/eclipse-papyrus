@@ -26,6 +26,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
@@ -33,14 +34,18 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
@@ -55,15 +60,13 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 	/**
 	 * Create an execution Occurrence
 	 *
-	 * @param execution
-	 *            the execution that references the execution occurrences always !=null
-	 * @param lifeline
-	 *            the lifeLine that is covered by the execution occurrences ,always !=null
+	 * @param execution the execution that references the execution occurrences  always !=null
+	 * @param lifeline the lifeLine that is covered by the execution occurrences ,always !=null
 	 */
 	public static ExecutionOccurrenceSpecification createOccurenceSpecification(ExecutionSpecification execution, Lifeline lifeline) {
-		ExecutionOccurrenceSpecification occurrenceSpecification = UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification();
+		ExecutionOccurrenceSpecification occurrenceSpecification=UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification();
 		occurrenceSpecification.setCovered(lifeline);
-		((Interaction) execution.getOwner()).getFragments().add(occurrenceSpecification);
+		((Interaction)execution.getOwner()).getFragments().add(occurrenceSpecification);
 		return occurrenceSpecification;
 	}
 
@@ -80,6 +83,8 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 	@Override
 	protected ICommand getBeforeConfigureCommand(final ConfigureRequest request) {
 
+		final ExecutionSpecification execution = (ExecutionSpecification) request.getElementToConfigure();
+		IElementType elementType = request.getTypeToConfigure();
 		return new ConfigureElementCommand(request) {
 
 			@Override
@@ -93,27 +98,29 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 
 				final ExecutionSpecification execution = (ExecutionSpecification) request.getElementToConfigure();
 
-				Object replaceStart = request.getParameters().get(SequenceRequestConstant.REPLACE_EXECUTION_SPECIFICATION_START);
-				if (replaceStart instanceof MessageOccurrenceSpecification) {
-					execution.setStart((MessageOccurrenceSpecification) replaceStart);
-				} else {
-					// create Occurrence SpecStart
-					ExecutionOccurrenceSpecification start = createOccurenceSpecification(execution, coveredLifeline);
-					start.setName(execution.getName() + "Start");
+				Object replaceStart= request.getParameters().get(SequenceRequestConstant.REPLACE_EXECUTION_SPECIFICATION_START);
+				if(replaceStart instanceof MessageOccurrenceSpecification ){
+					execution.setStart((MessageOccurrenceSpecification)replaceStart);
+				}
+				else{
+					//create Occurrence SpecStart
+					ExecutionOccurrenceSpecification start=createOccurenceSpecification(execution, coveredLifeline);
+					start.setName(execution.getName()+"Start");
 					start.setExecution(execution);
 					execution.setStart(start);
 				}
-				// add covered for the execution
+				//add covered for the execution
 				coveredLifeline.getCoveredBys().add(execution);
 				execution.getCovereds().add(coveredLifeline);
 
-				// create Occurrence SpecFinish
-				Object replaceFinish = request.getParameters().get(SequenceRequestConstant.REPLACE_EXECUTION_SPECIFICATION_FINISH);
-				if (replaceFinish instanceof MessageOccurrenceSpecification) {
-					execution.setFinish((MessageOccurrenceSpecification) replaceFinish);
-				} else {
-					ExecutionOccurrenceSpecification finish = createOccurenceSpecification(execution, coveredLifeline);
-					finish.setName(execution.getName() + "Finish");
+				//create Occurrence SpecFinish
+				Object replaceFinish= request.getParameters().get(SequenceRequestConstant.REPLACE_EXECUTION_SPECIFICATION_FINISH);
+				if(replaceFinish instanceof MessageOccurrenceSpecification ){
+					execution.setFinish((MessageOccurrenceSpecification)replaceFinish);
+				}
+				else{
+					ExecutionOccurrenceSpecification finish=createOccurenceSpecification(execution, coveredLifeline);
+					finish.setName(execution.getName()+"Finish");
 					finish.setExecution(execution);
 					execution.setFinish(finish);
 				}
@@ -133,7 +140,7 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getBeforeDestroyDependentsCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest)
 	 * 
 	 * @param request
-	 *            the request
+	 *        the request
 	 * @return the command to execute before the edit helper work is done
 	 */
 	@Override
@@ -141,16 +148,16 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 
 		List<EObject> dependentsToDestroy = new ArrayList<EObject>();
 
-		ExecutionSpecification es = (ExecutionSpecification) request.getElementToDestroy();
+		ExecutionSpecification es = (ExecutionSpecification)request.getElementToDestroy();
 
 		// Check whether start - finish referenced OccurrenceSpecification should be added to the dependents list
 		OccurrenceSpecification osStart = es.getStart();
-		if (shouldDestroyOccurrenceSpecification(es, osStart)) {
+		if(shouldDestroyOccurrenceSpecification(es, osStart)) {
 			dependentsToDestroy.add(osStart);
 		}
 
 		OccurrenceSpecification osFinish = es.getFinish();
-		if (shouldDestroyOccurrenceSpecification(es, osFinish)) {
+		if(shouldDestroyOccurrenceSpecification(es, osFinish)) {
 			dependentsToDestroy.add(osFinish);
 		}
 
@@ -158,12 +165,12 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 
 		// find initiating MOS of a synch message
 		InteractionFragment previousIft = InteractionFragmentHelper.findPreviousFragment(osStart, es.getOwner());
-		while (previousIft != null) {
+		while(previousIft != null) {
 			// keep the first ift with the same lifelines, and check it
-			if (coveredLifelines.equals(new HashSet<Lifeline>(previousIft.getCovereds()))) {
-				if (previousIft instanceof MessageOccurrenceSpecification) {
-					Message msg = ((MessageOccurrenceSpecification) previousIft).getMessage();
-					if (msg != null && MessageSort.SYNCH_CALL_LITERAL.equals(msg.getMessageSort())) {
+			if(coveredLifelines.equals(new HashSet<Lifeline>(previousIft.getCovereds()))) {
+				if(previousIft instanceof MessageOccurrenceSpecification) {
+					Message msg = ((MessageOccurrenceSpecification)previousIft).getMessage();
+					if(msg != null && MessageSort.SYNCH_CALL_LITERAL.equals(msg.getMessageSort())) {
 						dependentsToDestroy.add(previousIft);
 					}
 				}
@@ -174,9 +181,9 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 
 		// find MOS between the start and finish
 		InteractionFragment fragment = osStart;
-		while (fragment != null && !fragment.equals(osFinish)) {
+		while(fragment != null && !fragment.equals(osFinish)) {
 			// remove MOS if it have the same covered lifelines as the ES
-			if (fragment instanceof MessageOccurrenceSpecification && coveredLifelines.equals(new HashSet<Lifeline>(fragment.getCovereds()))) {
+			if(fragment instanceof MessageOccurrenceSpecification && coveredLifelines.equals(new HashSet<Lifeline>(fragment.getCovereds()))) {
 				dependentsToDestroy.add(fragment);
 			}
 
@@ -184,7 +191,7 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 		}
 
 		// return command to destroy dependents
-		if (!dependentsToDestroy.isEmpty()) {
+		if(!dependentsToDestroy.isEmpty()) {
 			return request.getDestroyDependentsCommand(dependentsToDestroy);
 		}
 
@@ -202,10 +209,10 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 	 * </pre>
 	 * 
 	 * @param es
-	 *            {@link ExecutionSpecification} which references {@link OccurrenceSpecification} (by means of #start/#finish references)
+	 *        {@link ExecutionSpecification} which references {@link OccurrenceSpecification} (by means of #start/#finish references)
 	 * @param os
-	 *            start or finish {@link OccurrenceSpecification} which defines the duration of {@link ExecutionSpecification}
-	 * @return true in case {@link OccurrenceSpecification} should be destroyed
+	 *        start or finish {@link OccurrenceSpecification} which defines the duration of {@link ExecutionSpecification}
+	 * @return true in case {@link OccurrenceSpecification} should be destroyed 
 	 */
 	private boolean shouldDestroyOccurrenceSpecification(ExecutionSpecification es, OccurrenceSpecification os) {
 		return os instanceof ExecutionOccurrenceSpecification

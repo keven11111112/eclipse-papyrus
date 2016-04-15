@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.CallEvent;
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.Interaction;
@@ -39,7 +39,7 @@ public class EventHelper {
 	 */
 	public static Event doCreateEvent(Package eventContainer, EClass eClass) {
 		Event event = (Event) eventContainer.createPackagedElement(null, eClass);
-		ElementInitializers.init_NamedElement(event);
+		NamedElementUtil.getDefaultNameWithIncrement(event, event.getOwner().eContents());
 		return event;
 	}
 
@@ -110,6 +110,7 @@ public class EventHelper {
 	 *            the signal of the event. Can't be null
 	 * @return the ReceiveSignal event
 	 */
+
 	// Does not exist anymore in UML 2.4
 	// public static ReceiveSignalEvent doCreateReceiveSignalEvent(Package eventContainer, Signal signal) {
 	// ReceiveSignalEvent receiveSignalEvent = (ReceiveSignalEvent)doCreateEvent(eventContainer, UMLPackage.eINSTANCE.getReceiveSignalEvent());

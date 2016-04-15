@@ -13,12 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomCommentItemSemanticEditPolicy;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -34,14 +32,6 @@ public class CustomCommentEditPart extends CommentEditPart {
 		super(view);
 	}
 
-	/**
-	 * @Override
-	 */
-	@Override
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomCommentItemSemanticEditPolicy());
-	}
 
 	@Override
 	protected void setLineWidth(int width) {

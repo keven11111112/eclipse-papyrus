@@ -144,5 +144,5 @@ public class SelectAndDeleteCommand extends PopupMenuCommand {
 		public Image getImage(Object object) {
 			return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_ETOOL_DELETE);
 		}
-	}
+	} 
 }

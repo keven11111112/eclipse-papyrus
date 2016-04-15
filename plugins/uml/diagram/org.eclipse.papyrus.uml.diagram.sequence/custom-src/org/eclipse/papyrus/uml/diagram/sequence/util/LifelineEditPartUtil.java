@@ -20,7 +20,7 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -45,7 +45,7 @@ public class LifelineEditPartUtil {
 		for (Object obj : lifeline.getChildren()) {
 			if (obj instanceof BehaviorExecutionSpecificationEditPart) {
 				executionSpecificationList.add((ShapeNodeEditPart) obj);
-			} else if (obj instanceof ActionExecutionSpecificationEditPart) {
+			} else if (obj instanceof CCombinedCompartmentEditPart) {
 				executionSpecificationList.add((ShapeNodeEditPart) obj);
 			} else if (obj instanceof CombinedFragment2EditPart) {
 				executionSpecificationList.add((ShapeNodeEditPart) obj);

@@ -295,7 +295,7 @@ public abstract class AbstractNodeTest extends TestTopNode {
 				location = eventAndLocation.getKey();
 				events = eventAndLocation.getValue();
 			}
-			request.getExtendedData().put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, events);
+			request.getExtendedData().put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, events);
 			request.getExtendedData().put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION, location);
 			if(location != null) {
 				request.setLocation(location);

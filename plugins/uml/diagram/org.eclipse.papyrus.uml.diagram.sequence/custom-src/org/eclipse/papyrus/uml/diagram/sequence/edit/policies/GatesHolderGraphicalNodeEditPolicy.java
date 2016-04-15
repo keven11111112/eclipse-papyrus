@@ -75,10 +75,10 @@ import org.eclipse.uml2.uml.Message;
  * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class GatesHolderGraphicalNodeEditPolicy extends SequenceGraphicalNodeEditPolicy {
+public class GatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalNodeEditPolicy {
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy#getReconnectSourceCommand(org.eclipse.gef.requests.ReconnectRequest)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDSequenceGraphicalNodeEditPolicy#getReconnectSourceCommand(org.eclipse.gef.requests.ReconnectRequest)
 	 *
 	 * @param request
 	 * @return
@@ -120,7 +120,7 @@ public class GatesHolderGraphicalNodeEditPolicy extends SequenceGraphicalNodeEdi
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy#getReconnectTargetCommand(org.eclipse.gef.requests.ReconnectRequest)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDSequenceGraphicalNodeEditPolicy#getReconnectTargetCommand(org.eclipse.gef.requests.ReconnectRequest)
 	 *
 	 * @param request
 	 * @return

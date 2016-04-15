@@ -19,7 +19,6 @@ import java.lang.reflect.Field;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -28,7 +27,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstants
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomConsiderIgnoreFragmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
@@ -43,7 +41,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomConsiderIgnoreFragmentEditPart extends CustomCombinedFragmentEditPart {
+public class CustomConsiderIgnoreFragmentEditPart extends OLDCustomCombinedFragmentEditPart {
 
 	/**
 	 * Notfier for listen and unlistend model element.
@@ -89,15 +87,6 @@ public class CustomConsiderIgnoreFragmentEditPart extends CustomCombinedFragment
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new AnchorHelper.CombinedFragmentNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		return result;
-	}
-
-	/**
-	 * @Override
-	 */
-	@Override
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomConsiderIgnoreFragmentItemSemanticEditPolicy());
 	}
 
 	/**
@@ -147,7 +136,7 @@ public class CustomConsiderIgnoreFragmentEditPart extends CustomCombinedFragment
 				operatorKind.append(" {").append(sb.deleteCharAt(sb.length() - 1).toString()).append("}");
 			}
 		}
-		getPrimaryShape().getHeaderLabel().setText(operatorKind.toString());
+		getPrimaryShape().getNameLabel().setText(operatorKind.toString());
 	}
 
 	/**

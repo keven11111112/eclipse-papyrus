@@ -37,7 +37,7 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart.PreserveAnchorsPositionCommandEx;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart.PreserveAnchorsPositionCommandEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;

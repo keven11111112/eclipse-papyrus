@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2016 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+  *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.sequence.navigator;
 
 import org.eclipse.core.resources.IFile;
@@ -63,7 +61,6 @@ public class UMLNavigatorLinkHelper implements ILinkHelper {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IStructuredSelection findSelection(IEditorInput anInput) {
 		IDiagramDocument document = UMLDiagramEditorPlugin.getInstance().getDocumentProvider()
 				.getDiagramDocument(anInput);
@@ -85,7 +82,6 @@ public class UMLNavigatorLinkHelper implements ILinkHelper {
 	/**
 	 * @generated
 	 */
-	@Override
 	public void activateEditor(IWorkbenchPage aPage, IStructuredSelection aSelection) {
 		if (aSelection == null || aSelection.isEmpty()) {
 			return;

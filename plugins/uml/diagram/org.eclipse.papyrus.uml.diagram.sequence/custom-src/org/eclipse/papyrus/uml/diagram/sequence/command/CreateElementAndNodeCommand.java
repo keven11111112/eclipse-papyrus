@@ -97,6 +97,15 @@ public class CreateElementAndNodeCommand extends AbstractTransactionalCommand {
 		}
 		return affectedFiles;
 	}
+	/**
+	 * @see org.eclipse.core.commands.operations.AbstractOperation#canExecute()
+	 *
+	 * @return
+	 */
+	@Override
+	public boolean canExecute() {
+		return super.canExecute();
+	}
 
 	/**
 	 * put a parameter which will be add to the parameters of the element creation request.

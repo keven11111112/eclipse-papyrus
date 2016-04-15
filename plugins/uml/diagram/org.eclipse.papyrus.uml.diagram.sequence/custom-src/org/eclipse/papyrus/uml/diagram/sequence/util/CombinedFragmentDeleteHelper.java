@@ -274,6 +274,7 @@ public class CombinedFragmentDeleteHelper {
 		return new SelectAndDeleteCommand(deleteAll, deleteCfOnly, new String[] { "Delete all", "Keep contents" });
 	}
 
+	@Deprecated
 	public static ICommand createDeleteViewCommand(CombinedFragment cf, TransactionalEditingDomain transactionalEditingDomain, CombinedFragmentEditPart host) {
 		CompositeTransactionalCommand deleteAll = new CompositeTransactionalCommand(transactionalEditingDomain, null);
 		{

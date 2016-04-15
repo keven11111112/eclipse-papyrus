@@ -141,6 +141,6 @@ public class ElementUtil {
 		if (supers.contains(typeTomatch)) {
 			return true;
 		}
-		return false;
+		return false; 
 	}
 }

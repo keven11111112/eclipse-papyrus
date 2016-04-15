@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeLabelEditPolicy;
 
 /**
@@ -31,8 +31,8 @@ public class LifelineAppliedStereotypeNodeLabelDisplayEditPolicy extends Applied
 	@Override
 	public void refreshStereotypeDisplay() {
 		super.refreshStereotypeDisplay();
-		if (getHost() instanceof CustomLifelineEditPart) {
-			((CustomLifelineEditPart) getHost()).updateLifelinePosition();
+		if (getHost() instanceof OLDLifelineEditPart) {
+			((OLDLifelineEditPart) getHost()).updateLifelinePosition();
 		}
 	}
 }

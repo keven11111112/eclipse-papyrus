@@ -194,7 +194,7 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 	public void testCombinedFragment() {
 		CombinedFragmentEditPart cf = (CombinedFragmentEditPart) createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(100, 100), new Dimension(200, 200));
 		assertNotNull(cf);
-		testElementIcon(cf.getPrimaryShape().getHeaderLabel(), cf.getNotationView(), true);
+		testElementIcon(cf.getPrimaryShape().getNameLabel(), cf.getNotationView(), true);
 	}
 
 	@Test

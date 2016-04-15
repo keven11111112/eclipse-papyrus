@@ -22,7 +22,6 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -31,7 +30,6 @@ import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocat
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.TimeRelatedSelectionEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomTimeObservationItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.TimeObservationFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 
@@ -55,7 +53,6 @@ public class CustomTimeObservationEditPart extends TimeObservationEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomTimeObservationItemSemanticEditPolicy());
 		removeEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		removeEditPolicy(DeleteTimeElementWithoutEventPolicy.KEY);
 	}

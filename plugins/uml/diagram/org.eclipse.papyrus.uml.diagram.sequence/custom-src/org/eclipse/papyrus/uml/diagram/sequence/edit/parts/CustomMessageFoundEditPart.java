@@ -15,9 +15,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomMessageFoundItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFound;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.Message;
@@ -43,7 +41,6 @@ public class CustomMessageFoundEditPart extends MessageFoundEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomMessageFoundItemSemanticEditPolicy());
 	}
 
 	/**

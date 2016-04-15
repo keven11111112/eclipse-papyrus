@@ -52,7 +52,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -252,12 +252,12 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 		assertNotNull(PREPARE_MODEL, booksProperty);
 		// set represents;
 		setRepresents(host, booksProperty);
-		assertTrue(host instanceof CustomLifelineEditPart);
+		assertTrue(host instanceof OLDLifelineEditPart);
 		// create PartDecomposition
 		Rectangle bounds = getAbsoluteBounds(host);
 		LifelineEditPart lifeline = createLifeline(host, new Point(bounds.x + 40, bounds.y + 1), authorProperty);
 		assertNotNull(PREPARE_MODEL, lifeline);
-		assertTrue(((CustomLifelineEditPart) host).isInlineMode());
+		assertTrue(((OLDLifelineEditPart) host).isInlineMode());
 		Rectangle b1 = getAbsoluteBounds(lifeline);
 		AbstractExecutionSpecificationEditPart es = createExecutionSpecification(lifeline, b1.getCenter(), null);
 		assertNotNull(es);
@@ -339,7 +339,8 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 		getDiagramCommandStack().execute(command);
 		waitForComplete();
 		// waiting until dialog closed.
-		while (true) {
+		int i=0;
+		while (i<1000000) {
 			if (!result.isEmpty()) {
 				result.get(0).close();
 				Shell shell = result.get(0).getShell();
@@ -348,6 +349,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 				}
 				break;
 			}
+			i++;
 		}
 		// return the created EditPart.
 		List<? extends ViewDescriptor> viewDescriptors = createReq.getViewDescriptors();

@@ -15,19 +15,31 @@ package org.eclipse.papyrus.uml.diagram.sequence.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomDestructionOccurrenceSpecificationPreferencePage extends DestructionOccurrenceSpecificationPreferencePage {
+public class CustomDestructionOccurrenceSpecificationPreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * @Override
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-		String key = PackageEditPart.MODEL_ID + "_DestructionOccurrenceSpecification";
+		String key = SequenceDiagramEditPart.MODEL_ID + "_DestructionOccurrenceSpecification";
 		store.setDefault(PreferencesConstantsHelper.getElementConstant(key, PreferencesConstantsHelper.WIDTH), 20);
 		store.setDefault(PreferencesConstantsHelper.getElementConstant(key, PreferencesConstantsHelper.HEIGHT), 20);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.ui.preferences.AbstractPapyrusPreferencePage#getBundleId()
+	 *
+	 * @return
+	 */
+	@Override
+	protected String getBundleId() {
+		return UMLDiagramEditorPlugin.ID;
 	}
 }

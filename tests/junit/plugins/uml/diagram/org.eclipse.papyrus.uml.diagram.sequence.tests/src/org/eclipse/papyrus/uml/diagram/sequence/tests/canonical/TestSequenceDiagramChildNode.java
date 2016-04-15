@@ -32,6 +32,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.junit.utils.DisplayUtils;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
@@ -229,9 +230,10 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 		}
 
 		public Point getChildLocation(GraphicalEditPart parentEditPart) {
-			IFigure f = ((LifelineEditPart)parentEditPart).getPrimaryShape().getFigureLifelineDotLineFigure();
-			Rectangle b = f.getBounds().getCopy();
-			f.translateToAbsolute(b);
+			IFigure LifelineFigure = ((LifelineEditPart)parentEditPart).getPrimaryShape();
+			DisplayUtils.flushEventLoop();
+			Rectangle b = LifelineFigure.getBounds().getCopy();
+			LifelineFigure.translateToAbsolute(b);
 			return b.getCenter().getCopy().translate(0, 50);
 		}
 	};

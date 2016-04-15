@@ -36,7 +36,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndpo
  *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public abstract class AnnotatedLinkEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public abstract class AnnotatedLinkEditPart extends org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * Constructor.

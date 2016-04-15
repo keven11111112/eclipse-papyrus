@@ -149,7 +149,7 @@ public class ChangeEdgeTargetCommand extends AbstractTransactionalCommand {
 		}
 		if (edgeElement instanceof Message && MessageSort.DELETE_MESSAGE_LITERAL == ((Message) edgeElement).getMessageSort() && targetElement instanceof DestructionOccurrenceSpecification) {
 			// Set Message target to newly created DOS, destroy old MessageOccurrenceSpecification
-			LifelineMessageDeleteHelper.setMessageEndDos((Message)edgeElement, (DestructionOccurrenceSpecification)targetElement);
+			//LifelineMessageDeleteHelper.setMessageEndDos((Message)edgeElement, (DestructionOccurrenceSpecification)targetElement);
 		}
 		return null;
 	}

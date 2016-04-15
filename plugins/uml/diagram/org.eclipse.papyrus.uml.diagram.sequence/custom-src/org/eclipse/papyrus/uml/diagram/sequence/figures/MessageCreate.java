@@ -53,11 +53,21 @@ public class MessageCreate extends MessageFigure {
 		PolylineDecoration df = new PolylineDecoration();
 		df.setForegroundColor(getForegroundColor());
 		PointList pl = new PointList();
-		pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
-		pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-		pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
-		df.setTemplate(pl);
-		df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
+//		pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
+//		pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
+//		pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
+//		df.setTemplate(pl);
+//		df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
 		return df;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure#createSourceDecoration()
+	 *
+	 * @return
+	 */
+	@Override
+	protected RotatableDecoration createSourceDecoration() {
+		return null;
 	}
 }

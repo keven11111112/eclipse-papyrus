@@ -20,7 +20,7 @@ import static org.junit.Assert.assertTrue;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayoutEditPolicy;
 import org.junit.Test;
 
 public class LifelineXYLayoutEditPolicyTest {
@@ -32,17 +32,17 @@ public class LifelineXYLayoutEditPolicyTest {
 		figure.setMaximumSize(new Dimension(100, 200));
 		figure.setMinimumSize(new Dimension(0, 30));
 		Dimension sizeDelta = new Dimension(30, 40);
-		Dimension newSizeDelta = LifelineXYLayoutEditPolicy.adaptSizeDeltaToMaxHeight(figure, sizeDelta);
+		Dimension newSizeDelta = OLDLifelineXYLayoutEditPolicy.adaptSizeDeltaToMaxHeight(figure, sizeDelta);
 		assertFalse("Original dimension modified", sizeDelta == newSizeDelta);
 		assertEquals("Width can't change", 30, newSizeDelta.width);
 		assertEquals("Height change", 40, newSizeDelta.height);
 		sizeDelta = new Dimension(30, 190);
-		newSizeDelta = LifelineXYLayoutEditPolicy.adaptSizeDeltaToMaxHeight(figure, sizeDelta);
+		newSizeDelta = OLDLifelineXYLayoutEditPolicy.adaptSizeDeltaToMaxHeight(figure, sizeDelta);
 		assertFalse("Original dimension modified", sizeDelta == newSizeDelta);
 		assertEquals("Width can't change", 30, newSizeDelta.width);
 		assertEquals("Height don't change", 180, newSizeDelta.height);
 		sizeDelta = new Dimension(30, 0);
-		newSizeDelta = LifelineXYLayoutEditPolicy.adaptSizeDeltaToMaxHeight(figure, sizeDelta);
+		newSizeDelta = OLDLifelineXYLayoutEditPolicy.adaptSizeDeltaToMaxHeight(figure, sizeDelta);
 		assertFalse("Original dimension modified", sizeDelta == newSizeDelta);
 		assertEquals("Width can't change", 30, newSizeDelta.width);
 		assertEquals("Height don't change", 10, newSizeDelta.height);
@@ -52,15 +52,15 @@ public class LifelineXYLayoutEditPolicyTest {
 	public void testIsAffixedToRight() {
 		Rectangle leftFigure = new Rectangle(10, 10, 10, 10);
 		Rectangle rightFigure = new Rectangle(15, 15, 10, 10);
-		assertTrue("Left figure is not on the left of the right figure", LifelineXYLayoutEditPolicy.isAffixedToRight(leftFigure, rightFigure));
-		assertFalse("Right figure is on the left of the left figure", LifelineXYLayoutEditPolicy.isAffixedToRight(rightFigure, leftFigure));
+		assertTrue("Left figure is not on the left of the right figure", OLDLifelineXYLayoutEditPolicy.isAffixedToRight(leftFigure, rightFigure));
+		assertFalse("Right figure is on the left of the left figure", OLDLifelineXYLayoutEditPolicy.isAffixedToRight(rightFigure, leftFigure));
 	}
 
 	@Test
 	public void testGetRealMoveDelta() {
 		Rectangle oldRelativeBounds = new Rectangle(10, 10, 10, 10);
 		Rectangle newRelativeBounds = new Rectangle(15, 20, 25, 30);
-		Rectangle absoluteBounds = LifelineXYLayoutEditPolicy.getRealMoveDelta(oldRelativeBounds, newRelativeBounds);
+		Rectangle absoluteBounds = OLDLifelineXYLayoutEditPolicy.getRealMoveDelta(oldRelativeBounds, newRelativeBounds);
 		assertEquals("Wrong x", 5, absoluteBounds.x);
 		assertEquals("Wrong y", 10, absoluteBounds.y);
 		assertEquals("Wrong width", 15, absoluteBounds.width);
@@ -74,7 +74,7 @@ public class LifelineXYLayoutEditPolicyTest {
 		Figure childFigure = new Figure();
 		childFigure.setBounds(new Rectangle(20, 30, 50, 50));
 		childFigure.setParent(parentFigure);
-		Rectangle absoluteChild = LifelineXYLayoutEditPolicy.getRelativeBounds(childFigure);
+		Rectangle absoluteChild = OLDLifelineXYLayoutEditPolicy.getRelativeBounds(childFigure);
 		assertEquals("Wrong x", 10, absoluteChild.x);
 		assertEquals("Wrong y", 10, absoluteChild.y);
 		assertEquals("Wrong width", 50, absoluteChild.width);

@@ -48,7 +48,7 @@ public class ObservationEditHelper extends ElementEditHelper {
 				}
 			}
 		}
-		return super.getEditContextCommand(req);
+		return super.getEditContextCommand(req); 
 	}
 
 

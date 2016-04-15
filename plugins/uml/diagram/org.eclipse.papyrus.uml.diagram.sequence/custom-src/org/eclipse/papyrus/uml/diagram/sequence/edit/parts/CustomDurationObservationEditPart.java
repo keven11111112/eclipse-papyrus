@@ -33,7 +33,6 @@ import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocat
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomConnectionHandleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomDurationObservationItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 
 /**
@@ -56,7 +55,6 @@ public class CustomDurationObservationEditPart extends DurationObservationEditPa
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDurationObservationItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE, new CustomConnectionHandleEditPolicy());
 		removeEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		removeEditPolicy(DeleteTimeElementWithoutEventPolicy.KEY);

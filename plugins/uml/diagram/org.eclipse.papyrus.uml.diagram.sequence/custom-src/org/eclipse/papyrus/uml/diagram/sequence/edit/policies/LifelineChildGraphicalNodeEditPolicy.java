@@ -45,7 +45,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
@@ -64,13 +64,13 @@ import org.eclipse.uml2.uml.MessageEnd;
 
 /**
  * A specific policy to handle :
- * - Message aspects inherited from {@link SequenceGraphicalNodeEditPolicy}.
+ * - Message aspects inherited from {@link OLDSequenceGraphicalNodeEditPolicy}.
  * - Time/duration move when a message end or an execution is moved.
  * - Duration constraint/observation creation feedback.
  * - Creation of general ordering links.
  * This edit policy is intended to be installed on parts which represent a lifeline or which are contained within a lifeline part.
  */
-public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeEditPolicy {
+public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNodeEditPolicy {
 
 	/** the feedback for creating a duration constraint node */
 	private Polyline durationCreationFeedback = null;
@@ -149,7 +149,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	/**
 	 * Get the command to reconnect the source and move associated time/duration constraints/observation.
 	 *
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy#getReconnectSourceCommand(org.eclipse.gef.requests.ReconnectRequest)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDSequenceGraphicalNodeEditPolicy#getReconnectSourceCommand(org.eclipse.gef.requests.ReconnectRequest)
 	 *
 	 * @param request
 	 *            the reconnection request
@@ -162,7 +162,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 			command = OccurrenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
 			if (request.getConnectionEditPart() instanceof MessageCreateEditPart && request.getTarget() instanceof LifelineEditPart) {
 				LifelineEditPart newSource = (LifelineEditPart) request.getTarget();
-				CustomLifelineEditPart target = (CustomLifelineEditPart) request.getConnectionEditPart().getTarget();
+				OLDLifelineEditPart target = (OLDLifelineEditPart) request.getConnectionEditPart().getTarget();
 				command = LifelineMessageCreateHelper.moveLifelineDown(command, target, newSource.getFigure().getBounds().getLocation().getCopy());
 			}
 		}
@@ -172,7 +172,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	/**
 	 * Get the command to reconnect the target and move associated time/duration constraints/observation.
 	 *
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy#getReconnectTargetCommand(org.eclipse.gef.requests.ReconnectRequest)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDSequenceGraphicalNodeEditPolicy#getReconnectTargetCommand(org.eclipse.gef.requests.ReconnectRequest)
 	 *
 	 * @param request
 	 *            the reconnection request
@@ -187,7 +187,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 				command = LifelineMessageCreateHelper.reconnectMessageCreateTarget(request, command);
 			}
 			if (request.getConnectionEditPart() instanceof MessageDeleteEditPart && request.getTarget() instanceof LifelineEditPart) {
-				command = LifelineMessageDeleteHelper.getReconnectMessageDeleteTargetCommand(request, command);
+			//	command = LifelineMessageDeleteHelper.getReconnectMessageDeleteTargetCommand(request, command);
 			}
 		}
 		return command;
@@ -260,7 +260,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy#getConnectionCompleteCommand(org.eclipse.gef.requests.CreateConnectionRequest)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDSequenceGraphicalNodeEditPolicy#getConnectionCompleteCommand(org.eclipse.gef.requests.CreateConnectionRequest)
 	 *
 	 * @param request
 	 * @return

@@ -20,7 +20,6 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.ConnectionLayerEx;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.FanRouter;
 import org.eclipse.gmf.runtime.gef.ui.internal.tools.SelectConnectionEditPartTracker;
@@ -28,7 +27,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.DurationConstraintAutomaticRouter;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomCommentAnnotatedElementItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LinkRouteModelElementFactory;
 
 /**
@@ -45,14 +43,6 @@ public class CustomCommentAnnotatedElementEditPart extends CommentAnnotatedEleme
 		super(view);
 	}
 
-	/**
-	 * @Override
-	 */
-	@Override
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomCommentAnnotatedElementItemSemanticEditPolicy());
-	}
 
 	@Override
 	protected void handleNotificationEvent(Notification event) {

@@ -8,6 +8,8 @@
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.timing.custom.figures;
 
+import java.util.List;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.RectangleFigure;
@@ -24,13 +26,10 @@ public class CustomInteractionRectangleFigure extends InteractionRectangleFigure
 
 	public CustomInteractionRectangleFigure() {
 		setLayoutManager(new ToolbarLayout());
-		createContents();
 	}
 
 	@Override
-	protected void createContents() {
-		add(createInteractionFigureHeader());
-		add(createContentPane());
+	protected void createContentPane(final List<String> compartmentFigure) {
 		final int childrenSize = getChildren().size();
 		add(createTimeRulerCompartment(), childrenSize);
 	}
@@ -39,30 +38,9 @@ public class CustomInteractionRectangleFigure extends InteractionRectangleFigure
 		return this.timeRulerCompartment = new TimeRulerFigure();
 	}
 
-	protected InteractionFigure createInteractionFigureHeader() {
-		this.interactionLabel =  new PapyrusWrappingLabel() {
+	
 
-			@Override
-			public Dimension getPreferredSize(final int wHint, final int hHint) {
-				final Dimension preferredSize = super.getPreferredSize(wHint, hHint);
-				if (preferredSize.width == 0) {
-					return preferredSize;
-				}
-				return new Dimension(preferredSize.width + 2, preferredSize.height + 2);
-			}
-		};
 
-		this.interactionLabelContainer = new InteractionFigure();
-		this.interactionLabelContainer.setBorder(new MarginBorder(3, 3, 0, 0));
-		this.interactionLabelContainer.setLayoutManager(new LeftToolbarLayout());
-
-		this.interactionLabelContainer.add(this.interactionLabel);
-		return this.interactionLabelContainer;
-	}
-
-	public InteractionFigure getHeaderLabelContainer() {
-		return this.interactionLabelContainer;
-	}
 
 	public RectangleFigure getTimeRulerContainerFigure() {
 		return this.timeRulerCompartment;

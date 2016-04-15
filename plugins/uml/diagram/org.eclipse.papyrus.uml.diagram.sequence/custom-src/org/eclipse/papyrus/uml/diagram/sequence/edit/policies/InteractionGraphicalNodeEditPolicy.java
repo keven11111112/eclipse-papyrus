@@ -84,7 +84,7 @@ public class InteractionGraphicalNodeEditPolicy extends GatesHolderGraphicalNode
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy#getTargetEditPart(org.eclipse.gef.Request)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDSequenceGraphicalNodeEditPolicy#getTargetEditPart(org.eclipse.gef.Request)
 	 *
 	 * @param request
 	 * @return
@@ -115,7 +115,7 @@ public class InteractionGraphicalNodeEditPolicy extends GatesHolderGraphicalNode
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy#getConnectionCompleteCommand(org.eclipse.gef.requests.CreateConnectionRequest)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDSequenceGraphicalNodeEditPolicy#getConnectionCompleteCommand(org.eclipse.gef.requests.CreateConnectionRequest)
 	 *
 	 * @param request
 	 * @return

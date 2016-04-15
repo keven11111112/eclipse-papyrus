@@ -32,7 +32,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomTimeConstraintL
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomTimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentEditPolicy;
 
@@ -70,7 +70,7 @@ public class PostEditPolicyProvider implements IEditPolicyProvider {
 		}
 		EditPart gep = epOperation.getEditPart();
 		String diagramType = ((View) gep.getModel()).getDiagram().getType();
-		if (PackageEditPart.MODEL_ID.equals(diagramType)) {
+		if (SequenceDiagramEditPart.MODEL_ID.equals(diagramType)) {
 			return true;
 		}
 		return false;

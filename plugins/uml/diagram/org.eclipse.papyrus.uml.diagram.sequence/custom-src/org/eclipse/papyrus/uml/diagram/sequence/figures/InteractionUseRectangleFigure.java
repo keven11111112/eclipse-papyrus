@@ -34,20 +34,20 @@ public class InteractionUseRectangleFigure extends StereotypeInteractionFigure {
 	 * @see
 	 * org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionRectangleFigure#createContentPane()
 	 */
-	@Override
-	protected RectangleFigure createContentPane() {
-		// Create the ContentPane
-		RectangleFigure contentPane = new RectangleFigure();
-		contentPane.setOutline(false);
-		contentPane.setFill(false);
-		contentPane.setLayoutManager(new StackLayout());
-		// Create the centered label
-		centerLabel = new WrappingLabel();
-		centerLabel.setAlignment(PositionConstants.CENTER);
-		// Add the label to the contentPane
-		contentPane.add(centerLabel);
-		return contentPane;
-	}
+//	@Override
+//	protected RectangleFigure createContentPane() {
+//		// Create the ContentPane
+//		RectangleFigure contentPane = new RectangleFigure();
+//		contentPane.setOutline(false);
+//		contentPane.setFill(false);
+//		contentPane.setLayoutManager(new StackLayout());
+//		// Create the centered label
+//		centerLabel = new WrappingLabel();
+//		centerLabel.setAlignment(PositionConstants.CENTER);
+//		// Add the label to the contentPane
+//		contentPane.add(centerLabel);
+//		return contentPane;
+//	}
 
 	public WrappingLabel getCenterLabel() {
 		return centerLabel;

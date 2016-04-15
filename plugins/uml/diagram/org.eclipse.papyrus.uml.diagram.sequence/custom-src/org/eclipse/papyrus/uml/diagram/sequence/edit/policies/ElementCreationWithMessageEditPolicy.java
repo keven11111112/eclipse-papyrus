@@ -37,11 +37,14 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.uml.diagram.sequence.command.DropDestructionOccurenceSpecification;
 import org.eclipse.papyrus.uml.diagram.sequence.command.PromptCreateElementAndNodeCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart.CustomLifelineFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart.CustomLifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
@@ -86,30 +89,16 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 							target = ViewUtil.resolveSemanticElement((View) targetEP.getModel());
 						}
 						EditPart sourceEditPart = request.getSourceEditPart();
-						if (sourceEditPart instanceof ActionExecutionSpecificationEditPart || sourceEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+						if (sourceEditPart instanceof CCombinedCompartmentEditPart || sourceEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 							return new ICommandProxy(new PromptCreateElementAndNodeCommand(command, getEditingDomain(), viewRequest.getConnectionViewDescriptor(), (ShapeNodeEditPart) targetEP, target, sourceEP, request, ift));
 						}
-						// IHintedType elementType = null;
-						// if(sourceEditPart instanceof ActionExecutionSpecificationEditPart) {
-						// elementType = (IHintedType)UMLElementTypes.ActionExecutionSpecification_Shape;
-						// } else if(request.getSourceEditPart() instanceof BehaviorExecutionSpecificationEditPart) {
-						// elementType = (IHintedType)UMLElementTypes.BehaviorExecutionSpecification_Shape;
-						// }
-						//
-						//
-						// if(elementType != null) {
-						// CreateElementAndNodeCommand createExecutionSpecificationCommand = new CreateElementAndNodeCommand(getEditingDomain(), (ShapeNodeEditPart)targetEP, target, elementType, request.getLocation());
-						// createExecutionSpecificationCommand.putCreateElementRequestParameter(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, ift);
-						// compound.add(createExecutionSpecificationCommand);
-						//
-						// // put the anchor at the top of the figure
-						// ChangeEdgeTargetCommand changeTargetCommand = new ChangeEdgeTargetCommand(getEditingDomain(), createExecutionSpecificationCommand, viewRequest.getConnectionViewDescriptor(), "(0.5, 0.0)");
-						// compound.add(new ICommandProxy(changeTargetCommand));
-						// }
 					}
 				}
+				
+				//if the message is DELETE KIND, we must drop the view of the DestructionOccurrenceSpecification
 				if (getDeleteMessageHint().equals(viewRequest.getConnectionViewDescriptor().getSemanticHint())) {
-					command = LifelineMessageDeleteHelper.getAttachToNewDosCommand(command, viewRequest, getEditingDomain(), targetEP, getHost());
+//					DropDestructionOccurenceSpecification dropDestructionOccurenceSpecification= new DropDestructionOccurenceSpecification(getEditingDomain(), viewRequest, targetEP);
+//					command=command.chain(new EMFtoGEFCommandWrapper(dropDestructionOccurenceSpecification));
 				}
 			}
 		}
@@ -139,8 +128,8 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 	@Override
 	public EditPart getTargetEditPart(Request request) {
 		EditPart host = getHost();
-		if (host instanceof CustomLifelineEditPart) {
-			CustomLifelineEditPart lifeline = (CustomLifelineEditPart) host;
+		if (host instanceof OLDLifelineEditPart) {
+			OLDLifelineEditPart lifeline = (OLDLifelineEditPart) host;
 			boolean inlineMode = lifeline.isInlineMode();
 			if (inlineMode) {
 				Object type = request.getType();
@@ -170,10 +159,10 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 		return super.getTargetEditPart(request);
 	}
 
-	private EditPart getTargetEditPart(Request request, CustomLifelineEditPart lifeline, Point location) {
+	private EditPart getTargetEditPart(Request request, OLDLifelineEditPart lifeline, Point location) {
 		EditPart childEditPart = getChildEditPart(lifeline, location);
-		if (childEditPart instanceof CustomLifelineEditPart) {
-			CustomLifelineEditPart childLifeline = (CustomLifelineEditPart) childEditPart;
+		if (childEditPart instanceof OLDLifelineEditPart) {
+			OLDLifelineEditPart childLifeline = (OLDLifelineEditPart) childEditPart;
 			if (isCreateConnectionRequest(request, UMLElementTypes.Message_CreateEdge) && isLocatedOnLifelineHeader(childLifeline, location)) {
 				return childEditPart;
 			} else if (request instanceof ReconnectRequest && (UMLVisualIDRegistry.getVisualID((View) ((ReconnectRequest) request).getConnectionEditPart().getModel()).equals(MessageCreateEditPart.VISUAL_ID) && isLocatedOnLifelineHeader(childLifeline, location))) {
@@ -187,7 +176,7 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 		return childEditPart;
 	}
 
-	private EditPart getChildEditPart(CustomLifelineEditPart lifeline, Point location) {
+	private EditPart getChildEditPart(OLDLifelineEditPart lifeline, Point location) {
 		List children = lifeline.getChildren();
 		for (Object object : children) {
 			if (!(object instanceof GraphicalEditPart)) {
@@ -204,7 +193,7 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 		return null;
 	}
 
-	private boolean isLocatedOnLifelineDotLine(CustomLifelineEditPart host, Point location) {
+	private boolean isLocatedOnLifelineDotLine(OLDLifelineEditPart host, Point location) {
 		CustomLifelineFigure primaryShape = host.getPrimaryShape();
 		LifelineDotLineCustomFigure figureLifelineDotLineFigure = primaryShape.getFigureLifelineDotLineFigure();
 		Point pt = location.getCopy();
@@ -214,7 +203,7 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 		return rect.contains(pt);
 	}
 
-	private boolean isLocatedOnLifelineHeader(CustomLifelineEditPart host, Point location) {
+	private boolean isLocatedOnLifelineHeader(OLDLifelineEditPart host, Point location) {
 		RectangleFigure figureLifelineNameContainerFigure = host.getPrimaryShape().getFigureLifelineNameContainerFigure();
 		Point pt = location.getCopy();
 		figureLifelineNameContainerFigure.translateToRelative(pt);

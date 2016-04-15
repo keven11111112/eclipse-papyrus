@@ -155,7 +155,7 @@ public class CustomLifelineNameEditPart extends LifelineNameEditPart {
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {
-		if (getParent() instanceof CustomLifelineEditPart) {
+		if (getParent() instanceof OLDLifelineEditPart) {
 			Object feature = event.getFeature();
 			Object notifier = event.getNotifier();
 			Lifeline lifeline = (Lifeline) this.resolveSemanticElement();
@@ -165,10 +165,10 @@ public class CustomLifelineNameEditPart extends LifelineNameEditPart {
 					|| UMLPackage.Literals.NAMED_ELEMENT__NAME.equals(feature) || UMLPackage.Literals.LIFELINE__REPRESENTS.equals(feature)
 					|| UMLPackage.Literals.LIFELINE__DECOMPOSED_AS.equals(feature) || UMLPackage.Literals.LIFELINE__SELECTOR.equals(feature)
 					|| event.getNotifier() instanceof Bounds) {
-				((CustomLifelineEditPart) getParent()).updateLifelinePosition();
+				((OLDLifelineEditPart) getParent()).updateLifelinePosition();
 			}
 			if (notifier instanceof EAnnotation && ((EAnnotation) notifier).getSource().equals(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION)) {
-				((CustomLifelineEditPart) getParent()).updateLifelinePosition();
+				((OLDLifelineEditPart) getParent()).updateLifelinePosition();
 			}
 		}
 		super.handleNotificationEvent(event);

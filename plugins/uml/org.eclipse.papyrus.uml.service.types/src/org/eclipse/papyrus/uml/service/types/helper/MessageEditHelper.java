@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -26,6 +28,9 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
@@ -33,14 +38,20 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.service.types.command.MessageAsyncReorientCommand;
+import org.eclipse.papyrus.uml.service.types.command.SetMessageSort;
+import org.eclipse.papyrus.uml.service.types.command.MessageCreateReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.MessageDeleteReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.MessageFoundReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.MessageLostReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.MessageReplyReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.MessageSyncReorientCommand;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.MessageUtils;
 import org.eclipse.papyrus.uml.tools.utils.ExecutionSpecificationUtil;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Interaction;
@@ -66,17 +77,15 @@ public class MessageEditHelper extends ElementEditHelper {
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper#getCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest)
 	 */
 	@Override
-	protected ICommand getCreateRelationshipCommand(final CreateRelationshipRequest request) {
+	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest request) {
 
 		EObject source = request.getSource();
 		EObject target = request.getTarget();
 		boolean noSourceOrTarget = (source == null || target == null);
 		boolean noSourceAndTarget = (source == null && target == null);
-		if (noSourceAndTarget) {
+		if (!noSourceAndTarget && !canCreate(source, target)) {
 			// Abort creation.
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -85,16 +94,27 @@ public class MessageEditHelper extends ElementEditHelper {
 			// that the create relationship gesture is enabled.
 			return IdentityCommand.INSTANCE;
 		}
+		IElementType elementType = request.getElementType();
+		EObject owner= request.getContainer();
 		return super.getCreateRelationshipCommand(request);
 	}
 
-
-	protected boolean isReadOnly(final EObject eObject) {
-		EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
-		boolean isReadOnly = (null != eObject.eResource()) && (editingDomain.isReadOnly(eObject.eResource()));
-		return isReadOnly;
+	/**
+	 * @param source
+	 * @param target
+	 * @return
+	 */
+	private boolean canCreate(EObject source, EObject target) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
+
+	protected boolean isReadOnly(EObject eObject) {
+		EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
+		boolean isReadOnly = (eObject.eResource() != null) && (editingDomain.isReadOnly(eObject.eResource()));
+		return isReadOnly;
+	}
 	/**
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getBeforeConfigureCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest)
 	 *
@@ -184,7 +204,7 @@ public class MessageEditHelper extends ElementEditHelper {
 			reorientCommand = new MessageReplyReorientCommand(req);
 
 		} else if (msgToReorient.getMessageSort() == MessageSort.CREATE_MESSAGE_LITERAL) {
-			// reorientCommand = new MessageCreateReorientCommand(req);
+			//reorientCommand = new MessageCreateReorientCommand(req);
 			reorientCommand = UnexecutableCommand.INSTANCE;
 
 		} else if (msgToReorient.getMessageSort() == MessageSort.DELETE_MESSAGE_LITERAL) {

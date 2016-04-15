@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2016 CEA LIST.
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.sequence.providers;
 
 import java.util.Arrays;
@@ -16,7 +27,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.validation.UMLValidationHelper;
@@ -75,7 +86,8 @@ public class UMLValidationProvider {
 			return false;
 		}
 		if (object instanceof View) {
-			return constraintsActive && PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
+			return constraintsActive
+					&& SequenceDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
 		}
 		return true;
 	}
@@ -88,7 +100,6 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
-		@Override
 		public boolean selects(Object object) {
 			return isInDefaultEditorContext(object);
 		}
@@ -100,11 +111,8 @@ public class UMLValidationProvider {
 	public static class Ctx_3001 implements IClientSelector {
 
 		/**
-		 * select all moved edit parts which are linked to an occurrence specification
-		 *
 		 * @generated
 		 */
-		@Override
 		public boolean selects(Object object) {
 			if (isInDefaultEditorContext(object) && object instanceof View) {
 				final String id = UMLVisualIDRegistry.getVisualID((View) object);
@@ -170,7 +178,6 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
-		@Override
 		public void elementValidated(EObject element, IStatus status) {
 			defaultStrategy.elementValidated(element, status);
 		}
@@ -178,7 +185,6 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
-		@Override
 		public boolean hasNext() {
 			return defaultStrategy.hasNext();
 		}
@@ -186,7 +192,6 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
-		@Override
 		public boolean isClientContextChanged() {
 			if (preFetchedNextTarget == null) {
 				preFetchedNextTarget = next();
@@ -198,7 +203,6 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
-		@Override
 		public EObject next() {
 			EObject nextTarget = preFetchedNextTarget;
 			if (nextTarget == null) {
@@ -211,7 +215,6 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
-		@Override
 		public void startTraversal(Collection traversalRoots, IProgressMonitor monitor) {
 			defaultStrategy.startTraversal(traversalRoots, monitor);
 		}
@@ -250,7 +253,6 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
-		@Override
 		public IStatus validate(IValidationContext ctx) {
 			Interaction context = (Interaction) ctx.getTarget();
 			return UMLValidationHelper.validateFragmentsOrder(context, ctx);
@@ -265,7 +267,6 @@ public class UMLValidationProvider {
 		/**
 		 * @generated
 		 */
-		@Override
 		public IStatus validate(IValidationContext ctx) {
 			InteractionOperand context = (InteractionOperand) ctx.getTarget();
 			return UMLValidationHelper.validateFragmentsOrder(context, ctx);
@@ -278,11 +279,8 @@ public class UMLValidationProvider {
 	public static class Adapter3 extends AbstractModelConstraint {
 
 		/**
-		 * do not presume on target type
-		 *
 		 * @generated
 		 */
-		@Override
 		public IStatus validate(IValidationContext ctx) {
 			Node context = (Node) ctx.getTarget();
 			return UMLValidationHelper.validateFragmentsOrder(context, ctx);

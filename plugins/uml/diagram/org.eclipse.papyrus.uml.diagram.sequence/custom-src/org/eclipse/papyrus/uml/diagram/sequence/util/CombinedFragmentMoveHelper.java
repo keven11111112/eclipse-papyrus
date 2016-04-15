@@ -34,7 +34,7 @@ import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomCombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomCombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionCompartmentXYLayoutEditPolicy;
@@ -78,9 +78,9 @@ public class CombinedFragmentMoveHelper {
 	 */
 	public static GraphicalEditPart findNewParentEP(ChangeBoundsRequest request, EditPart hostEP) {
 		GraphicalEditPart parentEP = (GraphicalEditPart) hostEP;
-		if (hostEP.getParent() instanceof CustomCombinedFragmentEditPart) {
+		if (hostEP.getParent() instanceof OLDCustomCombinedFragmentEditPart) {
 			// Select which InteractionOperand we're dropping to
-			CustomCombinedFragmentEditPart hostCFEP = (CustomCombinedFragmentEditPart) hostEP.getParent();
+			OLDCustomCombinedFragmentEditPart hostCFEP = (OLDCustomCombinedFragmentEditPart) hostEP.getParent();
 			List<CustomInteractionOperandEditPart> operands = hostCFEP.getOperandChildrenEditParts();
 			if (!operands.isEmpty()) {
 				Point location = request.getLocation();
@@ -103,7 +103,7 @@ public class CombinedFragmentMoveHelper {
 	 */
 	public static void adjustNewParentOperands(CompoundCommand cc, Rectangle newParentNewRect, Rectangle newParentOldRect, EditPart hostEP) {
 		Set<Object> alreadyMovedBlocks = new HashSet<Object>();
-		CustomCombinedFragmentEditPart hostCFEP = (CustomCombinedFragmentEditPart) hostEP.getParent();
+		OLDCustomCombinedFragmentEditPart hostCFEP = (OLDCustomCombinedFragmentEditPart) hostEP.getParent();
 		List<CustomInteractionOperandEditPart> operands = hostCFEP.getOperandChildrenEditParts();
 		int moveUpperYOffset = newParentNewRect.y - newParentOldRect.y;
 		int moveLowerYOffset = newParentNewRect.height - newParentOldRect.height;
@@ -148,10 +148,10 @@ public class CombinedFragmentMoveHelper {
 		CompoundCommand cc = new CompoundCommand("shift inner CFs"); //$NON-NLS-1$
 		List<?> children = editPart.getChildren();
 		for (int i = 0; i < children.size(); i++) {
-			if (false == children.get(i) instanceof CustomCombinedFragmentEditPart) {
+			if (false == children.get(i) instanceof OLDCustomCombinedFragmentEditPart) {
 				continue;
 			}
-			CustomCombinedFragmentEditPart childCF = (CustomCombinedFragmentEditPart) children.get(i);
+			OLDCustomCombinedFragmentEditPart childCF = (OLDCustomCombinedFragmentEditPart) children.get(i);
 
 			final ChangeBoundsRequest moveChildCFRequest = new ChangeBoundsRequest();
 			moveChildCFRequest.setType(RequestConstants.REQ_MOVE);
@@ -171,7 +171,7 @@ public class CombinedFragmentMoveHelper {
 	 * Move CombinedFragment EP
 	 *
 	 */
-	public static void moveCombinedFragmentEP(CompoundCommand cc, ChangeBoundsRequest request, CustomCombinedFragmentEditPart combinedFragmentEP, GraphicalEditPart newParentEP, Point newParentOffsetSW) {
+	public static void moveCombinedFragmentEP(CompoundCommand cc, ChangeBoundsRequest request, OLDCustomCombinedFragmentEditPart combinedFragmentEP, GraphicalEditPart newParentEP, Point newParentOffsetSW) {
 		// Calc CF moveDelta
 		final ChangeBoundsRequest forceLocationRequest = new ChangeBoundsRequest();
 		forceLocationRequest.setType(RequestConstants.REQ_MOVE_CHILDREN);

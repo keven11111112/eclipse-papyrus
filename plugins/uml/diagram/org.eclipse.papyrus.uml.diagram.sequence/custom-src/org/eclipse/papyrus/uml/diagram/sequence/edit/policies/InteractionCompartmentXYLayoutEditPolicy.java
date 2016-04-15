@@ -70,8 +70,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifie
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OldCustomInteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -133,7 +133,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			// Adjust excessive vertical resizing 
 			if (child instanceof LifelineEditPart && hasCreateLink && request.getMoveDelta().y > 0) {
 				int oldHeight = child.getFigure().getBounds().height;
-				int oldMinimumHeight = ((CustomLifelineEditPart)child).getMinimumHeight(-1);
+				int oldMinimumHeight = ((OLDLifelineEditPart)child).getMinimumHeight(-1);
 				int requestHeight = oldHeight + request.getMoveDelta().y;
 				int newMinimumHeight = oldMinimumHeight + request.getMoveDelta().y;
 				int newHeight = Math.max(oldHeight, newMinimumHeight);
@@ -172,7 +172,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 					compoundCmd.add(changeConstraintCommand);
 					// Update heights of all the lifelines
 					if (child instanceof LifelineEditPart && changeConstraintCommand != null && request.getMoveDelta().y != 0) {
-						CustomInteractionEditPart hostParent = (CustomInteractionEditPart)getHost().getParent();
+						OldCustomInteractionEditPart hostParent = (OldCustomInteractionEditPart)getHost().getParent();
 						Command commandUpdateLifelines = hostParent.getUpdateLifelinesHeightsCommand(null);
 						compoundCmd.add(commandUpdateLifelines);
 					}
@@ -414,7 +414,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 								ChangeBoundsRequest esRequest = new ChangeBoundsRequest(org.eclipse.gef.RequestConstants.REQ_MOVE);
 								esRequest.setEditParts(sep);
 								esRequest.setMoveDelta(moveDelta);
-								Command moveESCommand = LifelineXYLayoutEditPolicy.getResizeOrMoveChildrenCommand((LifelineEditPart) parentEP, esRequest, true, false, true);
+								Command moveESCommand = OLDLifelineXYLayoutEditPolicy.getResizeOrMoveChildrenCommand((LifelineEditPart) parentEP, esRequest, true, false, true);
 								if (moveESCommand != null && !moveESCommand.canExecute()) {
 									// forbid move if the es can't be moved correctly
 									return UnexecutableCommand.INSTANCE;
@@ -733,7 +733,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 					// SetBounds command modifying the sizeDelta
 					compoundCmd.add(getSetBoundsCommand(lifelineEP, cbr, newSizeDelta));
 					// PreserveAnchors command
-					compoundCmd.add(new ICommandProxy(new CustomLifelineEditPart.PreserveAnchorsPositionCommandEx(lifelineEP, newSizeDelta, preserveY, lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure(), resizeDirection)));
+					compoundCmd.add(new ICommandProxy(new OLDLifelineEditPart.PreserveAnchorsPositionCommandEx(lifelineEP, newSizeDelta, preserveY, lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure(), resizeDirection)));
 				}
 			}
 			if (compoundCmd.size() == 0) {

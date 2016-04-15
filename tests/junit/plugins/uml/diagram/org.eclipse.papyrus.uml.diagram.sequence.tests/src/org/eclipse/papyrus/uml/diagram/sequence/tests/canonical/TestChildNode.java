@@ -46,6 +46,7 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 	protected abstract CreateViewRequest createViewRequestShapeContainer();
 
 	protected GraphicalEditPart rootPart;
+	private Command command;
 
 	protected GraphicalEditPart getRootEditPart() {
 		if (rootPart == null) {
@@ -160,17 +161,21 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 	 * @param type
 	 *            the type
 	 */
-	public void testToCreateChildNode(IElementType type, IChildTestProvider provider) {
+	public void testToCreateChildNode(IElementType type, final IChildTestProvider provider) {
 
 		// CREATION
 		assertTrue(CREATION + INITIALIZATION_TEST, provider.getEditPartChildrenSize() == 0);
 		assertTrue(CREATION + INITIALIZATION_TEST, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 0);
 
-		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
-
+		 final CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(provider.getChildLocation(provider.getParentEditPart()));
+		 command = null;
+		Display.getDefault().syncExec(new Runnable() {
 
-		Command command = provider.getParentEditPart().getCommand(requestcreation);
+			public void run() {
+				command = provider.getParentEditPart().getCommand(requestcreation);
+			}
+		});
 
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);

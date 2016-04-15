@@ -15,7 +15,11 @@ package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
@@ -90,5 +94,27 @@ public class NotationHelper {
 
 		// Relax the constraints for elements displayed on themselves (e.g. Frame in Composite Structure Diagram)
 		return parentSemanticElement != semanticElement.eContainer() && parentSemanticElement != semanticElement;
+	}
+
+	/**
+	 * get the absolute position form the notation 
+	 * @param node the current node
+	 * @return
+	 */
+	public static PrecisionRectangle getAbsoluteBounds(Node node){
+		if(node.getLayoutConstraint() instanceof Bounds){
+			PrecisionRectangle bounds= new PrecisionRectangle( ((Bounds)node.getLayoutConstraint()).getX(),((Bounds)node.getLayoutConstraint()).getY(),((Bounds)node.getLayoutConstraint()).getWidth(), ((Bounds)node.getLayoutConstraint()).getHeight());
+			EObject currentView = (EObject) node.eContainer();
+			while (currentView!=null){
+			
+			if (currentView instanceof Node){
+				Point ptCurrenview= new Point( ((Bounds)((Node)currentView).getLayoutConstraint()).getX(),((Bounds)((Node)currentView).getLayoutConstraint()).getY());
+				bounds.translate(ptCurrenview);
+				}
+			currentView= currentView.eContainer();
+			}
+			return bounds;
+		}
+		else return null;
 	}
 }

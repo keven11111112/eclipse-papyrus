@@ -50,17 +50,14 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.Trace;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
@@ -70,8 +67,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IAnchorableFigure;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.gef.ui.figures.SlidableOvalAnchor;
 import org.eclipse.gmf.runtime.gef.ui.internal.figures.CircleFigure;
@@ -85,9 +80,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.GeneralOrderingCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -230,19 +222,18 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MessageEndSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new MessageEndGraphicalNodeEditPolicy());
-		installEditPolicy(HighlightEditPolicy.HIGHLIGHT_ROLE, new HighlightEditPolicy() {
-
-			@Override
-			protected void highlight(EditPart object) {
-				super.highlight(getParent());
-				IFigure feedback = getTargetIndicator();
-				Rectangle rect = getFigure().getBounds().getCopy();
-				getFigure().translateToAbsolute(rect);
-				setFeedbackLocation(feedback, rect.getCenter());
-			}
-		});
+//		installEditPolicy(HighlightEditPolicy.HIGHLIGHT_ROLE, new HighlightEditPolicy() {
+//
+//			@Override
+//			protected void highlight(EditPart object) {
+//				super.highlight(getParent());
+//				IFigure feedback = getTargetIndicator();
+//				Rectangle rect = getFigure().getBounds().getCopy();
+//				getFigure().translateToAbsolute(rect);
+//				setFeedbackLocation(feedback, rect.getCenter());
+//			}
+//		});
 		// Remove CREATION_ROLE if there's no custom DRAG_DROP_ROLE and CREATION_ROLE editpolicies, otherwise, CustomizableDropEditPolicy will be added as a defaultCreationEditPolicy in new CustomizableDropEditPolicy.
 		removeEditPolicy(EditPolicyRoles.CREATION_ROLE);
 	}
@@ -251,7 +242,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 	protected IFigure createFigure() {
 		final MessageEnd messageEnd = (MessageEnd) this.resolveSemanticElement();
 		IFigure fig = new MessageEndFigure();
-		fig.setForegroundColor(ColorConstants.white);
+		fig.setForegroundColor(ColorConstants.yellow);
 		Label tooltip = new Label();
 		if (messageEnd != null) {
 			tooltip.setText(UMLLabelInternationalization.getInstance().getLabel(messageEnd));
@@ -263,27 +254,6 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 		return fig;
 	}
 
-	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#resolveSemanticElement()
-	 *
-	 * @return
-	 */
-	@Override
-	public EObject resolveSemanticElement() {
-		EObject resolveSemanticElement = super.resolveSemanticElement();
-		if (resolveSemanticElement instanceof Message){
-			// This should never happen but does see Bug 502155
-			Message message = (Message) resolveSemanticElement;
-			final MessageEnd messageEnd = message.getReceiveEvent();
-			if (messageEnd != null) {
-				return messageEnd;
-			} else {
-				return message.getSendEvent();
-			}
-		}
-		return resolveSemanticElement;
-	}	
-	
 	@Override
 	public boolean hasNotationView() {
 		return true;
@@ -301,8 +271,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 					Anchor a = ((Edge) connection.getModel()).getSourceAnchor();
 					if (a instanceof IdentityAnchor) {
 						setResult(((IdentityAnchor) a).getId());
-					}
-					else {
+					} else {
 						setResult(""); //$NON-NLS-1$
 					}
 				}
@@ -327,8 +296,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 					Anchor a = ((Edge) connection.getModel()).getTargetAnchor();
 					if (a instanceof IdentityAnchor) {
 						setResult(((IdentityAnchor) a).getId());
-					}
-					else {
+					} else {
 						setResult(""); //$NON-NLS-1$
 					}
 				}
@@ -396,8 +364,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 		if (annotation != null) {
 			for (EObject eo : annotation.getReferences()) {
 				View view = helper.findView(eo);
-				if (view == null)
-				{
+				if (view == null) {
 					continue; // should not happen
 				}
 				EList edges = view.getSourceEdges();
@@ -456,7 +423,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 					List<OccurrenceSpecification> events = new ArrayList<OccurrenceSpecification>(2);
 					final MessageOccurrenceSpecification messageEnd = (MessageOccurrenceSpecification) ((MessageEndEditPart) getHost()).resolveSemanticElement();
 					events.add(messageEnd);
-					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, events);
+					extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, events);
 					extendedData.put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION, request.getLocation());
 				}
 			}
@@ -518,80 +485,8 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 		}
 	}
 
-	static class MessageEndSemanticEditPolicy extends SemanticEditPolicy {
 
-		@Override
-		protected Command getSemanticCommand(final IEditCommandRequest request) {
-			if (request instanceof CreateRelationshipRequest) {
-				return getCreateRelationshipCommand((CreateRelationshipRequest) request);
-			} else if (request instanceof ReorientReferenceRelationshipRequest) {
-				return getGEFWrapper(new ReorientMessageEndCommand((ReorientReferenceRelationshipRequest) request));
-			}
-			Command cmd = super.getSemanticCommand(request);
-			return cmd;
-		}
 
-		protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-			if (UMLElementTypes.Constraint_ConstrainedElementEdge == req.getElementType()) {
-				return getGEFWrapper(new ConstraintConstrainedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
-			} else if (UMLElementTypes.GeneralOrdering_Edge == req.getElementType()) {
-				return getGEFWrapper(new GeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
-			}
-			return null;
-		}
-
-		protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-			if (UMLElementTypes.Constraint_ConstrainedElementEdge == req.getElementType()) {
-				return getGEFWrapper(new ConstraintConstrainedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
-			} else if (UMLElementTypes.Comment_AnnotatedElementEdge == req.getElementType()) {
-				return getGEFWrapper(new CommentAnnotatedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
-			} else if (UMLElementTypes.GeneralOrdering_Edge == req.getElementType()) {
-				return getGEFWrapper(new GeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
-			}
-			return null;
-		}
-
-		protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-			Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
-			return command;
-		}
-
-		protected final Command getGEFWrapper(ICommand cmd) {
-			return new ICommandProxy(cmd);
-		}
-	}
-
-	static class CommentAnnotatedElementCreateCommandEx extends CommentAnnotatedElementCreateCommand {
-
-		public CommentAnnotatedElementCreateCommandEx(CreateRelationshipRequest request, EObject source, EObject target) {
-			super(request, source, target);
-		}
-
-		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			CommandResult res = super.doExecuteWithResult(monitor, info);
-			if (getTarget() instanceof MessageEnd) {
-				MessageEndHelper.addConnectionSourceToMessageEnd((MessageEnd) getTarget(), getSource());
-			}
-			return res;
-		}
-	}
-
-	static class ConstraintConstrainedElementCreateCommandEx extends ConstraintConstrainedElementCreateCommand {
-
-		public ConstraintConstrainedElementCreateCommandEx(CreateRelationshipRequest request, EObject source, EObject target) {
-			super(request, source, target);
-		}
-
-		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			CommandResult res = super.doExecuteWithResult(monitor, info);
-			if (getTarget() instanceof MessageEnd) {
-				MessageEndHelper.addConnectionSourceToMessageEnd((MessageEnd) getTarget(), getSource());
-			}
-			return res;
-		}
-	}
 
 	static class MessageEndAnchor extends SlidableOvalAnchor {
 

@@ -13,6 +13,7 @@ import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -23,11 +24,14 @@ import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gef.requests.TargetRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEndEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.EllipseDecoration;
@@ -65,6 +69,9 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 		}
 		if (editPolicy != null) {
 			EditPart targetEditPart = ((CreateConnectionRequest) request).getTargetEditPart();
+			if( targetEditPart instanceof  InteractionEditPart){
+				System.err.println();
+			}
 			boolean canExecute = targetEditPart != null;
 			if (targetEditPart != null) {
 				Command command = targetEditPart.getCommand(request);
@@ -141,6 +148,10 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 				highlight((EditPart) object);
 			}
 		} else if (request instanceof CreateConnectionRequest) {
+			if( request instanceof CreateConnectionRequest){
+				Rectangle ptOnScreen=new Rectangle(((CreateConnectionRequest)request).getLocation(), new Dimension());
+				((CreateConnectionRequest)request).setLocation(ptOnScreen.getTopLeft());
+				}
 			CreateConnectionRequest req = (CreateConnectionRequest) request;
 			EditPart sourceEditPart = req.getSourceEditPart();
 			EditPart targetEditPart = req.getTargetEditPart();
@@ -265,7 +276,7 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 	 */
 	private void highlightEventsAboutConstraints(Request request) {
 		Object locTop = request.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION);
-		Object topEvents = request.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
+		Object topEvents = request.getExtendedData().get(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
 		if (locTop instanceof Point && topEvents != null && topEvents instanceof Collection<?> && !((Collection<?>) topEvents).isEmpty()) {
 			Point referenceTop = ((Point) locTop).getCopy();
 			OccurrenceSpecification event = (OccurrenceSpecification) ((Collection<?>) topEvents).iterator().next();
@@ -408,6 +419,7 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 
 	@Override
 	public void eraseTargetFeedback(Request request) {
+	
 		unhighlight();
 		safeRemoveFeedback(sourceIndicator);
 		sourceIndicator = null;

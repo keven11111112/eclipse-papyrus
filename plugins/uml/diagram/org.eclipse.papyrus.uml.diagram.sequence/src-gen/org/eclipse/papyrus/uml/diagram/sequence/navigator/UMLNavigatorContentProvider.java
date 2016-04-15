@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2016 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+  *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.sequence.navigator;
 
 import java.util.ArrayList;
@@ -33,7 +31,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
@@ -61,7 +59,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
@@ -180,12 +178,12 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 	/**
 	 *
-	 * Papyrus Template this method is a modification of gmf code in order to avoid
-	 * getViewChidreen() method becoming greater than 64kb.
-	 *
+	 * Papyrus Template
+	 * this method is a modification of gmf code in order to avoid getViewChidreen() method becoming greater than 64kb.
+	 * 
 	 * @generated
 	 **/
-	private Object[] getViewChildrenForPackageEditPart(View view, Object parentElement) {
+	private Object[] getViewChildrenForSequenceDiagramEditPart(View view, Object parentElement) {
 		Collection result = new ArrayList();
 		UMLNavigatorGroup links = new UMLNavigatorGroup(Messages.NavigatorGroupName_Package_SequenceDiagram_links,
 				"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
@@ -397,7 +395,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				parentElement);
 
 		Collection connectedViews = getChildrenByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
 		connectedViews = getChildrenByType(Collections.singleton(view),
@@ -2049,7 +2047,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
@@ -2125,7 +2123,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
@@ -2238,7 +2236,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
@@ -2314,7 +2312,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
@@ -2427,7 +2425,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
@@ -2503,7 +2501,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
@@ -2616,7 +2614,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
@@ -2692,7 +2690,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
@@ -2805,7 +2803,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
@@ -2881,7 +2879,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
@@ -2994,7 +2992,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
@@ -3070,7 +3068,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
@@ -3183,7 +3181,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
@@ -3259,7 +3257,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		source.addChildren(createNavigatorItems(connectedViews, source, true));
 		connectedViews = getLinksSourceByType(Collections.singleton(view),
@@ -3368,7 +3366,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
@@ -3566,7 +3564,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
-				UMLVisualIDRegistry.getType(ActionExecutionSpecificationEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(CCombinedCompartmentEditPart.VISUAL_ID));
 
 		target.addChildren(createNavigatorItems(connectedViews, target, true));
 		connectedViews = getLinksTargetByType(Collections.singleton(view),
@@ -3729,8 +3727,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 					topViews.add((View) o);
 				}
 			}
-			result.addAll(createNavigatorItems(selectViewsByType(resource.getContents(), PackageEditPart.MODEL_ID),
-					file, false));
+			result.addAll(createNavigatorItems(
+					selectViewsByType(resource.getContents(), SequenceDiagramEditPart.MODEL_ID), file, false));
 			return result.toArray();
 		}
 
@@ -3758,9 +3756,9 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		if (vid != null) {
 			switch (vid) {
 
-			case PackageEditPart.VISUAL_ID: {
+			case SequenceDiagramEditPart.VISUAL_ID: {
 				//modification of the template to avoid mistake of 65kb.
-				return getViewChildrenForPackageEditPart(view, parentElement);
+				return getViewChildrenForSequenceDiagramEditPart(view, parentElement);
 			}
 
 			case InteractionEditPart.VISUAL_ID: {
@@ -3793,7 +3791,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				return getViewChildrenForInteractionOperandEditPart(view, parentElement);
 			}
 
-			case ActionExecutionSpecificationEditPart.VISUAL_ID: {
+			case CCombinedCompartmentEditPart.VISUAL_ID: {
 				//modification of the template to avoid mistake of 65kb.
 				return getViewChildrenForActionExecutionSpecificationEditPart(view, parentElement);
 			}
@@ -4003,7 +4001,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	 * @generated
 	 */
 	private boolean isOwnView(View view) {
-		return PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
+		return SequenceDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
 
 	/**

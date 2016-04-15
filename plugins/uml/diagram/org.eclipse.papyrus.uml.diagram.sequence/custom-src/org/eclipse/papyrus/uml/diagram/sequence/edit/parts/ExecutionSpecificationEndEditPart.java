@@ -30,33 +30,26 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
-import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.Trace;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IAnchorableFigure;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.gef.ui.figures.SlidableOvalAnchor;
 import org.eclipse.gmf.runtime.gef.ui.internal.figures.CircleFigure;
 import org.eclipse.gmf.runtime.notation.Anchor;
@@ -69,10 +62,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
-import org.eclipse.papyrus.uml.diagram.sequence.command.ExecutionOccurrenceSpecificationMessageCreateCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.command.ExecutionOccurrenceSpecificationMessageReorientCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionSpecificationEndGraphicalNodeEditPolicy;
@@ -182,7 +171,6 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExecutionSpecificationEndSemanticEditPolicy());
 		// The custom Graphical node edit policy for showing feedback has been removed, and this will be finished in HighlightEditPolicy.
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ExecutionSpecificationEndGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableEditPolicy() {
@@ -346,50 +334,6 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 		}
 	}
 
-	static class ExecutionSpecificationEndSemanticEditPolicy extends SemanticEditPolicy {
-
-		@Override
-		protected Command getSemanticCommand(final IEditCommandRequest request) {
-			if (request instanceof CreateRelationshipRequest) {
-				return getCreateRelationshipCommand((CreateRelationshipRequest) request);
-			} else if (request instanceof ReorientReferenceRelationshipRequest) {
-				return getGEFWrapper(new ReorientExecutionSpecificationEndCommand((ReorientReferenceRelationshipRequest) request));
-			} else if (request instanceof ReorientRelationshipRequest) {
-				return getGEFWrapper(new ExecutionOccurrenceSpecificationMessageReorientCommand((ReorientRelationshipRequest) request));
-			}
-			Command cmd = super.getSemanticCommand(request);
-			return cmd;
-		}
-
-		protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-			if (UMLElementTypes.Constraint_ConstrainedElementEdge == req.getElementType()) {
-				return getGEFWrapper(new ConstraintConstrainedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
-			} else if (UMLElementTypes.Message_SynchEdge == req.getElementType() || UMLElementTypes.Message_AsynchEdge == req.getElementType() || UMLElementTypes.Message_ReplyEdge == req.getElementType()) {
-				return getGEFWrapper(new ExecutionOccurrenceSpecificationMessageCreateCommand(req));
-			}
-			return null;
-		}
-
-		protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-			if (UMLElementTypes.Constraint_ConstrainedElementEdge == req.getElementType()) {
-				return getGEFWrapper(new ConstraintConstrainedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
-			} else if (UMLElementTypes.Comment_AnnotatedElementEdge == req.getElementType()) {
-				return getGEFWrapper(new CommentAnnotatedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
-			} else if (UMLElementTypes.Message_SynchEdge == req.getElementType() || UMLElementTypes.Message_AsynchEdge == req.getElementType() || UMLElementTypes.Message_ReplyEdge == req.getElementType()) {
-				return getGEFWrapper(new ExecutionOccurrenceSpecificationMessageCreateCommand(req));
-			}
-			return null;
-		}
-
-		protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-			Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
-			return command;
-		}
-
-		protected final Command getGEFWrapper(ICommand cmd) {
-			return new ICommandProxy(cmd);
-		}
-	}
 
 	public static class ExecutionSpecificationEndHelper {
 
@@ -413,37 +357,8 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 		}
 	}
 
-	static class CommentAnnotatedElementCreateCommandEx extends CommentAnnotatedElementCreateCommand {
 
-		public CommentAnnotatedElementCreateCommandEx(CreateRelationshipRequest request, EObject source, EObject target) {
-			super(request, source, target);
-		}
 
-		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			CommandResult res = super.doExecuteWithResult(monitor, info);
-			if (getTarget() instanceof OccurrenceSpecification) {
-				ExecutionSpecificationEndHelper.addConnectionSourceToExecutionSpecificationEnd((OccurrenceSpecification) getTarget(), getSource());
-			}
-			return res;
-		}
-	}
-
-	static class ConstraintConstrainedElementCreateCommandEx extends ConstraintConstrainedElementCreateCommand {
-
-		public ConstraintConstrainedElementCreateCommandEx(CreateRelationshipRequest request, EObject source, EObject target) {
-			super(request, source, target);
-		}
-
-		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			CommandResult res = super.doExecuteWithResult(monitor, info);
-			if (getTarget() instanceof OccurrenceSpecification) {
-				ExecutionSpecificationEndHelper.addConnectionSourceToExecutionSpecificationEnd((OccurrenceSpecification) getTarget(), getSource());
-			}
-			return res;
-		}
-	}
 
 	public Locator getLocator() {
 		return locator;
@@ -659,8 +574,7 @@ public class ExecutionSpecificationEndEditPart extends GraphicalEditPart impleme
 		if (locator == null) {
 			initLocator();
 		}
-		if (locator != null)
-		{
+		if (locator != null) {
 			locator.relocate(fig); // place figure at north or south, ignore layout manager
 		}
 	}

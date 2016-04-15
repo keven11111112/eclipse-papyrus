@@ -1,6 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+/**
+ * Copyright (c) 2016 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
+  *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.sequence.navigator;
 
 import java.util.ArrayList;
@@ -150,7 +148,6 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
-	@Override
 	public void dispose() {
 		myWorkspaceSynchronizer.dispose();
 		myWorkspaceSynchronizer = null;
@@ -168,7 +165,6 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
-	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		myViewer = viewer;
 	}
@@ -194,7 +190,6 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
-	@Override
 	public Object[] getElements(Object inputElement) {
 		return getChildren(inputElement);
 	}
@@ -202,28 +197,24 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
-	@Override
 	public void restoreState(IMemento aMemento) {
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	public void saveState(IMemento aMemento) {
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	public void init(ICommonContentExtensionSite aConfig) {
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof IFile) {
 			IFile file = (IFile) parentElement;
@@ -257,7 +248,6 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
-	@Override
 	public Object getParent(Object element) {
 		if (element instanceof UMLAbstractNavigatorItem) {
 			UMLAbstractNavigatorItem abstractNavigatorItem = (UMLAbstractNavigatorItem) element;
@@ -269,7 +259,6 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
 	}

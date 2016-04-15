@@ -104,5 +104,5 @@ public class MoveOperandFragmentsCommand extends EditElementCommand {
 		}
 		sourceOperand.getFragments().clear();
 		return CommandResult.newOKCommandResult();
-	}
+	} 
 }

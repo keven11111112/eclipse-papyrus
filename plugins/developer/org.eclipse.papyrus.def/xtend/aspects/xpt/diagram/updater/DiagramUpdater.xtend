@@ -33,6 +33,8 @@ import xpt.Common_qvto
 import xpt.GenModelUtils_qvto
 import xpt.diagram.updater.UpdaterLinkType
 import xpt.diagram.updater.Utils_qvto
+import java.util.Set
+import org.eclipse.emf.codegen.ecore.genmodel.GenFeature
 
 // we removed all static modifiers and all private methods becames protected to allow to override method. 
 //see bug421212: [Diagram] Papyrus should provide actions for Show/Hide related links in all diagrams
@@ -201,10 +203,10 @@ import xpt.diagram.updater.Utils_qvto
 			«ELSE»
 			«generatedMemberComment»
 			public  «listOfNodeDescriptors» «getSemanticChildrenMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
-				«IF getSemanticChildrenChildFeatures(it).notEmpty || it.getPhantomNodes().notEmpty»
+				«IF getPossibleSemanticChildrenChildFeatures(it).notEmpty || it.getPhantomNodes().notEmpty»
 					«defineModelElement(it)»
 					«newLinkedListOfNodeDescriptors(it.diagramUpdater, 'result')»();
-					«/* childMetaFeature can be null here! */FOR childMetaFeature : getSemanticChildrenChildFeatures(it)»
+					«/* childMetaFeature can be null here! */FOR childMetaFeature : getPossibleSemanticChildrenChildFeatures(it)»
 						«IF null == childMetaFeature»
 							{ 	/*FIXME no containment/child feature found in the genmodel, toolsmith need to specify Class here manually*/ childElement = 
 								/*FIXME no containment/child feature found in the genmodel, toolsmith need to specify correct one here manually*/;
@@ -241,6 +243,21 @@ import xpt.diagram.updater.Utils_qvto
 			}
 			«ENDIF»	
 	'''
+	
+		def Set<GenFeature> getPossibleSemanticChildrenChildFeatures(GenContainerBase container) {
+		var result = <GenFeature>newHashSet();
+		val containerMetaclass = container.metaClass;
+		
+		if (containerMetaclass != null) {
+			for (feature : getSemanticChildrenChildFeatures(container)) {
+				if(containerMetaclass.ecoreClass.EAllStructuralFeatures.contains(feature.ecoreFeature)){
+					result.add(feature);
+				}
+			}
+		}
+		
+		return result;
+	}
 
 	override defineLinkSource(TypeLinkModelFacet it, boolean inLoop) '''
 		«IF sourceMetaFeature.listType»

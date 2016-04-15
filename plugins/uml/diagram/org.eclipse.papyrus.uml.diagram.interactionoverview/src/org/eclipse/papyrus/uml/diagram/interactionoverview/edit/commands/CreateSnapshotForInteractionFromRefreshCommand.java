@@ -39,7 +39,7 @@ import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CallBehaviorUti
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.CreateDiagramImage;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.utils.URIUtils;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.TimingDiagramEditPart;
 import org.eclipse.swt.graphics.Image;
@@ -122,7 +122,7 @@ public class CreateSnapshotForInteractionFromRefreshCommand extends AbstractTran
 	}
 
 	protected PreferencesHint getReferenceHint(final String type) {
-		if (PackageEditPart.MODEL_ID.equals(type)) {
+		if (SequenceDiagramEditPart.MODEL_ID.equals(type)) {
 			return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 		} else if (TimingDiagramEditPart.MODEL_ID.equals(type)) {
 			return org.eclipse.papyrus.uml.diagram.timing.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;

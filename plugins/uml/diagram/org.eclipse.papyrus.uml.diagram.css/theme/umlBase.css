@@ -503,3 +503,23 @@ InteractionOverviewDiagram Activity
 SequenceDiagram InteractionOperand {
 	borderStyle: dash;
 }
+
+SequenceDiagram Interaction {
+	textAlignment:"left";
+	displayHeader:true;
+}
+SequenceDiagram Interaction > Compartment{
+	displayBorder:false;
+}
+
+SequenceDiagram Lifeline {
+	displayBorder:false;
+}
+
+SequenceDiagram CombinedFragment {
+	textAlignment:"left";
+	displayHeader:true;
+}
+SequenceDiagram CombinedFragment > Compartment{
+	displayBorder:false;
+}

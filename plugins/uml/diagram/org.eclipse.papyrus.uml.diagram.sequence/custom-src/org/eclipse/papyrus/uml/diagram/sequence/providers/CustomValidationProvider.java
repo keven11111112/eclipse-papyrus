@@ -20,7 +20,7 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.IClientSelector;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
@@ -33,7 +33,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.validation.UMLValidationHelper;
 
@@ -53,13 +53,13 @@ public class CustomValidationProvider extends UMLValidationProvider {
 				// validate on resize or move
 				object = ((Bounds) object).eContainer();
 			}
-			if (object instanceof View && PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object))) {
+			if (object instanceof View && SequenceDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object))) {
 				final String id = UMLVisualIDRegistry.getVisualID((View) object);
 				boolean result = false;
 				// Lifeline
 				result = result || LifelineEditPart.VISUAL_ID.equals(id);
 				// ES
-				result = result || ActionExecutionSpecificationEditPart.VISUAL_ID.equals(id);
+				result = result || CCombinedCompartmentEditPart.VISUAL_ID.equals(id);
 				result = result || BehaviorExecutionSpecificationEditPart.VISUAL_ID.equals(id);
 				// CF and Interaction operands
 				result = result || CombinedFragmentEditPart.VISUAL_ID.equals(id);

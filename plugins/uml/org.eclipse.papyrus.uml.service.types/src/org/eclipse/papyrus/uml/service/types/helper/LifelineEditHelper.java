@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,7 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ * 
+ * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
@@ -31,15 +32,12 @@ import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.UMLPackage;
 
-/**
- * {@link ElementEditHelper} for {@link Lifeline}.
- */
 public class LifelineEditHelper extends ElementEditHelper {
 
 	/**
-	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper#configureRequest(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest)
+	 *
+	 * @param request
 	 */
 	@Override
 	protected void configureRequest(IEditCommandRequest request) {
@@ -76,12 +74,13 @@ public class LifelineEditHelper extends ElementEditHelper {
 
 
 	/**
-	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper#getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest)
+	 *
+	 * @param req
+	 * @return
 	 */
 	@Override
-	protected ICommand getDestroyElementCommand(final DestroyElementRequest req) {
+	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
 		EObject objectToDelete = req.getElementToDestroy();
 		if (objectToDelete instanceof Lifeline) {
 			Lifeline lifeline = (Lifeline) objectToDelete;
@@ -109,5 +108,7 @@ public class LifelineEditHelper extends ElementEditHelper {
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
+
+
 
 }

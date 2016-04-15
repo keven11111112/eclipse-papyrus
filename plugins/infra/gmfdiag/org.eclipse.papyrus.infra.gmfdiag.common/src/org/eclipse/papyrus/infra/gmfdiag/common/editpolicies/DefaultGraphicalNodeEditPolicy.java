@@ -18,6 +18,7 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
@@ -74,7 +75,7 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 		View targetView = (View) request.getTargetEditPart().getModel();
 		createElementRequest.setParameter(RequestParameterConstants.EDGE_CREATE_REQUEST_TARGET_VIEW, targetView);
-		createElementRequest.setParameter(RequestParameterConstants.EDGE_TARGET_POINT, request.getLocation());
+		createElementRequest.setParameter(RequestParameterConstants.EDGE_TARGET_POINT, request.getLocation().getCopy());
 
 		// see bug 430702: [Diagram] Moving source of a link moves the target too, we need to store in the parameters :
 		// - the source point
@@ -136,6 +137,8 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			return null;
 		}
 		CreateConnectionViewRequest req = (CreateConnectionViewRequest) request;
+		
+		
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_CreateCommand_Connection_Label);
 		Diagram diagramView = ((View) getHost().getModel()).getDiagram();
 
@@ -148,7 +151,7 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		// see bug 430702: [Diagram] Moving source of a link moves the target too, we need to store the source point to fix this bug.
 		@SuppressWarnings("unchecked")
 		Map<Object, Object> parameters = req.getExtendedData();
-		parameters.put(RequestParameterConstants.EDGE_SOURCE_POINT, request.getLocation());
+		parameters.put(RequestParameterConstants.EDGE_SOURCE_POINT, request.getLocation().getCopy());
 
 		SetConnectionEndsCommand sceCommand = new SetConnectionEndsCommand(editingDomain, StringStatics.BLANK);
 		sceCommand.setEdgeAdaptor(getViewAdapter());
@@ -178,6 +181,7 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	@Override
 	protected Command getReconnectSourceCommand(final ReconnectRequest request) {
 		final Command reconnectCmd = super.getReconnectSourceCommand(request);
+		
 		if (reconnectCmd != null && reconnectCmd.canExecute()) {
 			final CompoundCommand cc = new CompoundCommand();
 			cc.add(reconnectCmd);
@@ -209,7 +213,7 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	}
 
 
-
+	
 	/**
 	 *
 	 * @return

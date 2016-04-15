@@ -27,11 +27,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedConnectionHandleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionFragmentsOrderingEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceConnectionHandleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -112,7 +111,7 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	}
 
 	private void installHighlightPolicy(EditPart editPart) {
-		installEditPolicy(editPart, new HighlightEditPolicy(), HighlightEditPolicy.HIGHLIGHT_ROLE);
+		// installEditPolicy(editPart, new HighlightEditPolicy(), HighlightEditPolicy.HIGHLIGHT_ROLE);
 	}
 
 	/**
@@ -127,7 +126,7 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 		}
 		EditPart gep = epOperation.getEditPart();
 		String diagramType = ((View) gep.getModel()).getDiagram().getType();
-		if (PackageEditPart.MODEL_ID.equals(diagramType)) {
+		if (SequenceDiagramEditPart.MODEL_ID.equals(diagramType)) {
 			return true;
 		}
 		return false;

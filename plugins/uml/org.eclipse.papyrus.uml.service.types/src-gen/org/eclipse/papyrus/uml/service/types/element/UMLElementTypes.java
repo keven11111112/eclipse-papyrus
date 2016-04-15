@@ -825,6 +825,6 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 	public static final IHintedType TRACE = (IHintedType) getElementType("org.eclipse.papyrus.uml.Trace"); //$NON-NLS-1$
 
 	/** IElementType for UML Refine */
-	public static final IHintedType REFINE = (IHintedType) getElementType("org.eclipse.papyrus.uml.Refine"); //$NON-NLS-1$
+	public static final IHintedType REFINE = (IHintedType) getElementType("org.eclipse.papyrus.uml.Refine"); //$NON-NLS-1$ 
 
 }

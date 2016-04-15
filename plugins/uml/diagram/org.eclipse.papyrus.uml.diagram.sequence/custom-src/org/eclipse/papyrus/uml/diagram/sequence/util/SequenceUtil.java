@@ -70,7 +70,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
@@ -308,7 +308,7 @@ public class SequenceUtil {
 					}
 				}
 				// check in children executions
-				if (child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
+				if (child instanceof CCombinedCompartmentEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
 					if (fragment instanceof ExecutionSpecification) {
 						// check the execution
 						EObject element = ((GraphicalEditPart) child).resolveSemanticElement();
@@ -553,10 +553,10 @@ public class SequenceUtil {
 		// child to the node
 		List<?> children = nodeEditPart.getChildren();
 		for (Object child : children) {
-			if (child instanceof ActionExecutionSpecificationEditPart) {
-				EObject element = ((ActionExecutionSpecificationEditPart) child).resolveSemanticElement();
+			if (child instanceof CCombinedCompartmentEditPart) {
+				EObject element = ((CCombinedCompartmentEditPart) child).resolveSemanticElement();
 				if (element != null && element instanceof ExecutionSpecification) {
-					IFigure figure = ((ActionExecutionSpecificationEditPart) child).getFigure();
+					IFigure figure = ((CCombinedCompartmentEditPart) child).getFigure();
 					Rectangle copy = figure.getBounds().getCopy();
 					figure.translateToAbsolute(copy);
 					if (event.equals(((ExecutionSpecification) element).getStart())) {
@@ -631,7 +631,7 @@ public class SequenceUtil {
 		List<?> children = lifelineEditPart.getChildren();
 		for (Object child : children) {
 			// children executions
-			if (child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
+			if (child instanceof CCombinedCompartmentEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
 				EObject element = ((GraphicalEditPart) child).resolveSemanticElement();
 				if (element instanceof ExecutionSpecification) {
 					// find start and finish events of the execution
@@ -1375,7 +1375,7 @@ public class SequenceUtil {
 		int maxDeltaWithMiddle = 0;
 		for (Object child : children) {
 			// children executions
-			if (child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart || child instanceof CombinedFragment2EditPart) {
+			if (child instanceof CCombinedCompartmentEditPart || child instanceof BehaviorExecutionSpecificationEditPart || child instanceof CombinedFragment2EditPart) {
 				GraphicalEditPart childPart = (GraphicalEditPart) child;
 				Rectangle absoluteBounds = getAbsoluteBounds(childPart);
 				// enlarge absolute bounds to contain also the right and bottom edges.

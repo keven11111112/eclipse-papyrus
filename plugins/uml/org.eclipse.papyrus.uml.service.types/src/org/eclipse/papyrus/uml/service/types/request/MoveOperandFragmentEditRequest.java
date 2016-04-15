@@ -35,7 +35,7 @@ public class MoveOperandFragmentEditRequest extends AbstractEditCommandRequest {
 	 * @param editingDomain
 	 *            the editing domain
 	 * @param elementToEdit
-	 *            the element to edit
+	 *            the element to edit 
 	 */
 	public MoveOperandFragmentEditRequest(TransactionalEditingDomain editingDomain, Element elementToEdit) {
 		super(editingDomain);

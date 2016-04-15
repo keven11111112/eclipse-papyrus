@@ -39,8 +39,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.command.AnnotatedLinkEditCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AnnotatedLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart.CustomLifelineFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart.CustomLifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.EllipseDecoration;
@@ -70,11 +70,11 @@ public class AnnotatedLinkEndEditPolicy extends GraphicalNodeEditPolicy {
 			Point location = ((DropRequest) request).getLocation();
 			EditPart host = getHost();
 			// Fixed bugs when link with PartDecomposition.
-			if (host instanceof CustomLifelineEditPart && ((CustomLifelineEditPart) host).isInlineMode()) {
-				List children = ((CustomLifelineEditPart) host).getChildren();
+			if (host instanceof OLDLifelineEditPart && ((OLDLifelineEditPart) host).isInlineMode()) {
+				List children = ((OLDLifelineEditPart) host).getChildren();
 				for (Object object : children) {
-					if (object instanceof CustomLifelineEditPart) {
-						CustomLifelineFigure figure = ((CustomLifelineEditPart) object).getPrimaryShape();
+					if (object instanceof OLDLifelineEditPart) {
+						CustomLifelineFigure figure = ((OLDLifelineEditPart) object).getPrimaryShape();
 						Point pt = location.getCopy();
 						figure.translateToRelative(pt);
 						if (figure.containsPoint(pt)) {
@@ -82,7 +82,7 @@ public class AnnotatedLinkEndEditPolicy extends GraphicalNodeEditPolicy {
 						}
 					}
 				}
-				IFigure nameFigure = ((CustomLifelineEditPart) host).getPrimaryShape().getFigureLifelineNameContainerFigure();
+				IFigure nameFigure = ((OLDLifelineEditPart) host).getPrimaryShape().getFigureLifelineNameContainerFigure();
 				Point pt = location.getCopy();
 				nameFigure.translateToRelative(pt);
 				if (nameFigure.containsPoint(pt)) {

@@ -39,8 +39,8 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OldCustomInteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
@@ -60,19 +60,19 @@ public class LifelineMessageCreateHelper {
 	}
 
 	public static ConnectionAnchor getCreateMessageAnchor(LifelineEditPart part, Request request, Point location) {
-		IFigure fig = part.getPrimaryShape().getFigureLifelineNameContainerFigure();
-		fig.translateToRelative(location);
-		if (fig.containsPoint(location)) {// move to header
-			return new LifelineAnchor(part.getPrimaryShape().getFigureLifelineNameContainerFigure());
-		}
-		// move to dash line
+//		IFigure fig = part.getPrimaryShape().getFigureLifelineNameContainerFigure();
+//		fig.translateToRelative(location);
+//		if (fig.containsPoint(location)) {// move to header
+//			return new LifelineAnchor(part.getPrimaryShape().getFigureLifelineNameContainerFigure());
+//		}
+//		// move to dash line
 		return getTargetConnectionAnchor(part, request);
 	}
 
 	static ConnectionAnchor getTargetConnectionAnchor(LifelineEditPart part, Request request) {
 		NodeFigure nodeFigure = null;
-		if (part instanceof CustomLifelineEditPart) {
-			nodeFigure = ((CustomLifelineEditPart) part).getNodeFigure();
+		if (part instanceof OLDLifelineEditPart) {
+			nodeFigure = ((OLDLifelineEditPart) part).getNodeFigure();
 		} else {
 			if (part.getContentPane() instanceof LifelineDotLineCustomFigure) {
 				nodeFigure = ((LifelineDotLineCustomFigure) part.getContentPane()).getDashLineRectangle();
@@ -182,7 +182,7 @@ public class LifelineMessageCreateHelper {
 	public static Command reconnectMessageCreateTarget(ReconnectRequest request, Command command) {
 		LifelineEditPart oldTarget = (LifelineEditPart) request.getConnectionEditPart().getTarget();
 		// LifelineEditPart source = (LifelineEditPart)request.getConnectionEditPart().getSource();
-		CustomLifelineEditPart newTarget = (CustomLifelineEditPart) request.getTarget();
+		OLDLifelineEditPart newTarget = (OLDLifelineEditPart) request.getTarget();
 		// move up the original connection target lifeline, it has only one create message, which will be removed
 		if (getIncomingMessageCreate(oldTarget).size() == 1) {
 			Rectangle bounds = oldTarget.getPrimaryShape().getBounds();
@@ -197,7 +197,7 @@ public class LifelineMessageCreateHelper {
 		return command;
 	}
 
-	public static Command moveLifelineDown(Command command, CustomLifelineEditPart part, Point sourcePointCopy) {
+	public static Command moveLifelineDown(Command command, OLDLifelineEditPart part, Point sourcePointCopy) {
 		IFigure fig = part.getFigure();
 		Rectangle bounds = fig.getBounds().getCopy();
 		int height = part.getPrimaryShape().getFigureLifelineNameContainerFigure().getBounds().height;
@@ -223,7 +223,7 @@ public class LifelineMessageCreateHelper {
 
 	public static Command moveCascadeLifeline(LifelineEditPart part, Command command, int dy) {
 		command = moveCascadeLifelineRecursive(part, command, dy);
-		CustomInteractionEditPart interactionEP = (CustomInteractionEditPart) part.getParent().getParent();
+		OldCustomInteractionEditPart interactionEP = (OldCustomInteractionEditPart) part.getParent().getParent();
 		command = interactionEP.getUpdateLifelinesHeightsCommand(command);
 		return command;
 	}
@@ -235,8 +235,8 @@ public class LifelineMessageCreateHelper {
 			for (Object l : list) {
 				if (l instanceof MessageCreateEditPart) {
 					EditPart target = ((MessageCreateEditPart) l).getTarget();
-					if (target instanceof CustomLifelineEditPart) {
-						CustomLifelineEditPart lp = (CustomLifelineEditPart) target;
+					if (target instanceof OLDLifelineEditPart) {
+						OLDLifelineEditPart lp = (OLDLifelineEditPart) target;
 						Rectangle bounds = lp.getFigure().getBounds().getCopy();
 						View targetView = lp.getNotationView();
 						Point location = bounds.getLocation().getCopy().translate(0, dy);

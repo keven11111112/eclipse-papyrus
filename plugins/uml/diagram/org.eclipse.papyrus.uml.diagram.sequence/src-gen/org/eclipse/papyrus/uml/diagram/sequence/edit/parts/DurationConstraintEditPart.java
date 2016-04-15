@@ -1,3 +1,15 @@
+
+/**
+ * Copyright (c) 2016 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+  *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.Collections;
@@ -28,7 +40,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEdit
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DurationConstraintItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DurationConstraintFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
@@ -72,7 +83,6 @@ public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(DeleteTimeElementWithoutEventPolicy.KEY, new DeleteTimeElementWithoutEventPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DurationConstraintItemSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -131,6 +141,8 @@ public class DurationConstraintEditPart extends BorderedBorderItemEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.sequence.figures.DurationConstraintFigure
+	 * org.eclipse.papyrus.uml.diagram.sequence.figures.DurationConstraintFigure
+	 * 
 	 * @generated
 	 */
 	public DurationConstraintFigure getPrimaryShape() {

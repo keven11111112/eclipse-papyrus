@@ -57,6 +57,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstants
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -116,7 +117,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyNameEditP
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
@@ -191,14 +192,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		* 
 		* @return the unique identifier of the diagram for which views are provided.
 		*/
-		return PackageEditPart.MODEL_ID;
+		return SequenceDiagramEditPart.MODEL_ID;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean provides(CreateDiagramViewOperation op) {
-		return PackageEditPart.MODEL_ID.equals(op.getSemanticHint())
+		return SequenceDiagramEditPart.MODEL_ID.equals(op.getSemanticHint())
 				&& UMLVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())) != null
 				&& !UMLVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())).isEmpty();
 	}
@@ -237,7 +238,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				//	return false; // visual id for node EClass should match visual id from element type
 				//}
 			} else {
-				if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
+				if (!SequenceDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
 					return false; // foreign diagram
 				}
 				if (visualID != null) {
@@ -249,7 +250,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					case InteractionUseEditPart.VISUAL_ID:
 					case ContinuationEditPart.VISUAL_ID:
 					case LifelineEditPart.VISUAL_ID:
-					case ActionExecutionSpecificationEditPart.VISUAL_ID:
+					case CCombinedCompartmentEditPart.VISUAL_ID:
 					case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 					case StateInvariantEditPart.VISUAL_ID:
 					case TimeConstraintEditPart.VISUAL_ID:
@@ -308,7 +309,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
 		DiagramVersioningUtils.stampCurrentVersion(diagram);
 		diagram.getStyles().add(NotationFactory.eINSTANCE.createDiagramStyle());
-		diagram.setType(PackageEditPart.MODEL_ID);
+		diagram.setType(SequenceDiagramEditPart.MODEL_ID);
 		diagram.setElement(getSemanticElement(semanticAdapter));
 		diagram.setMeasurementUnit(MeasurementUnit.PIXEL_LITERAL);
 		return diagram;
@@ -344,11 +345,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				return createContinuation_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case LifelineEditPart.VISUAL_ID:
 				return createLifeline_Shape(domainElement, containerView, index, persisted, preferencesHint);
-			case ActionExecutionSpecificationEditPart.VISUAL_ID:
+			case CCombinedCompartmentEditPart.VISUAL_ID:
 				return createActionExecutionSpecification_Shape(domainElement, containerView, index, persisted,
 						preferencesHint);
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				return createBehaviorExecutionSpecification_Shape(domainElement, containerView, index, persisted,
+						preferencesHint);
+			case ActionExecutionSpecificationEditPart.VISUAL_ID:
+				return createActionExecutionSpecification_Shape(domainElement, containerView, index, persisted,
 						preferencesHint);
 			case StateInvariantEditPart.VISUAL_ID:
 				return createStateInvariant_Shape(domainElement, containerView, index, persisted, preferencesHint);
@@ -1239,10 +1243,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	protected void stampShortcut(View containerView, Node target) {
-		if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
+		if (!SequenceDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-			shortcutAnnotation.getDetails().put("modelID", PackageEditPart.MODEL_ID); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put("modelID", SequenceDiagramEditPart.MODEL_ID); //$NON-NLS-1$
 			target.getEAnnotations().add(shortcutAnnotation);
 		}
 	}

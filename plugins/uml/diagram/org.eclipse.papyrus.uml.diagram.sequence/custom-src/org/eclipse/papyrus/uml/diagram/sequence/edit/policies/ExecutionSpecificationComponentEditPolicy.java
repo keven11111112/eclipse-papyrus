@@ -53,7 +53,7 @@ public class ExecutionSpecificationComponentEditPolicy extends ComponentEditPoli
 
 	// support nested actions and behaviors execution, https://bugs.eclipse.org/bugs/show_bug.cgi?id=384616
 	public static void addDeleteViewChildrenCommand(CompoundCommand deleteViewsCommand, TransactionalEditingDomain editingDomain, ShapeNodeEditPart part) {
-		List<ShapeNodeEditPart> list = LifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts(part);
+		List<ShapeNodeEditPart> list = OLDLifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts(part);
 		for (ShapeNodeEditPart p : list) {
 			deleteViewsCommand.add(new ICommandProxy(new DeleteCommand(editingDomain, (View) p.getModel())));
 			SequenceDeleteHelper.completeDeleteExecutionSpecificationViewCommand(deleteViewsCommand, editingDomain, p);
@@ -62,7 +62,7 @@ public class ExecutionSpecificationComponentEditPolicy extends ComponentEditPoli
 	}
 
 	public static void addDestroyElementChildrenCommand(CompoundCommand deleteElementsCommand, TransactionalEditingDomain editingDomain, EditPart part) {
-		List<ShapeNodeEditPart> list = LifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts((ShapeNodeEditPart) part);
+		List<ShapeNodeEditPart> list = OLDLifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts((ShapeNodeEditPart) part);
 		for (ShapeNodeEditPart p : list) {
 			Request request = new EditCommandRequestWrapper(new DestroyElementRequest(p.resolveSemanticElement(), false));
 			deleteElementsCommand.add(p.getCommand(request));

@@ -48,11 +48,11 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.RestoreExecutionEndAdvice;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayoutEditPolicy;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -103,7 +103,7 @@ public class SequenceDeleteHelper {
 						DestroyElementRequest myReq = new DestroyElementRequest(editingDomain, dos.getMessage(), false);
 						deleteViewsCmd.add(new ICommandProxy(new DestroyElementCommand(myReq)));
 					}
-					deleteViewsCmd.add(((CustomLifelineEditPart)lifelinePart).getAlignLifelineBottomToParentCommand(null, true));					
+					deleteViewsCmd.add(((OLDLifelineEditPart)lifelinePart).getAlignLifelineBottomToParentCommand(null, true));					
 				}
 			}
 		}
@@ -337,7 +337,7 @@ public class SequenceDeleteHelper {
 	}
 
 	static void addDestroyExecutionSpecificationChildrenCommand(CompoundCommand deleteElementsCommand, TransactionalEditingDomain editingDomain, ShapeNodeEditPart part) {
-		List<ShapeNodeEditPart> list = LifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts(part);
+		List<ShapeNodeEditPart> list = OLDLifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts(part);
 		for (ShapeNodeEditPart p : list) {
 			Request request = new EditCommandRequestWrapper(new DestroyElementRequest(p.resolveSemanticElement(), false));
 			deleteElementsCommand.add(p.getCommand(request));

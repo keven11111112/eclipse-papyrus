@@ -38,6 +38,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpec
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
@@ -47,70 +48,6 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 
 public class LifelineMessageDeleteHelper {
 
-	public static Command getReconnectMessageDeleteTargetCommand(ReconnectRequest request, Command command) {
-		GraphicalEditPart oldTarget = (GraphicalEditPart) request.getConnectionEditPart().getTarget();
-		TransactionalEditingDomain editingDomain = oldTarget.getEditingDomain();
-		EditPart targetEP = request.getTarget();
-		CreateElementAndNodeCommand createDosCommand = getCreateNewDosCommand(request.getLocation(), editingDomain, targetEP, oldTarget);
-		if (createDosCommand == null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		command = command.chain(new ICommandProxy(createDosCommand));
-		ChangeEdgeTargetCommand changeTargetCommand = new ChangeEdgeTargetCommand(editingDomain, createDosCommand, (Edge)request.getConnectionEditPart().getModel(), "(0.5, 1.0)");
-		command = command.chain(new ICommandProxy(changeTargetCommand));
-		return command;
-	}
-	
-	public static Command getAttachToNewDosCommand(Command command, CreateConnectionViewAndElementRequest viewRequest, TransactionalEditingDomain editingDomain, EditPart targetEP, EditPart hostEP) {
-		CreateElementAndNodeCommand createDosCommand = getCreateNewDosCommand(viewRequest.getLocation(), editingDomain, targetEP, hostEP);
-		if (createDosCommand == null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		command = command.chain(new ICommandProxy(createDosCommand));
-		ChangeEdgeTargetCommand changeTargetCommand = new ChangeEdgeTargetCommand(editingDomain, createDosCommand, viewRequest.getConnectionViewDescriptor(), "(0.5, 1.0)");
-		command = command.chain(new ICommandProxy(changeTargetCommand));
-		// Set Edge.Target to the target lifeline
-		command = command.chain(LifelineMessageDeleteHelper.getSetEdgeTargetCommand(viewRequest, editingDomain));
-		return command;
-	}
-	
-	private static CreateElementAndNodeCommand getCreateNewDosCommand(Point location, TransactionalEditingDomain editingDomain, EditPart targetEP, EditPart hostEP) {
-		// target is either Lifeline or CustomBehaviorExecutionSpecificationEditPart, get Lifeline in the later case
-		if (targetEP instanceof AbstractExecutionSpecificationEditPart) {
-			targetEP = ((AbstractExecutionSpecificationEditPart)targetEP).getParent();
-		}
-		if (false == targetEP instanceof LifelineEditPart) {
-			return null;
-		}
-		LifelineEditPart lifelineEP = (LifelineEditPart) targetEP;
-		// Check if a DOS exists already
- 		Lifeline lifeline = (Lifeline) lifelineEP.resolveSemanticElement();
- 		EList<InteractionFragment> coveredBys = lifeline.getCoveredBys();
- 		for (InteractionFragment interactionFragment : coveredBys) {
- 			if (interactionFragment instanceof DestructionOccurrenceSpecification) {
- 				return null;
- 			}
- 		}
- 		// Create new DOS at coords from request
- 		IHintedType hintType = (IHintedType) UMLElementTypes.DestructionOccurrenceSpecification_Shape;
-		InteractionFragment ift = SequenceUtil.findInteractionFragmentContainerAt(location, hostEP);
-		CreateElementAndNodeCommand createDosCommand = new CreateElementAndNodeCommand(editingDomain, lifelineEP, lifeline, hintType, location);
-		createDosCommand.putCreateElementRequestParameter(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, ift);
-		return createDosCommand;
-	}
-	
-	public static void setMessageEndDos(Message message, DestructionOccurrenceSpecification dos) {
-		MessageEnd oldMessageEnd = message.getReceiveEvent();
-		dos.setMessage(message);
-		message.setReceiveEvent(dos);
-		if (oldMessageEnd != null) {
-			oldMessageEnd.setMessage(null);
-			// Destroy orphan MessageOccurrenceSpecification
-			if (oldMessageEnd instanceof MessageOccurrenceSpecification) {
-				DestroyElementCommand.destroy(oldMessageEnd);
-			}
-		}
-	}
 	
 	/*
 	 * Set edge.target to the target lifeline

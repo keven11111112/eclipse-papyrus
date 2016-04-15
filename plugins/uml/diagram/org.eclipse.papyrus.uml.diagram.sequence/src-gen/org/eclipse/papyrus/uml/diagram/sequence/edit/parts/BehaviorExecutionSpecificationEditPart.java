@@ -1,3 +1,15 @@
+
+/**
+ * Copyright (c) 2016 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+  *  CEA LIST - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -19,7 +31,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEdit
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.BehaviorExecutionSpecificationItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionSpecificationComponentEditPolicy;
 import org.eclipse.swt.graphics.Color;
@@ -63,7 +74,6 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ElementCreationWithMessageEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ExecutionSpecificationComponentEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BehaviorExecutionSpecificationItemSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -109,16 +119,15 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure();
-	}
+		return primaryShape = new ExecutionSpecificationRectangleFigure(this);
+}
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure
 	 * @generated
 	 */
-	public AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure getPrimaryShape() {
-		return (AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure) primaryShape;
-	}
+	public ExecutionSpecificationRectangleFigure getPrimaryShape() {
+		return (ExecutionSpecificationRectangleFigure) primaryShape;	}
 
 	/**
 	 * @generated

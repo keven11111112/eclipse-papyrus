@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.GmfEditorFactory;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 
 /**
  * The editor factory to launch the sequence diagram.
@@ -25,6 +25,6 @@ public class SequenceDiagramEditorFactory extends GmfEditorFactory {
 	 * Instantiates a new sequence diagram editor factory.
 	 */
 	public SequenceDiagramEditorFactory() {
-		super(UmlSequenceDiagramForMultiEditor.class, PackageEditPart.MODEL_ID);
+		super(UmlSequenceDiagramForMultiEditor.class, SequenceDiagramEditPart.MODEL_ID);
 	}
 }

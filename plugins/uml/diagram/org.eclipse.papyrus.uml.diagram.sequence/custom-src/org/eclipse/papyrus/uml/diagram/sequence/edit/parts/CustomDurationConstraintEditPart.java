@@ -48,7 +48,6 @@ import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.render.editparts.RenderedDiagramRootEditPart;
@@ -71,7 +70,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper.FixedAnchorEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExternalLabelPrimaryDragRoleEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomDurationConstraintItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DurationConstraintFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
@@ -113,7 +111,6 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDurationConstraintItemSemanticEditPolicy());
 		// install a editpolicy to display stereotypes, there's a bug on super class.
 		installEditPolicy(AppliedStereotypeCommentEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicyEx());
 	}
@@ -691,7 +688,7 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 	}
 
 	public static Rectangle fixMessageBounds(Rectangle newBounds, Request cvr, LifelineEditPart host) {
-		Object oc1 = getFirstElement(cvr.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION));
+		Object oc1 = getFirstElement(cvr.getExtendedData().get(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION));
 		Object oc2 = getFirstElement(cvr.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2));
 		if (oc1 != null && oc2 != null && (oc1 instanceof MessageOccurrenceSpecification || oc2 instanceof MessageOccurrenceSpecification)) {
 			Point start = null, end = null;

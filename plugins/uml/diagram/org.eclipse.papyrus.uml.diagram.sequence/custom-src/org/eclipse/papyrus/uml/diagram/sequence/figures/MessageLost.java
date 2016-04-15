@@ -53,16 +53,26 @@ public class MessageLost extends MessageFigure {
 	protected RotatableDecoration createTargetDecoration() {
 		EllipseDecoration df = new EllipseDecoration();
 		df.setAlwaysFill(true);
-		df.setPreferredSize(new Dimension(10, 10));
+		//df.setPreferredSize(new Dimension(10, 10));
 		add(df, new ArrowLocator(this, ConnectionLocator.TARGET)); // child figure
 		PolylineDecoration arrow = new PolylineDecoration();
 		arrow.setForegroundColor(getForegroundColor());
-		PointList pl = new PointList();
-		pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
-		pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-		pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
-		arrow.setTemplate(pl);
-		arrow.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
+//		PointList pl = new PointList();
+//		pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
+//		pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
+//		pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(-2));
+//		arrow.setTemplate(pl);
+//		arrow.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
 		return arrow;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure#createSourceDecoration()
+	 *
+	 * @return
+	 */
+	@Override
+	protected RotatableDecoration createSourceDecoration() {
+		return null;
 	}
 }

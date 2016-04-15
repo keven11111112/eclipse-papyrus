@@ -25,7 +25,7 @@ import org.eclipse.jface.viewers.ITreePathLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.ViewerLabel;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
@@ -69,6 +69,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyNameEditP
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
@@ -146,7 +147,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	public Image getImage(View view) {
 		switch (UMLVisualIDRegistry.getVisualID(view)) {
-		case PackageEditPart.VISUAL_ID:
+		case SequenceDiagramEditPart.VISUAL_ID:
 			return getImage("Navigator?Diagram?http://www.eclipse.org/uml2/5.0.0/UML?Package", //$NON-NLS-1$
 					UMLElementTypes.Package_SequenceDiagram);
 		case InteractionEditPart.VISUAL_ID:
@@ -167,7 +168,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 		case InteractionOperandEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?InteractionOperand", //$NON-NLS-1$
 					UMLElementTypes.InteractionOperand_Shape);
-		case ActionExecutionSpecificationEditPart.VISUAL_ID:
+		case CCombinedCompartmentEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?ActionExecutionSpecification", //$NON-NLS-1$
 					UMLElementTypes.ActionExecutionSpecification_Shape);
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
@@ -287,7 +288,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (UMLVisualIDRegistry.getVisualID(view)) {
-		case PackageEditPart.VISUAL_ID:
+		case SequenceDiagramEditPart.VISUAL_ID:
 			return getPackage_SequenceDiagramText(view);
 		case InteractionEditPart.VISUAL_ID:
 			return getInteraction_ShapeText(view);
@@ -301,7 +302,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getCombinedFragment_ShapeText(view);
 		case InteractionOperandEditPart.VISUAL_ID:
 			return getInteractionOperand_ShapeText(view);
-		case ActionExecutionSpecificationEditPart.VISUAL_ID:
+		case CCombinedCompartmentEditPart.VISUAL_ID:
 			return getActionExecutionSpecification_ShapeText(view);
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
 			return getConsiderIgnoreFragment_ShapeText(view);
@@ -849,6 +850,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private boolean isOwnView(View view) {
-		return PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
+		return SequenceDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
 }

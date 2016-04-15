@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OldCustomInteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
 import org.eclipse.uml2.uml.ActionExecutionSpecification;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
@@ -44,8 +44,8 @@ import org.eclipse.uml2.uml.Lifeline;
  * </ul>
  * <li>the height of the Lifeline changed to take the whole available height in the Interaction</li>
  * <ul>
- * <li>the method {@link CustomInteractionEditPart#refreshBounds()} changes the Lifeline height and tries to repears the anchors executing commands outside of the stack on each refresh
- * (calling {@link CustomInteractionEditPart#synchronizeSize()}), unfortunately some sizes of elements are not serialized (default values) and some size seems not set in the figure, so the calculus of anchors locations was wrong and all messages were displayed
+ * <li>the method {@link OldCustomInteractionEditPart#refreshBounds()} changes the Lifeline height and tries to repears the anchors executing commands outside of the stack on each refresh
+ * (calling {@link OldCustomInteractionEditPart#synchronizeSize()}), unfortunately some sizes of elements are not serialized (default values) and some size seems not set in the figure, so the calculus of anchors locations was wrong and all messages were displayed
  * just under the name of the lifeline. + recalculate the anchors location with this new size.
  * </li>
  * </ul>
@@ -54,7 +54,7 @@ import org.eclipse.uml2.uml.Lifeline;
  * <ul>
  * <li>bad solution: To fix the bug we tried to determine the futur height of the lifeline, to reset them to the good location in order to keep alignment between Lifeline and {@link ActionExecutionSpecification} and {@link BehaviorExecutionSpecification},
  * and to set the default sizes used in Luna to Lifeline shape when required. This first trial improved a lot the display of the diagram, but was not correct.</li>
- * <li>good solution: just add the good EAnnotation to the lifeline avoid all the problems described by the bug and the first solution. Nevertheless, the method {@link CustomInteractionEditPart#refreshBounds()} should be rewritten (bug 493999)</li>
+ * <li>good solution: just add the good EAnnotation to the lifeline avoid all the problems described by the bug and the first solution. Nevertheless, the method {@link OldCustomInteractionEditPart#refreshBounds()} should be rewritten (bug 493999)</li>
  * </ul>
  */
 public class SequenceDiagramLunaToMarsReconciler extends DiagramReconciler {

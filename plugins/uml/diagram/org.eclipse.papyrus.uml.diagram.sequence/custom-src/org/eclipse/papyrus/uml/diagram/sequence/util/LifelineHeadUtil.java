@@ -48,7 +48,7 @@ import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -80,11 +80,11 @@ public class LifelineHeadUtil {
 					continue;
 				}
 				LifelineFigure primaryShape = lifeline.getPrimaryShape();
-				RectangleFigure figure = primaryShape.getFigureLifelineNameContainerFigure();
-				Rectangle r = figure.getBounds().getCopy();
-				if (!r.isEmpty()) {
-					bottom = Math.max(bottom, r.bottom());
-				}
+//				RectangleFigure figure = primaryShape.getFigureLifelineNameContainerFigure();
+//				Rectangle r = figure.getBounds().getCopy();
+//				if (!r.isEmpty()) {
+//					bottom = Math.max(bottom, r.bottom());
+//				}
 			}
 			if (bottom != -1) {
 				RectangleFigure figure = new RectangleFigure();
@@ -339,18 +339,18 @@ public class LifelineHeadUtil {
 			}
 			toMovedLifelines.add(source);
 		}
-
-		if (editPart instanceof CustomLifelineEditPart && ((CustomLifelineEditPart) editPart).isInlineMode()) {
-			List<?> children = ((CustomLifelineEditPart) editPart).getChildren();
-			for (Object object : children) {
-				if (object instanceof LifelineEditPart) {
-					collectLifelines(toMovedLifelines, (LifelineEditPart) object);
-				}
-			}
-			if (toMovedLifelines.isEmpty()) {
-				toMovedLifelines.add((LifelineEditPart) editPart);
-			}
-		}
+//
+//		if (editPart instanceof CustomLifelineEditPart && ((CustomLifelineEditPart) editPart).isInlineMode()) {
+//			List<?> children = ((CustomLifelineEditPart) editPart).getChildren();
+//			for (Object object : children) {
+//				if (object instanceof LifelineEditPart) {
+//					collectLifelines(toMovedLifelines, (LifelineEditPart) object);
+//				}
+//			}
+//			if (toMovedLifelines.isEmpty()) {
+//				toMovedLifelines.add((LifelineEditPart) editPart);
+//			}
+//		}
 	}
 
 	private static Command getVerticalMoveShapeCommand(GraphicalEditPart shapeEditPart, int moveDelta, boolean increaseHeight) {

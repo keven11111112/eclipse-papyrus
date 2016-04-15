@@ -74,6 +74,7 @@ import org.eclipse.papyrus.uml.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateLocatedConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.RestoreDurationConstraintLinkCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -86,7 +87,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomCombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomCombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
@@ -105,7 +106,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
@@ -163,6 +164,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	protected Set<String> getDroppableElementVisualId() {
 		Set<String> elementsVisualId = new HashSet<String>();
 		elementsVisualId.add(LifelineEditPart.VISUAL_ID);
+		elementsVisualId.add(CCombinedCompartmentEditPart.VISUAL_ID);
 		elementsVisualId.add(ActionExecutionSpecificationEditPart.VISUAL_ID);
 		elementsVisualId.add(BehaviorExecutionSpecificationEditPart.VISUAL_ID);
 		elementsVisualId.add(InteractionUseEditPart.VISUAL_ID);
@@ -184,7 +186,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(TimeConstraintEditPart.VISUAL_ID);
 		elementsVisualId.add(TimeObservationEditPart.VISUAL_ID);
 		elementsVisualId.add(DurationConstraintEditPart.VISUAL_ID);
-		elementsVisualId.add(PackageEditPart.VISUAL_ID);
+		elementsVisualId.add(SequenceDiagramEditPart.VISUAL_ID);
 		elementsVisualId.add(MessageSyncEditPart.VISUAL_ID);
 		elementsVisualId.add(MessageAsyncEditPart.VISUAL_ID);
 		elementsVisualId.add(MessageReplyEditPart.VISUAL_ID);
@@ -222,8 +224,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 		if (editParts != null) {
 			for (Object part : editParts) {
-				someCombinedFragment |= (part instanceof CustomCombinedFragmentEditPart);
-				someNonCombinedFragment |= !(part instanceof CustomCombinedFragmentEditPart);
+				someCombinedFragment |= (part instanceof OLDCustomCombinedFragmentEditPart);
+				someNonCombinedFragment |= !(part instanceof OLDCustomCombinedFragmentEditPart);
 			}
 		}
 
@@ -251,7 +253,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		// Move the request's CFs models and views
 		if (editParts != null) {
 			for (Object part : editParts) {
-				CustomCombinedFragmentEditPart combinedFragmentEP = (CustomCombinedFragmentEditPart) part;
+				OLDCustomCombinedFragmentEditPart combinedFragmentEP = (OLDCustomCombinedFragmentEditPart) part;
 				CombinedFragment combinedFragment = (CombinedFragment) ViewUtil.resolveSemanticElement((View) ((IGraphicalEditPart) combinedFragmentEP).getModel());
 
 				if (combinedFragmentEP.getParent() == newParentEP) {
@@ -283,7 +285,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		newParentEP.getFigure().translateToAbsolute(newParentOldRect);
 		Rectangle newParentNewRect = new Rectangle(newParentOldRect.getUnion(rectangleDroppedCombined));
 
-		if (getHost().getParent() instanceof CustomCombinedFragmentEditPart) {
+		if (getHost().getParent() instanceof OLDCustomCombinedFragmentEditPart) {
 			CombinedFragmentMoveHelper.adjustNewParentOperands(cc, newParentNewRect, newParentOldRect, getHost());
 		}
 		// TODO: resize parent's parent (and so on)
@@ -303,7 +305,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 		if (editParts != null) {
 			for (Object part : request.getEditParts()) {
-				CustomCombinedFragmentEditPart combinedFragmentEP = (CustomCombinedFragmentEditPart) part;
+				OLDCustomCombinedFragmentEditPart combinedFragmentEP = (OLDCustomCombinedFragmentEditPart) part;
 				CombinedFragmentMoveHelper.moveCombinedFragmentEP(cc, request, combinedFragmentEP, newParentEP, newParentOffsetSW);
 			}
 		}
@@ -379,8 +381,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		}
 		if (nodeVISUALID != null) {
 			switch (nodeVISUALID) {
-			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
+			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
+			case CCombinedCompartmentEditPart.VISUAL_ID:
 				return dropExecutionSpecification((ExecutionSpecification) semanticElement, nodeVISUALID, location);
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 				return dropDestructionOccurrence((DestructionOccurrenceSpecification) semanticElement, nodeVISUALID, location);
@@ -465,7 +468,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if (getHostObject().equals(parentContainer)) {
 			List<View> existingViews = DiagramEditPartsUtil.findViews(parent, getViewer());
 			if (!existingViews.isEmpty()) {
-				EditPart parentEditPart = lookForEditPart(parent);
+				EditPart parentEditPart = getHost();
 				if (parentEditPart instanceof GraphicalEditPart) {
 					// check if all lifelines coversby exist in diagram.
 					Rectangle bounds = null;
@@ -781,7 +784,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			if (execution != null) {
 				List<View> existingViews = DiagramEditPartsUtil.findViews(execution, getViewer());
 				for (View view : existingViews) {
-					if (ActionExecutionSpecificationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(view)) || BehaviorExecutionSpecificationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(view))) {
+					if (CCombinedCompartmentEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(view)) || BehaviorExecutionSpecificationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(view))) {
 						Object object = getViewer().getEditPartRegistry().get(view);
 						if (object instanceof IGraphicalEditPart) {
 							Rectangle bounds = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart) object);
@@ -1079,19 +1082,19 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		// Get the lifelines containing the graphical destructionEvent
 		List<Lifeline> lifelines = getLifelines(existingViews);
 		// If the list of lifeline already containing the destructionEvent doesn't contain the lifeline targeted.
-		if (!lifelines.contains(getHostObject())) {
-			Lifeline lifeline = (Lifeline) getHostObject();
-			for (InteractionFragment ift : lifeline.getCoveredBys()) {
-				if (ift instanceof DestructionOccurrenceSpecification) {
-					DestructionOccurrenceSpecification occurrenceSpecification = (DestructionOccurrenceSpecification) ift;
-					// if the event of the occurrenceSpecification is the DestructionEvent, create the command
-					if (destructionOccurence.equals(occurrenceSpecification)) {
+//		if (!lifelines.contains(getHostObject())) {
+//			Lifeline lifeline = (Lifeline) getHostObject();
+//			for (InteractionFragment ift : lifeline.getCoveredBys()) {
+//				if (ift instanceof DestructionOccurrenceSpecification) {
+//					DestructionOccurrenceSpecification occurrenceSpecification = (DestructionOccurrenceSpecification) ift;
+//					// if the event of the occurrenceSpecification is the DestructionEvent, create the command
+//					if (destructionOccurence.equals(occurrenceSpecification)) {
 						return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, destructionOccurence));
-					}
-				}
-			}
-		}
-		return UnexecutableCommand.INSTANCE;
+//					}
+//				}
+//			}
+//		}
+//		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
@@ -1206,7 +1209,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 				// Minimum shape (not just an horizontal line)
 				if (possibleFinishLocations.height <= 0) {
-					possibleFinishLocations.height = LifelineXYLayoutEditPolicy.EXECUTION_INIT_HEIGHT;
+					possibleFinishLocations.height = OLDLifelineXYLayoutEditPolicy.EXECUTION_INIT_HEIGHT;
 				}
 			}
 			// find start and finish locations with correct y (start.y < finish.y) and proportions
@@ -1253,7 +1256,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			}
 			// deduce bounds
 			Rectangle result = new Rectangle(startLocation, finishLocation);
-			result.width = LifelineXYLayoutEditPolicy.EXECUTION_INIT_WIDTH;
+			result.width = OLDLifelineXYLayoutEditPolicy.EXECUTION_INIT_WIDTH;
 			return result;
 		}
 		return null;

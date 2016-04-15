@@ -3393,4 +3393,4 @@
     <specializedTypes xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_SdM4AVYCEeS0WsAAtVmToA"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:ExternallyRegisteredType" xmi:id="_1U1kgEOBEeay77YZlFOXVQ" identifier="org.eclipse.gmf.runtime.emf.type.core.null" name="org.eclipse.gmf.runtime.emf.type.core.null"/>
-</elementtypesconfigurations:ElementTypeSetConfiguration>
+</elementtypesconfigurations:ElementTypeSetConfiguration> 
