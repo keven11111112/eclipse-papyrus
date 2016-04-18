@@ -163,16 +163,16 @@ public class DefaultRuleEditHelperAdvice extends AbstractEditHelperAdvice {
 		if (superTypes.length == 0) {
 			return Collections.emptyList();
 		}
-		List<ConfiguredHintedSpecializationElementType> superExtendedTypes = new ArrayList<ConfiguredHintedSpecializationElementType>();
+		List<ConfiguredHintedSpecializationElementType> superElementTypes = new ArrayList<ConfiguredHintedSpecializationElementType>();
 		// get the reverse order
 		for (int i = superTypes.length - 1; i >= 0; i--) {
 			if (superTypes[i] instanceof ConfiguredHintedSpecializationElementType) {
 				if (((ConfiguredHintedSpecializationElementType) superTypes[i]).getConfiguration() instanceof RuleBasedTypeConfiguration) {
-					superExtendedTypes.add((ConfiguredHintedSpecializationElementType) superTypes[i]);
+					superElementTypes.add((ConfiguredHintedSpecializationElementType) superTypes[i]);
 				}
 			}
 		}
-		return superExtendedTypes;
+		return superElementTypes;
 	}
 
 

@@ -1,264 +1,0 @@
-<html>
-<link rel="stylesheet" href="default.css" type="text/css">
-<H1>Document about stereotype application display</H1>
-<H2 id ="_hl1YYPy2EeWMIr2UMud8Pw">Table of Contents</H2>
-<H2 id ="_hl7fAPy2EeWMIr2UMud8Pw">Requirements</H2>
-<p>- Stereotype application properties dipslay (id=REQ_001): <BR/> Stereotype application properties could be displayed as "comment" inside a compartment, or as brace label</p>
-<p>- Display Requirement as a "comment" (id=REQ_0011): <BR/> When the applied stereotype properties are displayed as a comment, a shape " comment " is created with a dashed line form the comment to the representation of the stereotyped element. The comment contains a label with the name of the stereotype, and contains as a stack list of all wanted properties of the wanted applied stereotype .</p>
-<p>- Display Requirement as a "compartment" (id=REQ_0012): <BR/> When the applied stereotype properties are displayed as a compartment, a compartment is created inside the representation of the stereotyped element, under the label of the name. The comment contains a label with the name of the stereotype, and contaisn as a stack list of all wanted properties of the applied stereotype.<BR/>This representation can be done only on nodes.</p>
-<p>- Display Requirement as a "brace" (id=REQ_0013): <BR/> When the applied stereotype properties are displayed as brace, all this data is displayed in a label under the name label.<BR/>This representation can be done only on nodes.</p>
-<p>- Display stereotype name (id=REQ_002): <BR/> The shape can display the name of the stereotypes that are applied on the UML element</p>
-<p>- Apply a stereotype (id=REQ_0021): <BR/> When the stereotype is applied, the shape displays automatically the name of the sterotypes in the label of stereotype</p>
-<p>- Drop from  the model explorer (id=REQ_0022): <BR/> When an element is dropped form the model explorer to the diagram, the shape of the element must display the name of the applied stereotype in the label of stereotype</p>
-<p>- Display the name of the stereotype  (id=REQ_0023): <BR/> Each applied stereotype can be either displayed with a short name or with the Qualified Name in the label of stereotype</p>
-<p>- Display each applied stereotype name differently (id=REQ_0024): <BR/> The displayed qualified name depth can be defined for each stereotype.</p>
-<p>- Qualified name depth (id=REQ_003): <BR/> The user must be able to choose the depth of the QN to be displayed</p>
-<p>- Choice on Stereotype properties to display (id=REQ_004): <BR/> The user can choose the applied stereotype properties to display </p>
-<p>- Use CSS file (id=REQ_0041): <BR/> The user can choose the applied stereotype properties to display by using a css file.</p>
-<p>- Use property view (id=REQ_0042): <BR/> The user can choose the applied stereotype properties to display by using the property view</p>
-<p>- Remove display of applied stereotype  (id=REQ_005): <BR/> A display of applied stereotype or display of applied stereotype properties can be removed when a stereotype or a profile is unapplied </p>
-<p>- Update display (id=REQ_006): <BR/> Update the display of applied stereotype properties when the affected values have changed</p>
-<H2 id ="_hmrF4fy2EeWMIr2UMud8Pw">Use Cases</H2>
-<P align="middle"><img src=./imgDOC/UseCases.png alt=UseCases ></P><P align="middle">UseCases</P></BR>
-<H3 id ="_huYQYPy2EeWMIr2UMud8Pw">Papyrus stereotype display</H3>
-<H4 id ="_huaFkfy2EeWMIr2UMud8Pw">Display applied stereotype name</H4>
-<p>  - traces to <a href="#_hmSEUPy2EeWMIr2UMud8Pw" title="Requirement Apply a stereotype">Apply a stereotype</a>, <a href="#_hmUgkPy2EeWMIr2UMud8Pw" title="Requirement Drop from  the model explorer">Drop from  the model explorer</a>, <a href="#_hmW80fy2EeWMIr2UMud8Pw" title="Requirement Display the name of the stereotype ">Display the name of the stereotype </a>, <a href="#_hmaAIPy2EeWMIr2UMud8Pw" title="Requirement Display each applied stereotype name differently">Display each applied stereotype name differently</a>, <a href="#_hmPBAfy2EeWMIr2UMud8Pw" title="Requirement Display stereotype name">Display stereotype name</a></p>
-<p>The diagram contains a shape. When you applied a stereotype on the element, the applied stereotype name is displayed on the shape below the name of the element.<BR/>When an element is dropped form the model explorer to the diagram, the applied stereotype named is displayed on the shape.<BR/>This is the same behavior for links. </p>
-<H5 id ="_hxqN4Py2EeWMIr2UMud8Pw">How to</H5>
-<p>Inside  papyrus, it is possible to display the name of applied stereotype. <BR/>To do that:<BR/>1. Apply the profile  that contains the stereotype on your model.<BR/>2. Apply the wanted stereotype on the element.</p>
-<P align="middle"><img src=./imgDOC/ApplyProfile.png alt=Apply a profile ></P><P align="middle">Apply a profile</P></BR>
-<P align="middle"><img src=./imgDOC/applyStereotype.png alt=Apply the stereotype ></P><P align="middle">Apply the stereotype</P></BR>
-<P align="middle"><img src=./imgDOC/AppliedStereotype.png alt=Resulted applied stereotype ></P><P align="middle">Resulted applied stereotype</P></BR>
-<H4 id ="_hx6skfy2EeWMIr2UMud8Pw">Display stereotype properties</H4>
-<p>  - traces to <a href="#_hl_wcPy2EeWMIr2UMud8Pw" title="Requirement Stereotype application properties dipslay">Stereotype application properties dipslay</a></p>
-<p>It is possible to display properties of stereotypes as "comment", as "compartment", as "brace"</p>
-<H4 id ="_hyCoYfy2EeWMIr2UMud8Pw">As "brace"</H4>
-<p>  - traces to <a href="#_hmL9sPy2EeWMIr2UMud8Pw" title="Requirement Display Requirement as a "brace"">Display Requirement as a "brace"</a></p>
-<p>Properties of applied stereotype can be displayed as "brace". This is label that is set below the name, and contains a sequence of properties name with their values.</p>
-<H5 id ="_hyKkMPy2EeWMIr2UMud8Pw">How to</H5>
-<p>To do that:<BR/>1. Select your Element.<BR/>2. Select the Appearance Tab in the property view<BR/>3. Select "In braces" for the line of your applied stereotype</p>
-<P align="middle"><img src=./imgDOC/DisplayInBrace.png alt=Sequence of actions to display in brace ></P><P align="middle">Sequence of actions to display in brace</P></BR>
-<P align="middle"><img src=./imgDOC/ResultDisplayInBrace.png alt=Properties of stereotypes displayed in brace ></P><P align="middle">Properties of stereotypes displayed in brace</P></BR>
-<H4 id ="_hyUVMfy2EeWMIr2UMud8Pw">As "compartment"</H4>
-<p>  - traces to <a href="#_hmITUPy2EeWMIr2UMud8Pw" title="Requirement Display Requirement as a "compartment"">Display Requirement as a "compartment"</a></p>
-<p>Properties of applied stereotype can be displayed as a compartment. This compartment contains all labels that are properties of the applied stereotype.</p>
-<H5 id ="_hycRAPy2EeWMIr2UMud8Pw">How to</H5>
-<p>To do that:<BR/>1. Select your Element<BR/>2. Select the Appearance Tab in the property view<BR/>3. Select "In Compartment" for the line of your applied stereotype</p>
-<P align="middle"><img src=./imgDOC/DisplayInCompartment.png alt=Sequence of actions to display in compartment ></P><P align="middle">Sequence of actions to display in compartment</P></BR>
-<P align="middle"><img src=./imgDOC/ResultDisplayInCompartment.png alt=Properties of stereotypes displayed in compartment ></P><P align="middle">Properties of stereotypes displayed in compartment</P></BR>
-<H4 id ="_hypFUPy2EeWMIr2UMud8Pw">As "Comment"</H4>
-<p>  - traces to <a href="#_hmEB4Py2EeWMIr2UMud8Pw" title="Requirement Display Requirement as a "comment"">Display Requirement as a "comment"</a></p>
-<p>Properties of applied stereotype can be displayed as a comment. This comment representation that contains all labels that are properties of the applied stereotype.</p>
-<p>To do that:<BR/>1. Select your Element<BR/>2. Select the Appearance Tab in the property view<BR/>3. Select "In Comment" for the line of your applied stereotype</p>
-<P align="middle"><img src=./imgDOC/DisplayInComment.png alt=Sequence of actions to display in comment ></P><P align="middle">Sequence of actions to display in comment</P></BR>
-<P align="middle"><img src=./imgDOC/ResultDisplayInComment.png alt=Properties of stereotype displayed in comment ></P><P align="middle">Properties of stereotype displayed in comment</P></BR>
-<H4 id ="_hzARsfy2EeWMIr2UMud8Pw">Choose properties to display</H4>
-<p>  - traces to <a href="#_hmh78Py2EeWMIr2UMud8Pw" title="Requirement Use CSS file">Use CSS file</a>, <a href="#_hmjxIfy2EeWMIr2UMud8Pw" title="Requirement Use property view">Use property view</a>, <a href="#_hmffsPy2EeWMIr2UMud8Pw" title="Requirement Choice on Stereotype properties to display">Choice on Stereotype properties to display</a></p>
-<p>The list of properties of stereotypes can be chosen by the user by using the property view or by writing a css.<BR/>This choice runs for the 3 representations of applied stereotypes: brace, compartment, comment.</p>
-<H5 id ="_hzKpwfy2EeWMIr2UMud8Pw">How to</H5>
-<p>By using the property view, it is possible to select the list of property of stereotype.<BR/>To do that:<BR/>1. Select your element.<BR/>2. Check that the applied stereotype has been displayed as brace, compartment or comment<BR/>3. Select lines that correspond to wanted properties of stereotype.</p>
-<P align="middle"><img src=./imgDOC/ChooseProperties_PV.png alt=Select properties by using the property view ></P><P align="middle">Select properties by using the property view</P></BR>
-<p>By using CSS file:<BR/>Compartment[type=StereotypeCompartment]{<BR/>	visible:true;<BR/>}<BR/>Compartment[type=StereotypeCompartment]>[property="derived"]{<BR/>	visible:false;<BR/>}<BR/>Compartment[type=StereotypeCompartment]>[property="derivedFrom"]{<BR/>	visible:false;<BR/>}<BR/>The compartment is displayed and the property derived and derivedFrom are not displayed<BR/><BR/><BR/></p>
-<P align="middle"><img src=./imgDOC/ChooseProperties_CSS.png alt=Result by using the selection by CSS ></P><P align="middle">Result by using the selection by CSS</P></BR>
-<p>The following CSS rules are implemented by default for all the Diagrams:<BR/>Shape[type=StereotypeComment]{<BR/>	visible:false;<BR/>}<BR/><BR/>StereotypeComment Compartment[type=StereotypeBrace]{<BR/>	visible:false;<BR/>}<BR/><BR/>Compartment[type=StereotypeCompartment]{<BR/>	visible:false;<BR/>}<BR/><BR/>Compartment[type=StereotypeBrace]{<BR/>	visible:false;<BR/>}<BR/><BR/>Label[type=StereotypeLabel]{<BR/>	depth:"none";<BR/>}<BR/><BR/><BR/><BR/><BR/>Here is some example of CSS to display the Stereotype:<BR/>/* To modify the depth */<BR/>Label[type=StereotypeLabel]{<BR/>	depth:"-1";<BR/>}<BR/><BR/>/* To make the properties visible into compartment */<BR/>Compartment[type=StereotypeCompartment]{<BR/>	visible:true;<BR/>}<BR/><BR/>/* Hide the property "allocatedTo" into the compartment */<BR/>Compartment[type=StereotypeCompartment]>[property="allocatedTo"]{<BR/>	visible:false;<BR/>}<BR/><BR/>/* Hide all the properties into the Compartment of the stereotype Block */<BR/>Compartment[stereotype="SysML::Blocks::Block"]{<BR/>	visible:false;<BR/>}<BR/><BR/>/* Display the Comment shape */<BR/>StereotypeComment{<BR/>	visible:true;<BR/>}<BR/><BR/>/* Display the properties in Brace into the Comment*/<BR/>StereotypeComment Compartment[type=StereotypeBrace]{<BR/>	visible:true;<BR/>}<BR/><BR/></p>
-<H4 id ="_hzh2IPy2EeWMIr2UMud8Pw">Choose QN depth</H4>
-<p>  - traces to <a href="#_hmdDcPy2EeWMIr2UMud8Pw" title="Requirement Qualified name depth">Qualified name depth</a></p>
-<p>The stereotype name can be displayed by choosing the depth. I consists on choosing the size of the qualified name of the stereotype.<BR/>full = all the qualified name<BR/>0= only the name of stereotype<BR/>-1= the name of its parent + the name of the stereotype<BR/>-2=the name of its great-parent+ the name of its parent + the name of the stereotype</p>
-<p>Using Css: <BR/>Label[type=StereotypeLabel]{<BR/>	depth:"-1";<BR/>}<BR/> By using the property view:<BR/>1. Select the element.<BR/>2. Select the appearance Tab<BR/>3. Select the name depth and choose the size</p>
-<P align="middle"><img src=./imgDOC/depth.png alt=Select the depth the applied stereotype name ></P><P align="middle">Select the depth the applied stereotype name</P></BR>
-<H4 id ="_hzvRgPy2EeWMIr2UMud8Pw">Remove display of stereotype properties</H4>
-<p>  - traces to <a href="#_hmmNYfy2EeWMIr2UMud8Pw" title="Requirement Remove display of applied stereotype ">Remove display of applied stereotype </a></p>
-<p>The display of stereotype can be removed by selection or by unapply stereotype or profile container</p>
-<H4 id ="_hz2mQfy2EeWMIr2UMud8Pw">Update the display of applied stereotype properties</H4>
-<p>  - traces to <a href="#_hmopofy2EeWMIr2UMud8Pw" title="Requirement Update display">Update display</a></p>
-<p>When the value associated to the property of stereotype has been modified, the display must be modified.</p>
-<p>It is possible to edit value of stereotype property by double click on the property in the diagram.<BR/>Important: the property must be writable and Real are not yet editable. </p>
-<P align="middle"><img src=./imgDOC/PropertyEdition.png alt=Property of applied stereotype edition ></P><P align="middle">Property of applied stereotype edition</P></BR>
-<H5 id ="_h0EBofy2EeWMIr2UMud8Pw">How to</H5>
-<p>It is possible to edit property of applied stereotype by using the property view:<BR/>1. Select your element<BR/>2. Select the Profile tab<BR/>3. Expand the stereotype<BR/>4. Select the property<BR/>5. Edit at right the property of the stereotype</p>
-<P align="middle"><img src=./imgDOC/PropertyEdition_PV.png alt=Property edition for applied stereotypes in the property view ></P><P align="middle">Property edition for applied stereotypes in the property view</P></BR>
-<H2 id ="_h0NLkPy2EeWMIr2UMud8Pw">Design</H2>
-<H3 id ="_h0Q18Py2EeWMIr2UMud8Pw">Package org.eclipse.papyrus.uml.diagram.stereotype.edition</H3>
-<H4 id ="_h0T5QPy2EeWMIr2UMud8Pw">Class Activator</H4>
-<p>  - specializes <a href="#_IufLAvZ5EeWfXdmtYb4ggQ" title="Class AbstractUIPlugin">AbstractUIPlugin</a></p>
-<p><BR/> * The activator class controls the plug-in life cycle<BR/> </p>
-<H4 id ="_h0dDMfy2EeWMIr2UMud8Pw">Package editpart</H4>
-<H5 id ="_h0gtkfy2EeWMIr2UMud8Pw">Class AppliedStereotypeCommentEditPart</H5>
-<p>  - specializes <a href="#_IvnMYvZ5EeWfXdmtYb4ggQ" title="Class NodeEditPart">NodeEditPart</a><BR/><BR/>  - realizes <a href="#_IvpBkvZ5EeWfXdmtYb4ggQ" title="Interface IGraphicalEditPart">IGraphicalEditPart</a>, <a href="#_IvvvQPZ5EeWfXdmtYb4ggQ" title="Interface IPrimaryEditPart">IPrimaryEditPart</a></p>
-<p><BR/> * The Applied StereotypeCommentEdipart and the appliedStereotypeCommentLinkEditPart are connected to the semantic element.<BR/> * Thanks to this, if the semantic element is deleted the comment will be also deleted.<BR/> * The Applied StereotypeCommentEdipart will be contains eannotation about stereotype application exactly as the editpart<BR/> * that represents the semantic element. In this manner, it is possible to reuse mechanism of stereotype edition.<BR/> * To ensure the creation of the comment and the synchronization of eannotation information from the Semantic editpart<BR/> * an editpolicy will be added: the AppliedStereotypeCommentEditPolicy.<BR/> *<BR/> </p>
-<H5 id ="_h0sTwPy2EeWMIr2UMud8Pw">Class AppliedStereotypeCompartmentEditPart</H5>
-<p>  - specializes <a href="#_IxT1gfZ5EeWfXdmtYb4ggQ" title="Class ResizeableListCompartmentEditPart">ResizeableListCompartmentEditPart</a></p>
-<p><BR/> * this compartment is the an editpart associated to an applied stereotype<BR/> </p>
-<H5 id ="_h0358fy2EeWMIr2UMud8Pw">Class Double</H5>
-<H5 id ="_h08LYPy2EeWMIr2UMud8Pw">Class AppliedStereotypeEmptyEditPart</H5>
-<p>  - specializes <a href="#_Ix4dQvZ5EeWfXdmtYb4ggQ" title="Class GraphicalEditPart">GraphicalEditPart</a></p>
-<p><BR/> * This Edit Part is a dummy edit part with no figure to be linked to a Notation View that is not representing a graphical object.<BR/> * The Views related to this edit Part are Views of type StereotypeBrace, StereotypeLabel and StereotypeBraceProperty<BR/> * <BR/> * @see StereotypePropertiesEditPartProvider<BR/> * <BR/> * @author Celine JANSSENS<BR/> *<BR/> </p>
-<H5 id ="_h1HKgPy2EeWMIr2UMud8Pw">Class AppliedStereotypeMultilinePropertyEditPart</H5>
-<p>  - specializes <a href="#_I34-ofZ5EeWfXdmtYb4ggQ" title="Class CompartmentEditPart">CompartmentEditPart</a><BR/><BR/>  - realizes <a href="#_I35lsPZ5EeWfXdmtYb4ggQ" title="Interface ITextAwareEditPart">ITextAwareEditPart</a>, <a href="#_I36z0fZ5EeWfXdmtYb4ggQ" title="Interface NotificationListener">NotificationListener</a>, <a href="#_I37a4fZ5EeWfXdmtYb4ggQ" title="Interface IPapyrusListener">IPapyrusListener</a>, <a href="#_I38B8PZ5EeWfXdmtYb4ggQ" title="Interface IControlParserForDirectEdit">IControlParserForDirectEdit</a></p>
-<p><BR/> * the goal of this editpart is to edit a property of an application of the stereotype into a text area<BR/> *<BR/> </p>
-<H5 id ="_h1SJoPy2EeWMIr2UMud8Pw">Class AppliedStereotypePropertyEditPart</H5>
-<p>  - specializes <a href="#_I9OKkPZ5EeWfXdmtYb4ggQ" title="Class UMLCompartmentEditPart">UMLCompartmentEditPart</a><BR/><BR/>  - realizes <a href="#_I35lsPZ5EeWfXdmtYb4ggQ" title="Interface ITextAwareEditPart">ITextAwareEditPart</a>, <a href="#_IvvvQPZ5EeWfXdmtYb4ggQ" title="Interface IPrimaryEditPart">IPrimaryEditPart</a></p>
-<p><BR/> * the goal of this editpart is to display property of stereotype in on line<BR/> *<BR/> </p>
-<H5 id ="_h1chsfy2EeWMIr2UMud8Pw">Class AppliedStereotypesCommentLinkEditPart</H5>
-<p>  - specializes <a href="#_I-NpEfZ5EeWfXdmtYb4ggQ" title="Class ConnectionEditPart">ConnectionEditPart</a></p>
-<p><BR/> *<BR/> * The editpart AppliedSterotypesCommentLinkEditPart, the link between the stereotyped element and the comment.<BR/> *<BR/> </p>
-<H4 id ="_h1oH4Py2EeWMIr2UMud8Pw">Package editpolicies</H4>
-<H5 id ="_h1ryQPy2EeWMIr2UMud8Pw">Class AppliedStereotypeCommentEditPolicy</H5>
-<p>  - specializes <a href="#_JAjLYvZ5EeWfXdmtYb4ggQ" title="Class AppliedStereotypeNodeLabelDisplayEditPolicy">AppliedStereotypeNodeLabelDisplayEditPolicy</a></p>
-<p><BR/> * This editpolicy has in charge to :<BR/> * - create or destroy the appliedStereotypesCommentEditpart<BR/> * - create notation view associated to this CommentEditPart<BR/> * - refresh the Comment content based on the UML information<BR/> * by using NamedStyle mechanism into Notation model<BR/> *<BR/> *<BR/> </p>
-<H5 id ="_h12KUPy2EeWMIr2UMud8Pw">Class AppliedStereotypeCompartmentEditPolicy</H5>
-<p>  - specializes <a href="#_JAjLYvZ5EeWfXdmtYb4ggQ" title="Class AppliedStereotypeNodeLabelDisplayEditPolicy">AppliedStereotypeNodeLabelDisplayEditPolicy</a></p>
-<p><BR/> * this edit policy can be apply only on {@link IPapyrusEditPart} in order to<BR/> * access to primary figure. the primary figure has to be a {@link IPapyrusNodeUMLElementFigure}<BR/> *<BR/> </p>
-<H5 id ="_h2BJcPy2EeWMIr2UMud8Pw">Class AppliedStereotypeCompartmentForCommentShapeEditPolicy</H5>
-<p>  - specializes <a href="#_h12KUPy2EeWMIr2UMud8Pw" title="Class AppliedStereotypeCompartmentEditPolicy">AppliedStereotypeCompartmentEditPolicy</a></p>
-<p><BR/> * â€¢ AppliedStereotypeCompartmentForCommentShapeEditPolicy is another editpolicy attached<BR/> * to StereotypeCommentEdipart. It does the same work as AppliedStereotypeCompartmentEditPolicy.<BR/> * Because the StereotypeCommentEdipart is not attached to a semantic element by the attribute element of the notation view.<BR/> * It specializes the method getUMLElement to find the semantic element<BR/> *<BR/> </p>
-<H5 id ="_h2LhgPy2EeWMIr2UMud8Pw">Class AppliedStereotypeLabelEditPolicy</H5>
-<p>  - specializes <a href="#_JAjLYvZ5EeWfXdmtYb4ggQ" title="Class AppliedStereotypeNodeLabelDisplayEditPolicy">AppliedStereotypeNodeLabelDisplayEditPolicy</a></p>
-<p><BR/> * @author CÃ©line JANSSENS<BR/> *         This Policy is in charge of create and delete the applied Stereotype Label Node into the Notation model<BR/> </p>
-<H5 id ="_h2VSgfy2EeWMIr2UMud8Pw">Class AppliedStereotypePropertiesEditPolicy</H5>
-<p>  - specializes <a href="#_JAjLYvZ5EeWfXdmtYb4ggQ" title="Class AppliedStereotypeNodeLabelDisplayEditPolicy">AppliedStereotypeNodeLabelDisplayEditPolicy</a></p>
-<p><BR/> * This editPolicy is used to add dynamically labels of stereotypes into nodes in the context of AppliedStereorypeCompartmentEditpart<BR/> * <BR/> * @deprecated. Use {@link AppliedStereotypeCompartmentEditPolicy} instead.<BR/> </p>
-<H4 id ="_h2it4Py2EeWMIr2UMud8Pw">Package provider</H4>
-<H5 id ="_h2m_UPy2EeWMIr2UMud8Pw">Class CustomEditPolicyProvider</H5>
-<p>  - specializes <a href="#_JEVfMvZ5EeWfXdmtYb4ggQ" title="Class AbstractProvider">AbstractProvider</a><BR/><BR/>  - realizes <a href="#_JEWGQfZ5EeWfXdmtYb4ggQ" title="Interface IEditPolicyProvider">IEditPolicyProvider</a></p>
-<p><BR/> * this is an editpolicy provider in charge to install a policy to create a AssociationClass<BR/> *<BR/> * @author Patrick Tessier<BR/> </p>
-<H5 id ="_h2xXYfy2EeWMIr2UMud8Pw">Class DisplayedProfileElementLabelProvider</H5>
-<p>  - specializes <a href="#_JHIUgvZ5EeWfXdmtYb4ggQ" title="Class LabelProvider">LabelProvider</a></p>
-<p><BR/> * The Class ProfileElementLabelProvider.<BR/> </p>
-<H5 id ="_h25TMPy2EeWMIr2UMud8Pw">Class StereotypeDisplayMigrationEditPolicyProvider</H5>
-<p>  - specializes <a href="#_JEVfMvZ5EeWfXdmtYb4ggQ" title="Class AbstractProvider">AbstractProvider</a><BR/><BR/>  - realizes <a href="#_JEWGQfZ5EeWfXdmtYb4ggQ" title="Interface IEditPolicyProvider">IEditPolicyProvider</a></p>
-<p><BR/> * @author CÃ©line JANSSENS<BR/> *<BR/> </p>
-<H5 id ="_h3CdIPy2EeWMIr2UMud8Pw">Class StereotypePropertiesEditPartProvider</H5>
-<p>  - specializes <a href="#_JJQbcPZ5EeWfXdmtYb4ggQ" title="Class RestrictedAbstractEditPartProvider">RestrictedAbstractEditPartProvider</a></p>
-<H2 id ="_h3HVofy2EeWMIr2UMud8Pw">Tests</H2>
-<H3 id ="_h3KY8Py2EeWMIr2UMud8Pw">Package Display applied stereotype name</H3>
-<H4 id ="_h3NcQPy2EeWMIr2UMud8Pw">Use Case Apply two stereotypes</H4>
-<p>Create a class, apply stereotype1 and stereotype2, verify if their names are displayed</p>
-<H4 id ="_h3VYEPy2EeWMIr2UMud8Pw">Use Case Drop a stereotyped class</H4>
-<p>Create a class in the model explorer, stereotype it by "stereotype1", drop it into the class diagram.<BR/>Test if the label of the applied stereotype name  is displayed </p>
-<H4 id ="_h3cs0fy2EeWMIr2UMud8Pw">Use Case Apply a stereotype</H4>
-<p>Create a class on the class diagram, apply "stereotype1" on this class. Test if the "stereotype1" is displayed under the name.</p>
-<H4 id ="_h3hlUPy2EeWMIr2UMud8Pw">Use Case Use a CSS</H4>
-<p> Open a papyrus file where a class is stereotyped by Stereotype1<BR/> This class should display 17 properties.<BR/> But a CSS has been added and only one property must be visible only on the class .<BR/> Verify that all properties for the applied stereotype are displayed.</p>
-<H4 id ="_h3l2wfy2EeWMIr2UMud8Pw">Use Case Use Property View</H4>
-<p> Open a papyrus file where a class is stereotyped by Stereotype1<BR/> This class should display 17 properties.<BR/> But the display has change by slected only one property to display<BR/> Verify that all properties for the applied stereotype are displayed.</p>
-<H3 id ="_h3qvQPy2EeWMIr2UMud8Pw">Package Display applied stereotype properties as comment</H3>
-<H4 id ="_h3skcfy2EeWMIr2UMud8Pw">Use Case Display stereotype as Comment</H4>
-<p>Create a class on the class diagram, apply "stereotype3" on this class. Display property of sterotype as comment.<BR/>Verify that all properties fo the applied stereotype  are displayed.</p>
-<H4 id ="_h3z5MPy2EeWMIr2UMud8Pw">Use Case Reopen file with a display of  stereotype as Comment</H4>
-<p>Reopen a file in which applied stereotypes are displayed as comment for a class an dependency.<BR/>Verify that all properties fo the applied stereotype  are displayed.</p>
-<H3 id ="_h37N8fy2EeWMIr2UMud8Pw">Package Display applied stereotype properties as brace</H3>
-<H4 id ="_h3_fYPy2EeWMIr2UMud8Pw">Use Case Display stereotype as brace</H4>
-<p>Create a class on the class diagram, apply "stereotype3" on this class. Display property of sterotype as brace.<BR/>Verify that the label is created and verify its content.</p>
-<H4 id ="_h4ICQPy2EeWMIr2UMud8Pw">Use Case Reopen file with a display of  stereotype as brace</H4>
-<p>Reopen a file in which applied stereotypes are displayed as brace .<BR/>Verify that all properties fo the applied stereotype  are displayed.</p>
-<H3 id ="_h4PXAPy2EeWMIr2UMud8Pw">Package Display applied stereotype properties as compartment</H3>
-<H4 id ="_h4TocPy2EeWMIr2UMud8Pw">Use Case Display stereotype as compartment</H4>
-<p>Create a class on the class diagram, apply "stereotype3" on this class. Display property of sterotype as compartment<BR/>Verify that the compartment is created and verify that all properties of stereotype are displayed.</p>
-<H4 id ="_h4a9MPy2EeWMIr2UMud8Pw">Use Case Reopen file with a display of  stereotype as compartment</H4>
-<p>Reopen a file in which applied stereotypes are displayed as compartment only on the class .<BR/> Verify that all properties for the applied stereotype are displayed.</p>
-<H3 id ="_h4i5APy2EeWMIr2UMud8Pw">Package qualifiedName</H3>
-<H4 id ="_h4mjYPy2EeWMIr2UMud8Pw">Use Case Display the full qualified name </H4>
-<p>Create a class.<BR/>Apply stereotype1.<BR/>Set the depht to full, the name of the profile must be display in the label of applied stereotype</p>
-<H3 id ="_h4sqAfy2EeWMIr2UMud8Pw">Package remove</H3>
-<H4 id ="_h4wUYPy2EeWMIr2UMud8Pw">Use Case Unapply Stereotype</H4>
-<p>Open a model with a stereotype that is apply on the class with the display as compartment.<BR/>Unapply the stereotype.<BR/>The compartment must disappear.</p>
-<H4 id ="_h42bAPy2EeWMIr2UMud8Pw">Use Case Unapply Profile</H4>
-<p>Open a model with a stereotype that is apply on the class with the display as compartment.<BR/>Unapply the profile<BR/>The compartment must disappear.</p>
-<H3 id ="_h48hofy2EeWMIr2UMud8Pw">Package update</H3>
-<H4 id ="_h5AMAPy2EeWMIr2UMud8Pw">Use Case Unapply value associated to the property of stereotype</H4>
-<p>Open a model with a stereotype that is apply on the class with the display as compartment.<BR/>Observe the value of the stereotype.<BR/>Change the value.<BR/>The display must have changed.</p>
-<H2 id ="_h5FEgPy2EeWMIr2UMud8Pw">Requirements Coverage</H2>
-<table style="border-collapse: collapse;"><caption style="caption-side: bottom;">RequirementsCoverageTable</caption><tr><th style="border: 1px solid black">Id</th><th style="border: 1px solid black">Satisfied by</th><th style="border: 1px solid black">Verified by</th></tr>
-<tr><td style="border : 1px solid black"><a href="#_hl_wcPy2EeWMIr2UMud8Pw" title="Stereotype application properties dipslay">REQ_001</a><BR/>
-</td><td style="border : 1px solid black">Display stereotype properties<BR/>
-</td><td style="border : 1px solid black"><a href="#_h3skcfy2EeWMIr2UMud8Pw" title="Display stereotype as Comment">Display stereotype as Comment, 
-</a><BR/>
-<a href="#_h4TocPy2EeWMIr2UMud8Pw" title="Display stereotype as compartment">Display stereotype as compartment, 
-</a><BR/>
-<a href="#_h3_fYPy2EeWMIr2UMud8Pw" title="Display stereotype as brace">Display stereotype as brace, 
-</a><BR/>
-<a href="#_h3z5MPy2EeWMIr2UMud8Pw" title="Reopen file with a display of  stereotype as Comment">Reopen file with a display of  stereotype as Comment, 
-</a><BR/>
-<a href="#_h3hlUPy2EeWMIr2UMud8Pw" title="Use a CSS">Use a CSS, 
-</a><BR/>
-<a href="#_h4ICQPy2EeWMIr2UMud8Pw" title="Reopen file with a display of  stereotype as brace">Reopen file with a display of  stereotype as brace, 
-</a><BR/>
-<a href="#_h4a9MPy2EeWMIr2UMud8Pw" title="Reopen file with a display of  stereotype as compartment">Reopen file with a display of  stereotype as compartment</a><BR/>
-</td></tr>
-<tr><td style="border : 1px solid black"><a href="#_hmEB4Py2EeWMIr2UMud8Pw" title="Display Requirement as a "comment"">REQ_0011</a><BR/>
-</td><td style="border : 1px solid black">As "Comment"<BR/>
-</td><td style="border : 1px solid black"><a href="#_h3skcfy2EeWMIr2UMud8Pw" title="Display stereotype as Comment">Display stereotype as Comment, 
-</a><BR/>
-<a href="#_h3z5MPy2EeWMIr2UMud8Pw" title="Reopen file with a display of  stereotype as Comment">Reopen file with a display of  stereotype as Comment</a><BR/>
-</td></tr>
-<tr><td style="border : 1px solid black"><a href="#_hmITUPy2EeWMIr2UMud8Pw" title="Display Requirement as a "compartment"">REQ_0012</a><BR/>
-</td><td style="border : 1px solid black">As "compartment"<BR/>
-</td><td style="border : 1px solid black"><a href="#_h4TocPy2EeWMIr2UMud8Pw" title="Display stereotype as compartment">Display stereotype as compartment, 
-</a><BR/>
-<a href="#_h4a9MPy2EeWMIr2UMud8Pw" title="Reopen file with a display of  stereotype as compartment">Reopen file with a display of  stereotype as compartment</a><BR/>
-</td></tr>
-<tr><td style="border : 1px solid black"><a href="#_hmL9sPy2EeWMIr2UMud8Pw" title="Display Requirement as a "brace"">REQ_0013</a><BR/>
-</td><td style="border : 1px solid black">As "brace"<BR/>
-</td><td style="border : 1px solid black"><a href="#_h3_fYPy2EeWMIr2UMud8Pw" title="Display stereotype as brace">Display stereotype as brace, 
-</a><BR/>
-<a href="#_h4ICQPy2EeWMIr2UMud8Pw" title="Reopen file with a display of  stereotype as brace">Reopen file with a display of  stereotype as brace</a><BR/>
-</td></tr>
-<tr><td style="border : 1px solid black"><a href="#_hmPBAfy2EeWMIr2UMud8Pw" title="Display stereotype name">REQ_002</a><BR/>
-</td><td style="border : 1px solid black">Display applied stereotype name<BR/>
-</td><td style="border : 1px solid black"><a href="#_h3cs0fy2EeWMIr2UMud8Pw" title="Apply a stereotype">Apply a stereotype, 
-</a><BR/>
-<a href="#_h4mjYPy2EeWMIr2UMud8Pw" title="Display the full qualified name ">Display the full qualified name </a><BR/>
-</td></tr>
-<tr><td style="border : 1px solid black"><a href="#_hmSEUPy2EeWMIr2UMud8Pw" title="Apply a stereotype">REQ_0021</a><BR/>
-</td><td style="border : 1px solid black">Display applied stereotype name<BR/>
-</td><td style="border : 1px solid black"><a href="#_h3cs0fy2EeWMIr2UMud8Pw" title="Apply a stereotype">Apply a stereotype</a><BR/>
-</td></tr>
-<tr><td style="border : 1px solid black"><a href="#_hmUgkPy2EeWMIr2UMud8Pw" title="Drop from  the model explorer">REQ_0022</a><BR/>
-</td><td style="border : 1px solid black">Display applied stereotype name<BR/>
-</td><td style="border : 1px solid black"><a href="#_h3VYEPy2EeWMIr2UMud8Pw" title="Drop a stereotyped class">Drop a stereotyped class</a><BR/>
-</td></tr>
-<tr><td style="border : 1px solid black"><a href="#_hmW80fy2EeWMIr2UMud8Pw" title="Display the name of the stereotype ">REQ_0023</a><BR/>
-</td><td style="border : 1px solid black">Display applied stereotype name<BR/>
-</td><td style="border : 1px solid black"><a href="#_h3NcQPy2EeWMIr2UMud8Pw" title="Apply two stereotypes">Apply two stereotypes, 
-</a><BR/>
-<a href="#_h3VYEPy2EeWMIr2UMud8Pw" title="Drop a stereotyped class">Drop a stereotyped class, 
-</a><BR/>
-<a href="#_h3cs0fy2EeWMIr2UMud8Pw" title="Apply a stereotype">Apply a stereotype</a><BR/>
-</td></tr>
-<tr><td style="border : 1px solid black"><a href="#_hmaAIPy2EeWMIr2UMud8Pw" title="Display each applied stereotype name differently">REQ_0024</a><BR/>
-</td><td style="border : 1px solid black">Display applied stereotype name<BR/>
-</td><td style="border : 1px solid black"><a href="#_h3NcQPy2EeWMIr2UMud8Pw" title="Apply two stereotypes">Apply two stereotypes</a><BR/>
-</td></tr>
-<tr><td style="border : 1px solid black"><a href="#_hmdDcPy2EeWMIr2UMud8Pw" title="Qualified name depth">REQ_003</a><BR/>
-</td><td style="border : 1px solid black">Choose QN depth<BR/>
-</td><td style="border : 1px solid black"><a href="#_h4mjYPy2EeWMIr2UMud8Pw" title="Display the full qualified name ">Display the full qualified name </a><BR/>
-</td></tr>
-<tr><td style="border : 1px solid black"><a href="#_hmffsPy2EeWMIr2UMud8Pw" title="Choice on Stereotype properties to display">REQ_004</a><BR/>
-</td><td style="border : 1px solid black">Choose properties to display<BR/>
-</td><td style="border : 1px solid black"><a href="#_h3hlUPy2EeWMIr2UMud8Pw" title="Use a CSS">Use a CSS, 
-</a><BR/>
-<a href="#_h3l2wfy2EeWMIr2UMud8Pw" title="Use Property View">Use Property View</a><BR/>
-</td></tr>
-<tr><td style="border : 1px solid black"><a href="#_hmh78Py2EeWMIr2UMud8Pw" title="Use CSS file">REQ_0041</a><BR/>
-</td><td style="border : 1px solid black">Choose properties to display<BR/>
-</td><td style="border : 1px solid black"><a href="#_h3hlUPy2EeWMIr2UMud8Pw" title="Use a CSS">Use a CSS</a><BR/>
-</td></tr>
-<tr><td style="border : 1px solid black"><a href="#_hmjxIfy2EeWMIr2UMud8Pw" title="Use property view">REQ_0042</a><BR/>
-</td><td style="border : 1px solid black">Choose properties to display<BR/>
-</td><td style="border : 1px solid black"><a href="#_h3l2wfy2EeWMIr2UMud8Pw" title="Use Property View">Use Property View</a><BR/>
-</td></tr>
-<tr><td style="border : 1px solid black"><a href="#_hmmNYfy2EeWMIr2UMud8Pw" title="Remove display of applied stereotype ">REQ_005</a><BR/>
-</td><td style="border : 1px solid black">Remove display of stereotype properties<BR/>
-</td><td style="border : 1px solid black"><a href="#_h4wUYPy2EeWMIr2UMud8Pw" title="Unapply Stereotype">Unapply Stereotype, 
-</a><BR/>
-<a href="#_h42bAPy2EeWMIr2UMud8Pw" title="Unapply Profile">Unapply Profile</a><BR/>
-</td></tr>
-<tr><td style="border : 1px solid black"><a href="#_hmopofy2EeWMIr2UMud8Pw" title="Update display">REQ_006</a><BR/>
-</td><td style="border : 1px solid black">Update the display of applied stereotype properties<BR/>
-</td><td style="border : 1px solid black"><a href="#_h5AMAPy2EeWMIr2UMud8Pw" title="Unapply value associated to the property of stereotype">Unapply value associated to the property of stereotype</a><BR/>
-</td></tr>
-</table>
-<p>Unsatisfied requirements (0 out of 15) : </p>
-<p>Unverified requirements (0 out of 15) : </p>
-</html>

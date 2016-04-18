@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.sysml.diagram.common.edit.policy;
 
 import java.util.Arrays;
-import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
@@ -22,7 +21,6 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.blocks.Block;
@@ -56,25 +54,6 @@ public class BlockPropertyStructureCompartmentSemanticEditPolicy extends Default
 
 				IElementType elementTypeToCreate = req.getElementType();
 				IElementType baseType = elementTypeToCreate;
-				// if extended type, retrieve the sysml closest element element type
-				if (elementTypeToCreate instanceof IExtendedHintedElementType) {
-					List<IElementType> superTypes = Arrays.asList(elementTypeToCreate.getAllSuperTypes());
-
-					if (superTypes.contains(SysMLElementTypes.PART_PROPERTY)) {
-						baseType = SysMLElementTypes.PART_PROPERTY;
-					} else if (superTypes.contains(SysMLElementTypes.REFERENCE_PROPERTY)) {
-						baseType = SysMLElementTypes.REFERENCE_PROPERTY;
-					} else if (superTypes.contains(SysMLElementTypes.ACTOR_PART_PROPERTY)) {
-						baseType = SysMLElementTypes.ACTOR_PART_PROPERTY;
-					} else if (superTypes.contains(SysMLElementTypes.VALUE_PROPERTY)) {
-						baseType = SysMLElementTypes.VALUE_PROPERTY;
-					} else if (superTypes.contains(SysMLElementTypes.CONSTRAINT_PROPERTY)) {
-						baseType = SysMLElementTypes.CONSTRAINT_PROPERTY;
-					} else if (superTypes.contains(UMLElementTypes.PROPERTY)) {
-						baseType = UMLElementTypes.PROPERTY;
-					}
-
-				}
 
 				if (SysMLElementTypes.PART_PROPERTY == baseType) {
 					req.setContainer(type);

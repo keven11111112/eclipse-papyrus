@@ -33,7 +33,6 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.ocl.ecore;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.papyrus.editor;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.infra.extendedtypes;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.papyrus.uml.appearance;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.uml.diagram.navigation;bundle-version="[1.2.0,2.0.0)",

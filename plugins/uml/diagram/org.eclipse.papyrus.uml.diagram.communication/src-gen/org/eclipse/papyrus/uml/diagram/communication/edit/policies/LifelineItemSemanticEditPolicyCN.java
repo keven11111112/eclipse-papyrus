@@ -26,8 +26,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
-import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
-import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.communication.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.communication.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.communication.edit.commands.ConnectorDurationObservationCreateCommand;
@@ -99,21 +97,7 @@ public class LifelineItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
-		boolean isExtendedType = false;
-		if (requestElementType instanceof IExtendedHintedElementType) {
-			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if (baseElementType != null) {
-				isExtendedType = true;
-			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType) requestElementType);
-				isExtendedType = true;
-			}
-		}
 		if (UMLElementTypes.Path_Edge == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
 			return getGEFWrapper(new MessageCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
@@ -141,49 +125,24 @@ public class LifelineItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
-		boolean isExtendedType = false;
-		if (requestElementType instanceof IExtendedHintedElementType) {
-			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
-			if (baseElementType != null) {
-				isExtendedType = true;
-			} else {
-				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType) requestElementType);
-				isExtendedType = true;
-			}
-		}
+		
 		if (UMLElementTypes.Path_Edge == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
 			return getGEFWrapper(new MessageCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Comment_AnnotatedElementEdge == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Constraint_ConstrainedElementEdge == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.DurationObservation_EventEdge == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
 			return getGEFWrapper(new ConnectorDurationObservationCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.TimeObservation_EventEdge == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
 			return getGEFWrapper(new ConnectorTimeObservationCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}

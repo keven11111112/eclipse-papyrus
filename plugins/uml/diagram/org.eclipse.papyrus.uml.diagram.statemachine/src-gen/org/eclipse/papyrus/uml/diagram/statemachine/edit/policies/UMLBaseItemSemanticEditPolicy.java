@@ -239,45 +239,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		return null;
 	}
 
-	/**
-	 * @generated
-	 */
-	protected Command getExtendedTypeCreationCommand(CreateElementRequest request, IElementType requestElementType) {
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(request.getContainer());
-		if(provider == null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		// Retrieve create command from the Element Edit service
-		ICommand createGMFCommand = provider.getEditCommand(request);
-		return getGEFWrapper(createGMFCommand);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getExtendedStartCreateRelationshipCommand(CreateElementRequest request, IElementType requestElementType) {
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
-		if(provider == null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		// Retrieve create command from the Element Edit service
-		ICommand createGMFCommand = provider.getEditCommand(request);
-		return getGEFWrapper(createGMFCommand);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getExtendedCompleteCreateRelationshipCommand(CreateElementRequest request, IElementType requestElementType) {
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
-		if(provider == null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		// Retrieve create command from the Element Edit service
-		ICommand createGMFCommand = provider.getEditCommand(request);
-		return getGEFWrapper(createGMFCommand);
-	}
-
 	// RS: End of add code for extended types
 	/**
 	 * @generated

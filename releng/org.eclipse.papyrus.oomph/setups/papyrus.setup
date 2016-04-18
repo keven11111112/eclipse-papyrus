@@ -3121,9 +3121,6 @@
                 pattern="org\.eclipse\.papyrus\.sysml\.sysmloveruml\.codegen"/>
             <operand
                 xsi:type="predicates:NamePredicate"
-                pattern="org\.eclipse\.papyrus\.infra\.extendedtypes\.elementtypeview"/>
-            <operand
-                xsi:type="predicates:NamePredicate"
                 pattern="org\.eclipse\.papyrus\.dev\.view\.services\.edit\.request"/>
             <operand
                 xsi:type="predicates:NamePredicate"

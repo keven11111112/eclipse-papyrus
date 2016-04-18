@@ -13,15 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.edit.policy;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateFlowPortWithFlowSpecificationConfigureCommandFactory;
@@ -52,23 +48,6 @@ public class NestedBlockPropertyCompositeSemanticEditPolicy extends DefaultSeman
 
 				IElementType elementTypeToCreate = req.getElementType();
 				IElementType baseType = elementTypeToCreate;
-				// if extended type, retrieve the sysml closest element element type
-				if (elementTypeToCreate instanceof IExtendedHintedElementType) {
-					List<IElementType> superTypes = Arrays.asList(elementTypeToCreate.getAllSuperTypes());
-					if (superTypes.contains(SysMLElementTypes.FLOW_PORT)) {
-						baseType = SysMLElementTypes.FLOW_PORT;
-					} else if (superTypes.contains(SysMLElementTypes.FLOW_PORT_IN)) {
-						baseType = SysMLElementTypes.FLOW_PORT_IN;
-					} else if (superTypes.contains(SysMLElementTypes.FLOW_PORT_OUT)) {
-						baseType = SysMLElementTypes.FLOW_PORT_OUT;
-					} else if (superTypes.contains(SysMLElementTypes.FLOW_PORT_IN_OUT)) {
-						baseType = SysMLElementTypes.FLOW_PORT_IN_OUT;
-					} else if (superTypes.contains(SysMLElementTypes.FLOW_PORT_NA)) {
-						baseType = SysMLElementTypes.FLOW_PORT_NA;
-					} else if (superTypes.contains(UMLElementTypes.PORT)) {
-						baseType = UMLElementTypes.PORT;
-					}
-				}
 
 				if ((SysMLElementTypes.FLOW_PORT == baseType)
 						|| (SysMLElementTypes.FLOW_PORT_IN == baseType)

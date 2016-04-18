@@ -197,21 +197,11 @@ import xpt.editor.VisualIDRegistry
 			«generatedMemberComment»«/* XXX: unlike createNode, we don't check op.containerView() for null here. On purpose? */»
 	protected boolean provides(org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation op) {
 		org.eclipse.gmf.runtime.emf.type.core.IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
-		//RS: add code for extended types creation
-		if(elementType instanceof org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType) {
-			org.eclipse.gmf.runtime.emf.type.core.IElementType closestNonExtendedType = org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils.getClosestDiagramType(elementType);
-			if(!«getElementTypesQualifiedClassName()».isKnownElementType(closestNonExtendedType) || (!(closestNonExtendedType instanceof org.eclipse.gmf.runtime.emf.type.core.IHintedType))) {
-				return false; // foreign element type.
-			}
-		} else {
-			if (!«getElementTypesQualifiedClassName()».isKnownElementType(elementType) || (!(elementType instanceof org.eclipse.gmf.runtime.emf.type.core.IHintedType))) {
-				return false; // foreign element type
-			}
+		
+		if (!«getElementTypesQualifiedClassName()».isKnownElementType(elementType) || (!(elementType instanceof org.eclipse.gmf.runtime.emf.type.core.IHintedType))) {
+			return false; // foreign element type
 		}
-		//if (!«getElementTypesQualifiedClassName()».isKnownElementType(elementType) || (!(elementType instanceof org.eclipse.gmf.runtime.emf.type.core.IHintedType))) {
-		//	return false; // foreign element type
-		//}
-		// END R.S.
+		
 		String elementTypeHint = ((org.eclipse.gmf.runtime.emf.type.core.IHintedType) elementType).getSemanticHint();
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type

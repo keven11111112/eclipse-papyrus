@@ -13,13 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.edit.policy;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.blocks.Block;
@@ -39,13 +35,6 @@ public class ReferenceCompartmentSemanticEditPolicy extends DefaultCompartmentSe
 
 		IElementType elementTypeToCreate = req.getElementType();
 		IElementType baseType = elementTypeToCreate;
-		// if extended type, retrieve the sysml closest element element type
-		if (elementTypeToCreate instanceof IExtendedHintedElementType) {
-			List<IElementType> superTypes = Arrays.asList(elementTypeToCreate.getAllSuperTypes());
-			if (superTypes.contains(SysMLElementTypes.REFERENCE_PROPERTY)) {
-				baseType = SysMLElementTypes.REFERENCE_PROPERTY;
-			}
-		}
 
 		if (SysMLElementTypes.REFERENCE_PROPERTY == baseType) {
 			req.setParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new CreateReferenceWithTypeConfigureCommandFactory());

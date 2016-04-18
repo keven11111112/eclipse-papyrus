@@ -31,7 +31,6 @@
 		<module>nattable/org.eclipse.papyrus.infra.nattable.gmfdiag</module>
 
 		<module>ui</module>
-		<module>xtypes</module>
 		<module>misc</module>
 		<module>discovery</module>
 	</modules>

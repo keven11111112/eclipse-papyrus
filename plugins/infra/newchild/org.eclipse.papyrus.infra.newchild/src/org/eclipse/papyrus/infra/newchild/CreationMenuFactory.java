@@ -344,12 +344,12 @@ public class CreationMenuFactory {
 	/**
 	 * get the IelementType from a string
 	 *
-	 * @param extendedType
+	 * @param elementType
 	 *            the string that represents the element type
 	 * @return the element type or null
 	 */
-	protected IElementType getElementType(String extendedType) {
-		return ElementTypeRegistry.getInstance().getType(extendedType);
+	protected IElementType getElementType(String elementType) {
+		return ElementTypeRegistry.getInstance().getType(elementType);
 	}
 
 	/**
@@ -359,8 +359,8 @@ public class CreationMenuFactory {
 	 *            the role of the element that will be created (maybe null)
 	 * @param container
 	 *            the container of the created elements
-	 * @param extendedType
-	 *            the extended type of the created element
+	 * @param adviceCache
+	 * 
 	 * @return a command that can be executed by the domain
 	 */
 	protected Command buildCommand(EReference reference, EObject container, CreationMenu creationMenu, Map<?, ?> adviceCache) {
@@ -445,14 +445,12 @@ public class CreationMenuFactory {
 	 * Creates a dialog for selecting the target element
 	 * 
 	 * @param eobject
-	 * @param reference
-	 * @param extendedType
 	 * @param provider
+	 * @param ted
+	 * @param reference
 	 * @param container
-	 * @param possibleTargets
-	 * @param directedRelationship
-	 * 
-	 * @return the dialog
+	 * @param et
+	 * @return
 	 */
 	protected TreeSelectorDialog getTargetTreeSelectorDialog(EObject eobject, final IElementEditService provider,
 			final TransactionalEditingDomain ted,

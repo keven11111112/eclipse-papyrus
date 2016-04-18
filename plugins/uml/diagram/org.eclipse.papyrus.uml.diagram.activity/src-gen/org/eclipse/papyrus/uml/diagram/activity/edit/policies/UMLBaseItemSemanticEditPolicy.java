@@ -305,47 +305,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getExtendedTypeCreationCommand(CreateElementRequest request, IElementType requestElementType) {
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(request.getContainer());
-		if (provider == null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		// Retrieve create command from the Element Edit service
-		ICommand createGMFCommand = provider.getEditCommand(request);
-		return getGEFWrapper(createGMFCommand);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getExtendedStartCreateRelationshipCommand(CreateElementRequest request,
-			IElementType requestElementType) {
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
-		if (provider == null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		// Retrieve create command from the Element Edit service
-		ICommand createGMFCommand = provider.getEditCommand(request);
-		return getGEFWrapper(createGMFCommand);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getExtendedCompleteCreateRelationshipCommand(CreateElementRequest request,
-			IElementType requestElementType) {
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
-		if (provider == null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		// Retrieve create command from the Element Edit service
-		ICommand createGMFCommand = provider.getEditCommand(request);
-		return getGEFWrapper(createGMFCommand);
-	}
-
-	/**
-	 * @generated
-	 */
 	protected ICommand getSemanticCreationCommand(CreateElementRequest req) {
 		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(req.getContainer());
 		if (commandService == null) {
@@ -479,8 +438,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateAction_LocalPreconditionEdge(Action source, Constraint target) {
 			if (source != null) {
 				if (source.getLocalPreconditions().contains(target)) {
@@ -495,8 +454,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateAction_LocalPostconditionEdge(Action source, Constraint target) {
 			if (source != null) {
 				if (source.getLocalPostconditions().contains(target)) {
@@ -511,30 +470,30 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateObjectFlow_Edge(Activity container, ActivityNode source, ActivityNode target) {
 			return canExistObjectFlow_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateControlFlow_Edge(Activity container, ActivityNode source, ActivityNode target) {
 			return canExistControlFlow_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateExceptionHandler_Edge(ExecutableNode container, ExecutableNode source,
 				ObjectNode target) {
 			return canExistExceptionHandler_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateComment_AnnotatedElementEdge(Comment source, Element target) {
 			if (source != null) {
 				if (source.getAnnotatedElements().contains(target)) {
@@ -546,8 +505,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			if (source != null) {
 				if (source.getConstrainedElements().contains(target)) {
@@ -559,15 +518,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistAction_LocalPreconditionEdge(Action source, Constraint target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistAction_LocalPostconditionEdge(Action source, Constraint target) {
 			return true;
 		}
@@ -756,8 +715,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistControlFlow_Edge(Activity container, ControlFlow linkInstance, ActivityNode source,
 				ActivityNode target) {
 			try {
@@ -806,7 +765,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					}
 				}
 				if (source instanceof MergeNode) {
-					//rule validateMergeNode_validateOneOutgoingEdge
+					// rule validateMergeNode_validateOneOutgoingEdge
 					if (!source.getOutgoings().isEmpty()) {
 						return false;
 					}
@@ -911,23 +870,23 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistExceptionHandler_Edge(ExecutableNode container, ExceptionHandler linkInstance,
 				ExecutableNode source, ObjectNode target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistComment_AnnotatedElementEdge(Comment source, Element target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			return true;
 		}

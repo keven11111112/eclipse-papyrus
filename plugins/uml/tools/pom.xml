@@ -13,7 +13,6 @@
 
 	<modules>
 		<module>org.eclipse.papyrus.uml.tools</module>
-		<module>org.eclipse.papyrus.uml.tools.extendedtypes</module>
 		<module>org.eclipse.papyrus.uml.tools.utils</module>
 	</modules>
 </project>

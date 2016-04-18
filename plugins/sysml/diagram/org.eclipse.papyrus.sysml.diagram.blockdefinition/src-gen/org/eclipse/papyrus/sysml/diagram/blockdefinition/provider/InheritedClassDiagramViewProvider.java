@@ -28,7 +28,6 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
-import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLViewProvider;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
@@ -95,20 +94,7 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 		if (elementType == ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT) {
 			return true;
 		}
-		// /////////////////////////////////////////////////////////////////////
-		// Test possibility to provide a view based on the semantic nature and its expected container.
-		// /////////////////////////////////////////////////////////////////////
-		// IElementType may be an extended type. Check for a view based on this element type
-		if (elementType instanceof IExtendedHintedElementType) {
-			EObject domainElement = (EObject) op.getSemanticAdapter().getAdapter(EObject.class);
-			String domainElementGraphicalType = op.getSemanticHint();
-			if (domainElementGraphicalType == null) {
-				domainElementGraphicalType = registry.getEdgeGraphicalType(domainElement);
-			}
-			if ((!org.eclipse.papyrus.infra.gmfdiag.common.providers.IGraphicalTypeRegistry.UNDEFINED_TYPE.equals(domainElementGraphicalType)) && (registry.isKnownEdgeType(domainElementGraphicalType))) {
-				return true;
-			}
-		}
+
 		// IElementType may be null (especially when drop from ModelExplorer).
 		// In such a case, test the semantic EObject instead.
 		if (elementType == null) {
@@ -239,22 +225,6 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 				return true;
 			}
 			return false;
-		}
-		// /////////////////////////////////////////////////////////////////////
-		// Test possibility to provide a view based on the semantic nature and its expected container.
-		// /////////////////////////////////////////////////////////////////////
-		// IElementType may be an extended type. Check for a view based on this element type
-		if (elementType instanceof IExtendedHintedElementType) {
-			EObject domainElement = (EObject) op.getSemanticAdapter().getAdapter(EObject.class);
-			String domainElementGraphicalType = op.getSemanticHint();
-			if (domainElementGraphicalType == null) {
-				domainElementGraphicalType = registry.getNodeGraphicalType(domainElement, containerGraphicalType);
-			} else {
-				domainElementGraphicalType = registry.getNodeGraphicalType(domainElementGraphicalType, containerGraphicalType);
-			}
-			if ((!org.eclipse.papyrus.infra.gmfdiag.common.providers.IGraphicalTypeRegistry.UNDEFINED_TYPE.equals(domainElementGraphicalType)) && (registry.isKnownNodeType(domainElementGraphicalType))) {
-				return true;
-			}
 		}
 
 		// IElementType may be null (especially when drop from ModelExplorer).

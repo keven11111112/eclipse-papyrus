@@ -78,9 +78,6 @@ import xpt.providers.ElementTypes
 				return null;
 			}
 			org.eclipse.gmf.runtime.emf.type.core.IElementType baseElementType = requestElementType;
-			«IF aspectsUtils_qvto.containsCreateStartLinkCommand(it)»
-			boolean isExtendedType = true;
-			«ENDIF»
 			
 			«FOR l : getAllPotentialLinks(it)»
 			«startLinkCommands(l, it)»
@@ -96,9 +93,6 @@ import xpt.providers.ElementTypes
 				return null;
 			}
 			org.eclipse.gmf.runtime.emf.type.core.IElementType baseElementType = requestElementType;
-			«IF aspectsUtils_qvto.containsCreateCompleteLinkCommand(it)»
-			boolean isExtendedType = true;
-			«ENDIF»
 
 			«FOR l : getAllPotentialLinks(it)»
 			«completeLinkCommands(l, it)»
@@ -110,9 +104,7 @@ import xpt.providers.ElementTypes
 		override startLinkCommands(GenLink it, GenLinkEnd linkEnd) '''
 		if («xptElementTypes.accessElementType(it)» == baseElementType) {
 		«IF createStartLinkCommand(it, linkEnd)»
-		if(isExtendedType) {
-			return getExtendedStartCreateRelationshipCommand(req, requestElementType);
-		}
+
 				return getGEFWrapper(new «xptCreateLinkCommand.qualifiedClassName(it)»(req,
 					«IF createStartIncomingLinkCommand(it, linkEnd)»
 						req.getTarget(), req.getSource()
@@ -123,15 +115,12 @@ import xpt.providers.ElementTypes
 			«ELSE»
 				return null;
 			«ENDIF»
-		}
 	'''
 	
 		override completeLinkCommands(GenLink it, GenLinkEnd linkEnd) '''
 		if («xptElementTypes.accessElementType(it)» == baseElementType) {
 			«IF createCompleteLinkCommand(it, linkEnd)»
-			if(isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, requestElementType);
-			}
+
 				return getGEFWrapper(new «xptCreateLinkCommand.qualifiedClassName(it)»(req,
 					«IF createCompleteOutgoingLinkCommand(it, linkEnd)»
 						req.getTarget(), req.getSource()
@@ -142,7 +131,6 @@ import xpt.providers.ElementTypes
 			«ELSE»
 				return null;
 			«ENDIF»
-		}
 	'''
 	
 
