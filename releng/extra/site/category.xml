@@ -117,12 +117,6 @@
    <feature url="features/org.eclipse.papyrus.metrics.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.metrics.feature" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.req.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.req.feature" version="0.7.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.req.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.req.feature.source" version="0.7.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.others.category"/>
-   </feature>
    <feature url="features/org.eclipse.papyrus.bmm.extra.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.bmm.extra.feature" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
@@ -159,7 +153,7 @@
    <feature url="features/org.eclipse.papyrus.sysml.properties.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.sysml.properties.feature" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.category.sysml11"/>
    </feature>
-    <feature url="features/org.eclipse.papyrus.sysml.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.sysml.feature.source" version="1.2.0.qualifier">
+   <feature url="features/org.eclipse.papyrus.sysml.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.sysml.feature.source" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.category.sysml11"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.sysml.diagram.feature_2.0.0.qualifier.jar" id="org.eclipse.papyrus.sysml.diagram.feature.source" version="2.0.0.qualifier">

@@ -179,13 +179,6 @@
 		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.view</module>
 		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.viewers</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.metrics.feature</module>
-		
-		<!-- Papyrus Req -->
-		<module>../../extraplugins/req/org.eclipse.papyrus.req.domainModel2Profile</module>
-		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.preferences</module>
-		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.assistant</module>
-		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.traceabilityassistant</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.req.feature</module>
 
 		<!-- Papyrus 4 Requirements (a.k.a. Papyrus Req)-->
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.common</module>
