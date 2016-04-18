@@ -169,6 +169,17 @@
 		<!-- Papyrus EFFBD -->
 		<module>../../extraplugins/EFFBD/org.eclipse.papyrus.effbd</module>
 		
+		
+		<!-- Papyrus for Measurement (a.k.a Papyrus Metrics) -->
+		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.commands</module>
+		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.extensionpoints</module>
+		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.handlers</module>
+		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.smm</module>
+		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.ui</module>
+		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.view</module>
+		<module>../../extraplugins/metrics/org.eclipse.papyrus.metrics.viewers</module>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.metrics.feature</module>
+		
 		<!-- Papyrus Req -->
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.domainModel2Profile</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.preferences</module>
