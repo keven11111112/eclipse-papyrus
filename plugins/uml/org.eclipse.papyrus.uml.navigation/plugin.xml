@@ -22,6 +22,12 @@
             label="UML Call Behavior Action navigation">
       </contributor>
       <contributor
+            contributor="org.eclipse.papyrus.uml.navigation.navigableElement.PropertyNavigationContributor"
+            description="Navigates from a property"
+            id="org.eclipse.papyrus.uml.navigation.property"
+            label="UML Property navigation">
+      </contributor>
+      <contributor
             contributor="org.eclipse.papyrus.uml.navigation.navigableElement.RelationshipNavigationContributor"
             description="Navigates from a relationship"
             id="org.eclipse.papyrus.uml.navigation.relationship"

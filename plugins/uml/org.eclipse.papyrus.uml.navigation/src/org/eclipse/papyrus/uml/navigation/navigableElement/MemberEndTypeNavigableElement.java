@@ -14,22 +14,22 @@ package org.eclipse.papyrus.uml.navigation.navigableElement;
 import org.eclipse.uml2.uml.Property;
 
 /**
- * Navigable element representing the member end (property) of an association
+ * Navigable element representing the type of a member end of an association
  *
  */
-public class MemberEndNavigableElement extends GenericNavigableElement {
+public class MemberEndTypeNavigableElement extends GenericNavigableElement {
 
-	public MemberEndNavigableElement(Property property) {
-		super(property);
+	public MemberEndTypeNavigableElement(Property property) {
+		super(property.getType());
 	}
 
 	@Override
 	public String getLabel() {
-		return "Go to member end" + getElementLabel() + "...";
+		return "Go to member end type" + getElementLabel() + "...";
 	}
 
 	@Override
 	public String getDescription() {
-		return "Go to the member end of this association:" + getElementLabel();
+		return "Go to the member end type of this association:" + getElementLabel();
 	}
 }

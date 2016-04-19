@@ -17,44 +17,26 @@ import java.util.List;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationContributor;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
-import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.DirectedRelationship;
+import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.TypedElement;
 
 /**
- * NavigationContributor to navigate from TypedElement to their Type
+ * NavigationContributor to navigate from a Property to its Association
  *
  */
-public class RelationshipNavigationContributor implements NavigationContributor {
+public class PropertyNavigationContributor implements NavigationContributor {
 
 	public List<NavigableElement> getNavigableElements(Object fromElement) {
 		List<NavigableElement> result = new LinkedList<NavigableElement>();
-		
-		Element element = UMLUtil.resolveUMLElement(fromElement);
-		if (element instanceof DirectedRelationship) {
-			DirectedRelationship relationship = (DirectedRelationship) element;
-			
-			if (relationship.getTargets().size() > 0) {
-				result.add(new TargetNavigableElement(relationship));
-			}
-			
-			if (relationship.getSources().size() > 0) {
-				result.add(new SourceNavigableElement(relationship));
-			}
-		} else if (element instanceof Association) {
-			Association association =  (Association) element;
-			if (association.getMemberEnds().size() > 0) {
-				for (Property end : association.getMemberEnds()) {
-					result.add(new MemberEndNavigableElement(end));
-					if (end.getType() != null) {
-						result.add(new MemberEndTypeNavigableElement(end));
-					}
-				}
-			}
-		}
 
+		Element element = UMLUtil.resolveUMLElement(fromElement);
+		if (element instanceof Property && ((Property) element).getAssociation() != null) {
+			result.add(new AssociationNavigableElement(((Property) element)));
+		}
+		
 		return result;
 	}
 }
