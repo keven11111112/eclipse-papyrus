@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: SysML Requirements Analysis
+Bundle-Name: Papyrus Req - Requirements Verification
 Bundle-SymbolicName: org.eclipse.papyrus.requirements.sysml.verification;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.requirements.sysml.verification.Activator

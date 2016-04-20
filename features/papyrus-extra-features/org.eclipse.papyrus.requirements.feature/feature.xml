@@ -6,7 +6,7 @@
       provider-name="%providerName">
 
    <description>
-      This feature support model-based specification of requirements
+      This feature supports model-based requirements engineering
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
@@ -21,6 +21,10 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
+
+   <requires>
+      <import feature="org.eclipse.papyrus.metrics.feature" version="0.7.0.qualifier"/>
+   </requires>
 
    <plugin
          id="org.eclipse.papyrus.requirements.common"
@@ -133,12 +137,27 @@ http://www.eclipse.org/legal/epl-v10.html
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.requirements.sysml.verification"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.papyrus.requirements.reqif"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-          <plugin
+
+   <plugin
          id="org.eclipse.rmf.reqif10"
          download-size="0"
          install-size="0"
@@ -175,6 +194,13 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin
          id="org.eclipse.rmf.reqif10.pror.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.requirements.metrics.library"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -198,6 +198,9 @@
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.traceability.commands</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.traceability.handlers</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.traceability.ui</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.verification</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.metrics.library</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.requirements.feature</module>
 
 		<!-- Papyrus BMM -->
