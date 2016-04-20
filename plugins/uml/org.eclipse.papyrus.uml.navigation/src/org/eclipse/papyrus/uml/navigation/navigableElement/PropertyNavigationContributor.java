@@ -17,11 +17,8 @@ import java.util.List;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationContributor;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
-import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.TypedElement;
 
 /**
  * NavigationContributor to navigate from a Property to its Association

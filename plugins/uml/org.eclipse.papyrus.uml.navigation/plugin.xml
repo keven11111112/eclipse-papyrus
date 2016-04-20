@@ -45,38 +45,20 @@
             id="org.eclipse.papyrus.uml.navigation.activityEdge"
             label="UML ActivityEdge navigation">
       </contributor>
+      <contributor
+            contributor="org.eclipse.papyrus.uml.navigation.navigableElement.ElementRelationshipNavigationContributor"
+            description="Navigates to target/source and parent/child of UML Element"
+            id="org.eclipse.papyrus.uml.navigation.elementRelationship"
+            label="UML Element relationship navigation">
+      </contributor>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.services.navigation.navigationMenuContributor">
-      <contributor
-            contributor="org.eclipse.papyrus.uml.navigation.menuContributor.ParentsButton"
-            description="Navigate to parents of an element"
-            id="org.eclipse.papyrus.uml.navigation.menuContributor.parentsButton"
-            label="Parents">
-      </contributor>
-      <contributor
-            contributor="org.eclipse.papyrus.uml.navigation.menuContributor.ChildrenButton"
-            description="Navigate to children of an element"
-            id="org.eclipse.papyrus.uml.navigation.menuContributor.childrenButton"
-            label="Children">
-      </contributor>
       <contributor
             contributor="org.eclipse.papyrus.uml.navigation.menuContributor.TypesButton"
             description="Navigate to elements typed by selected element"
             id="org.eclipse.papyrus.uml.navigation.menuContributor.typesButton"
             label="Types">
-      </contributor>
-      <contributor
-            contributor="org.eclipse.papyrus.uml.navigation.menuContributor.TargetsButton"
-            description="Navigate to targets of relationships for which the selected element is a source"
-            id="org.eclipse.papyrus.uml.navigation.menuContributor.targetsButton"
-            label="Targets">
-      </contributor>
-      <contributor
-            contributor="org.eclipse.papyrus.uml.navigation.menuContributor.SourcesButton"
-            description="Navigate to sources of relationships for which the selected element is a target"
-            id="org.eclipse.papyrus.uml.navigation.menuContributor.sourcesButton"
-            label="Sources">
       </contributor>
       <!--<contributor
             contributor="org.eclipse.papyrus.uml.navigation.menuContributor.ViewsButton"

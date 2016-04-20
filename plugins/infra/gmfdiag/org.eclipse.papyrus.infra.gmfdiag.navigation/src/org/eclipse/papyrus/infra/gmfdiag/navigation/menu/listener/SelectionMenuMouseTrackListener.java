@@ -99,35 +99,7 @@ public class SelectionMenuMouseTrackListener implements MouseTrackListener {
 				subMenus.removeAll(subMenusToDelete);
 			}
 
-			if (hoveredItem instanceof NavigableElement) {
-				List<Object> viewsToSelect = navigationMenu.getViewsToSelect((NavigableElement) hoveredItem, true);
-
-				//if ((viewsToSelect != null && !viewsToSelect.isEmpty()) || hasMoreViews) {
-				// Case of DiagramNavigableElement for example
-				if (viewsToSelect != null && !viewsToSelect.isEmpty()) {
-					final List<Object> subSelectionMenuItems =  new LinkedList<Object>();
-					subSelectionMenuItems.add(hoveredItem);
-					subSelectionMenuItems.addAll(viewsToSelect);
-					
-					/*if (hasMoreViews) {
-						navigableElementSelectionMenuElements.add(new MoreButton());
-					}*/
-					
-					//subSelectionMenuItems.add(new MoreButton());
-
-					final SelectionMenu subSelectionMenu =  new SelectionMenu(selectionMenu.getShell(), event.getSource(), cursorPosition);
-
-					subSelectionMenu.setLabelProvider(new SubSelectionMenuLabelProvider());
-					subSelectionMenu.setContentProvider(CollectionContentProvider.instance);
-					subSelectionMenu.setInput(subSelectionMenuItems);
-					subSelectionMenu.open();
-
-					subSelectionMenu.addSelectionChangedListener(new SubSelectionMenuSelectionChangedListener(navigationMenu, subSelectionMenu, subSelectionMenuItems));
-					subSelectionMenu.addKeyListener(new NavigationMenuKeyListener(navigationMenu));
-
-					subMenus.add(subSelectionMenu);
-				}
-			} else if (hoveredItem instanceof NavigationSubMenuButton) {
+			if (hoveredItem instanceof NavigationSubMenuButton) {
 				SelectionMenu dynamicSelectionMenu = new SelectionMenu(selectionMenu.getShell(), event.getSource(), cursorPosition);
 
 				dynamicSelectionMenu.setLabelProvider(new SelectionMenuLabelProvider());

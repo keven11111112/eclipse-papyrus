@@ -14,9 +14,12 @@
 package org.eclipse.papyrus.infra.gmfdiag.navigation.menu.listener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -88,6 +91,23 @@ public class SelectionMenuSelectionChangedListener implements ISelectionChangedL
 		}
 
 		if (selectedElement instanceof NavigableElement) {
+			// Get views that represent the selectedElement is represented
+			List<Object> viewsToSelect = navigationMenu.getViewsToSelect((NavigableElement) selectedElement, false);
+			
+			// If the selected view triggered the menu, check that it is not in the list of views to navigate to 
+			if (viewsToSelect != null && !viewsToSelect.isEmpty()) {
+				if (navigationMenu.getSelectedView() != null) {
+					viewsToSelect.removeAll(Collections.singleton(navigationMenu.getSelectedView()));
+				}
+				
+				if (!viewsToSelect.isEmpty()) {
+					// Navigate to the first view of the list that represents the selectedElement
+					navigationMenu.revealObject(viewsToSelect.get(0));
+					return;
+				}
+			}
+			
+			// No views to navigate to => go to model explorer
 			navigationMenu.showInModelExplorer((NavigableElement) selectedElement);
 		} else if (selectedElement instanceof HyperlinkButton) {
 			((HyperlinkButton) selectedElement).getAction().run();

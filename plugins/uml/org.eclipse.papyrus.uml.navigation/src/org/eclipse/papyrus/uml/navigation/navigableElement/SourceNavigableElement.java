@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.navigation.navigableElement;
 
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.DirectedRelationship;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * Navigable element representing the target of a directed relationship
@@ -26,6 +27,10 @@ public class SourceNavigableElement extends GenericNavigableElement {
 	
 	public SourceNavigableElement(ActivityEdge edge) {
 		super(edge.getSource());
+	}
+	
+	public SourceNavigableElement(Element element) {
+		super(element);
 	}
 
 	@Override

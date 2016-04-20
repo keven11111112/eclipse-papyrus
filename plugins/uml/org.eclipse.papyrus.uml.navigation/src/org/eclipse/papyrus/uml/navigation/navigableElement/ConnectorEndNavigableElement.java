@@ -12,8 +12,6 @@
 package org.eclipse.papyrus.uml.navigation.navigableElement;
 
 import org.eclipse.uml2.uml.ConnectorEnd;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Property;
 
 /**
  * Navigable element representing the target of a directed relationship

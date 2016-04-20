@@ -11,15 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.navigation.navigableElement;
 
-import java.util.Collections;
-
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.papyrus.infra.services.navigation.service.ExtendedNavigableElement;
-import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
-import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Type;
 
 /**

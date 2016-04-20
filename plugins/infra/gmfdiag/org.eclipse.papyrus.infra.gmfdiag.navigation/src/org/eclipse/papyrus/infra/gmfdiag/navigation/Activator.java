@@ -29,6 +29,8 @@ public class Activator extends AbstractUIPlugin {
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.gmfdiag.navigation"; //$NON-NLS-1$
 
 	public static final String IMG_SEPARATOR = "separator"; //$NON-NLS-1$
+	
+	public static final String IMG_MODEL_EXPLORER = "modelexplorer"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
@@ -99,6 +101,7 @@ public class Activator extends AbstractUIPlugin {
 		super.initializeImageRegistry(reg);
 
 		reg.put(IMG_SEPARATOR, imageDescriptorFromPlugin(PLUGIN_ID, "icons/separator.gif")); //$NON-NLS-1$
+		reg.put(IMG_MODEL_EXPLORER, imageDescriptorFromPlugin(PLUGIN_ID, "icons/ModelExplorer.gif")); //$NON-NLS-1$
 	}
 
 	public Image getIcon(String key) {

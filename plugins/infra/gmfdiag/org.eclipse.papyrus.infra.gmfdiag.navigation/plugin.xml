@@ -47,6 +47,34 @@
             menu="org.eclipse.papyrus.infra.gmfdiag.navigation.menu.DefaultNavigationMenu">
       </menu>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=tools">
+         <menu
+               id="org.eclipse.papyrus.infra.services.navigation.ui.popup.navigate"
+               label="Navigate"
+               tooltip="Navigate from this element">
+            <dynamic
+                  class="org.eclipse.papyrus.infra.gmfdiag.navigation.ui.ModelExplorerDynamicNavigate"
+                  id="org.eclipse.papyrus.infra.gmfdiag.navigation.ui.popup.modelExplorerDynamicNavigate">
+            </dynamic>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <menu
+               id="navigateMenu"
+               label="Navigate">
+            <dynamic
+                  class="org.eclipse.papyrus.infra.gmfdiag.navigation.ui.DiagramDynamicNavigate"
+                  id="org.eclipse.papyrus.infra.gmfdiag.navigation.ui.popup.diagramDynamicNavigate">
+            </dynamic>
+         </menu>
+      </menuContribution>
+   </extension>
   
    <!--commented for the build Juno M4, because perspective doesn't work-->
    

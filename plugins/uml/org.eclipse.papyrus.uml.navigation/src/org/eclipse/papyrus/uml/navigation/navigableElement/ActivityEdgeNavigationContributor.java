@@ -18,11 +18,7 @@ import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationContributor;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.uml2.uml.ActivityEdge;
-import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Type;
 
 /**
  * NavigationContributor to navigate from TypedElement to their Type

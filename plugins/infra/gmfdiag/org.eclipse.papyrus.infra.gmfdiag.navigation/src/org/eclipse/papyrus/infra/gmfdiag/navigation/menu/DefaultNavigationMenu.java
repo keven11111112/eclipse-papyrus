@@ -23,6 +23,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.SelectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.services.BadStateException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
@@ -73,6 +74,8 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	private WrappingLabel lastWrappingLabel;
 	
 	private static boolean altReleasedPostNavigation = true;
+	
+	private View selectedView;
 
 	public class NavigationMenuInitializationException extends Exception {
 		private static final long serialVersionUID = 1094797103244873186L;
@@ -279,7 +282,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		}
 		
 		// Add "More..." button
-		navigationMenuElements.add(new MoreButton());
+		//navigationMenuElements.add(new MoreButton());
 		
 		// The semantic element
 		EObject umlElement = EMFHelper.getEObject(source);
@@ -296,6 +299,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 
 		wasUnderlined = false;
 		if (source instanceof IGraphicalEditPart) {
+			selectedView = ((IGraphicalEditPart) source).getPrimaryView();
 			IGraphicalEditPart graphicalEditPart = (IGraphicalEditPart) source;
 			IFigure figure = graphicalEditPart.getFigure();
 			if (figure instanceof WrappingLabel) {
@@ -303,11 +307,13 @@ public class DefaultNavigationMenu implements NavigationMenu {
 				wasUnderlined = lastWrappingLabel.isTextUnderlined();
 				lastWrappingLabel.setTextUnderline(!wasUnderlined);
 			}
+		} else {
+			selectedView = null;
 		}
 
 		selectionMenu.addSelectionChangedListener(new SelectionMenuSelectionChangedListener(DefaultNavigationMenu.this, selectionMenu, navigationMenuElements, umlElement, subMenus));
 		selectionMenu.addKeyListener(new NavigationMenuKeyListener(this));
-		selectionMenu.addMouseTrackListener(new SelectionMenuMouseTrackListener(DefaultNavigationMenu.this, selectionMenu, subMenus, umlElement));
+		//selectionMenu.addMouseTrackListener(new SelectionMenuMouseTrackListener(DefaultNavigationMenu.this, selectionMenu, subMenus, umlElement));
 	}
 
 	public void addContextualMenus(List<Object> navigationMenuElements, Object umlElement) {
@@ -341,7 +347,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 			}
 			
 			if (viewerSearchService != null) {
-				return viewerSearchService.getViewersInCurrentModel(element, null, false, true);
+				return viewerSearchService.getViewersInCurrentModel(element, null, false, onlyOpened);
 			}
 		}
 
@@ -559,6 +565,10 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		} catch (NavigationMenuInitializationException e) {
 			Activator.log.error(e);
 		}
+	}
+	
+	public View getSelectedView() {
+		return selectedView;
 	}
 
 	/**

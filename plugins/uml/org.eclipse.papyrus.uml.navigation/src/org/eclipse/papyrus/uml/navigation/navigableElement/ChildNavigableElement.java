@@ -11,35 +11,30 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.navigation.navigableElement;
 
-import org.eclipse.uml2.uml.ActivityEdge;
-import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Generalization;
 
 /**
  * Navigable element representing the target of a directed relationship
  *
  */
-public class TargetNavigableElement extends GenericNavigableElement {
+public class ChildNavigableElement extends GenericNavigableElement {
 
-	public TargetNavigableElement(DirectedRelationship relationship) {
-		super(relationship.getTargets().get(0));
+	public ChildNavigableElement(Generalization generalization) {
+		super(generalization.getSpecific());
 	}
 	
-	public TargetNavigableElement(ActivityEdge edge) {
-		super(edge.getTarget());
-	}
-	
-	public TargetNavigableElement(Element element) {
-		super(element);
+	public ChildNavigableElement(Element child) {
+		super(child);
 	}
 
 	@Override
 	public String getLabel() {
-		return "Go to target" + getElementLabel() + "...";
+		return "Go to child" + getElementLabel() + "...";
 	}
 
 	@Override
 	public String getDescription() {
-		return "Go to the target:" + getElementLabel();
+		return "Go to the child:" + getElementLabel();
 	}
 }
