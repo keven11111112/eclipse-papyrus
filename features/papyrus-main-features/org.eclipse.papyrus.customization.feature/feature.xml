@@ -13,6 +13,8 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
+   <plugin download-size="0" id="org.eclipse.papyrus.customization.nattableconfiguration" install-size="0" unpack="false" version="0.0.0"/>
+
    <plugin download-size="0" id="org.eclipse.papyrus.customization.paletteconfiguration" install-size="0" unpack="false" version="0.0.0"/>
 
    <plugin download-size="0" id="org.eclipse.papyrus.customization.properties" install-size="0" unpack="false" version="0.0.0"/>
