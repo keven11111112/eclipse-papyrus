@@ -17,7 +17,7 @@
          category="org.eclipse.papyrus.views.modelexplorer.preferences.NavigatorPreferencePage"
          class="org.eclipse.papyrus.views.modelexplorer.newchild.preferences.NewChildPreferencePage"
          id="org.eclipse.papyrus.views.modelexplorer.preferences.selection"
-         name="New Child Menu Preferences...">
+         name="New Child Menu">
    </page>
 </extension>
 <extension

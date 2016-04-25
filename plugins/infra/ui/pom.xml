@@ -17,5 +17,6 @@
 		<module>org.eclipse.papyrus.infra.onefile.ui</module>
 		<module>org.eclipse.papyrus.infra.widgets</module>
 		<module>org.eclipse.papyrus.infra.widgets.toolbox</module>
+		<module>org.eclipse.papyrus.infra.newchild.ui</module>
 	</modules>
 </project>

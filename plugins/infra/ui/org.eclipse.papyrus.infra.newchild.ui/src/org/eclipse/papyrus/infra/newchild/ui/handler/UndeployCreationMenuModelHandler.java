@@ -10,7 +10,7 @@
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation - bug 487199
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.newchild.handler;
+package org.eclipse.papyrus.infra.newchild.ui.handler;
 
 import java.util.Iterator;
 
@@ -119,7 +119,7 @@ public class UndeployCreationMenuModelHandler extends AbstractHandler {
 					monitor.subTask(Messages.UndeployCreationMenuModelHandler_SubTaskTitle_ResetRegistry);
 
 					try {
-						CreationMenuRegistry.getInstance().unloadCreationMenuModel(emfURI);
+						CreationMenuRegistry.getInstance().unloadCreationMenuModel(URI.createURI(selectedFile.getLocationURI().toASCIIString()));
 						monitor.worked(1);
 						result.add(new Status(IStatus.OK, Activator.PLUGIN_ID, Messages.UndeployCreationMenuModelHandler_SuccessfullyUndeployed + fileName));
 					} catch (Exception e) {

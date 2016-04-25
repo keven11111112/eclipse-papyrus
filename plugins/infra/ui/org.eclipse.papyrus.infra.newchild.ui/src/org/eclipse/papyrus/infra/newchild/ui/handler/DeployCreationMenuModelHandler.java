@@ -8,9 +8,8 @@
  *
  * Contributors:
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation - bug 487199
- *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.newchild.handler;
+package org.eclipse.papyrus.infra.newchild.ui.handler;
 
 import java.util.Iterator;
 
