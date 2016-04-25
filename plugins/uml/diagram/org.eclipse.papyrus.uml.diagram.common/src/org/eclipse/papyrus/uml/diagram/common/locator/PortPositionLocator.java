@@ -194,7 +194,7 @@ public class PortPositionLocator implements IBorderItemLocator {
 			parentFigure.translateToRelative(realLocation);
 
 		} else {
-			getPreferedLocationOldWay(proposedLocation);
+			realLocation = getPreferedLocationOldWay(proposedLocation);
 		}
 		// Return constrained location
 		return realLocation;
@@ -205,12 +205,11 @@ public class PortPositionLocator implements IBorderItemLocator {
 	 * 
 	 * @param proposedLocation
 	 *            The proposed location.
+	 * @return
 	 */
-	private void getPreferedLocationOldWay(Rectangle proposedLocation) {
+	private Rectangle getPreferedLocationOldWay(Rectangle proposedLocation) {
 
 		Rectangle realLocation = new Rectangle(proposedLocation);
-		// Translate it to have the mouse at the center of the port
-		realLocation.translate(realLocation.width / 2, realLocation.height / 2);
 
 		Rectangle parentRec = getParentFigure().getBounds().getCopy();
 
@@ -272,6 +271,7 @@ public class PortPositionLocator implements IBorderItemLocator {
 			realLocation.y = yMax;
 			break;
 		}
+		return realLocation;
 	}
 
 	/**

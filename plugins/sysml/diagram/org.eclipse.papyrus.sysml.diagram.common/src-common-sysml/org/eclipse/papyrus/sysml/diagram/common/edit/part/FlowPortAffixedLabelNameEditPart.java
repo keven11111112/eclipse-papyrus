@@ -57,7 +57,7 @@ public class FlowPortAffixedLabelNameEditPart extends AbstractElementLabelEditPa
 		IFigure parentFigure = getFigure().getParent();
 		if (parentFigure != null && parentFigure.getLayoutManager() != null) {
 			Object constraint = parentFigure.getLayoutManager().getConstraint(getFigure());
-			return (IBorderItemLocator) constraint;
+			return constraint instanceof IBorderItemLocator ? (IBorderItemLocator) constraint : null;
 		}
 		return null;
 	}
@@ -97,7 +97,7 @@ public class FlowPortAffixedLabelNameEditPart extends AbstractElementLabelEditPa
 		return new PapyrusWrappingLabel();
 	}
 
-	
+
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart#getDefaultTextAlignment()
 	 *
@@ -107,6 +107,7 @@ public class FlowPortAffixedLabelNameEditPart extends AbstractElementLabelEditPa
 	protected int getDefaultTextAlignment() {
 		return PositionConstants.LEFT;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */

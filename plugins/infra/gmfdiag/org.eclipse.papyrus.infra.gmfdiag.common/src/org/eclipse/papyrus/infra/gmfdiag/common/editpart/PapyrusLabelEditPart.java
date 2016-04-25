@@ -30,14 +30,11 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
-import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.internal.figures.ResizableLabelLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -139,16 +136,11 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 	 */
 	@Override
 	public void refreshBounds() {
-		// try to handle both of resizable and nonresizable labels
-		if (isResizable()) {
-			handleResizableRefreshBounds();
-		} else {
-			handleNonResizableRefreshBoundS();
-		}
+		handleNonResizableRefreshBoundS();
 	}
 
 	/**
-	 * Handle non resizable refresh bound s.
+	 * Handle non resizable refresh bounds.
 	 */
 	private void handleNonResizableRefreshBoundS() {
 		int dx = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
@@ -242,37 +234,6 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 			textAlignment = getDefaultTextAlignment();
 		}
 		return textAlignment;
-	}
-
-	/**
-	 * Handle resizable refresh bounds.
-	 */
-	private void handleResizableRefreshBounds() {
-		int dx = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		int dy = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
-		int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
-		int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
-
-		Rectangle rectangle = new Rectangle(dx, dy, width, height);
-		if (getParent() instanceof AbstractConnectionEditPart) {
-			((AbstractGraphicalEditPart) getParent()).setLayoutConstraint(this,
-					getFigure(), new ResizableLabelLocator(((AbstractConnectionEditPart) getParent()).getConnectionFigure(), rectangle, getKeyPoint()));
-		} else {
-			getFigure().getParent().setConstraint(getFigure(), new ResizableLabelLocator(getFigure().getParent(), rectangle, getKeyPoint()));
-		}
-	}
-
-	/**
-	 * Checks if is resizable.
-	 *
-	 * @return true, if is resizable
-	 */
-	private boolean isResizable() {
-		EditPolicy editPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if (editPolicy instanceof ResizableEditPolicy) {
-			return true;
-		}
-		return false;
 	}
 
 	/**
@@ -472,8 +433,9 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 		return super.getAdapter(key);
 	}
 
+	@Override
 	public Point getReferencePoint() {
-		NamedStyle style = getNotationView().getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), PapyrusLabelLocator.IS_UPDATED_POSITION); 
+		NamedStyle style = getNotationView().getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), PapyrusLabelLocator.IS_UPDATED_POSITION);
 		Boolean updated = style == null ? false : (Boolean) style.eGet(NotationPackage.eINSTANCE.getBooleanValueStyle_BooleanValue());
 		return updated ? getUpdatedRefencePoint() : getBaseReferencePoint();
 	}
@@ -485,27 +447,27 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 	public Point getUpdatedRefencePoint() {
 		if (getParent() instanceof AbstractConnectionEditPart) {
 			switch (getKeyPoint()) {
-				case ConnectionLocator.TARGET:
-					return calculateRefPoint(LabelViewConstantsEx.SOURCE_LOCATION);
-				case ConnectionLocator.SOURCE:
-					return calculateRefPoint(LabelViewConstantsEx.TARGET_LOCATION);
-				case ConnectionLocator.MIDDLE:
-					return calculateRefPoint(LabelViewConstantsEx.MIDDLE_LOCATION);
-				default:
-					return calculateRefPoint(LabelViewConstantsEx.MIDDLE_LOCATION);
+			case ConnectionLocator.TARGET:
+				return calculateRefPoint(LabelViewConstantsEx.SOURCE_LOCATION);
+			case ConnectionLocator.SOURCE:
+				return calculateRefPoint(LabelViewConstantsEx.TARGET_LOCATION);
+			case ConnectionLocator.MIDDLE:
+				return calculateRefPoint(LabelViewConstantsEx.MIDDLE_LOCATION);
+			default:
+				return calculateRefPoint(LabelViewConstantsEx.MIDDLE_LOCATION);
 			}
 		}
-		return ((AbstractGraphicalEditPart)getParent()).getFigure().getBounds().getTopLeft();
+		return ((AbstractGraphicalEditPart) getParent()).getFigure().getBounds().getTopLeft();
 	}
 
 	private Point calculateRefPoint(int percent) {
 		if (getParent() instanceof AbstractConnectionEditPart) {
-			PointList ptList = ((Connection)((ConnectionEditPart)getParent()).getFigure()).getPoints();
+			PointList ptList = ((Connection) ((ConnectionEditPart) getParent()).getFigure()).getPoints();
 			Point refPoint = PointListUtilities.calculatePointRelativeToLine(ptList, 0, percent, true);
 			return refPoint;
 		} else if (getParent() instanceof GraphicalEditPart) {
-			return ((AbstractGraphicalEditPart)getParent()).getFigure().getBounds().getTopLeft();
+			return ((AbstractGraphicalEditPart) getParent()).getFigure().getBounds().getTopLeft();
 		}
-		return null;			
+		return null;
 	}
 }
