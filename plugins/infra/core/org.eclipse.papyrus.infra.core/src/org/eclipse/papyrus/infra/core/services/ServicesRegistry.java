@@ -1034,7 +1034,7 @@ public class ServicesRegistry {
 	 * @throws ServiceMultiException
 	 *
 	 * @throws ServiceException
-	 *             If a service can't be started.
+	 *             If a service can't be disposed.
 	 */
 	private void disposeServices(Collection<ServiceStartupEntry> services, ServiceMultiException errors) {
 

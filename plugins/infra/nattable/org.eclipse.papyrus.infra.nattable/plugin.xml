@@ -93,15 +93,8 @@
           locationURI="popup:org.eclipse.papyrus.infra.nattable.widget.menu?after=tree.separator">
        <menu
              label="Hierarchic Style">
-          <visibleWhen>
-             <with
-                   variable="selection">
-                <test
-                      forcePluginActivation="false"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isHierarchicTable"
-                      value="true">
-                </test>
-             </with>
+          <visibleWhen
+                checkEnabled="true">
           </visibleWhen>
           <command
                 commandId="org.eclipse.papyrus.infra.nattable.table.hierarchic.style"
@@ -126,14 +119,6 @@
              commandId="org.eclipse.papyrus.infra.nattable.row.categories.command"
              style="push">
           <visibleWhen>
-             <with
-                   variable="selection">
-                <test
-                      forcePluginActivation="true"
-                      property="org.eclipse.papyrus.infra.nattable.tester.isHierarchicTable"
-                      value="true">
-                </test>
-             </with>
           </visibleWhen>
        </command>
     </menuContribution>
@@ -195,7 +180,7 @@
                    value="true">
              </parameter>
              <visibleWhen
-                   checkEnabled="false">
+                   checkEnabled="true">
              </visibleWhen>
           </command>
           <command
@@ -214,14 +199,23 @@
           <command
                 commandId="org.eclipse.papyrus.infra.nattable.column.display.index"
                 style="toggle">
+             <visibleWhen
+                   checkEnabled="true">
+             </visibleWhen>
           </command>
           <command
                 commandId="org.eclipse.papyrus.infra.nattable.column.display.label"
                 style="toggle">
+             <visibleWhen
+                   checkEnabled="true">
+             </visibleWhen>
           </command>
           <command
                 commandId="org.eclipse.papyrus.infra.nattable.column.display.filter"
                 style="toggle">
+             <visibleWhen
+                   checkEnabled="true">
+             </visibleWhen>
           </command>
           <menu
                 icon="icons/columnIndex.png"
@@ -399,6 +393,9 @@
                       name="org.eclipse.ui.commands.radioStateParameter"
                       value="ALPHABETIC">
                 </parameter>
+                <visibleWhen
+                      checkEnabled="true">
+                </visibleWhen>
              </command>
              <command
                    commandId="org.eclipse.papyrus.infra.nattable.row.index.style"
@@ -408,6 +405,9 @@
                       name="org.eclipse.ui.commands.radioStateParameter"
                       value="NUMERIC">
                 </parameter>
+                <visibleWhen
+                      checkEnabled="true">
+                </visibleWhen>
              </command>
           </menu>
           <menu
@@ -578,7 +578,7 @@
           </visibleWhen>
        </command>
        <command
-             commandId="org.eclipse.papyrus.infra.nattable.row.collapse.all.tree.command"
+             commandId="org.eclipse.papyrus.infra.nattable.row.collapse.all.on.selection.command"
              style="push">
           <visibleWhen
                 checkEnabled="true">
@@ -605,10 +605,10 @@
                 checkEnabled="true">
           </visibleWhen>
        </command>
-       <separator
-             name="category.separator"
-             visible="true">
-       </separator>
+    </menuContribution>
+    <menuContribution
+          allPopups="true"
+          locationURI="popup:org.eclipse.papyrus.infra.nattable.widget.header.rows.menu?after=category.separator">
        <command
              commandId="org.eclipse.papyrus.infra.nattable.row.categories.command"
              style="push">

@@ -52,6 +52,7 @@ public class SortColumnsHandler extends AbstractTableHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
+		super.setEnabled(evaluationContext);
 		INattableModelManager manager = getCurrentNattableModelManager();
 		boolean enabled = false;
 		if (manager != null) {

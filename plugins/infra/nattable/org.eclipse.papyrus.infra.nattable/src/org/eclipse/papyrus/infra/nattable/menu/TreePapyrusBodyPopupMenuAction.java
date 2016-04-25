@@ -18,35 +18,39 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 
 /**
- * @author VL222926
+ * The body menu for the tree table
  * 
- *         This class allows to fill the popup menu of the table, according to the contribution described in the plugin.xml
+ * @since 2.0
  *
  */
-public class PapyrusHeaderPopupMenuAction extends AbstractPapyrusPopupMenuAction {
-
-
+public class TreePapyrusBodyPopupMenuAction extends PapyrusBodyPopupMenuAction {
 
 	/**
 	 * 
 	 * Constructor.
 	 *
 	 * @param menuId
-	 *            the id of the created menu
-	 * @param natTable
-	 *            the nattable for which this menu is created
+	 *            the id of the body menu
+	 * @param nattable
+	 *            the nattable for which we are creating the body menu
 	 */
-	public PapyrusHeaderPopupMenuAction(final String menuId, final NatTable natTable) {
-		super(menuId, natTable);
+	public TreePapyrusBodyPopupMenuAction(final String menuId, final NatTable nattable) {
+		super(menuId, nattable);
 	}
 
 
 	/**
 	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.menu.PapyrusBodyPopupMenuAction#addMenuSeparators(org.eclipse.jface.action.MenuManager)
+	 *
 	 * @param menuManager
-	 *            the menu manager
 	 */
-	protected void addMenuSeparators(final IMenuManager menuManager) {
+	protected void addMenuSeparators(IMenuManager menuManager) {
 		super.addMenuSeparators(menuManager);
-	}
+		final Separator separator = new Separator(MenuConstants.TREE_SEPARATOR_ID);
+		separator.setVisible(true);
+		menuManager.insertAfter(MenuConstants.EDIT_SEPARATOR_ID, separator);
+	};
+
+
 }

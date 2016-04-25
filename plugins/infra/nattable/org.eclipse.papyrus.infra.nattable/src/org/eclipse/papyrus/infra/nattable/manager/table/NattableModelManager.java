@@ -879,7 +879,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	@Override
 	public void addRows(final Collection<Object> objectsToAdd) {
-		final TransactionalEditingDomain domain = getContextEditingDomain();
+		final TransactionalEditingDomain domain = getTableEditingDomain();
 		final Command cmd = getAddRowElementCommand(objectsToAdd);
 		if (cmd != null && cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
@@ -912,7 +912,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	@Override
 	public void addColumns(final Collection<Object> objectsToAdd) {
-		final TransactionalEditingDomain domain = getContextEditingDomain();
+		final TransactionalEditingDomain domain = getTableEditingDomain();
 		final Command cmd = getAddColumnElementCommand(objectsToAdd);
 		if (cmd != null && cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
@@ -927,7 +927,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	@Override
 	public void removeColumns(final Collection<Object> objetsToRemove) {
-		final TransactionalEditingDomain domain = getContextEditingDomain();
+		final TransactionalEditingDomain domain = getTableEditingDomain();
 		final Command cmd = getDestroyColumnElementCommand(objetsToRemove);
 		if (cmd != null && cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
@@ -942,7 +942,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	@Override
 	public void removeRows(final Collection<Object> objectsToRemove) {
-		final TransactionalEditingDomain domain = getContextEditingDomain();
+		final TransactionalEditingDomain domain = getTableEditingDomain();
 		final Command cmd = getDestroyRowElementCommand(objectsToRemove);
 		if (cmd != null && cmd.canExecute()) {
 			domain.getCommandStack().execute(cmd);
@@ -1140,8 +1140,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public void updateAxisContents(final AbstractAxisProvider axis) {
 
 		try {
-			if (null != getContextEditingDomain()) {
-				getContextEditingDomain().runExclusive(new Runnable() {
+			if (null != getTableEditingDomain()) {
+				getTableEditingDomain().runExclusive(new Runnable() {
 
 					@Override
 					public void run() {
@@ -1318,7 +1318,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	@Override
 	public void invertAxis() {
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_SwitchLinesAndColumns);
-		final TransactionalEditingDomain domain = getContextEditingDomain();
+		final TransactionalEditingDomain domain = getTableEditingDomain();
 		final boolean oldValue = getTable().isInvertAxis();
 		if (canInvertAxis()) {
 			final Command tmp = new SetCommand(domain, getTable(), NattablePackage.eINSTANCE.getTable_InvertAxis(), !oldValue);
@@ -1349,7 +1349,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	@Override
 	public Command getAddRowElementCommand(final Collection<Object> objectsToAdd) {
-		final TransactionalEditingDomain domain = getContextEditingDomain();
+		final TransactionalEditingDomain domain = getTableEditingDomain();
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddRowCommand);
 		Command tmp = this.rowManager.getAddAxisCommand(domain, objectsToAdd);
 		if (tmp != null) {
@@ -1369,7 +1369,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	@Override
 	public Command getAddColumnElementCommand(final Collection<Object> objectsToAdd) {
-		final TransactionalEditingDomain domain = getContextEditingDomain();
+		final TransactionalEditingDomain domain = getTableEditingDomain();
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddColumnCommand);
 		Command tmp = this.columnManager.getAddAxisCommand(domain, objectsToAdd);
 		if (tmp != null) {
@@ -1394,7 +1394,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	@Override
 	public Command getAddRowElementCommand(final Collection<Object> objectsToAdd, final int index) {
-		final TransactionalEditingDomain domain = getContextEditingDomain();
+		final TransactionalEditingDomain domain = getTableEditingDomain();
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddRowCommand);
 		Command tmp = this.rowManager.getAddAxisCommand(domain, objectsToAdd, index);
 		if (tmp != null) {
@@ -1419,7 +1419,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	@Override
 	public Command getAddColumnElementCommand(final Collection<Object> objectsToAdd, final int index) {
-		final TransactionalEditingDomain domain = getContextEditingDomain();
+		final TransactionalEditingDomain domain = getTableEditingDomain();
 		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddColumnCommand);
 		Command tmp = this.columnManager.getAddAxisCommand(domain, objectsToAdd, index);
 		if (tmp != null) {
@@ -1596,7 +1596,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 					}
 				}
 				if (!compoundCommand.isEmpty()) {
-					getContextEditingDomain().getCommandStack().execute(compoundCommand);
+					getTableEditingDomain().getCommandStack().execute(compoundCommand);
 					updateToggleActionState();
 				}
 			}

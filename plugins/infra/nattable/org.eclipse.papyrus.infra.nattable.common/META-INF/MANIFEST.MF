@@ -9,7 +9,7 @@ Export-Package: org.eclipse.papyrus.infra.nattable.common,
  org.eclipse.papyrus.infra.nattable.common.wizards,
  org.eclipse.papyrus.infra.nattable.internal.common.commands;x-friends:="org.eclipse.papyrus.infra.nattable.gmfdiag"
 Require-Bundle: org.eclipse.papyrus.infra.nattable;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.nattable.model;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.emf;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.emf.gmf;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,

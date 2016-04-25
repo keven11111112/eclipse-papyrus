@@ -41,7 +41,7 @@ public class TreeRowShowAllCategoriesHandler extends AbstractTreeRowHideShowCate
 		IntListValueStyle values = (IntListValueStyle) getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getIntListValueStyle(), NamedStyleConstants.HIDDEN_CATEGORY_FOR_DEPTH);
 		if (values != null) {
 			Command c = RemoveCommand.create(getTableEditingDomain(), getTable(), NattablestylePackage.eINSTANCE.getStyledElement_Styles(), values);
-			getContextEditingDomain().getCommandStack().execute(c);
+			getTableEditingDomain().getCommandStack().execute(c);
 		}
 		return null;
 	}

@@ -49,6 +49,7 @@ import org.eclipse.ui.commands.ICommandService;
  * @author VL222926
  * 
  *         This contribution creates a MenuItem for each depth of the tree table, in order to be able to show/hide it easily.
+ * @since 2.0
  */
 public class ShowHideCategoriesContributionItem extends ContributionItem {
 
@@ -84,11 +85,14 @@ public class ShowHideCategoriesContributionItem extends ContributionItem {
 		final ICommandService serv = (ICommandService) PlatformUI.getWorkbench().getService(ICommandService.class);
 		// 2. find the command associated to the handler
 		final Command command = serv.getCommand(TreeRowHideShowCategoryHandler.COMMAND_ID);
-		// 3. try to find the current nattable
-		Control control = Display.getDefault().getCursorControl();
-		if (control instanceof NatTable) {
-			// 4. contribute to the menu
-			addShowHideCategoryCommandToMenu(menu, command, (NatTable) control);
+
+		if (command.isEnabled()) {// required to call setEnable and initialize the field with the table in the handler
+			// 3. try to find the current nattable
+			Control control = Display.getDefault().getCursorControl();
+			if (control instanceof NatTable) {
+				// 4. contribute to the menu
+				addShowHideCategoryCommandToMenu(menu, command, (NatTable) control);
+			}
 		}
 	}
 
@@ -118,7 +122,7 @@ public class ShowHideCategoriesContributionItem extends ContributionItem {
 
 				@Override
 				public void widgetSelected(SelectionEvent arg0) {
-					//we must be able to give the SelectionEvent to the handler using EclispeContext
+					// we must be able to give the SelectionEvent to the handler using EclispeContext
 					Map<Object, Object> parameters = new HashMap<Object, Object>();
 					parameters.put(TreeRowHideShowCategoryHandler.DEPTH_PARAMETER_KEY, index);
 					parameters.put(TreeRowHideShowCategoryHandler.HIDE_CATEGORY_PARAMETER_KEY, Boolean.valueOf(!isHidden));
@@ -142,7 +146,7 @@ public class ShowHideCategoriesContributionItem extends ContributionItem {
 	 * @param natTable
 	 *            the natTable widget
 	 * @return
-	 *         the table
+	 * 		the table
 	 */
 	private Table getTable(final NatTable natTable) {
 		final IConfigRegistry configRegistry = natTable.getConfigRegistry();
@@ -157,7 +161,7 @@ public class ShowHideCategoriesContributionItem extends ContributionItem {
 	 * @param depth
 	 *            a depth
 	 * @return
-	 * <code>true</code> if the depth is hidden
+	 * 		<code>true</code> if the depth is hidden
 	 */
 	private boolean isHidden(Table table, int depth) {
 		return StyleUtils.getHiddenDepths(table).contains(Integer.valueOf(depth));

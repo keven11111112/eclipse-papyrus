@@ -30,9 +30,6 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.hideshow.ColumnHideShowLayer;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.MultiColumnHideCommand;
@@ -65,7 +62,6 @@ import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManagerForEventList;
 import org.eclipse.papyrus.infra.nattable.manager.axis.ICompositeAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.axis.ITreeItemAxisManagerForEventList;
-import org.eclipse.papyrus.infra.nattable.menu.MenuConstants;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
@@ -196,7 +192,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 */
 	@Override
 	protected void registerPopupMenuConfiguration(final NatTable natTable) {
-		natTable.addConfiguration(new TreeTablePopupMenuConfiguration());
+		natTable.addConfiguration(new TreeTablePopupMenuConfiguration(natTable));
 	}
 
 	/**
@@ -224,24 +220,6 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	@Override
 	public TreeList getTreeList() {
 		return this.treeList;
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager#createAndRegisterMenuManagerAndSelectionProvider(org.eclipse.nebula.widgets.nattable.NatTable, org.eclipse.ui.IWorkbenchPartSite,
-	 *      org.eclipse.jface.viewers.ISelectionProvider)
-	 *
-	 * @param natTable
-	 * @param site
-	 * @param selectionProvider
-	 * @return
-	 */
-	@Override
-	public MenuManager createAndRegisterMenuManagerAndSelectionProvider(NatTable natTable, IWorkbenchPartSite site, ISelectionProvider selectionProvider) {
-		final MenuManager menuManager = super.createAndRegisterMenuManagerAndSelectionProvider(natTable, site, selectionProvider);
-		final Separator separator = new Separator(MenuConstants.TREE_SEPARATOR_ID);
-		separator.setVisible(true);
-		menuManager.insertAfter(MenuConstants.EDIT_SEPARATOR_ID, separator);
-		return menuManager;
 	}
 
 
@@ -332,9 +310,11 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 			doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 		}
 		Table table = getTable();
-		TableConfiguration config = table.getTableConfiguration();
-
-		BooleanValueStyle expandAll = (BooleanValueStyle) config.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.EXPAND_ALL);
+		BooleanValueStyle expandAll = (BooleanValueStyle) table.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.EXPAND_ALL);
+		if (expandAll == null) {
+			TableConfiguration config = table.getTableConfiguration();
+			expandAll = (BooleanValueStyle) config.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.EXPAND_ALL);
+		}
 		if (null != expandAll) {
 			if (expandAll.isBooleanValue()) {
 				doCollapseExpandAction(org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum.EXPAND_ALL, null);
@@ -347,6 +327,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 * Get the width of the slider composite.
 	 * 
 	 * @return The int value corresponding to the needed row header width.
+	 * @since 2.0
 	 */
 	protected int getWidthSliderComposite() {
 		int result = 0;
@@ -365,6 +346,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 * This allows to calculate the initial width of the row header.
 	 * 
 	 * @return The int value corresponding to the needed row header width.
+	 * @since 2.0
 	 */
 	protected int calculateBestWidthSliderComposite() {
 
@@ -471,12 +453,16 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 * 
 	 * @param leftSliderComposite
 	 *            the slider composite.
+	 * @since 2.0
 	 */
 	protected void addControlListener(final Composite leftSliderComposite) {
 		leftSliderComposite.addControlListener(new ControlAdapter() {
 
 			@Override
 			public void controlResized(final ControlEvent e) {
+				if (null == natTable || natTable.isDisposed()) {
+					return;
+				}
 				super.controlResized(e);
 
 				final CompositeCommand resizeRowHeaderCommand = new CompositeCommand("Resize Slider composite"); //$NON-NLS-1$
@@ -723,6 +709,9 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		return new RowHeaderHierarchicalLayerStack(bodyLayerStack, this);
 	}
 
+	/**
+	 * @since 2.0
+	 */
 	public RowHeaderHierarchicalLayerStack getRowHeaderLayerStack() {
 		return (RowHeaderHierarchicalLayerStack) super.getRowHeaderLayerStack();
 	}

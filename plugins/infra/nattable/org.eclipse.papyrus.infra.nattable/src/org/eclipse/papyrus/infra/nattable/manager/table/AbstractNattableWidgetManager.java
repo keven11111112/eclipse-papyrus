@@ -38,8 +38,8 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
@@ -106,7 +106,6 @@ import org.eclipse.papyrus.infra.nattable.layerstack.ColumnHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderHierarchicalLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.listener.NatTableDropListener;
-import org.eclipse.papyrus.infra.nattable.menu.MenuConstants;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
@@ -152,7 +151,7 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Menu;
+import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.services.IDisposable;
@@ -248,6 +247,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * the composite layer providing the filter row in the column header
+	 * 
+	 * @since 2.0
 	 */
 	protected FilterRowHeaderComposite<?> filterColumnHeaderComposite;
 
@@ -359,8 +360,6 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.natTable = new NatTable(parent, this.gridLayer, false);
 
 		// we register nattable configuration
-		registerPopupMenuConfiguration(this.natTable);
-
 		addClickSortConfiguration(this.natTable);
 		this.natTable.addConfiguration(new FilterRowCustomConfiguration());
 		this.natTable.addConfiguration(new RowSortModelConfiguration(getRowSortModel()));
@@ -388,6 +387,13 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 		this.natTable.setConfigRegistry(configRegistry);
 		this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
+		this.selectionProvider = new TableSelectionProvider(this, this.bodyLayerStack.getSelectionLayer());
+
+		if (site != null) {
+			// we are creating an editor
+			site.setSelectionProvider(this.selectionProvider);
+		}
+		registerPopupMenuConfiguration(this.natTable);
 		this.natTable.configure();
 
 		// we create editors and filter configuration, we can not add it to a layer, because the configuration must be updated after add/move axis and invert axis
@@ -411,10 +417,6 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		addRowHeaderResizeListener(getRowHeaderLayerStack());
 		addDragAndDropSupport(this.natTable);
 
-		this.selectionProvider = new TableSelectionProvider(this, this.bodyLayerStack.getSelectionLayer());
-		createAndRegisterMenuManagerAndSelectionProvider(this.natTable, site, this.selectionProvider);
-
-
 		new PapyrusNatTableToolTipProvider(this.natTable, GridRegion.BODY, GridRegion.COLUMN_HEADER, GridRegion.ROW_HEADER);
 		initResourceSetListener();
 		return this.natTable;
@@ -425,9 +427,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 *
 	 * @param natTable
 	 *            the nattable to configure
+	 * @since 2.0
 	 */
 	protected void registerPopupMenuConfiguration(final NatTable natTable) {
-		natTable.addConfiguration(new TablePopupMenuConfiguration());
+		natTable.addConfiguration(new TablePopupMenuConfiguration(natTable));
 	}
 
 	/**
@@ -657,7 +660,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @param natTable
 	 * @return
 	 *
-	 * @deprecated since Papyrus 1.3 (Eclipse Neon)
+	 * @deprecated since Papyrus 1.2 (Eclipse Neon), now the menu configuration is done using {@link TablePopupMenuConfiguration}
 	 */
 	@Deprecated
 	public MenuManager createMenuManager(final NatTable natTable) {
@@ -672,49 +675,12 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 *
 	 * @return
 	 * 		This method creates the MenuManager used for theBody of the table and register it, with the selection provider in the {@link IWorkbenchPartSite} of the editor when not <code>null</code>
+	 * @since 2.0
 	 */
 	public MenuManager createAndRegisterMenuManagerAndSelectionProvider(final NatTable natTable, final IWorkbenchPartSite site, ISelectionProvider selectionProvider) {
-		final MenuManager menuManager = new MenuManager(MenuConstants.POPUP, MenuConstants.TABLE_POPUP_MENU_ID);
-		// menuManager.setRemoveAllWhenShown(true);
-
-		final Menu menu = menuManager.createContextMenu(this.natTable);
-
-		this.natTable.setMenu(menu);
-		if (site != null) {
-			site.registerContextMenu(menuManager.getId(), menuManager, selectionProvider);
-			site.setSelectionProvider(this.selectionProvider);
-		}
-
-		// we create the separator here, and not in the plugin.xml file in order to get the wanted order (in plugin.xml it seems depends on the order of plugin activation
-		Separator separator = new Separator(MenuConstants.GENERAL_SEPARATOR_ID);
-		separator.setVisible(false);// the first one is not visible
-		menuManager.add(separator);
-
-		separator = new Separator(MenuConstants.EDIT_SEPARATOR_ID);
-		separator.setVisible(true);
-		menuManager.add(separator);
-
-		separator = new Separator(MenuConstants.CELL_SEPARATOR_ID);
-		separator.setVisible(true);
-		menuManager.add(separator);
-
-		separator = new Separator(MenuConstants.ROWS_AND_COLUMNS_SEPARATOR_ID);
-		separator.setVisible(true);
-		menuManager.add(separator);
-
-		separator = new Separator(MenuConstants.CREATIONS_SEPARATOR_ID);
-		separator.setVisible(true);
-		menuManager.add(separator);
-
-		separator = new Separator(MenuConstants.TOOLS_SEPARATOR_ID);
-		separator.setVisible(true);
-		menuManager.add(separator);
-
-		// commented to avoid to pollute the table menu with global contribution
-		// separator = new Separator(MenuConstants.ADDITIONS_SEPARATOR_ID);
-		// separator.setVisible(true);
-		// menuManager.add(separator);
-
+	final MenuManager menuManager = new MenuManager("#PopUp", "org.eclipse.papyrus.infra.nattable.widget.menu") ; //$NON-NLS-1$ //$NON-NLS-2$
+		menuManager.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+		menuManager.setRemoveAllWhenShown(true);
 		return menuManager;
 	}
 
@@ -1474,16 +1440,20 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 			}
 		}
-
 	}
 
 	/**
 	 * This allows to manage the fill columns size named style by managing the width of columns to fill all the parent space.
+	 * 
+	 * @since 2.0
 	 */
 	protected void doFillColumnsSize() {
+		BooleanValueStyle fillColumnsSize = (BooleanValueStyle) getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.FILL_COLUMNS_SIZE);
+		if (fillColumnsSize == null) {
+			final TableConfiguration config = getTable().getTableConfiguration();
+			fillColumnsSize = (BooleanValueStyle) config.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.FILL_COLUMNS_SIZE);
+		}
 
-		final TableConfiguration config = getTable().getTableConfiguration();
-		final BooleanValueStyle fillColumnsSize = (BooleanValueStyle) config.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.FILL_COLUMNS_SIZE);
 		if (null != fillColumnsSize) {
 			if (fillColumnsSize.isBooleanValue()) {
 				final Composite parent = natTable.getParent();
@@ -1860,6 +1830,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 *
 	 * @return
 	 * 		a {@link TableStructuredSelection} representing the current selection of the table or <code>null</code> when there is no selection
+	 * @since 2.0
 	 */
 	public final TableStructuredSelection getSelectionInTable() {
 		ISelection selection = this.selectionProvider.getSelection();

@@ -52,19 +52,21 @@ public class DeleteNatTableContextAdvice extends AbstractEditHelperAdvice {
 		}
 
 		final ECrossReferenceAdapter crossReferencerAdapter = ECrossReferenceAdapter.getCrossReferenceAdapter(objectToDestroy);
-		final Collection<Setting> settings = crossReferencerAdapter.getNonNavigableInverseReferences(objectToDestroy);
-		CompositeCommand cmd = new CompositeCommand(Messages.DeleteNatTableContextAdvice_DestroyNattableCommand);
-		for (Setting currentSetting : settings) {
-			final EObject currentEObject = currentSetting.getEObject();
-			final EStructuralFeature currentfeature = currentSetting.getEStructuralFeature();
-			if (currentEObject instanceof Table && currentfeature == NattablePackage.eINSTANCE.getTable_Context()) {
-				final DestroyElementRequest request2 = new DestroyElementRequest(currentEObject, false);
-				final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(currentEObject);
-				cmd.add(provider.getEditCommand(request2));
+		if (crossReferencerAdapter != null) {
+			final Collection<Setting> settings = crossReferencerAdapter.getNonNavigableInverseReferences(objectToDestroy);
+			CompositeCommand cmd = new CompositeCommand(Messages.DeleteNatTableContextAdvice_DestroyNattableCommand);
+			for (Setting currentSetting : settings) {
+				final EObject currentEObject = currentSetting.getEObject();
+				final EStructuralFeature currentfeature = currentSetting.getEStructuralFeature();
+				if (currentEObject instanceof Table && currentfeature == NattablePackage.eINSTANCE.getTable_Context()) {
+					final DestroyElementRequest request2 = new DestroyElementRequest(currentEObject, false);
+					final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(currentEObject);
+					cmd.add(provider.getEditCommand(request2));
+				}
 			}
-		}
-		if (!cmd.isEmpty()) {
-			return cmd;
+			if (!cmd.isEmpty()) {
+				return cmd;
+			}
 		}
 		return null;
 	}

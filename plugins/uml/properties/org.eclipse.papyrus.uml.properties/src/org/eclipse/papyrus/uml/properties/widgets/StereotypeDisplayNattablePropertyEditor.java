@@ -16,15 +16,18 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.hideshow.RowHideShowLayer;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.RowHideCommand;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.swt.widgets.Composite;
 
 /**
  * The property editor for the stereotype display nattable widget.
  */
-public class StereotypeDisplayNattablePropertyEditor extends NattablePropertyEditor {
+public class StereotypeDisplayNattablePropertyEditor extends TreeNattablePropertyEditor {
 
 	/**
 	 * Constructor.
@@ -43,7 +46,10 @@ public class StereotypeDisplayNattablePropertyEditor extends NattablePropertyEdi
 	 * 
 	 * @see org.eclipse.papyrus.uml.properties.widgets.NattablePropertyEditor#configureTreeTable(org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature,
 	 *      java.util.Collection)
+	 * 
+	 * @deprecated since 2.0, done in the override of {@link #createNatTableWidget(INattableModelManager, Composite, int, Collection)}
 	 */
+	@Deprecated
 	@Override
 	protected void configureTreeTable(TreeNattableModelManager nattableManager, final EObject sourceElement, final EStructuralFeature feature, final Collection<?> rows) {
 		super.configureTreeTable(nattableManager, sourceElement, feature, rows);
@@ -55,5 +61,31 @@ public class StereotypeDisplayNattablePropertyEditor extends NattablePropertyEdi
 				natTableWidget.doCommand(new RowHideCommand(layer, 0));
 			}
 		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.properties.widgets.NattablePropertyEditor#createNatTableWidget(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, org.eclipse.swt.widgets.Composite, int, Collection)
+	 *
+	 * @param manager
+	 * @param parent
+	 * @param style
+	 * @return
+	 */
+	@Override
+	protected NatTable createNatTableWidget(INattableModelManager manager, Composite parent, int style, Collection<?> rows) {
+		NatTable natTable = super.createNatTableWidget(manager, parent, style, rows);
+		// Bug 470252 : This allow to remove the 'view' rows
+		if (null != rows && !rows.isEmpty()) {
+			// the widget is already expanded
+			final RowHideShowLayer layer = nattableManager.getBodyLayerStack().getRowHideShowLayer();
+			for (Object current : manager.getRowElementsList()) {
+				if (rows.contains(AxisUtils.getRepresentedElement(current))) {
+					int index = manager.getRowElementsList().indexOf(current);
+					int realIndex = layer.underlyingToLocalRowPosition(natTable, index);
+					natTable.doCommand(new RowHideCommand(layer, realIndex));
+				}
+			}
+		}
+		return natTable;
 	}
 }

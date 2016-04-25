@@ -20,7 +20,6 @@ import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;

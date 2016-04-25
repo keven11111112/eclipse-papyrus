@@ -13,11 +13,12 @@
 
 package org.eclipse.papyrus.infra.nattable.menu;
 
+import org.eclipse.nebula.widgets.nattable.ui.menu.MenuItemProviders;
 import org.eclipse.ui.IWorkbenchActionConstants;
 
 /**
  * @author VL222926
- *         This class grousp the constant used for table menu
+ *         This class groups the constant used for table menu
  */
 public class MenuConstants {
 
@@ -37,7 +38,7 @@ public class MenuConstants {
 	/**
 	 * the table body popup menu id
 	 */
-	public static final String TABLE_POPUP_MENU_ID = "org.eclipse.papyrus.infra.nattable.widget.menu"; //$NON-NLS-1$
+	public static final String BODY_POPUP_MENU_ID = "org.eclipse.papyrus.infra.nattable.widget.menu"; //$NON-NLS-1$
 
 	/**
 	 * the table row header menu id
@@ -70,6 +71,11 @@ public class MenuConstants {
 	public static final String TREE_SEPARATOR_ID = "tree.separator"; //$NON-NLS-1$
 
 	/**
+	 * this separator is used to group contribution for categories of tree table
+	 */
+	public static final String CATEGORY_SEPARATOR_ID = "category.separator";//$NON-NLS-1$
+	
+	/**
 	 * this separator is used to group contribution for the cells
 	 */
 	public static final String CELL_SEPARATOR_ID = "cells.separator"; //$NON-NLS-1$
@@ -93,4 +99,9 @@ public class MenuConstants {
 	 * this separator could be used to group contribution registered on additions, but we do not used it currently to avoid to be polluted by global menu contribution
 	 */
 	public static final String ADDITIONS_SEPARATOR_ID = IWorkbenchActionConstants.MB_ADDITIONS;
+	
+	/**
+	 * the key to get the nattable event data 
+	 */
+	public static final String NAT_EVENT_DATA_KEY = MenuItemProviders.NAT_EVENT_DATA_KEY;
 }

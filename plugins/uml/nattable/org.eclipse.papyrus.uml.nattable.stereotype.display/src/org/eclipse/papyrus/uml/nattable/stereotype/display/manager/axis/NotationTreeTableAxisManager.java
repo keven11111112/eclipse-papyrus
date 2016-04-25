@@ -18,8 +18,8 @@ import org.eclipse.nebula.widgets.nattable.hideshow.RowHideShowLayer;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.RowHideCommand;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.tree.TreeLayer;
+import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectTreeAxisManagerForEventList;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusGridLayer;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderHierarchicalLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManagerForEventList;
@@ -113,13 +113,14 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 			}
 
 			final Command cmd = getAddAxisCommand(getTableEditingDomain(), selectionList);
-
-			try {
-				GMFUnsafe.write(getTableEditingDomain(), cmd);
-			} catch (InterruptedException e) {
-				Activator.log.error(e);
-			} catch (RollbackException e) {
-				Activator.log.error(e);
+			if (cmd != null) {
+				try {
+					GMFUnsafe.write(getTableEditingDomain(), cmd);
+				} catch (InterruptedException e) {
+					Activator.log.error(e);
+				} catch (RollbackException e) {
+					Activator.log.error(e);
+				}
 			}
 			// because event will be propagated and children will be set!
 			return;
@@ -324,7 +325,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 				return;
 			}
 			final TreeLayer treeLayer = getTreeLayer();
-			if(null != treeLayer){
+			if (null != treeLayer) {
 				for (int cpt = selectionList.size() - 1; cpt >= 0; cpt--) {
 					// Expand the tree item
 					treeLayer.expandTreeRow(cpt);

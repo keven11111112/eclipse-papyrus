@@ -49,6 +49,7 @@ public class SelectColumnsHandler extends AbstractTableHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
+		super.setEnabled(evaluationContext);
 		final INattableModelManager currentNattableModelManager = getCurrentNattableModelManager();
 		boolean enabled = false;
 		if (currentNattableModelManager != null) {

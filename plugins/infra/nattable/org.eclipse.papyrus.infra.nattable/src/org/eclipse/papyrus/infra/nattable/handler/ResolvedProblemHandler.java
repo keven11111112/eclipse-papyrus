@@ -127,7 +127,7 @@ public class ResolvedProblemHandler extends AbstractTableHandler {
 	 * @return
 	 */
 	private Problem getProblemToDestroy(Object evaluationContextOrExecutionEvent) {
-		TableSelectionWrapper wrapper = getTableSelectionWrapper(evaluationContextOrExecutionEvent);
+		TableSelectionWrapper wrapper = getTableSelectionWrapper();
 		if (isEnabled() && wrapper != null) {
 			Collection<PositionCoordinate> selectionCells = wrapper.getSelectedCells();
 			if (selectionCells.size() == 1) {

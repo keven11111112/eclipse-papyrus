@@ -19,29 +19,22 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.expressions.IEvaluationContext;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
+import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
+import org.eclipse.nebula.widgets.nattable.ui.menu.MenuItemProviders;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
+import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
 import org.eclipse.papyrus.infra.ui.util.WorkbenchPartHelper;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
  * The abstract handler to use for the table actions
@@ -51,7 +44,12 @@ import org.eclipse.ui.handlers.HandlerUtil;
  */
 public abstract class AbstractTableHandler extends AbstractHandler {
 
-	/** the id used to find the NatEvent in the EclipseContext */
+	/**
+	 * the id used to find the NatEvent in the EclipseContext
+	 * 
+	 * @deprecated since Papyrus 1.2 (Eclipse Neon)
+	 */
+	@Deprecated
 	public static final String NAT_EVENT_DATA_PARAMETER_ID = "natEventParameterId"; //$NON-NLS-1$
 
 	/**
@@ -67,7 +65,9 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	/**
 	 *
 	 * @return
-	 *         the current active part
+	 * 		the current active part
+	 * 
+	 * @deprecated since Papyrus 1.2 (Eclipse Neon)
 	 */
 	protected IWorkbenchPart getActivePart() {
 		return WorkbenchPartHelper.getCurrentActiveWorkbenchPart();
@@ -75,21 +75,14 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 
 	/**
 	 * 
-	 * @param evaluationContextOrExecutionEvent
-	 * 
+	 * @return
+	 * 		the TableSelectioWrapper used (according to the referenced NatEventData) or <code>null</code> if not found
+	 * @since 2.0
 	 */
-	protected final TableSelectionWrapper getTableSelectionWrapper(Object evaluationContextOrExecutionEvent) {
-		if (evaluationContextOrExecutionEvent instanceof IEvaluationContext) {
-			Object selection = HandlerUtil.getVariable(evaluationContextOrExecutionEvent, "selection"); //$NON-NLS-1$
-			if (selection instanceof IAdaptable) {
-				return (TableSelectionWrapper) ((IAdaptable) selection).getAdapter(TableSelectionWrapper.class);
-			}
-		} else if (evaluationContextOrExecutionEvent instanceof ExecutionEvent) {
-			IWorkbenchPart p = HandlerUtil.getActivePart((ExecutionEvent) evaluationContextOrExecutionEvent);
-			ISelection selection = (ISelection) p.getAdapter(ISelection.class);
-			if (selection instanceof TableStructuredSelection) {
-				return (TableSelectionWrapper) ((TableStructuredSelection) selection).getAdapter(TableSelectionWrapper.class);
-			}
+	protected final TableSelectionWrapper getTableSelectionWrapper() {
+		final INattableModelManager tableManager = getCurrentNattableModelManager();
+		if (tableManager != null) {
+			return tableManager.getAdapter(TableSelectionWrapper.class);
 		}
 		return null;
 	}
@@ -100,10 +93,12 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 *         the current table manager or <code>null</code> if not found
 	 */
 	protected INattableModelManager getCurrentNattableModelManager() {
-		final IWorkbenchPart currentPart = getActivePart();
-		if (currentPart != null) {
-			final INattableModelManager manager = (INattableModelManager) currentPart.getAdapter(INattableModelManager.class);
-			return manager;
+		final NatEventData data = getNatEventData();
+		if (data != null) {
+			final NatTable natTable = data.getNatTable();
+			if (natTable != null && natTable.getConfigRegistry() != null) {
+				return natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+			}
 		}
 		return null;
 	}
@@ -127,6 +122,11 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 		return TableEditingDomainUtils.getTableContextEditingDomain(getCurrentNattableModelManager().getTable());
 	}
 
+	/**
+	 * 
+	 * @return
+	 * 		the last NatEventData received during the setEnable
+	 */
 	protected NatEventData getNatEventData() {
 		if (this.eventDataWeakReference != null) {
 			return this.eventDataWeakReference.get();
@@ -139,7 +139,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 * @param evaluationContext
 	 *            the evaluation context
 	 * @return
-	 *         the NatEventData from this evaluation context
+	 * 		the NatEventData from this evaluation context or <code>null</code> if not found
 	 */
 	protected NatEventData getNatEventData(final Object evaluationContext) {
 		if (evaluationContext instanceof NatEventData) {
@@ -147,30 +147,30 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 		}
 		NatEventData eventData = null;
 		if (evaluationContext instanceof IEvaluationContext) {
-			Object value = ((IEvaluationContext) evaluationContext).getVariable(NAT_EVENT_DATA_PARAMETER_ID);
+			Object value = ((IEvaluationContext) evaluationContext).getVariable(MenuItemProviders.NAT_EVENT_DATA_KEY);
 			if (value instanceof NatEventData) {
 				eventData = (NatEventData) value;
 			}
 		}
-		// TODO : currently we can't have dependency on org.eclipse.e4....
+
+		// Commented since Papyrus 1.2 (Neon Mars 2016)
 		// that's why we can't add the variable NAT_EVENT_DATA_PARAMETER_ID and we need to create a NatEventData instead of to get it in evaluationContext
-		if (eventData == null) {
-			Point cursorLocation = Display.getDefault().getCursorLocation();
-			Control control = Display.getDefault().getCursorControl();// TODO doesn't work when we are selecting a command in a menu!
-			if (control instanceof NatTable) {// TODO : not nice, but required
-				cursorLocation = control.toControl(cursorLocation);
-				Event e = new Event();
-				e.x = cursorLocation.x;
-				e.y = cursorLocation.y;
-				e.display = Display.getDefault();
-				e.widget = control;
-				MouseEvent event = new MouseEvent(e);
-				eventData = NatEventData.createInstanceFromEvent(event);
-			}
-		}
+		// if (eventData == null) {
+		// Point cursorLocation = Display.getDefault().getCursorLocation();
+		// Control control = Display.getDefault().getCursorControl();// doesn't work when we are selecting a command in a sub menu!
+		// if (control instanceof NatTable) {// : not nice, but required
+		// cursorLocation = control.toControl(cursorLocation);
+		// Event e = new Event();
+		// e.x = cursorLocation.x;
+		// e.y = cursorLocation.y;
+		// e.display = Display.getDefault();
+		// e.widget = control;
+		// MouseEvent event = new MouseEvent(e);
+		// eventData = NatEventData.createInstanceFromEvent(event);
+		// }
+		// }
 		return eventData;
 	}
-
 	/**
 	 *
 	 * @param evaluationContext

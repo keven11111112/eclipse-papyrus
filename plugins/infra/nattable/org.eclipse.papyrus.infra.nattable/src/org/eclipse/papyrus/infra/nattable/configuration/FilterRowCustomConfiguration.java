@@ -13,21 +13,10 @@
 
 package org.eclipse.papyrus.infra.nattable.configuration;
 
-import java.util.List;
-
-import org.eclipse.core.runtime.Assert;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.transaction.NotificationFilter;
-import org.eclipse.emf.transaction.ResourceSetChangeEvent;
-import org.eclipse.emf.transaction.ResourceSetListener;
-import org.eclipse.emf.transaction.RollbackException;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.AbstractRegistryConfiguration;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.filterrow.FilterIconPainter;
-import org.eclipse.nebula.widgets.nattable.filterrow.FilterRowDataLayer;
 import org.eclipse.nebula.widgets.nattable.filterrow.FilterRowPainter;
 import org.eclipse.nebula.widgets.nattable.filterrow.config.FilterRowConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
@@ -35,20 +24,7 @@ import org.eclipse.nebula.widgets.nattable.style.CellStyleAttributes;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.style.Style;
 import org.eclipse.nebula.widgets.nattable.util.GUIHelper;
-import org.eclipse.papyrus.infra.nattable.command.UpdateFilterMapCommand;
 import org.eclipse.papyrus.infra.nattable.converter.GenericDisplayConverter;
-import org.eclipse.papyrus.infra.nattable.filter.configuration.FilterConfigurationRegistry;
-import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
-import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
-import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
-import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
-import org.eclipse.swt.widgets.Display;
-
-import ca.odell.glazedlists.EventList;
-import ca.odell.glazedlists.event.ListEvent;
-import ca.odell.glazedlists.event.ListEventListener;
 
 /**
  * This class configure the filters for the table

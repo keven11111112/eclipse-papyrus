@@ -19,8 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.swing.plaf.TableUI;
-
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.nebula.widgets.nattable.NatTable;
@@ -33,7 +31,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemA
 import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.ui.util.SelectionHelper;
-import org.eclipse.swt.widgets.Control;
 
 /**
  * This class is not in API.

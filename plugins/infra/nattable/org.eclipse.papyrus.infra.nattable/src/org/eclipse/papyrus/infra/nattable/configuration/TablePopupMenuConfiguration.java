@@ -13,19 +13,36 @@
 
 package org.eclipse.papyrus.infra.nattable.configuration;
 
+import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.AbstractUiBindingConfiguration;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
 import org.eclipse.papyrus.infra.nattable.menu.MenuConstants;
+import org.eclipse.papyrus.infra.nattable.menu.PapyrusBodyPopupMenuAction;
 import org.eclipse.papyrus.infra.nattable.menu.PapyrusHeaderPopupMenuAction;
 import org.eclipse.swt.SWT;
 
 /**
  * @author VL222926
- * This configuration allows to register popup menu for row header, column header and body of the table
+ *         This configuration allows to register popup menu for row header, column header and body of the table
+ * @since 2.0
  */
 public class TablePopupMenuConfiguration extends AbstractUiBindingConfiguration {
+
+	/**
+	 * the configured nattable widget
+	 */
+	protected final NatTable natTable;
+
+	/**
+	 * Constructor.
+	 *
+	 */
+	public TablePopupMenuConfiguration(final NatTable natTable) {
+		this.natTable = natTable;
+	}
+
 
 	/**
 	 * @see org.eclipse.nebula.widgets.nattable.config.IConfiguration#configureUiBindings(org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry)
@@ -46,7 +63,7 @@ public class TablePopupMenuConfiguration extends AbstractUiBindingConfiguration 
 	 * 
 	 */
 	protected void registerBodyPopupMenu(final UiBindingRegistry uiBindingRegistry) {
-		// nothing to do
+		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.BODY, MouseEventMatcher.RIGHT_BUTTON), new PapyrusBodyPopupMenuAction(MenuConstants.BODY_POPUP_MENU_ID, this.natTable));
 	}
 
 	/**
@@ -56,7 +73,7 @@ public class TablePopupMenuConfiguration extends AbstractUiBindingConfiguration 
 	 * 
 	 */
 	protected void registerRowHeaderPopupMenu(final UiBindingRegistry uiBindingRegistry) {
-		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.ROW_HEADER, MouseEventMatcher.RIGHT_BUTTON), new PapyrusHeaderPopupMenuAction(MenuConstants.ROW_HEADER_POPUP_MENU_ID));
+		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.ROW_HEADER, MouseEventMatcher.RIGHT_BUTTON), new PapyrusHeaderPopupMenuAction(MenuConstants.ROW_HEADER_POPUP_MENU_ID, this.natTable));
 	}
 
 	/**
@@ -66,6 +83,6 @@ public class TablePopupMenuConfiguration extends AbstractUiBindingConfiguration 
 	 * 
 	 */
 	protected void registerColumnHeaderPopupMenu(final UiBindingRegistry uiBindingRegistry) {
-		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.COLUMN_HEADER, MouseEventMatcher.RIGHT_BUTTON), new PapyrusHeaderPopupMenuAction(MenuConstants.COLUMN_HEADER_POPUP_MENU_ID));
+		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.COLUMN_HEADER, MouseEventMatcher.RIGHT_BUTTON), new PapyrusHeaderPopupMenuAction(MenuConstants.COLUMN_HEADER_POPUP_MENU_ID, this.natTable));
 	}
 }

@@ -13,38 +13,48 @@
 
 package org.eclipse.papyrus.infra.nattable.menu;
 
-import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.nebula.widgets.nattable.NatTable;
 
 /**
  * @author VL222926
- *
+ *         Header Popup Menu action for Tree Table
+ * @since 2.0
  */
-public class TreePapyrusHeaderPopupMenuAction extends PapyrusHeaderPopupMenuAction {
+public class TreeRowPapyrusHeaderPopupMenuAction extends PapyrusHeaderPopupMenuAction {
+
 
 	/**
+	 * 
 	 * Constructor.
 	 *
 	 * @param menuId
+	 *            the id of the menu to contribute
+	 * @param natTable
+	 *            the nattable for which we are creation a menu
 	 */
-	public TreePapyrusHeaderPopupMenuAction(String menuId) {
-		super(menuId);
+	public TreeRowPapyrusHeaderPopupMenuAction(final String menuId, final NatTable natTable) {
+		super(menuId, natTable);
 	}
 
-	
+
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.menu.PapyrusHeaderPopupMenuAction#addMenuSeparators(org.eclipse.jface.action.MenuManager)
 	 *
 	 * @param menuManager
 	 */
 	@Override
-	protected void addMenuSeparators(final MenuManager menuManager) {
-		//1. we add the common separators
+	protected void addMenuSeparators(final IMenuManager menuManager) {
+		// 1. we add the common separators
 		super.addMenuSeparators(menuManager);
-		//2. we add a new separator for tree actions
-		final Separator tree = new Separator(MenuConstants.TREE_SEPARATOR_ID);
-		tree.setVisible(true);
-		menuManager.add(tree);
-
+		// 2. we add separators for tree actions
+		 Separator separator = new Separator(MenuConstants.TREE_SEPARATOR_ID);
+		separator.setVisible(true);
+		menuManager.add(separator);
+		
+		separator = new Separator(MenuConstants.CATEGORY_SEPARATOR_ID);
+		separator.setVisible(true);
+		menuManager.add(separator);
 	}
 }

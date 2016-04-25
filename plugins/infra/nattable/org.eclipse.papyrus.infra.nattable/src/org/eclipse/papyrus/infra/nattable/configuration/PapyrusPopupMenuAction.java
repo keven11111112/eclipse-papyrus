@@ -105,10 +105,6 @@ public class PapyrusPopupMenuAction extends PopupMenuAction {
 	private void buildMenu(final Menu popupMenu, final NatTable natTable) {
 		final Collection<Command> commands = EclipseCommandUtils.getAllExistingCommandsInCategory(category);
 
-		// TODO : we should use the EclipseContext to transfert the eventData from here to the handler, but currently we can't have dependency on e4 plugins
-		// final IEclipseContext eclipseContext = (IEclipseContext)PlatformUI.getWorkbench().getService(IEclipseContext.class);
-		// eclipseContext.set(AbstractTableHandler.NAT_EVENT_DATA_PARAMETER_ID, eventData);
-
 		for (final Command command : commands) {
 			final IHandler handler = command.getHandler();
 			if (handler == null || !(handler instanceof AbstractHandler)) {
@@ -180,7 +176,6 @@ public class PapyrusPopupMenuAction extends PopupMenuAction {
 	 * @param command
 	 * @param natTable
 	 */
-	// TODO we should refactor code to create a new class PapyrusTreePopupMenu
 	private void addShowHideCategoryCommandToMenu(final Menu menu, final Command command, final NatTable natTable) {
 		Table table = getTable(natTable);
 		int maxDepth = FillingConfigurationUtils.getMaxDepthForTree(table);

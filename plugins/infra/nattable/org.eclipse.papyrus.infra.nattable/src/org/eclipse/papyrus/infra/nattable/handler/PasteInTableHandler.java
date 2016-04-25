@@ -91,14 +91,4 @@ public class PasteInTableHandler extends AbstractPasteInsertInTableHandler {
 		return result;
 	}
 
-	/**
-	 * @Override
-	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler#setEnabled(java.lang.Object)
-	 */
-	@Override
-	public void setEnabled(final Object evaluationContext) {
-		setBaseEnabled(getCurrentNattableModelManager() != null);
-	}
-
 }
