@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST and others.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.fr - Bug 393532
+ *  Christian W. Damus - bug 492407
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies;
@@ -113,8 +114,9 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 	@Override
 	public void notifyChanged(Notification notification) {
 		super.notifyChanged(notification);
-		if (comment != null) {
-
+		
+		// Don't react if the comment is not attached to a diagram
+		if ((comment != null) && (comment.getDiagram() != null)) {
 			int eventType = notification.getEventType();
 			EObject object = StereotypeDisplayUtil.getInstance().getCommentSemanticElement(comment);
 			// If the reference object of the comment is removed, delete the Comment node itself.
@@ -123,15 +125,12 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 			}
 
 			if (comment.getTargetEdges() != null) {
-
 				// If the Target View is null then remove the Comment View
 				if (eventType == Notification.REMOVE && notification.getOldValue().equals(hostView) && comment.getTargetEdges().size() == 0) {
 					executeAppliedStereotypeCommentDeletion(hostEditPart.getEditingDomain(), comment);
 				}
 			}
 		}
-
-
 	}
 
 
