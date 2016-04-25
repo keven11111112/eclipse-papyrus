@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Christian W. Damus - bug 491789
  *   
  *****************************************************************************/
 
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -32,7 +34,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * The multiplicity observable values contains a list of 3 observable values : The first the multiplicity lower and upper value for the 'simple' mode and the 2 following are the lower and the upper value observable value.
  */
-public class ExtendedMultiplicityObservableValue extends AbstractObservableValue implements AggregatedObservable {
+public class ExtendedMultiplicityObservableValue extends ReferenceCountedObservable.Value implements AggregatedObservable {
 
 	/**
 	 * The number of ObservableValue in the ObservableList.
@@ -159,6 +161,45 @@ public class ExtendedMultiplicityObservableValue extends AbstractObservableValue
 	@Override
 	protected Object doGetValue() {
 		return getObservableValues();
+	}
+	
+	/**
+	 * If the input is a list of three elements that are all observable-values,
+	 * take them.  Otherwise, throw.
+	 *
+	 * @param value the value to set
+	 * 
+	 * @throws IllegalArgumentException if {@code value} is not a list of three
+	 * {@link IObservableValue}s
+	 */
+	@Override
+	protected void doSetValue(Object value) {
+		if (!(value instanceof List<?>)) {
+			throw new IllegalArgumentException("value is not a List"); //$NON-NLS-1$
+		}
+		List<?> listValue = (List<?>) value;
+		if (listValue.size() != NUMBER_OBSERVABLE_VALUES) {
+			throw new IllegalArgumentException(String.format("value is not a list of %d IObservableValues", NUMBER_OBSERVABLE_VALUES)); //$NON-NLS-1$
+		}
+		if (!listValue.stream().allMatch(IObservableValue.class::isInstance)) {
+			throw new IllegalArgumentException(String.format("value is not a list of %d IObservableValues", NUMBER_OBSERVABLE_VALUES)); //$NON-NLS-1$
+		}
+		
+		// Only do anything if the result would be different
+		if (!listValue.equals(observableValues)) {
+			@SuppressWarnings("unchecked")
+			List<? extends IObservableValue<?>> newObservables = (List<? extends IObservableValue<?>>)listValue;
+			
+			// Retain the new, release the old (some may be both)
+			newObservables.forEach(ReferenceCountedObservable.Util::retain);
+			observableValues.forEach(ReferenceCountedObservable.Util::autorelease);
+			
+			List<IObservableValue<?>> oldObservables = new ArrayList<>(observableValues);
+			
+			observableValues.clear();
+			observableValues.addAll(newObservables);
+			fireValueChange(Diffs.createValueDiff(oldObservables, newObservables));
+		}
 	}
 
 	/**
