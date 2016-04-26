@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="ASCII"?>
 <assistant:ModelingAssistantProvider xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:assistant="http://www.eclipse.org/Papyrus/2014/diagram/assistant" xmlns:filters="http://www.eclipse.org/Papyrus/2014/common/filters" xmlns:umlfilters="http://www.eclipse.org/Papyrus/2014/uml/filters" name="BPMNProfile">
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="InclusiveGateway_JoinNode_3041" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.InclusiveGateway_JoinNode_3041"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.Activity_2001" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.Activity_2001"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.Activity_3083" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.Activity_3083"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ConditionalNode_3069" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ConditionalNode_3069"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ExpansionRegion_3070" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ExpansionRegion_3070"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.LoopNode_3071" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.LoopNode_3071"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.SequenceNode_3073" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.SequenceNode_3073"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.StructuredActivityNode_3065" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.StructuredActivityNode_3065"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.Activity_Shape" elementTypeID="org.eclipse.papyrus.umldi.Activity_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.Activity_Shape_CN" elementTypeID="org.eclipse.papyrus.umldi.Activity_Shape_CN"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ConditionalNode_Shape" elementTypeID="org.eclipse.papyrus.umldi.ConditionalNode_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ExpansionRegion_Shape" elementTypeID="org.eclipse.papyrus.umldi.ExpansionRegion_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.LoopNode_Shape" elementTypeID="org.eclipse.papyrus.umldi.LoopNode_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.SequenceNode_Shape" elementTypeID="org.eclipse.papyrus.umldi.SequenceNode_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.StructuredActivityNode_Shape" elementTypeID="org.eclipse.papyrus.umldi.StructuredActivityNode_Shape"/>
   <ownedFilter xsi:type="filters:CompoundFilter" name="pertains to Profile BPMNProfile" filter="//@ownedFilter.8/@ownedFilter.0 //@ownedFilter.8/@ownedFilter.1" operator="or">
     <ownedFilter xsi:type="umlfilters:ProfileApplied" name="BPMNProfile is applied in context" profileQualifiedName="BPMNProfile" profileURI="platform:/resource/org.eclipse.papyrus.bpmn/model/bpmn.profile.uml#_wrG1oHwkEeOWLfCz6n-rOA"/>
     <ownedFilter xsi:type="assistant:AssistedElementTypeFilter"/>
@@ -15,14 +15,14 @@
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="InclusiveGateway_ForkNode_3040" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.InclusiveGateway_ForkNode_3040"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="EventBasedGateway_ForkNode_3040" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.EventBasedGateway_ForkNode_3040"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="EventBasedGateway_StructuredActivityNode_3065" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.EventBasedGateway_StructuredActivityNode_3065"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3018" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3018"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3021" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3021"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3026" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3026"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3047" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3047"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3050" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3050"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3053" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3053"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3061" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3061"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ActionInputPin_OpaqueActionInputShape" elementTypeID="org.eclipse.papyrus.umldi.ActionInputPin_OpaqueActionInputShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ActionInputPin_CallBehaviorActionArgumentShape" elementTypeID="org.eclipse.papyrus.umldi.ActionInputPin_CallBehaviorActionArgumentShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ActionInputPin_CallOperationActionArgumentShape" elementTypeID="org.eclipse.papyrus.umldi.ActionInputPin_CallOperationActionArgumentShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ActionInputPin_CallOperationActionTargetShape" elementTypeID="org.eclipse.papyrus.umldi.ActionInputPin_CallOperationActionTargetShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ActionInputPin_SendObjectActionRequestShape" elementTypeID="org.eclipse.papyrus.umldi.ActionInputPin_SendObjectActionRequestShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ActionInputPin_SendObjectActionTargetShape" elementTypeID="org.eclipse.papyrus.umldi.SendObjectActionTargetShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ActionInputPin_SendSignalActionArgumentShape" elementTypeID="org.eclipse.papyrus.umldi.SendSignalActionArgumentShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ActionInputPin_SendSignalActionTargetShape" elementTypeID="org.eclipse.papyrus.umldi.ActionInputPin_SendSignalActionTargetShape"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="EventBasedGateway_InterruptibleActivityRegion_3068" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.EventBasedGateway_InterruptibleActivityRegion_3068"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="NonExclusiveGateway_JoinNode_3041" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.NonExclusiveGateway_JoinNode_3041"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="NonExclusiveGateway_ForkNode_3040" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.NonExclusiveGateway_ForkNode_3040"/>
@@ -33,7 +33,7 @@
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="ExclusiveGateway_DecisionNode_3038" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.ExclusiveGateway_DecisionNode_3038"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="ExclusiveGateway_MergeNode_3039" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.ExclusiveGateway_MergeNode_3039"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="LaneSet_ActivityPartition_3067" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.LaneSet_ActivityPartition_3067"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ActivityPartition_3067" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ActivityPartition_3067"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ActivityPartition_Shape" elementTypeID="org.eclipse.papyrus.umldi.ActivityPartition_Shape"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="BPMNProcess_Activity_2001" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.BPMNProcess_Activity_2001"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="BPMNProcess_Activity_3083" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.BPMNProcess_Activity_3083"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Lane_ActivityPartition_3067" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.Lane_ActivityPartition_3067"/>
@@ -55,88 +55,88 @@
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="ImplicitThrowEvent_CallOperationAction_3010" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.ImplicitThrowEvent_CallOperationAction_3010"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="ImplicitThrowEvent_FlowFinalNode_3006" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.ImplicitThrowEvent_FlowFinalNode_3006"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="TextAnnotation_Comment_3080" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.TextAnnotation_Comment_3080"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.AcceptEventAction_3063" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.AcceptEventAction_3063"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ActivityFinalNode_3005" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ActivityFinalNode_3005"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ActivityParameterNode_3059" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ActivityParameterNode_3059"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.AddStructuralFeatureValueAction_3091" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.AddStructuralFeatureValueAction_3091"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.AddVariableValueAction_3099" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.AddVariableValueAction_3099"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.BroadcastSignalAction_3102" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.BroadcastSignalAction_3102"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.CallOperationAction_3010" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.CallOperationAction_3010"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.CentralBufferNode_3104" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.CentralBufferNode_3104"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.Comment_3080" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.Comment_3080"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.Constraint_3002" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.Constraint_3002"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.Constraint_3003" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.Constraint_3003"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.Constraint_3011" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.Constraint_3011"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.Constraint_3012" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.Constraint_3012"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.Constraint_3112" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.Constraint_3112"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ControlFlow_4004" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ControlFlow_4004"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.CreateObjectAction_3086" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.CreateObjectAction_3086"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.DataStoreNode_3078" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.DataStoreNode_3078"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.DecisionNode_3038" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.DecisionNode_3038"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.DestroyObjectAction_3095" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.DestroyObjectAction_3095"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3034" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3034"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3035" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3035"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ExceptionHandler_4005" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ExceptionHandler_4005"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3074" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3074"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3075" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3075"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.FlowFinalNode_3006" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.FlowFinalNode_3006"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ForkNode_3040" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ForkNode_3040"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InitialNode_3004" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InitialNode_3004"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3019" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3019"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3023" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3023"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3027" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3027"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3048" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3048"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3051" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3051"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3055" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3055"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3062" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3062"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3089" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3089"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3092" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3092"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3093" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3093"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3096" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3096"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3100" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3100"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3101" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3101"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3103" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3103"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3105" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InputPin_3105"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.InterruptibleActivityRegion_3068" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.InterruptibleActivityRegion_3068"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3032" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3032"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3033" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3033"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.JoinNode_3041" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.JoinNode_3041"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.MergeNode_3039" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.MergeNode_3039"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.NamedElement_3085" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.NamedElement_3085"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ObjectFlow_4003" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ObjectFlow_4003"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.OpaqueAction_3007" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.OpaqueAction_3007"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3020" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3020"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3024" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3024"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3064" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3064"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3077" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3077"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3084" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3084"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3087" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3087"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3090" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3090"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3094" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3094"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3098" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3098"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3109" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3109"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3110" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3110"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3111" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3111"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.Parameter_3001" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.Parameter_3001"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ReadSelfAction_3081" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ReadSelfAction_3081"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ReadStructuralFeatureAction_3088" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ReadStructuralFeatureAction_3088"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ReadVariableAction_3097" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ReadVariableAction_3097"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.SendObjectAction_3042" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.SendObjectAction_3042"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.SendSignalAction_3052" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.SendSignalAction_3052"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3036" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3036"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3037" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3037"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3017" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3017"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3022" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3022"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3025" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3025"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3046" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3046"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3049" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3049"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3054" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3054"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3060" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3060"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.uml.diagram.activity.ValueSpecificationAction_3076" elementTypeID="org.eclipse.papyrus.uml.diagram.activity.ValueSpecificationAction_3076"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.AcceptEventAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.AcceptEventAction_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ActivityFinalNode_Shape" elementTypeID="org.eclipse.papyrus.umldi.ActivityFinalNode_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ActivityParameterNode_Shape" elementTypeID="org.eclipse.papyrus.umldi.ActivityParameterNode_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.AddStructuralFeatureValueAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.AddStructuralFeatureValueAction_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.AddVariableValueAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.AddVariableValueAction_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.BroadcastSignalAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.BroadcastSignalAction_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.CallBehaviorAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.CallBehaviorAction_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.CallOperationAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.CallOperationAction_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.CentralBufferNode_Shape" elementTypeID="org.eclipse.papyrus.umldi.CentralBufferNode_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.Comment_Shape" elementTypeID="org.eclipse.papyrus.umldi.Comment_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.Constraint_PreconditionLabel" elementTypeID="org.eclipse.papyrus.umldi.Constraint_PreconditionLabel"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.Constraint_PostconditionLabel" elementTypeID="org.eclipse.papyrus.umldi.Constraint_PostconditionLabel"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.Constraint_LocalPreconditionShape" elementTypeID="org.eclipse.papyrus.umldi.Constraint_LocalPreconditionShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.Constraint_LocalPostconditionShape" elementTypeID="org.eclipse.papyrus.umldi.Constraint_LocalPostconditionShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.Constraint_Shape" elementTypeID="org.eclipse.papyrus.umldi.Constraint_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ControlFlow_Edge" elementTypeID="org.eclipse.papyrus.umldi.ControlFlow_Edge"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.CreateObjectAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.CreateObjectAction_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.DataStoreNode_Shape" elementTypeID="org.eclipse.papyrus.umldi.DataStoreNode_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.DecisionNode_Shape" elementTypeID="org.eclipse.papyrus.umldi.DecisionNode_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.DestroyObjectAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.DestroyObjectAction_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.DurationConstraint_LocalPreconditionShape" elementTypeID="org.eclipse.papyrus.umldi.DurationConstraint_LocalPreconditionShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.DurationConstraint_LocalPostconditionShape" elementTypeID="org.eclipse.papyrus.umldi.DurationConstraint_LocalPostconditionShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ExceptionHandler_Edge" elementTypeID="org.eclipse.papyrus.umldi.ExceptionHandler_Edge"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ExpansionNode_InputShape" elementTypeID="org.eclipse.papyrus.umldi.ExpansionNode_InputShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ExpansionNode_OutputShape" elementTypeID="org.eclipse.papyrus.umldi.ExpansionNode_OutputShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.FlowFinalNode_Shape" elementTypeID="org.eclipse.papyrus.umldi.FlowFinalNode_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ForkNode_Shape" elementTypeID="org.eclipse.papyrus.umldi.ForkNode_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InitialNode_Shape" elementTypeID="org.eclipse.papyrus.umldi.InitialNode_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_OpaqueActionInputShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_OpaqueActionInputShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_CallBehaviorActionArgumentShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_CallBehaviorActionArgumentShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_CallOperationActionArgumentShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_CallOperationActionArgumentShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_CallOperationActionTargetShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_CallOperationActionTargetShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_SendObjectActionRequestShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_SendObjectActionRequestShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_SendObjectActionTargetShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_SendObjectActionTargetShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_SendSignalActionArgumentShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_SendSignalActionArgumentShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_SendSignalActionTargetShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_SendSignalActionTargetShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_ReadStructuralFeatureActionObjectShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_ReadStructuralFeatureActionObjectShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionObjectShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionObjectShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionValueShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionValueShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_DestroyObjectActionTargetShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_DestroyObjectActionTargetShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_AddVariableValueActionInsertAtShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_AddVariableValueActionInsertAtShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_AddVariableValueActionValueShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_AddVariableValueActionValueShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_BroadcastSignalActionArgumentShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_BroadcastSignalActionArgumentShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InputPin_LoopNodeVariableInputShape" elementTypeID="org.eclipse.papyrus.umldi.InputPin_LoopNodeVariableInputShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.InterruptibleActivityRegion_Shape" elementTypeID="org.eclipse.papyrus.umldi.InterruptibleActivityRegion_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.IntervalConstraint_LocalPreconditionShape" elementTypeID="org.eclipse.papyrus.umldi.IntervalConstraint_LocalPreconditionShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.IntervalConstraint_LocalPostconditionShape" elementTypeID="org.eclipse.papyrus.umldi.IntervalConstraint_LocalPostconditionShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.JoinNode_Shape" elementTypeID="org.eclipse.papyrus.umldi.JoinNode_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.MergeNode_Shape" elementTypeID="org.eclipse.papyrus.umldi.MergeNode_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.NamedElement_DefaultShape" elementTypeID="org.eclipse.papyrus.umldi.NamedElement_DefaultShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ObjectFlow_Edge" elementTypeID="org.eclipse.papyrus.umldi.ObjectFlow_Edge"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.OpaqueAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.OpaqueAction_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.OutputPin_OpaqueActionOutputShape" elementTypeID="org.eclipse.papyrus.umldi.OutputPin_OpaqueActionOutputShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.OutputPin_CallBehaviorActionResultShape" elementTypeID="org.eclipse.papyrus.umldi.OutputPin_CallBehaviorActionResultShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.OutputPin_CallOperationActionResultShape" elementTypeID="org.eclipse.papyrus.umldi.OutputPin_CallOperationActionResultShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.OutputPin_AcceptEventActionResultShape" elementTypeID="org.eclipse.papyrus.umldi.OutputPin_AcceptEventActionResultShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.OutputPin_ValueSpecificationActionResultShape" elementTypeID="org.eclipse.papyrus.umldi.OutputPin_ValueSpecificationActionResultShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.OutputPin_ReadSelfActionResultShape" elementTypeID="org.eclipse.papyrus.umldi.OutputPin_ReadSelfActionResultShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.OutputPin_CreateObjectActionResultShape" elementTypeID="org.eclipse.papyrus.umldi.OutputPin_CreateObjectActionResultShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.OutputPin_ReadStructuralFeatureActionResultShape" elementTypeID="org.eclipse.papyrus.umldi.OutputPin_ReadStructuralFeatureActionResultShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.OutputPin_AddStructuralFeatureValueActionResultShape" elementTypeID="org.eclipse.papyrus.umldi.OutputPin_AddStructuralFeatureValueActionResultShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.OutputPin_ReadVariableActionResultShape" elementTypeID="org.eclipse.papyrus.umldi.OutputPin_ReadVariableActionResultShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.OutputPin_LoopNodeBodyOutputShape" elementTypeID="org.eclipse.papyrus.umldi.OutputPin_LoopNodeBodyOutputShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.OutputPin_LoopNodeVariableShape" elementTypeID="org.eclipse.papyrus.umldi.OutputPin_LoopNodeVariableShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.LoopNodeResultShape" elementTypeID="org.eclipse.papyrus.umldi.LoopNodeResultShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.Parameter_ParameterLabel" elementTypeID="org.eclipse.papyrus.umldi.Parameter_ParameterLabel"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ReadSelfAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.ReadSelfAction_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ReadStructuralFeatureAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.ReadStructuralFeatureAction_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ReadVariableAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.ReadVariableAction_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.SendObjectAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.SendObjectAction_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.SendSignalAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.SendSignalAction_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.TimeConstraint_LocalPreconditionShape" elementTypeID="org.eclipse.papyrus.umldi.TimeConstraint_LocalPreconditionShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.TimeConstraint_LocalPostconditionShape" elementTypeID="org.eclipse.papyrus.umldi.TimeConstraint_LocalPostconditionShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ValuePin_OpaqueActionInputShape" elementTypeID="org.eclipse.papyrus.umldi.ValuePin_OpaqueActionInputShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ValuePin_CallBehaviorActionArgumentShape" elementTypeID="org.eclipse.papyrus.umldi.ValuePin_CallBehaviorActionArgumentShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ValuePin_CallOperationActionArgumentShape" elementTypeID="org.eclipse.papyrus.umldi.ValuePin_CallOperationActionArgumentShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ValuePin_CallOperationActionTargetShape" elementTypeID="org.eclipse.papyrus.umldi.ValuePin_CallOperationActionTargetShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ValuePin_SendObjectActionRequestShape" elementTypeID="org.eclipse.papyrus.umldi.ValuePin_SendObjectActionRequestShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ValuePin_SendObjectActionTargetShape" elementTypeID="org.eclipse.papyrus.umldi.ValuePin_SendObjectActionTargetShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ValuePin_SendSignalActionArgumentShape" elementTypeID="org.eclipse.papyrus.umldi.ValuePin_SendSignalActionArgumentShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ValuePin_SendSignalActionTargetShape" elementTypeID="org.eclipse.papyrus.umldi.ValuePin_SendSignalActionTargetShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="org.eclipse.papyrus.umldi.ValueSpecificationAction_Shape" elementTypeID="org.eclipse.papyrus.umldi.ValueSpecificationAction_Shape"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Group_ActivityPartition_3067" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.Group_ActivityPartition_3067"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="SequenceFlow_ControlFlow_4004" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.SequenceFlow_ControlFlow_4004"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="DataObjectReference_DataStoreNode_3078" elementTypeID="org.eclipse.papyrus.bpmn.bPMNProfile.DataObjectReference_DataStoreNode_3078"/>

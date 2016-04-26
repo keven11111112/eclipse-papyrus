@@ -3,9 +3,9 @@
     <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ActivityPartition.gif" xmi:id="_ODZj0RBDEeWXVJ4WhgYiRw"/>
     <specializedTypesID>org.eclipse.papyrus.bpmn.Lane_ActivityPartition</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations hint="3007" identifier="org.eclipse.papyrus.bpmn.process.Task_Action_3007" name="Task Action" xmi:id="_s7UR7gkGEeWVleXnap4Kwg3" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+  <elementTypeConfigurations hint="OpaqueAction_Shape" identifier="org.eclipse.papyrus.bpmn.process.Task_Action_3007" name="Task Action" xmi:id="_s7UR7gkGEeWVleXnap4Kwg3" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/OpaqueAction.gif" xmi:id="_s7UR7wkGEeWVleXnap4Kwg4"/>
     <specializedTypesID>org.eclipse.papyrus.bpmn.Task_OpaqueAction</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.activity.OpaqueAction_3007</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.umldi.OpaqueAction_Shape</specializedTypesID>
   </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>
