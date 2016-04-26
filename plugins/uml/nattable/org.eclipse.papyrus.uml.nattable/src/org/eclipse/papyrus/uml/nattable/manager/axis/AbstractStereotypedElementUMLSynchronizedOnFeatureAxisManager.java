@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 439501
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.manager.axis;
@@ -25,6 +26,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
@@ -120,7 +122,7 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 		if (notification.isTouch()) {
 			return;
 		}
-
+		
 		int eventType = notification.getEventType();
 		List<Object> toAdd = new ArrayList<Object>();
 		List<Object> toRemove = new ArrayList<Object>();
@@ -154,7 +156,11 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 		case Notification.EVENT_TYPE_COUNT:
 			break;
 		case Notification.MOVE:
-			// we ignore it
+			final Collection<EObject> collection = (Collection<EObject>) ((EObject)notification.getNotifier()).eGet((EStructuralFeature) notification.getFeature());
+			final Collection<EObject> subList = getSubFromFirstNotEquals(collection, (Integer)notification.getOldValue(), getIndex(collection, (EObject) notification.getNewValue()));
+			
+			toRemove.addAll(subList);
+			toAdd.addAll(subList);
 			break;
 		case Notification.REMOVE:
 			final Object oldValue = notification.getOldValue();
@@ -196,23 +202,26 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 	}
 
 	/**
-	 *
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#initializeManagedObjectList()
-	 *
 	 */
 	@Override
 	protected void initializeManagedObjectList() {
-		final List<Object> featureValue = getFeaturesValue();
+		final List<Object> featuresValue = getFeaturesValue();
 
+		// Bug 439501: The feature values must be the initial values order
 		// we filter them now
-		for (final EObject current : getTableContext().eResource().getContents()) {
-			if (!(current instanceof Element) && isInstanceOfRequiredStereotypeApplication(current)) {
-				final Element baseElement = UMLUtil.getBaseElement(current);
-				if (baseElement != null) {
-					if (isAllowedContents(baseElement) && featureValue.contains(baseElement)) {
-						this.managedObject.add(baseElement);
-						this.stereotypedElementsMap.put(current, (baseElement));
-						addStereotypeApplicationListener(current);
+		for(final Object featureValue : featuresValue){
+			for (final EObject current : getTableContext().eResource().getContents()) {
+				if (!(current instanceof Element) && isInstanceOfRequiredStereotypeApplication(current)) {
+					final Element baseElement = UMLUtil.getBaseElement(current);
+					if (baseElement != null) {
+						if (featureValue.equals(baseElement) && isAllowedContents(baseElement)) {
+							this.managedObject.add(baseElement);
+							this.stereotypedElementsMap.put(current, (baseElement));
+							addStereotypeApplicationListener(current);
+						}
 					}
 				}
 			}
@@ -231,6 +240,7 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 		if (notification.isTouch()) {
 			return;
 		}
+		
 		int eventType = notification.getEventType();
 		final List<Object> toAdd = new ArrayList<Object>();
 		final List<Object> toRemove = new ArrayList<Object>();
@@ -269,6 +279,11 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 		case Notification.EVENT_TYPE_COUNT:
 			break;
 		case Notification.MOVE:
+			final Collection<EObject> collection = (Collection<EObject>) ((EObject)notification.getNotifier()).eGet((EStructuralFeature) notification.getFeature());
+			final Collection<EObject> subList = getSubFromFirstNotEquals(collection, (Integer)notification.getOldValue(), getIndex(collection, (EObject) notification.getNewValue()));
+			
+			toRemove.addAll(subList);
+			toAdd.addAll(subList);
 			break;
 
 		case Notification.REMOVE:

@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.emf.nattable.manager.axis;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
@@ -348,7 +349,7 @@ public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extend
 		if (notification.isTouch()) {
 			return;
 		}
-
+		
 		int eventType = notification.getEventType();
 		List<Object> toAdd = new ArrayList<Object>();
 		List<Object> toRemove = new ArrayList<Object>();
@@ -372,7 +373,11 @@ public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extend
 		case Notification.EVENT_TYPE_COUNT:
 			break;
 		case Notification.MOVE:
-			// we ignore it
+			final Collection<EObject> collection = (Collection<EObject>) ((EObject)notification.getNotifier()).eGet((EStructuralFeature) notification.getFeature());
+			final Collection<EObject> subList = getSubFromFirstNotEquals(collection, (Integer)notification.getOldValue(), getIndex(collection, (EObject) notification.getNewValue()));
+			
+			toRemove.addAll(subList);
+			toAdd.addAll(subList);
 			break;
 		case Notification.REMOVE:
 			final Object oldValue = notification.getOldValue();
@@ -400,6 +405,61 @@ public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extend
 		if (toAdd.size() > 0 || toRemove.size() > 0) {
 			updateManagedList(toAdd, toRemove);
 		}
+	}
+	
+	/**
+	 * Get the sublist of modified objects from the minimum index between the initial and the modified index.
+	 * 
+	 * @param modifiedObjects The list of modified objects.
+	 * @param initialIndex The initial index of the moved element.
+	 * @param modifiedIndex The modified index of the moved element.
+	 * @return The sublist of modified objects from the minimum index.
+	 */
+	protected Collection<EObject> getSubFromFirstNotEquals(final Collection<EObject> modifiedObjects, final int initialIndex, final int modifiedIndex){
+		final Collection<EObject> subList = new ArrayList<EObject>(modifiedObjects.size());
+		
+		if(initialIndex != modifiedIndex && -1 != modifiedIndex){
+			
+			int minimalindex = initialIndex < modifiedIndex ? initialIndex : modifiedIndex;
+			
+			final Iterator<EObject> modifiedObjectsIterator = modifiedObjects.iterator();
+			int currentIndex = 0;
+			
+			while(modifiedObjectsIterator.hasNext()){
+				final EObject modifiedObject = modifiedObjectsIterator.next();
+				
+				// If the current index is superior of the minimal, add the object to the sublist
+				if(currentIndex >= minimalindex){
+					subList.add(modifiedObject);
+				}
+				currentIndex++;
+			}
+		}
+		
+		return subList;
+	}
+	
+	/**
+	 * Get the index of the searched object in the list, otherwise return -1.
+	 * 
+	 * @param modifiedObjects The list of objects.
+	 * @param searchedObject The searched object.
+	 * @return he index of the searched object in the list, otherwise -1.
+	 */
+	protected int getIndex(final Collection<EObject> modifiedObjects, final EObject searchedObject){
+		int index = 0;
+		boolean found = false;
+		
+		final Iterator<EObject> iterator = modifiedObjects.iterator();
+		while(iterator.hasNext() && !found){
+			if(iterator.next().equals(searchedObject)){
+				found = true;
+			}else{
+				index++;
+			}
+		}
+		
+		return !found ? -1 : index;
 	}
 
 	@Override
