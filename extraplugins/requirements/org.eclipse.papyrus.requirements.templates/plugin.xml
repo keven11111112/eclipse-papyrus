@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.uml.diagram.wizards.templates">
+      <template
+            di_file="resources/Classical_Requirements_Model.di"
+            file="resources/Classical_Requirements_Model.uml"
+            id="org.eclipse.papyrus.requirements.templates.typical"
+            language="sysml"
+            name="Requirements information organized in &quot;Business&quot;, &quot;Concrete&quot; and &quot;Logical Domain&quot; packages"
+            notation_file="resources/Classical_Requirements_Model.notation">
+      </template>
+   </extension>
+
+</plugin>
