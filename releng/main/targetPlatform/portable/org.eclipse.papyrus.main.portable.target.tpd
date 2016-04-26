@@ -1,0 +1,143 @@
+target "Papyrus Main" with requirements source
+
+//manualUpdate
+
+location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20150821153341/repository" {
+
+}
+
+//updateFrom("QVT Operational",0)
+
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.6.0/S201603210408" {
+	org.eclipse.m2m.qvt.oml.sdk.feature.group
+}
+
+//updateFrom("EMF TRANSACTION",0)
+
+location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/milestones" {
+	org.eclipse.emf.transaction.sdk.feature.group
+}
+
+//updateFrom("M2T XPAND",0) 
+
+location xpand "http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201603220642/" {
+	org.eclipse.xpand.sdk.feature.group
+	org.eclipse.xtend.feature.group
+}
+
+//manualUpdate
+
+location nebula "http://download.eclipse.org/technology/nebula/archives/Q12015/release/" {
+	org.eclipse.nebula.widgets.tablecombo.feature.feature.group
+}
+
+//updateFrom("MDT UML2",0) 
+
+location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.2milestones" {
+	org.eclipse.uml2.sdk.feature.group
+}
+
+//updateFrom("GMF Runtime",0) 
+
+location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones" {
+	org.eclipse.gmf.runtime.sdk.feature.group
+}
+
+//updateFrom("Eclipse",0)
+
+location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6M6-201603170200/" {
+	org.eclipse.sdk.feature.group
+}
+
+//updateFrom("MDT OCL 6.0",0) 
+
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201603211840" {
+	org.eclipse.ocl.examples.classic.feature.group
+	org.eclipse.ocl.examples.feature.group
+}
+
+//updateFrom("XWT",0)
+
+location xwt "http://download.eclipse.org/xwt/release-1.1.0" {
+	org.eclipse.xwt.feature.feature.group
+}
+
+//updateFrom("Xtext, Xtend",0) 
+
+location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201603220719/" {
+	org.eclipse.xtext.sdk.feature.group
+	org.eclipse.xtend.sdk.feature.group
+	org.eclipse.xtext.redist.feature.group
+}
+
+//manualUpdate
+
+location nattable "http://download.eclipse.org/nattable/snapshots/507/repository/" {
+	org.eclipse.nebula.widgets.nattable.core.feature.feature.group
+	org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group
+	org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group
+	org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group
+}
+
+//updateFrom("EMFT MWE",0)
+
+location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201603221009/" {
+	org.eclipse.emf.mwe2.language.sdk.feature.group
+}
+
+//updateFrom("EMF Query",0) 
+
+location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/milestones" {
+	org.eclipse.emf.query.sdk.feature.group
+}
+
+//updateFrom("WebTools",0) 
+
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.8.0/S-3.8.0M6-20160324010110/repository/" {
+	org.eclipse.wst.xml_sdk.feature.feature.group
+	org.eclipse.wst.xml_ui.feature.feature.group
+}
+
+//updateFrom("EMF VALIDATION",0)
+
+location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/milestones" {
+	org.eclipse.emf.validation.sdk.feature.group
+}
+
+//updateFrom("Subversive",0) 
+
+location subversive "http://download.eclipse.org/technology/subversive/4.0/neon-site/" {
+	org.eclipse.team.svn.feature.group
+}
+
+//updateFrom("GMF Notation",0)
+
+location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones" {
+	org.eclipse.gmf.runtime.notation.sdk.feature.group
+}
+
+//updateFrom("EMF (Core)",0)
+
+location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.12milestones/" {
+	org.eclipse.emf.sdk.feature.group
+}
+
+//updateFrom("GMF Tooling",0) 
+
+location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.3/S201506090500" {
+	org.eclipse.gmf.tooling.feature.group
+	org.eclipse.gmf.tooling.runtime.feature.group
+	org.eclipse.gmf.tooling.codegen.xtend2.feature.group
+}
+
+//updateFrom("GEF",0)
+
+location gef "http://download.eclipse.org/tools/gef/updates/milestones/4.0.0M6_gef-master_1868" {
+	org.eclipse.gef.feature.group
+}
+
+//Transitive dependencies
+
+//updateFrom("Mylyn",0)
+
+location mylyn "http://download.eclipse.org/mylyn/drops/3.19.0/v20160331-2042"

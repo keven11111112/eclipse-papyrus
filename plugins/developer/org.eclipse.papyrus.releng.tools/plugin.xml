@@ -41,6 +41,10 @@
                               property="org.eclipse.core.resources.extension"
                               value="setup">
                         </test>
+                        <test
+                              property="org.eclipse.core.resources.extension"
+                              value="tpd">
+                        </test>
                      </or>
                   </adapt>
                </iterate>

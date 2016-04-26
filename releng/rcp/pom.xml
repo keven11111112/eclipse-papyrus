@@ -5,7 +5,6 @@
 	    <groupId>org.eclipse.papyrus</groupId>
 	    <artifactId>org.eclipse.papyrus.all.releng</artifactId>
 	    <version>0.0.1-SNAPSHOT</version>
-	    <relativePath>../pom.xml</relativePath>
     </parent>
 	<groupId>org.eclipse.papyrus</groupId>
 	<artifactId>org.eclipse.papyrus.rcp.releng</artifactId>
@@ -15,80 +14,16 @@
 		<module>org.eclipse.papyrus.rcp</module>
 		<module>org.eclipse.papyrus.rcp.feature</module>
 		<module>org.eclipse.papyrus.rcp.product</module>
+		<module>targetPlatform</module>
 	</modules>
 	<properties>
 		<!-- Timestamp used in various places, e.g. the about dialog (see about.mappings) -->
 	    <eclipse.simultaneous.release.build>${maven.build.timestamp}</eclipse.simultaneous.release.build>
 	    <!-- Human readable name of the release, e.g. used in the about dialog (see about.mappings) -->
 	    <eclipse.simultaneous.release.name>Neon Milestone 3 (4.6.0M3)</eclipse.simultaneous.release.name>
+	    <target.platform>org.eclipse.papyrus.rcp.${target.suffix}.target</target.platform>
 	</properties>
 	<repositories>
-		<!-- Modeling features -->
-		<repository>
-			<id>mylyn</id>
-			<layout>p2</layout>
-			<!-- updateFrom("Mylyn",0) -->
-			<url>${mylyn.repo.url}</url>
-		</repository>
-		<repository>
-			<id>emf-query</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EMF Query",0) -->
-			<url>${emf-query.repo.url}</url>
-		</repository>
-		<repository>
-			<id>emf-compare</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EMF Compare",0) -->
-			<url>${emf-compare.repo.url}</url>
-		</repository>
-		<repository>
-			<id>emf-cdo</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EMF CDO",0) -->
-			<url>${emf-cdo.repo.url}</url>
-		</repository>
-		<repository>
-			<id>egit</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EGIT",0) -->
-			<url>${egit.repo.url}</url>
-		</repository>
-		<repository>
-			<id>emft-eef</id>
-			<layout>p2</layout>
-			<!-- updateFrom("Extended Editing Framework (EEF)",0) -->
-			<url>${eef.repo.url}</url>
-		</repository>
-		<repository>
-			<id>M2T ACCELEO</id>
-			<layout>p2</layout>
-			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>${m2t-acceleo.repo.url}</url>
-		</repository>
-		<repository>
-			<id>EPP Logging</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EPP Logging",0) -->
-			<url>${epp-logging.repo.url}</url>
-		</repository>
-		<repository>
-			<id>oomph</id>
-			<layout>p2</layout>
-			<!-- updateFrom("oomph",0) -->
-			<url>${oomph.repo.url}</url>
-		</repository>
-		<!--<repository>
-			<id>ecp</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/ecp/rt/160_2</url>
-		</repository>
-		<repository>
-			<id>emfstore</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/emfstore/rt/150</url>
-		</repository>  -->	
-
 		<!-- Papyrus repository -->
 		<repository>
 			<id>papyrus-main</id>

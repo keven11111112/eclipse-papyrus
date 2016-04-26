@@ -121,7 +121,7 @@ public class UpdateDependenciesHandler extends AbstractHandler {
 	}
 
 	protected static List<IFile> findAggregationBuildFiles() throws CoreException {
-		List<IFile> aggregationBuildFiles = new ArrayList<IFile>();
+		List<IFile> aggregationBuildFiles = new ArrayList<>();
 		IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
 		for (IProject project : projects) {
 			if (!project.isOpen()) {
@@ -202,8 +202,8 @@ public class UpdateDependenciesHandler extends AbstractHandler {
 	protected boolean updateFile(IFile selectedFile, Aggregation aggregationModel, Shell activeShell, Map<Object, Object> context) throws CoreException {
 		boolean result = false;
 
-		List<DependencyUpdater> updaters = findDependencyUpdater(selectedFile);
-		for (DependencyUpdater updater : updaters) {
+		List<DependencyUpdater<?>> updaters = findDependencyUpdater(selectedFile);
+		for (DependencyUpdater<?> updater : updaters) {
 			updater.updateDocument(activeShell, selectedFile, aggregationModel.getAllContributions(true), context);
 			result = true;
 		}
@@ -211,7 +211,7 @@ public class UpdateDependenciesHandler extends AbstractHandler {
 		return result;
 	}
 
-	protected List<DependencyUpdater> findDependencyUpdater(IFile mapFile) throws CoreException {
+	protected List<DependencyUpdater<?>> findDependencyUpdater(IFile mapFile) throws CoreException {
 		final String path = "org/eclipse/papyrus/releng/tools/internal/popup/actions/"; //$NON-NLS-1$
 
 		Bundle bundle = Activator.getDefault().getBundle();
@@ -223,7 +223,7 @@ public class UpdateDependenciesHandler extends AbstractHandler {
 			urls = bundle.findEntries(path, "*.class", false);
 		}
 
-		List<DependencyUpdater> updaters = new LinkedList<>();
+		List<DependencyUpdater<?>> updaters = new LinkedList<>();
 
 		while (urls.hasMoreElements()) {
 			URL classURL = urls.nextElement();
@@ -231,10 +231,11 @@ public class UpdateDependenciesHandler extends AbstractHandler {
 
 			try {
 				String className = classURI.trimFileExtension().lastSegment();
-				if (!"DependencyUpdater".equals(className) && className.endsWith("Updater")) {
+
+				if (!"DependencyUpdater".equals(className) && !"XMLDependencyUpdater".equals(className) && className.endsWith("Updater")) {
 					Class<? extends DependencyUpdater> updaterClass = bundle.loadClass(path.replace('/', '.') + className).asSubclass(DependencyUpdater.class);
 					if (!Modifier.isAbstract(updaterClass.getModifiers())) {
-						DependencyUpdater updater = updaterClass.newInstance();
+						DependencyUpdater<?> updater = updaterClass.newInstance();
 						if (updater.canUpdate(mapFile)) {
 							updaters.add(updater);
 						}
@@ -244,6 +245,8 @@ public class UpdateDependenciesHandler extends AbstractHandler {
 				throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "No such class: " + classURI.lastSegment(), e));
 			} catch (IllegalAccessException | InstantiationException e) {
 				throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to instantiated " + classURI.lastSegment(), e));
+			} catch (Throwable t) { // Classes with missing optional dependencies. Simple Warning
+				Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Failed to instantiate " + classURI.lastSegment(), t));
 			}
 		}
 

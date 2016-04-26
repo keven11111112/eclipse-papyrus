@@ -34,7 +34,7 @@ import org.w3c.dom.Node;
  *
  * The second parameter is the index of the "repositories" element that must be used (in case there are several update sites defined on one contribution).
  */
-public class MapUpdater extends DependencyUpdater {
+public class MapUpdater extends XMLDependencyUpdater {
 
 	public MapUpdater() {
 		super();

@@ -39,12 +39,12 @@
     <!-- A build profile for generation of diagram tests from the GMFGen model. -->
   	<profile>
   		<id>generate-tests</id>
-  		<activation>
-  			<!-- Activate this profile if we detect the folder in which tests should be generated. --> 
-			<file>
-				<exists>test-gen/.gitignore</exists>
-			</file>
-  		</activation>
+	  		<activation>
+	  			<!-- Activate this profile if we detect the folder in which tests should be generated. --> 
+				<file>
+					<exists>test-gen/.gitignore</exists>
+				</file>
+	  		</activation>
 		<build>
 			<plugins>
 				<!-- Empty out the xtend-gen and test-gen folders in the clean phase. -->

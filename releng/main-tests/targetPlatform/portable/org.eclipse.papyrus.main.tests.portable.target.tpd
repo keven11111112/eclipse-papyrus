@@ -1,0 +1,4 @@
+target "Papyrus Tests" with source requirements
+
+include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
+include "../../../dev/targetPlatform/portable/org.eclipse.papyrus.dev.portable.target.tpd"

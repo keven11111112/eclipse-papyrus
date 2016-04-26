@@ -9,7 +9,6 @@
 		<groupId>org.eclipse.papyrus</groupId>
 		<artifactId>org.eclipse.papyrus.all.releng</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>..</relativePath>
 	</parent>
 	<modules>
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.tests</module>
@@ -87,6 +86,7 @@
 		<module>../../tests/junit/plugins/uml/validation/org.eclipse.papyrus.uml.validation.tests</module>
 		<module>../../tests/junit/plugins/uml/validation/org.eclipse.papyrus.uml.validation.tests.genvalidation</module>
 		<module>../../tests/junit/plugins/uml/validation/org.eclipse.papyrus.uml.validation.tests.staticprofile</module>
+		<module>targetPlatform</module>
 	</modules>
 	<properties>
 		<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
@@ -94,29 +94,8 @@
 		<jacoco.version>0.7.4.201502262128</jacoco.version>
 		<!-- Separate property for test argLine seems to be required when running Jacoco + Surefire -->
 		<test.argLine>-Xms512m -Xmx2048m -XX:SoftRefLRUPolicyMSPerMB=100</test.argLine>
+		<target.platform>org.eclipse.papyrus.main.tests.${target.suffix}.target</target.platform>
 	</properties>
-	<repositories>
-		<repository>
-			<id>emf-compare</id>
-			<layout>p2</layout>
-			<url>${emf-compare.repo.url}</url>
-		</repository>
-		<repository>
-			<id>m2t-acceleo</id>
-			<layout>p2</layout>
-			<url>${m2t-acceleo.repo.url}</url>
-		</repository>
-		<repository>
-			<id>swtbot</id>
-			<layout>p2</layout>
-			<url>${swtbot.repo.url}</url>
-		</repository>
-		<repository>
-			<id>UPR</id>
-			<layout>p2</layout>
-			<url>${upr.repo.url}</url>
-		</repository>
-	</repositories>
 	<build>
 		<pluginManagement>
 			<plugins>

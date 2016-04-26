@@ -11,7 +11,7 @@
  *  Christian W. Damus (CEA) - Add support for updating Oomph setup models
  *  Christian W. Damus - Add support for updating multiple development streams in a setup model
  *  Christian W. Damus - Support updating of multiple selected files
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.releng.tools.internal.popup.actions;
 
@@ -53,7 +53,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 
-public class OomphSetupUpdater extends DependencyUpdater {
+public class OomphSetupUpdater extends XMLDependencyUpdater {
 
 	public static final String ANNOTATION_SOURCE = "http://www.eclipse.org/Papyrus/2014/releng/dependencytools";//$NON-NLS-1$
 
@@ -98,7 +98,7 @@ public class OomphSetupUpdater extends DependencyUpdater {
 		NodeList details = annotation.getElementsByTagName("detail"); //$NON-NLS-1$
 		for (int i = 0; i < details.getLength(); i++) {
 			Element next = (Element) details.item(i);
-			if (UPDATE_KEY.equals(next.getAttribute("key"))) { //$NON-NLS-1$ //$NON-NLS-2$
+			if (UPDATE_KEY.equals(next.getAttribute("key"))) { //$NON-NLS-1$
 				String repoSpec = null;
 				if (next.hasAttribute("value")) { //$NON-NLS-1$
 					repoSpec = next.getAttribute("value"); //$NON-NLS-1$
@@ -166,7 +166,7 @@ public class OomphSetupUpdater extends DependencyUpdater {
 		// Use EMF resource serialization to format the file in the EMF style
 		ResourceSet rset = new ResourceSetImpl();
 		Resource resource = rset.createResource(URI.createFileURI(destination.getAbsolutePath()));
-		Map<Object, Object> options = new HashMap<Object, Object>();
+		Map<Object, Object> options = new HashMap<>();
 		options.put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, true);
 		options.put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 		((XMLResource) resource).load(document, options);
@@ -185,7 +185,7 @@ public class OomphSetupUpdater extends DependencyUpdater {
 			return result;
 		}
 
-		final Set<String> repositoryLists = new LinkedHashSet<String>();
+		final Set<String> repositoryLists = new LinkedHashSet<>();
 
 		try (InputStream input = setupFile.getContents()) {
 			SAXParser parser = SAXParserFactory.newInstance().newSAXParser();

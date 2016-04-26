@@ -1,0 +1,71 @@
+target "Papyrus Extra" with requirements source
+
+include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
+
+//updateFrom("EPP Logging",0) 
+
+location aeri "http://download.eclipse.org/technology/epp/logging/milestones/" {
+	org.eclipse.epp.logging.aeri.feature.feature.group
+}
+
+//updateFrom("EMF COMPARE",0) 
+
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201603200413" {
+	org.eclipse.emf.compare.diagram.gmf.source.feature.group
+	org.eclipse.emf.compare.source.feature.group
+	org.eclipse.emf.compare.uml2.source.feature.group
+}
+
+//updateFrom("EMF CDO",0) 
+
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20151216-1133" {
+	org.eclipse.net4j.feature.group
+	org.eclipse.emf.cdo.server.feature.group
+	org.eclipse.emf.cdo.dawn.feature.group
+	org.eclipse.emf.cdo.feature.group
+	org.eclipse.emf.cdo.server.db.feature.group
+}
+
+//updateFrom("M2T ACCELEO",0) 
+
+location acceleo "http://download.eclipse.org/acceleo/updates/milestones/3.6/S201603211409" {
+	org.eclipse.acceleo.runtime.source.feature.group
+	org.eclipse.acceleo.source.feature.group
+	org.eclipse.acceleo.query.source.feature.group
+	org.eclipse.acceleo.sdk.feature.group
+}
+
+//manualUpdate 
+
+location upr "http://download.eclipse.org/upr/0.9RC1/update/" {
+	org.eclipse.upr.utp.feature.feature.group
+}
+
+//manualUpdate 
+
+location rmf "http://download.eclipse.org/rmf/updates/releases" {
+	org.eclipse.rmf.reqif10.sdk.feature.feature.group
+	org.eclipse.rmf.reqif10.pror.sdk.feature.feature.group
+}
+
+//updateFrom("Extended Editing Framework (EEF)",0) 
+
+location eef "http://download.eclipse.org/modeling/emft/eef/updates/releases/1.5/R201601141612/" {
+	org.eclipse.emf.eef.sdk-feature.feature.group
+}
+
+//updateFrom("GEF",0) 
+
+location gef "http://download.eclipse.org/tools/gef/updates/milestones/4.0.0M6_gef-master_1868" {
+	org.eclipse.zest.layouts
+}
+
+//Transitive dependencies
+
+//updateFrom("Graphiti",0)
+
+location graphiti "http://download.eclipse.org/graphiti/updates/milestones/S-0.13.0M6-201603231003/" //
+
+//updateFrom("Sphinx",0)
+
+location sphinx "http://download.eclipse.org/sphinx/previews" //

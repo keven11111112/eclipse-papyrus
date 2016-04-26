@@ -18,8 +18,6 @@
 		<mylyn.wikitext.version>2.4.0-SNAPSHOT</mylyn.wikitext.version>
 		<skipAllTests>false</skipAllTests>
 		<skipInnerTests>true</skipInnerTests>
-		<eclipse.download>http://download.eclipse.org</eclipse.download> <!-- Set to file:/home/data/httpd/download.eclipse.org when building on Eclipse 
-			servers to improve performances -->
 
 		<!-- TODO: Is it possible to automatically detect that we are building 
 			this pom rather than a child pom? That would remove the need for this manual 
@@ -28,67 +26,13 @@
 			components). This will disable Papyrus Update Sites (Since they are being 
 			built by this POM). -->
 
-		<!-- manualUpdate -->
-		<nattable.repo.url>${eclipse.download}/nattable/snapshots/507/repository/</nattable.repo.url>
-
-		<!-- manualUpdate -->
-		<nebula-tablecombo.repo.url>${eclipse.download}/technology/nebula/archives/Q12015/release/</nebula-tablecombo.repo.url>
-
-		<!-- manualUpdate -->
-		<orbit.repo.url>${eclipse.download}/tools/orbit/downloads/drops/R20150821153341/repository</orbit.repo.url>
-
-		<!-- updateFrom("Extended Editing Framework (EEF)",0) -->
-		<eef.repo.url>${eclipse.download}/modeling/emft/eef/updates/releases/1.5/R201601141612/</eef.repo.url>
-
-		<!-- manualUpdate -->
-		<rmf.repo.url>${eclipse.download}/rmf/updates/releases</rmf.repo.url>
-
-		<!-- manualUpdate -->
-		<swtbot.repo.url>${eclipse.download}/technology/swtbot/snapshots</swtbot.repo.url>
-
-		<!-- updateFrom("CDT",0) -->
-		<cdt.repo.url>${eclipse.download}/tools/cdt/builds/neon/milestones/m6a</cdt.repo.url>
-
-		<!-- updateFrom("CDT",1) -->
-		<cdt.launchbar.repo.url>${eclipse.download}/tools/cdt/launchbar/neon.m6</cdt.launchbar.repo.url>
-
-		<!-- updateFrom("EMF CDO",0) -->
-		<emf-cdo.repo.url>${eclipse.download}/modeling/emf/cdo/drops/S20151216-1133</emf-cdo.repo.url>
-
-		<!-- updateFrom("EMF COMPARE",0) -->
-		<emf-compare.repo.url>${eclipse.download}/modeling/emf/compare/updates/milestones/3.2/S201603200413</emf-compare.repo.url>
-
-		<!-- updateFrom("EMF Query",0) -->
-		<emf-query.repo.url>${eclipse.download}/modeling/emf/query/updates/milestones</emf-query.repo.url>
-
-		<!-- updateFrom("M2T ACCELEO",0) -->
-		<m2t-acceleo.repo.url>${eclipse.download}/acceleo/updates/milestones/3.6/S201603211409</m2t-acceleo.repo.url>
-
-		<!-- manualUpdate -->
-		<upr.repo.url>${eclipse.download}/upr/0.9RC1/update/</upr.repo.url>
-
-		<!-- manualUpdate -->
-		<b3.repo.url>${eclipse.download}/modeling/emft/b3/updates-4.4</b3.repo.url>
-
-		<!-- updateFrom("Mylyn",0) -->
-		<mylyn.repo.url>${eclipse.download}/mylyn/drops/3.19.0/v20160331-2042</mylyn.repo.url>
-
-		<!-- updateFrom("EGIT",0) -->
-		<egit.repo.url>${eclipse.download}/egit/updates-4.3</egit.repo.url>
-
-		<!-- updateFrom("EPP Logging",0) -->
-		<epp-logging.repo.url>${eclipse.download}/technology/epp/logging/milestones/</epp-logging.repo.url>
-
-		<!-- updateFrom("oomph",0) -->
-		<oomph.repo.url>${eclipse.download}/oomph/drops/milestone/S20160324-055722-1.4.0-M6a</oomph.repo.url>
-
 		<!-- Papyrus repositories. Used when we're building individual components 
 			(vs building the parent pom including everything) -->
 		<papyrus.eclipse.target>neon</papyrus.eclipse.target>
 		<papyrus.repo.main>${eclipse.download}/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/main</papyrus.repo.main>
 		<papyrus.repo.extra>${eclipse.download}/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/extra</papyrus.repo.extra>
 		<papyrus.repo.dev>https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/lastSuccessfulBuild/artifact/repository/</papyrus.repo.dev>
-
+		<target.suffix>portable</target.suffix> <!-- set to 'eclipse' when building on HIPP, to improve performances -->
 	</properties>
 
 	<modules>
@@ -117,129 +61,6 @@
 			<url>https://repo.eclipse.org/content/repositories/mylyn/</url>
 		</pluginRepository>
 	</pluginRepositories>
-
-	<repositories>
-		<repository>
-			<id>emf-emf</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EMF (Core)",0) -->
-			<url>${eclipse.download}/modeling/emf/emf/updates/2.12milestones/</url>
-		</repository>
-		<repository>
-			<id>emft-mwe</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EMFT MWE",0) -->
-			<url>${eclipse.download}/modeling/emft/mwe/updates/milestones/S201603221009/</url>
-		</repository>
-		<repository>
-			<id>emf-transaction</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EMF TRANSACTION",0) -->
-			<url>${eclipse.download}/modeling/emf/transaction/updates/milestones</url>
-		</repository>
-		<repository>
-			<id>emf-validation</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EMF VALIDATION",0) -->
-			<url>${eclipse.download}/modeling/emf/validation/updates/milestones</url>
-		</repository>
-		<repository>
-			<id>ep</id>
-			<layout>p2</layout>
-			<!-- updateFrom("Eclipse",0) -->
-			<url>${eclipse.download}/eclipse/updates/4.6-I-builds/I20160428-0800/</url>
-		</repository>
-		<repository>
-			<id>gef</id>
-			<layout>p2</layout>
-			<!-- updateFrom("GEF",0) -->
-			<url>${eclipse.download}/tools/gef/updates/milestones/4.0.0M6_gef-master_1868</url>
-		</repository>
-		<repository>
-			<id>gmp-gmf-notation</id>
-			<layout>p2</layout>
-			<!-- updateFrom("GMF Notation",0) -->
-			<url>${eclipse.download}/modeling/gmp/gmf-notation/updates/milestones</url>
-		</repository>
-		<repository>
-			<id>gmp-gmf-runtime</id>
-			<layout>p2</layout>
-			<!-- updateFrom("GMF Runtime",0) -->
-			<url>${eclipse.download}/modeling/gmp/gmf-runtime/updates/milestones</url>
-		</repository>
-		<repository>
-			<id>gmf-tooling</id>
-			<layout>p2</layout>
-			<!-- updateFrom("GMF Tooling",0) -->
-			<url>${eclipse.download}/modeling/gmp/gmf-tooling/updates/milestones-3.3/S201506090500</url>
-		</repository>
-		<repository>
-			<id>m2t-xpand</id>
-			<layout>p2</layout>
-			<!-- updateFrom("M2T XPAND",0) -->
-			<url>${eclipse.download}/modeling/m2t/xpand/updates/milestones/S201603220642/</url>
-		</repository>
-		<repository>
-			<id>mdt-ocl</id>
-			<layout>p2</layout>
-			<!-- updateFrom("MDT OCL 6.0",0) -->
-			<url>${eclipse.download}/modeling/mdt/ocl/updates/milestones/6.1.0/S201603211840</url>
-		</repository>
-		<repository>
-			<id>mdt-uml2</id>
-			<layout>p2</layout>
-			<!-- updateFrom("MDT UML2",0) -->
-			<url>${eclipse.download}/modeling/mdt/uml2/updates/5.2milestones</url>
-		</repository>
-		<repository>
-			<id>mmt-qvto</id>
-			<layout>p2</layout>
-			<!-- updateFrom("QVT Operational",0) -->
-			<url>${eclipse.download}/mmt/qvto/updates/milestones/3.6.0/S201603210408</url>
-		</repository>
-		<repository>
-			<id>nattable</id>
-			<layout>p2</layout>
-			<!-- manualUpdate -->
-			<url>${nattable.repo.url}</url>
-		</repository>
-
-		<!-- Bug 468668: Reinstate and update this when the TableCombo has a new 
-			release for Mars or later. <repository> <id>nebula-tablecombo</id> <layout>p2</layout> 
-			<url>http://download.eclipse.org/technology/nebula/archives/Q12015/release/</url> 
-			</repository> -->
-
-		<repository>
-			<id>orbit</id>
-			<layout>p2</layout>
-			<!-- manualUpdate -->
-			<url>${orbit.repo.url}</url>
-		</repository>
-		<repository>
-			<id>tmf-xtext</id>
-			<layout>p2</layout>
-			<!-- updateFrom("Xtext, Xtend",0) -->
-			<url>${eclipse.download}/modeling/tmf/xtext/updates/milestones/head/S201603220719/</url>
-		</repository>
-		<repository>
-			<id>webtools</id>
-			<layout>p2</layout>
-			<!-- updateFrom("WebTools",0) -->
-			<url>${eclipse.download}/webtools/downloads/drops/R3.8.0/S-3.8.0M6-20160324010110/repository/</url>
-		</repository>
-		<repository>
-			<id>XWT</id>
-			<layout>p2</layout>
-			<!-- updateFrom("XWT",0) -->
-			<url>${eclipse.download}/xwt/release-1.1.0</url>
-		</repository>
-		<repository>
-			<id>subversive</id>
-			<layout>p2</layout>
-			<!-- updateFrom("Subversive",0) -->
-			<url>${eclipse.download}/technology/subversive/4.0/neon-site/</url>
-		</repository>
-	</repositories>
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -260,6 +81,17 @@
 					<groupId>org.eclipse.xtend</groupId>
 					<artifactId>xtend-maven-plugin</artifactId>
 					<version>${xtext.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-maven-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<extensions>true</extensions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-p2-repository-plugin</artifactId>
+					<version>${tycho-version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
@@ -293,6 +125,13 @@
 								<arch>x86_64</arch>
 							</environment>
 						</environments>
+						<target>
+							<artifact>
+								<groupId>org.eclipse.papyrus</groupId>
+								<artifactId>${target.platform}</artifactId>
+								<version>0.0.1-SNAPSHOT</version>
+							</artifact>
+						</target>
 					</configuration>
 				</plugin>
 			</plugins>

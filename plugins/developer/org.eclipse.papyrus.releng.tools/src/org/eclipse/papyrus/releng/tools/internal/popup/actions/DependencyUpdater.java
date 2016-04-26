@@ -11,11 +11,10 @@
  *     Christian W. Damus (CEA) - Add support for updating Oomph setup models
  *     Christian W. Damus - Support updating of multiple selected files
  *     Christian W. Damus - Ignore equivalent URL prefixes in detecting suspicious updates
- *      
+ *
  *******************************************************************************/
 package org.eclipse.papyrus.releng.tools.internal.popup.actions;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -23,17 +22,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathFactory;
 
 import org.eclipse.b3.aggregator.Contribution;
 import org.eclipse.b3.aggregator.MappedRepository;
@@ -63,11 +51,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ListSelectionDialog;
-import org.w3c.dom.Comment;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -75,8 +58,20 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-
-public abstract class DependencyUpdater {
+/**
+ * Generic DependencyUpdater
+ *
+ * This class will read a B3 Aggregator model (e.g. from Simrel) to find up-to-date P2 repositories.
+ *
+ * Subclasses will then be able to update the relevant <T> element (e.g. XML Dom Node, EMF EObject...)
+ * with the new repository location
+ *
+ * The matching is typically done via comments using the following format: updateFrom(repositoryLabel, index)
+ * It is up to subclasses to retrieve these comments in their model (XML Document, EMF Model)
+ *
+ * @param <T>
+ */
+public abstract class DependencyUpdater<T> {
 
 	private final Pattern commentPattern = Pattern.compile("updateFrom\\s*\\(\\s*\"(.*?)\"\\s*,\\s*(\\d+)\\s*\\)"); //$NON-NLS-1$
 
@@ -92,24 +87,15 @@ public abstract class DependencyUpdater {
 
 	public abstract boolean canUpdate(IFile file);
 
+	protected abstract List<T> getNodesToUpdate(IFile file) throws CoreException;
+
 	public void updateDocument(final Shell parentShell, final IFile mapFile, final EList<Contribution> contributions, final Map<Object, Object> context) throws CoreException {
 		try {
-			File rmapFile = mapFile.getLocation().toFile();
-
-			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-			Document doc = docBuilder.parse(rmapFile);
-			doc.normalize();
-			Element documentElement = doc.getDocumentElement();
-
-			XPath xpath = XPathFactory.newInstance().newXPath();
-			NodeList uris = (NodeList) xpath.evaluate(getXpath(), documentElement, XPathConstants.NODESET);
-			List<UpdateItem> updates = Lists.newArrayList();
-			for (int i = 0; i < uris.getLength(); i++) {
-				Node uri = uris.item(i);
-				Node precedingComment = getPrecedingComment(uri);
-				if (precedingComment != null) {
-					String comment = getCommentContent(precedingComment);
+			List<T> nodesToUpdate = getNodesToUpdate(mapFile);
+			List<UpdateItem<T>> updates = Lists.newArrayList();
+			for (T uri : nodesToUpdate) {
+				String comment = getComment(uri);
+				if (comment != null) {
 					Matcher matcher = getCommentPattern().matcher(comment);
 					if (matcher.find()) {
 						String contributionName = matcher.group(1);
@@ -118,7 +104,7 @@ public abstract class DependencyUpdater {
 						if (contribution == null) {
 							throw new RuntimeException("'updateFrom' failed: cannot find contribution with label \"" + contributionName + "\""); //$NON-NLS-1$ //$NON-NLS-2$
 						}
-						updates.add(new UpdateItem(uri, contribution, repositoryIndex));
+						updates.add(new UpdateItem<>(uri, contribution, repositoryIndex));
 					} else if (comment.contains("updateFrom")) { //$NON-NLS-1$
 						throw new Exception("Wrong syntax for 'updateFrom' : should be " + getCommentSyntax()); //$NON-NLS-1$
 					}
@@ -126,11 +112,11 @@ public abstract class DependencyUpdater {
 			}
 
 			if (confirmUpdates(parentShell, updates, context)) {
-				for (UpdateItem next : updates) {
+				for (UpdateItem<T> next : updates) {
 					updateWithContribution(parentShell, next.uriNode, next.contribution, next.repositoryIndex, context);
 				}
 
-				save(doc, rmapFile);
+				save(mapFile);
 
 				mapFile.refreshLocal(IResource.DEPTH_ZERO, new NullProgressMonitor());
 			}
@@ -141,16 +127,9 @@ public abstract class DependencyUpdater {
 		}
 	}
 
-	protected void save(Document document, File destination) throws Exception {
-		Transformer transformer = TransformerFactory.newInstance().newTransformer();
-		transformer.setOutputProperty(OutputKeys.INDENT, "yes"); //$NON-NLS-1$
+	abstract protected void save(IFile file) throws Exception;
 
-		StreamResult result = new StreamResult(destination);
-		DOMSource source = new DOMSource(document);
-		transformer.transform(source, result);
-	}
-
-	protected void updateWithContribution(final Shell parentShell, final Node uri, final Contribution contribution, final int repositoryIndex, final Map<Object, Object> context) {
+	protected void updateWithContribution(final Shell parentShell, final T uri, final Contribution contribution, final int repositoryIndex, final Map<Object, Object> context) {
 		EList<MappedRepository> repositories = contribution.getRepositories();
 		if (repositoryIndex >= repositories.size()) {
 			throw new RuntimeException("wrong index in updateFrom(\"" + contribution.getLabel() + "\"" + repositoryIndex //$NON-NLS-1$ //$NON-NLS-2$
@@ -161,9 +140,9 @@ public abstract class DependencyUpdater {
 		updateUri(uri, location);
 	}
 
-	protected abstract String getCurrentLocation(Node uri);
+	protected abstract String getCurrentLocation(T uri);
 
-	protected abstract void updateUri(Node uri, String location);
+	protected abstract void updateUri(T uri, String location);
 
 	protected Contribution findContribution(Iterable<? extends Contribution> contributions, final String contributionName) {
 		Contribution matchingContribution = null;
@@ -175,36 +154,19 @@ public abstract class DependencyUpdater {
 		return matchingContribution;
 	}
 
-	protected Node getPrecedingComment(final Node node) {
-		Comment comment = null;
-		Node previous = node.getPreviousSibling();
-		while (previous != null) {
-			if (previous.getNodeType() == Node.COMMENT_NODE) {
-				comment = (Comment) previous;
-				break;
-			} else if (previous.getNodeType() != Node.TEXT_NODE) {
-				break;
-			}
-			previous = previous.getPreviousSibling();
-		}
-		return comment;
-	}
+	protected abstract String getComment(T node);
 
 	protected Pattern getCommentPattern() {
 		return commentPattern;
-	}
-
-	protected String getCommentContent(Node comment) {
-		return comment.getTextContent();
 	}
 
 	protected String getCommentSyntax() {
 		return "updateFrom(\"<contributionName>\",<index>)"; //$NON-NLS-1$
 	}
 
-	protected abstract String getXpath();
 
-	private boolean promptToReplaceSingle(Shell parentShell, LocationUpdate locationUpdate, Map<Object, Object> context) {
+
+	private boolean promptToReplaceSingle(Shell parentShell, LocationUpdate<T> locationUpdate, Map<Object, Object> context) {
 		String message = NLS.bind("{0}\n\nUpdate anyways?", locationUpdate.strategy.getUpdateConfirmationMessage(locationUpdate.update, locationUpdate.oldLocation, locationUpdate.newLocation)); //$NON-NLS-1$
 		boolean result = MessageDialog.openQuestion(parentShell, "Confirm Location Update", message);
 		setReplace(locationUpdate.update, result, context);
@@ -212,11 +174,11 @@ public abstract class DependencyUpdater {
 		return result;
 	}
 
-	private Boolean getReplace(UpdateItem update, Map<Object, Object> context) {
+	private Boolean getReplace(UpdateItem<T> update, Map<Object, Object> context) {
 		return (Boolean) context.get("$replace$::" + update.contribution.getLabel()); //$NON-NLS-1$
 	}
 
-	private void setReplace(UpdateItem update, Boolean replace, Map<Object, Object> context) {
+	private void setReplace(UpdateItem<T> update, Boolean replace, Map<Object, Object> context) {
 		context.put("$replace$::" + update.contribution.getLabel(), replace); //$NON-NLS-1$
 	}
 
@@ -224,13 +186,13 @@ public abstract class DependencyUpdater {
 	 * Prompt to confirm multiple suspicious dependency replacements, returning those updates that the
 	 * user confirms to perform.
 	 */
-	private Collection<LocationUpdate> promptToReplaceMultiple(Shell parentShell, Collection<? extends LocationUpdate> locationUpdates, Map<Object, Object> context) {
-		final List<LocationUpdate> result = Lists.newArrayList(locationUpdates);
+	private Collection<LocationUpdate<T>> promptToReplaceMultiple(Shell parentShell, Collection<? extends LocationUpdate<T>> locationUpdates, Map<Object, Object> context) {
+		final List<LocationUpdate<T>> result = Lists.newArrayList(locationUpdates);
 
 		ILabelProvider labels = new LabelProvider() {
 			@Override
 			public String getText(Object element) {
-				return ((LocationUpdate) element).update.contribution.getLabel();
+				return ((LocationUpdate<?>) element).update.contribution.getLabel();
 			}
 		};
 
@@ -261,7 +223,7 @@ public abstract class DependencyUpdater {
 						if (sel.isEmpty()) {
 							details.setText(""); //$NON-NLS-1$
 						} else {
-							LocationUpdate update = (LocationUpdate) sel.getFirstElement();
+							LocationUpdate<?> update = (LocationUpdate<?>) sel.getFirstElement();
 							details.setText(update.strategy.getUpdateConfirmationMessage(update.update, update.oldLocation, update.newLocation));
 						}
 					}
@@ -273,8 +235,8 @@ public abstract class DependencyUpdater {
 		dialog.setTitle("Confirm Location Update");
 		if (dialog.open() == Window.OK) {
 			Set<?> toUpdate = ImmutableSet.copyOf(dialog.getResult());
-			for (Iterator<LocationUpdate> iter = result.iterator(); iter.hasNext();) {
-				LocationUpdate next = iter.next();
+			for (Iterator<LocationUpdate<T>> iter = result.iterator(); iter.hasNext();) {
+				LocationUpdate<T> next = iter.next();
 
 				boolean update = toUpdate.contains(next);
 				setReplace(next.update, update, context);
@@ -290,11 +252,11 @@ public abstract class DependencyUpdater {
 		return result;
 	}
 
-	private boolean confirmUpdates(final Shell parentShell, List<UpdateItem> updates, Map<Object, Object> context) {
-		Map<UpdateItem, LocationUpdate> toPrompt = Maps.newHashMap();
+	private boolean confirmUpdates(final Shell parentShell, List<UpdateItem<T>> updates, Map<Object, Object> context) {
+		Map<UpdateItem<T>, LocationUpdate<T>> toPrompt = Maps.newHashMap();
 
-		for (Iterator<UpdateItem> iter = updates.iterator(); iter.hasNext();) {
-			UpdateItem next = iter.next();
+		for (Iterator<UpdateItem<T>> iter = updates.iterator(); iter.hasNext();) {
+			UpdateItem<T> next = iter.next();
 
 			// Check for previous prompt answer
 			Boolean previousAnswer = getReplace(next, context);
@@ -317,7 +279,7 @@ public abstract class DependencyUpdater {
 					if ((current != null) && !current.isEmpty()) {
 						LocationUpdateStrategy strategy = findLocationUpdateStrategy(next, current, location);
 						if (strategy != null) {
-							toPrompt.put(next, new LocationUpdate(next, strategy, current, location));
+							toPrompt.put(next, new LocationUpdate<>(next, strategy, current, location));
 						}
 					}
 				}
@@ -327,8 +289,8 @@ public abstract class DependencyUpdater {
 		if (!toPrompt.isEmpty()) {
 			if (toPrompt.size() == 1) {
 				// Simple dialog
-				UpdateItem update = Iterables.getOnlyElement(toPrompt.keySet());
-				LocationUpdate location = toPrompt.get(update);
+				UpdateItem<T> update = Iterables.getOnlyElement(toPrompt.keySet());
+				LocationUpdate<T> location = toPrompt.get(update);
 				if (!promptToReplaceSingle(parentShell, location, context)) {
 					updates.remove(update);
 				}
@@ -342,7 +304,7 @@ public abstract class DependencyUpdater {
 		return !updates.isEmpty();
 	}
 
-	private LocationUpdateStrategy findLocationUpdateStrategy(UpdateItem update, String oldLocation, String newLocation) {
+	private LocationUpdateStrategy findLocationUpdateStrategy(UpdateItem<T> update, String oldLocation, String newLocation) {
 		LocationUpdateStrategy result = null;
 
 		for (LocationUpdateStrategy next : locationUpdateStrategies) {
@@ -359,12 +321,12 @@ public abstract class DependencyUpdater {
 	// Nested types
 	//
 
-	private static class UpdateItem {
-		final Node uriNode;
+	private static class UpdateItem<T> {
+		final T uriNode;
 		final Contribution contribution;
 		final int repositoryIndex;
 
-		UpdateItem(Node uriNode, Contribution contribution, int repositoryIndex) {
+		UpdateItem(T uriNode, Contribution contribution, int repositoryIndex) {
 			super();
 
 			this.uriNode = uriNode;
@@ -373,13 +335,13 @@ public abstract class DependencyUpdater {
 		}
 	}
 
-	private static class LocationUpdate {
-		final UpdateItem update;
+	private static class LocationUpdate<T> {
+		final UpdateItem<T> update;
 		final LocationUpdateStrategy strategy;
 		final String oldLocation;
 		final String newLocation;
 
-		LocationUpdate(UpdateItem update, LocationUpdateStrategy strategy, String oldLocation, String newLocation) {
+		LocationUpdate(UpdateItem<T> update, LocationUpdateStrategy strategy, String oldLocation, String newLocation) {
 			super();
 
 			this.update = update;
@@ -392,9 +354,9 @@ public abstract class DependencyUpdater {
 	private interface LocationUpdateStrategy {
 		Pattern URL_PREFIX_PATTERN = Pattern.compile("^(?:\\$\\{[^}]+\\}/|\\Qhttp://download.eclipse.org/\\E)"); //$NON-NLS-1$
 
-		boolean shouldAutoUpdate(UpdateItem update, String oldLocation, String newLocation);
+		boolean shouldAutoUpdate(UpdateItem<?> update, String oldLocation, String newLocation);
 
-		String getUpdateConfirmationMessage(UpdateItem update, String oldLocation, String newLocation);
+		String getUpdateConfirmationMessage(UpdateItem<?> update, String oldLocation, String newLocation);
 
 		default boolean hasRecognizedURLPrefix(String location) {
 			return URL_PREFIX_PATTERN.matcher(location).find();
@@ -437,12 +399,12 @@ public abstract class DependencyUpdater {
 		private final Pattern typicalBuildTimestampPattern = Pattern.compile("[NISMR](?:-\\d+\\.\\d+(?:\\.\\d+)?(?:M|RC)\\d[abcd]-)?20\\d\\d[-0-9]+"); //$NON-NLS-1$
 
 		@Override
-		public boolean shouldAutoUpdate(UpdateItem update, String oldLocation, String newLocation) {
+		public boolean shouldAutoUpdate(UpdateItem<?> update, String oldLocation, String newLocation) {
 			return matchURLPattern(typicalBuildTimestampPattern, oldLocation, newLocation);
 		}
 
 		@Override
-		public String getUpdateConfirmationMessage(UpdateItem update, String oldLocation, String newLocation) {
+		public String getUpdateConfirmationMessage(UpdateItem<?> update, String oldLocation, String newLocation) {
 			return NLS.bind("The new location \"{0}\" for project \"{1}\" is not like the current location \"{2}\". This could roll back to an older (obsolete) build.", new Object[] { newLocation, update.contribution.getLabel(), oldLocation });
 		}
 	}
@@ -451,7 +413,7 @@ public abstract class DependencyUpdater {
 		private final Pattern typicalMilestonesPattern = Pattern.compile("\\d+\\.\\d+(milestones|interim)$"); //$NON-NLS-1$
 
 		@Override
-		public boolean shouldAutoUpdate(UpdateItem update, String oldLocation, String newLocation) {
+		public boolean shouldAutoUpdate(UpdateItem<?> update, String oldLocation, String newLocation) {
 			boolean result = true; // Optimistically assume sameness if we can't find any milestones/interim segment
 
 			Matcher oldMatcher = typicalMilestonesPattern.matcher(oldLocation);
@@ -470,7 +432,7 @@ public abstract class DependencyUpdater {
 		}
 
 		@Override
-		public String getUpdateConfirmationMessage(UpdateItem update, String oldLocation, String newLocation) {
+		public String getUpdateConfirmationMessage(UpdateItem<?> update, String oldLocation, String newLocation) {
 			return NLS.bind("The current location \"{2}\" for project \"{1}\" provides interim builds. Updating from \"{0}\" could roll back to a previous milestone build.", new Object[] { newLocation, update.contribution.getLabel(), oldLocation });
 		}
 	}

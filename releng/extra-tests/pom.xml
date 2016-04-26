@@ -9,11 +9,11 @@
 	    <groupId>org.eclipse.papyrus</groupId>
 	    <artifactId>org.eclipse.papyrus.all.releng</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-	    <relativePath>..</relativePath>
   </parent>
   <properties>
   	<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
    	<testSuiteClass>org.eclipse.papyrus.tests.extra.AllTests</testSuiteClass>
+   	<target.platform>org.eclipse.papyrus.extra.tests.${target.suffix}.target</target.platform>
   </properties>
   <modules>
 	<!-- Extra-tests modules -->
@@ -40,44 +40,9 @@
 	<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.service.types.tests</module>
 	<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.tests</module>
 	
+	<module>targetPlatform</module>
+	
    </modules>
-	<repositories>
-		<repository>
-			<id>cdt</id>
-			<layout>p2</layout>
-			<url>${cdt.repo.url}</url>
-		</repository>
-		<repository>
-			<id>cdt-launchbar</id>
-			<layout>p2</layout>
-			<url>${cdt.launchbar.repo.url}</url>
-		</repository>
-		<repository>
-			<id>emf-cdo</id>
-			<layout>p2</layout>
-			<url>${emf-cdo.repo.url}</url>
-		</repository>
-		<repository>
-			<id>emf-compare</id>
-			<layout>p2</layout>
-			<url>${emf-compare.repo.url}</url>
-		</repository>
-		<repository>
-			<id>emf-query</id>
-			<layout>p2</layout>
-			<url>${emf-query.repo.url}</url>
-		</repository>
-		<repository>
-			<id>m2t-acceleo</id>
-			<layout>p2</layout>
-			<url>${m2t-acceleo.repo.url}</url>
-		</repository>
-		<repository>
-			<id>RMF</id>
-			<layout>p2</layout>
-			<url>${rmf.repo.url}</url>
-		</repository>
-	</repositories>
 	<build>
 		<pluginManagement>
 			<plugins>

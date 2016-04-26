@@ -9,8 +9,12 @@
 		<groupId>org.eclipse.papyrus</groupId>
 		<artifactId>org.eclipse.papyrus.all.releng</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>..</relativePath>
 	</parent>
+	
+	<properties>
+		<target.platform>org.eclipse.papyrus.dev.${target.suffix}.target</target.platform>
+	</properties>
+	
 	<modules>
 		<module>../../features/papyrus-dev-features/org.eclipse.papyrus.dev.feature</module>
 		<module>../../features/papyrus-dev-features/org.eclipse.papyrus.junit.feature</module>
@@ -24,34 +28,8 @@
 		<module>../../tests/junit/plugins/junit/org.eclipse.papyrus.junit.framework</module>
 		<module>../../tests/junit/plugins/junit/org.eclipse.papyrus.junit.utils</module>
 		<module>site</module>
+		<module>targetPlatform</module>
 	</modules>
-	<repositories>
-		<repository>
-			<id>nebula-tablecombo</id>
-			<layout>p2</layout>
-			<url>${nebula-tablecombo.repo.url}</url>
-		</repository>
-		<repository>
-			<id>m2t-acceleo</id>
-			<layout>p2</layout>
-			<url>${m2t-acceleo.repo.url}</url>
-		</repository>
-		<repository>
-			<id>b3</id>
-			<layout>p2</layout>
-			<url>${b3.repo.url}</url>
-		</repository>
-		<repository>
-			<id>oomph</id>
-			<layout>p2</layout>
-			<url>${oomph.repo.url}</url>
-		</repository>
-		<repository>
-			<id>UPR</id>
-			<layout>p2</layout>
-			<url>${upr.repo.url}</url>
-		</repository>
-	</repositories>
 	<build>
 		<pluginManagement>
 			<plugins>

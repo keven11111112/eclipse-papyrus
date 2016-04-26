@@ -4,30 +4,33 @@
 	<artifactId>org.eclipse.papyrus.releng</artifactId>
 	<packaging>pom</packaging>
 	<parent>
-	    <groupId>org.eclipse.papyrus</groupId>
-	    <artifactId>org.eclipse.papyrus.all.releng</artifactId>
-	    <version>0.0.1-SNAPSHOT</version>
-    </parent>
+		<groupId>org.eclipse.papyrus</groupId>
+		<artifactId>org.eclipse.papyrus.all.releng</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 	<modules>
 		<module>../../plugins</module>
 		<module>../../features/papyrus-main-features</module>
+		<module>targetPlatform</module>
 		<module>site</module>
 	</modules>
 
 	<repositories>
-		<!-- Bug 468668: Reinstate and update this when the TableCombo has a new release for Mars or later.
-        <repository>
-            <id>nebula-tablecombo</id>
-            <layout>p2</layout>
-            <url>http://download.eclipse.org/technology/nebula/archives/Q12015/release/</url>
-        </repository>
-        -->
+		<!-- Bug 468668: Reinstate and update this when the TableCombo has a new 
+			release for Mars or later. <repository> <id>nebula-tablecombo</id> <layout>p2</layout> 
+			<url>http://download.eclipse.org/technology/nebula/archives/Q12015/release/</url> 
+			</repository> -->
 	</repositories>
+	
+	<properties>
+		<target.platform>org.eclipse.papyrus.main.${target.suffix}.target</target.platform>
+	</properties>
+	
 	<build>
 		<pluginManagement>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.2</version>
 					<configuration>
@@ -55,33 +58,34 @@
 					<artifactId>xtend-maven-plugin</artifactId>
 					<version>${xtext.version}</version>
 				</plugin>
-	            <plugin>
-	                <groupId>org.eclipse.tycho</groupId>
-	                <artifactId>tycho-compiler-plugin</artifactId>
-	                <version>${tycho-version}</version>
-	                <configuration>
-	                    <optimize>true</optimize>
-	                    <showWarnings>true</showWarnings>
-	                    <!-- Tycho build using the project's JDT settings. -->
-	                    <useProjectSettings>true</useProjectSettings>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-maven-plugin</artifactId>
-				<version>${tycho-version}</version>
-				<extensions>true</extensions>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>target-platform-configuration</artifactId>
-			</plugin>
-	            <plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-compiler-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<configuration>
+						<optimize>true</optimize>
+						<showWarnings>true</showWarnings>
+						<!-- Tycho build using the project's JDT settings. -->
+						<useProjectSettings>true</useProjectSettings>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-maven-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<extensions>true</extensions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>target-platform-configuration</artifactId>
+				</plugin>
+				<plugin>
 					<groupId>org.eclipse.mylyn.docs</groupId>
 					<artifactId>org.eclipse.mylyn.wikitext.core.maven</artifactId>
 					<version>${mylyn.wikitext.version}</version>
 				</plugin>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -105,7 +109,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<execute/>
+										<execute />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -126,10 +130,6 @@
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>target-platform-configuration</artifactId>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
@@ -183,16 +183,14 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-	<!--
-		No profile: Don't produce any artifact (update site). Used by Gerrit
-		
-		findBugs: produce analysis reports. Activation: explicit ("Profiles")
-		packAndSign: produce a stable update site (Packed & signed). Used for releases (+ milestones) only. Activation: SIGN=true
-		pack: produce a simple update site (Packed). Used for nightly or feature branch builds. Activation: SIGN=false
-	 -->
+
+	<!-- No profile: Don't produce any artifact (update site). Used by Gerrit 
+		findBugs: produce analysis reports. Activation: explicit ("Profiles") packAndSign: 
+		produce a stable update site (Packed & signed). Used for releases (+ milestones) 
+		only. Activation: SIGN=true pack: produce a simple update site (Packed). 
+		Used for nightly or feature branch builds. Activation: SIGN=false -->
 	<profiles>
-		
+
 		<profile>
 			<id>defaultProfile</id>
 			<build>
@@ -217,10 +215,10 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 		</profile>
-		
+
 		<profile>
 			<id>buildAll</id>
-			
+
 			<build>
 				<plugins>
 					<plugin>
@@ -247,12 +245,12 @@
 				</property>
 			</activation>
 		</profile>
-	
+
 		<profile>
-		  	<id>findBugs</id> <!-- Analysis profile. Takes +1h -->
-		  	<build>
-		  		<plugins>
-		  			<plugin>
+			<id>findBugs</id> <!-- Analysis profile. Takes +1h -->
+			<build>
+				<plugins>
+					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>findbugs-maven-plugin</artifactId>
 						<version>${findbugs.version}</version>
@@ -283,16 +281,16 @@
 							</execution>
 						</executions>
 					</plugin>
-		  		</plugins>
-		  	</build>
+				</plugins>
+			</build>
 		</profile>
-	  
-	  
+
+
 		<profile>
-	  		<id>packAndSign</id> <!-- Stable release profile. Takes +30min. Eclipse servers only -->
-		  	<!-- Pack200 -->
-		  	<build>
-			  	<plugins>
+			<id>packAndSign</id> <!-- Stable release profile. Takes +30min. Eclipse servers only -->
+			<!-- Pack200 -->
+			<build>
+				<plugins>
 					<plugin>
 						<groupId>org.eclipse.tycho.extras</groupId>
 						<artifactId>tycho-pack200a-plugin</artifactId>
@@ -312,13 +310,13 @@
 						<version>${jarSignerVersion}</version>
 						<executions>
 							<execution>
-						    	<id>sign</id>
-						    	<goals>
-						    		<goal>sign</goal>
-						    	</goals>
-						  	</execution>
+								<id>sign</id>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
 						</executions>
-		            </plugin>
+					</plugin>
 					<plugin>
 						<groupId>org.eclipse.tycho.extras</groupId>
 						<artifactId>tycho-pack200b-plugin</artifactId>
@@ -351,62 +349,63 @@
 					</plugin>
 				</plugins>
 			</build>
-	        <activation>
-	        	<property>
-	        		<name>SIGN</name>
-	        		<value>true</value>
-	        	</property>
-	        </activation>
+			<activation>
+				<property>
+					<name>SIGN</name>
+					<value>true</value>
+				</property>
+			</activation>
 		</profile>
-	  
-	  
-    	<profile>
-	        <id>pack</id> <!-- Nightly profile. Artifacts can be consumed, but are not signed -->
-	        <build>
-	          <plugins>
-	            <!-- Pack200 -->
-				<plugin>
-					<groupId>org.eclipse.tycho.extras</groupId>
-					<artifactId>tycho-pack200b-plugin</artifactId>
-					<version>${tychoExtrasVersion}</version>
-					<executions>
-						<execution>
-							<id>pack200-pack</id>
-							<goals>
-								<goal>pack</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<groupId>org.eclipse.tycho</groupId>
-					<artifactId>tycho-p2-plugin</artifactId>
-					<version>${tycho-version}</version>
-					<executions>
-						<execution>
-							<id>attach-p2-metadata</id>
-							<phase>package</phase>
-							<goals>
-								<goal>p2-metadata</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<defaultP2Metadata>false</defaultP2Metadata>
-					</configuration>
-				</plugin>
-	          </plugins>
-	        </build>
-	        <activation>
-	        	<property>
-	        		<name>SIGN</name>
-	        		<value>false</value>
-	        	</property>
-	        </activation>
-    	</profile>
-      
-      
-        <!-- nightly profile is useful for developers that want to link to nightly build -->
+
+
+		<profile>
+			<id>pack</id> <!-- Nightly profile. Artifacts can be consumed, but are not signed -->
+			<build>
+				<plugins>
+					<!-- Pack200 -->
+					<plugin>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-pack200b-plugin</artifactId>
+						<version>${tychoExtrasVersion}</version>
+						<executions>
+							<execution>
+								<id>pack200-pack</id>
+								<goals>
+									<goal>pack</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-p2-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<executions>
+							<execution>
+								<id>attach-p2-metadata</id>
+								<phase>package</phase>
+								<goals>
+									<goal>p2-metadata</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<defaultP2Metadata>false</defaultP2Metadata>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+			<activation>
+				<property>
+					<name>SIGN</name>
+					<value>false</value>
+				</property>
+			</activation>
+		</profile>
+
+
+		<!-- nightly profile is useful for developers that want to link to nightly 
+			build -->
 		<profile>
 			<id>nightly</id>
 			<repositories>
@@ -435,5 +434,5 @@
 				<activeByDefault>false</activeByDefault>
 			</activation>
 		</profile>
-    </profiles>
+	</profiles>
 </project>

@@ -16,7 +16,7 @@ import org.eclipse.core.resources.IFile;
 import org.w3c.dom.Node;
 
 
-public class PomPropertiesUpdater extends DependencyUpdater {
+public class PomPropertiesUpdater extends XMLDependencyUpdater {
 
 	public PomPropertiesUpdater() {
 		super();
