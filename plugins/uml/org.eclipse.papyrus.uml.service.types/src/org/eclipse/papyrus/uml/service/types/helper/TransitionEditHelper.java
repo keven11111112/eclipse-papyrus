@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 492089
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.service.types.helper;
@@ -16,6 +17,7 @@ package org.eclipse.papyrus.uml.service.types.helper;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -27,7 +29,9 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.uml2.uml.Region;
+import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Vertex;
@@ -49,21 +53,28 @@ public class TransitionEditHelper extends ElementEditHelper {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
+	protected ICommand getCreateRelationshipCommand(final CreateRelationshipRequest req) {
 		EObject source = req.getSource();
 		EObject target = req.getTarget();
 		if (false == source instanceof Vertex) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		if (target == null) {
+		if (null == target) {
 			return IdentityCommand.INSTANCE;
 		}
 		if (false == target instanceof Vertex) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		Region container = findRegionContainer((Vertex) source);
-		if (container == null) {
-			return UnexecutableCommand.INSTANCE;
+		if (null == container) {
+			container = findRegionContainer((Vertex) target);
+			if (null == container) {
+				// If neither the source nor the Target are contained in a Region, create the transition in the first Region of StateMachine.
+				container = getFirstRegionStateMachine((Vertex) source);
+				if (null == container) {
+					return UnexecutableCommand.INSTANCE;
+				}
+			}
 		}
 		setContainerAndFeature(req, container);
 		return super.getCreateRelationshipCommand(req);
@@ -74,8 +85,8 @@ public class TransitionEditHelper extends ElementEditHelper {
 		req.setContainmentFeature(UMLPackage.eINSTANCE.getRegion_Transition());
 	}
 
-	private Region findRegionContainer(Vertex source) {
-		if (source == null || source.eContainer() == null) {
+	private Region findRegionContainer(final Vertex source) {
+		if (null == source || null == source.eContainer()) {
 			return null;
 		}
 		if (source.eContainer() instanceof Vertex) {
@@ -85,12 +96,35 @@ public class TransitionEditHelper extends ElementEditHelper {
 	}
 
 	/**
+	 * Get the first Region of the StateMachine.
+	 *
+	 * @param source
+	 *            The Vertex object which contained on the StateMachine.
+	 * @return The first Region of the StateMachine.
+	 */
+	private Region getFirstRegionStateMachine(final Vertex source) {
+		final EObject eContainer = source.eContainer();
+		if (null != eContainer) {
+			if (eContainer instanceof StateMachine) {
+				final EList<Region> regions = ((StateMachine) eContainer).getRegions();
+				if (!regions.isEmpty()) {
+					return regions.get(0);
+				}
+			} else if (eContainer instanceof Vertex) {
+				return findRegionContainer((Vertex) eContainer);
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected ICommand getConfigureCommand(final ConfigureRequest req) {
 		ICommand configureCommand = new ConfigureElementCommand(req) {
 
+			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				EObject elementToConfigure = req.getElementToConfigure();
 				if (!(elementToConfigure instanceof Transition)) {
@@ -124,7 +158,7 @@ public class TransitionEditHelper extends ElementEditHelper {
 		private final int myReorientDirection;
 
 		protected ReorientTransitionCommand(ReorientRelationshipRequest req) {
-			super("Reorient Transition Command", (EObject) req.getRelationship(), req); ////$NON-NLS-1$
+			super("Reorient Transition Command", req.getRelationship(), req); ////$NON-NLS-1$
 			myNewEnd = req.getNewRelationshipEnd();
 			myReorientDirection = req.getDirection();
 		}
@@ -137,7 +171,7 @@ public class TransitionEditHelper extends ElementEditHelper {
 			if (false == getElementToEdit() instanceof Transition) {
 				return false;
 			}
-			if (myReorientDirection != ReorientRelationshipRequest.REORIENT_SOURCE && myReorientDirection != ReorientRelationshipRequest.REORIENT_TARGET) {
+			if (myReorientDirection != ReorientRequest.REORIENT_SOURCE && myReorientDirection != ReorientRequest.REORIENT_TARGET) {
 				return false;
 			}
 			return super.canExecute();
@@ -147,9 +181,9 @@ public class TransitionEditHelper extends ElementEditHelper {
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			Transition link = (Transition) getElementToEdit();
 			Vertex newLinkEnd = (Vertex) myNewEnd;
-			if (myReorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+			if (myReorientDirection == ReorientRequest.REORIENT_SOURCE) {
 				link.setSource(newLinkEnd);
-			} else if (myReorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+			} else if (myReorientDirection == ReorientRequest.REORIENT_TARGET) {
 				link.setTarget(newLinkEnd);
 			} else {
 				return CommandResult.newErrorCommandResult("Wrong direction");
