@@ -8,7 +8,7 @@
  *
  * Contributors:
  * Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
- *
+ * Benoit  Maggi (CEA) - #492073: Reconcilier only for not already BasicCompartment
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.reconciler;
 
@@ -97,22 +97,23 @@ abstract public class ReconcilerForCompartment extends DiagramReconciler {
 			
 			while (allContentIterator.hasNext()) {
 				EObject eObject = allContentIterator.next();
-				if (eObject instanceof DecorationNode && isCompartment((View) eObject)) {
+				if (eObject instanceof DecorationNode &&!(eObject instanceof BasicCompartment) && isCompartment((View) eObject)) {
 					oldComparments.add((DecorationNode)eObject);
 				}
 			}
 			
 			for(DecorationNode oldCompartment : oldComparments) {
-				BasicCompartment newCompartment = NotationFactory.eINSTANCE.createBasicCompartment();
-				newCompartment.setType(oldCompartment.getType());
-				newCompartment.setVisible(oldCompartment.isVisible());
-				newCompartment.setMutable(oldCompartment.isMutable());
-				newCompartment.setLayoutConstraint(oldCompartment.getLayoutConstraint());
-				newCompartment.getStyles().addAll(oldCompartment.getStyles());
-				newCompartment.getPersistedChildren().addAll(oldCompartment.getPersistedChildren());
-				if (oldCompartment.isSetElement())
-					newCompartment.setElement(oldCompartment.getElement());
-				EcoreUtil.replace(oldCompartment, newCompartment);
+					BasicCompartment newCompartment = NotationFactory.eINSTANCE.createBasicCompartment();
+					newCompartment.setType(oldCompartment.getType());
+					newCompartment.setVisible(oldCompartment.isVisible());
+					newCompartment.setMutable(oldCompartment.isMutable());
+					newCompartment.setLayoutConstraint(oldCompartment.getLayoutConstraint());
+					newCompartment.getStyles().addAll(oldCompartment.getStyles());
+					newCompartment.getPersistedChildren().addAll(oldCompartment.getPersistedChildren());
+					if (oldCompartment.isSetElement()) {
+						newCompartment.setElement(oldCompartment.getElement());
+					}
+					EcoreUtil.replace(oldCompartment, newCompartment);					
 			}
 
 			return CommandResult.newOKCommandResult();
@@ -154,7 +155,7 @@ abstract public class ReconcilerForCompartment extends DiagramReconciler {
 		 */
 		@Override
 		protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-			throw new ExecutionException("Should not be called, canRedo false");
+			throw new ExecutionException("Should not be called, canRedo false"); //$NON-NLS-1$
 		}
 
 		/**
@@ -171,7 +172,7 @@ abstract public class ReconcilerForCompartment extends DiagramReconciler {
 		 */
 		@Override
 		protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-			throw new ExecutionException("Should not be called, canUndo false");
+			throw new ExecutionException("Should not be called, canUndo false"); //$NON-NLS-1$
 		}
 	}
 
