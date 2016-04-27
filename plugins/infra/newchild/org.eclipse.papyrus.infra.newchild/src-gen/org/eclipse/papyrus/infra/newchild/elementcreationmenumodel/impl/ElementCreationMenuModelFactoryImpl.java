@@ -66,6 +66,7 @@ public class ElementCreationMenuModelFactoryImpl extends EFactoryImpl implements
 			case ElementCreationMenuModelPackage.FOLDER: return createFolder();
 			case ElementCreationMenuModelPackage.CREATION_MENU: return createCreationMenu();
 			case ElementCreationMenuModelPackage.CREATE_RELATIONSHIP_MENU: return createCreateRelationshipMenu();
+			case ElementCreationMenuModelPackage.SEPARATOR: return createSeparator();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -99,6 +100,16 @@ public class ElementCreationMenuModelFactoryImpl extends EFactoryImpl implements
 	public CreateRelationshipMenu createCreateRelationshipMenu() {
 		CreateRelationshipMenuImpl createRelationshipMenu = new CreateRelationshipMenuImpl();
 		return createRelationshipMenu;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Separator createSeparator() {
+		SeparatorImpl separator = new SeparatorImpl();
+		return separator;
 	}
 
 	/**

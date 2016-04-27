@@ -7,7 +7,7 @@
     editorPluginClass="org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.presentation.ElementCreationMenuModelEditorPlugin"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/org.eclipse.papyrus.infra.newchild.tests/src-gen"
     testSuiteClass="org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.tests.ElementCreationMenuModelAllTests"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
     language="" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.filters/model/filters.genmodel#//filters ../../org.eclipse.uml2.types/model/Types.genmodel#//types"
     operationReflection="true" importOrganizing="true">
   <foreignModel>elementCreationMenuModel.ecore</foreignModel>
@@ -29,5 +29,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute elementCreationMenuModel.ecore#//CreationMenu/displayAllRoles"/>
     </genClasses>
     <genClasses ecoreClass="elementCreationMenuModel.ecore#//CreateRelationshipMenu"/>
+    <genClasses ecoreClass="elementCreationMenuModel.ecore#//Separator"/>
   </genPackages>
 </genmodel:GenModel>

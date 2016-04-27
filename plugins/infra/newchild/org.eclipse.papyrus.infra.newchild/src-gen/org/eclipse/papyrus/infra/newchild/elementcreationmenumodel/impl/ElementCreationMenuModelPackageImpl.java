@@ -25,6 +25,7 @@ import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreati
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu;
+import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Separator;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,6 +61,13 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass createRelationshipMenuEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass separatorEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -238,6 +246,15 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSeparator() {
+		return separatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ElementCreationMenuModelFactory getElementCreationMenuModelFactory() {
 		return (ElementCreationMenuModelFactory)getEFactoryInstance();
 	}
@@ -276,6 +293,8 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		createEAttribute(creationMenuEClass, CREATION_MENU__DISPLAY_ALL_ROLES);
 
 		createRelationshipMenuEClass = createEClass(CREATE_RELATIONSHIP_MENU);
+
+		separatorEClass = createEClass(SEPARATOR);
 	}
 
 	/**
@@ -313,6 +332,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		folderEClass.getESuperTypes().add(this.getMenu());
 		creationMenuEClass.getESuperTypes().add(this.getMenu());
 		createRelationshipMenuEClass.getESuperTypes().add(this.getCreationMenu());
+		separatorEClass.getESuperTypes().add(this.getMenu());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(folderEClass, Folder.class, "Folder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -330,6 +350,8 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		initEAttribute(getCreationMenu_DisplayAllRoles(), theEcorePackage.getEBoolean(), "displayAllRoles", "true", 1, 1, CreationMenu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(createRelationshipMenuEClass, CreateRelationshipMenu.class, "CreateRelationshipMenu", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(separatorEClass, Separator.class, "Separator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

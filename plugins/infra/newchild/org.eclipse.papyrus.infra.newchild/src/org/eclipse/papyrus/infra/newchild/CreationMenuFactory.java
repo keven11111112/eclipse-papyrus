@@ -49,6 +49,7 @@ import org.eclipse.papyrus.infra.filters.Filter;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreateRelationshipMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
+import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Separator;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestCacheEntries;
@@ -115,7 +116,9 @@ public class CreationMenuFactory {
 
 			for (org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu currentMenu : folder.getMenu()) {
 				boolean result = false;
-				if (currentMenu instanceof Folder) {
+				if (currentMenu instanceof Separator) {
+					constructSeparator(topMenu);
+				} else if (currentMenu instanceof Folder) {
 					result = populateMenu(topMenu, (Folder) currentMenu, selectedObject, topMenu.getItemCount(), adviceCache);
 				} else if (currentMenu instanceof CreationMenu && ((CreationMenu) currentMenu).isVisible() && filterMatches(currentMenu, selectedObject)) {
 					CreationMenu currentCreationMenu = (CreationMenu) currentMenu;
@@ -149,6 +152,13 @@ public class CreationMenuFactory {
 		}
 		return false;
 
+	}
+
+	/**
+	 * Constructs a separator in the {@link Menu}.
+	 */
+	protected void constructSeparator(Menu topMenu) {
+		new MenuItem(topMenu, SWT.SEPARATOR);
 	}
 
 	/**
@@ -260,7 +270,7 @@ public class CreationMenuFactory {
 	 * @return return the list of Ereference that can be calculated
 	 */
 	protected ArrayList<EStructuralFeature> getEreferences(EObject selectedObject, CreationMenu currentCreationMenu) {
-		ArrayList<EStructuralFeature> possibleEFeatures = new ArrayList<EStructuralFeature>();
+		ArrayList<EStructuralFeature> possibleEFeatures = new ArrayList<>();
 		EList<EStructuralFeature> featureList = selectedObject.eClass().getEAllStructuralFeatures();
 		Iterator<EStructuralFeature> iterator = featureList.iterator();
 		while (iterator.hasNext()) {

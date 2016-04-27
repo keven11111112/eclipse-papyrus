@@ -386,6 +386,70 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	int CREATE_RELATIONSHIP_MENU_OPERATION_COUNT = CREATION_MENU_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.SeparatorImpl <em>Separator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.SeparatorImpl
+	 * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.ElementCreationMenuModelPackageImpl#getSeparator()
+	 * @generated
+	 */
+	int SEPARATOR = 4;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEPARATOR__LABEL = MENU__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEPARATOR__ICON = MENU__ICON;
+
+	/**
+	 * The feature id for the '<em><b>Visible</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEPARATOR__VISIBLE = MENU__VISIBLE;
+
+	/**
+	 * The feature id for the '<em><b>Filter</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEPARATOR__FILTER = MENU__FILTER;
+
+	/**
+	 * The number of structural features of the '<em>Separator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEPARATOR_FEATURE_COUNT = MENU_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Separator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEPARATOR_OPERATION_COUNT = MENU_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder <em>Folder</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -514,6 +578,16 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	EClass getCreateRelationshipMenu();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Separator <em>Separator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Separator</em>'.
+	 * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Separator
+	 * @generated
+	 */
+	EClass getSeparator();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -639,6 +713,16 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CREATE_RELATIONSHIP_MENU = eINSTANCE.getCreateRelationshipMenu();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.SeparatorImpl <em>Separator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.SeparatorImpl
+		 * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.impl.ElementCreationMenuModelPackageImpl#getSeparator()
+		 * @generated
+		 */
+		EClass SEPARATOR = eINSTANCE.getSeparator();
 
 	}
 

@@ -149,6 +149,29 @@ public class ElementCreationMenuModelItemProviderAdapterFactory extends ElementC
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Separator} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SeparatorItemProvider separatorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Separator}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSeparatorAdapter() {
+		if (separatorItemProvider == null) {
+			separatorItemProvider = new SeparatorItemProvider(this);
+		}
+
+		return separatorItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -256,6 +279,7 @@ public class ElementCreationMenuModelItemProviderAdapterFactory extends ElementC
 		if (folderItemProvider != null) folderItemProvider.dispose();
 		if (creationMenuItemProvider != null) creationMenuItemProvider.dispose();
 		if (createRelationshipMenuItemProvider != null) createRelationshipMenuItemProvider.dispose();
+		if (separatorItemProvider != null) separatorItemProvider.dispose();
 	}
 
 }

@@ -24,4 +24,5 @@
         defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CreateRelationshipMenu" eSuperTypes="#//CreationMenu"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Separator" eSuperTypes="#//Menu"/>
 </ecore:EPackage>

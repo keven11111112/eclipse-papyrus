@@ -157,6 +157,11 @@ public class FolderItemProvider extends MenuItemProvider {
 			(createChildParameter
 				(ElementCreationMenuModelPackage.Literals.FOLDER__MENU,
 				 ElementCreationMenuModelFactory.eINSTANCE.createCreateRelationshipMenu()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ElementCreationMenuModelPackage.Literals.FOLDER__MENU,
+				 ElementCreationMenuModelFactory.eINSTANCE.createSeparator()));
 	}
 
 }
