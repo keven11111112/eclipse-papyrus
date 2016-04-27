@@ -107,4 +107,9 @@ public class NamedStyleConstants {
 	 * This is for boolean value style {@link BooleanValueStyle}. This is used to expand all the rows in a tree table during the opening of the table.
 	 */
 	public static final String EXPAND_ALL =  "expandAll"; //$NON-NLS-1$
+	
+	/**
+	 * This allows to manage the fill columns size to take all the container space.
+	 */
+	public static final String FILL_COLUMNS_SIZE = "fillColumnsSize"; //$NON-NLS-1$
 }

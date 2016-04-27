@@ -351,7 +351,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		};
 	}
 
-	
+
 	private ListEventListener<Object> listEventListener;
 
 	/**
@@ -710,7 +710,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 		final SortedList<Object> newHorizontalSortedList = this.rowSortedList;
 		final SortedList<Object> newVerticalSortedList = this.columnSortedList;
-		
+
 		final FilterList<Object> newVerticalFilterLilst = this.horizontalFilterList;
 		final FilterList<Object> newHorizontalFilterList = this.verticalFilterList;
 
@@ -817,7 +817,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		if (this.decoractionServiceObserver != null) {
 			// Bug 490067: Check if the decoration service is available to avoid null pointer
 			final DecorationService decorationService = getDecorationService();
-			if(null != decorationService) {
+			if (null != decorationService) {
 				decorationService.deleteListener(this.decoractionServiceObserver);
 			}
 			this.decoractionServiceObserver = null;
@@ -857,7 +857,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 				table.eAdapters().remove(this.invertAxisListener);
 			}
 		}
-		
+
 		if (this.cellsMap != null) {
 			this.cellsMap.clear();
 		}
@@ -1086,6 +1086,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			final SelectionLayer selectionLayer = getBodyLayerStack().getSelectionLayer();
 			selectionLayer.doCommand(new ClearAllSelectionsCommand());
 			this.natTable.refresh();
+
+			// Refresh the nattable columns size in the case of named style
+			doFillColumnsSize();
 
 			// Keep the selection after the refresh of the table
 			if (null != selectedCells && !selectedCells.isEmpty()) {
@@ -2019,7 +2022,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		 */
 		@Override
 		public void setDataValue(final Object rowObject, final int columnIndex, final Object newValue) {
-			//nothing to do 
+			// nothing to do
 		}
 
 		/**

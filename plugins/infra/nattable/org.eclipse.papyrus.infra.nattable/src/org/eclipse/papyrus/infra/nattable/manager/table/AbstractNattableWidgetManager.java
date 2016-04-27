@@ -117,6 +117,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle;
@@ -401,6 +402,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		initTableHeaders();
 		initTableMerge();
 
+		// Fill the columns size
+		doFillColumnsSize();
+
 		addColumnReorderListener(this.bodyLayerStack.getColumnReorderLayer());
 		addAxisResizeListener(this.bodyLayerStack);
 		addColumnHeaderResizeListener(getColumnHeaderLayerStack());
@@ -637,7 +641,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	protected DecorationService getDecorationService() {
 		// Bug 490067: We need to check if the resource of the context is existing before to get the decoration service (to avoid useless log exception)
 		// The resource of the context is not existing in the case of deletion (EObject was already deleted but the reference of table always exists)
-		if(null != this.table.getContext().eResource()){
+		if (null != this.table.getContext().eResource()) {
 			try {
 				ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table.getContext());// get context and NOT get table for the usecase where the table is not in a resource
 				return serviceRegistry.getService(DecorationService.class);
@@ -1151,10 +1155,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 							}
 
 
-							if (resizeRowHeaderCommand.canExecute() && !resizeRowHeaderCommand.isEmpty() 
-									// If the local row header axis is created, check that this is not the single command to execute
-									// because we need to manage the named style with this command
-									&& ((!isLocalRowHeaderAxisCreation) || (isLocalRowHeaderAxisCreation && 1 <  resizeRowHeaderCommand.size()))) {
+							if (resizeRowHeaderCommand.canExecute() && !resizeRowHeaderCommand.isEmpty()
+							// If the local row header axis is created, check that this is not the single command to execute
+							// because we need to manage the named style with this command
+									&& ((!isLocalRowHeaderAxisCreation) || (isLocalRowHeaderAxisCreation && 1 < resizeRowHeaderCommand.size()))) {
 								tableDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(resizeRowHeaderCommand));
 							}
 						}
@@ -1473,6 +1477,45 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	}
 
+	/**
+	 * This allows to manage the fill columns size named style by managing the width of columns to fill all the parent space.
+	 */
+	protected void doFillColumnsSize() {
+
+		final TableConfiguration config = getTable().getTableConfiguration();
+		final BooleanValueStyle fillColumnsSize = (BooleanValueStyle) config.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.FILL_COLUMNS_SIZE);
+		if (null != fillColumnsSize) {
+			if (fillColumnsSize.isBooleanValue()) {
+				final Composite parent = natTable.getParent();
+
+				if (null != parent && !parent.isDisposed()) {
+					final int parentSize = parent.getSize().x;
+
+					// Calculate the rows header width
+					int headerWidth = 0;
+					if (null != getRowHeaderLayerStack()) {
+						if (null != getRowHeaderLayerStack().getIndexRowHeaderLayer()) {
+							headerWidth = getRowHeaderLayerStack().getIndexRowHeaderLayer().getWidth();
+						}
+						for (int headerColumnIndex = 0; headerColumnIndex < getRowHeaderLayerStack().getColumnCount(); headerColumnIndex++) {
+							headerWidth = getRowHeaderLayerStack().getColumnWidthByPosition(headerColumnIndex);
+						}
+					}
+
+					// Remove the rows header size from the parent size
+					final int allColumnsSize = parentSize - headerWidth;
+
+					// Divide the width of all columns by the number of column to calculate the width by column
+					final int columnSize = allColumnsSize / getBodyLayerStack().getColumnHideShowLayer().getColumnCount();
+
+					// Affext the width to the column
+					for (int columnPosition = 0; columnPosition < getBodyLayerStack().getColumnHideShowLayer().getColumnCount(); columnPosition++) {
+						getBodyLayerStack().getBodyDataLayer().setColumnWidthByPosition(columnPosition, columnSize);
+					}
+				}
+			}
+		}
+	}
 
 	/**
 	 *

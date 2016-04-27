@@ -31,6 +31,7 @@ import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.papyrus.infra.emf.nattable.selection.EObjectSelectionExtractor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -42,10 +43,13 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.nattable.tree.ITreeItemAxisHelper;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
+import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.nattable.utils.NattableModelManagerFactory;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.infra.properties.contexts.Property;
@@ -61,6 +65,8 @@ import org.eclipse.papyrus.uml.properties.modelelement.UMLNotationModelElement;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -210,7 +216,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * @param sourceElement
 	 *            The source Element.
 	 * @param feature
-	 *            The feature.
+	 *            The parent structural feature.
 	 * @param rows
 	 *            The rows of the table.
 	 */
@@ -222,7 +228,9 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			displayError("Cannot initialize the table"); //$NON-NLS-1$
 			return;
 		}
-
+		
+		manageTableNamedStyle(table);
+		
 		// Create the widget
 		nattableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(table, new EObjectSelectionExtractor());
 		natTableWidget = nattableManager.createNattable(self, SWT.NONE, null);
@@ -231,14 +239,27 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 			((TreeNattableModelManager) nattableManager).doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 		}
-
+		
 		self.addDisposeListener(getDisposeListener());
 		natTableWidget.setBackground(self.getBackground());
 
 		// Configure the layout and the layout data
 		configureLayout();
+		
+		((NattableModelManager)nattableManager).refreshNatTable();
 	}
 
+	/**
+	 * This allows to add some named style to the table.
+	 * 
+	 * @param table The current table.
+	 */
+	protected void manageTableNamedStyle(final Table table){
+		final Style fillColumnsSizeStyle = table.getTableConfiguration().createStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle());
+		((BooleanValueStyle)fillColumnsSizeStyle).setName(NamedStyleConstants.FILL_COLUMNS_SIZE);
+		((BooleanValueStyle)fillColumnsSizeStyle).setBooleanValue(true);
+	}
+	
 	/**
 	 * This allows to configure the tree table.
 	 * 
