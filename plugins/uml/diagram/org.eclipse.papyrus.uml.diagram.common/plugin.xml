@@ -24,6 +24,7 @@
  <extension-point id="paletteDefinition" name="PaletteDefinition" schema="schema/paletteDefinition.exsd"/>
  <extension-point id="aspectToolProvider" name="aspectToolProvider" schema="schema/aspectToolProvider.exsd"/>
  <extension-point id="paletteCustomization" name="Palette customization" schema="schema/paletteCustomization.exsd"/>
+ <extension-point id="htmlRendererContributor" name="htmlRendererContributor" schema="schema/htmlRendererContributor.exsd"/>
       
       <extension point="org.eclipse.ui.views">
    <category 
@@ -584,4 +585,13 @@
             label="Directed relationship source end hyperlinks">
       </contributor>
 </extension>
+ <extension
+         point="org.eclipse.papyrus.uml.diagram.common.htmlRendererContributor">
+      <contributor
+            contributor="org.eclipse.papyrus.uml.diagram.common.figure.node.RichTextRenderer"
+            description="Renders the HTML produced from the rich text editor widget"
+            id="org.eclipse.papyrus.uml.diagram.common.figure.node.RichTextRenderer"
+            label="Rich Text Renderer">
+      </contributor>
+   </extension>
 </plugin>

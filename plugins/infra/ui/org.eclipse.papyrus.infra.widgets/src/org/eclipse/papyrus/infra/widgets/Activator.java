@@ -11,12 +11,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets;
 
+import java.io.IOException;
+import java.net.URL;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.widgets.util.ImageDescriptorManager;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -105,7 +111,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param path
 	 *            The path to the image from the plugin
 	 * @return
-	 *         The Image at the given location, or null if it couldn't be found
+	 * 		The Image at the given location, or null if it couldn't be found
 	 */
 	public Image getImage(String pluginId, String path) {
 		final ImageRegistry registry = getImageRegistry();
@@ -140,7 +146,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param path
 	 *            The path to the image from the plugin
 	 * @return
-	 *         The Image Descriptor at the given location, or null if it
+	 * 		The Image Descriptor at the given location, or null if it
 	 *         couldn't be found
 	 */
 	public ImageDescriptor getImageDescriptor(String pluginId, String path) {
@@ -171,7 +177,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param imagePath
 	 *            The path of the image, in the form /<plug-in ID>/<path to the image>
 	 * @return
-	 *         The Image at the given location, or null if none was found
+	 * 		The Image at the given location, or null if none was found
 	 */
 	public Image getImageFromPlugin(String imagePath) {
 		if (imagePath.startsWith("/")) { //$NON-NLS-1$
@@ -185,4 +191,35 @@ public class Activator extends AbstractUIPlugin {
 		}
 	}
 
+	/**
+	 * Returns the URL of a given path relative to the given bundle
+	 * 
+	 * @return file url or null
+	 * @since 2.0
+	 */
+	public URL getURL(final String path) {
+		return getURL(PLUGIN_ID, path);
+	}
+
+	/**
+	 * Returns the URL of a given path relative to the given bundle
+	 * 
+	 * @param path
+	 *            relative to the rich text bundle
+	 * @return file url or null
+	 * @since 2.0
+	 */
+	public URL getURL(final String bundleName, final String path) {
+		Bundle bundle = Platform.getBundle(bundleName);
+		if (bundle != null) {
+			URL url = bundle.getEntry(path);
+			try {
+				return FileLocator.toFileURL(url);
+			} catch (IOException e) {
+				Activator.log.error(e);
+			}
+		}
+
+		return null;
+	}
 }

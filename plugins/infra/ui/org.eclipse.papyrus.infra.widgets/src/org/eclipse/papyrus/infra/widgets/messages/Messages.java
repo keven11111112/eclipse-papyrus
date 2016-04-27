@@ -25,6 +25,26 @@ public class Messages extends NLS {
 
 	public static String BooleanInputValidator_NotABoolean;
 
+	public static String CheckSpellDialog_Change;
+
+	public static String CheckSpellDialog_DictionaryFileNotFound;
+
+	public static String CheckSpellDialog_Ignore;
+
+	public static String CheckSpellDialog_NoMisspellings;
+
+	public static String CheckSpellDialog_NoMoreMisspelledWord;
+
+	public static String CheckSpellDialog_NoSuggestions;
+
+	public static String CheckSpellDialog_NotInDictionary;
+
+	public static String CheckSpellDialog_SpellChecker;
+
+	public static String CheckSpellDialog_Suggestions;
+
+	public static String CheckSpellDialog_UndoEdit;
+
 	public static String IntegerInputValidator_NotAnIntegerMessage;
 
 	public static String RealInputValidator_NotaRealMessage;
@@ -119,6 +139,11 @@ public class Messages extends NLS {
 	public static String IntegerMask_ErrorTooManyValues;
 
 	public static String ProviderBasedBrowseStrategy_0;
+
+	/**
+	 * @since 2.0
+	 */
+	public static String SpellCheckToolbarButton_CheckSpellingToolTip;
 
 	public static String StringEditionFactory_EnterANewValue;
 

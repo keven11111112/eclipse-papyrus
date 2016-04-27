@@ -21,21 +21,27 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.LayoutListener;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.text.BlockFlow;
 import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.draw2d.text.TextFlow;
+import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.AnimatableScrollPane;
 import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
 import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.parser.HTMLCleaner;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -45,6 +51,13 @@ import org.w3c.dom.NodeList;
  */
 public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigure, IMultilineEditableFigure {
 
+	/**
+	 * HTML renderer extension ID
+	 * 
+	 * @since 2.0
+	 */
+	public static final String EXTENSION_ID = Activator.ID + ".htmlRendererContributor"; 
+	
 	/** indicates if the figure should use local coordinates or not */
 	protected boolean useLocalCoordinates = false;
 
@@ -68,6 +81,27 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 
 	/** main flow page */
 	protected FlowPage page;
+	
+	/** Content for html renderer content */
+	protected AnimatableScrollPane contentPane;	
+	
+	/**
+	 * HTML renderer from extensions (if any)
+	 * 
+	 * @since 2.0
+	 */
+	protected HTMLRenderer htmlRenderer;
+	
+	/**
+	 * Body size to remember so layout changes are not fired infinitely
+	 * 
+	 * @since 2.0
+	 */
+	protected int oldWidth = 0;
+	/**
+	 * @since 2.0
+	 */
+	protected int oldHeight = 0;
 
 	/** text styles stack */
 	private final List<List<Styles>> myStyles = new ArrayList<List<Styles>>();
@@ -88,7 +122,6 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 */
 	public HTMLCornerBentFigure() {
 		super();
-		this.setBackgroundColor(THIS_BACK);
 		createContents();
 	}
 
@@ -105,11 +138,78 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 * Generates the basic contents for this figure
 	 */
 	protected void createContents() {
-		// simply creates a Flow page, that will contains BlockFlows
-		// representing the html content
-		page = new FlowPage();
-		page.setForegroundColor(getForegroundColor());
-		this.add(page);
+		if (htmlRenderer == null) {
+			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
+
+			for (IConfigurationElement e : config) {
+				if (!"contributor".equals(e.getName())) {
+					continue;
+				}
+				try {
+					Object instance = e.createExecutableExtension("contributor");
+					if (instance instanceof HTMLRenderer) {
+						htmlRenderer = (HTMLRenderer) instance;
+						break;
+					}
+				} catch (Exception ex) {
+					Activator.log.warn("Invalid html renderer contribution from: " + e.getContributor());
+				}
+			}
+		}
+		
+		if (htmlRenderer == null) {
+			page = new FlowPage();
+			page.setForegroundColor(getForegroundColor());
+			this.add(page);
+		} else {
+			IFigure htmlContent = htmlRenderer.getFigure();
+			
+			if (htmlContent != null) {
+				this.add(htmlContent);
+				addHTMLLayoutListener();
+			} else {
+				page = new FlowPage();
+				page.setForegroundColor(getForegroundColor());
+				this.add(page);
+			}
+		}
+	}
+	
+	private HTMLLayoutListener htmlLayoutListener;
+	
+	private class HTMLLayoutListener extends LayoutListener.Stub {
+		@Override
+		public void postLayout(IFigure container) {
+			if (oldWidth != container.getClientArea().width || oldHeight != container.getClientArea().height) {
+				oldWidth = container.getClientArea().width;
+				oldHeight = container.getClientArea().height;
+				paintHTML();
+			}
+		}
+	}
+	
+	private void addHTMLLayoutListener() {
+		if (htmlLayoutListener == null) {
+			htmlLayoutListener = new HTMLLayoutListener();
+			HTMLCornerBentFigure.this.addLayoutListener(htmlLayoutListener);
+		}
+	}
+	
+	private void paintHTML() {
+		try {
+			if (this.isVisible()) {
+				if (Display.getDefault() != null) {
+					int width = getClientArea().width;
+					int height = getClientArea().height;
+					
+					if (width > 0 && height > 0) { // width and height can be nil before figures are displayed
+						htmlRenderer.paintHTML(text, width, height, 0, 0);
+					}
+				}
+			}
+		} catch (Exception e) {
+			Activator.log.error(e);
+		}
 	}
 
 	/**
@@ -179,14 +279,18 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 
 		this.text = text;
 
-		// remove all children from page.
-		page.removeAll();
+		if (htmlRenderer == null) {
+			// remove all children from page.
+			page.removeAll();
 
-		// init the first font data
-		currentFontData = new FontData("Wingdings", 8, SWT.NORMAL);
+			// init the first font data
+			currentFontData = new FontData("Wingdings", 8, SWT.NORMAL);
 
-		// generates new ones
-		generateBlockForText(text, page);
+			// generates new ones
+			generateBlockForText(text, page);
+		} else {
+			paintHTML();
+		}
 	}
 
 	private static boolean equals(String s1, String s2) {
@@ -322,16 +426,18 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 */
 	@Override
 	public void setFont(Font f) {
-		super.setFont(f);
-		List<TextFlow> textFlowList = findTextFlowChildList(page);
-		int i = 0;
-		for (TextFlow nextTextFlow : textFlowList) {
-			if (i == myStyles.size()) {
-				// make code more robust
-				break;
+		if (page != null) {
+			super.setFont(f);
+			List<TextFlow> textFlowList = findTextFlowChildList(page);
+			int i = 0;
+			for (TextFlow nextTextFlow : textFlowList) {
+				if (i == myStyles.size()) {
+					// make code more robust
+					break;
+				}
+				nextTextFlow.setFont(calculateCurrentFont(myStyles.get(i)));
+				i++;
 			}
-			nextTextFlow.setFont(calculateCurrentFont(myStyles.get(i)));
-			i++;
 		}
 	}
 

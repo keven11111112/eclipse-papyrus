@@ -31,6 +31,13 @@ location nebula "http://download.eclipse.org/technology/nebula/archives/Q12015/r
 	org.eclipse.nebula.widgets.tablecombo.feature.feature.group
 }
 
+//manualUpdate
+
+location nebula-richtext "http://download.eclipse.org/technology/nebula/snapshot/" {
+	org.eclipse.nebula.widgets.richtext.feature.feature.group
+}
+
+
 //updateFrom("MDT UML2",0) 
 
 location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.2milestones" {
@@ -72,11 +79,13 @@ location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/milestone
 
 //manualUpdate
 
-location nattable "http://download.eclipse.org/nattable/snapshots/507/repository/" {
+location nattable "http://download.eclipse.org/nattable/snapshots/latest/repository/" {
 	org.eclipse.nebula.widgets.nattable.core.feature.feature.group
 	org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group
 	org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group
 	org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group
+	org.eclipse.nebula.widgets.nattable.extension.nebula.feature.feature.group
+	org.eclipse.nebula.widgets.nattable.extension.nebula.source.feature.feature.group
 }
 
 //updateFrom("EMFT MWE",0)
