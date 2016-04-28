@@ -166,16 +166,32 @@ public class PortPositionLocator implements IBorderItemLocator {
 				locationForPort = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(location.getTranslated(parentRec.width / 2, 0), location);
 				break;
 			case PositionConstants.NORTH_WEST:
-				locationForPort = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(shrinkedParent.getTopLeft(), location);
+				if (!cornerDimension.isEmpty()) {
+					locationForPort = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(shrinkedParent.getTopLeft(), location);
+				} else {
+					locationForPort = parentRec.getTopLeft().translate(-offset.width, -offset.height);
+				}
 				break;
 			case PositionConstants.NORTH_EAST:
-				locationForPort = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(shrinkedParent.getTopRight(), location);
+				if (!cornerDimension.isEmpty()) {
+					locationForPort = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(shrinkedParent.getTopRight(), location);
+				} else {
+					locationForPort = parentRec.getTopRight().translate(offset.width, -offset.height);
+				}
 				break;
 			case PositionConstants.SOUTH_EAST:
-				locationForPort = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(shrinkedParent.getBottomRight(), location);
+				if (!cornerDimension.isEmpty()) {
+					locationForPort = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(shrinkedParent.getBottomRight(), location);
+				} else {
+					locationForPort = parentRec.getBottomRight().translate(offset.width, offset.height);
+				}
 				break;
 			case PositionConstants.SOUTH_WEST:
-				locationForPort = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(shrinkedParent.getBottomLeft(), location);
+				if (!cornerDimension.isEmpty()) {
+					locationForPort = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(shrinkedParent.getBottomLeft(), location);
+				} else {
+					locationForPort = parentRec.getBottomLeft().translate(-offset.width, offset.height);
+				}
 				break;
 			default:
 				locationForPort = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(parentRec.getCenter(), location);

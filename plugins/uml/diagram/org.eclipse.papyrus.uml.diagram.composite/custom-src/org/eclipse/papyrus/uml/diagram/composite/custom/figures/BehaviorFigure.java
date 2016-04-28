@@ -29,10 +29,10 @@ public class BehaviorFigure extends RoundedCompartmentFigure {
 	}
 
 	public void setPosition(int parentPosition) {
-		if (parentPosition == PositionConstants.NORTH) {
+		if (PositionConstants.NORTH == (parentPosition & PositionConstants.NORTH)) {
 			doHorizontalFigure();
 		}
-		if (parentPosition == PositionConstants.SOUTH) {
+		if (PositionConstants.SOUTH == (parentPosition & PositionConstants.SOUTH)) {
 			doHorizontalFigure();
 		}
 		if (parentPosition == PositionConstants.EAST) {

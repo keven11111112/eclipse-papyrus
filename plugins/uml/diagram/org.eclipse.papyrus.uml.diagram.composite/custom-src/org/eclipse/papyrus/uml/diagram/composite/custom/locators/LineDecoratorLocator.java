@@ -37,34 +37,38 @@ public class LineDecoratorLocator extends BasePortChildLocator {
 		Point start = portBounds.getCenter();
 		Point end = new Point();
 
-		LineDecorator ld = (LineDecorator)target;
+		LineDecorator ld = (LineDecorator) target;
 		int lineWidth = ld.getLineWidth();
 		switch (getPortSide()) {
 		case PositionConstants.WEST:
 			start.x = start.x + portBounds.width / 2 - 1;
 			end.x = start.x + BehaviorFigure.BEHAVIOR_OFFSET;
-			start.y = start.y  - lineWidth/2 - lengthAndWidthCorrection;
+			start.y = start.y - lineWidth / 2 - lengthAndWidthCorrection;
 			end.y = start.y + lineWidth;
 			ld.setHorizontal(true);
 			break;
 		case PositionConstants.EAST:
 			start.x = start.x - portBounds.width / 2 - 1;
 			end.x = start.x - BehaviorFigure.BEHAVIOR_OFFSET;
-			start.y = start.y  - lineWidth/2 - lengthAndWidthCorrection;
+			start.y = start.y - lineWidth / 2 - lengthAndWidthCorrection;
 			end.y = start.y + lineWidth;
 			ld.setHorizontal(true);
 			break;
 		case PositionConstants.SOUTH:
+		case PositionConstants.SOUTH_EAST:
+		case PositionConstants.SOUTH_WEST:
 			start.y = start.y - portBounds.height / 2 - 1;
 			end.y = start.y - BehaviorFigure.BEHAVIOR_OFFSET;
-			start.x = start.x - lineWidth/2 - lengthAndWidthCorrection;
+			start.x = start.x - lineWidth / 2 - lengthAndWidthCorrection;
 			end.x = start.x + lineWidth;
 			ld.setHorizontal(false);
 			break;
 		case PositionConstants.NORTH:
+		case PositionConstants.NORTH_EAST:
+		case PositionConstants.NORTH_WEST:
 			start.y = start.y + portBounds.width / 2 - 1;
 			end.y = start.y + BehaviorFigure.BEHAVIOR_OFFSET;
-			start.x = start.x - lineWidth/2 - lengthAndWidthCorrection;
+			start.x = start.x - lineWidth / 2 - lengthAndWidthCorrection;
 			end.x = start.x + lineWidth;
 			ld.setHorizontal(false);
 			break;
