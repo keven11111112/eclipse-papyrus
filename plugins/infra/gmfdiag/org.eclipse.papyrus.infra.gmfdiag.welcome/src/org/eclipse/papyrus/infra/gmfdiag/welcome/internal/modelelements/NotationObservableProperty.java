@@ -18,10 +18,14 @@ import java.util.function.Supplier;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.ResourceSetChangeEvent;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapter;
 import org.eclipse.papyrus.infra.tools.databinding.WritableListWithIterator;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * A list property of diagram-observables, tracking all of the diagrams available
@@ -55,6 +59,39 @@ public class NotationObservableProperty implements Supplier<IObservableList<Nota
 
 	void hookDiagramsListener() {
 		diagramsListener = new ResourceAdapter.Transactional() {
+
+			@Override
+			public void resourceSetChanged(ResourceSetChangeEvent event) {
+				// I have to run on the UI thread in order to operate on observables
+				if (Display.getCurrent() != null) {
+					basicResourceSetChanged(event);
+				} else {
+					try {
+						Display.getDefault().syncExec(TransactionUtil.createPrivilegedRunnable(domain,
+								new RunnableWithResult.Impl<Void>() {
+									@Override
+									public void run() {
+										basicResourceSetChanged(event);
+									}
+								}));
+					} catch (InterruptedException e) {
+						// This can't actually happen (appears to be an error in the
+						// specification of the API)
+						basicResourceSetChanged(event); // Try, anyways
+					}
+				}
+			}
+
+			/**
+			 * Captures the superclass behaviour of
+			 * {@link #resourceSetChanged(ResourceSetChangeEvent)}.
+			 * 
+			 * @param event
+			 *            the change event
+			 */
+			final void basicResourceSetChanged(ResourceSetChangeEvent event) {
+				super.resourceSetChanged(event);
+			}
 
 			@Override
 			protected void handleResourceLoaded(Resource resource) {
