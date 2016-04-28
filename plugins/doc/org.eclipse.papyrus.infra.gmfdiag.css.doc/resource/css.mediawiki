@@ -315,7 +315,7 @@ The following properties can be used to bypass the standard UML notation. They c
 |-
 | displayName || boolean || true || Shapes || If set to false, the name of the Shape will be hidden
 |-
-| displayTag || boolean || true || Shapes, connectors || If set to false, the tags (e.g. « component ») of the element will be hidden 
+| displayTag || boolean || true || Shapes, connectors || If set to false, the tags (e.g. Â« component Â») of the element will be hidden 
 |-
 | maintainSymbolRatio || boolean || true || Shapes || If the shape is represented with a Symbol, specifies whether the ratio should be maintained or not. If the Symbol is displayed in a compartment, it is usually a good idea to maintain the ratio. If the symbol is the only representation (e.g. when the name, border and compartments are hidden), it is recommended to not maintain the ratio
 |-
@@ -381,13 +381,13 @@ The following properties can be used to bypass the standard UML notation. They c
 |-
 |lineLength	||int	||-1	||Compartment	||Set the top line length of the compartment. By default the length is set to the width of the compartment.
 |-
-|lineLengthRatio	||String	||“1.0”	||Compartment	||Set the top line length ratio of the compartment.
+|lineLengthRatio	||String	||â€œ1.0â€�	||Compartment	||Set the top line length ratio of the compartment.
 |-
-|linePosition	||String	||“center”	||Compartment	||Set the compartment top line position.Can be left, center, right.
+|linePosition	||String	||â€œcenterâ€�	||Compartment	||Set the compartment top line position.Can be left, center, right.
 |-
 |displayHeader	||Boolean	||true	||Shape	||Set to true to add a header.
 |-
-|portPosition	||String	||“onLine”	||Affixed Shape	||Set the position of the port. Can be “inside”, “ouside” or “onLine”.
+|portPosition	||String	||â€œonLineâ€�	||Affixed Shape	||Set the position of the port. Can be â€œinsideâ€�, â€œousideâ€� or â€œonLineâ€�.
 |-
 |isPackage	||Boolean	||false	||Shapes	||Set if the shape have to be displayed as a package.
 |-
@@ -402,6 +402,18 @@ The following properties can be used to bypass the standard UML notation. They c
 |rightMarginLabel 	||integer 	||0 	||Labels 	||Define the right margin of the label in pixel. This is the space between the text box and his container
 |-
 |bottomMarginLabel 	||integer 	||0 	||Labels 	||Define the bottom margin of the label in pixel. This is the space between the text box and his container 
+|-
+|shapeStereotype 	||boolean 	||true 	||Shapes	||true if shapes provided by stereotypes should be included in the list of visible shapes in the symbol compartment
+|-
+|shapeTypedElement 	||boolean 	||true 	||Shapes	||true if shapes provided by TypeSymbolDefinition stereotype should be included in the list of visible shapes in the symbol compartment
+|-
+|shapeStyle	    	||boolean 	||true 	||Shapes	||true if shapes provided by property svgFile should be included in the list of visible shapes in the symbol compartment
+|-
+|shapeDecorationStereotype 	||boolean 	||true 	||Shapes	||true if shapes provided by stereotypes should be included in the list of visible shapes as decorations
+|-
+|shapeDecorationTypedElement 	||boolean 	||true 	||Shapes	||true if shapes provided by TypeSymbolDefinition stereotype should be included in the list of visible shapes as decorations
+|-
+|shapeDecorationStyle	    	||boolean 	||true 	||Shapes	||true if shapes provided by property svgFile should be included in the list of visible shapes as decorations
 |-
 |}
 

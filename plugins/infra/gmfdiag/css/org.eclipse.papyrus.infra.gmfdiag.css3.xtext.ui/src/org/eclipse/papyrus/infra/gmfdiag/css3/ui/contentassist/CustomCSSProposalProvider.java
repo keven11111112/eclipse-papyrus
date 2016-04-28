@@ -270,7 +270,14 @@ public class CustomCSSProposalProvider extends AbstractCSSProposalProvider {
 				NamedStyleProperties.USE_ORIGINAL_COLORS,
 				NamedStyleProperties.WRAP_NAME,
 				NamedStyleProperties.NAME_BACKGROUND_COLOR,
-				NamedStyleProperties.IS_PORT_RESIZABLE
+				NamedStyleProperties.IS_PORT_RESIZABLE,
+				/* shape provider properties */
+				"shapeStereotype",
+				"shapeDecorationStereotype",
+				NamedStyleProperties.SHAPE_STYLE_PROPERTY,
+				NamedStyleProperties.SHAPE_DECORATION_STYLE_PROPERTY,
+				"shapeTypedElement",
+				"shapeDecorationTypedElement"
 		};
 
 		return Arrays.asList(properties);

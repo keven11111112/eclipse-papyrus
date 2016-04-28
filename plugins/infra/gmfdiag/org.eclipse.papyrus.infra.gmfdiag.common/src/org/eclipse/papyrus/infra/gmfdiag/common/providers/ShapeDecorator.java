@@ -156,7 +156,7 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 				// look for the custom style shape_visibility
 				boolean hasShapes = ShapeService.getInstance().hasShapeToDisplay(node);
 				if (hasShapes) {
-					List<RenderedImage> shapesToDisplay = ShapeService.getInstance().getShapesToDisplay(node);
+					List<RenderedImage> shapesToDisplay = ShapeService.getInstance().getShapeDecorationsToDisplay(node);
 					if (!shapesToDisplay.isEmpty()) {
 						IFigure figure = new Figure();
 						// figure.setBorder(new LineBorder(1));

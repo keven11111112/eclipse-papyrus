@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
 import org.eclipse.gmf.runtime.draw2d.ui.render.factory.RenderedImageFactory;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.AbstractShapeProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ProviderNotificationManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
@@ -50,11 +51,29 @@ import org.w3c.dom.svg.SVGDocument;
  */
 public class TypedElementShapeProvider extends AbstractShapeProvider {
 
+	/** name of the CSS property that manages the enablement of that provider */
+	protected static final String SHAPE_TYPED_ELEMENT_PROPERTY = "shapeTypedElement";
+
+	/** name of the CSS property that manages the enablement of that provider as decoration */
+	protected static final String SHAPE_DECORATION_TYPED_ELEMENT_PROPERTY = "shapeDecorationTypedElement";
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public List<RenderedImage> getShapes(EObject view) {
+		if (!(view instanceof View)) {
+			return null;
+		}
+		View v = (View) view;
+		// check the css property for the status (enable or not) of that provider
+		if (!isShapeTypedElementEnable(v)) {
+			return null;
+		}
+		return doGetShapes(v);
+	}
+
+	protected List<RenderedImage> doGetShapes(View view) {
 		Type type = getType(view);
 		String path = getSymbolPath(type);
 		if (path != null && path.length() > 0) {
@@ -99,11 +118,62 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 	}
 
 	/**
+	 * Returns <code>false</code> if the given view specifically removes the support for shapes by type.
+	 * 
+	 * @param view
+	 *            the view to check style
+	 * @return <code>false</code> if the given view specifically removes the support for shapes by type, otherwise <code>true</code>.
+	 */
+	private boolean isShapeTypedElementEnable(View view) {
+		return NotationUtils.getBooleanValue(view, SHAPE_TYPED_ELEMENT_PROPERTY, true);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<RenderedImage> getShapesForDecoration(EObject view) {
+		if (!(view instanceof View)) {
+			return null;
+		}
+		View v = (View) view;
+		// check the css property for the status (enable or not) of that provider
+		if (!isShapeDecorationTypedElementEnable(v)) {
+			return null;
+		}
+		return doGetShapesForDecoration(v);
+	}
+
+	protected List<RenderedImage> doGetShapesForDecoration(View view) {
+		return doGetShapes(view);
+	}
+
+	/**
+	 * Returns <code>false</code> if the given view specifically removes the support for shapes decoration by type.
+	 * 
+	 * @param view
+	 *            the view to check style
+	 * @return <code>false</code> if the given view specifically removes the support for shapes decoration by type, otherwise <code>true</code>.
+	 */
+	private boolean isShapeDecorationTypedElementEnable(View view) {
+		return NotationUtils.getBooleanValue(view, SHAPE_DECORATION_TYPED_ELEMENT_PROPERTY, true);
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public List<SVGDocument> getSVGDocument(EObject view) {
-		Type type = getType(view);
+		if (!(view instanceof View)) {
+			return null;
+		}
+		View v = (View) view;
+		// check the css property for the status (enable or not) of that provider
+		if (!isShapeTypedElementEnable(v)) {
+			return null;
+		}
+
+		Type type = getType(v);
 		String path = getSymbolPath(type);
 		if (path != null && path.length() > 0) {
 			try {
@@ -134,6 +204,15 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 	 */
 	@Override
 	public boolean providesShapes(EObject view) {
+		if (!(view instanceof View)) {
+			return false;
+		}
+		View v = (View) view;
+		// check the css property for the status (enable or not) of that provider
+		if (!isShapeTypedElementEnable(v)) {
+			return false;
+		}
+
 		Type type = getType(view);
 		String path = getSymbolPath(type);
 		if (path != null && path.length() > 0) {

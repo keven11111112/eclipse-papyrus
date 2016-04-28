@@ -12,6 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
+import org.eclipse.papyrus.infra.gmfdiag.common.providers.StyleBasedShapeProvider;
 
 /**
  * Contains constants for specific NamedStyle, used to customize figure.
@@ -167,4 +168,9 @@ public interface NamedStyleProperties {
 	/* Label used to identify the forced CSS values */
 	public static final String CSS_FORCE_VALUE = "PapyrusCSSForceValue"; // $NON-NLS-1$
 
+	/** name of the CSS property that manages the enablement of the {@link StyleBasedShapeProvider} */
+	public static final String SHAPE_STYLE_PROPERTY = "shapeStyle";
+
+	/** name of the CSS property that manages the enablement of the {@link StyleBasedShapeProvider} for decoration */
+	public static final String SHAPE_DECORATION_STYLE_PROPERTY = "shapeDecorationStyle";
 }

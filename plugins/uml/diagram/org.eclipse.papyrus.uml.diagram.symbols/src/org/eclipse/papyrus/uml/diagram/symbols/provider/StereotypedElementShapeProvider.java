@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
 import org.eclipse.gmf.runtime.draw2d.ui.render.factory.RenderedImageFactory;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.AbstractShapeProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ProviderNotificationManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
@@ -43,6 +44,12 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 
 	private static final String SHAPE_CONSTANT = "shape";
 
+	/** name of the CSS property that manages the enablement of that provider */
+	protected static final String SHAPE_STEREOTYPE_PROPERTY = "shapeStereotype";
+
+	/** name of the CSS property that manages the enablement of that provider for decoration */
+	protected static final String SHAPE_DECORATION_STEREOTYPE_PROPERTY = "shapeDecorationStereotype";
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -51,7 +58,17 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 		if (!(view instanceof View)) {
 			return null;
 		}
-		EObject element = ((View) view).getElement();
+		View v = (View) view;
+		// check the css property for the status (enable or not) of that provider
+		if (!isShapeStereotypeEnable(v)) {
+			return null;
+		}
+		
+		return doGetShapes(v);
+	}
+
+	protected List<RenderedImage> doGetShapes(View view) {
+		EObject element = view.getElement();
 		if (element instanceof Element) {
 			List<RenderedImage> images = new ArrayList<RenderedImage>();
 			// it has already been checked that
@@ -60,11 +77,11 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 			while (appliedStereotypes.hasNext()) {
 				try {
 					Stereotype appliedStereotype = appliedStereotypes.next();
-					View stereotypeLabel = StereotypeDisplayUtil.getInstance().getStereotypeLabel(((View) view), appliedStereotype);
+					View stereotypeLabel = StereotypeDisplayUtil.getInstance().getStereotypeLabel(view, appliedStereotype);
 					if (stereotypeLabel != null && stereotypeLabel.isVisible()) {
 						org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(((Element) element), appliedStereotype, SHAPE_CONSTANT);
 						if (icon != null) {
-							if (!"".equals(icon.getLocation()) && icon.getLocation() != null) {
+							if (icon.getLocation() != null && !("".equals(icon.getLocation()))) {
 								SVGDocument document = getSVGDocument(icon.getLocation());
 								if (document != null) {
 									images.add(renderSVGDocument(view, document));
@@ -90,35 +107,79 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public List<RenderedImage> getShapesForDecoration(EObject view) {
+		if (!(view instanceof View)) {
+			return null;
+		}
+		View v = (View) view;
+		// check the css property for the status (enable or not) of that provider
+		if (!isShapeDecorationStereotypeEnable(v)) {
+			return null;
+		}
+
+		return doGetShapesForDecoration(v);
+	}
+
+	protected List<RenderedImage> doGetShapesForDecoration(View view) {
+		return doGetShapes(view);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public boolean providesShapes(EObject view) {
 		if (!(view instanceof View)) {
 			return false;
 		}
 
-		EObject element = ((View) view).getElement();
-		if (element instanceof Element) {
+		View v = (View) view;
+		if (!isShapeStereotypeEnable(v)) {
+			return false;
+		}
 
+		EObject element = v.getElement();
+		if (element instanceof Element) {
 			// This is an element. does it have stereotypes ? If yes, do the stereotypes have shapes associated ?
 			Iterator<Stereotype> appliedStereotypes = ((Element) element).getAppliedStereotypes().iterator();
 			while (appliedStereotypes.hasNext()) {
 
 				Stereotype appliedStereotype = appliedStereotypes.next();
-				View stereotypeLabel = StereotypeDisplayUtil.getInstance().getStereotypeLabel(((View) view), appliedStereotype);
+				View stereotypeLabel = StereotypeDisplayUtil.getInstance().getStereotypeLabel(v, appliedStereotype);
 				if (stereotypeLabel != null && stereotypeLabel.isVisible()) {
 					org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(((Element) element), appliedStereotype, SHAPE_CONSTANT);
 
 					if (icon != null) {
-						if (icon.getLocation() != "" && icon.getLocation() != null) {
+						if (!"".equals(icon.getLocation()) && icon.getLocation() != null) {
 							return true;
 						}
 					}
 				}
 			}
-
-
 		}
-
 		return false;
+	}
+
+	/**
+	 * Returns <code>false</code> if the given view specifically removes the support for shapes by stereotypes.
+	 * 
+	 * @param view
+	 *            the view to check style
+	 * @return <code>false</code> if the given view specifically removes the support for shapes by stereotypes, otherwise <code>true</code>.
+	 */
+	private boolean isShapeStereotypeEnable(View view) {
+		return NotationUtils.getBooleanValue(view, SHAPE_STEREOTYPE_PROPERTY, true);
+	}
+
+	/**
+	 * Returns <code>false</code> if the given view specifically removes the support for shapes as decoration by stereotypes.
+	 * 
+	 * @param view
+	 *            the view to check style
+	 * @return <code>false</code> if the given view specifically removes the support for shapes as decoration by stereotypes, otherwise <code>true</code>.
+	 */
+	private boolean isShapeDecorationStereotypeEnable(View view) {
+		return NotationUtils.getBooleanValue(view, SHAPE_DECORATION_STEREOTYPE_PROPERTY, true);
 	}
 
 	/**
@@ -130,7 +191,13 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 		if (!(view instanceof View)) {
 			return null;
 		}
-		EObject element = ((View) view).getElement();
+
+		View v = (View) view;
+		if (!isShapeStereotypeEnable(v)) {
+			return null;
+		}
+
+		EObject element = v.getElement();
 		if (element instanceof Element) {
 			List<SVGDocument> images = new ArrayList<SVGDocument>();
 			// it has already been checked that
@@ -138,11 +205,11 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 			while (appliedStereotypes.hasNext()) {
 
 				Stereotype appliedStereotype = appliedStereotypes.next();
-				View stereotypeLabel = StereotypeDisplayUtil.getInstance().getStereotypeLabel(((View) view), appliedStereotype);
+				View stereotypeLabel = StereotypeDisplayUtil.getInstance().getStereotypeLabel(v, appliedStereotype);
 				if (stereotypeLabel != null && stereotypeLabel.isVisible()) {
 					org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(((Element) element), appliedStereotype, SHAPE_CONSTANT);
 					if (icon != null) {
-						if (icon.getLocation() != "" && icon.getLocation() != null) {
+						if (icon.getLocation() != null && !("".equals(icon.getLocation()))) {
 							SVGDocument document = getSVGDocument(icon.getLocation());
 							if (document != null) {
 								images.add(document);

@@ -53,6 +53,16 @@ public interface IShapeProvider extends IProvider {
 	List<RenderedImage> getShapes(EObject view);
 
 	/**
+	 * Returns the list of shapes proposed by this provider specific for decoration
+	 *
+	 * @param view
+	 *            the view for which shapes are looked for
+	 * @return the list of shapes displayed as decoration or <code>null</code> if no shapes have to be displayed by this provider
+	 */
+	List<RenderedImage> getShapesForDecoration(EObject view);
+
+
+	/**
 	 * Returns the list of SVG Documents proposed by this provider
 	 *
 	 * @param view

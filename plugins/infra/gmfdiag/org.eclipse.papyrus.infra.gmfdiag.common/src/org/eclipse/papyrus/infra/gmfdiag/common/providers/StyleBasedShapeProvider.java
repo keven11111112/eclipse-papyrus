@@ -14,7 +14,6 @@ package org.eclipse.papyrus.infra.gmfdiag.common.providers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -25,8 +24,10 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.AbstractShapeProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ProviderNotificationManager;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
 import org.w3c.dom.svg.SVGDocument;
 
 /**
@@ -63,13 +64,22 @@ public class StyleBasedShapeProvider extends AbstractShapeProvider {
 			return listEmptyRendered;
 		}
 		View v = (View) view;
-		String svgFile = extract((StringValueStyle) v.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), STYLE_PROPERTY));
+
+		if (!isShapeStyleEnable(v)) {
+			return listEmptyRendered;
+		}
+
+		return doGetShapes(v);
+	}
+
+	protected List<RenderedImage> doGetShapes(View view) {
+		String svgFile = extract((StringValueStyle) view.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), STYLE_PROPERTY));
 		if (svgFile == null) {
 			return listEmptyRendered;
 		}
 		SVGDocument svg = getSVGDocument(view, svgFile);
-		if (svg == null){
-			Activator.log.warn("Invalid SVG File path: "+svgFile);
+		if (svg == null) {
+			Activator.log.warn("Invalid SVG File path: " + svgFile);
 			return null;
 		}
 		RenderedImage img = null;
@@ -83,6 +93,30 @@ public class StyleBasedShapeProvider extends AbstractShapeProvider {
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.service.shape.IShapeProvider#getShapesForDecoration(org.eclipse.emf.ecore.EObject)
+	 *
+	 * @param view
+	 * @return
+	 */
+	@Override
+	public List<RenderedImage> getShapesForDecoration(EObject view) {
+		if (!(view instanceof View)) {
+			return listEmptyRendered;
+		}
+		View v = (View) view;
+
+		if (!isShapeDecorationStyleEnable(v)) {
+			return listEmptyRendered;
+		}
+
+		return doGetShapesForDecoration(v);
+	}
+
+	protected List<RenderedImage> doGetShapesForDecoration(View view) {
+		return doGetShapes(view);
+	}
+
+	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.service.shape.IShapeProvider#getSVGDocument(org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
@@ -91,6 +125,11 @@ public class StyleBasedShapeProvider extends AbstractShapeProvider {
 			return listEmptySVG;
 		}
 		View v = (View) view;
+
+		if (!isShapeStyleEnable(v)) {
+			return listEmptySVG;
+		}
+
 		String svgFile = extract((StringValueStyle) v.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), STYLE_PROPERTY));
 		if (svgFile == null) {
 			return listEmptySVG;
@@ -109,8 +148,35 @@ public class StyleBasedShapeProvider extends AbstractShapeProvider {
 			return false;
 		}
 		View v = (View) view;
+
+		if (!isShapeStyleEnable(v)) {
+			return false;
+		}
+
 		String svgFile = extract((StringValueStyle) v.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), STYLE_PROPERTY));
 		return (svgFile != null);
+	}
+
+	/**
+	 * Returns <code>false</code> if the given view specifically removes the support for css-defined shapes.
+	 * 
+	 * @param view
+	 *            the view to check style
+	 * @return <code>false</code> if the given view specifically removes the support for css-defined shapes, otherwise <code>true</code>.
+	 */
+	private boolean isShapeStyleEnable(View view) {
+		return NotationUtils.getBooleanValue(view, NamedStyleProperties.SHAPE_STYLE_PROPERTY, true);
+	}
+
+	/**
+	 * Returns <code>false</code> if the given view specifically removes the support for css-defined shapes.
+	 * 
+	 * @param view
+	 *            the view to check style
+	 * @return <code>false</code> if the given view specifically removes the support for css-defined shapes, otherwise <code>true</code>.
+	 */
+	private boolean isShapeDecorationStyleEnable(View view) {
+		return NotationUtils.getBooleanValue(view, NamedStyleProperties.SHAPE_DECORATION_STYLE_PROPERTY, true);
 	}
 
 	/**
@@ -144,4 +210,5 @@ public class StyleBasedShapeProvider extends AbstractShapeProvider {
 		};
 		return manager;
 	}
+
 }

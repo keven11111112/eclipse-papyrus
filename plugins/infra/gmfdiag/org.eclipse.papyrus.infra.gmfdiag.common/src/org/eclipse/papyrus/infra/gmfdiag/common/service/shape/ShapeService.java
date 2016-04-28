@@ -45,6 +45,11 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 	 */
 	private static final String MAX_NUMBER_OF_SYMBOL = "maxNumberOfSymbol";
 
+	/**
+	 * 
+	 */
+	private static final String MAX_NUMBER_OF_SYMBOL_DECORATION = "maxNumberOfSymbolDecoration";
+
 	/** singleton instance */
 	private static ShapeService instance;
 
@@ -67,6 +72,17 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 	}
 
 	/**
+	 * Checks if the given element can display shapes as decoration.
+	 *
+	 * @return <code>true</code> if one or several decorations should be displayed
+	 */
+	public boolean hasShapeDecorationToDisplay(EObject view) {
+		@SuppressWarnings("unchecked")
+		List<RenderedImage> images = execute(ExecutionStrategy.REVERSE, new GetShapeDecorationsForViewOperation(view));
+		return images != null && images.size() > 0;
+	}
+
+	/**
 	 * Returns the shape to be displayed
 	 *
 	 * @param view
@@ -84,6 +100,28 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 		}
 		// Get the number of images to display
 		int nbImagesToDisplay = NotationUtils.getIntValue((View) view, MAX_NUMBER_OF_SYMBOL, getDefaultMaxNumberOfSymbol());
+
+		return images.subList(0, Math.min(nbImagesToDisplay, images.size()));
+	}
+	
+	/**
+	 * Returns the shape to be displayed
+	 *
+	 * @param view
+	 *            the EObject for which the shape is computed
+	 * @return the shape to be displayed
+	 */
+	public List<RenderedImage> getShapeDecorationsToDisplay(EObject view) {
+		@SuppressWarnings("unchecked")
+		List<List<RenderedImage>> listOfListOfImages = execute(ExecutionStrategy.FORWARD, new GetShapeDecorationsForViewOperation(view));
+		List<RenderedImage> images = new ArrayList<RenderedImage>();
+		for (List<RenderedImage> listOfImages : listOfListOfImages) {
+			if (listOfImages != null && !listOfImages.isEmpty()) {
+				images.addAll(listOfImages);
+			}
+		}
+		// Get the number of images to display
+		int nbImagesToDisplay = NotationUtils.getIntValue((View) view, MAX_NUMBER_OF_SYMBOL_DECORATION, getDefaultMaxNumberOfSymbolDecoration());
 
 		return images.subList(0, Math.min(nbImagesToDisplay, images.size()));
 	}
@@ -130,6 +168,14 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 	private int getDefaultMaxNumberOfSymbol() {
 		return 10;
 	}
+
+	/**
+	 * @return
+	 */
+	private int getDefaultMaxNumberOfSymbolDecoration() {
+		return 10;
+	}
+
 
 	/**
 	 * Ask all the shape providers to add their required notification listeners to the diagram event broker.
