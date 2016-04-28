@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL
- *
+ * Copyright (c) 2009, 2016 LIFL, CEA LIST, Christian W. Damus, and others
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Cedric Dumoulin Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 492689
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -165,14 +165,16 @@ public class ActivePageTracker {
 		// if(oldEditor == newEditor)
 		// return;
 
-		// Fire events to internal listeners
-		for (IActiveEditorChangedListener listener : activeEditorChangedListeners) {
+		// Fire events to internal listeners. Allow for listener addition/removal
+		// during this process
+		for (IActiveEditorChangedListener listener : new ArrayList<>(activeEditorChangedListeners)) {
 			listener.activeEditorChanged(oldEditor, newEditor);
 		}
 
-		// Fire event to public listeners
+		// Fire event to public listeners. Allow for listener addition/removal
+		// during this process
 		if (publicPageChangedListeners != null) {
-			for (IPageChangedListener listener : publicPageChangedListeners) {
+			for (IPageChangedListener listener : new ArrayList<>(publicPageChangedListeners)) {
 				listener.pageChanged(newEditor);
 			}
 		}
