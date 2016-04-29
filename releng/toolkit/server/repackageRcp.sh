@@ -17,6 +17,7 @@ TMP=${rcpProductDir}/tmp
 papyrusMacApp=Papyrus.app
 papyrusWinApp=papyrus.exe
 
+rm -rf $rcpProductFinalDir
 mkdir $rcpProductFinalDir
 
 #Proceed with Windows
