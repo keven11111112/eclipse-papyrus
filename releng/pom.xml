@@ -47,10 +47,10 @@
 		<swtbot.repo.url>${eclipse.download}/technology/swtbot/snapshots</swtbot.repo.url>
 
 		<!-- updateFrom("CDT",0) -->
-		<cdt.repo.url>${eclipse.download}/tools/cdt/builds/neon/milestones/m6</cdt.repo.url>
+		<cdt.repo.url>${eclipse.download}/tools/cdt/builds/neon/milestones/m6a</cdt.repo.url>
 
 		<!-- updateFrom("CDT",1) -->
-		<cdt.launchbar.repo.url>${eclipse.download}/tools/cdt/launchbar/neon.m5</cdt.launchbar.repo.url>
+		<cdt.launchbar.repo.url>${eclipse.download}/tools/cdt/launchbar/neon.m6</cdt.launchbar.repo.url>
 
 		<!-- updateFrom("EMF CDO",0) -->
 		<emf-cdo.repo.url>${eclipse.download}/modeling/emf/cdo/drops/S20151216-1133</emf-cdo.repo.url>
@@ -71,16 +71,16 @@
 		<b3.repo.url>${eclipse.download}/modeling/emft/b3/updates-4.4</b3.repo.url>
 
 		<!-- updateFrom("Mylyn",0) -->
-		<mylyn.repo.url>${eclipse.download}/mylyn/drops/3.19.0/v20160309-0410</mylyn.repo.url>
+		<mylyn.repo.url>${eclipse.download}/mylyn/drops/3.19.0/v20160331-2042</mylyn.repo.url>
 
 		<!-- updateFrom("EGIT",0) -->
-		<egit.repo.url>${eclipse.download}/egit/updates-4.2</egit.repo.url>
+		<egit.repo.url>${eclipse.download}/egit/updates-4.3</egit.repo.url>
 
 		<!-- updateFrom("EPP Logging",0) -->
 		<epp-logging.repo.url>${eclipse.download}/technology/epp/logging/milestones/</epp-logging.repo.url>
 
 		<!-- updateFrom("oomph",0) -->
-		<oomph.repo.url>${eclipse.download}/oomph/drops/milestone/S20160203-080059-1.3.0-M5</oomph.repo.url>
+		<oomph.repo.url>${eclipse.download}/oomph/drops/milestone/S20160324-055722-1.4.0-M6a</oomph.repo.url>
 
 		<!-- Papyrus repositories. Used when we're building individual components 
 			(vs building the parent pom including everything) -->
@@ -147,7 +147,7 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>${eclipse.download}/eclipse/updates/4.6milestones/S-4.6M6-201603170200/</url>
+			<url>${eclipse.download}/eclipse/updates/4.6-I-builds/I20160428-0800/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -225,7 +225,7 @@
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>${eclipse.download}/webtools/downloads/drops/R3.8.0/S-3.8.0M5-20160202064558/repository/</url>
+			<url>${eclipse.download}/webtools/downloads/drops/R3.8.0/S-3.8.0M6-20160324010110/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>
