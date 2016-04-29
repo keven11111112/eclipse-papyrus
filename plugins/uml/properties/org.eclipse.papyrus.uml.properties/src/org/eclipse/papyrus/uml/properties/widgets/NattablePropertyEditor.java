@@ -93,6 +93,7 @@ import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Element;
 
@@ -1105,7 +1106,17 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 					if (null != natTableWidget) {
 						natTableWidget.dispose();
 						natTableWidget = null;
+					}
+					// Bug 492560: The self children control was not all disposed correclty
+					if(null != self){
+						if(self.getChildren().length > 0){
+							for(Control control: self.getChildren()){
+								control.dispose();
+							}
+						}
 						self.removeDisposeListener(getDisposeListener());
+						nattableDisposeListener = null;
+						self.layout();
 					}
 					// Get the datasource
 					final DataSource dataSource = event.getDataSource();
