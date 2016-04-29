@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Main" sequenceNumber="1461920519">
+<target name="Papyrus RCP" sequenceNumber="1461920728">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="file:/home/data/httpd/download.eclipse.org/tools/orbit/downloads/drops/R20150821153341/repository"/>
@@ -156,6 +156,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20160317-0200"/>
+      <unit id="org.eclipse.equinox.executable.feature.group" version="3.6.300.v20160316-1445"/>
       <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="4.5.100.v20160308-2123"/>
       <unit id="org.eclipse.sdk.feature.group" version="4.6.0.v20160317-0200"/>
       <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.6milestones/S-4.6M6-201603170200/"/>
