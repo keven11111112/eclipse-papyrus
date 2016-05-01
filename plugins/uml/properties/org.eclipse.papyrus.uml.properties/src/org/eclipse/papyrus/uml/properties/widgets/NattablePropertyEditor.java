@@ -249,9 +249,6 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		return getTableConfigurationURI();
 	}
 
-
-
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -275,7 +272,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 		final ModelElement modelElement = input.getModelElement(propertyPath);
 
-		// The data neede to create the table
+		// The data needed to create the table
 		final List<Object> rows = new ArrayList<Object>();
 		EObject sourceElement = null;
 		EStructuralFeature feature = null;
@@ -312,8 +309,41 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			return;
 		}
 
-		createTableWidget(sourceElement, feature, rows);
+		// Create the widgets
+		createWidgets(sourceElement, feature, rows);
+	}
 
+	/**
+	 * This allow to create the widgets.
+	 * 
+	 * @param sourceElement
+	 *            The source Element.
+	 * @param feature
+	 *            The feature.
+	 * @param rows
+	 *            The rows of the table.
+	 * @since 2.0.0
+	 */
+	protected void createWidgets(final EObject sourceElement, final EStructuralFeature feature, final Collection<?> rows) {
+		createPreviousWidgets(sourceElement, feature);
+		createTableWidget(sourceElement, feature, rows);
+		createFollowingWidgets(sourceElement, feature);
+
+		// Configure the layout and the layout data
+		configureLayout(sourceElement);
+		self.layout();
+	}
+
+	/**
+	 * This allow to create the widgets displayed before the table widget.
+	 * 
+	 * @param sourceElement
+	 *            The source Element.
+	 * @param feature
+	 *            The feature.
+	 */
+	protected void createPreviousWidgets(final EObject sourceElement, final EStructuralFeature feature) {
+		// To implement if some widgets are needed before the table widget
 	}
 
 	/**
@@ -387,6 +417,19 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		configureLayout();
 
 		((NattableModelManager) nattableManager).refreshNatTable();
+	}
+
+	/**
+	 * This allow to create the widgets displayed after the table widget.
+	 * 
+	 * @param sourceElement
+	 *            The source Element.
+	 * @param feature
+	 *            The feature.
+	 * @since 2.0.0
+	 */
+	protected void createFollowingWidgets(final EObject sourceElement, final EStructuralFeature feature) {
+		// To implement if some widgets are needed after the table widget
 	}
 
 	/**
@@ -529,7 +572,10 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 	/**
 	 * This allows to configure the layout and the layout data.
+	 * 
+	 * @deprecated since 2.0.0
 	 */
+	@Deprecated
 	protected void configureLayout() {
 		// Adapt the group to the table preferred size
 		final GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
@@ -548,6 +594,46 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 		self.layout();
 		natTableWidget.layout();
+	}
+
+	/**
+	 * This allows to configure the layout and the layout data.
+	 * 
+	 * @param sourceElement
+	 *            The source element.
+	 * @since 2.0.0
+	 */
+	protected void configureLayout(final EObject sourceElement) {
+		// Configure the size of the parent container
+		configureSize(sourceElement);
+
+		natTableWidget.layout();
+
+		((NattableModelManager) nattableManager).refreshNatTable();
+	}
+
+	/**
+	 * This allows to configure the size of the parent container.
+	 * 
+	 * @param sourceElement
+	 *            The source element.
+	 * @since 2.0.0
+	 */
+	protected void configureSize(final EObject sourceElement) {
+		// Adapt the group to the table preferred size
+		final GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+
+		// The preferred height of the nattable calculate it for each row (even if some are hidden)
+		// So to calculate the correct height for the composite :
+		// - Calculate the header height
+		// - Calculate the body height
+		// Add these values and add some extra to have correct displays
+		final int headerHeight = natTableWidget.getPreferredHeight() - nattableManager.getBodyLayerStack().getRowHideShowLayer().getPreferredHeight();
+		final int bodyHeight = nattableManager.getBodyLayerStack().getRowHideShowLayer().getHeight();
+		// 16px must be added because of the left area slider
+		final int extra = 20 + 16;
+		data.minimumHeight = headerHeight + bodyHeight + extra;
+		self.setLayoutData(data);
 	}
 
 	/**
@@ -919,36 +1005,44 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			this.nattableDisposeListener = new DisposeListener() {
 
 				public void widgetDisposed(DisposeEvent e) {
-
-					if (NattablePropertyEditor.this.serviceRegistry != null) {
-						// we dispose it to avoid unecessary refresh
-						NattablePropertyEditor.this.nattableManager.dispose();
-						NattablePropertyEditor.this.natTableWidget.dispose();
-
-						TransactionalEditingDomain domain = getTableEditingDomain();
-						Command cmd = getDisposeCommand(domain, table);
-						domain.getCommandStack().execute(cmd);
-
-						if (NattablePropertyEditor.this.resource != null) {
-							try {
-								NattablePropertyEditor.this.resource.save(saveOptions);
-							} catch (IOException e1) {
-								Activator.log.error(e1);
-							}
-						}
-						try {
-							NattablePropertyEditor.this.serviceRegistry.disposeRegistry();
-						} catch (ServiceMultiException e1) {
-							Activator.log.error(e1);
-						}
-						NattablePropertyEditor.this.serviceRegistry = null;
-						NattablePropertyEditor.this.table = null;
-
-					}
+					disposeListener();
 				}
 			};
 		}
 		return nattableDisposeListener;
+	}
+
+	/**
+	 * This allows to dispose the listeners.
+	 * 
+	 * @since 2.0.0
+	 */
+	protected void disposeListener() {
+		if (NattablePropertyEditor.this.serviceRegistry != null) {
+			// we dispose it to avoid unecessary refresh
+			NattablePropertyEditor.this.nattableManager.dispose();
+			NattablePropertyEditor.this.natTableWidget.dispose();
+
+			TransactionalEditingDomain domain = getTableEditingDomain();
+			Command cmd = getDisposeCommand(domain, table);
+			domain.getCommandStack().execute(cmd);
+
+			if (NattablePropertyEditor.this.resource != null) {
+				try {
+					NattablePropertyEditor.this.resource.save(saveOptions);
+				} catch (IOException e1) {
+					Activator.log.error(e1);
+				}
+			}
+			try {
+				NattablePropertyEditor.this.serviceRegistry.disposeRegistry();
+			} catch (ServiceMultiException e1) {
+				Activator.log.error(e1);
+			}
+			NattablePropertyEditor.this.serviceRegistry = null;
+			NattablePropertyEditor.this.table = null;
+
+		}
 	}
 
 	/**
