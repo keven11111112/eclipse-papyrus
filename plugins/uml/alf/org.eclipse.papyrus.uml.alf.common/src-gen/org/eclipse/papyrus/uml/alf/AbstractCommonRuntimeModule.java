@@ -6,7 +6,6 @@ package org.eclipse.papyrus.uml.alf;
 import java.util.Properties;
 
 import org.eclipse.xtext.Constants;
-import org.eclipse.xtext.service.DefaultRuntimeModule;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -14,8 +13,8 @@ import com.google.inject.name.Names;
 /**
  * Manual modifications go to {org.eclipse.papyrus.uml.alf.CommonRuntimeModule}
  */
- @SuppressWarnings("all")
-public abstract class AbstractCommonRuntimeModule extends DefaultRuntimeModule {
+@SuppressWarnings("all")
+public abstract class AbstractCommonRuntimeModule extends org.eclipse.xtext.service.DefaultRuntimeModule {
 
 	protected Properties properties = null;
 
@@ -24,17 +23,16 @@ public abstract class AbstractCommonRuntimeModule extends DefaultRuntimeModule {
 		properties = tryBindProperties(binder, "org/eclipse/papyrus/uml/alf/Common.properties");
 		super.configure(binder);
 	}
-
+	
 	public void configureLanguageName(Binder binder) {
 		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance("org.eclipse.papyrus.uml.alf.Common");
 	}
-
+	
 	public void configureFileExtensions(Binder binder) {
-		if (properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null) {
+		if (properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null)
 			binder.bind(String.class).annotatedWith(Names.named(Constants.FILE_EXTENSIONS)).toInstance("common");
-		}
 	}
-
+	
 	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
 	public java.lang.ClassLoader bindClassLoaderToInstance() {
 		return getClass().getClassLoader();
@@ -46,7 +44,6 @@ public abstract class AbstractCommonRuntimeModule extends DefaultRuntimeModule {
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
-	@Override
 	public Class<? extends org.eclipse.xtext.serializer.sequencer.ISemanticSequencer> bindISemanticSequencer() {
 		return org.eclipse.papyrus.uml.alf.serializer.CommonSemanticSequencer.class;
 	}
@@ -57,7 +54,6 @@ public abstract class AbstractCommonRuntimeModule extends DefaultRuntimeModule {
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
-	@Override
 	public Class<? extends org.eclipse.xtext.serializer.ISerializer> bindISerializer() {
 		return org.eclipse.xtext.serializer.impl.Serializer.class;
 	}

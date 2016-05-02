@@ -5,19 +5,18 @@
 package org.eclipse.papyrus.uml.alf.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.xtext.ui.DefaultUiModule;
 
 /**
  * Manual modifications go to {org.eclipse.papyrus.uml.alf.ui.CommonUiModule}
  */
 @SuppressWarnings("all")
-public abstract class AbstractCommonUiModule extends DefaultUiModule {
-
+public abstract class AbstractCommonUiModule extends org.eclipse.xtext.ui.DefaultUiModule {
+	
 	public AbstractCommonUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
-
-
+	
+	
 	// contributed by org.eclipse.xtext.ui.generator.ImplicitUiFragment
 	public com.google.inject.Provider<org.eclipse.xtext.resource.containers.IAllContainersState> provideIAllContainersState() {
 		return org.eclipse.xtext.ui.shared.Access.getJavaProjectsState();

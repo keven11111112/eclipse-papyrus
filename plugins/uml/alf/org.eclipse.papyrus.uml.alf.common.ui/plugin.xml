@@ -78,49 +78,6 @@
         </definition>
     </extension>
     <extension
-            point="org.eclipse.ui.preferencePages">
-        <page
-              category="org.eclipse.papyrus.embeddededitors"
-              class="org.eclipse.papyrus.uml.alf.ui.CommonExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-              id="org.eclipse.papyrus.uml.alf.Common"
-              name="Common">
-            <keywordReference id="org.eclipse.papyrus.uml.alf.ui.keyword_Common"/>
-        </page>
-        <page
-            category="org.eclipse.papyrus.uml.alf.Common"
-            class="org.eclipse.papyrus.uml.alf.ui.CommonExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-            id="org.eclipse.papyrus.uml.alf.Common.coloring"
-            name="Syntax Coloring">
-            <keywordReference id="org.eclipse.papyrus.uml.alf.ui.keyword_Common"/>
-        </page>
-        <page
-            category="org.eclipse.papyrus.uml.alf.Common"
-            class="org.eclipse.papyrus.uml.alf.ui.CommonExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-            id="org.eclipse.papyrus.uml.alf.Common.templates"
-            name="Templates">
-            <keywordReference id="org.eclipse.papyrus.uml.alf.ui.keyword_Common"/>
-        </page>
-    </extension>
-    <extension
-            point="org.eclipse.ui.propertyPages">
-        <page
-            class="org.eclipse.papyrus.uml.alf.ui.CommonExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.papyrus.uml.alf.Common"
-            name="Common">
-            <keywordReference id="org.eclipse.papyrus.uml.alf.ui.keyword_Common"/>
-            <enabledWhen>
-	            <adapt type="org.eclipse.core.resources.IProject"/>
-			</enabledWhen>
-	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
-        </page>
-    </extension>
-    <extension
-        point="org.eclipse.ui.keywords">
-        <keyword
-            id="org.eclipse.papyrus.uml.alf.ui.keyword_Common"
-            label="Common"/>
-    </extension>
-    <extension
          point="org.eclipse.ui.commands">
       <command
             description="Trigger expensive validation"
