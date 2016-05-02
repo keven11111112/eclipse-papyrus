@@ -28,6 +28,8 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
@@ -321,6 +323,35 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 
 		bottomMarginObservable = new CustomIntStyleObservableValue(view, domain, BOTTOM_MARGIN_PROPERTY);
 		bottomMarginObservable.addChangeListener(namedStyleListener);
+	}
+
+	/**
+	 * Refresh the diagram when changing the label filters (Bug 488286 - [CSS][Diagram] Missing refresh in some cases when using label filters)
+	 * 
+	 * @since 2.0
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
+	 *
+	 * @param notification
+	 */
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+
+		Object notifier = notification.getNotifier();
+		Object oldValue = notification.getOldValue();
+		// DO
+		if (notifier instanceof EAnnotation) {
+			if (((EAnnotation) notifier).getSource().equalsIgnoreCase(NamedStyleProperties.CSS_FORCE_VALUE)) {
+				super.refresh();
+			}
+		}
+		// UNDO
+		else if (oldValue instanceof EAnnotation) {
+			if (((EAnnotation) oldValue).getSource().equalsIgnoreCase(NamedStyleProperties.CSS_FORCE_VALUE)) {
+				super.refresh();
+			}
+		}
+
 	}
 
 	/**

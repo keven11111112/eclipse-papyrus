@@ -163,5 +163,8 @@ public interface NamedStyleProperties {
 
 	/** The port resizable namestyle propery. */
 	public static final String IS_PORT_RESIZABLE = "isPortResizable";//$NON-NLS-1$
+	
+	/* Label used to identify the forced CSS values */
+	public static final String CSS_FORCE_VALUE = "PapyrusCSSForceValue"; // $NON-NLS-1$
 
 }
