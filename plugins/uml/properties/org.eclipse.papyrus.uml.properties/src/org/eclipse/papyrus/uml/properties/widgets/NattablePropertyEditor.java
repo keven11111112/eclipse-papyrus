@@ -198,6 +198,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * 
 	 * @param newValue
 	 *            if <code>true</code> we register the table configuration by type AND by the ECLass of the selected element
+	 * @since 2.0
 	 */
 	public final void setRegisterTableConfigurationByEClass(final boolean newValue) {
 		this.registerTableConfigurationByEClass = newValue;
@@ -322,7 +323,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 *            The feature.
 	 * @param rows
 	 *            The rows of the table.
-	 * @since 2.0.0
+	 * @since 2.0
 	 */
 	protected void createWidgets(final EObject sourceElement, final EStructuralFeature feature, final Collection<?> rows) {
 		createPreviousWidgets(sourceElement, feature);
@@ -341,6 +342,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 *            The source Element.
 	 * @param feature
 	 *            The feature.
+	 * @since 2.0
 	 */
 	protected void createPreviousWidgets(final EObject sourceElement, final EStructuralFeature feature) {
 		// To implement if some widgets are needed before the table widget
@@ -426,7 +428,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 *            The source Element.
 	 * @param feature
 	 *            The feature.
-	 * @since 2.0.0
+	 * @since 2.0
 	 */
 	protected void createFollowingWidgets(final EObject sourceElement, final EStructuralFeature feature) {
 		// To implement if some widgets are needed after the table widget
@@ -601,7 +603,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * 
 	 * @param sourceElement
 	 *            The source element.
-	 * @since 2.0.0
+	 * @since 2.0
 	 */
 	protected void configureLayout(final EObject sourceElement) {
 		// Configure the size of the parent container
@@ -617,7 +619,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * 
 	 * @param sourceElement
 	 *            The source element.
-	 * @since 2.0.0
+	 * @since 2.0
 	 */
 	protected void configureSize(final EObject sourceElement) {
 		// Adapt the group to the table preferred size
@@ -1015,7 +1017,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	/**
 	 * This allows to dispose the listeners.
 	 * 
-	 * @since 2.0.0
+	 * @since 2.0
 	 */
 	protected void disposeListener() {
 		if (NattablePropertyEditor.this.serviceRegistry != null) {
