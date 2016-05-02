@@ -10,3 +10,6 @@ Require-Bundle: org.eclipse.papyrus.infra.services.navigation;bundle-version="[2
  org.eclipse.papyrus.infra.emf;bundle-version="[2.0.0,3.0.0)"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Description: %pluginDescription
+Bundle-Localization: plugin
