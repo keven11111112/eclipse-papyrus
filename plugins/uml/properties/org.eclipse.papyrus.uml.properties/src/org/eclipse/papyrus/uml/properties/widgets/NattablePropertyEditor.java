@@ -73,10 +73,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanVa
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestyleFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style;
 import org.eclipse.papyrus.infra.nattable.tree.ITreeItemAxisHelper;
-import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.nattable.utils.NattableModelManagerFactory;
-import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.infra.properties.contexts.Property;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.CompositeModelElement;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
@@ -501,59 +499,6 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		// 1. we register the context of the table
 		Command setContextCommand = SetCommand.create(domain, table, NattablePackage.eINSTANCE.getTable_Context(), sourceElement);
 		command.append(setContextCommand);
-	}
-
-	/**
-	 * This method initialize the context of the table, the feature to listen and the intial rows list element
-	 * 
-	 * @since 2.0
-	 * 
-	 * @deprecated since 2.0, use {@link #configureTable(TransactionalEditingDomain, Table, EObject, EStructuralFeature, Collection, Command)} instead
-	 */
-	@Deprecated
-	protected void configureTable(Table table, EObject sourceElement, EStructuralFeature synchronizedFeature, Collection<?> rows) {
-		final TransactionalEditingDomain domain = getTableEditingDomain();
-		if (null != domain) {
-			Command setContextCommand = SetCommand.create(domain, table, NattablePackage.eINSTANCE.getTable_Context(), sourceElement);
-			getTableEditingDomain().getCommandStack().execute(setContextCommand);
-			Assert.isNotNull(table.getContext());
-
-			if (TableHelper.isTreeTable(table) && null != rows && !rows.isEmpty()) {// add test on TreeTable to fix bug 476623
-				final AbstractAxisProvider axisProvider = table.getCurrentRowAxisProvider();
-				TableHeaderAxisConfiguration conf = (TableHeaderAxisConfiguration) HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisInTableConfiguration(table);
-				AxisManagerRepresentation rep = conf.getAxisManagers().get(0);
-				for (Object context : rows) {
-					addTreeItemAxis(axisProvider, rep, context);
-				}
-			}
-		}
-	}
-
-
-	/**
-	 * This allows to add some named style to the table.
-	 * 
-	 * @param table
-	 *            The current table.
-	 * @since 2.0
-	 * 
-	 * @deprecated since 2.0 done directly in the creation of the table
-	 */
-	@Deprecated
-	protected void manageTableNamedStyle(final Table table) {
-		final org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle style = NattablestyleFactory.eINSTANCE.createBooleanValueStyle();
-		style.setName(NamedStyleConstants.FILL_COLUMNS_SIZE);
-		style.setBooleanValue(true);
-		final TransactionalEditingDomain domain = getTableEditingDomain();
-		RecordingCommand rc = new RecordingCommand(domain) {
-
-			@Override
-			protected void doExecute() {
-				table.getStyles().add(style);
-
-			}
-		};
-		domain.getCommandStack().execute(rc);
 	}
 
 	/**
