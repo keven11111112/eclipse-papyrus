@@ -1462,25 +1462,24 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 					final int parentSize = parent.getSize().x;
 
 					// Calculate the rows header width
-					int headerWidth = 0;
-					if (null != getRowHeaderLayerStack()) {
-						if (null != getRowHeaderLayerStack().getIndexRowHeaderLayer()) {
-							headerWidth = getRowHeaderLayerStack().getIndexRowHeaderLayer().getWidth();
+					if(0 < parentSize){
+						int headerWidth = 0;
+						if (null != getRowHeaderLayerStack()) {
+							for (int headerColumnIndex = 0; headerColumnIndex < getRowHeaderLayerStack().getColumnCount(); headerColumnIndex++) {
+								headerWidth += getRowHeaderLayerStack().getColumnWidthByPosition(headerColumnIndex);
+							}
 						}
-						for (int headerColumnIndex = 0; headerColumnIndex < getRowHeaderLayerStack().getColumnCount(); headerColumnIndex++) {
-							headerWidth = getRowHeaderLayerStack().getColumnWidthByPosition(headerColumnIndex);
+	
+						// Remove the rows header size from the parent size
+						final int allColumnsSize = parentSize - headerWidth;
+	
+						// Divide the width of all columns by the number of column to calculate the width by column
+						final int columnSize = allColumnsSize / getBodyLayerStack().getColumnHideShowLayer().getColumnCount();
+	
+						// Affext the width to the column
+						for (int columnPosition = 0; columnPosition < getBodyLayerStack().getColumnHideShowLayer().getColumnCount(); columnPosition++) {
+							getBodyLayerStack().getBodyDataLayer().setColumnWidthByPosition(columnPosition, columnSize);
 						}
-					}
-
-					// Remove the rows header size from the parent size
-					final int allColumnsSize = parentSize - headerWidth;
-
-					// Divide the width of all columns by the number of column to calculate the width by column
-					final int columnSize = allColumnsSize / getBodyLayerStack().getColumnHideShowLayer().getColumnCount();
-
-					// Affext the width to the column
-					for (int columnPosition = 0; columnPosition < getBodyLayerStack().getColumnHideShowLayer().getColumnCount(); columnPosition++) {
-						getBodyLayerStack().getBodyDataLayer().setColumnWidthByPosition(columnPosition, columnSize);
 					}
 				}
 			}
