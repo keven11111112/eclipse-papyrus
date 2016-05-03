@@ -13,6 +13,8 @@ package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.IntValueStyle;
@@ -22,6 +24,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.linklf.editparts.LinkLFConnectionNodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusConnectionEndEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
 
 
 /**
@@ -171,6 +174,35 @@ public abstract class ConnectionEditPart extends LinkLFConnectionNodeEditPart im
 		} else if ("double".equals(style)) {
 			edge.setLineWidth(originalWidth * 2);
 		}
+	}
+
+	/**
+	 * Refresh the diagram when changing the label filters (Bug 491811: [CSS][Diagram] Connectors not refreshed after change of routing style (eg rectilinear->oblique))
+	 * 
+	 * @since 2.0
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
+	 *
+	 * @param notification
+	 */
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+
+		Object notifier = notification.getNotifier();
+		Object oldValue = notification.getOldValue();
+		// DO
+		if (notifier instanceof EAnnotation) {
+			if (((EAnnotation) notifier).getSource().equalsIgnoreCase(NamedStyleProperties.CSS_FORCE_VALUE)) {
+				super.refresh();
+			}
+		}
+		// UNDO
+		else if (oldValue instanceof EAnnotation) {
+			if (((EAnnotation) oldValue).getSource().equalsIgnoreCase(NamedStyleProperties.CSS_FORCE_VALUE)) {
+				super.refresh();
+			}
+		}
+
 	}
 
 
