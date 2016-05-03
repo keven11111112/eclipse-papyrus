@@ -17,12 +17,15 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.emf.clipboard.core.ClipboardUtil;
 import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
+import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
+import org.eclipse.papyrus.infra.nattable.menu.MenuUtils;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
@@ -65,12 +68,26 @@ public class AbstractTableTest extends AbstractPapyrusTest {
 
 	/**
 	 * this method initialize some field for the test + expand all the table + check the initial state of the table
+	 *
+	 * 
 	 */
 	protected void startTest() {
 		this.manager = (TreeNattableModelManager) fixture.getActiveTableManager();
 		this.natTable = (NatTable) this.manager.getAdapter(NatTable.class);
 		manager.doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 		fixture.flushDisplayEvents();
+		registerNattableWidgetInEclipseContext(manager, new LabelStack(GridRegion.BODY));
+	}
+
+	/**
+	 * This method register the nattable widget in the eclipse context, to be able to get is in the the setEnable(Objet) of the handlers
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler.getCurrentNattableModelManager()
+	 * @param manager
+	 *            the nattable manager
+	 */
+	protected void registerNattableWidgetInEclipseContext(INattableModelManager manager, LabelStack regionLabels) {
+		MenuUtils.registerNatTableWidgetInEclipseContext(manager, regionLabels);
 	}
 
 	/**
@@ -157,7 +174,7 @@ public class AbstractTableTest extends AbstractPapyrusTest {
 	 * @return
 	 * 		the source path to use to load files
 	 * 
-	 * must be overridden by sub classes
+	 *         must be overridden by sub classes
 	 */
 	protected String getSourcePath() {
 		return null;

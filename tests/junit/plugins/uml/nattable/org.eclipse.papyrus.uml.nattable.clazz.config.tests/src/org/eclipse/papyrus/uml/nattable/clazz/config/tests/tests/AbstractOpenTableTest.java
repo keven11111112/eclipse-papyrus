@@ -15,6 +15,8 @@ package org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
+import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
 import org.eclipse.papyrus.editor.integration.tests.tests.AbstractEditorIntegrationTest;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -24,6 +26,7 @@ import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.menu.MenuUtils;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.Activator;
@@ -45,7 +48,7 @@ public abstract class AbstractOpenTableTest extends AbstractEditorIntegrationTes
 	 */
 
 	public void testOpenExistingTable(String projectName, String modelName) throws Exception {
-		//		initModel(projectName, modelName, getBundle()); //$NON-NLS-1$ //$NON-NLS-2$
+		// initModel(projectName, modelName, getBundle()); //$NON-NLS-1$ //$NON-NLS-2$
 		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 		IEditorPart tableEditor = editor.getActiveEditor();
 		Assert.assertNull(tableEditor);
@@ -60,6 +63,20 @@ public abstract class AbstractOpenTableTest extends AbstractEditorIntegrationTes
 		INattableModelManager manager = (INattableModelManager) tableEditor.getAdapter(INattableModelManager.class);
 		Assert.assertNotNull(manager);
 		Assert.assertEquals(org.eclipse.papyrus.uml.nattable.clazz.config.Activator.TABLE_TYPE, manager.getTable().getTableConfiguration().getType());
+
+		registerNattableWidgetInEclipseContext(manager, new LabelStack(GridRegion.BODY));
+	}
+
+	/**
+	 * This method register the nattable widget in the eclipse context, to be able to get is in the the setEnable(Objet) of the handlers
+	 * 
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler.getCurrentNattableModelManager()
+	 * @param manager
+	 *            the nattable manager
+	 */
+	protected void registerNattableWidgetInEclipseContext(INattableModelManager manager, LabelStack regionLabels) {
+		MenuUtils.registerNatTableWidgetInEclipseContext(manager, regionLabels);
 	}
 
 	protected Table getTable() throws ServiceException {

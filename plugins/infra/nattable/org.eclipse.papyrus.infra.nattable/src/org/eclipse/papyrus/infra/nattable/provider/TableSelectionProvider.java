@@ -35,10 +35,10 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.event.CellSelectionEvent;
+import org.eclipse.nebula.widgets.nattable.selection.event.ColumnSelectionEvent;
 import org.eclipse.nebula.widgets.nattable.selection.event.ISelectionEvent;
+import org.eclipse.nebula.widgets.nattable.selection.event.RowSelectionEvent;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.selection.event.PapyrusColumnSelectionEvent;
-import org.eclipse.papyrus.infra.nattable.selection.event.PapyrusRowSelectionEvent;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.TypeSelectionEnum;
@@ -169,15 +169,15 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 				isWithShiftMask = ((CellSelectionEvent) event).isWithShiftMask();
 				isWithControlMask = ((CellSelectionEvent) event).isWithControlMask();
 				// Check if it is a column selection event
-			} else if (event instanceof PapyrusColumnSelectionEvent) {
+			} else if (event instanceof ColumnSelectionEvent) {
 				typeSelectionEvent = TypeSelectionEnum.COLUMN;
-				isWithShiftMask = ((PapyrusColumnSelectionEvent) event).isWithShiftMask();
-				isWithControlMask = ((PapyrusColumnSelectionEvent) event).isWithControlMask();
+				isWithShiftMask = ((ColumnSelectionEvent) event).isWithShiftMask();
+				isWithControlMask = ((ColumnSelectionEvent) event).isWithControlMask();
 				// Check if it is a row selection event
-			} else if (event instanceof PapyrusRowSelectionEvent) {
+			} else if (event instanceof RowSelectionEvent) {
 				typeSelectionEvent = TypeSelectionEnum.ROW;
-				isWithShiftMask = ((PapyrusRowSelectionEvent) event).isWithShiftMask();
-				isWithControlMask = ((PapyrusRowSelectionEvent) event).isWithControlMask();
+				isWithShiftMask = ((RowSelectionEvent) event).isWithShiftMask();
+				isWithControlMask = ((RowSelectionEvent) event).isWithControlMask();
 			}
 
 			// If this is a specific selection event, manage the selection with event
@@ -321,7 +321,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 	protected Collection<Object> calculateSelectionRowsAndColumnsWithTypeSelectionEvent(final TableSelectionWrapper wrapper, final TypeSelectionEnum typeSelectionEvent, final ILayerEvent event) {
 		// Manage the column selection event
 		if (TypeSelectionEnum.COLUMN.equals(typeSelectionEvent)) {
-			for (Range range : ((PapyrusColumnSelectionEvent) event).getColumnPositionRanges()) {
+			for (Range range : ((ColumnSelectionEvent) event).getColumnPositionRanges()) {
 				for (int index = range.start; index < range.end; index++) {
 					final int columnIndex = this.selectionLayer.getColumnIndexByPosition(index);
 					Object el = this.manager.getColumnElement(columnIndex);
@@ -339,7 +339,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 			}
 			// Manage the row selection event
 		} else if (TypeSelectionEnum.ROW.equals(typeSelectionEvent)) {
-			for (Range range : ((PapyrusRowSelectionEvent) event).getRowPositionRanges()) {
+			for (Range range : ((RowSelectionEvent) event).getRowPositionRanges()) {
 				for (int index = range.start; index < range.end; index++) {
 					final int rowIndex = this.selectionLayer.getRowIndexByPosition(index);
 					Object el = this.manager.getRowElement(rowIndex);

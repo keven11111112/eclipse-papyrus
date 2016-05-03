@@ -66,9 +66,9 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 *
 	 * @return
 	 * 		the current active part
-	 * 
-	 * @deprecated since Papyrus 1.2 (Eclipse Neon)
+	 * @deprecated since 2.0
 	 */
+	@Deprecated
 	protected IWorkbenchPart getActivePart() {
 		return WorkbenchPartHelper.getCurrentActiveWorkbenchPart();
 	}
@@ -93,14 +93,15 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 *         the current table manager or <code>null</code> if not found
 	 */
 	protected INattableModelManager getCurrentNattableModelManager() {
+		INattableModelManager manager = null;
 		final NatEventData data = getNatEventData();
 		if (data != null) {
 			final NatTable natTable = data.getNatTable();
 			if (natTable != null && natTable.getConfigRegistry() != null) {
-				return natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+				manager = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 			}
 		}
-		return null;
+		return manager;
 	}
 
 

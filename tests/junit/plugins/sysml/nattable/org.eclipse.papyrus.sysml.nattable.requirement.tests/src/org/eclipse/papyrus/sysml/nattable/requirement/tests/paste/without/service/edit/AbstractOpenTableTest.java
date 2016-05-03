@@ -15,15 +15,17 @@ package org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.without.servi
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
+import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.editor.integration.tests.tests.AbstractEditorIntegrationTest;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.menu.MenuUtils;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.Activator;
@@ -61,7 +63,10 @@ public abstract class AbstractOpenTableTest extends AbstractEditorIntegrationTes
 		INattableModelManager manager = (INattableModelManager) tableEditor.getAdapter(INattableModelManager.class);
 		Assert.assertNotNull(manager);
 		Assert.assertEquals(org.eclipse.papyrus.sysml.nattable.requirement.config.Activator.TABLE_TYPE, manager.getTable().getTableConfiguration().getType());
+
+		MenuUtils.registerNatTableWidgetInEclipseContext(manager, new LabelStack(GridRegion.BODY));
 	}
+
 
 	protected Table getTable() throws ServiceException {
 		Resource notationResource = NotationUtils.getNotationModel(editor.getServicesRegistry().getService(ModelSet.class)).getResource();

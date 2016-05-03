@@ -18,7 +18,10 @@ import org.eclipse.nebula.widgets.nattable.selection.event.ColumnSelectionEvent;
 
 /**
  * The column selection event extended from column selection event (of nattable) to include the shift and the control masks.
+ * 
+ * @deprecated since 2.0
  */
+@Deprecated
 public class PapyrusColumnSelectionEvent extends ColumnSelectionEvent {
 
 	/**

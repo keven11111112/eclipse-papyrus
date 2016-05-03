@@ -20,7 +20,10 @@ import org.eclipse.nebula.widgets.nattable.selection.event.RowSelectionEvent;
 
 /**
  * The row selection event extended from row selection event (of nattable) to include the shift and the control masks.
+ * 
+ * @deprecated since 2.0
  */
+@Deprecated
 public class PapyrusRowSelectionEvent extends RowSelectionEvent {
 
 	/**

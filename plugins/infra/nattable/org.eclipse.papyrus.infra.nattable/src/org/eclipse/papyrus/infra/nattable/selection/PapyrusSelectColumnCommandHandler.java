@@ -21,8 +21,8 @@ import static org.eclipse.nebula.widgets.nattable.selection.SelectionUtils.noShi
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.selection.SelectColumnCommandHandler;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectColumnCommand;
+import org.eclipse.nebula.widgets.nattable.selection.event.ColumnSelectionEvent;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusSelectionLayer;
-import org.eclipse.papyrus.infra.nattable.selection.event.PapyrusColumnSelectionEvent;
 import org.eclipse.swt.graphics.Rectangle;
 
 /**
@@ -86,7 +86,7 @@ public class PapyrusSelectColumnCommandHandler extends SelectColumnCommandHandle
 		// Set last selected column position to the recently clicked column
 		this.selectionLayer.setLastSelectedCell(columnPosition, rowPosition);
 
-		this.selectionLayer.fireLayerEvent(new PapyrusColumnSelectionEvent(this.selectionLayer,
+		this.selectionLayer.fireLayerEvent(new ColumnSelectionEvent(this.selectionLayer,
 				columnPosition, withShiftMask, withControlMask));
 	}
 

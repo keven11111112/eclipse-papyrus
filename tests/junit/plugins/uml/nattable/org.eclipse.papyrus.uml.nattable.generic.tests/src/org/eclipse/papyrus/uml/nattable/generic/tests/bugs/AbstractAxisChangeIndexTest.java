@@ -21,13 +21,16 @@ import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.grid.layer.RowHeaderLayer;
 import org.eclipse.nebula.widgets.nattable.layer.AbstractLayer;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
+import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
+import org.eclipse.papyrus.infra.nattable.menu.MenuUtils;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisIndexStyle;
@@ -131,6 +134,7 @@ public abstract class AbstractAxisChangeIndexTest extends AbstractPapyrusTest {
 		Assert.assertTrue(part instanceof NatTableEditor);
 		NatTableEditor editor = (NatTableEditor) part;
 		INattableModelManager currentManager = (INattableModelManager) editor.getAdapter(INattableModelManager.class);
+		MenuUtils.registerNatTableWidgetInEclipseContext(currentManager, new LabelStack(GridRegion.COLUMN_HEADER));
 		Assert.assertTrue(currentManager instanceof INattableModelManager);
 
 		// check the initial data
@@ -193,7 +197,7 @@ public abstract class AbstractAxisChangeIndexTest extends AbstractPapyrusTest {
 		NatTableEditor editor = (NatTableEditor) part;
 		INattableModelManager currentManager = (INattableModelManager) editor.getAdapter(INattableModelManager.class);
 		Assert.assertTrue(currentManager instanceof INattableModelManager);
-
+		MenuUtils.registerNatTableWidgetInEclipseContext(currentManager, new LabelStack(GridRegion.ROW_HEADER));
 		// check the initial data
 		checkNumericRow(currentManager);
 

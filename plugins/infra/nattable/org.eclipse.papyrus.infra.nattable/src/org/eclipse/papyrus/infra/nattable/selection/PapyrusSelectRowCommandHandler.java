@@ -27,8 +27,8 @@ import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.selection.SelectRowCommandHandler;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectRowsCommand;
+import org.eclipse.nebula.widgets.nattable.selection.event.RowSelectionEvent;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusSelectionLayer;
-import org.eclipse.papyrus.infra.nattable.selection.event.PapyrusRowSelectionEvent;
 import org.eclipse.swt.graphics.Rectangle;
 
 /**
@@ -97,7 +97,7 @@ public class PapyrusSelectRowCommandHandler extends SelectRowCommandHandler {
 			}
 		}
 		this.selectionLayer.fireLayerEvent(
-				new PapyrusRowSelectionEvent(
+				new RowSelectionEvent(
 						this.selectionLayer, changedRows, rowPositionToMoveIntoViewport, withShiftMask, withControlMask));
 	}
 

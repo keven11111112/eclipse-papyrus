@@ -13,7 +13,6 @@
 
 package org.eclipse.papyrus.infra.nattable.menu;
 
-import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -141,12 +140,12 @@ public class AbstractPapyrusPopupMenuAction implements IMouseAction, IMenuListen
 	@Override
 	public final void menuAboutToShow(final IMenuManager menuManager) {
 		addMenuSeparators(menuManager);
-		final IMenuService menuService = PlatformUI.getWorkbench().getService(IMenuService.class);
-		final IEvaluationContext state = menuService.getCurrentState();
 
+		final IMenuService menuService = PlatformUI.getWorkbench().getService(IMenuService.class);
 		final NatEventData natEventData = (NatEventData) this.menuManager.getMenu().getData(MenuConstants.NAT_EVENT_DATA_KEY);
-		// we register the nattable event data here, in order to get i
-		state.addVariable(MenuConstants.NAT_EVENT_DATA_KEY, natEventData);
+		
+		MenuUtils.registerNatTableWidgetInEclipseContext(natEventData);
+
 		if (menuService != null && menuManager instanceof MenuManager) {
 			menuService.populateContributionManager((MenuManager) menuManager, this.menuLocation);
 		}
