@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -38,6 +38,7 @@ main() {
 	endif;
 	
 	semantics.objectsOfType(OpaqueExpression).map fixLanguage();
+	semantics.objectsOfType(Stereotype).map fixBaseProperties(); //Bug 492872: Multiplicity change between UML 2.3 (RSA) and 2.4+ (Papyrus)
 }
 
 //If the OpaqueExpression doesn't have a language, and a single body, replace it with a LiteralString
@@ -90,6 +91,39 @@ mapping inout OpaqueExpression::fixLanguage() when {
 	self.body := newLanguages.body;	
 }
 
+
+//Bug 492872: Multiplicity change between UML 2.3 (RSA) and 2.4+ (Papyrus)
+mapping inout Stereotype::fixBaseProperties() when {
+	self.baseProperties()->size() > 1
+}{
+	self.baseProperties().map fixMultiplicity();
+}
+
+mapping inout Property::fixMultiplicity() {
+	if (not self.lowerValue.oclIsUndefined()) and self.lowerValue.oclIsKindOf(LiteralInteger) then
+		self.lowerValue.oclAsType(LiteralInteger).value := 0
+	else
+		self.lowerValue := object LiteralInteger {
+			value := 0;
+		}
+	endif;
+	
+	if (not self.upperValue.oclIsUndefined()) and self.upperValue.oclIsKindOf(LiteralUnlimitedNatural) then
+		self.upperValue.oclAsType(LiteralUnlimitedNatural).value := 1
+	elif (not self.upperValue.oclIsUndefined()) and self.upperValue.oclIsKindOf(LiteralInteger) then
+		self.upperValue.oclAsType(LiteralInteger).value := 1
+	else
+		self.upperValue := object LiteralUnlimitedNatural {
+			value := 1;
+		}
+	endif;
+}
+
 query String::isEmpty() : Boolean {
 	return self.oclIsUndefined() or self = '';
 }
+
+query Stereotype::baseProperties() : Set(Property){
+	return self.ownedAttribute->select(p | p.name.startsWith("base_") and p.type.oclIsTypeOf(Class)) //Typed with a UML Metaclass
+}
+
