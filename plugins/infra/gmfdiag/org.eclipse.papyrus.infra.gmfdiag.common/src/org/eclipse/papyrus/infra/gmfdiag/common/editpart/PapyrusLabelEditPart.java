@@ -27,6 +27,8 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -361,6 +363,35 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 	}
 
 	/**
+	 * Refresh the diagram when changing the label filters (Bug 488286 - [CSS][Diagram] Missing refresh in some cases when using label filters)
+	 * 
+	 * @since 2.0
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
+	 *
+	 * @param notification
+	 */
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+
+		Object notifier = notification.getNotifier();
+		Object oldValue = notification.getOldValue();
+		// DO
+		if (notifier instanceof EAnnotation) {
+			if (((EAnnotation) notifier).getSource().equalsIgnoreCase(NamedStyleProperties.CSS_FORCE_VALUE)) {
+				super.refresh();
+			}
+		}
+		// UNDO
+		else if (oldValue instanceof EAnnotation) {
+			if (((EAnnotation) oldValue).getSource().equalsIgnoreCase(NamedStyleProperties.CSS_FORCE_VALUE)) {
+				super.refresh();
+			}
+		}
+
+	}
+
+	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#removeNotationalListeners()
 	 *
 	 */
@@ -465,31 +496,32 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 		return super.getAdapter(key);
 	}
 
+	@Override
 	public Point getReferencePoint() {
 		if (getParent() instanceof AbstractConnectionEditPart) {
 			switch (getKeyPoint()) {
-				case ConnectionLocator.TARGET:
-					return calculateRefPoint(LabelViewConstants.SOURCE_LOCATION);
-				case ConnectionLocator.SOURCE:
-					return calculateRefPoint(LabelViewConstants.TARGET_LOCATION);
-				case ConnectionLocator.MIDDLE:
-					return calculateRefPoint(LabelViewConstants.MIDDLE_LOCATION);
-				default:
-					return calculateRefPoint(LabelViewConstants.MIDDLE_LOCATION);
+			case ConnectionLocator.TARGET:
+				return calculateRefPoint(LabelViewConstants.SOURCE_LOCATION);
+			case ConnectionLocator.SOURCE:
+				return calculateRefPoint(LabelViewConstants.TARGET_LOCATION);
+			case ConnectionLocator.MIDDLE:
+				return calculateRefPoint(LabelViewConstants.MIDDLE_LOCATION);
+			default:
+				return calculateRefPoint(LabelViewConstants.MIDDLE_LOCATION);
 			}
-		} 
-		
-		return ((AbstractGraphicalEditPart)getParent()).getFigure().getBounds().getTopLeft();
+		}
+
+		return ((AbstractGraphicalEditPart) getParent()).getFigure().getBounds().getTopLeft();
 	}
 
 	private Point calculateRefPoint(int percent) {
 		if (getParent() instanceof AbstractConnectionEditPart) {
-			PointList ptList = ((Connection)((ConnectionEditPart)getParent()).getFigure()).getPoints();
+			PointList ptList = ((Connection) ((ConnectionEditPart) getParent()).getFigure()).getPoints();
 			Point refPoint = PointListUtilities.calculatePointRelativeToLine(ptList, 0, percent, true);
 			return refPoint;
 		} else if (getParent() instanceof GraphicalEditPart) {
-			return ((AbstractGraphicalEditPart)getParent()).getFigure().getBounds().getTopLeft();
+			return ((AbstractGraphicalEditPart) getParent()).getFigure().getBounds().getTopLeft();
 		}
-		return null;			
+		return null;
 	}
 }

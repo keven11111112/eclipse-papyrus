@@ -153,4 +153,7 @@ public interface NamedStyleProperties {
 	/** The port position namedStyle property */
 	public static final String PORT_POSITION = "portPosition"; //$NON-NLS-1$
 
+	/* Label used to identify the forced CSS values */
+	public static final String CSS_FORCE_VALUE = "PapyrusCSSForceValue"; // $NON-NLS-1$
+
 }
