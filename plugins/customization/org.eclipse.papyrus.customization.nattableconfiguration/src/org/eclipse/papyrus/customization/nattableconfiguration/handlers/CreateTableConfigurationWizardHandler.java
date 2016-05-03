@@ -48,9 +48,15 @@ public class CreateTableConfigurationWizardHandler extends AbstractTableHandler 
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 
-		final ISelection currentSelection = HandlerUtil.getCurrentSelection(event);
-
-		final Resource resourceSelected = getSelectedResource(currentSelection);
+		final String selectionParameter = event.getParameter("org.eclipse.papyrus.customization.nattableconfiguration.configurationParemeter"); //$NON-NLS-1$
+		
+		Resource resourceSelected = null;
+		
+		if(null != selectionParameter && selectionParameter.equals("nattableconfiguration")){ //$NON-NLS-1$
+			final ISelection currentSelection = HandlerUtil.getCurrentSelection(event);
+			resourceSelected = getSelectedResource(currentSelection);
+		}
+		
 		final TableConfiguration configuration = getEditedTableConfiguration(resourceSelected);
 		final CreateNattableConfigurationWizard wizard = new CreateNattableConfigurationWizard(configuration, resourceSelected);
 		final WizardDialog dialog = new WizardDialog(Display.getDefault().getActiveShell(), wizard);
