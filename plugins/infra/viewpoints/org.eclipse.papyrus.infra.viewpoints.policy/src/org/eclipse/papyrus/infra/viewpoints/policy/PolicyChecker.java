@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 422257
- *  Christian W. Damus - bug 463156
+ *  Christian W. Damus - bugs 463156, 493030
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.policy;
@@ -442,27 +442,38 @@ public class PolicyChecker {
 
 
 	/**
-	 * Builds the <code>applicableViewpoints</code> member from the selected viewpoint and all its contribution
+	 * Builds the <code>applicableViewpoints</code> member from the selected viewpoint.
 	 */
 	private void buildApplicableViewpoints() {
 		applicableViewpoints = new ArrayList<PapyrusViewpoint>();
 		buildApplicableViewpoints(selectedViewpoint);
-		for (PapyrusViewpoint vp : getContributionsTo(selectedViewpoint)) {
-			buildApplicableViewpoints(vp);
-		}
 	}
 
 	/**
-	 * Builds the <code>applicableViewpoints</code> member from the given viewpoint by adding it, as well as its parent
+	 * Builds the <code>applicableViewpoints</code> member from the given viewpoint by adding it,
+	 * as well as its parents and its and all its contributions, recursively
 	 *
-	 * @param from
-	 *            The top viewpoint
+	 * @param vp
+	 *            the viewpoint to add
 	 */
-	private void buildApplicableViewpoints(PapyrusViewpoint from) {
-		PapyrusViewpoint vp = from;
-		while (vp != null) {
+	private void buildApplicableViewpoints(PapyrusViewpoint vp) {
+		// Guard against cycles, redundant contributions, contributions having the
+		// same parent, and other ways of repeating the processing of any viewpoint
+		if (!applicableViewpoints.contains(vp)) {
+			// This viewpoint
 			applicableViewpoints.add(vp);
-			vp = vp.getParent();
+			
+			// Its contributions, recursively.  Process these first because they
+			// are more likely to be more pertinent to the selected stakeholder
+			// than the inherited viewpoint(s)
+			for (PapyrusViewpoint contrib : getContributionsTo(vp)) {
+				buildApplicableViewpoints(contrib);
+			}
+			
+			// Its parents, recursively
+			if ((vp.getParent() != null) && !vp.getParent().eIsProxy()) {
+				buildApplicableViewpoints(vp.getParent());
+			}
 		}
 	}
 
