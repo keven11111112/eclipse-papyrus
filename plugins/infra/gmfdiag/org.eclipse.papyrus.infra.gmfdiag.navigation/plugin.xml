@@ -51,7 +51,7 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=tools">
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?before=newelements">
          <menu
                id="org.eclipse.papyrus.infra.services.navigation.ui.popup.navigate"
                label="Navigate"
@@ -61,6 +61,10 @@
                   id="org.eclipse.papyrus.infra.gmfdiag.navigation.ui.popup.modelExplorerDynamicNavigate">
             </dynamic>
          </menu>
+         <separator
+               name="navigation"
+               visible="true">
+         </separator>
       </menuContribution>
       <menuContribution
             allPopups="false"
