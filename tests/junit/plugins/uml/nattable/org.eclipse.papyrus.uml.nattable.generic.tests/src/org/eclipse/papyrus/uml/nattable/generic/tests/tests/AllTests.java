@@ -20,6 +20,7 @@ import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AddElementsOnConnecte
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AxisChangeIndexWithConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.EnumerationContentItemsTest;
+import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.FillColumnsSizeTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.OpenAndDeleteTest;
@@ -86,6 +87,9 @@ import org.junit.runners.Suite.SuiteClasses;
 		FilterNumericMatcherTest.class,
 		FilterUMLEnumerationMatcherTest.class,
 		CellEditorsConfigurationTest.class,
+		
+		// Test the fillColumnsSize style
+		FillColumnsSizeTest.class,
 
 		// Stereotype inherited properties
 		StereotypeInheritDisplayTest.class,

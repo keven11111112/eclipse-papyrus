@@ -136,6 +136,7 @@ import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagemen
 import org.eclipse.papyrus.infra.nattable.utils.LocationValue;
 import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
+import org.eclipse.papyrus.infra.nattable.utils.PapyrusTableSizeCalculation;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableGridRegion;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
@@ -678,7 +679,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @since 2.0
 	 */
 	public MenuManager createAndRegisterMenuManagerAndSelectionProvider(final NatTable natTable, final IWorkbenchPartSite site, ISelectionProvider selectionProvider) {
-	final MenuManager menuManager = new MenuManager("#PopUp", "org.eclipse.papyrus.infra.nattable.widget.menu") ; //$NON-NLS-1$ //$NON-NLS-2$
+		final MenuManager menuManager = new MenuManager("#PopUp", "org.eclipse.papyrus.infra.nattable.widget.menu"); //$NON-NLS-1$ //$NON-NLS-2$
 		menuManager.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
 		menuManager.setRemoveAllWhenShown(true);
 		return menuManager;
@@ -1461,21 +1462,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 				if (null != parent && !parent.isDisposed()) {
 					final int parentSize = parent.getSize().x;
 
-					// Calculate the rows header width
-					if(0 < parentSize){
-						int headerWidth = 0;
-						if (null != getRowHeaderLayerStack()) {
-							for (int headerColumnIndex = 0; headerColumnIndex < getRowHeaderLayerStack().getColumnCount(); headerColumnIndex++) {
-								headerWidth += getRowHeaderLayerStack().getColumnWidthByPosition(headerColumnIndex);
-							}
-						}
-	
-						// Remove the rows header size from the parent size
-						final int allColumnsSize = parentSize - headerWidth;
-	
-						// Divide the width of all columns by the number of column to calculate the width by column
-						final int columnSize = allColumnsSize / getBodyLayerStack().getColumnHideShowLayer().getColumnCount();
-	
+					// Get the column width needed
+					final int columnSize = PapyrusTableSizeCalculation.getColumnFillWidth(this, parentSize);
+
+					if (0 < columnSize) {
 						// Affext the width to the column
 						for (int columnPosition = 0; columnPosition < getBodyLayerStack().getColumnHideShowLayer().getColumnCount(); columnPosition++) {
 							getBodyLayerStack().getBodyDataLayer().setColumnWidthByPosition(columnPosition, columnSize);
