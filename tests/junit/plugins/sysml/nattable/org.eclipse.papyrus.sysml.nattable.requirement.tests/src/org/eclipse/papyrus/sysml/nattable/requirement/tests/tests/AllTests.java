@@ -16,6 +16,7 @@ import org.eclipse.papyrus.sysml.nattable.requirement.tests.bugs.AxisChangeIndex
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.bugs.AxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.bugs.InvertedAxisChangeIndexWithConfigurationTest;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.bugs.InvertedAxisChangeIndexWithoutConfigurationTest;
+import org.eclipse.papyrus.sysml.nattable.requirement.tests.bugs.RequirementReorderingTest;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.importfile.ImportCellsAll_Test;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.importfile.ImportEmptyAddAll_Test;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.importfile.ImportEmptyReplaceAll_Test;
@@ -77,6 +78,9 @@ import org.junit.runners.Suite.SuiteClasses;
 		OpenTableTest.class,
 		TableCreationInUMLModel.class,
 		RevealRequirementTableTest.class,
+		
+		// Bug 439501: Test the requirements reordering
+		RequirementReorderingTest.class,
 
 		// Paste Overwrite tests
 		PasteEmptyClipboard_Test.class,
