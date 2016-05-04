@@ -300,7 +300,11 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 				if (isUsingGradient()) {
 					fillPolygonWithGradient(graphics, polygonPoints);
 				} else {
+					graphics.pushState();
+					graphics.setBackgroundColor(getBackgroundColor());
+					graphics.setForegroundColor(getForegroundColor());
 					graphics.fillPolygon(polygonPoints);
+					graphics.popState();
 				}
 
 				graphics.setLineWidth(getLineWidth());
