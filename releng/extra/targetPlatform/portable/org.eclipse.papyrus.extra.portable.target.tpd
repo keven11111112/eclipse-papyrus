@@ -10,7 +10,7 @@ location aeri "http://download.eclipse.org/technology/epp/logging/milestones/" {
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201603200413" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201604280603" {
 	org.eclipse.emf.compare.diagram.gmf.source.feature.group
 	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.uml2.source.feature.group
@@ -28,7 +28,7 @@ location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20151216-1133"
 
 //updateFrom("M2T ACCELEO",0) 
 
-location acceleo "http://download.eclipse.org/acceleo/updates/milestones/3.6/S201603211409" {
+location acceleo "http://download.eclipse.org/acceleo/updates/milestones/3.6/S201604291321" {
 	org.eclipse.acceleo.runtime.source.feature.group
 	org.eclipse.acceleo.source.feature.group
 	org.eclipse.acceleo.query.source.feature.group
@@ -56,7 +56,7 @@ location eef "http://download.eclipse.org/modeling/emft/eef/updates/releases/1.5
 
 //updateFrom("GEF",0) 
 
-location gef "http://download.eclipse.org/tools/gef/updates/milestones/4.0.0M6_gef-master_1868" {
+location gef "http://download.eclipse.org/tools/gef/updates/milestones/4.0.0M7_gef-master_1912" {
 	org.eclipse.zest.layouts
 }
 

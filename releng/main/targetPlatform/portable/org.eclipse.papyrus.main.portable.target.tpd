@@ -52,13 +52,13 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6M6-201603170200/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6M7-201604280800/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("MDT OCL 6.0",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201603211840" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201605021517" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -71,7 +71,7 @@ location xwt "http://download.eclipse.org/xwt/release-1.1.0" {
 
 //updateFrom("Xtext, Xtend",0) 
 
-location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201603220719/" {
+location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201604290858/" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -90,7 +90,7 @@ location nattable "http://download.eclipse.org/nattable/snapshots/latest/reposit
 
 //updateFrom("EMFT MWE",0)
 
-location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201603221009/" {
+location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201604291319/" {
 	org.eclipse.emf.mwe2.language.sdk.feature.group
 }
 
@@ -102,7 +102,7 @@ location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/milest
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.8.0/S-3.8.0M6-20160324010110/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.8.0/S-3.8.0M7-20160503010110/repository/" {
 	org.eclipse.wst.xml_sdk.feature.feature.group
 	org.eclipse.wst.xml_ui.feature.feature.group
 }
@@ -141,7 +141,7 @@ location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/update
 
 //updateFrom("GEF",0)
 
-location gef "http://download.eclipse.org/tools/gef/updates/milestones/4.0.0M6_gef-master_1868" {
+location gef "http://download.eclipse.org/tools/gef/updates/milestones/4.0.0M7_gef-master_1912" {
 	org.eclipse.gef.feature.group
 }
 
