@@ -23,11 +23,13 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.papyrus.infra.gmfdiag.welcome.internal.util.UISafeAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.welcome.internal.util.ViewUtil;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
 import org.eclipse.papyrus.infra.tools.databinding.TouchableValue;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * Encapsulation of a {@link Diagram}, {@link Table}, or other notation view that presents the
@@ -101,6 +103,16 @@ public class NotationObservable extends ReferenceCountedObservable.Abstract {
 		return false;
 	}
 
+	/**
+	 * Handles a change in the context of a notation view.
+	 * 
+	 * @precondition the current thread is the UI thread
+	 * 
+	 * @param oldContext
+	 *            the old context (may be {@code null})
+	 * @param newContext
+	 *            the new context (may be {@code null})
+	 */
 	void handleContextChanged(EObject oldContext, EObject newContext) {
 		ContextAdapter adapter = this.contextAdapter;
 
@@ -126,7 +138,7 @@ public class NotationObservable extends ReferenceCountedObservable.Abstract {
 	// Nested types
 	//
 
-	private class ViewAdapter extends AdapterImpl {
+	private class ViewAdapter extends UISafeAdapter {
 		ViewAdapter(EObject view) {
 			super();
 
@@ -150,7 +162,7 @@ public class NotationObservable extends ReferenceCountedObservable.Abstract {
 		}
 
 		@Override
-		public void notifyChanged(Notification msg) {
+		protected void doNotifyChanged(Notification msg) {
 			if (!msg.isTouch()) {
 				Object notifier = msg.getNotifier();
 
@@ -179,7 +191,7 @@ public class NotationObservable extends ReferenceCountedObservable.Abstract {
 		}
 	}
 
-	private class ContextAdapter extends AdapterImpl {
+	private class ContextAdapter extends UISafeAdapter {
 		ContextAdapter(EObject context) {
 			super();
 
@@ -203,7 +215,7 @@ public class NotationObservable extends ReferenceCountedObservable.Abstract {
 		}
 
 		@Override
-		public void notifyChanged(Notification msg) {
+		protected void doNotifyChanged(Notification msg) {
 			if (!msg.isTouch()) {
 				// Can't interpret the change, so just assume that the label needs to change
 				contextValue.touch();
