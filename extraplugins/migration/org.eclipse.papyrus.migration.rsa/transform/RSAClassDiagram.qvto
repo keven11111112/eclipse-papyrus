@@ -84,8 +84,7 @@ mapping inout Shape::addConstraintDecoration() when {
 mapping inout Diagram::handleAssociationClasses() {
 	graphics.objectsOfType(Shape)->select(type = '2013').map updateLocation();
 
-	self.children := self.children->union(graphics.objectsOfType(Node)->select(type = '2013'));
-	self.edges := self.edges->union(graphics.objectsOfType(Connector)->select(type = '4016'));
+	self.children := self.children->union(graphics.objectsOfKind(Node)->select(diagram = self and type = '2013'));
 }
 
 mapping inout Shape::updateLocation() {
@@ -105,6 +104,9 @@ mapping inout Shape::updateLocation() {
 	bounds.y := (((sourcePosition.y + targetPosition.y)/2) + bounds.y).round();
 }
 	
+/**
+*	From the Dashed edge of an Association Class, returns the actual Association connector
+*/
 query Connector::findConnector() : Connector {
 	var view := if self.source.oclIsKindOf(Connector) then self.source else self.target endif;
 	return view.oclAsType(Connector);
@@ -130,10 +132,10 @@ mapping UMLConnector::toAssociationClass() : Connector inherits Connector::toPap
 		bendpoints := object RelativeBendpoints{};
 		sourceAnchor := object IdentityAnchor{};
 		targetAnchor := object IdentityAnchor{};
-		
 	};
 	
-
+	var targetDiagram := self.diagram.map generateDiagram();
+	targetDiagram.edges += dashedEdge;
 }
 
 
@@ -196,12 +198,14 @@ mapping UMLShape::toPapyrusShape() : Shape inherits Shape::toPapyrusShape when {
 /****** Connector Labels ******/
 
 mapping BasicDecorationNode::toConnectorLabel() : DecorationNode inherits Node::toPapyrusConnectorLabel when {
+	not self.getType().oclIsUndefined() and (
 		self.type = 'ToMultiplicityLabel' or
 		self.type = 'ToRoleLabel' or
 		self.type = 'FromMultiplicityLabel' or
 		self.type = 'FromRoleLabel' or
 		self.type = 'NameLabel' or
 		self.type = 'KindLabel'
+	)
 }{
 	
 }

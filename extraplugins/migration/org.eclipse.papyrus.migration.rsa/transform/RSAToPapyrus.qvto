@@ -143,7 +143,8 @@ abstract mapping Diagram::toPapyrusDiagram() : notation::Diagram inherits notati
 		result.element := self.findElement().oclAsType(EObject);
 	//	log(result.element.eClass().name);
 	//	log(result.element.toString());
-		result.edges := self.edges.map toEdge();
+		var targetEdges := self.edges.map toEdge();
+		result.edges += targetEdges;
 	}
 	
 	end {
