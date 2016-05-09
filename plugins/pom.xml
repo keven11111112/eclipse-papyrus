@@ -22,5 +22,6 @@
 		<module>customization</module>
 		<module>doc</module>
 		<module>team</module>
+		<module>sdk</module>
 	</modules>
 </project>

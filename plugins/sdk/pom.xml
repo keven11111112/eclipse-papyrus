@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>org.eclipse.papyrus-sdk</artifactId>
+	<packaging>pom</packaging>
+	<parent>
+	    <groupId>org.eclipse.papyrus</groupId>
+	    <artifactId>org.eclipse.papyrus.plugins</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+    </parent>
+	<name>Papyrus SDK</name>
+	<description>Container of bundles specified to the SDK assembly of Papyrus.</description>
+
+	<modules>
+		<module>org.eclipse.papyrus.sdk</module>
+	</modules>
+</project>
