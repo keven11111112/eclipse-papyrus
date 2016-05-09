@@ -253,8 +253,12 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		if (diagramCategoryIds.length == 0) {
 			return false;
 		}
-		// This won't be null if we got categories, above
-		getSelectDiagramCategoryPage().performFinish();
+		
+		SelectDiagramCategoryPage selectDiagramCategoryPage = getSelectDiagramCategoryPage();
+		if(selectDiagramCategoryPage != null){
+			selectDiagramCategoryPage.performFinish();
+		}
+		
 		String diagramCategoryId = diagramCategoryIds[0];
 		final URI newURI = createNewModelURI(diagramCategoryId);
 
