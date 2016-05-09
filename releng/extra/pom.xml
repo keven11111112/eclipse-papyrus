@@ -26,10 +26,8 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.marte.properties.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.marte.textedit.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.migration.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.robotml.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.uml.compare.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.layers.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.robotml.generators.intempora.rtmaps.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.export.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.migration.rsa.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.alf.extra.feature</module>
@@ -80,18 +78,6 @@
 		<module>../../extraplugins/marte/org.eclipse.papyrus.marte.vsl.ui</module>
 		<module>../../extraplugins/migration/org.eclipse.papyrus.migration.properties.model</module>
 
-		<!-- Papyrus RobotML -->
-		<module>../../extraplugins/robotml/org.eclipse.papyrus.robotml</module>
-		<module>../../extraplugins/robotml/org.eclipse.papyrus.robotml.deployment</module>
-		<module>../../extraplugins/robotml/org.eclipse.papyrus.robotml.diagram.common</module>
-		<module>../../extraplugins/robotml/org.eclipse.papyrus.robotml.diagram.ui</module>
-		<module>../../extraplugins/robotml/org.eclipse.papyrus.robotml.doc</module>
-		<module>../../extraplugins/robotml/generators/org.eclipse.papyrus.robotml.generators.common</module>
-		<module>../../extraplugins/robotml/generators/rtmaps/org.eclipse.papyrus.robotml.generators.intempora.rtmaps</module>
-		<module>../../extraplugins/robotml/generators/rtmaps/org.eclipse.papyrus.robotml.generators.intempora.rtmaps.ui</module>
-		<module>../../extraplugins/robotml/org.eclipse.papyrus.robotml.perspective</module>
-		<module>../../extraplugins/robotml/org.eclipse.papyrus.robotml.templaterepository</module>
-		<module>../../extraplugins/robotml/org.eclipse.papyrus.robotml.validation</module>
 		<module>../../extraplugins/uml/compare/org.eclipse.papyrus.uml.compare</module>
 		<module>../../extraplugins/uml/org.eclipse.papyrus.uml.export</module>
 		<module>../../extraplugins/uml/org.eclipse.papyrus.uml.diagram.dnd.smart</module>

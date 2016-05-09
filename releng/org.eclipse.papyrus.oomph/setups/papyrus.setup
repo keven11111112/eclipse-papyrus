@@ -1446,19 +1446,6 @@
       </stream>
       <description/>
     </project>
-    <project label="RobotML" name="robotml">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="robotml"/>
-      <stream label="master (Neon/2.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-      <description/>
-    </project>
     <project label="Table Migration" name="tablemigration">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="tablemigration"/>
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extrafeature" value="tablemigration"/>
