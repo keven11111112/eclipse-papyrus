@@ -20,18 +20,4 @@
             </message_arguments>
         </filter>
     </resource>
-    <resource path="src/org/eclipse/papyrus/junit/framework/runner/ITestSuiteClass.java" type="org.eclipse.papyrus.junit.framework.runner.ITestSuiteClass">
-        <filter comment="This is a Java8 compatible change" id="403804204">
-            <message_arguments>
-                <message_argument value="org.eclipse.papyrus.junit.framework.runner.ITestSuiteClass"/>
-                <message_argument value="isHeadless()"/>
-            </message_arguments>
-        </filter>
-        <filter comment="This is a Java8 compatible change" id="403804204">
-            <message_arguments>
-                <message_argument value="org.eclipse.papyrus.junit.framework.runner.ITestSuiteClass"/>
-                <message_argument value="isUI()"/>
-            </message_arguments>
-        </filter>
-    </resource>
 </component>
