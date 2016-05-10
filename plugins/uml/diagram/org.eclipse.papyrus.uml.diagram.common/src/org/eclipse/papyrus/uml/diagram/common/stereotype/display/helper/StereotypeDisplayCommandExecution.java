@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotype Display
+ *   Christian W. Damus - bug 492482
  *   
  *****************************************************************************/
 
@@ -59,36 +60,6 @@ public final class StereotypeDisplayCommandExecution {
 	}
 
 	/**
-	 * Runnable class for setting visibility of a View
-	 * Required if no Command has to be added into the stack
-	 */
-	class SetVisibilityRunnable implements Runnable {
-
-		private boolean visible;
-		private View view;
-
-		/**
-		 * Constructor.
-		 *
-		 */
-		public SetVisibilityRunnable(boolean visible, View view) {
-			this.visible = visible;
-			this.view = view;
-		}
-
-		/**
-		 * @see java.lang.Runnable#run()
-		 *
-		 */
-		@Override
-		public void run() {
-			if (view.isVisible() != visible) {
-				view.setVisible(visible);
-			}
-		}
-	}
-
-	/**
 	 * Set the visibility of a view
 	 *
 	 * @param view
@@ -97,12 +68,11 @@ public final class StereotypeDisplayCommandExecution {
 	 *            True to make the Compartment visible
 	 */
 	public void setVisibility(final TransactionalEditingDomain domain, final View view, final boolean isVisible, final boolean inCommandStack) {
-
+		SetNodeVisibilityCommand visibility = new SetNodeVisibilityCommand(domain, view, isVisible);
 
 		if (!inCommandStack) {
-			CommandUtil.executeUnsafeCommand(new SetVisibilityRunnable(isVisible, view), domain);
+			CommandUtil.executeCommand(visibility, domain);
 		} else {
-			SetNodeVisibilityCommand visibility = new SetNodeVisibilityCommand(domain, view, isVisible);
 			CommandUtil.executeCommandInStack(visibility, domain);
 		}
 	}
@@ -117,23 +87,11 @@ public final class StereotypeDisplayCommandExecution {
 	 *            True to make the Compartment visible
 	 */
 	public void setPersistency(final TransactionalEditingDomain domain, final View view, boolean inCommandStack) {
+		SetPersistentViewCommand persitence = new SetPersistentViewCommand(domain, view);
+
 		if (!inCommandStack) {
-
-			class SetPersistencyRunnable implements Runnable {
-
-				/**
-				 * @see java.lang.Runnable#run()
-				 *
-				 */
-				@Override
-				public void run() {
-					makeViewPersistant(view);
-				}
-
-			}
-			CommandUtil.executeUnsafeCommand(new SetPersistencyRunnable(), domain);
+			CommandUtil.executeCommand(persitence, domain);
 		} else {
-			SetPersistentViewCommand persitence = new SetPersistentViewCommand(domain, view);
 			CommandUtil.executeCommandInStack(persitence, domain);
 		}
 
@@ -148,24 +106,11 @@ public final class StereotypeDisplayCommandExecution {
 	 *            True to make the Compartment visible
 	 */
 	public void unsetPersistency(final TransactionalEditingDomain domain, final View view, boolean inCommandStack) {
+		UnsetPersistentViewCommand persistence = new UnsetPersistentViewCommand(domain, view);
 		if (!inCommandStack) {
-
-			class UnsetPersistencyRunnable implements Runnable {
-
-				/**
-				 * @see java.lang.Runnable#run()
-				 *
-				 */
-				@Override
-				public void run() {
-					removeViewPersistant(view);
-				}
-
-			}
-			CommandUtil.executeUnsafeCommand(new UnsetPersistencyRunnable(), domain);
+			CommandUtil.executeCommand(persistence, domain);
 		} else {
-			UnsetPersistentViewCommand persitence = new UnsetPersistentViewCommand(domain, view);
-			CommandUtil.executeCommandInStack(persitence, domain);
+			CommandUtil.executeCommandInStack(persistence, domain);
 		}
 
 	}
@@ -228,7 +173,7 @@ public final class StereotypeDisplayCommandExecution {
 		if (inCommandStack) {
 			CommandUtil.executeCommandInStack(command, domain);
 		} else {
-			CommandUtil.executeUnsafeCommand(command, domain);
+			CommandUtil.executeCommand(command, domain);
 		}
 	}
 

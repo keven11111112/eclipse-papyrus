@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.fr - Bug 393532
- *  Christian W. Damus - bug 492407
+ *  Christian W. Damus - bugs 492407, 492482
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies;
@@ -34,15 +34,12 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypeCommentViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypeCompartmentCommand;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypePropertyViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
@@ -72,7 +69,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 	@Override
 	public void activate() {
 		super.activate();
-		getDiagramEventBroker().addNotificationListener(hostView.eContainer(), this);
+		subscribe(hostView.eContainer());
 
 	};
 
@@ -82,7 +79,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 	 */
 	@Override
 	public void deactivate() {
-		getDiagramEventBroker().removeNotificationListener(hostView.eContainer(), this);
+		unsubscribe(hostView.eContainer());
 		super.deactivate();
 	}
 
@@ -114,20 +111,20 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 	@Override
 	public void notifyChanged(Notification notification) {
 		super.notifyChanged(notification);
-		
+
 		// Don't react if the comment is not attached to a diagram
 		if ((comment != null) && (comment.getDiagram() != null)) {
 			int eventType = notification.getEventType();
 			EObject object = StereotypeDisplayUtil.getInstance().getCommentSemanticElement(comment);
 			// If the reference object of the comment is removed, delete the Comment node itself.
 			if (eventType == Notification.REMOVE && notification.getOldValue().equals(hostView) && object == null) {
-				executeAppliedStereotypeCommentDeletion(hostEditPart.getEditingDomain(), comment);
+				executeAppliedStereotypeCommentDeletion(comment);
 			}
 
 			if (comment.getTargetEdges() != null) {
 				// If the Target View is null then remove the Comment View
 				if (eventType == Notification.REMOVE && notification.getOldValue().equals(hostView) && comment.getTargetEdges().size() == 0) {
-					executeAppliedStereotypeCommentDeletion(hostEditPart.getEditingDomain(), comment);
+					executeAppliedStereotypeCommentDeletion(comment);
 				}
 			}
 		}
@@ -152,12 +149,10 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 
 				for (Stereotype stereotype : stereotypeList) {
 					refreshStereotypeCompartmentStructure(stereotype);
-					getDiagramEventBroker().addNotificationListener(helper.getStereotypeCompartment(comment, stereotype), this);
+					subscribe(helper.getStereotypeCompartment(comment, stereotype));
 
 					refreshStereotypeBraceStructure(stereotype);
-					getDiagramEventBroker().addNotificationListener(helper.getStereotypeBraceCompartment(comment, stereotype), this);
-
-
+					subscribe(helper.getStereotypeBraceCompartment(comment, stereotype));
 				}
 			}
 		}
@@ -175,8 +170,8 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 		if (!stereotypeList.isEmpty()) {
 			if (null != comment) {
 				for (Stereotype stereotype : stereotypeList) {
-					getDiagramEventBroker().removeNotificationListener(helper.getStereotypeCompartment(comment, stereotype), this);
-					getDiagramEventBroker().removeNotificationListener(helper.getStereotypeBraceCompartment(comment, stereotype), this);
+					unsubscribe(helper.getStereotypeCompartment(comment, stereotype));
+					unsubscribe(helper.getStereotypeBraceCompartment(comment, stereotype));
 				}
 			}
 		}
@@ -193,7 +188,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 		super.refreshStereotypeDisplay();
 		// If no more Compartment, delete the Comment
 		if (comment != null && getAppliedStereotypeCompartmentNumber(comment) == 0) {
-			executeAppliedStereotypeCommentDeletion(hostEditPart.getEditingDomain(), comment);
+			executeAppliedStereotypeCommentDeletion(comment);
 		}
 	}
 
@@ -376,30 +371,10 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 	 */
 
 	protected void executeAppliedStereotypeCompartmentCreation(final IGraphicalEditPart editPart, final Stereotype stereotype, final String type) {
-		try {
-			editPart.getEditingDomain().runExclusive(new Runnable() {
+		CreateAppliedStereotypeCompartmentCommand command = new CreateAppliedStereotypeCompartmentCommand(editPart.getEditingDomain(), comment, stereotype, type);
 
-				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
-
-
-						public void run() {
-							CreateAppliedStereotypeCompartmentCommand command = new CreateAppliedStereotypeCompartmentCommand(editPart.getEditingDomain(), comment, stereotype, type);
-
-							// use to avoid to put it in the command stack
-							try {
-								GMFUnsafe.write(editPart.getEditingDomain(), command);
-							} catch (Exception e) {
-								Activator.log.error(e);
-							}
-						}
-					});
-
-				}
-			});
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
+		// Record for undo if possible, otherwise unprotected
+		execute(command);
 	}
 
 
@@ -415,29 +390,9 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 	 */
 
 	protected void executeAppliedStereotypePropertyViewCreation(final IGraphicalEditPart editPart, final Node compartment, final Property stereotypeProperty) {
-		try {
-			editPart.getEditingDomain().runExclusive(new Runnable() {
-
-				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
-
-						public void run() {
-
-							// use to avoid to put it in the command stack
-							CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), compartment, stereotypeProperty, StereotypeDisplayConstant.STEREOTYPE_PROPERTY_TYPE);
-							try {
-								GMFUnsafe.write(editPart.getEditingDomain(), command);
-							} catch (Exception e) {
-								Activator.log.error(e);
-							}
-						}
-					});
-				}
-			});
-
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
+		// Record for undo if possible, otherwise unprotected
+		CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), compartment, stereotypeProperty, StereotypeDisplayConstant.STEREOTYPE_PROPERTY_TYPE);
+		execute(command);
 	}
 
 
@@ -454,71 +409,50 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 	protected void executeAppliedStereotypeCommentCreation(final EObject node) {
 
 		final TransactionalEditingDomain domain = hostEditPart.getEditingDomain();
-		Display.getCurrent().syncExec(new Runnable() {
 
-			public void run() {
-				int x = 200;
-				int y = 100;
-				if (hostEditPart.getModel() instanceof Node) {
-					LayoutConstraint constraint = ((Node) hostEditPart.getModel()).getLayoutConstraint();
-					if (constraint instanceof Bounds) {
-						x = x + ((Bounds) constraint).getX();
-						y = ((Bounds) constraint).getY();
-					}
-
-				}
-				if (hostEditPart.getModel() instanceof Edge && ((((Edge) hostEditPart.getModel()).getSource()) instanceof Node)) {
-
-					LayoutConstraint constraint = ((Node) ((Edge) hostEditPart.getModel()).getSource()).getLayoutConstraint();
-					if (constraint instanceof Bounds) {
-						x = x + ((Bounds) constraint).getX();
-						y = ((Bounds) constraint).getY() - 100;
-					}
-
-				}
-				boolean isBorderElement = false;
-				if (hostEditPart instanceof BorderedBorderItemEditPart) {
-					isBorderElement = true;
-				}
-				if (helper.getStereotypeComment((View) getHost().getModel()) == null) {
-					CreateAppliedStereotypeCommentViewCommand command = new CreateAppliedStereotypeCommentViewCommand(domain, (View) hostEditPart.getModel(), x, y, node, isBorderElement);
-					// use to avoid to put it in the command stack
-					try {
-						GMFUnsafe.write(domain, command);
-					} catch (Exception e) {
-						Activator.log.error(e);
-					}
-				}
+		int x = 200;
+		int y = 100;
+		if (hostEditPart.getModel() instanceof Node) {
+			LayoutConstraint constraint = ((Node) hostEditPart.getModel()).getLayoutConstraint();
+			if (constraint instanceof Bounds) {
+				x = x + ((Bounds) constraint).getX();
+				y = ((Bounds) constraint).getY();
 			}
 
-		});
+		}
+		if (hostEditPart.getModel() instanceof Edge && ((((Edge) hostEditPart.getModel()).getSource()) instanceof Node)) {
+
+			LayoutConstraint constraint = ((Node) ((Edge) hostEditPart.getModel()).getSource()).getLayoutConstraint();
+			if (constraint instanceof Bounds) {
+				x = x + ((Bounds) constraint).getX();
+				y = ((Bounds) constraint).getY() - 100;
+			}
+
+		}
+		boolean isBorderElement = false;
+		if (hostEditPart instanceof BorderedBorderItemEditPart) {
+			isBorderElement = true;
+		}
+		if (helper.getStereotypeComment((View) getHost().getModel()) == null) {
+			CreateAppliedStereotypeCommentViewCommand command = new CreateAppliedStereotypeCommentViewCommand(domain, (View) hostEditPart.getModel(), x, y, node, isBorderElement);
+			// Record for undo if possible, otherwise unprotected
+			execute(command);
+		}
 	}
 
 	/**
 	 * In Charge to delete the Comment Node.
 	 *
-	 * @param domain
-	 *            the transactional editing domain
 	 * @param commentNode
 	 *            the view that represent the comment of stereotype
 	 */
-
-	protected void executeAppliedStereotypeCommentDeletion(final TransactionalEditingDomain domain, final View commentNode) {
-		Display.getCurrent().syncExec(new Runnable() {
-
-			public void run() {
-				// because it is asynchrony the comment node maybe become s null
-				if (commentNode != null && TransactionUtil.getEditingDomain(commentNode) != null) {
-					DeleteCommand command = new DeleteCommand(commentNode);
-					// use to avoid to put it in the command stack
-					try {
-						GMFUnsafe.write(domain, command);
-					} catch (Exception e) {
-						Activator.log.error(e);
-					}
-				}
-			}
-		});
+	protected void executeAppliedStereotypeCommentDeletion(final View commentNode) {
+		// because it is asynchronous the comment node maybe become s null
+		if (commentNode != null && TransactionUtil.getEditingDomain(commentNode) != null) {
+			DeleteCommand command = new DeleteCommand(commentNode);
+			// Record for undo if possible, otherwise unprotected
+			execute(command);
+		}
 	}
 
 	/**

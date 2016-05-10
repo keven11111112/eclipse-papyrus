@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,15 +9,22 @@
  * Contributors:
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.fr - Bug 393532
- *  Christian W. Damus - bug 450523
- *  Christian W. Damus - bug 399859
+ *  Christian W. Damus - bugs 450523, 399859, 492482
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.listeners;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.command.AbstractCommand;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.notify.impl.NotificationChainImpl;
+import org.eclipse.emf.common.notify.impl.NotificationImpl;
+import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
@@ -30,6 +37,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
+import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
@@ -76,24 +84,79 @@ public class StereotypeElementListener extends ResourceSetListenerImpl {
 	}
 
 	/**
-	 * Resource set changed.
+	 * I am a pre-commit listener. Trigger listeners need to be able to react to
+	 * these events. And they will be captured and automatically distributed again
+	 * when the transaction commits (if it doesn't roll back).
 	 *
-	 * @param event
-	 *            the event
-	 * @see org.eclipse.emf.transaction.ResourceSetListenerImpl#resourceSetChanged(org.eclipse.emf.transaction.ResourceSetChangeEvent)
+	 * @return {@code true}
 	 */
 	@Override
-	public void resourceSetChanged(ResourceSetChangeEvent event) {
+	public boolean isPrecommitOnly() {
+		return true;
+	}
 
-		// Get filtered notifications
-		List<Notification> filteredNotificationsList = event.getNotifications();
+	@Override
+	public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
+		Command result = null;
 
-		// Handle each filtered notification
-		for (Notification notification : filteredNotificationsList) {
-			handleFilteredNotification(notification);
+		if (!event.getNotifications().isEmpty()) {
+			// Get filtered notifications
+			final NotificationChain chain = new NotificationChainImpl();
+			List<Notification> filteredNotificationsList = new ArrayList<Notification>(event.getNotifications());
+
+			// Handle each filtered notification
+			for (Notification notification : filteredNotificationsList) {
+				handleFilteredNotification(notification, chain);
+			}
+
+			result = new AbstractCommand("Inject Stereotype Notifications") {
+				private NotificationChain notifications;
+
+				@Override
+				protected boolean prepare() {
+					this.notifications = chain;
+					return true;
+				}
+
+				@Override
+				public void execute() {
+					dispatchAndInvert();
+				}
+
+				@Override
+				public void undo() {
+					dispatchAndInvert();
+				}
+
+				@Override
+				public void redo() {
+					dispatchAndInvert();
+				}
+
+				private void dispatchAndInvert() {
+					notifications.dispatch();
+					this.notifications = invertNotifications(notifications);
+				}
+
+				private NotificationChain invertNotifications(NotificationChain notifications) {
+					// The chain is implemented as an EList
+					@SuppressWarnings("unchecked")
+					EList<Notification> list = (EList<Notification>) notifications;
+
+					// Reverse the order
+					ECollections.reverse(list);
+
+					// And flip the type from applied <--> unapplied
+					for (Notification next : list) {
+						((StereotypeExtensionNotification) next).invert();
+					}
+
+					return notifications;
+				}
+			};
 		}
 
-
+		return result;
 	}
 
 	/**
@@ -101,9 +164,10 @@ public class StereotypeElementListener extends ResourceSetListenerImpl {
 	 *
 	 * @param notification
 	 *            the notification
+	 * @param notifications
+	 *            a notification chain on which to collect notifications for later dispatch. If {@code null}, then dispatch immediately
 	 */
-	private void handleFilteredNotification(Notification notification) {
-
+	private void handleFilteredNotification(Notification notification, NotificationChain notifications) {
 		final Object notifier = notification.getNotifier();
 
 		Element extendedElement = null;
@@ -150,6 +214,7 @@ public class StereotypeElementListener extends ResourceSetListenerImpl {
 			case StereotypeExtensionNotification.MODIFIED_STEREOTYPE_OF_ELEMENT:
 				// New value is the modified element
 				newValue = notification.getNewValue();
+				oldValue = notification.getOldValue();
 				break;
 			default:
 				// Nothing to do
@@ -158,8 +223,13 @@ public class StereotypeElementListener extends ResourceSetListenerImpl {
 
 			// Bug 450523: If element is null, the notification has already been sent. Simply ignore this case
 			if (element != null) {
-				element.eNotify(
-						new StereotypeExtensionNotification(element, eventType, oldValue, newValue, stereotype));
+				NotificationImpl newNotification = new StereotypeExtensionNotification(element, eventType, oldValue, newValue, stereotype);
+				if (notifications == null) {
+					// Dispatch it now
+					newNotification.dispatch();
+				} else {
+					notifications.add(newNotification);
+				}
 			}
 		}
 
@@ -397,6 +467,28 @@ public class StereotypeElementListener extends ResourceSetListenerImpl {
 		 */
 		public Stereotype getStereotype() {
 			return stereotype;
+		}
+
+		/**
+		 * Flips an "applied" notification to "unapplied" and vice versa.
+		 */
+		void invert() {
+			switch (getEventType()) {
+			case STEREOTYPE_APPLIED_TO_ELEMENT:
+				eventType = STEREOTYPE_UNAPPLIED_FROM_ELEMENT;
+				break;
+			case STEREOTYPE_UNAPPLIED_FROM_ELEMENT:
+				eventType = STEREOTYPE_APPLIED_TO_ELEMENT;
+				break;
+			default:
+				// Stereotype-modified events are their own inverses
+				break;
+			}
+
+			// Swap the old and new values
+			Object swap = oldValue;
+			oldValue = newValue;
+			newValue = swap;
 		}
 	}
 

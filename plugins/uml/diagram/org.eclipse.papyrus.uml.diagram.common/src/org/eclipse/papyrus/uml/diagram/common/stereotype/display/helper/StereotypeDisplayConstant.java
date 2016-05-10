@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,12 +9,17 @@
  * Contributors:
  *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display
+ *   Christian W. Damus - bug 492482
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper;
 
+import java.util.Set;
+
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+
+import com.google.common.collect.ImmutableSet;
 
 
 
@@ -43,6 +48,17 @@ public class StereotypeDisplayConstant {
 
 	public static final String STEREOTYPE_COMMENT_TYPE = "StereotypeComment";//$NON-NLS-1$
 	public static final String STEREOTYPE_COMMENT_LINK_TYPE = "StereotypeCommentLink";
+	
+	/**
+	 * The applied-stereotype view types.
+	 */
+	public static final Set<String> APPLIED_STEREOTYPE_VIEW_TYPES = ImmutableSet.of(
+			STEREOTYPE_LABEL_TYPE,
+			STEREOTYPE_BRACE_TYPE,
+			STEREOTYPE_COMPARTMENT_TYPE,
+			STEREOTYPE_COMMENT_TYPE, STEREOTYPE_COMMENT_LINK_TYPE,
+			STEREOTYPE_PROPERTY_TYPE, STEREOTYPE_PROPERTY_BRACE_TYPE);
+
 
 	// Name notation value
 	public static final String STEREOTYPE_LABEL_NAME = "stereotype";//$NON-NLS-1$

@@ -1,10 +1,12 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart,
  org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies,
+ org.eclipse.papyrus.uml.diagram.stereotype.edition.internal.edithelper.advice;x-internal:=true,
  org.eclipse.papyrus.uml.diagram.stereotype.edition.provider
 Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.papyrus.uml.appearance;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.uml.profile;bundle-version="[2.0.0,3.0.0)"
+ org.eclipse.papyrus.uml.profile;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.types;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier
@@ -14,4 +16,4 @@ Bundle-Activator: org.eclipse.papyrus.uml.diagram.stereotype.edition.Activator
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.stereotype.edition;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

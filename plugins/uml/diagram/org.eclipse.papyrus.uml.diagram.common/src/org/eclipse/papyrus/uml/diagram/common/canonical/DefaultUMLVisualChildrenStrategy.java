@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,8 +13,9 @@
 
 package org.eclipse.papyrus.uml.diagram.common.canonical;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -23,6 +24,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.IVisualChildrenStrategy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEditPolicy;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -33,9 +35,23 @@ import com.google.common.collect.ImmutableSet;
  * that present applied stereotypes, which have nothing to do with model-view synchronization.
  */
 public class DefaultUMLVisualChildrenStrategy implements IVisualChildrenStrategy {
+	/** View types that are managed by other edit-policies. */
+	private static final Set<String> excludedViewTypes = new HashSet<>();
 
 	public DefaultUMLVisualChildrenStrategy() {
 		super();
+	}
+
+	/**
+	 * Registers view types that should be ignored by the CanonicalEditPolicy for
+	 * the purposes of view creation and deletion, because (usually) they are managed
+	 * {@linkplain AutomaticNotationEditPolicy automatically} by other edit-policies.
+	 * 
+	 * @param viewTypes
+	 *            view types to be excluded from canonical management
+	 */
+	public static void registerExcludedViewTypes(Collection<String> viewTypes) {
+		excludedViewTypes.addAll(viewTypes);
 	}
 
 	@Override
@@ -48,15 +64,9 @@ public class DefaultUMLVisualChildrenStrategy implements IVisualChildrenStrategy
 				? ImmutableSet.copyOf(((Element) semantic).getAppliedStereotypes())
 				: Collections.<Stereotype> emptySet();
 
-		if (!appliedStereotypes.isEmpty()) {
-			for (Iterator<? extends View> iter = result.iterator(); iter.hasNext();) {
-				final EObject nextElement = iter.next().getElement();
-
-				if (appliedStereotypes.contains(nextElement)) {
-					iter.remove();
-				}
-			}
-		}
+		// And the transient views that support CSS-driven presentation
+		result.removeIf(v -> excludedViewTypes.contains(v.getType())
+				|| appliedStereotypes.contains(v.getElement()));
 
 		return result;
 	}

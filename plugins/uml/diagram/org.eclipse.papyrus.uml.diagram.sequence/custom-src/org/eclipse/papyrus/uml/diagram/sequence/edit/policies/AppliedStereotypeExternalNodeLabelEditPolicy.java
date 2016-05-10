@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA
+ * Copyright (c) 2013, 2016 CEA, Christian W. Damus, and others
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
+ *   Christian W. Damus - bug 492482
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -63,7 +64,7 @@ public class AppliedStereotypeExternalNodeLabelEditPolicy extends AppliedStereot
 				hostView = (View) parent;
 			}
 		}
-		getDiagramEventBroker().addNotificationListener(hostView, this);
+		subscribe(hostView);
 
 		refreshDisplay();
 
@@ -72,7 +73,7 @@ public class AppliedStereotypeExternalNodeLabelEditPolicy extends AppliedStereot
 	@Override
 	public void deactivate() {
 		if (hostView != null) {
-			getDiagramEventBroker().removeNotificationListener(hostView, this);
+			unsubscribe(hostView);
 		}
 		super.deactivate();
 	}

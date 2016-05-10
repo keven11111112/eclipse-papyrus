@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008 Obeo.
+ * Copyright (c) 2008, 2016 Obeo, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *     Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Enrich Execution Command
+ *     Christian W. Damus - bug 492482
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.util;
 
@@ -24,6 +25,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -32,8 +34,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 
 /**
@@ -88,15 +91,15 @@ public class CommandUtil {
 	}
 
 	/**
-	 * Execute a command as unsafe.
-	 * Consequence: the command doesn't appear in the Command Stack and does not make the diagram dirty.
+	 * Executes a {@code command} in the safest possible way within the context of
+	 * an {@code object}. This is as a (possibly nested)
+	 * read/write transaction if there is already a read/write transaction active,
+	 * otherwise in a (possibly nested) "unprotected write" transaction.
 	 *
 	 * @param command
-	 *            The command to execute unsafe
+	 *            the command to execute
 	 * @param object
-	 *            The EObject that is required to define the Transactional domain.
-	 * @param synch
-	 *            Define if the command should be execute synchronously or not.
+	 *            the contextual object from which to infer the editing domain
 	 * @see {@link #resolveEditingDomain}
 	 */
 	public static void executeUnsafeCommand(final ICommand command, final Object object) {
@@ -109,15 +112,15 @@ public class CommandUtil {
 	}
 
 	/**
-	 * Execute a command as unsafe.
-	 * Consequence: the command doesn't appear in the Command Stack and does not make the diagram dirty.
+	 * Executes a {@code command} in the safest possible way within the context of
+	 * an {@code object}. This is as a (possibly nested)
+	 * read/write transaction if there is already a read/write transaction active,
+	 * otherwise in a (possibly nested) "unprotected write" transaction.
 	 *
 	 * @param command
-	 *            The command to execute unsafe
+	 *            the command to execute
 	 * @param object
-	 *            The EObject that is required to define the Transactional domain.
-	 * @param synch
-	 *            Define if the command should be execute synchronously or not.
+	 *            the contextual object from which to infer the editing domain
 	 * @see {@link #resolveEditingDomain}
 	 */
 	public static void executeUnsafeCommand(final Command command, final Object object) {
@@ -129,15 +132,15 @@ public class CommandUtil {
 	}
 
 	/**
-	 * Execute a command as unsafe.
-	 * Consequence: the command doesn't appear in the Command Stack and does not make the diagram dirty.
+	 * Executes a {@code command} in the safest possible way within the context of
+	 * an {@code object}. This is as a (possibly nested)
+	 * read/write transaction if there is already a read/write transaction active,
+	 * otherwise in a (possibly nested) "unprotected write" transaction.
 	 *
 	 * @param command
-	 *            The command to execute unsafe
+	 *            the command to execute
 	 * @param object
-	 *            The EObject that is required to define the Transactional domain.
-	 * @param synch
-	 *            Define if the command should be execute synchronously or not.
+	 *            the contextual object from which to infer the editing domain
 	 * @see {@link #resolveEditingDomain}
 	 */
 	public static void executeUnsafeCommand(final Runnable command, final Object object) {
@@ -150,21 +153,25 @@ public class CommandUtil {
 	}
 
 	/**
-	 * Execute a command as unsafe.
-	 * Consequence: the command doesn't appear in the Command Stack and does not make the diagram dirty.
+	 * Execute a {@code command} in the command stack as usual, unless there's
+	 * already a write transaction in progress, then just execute it directly.
 	 *
 	 * @param command
-	 *            The command to execute unsafe
+	 *            The command to execute
 	 * @param object
 	 *            The EObject that is required to define the Transactional domain.
 	 *
 	 * @see {@link #resolveEditingDomain}
 	 */
 	public static void executeCommandInStack(final org.eclipse.emf.common.command.Command command, final Object object) {
-
 		TransactionalEditingDomain domain = resolveEditingDomain(object);
-		domain.getCommandStack().execute(command);
 
+		if (canWrite(domain) && command.canExecute()) {
+			// Just re-use the existing transaction
+			command.execute();
+		} else {
+		domain.getCommandStack().execute(command);
+		}
 	}
 
 	/**
@@ -196,58 +203,90 @@ public class CommandUtil {
 	}
 
 	/**
-	 * Run the Command Asynchronously
+	 * Executes a {@code command} in the safest possible way within the context of
+	 * a transactional editing {@code domain}. This is as a (possibly nested)
+	 * read/write transaction if there is already a read/write transaction active,
+	 * otherwise in a (possibly nested) "unprotected write" transaction.
 	 *
 	 * @param command
-	 *            The command to execute
+	 *            the command to execute
 	 * @param domain
-	 *            The Transactional Editing Domain
-	 *
+	 *            the editing domain in which to execute a command
 	 */
 	public static void executeCommand(final Command command, final TransactionalEditingDomain domain) {
-
+		if (!canWrite(domain)) {
+			// Have to go the unprotected route. Hopefully the context is an
+			// edit-part refresh or something else that is not in a higher
+			// recorded edit command scope that needs to be undoable
 		try {
 			GMFUnsafe.write(domain, command);
 		} catch (Exception e) {
-			Activator.log.error(e);
+				// Failed to create the unprotected transaction or it rolled back
+				Activator.log.error("Unprotected command execution failed.", e); //$NON-NLS-1$
+			}
+		} else {
+			// There's a change recorder in progress or an unprotected write
+			// that can't be overridden with a read/write transaction anyways,
+			// or we're not an edit-part that provides editing domains,
+			// so just roll with it
+			if (command.canExecute()) {
+				command.execute();
+			}
+		}
+	}
+
+	private static boolean canWrite(TransactionalEditingDomain domain) {
+		Transaction activeTransaction = null;
+		if (domain instanceof InternalTransactionalEditingDomain) {
+			activeTransaction = ((InternalTransactionalEditingDomain) domain).getActiveTransaction();
 		}
 
+		return (activeTransaction != null) && !activeTransaction.isReadOnly();
 	}
 
 	/**
-	 * Run the Command Asynchronously
+	 * Executes a {@code command} in the safest possible way within the context of
+	 * a transactional editing {@code domain}. This is as a (possibly nested)
+	 * read/write transaction if there is already a read/write transaction active,
+	 * otherwise in a (possibly nested) "unprotected write" transaction.
 	 *
 	 * @param command
-	 *            The command to execute
+	 *            the command to execute
 	 * @param domain
-	 *            The Transactional Editing Domain
-	 *
+	 *            the editing domain in which to execute a command
 	 */
 	private static void executeCommand(final ICommand command, final TransactionalEditingDomain domain) {
-		try {
-			GMFUnsafe.write(domain, command);
-		} catch (Exception e) {
-			Activator.log.error(e);
+		executeCommand(GMFtoEMFCommandWrapper.wrap(command), domain);
 		}
-	}
 
 	/**
-	 * Run the Command Asynchronously
+	 * Executes a {@code command} in the safest possible way within the context of
+	 * a transactional editing {@code domain}. This is as a (possibly nested)
+	 * read/write transaction if there is already a read/write transaction active,
+	 * otherwise in a (possibly nested) "unprotected write" transaction.
 	 *
 	 * @param command
-	 *            The command to execute
+	 *            the command to execute
 	 * @param domain
-	 *            The Transactional Editing Domain
-	 *
+	 *            the editing domain in which to execute a command
 	 */
 	private static void executeCommand(final Runnable command, final TransactionalEditingDomain domain) {
-		// use to avoid to put it in the command stack
+		if (!canWrite(domain)) {
+			// Have to go the unprotected route. Hopefully the context is an
+			// edit-part refresh or something else that is not in a higher
+			// recorded edit command scope that needs to be undoable
 		try {
 			GMFUnsafe.write(domain, command);
 		} catch (Exception e) {
-			Activator.log.error(e);
+				// Failed to create the unprotected transaction or it rolled back
+				Activator.log.error("Unprotected command execution failed.", e); //$NON-NLS-1$
+			}
+		} else {
+			// There's a change recorder in progress or an unprotected write
+			// that can't be overridden with a read/write transaction anyways,
+			// or we're not an edit-part that provides editing domains,
+			// so just roll with it
+			command.run();
 		}
 	}
-
-
 }
