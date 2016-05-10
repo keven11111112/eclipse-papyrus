@@ -53,7 +53,8 @@ public class CustomStyleValueCommand extends AbstractCommand {
 		}
 
 		valueStyle.eSet(styleFeature, value);
-		if (createStyle || valueStyle.eContainer() == null) {// valueStyle.eContainer() == null if CSS valueStyle is set but no Style on notation
+		createStyle = valueStyle.eContainer() == null; // if CSS valueStyle is set but no Style on notation. Set the createStyle to remove it at the undo.
+		if (createStyle) {
 			view.getStyles().add(valueStyle);
 		}
 	}
@@ -72,7 +73,7 @@ public class CustomStyleValueCommand extends AbstractCommand {
 	@Override
 	public void undo() {
 		NamedStyle valueStyle = view.getNamedStyle(styleClass, styleName);
-		;
+
 		if (createStyle) {
 			view.getStyles().remove(valueStyle);
 		} else {
