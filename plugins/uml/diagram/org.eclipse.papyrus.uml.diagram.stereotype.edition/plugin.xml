@@ -30,4 +30,13 @@
 		   </object>
 	   </editpartProvider>
    </extension>
+   
+      <extension
+            point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+         <elementTypeSet
+               id="org.eclipse.papyrus.uml.diagram.stereotype.edition.advice"
+               path="model/stereotype-edit.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
+   
 </plugin>

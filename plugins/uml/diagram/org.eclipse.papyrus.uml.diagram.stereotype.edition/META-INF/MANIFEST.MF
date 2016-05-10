@@ -14,15 +14,16 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.1.4",
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.1.4",
  org.eclipse.papyrus.uml.profile;bundle-version="1.1.4",
- org.eclipse.gmf.tooling.runtime;bundle-version="[3.3.0,
- 4.0.0)",
- org.eclipse.gmf.runtime.notation
+ org.eclipse.gmf.tooling.runtime;bundle-version="[3.3.0,4.0.0)",
+ org.eclipse.gmf.runtime.notation,
+ org.eclipse.papyrus.infra.elementtypesconfigurations;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: %providerName
 Export-Package: org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart,
  org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies,
+ org.eclipse.papyrus.uml.diagram.stereotype.edition.internal.edithelper.advice;x-internal:=true,
  org.eclipse.papyrus.uml.diagram.stereotype.edition.provider
 Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName

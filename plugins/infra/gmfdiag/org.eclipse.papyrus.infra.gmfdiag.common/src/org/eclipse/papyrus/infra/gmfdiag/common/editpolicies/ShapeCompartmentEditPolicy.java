@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST and others.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
+ *  Christian W. Damus - bug 492482
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
@@ -16,7 +17,6 @@ package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
@@ -30,7 +30,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IShapeCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.NotificationManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -38,7 +37,7 @@ import org.eclipse.swt.widgets.Display;
  * access to primary figure. the primary figure has to be a {@link IPapyrusNodeUMLElementFigure}.
  * This edit policy manage the display of a shape in a new compartment and toggles the compartment display.
  */
-public class ShapeCompartmentEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
+public class ShapeCompartmentEditPolicy extends AutomaticNotationEditPolicy.Impl implements NotificationListener, IPapyrusListener {
 
 	/** constant for this edit policy role */
 	public final static String SHAPE_COMPARTMENT_EDIT_POLICY = "ShapeCompartmentEditPolicy"; //$NON-NLS-1$
@@ -120,12 +119,9 @@ public class ShapeCompartmentEditPolicy extends GraphicalEditPolicy implements N
 			// boolean isVisible = hasToDisplayCompartment(editPart.getNotationView());
 			TransactionalEditingDomain domain = getEditingDomain(editPart);
 			CreateShapeCompartmentViewCommand command = new CreateShapeCompartmentViewCommand(domain, "Create Compartment", "Command that creates the compartment displaying shapes", editPart.getNotationView(), /* isVisible */false);
-			try {
-				// This should not change the command stack, as this transaction will only manipulate transient views. Create a transaction manually, if needed
-				GMFUnsafe.write(domain, command);
-			} catch (Exception e) {
-				Activator.log.error(e);
-			}
+
+			// This should not change the command stack, as this transaction will only manipulate transient views. Create a transaction manually, if needed
+			execute(command);
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
@@ -212,11 +208,7 @@ public class ShapeCompartmentEditPolicy extends GraphicalEditPolicy implements N
 			public void run() {
 				SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(editPart.getEditingDomain(), view, isVisible);
 				// use to avoid to put it in the command stack
-				try {
-					GMFUnsafe.write(editPart.getEditingDomain(), setCommand);
-				} catch (Exception e) {
-					Activator.log.error(e);
-				}
+				execute(setCommand);
 			}
 		});
 	}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST and others.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
  *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 460356 : Refactor Stereotype Display
+ *  Christian W. Damus - bug 492482
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
@@ -23,10 +24,7 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
-import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
-import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
@@ -45,7 +43,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * and launch command of deletion if it detect that no property of applied stereotype are displayed.
  *
  */
-public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy implements NotificationListener, IPapyrusListener {
+public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy implements IPapyrusListener {
 
 
 	/**
@@ -139,7 +137,7 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 
 		// adds a listener on the view and the element controlled by the
 		// editpartrefr
-		getDiagramEventBroker().addNotificationListener(view, this);
+		subscribe(view);
 
 	}
 
@@ -155,21 +153,7 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 			return;
 		}
 
-		getDiagramEventBroker().removeNotificationListener(view, this);
-	}
-
-	/**
-	 * Gets the diagram event broker from the editing domain.
-	 *
-	 * @return the diagram event broker
-	 */
-	@Override
-	protected DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		if (null != theEditingDomain) {
-			return DiagramEventBroker.getInstance(theEditingDomain);
-		}
-		return null;
+		unsubscribe(view);
 	}
 
 	/**

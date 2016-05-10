@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2014 CEA LIST and others.
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -13,6 +13,7 @@
  *  Christian W. Damus (CEA) - bug 440197
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 393532
  *  Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 Stereotype Display
+ *  Christian W. Damus - bug 492482
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
@@ -22,14 +23,18 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
+import org.eclipse.gmf.runtime.diagram.core.listener.NotificationPreCommitListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
@@ -39,15 +44,16 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.canonical.DefaultUMLVisualChildrenStrategy;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypeCompartmentCommand;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypePropertyViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateStereotypeLabelCommand;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeMigrationHelper;
-import org.eclipse.papyrus.uml.diagram.common.util.CommandUtil;
 import org.eclipse.papyrus.uml.tools.listeners.StereotypeElementListener.StereotypeExtensionNotification;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
@@ -59,7 +65,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * Specific edit policy for label displaying stereotypes and their properties
  * for representing UML elements.
  */
-public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
+public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends GraphicalEditPolicyEx implements AutomaticNotationEditPolicy, NotificationListener, IPapyrusListener {
 
 	/**
 	 * 
@@ -91,6 +97,19 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 	protected List<Stereotype> stereotypeList = Collections.emptyList();
 
+	private final NotificationPreCommitListener precommitListener = new NotificationPreCommitListener() {
+
+		@Override
+		public Command transactionAboutToCommit(Notification notification) {
+			return AbstractAppliedStereotypeDisplayEditPolicy.this.handlePrecommit(notification);
+		}
+	};
+
+	static {
+		// Tell the Canonical Edit Policy not to manage applied-stereotype views
+		DefaultUMLVisualChildrenStrategy.registerExcludedViewTypes(StereotypeDisplayConstant.APPLIED_STEREOTYPE_VIEW_TYPES);
+	}
+
 
 	/**
 	 * Creates a new AppliedStereotype display edit policy
@@ -108,15 +127,39 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 		if (getHost() instanceof IGraphicalEditPart) {
 			initialisation();
-			// getDiagramEventBroker().addNotificationListener(view, this);
-			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
-			getDiagramEventBroker().addNotificationListener(hostView, this);
+			// subscribe(view);
+			subscribe(hostSemanticElement);
+			subscribe(hostView);
 			// Create and Delete nodes if necessary
 			refreshNotationStructure();
 
 
 		}
 
+	}
+
+	/**
+	 * Subscribes to a {@code notifier} for notifications from the
+	 * {@link #getDiagramEventBroker() event broker}.
+	 * 
+	 * @param notifier
+	 *            a notifier to subscribe to
+	 */
+	protected void subscribe(EObject notifier) {
+		// Subscribe to pre-commit, not post-commit events
+		getDiagramEventBroker().addNotificationListener(notifier, precommitListener);
+	}
+
+	/**
+	 * Unsubscribes from a {@code notifier} for notifications from the
+	 * {@link #getDiagramEventBroker() event broker}.
+	 * 
+	 * @param notifier
+	 *            a notifier to unsubscribe from
+	 */
+	protected void unsubscribe(EObject notifier) {
+		// Unsubscribe from pre-commit, not post-commit events
+		getDiagramEventBroker().removeNotificationListener(notifier, precommitListener);
 	}
 
 
@@ -155,6 +198,26 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	public abstract void refreshDisplay();
 
 
+	/**
+	 * React to a transaction pre-commit notification by returning a command that
+	 * encapsulates follow-up changes in the applied-stereotype visualizaiton of
+	 * my host edit-part.
+	 * 
+	 * @param notification
+	 *            some model or notation change notification
+	 * 
+	 * @return a trigger command that may or may not perform some modifications
+	 *         to the applied-stereotype notation in consequence
+	 */
+	private Command handlePrecommit(final Notification notification) {
+		return new RecordingCommand(((IGraphicalEditPart) getHost()).getEditingDomain()) {
+
+			@Override
+			protected void doExecute() {
+				notifyChanged(notification);
+			}
+		};
+	}
 
 	/**
 	 *
@@ -287,7 +350,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 		BasicCompartment compartment = helper.getStereotypeBraceCompartment(hostView, stereotype);
 		if (compartment == null) { // No Compartment Exists for this Stereotype
 			createAppliedStereotypeBraceCompartment(stereotype);
-			getDiagramEventBroker().addNotificationListener(helper.getStereotypeBraceCompartment(hostView, stereotype), this);
+			subscribe(helper.getStereotypeBraceCompartment(hostView, stereotype));
 
 		}
 
@@ -310,7 +373,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 		DecorationNode label = helper.getStereotypeLabel(hostView, stereotype);
 		if (null == label) { // No Label Exist for this Stereotype
 			createAppliedStereotypeLabel(stereotype);
-			getDiagramEventBroker().addNotificationListener(helper.getStereotypeLabel(hostView, stereotype), this);
+			subscribe(helper.getStereotypeLabel(hostView, stereotype));
 
 		}
 	}
@@ -383,7 +446,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 			EList<Property> properties = stereotype.allAttributes();
 			for (Property property : properties) {
 				createAppliedStereotypeBraceProperty(compartment, property);
-				getDiagramEventBroker().addNotificationListener(helper.getStereotypePropertyInBrace(hostView, stereotype, property), this);
+				subscribe(helper.getStereotypePropertyInBrace(hostView, stereotype, property));
 
 			}
 		}
@@ -447,8 +510,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 */
 	protected void executeAppliedStereotypeBraceCompartmentCreation(final IGraphicalEditPart editPart, final Stereotype stereotype) {
 		CreateAppliedStereotypeCompartmentCommand command = new CreateAppliedStereotypeCompartmentCommand(editPart.getEditingDomain(), editPart.getNotationView(), stereotype, StereotypeDisplayConstant.STEREOTYPE_BRACE_TYPE);
-		CommandUtil.executeUnsafeCommand(command, editPart);
-
+		execute(command);
 	}
 
 
@@ -464,8 +526,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 */
 	protected void executeAppliedStereotypeBracePropertyViewCreation(final IGraphicalEditPart editPart, final Node compartment, final Property stereotypeProperty) {
 		CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), compartment, stereotypeProperty, StereotypeDisplayConstant.STEREOTYPE_PROPERTY_BRACE_TYPE);
-		CommandUtil.executeUnsafeCommand(command, editPart);
-
+		execute(command);
 	}
 
 	/**
@@ -478,9 +539,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 */
 	protected void executeStereotypeLabelCreation(final IGraphicalEditPart editPart, final Stereotype stereotype) {
 		CreateStereotypeLabelCommand command = new CreateStereotypeLabelCommand(editPart.getEditingDomain(), editPart.getNotationView(), stereotype);
-		CommandUtil.executeUnsafeCommand(command, editPart);
-
-
+		execute(command);
 	}
 
 	/**
@@ -527,10 +586,8 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 *            DecorationNode of the Stereotype Label that has to be removed
 	 */
 	protected void executeStereotypeViewRemove(final IGraphicalEditPart editPart, final View view) {
-
 		DeleteCommand command = new DeleteCommand(view);
-		CommandUtil.executeUnsafeCommand(command, editPart);
-
+		execute(command);
 	}
 
 
@@ -550,15 +607,15 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	public void removeListener() {
 		View view = getView();
 		if (null != view) {
-			getDiagramEventBroker().removeNotificationListener(view, this);
+			unsubscribe(view);
 			if (null != hostSemanticElement) {
 
 				// remove listeners to applied stereotyped
 				for (EObject stereotypeApplication : hostSemanticElement.getStereotypeApplications()) {
-					getDiagramEventBroker().removeNotificationListener(stereotypeApplication, this);
+					unsubscribe(stereotypeApplication);
 				}
 				// remove notification on element
-				getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
+				unsubscribe(hostSemanticElement);
 				// removes the reference to the semantic element
 				hostSemanticElement = null;
 			}
@@ -570,27 +627,32 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 				// Remove label Listener
 				View label = helper.getStereotypeLabel(hostView, stereotype);
 				if (null != label) {
-					getDiagramEventBroker().removeNotificationListener(label, this);
+					unsubscribe(label);
 				}
 				// Remove Brace Compartment Listener
 				BasicCompartment compartment = helper.getStereotypeBraceCompartment(hostView, stereotype);
 				if (null != compartment) {
-					getDiagramEventBroker().addNotificationListener(helper.getStereotypeBraceCompartment(hostView, stereotype), this);
+					subscribe(helper.getStereotypeBraceCompartment(hostView, stereotype));
 				}
 				// Remove Brace Properties Listener
 				if (null != compartment && null != stereotype) {
 					EList<Property> properties = stereotype.allAttributes();
 					for (Property property : properties) {
-						getDiagramEventBroker().removeNotificationListener(helper.getStereotypePropertyInBrace(hostView, stereotype, property), this);
+						unsubscribe(helper.getStereotypePropertyInBrace(hostView, stereotype, property));
 					}
 				}
 
 			}
 		}
-
-
-
-
 	}
 
+	@Override
+	public void execute(Command command) {
+		Impl.execute(getHost(), command);
+	}
+
+	@Override
+	public void execute(ICommand command) {
+		Impl.execute(getHost(), command);
+	}
 }

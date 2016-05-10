@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation (Bug 455311)
  *   Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display
+ *   Christian W. Damus - bug 492482
  *   
  *****************************************************************************/
 
@@ -844,7 +845,7 @@ public class StereotypeDisplayUtil {
 					if (stereotypeCompartment.getElement() instanceof Stereotype) {
 						final Stereotype stereotype = (Stereotype) stereotypeCompartment.getElement();
 						final Element umlElement = UMLUtil.getBaseElement(getStereotypeApplication(view, stereotype));
-						System.out.println(getStereotypeApplication(view, stereotype));
+						
 						if (isDisplayed(node)) {
 							// if (node.isVisible()) {
 

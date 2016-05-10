@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) - Initial API and implementation
  *  Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 Stereotype Display
+ *  Christian W. Damus - bug 492482
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
@@ -47,7 +48,7 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 		EObject parent = view.eContainer();
 		if (parent instanceof View) {
 			parentView = (View) parent;
-			getDiagramEventBroker().addNotificationListener(parentView, this);
+			subscribe(parentView);
 		}
 
 
@@ -57,7 +58,7 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 	@Override
 	public void deactivate() {
 		if (parentView != null) {
-			getDiagramEventBroker().removeNotificationListener(parentView, this);
+			unsubscribe(parentView);
 		}
 
 		super.deactivate();

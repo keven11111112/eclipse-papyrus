@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST and others.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,6 +12,7 @@
  *  Christian W. Damus (CEA) - bug 323802
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.fr - Bug 393532
  *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display
+ *  Christian W. Damus - bug 492482
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies;
@@ -22,14 +23,11 @@ import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypeCompartmentCommand;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypePropertyViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
@@ -66,7 +64,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 		if (!stereotypeList.isEmpty()) {
 			for (Stereotype stereotype : stereotypeList) {
 				refreshStereotypeCompartmentStructure(stereotype);
-				getDiagramEventBroker().addNotificationListener(helper.getStereotypeCompartment(hostView, stereotype), this);
+				subscribe(helper.getStereotypeCompartment(hostView, stereotype));
 
 			}
 		}
@@ -93,11 +91,10 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 				Node compartment = helper.getStereotypeCompartment(hostView, stereotype);
 
 				if (null != compartment && null != stereotype) {
-					getDiagramEventBroker().removeNotificationListener(compartment, this);
+					unsubscribe(compartment);
 					EList<Property> properties = stereotype.allAttributes();
 					for (Property property : properties) {
-						getDiagramEventBroker().removeNotificationListener(helper.getStereotypeProperty(hostView, stereotype, property), this);
-
+						unsubscribe(helper.getStereotypeProperty(hostView, stereotype, property));
 					}
 
 
@@ -154,7 +151,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 			EList<Property> properties = stereotype.allAttributes();
 			for (Property property : properties) {
 				createAppliedStereotypeProperty(compartment, property);
-				getDiagramEventBroker().addNotificationListener(helper.getStereotypeProperty(hostView, stereotype, property), this);
+				subscribe(helper.getStereotypeProperty(hostView, stereotype, property));
 
 			}
 
@@ -193,33 +190,11 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 	 * @param appliedstereotype
 	 *            the stereotype application
 	 */
-
 	protected void executeAppliedStereotypeCompartmentCreation(final IGraphicalEditPart editPart, final Stereotype stereotype) {
-		try {
-			editPart.getEditingDomain().runExclusive(new Runnable() {
+		CreateAppliedStereotypeCompartmentCommand command = new CreateAppliedStereotypeCompartmentCommand(editPart.getEditingDomain(), editPart.getNotationView(), stereotype, StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_TYPE);
 
-
-				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
-
-
-						public void run() {
-							CreateAppliedStereotypeCompartmentCommand command = new CreateAppliedStereotypeCompartmentCommand(editPart.getEditingDomain(), editPart.getNotationView(), stereotype, StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_TYPE);
-
-							// use to avoid to put it in the command stack
-							try {
-								GMFUnsafe.write(editPart.getEditingDomain(), command);
-							} catch (Exception e) {
-								Activator.log.error(e);
-							}
-						}
-					});
-
-				}
-			});
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
+		// Record for undo if possible, otherwise unprotected
+		execute(command);
 	}
 
 
@@ -233,33 +208,11 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 	 * @param stereotype
 	 *            the stereotype associated to compartment node
 	 */
-
 	protected void executeAppliedStereotypePropertyViewCreation(final IGraphicalEditPart editPart, final Node compartment, final Property stereotypeProperty) {
-		try {
-			editPart.getEditingDomain().runExclusive(new Runnable() {
+		CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), compartment, stereotypeProperty, StereotypeDisplayConstant.STEREOTYPE_PROPERTY_TYPE);
 
-
-				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
-
-
-						public void run() {
-
-							// use to avoid to put it in the command stack
-							CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), compartment, stereotypeProperty, StereotypeDisplayConstant.STEREOTYPE_PROPERTY_TYPE);
-							try {
-								GMFUnsafe.write(editPart.getEditingDomain(), command);
-							} catch (Exception e) {
-								Activator.log.error(e);
-							}
-						}
-					});
-				}
-			});
-
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
+		// Record for undo if possible, otherwise unprotected
+		execute(command);
 	}
 
 
