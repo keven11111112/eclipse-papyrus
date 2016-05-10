@@ -31,7 +31,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
@@ -44,8 +44,7 @@ import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * Create a region.
- * TODO: Differences with generated RegionCreateCommand ? (is the latter used?)
+ * Create a region (UML and associated view)
  */
 public class CustomFirstRegionInCompositeStateCreateElementCommand extends AbstractTransactionalCommand {
 	IAdaptable adaptable;
@@ -54,7 +53,12 @@ public class CustomFirstRegionInCompositeStateCreateElementCommand extends Abstr
 	CreateViewRequest.ViewDescriptor viewDescriptor;
 	CreateElementRequest createElementRequest;
 	String dropLocation = Zone.NONE;
-
+	
+	/**
+	 * An existing UML region
+	 */
+	protected Region umlRegion;
+	
 	public CustomFirstRegionInCompositeStateCreateElementCommand(IAdaptable adaptable, IAdaptable adaptableForDropped, PreferencesHint prefHints, TransactionalEditingDomain domain, String label, String dropLocation) {
 		super(domain, label, null);
 		this.adaptable = adaptable;
@@ -65,8 +69,18 @@ public class CustomFirstRegionInCompositeStateCreateElementCommand extends Abstr
 		// executing/undoing/redoing
 		setResult(CommandResult.newOKCommandResult(viewDescriptor));
 		this.dropLocation = dropLocation;
+		umlRegion = null;
 	}
 
+	/**
+	 * Pass an existing (semantic) region. In this case, no new region is created during command
+	 * execution, only the view is passed. 
+	 * @param umlRegion an existing semantic region
+	 */
+	public void useExistingRegion(Region umlRegion) {
+		this.umlRegion = umlRegion; 
+	}
+	
 	@Override
 	public boolean canExecute() {
 		View compartment = (View) adaptable.getAdapter(View.class);
@@ -76,23 +90,7 @@ public class CustomFirstRegionInCompositeStateCreateElementCommand extends Abstr
 			if (state.getSubmachine() == null) {
 				return true;
 			}
-			return false;
 		}
-		// CHECK THIS
-		// else{
-		// ENamedElement namedElement = PackageUtil.getElement("notation.View.visible");
-		// if(ViewUtil.getStructuralFeatureValue(compartment, (EStructuralFeature)namedElement).equals(new Boolean(false))){
-		// SetPropertyCommand showCompartment = new SetPropertyCommand(getEditingDomain(), adaptable, "notation.View.visible", "Visibility", true);
-		// showCompartment.setOptions(Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
-		//
-		// try {
-		// showCompartment.execute(null, null);
-		// } catch (ExecutionException e) {
-		// }
-		//
-		// }
-		// return false;
-		// }
 		return false;
 	}
 
@@ -123,17 +121,21 @@ public class CustomFirstRegionInCompositeStateCreateElementCommand extends Abstr
 			width = Zone.defaultWidth;
 			Zone.setWidth(ownerView, width);
 		}
+	
 		if (adaptableForDropped == null) {
-			Region umlRegion = UMLFactory.eINSTANCE.createRegion();
-			createElementRequest = new CreateElementRequest(getEditingDomain(), ownerView, UMLElementTypes.Region_Shape);
-			State umlState = (State) ownerView.getElement();
-			umlState.getRegions().add(umlRegion);
-			ElementInitializers.getInstance().init_Region_Shape(umlRegion);
-			doConfigure(umlRegion, monitor, info);
+			if (umlRegion == null) {
+				umlRegion = UMLFactory.eINSTANCE.createRegion();
+				createElementRequest = new CreateElementRequest(getEditingDomain(), ownerView, UMLElementTypes.Region_Shape);
+				State umlState = (State) ownerView.getElement();
+				umlState.getRegions().add(umlRegion);
+				ElementInitializers.getInstance().init_Region_Shape(umlRegion);
+				doConfigure(umlRegion, monitor, info);
+			}
 			adaptableForDropped = new SemanticAdapter(umlRegion, null);
 		}
 		// create a view for the new region on the stateMachineCompartment
 		String semanticHint = ((IHintedType) UMLElementTypes.Region_Shape).getSemanticHint();
+
 		View newRegion = ViewService.getInstance().createNode(adaptableForDropped, compartment, semanticHint, -1, prefHints);
 		// add region specific annotation
 		Zone.createRegionDefaultAnnotation(newRegion);
@@ -171,6 +173,9 @@ public class CustomFirstRegionInCompositeStateCreateElementCommand extends Abstr
 			}
 		}
 		viewDescriptor.setView(newRegion);
-		return CommandResult.newOKCommandResult(viewDescriptor);
+		// do not return the view descriptor. Otherwise, the region edit part is seen as result of composite commands that
+		// create a sub-vertex within the first region (see AspectUnspecifiedTypeCreationTool). In turn, the region instead
+		// of the new vertex is selected (implying no name edit prompt for the new vertex).
+		return CommandResult.newOKCommandResult(null);
 	}
 }

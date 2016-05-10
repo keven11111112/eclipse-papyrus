@@ -110,7 +110,7 @@ public class SideAffixedNodesCreationEditPolicy extends DefaultCreationEditPolic
 	/**
 	 * {@inheritDoc}
 	 */
-	private IFigure getHostFigure() {
+	protected IFigure getHostFigure() {
 		return ((GraphicalEditPart) getHost()).getFigure();
 	}
 }

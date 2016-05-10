@@ -67,7 +67,7 @@ import org.eclipse.swt.SWT;
 import org.w3c.dom.NodeList;
 
 /**
- * Creation tool that adds stereotype application after creation actions.
+ * Creation tool that applies post-actions after creation (for example stereotype application).
  */
 public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTool {
 
