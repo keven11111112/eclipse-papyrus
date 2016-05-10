@@ -293,8 +293,14 @@ public class CommandHelper {
 			}
 		} else if (parentsOwner instanceof Lifeline) {
 			Lifeline l = (Lifeline) parentsOwner;
-			if (l.getRepresents() != null && l.getRepresents().getType() != null) {
-				types.add(l.getRepresents().getType());
+			ConnectableElement represents = l.getRepresents();
+			if (represents != null && represents.getType() != null) {
+				if (represents instanceof Port) {
+					Port p = (Port)represents;
+					types.addAll(p.getProvideds());
+				} else {
+					types.add(l.getRepresents().getType());					
+				}
 			}
 			existingParent = addParentsFromLifeline(l, mapTypesPossibleParents);
 		}

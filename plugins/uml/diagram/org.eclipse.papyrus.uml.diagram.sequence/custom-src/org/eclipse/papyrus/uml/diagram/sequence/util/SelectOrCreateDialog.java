@@ -57,12 +57,16 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Component;
+import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Reception;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.VisibilityKind;
 
 /**
  * This class provides a generic dialog to select or create an element.
@@ -460,18 +464,43 @@ public class SelectOrCreateDialog extends FormDialog {
 			return;
 		}
 		collected.add(c);
-		if (c instanceof org.eclipse.uml2.uml.Class) {
-			EList<Reception> receptions = ((org.eclipse.uml2.uml.Class) c).getOwnedReceptions();
-			for (Reception r : receptions) {
-				accept.add(r.getSignal());
+		if (c instanceof Component) {
+			Component comp = (Component)c;
+			for (org.eclipse.uml2.uml.Interface intf : comp.getProvideds()) {
+				collectSignals(intf, accept, collected);
 			}
-		}
-		EList<Property> attrs = c.getAllAttributes();
-		for (Property p : attrs) {
-			if (p.getType() instanceof Signal) {
-				accept.add((Signal) p.getType());
-			} else if (p.getType() instanceof Classifier) {
-				collectSignals((Classifier) p.getType(), accept, collected);
+			
+			for (Property prop : comp.getAllAttributes()) {
+				if (!(prop instanceof Port))
+					continue;
+				VisibilityKind v = prop.getVisibility();
+				if (v == VisibilityKind.PRIVATE_LITERAL)
+					continue;
+				if (v == VisibilityKind.PACKAGE_LITERAL && (prop.getClass() == null || prop.getClass_().getNamespace() != c))
+					continue;
+				Port port = (Port)prop;
+				for (org.eclipse.uml2.uml.Interface intf : port.getProvideds()) {
+					collectSignals(intf, accept, collected);
+				}
+			}
+		} else {
+			if (c instanceof org.eclipse.uml2.uml.Class || c instanceof org.eclipse.uml2.uml.Interface) {
+				for (Feature f : c.allFeatures()) {
+					if (f instanceof Reception) {
+						accept.add(((Reception)f).getSignal());
+					}
+				}
+			}
+			
+			if (c instanceof org.eclipse.uml2.uml.Class) {
+				EList<Property> attrs = c.getAllAttributes();
+				for (Property p : attrs) {
+					if (p.getType() instanceof Signal) {
+						accept.add((Signal) p.getType());
+					} else if (p.getType() instanceof Classifier) {
+						collectSignals((Classifier) p.getType(), accept, collected);
+					}
+				}
 			}
 		}
 	}
