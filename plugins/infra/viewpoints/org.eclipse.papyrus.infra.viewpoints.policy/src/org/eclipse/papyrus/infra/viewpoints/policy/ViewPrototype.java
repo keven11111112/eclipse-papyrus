@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 474467
+ *  Christian W. Damus - bugs 474467, 493375
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.policy;
@@ -31,7 +31,6 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.viewpoints.configuration.Category;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
@@ -462,7 +461,7 @@ public abstract class ViewPrototype {
 			ViewPrototype proto = ViewPrototype.get(view);
 			if (this == proto) {
 				EObject owner = proto.getOwnerOf(view);
-				if (EcoreUtil.equals(owner, element)) {
+				if (owner == element) {
 					count++;
 				}
 			}
@@ -490,7 +489,7 @@ public abstract class ViewPrototype {
 			ViewPrototype proto = ViewPrototype.get(view);
 			if (this == proto) {
 				EObject root = proto.getRootOf(view);
-				if (EcoreUtil.equals(root, element)) {
+				if (root == element) {
 					count++;
 				}
 			}
