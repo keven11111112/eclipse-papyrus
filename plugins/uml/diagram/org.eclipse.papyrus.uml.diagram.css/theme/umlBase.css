@@ -274,6 +274,7 @@ UseCaseDiagram UseCase > Compartment {
 
 UseCaseDiagram UseCase {
 	topMarginLabel:10;
+	isOval: true;
 }
 
 UseCaseDiagram Actor
@@ -336,6 +337,12 @@ StateMachineDiagram Pseudostate[kind="junction"]
 {
 	gradient:none;
 	fillColor:black;
+}
+
+StateMachineDiagram Pseudostate[kind="exitPoint"],
+StateMachineDiagram Pseudostate[kind="entryPoint"]
+{
+	isOval: true;
 }
 
 StateMachineDiagram Pseudostate[kind="initial"] > Label,
