@@ -709,8 +709,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node port_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(PortNameEditPart.VISUAL_ID));
 		port_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location port_NameLabel_Location = (Location) port_NameLabel.getLayoutConstraint();
-		port_NameLabel_Location.setX(0);
-		port_NameLabel_Location.setY(15);
+		port_NameLabel_Location.setX(25);
+		port_NameLabel_Location.setY(3);
 		Node port_StereotypeLabel = createLabel(node,
 				UMLVisualIDRegistry.getType(PortAppliedStereotypeEditPart.VISUAL_ID));
 		port_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
