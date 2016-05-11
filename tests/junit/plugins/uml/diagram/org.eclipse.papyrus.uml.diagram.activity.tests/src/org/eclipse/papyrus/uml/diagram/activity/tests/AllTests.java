@@ -17,6 +17,7 @@ package org.eclipse.papyrus.uml.diagram.activity.tests;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite.DynamicClasses;
 import org.eclipse.papyrus.uml.diagram.activity.tests.canonical.AllCanonicalTests;
+import org.eclipse.papyrus.uml.diagram.activity.tests.derivation.pins.AllPinDerivationTests;
 import org.eclipse.papyrus.uml.diagram.activity.tests.edit.helper.ExpansionRegionHelperTest;
 import org.eclipse.papyrus.uml.diagram.activity.tests.edit.part.ExpansionRegionCompartmentEPTest;
 import org.eclipse.papyrus.uml.diagram.activity.tests.edit.part.RoundedCompartmentTest;
@@ -30,6 +31,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		// canonical
 		AllCanonicalTests.class,
+		AllPinDerivationTests.class,
 		ExpansionRegionHelperTest.class,
 		ExpansionRegionCompartmentEPTest.class,
 		RoundedCompartmentTest.class,

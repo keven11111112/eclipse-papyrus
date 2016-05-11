@@ -3337,5 +3337,13 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
          label="Owned activity hyperlinks">
    </contributor>
 </extension>
+<extension
+      id="org.eclipse.papyrus.uml.diagram.activity.css"
+      name="CSS extension for activity models"
+      point="org.eclipse.papyrus.infra.gmfdiag.css.userAgentStyleSheet">
+   <stylesheet
+         stylesheetPath="css/default-theme-contribution-activity-diagram.css">
+   </stylesheet>
+</extension>
 
 </plugin>

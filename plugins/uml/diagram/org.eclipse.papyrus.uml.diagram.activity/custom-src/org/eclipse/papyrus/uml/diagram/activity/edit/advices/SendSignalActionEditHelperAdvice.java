@@ -21,7 +21,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.PinUpdateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.CreateSendSignalActionDialog;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.IPinUpdater;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.PinUpdaterFactory;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.InvocationAction;
@@ -64,5 +67,22 @@ public class SendSignalActionEditHelperAdvice extends AbstractEditHelperAdvice {
 			return command;
 		}
 		return null;
+	}
+	
+	/**
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterSetCommand(org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected ICommand getAfterSetCommand(SetRequest request) {
+		SendSignalAction editedModelElement = (SendSignalAction) request.getElementToEdit();
+		if(request.getFeature()==UMLPackage.eINSTANCE.getSendSignalAction_Signal()){
+			IPinUpdater<SendSignalAction > updater = PinUpdaterFactory.getInstance().instantiate(editedModelElement);
+			return new PinUpdateCommand<SendSignalAction>("Update send signal action pins", updater, editedModelElement);
+		}else{
+			return null;
+		}
 	}
 }

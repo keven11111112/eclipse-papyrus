@@ -32,25 +32,27 @@ Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.eclipse.ui.navigator;visibility:=reexport;bundle-version="[3.6.0,4.0.0)",
+Require-Bundle: org.eclipse.ui.navigator;bundle-version="[3.6.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui.navigator.resources;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide;bundle-version="[1.7.0,2.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.preferences;visibility:=reexport;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.ocl.ecore;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.providers.ide;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.dnd;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.uml.appearance;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.uml.service.types;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.infra.widgets.toolbox;visibility:=reexport;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
  org.eclipse.papyrus.editor;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.navigation;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.emf.validation.ocl;visibility:=reexport;bundle-version="[1.4.0,2.0.0)",
+ org.eclipse.emf.validation.ocl;bundle-version="[1.4.0,2.0.0)";visibility:=reexport,
  org.eclipse.e4.ui.css.core;bundle-version="[0.11.0,1.0.0)",
  org.eclipse.papyrus.infra.hyperlink;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.uml.diagram.common;visibility:=reexport;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.uml.diagram.common;visibility:=reexport;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.uml2.uml.edit;visibility:=reexport;bundle-version="[5.1.0,6.0.0)"
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.uml2.uml.edit;bundle-version="[5.1.0,6.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.uml2.uml;bundle-version="[5.2.0,6.0.0)"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 2.0.0.qualifier

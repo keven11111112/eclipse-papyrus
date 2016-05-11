@@ -21,7 +21,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.diagram.activity.edit.commands.util.PinUpdateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.dialogs.CreateCallOperationActionDialog;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.IPinUpdater;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.PinUpdaterFactory;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.CallOperationAction;
@@ -64,5 +67,22 @@ public class CallOperationActionEditHelperAdvice extends AbstractEditHelperAdvic
 			return command;
 		}
 		return null;
+	}
+	
+	/**
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterSetCommand(org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected ICommand getAfterSetCommand(SetRequest request) {
+		CallOperationAction editedModelElement = (CallOperationAction) request.getElementToEdit();
+		if(request.getFeature()==UMLPackage.eINSTANCE.getCallOperationAction_Operation()){
+			IPinUpdater<CallOperationAction> updater =PinUpdaterFactory.getInstance().instantiate(editedModelElement);
+			return new PinUpdateCommand<CallOperationAction>("Update call operation action pins", updater, editedModelElement);
+		}else{
+			return null;
+		}
 	}
 }
