@@ -24,13 +24,12 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.NumberTok;
  *
  * @generated
  */
-public class NumberTokImpl extends CssTokImpl implements NumberTok
-{
+public class NumberTokImpl extends CssTokImpl implements NumberTok {
 	/**
 	 * The default value of the '{@link #getVal() <em>Val</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getVal()
 	 * @generated
 	 * @ordered
@@ -41,7 +40,7 @@ public class NumberTokImpl extends CssTokImpl implements NumberTok
 	 * The cached value of the '{@link #getVal() <em>Val</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getVal()
 	 * @generated
 	 * @ordered
@@ -51,65 +50,56 @@ public class NumberTokImpl extends CssTokImpl implements NumberTok
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected NumberTokImpl()
-	{
+	protected NumberTokImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.NUMBER_TOK;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public double getVal()
-	{
+	public double getVal() {
 		return val;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setVal(double newVal)
-	{
+	public void setVal(double newVal) {
 		double oldVal = val;
 		val = newVal;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.NUMBER_TOK__VAL, oldVal, val));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.NUMBER_TOK__VAL:
 			return getVal();
 		}
@@ -119,14 +109,12 @@ public class NumberTokImpl extends CssTokImpl implements NumberTok
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.NUMBER_TOK__VAL:
 			setVal((Double) newValue);
 			return;
@@ -137,14 +125,12 @@ public class NumberTokImpl extends CssTokImpl implements NumberTok
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.NUMBER_TOK__VAL:
 			setVal(VAL_EDEFAULT);
 			return;
@@ -155,14 +141,12 @@ public class NumberTokImpl extends CssTokImpl implements NumberTok
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.NUMBER_TOK__VAL:
 			return val != VAL_EDEFAULT;
 		}
@@ -172,15 +156,13 @@ public class NumberTokImpl extends CssTokImpl implements NumberTok
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) {
+	public String toString() {
+		if (eIsProxy())
 			return super.toString();
-		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (val: ");

@@ -36,13 +36,12 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.page;
  *
  * @generated
  */
-public class pageImpl extends MinimalEObjectImpl.Container implements page
-{
+public class pageImpl extends MinimalEObjectImpl.Container implements page {
 	/**
 	 * The default value of the '{@link #getPseudoPage() <em>Pseudo Page</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getPseudoPage()
 	 * @generated
 	 * @ordered
@@ -53,7 +52,7 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	 * The cached value of the '{@link #getPseudoPage() <em>Pseudo Page</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getPseudoPage()
 	 * @generated
 	 * @ordered
@@ -64,7 +63,7 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	 * The cached value of the '{@link #getDeclarations() <em>Declarations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getDeclarations()
 	 * @generated
 	 * @ordered
@@ -74,65 +73,55 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected pageImpl()
-	{
+	protected pageImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.PAGE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public String getPseudoPage()
-	{
+	public String getPseudoPage() {
 		return pseudoPage;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setPseudoPage(String newPseudoPage)
-	{
+	public void setPseudoPage(String newPseudoPage) {
 		String oldPseudoPage = pseudoPage;
 		pseudoPage = newPseudoPage;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.PAGE__PSEUDO_PAGE, oldPseudoPage, pseudoPage));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EList<css_declaration> getDeclarations()
-	{
-		if (declarations == null)
-		{
+	public EList<css_declaration> getDeclarations() {
+		if (declarations == null) {
 			declarations = new EObjectContainmentEList<css_declaration>(css_declaration.class, this, CSSPackage.PAGE__DECLARATIONS);
 		}
 		return declarations;
@@ -141,14 +130,12 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case CSSPackage.PAGE__DECLARATIONS:
 			return ((InternalEList<?>) getDeclarations()).basicRemove(otherEnd, msgs);
 		}
@@ -158,14 +145,12 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.PAGE__PSEUDO_PAGE:
 			return getPseudoPage();
 		case CSSPackage.PAGE__DECLARATIONS:
@@ -177,15 +162,13 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.PAGE__PSEUDO_PAGE:
 			setPseudoPage((String) newValue);
 			return;
@@ -200,14 +183,12 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.PAGE__PSEUDO_PAGE:
 			setPseudoPage(PSEUDO_PAGE_EDEFAULT);
 			return;
@@ -221,14 +202,12 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.PAGE__PSEUDO_PAGE:
 			return PSEUDO_PAGE_EDEFAULT == null ? pseudoPage != null : !PSEUDO_PAGE_EDEFAULT.equals(pseudoPage);
 		case CSSPackage.PAGE__DECLARATIONS:
@@ -240,15 +219,13 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) {
+	public String toString() {
+		if (eIsProxy())
 			return super.toString();
-		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (pseudoPage: ");

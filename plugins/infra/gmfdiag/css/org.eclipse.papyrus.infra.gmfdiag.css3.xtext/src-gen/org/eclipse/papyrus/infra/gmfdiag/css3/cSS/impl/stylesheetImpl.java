@@ -47,13 +47,12 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.stylesheet;
  *
  * @generated
  */
-public class stylesheetImpl extends MinimalEObjectImpl.Container implements stylesheet
-{
+public class stylesheetImpl extends MinimalEObjectImpl.Container implements stylesheet {
 	/**
 	 * The cached value of the '{@link #getCharset() <em>Charset</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getCharset()
 	 * @generated
 	 * @ordered
@@ -64,7 +63,7 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getImports()
 	 * @generated
 	 * @ordered
@@ -75,7 +74,7 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * The cached value of the '{@link #getRuleset() <em>Ruleset</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getRuleset()
 	 * @generated
 	 * @ordered
@@ -86,7 +85,7 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * The cached value of the '{@link #getMedia() <em>Media</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getMedia()
 	 * @generated
 	 * @ordered
@@ -97,7 +96,7 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * The cached value of the '{@link #getPage() <em>Page</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getPage()
 	 * @generated
 	 * @ordered
@@ -108,7 +107,7 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * The cached value of the '{@link #getFont_face() <em>Font face</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getFont_face()
 	 * @generated
 	 * @ordered
@@ -119,7 +118,7 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * The cached value of the '{@link #getKeyframes() <em>Keyframes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getKeyframes()
 	 * @generated
 	 * @ordered
@@ -129,56 +128,49 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected stylesheetImpl()
-	{
+	protected stylesheetImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.STYLESHEET;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public charset getCharset()
-	{
+	public charset getCharset() {
 		return charset;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetCharset(charset newCharset, NotificationChain msgs)
-	{
+	public NotificationChain basicSetCharset(charset newCharset, NotificationChain msgs) {
 		charset oldCharset = charset;
 		charset = newCharset;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSSPackage.STYLESHEET__CHARSET, oldCharset, newCharset);
-			if (msgs == null) {
+			if (msgs == null)
 				msgs = notification;
-			} else {
+			else
 				msgs.add(notification);
-			}
 		}
 		return msgs;
 	}
@@ -186,42 +178,31 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setCharset(charset newCharset)
-	{
-		if (newCharset != charset)
-		{
+	public void setCharset(charset newCharset) {
+		if (newCharset != charset) {
 			NotificationChain msgs = null;
-			if (charset != null) {
+			if (charset != null)
 				msgs = ((InternalEObject) charset).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSSPackage.STYLESHEET__CHARSET, null, msgs);
-			}
-			if (newCharset != null) {
+			if (newCharset != null)
 				msgs = ((InternalEObject) newCharset).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSSPackage.STYLESHEET__CHARSET, null, msgs);
-			}
 			msgs = basicSetCharset(newCharset, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.STYLESHEET__CHARSET, newCharset, newCharset));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EList<importExpression> getImports()
-	{
-		if (imports == null)
-		{
+	public EList<importExpression> getImports() {
+		if (imports == null) {
 			imports = new EObjectContainmentEList<importExpression>(importExpression.class, this, CSSPackage.STYLESHEET__IMPORTS);
 		}
 		return imports;
@@ -230,14 +211,11 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EList<ruleset> getRuleset()
-	{
-		if (ruleset == null)
-		{
+	public EList<ruleset> getRuleset() {
+		if (ruleset == null) {
 			ruleset = new EObjectContainmentEList<ruleset>(ruleset.class, this, CSSPackage.STYLESHEET__RULESET);
 		}
 		return ruleset;
@@ -246,14 +224,11 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EList<media> getMedia()
-	{
-		if (media == null)
-		{
+	public EList<media> getMedia() {
+		if (media == null) {
 			media = new EObjectContainmentEList<media>(media.class, this, CSSPackage.STYLESHEET__MEDIA);
 		}
 		return media;
@@ -262,14 +237,11 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EList<page> getPage()
-	{
-		if (page == null)
-		{
+	public EList<page> getPage() {
+		if (page == null) {
 			page = new EObjectContainmentEList<page>(page.class, this, CSSPackage.STYLESHEET__PAGE);
 		}
 		return page;
@@ -278,14 +250,11 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EList<font_face> getFont_face()
-	{
-		if (font_face == null)
-		{
+	public EList<font_face> getFont_face() {
+		if (font_face == null) {
 			font_face = new EObjectContainmentEList<font_face>(font_face.class, this, CSSPackage.STYLESHEET__FONT_FACE);
 		}
 		return font_face;
@@ -294,14 +263,11 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EList<keyframes> getKeyframes()
-	{
-		if (keyframes == null)
-		{
+	public EList<keyframes> getKeyframes() {
+		if (keyframes == null) {
 			keyframes = new EObjectContainmentEList<keyframes>(keyframes.class, this, CSSPackage.STYLESHEET__KEYFRAMES);
 		}
 		return keyframes;
@@ -310,14 +276,12 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case CSSPackage.STYLESHEET__CHARSET:
 			return basicSetCharset(null, msgs);
 		case CSSPackage.STYLESHEET__IMPORTS:
@@ -339,14 +303,12 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.STYLESHEET__CHARSET:
 			return getCharset();
 		case CSSPackage.STYLESHEET__IMPORTS:
@@ -368,15 +330,13 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.STYLESHEET__CHARSET:
 			setCharset((charset) newValue);
 			return;
@@ -411,14 +371,12 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.STYLESHEET__CHARSET:
 			setCharset((charset) null);
 			return;
@@ -447,14 +405,12 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.STYLESHEET__CHARSET:
 			return charset != null;
 		case CSSPackage.STYLESHEET__IMPORTS:

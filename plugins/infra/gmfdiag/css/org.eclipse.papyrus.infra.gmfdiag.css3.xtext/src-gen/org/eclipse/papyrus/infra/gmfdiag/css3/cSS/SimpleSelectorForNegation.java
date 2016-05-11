@@ -24,16 +24,16 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface SimpleSelectorForNegation extends EObject
-{
+public interface SimpleSelectorForNegation extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Element</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Element</em>' containment reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Element</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Element</em>' containment reference.
 	 * @see #setElement(ElementSelector)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getSimpleSelectorForNegation_Element()
@@ -46,7 +46,7 @@ public interface SimpleSelectorForNegation extends EObject
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.SimpleSelectorForNegation#getElement <em>Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Element</em>' containment reference.
 	 * @see #getElement()
@@ -58,10 +58,11 @@ public interface SimpleSelectorForNegation extends EObject
 	 * Returns the value of the '<em><b>Universal</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Universal</em>' containment reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Universal</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Universal</em>' containment reference.
 	 * @see #setUniversal(UniversalSelector)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getSimpleSelectorForNegation_Universal()
@@ -74,7 +75,7 @@ public interface SimpleSelectorForNegation extends EObject
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.SimpleSelectorForNegation#getUniversal <em>Universal</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Universal</em>' containment reference.
 	 * @see #getUniversal()
@@ -87,10 +88,11 @@ public interface SimpleSelectorForNegation extends EObject
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssSelector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sub Selectors</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Sub Selectors</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Sub Selectors</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getSimpleSelectorForNegation_SubSelectors()
 	 * @model containment="true"

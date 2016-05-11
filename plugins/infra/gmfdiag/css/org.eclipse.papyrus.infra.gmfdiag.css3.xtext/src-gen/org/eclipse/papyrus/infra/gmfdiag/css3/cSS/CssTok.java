@@ -14,6 +14,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface CssTok extends EObject
-{
+public interface CssTok extends EObject {
 } // CssTok

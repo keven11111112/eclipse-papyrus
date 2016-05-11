@@ -23,16 +23,16 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface media extends EObject
-{
+public interface media extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Medialist</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Medialist</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Medialist</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Medialist</em>' attribute.
 	 * @see #setMedialist(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getmedia_Medialist()
@@ -45,7 +45,7 @@ public interface media extends EObject
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.media#getMedialist <em>Medialist</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Medialist</em>' attribute.
 	 * @see #getMedialist()
@@ -58,10 +58,11 @@ public interface media extends EObject
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ruleset}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Rulesets</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Rulesets</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Rulesets</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getmedia_Rulesets()
 	 * @model containment="true"

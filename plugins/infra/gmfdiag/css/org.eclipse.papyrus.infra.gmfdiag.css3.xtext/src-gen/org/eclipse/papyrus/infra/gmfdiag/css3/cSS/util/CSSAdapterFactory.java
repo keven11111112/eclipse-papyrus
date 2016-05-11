@@ -16,17 +16,16 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.*;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- *
+ * 
  * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage
  * @generated
  */
-public class CSSAdapterFactory extends AdapterFactoryImpl
-{
+public class CSSAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected static CSSPackage modelPackage;
@@ -35,13 +34,11 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public CSSAdapterFactory()
-	{
-		if (modelPackage == null)
-		{
+	public CSSAdapterFactory() {
+		if (modelPackage == null) {
 			modelPackage = CSSPackage.eINSTANCE;
 		}
 	}
@@ -51,19 +48,16 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object object)
-	{
-		if (object == modelPackage)
-		{
+	public boolean isFactoryForType(Object object) {
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -73,236 +67,198 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected CSSSwitch<Adapter> modelSwitch =
-			new CSSSwitch<Adapter>()
-			{
-				@Override
-				public Adapter casestylesheet(stylesheet object)
-				{
-					return createstylesheetAdapter();
-				}
+	protected CSSSwitch<Adapter> modelSwitch = new CSSSwitch<Adapter>() {
+		@Override
+		public Adapter casestylesheet(stylesheet object) {
+			return createstylesheetAdapter();
+		}
 
-				@Override
-				public Adapter casecharset(charset object)
-				{
-					return createcharsetAdapter();
-				}
+		@Override
+		public Adapter casecharset(charset object) {
+			return createcharsetAdapter();
+		}
 
-				@Override
-				public Adapter caseimportExpression(importExpression object)
-				{
-					return createimportExpressionAdapter();
-				}
+		@Override
+		public Adapter caseimportExpression(importExpression object) {
+			return createimportExpressionAdapter();
+		}
 
-				@Override
-				public Adapter casepage(page object)
-				{
-					return createpageAdapter();
-				}
+		@Override
+		public Adapter casepage(page object) {
+			return createpageAdapter();
+		}
 
-				@Override
-				public Adapter casemedia(media object)
-				{
-					return createmediaAdapter();
-				}
+		@Override
+		public Adapter casemedia(media object) {
+			return createmediaAdapter();
+		}
 
-				@Override
-				public Adapter casefont_face(font_face object)
-				{
-					return createfont_faceAdapter();
-				}
+		@Override
+		public Adapter casefont_face(font_face object) {
+			return createfont_faceAdapter();
+		}
 
-				@Override
-				public Adapter casekeyframes(keyframes object)
-				{
-					return createkeyframesAdapter();
-				}
+		@Override
+		public Adapter casekeyframes(keyframes object) {
+			return createkeyframesAdapter();
+		}
 
-				@Override
-				public Adapter casekeyframe_selector(keyframe_selector object)
-				{
-					return createkeyframe_selectorAdapter();
-				}
+		@Override
+		public Adapter casekeyframe_selector(keyframe_selector object) {
+			return createkeyframe_selectorAdapter();
+		}
 
-				@Override
-				public Adapter caseruleset(ruleset object)
-				{
-					return createrulesetAdapter();
-				}
+		@Override
+		public Adapter caseruleset(ruleset object) {
+			return createrulesetAdapter();
+		}
 
-				@Override
-				public Adapter caseselector(selector object)
-				{
-					return createselectorAdapter();
-				}
+		@Override
+		public Adapter caseselector(selector object) {
+			return createselectorAdapter();
+		}
 
-				@Override
-				public Adapter caseSimpleSelectorForNegation(SimpleSelectorForNegation object)
-				{
-					return createSimpleSelectorForNegationAdapter();
-				}
+		@Override
+		public Adapter caseSimpleSelectorForNegation(SimpleSelectorForNegation object) {
+			return createSimpleSelectorForNegationAdapter();
+		}
 
-				@Override
-				public Adapter caseCssSelector(CssSelector object)
-				{
-					return createCssSelectorAdapter();
-				}
+		@Override
+		public Adapter caseCssSelector(CssSelector object) {
+			return createCssSelectorAdapter();
+		}
 
-				@Override
-				public Adapter casesimple_selector(simple_selector object)
-				{
-					return createsimple_selectorAdapter();
-				}
+		@Override
+		public Adapter casesimple_selector(simple_selector object) {
+			return createsimple_selectorAdapter();
+		}
 
-				@Override
-				public Adapter caseClassSelector(ClassSelector object)
-				{
-					return createClassSelectorAdapter();
-				}
+		@Override
+		public Adapter caseClassSelector(ClassSelector object) {
+			return createClassSelectorAdapter();
+		}
 
-				@Override
-				public Adapter caseElementSelector(ElementSelector object)
-				{
-					return createElementSelectorAdapter();
-				}
+		@Override
+		public Adapter caseElementSelector(ElementSelector object) {
+			return createElementSelectorAdapter();
+		}
 
-				@Override
-				public Adapter caseUniversalSelector(UniversalSelector object)
-				{
-					return createUniversalSelectorAdapter();
-				}
+		@Override
+		public Adapter caseUniversalSelector(UniversalSelector object) {
+			return createUniversalSelectorAdapter();
+		}
 
-				@Override
-				public Adapter caseIdSelector(IdSelector object)
-				{
-					return createIdSelectorAdapter();
-				}
+		@Override
+		public Adapter caseIdSelector(IdSelector object) {
+			return createIdSelectorAdapter();
+		}
 
-				@Override
-				public Adapter casecss_declaration(css_declaration object)
-				{
-					return createcss_declarationAdapter();
-				}
+		@Override
+		public Adapter casecss_declaration(css_declaration object) {
+			return createcss_declarationAdapter();
+		}
 
-				@Override
-				public Adapter casecss_property(css_property object)
-				{
-					return createcss_propertyAdapter();
-				}
+		@Override
+		public Adapter casecss_property(css_property object) {
+			return createcss_propertyAdapter();
+		}
 
-				@Override
-				public Adapter casePseudoClassOrFunc(PseudoClassOrFunc object)
-				{
-					return createPseudoClassOrFuncAdapter();
-				}
+		@Override
+		public Adapter casePseudoClassOrFunc(PseudoClassOrFunc object) {
+			return createPseudoClassOrFuncAdapter();
+		}
 
-				@Override
-				public Adapter casePseudoClass(PseudoClass object)
-				{
-					return createPseudoClassAdapter();
-				}
+		@Override
+		public Adapter casePseudoClass(PseudoClass object) {
+			return createPseudoClassAdapter();
+		}
 
-				@Override
-				public Adapter casePseudoClassName(PseudoClassName object)
-				{
-					return createPseudoClassNameAdapter();
-				}
+		@Override
+		public Adapter casePseudoClassName(PseudoClassName object) {
+			return createPseudoClassNameAdapter();
+		}
 
-				@Override
-				public Adapter casePseudoClassFunction(PseudoClassFunction object)
-				{
-					return createPseudoClassFunctionAdapter();
-				}
+		@Override
+		public Adapter casePseudoClassFunction(PseudoClassFunction object) {
+			return createPseudoClassFunctionAdapter();
+		}
 
-				@Override
-				public Adapter caseCssTok(CssTok object)
-				{
-					return createCssTokAdapter();
-				}
+		@Override
+		public Adapter caseCssTok(CssTok object) {
+			return createCssTokAdapter();
+		}
 
-				@Override
-				public Adapter caseURLType(URLType object)
-				{
-					return createURLTypeAdapter();
-				}
+		@Override
+		public Adapter caseURLType(URLType object) {
+			return createURLTypeAdapter();
+		}
 
-				@Override
-				public Adapter caseAttributeSelector(AttributeSelector object)
-				{
-					return createAttributeSelectorAdapter();
-				}
+		@Override
+		public Adapter caseAttributeSelector(AttributeSelector object) {
+			return createAttributeSelectorAdapter();
+		}
 
-				@Override
-				public Adapter caseSymbolTok(SymbolTok object)
-				{
-					return createSymbolTokAdapter();
-				}
+		@Override
+		public Adapter caseSymbolTok(SymbolTok object) {
+			return createSymbolTokAdapter();
+		}
 
-				@Override
-				public Adapter caseWSTok(WSTok object)
-				{
-					return createWSTokAdapter();
-				}
+		@Override
+		public Adapter caseWSTok(WSTok object) {
+			return createWSTokAdapter();
+		}
 
-				@Override
-				public Adapter caseStringTok(StringTok object)
-				{
-					return createStringTokAdapter();
-				}
+		@Override
+		public Adapter caseStringTok(StringTok object) {
+			return createStringTokAdapter();
+		}
 
-				@Override
-				public Adapter caseNumberTok(NumberTok object)
-				{
-					return createNumberTokAdapter();
-				}
+		@Override
+		public Adapter caseNumberTok(NumberTok object) {
+			return createNumberTokAdapter();
+		}
 
-				@Override
-				public Adapter caseUrlTok(UrlTok object)
-				{
-					return createUrlTokAdapter();
-				}
+		@Override
+		public Adapter caseUrlTok(UrlTok object) {
+			return createUrlTokAdapter();
+		}
 
-				@Override
-				public Adapter caseColorTok(ColorTok object)
-				{
-					return createColorTokAdapter();
-				}
+		@Override
+		public Adapter caseColorTok(ColorTok object) {
+			return createColorTokAdapter();
+		}
 
-				@Override
-				public Adapter caseIdentifierTok(IdentifierTok object)
-				{
-					return createIdentifierTokAdapter();
-				}
+		@Override
+		public Adapter caseIdentifierTok(IdentifierTok object) {
+			return createIdentifierTokAdapter();
+		}
 
-				@Override
-				public Adapter caseFuncTok(FuncTok object)
-				{
-					return createFuncTokAdapter();
-				}
+		@Override
+		public Adapter caseFuncTok(FuncTok object) {
+			return createFuncTokAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object)
-				{
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param target
 	 *            the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdapter(Notifier target)
-	{
+	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
 	}
 
@@ -313,13 +269,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.stylesheet
 	 * @generated
 	 */
-	public Adapter createstylesheetAdapter()
-	{
+	public Adapter createstylesheetAdapter() {
 		return null;
 	}
 
@@ -329,13 +284,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.charset
 	 * @generated
 	 */
-	public Adapter createcharsetAdapter()
-	{
+	public Adapter createcharsetAdapter() {
 		return null;
 	}
 
@@ -345,13 +299,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.importExpression
 	 * @generated
 	 */
-	public Adapter createimportExpressionAdapter()
-	{
+	public Adapter createimportExpressionAdapter() {
 		return null;
 	}
 
@@ -361,13 +314,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.page
 	 * @generated
 	 */
-	public Adapter createpageAdapter()
-	{
+	public Adapter createpageAdapter() {
 		return null;
 	}
 
@@ -377,13 +329,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.media
 	 * @generated
 	 */
-	public Adapter createmediaAdapter()
-	{
+	public Adapter createmediaAdapter() {
 		return null;
 	}
 
@@ -393,13 +344,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.font_face
 	 * @generated
 	 */
-	public Adapter createfont_faceAdapter()
-	{
+	public Adapter createfont_faceAdapter() {
 		return null;
 	}
 
@@ -409,13 +359,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.keyframes
 	 * @generated
 	 */
-	public Adapter createkeyframesAdapter()
-	{
+	public Adapter createkeyframesAdapter() {
 		return null;
 	}
 
@@ -425,13 +374,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.keyframe_selector
 	 * @generated
 	 */
-	public Adapter createkeyframe_selectorAdapter()
-	{
+	public Adapter createkeyframe_selectorAdapter() {
 		return null;
 	}
 
@@ -441,13 +389,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ruleset
 	 * @generated
 	 */
-	public Adapter createrulesetAdapter()
-	{
+	public Adapter createrulesetAdapter() {
 		return null;
 	}
 
@@ -457,13 +404,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.selector
 	 * @generated
 	 */
-	public Adapter createselectorAdapter()
-	{
+	public Adapter createselectorAdapter() {
 		return null;
 	}
 
@@ -473,13 +419,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.SimpleSelectorForNegation
 	 * @generated
 	 */
-	public Adapter createSimpleSelectorForNegationAdapter()
-	{
+	public Adapter createSimpleSelectorForNegationAdapter() {
 		return null;
 	}
 
@@ -489,13 +434,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssSelector
 	 * @generated
 	 */
-	public Adapter createCssSelectorAdapter()
-	{
+	public Adapter createCssSelectorAdapter() {
 		return null;
 	}
 
@@ -505,13 +449,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.simple_selector
 	 * @generated
 	 */
-	public Adapter createsimple_selectorAdapter()
-	{
+	public Adapter createsimple_selectorAdapter() {
 		return null;
 	}
 
@@ -521,13 +464,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ClassSelector
 	 * @generated
 	 */
-	public Adapter createClassSelectorAdapter()
-	{
+	public Adapter createClassSelectorAdapter() {
 		return null;
 	}
 
@@ -537,13 +479,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ElementSelector
 	 * @generated
 	 */
-	public Adapter createElementSelectorAdapter()
-	{
+	public Adapter createElementSelectorAdapter() {
 		return null;
 	}
 
@@ -553,13 +494,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.UniversalSelector
 	 * @generated
 	 */
-	public Adapter createUniversalSelectorAdapter()
-	{
+	public Adapter createUniversalSelectorAdapter() {
 		return null;
 	}
 
@@ -569,13 +509,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IdSelector
 	 * @generated
 	 */
-	public Adapter createIdSelectorAdapter()
-	{
+	public Adapter createIdSelectorAdapter() {
 		return null;
 	}
 
@@ -585,13 +524,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration
 	 * @generated
 	 */
-	public Adapter createcss_declarationAdapter()
-	{
+	public Adapter createcss_declarationAdapter() {
 		return null;
 	}
 
@@ -601,13 +539,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_property
 	 * @generated
 	 */
-	public Adapter createcss_propertyAdapter()
-	{
+	public Adapter createcss_propertyAdapter() {
 		return null;
 	}
 
@@ -617,13 +554,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.PseudoClassOrFunc
 	 * @generated
 	 */
-	public Adapter createPseudoClassOrFuncAdapter()
-	{
+	public Adapter createPseudoClassOrFuncAdapter() {
 		return null;
 	}
 
@@ -633,13 +569,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.PseudoClass
 	 * @generated
 	 */
-	public Adapter createPseudoClassAdapter()
-	{
+	public Adapter createPseudoClassAdapter() {
 		return null;
 	}
 
@@ -649,13 +584,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.PseudoClassName
 	 * @generated
 	 */
-	public Adapter createPseudoClassNameAdapter()
-	{
+	public Adapter createPseudoClassNameAdapter() {
 		return null;
 	}
 
@@ -665,13 +599,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.PseudoClassFunction
 	 * @generated
 	 */
-	public Adapter createPseudoClassFunctionAdapter()
-	{
+	public Adapter createPseudoClassFunctionAdapter() {
 		return null;
 	}
 
@@ -681,13 +614,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssTok
 	 * @generated
 	 */
-	public Adapter createCssTokAdapter()
-	{
+	public Adapter createCssTokAdapter() {
 		return null;
 	}
 
@@ -697,13 +629,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.URLType
 	 * @generated
 	 */
-	public Adapter createURLTypeAdapter()
-	{
+	public Adapter createURLTypeAdapter() {
 		return null;
 	}
 
@@ -713,13 +644,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.AttributeSelector
 	 * @generated
 	 */
-	public Adapter createAttributeSelectorAdapter()
-	{
+	public Adapter createAttributeSelectorAdapter() {
 		return null;
 	}
 
@@ -729,13 +659,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.SymbolTok
 	 * @generated
 	 */
-	public Adapter createSymbolTokAdapter()
-	{
+	public Adapter createSymbolTokAdapter() {
 		return null;
 	}
 
@@ -745,13 +674,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.WSTok
 	 * @generated
 	 */
-	public Adapter createWSTokAdapter()
-	{
+	public Adapter createWSTokAdapter() {
 		return null;
 	}
 
@@ -761,13 +689,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.StringTok
 	 * @generated
 	 */
-	public Adapter createStringTokAdapter()
-	{
+	public Adapter createStringTokAdapter() {
 		return null;
 	}
 
@@ -777,13 +704,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.NumberTok
 	 * @generated
 	 */
-	public Adapter createNumberTokAdapter()
-	{
+	public Adapter createNumberTokAdapter() {
 		return null;
 	}
 
@@ -793,13 +719,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.UrlTok
 	 * @generated
 	 */
-	public Adapter createUrlTokAdapter()
-	{
+	public Adapter createUrlTokAdapter() {
 		return null;
 	}
 
@@ -809,13 +734,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ColorTok
 	 * @generated
 	 */
-	public Adapter createColorTokAdapter()
-	{
+	public Adapter createColorTokAdapter() {
 		return null;
 	}
 
@@ -825,13 +749,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IdentifierTok
 	 * @generated
 	 */
-	public Adapter createIdentifierTokAdapter()
-	{
+	public Adapter createIdentifierTokAdapter() {
 		return null;
 	}
 
@@ -841,13 +764,12 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.FuncTok
 	 * @generated
 	 */
-	public Adapter createFuncTokAdapter()
-	{
+	public Adapter createFuncTokAdapter() {
 		return null;
 	}
 
@@ -856,12 +778,11 @@ public class CSSAdapterFactory extends AdapterFactoryImpl
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter()
-	{
+	public Adapter createEObjectAdapter() {
 		return null;
 	}
 

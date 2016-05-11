@@ -36,7 +36,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cKeyframesAssignment_2_4 = (Assignment) cAlternatives_2.eContents().get(4);
 		private final RuleCall cKeyframesKeyframesParserRuleCall_2_4_0 = (RuleCall) cKeyframesAssignment_2_4.eContents().get(0);
 
-		// / *
+		/// *
 		// * TODOS:
 		// * - add more CSS grammar like import
 		// * / stylesheet:
@@ -975,8 +975,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSelectorAssignment_1_1_2 = (Assignment) cGroup_1_1.eContents().get(2);
 		private final RuleCall cSelectorSelectorParserRuleCall_1_1_2_0 = (RuleCall) cSelectorAssignment_1_1_2.eContents().get(0);
 
-		// // check simple_selctor cardinality
-		// selector hidden(ML_COMMENT):
+		//// check simple_selctor cardinality
+		// selector:
 		// simpleselectors+=simple_selector (combinator=combinator WS* selector=selector | WS+ (combinator=combinator WS*)?
 		// selector=selector)?;
 		@Override
@@ -1210,7 +1210,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSubSelectorsAssignment_1 = (Assignment) cAlternatives.eContents().get(1);
 		private final RuleCall cSubSelectorsSubSelectorParserRuleCall_1_0 = (RuleCall) cSubSelectorsAssignment_1.eContents().get(0);
 
-		// simple_selector hidden(ML_COMMENT):
+		// simple_selector:
 		// (element=ElementSelector | universal=UniversalSelector) subSelectors+=SubSelector* | subSelectors+=SubSelector+;
 		@Override
 		public ParserRule getRule() {
@@ -1653,7 +1653,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cImportantAssignment_5 = (Assignment) cGroup.eContents().get(5);
 		private final RuleCall cImportantIMPORTANT_SYMTerminalRuleCall_5_0 = (RuleCall) cImportantAssignment_5.eContents().get(0);
 
-		// css_declaration hidden(ML_COMMENT):
+		// css_declaration:
 		// WS* property=css_property WS* COLON valueTokens+=CssTok+ important?=IMPORTANT_SYM?;
 		@Override
 		public ParserRule getRule() {
@@ -1957,7 +1957,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCOLONTerminalRuleCall_0 = (RuleCall) cGroup.eContents().get(0);
 		private final Keyword cNotKeyword_1 = (Keyword) cGroup.eContents().get(1);
 
-		// NotFunctionCall hidden():
+		// NotFunctionCall:
 		// COLON "not(";
 		@Override
 		public ParserRule getRule() {
@@ -2191,10 +2191,10 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValAssignment_1 = (Assignment) cGroup.eContents().get(1);
 		private final RuleCall cValNumParserRuleCall_1_0 = (RuleCall) cValAssignment_1.eContents().get(0);
 
-		// // {NumberTok} DASH? ( ONE_INT+ | ONE_INT* '.' => ONE_INT+)
-		// // {NumberTok} val=Integer | Real
-		// //sign=DASH? ( ival=Integer | dval=Real)
-		// NumberTok returns CssTok hidden():
+		//// {NumberTok} DASH? ( ONE_INT+ | ONE_INT* '.' => ONE_INT+)
+		//// {NumberTok} val=Integer | Real
+		//// sign=DASH? ( ival=Integer | dval=Real)
+		// NumberTok returns CssTok:
 		// {NumberTok} val=Num;
 		@Override
 		public ParserRule getRule() {
@@ -2264,7 +2264,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_1 = (Assignment) cGroup.eContents().get(1);
 		private final RuleCall cValueHexParserRuleCall_1_0 = (RuleCall) cValueAssignment_1.eContents().get(0);
 
-		// ColorTok returns CssTok hidden():
+		// ColorTok returns CssTok:
 		// {ColorTok} value=Hex;
 		@Override
 		public ParserRule getRule() {
@@ -2305,7 +2305,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cParamsCssTokParserRuleCall_2_2_0 = (RuleCall) cParamsAssignment_2_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_2_3 = (Keyword) cGroup_2.eContents().get(3);
 
-		// IdentifierOrFuncTok returns CssTok hidden(ML_COMMENT):
+		// IdentifierOrFuncTok returns CssTok:
 		// {IdentifierTok} name=Identifier ({FuncTok.name=current} "(" params+=CssTok+ ")")?;
 		@Override
 		public ParserRule getRule() {
@@ -2374,7 +2374,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUrlTokParserRuleCall_5 = (RuleCall) cAlternatives.eContents().get(5);
 		private final RuleCall cColorTokParserRuleCall_6 = (RuleCall) cAlternatives.eContents().get(6);
 
-		// CssTok hidden(ML_COMMENT):
+		// CssTok:
 		// IdentifierOrFuncTok | SymbolTok | WSTok | StringTok | NumberTok | UrlTok | ColorTok;
 		@Override
 		public ParserRule getRule() {
@@ -2430,20 +2430,20 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUrlValidURLParserRuleCall_1_0 = (RuleCall) cUrlAssignment_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_2 = (Keyword) cGroup.eContents().get(2);
 
-		// URLType hidden(): // FULLURL
+		// URLType: // FULLURL
 		// "url(" url=ValidURL ")";
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// // FULLURL
+		//// FULLURL
 		// "url(" url=ValidURL ")"
 		public Group getGroup() {
 			return cGroup;
 		}
 
-		// // FULLURL
+		//// FULLURL
 		// "url("
 		public Keyword getUrlKeyword_0() {
 			return cUrlKeyword_0;
@@ -2675,7 +2675,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cONE_INTTerminalRuleCall_1_10_2_0 = (RuleCall) cAlternatives_1_10_2.eContents().get(0);
 		private final RuleCall cONE_HEX_LETTERTerminalRuleCall_1_10_2_1 = (RuleCall) cAlternatives_1_10_2.eContents().get(1);
 
-		// ValidURL returns ecore::EString hidden():
+		// ValidURL returns ecore::EString:
 		// CSSSTRING | (ValidURLSymbol | KeywordHack | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | ONE_INT | "\\ " | "\\(" | "\\)" |
 		// "\\\'" | "\\\"" | PERCENT (ONE_INT | ONE_HEX_LETTER) (ONE_INT | ONE_HEX_LETTER))+;
 		@Override
@@ -2809,7 +2809,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cONE_INTTerminalRuleCall_2_0_4 = (RuleCall) cAlternatives_2_0.eContents().get(4);
 		private final RuleCall cKeywordHackParserRuleCall_2_0_5 = (RuleCall) cAlternatives_2_0.eContents().get(5);
 
-		// Identifier returns ecore::EString hidden():
+		// Identifier returns ecore::EString:
 		// DASH? (UNDERSCORE | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | KeywordHack) => (UNDERSCORE | DASH | ONE_HEX_LETTER |
 		// ONE_NON_HEX_LETTER | ONE_INT | KeywordHack)*;
 		@Override
@@ -2910,7 +2910,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFullStopKeyword_1_1_1_0 = (Keyword) cGroup_1_1_1.eContents().get(0);
 		private final RuleCall cONE_INTTerminalRuleCall_1_1_1_1 = (RuleCall) cGroup_1_1_1.eContents().get(1);
 
-		// Num returns ecore::EDouble hidden():
+		// Num returns ecore::EDouble:
 		// (PLUS | DASH)? ("." => ONE_INT+ | ONE_INT+ ("." => ONE_INT+)?);
 		@Override
 		public ParserRule getRule() {
@@ -3192,7 +3192,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 
 
 
-	// / *
+	/// *
 	// * TODOS:
 	// * - add more CSS grammar like import
 	// * / stylesheet:
@@ -3321,8 +3321,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getRulesetAccess().getRule();
 	}
 
-	// // check simple_selctor cardinality
-	// selector hidden(ML_COMMENT):
+	//// check simple_selctor cardinality
+	// selector:
 	// simpleselectors+=simple_selector (combinator=combinator WS* selector=selector | WS+ (combinator=combinator WS*)?
 	// selector=selector)?;
 	public SelectorElements getSelectorAccess() {
@@ -3354,7 +3354,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getSubSelectorForNegationAccess().getRule();
 	}
 
-	// simple_selector hidden(ML_COMMENT):
+	// simple_selector:
 	// (element=ElementSelector | universal=UniversalSelector) subSelectors+=SubSelector* | subSelectors+=SubSelector+;
 	public Simple_selectorElements getSimple_selectorAccess() {
 		return pSimple_selector;
@@ -3435,7 +3435,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getCss_namespace_prefixAccess().getRule();
 	}
 
-	// css_declaration hidden(ML_COMMENT):
+	// css_declaration:
 	// WS* property=css_property WS* COLON valueTokens+=CssTok+ important?=IMPORTANT_SYM?;
 	public Css_declarationElements getCss_declarationAccess() {
 		return pCss_declaration;
@@ -3505,7 +3505,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getPseudoClassFunctionAccess().getRule();
 	}
 
-	// NotFunctionCall hidden():
+	// NotFunctionCall:
 	// COLON "not(";
 	public NotFunctionCallElements getNotFunctionCallAccess() {
 		return pNotFunctionCall;
@@ -3575,10 +3575,10 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getStringTokAccess().getRule();
 	}
 
-	// // {NumberTok} DASH? ( ONE_INT+ | ONE_INT* '.' => ONE_INT+)
-	// // {NumberTok} val=Integer | Real
-	// //sign=DASH? ( ival=Integer | dval=Real)
-	// NumberTok returns CssTok hidden():
+	//// {NumberTok} DASH? ( ONE_INT+ | ONE_INT* '.' => ONE_INT+)
+	//// {NumberTok} val=Integer | Real
+	//// sign=DASH? ( ival=Integer | dval=Real)
+	// NumberTok returns CssTok:
 	// {NumberTok} val=Num;
 	public NumberTokElements getNumberTokAccess() {
 		return pNumberTok;
@@ -3598,7 +3598,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getUrlTokAccess().getRule();
 	}
 
-	// ColorTok returns CssTok hidden():
+	// ColorTok returns CssTok:
 	// {ColorTok} value=Hex;
 	public ColorTokElements getColorTokAccess() {
 		return pColorTok;
@@ -3608,7 +3608,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getColorTokAccess().getRule();
 	}
 
-	// IdentifierOrFuncTok returns CssTok hidden(ML_COMMENT):
+	// IdentifierOrFuncTok returns CssTok:
 	// {IdentifierTok} name=Identifier ({FuncTok.name=current} "(" params+=CssTok+ ")")?;
 	public IdentifierOrFuncTokElements getIdentifierOrFuncTokAccess() {
 		return pIdentifierOrFuncTok;
@@ -3618,7 +3618,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getIdentifierOrFuncTokAccess().getRule();
 	}
 
-	// CssTok hidden(ML_COMMENT):
+	// CssTok:
 	// IdentifierOrFuncTok | SymbolTok | WSTok | StringTok | NumberTok | UrlTok | ColorTok;
 	public CssTokElements getCssTokAccess() {
 		return pCssTok;
@@ -3628,7 +3628,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getCssTokAccess().getRule();
 	}
 
-	// URLType hidden(): // FULLURL
+	// URLType: // FULLURL
 	// "url(" url=ValidURL ")";
 	public URLTypeElements getURLTypeAccess() {
 		return pURLType;
@@ -3659,7 +3659,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getKeywordHackAccess().getRule();
 	}
 
-	// ValidURL returns ecore::EString hidden():
+	// ValidURL returns ecore::EString:
 	// CSSSTRING | (ValidURLSymbol | KeywordHack | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | ONE_INT | "\\ " | "\\(" | "\\)" |
 	// "\\\'" | "\\\"" | PERCENT (ONE_INT | ONE_HEX_LETTER) (ONE_INT | ONE_HEX_LETTER))+;
 	public ValidURLElements getValidURLAccess() {
@@ -3676,7 +3676,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return tIMPORTANT_SYM;
 	}
 
-	// Identifier returns ecore::EString hidden():
+	// Identifier returns ecore::EString:
 	// DASH? (UNDERSCORE | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | KeywordHack) => (UNDERSCORE | DASH | ONE_HEX_LETTER |
 	// ONE_NON_HEX_LETTER | ONE_INT | KeywordHack)*;
 	public IdentifierElements getIdentifierAccess() {
@@ -3687,7 +3687,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getIdentifierAccess().getRule();
 	}
 
-	// Num returns ecore::EDouble hidden():
+	// Num returns ecore::EDouble:
 	// (PLUS | DASH)? ("." => ONE_INT+ | ONE_INT+ ("." => ONE_INT+)?);
 	public NumElements getNumAccess() {
 		return pNum;
@@ -3707,17 +3707,17 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getHexAccess().getRule();
 	}
 
-	// //terminal fragment URL_ESCAPES:
-	// // '\\' (' '|'('|')'|"'"|'"')
-	// //;
-	// //
-	// //terminal FULLURL:
-	// // 'url('
-	// // '"' ( URL_ESCAPES | !('\\'|'"'|')') )* '"' |
-	// // "'" ( URL_ESCAPES | !('\\'|"'"|')') )* "'" |
-	// // ( URL_ESCAPES | !('\\'|')') )*
-	// // ')'
-	// //;
+	//// terminal fragment URL_ESCAPES:
+	//// '\\' (' '|'('|')'|"'"|'"')
+	//// ;
+	////
+	//// terminal FULLURL:
+	//// 'url('
+	//// '"' ( URL_ESCAPES | !('\\'|'"'|')') )* '"' |
+	//// "'" ( URL_ESCAPES | !('\\'|"'"|')') )* "'" |
+	//// ( URL_ESCAPES | !('\\'|')') )*
+	//// ')'
+	//// ;
 	// terminal ONE_INT:
 	// "0".."9";
 	public TerminalRule getONE_INTRule() {
@@ -3754,19 +3754,19 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return tPLUS;
 	}
 
-	// //terminal INTEGER returns ecore::EInt: ('0'..'9')+;
-	// //terminal INTEGER:('0'..'9')+;
-	// //terminal REAL: (('0'..'9')*"."('0'..'9')+);
-	// //terminal HASH: '#' ('_' | '-' | 'a'..'z' | 'A'..'Z' | '0'..'9' )+;
+	//// terminal INTEGER returns ecore::EInt: ('0'..'9')+;
+	//// terminal INTEGER:('0'..'9')+;
+	//// terminal REAL: (('0'..'9')*"."('0'..'9')+);
+	//// terminal HASH: '#' ('_' | '-' | 'a'..'z' | 'A'..'Z' | '0'..'9' )+;
 	// terminal HASHMARK:
 	// "#";
 	public TerminalRule getHASHMARKRule() {
 		return tHASHMARK;
 	}
 
-	// //terminal COLORHASH: '#' ('a'..'z' | 'A'..'Z' | '0'..'9' )+;
-	// //terminal IDENT: ('_' | 'a'..'z' | 'A'..'Z' ) ('_' | '-' | 'a'..'z' | 'A'..'Z' | '0'..'9' )*;
-	// //terminal HEX: '###' ('a'..'z' | 'A'..'Z' | '0'..'9' )+;
+	//// terminal COLORHASH: '#' ('a'..'z' | 'A'..'Z' | '0'..'9' )+;
+	//// terminal IDENT: ('_' | 'a'..'z' | 'A'..'Z' ) ('_' | '-' | 'a'..'z' | 'A'..'Z' | '0'..'9' )*;
+	//// terminal HEX: '###' ('a'..'z' | 'A'..'Z' | '0'..'9' )+;
 	// terminal COMMA:
 	// ",";
 	public TerminalRule getCOMMARule() {

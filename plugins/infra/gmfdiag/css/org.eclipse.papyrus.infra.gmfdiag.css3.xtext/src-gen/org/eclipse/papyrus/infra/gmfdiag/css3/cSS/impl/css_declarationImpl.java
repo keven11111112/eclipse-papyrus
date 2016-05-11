@@ -38,13 +38,12 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_property;
  *
  * @generated
  */
-public class css_declarationImpl extends MinimalEObjectImpl.Container implements css_declaration
-{
+public class css_declarationImpl extends MinimalEObjectImpl.Container implements css_declaration {
 	/**
 	 * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getProperty()
 	 * @generated
 	 * @ordered
@@ -55,7 +54,7 @@ public class css_declarationImpl extends MinimalEObjectImpl.Container implements
 	 * The cached value of the '{@link #getValueTokens() <em>Value Tokens</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getValueTokens()
 	 * @generated
 	 * @ordered
@@ -66,7 +65,7 @@ public class css_declarationImpl extends MinimalEObjectImpl.Container implements
 	 * The default value of the '{@link #isImportant() <em>Important</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #isImportant()
 	 * @generated
 	 * @ordered
@@ -77,7 +76,7 @@ public class css_declarationImpl extends MinimalEObjectImpl.Container implements
 	 * The cached value of the '{@link #isImportant() <em>Important</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #isImportant()
 	 * @generated
 	 * @ordered
@@ -87,56 +86,49 @@ public class css_declarationImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected css_declarationImpl()
-	{
+	protected css_declarationImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.CSS_DECLARATION;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public css_property getProperty()
-	{
+	public css_property getProperty() {
 		return property;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetProperty(css_property newProperty, NotificationChain msgs)
-	{
+	public NotificationChain basicSetProperty(css_property newProperty, NotificationChain msgs) {
 		css_property oldProperty = property;
 		property = newProperty;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSSPackage.CSS_DECLARATION__PROPERTY, oldProperty, newProperty);
-			if (msgs == null) {
+			if (msgs == null)
 				msgs = notification;
-			} else {
+			else
 				msgs.add(notification);
-			}
 		}
 		return msgs;
 	}
@@ -144,42 +136,31 @@ public class css_declarationImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setProperty(css_property newProperty)
-	{
-		if (newProperty != property)
-		{
+	public void setProperty(css_property newProperty) {
+		if (newProperty != property) {
 			NotificationChain msgs = null;
-			if (property != null) {
+			if (property != null)
 				msgs = ((InternalEObject) property).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSSPackage.CSS_DECLARATION__PROPERTY, null, msgs);
-			}
-			if (newProperty != null) {
+			if (newProperty != null)
 				msgs = ((InternalEObject) newProperty).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSSPackage.CSS_DECLARATION__PROPERTY, null, msgs);
-			}
 			msgs = basicSetProperty(newProperty, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.CSS_DECLARATION__PROPERTY, newProperty, newProperty));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EList<CssTok> getValueTokens()
-	{
-		if (valueTokens == null)
-		{
+	public EList<CssTok> getValueTokens() {
+		if (valueTokens == null) {
 			valueTokens = new EObjectContainmentEList<CssTok>(CssTok.class, this, CSSPackage.CSS_DECLARATION__VALUE_TOKENS);
 		}
 		return valueTokens;
@@ -188,42 +169,35 @@ public class css_declarationImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public boolean isImportant()
-	{
+	public boolean isImportant() {
 		return important;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setImportant(boolean newImportant)
-	{
+	public void setImportant(boolean newImportant) {
 		boolean oldImportant = important;
 		important = newImportant;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.CSS_DECLARATION__IMPORTANT, oldImportant, important));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case CSSPackage.CSS_DECLARATION__PROPERTY:
 			return basicSetProperty(null, msgs);
 		case CSSPackage.CSS_DECLARATION__VALUE_TOKENS:
@@ -235,14 +209,12 @@ public class css_declarationImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.CSS_DECLARATION__PROPERTY:
 			return getProperty();
 		case CSSPackage.CSS_DECLARATION__VALUE_TOKENS:
@@ -256,15 +228,13 @@ public class css_declarationImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.CSS_DECLARATION__PROPERTY:
 			setProperty((css_property) newValue);
 			return;
@@ -282,14 +252,12 @@ public class css_declarationImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.CSS_DECLARATION__PROPERTY:
 			setProperty((css_property) null);
 			return;
@@ -306,14 +274,12 @@ public class css_declarationImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.CSS_DECLARATION__PROPERTY:
 			return property != null;
 		case CSSPackage.CSS_DECLARATION__VALUE_TOKENS:
@@ -327,15 +293,13 @@ public class css_declarationImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) {
+	public String toString() {
+		if (eIsProxy())
 			return super.toString();
-		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (important: ");

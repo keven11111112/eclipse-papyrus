@@ -24,16 +24,16 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface css_declaration extends EObject
-{
+public interface css_declaration extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Property</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Property</em>' containment reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Property</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Property</em>' containment reference.
 	 * @see #setProperty(css_property)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getcss_declaration_Property()
@@ -46,7 +46,7 @@ public interface css_declaration extends EObject
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration#getProperty <em>Property</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Property</em>' containment reference.
 	 * @see #getProperty()
@@ -59,10 +59,11 @@ public interface css_declaration extends EObject
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssTok}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Value Tokens</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Value Tokens</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Value Tokens</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getcss_declaration_ValueTokens()
 	 * @model containment="true"
@@ -74,10 +75,11 @@ public interface css_declaration extends EObject
 	 * Returns the value of the '<em><b>Important</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Important</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Important</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Important</em>' attribute.
 	 * @see #setImportant(boolean)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getcss_declaration_Important()
@@ -90,7 +92,7 @@ public interface css_declaration extends EObject
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration#isImportant <em>Important</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Important</em>' attribute.
 	 * @see #isImportant()
