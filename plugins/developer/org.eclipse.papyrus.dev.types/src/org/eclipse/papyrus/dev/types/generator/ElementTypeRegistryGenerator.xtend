@@ -46,15 +46,15 @@ class ElementTypeRegistryGenerator {
 	import org.eclipse.gmf.runtime.emf.type.core.AbstractElementTypeEnumerator;
 	import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 
-	public class �outputType� extends AbstractElementTypeEnumerator {
+	public class «outputType» extends AbstractElementTypeEnumerator {
 	
 		/** Constant for UML nature */
 		public static final String UML_NATURE = "UML_Nature";
 		
-		�FOR elementTypeConfiguration : allContentsIterable(it).filter(typeof(ElementTypeConfiguration))�
-		public static final IHintedType �safeName(elementTypeConfiguration.name).toUpperCase� = (IHintedType)getElementType("�elementTypeConfiguration.identifier�"); //$NON-NLS-1$
+		«FOR elementTypeConfiguration : allContentsIterable(it).filter(typeof(ElementTypeConfiguration))»
+		public static final IHintedType «safeName(elementTypeConfiguration.name).toUpperCase» = (IHintedType)getElementType("«elementTypeConfiguration.identifier»"); //$NON-NLS-1$
 		
-		�ENDFOR�
+		«ENDFOR»
 	
 	}
 	'''
