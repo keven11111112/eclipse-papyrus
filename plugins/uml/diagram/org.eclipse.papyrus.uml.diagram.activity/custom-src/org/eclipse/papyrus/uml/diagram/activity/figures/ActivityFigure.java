@@ -43,6 +43,18 @@ public class ActivityFigure extends RoundedCompartmentFigure {
 	 */
 	protected class ActivityLayoutManager extends AbstractLayout {
 
+
+		/** right and bottom margin of diagram. Set to 10 to be consistent with left and top margin */
+		private int rightAndBottomMargin = 10;
+
+		public int getRightAndBottomMargin() {
+			return rightAndBottomMargin;
+		}
+
+		public void setRightAndBottomMargin(int rightAndBottomMargin) {
+			this.rightAndBottomMargin = rightAndBottomMargin;
+		}
+
 		/**
 		 * ---------------------------------------------------| |sterotypeLabel|
 		 * precondition | |--------------| | |QualifiedName
@@ -57,28 +69,29 @@ public class ActivityFigure extends RoundedCompartmentFigure {
 		 */
 		@Override
 		protected Dimension calculatePreferredSize(IFigure container, int wHint, int hHint) {
-			int minimumWith = 0;
+			int minimumWidth = 0;
 			int minimumHeight = 0;
+
 			// take in account the content of the figure activity
 			if ((getContentFigure().getChildren().size() > 0)) {
 				IFigure content = (IFigure) getContentFigure().getChildren().get(0);
-				minimumWith = content.getPreferredSize().width + 50;
-				minimumHeight = content.getPreferredSize().height + 50;
+				minimumWidth = content.getPreferredSize().width + rightAndBottomMargin;
+				minimumHeight = content.getPreferredSize().height + rightAndBottomMargin;
 			}
 			// display name
 			if (getNameLabel() != null) {
-				if (getNameLabel().getPreferredSize().width > minimumWith) {
-					minimumWith = getNameLabel().getPreferredSize().width;
+				if (getNameLabel().getPreferredSize().width > minimumWidth) {
+					minimumWidth = getNameLabel().getPreferredSize().width;
 				}
 				minimumHeight += getNameLabel().getPreferredSize().height;
 			}
 			if (getHeaderSingleExecution() != null) {
-				if (getHeaderSingleExecution().getBounds().getTopRight().x > minimumWith) {
-					minimumWith = getHeaderSingleExecution().getBounds().getTopRight().x;
+				if (getHeaderSingleExecution().getBounds().getTopRight().x > minimumWidth) {
+					minimumWidth = getHeaderSingleExecution().getBounds().getTopRight().x;
 				}
 			}
 
-			return new Dimension(minimumWith, minimumHeight);
+			return new Dimension(minimumWidth, minimumHeight);
 		}
 
 		/**
@@ -429,5 +442,13 @@ public class ActivityFigure extends RoundedCompartmentFigure {
 
 	public RectangleFigure getCompartmentFigure() {
 		return fCompartmentFigure;
+	}
+	
+	public void setRightAndBottomMargin(int rightAndBottomMargin){
+		ActivityLayoutManager lm = (ActivityLayoutManager) getLayoutManager();
+		
+		if(lm != null){
+			lm.setRightAndBottomMargin(rightAndBottomMargin);
+		}
 	}
 }
