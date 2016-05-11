@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Vincent Lorenzo - bug 493317 (deprecated)
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
@@ -31,6 +31,8 @@ import org.eclipse.uml2.uml.Constraint;
 /**
  * Custom context link semantic edit policy that provides removing a context from constrained element
  * during delete/hide context link command
+ * 
+ * @deprecated since 2.0, the work is now done by an advice helper in the oep.uml.service.types
  */
 public class ContextLinkSemanticEditPolicy extends DefaultSemanticEditPolicy {
 

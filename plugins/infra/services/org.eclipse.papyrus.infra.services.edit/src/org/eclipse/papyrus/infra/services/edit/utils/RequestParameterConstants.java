@@ -10,7 +10,7 @@
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bug 465899
  *   Bonnabesse Fanch (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 476872
- *
+ *   Vincent Lorenzo - bug 492522
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.edit.utils;
 
@@ -109,6 +109,11 @@ public interface RequestParameterConstants {
 	 * the ID to store the name to be set for the new element.
 	 */
 	public final static String NAME_TO_SET = "nameToSet"; //$NON-NLS-1$
+
+	/**
+	 * the ID to store the visual id of the view on which we are working, the value must be a string
+	 */
+	public final static String VIEW_VISUAL_ID = "VISUAL_ID";//$NON-NLS-1$
 
 	/**
 	 * this constant is used to precise if it is needed to launch UI during the edition of an element

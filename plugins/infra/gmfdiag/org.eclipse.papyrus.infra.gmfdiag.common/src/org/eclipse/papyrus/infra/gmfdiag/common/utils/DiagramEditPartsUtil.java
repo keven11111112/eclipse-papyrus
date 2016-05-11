@@ -9,7 +9,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus - bugs 433206, 473148, 485220
- *
+ *  Vincent Lorenzo - bug 492522
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
@@ -59,6 +59,7 @@ import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
@@ -938,7 +939,12 @@ public class DiagramEditPartsUtil {
 			View graphical = NotationHelper.findView(editPart);
 
 			isSemanticDeletion = !(semantic == null || semantic == graphical || semantic.eContainer() == null);
-
+			// add a test to fix for bug 492522
+			if (!isSemanticDeletion) {
+				if (editPart instanceof ConnectionEditPart) {
+					isSemanticDeletion = ((ConnectionEditPart) editPart).isSemanticConnection();
+				}
+			}
 
 			if (isSemanticDeletion && readOnly != null) {
 				// Is the semantic element read-only?

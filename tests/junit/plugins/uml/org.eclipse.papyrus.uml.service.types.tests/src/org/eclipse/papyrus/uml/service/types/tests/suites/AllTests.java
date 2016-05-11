@@ -18,6 +18,7 @@ import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.junit.framework.runner.Headless;
 import org.eclipse.papyrus.uml.service.types.tests.creation.ConnectorReadOnlyTestBug465899;
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreatePureUMLElementTest;
+import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteCommentLinkTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteContainmentSubsetTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteDependentWithStereotypeApplications458685;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeletePureUMLElementTest;
@@ -36,6 +37,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		DeleteDependentWithStereotypeApplications458685.class,
 		DeleteContainmentSubsetTest.class,
 		ConnectorReadOnlyTestBug465899.class,
+		DeleteCommentLinkTest.class
 })
 public class AllTests {
 	// JUnit 4 Test Suite

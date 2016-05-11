@@ -9,7 +9,7 @@
  * Contributors:
  *
  *		CEA LIST - Initial API and implementation
- *
+ *      Vincent Lorenzo - bug 492522
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 
@@ -36,7 +36,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
@@ -81,6 +83,33 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 		return semanticCommand;
 	}
 
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy#completeRequest(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected IEditCommandRequest completeRequest(IEditCommandRequest request) {
+		IEditCommandRequest result = super.completeRequest(request);
+		if (result instanceof DestroyReferenceRequest) {
+			if (null == ((IGraphicalEditPart) getHost()).resolveSemanticElement()) {
+				if (getHost() instanceof ConnectionEditPart) {
+					ConnectionEditPart ep = (ConnectionEditPart) getHost();
+					if (ep.isSemanticConnection()) {
+						Object model = ep.getModel();
+						if (model instanceof Connector) {
+							String type = ((Connector) model).getType();
+							if (type != null) {
+								result.setParameter(RequestParameterConstants.VIEW_VISUAL_ID, type);
+							}
+						}
+					}
+				}
+			}
+		}
+		return result;
+	}
 
 	protected Command getSemanticCommandSwitch(IEditCommandRequest req) {
 		if (req instanceof CreateRelationshipRequest) {
@@ -145,7 +174,7 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 
 
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
-		return getDestroyReferenceCommand(req, null);
+		return getDestroyReferenceCommand(req, req.getContainer());
 	}
 
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req, Object context) {

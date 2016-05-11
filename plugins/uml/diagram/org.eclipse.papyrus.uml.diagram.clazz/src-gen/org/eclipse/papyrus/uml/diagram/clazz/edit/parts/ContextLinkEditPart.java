@@ -22,7 +22,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.CustomContextLinkFigu
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.ContextLinkSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy;
 
 /**
@@ -52,7 +51,6 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
 				new CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ContextLinkSemanticEditPolicy());
 	}
 
 	/**
