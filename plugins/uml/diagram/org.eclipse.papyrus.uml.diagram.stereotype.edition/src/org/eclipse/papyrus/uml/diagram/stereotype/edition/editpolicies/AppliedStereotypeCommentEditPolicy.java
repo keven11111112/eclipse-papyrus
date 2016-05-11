@@ -12,6 +12,7 @@
  *  Christian W. Damus (CEA) - bug 323802
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.fr - Bug 393532
  *  Christian W. Damus - bugs 492407, 492482
+ *  Calin Glitia (Esterel Technologies SAS) - Bug 491258
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies;
@@ -254,9 +255,8 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 	 *            the stereotype application
 	 */
 	protected void createAppliedStereotypeCompartment(final Stereotype stereotype) {
-		final View node = hostEditPart.getNotationView();
 		// doesn't exist already
-		if (!helper.isCompartmentExist(node, stereotype)) {
+		if (comment != null && !helper.isCompartmentExist(comment, stereotype)) {
 			// Create Compartment
 			executeAppliedStereotypeCompartmentCreation(hostEditPart, stereotype, StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_TYPE);
 		}
@@ -312,9 +312,8 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 	 */
 	@Override
 	protected void createAppliedStereotypeBraceCompartment(Stereotype stereotype) {
-		final View node = hostEditPart.getNotationView();
 		// doesn't exist already
-		if (!helper.isCompartmentExist(node, stereotype)) {
+		if (comment != null && !helper.isCompartmentExist(comment, stereotype)) {
 			// Create Compartment
 			executeAppliedStereotypeCompartmentCreation(hostEditPart, stereotype, StereotypeDisplayConstant.STEREOTYPE_BRACE_TYPE);
 
