@@ -11,8 +11,8 @@ public class AbstractCSSValidator extends org.eclipse.xtext.validation.AbstractD
 
 	@Override
 	protected List<EPackage> getEPackages() {
-		List<EPackage> result = new ArrayList<EPackage>();
-		result.add(org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage.eINSTANCE);
+	    List<EPackage> result = new ArrayList<EPackage>();
+	    result.add(org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage.eINSTANCE);
 		return result;
 	}
 }

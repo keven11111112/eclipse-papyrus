@@ -90,7 +90,7 @@ rulestylesheet returns [EObject current=null]
        			$current, 
        			"charset",
         		lv_charset_0_0, 
-        		"charset");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.charset");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -108,7 +108,7 @@ rulestylesheet returns [EObject current=null]
        			$current, 
        			"imports",
         		lv_imports_1_0, 
-        		"importExpression");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.importExpression");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -126,7 +126,7 @@ rulestylesheet returns [EObject current=null]
        			$current, 
        			"ruleset",
         		lv_ruleset_2_0, 
-        		"ruleset");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ruleset");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -145,7 +145,7 @@ rulestylesheet returns [EObject current=null]
        			$current, 
        			"media",
         		lv_media_3_0, 
-        		"media");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.media");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -164,7 +164,7 @@ rulestylesheet returns [EObject current=null]
        			$current, 
        			"page",
         		lv_page_4_0, 
-        		"page");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.page");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -183,7 +183,7 @@ rulestylesheet returns [EObject current=null]
        			$current, 
        			"font_face",
         		lv_font_face_5_0, 
-        		"font_face");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.font_face");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -202,7 +202,7 @@ rulestylesheet returns [EObject current=null]
        			$current, 
        			"keyframes",
         		lv_keyframes_6_0, 
-        		"keyframes");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.keyframes");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -251,7 +251,7 @@ rulecharset returns [EObject current=null]
        			$current, 
        			"charset",
         		lv_charset_2_0, 
-        		"CSSSTRING");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CSSSTRING");
 	    }
 
 )
@@ -303,7 +303,7 @@ ruleimportExpression returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_2_0, 
-        		"CSSSTRING");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CSSSTRING");
 	    }
 
 )
@@ -330,7 +330,7 @@ ruleimportExpression returns [EObject current=null]
        			$current, 
        			"mediaList",
         		lv_mediaList_4_0, 
-        		"media_list");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.media_list");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -388,7 +388,7 @@ rulepage returns [EObject current=null]
        			$current, 
        			"pseudoPage",
         		lv_pseudoPage_3_0, 
-        		"pseudo_page");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.pseudo_page");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -410,7 +410,7 @@ rulepage returns [EObject current=null]
        			$current, 
        			"declarations",
         		lv_declarations_5_0, 
-        		"css_declaration");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -432,7 +432,7 @@ rulepage returns [EObject current=null]
        			$current, 
        			"declarations",
         		lv_declarations_7_0, 
-        		"css_declaration");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -523,7 +523,7 @@ rulemedia returns [EObject current=null]
        			$current, 
        			"medialist",
         		lv_medialist_2_0, 
-        		"media_list");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.media_list");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -545,7 +545,7 @@ rulemedia returns [EObject current=null]
        			$current, 
        			"rulesets",
         		lv_rulesets_4_0, 
-        		"ruleset");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ruleset");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -689,7 +689,7 @@ rulefont_face returns [EObject current=null]
        			$current, 
        			"declarations",
         		lv_declarations_4_0, 
-        		"css_declaration");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -711,7 +711,7 @@ rulefont_face returns [EObject current=null]
        			$current, 
        			"declarations",
         		lv_declarations_6_0, 
-        		"css_declaration");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -769,7 +769,7 @@ rulekeyframes returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_3_0, 
-        		"Identifier");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -791,7 +791,7 @@ rulekeyframes returns [EObject current=null]
        			$current, 
        			"keyframeselectors",
         		lv_keyframeselectors_5_0, 
-        		"keyframe_selector");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.keyframe_selector");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -813,7 +813,7 @@ rulekeyframes returns [EObject current=null]
        			$current, 
        			"keyframeselectors",
         		lv_keyframeselectors_7_0, 
-        		"keyframe_selector");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.keyframe_selector");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -856,7 +856,7 @@ rulekeyframe_selector returns [EObject current=null]
        			$current, 
        			"type",
         		lv_type_0_0, 
-        		"Identifier");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -875,7 +875,7 @@ rulekeyframe_selector returns [EObject current=null]
        			$current, 
        			"percentage",
         		lv_percentage_1_0, 
-        		"Num");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Num");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -901,7 +901,7 @@ rulekeyframe_selector returns [EObject current=null]
        			$current, 
        			"declarations",
         		lv_declarations_4_0, 
-        		"css_declaration");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -923,7 +923,7 @@ rulekeyframe_selector returns [EObject current=null]
        			$current, 
        			"declarations",
         		lv_declarations_6_0, 
-        		"css_declaration");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -966,7 +966,7 @@ ruleruleset returns [EObject current=null]
        			$current, 
        			"selectors",
         		lv_selectors_0_0, 
-        		"selector");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.selector");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -992,7 +992,7 @@ ruleruleset returns [EObject current=null]
        			$current, 
        			"selectors",
         		lv_selectors_3_0, 
-        		"selector");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.selector");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1018,7 +1018,7 @@ ruleruleset returns [EObject current=null]
        			$current, 
        			"declarations",
         		lv_declarations_6_0, 
-        		"css_declaration");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1040,7 +1040,7 @@ ruleruleset returns [EObject current=null]
        			$current, 
        			"declarations",
         		lv_declarations_8_0, 
-        		"css_declaration");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1062,23 +1062,16 @@ ruleruleset returns [EObject current=null]
 
 // Entry rule entryRuleselector
 entryRuleselector returns [EObject current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
-	}
 	:
 	{ newCompositeNode(grammarAccess.getSelectorRule()); }
 	 iv_ruleselector=ruleselector 
 	 { $current=$iv_ruleselector.current; } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule selector
 ruleselector returns [EObject current=null] 
     @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
     }
     @after { leaveRule(); }:
 ((
@@ -1094,7 +1087,7 @@ ruleselector returns [EObject current=null]
        			$current, 
        			"simpleselectors",
         		lv_simpleselectors_0_0, 
-        		"simple_selector");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.simple_selector");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1112,7 +1105,7 @@ ruleselector returns [EObject current=null]
        			$current, 
        			"combinator",
         		lv_combinator_1_0, 
-        		"combinator");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.combinator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1134,7 +1127,7 @@ ruleselector returns [EObject current=null]
        			$current, 
        			"selector",
         		lv_selector_3_0, 
-        		"selector");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.selector");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1157,7 +1150,7 @@ ruleselector returns [EObject current=null]
        			$current, 
        			"combinator",
         		lv_combinator_5_0, 
-        		"combinator");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.combinator");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1179,16 +1172,13 @@ ruleselector returns [EObject current=null]
        			$current, 
        			"selector",
         		lv_selector_7_0, 
-        		"selector");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.selector");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )))?)
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 
@@ -1221,7 +1211,7 @@ ruleSimpleSelectorForNegation returns [EObject current=null]
        			$current, 
        			"element",
         		lv_element_0_0, 
-        		"ElementSelector");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ElementSelector");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1240,7 +1230,7 @@ ruleSimpleSelectorForNegation returns [EObject current=null]
        			$current, 
        			"universal",
         		lv_universal_1_0, 
-        		"UniversalSelector");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.UniversalSelector");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1258,7 +1248,7 @@ ruleSimpleSelectorForNegation returns [EObject current=null]
        			$current, 
        			"subSelectors",
         		lv_subSelectors_2_0, 
-        		"SubSelectorForNegation");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.SubSelectorForNegation");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1281,7 +1271,7 @@ ruleSubSelectorForNegation
        			$current, 
        			"subSelectors",
         		lv_subSelectors_3_0, 
-        		"SubSelectorForNegation");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.SubSelectorForNegation");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1355,23 +1345,16 @@ ruleSubSelectorForNegation returns [EObject current=null]
 
 // Entry rule entryRulesimple_selector
 entryRulesimple_selector returns [EObject current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
-	}
 	:
 	{ newCompositeNode(grammarAccess.getSimple_selectorRule()); }
 	 iv_rulesimple_selector=rulesimple_selector 
 	 { $current=$iv_rulesimple_selector.current; } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule simple_selector
 rulesimple_selector returns [EObject current=null] 
     @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
     }
     @after { leaveRule(); }:
 ((((
@@ -1387,7 +1370,7 @@ rulesimple_selector returns [EObject current=null]
        			$current, 
        			"element",
         		lv_element_0_0, 
-        		"ElementSelector");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ElementSelector");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1406,7 +1389,7 @@ rulesimple_selector returns [EObject current=null]
        			$current, 
        			"universal",
         		lv_universal_1_0, 
-        		"UniversalSelector");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.UniversalSelector");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1424,7 +1407,7 @@ rulesimple_selector returns [EObject current=null]
        			$current, 
        			"subSelectors",
         		lv_subSelectors_2_0, 
-        		"SubSelector");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.SubSelector");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1443,16 +1426,13 @@ rulesimple_selector returns [EObject current=null]
        			$current, 
        			"subSelectors",
         		lv_subSelectors_3_0, 
-        		"SubSelector");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.SubSelector");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )+)
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 
@@ -1555,7 +1535,7 @@ ruleAttributeSelector returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"Identifier");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1623,7 +1603,7 @@ ruleAttributeSelector returns [EObject current=null]
        			$current, 
        			"op",
         		lv_op_3_5, 
-        		"INCLUDES");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.INCLUDES");
 	    }
 
     |		lv_op_3_6=RULE_DASHMATCH
@@ -1638,7 +1618,7 @@ ruleAttributeSelector returns [EObject current=null]
        			$current, 
        			"op",
         		lv_op_3_6, 
-        		"DASHMATCH");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.DASHMATCH");
 	    }
 
 )
@@ -1658,7 +1638,7 @@ ruleAttributeSelector returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_4_1, 
-        		"Identifier");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1674,7 +1654,7 @@ ruleAttributeSelector returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_4_2, 
-        		"CSSSTRING");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CSSSTRING");
 	    }
 
 )
@@ -1728,7 +1708,7 @@ ruleClassSelector returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"Identifier");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1773,7 +1753,7 @@ ruleElementSelector returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"Identifier");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1818,7 +1798,7 @@ ruleUniversalSelector returns [EObject current=null]
        			$current, 
        			"namespace",
         		lv_namespace_1_0, 
-        		"css_namespace_prefix");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_namespace_prefix");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1871,7 +1851,7 @@ ruleIdSelector returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"Identifier");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1930,23 +1910,16 @@ rulecss_namespace_prefix returns [AntlrDatatypeRuleToken current=new AntlrDataty
 
 // Entry rule entryRulecss_declaration
 entryRulecss_declaration returns [EObject current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
-	}
 	:
 	{ newCompositeNode(grammarAccess.getCss_declarationRule()); }
 	 iv_rulecss_declaration=rulecss_declaration 
 	 { $current=$iv_rulecss_declaration.current; } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule css_declaration
 rulecss_declaration returns [EObject current=null] 
     @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
     }
     @after { leaveRule(); }:
 ((this_WS_0=RULE_WS
@@ -1966,7 +1939,7 @@ rulecss_declaration returns [EObject current=null]
        			$current, 
        			"property",
         		lv_property_1_0, 
-        		"css_property");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_property");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1992,7 +1965,7 @@ rulecss_declaration returns [EObject current=null]
        			$current, 
        			"valueTokens",
         		lv_valueTokens_4_0, 
-        		"CssTok");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CssTok");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2011,15 +1984,12 @@ rulecss_declaration returns [EObject current=null]
        			$current, 
        			"important",
         		true, 
-        		"IMPORTANT_SYM");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.IMPORTANT_SYM");
 	    }
 
 )
 )?)
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 
@@ -2058,7 +2028,7 @@ rulecss_property returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ValidPropertyIdent");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ValidPropertyIdent");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2207,7 +2177,7 @@ rulePseudoClassName returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"Identifier");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2246,7 +2216,7 @@ rulePseudoClassFunction returns [EObject current=null]
        			$current, 
        			"not",
         		true, 
-        		"NotFunctionCall");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.NotFunctionCall");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2264,7 +2234,7 @@ rulePseudoClassFunction returns [EObject current=null]
        			$current, 
        			"paramSelector",
         		lv_paramSelector_1_0, 
-        		"SimpleSelectorForNegation");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.SimpleSelectorForNegation");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2291,7 +2261,7 @@ rulePseudoClassFunction returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_4_0, 
-        		"Identifier");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2313,7 +2283,7 @@ rulePseudoClassFunction returns [EObject current=null]
        			$current, 
        			"params",
         		lv_params_6_0, 
-        		"CssTok");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CssTok");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2331,23 +2301,16 @@ rulePseudoClassFunction returns [EObject current=null]
 
 // Entry rule entryRuleNotFunctionCall
 entryRuleNotFunctionCall returns [String current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-	}
 	:
 	{ newCompositeNode(grammarAccess.getNotFunctionCallRule()); } 
 	 iv_ruleNotFunctionCall=ruleNotFunctionCall 
 	 { $current=$iv_ruleNotFunctionCall.current.getText(); }  
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule NotFunctionCall
 ruleNotFunctionCall returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
     }
     @after { leaveRule(); }:
 (    this_COLON_0=RULE_COLON    {
@@ -2365,9 +2328,6 @@ ruleNotFunctionCall returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRul
     }
 )
     ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 
@@ -2454,7 +2414,7 @@ ruleSymbolTok returns [EObject current=null]
        			$current, 
        			"symbol",
         		lv_symbol_1_1, 
-        		"COMMA");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.COMMA");
 	    }
 
     |		lv_symbol_1_2=RULE_PERCENT
@@ -2469,7 +2429,7 @@ ruleSymbolTok returns [EObject current=null]
        			$current, 
        			"symbol",
         		lv_symbol_1_2, 
-        		"PERCENT");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.PERCENT");
 	    }
 
 )
@@ -2547,7 +2507,7 @@ ruleStringTok returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_1_0, 
-        		"CSSSTRING");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CSSSTRING");
 	    }
 
 )
@@ -2560,23 +2520,16 @@ ruleStringTok returns [EObject current=null]
 
 // Entry rule entryRuleNumberTok
 entryRuleNumberTok returns [EObject current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-	}
 	:
 	{ newCompositeNode(grammarAccess.getNumberTokRule()); }
 	 iv_ruleNumberTok=ruleNumberTok 
 	 { $current=$iv_ruleNumberTok.current; } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule NumberTok
 ruleNumberTok returns [EObject current=null] 
     @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
     }
     @after { leaveRule(); }:
 ((
@@ -2598,16 +2551,13 @@ ruleNumberTok returns [EObject current=null]
        			$current, 
        			"val",
         		lv_val_1_0, 
-        		"Num");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Num");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 ))
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 
@@ -2646,7 +2596,7 @@ ruleUrlTok returns [EObject current=null]
        			$current, 
        			"url",
         		lv_url_1_0, 
-        		"URLType");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.URLType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2660,23 +2610,16 @@ ruleUrlTok returns [EObject current=null]
 
 // Entry rule entryRuleColorTok
 entryRuleColorTok returns [EObject current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-	}
 	:
 	{ newCompositeNode(grammarAccess.getColorTokRule()); }
 	 iv_ruleColorTok=ruleColorTok 
 	 { $current=$iv_ruleColorTok.current; } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule ColorTok
 ruleColorTok returns [EObject current=null] 
     @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
     }
     @after { leaveRule(); }:
 ((
@@ -2698,16 +2641,13 @@ ruleColorTok returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_1_0, 
-        		"Hex");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Hex");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 ))
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 
@@ -2715,23 +2655,16 @@ finally {
 
 // Entry rule entryRuleIdentifierOrFuncTok
 entryRuleIdentifierOrFuncTok returns [EObject current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
-	}
 	:
 	{ newCompositeNode(grammarAccess.getIdentifierOrFuncTokRule()); }
 	 iv_ruleIdentifierOrFuncTok=ruleIdentifierOrFuncTok 
 	 { $current=$iv_ruleIdentifierOrFuncTok.current; } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule IdentifierOrFuncTok
 ruleIdentifierOrFuncTok returns [EObject current=null] 
     @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
     }
     @after { leaveRule(); }:
 ((
@@ -2753,7 +2686,7 @@ ruleIdentifierOrFuncTok returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"Identifier");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2781,7 +2714,7 @@ ruleIdentifierOrFuncTok returns [EObject current=null]
        			$current, 
        			"params",
         		lv_params_4_0, 
-        		"CssTok");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CssTok");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2792,9 +2725,6 @@ ruleIdentifierOrFuncTok returns [EObject current=null]
     }
 )?)
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 
@@ -2802,23 +2732,16 @@ finally {
 
 // Entry rule entryRuleCssTok
 entryRuleCssTok returns [EObject current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
-	}
 	:
 	{ newCompositeNode(grammarAccess.getCssTokRule()); }
 	 iv_ruleCssTok=ruleCssTok 
 	 { $current=$iv_ruleCssTok.current; } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule CssTok
 ruleCssTok returns [EObject current=null] 
     @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
     }
     @after { leaveRule(); }:
 (
@@ -2892,9 +2815,6 @@ ruleCssTok returns [EObject current=null]
     }
 )
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 
@@ -2902,23 +2822,16 @@ finally {
 
 // Entry rule entryRuleURLType
 entryRuleURLType returns [EObject current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-	}
 	:
 	{ newCompositeNode(grammarAccess.getURLTypeRule()); }
 	 iv_ruleURLType=ruleURLType 
 	 { $current=$iv_ruleURLType.current; } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule URLType
 ruleURLType returns [EObject current=null] 
     @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
     }
     @after { leaveRule(); }:
 (	otherlv_0='url(' 
@@ -2938,7 +2851,7 @@ ruleURLType returns [EObject current=null]
        			$current, 
        			"url",
         		lv_url_1_0, 
-        		"ValidURL");
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ValidURL");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2949,9 +2862,6 @@ ruleURLType returns [EObject current=null]
     }
 )
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 
@@ -3177,23 +3087,16 @@ ruleKeywordHack returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
 
 // Entry rule entryRuleValidURL
 entryRuleValidURL returns [String current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-	}
 	:
 	{ newCompositeNode(grammarAccess.getValidURLRule()); } 
 	 iv_ruleValidURL=ruleValidURL 
 	 { $current=$iv_ruleValidURL.current.getText(); }  
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule ValidURL
 ruleValidURL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
     }
     @after { leaveRule(); }:
 (    this_CSSSTRING_0=RULE_CSSSTRING    {
@@ -3326,9 +3229,6 @@ ruleValidURL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
     }
 )))+)
     ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 
@@ -3336,23 +3236,16 @@ finally {
 
 // Entry rule entryRuleIdentifier
 entryRuleIdentifier returns [String current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-	}
 	:
 	{ newCompositeNode(grammarAccess.getIdentifierRule()); } 
 	 iv_ruleIdentifier=ruleIdentifier 
 	 { $current=$iv_ruleIdentifier.current.getText(); }  
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule Identifier
 ruleIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
     }
     @after { leaveRule(); }:
 ((    this_DASH_0=RULE_DASH    {
@@ -3455,9 +3348,6 @@ ruleIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToke
     }
 ))*)
     ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 
@@ -3465,23 +3355,16 @@ finally {
 
 // Entry rule entryRuleNum
 entryRuleNum returns [String current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-	}
 	:
 	{ newCompositeNode(grammarAccess.getNumRule()); } 
 	 iv_ruleNum=ruleNum 
 	 { $current=$iv_ruleNum.current.getText(); }  
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule Num
 ruleNum returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
     }
     @after { leaveRule(); }:
 ((    this_PLUS_0=RULE_PLUS    {
@@ -3537,9 +3420,6 @@ ruleNum returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
     }
 )+)?)))
     ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 

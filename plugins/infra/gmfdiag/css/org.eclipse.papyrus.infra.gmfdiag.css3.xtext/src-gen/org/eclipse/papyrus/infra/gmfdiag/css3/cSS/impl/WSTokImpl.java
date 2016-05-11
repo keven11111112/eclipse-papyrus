@@ -16,27 +16,25 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.WSTok;
  */
 public class WSTokImpl extends CssTokImpl implements WSTok
 {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected WSTokImpl()
-	{
-		super();
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected WSTokImpl()
+  {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass()
-	{
-		return CSSPackage.Literals.WS_TOK;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass()
+  {
+    return CSSPackage.Literals.WS_TOK;
+  }
 
-} // WSTokImpl
+} //WSTokImpl

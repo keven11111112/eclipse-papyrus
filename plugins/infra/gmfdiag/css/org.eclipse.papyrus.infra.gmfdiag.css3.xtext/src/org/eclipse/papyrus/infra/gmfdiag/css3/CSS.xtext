@@ -79,7 +79,7 @@ ruleset:
 ;
 
 // check simple_selctor cardinality
-selector hidden(ML_COMMENT):
+selector:
 	simpleselectors+=simple_selector ( combinator=combinator WS* selector=selector | WS+ (combinator=combinator WS*)? selector=selector )?
 ;
 
@@ -95,7 +95,7 @@ SubSelectorForNegation returns CssSelector:
 	PseudoClass
 ;
 
-simple_selector hidden(ML_COMMENT):
+simple_selector:
 	((element=ElementSelector | universal=UniversalSelector) subSelectors+=SubSelector*) |
 	subSelectors+=SubSelector+
 ;
@@ -131,7 +131,7 @@ css_namespace_prefix
   : ( Identifier | '*' )? '|'
   ;
 
-css_declaration hidden(ML_COMMENT):
+css_declaration:
 	WS* property=css_property WS* COLON valueTokens+=CssTok+ important?=IMPORTANT_SYM?
 ;
 
@@ -160,7 +160,7 @@ PseudoClassFunction:
 	COLON name=Identifier '(' params+=CssTok* ')'
 ;
 
-NotFunctionCall hidden():
+NotFunctionCall:
 	COLON 'not('
 ;
 
@@ -195,7 +195,7 @@ StringTok returns CssTok:
 
 
 
-NumberTok returns CssTok hidden():
+NumberTok returns CssTok:
 	{NumberTok} val=Num
 
 //	{NumberTok} DASH? ( ONE_INT+ | ONE_INT* '.' => ONE_INT+)
@@ -209,15 +209,15 @@ UrlTok returns CssTok:
 	{UrlTok} url=URLType
 ;
 
-ColorTok returns CssTok hidden():
+ColorTok returns CssTok:
 	{ColorTok} value=Hex
 ;
 
-IdentifierOrFuncTok returns CssTok hidden(ML_COMMENT):
+IdentifierOrFuncTok returns CssTok:
 	{IdentifierTok} name=Identifier ( {FuncTok.name=current} '(' params+=CssTok+ ')')?
 ;
 
-CssTok hidden(ML_COMMENT):
+CssTok:
 	IdentifierOrFuncTok |
 	SymbolTok |
 	WSTok |
@@ -228,7 +228,7 @@ CssTok hidden(ML_COMMENT):
 ;
 
 
-URLType hidden():
+URLType:
 //	FULLURL
 	 'url(' url=ValidURL ')'
 ;
@@ -248,7 +248,7 @@ KeywordHack:
 	'ur'
 ;
 
-ValidURL returns ecore::EString hidden():
+ValidURL returns ecore::EString:
 	CSSSTRING |
 	( ValidURLSymbol |
 	  KeywordHack |
@@ -268,11 +268,11 @@ terminal IMPORTANT_SYM:
 	'!important'
 ;
 
-Identifier returns ecore::EString hidden():
+Identifier returns ecore::EString:
 	DASH? (UNDERSCORE | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | KeywordHack) => (UNDERSCORE | DASH | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | ONE_INT | KeywordHack)*
 ;
 
-Num returns ecore::EDouble hidden():
+Num returns ecore::EDouble:
 	(PLUS|DASH)? (
 		'.' => ONE_INT+ |
 		=> ONE_INT+ (=> '.' => ONE_INT+)?

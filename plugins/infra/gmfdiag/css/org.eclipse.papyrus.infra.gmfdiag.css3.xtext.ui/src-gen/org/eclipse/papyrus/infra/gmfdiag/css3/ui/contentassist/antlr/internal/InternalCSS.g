@@ -395,23 +395,16 @@ finally {
 
 // Entry rule entryRuleselector
 entryRuleselector 
-@init {
-	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
-}
 :
 { before(grammarAccess.getSelectorRule()); }
 	 ruleselector
 { after(grammarAccess.getSelectorRule()); } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule selector
 ruleselector
     @init {
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
 		int stackSize = keepStackSize();
     }
 	:
@@ -424,7 +417,6 @@ ruleselector
 ;
 finally {
 	restoreStackSize(stackSize);
-	myHiddenTokenState.restore();
 }
 
 
@@ -487,23 +479,16 @@ finally {
 
 // Entry rule entryRulesimple_selector
 entryRulesimple_selector 
-@init {
-	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
-}
 :
 { before(grammarAccess.getSimple_selectorRule()); }
 	 rulesimple_selector
 { after(grammarAccess.getSimple_selectorRule()); } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule simple_selector
 rulesimple_selector
     @init {
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
 		int stackSize = keepStackSize();
     }
 	:
@@ -516,7 +501,6 @@ rulesimple_selector
 ;
 finally {
 	restoreStackSize(stackSize);
-	myHiddenTokenState.restore();
 }
 
 
@@ -719,23 +703,16 @@ finally {
 
 // Entry rule entryRulecss_declaration
 entryRulecss_declaration 
-@init {
-	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
-}
 :
 { before(grammarAccess.getCss_declarationRule()); }
 	 rulecss_declaration
 { after(grammarAccess.getCss_declarationRule()); } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule css_declaration
 rulecss_declaration
     @init {
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
 		int stackSize = keepStackSize();
     }
 	:
@@ -748,7 +725,6 @@ rulecss_declaration
 ;
 finally {
 	restoreStackSize(stackSize);
-	myHiddenTokenState.restore();
 }
 
 
@@ -923,23 +899,16 @@ finally {
 
 // Entry rule entryRuleNotFunctionCall
 entryRuleNotFunctionCall 
-@init {
-	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-}
 :
 { before(grammarAccess.getNotFunctionCallRule()); }
 	 ruleNotFunctionCall
 { after(grammarAccess.getNotFunctionCallRule()); } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule NotFunctionCall
 ruleNotFunctionCall
     @init {
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 		int stackSize = keepStackSize();
     }
 	:
@@ -952,7 +921,6 @@ ruleNotFunctionCall
 ;
 finally {
 	restoreStackSize(stackSize);
-	myHiddenTokenState.restore();
 }
 
 
@@ -1075,23 +1043,16 @@ finally {
 
 // Entry rule entryRuleNumberTok
 entryRuleNumberTok 
-@init {
-	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-}
 :
 { before(grammarAccess.getNumberTokRule()); }
 	 ruleNumberTok
 { after(grammarAccess.getNumberTokRule()); } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule NumberTok
 ruleNumberTok
     @init {
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 		int stackSize = keepStackSize();
     }
 	:
@@ -1104,7 +1065,6 @@ ruleNumberTok
 ;
 finally {
 	restoreStackSize(stackSize);
-	myHiddenTokenState.restore();
 }
 
 
@@ -1139,23 +1099,16 @@ finally {
 
 // Entry rule entryRuleColorTok
 entryRuleColorTok 
-@init {
-	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-}
 :
 { before(grammarAccess.getColorTokRule()); }
 	 ruleColorTok
 { after(grammarAccess.getColorTokRule()); } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule ColorTok
 ruleColorTok
     @init {
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 		int stackSize = keepStackSize();
     }
 	:
@@ -1168,30 +1121,22 @@ ruleColorTok
 ;
 finally {
 	restoreStackSize(stackSize);
-	myHiddenTokenState.restore();
 }
 
 
 
 // Entry rule entryRuleIdentifierOrFuncTok
 entryRuleIdentifierOrFuncTok 
-@init {
-	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
-}
 :
 { before(grammarAccess.getIdentifierOrFuncTokRule()); }
 	 ruleIdentifierOrFuncTok
 { after(grammarAccess.getIdentifierOrFuncTokRule()); } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule IdentifierOrFuncTok
 ruleIdentifierOrFuncTok
     @init {
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
 		int stackSize = keepStackSize();
     }
 	:
@@ -1204,30 +1149,22 @@ ruleIdentifierOrFuncTok
 ;
 finally {
 	restoreStackSize(stackSize);
-	myHiddenTokenState.restore();
 }
 
 
 
 // Entry rule entryRuleCssTok
 entryRuleCssTok 
-@init {
-	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
-}
 :
 { before(grammarAccess.getCssTokRule()); }
 	 ruleCssTok
 { after(grammarAccess.getCssTokRule()); } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule CssTok
 ruleCssTok
     @init {
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
 		int stackSize = keepStackSize();
     }
 	:
@@ -1240,30 +1177,22 @@ ruleCssTok
 ;
 finally {
 	restoreStackSize(stackSize);
-	myHiddenTokenState.restore();
 }
 
 
 
 // Entry rule entryRuleURLType
 entryRuleURLType 
-@init {
-	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-}
 :
 { before(grammarAccess.getURLTypeRule()); }
 	 ruleURLType
 { after(grammarAccess.getURLTypeRule()); } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule URLType
 ruleURLType
     @init {
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 		int stackSize = keepStackSize();
     }
 	:
@@ -1276,7 +1205,6 @@ ruleURLType
 ;
 finally {
 	restoreStackSize(stackSize);
-	myHiddenTokenState.restore();
 }
 
 
@@ -1339,23 +1267,16 @@ finally {
 
 // Entry rule entryRuleValidURL
 entryRuleValidURL 
-@init {
-	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-}
 :
 { before(grammarAccess.getValidURLRule()); }
 	 ruleValidURL
 { after(grammarAccess.getValidURLRule()); } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule ValidURL
 ruleValidURL
     @init {
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 		int stackSize = keepStackSize();
     }
 	:
@@ -1368,30 +1289,22 @@ ruleValidURL
 ;
 finally {
 	restoreStackSize(stackSize);
-	myHiddenTokenState.restore();
 }
 
 
 
 // Entry rule entryRuleIdentifier
 entryRuleIdentifier 
-@init {
-	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-}
 :
 { before(grammarAccess.getIdentifierRule()); }
 	 ruleIdentifier
 { after(grammarAccess.getIdentifierRule()); } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule Identifier
 ruleIdentifier
     @init {
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 		int stackSize = keepStackSize();
     }
 	:
@@ -1404,30 +1317,22 @@ ruleIdentifier
 ;
 finally {
 	restoreStackSize(stackSize);
-	myHiddenTokenState.restore();
 }
 
 
 
 // Entry rule entryRuleNum
 entryRuleNum 
-@init {
-	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-}
 :
 { before(grammarAccess.getNumRule()); }
 	 ruleNum
 { after(grammarAccess.getNumRule()); } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule Num
 ruleNum
     @init {
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 		int stackSize = keepStackSize();
     }
 	:
@@ -1440,7 +1345,6 @@ ruleNum
 ;
 finally {
 	restoreStackSize(stackSize);
-	myHiddenTokenState.restore();
 }
 
 

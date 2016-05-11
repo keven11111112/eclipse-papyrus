@@ -13,11 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css3.formatting
 
+import com.google.inject.Inject
+import org.eclipse.papyrus.infra.gmfdiag.css3.services.CSSGrammarAccess
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter
 import org.eclipse.xtext.formatting.impl.FormattingConfig
-import org.eclipse.papyrus.infra.gmfdiag.css3.services.CSSGrammarAccess
-
- import com.google.inject.Inject;
 
 /**
  * This class contains custom formatting declarations.
@@ -51,8 +50,8 @@ class CSSFormatter extends AbstractDeclarativeFormatter {
 		
 		// Manage all the square bracket
 		for(squareBracketPair : findKeywordPairs("[", "]")){ //$NON-NLS-1$ $NON-NLS-2$
-			c.setNoSpace().around(squareBracketPair.first);
-			c.setNoSpace().around(squareBracketPair.second);
+			c.setNoSpace().after(squareBracketPair.first);
+			c.setNoSpace().before(squareBracketPair.second);
 		}
 		
 		// Manage all the simple bracket
@@ -77,9 +76,15 @@ class CSSFormatter extends AbstractDeclarativeFormatter {
 			c.setNoSpace().before(percent);
 		}
 		
+		// Manage the superior
+		for(superior : findKeywords(">")){ //$NON-NLS-1$
+			c.setSpace(SPACE).around(superior);
+			c.setNoLinewrap().around(superior);
+		}
+		
 		// Lexical Comments
-	    c.setLinewrap(0, 1, 2).before(ML_COMMENTRule)
-	    c.setLinewrap(0, 1, 1).after(ML_COMMENTRule)
+	    c.setLinewrap(0, 1, 2).before(ML_COMMENTRule);
+	    c.setLinewrap(0, 1, 1).after(ML_COMMENTRule);
 		
 		// The root document structure
 		c.setLinewrap(2).after(stylesheetAccess.charsetAssignment_0);
