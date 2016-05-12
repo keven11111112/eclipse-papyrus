@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2010 CEA LIST.
+ * Copyright (c) 2009-2016 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *  Vincent Lorenzo(CEA-List) vincent.lorenzo@cea.fr - getCurrentSideOfParent()
+ *  Mickael ADAM(ALL4TEC) mickael.adam@all4tec.net - new implementation for generic rounded figure
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.locator;
 
@@ -49,6 +50,12 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.RoundedRectangleUtil;
  *
  */
 public class PortPositionLocator implements IBorderItemLocator {
+
+	/** Default port height. */
+	private static final int DEFAULT_HEIGHT = 20;
+
+	/** Default port width */
+	private static final int DEFAULT_WIDTH = 20;
 
 	/** the figure around which this border item appears */
 	protected IFigure parentFigure = null;
@@ -390,6 +397,10 @@ public class PortPositionLocator implements IBorderItemLocator {
 	 */
 	@Override
 	public void setConstraint(final Rectangle constraint) {
+		// Set the default size in constraint
+		if (constraint.getSize().equals(-1, -1)) {
+			constraint.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+		}
 		this.constraint = constraint;
 	}
 
