@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Main" sequenceNumber="1462359572">
+<target name="Papyrus Main" sequenceNumber="1463044472">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/R20150821153341/repository"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.6.0.v20160321-0408"/>
-      <repository id="qvto" location="http://download.eclipse.org/mmt/qvto/updates/milestones/3.6.0/S201603210408"/>
+      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.6.0.v20160504-0534"/>
+      <repository id="qvto" location="http://download.eclipse.org/mmt/qvto/updates/milestones/3.6.0/S201605040534"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.transaction.sdk.feature.group" version="1.10.0.201605031913"/>
@@ -45,8 +45,8 @@
       <repository id="ocl" location="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201605021517"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.xwt.feature.feature.group" version="1.1.0.v20150608-1518"/>
-      <repository id="xwt" location="http://download.eclipse.org/xwt/release-1.1.0"/>
+      <unit id="org.eclipse.xwt.feature.feature.group" version="1.2.0.v20160502-1019"/>
+      <repository id="xwt" location="http://download.eclipse.org/xwt/release-1.2.0"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xtext.sdk.feature.group" version="2.10.0.v201604290858"/>
@@ -55,12 +55,12 @@
       <repository id="xtext" location="http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201604290858/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.nebula.widgets.nattable.core.feature.feature.group" version="1.4.0.201604282001"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group" version="1.4.0.201604282001"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group" version="1.4.0.201604282001"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group" version="1.4.0.201604282001"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.extension.nebula.feature.feature.group" version="1.0.0.201604282001"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.extension.nebula.source.feature.feature.group" version="1.0.0.201604282001"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.core.feature.feature.group" version="1.4.0.201605112103"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group" version="1.4.0.201605112103"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group" version="1.4.0.201605112103"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group" version="1.4.0.201605112103"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.extension.nebula.feature.feature.group" version="1.0.0.201605112103"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.extension.nebula.source.feature.feature.group" version="1.0.0.201605112103"/>
       <repository id="nattable" location="http://download.eclipse.org/nattable/snapshots/latest/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">

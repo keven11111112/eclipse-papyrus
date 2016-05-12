@@ -8,7 +8,7 @@ location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R2015082
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.6.0/S201603210408" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.6.0/S201605040534" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -65,7 +65,7 @@ location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.
 
 //updateFrom("XWT",0)
 
-location xwt "http://download.eclipse.org/xwt/release-1.1.0" {
+location xwt "http://download.eclipse.org/xwt/release-1.2.0" {
 	org.eclipse.xwt.feature.feature.group
 }
 

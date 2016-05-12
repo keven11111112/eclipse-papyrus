@@ -4,7 +4,7 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 include "../../../extra/targetPlatform/portable/org.eclipse.papyrus.extra.portable.target.tpd"
 
 //updateFrom("EGIT",0)
-location egit "http://download.eclipse.org/egit/updates-4.3" {
+location egit "http://download.eclipse.org/egit/staging/v4.4.0.201605041135-m1" {
 	org.eclipse.egit.feature.group
 }
 
@@ -40,7 +40,7 @@ location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.12milestone
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20151216-1133" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20160504-1316" {
 	org.eclipse.emf.cdo.epp.feature.group
 }
 

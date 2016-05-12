@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus RCP" sequenceNumber="1462359573">
+<target name="Papyrus RCP" sequenceNumber="1463044472">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/R20150821153341/repository"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.6.0.v20160321-0408"/>
-      <repository id="qvto" location="http://download.eclipse.org/mmt/qvto/updates/milestones/3.6.0/S201603210408"/>
+      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.6.0.v20160504-0534"/>
+      <repository id="qvto" location="http://download.eclipse.org/mmt/qvto/updates/milestones/3.6.0/S201605040534"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.transaction.sdk.feature.group" version="1.10.0.201605031913"/>
@@ -41,8 +41,8 @@
       <repository id="ocl" location="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201605021517"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.xwt.feature.feature.group" version="1.1.0.v20150608-1518"/>
-      <repository id="xwt" location="http://download.eclipse.org/xwt/release-1.1.0"/>
+      <unit id="org.eclipse.xwt.feature.feature.group" version="1.2.0.v20160502-1019"/>
+      <repository id="xwt" location="http://download.eclipse.org/xwt/release-1.2.0"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xtext.sdk.feature.group" version="2.10.0.v201604290858"/>
@@ -51,12 +51,12 @@
       <repository id="xtext" location="http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201604290858/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.nebula.widgets.nattable.core.feature.feature.group" version="1.4.0.201604282001"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group" version="1.4.0.201604282001"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group" version="1.4.0.201604282001"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group" version="1.4.0.201604282001"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.extension.nebula.feature.feature.group" version="1.0.0.201604282001"/>
-      <unit id="org.eclipse.nebula.widgets.nattable.extension.nebula.source.feature.feature.group" version="1.0.0.201604282001"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.core.feature.feature.group" version="1.4.0.201605112103"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group" version="1.4.0.201605112103"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group" version="1.4.0.201605112103"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group" version="1.4.0.201605112103"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.extension.nebula.feature.feature.group" version="1.0.0.201605112103"/>
+      <unit id="org.eclipse.nebula.widgets.nattable.extension.nebula.source.feature.feature.group" version="1.0.0.201605112103"/>
       <repository id="nattable" location="http://download.eclipse.org/nattable/snapshots/latest/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
@@ -120,14 +120,14 @@
       <repository id="gef" location="http://download.eclipse.org/tools/gef/updates/milestones/4.0.0M7_gef-master_1912"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="graphiti" location="http://download.eclipse.org/graphiti/updates/milestones/S-0.13.0M6-201603231003/"/>
+      <repository id="graphiti" location="http://download.eclipse.org/graphiti/updates/milestones/S-0.13.0M7-201605040920/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="sphinx" location="http://download.eclipse.org/sphinx/previews"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.egit.feature.group" version="4.3.0.201604071810-r"/>
-      <repository id="egit" location="http://download.eclipse.org/egit/updates-4.3"/>
+      <unit id="org.eclipse.egit.feature.group" version="4.4.0.201605041135-m1"/>
+      <repository id="egit" location="http://download.eclipse.org/egit/staging/v4.4.0.201605041135-m1"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.mylyn.ide_feature.feature.group" version="3.19.0.v20160111-2059"/>
@@ -152,13 +152,13 @@
       <repository id="emf" location="http://download.eclipse.org/modeling/emf/emf/updates/2.12milestones/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.cdo.epp.feature.group" version="4.5.0.v20151216-1631"/>
-      <unit id="org.eclipse.net4j.feature.group" version="4.5.0.v20151216-1631"/>
-      <unit id="org.eclipse.emf.cdo.server.feature.group" version="4.5.0.v20151208-0751"/>
-      <unit id="org.eclipse.emf.cdo.dawn.feature.group" version="2.1.300.v20150911-0923"/>
-      <unit id="org.eclipse.emf.cdo.feature.group" version="4.5.0.v20151123-0826"/>
-      <unit id="org.eclipse.emf.cdo.server.db.feature.group" version="4.4.0.v20151012-0603"/>
-      <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/S20151216-1133"/>
+      <unit id="org.eclipse.emf.cdo.epp.feature.group" version="4.5.0.v20160504-0528"/>
+      <unit id="org.eclipse.net4j.feature.group" version="4.5.0.v20160302-0807"/>
+      <unit id="org.eclipse.emf.cdo.server.feature.group" version="4.5.0.v20160504-0528"/>
+      <unit id="org.eclipse.emf.cdo.dawn.feature.group" version="2.1.300.v20160301-1326"/>
+      <unit id="org.eclipse.emf.cdo.feature.group" version="4.5.0.v20160417-0500"/>
+      <unit id="org.eclipse.emf.cdo.server.db.feature.group" version="4.4.0.v20160302-0810"/>
+      <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/S20160504-1316"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20160428-0800"/>
