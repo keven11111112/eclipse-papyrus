@@ -81,7 +81,12 @@ public final class DeleteActionUtil {
 			View graphical = NotationHelper.findView(editPart);
 
 			isSemanticDeletion = !(semantic == null || semantic == graphical || semantic.eContainer() == null);
-
+			// add a test to fix for bug 492522
+			if (!isSemanticDeletion) {
+				if (editPart instanceof ConnectionEditPart) {
+					isSemanticDeletion = ((ConnectionEditPart) editPart).isSemanticConnection();
+				}
+			}
 
 			if (isSemanticDeletion && readOnly != null) {
 				// Is the semantic element read-only?
@@ -128,7 +133,7 @@ public final class DeleteActionUtil {
 				// Is the semantic element read-only?
 				Optional<Boolean> result = readOnly.isReadOnly(ReadOnlyAxis.anyAxis(), semantic);
 				isReadOnly = result.get();
-				
+
 				if (!isReadOnly && (graphical != null)) {
 					// Or, if not, is the graphical element read-only?
 					result = readOnly.isReadOnly(ReadOnlyAxis.anyAxis(), graphical);
@@ -139,7 +144,7 @@ public final class DeleteActionUtil {
 
 		return isReadOnly;
 	}
-	
+
 	/**
 	 * Gets the delete from model command.
 	 *

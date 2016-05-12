@@ -48,7 +48,6 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ContextLinkSemanticEditPolicy());
 	}
 
 	/**

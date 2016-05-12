@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.gmf.runtime.emf.type.core.ClientContext;
+import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IAdviceBindingDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
@@ -74,6 +75,27 @@ public class ElementTypeRegistryUtils {
 		}
 
 
+
+		return matchingElementTypes;
+	}
+	
+	static public List<IElementType> getElementTypesBySemanticHint(String semanticHint, String contextId) {
+		List<IElementType> matchingElementTypes = new ArrayList<IElementType>();
+
+		IClientContext context = ClientContextManager.getInstance().getClientContext(contextId);
+
+		if (context != null) {
+
+			IElementType[] elementTypes = ElementTypeRegistry.getInstance().getElementTypes(context);
+
+			for (IElementType iElementType : elementTypes) {
+				if (iElementType instanceof IHintedType) {
+					if (((IHintedType) iElementType).getSemanticHint().equals(semanticHint)) {
+						matchingElementTypes.add(iElementType);
+					}
+				}
+			}
+		}
 
 		return matchingElementTypes;
 	}

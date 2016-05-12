@@ -42,6 +42,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
+ * 
+ *         TODO : refactore me, see Bugs 493512, and 492522
  */
 public class SequenceViewDependentsAdvice extends AbstractEditHelperAdvice {
 
