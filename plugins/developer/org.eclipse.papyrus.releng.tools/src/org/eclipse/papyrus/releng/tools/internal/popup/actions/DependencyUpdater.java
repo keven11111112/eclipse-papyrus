@@ -164,8 +164,6 @@ public abstract class DependencyUpdater<T> {
 		return "updateFrom(\"<contributionName>\",<index>)"; //$NON-NLS-1$
 	}
 
-
-
 	private boolean promptToReplaceSingle(Shell parentShell, LocationUpdate<T> locationUpdate, Map<Object, Object> context) {
 		String message = NLS.bind("{0}\n\nUpdate anyways?", locationUpdate.strategy.getUpdateConfirmationMessage(locationUpdate.update, locationUpdate.oldLocation, locationUpdate.newLocation)); //$NON-NLS-1$
 		boolean result = MessageDialog.openQuestion(parentShell, "Confirm Location Update", message);

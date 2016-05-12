@@ -56,6 +56,7 @@ import org.eclipse.oomph.p2.RepositoryList;
 import org.eclipse.oomph.targlets.Targlet;
 import org.eclipse.papyrus.releng.tools.internal.Activator;
 import org.eclipse.papyrus.releng.tools.internal.popup.actions.OomphSetupUpdater;
+import org.eclipse.papyrus.releng.tools.internal.popup.actions.UpdateDependencies;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
@@ -77,7 +78,7 @@ public class AddSetupRepositoryUpdateAnnotationHandler extends AbstractHandler {
 			Shell activeShell = HandlerUtil.getActiveShell(event);
 
 			try {
-				IFile aggrFile = UpdateDependenciesHandler.chooseAggregationBuildFile(UpdateDependenciesHandler.findAggregationBuildFiles(), activeShell);
+				IFile aggrFile = UpdateDependencies.chooseAggregationBuildFile(UpdateDependencies.findAggregationBuildFiles(), activeShell);
 				if (aggrFile != null) {
 					ResourceSet rset = new ResourceSetImpl();
 
