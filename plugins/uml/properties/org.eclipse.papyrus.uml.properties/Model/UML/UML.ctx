@@ -1342,15 +1342,6 @@
     <sections xmi:id="_69idm6DJEeSZxfCXzZz3-w" name="SingleImage" sectionFile="ui/SingleImage.xwt">
       <widget href="ui/SingleImage.xwt#/"/>
     </sections>
-    <sections xmi:id="_69idnKDJEeSZxfCXzZz3-w" name="AsyncMessage" sectionFile="ui/AsyncMessage.xwt">
-      <widget href="ui/AsyncMessage.xwt#/"/>
-    </sections>
-    <sections xmi:id="_69idnaDJEeSZxfCXzZz3-w" name="SyncMessage" sectionFile="ui/SyncMessage.xwt">
-      <widget href="ui/SyncMessage.xwt#/"/>
-    </sections>
-    <sections xmi:id="_69idnqDJEeSZxfCXzZz3-w" name="ReplyMessage" sectionFile="ui/ReplyMessage.xwt">
-      <widget href="ui/ReplyMessage.xwt#/"/>
-    </sections>
     <sections xmi:id="_69idn6DJEeSZxfCXzZz3-w" name="Metaclass" sectionFile="ui/Metaclass.xwt">
       <widget href="ui/Metaclass.xwt#/"/>
     </sections>
@@ -4093,48 +4084,6 @@
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_69usrKDJEeSZxfCXzZz3-w" name="isSingleComment">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_69usraDJEeSZxfCXzZz3-w" name="umlClassName" value="Comment"/>
-    </constraints>
-  </views>
-  <views xmi:id="_69usrqDJEeSZxfCXzZz3-w" name="AsyncMessage" sections="_69idnKDJEeSZxfCXzZz3-w">
-    <constraints xsi:type="constraints:CompositeConstraint" xmi:id="_69usr6DJEeSZxfCXzZz3-w" name="isAsyncMessage" overriddenConstraints="_69olkqDJEeSZxfCXzZz3-w">
-      <constraints xmi:id="_69ussKDJEeSZxfCXzZz3-w" name="isMessage">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" xmi:id="_69ussaDJEeSZxfCXzZz3-w" name="umlClassName" value="Message"/>
-      </constraints>
-      <constraints xmi:id="_69ussqDJEeSZxfCXzZz3-w" name="isAsync">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
-        <properties xsi:type="constraints:ReferenceProperty" xmi:id="_69uss6DJEeSZxfCXzZz3-w" name="query">
-          <value href="uml.querySet#isAsynchCall"/>
-        </properties>
-      </constraints>
-    </constraints>
-  </views>
-  <views xmi:id="_69ustKDJEeSZxfCXzZz3-w" name="SyncMessage" sections="_69idnaDJEeSZxfCXzZz3-w">
-    <constraints xsi:type="constraints:CompositeConstraint" xmi:id="_69ustaDJEeSZxfCXzZz3-w" name="isSyncMessage" overriddenConstraints="_69olkqDJEeSZxfCXzZz3-w">
-      <constraints xmi:id="_69ustqDJEeSZxfCXzZz3-w" name="isMessage">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" xmi:id="_69ust6DJEeSZxfCXzZz3-w" name="umlClassName" value="Message"/>
-      </constraints>
-      <constraints xmi:id="_69usuKDJEeSZxfCXzZz3-w" name="isSync">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
-        <properties xsi:type="constraints:ReferenceProperty" xmi:id="_69usuaDJEeSZxfCXzZz3-w" name="query">
-          <value href="uml.querySet#isSynchCall"/>
-        </properties>
-      </constraints>
-    </constraints>
-  </views>
-  <views xmi:id="_69usuqDJEeSZxfCXzZz3-w" name="ReplyMessage" sections="_69idnqDJEeSZxfCXzZz3-w">
-    <constraints xsi:type="constraints:CompositeConstraint" xmi:id="_69usu6DJEeSZxfCXzZz3-w" name="isReplyMessage" overriddenConstraints="_69olkqDJEeSZxfCXzZz3-w">
-      <constraints xmi:id="_69usvKDJEeSZxfCXzZz3-w" name="isMessage">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" xmi:id="_69usvaDJEeSZxfCXzZz3-w" name="umlClassName" value="Message"/>
-      </constraints>
-      <constraints xmi:id="_69usvqDJEeSZxfCXzZz3-w" name="isReply">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
-        <properties xsi:type="constraints:ReferenceProperty" xmi:id="_69usv6DJEeSZxfCXzZz3-w" name="query">
-          <value href="uml.querySet#isReply"/>
-        </properties>
-      </constraints>
     </constraints>
   </views>
   <views xmi:id="_690xUKDJEeSZxfCXzZz3-w" name="SingleImage" sections="_69idm6DJEeSZxfCXzZz3-w">
