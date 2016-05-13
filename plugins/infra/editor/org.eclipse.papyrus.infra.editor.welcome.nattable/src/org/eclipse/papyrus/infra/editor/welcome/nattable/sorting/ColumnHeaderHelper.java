@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -47,8 +47,6 @@ import org.eclipse.nebula.widgets.nattable.style.IStyle;
 import org.eclipse.nebula.widgets.nattable.ui.util.CellEdgeEnum;
 import org.eclipse.papyrus.infra.editor.welcome.nattable.ServiceConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Text;
 
 import ca.odell.glazedlists.FilterList;
@@ -185,12 +183,7 @@ public class ColumnHeaderHelper<T> {
 
 	public void setFilterField(Text filterField) {
 		if (filterField != null) {
-			filterField.addSelectionListener(new SelectionAdapter() {
-				@Override
-				public void widgetDefaultSelected(SelectionEvent e) {
-					filterMatcher.setFilter(filterField.getText());
-				}
-			});
+			filterField.addModifyListener(__ -> filterMatcher.setFilter(filterField.getText()));
 		}
 	}
 

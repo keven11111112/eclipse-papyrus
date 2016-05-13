@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -25,7 +25,7 @@ import org.eclipse.nebula.widgets.nattable.config.DefaultNatTableStyleConfigurat
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.IColumnPropertyAccessor;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
-import org.eclipse.nebula.widgets.nattable.extension.glazedlists.GlazedListsDataProvider;
+import org.eclipse.nebula.widgets.nattable.data.ListDataProvider;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.layer.CompositeLayer;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
@@ -178,7 +178,7 @@ public abstract class FormTable<E> extends Composite {
 		} else {
 			sortedList = new SortedList<>(backingList, null);
 		}
-		IDataProvider dataProvider = new GlazedListsDataProvider<>(sortedList, columnAccessor);
+		IDataProvider dataProvider = new ListDataProvider<>(sortedList, columnAccessor);
 		DataLayer bodyDataLayer = new DataLayer(dataProvider);
 		eventLayer = new PapyrusGlazedListEventsLayer<>(bodyDataLayer, backingList);
 		SelectionLayer selectionLayer = new SelectionLayer(eventLayer, false);
