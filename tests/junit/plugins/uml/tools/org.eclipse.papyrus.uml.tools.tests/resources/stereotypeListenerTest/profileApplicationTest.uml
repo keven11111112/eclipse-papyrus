@@ -41,9 +41,9 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-SIexfgWEeWiHvr2EcCZeg" key="Author" value=""/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SH3sfgWEeWiHvr2EcCZeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <references xmi:type="ecore:EPackage" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3REMPgMEeWiHvr2EcCZeg"/>
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3REMPgMEeWiHvr2EcCZeg"/>
     </eAnnotations>
-    <appliedProfile xmi:type="uml:Profile" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_TZ_nULU5EduiKqCzJMWbGw"/>
+    <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_TZ_nULU5EduiKqCzJMWbGw"/>
   </profileApplication>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-SIexvgWEeWiHvr2EcCZeg">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SIeyPgWEeWiHvr2EcCZeg" source="PapyrusVersion">
@@ -54,9 +54,9 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-SIezfgWEeWiHvr2EcCZeg" key="Author" value=""/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SIex_gWEeWiHvr2EcCZeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <references xmi:type="ecore:EPackage" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3YY8PgMEeWiHvr2EcCZeg"/>
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3YY8PgMEeWiHvr2EcCZeg"/>
     </eAnnotations>
-    <appliedProfile xmi:type="uml:Profile" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_Gx8MgLX7EduFmqQsrNB9lw"/>
+    <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_Gx8MgLX7EduFmqQsrNB9lw"/>
   </profileApplication>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-SJF0PgWEeWiHvr2EcCZeg">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SJF0vgWEeWiHvr2EcCZeg" source="PapyrusVersion">
@@ -67,9 +67,9 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-SJF1_gWEeWiHvr2EcCZeg" key="Author" value=""/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SJF0fgWEeWiHvr2EcCZeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <references xmi:type="ecore:EPackage" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3a1MPgMEeWiHvr2EcCZeg"/>
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3a1MPgMEeWiHvr2EcCZeg"/>
     </eAnnotations>
-    <appliedProfile xmi:type="uml:Profile" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_fSw28LX7EduFmqQsrNB9lw"/>
+    <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_fSw28LX7EduFmqQsrNB9lw"/>
   </profileApplication>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-SJF2PgWEeWiHvr2EcCZeg">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SJF2vgWEeWiHvr2EcCZeg" source="PapyrusVersion">
@@ -80,9 +80,9 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-SJF3_gWEeWiHvr2EcCZeg" key="Author" value=""/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SJF2fgWEeWiHvr2EcCZeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <references xmi:type="ecore:EPackage" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3efkPgMEeWiHvr2EcCZeg"/>
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3efkPgMEeWiHvr2EcCZeg"/>
     </eAnnotations>
-    <appliedProfile xmi:type="uml:Profile" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_rpx28LX7EduFmqQsrNB9lw"/>
+    <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_rpx28LX7EduFmqQsrNB9lw"/>
   </profileApplication>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-SJs4PgWEeWiHvr2EcCZeg">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SJs4vgWEeWiHvr2EcCZeg" source="PapyrusVersion">
@@ -93,9 +93,9 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-SJs5_gWEeWiHvr2EcCZeg" key="Author" value=""/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SJs4fgWEeWiHvr2EcCZeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <references xmi:type="ecore:EPackage" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3fGoPgMEeWiHvr2EcCZeg"/>
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3fGoPgMEeWiHvr2EcCZeg"/>
     </eAnnotations>
-    <appliedProfile xmi:type="uml:Profile" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_5WYJ0LX7EduFmqQsrNB9lw"/>
+    <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_5WYJ0LX7EduFmqQsrNB9lw"/>
   </profileApplication>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-SJs6PgWEeWiHvr2EcCZeg">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SKT8PgWEeWiHvr2EcCZeg" source="PapyrusVersion">
@@ -106,9 +106,9 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-SKT9fgWEeWiHvr2EcCZeg" key="Author" value=""/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SJs6fgWEeWiHvr2EcCZeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <references xmi:type="ecore:EPackage" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3gUwPgMEeWiHvr2EcCZeg"/>
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3gUwPgMEeWiHvr2EcCZeg"/>
     </eAnnotations>
-    <appliedProfile xmi:type="uml:Profile" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_C2zXMLX8EduFmqQsrNB9lw"/>
+    <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_C2zXMLX8EduFmqQsrNB9lw"/>
   </profileApplication>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-SKT9vgWEeWiHvr2EcCZeg">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SKT-PgWEeWiHvr2EcCZeg" source="PapyrusVersion">
@@ -119,9 +119,9 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-SKT_fgWEeWiHvr2EcCZeg" key="Author" value=""/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SKT9_gWEeWiHvr2EcCZeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <references xmi:type="ecore:EPackage" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3iJ8PgMEeWiHvr2EcCZeg"/>
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3iJ8PgMEeWiHvr2EcCZeg"/>
     </eAnnotations>
-    <appliedProfile xmi:type="uml:Profile" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_NxdG4LX8EduFmqQsrNB9lw"/>
+    <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_NxdG4LX8EduFmqQsrNB9lw"/>
   </profileApplication>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-SK7APgWEeWiHvr2EcCZeg">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SK7AvgWEeWiHvr2EcCZeg" source="PapyrusVersion">
@@ -132,9 +132,9 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-SK7B_gWEeWiHvr2EcCZeg" key="Author" value=""/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SK7AfgWEeWiHvr2EcCZeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <references xmi:type="ecore:EPackage" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3mbYPgMEeWiHvr2EcCZeg"/>
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3mbYPgMEeWiHvr2EcCZeg"/>
     </eAnnotations>
-    <appliedProfile xmi:type="uml:Profile" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
   </profileApplication>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-SK7CPgWEeWiHvr2EcCZeg">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SLiEfgWEeWiHvr2EcCZeg" source="PapyrusVersion">
@@ -145,9 +145,9 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-SLiFvgWEeWiHvr2EcCZeg" key="Author" value=""/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SLiEPgWEeWiHvr2EcCZeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <references xmi:type="ecore:EPackage" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3nCcPgMEeWiHvr2EcCZeg"/>
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3nCcPgMEeWiHvr2EcCZeg"/>
     </eAnnotations>
-    <appliedProfile xmi:type="uml:Profile" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_meOioLX8EduFmqQsrNB9lw"/>
+    <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_meOioLX8EduFmqQsrNB9lw"/>
   </profileApplication>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-SLiF_gWEeWiHvr2EcCZeg">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SLiGfgWEeWiHvr2EcCZeg" source="PapyrusVersion">
@@ -158,9 +158,9 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-SLiHvgWEeWiHvr2EcCZeg" key="Author" value=""/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SLiGPgWEeWiHvr2EcCZeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <references xmi:type="ecore:EPackage" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3npgPgMEeWiHvr2EcCZeg"/>
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3npgPgMEeWiHvr2EcCZeg"/>
     </eAnnotations>
-    <appliedProfile xmi:type="uml:Profile" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_nAF5kLX8EduFmqQsrNB9lw"/>
+    <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_nAF5kLX8EduFmqQsrNB9lw"/>
   </profileApplication>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-SMJIPgWEeWiHvr2EcCZeg">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SMJIvgWEeWiHvr2EcCZeg" source="PapyrusVersion">
@@ -171,8 +171,8 @@
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-SMJJ_gWEeWiHvr2EcCZeg" key="Author" value=""/>
     </eAnnotations>
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-SMJIfgWEeWiHvr2EcCZeg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <references xmi:type="ecore:EPackage" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3oQkPgMEeWiHvr2EcCZeg"/>
+      <references xmi:type="ecore:EPackage" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_o3oQkPgMEeWiHvr2EcCZeg"/>
     </eAnnotations>
-    <appliedProfile xmi:type="uml:Profile" href="../../../org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_neZmMLX8EduFmqQsrNB9lw"/>
+    <appliedProfile xmi:type="uml:Profile" href="platform:/plugin/org.eclipse.papyrus.uml.dynamic.profile.tests/resources/DynamicSysMLProfileTests.profile.uml#_neZmMLX8EduFmqQsrNB9lw"/>
   </profileApplication>
 </uml:Model>

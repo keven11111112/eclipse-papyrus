@@ -23,9 +23,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
-import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
@@ -36,7 +34,6 @@ import org.eclipse.papyrus.uml.nattable.dataprovider.UMLStereotypeSingleEnumerat
 import org.eclipse.papyrus.uml.nattable.generic.tests.Activator;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Port;
@@ -481,7 +478,7 @@ public class Bug458492_Edition_Enumeration extends AbstractGenericTableTest {
 			Stereotype stee = port.getAppliedStereotype(FLOW_PORT_STEREOTYPE_QN);
 			Assert.assertNotNull(stee);
 			Object value = port.getValue(stee, DIRECTION_PROPERTY_NAME);
-			Assert.assertTrue(value == newValue);
+			Assert.assertTrue(((EnumerationLiteral)value).getName().equals(newValue.toString()));
 		}
 	}
 
