@@ -19,7 +19,6 @@ import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -29,7 +28,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
 import org.eclipse.papyrus.infra.tools.databinding.TouchableValue;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * Encapsulation of a {@link Diagram}, {@link Table}, or other notation view that presents the

@@ -16,20 +16,24 @@ package org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements;
 import java.util.function.Supplier;
 
 import org.eclipse.core.databinding.observable.list.IObservableList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapter;
 import org.eclipse.papyrus.infra.tools.databinding.WritableListWithIterator;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * A list property of diagram-observables, tracking all of the diagrams available
- * in the resource set.
+ * A list property of notation-observables, tracking all of the diagrams, tables,
+ * and such notations available in the resource set in user resources (not in,
+ * for example, plug-in deployed models).
  */
 public class NotationObservableProperty implements Supplier<IObservableList<NotationObservable>> {
 	private TransactionalEditingDomain domain;
@@ -97,13 +101,17 @@ public class NotationObservableProperty implements Supplier<IObservableList<Nota
 			protected void handleResourceLoaded(Resource resource) {
 				resource.getContents().stream()
 						.filter(ViewPrototype::isViewObject)
+						.filter(NotationObservableProperty.this::isUserObject)
+						// In case of loading a resource, we already added its
+						// notations via handleRootAdded()
+						.filter(NotationObservableProperty.this::notAddedYet)
 						.map(NotationObservable::new)
 						.forEach(list::add);
 			}
 
 			@Override
 			protected void handleRootAdded(Resource resource, EObject root) {
-				if (ViewPrototype.isViewObject(root)) {
+				if (ViewPrototype.isViewObject(root) && isUserObject(root)) {
 					list.add(new NotationObservable(root));
 				}
 			}
@@ -117,5 +125,41 @@ public class NotationObservableProperty implements Supplier<IObservableList<Nota
 		};
 
 		diagramsListener.install(domain);
+	}
+
+	/**
+	 * Is a notation view or other object one that is under the user's control?
+	 * That is, in a resource that is normally accessible and editable.
+	 * 
+	 * @param object
+	 *            an object in a model-set
+	 * @return whether it is in a user resource
+	 */
+	boolean isUserObject(EObject object) {
+		boolean result;
+
+		Resource resource = object.eResource();
+		ResourceSet rset = (resource == null) ? null : resource.getResourceSet();
+
+		if (rset instanceof ModelSet) {
+			result = ((ModelSet) rset).isUserModelResource(resource.getURI());
+		} else {
+			URI uri = resource.getURI();
+			result = uri.isPlatformResource() || uri.isFile();
+		}
+
+		return result;
+	}
+
+	/**
+	 * Queries whether an {@code object} has not yet been added to our
+	 * observable list.
+	 * 
+	 * @param object
+	 *            an object
+	 * @return {@code true} if it is not in the observable list; {@code false}, otherwise
+	 */
+	private boolean notAddedYet(EObject object) {
+		return list.stream().allMatch(obs -> obs.getView().getValue() != object);
 	}
 }
