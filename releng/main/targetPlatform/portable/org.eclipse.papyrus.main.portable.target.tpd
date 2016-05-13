@@ -34,7 +34,7 @@ location nebula "http://download.eclipse.org/technology/nebula/archives/Q12015/r
 //manualUpdate
 
 location nebula-richtext "http://download.eclipse.org/technology/nebula/snapshot/" {
-	org.eclipse.nebula.widgets.richtext.feature.feature.group
+	org.eclipse.nebula.widgets.richtext.feature.feature.group lazy
 }
 
 
@@ -80,12 +80,12 @@ location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/milestone
 //manualUpdate
 
 location nattable "http://download.eclipse.org/nattable/snapshots/latest/repository/" {
-	org.eclipse.nebula.widgets.nattable.core.feature.feature.group
-	org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group
-	org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group
-	org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group
-	org.eclipse.nebula.widgets.nattable.extension.nebula.feature.feature.group
-	org.eclipse.nebula.widgets.nattable.extension.nebula.source.feature.feature.group
+	org.eclipse.nebula.widgets.nattable.core.feature.feature.group lazy
+	org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group lazy
+	org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group lazy
+	org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group lazy
+	org.eclipse.nebula.widgets.nattable.extension.nebula.feature.feature.group lazy
+	org.eclipse.nebula.widgets.nattable.extension.nebula.source.feature.feature.group lazy
 }
 
 //updateFrom("EMFT MWE",0)
