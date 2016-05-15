@@ -12,18 +12,21 @@
  * 		Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.cellmanager;
+package org.eclipse.papyrus.requirements.sysml.matrix.common.cellmanager;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.Activator;
+import org.eclipse.papyrus.requirements.sysml.matrix.common.Activator;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 public class SameStereotypeCellManager extends AbstractCellManager {
-	public static final String CELL_MANAGER_ID = Activator.PLUGIN_ID + ".SameStereotypeCellManager";
+	public static final String CELL_MANAGER_ID = Activator.PLUGIN_ID + ".cellmanager.SameStereotypeCellManager";
 
 	@Override
 	public boolean handles(Object columnElement, Object rowElement) {
@@ -32,9 +35,22 @@ public class SameStereotypeCellManager extends AbstractCellManager {
 		if (column instanceof Element && row instanceof Element) {
 			Element colUMLElement = (Element) column;
 			Element rowUMLElement = (Element) row;
-			EList <Stereotype> stereotypesInRowUMLElement = rowUMLElement.getAppliedStereotypes();
-			for (Stereotype s: colUMLElement.getAppliedStereotypes()){
-				if (stereotypesInRowUMLElement.contains(s)){
+			// This cell manager must be applied only to SatisfyMatrix and
+			// VerifiedByMatrix and not to other type of matrix, such as
+			// DerivedFromMatrix, where columns and rows have the same stereotype
+			if (rowElement instanceof ITreeItemAxis) {
+				ITreeItemAxis axis = (ITreeItemAxis) rowElement;
+				AxisManagerRepresentation manager = axis.getManager();
+				TableConfiguration conf = (TableConfiguration) manager.eContainer().eContainer();
+				String type = conf.getType();
+				if (!type.equals("SatisfyMatrix") && !type.equals("VerifiedByMatrix")) {
+					return false;
+				}
+			}
+
+			EList<Stereotype> stereotypesInRowUMLElement = rowUMLElement.getAppliedStereotypes();
+			for (Stereotype s : colUMLElement.getAppliedStereotypes()) {
+				if (stereotypesInRowUMLElement.contains(s)) {
 					return true;
 				}
 			}
@@ -44,7 +60,7 @@ public class SameStereotypeCellManager extends AbstractCellManager {
 
 	@Override
 	protected Object doGetValue(Object columnElement, Object rowElement, INattableModelManager tableManager) {
-		return "N/A";//"No relationship";
+		return "N/A";
 	}
 
 }

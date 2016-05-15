@@ -2,24 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.infra.nattable.tester">
-      <tester
-            class="org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.tester.RequirementTableTester"
-            id="org.eclipse.papyrus.req.matrix.config.tester.RequirementTableTester">
-      </tester>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.nattable.axismanager">
-      <axisManager
-            id="org.eclipse.papyrus.req.matrix.config.axismanager.SatisfyMatrixRequirementsAxisManager"
-            manager="org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.axismanager.SatisfyMatrixRequirementsAxisManager">
-      </axisManager>
-      <axisManager
-            id="org.eclipse.papyrus.req.matrix.config.axismanager.SatisfyMatrixElementAxisManager"
-            manager="org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.axismanager.SatisfyMatrixElementAxisManager">
-      </axisManager>
-   </extension>
-   <extension
          point="org.eclipse.papyrus.infra.nattable.configuration">
       <configuration
             file="config/SatisfyMatrix.nattableconfiguration"
@@ -28,16 +10,6 @@
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.nattable.cellmanager">
-      <cellManager
-            id="org.eclipse.papyrus.req.sysml.matrix.config.cellmanager.RowEqualsColumCellManager"
-            manager="org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.cellmanager.RowEqualsColumCellManager"
-            order="1">
-      </cellManager>
-      <cellManager
-            id="org.eclipse.papyrus.req.sysml.matrix.config.cellmanager.SameStereotypeCellManager"
-            manager="org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.cellmanager.SameStereotypeCellManager"
-            order="2">
-      </cellManager>
       <cellManager
             id="org.eclipse.papyrus.req.sysml.matrix.config.cellmanager.SatisfyMatrixCellManager"
             manager="org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.cellmanager.SatisfyMatrixCellManager"

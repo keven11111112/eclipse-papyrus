@@ -15,8 +15,6 @@
 
 package org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.cellmanager;
 
-import java.util.Iterator;
-
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -25,7 +23,6 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -36,10 +33,10 @@ import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.requirements.sysml.common.I_SysMLStereotype;
+import org.eclipse.papyrus.requirements.sysml.matrix.common.helpers.Helper;
 import org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.Activator;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.uml2.uml.Abstraction;
-import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
@@ -47,7 +44,6 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 @SuppressWarnings("deprecation")
 public class SatisfyMatrixCellManager extends AbstractCellManager {
-	public static final String SATISFY_MESSAGE = "satisfies";
 	public static final String CELL_MANAGER_ID = Activator.PLUGIN_ID + ".cellmanager";
 
 	@Override
@@ -90,7 +86,7 @@ public class SatisfyMatrixCellManager extends AbstractCellManager {
 					@SuppressWarnings("unchecked")
 					EList<EObject> list = (EList<EObject>) listOfObjectsThatSatisfyRequirement;
 					// check the list of elements that satisfy the requirement
-					// to see if the element in the current row in there
+					// to see if the element in the current row
 					for (EObject eObjectThatSatisfiesRequirement : list) {
 						if (eObjectInRow.equals(eObjectThatSatisfiesRequirement)) {
 							return true;
@@ -108,56 +104,15 @@ public class SatisfyMatrixCellManager extends AbstractCellManager {
 			INattableModelManager tableManager) {
 		Object column = AxisUtils.getRepresentedElement(columnElement);
 		Object row = AxisUtils.getRepresentedElement(rowElement);
-		EObject eObjectInRow = (EObject) row;
 
 		if (column instanceof Element) {
 			Element colUMLElement = (Element) column;
 
 			if (Boolean.FALSE.equals(newValue)) {
 				if (UMLUtil.getStereotypeApplication(colUMLElement, Requirement.class) != null) {
-					Stereotype reqStereotype = colUMLElement
-							.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
-					Object listOfObjectsThatSatisfyRequirement = colUMLElement.getValue(reqStereotype, "satisfiedBy");
-					if (listOfObjectsThatSatisfyRequirement instanceof EList<?>) {
-						@SuppressWarnings("unchecked")
-						EList<EObject> list = (EList<EObject>) listOfObjectsThatSatisfyRequirement;
-						// check the list of elements that satisfy the
-						// requirement to see if the element in the current row
-						// in there
-						Dependency toDestroy = null;
-						for (EObject eObjectThatSatisfiesRequirement : list) {
-							if (toDestroy == null) {
-								if (eObjectInRow.equals(eObjectThatSatisfiesRequirement)) {
-									EList<Dependency> dependencies = ((NamedElement) eObjectThatSatisfiesRequirement)
-											.getClientDependencies();
-									Iterator<Dependency> iter = dependencies.iterator();
-									while (iter.hasNext() && toDestroy == null) {
-										Dependency dependency = iter.next();
-										if (dependency instanceof Abstraction) {
-											if (dependency
-													.getAppliedStereotype("SysML::Requirements::Satisfy") != null) {
-												if (dependency.getClients().contains(row)
-														&& dependency.getSuppliers().contains(colUMLElement)) {
-													toDestroy = dependency;
-												}
-
-											}
-										}
-									}
-
-								}
-							}
-						}
-
-						if (toDestroy != null) {
-							DestroyElementRequest req = new DestroyElementRequest(toDestroy, false);
-							IElementEditService provider = ElementEditServiceUtils.getCommandProvider(toDestroy);
-							ICommand cmd = provider.getEditCommand(req);
-							if (cmd != null && cmd.canExecute()) {
-								domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
-							}
-						}
-					}
+					Helper.deleteRelationshipInIntersection(domain, row, colUMLElement,
+							I_SysMLStereotype.REQUIREMENT_STEREOTYPE, I_SysMLStereotype.REQUIREMENT_SATISFIEDBY_ATT,
+							I_SysMLStereotype.SATISFY_STEREOTYPE);
 				}
 			} else if (Boolean.TRUE.equals(newValue)
 					|| (newValue instanceof Abstraction && ((Abstraction) newValue).eContainer() == null)) {

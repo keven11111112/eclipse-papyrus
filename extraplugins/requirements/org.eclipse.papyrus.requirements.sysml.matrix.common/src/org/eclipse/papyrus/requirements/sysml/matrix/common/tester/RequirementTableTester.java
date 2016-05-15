@@ -12,13 +12,13 @@
  * 		Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.tester;
+package org.eclipse.papyrus.requirements.sysml.matrix.common.tester;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.infra.nattable.tester.ITableTester;
-import org.eclipse.papyrus.sysml.nattable.requirement.config.Activator;
+import org.eclipse.papyrus.requirements.sysml.matrix.common.Activator;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher;
 import org.eclipse.uml2.uml.Element;

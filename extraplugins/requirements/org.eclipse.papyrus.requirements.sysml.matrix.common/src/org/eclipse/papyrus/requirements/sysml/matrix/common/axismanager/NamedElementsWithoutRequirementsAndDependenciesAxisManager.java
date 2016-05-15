@@ -12,7 +12,7 @@
  * 		Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.axismanager;
+package org.eclipse.papyrus.requirements.sysml.matrix.common.axismanager;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
@@ -22,7 +22,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
-public class SatisfyMatrixElementAxisManager extends UMLElementTreeAxisManagerForEventList {
+public class NamedElementsWithoutRequirementsAndDependenciesAxisManager extends UMLElementTreeAxisManagerForEventList {
 
 	@Override
 	public boolean isAllowedContents(Object objectToTest, Object semanticParent, TreeFillingConfiguration conf,

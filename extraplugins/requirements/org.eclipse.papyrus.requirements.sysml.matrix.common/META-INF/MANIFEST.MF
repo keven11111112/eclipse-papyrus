@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Papyrus Req - Common Parts for Matrices
+Bundle-SymbolicName: org.eclipse.papyrus.requirements.sysml.matrix.common;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.requirements.sysml.matrix.common.Activator
+Bundle-Vendor: Eclipse Modeling Project
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.papyrus.infra.nattable,
+ org.eclipse.papyrus.infra.viewpoints.policy,
+ org.eclipse.uml2.uml,
+ org.eclipse.papyrus.sysml.service.types,
+ org.eclipse.papyrus.sysml,
+ org.eclipse.papyrus.sysml.nattable,
+ org.eclipse.papyrus.requirements.sysml.common
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.requirements.sysml.matrix.common,
+ org.eclipse.papyrus.requirements.sysml.matrix.common.axismanager,
+ org.eclipse.papyrus.requirements.sysml.matrix.common.celleditor,
+ org.eclipse.papyrus.requirements.sysml.matrix.common.cellmanager,
+ org.eclipse.papyrus.requirements.sysml.matrix.common.helpers,
+ org.eclipse.papyrus.requirements.sysml.matrix.common.tester
