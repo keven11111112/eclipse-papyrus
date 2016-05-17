@@ -172,7 +172,7 @@
 		<entry
 		      description="Nodes"
 		      id="communication.group.nodes"
-		      kind="stack"
+		      kind="drawer"
 		      label="Nodes"
 		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		      path="/"
