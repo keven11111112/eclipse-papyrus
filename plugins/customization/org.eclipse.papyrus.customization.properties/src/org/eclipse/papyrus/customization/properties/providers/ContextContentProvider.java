@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 485220
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.providers;
 
@@ -18,10 +18,10 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.ui.util.PropertiesUtil;
-import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
 
 /**
  * The customization editor's content provider. Based on the EMF Facet
@@ -35,7 +35,7 @@ public class ContextContentProvider extends CustomizedTreeContentProvider {
 	 * Constructor.
 	 */
 	public ContextContentProvider() {
-		super(ProviderHelper.getCustomizationManager());
+		super(Activator.getDefault().getCustomizationManager());
 	}
 
 	/**
@@ -52,10 +52,10 @@ public class ContextContentProvider extends CustomizedTreeContentProvider {
 				return null;
 			}
 
-			Set<EObject> elements = new LinkedHashSet<EObject>();
+			Set<EObject> elements = new LinkedHashSet<>();
 
 			elements.addAll(resourceSet.getResources().get(0).getContents());
-			Set<Context> allContexts = new LinkedHashSet<Context>();
+			Set<Context> allContexts = new LinkedHashSet<>();
 			for (EObject element : elements) {
 				if (element instanceof Context) {
 					allContexts.addAll(PropertiesUtil.getDependencies((Context) element));

@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 485220
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.providers;
 
@@ -18,7 +18,6 @@ import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.DecoratingCustomizedLabelProvider;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.ResolvingCustomizedLabelProvider;
-import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -33,7 +32,7 @@ public class ContextLabelProvider extends ResolvingCustomizedLabelProvider {
 	 * Constructor.
 	 */
 	public ContextLabelProvider() {
-		super(new DecoratingCustomizedLabelProvider(ProviderHelper.getCustomizationManager()));
+		super(new DecoratingCustomizedLabelProvider(Activator.getDefault().getCustomizationManager()));
 	}
 
 	@Override

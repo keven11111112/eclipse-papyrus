@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 485220
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.providers;
 
@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.infra.properties.environment.Environment;
 import org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider;
-import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 
@@ -41,7 +40,7 @@ public class EnvironmentContentProvider extends SemanticEMFContentProvider imple
 	 *            different environments.
 	 */
 	public EnvironmentContentProvider(EStructuralFeature feature) {
-		super(null, feature, getRoots(feature), ProviderHelper.getCustomizationManager());
+		super(null, feature, getRoots(feature), Activator.getDefault().getCustomizationManager());
 	}
 
 	private static EObject[] getRoots(EStructuralFeature feature) {
@@ -50,7 +49,7 @@ public class EnvironmentContentProvider extends SemanticEMFContentProvider imple
 			return new EObject[0];
 		}
 
-		List<Object> allObjects = new LinkedList<Object>();
+		List<Object> allObjects = new LinkedList<>();
 		for (Environment environment : ConfigurationManager.getInstance().getPropertiesRoot().getEnvironments()) {
 			allObjects.addAll((List<?>) environment.eGet(feature));
 		}

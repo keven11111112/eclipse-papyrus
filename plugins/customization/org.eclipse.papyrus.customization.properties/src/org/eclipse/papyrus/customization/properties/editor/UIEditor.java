@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -100,7 +101,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  */
 public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageContributor, CommandStackListener {
 
-	private Set<Preview> previews = new HashSet<Preview>();
+	private Set<Preview> previews = new HashSet<>();
 
 	private TreeViewer selectionViewer;
 
@@ -287,7 +288,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 			}
 
 			URIHandler handler = resourceSet.getURIConverter().getURIHandler(resource.getURI());
-			Map<String, Object> options = new HashMap<String, Object>();
+			Map<String, Object> options = new HashMap<>();
 			options.put(URIConverter.OPTION_URI_CONVERTER, resourceSet.getURIConverter());
 			try {
 				OutputStream os = handler.createOutputStream(resource.getURI(), options);
@@ -473,6 +474,9 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 				editingDomain = new AdapterFactoryEditingDomain(editingDomain.getAdapterFactory(), editingDomain.getCommandStack(), resourceSet);
 			}
 		}
+
+		ResourceSet resourceSet = editingDomain.getResourceSet();
+		resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_PACKAGE_NS_URI_AS_LOCATION, false);
 
 		super.createModel();
 	}

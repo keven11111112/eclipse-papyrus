@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 485220
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.providers;
 
@@ -19,11 +19,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.ui.util.PropertiesUtil;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider;
-import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 
 /**
@@ -49,12 +49,12 @@ public abstract class AbstractContextualContentProvider extends SemanticEMFConte
 	 *            The EObject used to retrieve the available contexts
 	 */
 	protected AbstractContextualContentProvider(EObject source) {
-		super(findContexts(source).toArray(new Context[0]), ProviderHelper.getCustomizationManager());
+		super(findContexts(source).toArray(new Context[0]), Activator.getDefault().getCustomizationManager());
 		contexts = ListHelper.asList((Context[]) roots);
 	}
 
 	private static List<Context> findContexts(EObject source) {
-		List<Context> contexts = new LinkedList<Context>();
+		List<Context> contexts = new LinkedList<>();
 
 		Context rootContext = null;
 		if (source.eResource() != null) {
