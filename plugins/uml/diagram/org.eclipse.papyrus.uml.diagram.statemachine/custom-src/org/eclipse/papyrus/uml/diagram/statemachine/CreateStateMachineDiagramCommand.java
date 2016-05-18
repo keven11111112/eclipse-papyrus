@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -26,12 +27,16 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateBehavioredClassifierDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineNameEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.ElementInitializers;
@@ -40,6 +45,7 @@ import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Region;
+import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -50,6 +56,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifierDiagramCommand {
 	private StateMachine stateMachine = null;
+	private State state = null;
 	public final static int defaultX = 30;
 	public final static int defaultY = 30;
 	public final static int defaultWidth = 700;
@@ -85,6 +92,40 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 		return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.commands.CreateBehavioredClassifierDiagramCommand#doCreateDiagram(org.eclipse.emf.ecore.resource.Resource, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype, java.lang.String)
+	 *
+	 * @param diagramResource
+	 * @param owner
+	 * @param element
+	 * @param prototype
+	 * @param name
+	 * @return
+	 */
+	@Override
+	protected Diagram doCreateDiagram(Resource diagramResource, EObject owner, EObject element, ViewPrototype prototype, String name) {
+		Diagram diagram = super.doCreateDiagram(diagramResource, owner, element, prototype, name);
+		if (diagram == null) {
+			if (element instanceof State) {
+				diagram = ViewService.createDiagram(element, getDiagramNotationID(), getPreferenceHint());
+			}
+			// create diagram
+			if (diagram != null) {
+				setName(name);
+				diagram.setElement(element);
+				DiagramUtils.setOwner(diagram, owner);
+				if (!prototype.isNatural()) {
+					DiagramUtils.setPrototype(diagram, prototype);
+				}
+				initializeModel(element);
+				initializeDiagram(diagram);
+				diagramResource.getContents().add(diagram);
+			}
+		}
+		return diagram;
+	}
+
 	@Override
 	protected void initializeDiagram(EObject diagram) {
 		if (diagram instanceof Diagram) {
@@ -100,8 +141,7 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 				Iterator<?> it = stateMachineView.getChildren().iterator();
 				while (it.hasNext()) {
 					Object next = it.next();
-					if (next instanceof Node)
-					{
+					if (next instanceof Node) {
 						Node currentNode = (Node) next;
 						if (currentNode.getLayoutConstraint() == null) {
 							currentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -138,6 +178,54 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 					Zone.setWidth(regionNode, defaultWidth);
 					Zone.setHeight(regionNode, defaultHeight - defaultHeader);
 				}
+			} else if (state != null) {
+				diag.setElement(state);
+				View stateMachineView = ViewService.getInstance().createView(Node.class, new EObjectAdapter(state), diag, null, ViewUtil.APPEND, true, getPreferenceHint());
+				Zone.setX(stateMachineView, defaultX);
+				Zone.setY(stateMachineView, defaultY);
+				Zone.setWidth(stateMachineView, defaultWidth);
+				Zone.setHeight(stateMachineView, defaultHeight);
+				View compartmentView = null;
+				Iterator<?> it = stateMachineView.getChildren().iterator();
+				while (it.hasNext()) {
+					Object next = it.next();
+					if (next instanceof Node) {
+						Node currentNode = (Node) next;
+						if (currentNode.getLayoutConstraint() == null) {
+							currentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+						}
+						if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateNameEditPartTN.VISUAL_ID) {
+							Zone.setWidth(currentNode, defaultWidth);
+							Zone.setHeight(currentNode, defaultHeader);
+						} else if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateCompartmentEditPartTN.VISUAL_ID) {
+							Zone.setY(currentNode, defaultHeader);
+							Zone.setWidth(currentNode, defaultWidth);
+							Zone.setHeight(currentNode, defaultHeight - defaultHeader);
+							compartmentView = currentNode;
+						}
+					}
+				}
+				Region region = null;
+				EList<Region> regions = state.getRegions();
+				if (regions.isEmpty()) {
+					region = UMLFactory.eINSTANCE.createRegion();
+					regions.add(region);
+					region.setName(NamedElementUtil.getDefaultNameWithIncrement(region, regions));
+				} else {
+					region = state.getRegions().get(0);
+				}
+				IAdaptable regionAdaptable = new SemanticAdapter(region, null);
+				String semanticHint = ((IHintedType) UMLElementTypes.Region_Shape).getSemanticHint();
+				if (compartmentView != null) {
+					Node regionNode = ViewService.getInstance().createNode(regionAdaptable, compartmentView, semanticHint, -1, getPreferenceHint());
+					if (regionNode.getLayoutConstraint() == null) {
+						regionNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+					}
+					// add region specifics
+					Zone.createRegionDefaultAnnotation(regionNode);
+					Zone.setWidth(regionNode, defaultWidth);
+					Zone.setHeight(regionNode, defaultHeight - defaultHeader);
+				}
 			}
 			diag.setName(getName());
 		}
@@ -147,6 +235,8 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 	protected void initializeModel(EObject owner) {
 		if (owner instanceof StateMachine) {
 			stateMachine = (StateMachine) owner;
+		} else if (owner instanceof State) {
+			state = (State) owner;
 		} else {
 			stateMachine = UMLFactory.eINSTANCE.createStateMachine();
 			if (owner instanceof BehavioredClassifier) {

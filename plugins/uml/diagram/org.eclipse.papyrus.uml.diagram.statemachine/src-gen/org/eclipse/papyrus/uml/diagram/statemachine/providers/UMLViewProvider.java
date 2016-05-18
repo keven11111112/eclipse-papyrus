@@ -110,12 +110,15 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateTermin
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateFloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineNameEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionNameEditPart;
@@ -230,6 +233,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				if(visualID != null) {
 					switch(visualID) {
 					case StateMachineEditPart.VISUAL_ID:
+					case StateEditPartTN.VISUAL_ID:
 					case RegionEditPart.VISUAL_ID:
 					case FinalStateEditPart.VISUAL_ID:
 					case StateEditPart.VISUAL_ID:
@@ -268,11 +272,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateEdgeViewOperation op) {
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
-		
 		if(!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 			return false; // foreign element type
 		}
-		
 		String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
 		if(elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type
@@ -316,6 +318,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			switch(visualID) {
 			case StateMachineEditPart.VISUAL_ID:
 				return createStateMachine_Shape(domainElement, containerView, index, persisted, preferencesHint);
+			case StateEditPartTN.VISUAL_ID:
+				return createState_Shape_TN(domainElement, containerView, index, persisted, preferencesHint);
 			case RegionEditPart.VISUAL_ID:
 				return createRegion_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case FinalStateEditPart.VISUAL_ID:
@@ -404,6 +408,25 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node stateMachine_NameLabel = createLabel(node, UMLVisualIDRegistry.getType(StateMachineNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(StateMachineCompartmentEditPart.VISUAL_ID), false, false, false, false);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "StateMachine");
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createState_Shape_TN(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(StateEditPartTN.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		stampShortcut(containerView, node);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "State");
+		Node state_NameLabel_TN = createLabel(node, UMLVisualIDRegistry.getType(StateNameEditPartTN.VISUAL_ID));
+		createCompartment(node, UMLVisualIDRegistry.getType(StateCompartmentEditPartTN.VISUAL_ID), false, false, false, false);
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "State");
 		return node;
 	}
 

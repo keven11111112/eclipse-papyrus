@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
@@ -61,6 +62,10 @@ public class CustomStateMachineWithDefaultRegionCreateNodeCommand extends Abstra
 			if (UMLVisualIDRegistry.getVisualID(currentView.getType()) == StateMachineCompartmentEditPart.VISUAL_ID) {
 				compartmentView = currentView;
 			}
+		}
+		EObject represented = stateMachineView.getElement() ;
+		if(!(represented instanceof StateMachine)) {
+			return CommandResult.newErrorCommandResult("Impossible to get the state machine to create the region from");
 		}
 		StateMachine stateMachine = (StateMachine) stateMachineView.getElement();
 		Iterator<Region> regions = stateMachine.getRegions().iterator();

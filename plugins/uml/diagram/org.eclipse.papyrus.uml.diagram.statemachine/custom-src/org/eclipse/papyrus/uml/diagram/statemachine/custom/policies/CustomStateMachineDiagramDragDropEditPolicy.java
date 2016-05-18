@@ -97,6 +97,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionCompartment
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionEditPart;
@@ -400,6 +401,24 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 		return UnexecutableCommand.INSTANCE;
 	}
 
+	/**
+	 * Returns the drop command for State nodes on the canvas.
+	 * 
+	 * @param dropRequest
+	 *            the drop request
+	 * @param location
+	 *            the location to drop the element
+	 * @param droppedElement
+	 *            the element to drop
+	 * @param nodeVISUALID
+	 *            the visual identifier of the EditPart of the dropped element
+	 * @return the drop command
+	 */
+	protected Command dropStateEditPartTN(DropObjectsRequest dropRequest, Point location, State semanticElement, String nodeVISUALID) {
+		// by default, never allow state to be dropped on the canvas of the diagram.
+		return UnexecutableCommand.INSTANCE;
+	}
+	
 	/**
 	 * Returns the drop command for State nodes.
 	 * 
@@ -741,6 +760,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 	protected Set<String> getDroppableElementVisualId() {
 		Set<String> droppableElementsVisualId = new HashSet<String>();
 		droppableElementsVisualId.add(StateMachineEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(StateEditPartTN.VISUAL_ID);
 		droppableElementsVisualId.add(StateEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(RegionEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(PseudostateEntryPointEditPart.VISUAL_ID);
@@ -806,6 +826,8 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 			switch (nodeVISUALID) {
 			case StateMachineEditPart.VISUAL_ID:
 				return dropStateMachine(dropRequest, location, (StateMachine) semanticElement, nodeVISUALID);
+			case StateEditPartTN.VISUAL_ID:
+				return dropStateEditPartTN(dropRequest, location, (State) semanticElement, nodeVISUALID);
 			case StateEditPart.VISUAL_ID:
 			case FinalStateEditPart.VISUAL_ID:
 				return dropState(dropRequest, location, (State) semanticElement, nodeVISUALID);

@@ -59,6 +59,20 @@ public class ElementInitializers {
 	}
 
 	/**
+	* @generated
+	*/
+	public void init_State_Shape_TN(State instance) {
+		try {
+			Object value_0 = name_State_Shape_TN(instance);
+			if(value_0 != null) {
+				instance.setName((String)value_0);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
 	 * @generated
 	 */
 	public void init_Region_Shape(Region instance) {
@@ -375,6 +389,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_region_StateMachine_Shape(Region it) {
+		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
+	}
+
+	/**
+	* @generated
+	*/
+	private String name_State_Shape_TN(State it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 

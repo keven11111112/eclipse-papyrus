@@ -28,8 +28,10 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineNameEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;
 
 public class CustomStateMachineSetBoundsCommand extends AbstractTransactionalCommand {
@@ -71,7 +73,7 @@ public class CustomStateMachineSetBoundsCommand extends AbstractTransactionalCom
 				if (currentNode.getLayoutConstraint() == null) {
 					currentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 				}
-				if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateMachineNameEditPart.VISUAL_ID) {
+				if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateMachineNameEditPart.VISUAL_ID ||UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateNameEditPartTN.VISUAL_ID ) {
 					if ((size != null) && !size.equals(-1, -1)) {
 						Zone.setWidth(currentNode, size.width);
 						Zone.setHeight(currentNode, Zone.defaultHeader);
@@ -79,7 +81,7 @@ public class CustomStateMachineSetBoundsCommand extends AbstractTransactionalCom
 						Zone.setWidth(currentNode, Zone.defaultWidth);
 						Zone.setHeight(currentNode, Zone.defaultHeader);
 					}
-				} else if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateMachineCompartmentEditPart.VISUAL_ID) {
+				} else if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateMachineCompartmentEditPart.VISUAL_ID || UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateCompartmentEditPartTN.VISUAL_ID) {
 					Zone.setY(currentNode, Zone.defaultHeader);
 					if ((size != null) && !size.equals(-1, -1)) {
 						Zone.setWidth(currentNode, size.width);

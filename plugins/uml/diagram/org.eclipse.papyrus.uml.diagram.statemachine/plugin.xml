@@ -158,7 +158,7 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLStateMachineDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="StateMachine_Shape,Region_Shape,FinalState_Shape,State_Shape,Pseudostate_InitialShape,Pseudostate_JoinShape,Pseudostate_ForkShape,Pseudostate_ChoiceShape,Pseudostate_JunctionShape,Pseudostate_ShallowHistoryShape,Pseudostate_DeepHistoryShape,Pseudostate_TerminateShape,Pseudostate_EntryPointShape,Pseudostate_ExitPointShape,ConnectionPointReference_Shape,Comment_Shape,Constraint_Shape,Transition_InternalTransitionLabel,Behavior_EntryBehaviorLabel,Behavior_DoActivityBehaviorLabel,Behavior_ExitBehaviorLabel"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="StateMachine_Shape,State_Shape_TN,Region_Shape,FinalState_Shape,State_Shape,Pseudostate_InitialShape,Pseudostate_JoinShape,Pseudostate_ForkShape,Pseudostate_ChoiceShape,Pseudostate_JunctionShape,Pseudostate_ShallowHistoryShape,Pseudostate_DeepHistoryShape,Pseudostate_TerminateShape,Pseudostate_EntryPointShape,Pseudostate_ExitPointShape,ConnectionPointReference_Shape,Comment_Shape,Constraint_Shape,Transition_InternalTransitionLabel,Behavior_EntryBehaviorLabel,Behavior_DoActivityBehaviorLabel,Behavior_ExitBehaviorLabel"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Transition_Edge,Generalization_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Constraint_ContextEdge"/>
       </viewProvider>
    </extension>
@@ -171,16 +171,16 @@
             <method name="getType()" value="PapyrusUMLStateMachineDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="StateMachine_Shape,Region_Shape,FinalState_Shape,State_Shape,Pseudostate_InitialShape,Pseudostate_JoinShape,Pseudostate_ForkShape,Pseudostate_ChoiceShape,Pseudostate_JunctionShape,Pseudostate_ShallowHistoryShape,Pseudostate_DeepHistoryShape,Pseudostate_TerminateShape,Pseudostate_EntryPointShape,Pseudostate_ExitPointShape,ConnectionPointReference_Shape,Comment_Shape,Constraint_Shape,Transition_InternalTransitionLabel,Behavior_EntryBehaviorLabel,Behavior_DoActivityBehaviorLabel,Behavior_ExitBehaviorLabel"/>
+            <method name="getType()" value="StateMachine_Shape,State_Shape_TN,Region_Shape,FinalState_Shape,State_Shape,Pseudostate_InitialShape,Pseudostate_JoinShape,Pseudostate_ForkShape,Pseudostate_ChoiceShape,Pseudostate_JunctionShape,Pseudostate_ShallowHistoryShape,Pseudostate_DeepHistoryShape,Pseudostate_TerminateShape,Pseudostate_EntryPointShape,Pseudostate_ExitPointShape,ConnectionPointReference_Shape,Comment_Shape,Constraint_Shape,Transition_InternalTransitionLabel,Behavior_EntryBehaviorLabel,Behavior_DoActivityBehaviorLabel,Behavior_ExitBehaviorLabel"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="Transition_Edge,Generalization_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Constraint_ContextEdge"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="StateMachine_NameLabel,FinalState_FloatingNameLabel,FinalState_StereotypeLabel,State_NameLabel,State_FloatingNameLabel,Pseudostate_InitialFloatingNameLabel,Pseudostate_InitialStereotypeLabel,Pseudostate_JoinFloatingNameLabel,Pseudostate_JoinStereotypeLabel,Pseudostate_ForkFloatingNameLabel,Pseudostate_ForkStereotypeLabel,Pseudostate_ChoiceFloatingNameLabel,Pseudostate_ChoiceStereotypeLabel,Pseudostate_JunctionFloatingNameLabel,Pseudostate_JunctionStereotypeLabel,Pseudostate_ShallowHistoryFloatingNameLabel,Pseudostate_ShallowHistoryStereotypeLabel,Pseudostate_DeepHistoryFloatingNameLabel,Pseudostate_DeepHistoryStereotypeLabel,Pseudostate_TerminateFloatingNameLabel,Pseudostate_TerminateStereotypeLabel,Pseudostate_EntryPointFloatingNameLabel,Pseudostate_EntryPointStereotypeLabel,Pseudostate_ExitPointFloatingNameLabel,Pseudostate_ExitPointStereotypeLabel,ConnectionPointReference_NameLabel,ConnectionPointReference_StereotypeLabel,Comment_BodyLabel,Constraint_NameLabel,Constraint_BodyLabel"/>
+            <method name="getType()" value="StateMachine_NameLabel,State_NameLabel_TN,FinalState_FloatingNameLabel,FinalState_StereotypeLabel,State_NameLabel,State_FloatingNameLabel,Pseudostate_InitialFloatingNameLabel,Pseudostate_InitialStereotypeLabel,Pseudostate_JoinFloatingNameLabel,Pseudostate_JoinStereotypeLabel,Pseudostate_ForkFloatingNameLabel,Pseudostate_ForkStereotypeLabel,Pseudostate_ChoiceFloatingNameLabel,Pseudostate_ChoiceStereotypeLabel,Pseudostate_JunctionFloatingNameLabel,Pseudostate_JunctionStereotypeLabel,Pseudostate_ShallowHistoryFloatingNameLabel,Pseudostate_ShallowHistoryStereotypeLabel,Pseudostate_DeepHistoryFloatingNameLabel,Pseudostate_DeepHistoryStereotypeLabel,Pseudostate_TerminateFloatingNameLabel,Pseudostate_TerminateStereotypeLabel,Pseudostate_EntryPointFloatingNameLabel,Pseudostate_EntryPointStereotypeLabel,Pseudostate_ExitPointFloatingNameLabel,Pseudostate_ExitPointStereotypeLabel,ConnectionPointReference_NameLabel,ConnectionPointReference_StereotypeLabel,Comment_BodyLabel,Constraint_NameLabel,Constraint_BodyLabel"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="Region_SubvertexCompartment,StateMachine_RegionCompartment,State_RegionCompartment"/>
+            <method name="getType()" value="Region_SubvertexCompartment,StateMachine_RegionCompartment,State_RegionCompartment,State_RegionCompartment_TN"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -726,6 +726,10 @@
 				type="State_RegionCompartment">
 			</mapping>
 			<mapping
+				humanReadableType="State"
+				type="State_RegionCompartment_TN">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="FinalState_FloatingNameLabel">
 			</mapping>
@@ -840,4 +844,18 @@
          label="Owned state machine hyperlinks">
    </contributor>
 </extension>
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="org.eclipse.papyrus.uml.diagram.statemachine.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="org.eclipse.papyrus.uml.diagram.statemachine.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="org.eclipse.papyrus.uml.diagram.statemachine.TypeContext">
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+
 </plugin>

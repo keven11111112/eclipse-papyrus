@@ -5,6 +5,9 @@
       <modelRules xmi:id="_PwD0cXDvEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
       </modelRules>
+      <modelRules xmi:id="_H-oCgB0UEea_bcpknMJ7-w">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//State"/>
+      </modelRules>
       <owningRules xmi:id="_PwD0cnDvEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
       </owningRules>
@@ -31,6 +34,9 @@
         <newModelPath xmi:id="_PwD0enDvEeWh-MssWmCB_A" creationType="org.eclipse.papyrus.uml.ProtocolStateMachine">
           <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Interface/protocol"/>
         </newModelPath>
+      </owningRules>
+      <owningRules xmi:id="_5kmMcB0UEea_bcpknMJ7-w">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//State"/>
       </owningRules>
       <categories href="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration#_7wNb4txhEeOqHvRyiN87hA"/>
       <childRules xmi:id="_PwD0e3DvEeWh-MssWmCB_A"/>

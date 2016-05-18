@@ -50,7 +50,9 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateTermin
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionEditPart;
@@ -103,6 +105,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getPackage_StateMachineDiagram_SemanticChildren(view);
 			case StateMachineEditPart.VISUAL_ID:
 				return getStateMachine_Shape_SemanticChildren(view);
+			case StateEditPartTN.VISUAL_ID:
+				return getState_Shape_TN_SemanticChildren(view);
 			case StateEditPart.VISUAL_ID:
 				return getState_Shape_SemanticChildren(view);
 			case RegionCompartmentEditPart.VISUAL_ID:
@@ -111,6 +115,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getStateMachine_RegionCompartment_SemanticChildren(view);
 			case StateCompartmentEditPart.VISUAL_ID:
 				return getState_RegionCompartment_SemanticChildren(view);
+			case StateCompartmentEditPartTN.VISUAL_ID:
+				return getState_RegionCompartment_TN_SemanticChildren(view);
 			}
 		}
 		return Collections.emptyList();
@@ -133,6 +139,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 		}
+		{
+			Namespace childElement = modelElement.getNamespace();
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(StateEditPartTN.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+		}
 		return result;
 	}
 
@@ -144,6 +157,30 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			return Collections.emptyList();
 		}
 		StateMachine modelElement = (StateMachine)view.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
+			Pseudostate childElement = (Pseudostate)it.next();
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(PseudostateEntryPointEditPart.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(PseudostateExitPointEditPart.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	* @generated
+	*/
+	public List<UMLNodeDescriptor> getState_Shape_TN_SemanticChildren(View view) {
+		if(!view.isSetElement()) {
+			return Collections.emptyList();
+		}
+		State modelElement = (State)view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		for(Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
 			Pseudostate childElement = (Pseudostate)it.next();
@@ -306,6 +343,42 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
+	* @generated
+	*/
+	public List<UMLNodeDescriptor> getState_RegionCompartment_TN_SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		State modelElement = (State)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getRegions().iterator(); it.hasNext();) {
+			Region childElement = (Region)it.next();
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(RegionEditPart.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
+			Pseudostate childElement = (Pseudostate)it.next();
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(PseudostateEntryPointEditPart.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(PseudostateExitPointEditPart.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
 	 * @generated
 	 */
 	@Override
@@ -317,6 +390,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getPackage_StateMachineDiagram_ContainedLinks(view);
 			case StateMachineEditPart.VISUAL_ID:
 				return getStateMachine_Shape_ContainedLinks(view);
+			case StateEditPartTN.VISUAL_ID:
+				return getState_Shape_TN_ContainedLinks(view);
 			case RegionEditPart.VISUAL_ID:
 				return getRegion_Shape_ContainedLinks(view);
 			case FinalStateEditPart.VISUAL_ID:
@@ -376,6 +451,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			switch(vid) {
 			case StateMachineEditPart.VISUAL_ID:
 				return getStateMachine_Shape_IncomingLinks(view);
+			case StateEditPartTN.VISUAL_ID:
+				return getState_Shape_TN_IncomingLinks(view);
 			case RegionEditPart.VISUAL_ID:
 				return getRegion_Shape_IncomingLinks(view);
 			case FinalStateEditPart.VISUAL_ID:
@@ -435,6 +512,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			switch(vid) {
 			case StateMachineEditPart.VISUAL_ID:
 				return getStateMachine_Shape_OutgoingLinks(view);
+			case StateEditPartTN.VISUAL_ID:
+				return getState_Shape_TN_OutgoingLinks(view);
 			case RegionEditPart.VISUAL_ID:
 				return getRegion_Shape_OutgoingLinks(view);
 			case FinalStateEditPart.VISUAL_ID:
@@ -499,6 +578,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
 		return result;
+	}
+
+	/**
+	* @generated
+	*/
+	public List<UMLLinkDescriptor> getState_Shape_TN_ContainedLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
@@ -682,6 +768,20 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
+		return result;
+	}
+
+	/**
+	* @generated
+	*/
+	public List<UMLLinkDescriptor> getState_Shape_TN_IncomingLinks(View view) {
+		State modelElement = (State)view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
@@ -956,6 +1056,16 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		StateMachine modelElement = (StateMachine)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
+		return result;
+	}
+
+	/**
+	* @generated
+	*/
+	public List<UMLLinkDescriptor> getState_Shape_TN_OutgoingLinks(View view) {
+		State modelElement = (State)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 

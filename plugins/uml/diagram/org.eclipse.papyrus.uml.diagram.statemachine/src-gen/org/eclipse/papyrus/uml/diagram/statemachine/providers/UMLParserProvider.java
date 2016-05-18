@@ -66,6 +66,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateTermin
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateFloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineNameEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionNameEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionStereotypeEditPart;
@@ -93,6 +94,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			stateMachine_NameLabel_Parser = parser;
 		}
 		return stateMachine_NameLabel_Parser;
+	}
+
+	/**
+	* @generated
+	*/
+	private IParser state_NameLabel_TN_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getState_NameLabel_TN_Parser() {
+		if(state_NameLabel_TN_Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			state_NameLabel_TN_Parser = parser;
+		}
+		return state_NameLabel_TN_Parser;
 	}
 
 	/**
@@ -695,6 +713,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			switch(visualID) {
 			case StateMachineNameEditPart.VISUAL_ID:
 				return getStateMachine_NameLabel_Parser();
+			case StateNameEditPartTN.VISUAL_ID:
+				return getState_NameLabel_TN_Parser();
 			case FinalStateFloatingLabelEditPart.VISUAL_ID:
 				return getFinalState_FloatingNameLabel_Parser();
 			case FinalStateStereotypeEditPart.VISUAL_ID:

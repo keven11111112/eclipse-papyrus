@@ -48,6 +48,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateShallo
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateTerminateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
@@ -89,6 +90,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType StateMachine_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.StateMachine_Shape"); //$NON-NLS-1$
+
+	/**
+	* @generated
+	*/
+	public static final IElementType State_Shape_TN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.State_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -254,6 +260,7 @@ public class UMLElementTypes {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 			elements.put(Package_StateMachineDiagram, UMLPackage.eINSTANCE.getPackage());
 			elements.put(StateMachine_Shape, UMLPackage.eINSTANCE.getStateMachine());
+			elements.put(State_Shape_TN, UMLPackage.eINSTANCE.getState());
 			elements.put(Region_Shape, UMLPackage.eINSTANCE.getRegion());
 			elements.put(FinalState_Shape, UMLPackage.eINSTANCE.getFinalState());
 			elements.put(State_Shape, UMLPackage.eINSTANCE.getState());
@@ -300,6 +307,8 @@ public class UMLElementTypes {
 				return Package_StateMachineDiagram;
 			case StateMachineEditPart.VISUAL_ID:
 				return StateMachine_Shape;
+			case StateEditPartTN.VISUAL_ID:
+				return State_Shape_TN;
 			case RegionEditPart.VISUAL_ID:
 				return Region_Shape;
 			case FinalStateEditPart.VISUAL_ID:
@@ -363,6 +372,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Package_StateMachineDiagram);
 			KNOWN_ELEMENT_TYPES.add(StateMachine_Shape);
+			KNOWN_ELEMENT_TYPES.add(State_Shape_TN);
 			KNOWN_ELEMENT_TYPES.add(Region_Shape);
 			KNOWN_ELEMENT_TYPES.add(FinalState_Shape);
 			KNOWN_ELEMENT_TYPES.add(State_Shape);

@@ -70,12 +70,15 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateTermin
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateFloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineNameEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionNameEditPart;
@@ -180,8 +183,19 @@ public class UMLVisualIDRegistry {
 				if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
 					return StateMachineEditPart.VISUAL_ID;
 				}
+				if(UMLPackage.eINSTANCE.getState().isSuperTypeOf(domainElement.eClass())) {
+					return StateEditPartTN.VISUAL_ID;
+				}
 				break;
 			case StateMachineEditPart.VISUAL_ID:
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_EntryPointShape(containerView, (Pseudostate)domainElement)) {
+					return PseudostateEntryPointEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_ExitPointShape(containerView, (Pseudostate)domainElement)) {
+					return PseudostateExitPointEditPart.VISUAL_ID;
+				}
+				break;
+			case StateEditPartTN.VISUAL_ID:
 				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_EntryPointShape(containerView, (Pseudostate)domainElement)) {
 					return PseudostateEntryPointEditPart.VISUAL_ID;
 				}
@@ -278,6 +292,17 @@ public class UMLVisualIDRegistry {
 					return ConnectionPointReferenceEditPart.VISUAL_ID;
 				}
 				break;
+			case StateCompartmentEditPartTN.VISUAL_ID:
+				if(UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())) {
+					return RegionEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_EntryPointShape(containerView, (Pseudostate)domainElement)) {
+					return PseudostateEntryPointEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_ExitPointShape(containerView, (Pseudostate)domainElement)) {
+					return PseudostateExitPointEditPart.VISUAL_ID;
+				}
+				break;
 			}
 		}
 		return null;
@@ -307,12 +332,29 @@ public class UMLVisualIDRegistry {
 				if(StateMachineEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
+				if(StateEditPartTN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
 				break;
 			case StateMachineEditPart.VISUAL_ID:
 				if(StateMachineNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				if(StateMachineCompartmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateEntryPointEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateExitPointEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case StateEditPartTN.VISUAL_ID:
+				if(StateNameEditPartTN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(StateCompartmentEditPartTN.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				if(PseudostateEntryPointEditPart.VISUAL_ID.equals(nodeVisualID)) {
@@ -531,6 +573,17 @@ public class UMLVisualIDRegistry {
 					return true;
 				}
 				if(ConnectionPointReferenceEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case StateCompartmentEditPartTN.VISUAL_ID:
+				if(RegionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateEntryPointEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateExitPointEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -761,6 +814,7 @@ public class UMLVisualIDRegistry {
 			case RegionCompartmentEditPart.VISUAL_ID:
 			case StateMachineCompartmentEditPart.VISUAL_ID:
 			case StateCompartmentEditPart.VISUAL_ID:
+			case StateCompartmentEditPartTN.VISUAL_ID:
 				return true;
 			}
 		}

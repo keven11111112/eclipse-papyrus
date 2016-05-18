@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomStateMachineResizeCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomStateMachineSetBoundsCommand;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineEditPart;
 
 public class CustomPackageXYLayoutEditPolicy extends XYLayoutEditPolicy {
@@ -57,7 +58,7 @@ public class CustomPackageXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		if ((request == null) || (child == null) || (constraint == null)) {
 			throw new IllegalArgumentException();
 		}
-		if (child instanceof StateMachineEditPart) {
+		if (child instanceof StateMachineEditPart || child instanceof StateEditPartTN) {
 			View stateMachine = (View) child.getModel();
 			// retrieve the deltas of the resize request
 			int dx = request.getSizeDelta().width;
@@ -85,7 +86,7 @@ public class CustomPackageXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	protected EditPolicy createChildEditPolicy(EditPart child) {
 		// specific resize edit policy which correct ghost figure management by
 		// GMF
-		if (child instanceof StateMachineEditPart) {
+		if (child instanceof StateMachineEditPart || child instanceof StateEditPartTN) {
 			ResizableEditPolicy policy = new ResizableEditPolicy() {
 				@Override
 				public void eraseSourceFeedback(Request request) {

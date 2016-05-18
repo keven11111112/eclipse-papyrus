@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomStateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomStateEditPartTN;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 
 public class CustomStateResizeCommand extends AbstractTransactionalCommand {
@@ -63,7 +64,10 @@ public class CustomStateResizeCommand extends AbstractTransactionalCommand {
 		View state = (View) adaptable.getAdapter(View.class);
 		View stateLabel = (View) state.getChildren().get(0);
 		View stateCompartment = CustomStateEditPart.getStateCompartmentView(state);
-
+		if(stateCompartment == null) {
+			// try this time as a CustomStateEditPartTN
+			stateCompartment = CustomStateEditPartTN.getStateCompartmentView(state);
+		}
 		// a bunch of initializations
 		int direction = request.getResizeDirection();
 		int dx = request.getSizeDelta().width;
