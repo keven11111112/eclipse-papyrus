@@ -8,7 +8,7 @@ location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R2015082
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.6.0/S201605040534" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.6.0/S201605170659" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -52,13 +52,13 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6M7-201604280800/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6RC1-201605121000/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("MDT OCL 6.0",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201605021517" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201605161213" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -71,7 +71,7 @@ location xwt "http://download.eclipse.org/xwt/release-1.2.0" {
 
 //updateFrom("Xtext, Xtend",0) 
 
-location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201604290858/" {
+location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201605170305/" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
