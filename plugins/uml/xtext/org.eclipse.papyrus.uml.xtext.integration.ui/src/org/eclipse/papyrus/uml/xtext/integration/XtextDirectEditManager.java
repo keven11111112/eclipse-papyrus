@@ -51,8 +51,8 @@ import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
-import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
 import org.eclipse.papyrus.uml.xtext.integration.core.IXtextFakeContextResourcesProvider;
+import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
 import org.eclipse.papyrus.uml.xtext.integration.ui.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
@@ -137,8 +137,21 @@ public class XtextDirectEditManager extends DirectEditManagerEx {
 
 	private IXtextFakeContextResourcesProvider fakeProvider;
 
-	private static final int LABEL_MIN_WIDTH = 50;
+	/**
+	 * Minimum width and height for a single-line (no wrap) editor
+	 */
+	protected static final int LABEL_MIN_WIDTH = 50;
+	protected static final int LABEL_MIN_HEIGHT = 10;
 
+	/**
+	 * Minimum width and height for a multi-line (wrap) editor
+	 */
+	protected static final int LABEL_MIN_WIDTH_ML = 150;
+	protected static final int LABEL_MIN_HEIGHT_ML = 100;
+
+	/**
+	 * 
+	 */
 	private IContextElementProvider contextProvider;
 
 	/**
@@ -229,16 +242,11 @@ public class XtextDirectEditManager extends DirectEditManagerEx {
 						// calls below that use the font will result in an
 						// exception.
 						if (label.isTextWrapOn()) {
-							// When zoomed in, the height of this rectangle is
-							// not
-							// sufficient because the text is shifted downwards
-							// a
-							// little bit. Add some to the height to compensate
-							// for
-							// this. I'm not sure why this is happening, but I
-							// can
-							// see the text shifting down even in a label on a
-							// GEF
+							// When zoomed in, the height of this rectangle is not
+							// sufficient because the text is shifted downwards a
+							// little bit. Add some to the height to compensate for
+							// this. I'm not sure why this is happening, but I can
+							// see the text shifting down even in a label on a GEF
 							// logic diagram when zoomed into 400%.
 							int charHeight = org.eclipse.draw2d.FigureUtilities.getFontMetrics(
 									text.getFont()).getHeight();
@@ -277,11 +285,24 @@ public class XtextDirectEditManager extends DirectEditManagerEx {
 			public void relocate(CellEditor celleditor) {
 				StyledText text = (StyledText) celleditor.getControl();
 				Rectangle rect = source.getFigure().getBounds().getCopy();
-				// Added min width because it looks silly if the label has a
-				// width of 0
-				rect.width = Math.max(rect.width, LABEL_MIN_WIDTH);
+
+				// Set minimum width and height. Distinguish between multi-line editor and standard
+				// one, see bug 493510 - [State machine diagram] transition editor window is too small
+				int labelMinWidth;
+				int labelMinHeight;
+				if ((celleditor.getStyle() & SWT.WRAP) != 0) {
+					labelMinWidth = LABEL_MIN_WIDTH_ML;
+					labelMinHeight = LABEL_MIN_HEIGHT_ML;
+				}
+				else {
+					labelMinWidth = LABEL_MIN_WIDTH;
+					labelMinHeight = LABEL_MIN_HEIGHT;
+				}
+				rect.width = Math.max(rect.width, labelMinWidth);
+				rect.height = Math.max(rect.height, labelMinHeight);
+
 				if (!text.isDisposed() && text.getFont() != null && !text.getFont().isDisposed()) {
-					Dimension fontMetrics = TextUtilities.INSTANCE.getTextExtents("a", text.getFont()).getCopy();
+					Dimension fontMetrics = TextUtilities.INSTANCE.getTextExtents("a", text.getFont()).getCopy(); //$NON-NLS-1$
 					source.getFigure().translateToRelative(fontMetrics);
 					rect.height = Math.max(rect.height, fontMetrics.height * text.getLineCount());
 				}
@@ -298,16 +319,16 @@ public class XtextDirectEditManager extends DirectEditManagerEx {
 							break;
 						case PositionConstants.RIGHT:
 							text.setAlignment(SWT.RIGHT);
-							if (rect.width <= LABEL_MIN_WIDTH) {
-								text.setBounds(source.getFigure().getBounds().getTopRight().x - LABEL_MIN_WIDTH, rect.y, rect.width, rect.height);
+							if (rect.width <= labelMinWidth) {
+								text.setBounds(source.getFigure().getBounds().getTopRight().x - labelMinWidth, rect.y, rect.width, rect.height);
 							} else {
 								text.setBounds(rect.x, rect.y, rect.width, rect.height);
 							}
 							break;
 						case PositionConstants.CENTER:
 							text.setAlignment(SWT.CENTER);
-							if (rect.width <= LABEL_MIN_WIDTH) {
-								text.setBounds(source.getFigure().getBounds().x + source.getFigure().getBounds().width / 2 - LABEL_MIN_WIDTH / 2, rect.y, rect.width, rect.height);
+							if (rect.width <= labelMinWidth) {
+								text.setBounds(source.getFigure().getBounds().x + source.getFigure().getBounds().width / 2 - labelMinWidth / 2, rect.y, rect.width, rect.height);
 							} else {
 								text.setBounds(rect.x, rect.y, rect.width, rect.height);
 							}
@@ -415,8 +436,7 @@ public class XtextDirectEditManager extends DirectEditManagerEx {
 		text.setFont(getScaledFont(label));
 
 		// Hook the cell editor's copy/paste actions to the actionBars so that
-		// they can
-		// be invoked via keyboard shortcuts.
+		// they can be invoked via keyboard shortcuts.
 		IActionBars editorActionBars = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getActivePage().getActiveEditor().getEditorSite()
 				.getActionBars();
