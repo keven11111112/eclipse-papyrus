@@ -13,29 +13,22 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.requirements.sysml.matrix.verifiedBy.config.cellmanager;
+package org.eclipse.papyrus.requirements.sysml.matrix.refinedBy.config.cellmanager;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-//import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
-import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.requirements.sysml.common.I_SysMLStereotype;
 import org.eclipse.papyrus.requirements.sysml.matrix.common.helpers.Helper;
-import org.eclipse.papyrus.requirements.sysml.matrix.verifiedBy.config.Activator;
+import org.eclipse.papyrus.requirements.sysml.matrix.refinedBy.config.Activator;
+import org.eclipse.papyrus.requirements.sysml.traceability.commands.RefinementCreateCommand;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Element;
@@ -43,9 +36,8 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
-@SuppressWarnings("deprecation")
-public class VerifiedByMatrixCellManager extends AbstractCellManager {
-	public static final String CELL_MANAGER_ID = Activator.PLUGIN_ID + ".cellmanager.VerifiedByMatrixCellManager";
+public class RefinedByMatrixCellManager extends AbstractCellManager {
+	public static final String CELL_MANAGER_ID = Activator.PLUGIN_ID + ".cellmanager.RefinedByMatrixCellManager";
 
 	@Override
 	public boolean handles(Object columnElement, Object rowElement) {
@@ -57,7 +49,7 @@ public class VerifiedByMatrixCellManager extends AbstractCellManager {
 			AxisManagerRepresentation manager = axis.getManager();
 			TableConfiguration conf = (TableConfiguration) manager.eContainer().eContainer();
 			String tableName = conf.getName();
-			if (!tableName.equals("VerifiedByMatrix")) {
+			if (!tableName.equals("RefinedByMatrix")) {
 				return false;
 			}
 		}
@@ -82,7 +74,7 @@ public class VerifiedByMatrixCellManager extends AbstractCellManager {
 			Element colUMLElement = (Element) column;
 			if (UMLUtil.getStereotypeApplication(colUMLElement, Requirement.class) != null) {
 				Stereotype reqStereotype = colUMLElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
-				Object listOfObjectsThatSatisfyRequirement = colUMLElement.getValue(reqStereotype, "verifiedBy");
+				Object listOfObjectsThatSatisfyRequirement = colUMLElement.getValue(reqStereotype, I_SysMLStereotype.REQUIREMENT_REFINEDBY_ATT);
 				if (listOfObjectsThatSatisfyRequirement instanceof EList<?>) {
 					@SuppressWarnings("unchecked")
 					EList<EObject> list = (EList<EObject>) listOfObjectsThatSatisfyRequirement;
@@ -112,21 +104,15 @@ public class VerifiedByMatrixCellManager extends AbstractCellManager {
 			if (Boolean.FALSE.equals(newValue)) {
 				if (UMLUtil.getStereotypeApplication(colUMLElement, Requirement.class) != null) {
 					Helper.deleteRelationshipInIntersection(domain, row, colUMLElement,
-							I_SysMLStereotype.REQUIREMENT_STEREOTYPE, I_SysMLStereotype.REQUIREMENT_VERIFIEDBY_ATT,
-							I_SysMLStereotype.VERIFY_STEREOTYPE);
+							I_SysMLStereotype.REQUIREMENT_STEREOTYPE, I_SysMLStereotype.REQUIREMENT_REFINEDBY_ATT,
+							"StandardProfile::Refine");
 				}
 			} else if (Boolean.TRUE.equals(newValue)
 					|| (newValue instanceof Abstraction && ((Abstraction) newValue).eContainer() == null)) {
-				IElementType type = ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.sysml.Verify");
 				if (row instanceof Element) {
-					Element container = ((Element) row).getNearestPackage();
-					CreateRelationshipRequest request = new CreateRelationshipRequest(domain, container, (EObject) row,
-							colUMLElement, type);
-					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(container);
-					ICommand cmd = provider.getEditCommand(request);
-					if (cmd != null && cmd.canExecute()) {
-						domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
-					}
+					RefinementCreateCommand refinementCreateCommand = new RefinementCreateCommand(domain,
+							(NamedElement) (EObject) row, (NamedElement) colUMLElement);
+					refinementCreateCommand.execute();
 				}
 			}
 		}

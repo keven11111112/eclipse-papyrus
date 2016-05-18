@@ -42,8 +42,8 @@ public class SameStereotypeCellManager extends AbstractCellManager {
 				ITreeItemAxis axis = (ITreeItemAxis) rowElement;
 				AxisManagerRepresentation manager = axis.getManager();
 				TableConfiguration conf = (TableConfiguration) manager.eContainer().eContainer();
-				String type = conf.getType();
-				if (!type.equals("SatisfyMatrix") && !type.equals("VerifiedByMatrix")) {
+				String tableName = conf.getName();
+				if (!tableName.equals("SatisfyMatrix") && !tableName.equals("VerifiedByMatrix")) {
 					return false;
 				}
 			}

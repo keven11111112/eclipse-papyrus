@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration:PapyrusConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmi:id="_ko07IErbEeSdQKzSRatBjg">
+  <viewpoints xsi:type="configuration:PapyrusViewpoint" xmi:id="_xogdoErbEeSdQKzSRatBjg" name="Default Papyrus Viewpoint">
+    <modelKinds xsi:type="configuration:PapyrusSyncTable" xmi:id="_lTE0gHDwEeWh-MssWmCB_A" name="Papyrus Req - RefinedBy Matrix" icon="platform:/plugin/org.eclipse.papyrus.requirements.common.ui/images/Papyrus_Req_logo_16x16.png" implementationID="RefinedByMatrix">
+      <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      <modelRules xmi:id="_lTE0gXDwEeWh-MssWmCB_A">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </modelRules>
+      <modelRules xmi:id="_lTE0gnDwEeWh-MssWmCB_A">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        <stereotypes href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements/Requirement"/>
+      </modelRules>
+      <owningRules xmi:id="_lTE0g3DwEeWh-MssWmCB_A">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </owningRules>
+      <categories href="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration#_7wNb49xhEeOqHvRyiN87hA"/>
+    </modelKinds>
+  </viewpoints>
+  <defaultStakeholder href="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration#_7wLmkdxhEeOqHvRyiN87hA"/>
+  <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+</configuration:PapyrusConfiguration>

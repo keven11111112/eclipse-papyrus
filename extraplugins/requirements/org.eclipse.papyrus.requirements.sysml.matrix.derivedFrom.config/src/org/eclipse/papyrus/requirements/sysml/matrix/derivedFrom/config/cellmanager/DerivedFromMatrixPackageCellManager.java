@@ -35,8 +35,8 @@ public class DerivedFromMatrixPackageCellManager extends AbstractCellManager {
 			ITreeItemAxis axis = (ITreeItemAxis) rowElement;
 			AxisManagerRepresentation manager = axis.getManager();
 			TableConfiguration conf = (TableConfiguration) manager.eContainer().eContainer();
-			String type = conf.getType();
-			if (!type.equals("DerivedFromMatrix")) {
+			String tableName = conf.getName();
+			if (!tableName.equals("DerivedFromMatrix")) {
 				return false;
 			}
 		}

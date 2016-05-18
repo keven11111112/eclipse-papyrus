@@ -55,8 +55,8 @@ public class SatisfyMatrixCellManager extends AbstractCellManager {
 			ITreeItemAxis axis = (ITreeItemAxis) rowElement;
 			AxisManagerRepresentation manager = axis.getManager();
 			TableConfiguration conf = (TableConfiguration) manager.eContainer().eContainer();
-			String type = conf.getType();
-			if (!type.equals("SatisfyMatrix")) {
+			String tableName = conf.getName();
+			if (!tableName.equals("SatisfyMatrix")) {
 				return false;
 			}
 		}
@@ -81,7 +81,7 @@ public class SatisfyMatrixCellManager extends AbstractCellManager {
 			Element colUMLElement = (Element) column;
 			if (UMLUtil.getStereotypeApplication(colUMLElement, Requirement.class) != null) {
 				Stereotype reqStereotype = colUMLElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
-				Object listOfObjectsThatSatisfyRequirement = colUMLElement.getValue(reqStereotype, "satisfiedBy");
+				Object listOfObjectsThatSatisfyRequirement = colUMLElement.getValue(reqStereotype, I_SysMLStereotype.REQUIREMENT_SATISFIEDBY_ATT);
 				if (listOfObjectsThatSatisfyRequirement instanceof EList<?>) {
 					@SuppressWarnings("unchecked")
 					EList<EObject> list = (EList<EObject>) listOfObjectsThatSatisfyRequirement;

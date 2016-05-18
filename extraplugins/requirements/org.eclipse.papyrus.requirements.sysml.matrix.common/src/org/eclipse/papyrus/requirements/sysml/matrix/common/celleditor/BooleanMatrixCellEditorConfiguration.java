@@ -69,9 +69,7 @@ public class BooleanMatrixCellEditorConfiguration implements ICellAxisConfigurat
 	 */
 	@Override
 	public boolean handles(Table table, Object axisElement) {
-		if (table.getTableConfiguration().getType().equals("VerifiedByMatrix")||
-				table.getTableConfiguration().getType().equals("SatisfyMatrix")||
-				table.getTableConfiguration().getType().equals("DerivedFromMatrix")) {
+		if (table.getTableConfiguration().getType().equals("RequirementsBooleanMatrix")) {
 			Object repElement = AxisUtils.getRepresentedElement(axisElement);
 			Element colUMLElement = (Element) repElement;
 			if (UMLUtil.getStereotypeApplication(colUMLElement, Requirement.class) != null) {

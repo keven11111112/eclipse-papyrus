@@ -13,7 +13,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.celleditor;
+package org.eclipse.papyrus.requirements.sysml.matrix.refinedBy.config.celleditor;
 
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
@@ -26,18 +26,19 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.painter.CustomCheckBoxPainter;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.requirements.sysml.common.I_SysMLStereotype;
+import org.eclipse.papyrus.requirements.sysml.matrix.refinedBy.config.Activator;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
-public class SatisfiedByCellEditorConfiguration implements ICellAxisConfiguration {
+public class RefinedByMatrixCellEditorConfiguration implements ICellAxisConfiguration {
 	/**
 	 * the id of this editor
 	 */
-	private static final String ID = "org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config.celleditor.SatisfyByCellEditorConfiguration.CheckBox";//$NON-NLS-1$
-	
-	
+	private static final String ID = Activator.PLUGIN_ID
+			+ ".celleditor.RefinedByMatrixCellEditorConfiguration.CheckBox";//$NON-NLS-1$
+
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.configuration.IPapyrusNatTableConfiguration#getConfigurationId()
 	 *
@@ -55,13 +56,12 @@ public class SatisfiedByCellEditorConfiguration implements ICellAxisConfiguratio
 	 */
 	@Override
 	public String getConfigurationDescription() {
-		// TODO Auto-generated method stub
 		return "This configuration provides a CheckBox editor for a single Boolean that is not necessarily a EStructuralFeature as in SingleBooleanCellEditorConfiguration";//$NON-NLS-1$
 	}
 
-	
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table,
+	 *      java.lang.Object)
 	 *
 	 * @param table
 	 * @param axisElement
@@ -69,12 +69,12 @@ public class SatisfiedByCellEditorConfiguration implements ICellAxisConfiguratio
 	 */
 	@Override
 	public boolean handles(Table table, Object axisElement) {
-		if(table.getTableConfiguration().getName().equals("SatisfyMatrix")){
+		if (table.getTableConfiguration().getName().equals("RefinedByMatrix")) {
 			Object repElement = AxisUtils.getRepresentedElement(axisElement);
 			Element colUMLElement = (Element) repElement;
 			if (UMLUtil.getStereotypeApplication(colUMLElement, Requirement.class) != null) {
 				Stereotype reqStereotype = colUMLElement.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
-				if(reqStereotype!=null){
+				if (reqStereotype != null) {
 					return true;
 				}
 			}
@@ -83,20 +83,22 @@ public class SatisfiedByCellEditorConfiguration implements ICellAxisConfiguratio
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration#configureCellEditor(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry, java.lang.Object, java.lang.String)
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration#configureCellEditor(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry,
+	 *      java.lang.Object, java.lang.String)
 	 *
 	 * @param configRegistry
 	 * @param axis
 	 * @param configLabel
 	 */
-	
+
 	@Override
 	public void configureCellEditor(IConfigRegistry configRegistry, Object axis, String configLabel) {
-		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new CustomCheckBoxPainter(), DisplayMode.NORMAL, configLabel);
-		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, new CheckBoxCellEditor(), DisplayMode.NORMAL, configLabel);
-		configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, new DefaultBooleanDisplayConverter(), DisplayMode.EDIT, configLabel);
+		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new CustomCheckBoxPainter(),
+				DisplayMode.NORMAL, configLabel);
+		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, new CheckBoxCellEditor(),
+				DisplayMode.NORMAL, configLabel);
+		configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER,
+				new DefaultBooleanDisplayConverter(), DisplayMode.EDIT, configLabel);
 	}
-
-	
 
 }

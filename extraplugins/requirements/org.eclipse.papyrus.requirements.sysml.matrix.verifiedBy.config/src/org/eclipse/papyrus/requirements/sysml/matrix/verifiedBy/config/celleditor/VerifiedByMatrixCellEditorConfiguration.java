@@ -69,7 +69,7 @@ public class VerifiedByMatrixCellEditorConfiguration implements ICellAxisConfigu
 	 */
 	@Override
 	public boolean handles(Table table, Object axisElement) {
-		if (table.getTableConfiguration().getType().equals("VerifiedByMatrix")) {
+		if (table.getTableConfiguration().getName().equals("VerifiedByMatrix")) {
 			Object repElement = AxisUtils.getRepresentedElement(axisElement);
 			Element colUMLElement = (Element) repElement;
 			if (UMLUtil.getStereotypeApplication(colUMLElement, Requirement.class) != null) {

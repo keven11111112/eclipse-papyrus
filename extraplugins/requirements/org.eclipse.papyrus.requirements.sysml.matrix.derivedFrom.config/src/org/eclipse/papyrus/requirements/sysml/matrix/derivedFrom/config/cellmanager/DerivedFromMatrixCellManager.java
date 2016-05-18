@@ -57,8 +57,8 @@ public class DerivedFromMatrixCellManager extends AbstractCellManager {
 			ITreeItemAxis axis = (ITreeItemAxis) rowElement;
 			AxisManagerRepresentation manager = axis.getManager();
 			TableConfiguration conf = (TableConfiguration) manager.eContainer().eContainer();
-			String type = conf.getType();
-			if (!type.equals("DerivedFromMatrix")) {
+			String tableName = conf.getName();
+			if (!tableName.equals("DerivedFromMatrix")) {
 				return false;
 			}
 		}
@@ -113,7 +113,7 @@ public class DerivedFromMatrixCellManager extends AbstractCellManager {
 				if (UMLUtil.getStereotypeApplication(colUMLElement, Requirement.class) != null) {
 					Stereotype reqStereotype = colUMLElement
 							.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
-					Object listOfObjectsThatSatisfyRequirement = colUMLElement.getValue(reqStereotype, "derivedFrom");
+					Object listOfObjectsThatSatisfyRequirement = colUMLElement.getValue(reqStereotype, I_SysMLStereotype.REQUIREMENT_DERIVEDFROM_ATT);
 
 					if (listOfObjectsThatSatisfyRequirement instanceof EList<?>) {
 						@SuppressWarnings("unchecked")

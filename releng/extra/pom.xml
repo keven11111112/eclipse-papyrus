@@ -189,6 +189,7 @@
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.matrix.satisfiedBy.config</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.matrix.verifiedBy.config</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.matrix.derivedFrom.config</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.matrix.refinedBy.config</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.sysml.verification</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.metrics.library</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.templates</module>
