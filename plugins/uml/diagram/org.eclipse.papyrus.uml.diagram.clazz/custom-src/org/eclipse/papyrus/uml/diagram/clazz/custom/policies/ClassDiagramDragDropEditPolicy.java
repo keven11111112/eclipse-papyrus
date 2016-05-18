@@ -9,10 +9,12 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 492893
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -75,13 +77,14 @@ import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * The Class ClassDiagramDragDropEditPolicy.
  */
 public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
-	public static final String CONTAINED_CLASS_DROP_TO_COMPARTMENT = "ContainedClassDropToCompartment";
+	public static final String CONTAINED_CLASS_DROP_TO_COMPARTMENT = "ContainedClassDropToCompartment"; //$NON-NLS-1$
 
 	/**
 	 * Instantiates a new class diagram drag drop edit policy.
@@ -95,7 +98,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	 */
 	@Override
 	protected Set<String> getDroppableElementVisualId() {
-		Set<String> droppableElementsVisualID = new HashSet<String>();
+		Set<String> droppableElementsVisualID = new HashSet<>();
 		droppableElementsVisualID.add(DependencyNodeEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(AssociationEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(AssociationClassEditPart.VISUAL_ID);
@@ -147,7 +150,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 				return dropAssociation(dropRequest, semanticLink);
 			case NestedClassForClassEditPart.VISUAL_ID:
 			case ClassEditPartCN.VISUAL_ID:
-	
+
 			case PackageEditPartCN.VISUAL_ID:
 			case ModelEditPartCN.VISUAL_ID:
 				return dropChildNodeWithContainmentLink(dropRequest, semanticLink, nodeVISUALID);
@@ -182,7 +185,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		if (endTypes.size() > 0) {
 			Element source = endTypes.get(0);
 			Element target = endTypes.get(1);
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Instance"), source, target, InstanceSpecificationLinkEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Instance"), source, target, InstanceSpecificationLinkEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		}
 		// DROP AS A NODE
 		EObject graphicalParent = ((GraphicalEditPart) getHost()).resolveSemanticElement();
@@ -237,17 +240,25 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	 *
 	 * @return the command
 	 */
-	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink) {
-		Collection<?> endtypes = ClassLinkMappingHelper.getInstance().getSource(semanticLink);
+	protected Command dropAssociation(final DropObjectsRequest dropRequest, final Element semanticLink) {
+		final List<?> endtypes = new ArrayList<>(ClassLinkMappingHelper.getInstance().getSource(semanticLink));
 		if (endtypes.size() == 1) {
-			Element source = (Element) endtypes.toArray()[0];
-			Element target = (Element) endtypes.toArray()[0];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, AssociationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
+			Element source = (Element) endtypes.get(0);
+			Element target = (Element) endtypes.get(0);
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, AssociationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		}
 		if (endtypes.size() == 2) {
-			Element source = (Element) endtypes.toArray()[0];
-			Element target = (Element) endtypes.toArray()[1];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, AssociationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
+			Element source = null;
+			Element target = null;
+			final List<Property> memberEnds = ((Association) semanticLink).getMemberEnds();
+			if (memberEnds.get(0).equals(endtypes.get(0))) {
+				source = (Element) endtypes.get(0);
+				target = (Element) endtypes.get(1);
+			} else {
+				source = (Element) endtypes.get(1);
+				target = (Element) endtypes.get(0);
+			}
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, AssociationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		}
 		if (endtypes.size() > 2) {
 			MultiAssociationHelper associationHelper = new MultiAssociationHelper(getEditingDomain());
@@ -291,7 +302,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		if (sources.size() == 1 && targets.size() == 1) {
 			Element source = (Element) sources.toArray()[0];
 			Element target = (Element) targets.toArray()[0];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("Drop Dependency"), source, target, DependencyEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("Drop Dependency"), source, target, DependencyEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		}
 		if (sources.size() > 1 || targets.size() > 1) {
 			MultiDependencyHelper dependencyHelper = new MultiDependencyHelper(getEditingDomain(), getElement2IAdaptableRegistryHelper());
@@ -357,7 +368,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 
 	/**
 	 * Use to drop a constraint, will also display the contextlink
-	 * 
+	 *
 	 * @param dropRequest
 	 * @param droppedConstraint
 	 * @param nodeVISUALID
@@ -393,7 +404,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		}
 		Element source = (Element) sources.toArray()[0];
 		Element target = (Element) targets.toArray()[0];
-		CompositeCommand cc = new CompositeCommand("");
+		CompositeCommand cc = new CompositeCommand(""); //$NON-NLS-1$
 		dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
 		return new ICommandProxy(cc);
 	}

@@ -10,12 +10,14 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *  Christian W. Damus - bug 468646
+ *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 492893
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.edit.policies;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -31,7 +33,9 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.helper.UseCaseLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * This class is used to execute the drag and drop from the outline. It can manage the drop of nodes
@@ -52,7 +56,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	@Override
 	protected Set<String> getDroppableElementVisualId() {
-		Set<String> droppableElementsVisualId = new HashSet<String>();
+		Set<String> droppableElementsVisualId = new HashSet<>();
 		droppableElementsVisualId.add(AssociationEditPart.VISUAL_ID);
 		return droppableElementsVisualId;
 	}
@@ -107,18 +111,26 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *
 	 * @return the command for association
 	 */
-	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink, String linkVISUALID) {
-		Collection<?> endtypes = UseCaseLinkMappingHelper.getInstance().getSource(semanticLink);
+	protected Command dropAssociation(final DropObjectsRequest dropRequest, final Element semanticLink, final String linkVISUALID) {
+		final List<?> endtypes = new ArrayList<>(UseCaseLinkMappingHelper.getInstance().getSource(semanticLink));
 		if (endtypes.size() == 1) {
 			// Bug 468646: It is debatable whether self-associations on use cases or actors make sense, but
 			// since we support creating them, we must also support dropping them into the diagram
-			Element source = (Element) endtypes.toArray()[0];
-			Element target = (Element) endtypes.toArray()[0];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink));
+			Element source = (Element) endtypes.get(0);
+			Element target = (Element) endtypes.get(0);
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		} else if (endtypes.size() == 2) {
-			Element target = (Element) endtypes.toArray()[0];
-			Element source = (Element) endtypes.toArray()[1];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink));
+			Element source = null;
+			Element target = null;
+			final List<Property> memberEnds = ((Association) semanticLink).getMemberEnds();
+			if (memberEnds.get(0).equals(endtypes.get(0))) {
+				source = (Element) endtypes.get(0);
+				target = (Element) endtypes.get(1);
+			} else {
+				source = (Element) endtypes.get(1);
+				target = (Element) endtypes.get(0);
+			}
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}

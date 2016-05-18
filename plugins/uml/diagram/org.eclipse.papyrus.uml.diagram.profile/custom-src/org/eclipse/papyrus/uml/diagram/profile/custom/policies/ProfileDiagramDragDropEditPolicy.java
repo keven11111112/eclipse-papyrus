@@ -11,6 +11,8 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram
  *  Christian W. Damus - bug 433206
+ *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 492893
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.profile.custom.policies;
 
@@ -82,6 +84,7 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
 /**
@@ -100,7 +103,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 */
 	@Override
 	protected Set<String> getDroppableElementVisualId() {
-		Set<String> droppableElementsVisualID = new HashSet<String>();
+		Set<String> droppableElementsVisualID = new HashSet<>();
 		droppableElementsVisualID.add(DependencyNodeEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ElementImportEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ExtensionEditPart.VISUAL_ID);
@@ -152,11 +155,19 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 *
 	 * @return the command
 	 */
-	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID) {
-		Collection<?> endtypes = ProfileLinkMappingHelper.getInstance().getSource(semanticLink);
+	protected Command dropAssociation(final DropObjectsRequest dropRequest, final Element semanticLink, final String nodeVISUALID) {
+		final List<?> endtypes = new ArrayList<>(ProfileLinkMappingHelper.getInstance().getSource(semanticLink));
 		if (endtypes.size() == 2) {
-			Element source = (Element) endtypes.toArray()[0];
-			Element target = (Element) endtypes.toArray()[1];
+			Element source = null;
+			Element target = null;
+			final List<Property> memberEnds = ((Association) semanticLink).getMemberEnds();
+			if (memberEnds.get(0).equals(endtypes.get(0))) {
+				source = (Element) endtypes.get(0);
+				target = (Element) endtypes.get(1);
+			} else {
+				source = (Element) endtypes.get(1);
+				target = (Element) endtypes.get(0);
+			}
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("Drop Association"), source, target, AssociationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		}
 		if (endtypes.size() > 2) {
@@ -215,7 +226,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	@Override
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, String nodeVISUALID, String linkVISUALID) {
 		if (linkVISUALID != null) {
-		// /!\ Warning the order is important! test on the superclass and AssociationNode is a super class for ExtensionEditPart!
+			// /!\ Warning the order is important! test on the superclass and AssociationNode is a super class for ExtensionEditPart!
 			switch (linkVISUALID) {
 			case ElementImportEditPart.VISUAL_ID:
 				return dropElementImport(dropRequest, semanticElement, nodeVISUALID);
@@ -502,10 +513,9 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	private Collection<EditPart> getTheFirstLevel(Element semanticLink) {
 		EObject linkContainer = semanticLink.eContainer();
 		EditPart currentEditPart = null;
-		Collection<EditPart> profileContents = new ArrayList<EditPart>();
+		Collection<EditPart> profileContents = new ArrayList<>();
 		Collection<EditPart> editPartSet = getHost().getViewer().getEditPartRegistry().values();
 		Iterator<EditPart> editPartIterator = editPartSet.iterator();
-		// Je recherche les �l�ments qui ont le m�me parent que mon extension
 		while (editPartIterator.hasNext()) {
 			currentEditPart = editPartIterator.next();
 			if (currentEditPart.getParent() != null) {
