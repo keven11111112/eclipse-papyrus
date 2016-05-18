@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *  Christian W. Damus - bug 493858
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
@@ -1151,8 +1152,8 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 							feature = emfModelElement.getFeature(getLocalPropertyPath());
 						}
 
-						// Recreate the table widget
-						createTableWidget(sourceElement, feature, contexts);
+						// Recreate the table widget, its adjuncts, and their layout
+						createWidgets(sourceElement, feature, contexts);
 					}
 				}
 			};
