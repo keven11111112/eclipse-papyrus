@@ -22,8 +22,42 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
+   <includes
+         id="org.eclipse.papyrus.metrics.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.bmm.extra.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.sysml.diagram.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.sysml.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.sysml.modelexplorer.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.sysml.nattable.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.sysml.properties.feature"
+         version="0.0.0"/>
+
    <requires>
+      <import feature="org.eclipse.papyrus.bmm.extra.feature" version="0.7.0.qualifier"/>
       <import feature="org.eclipse.papyrus.metrics.feature" version="0.7.0.qualifier"/>
+      <import feature="org.eclipse.papyrus.sysml.diagram.feature" version="2.0.0.201605181221"/>
+      <import feature="org.eclipse.papyrus.sysml.feature" version="1.2.0.201605181221"/>
+      <import feature="org.eclipse.papyrus.sysml.modelexplorer.feature" version="1.2.0.201605181221"/>
+      <import feature="org.eclipse.papyrus.sysml.nattable.feature" version="1.2.0.201605181221"/>
+      <import feature="org.eclipse.papyrus.sysml.properties.feature" version="1.2.0.201605181221"/>
    </requires>
 
    <plugin
