@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *  Christian W. Damus - bug 493858
+ *  Christian W. Damus - bugs 493858, 493853
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
@@ -831,14 +831,6 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			columnProvider = EcoreUtil.copy(columnProvider);
 		}
 
-		if (null != synchronizedFeature) {
-			TableHeaderAxisConfiguration rowHeaderAxisconfig = tableConfiguration.getRowHeaderAxisConfiguration();
-			for (IAxisConfiguration axisConfig : rowHeaderAxisconfig.getOwnedAxisConfigurations()) {
-				if (axisConfig instanceof EStructuralFeatureValueFillingConfiguration) {
-					((EStructuralFeatureValueFillingConfiguration) axisConfig).setListenFeature(synchronizedFeature);
-				}
-			}
-		}
 		table.getColumnAxisProvidersHistory().add(columnProvider);
 		table.setCurrentColumnAxisProvider(columnProvider);
 		table.getRowAxisProvidersHistory().add(rowProvider);
