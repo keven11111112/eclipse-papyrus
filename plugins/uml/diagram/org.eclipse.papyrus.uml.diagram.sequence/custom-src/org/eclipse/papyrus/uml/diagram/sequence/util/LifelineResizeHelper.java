@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
- *
+ *   Vincent Lorenzo (CEA-LIST) - vincent.lorenzo@cea.fr - bugs 490251, 493874
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
@@ -35,16 +35,16 @@ import org.eclipse.uml2.uml.ExecutionSpecification;
 
 public class LifelineResizeHelper {
 
-	private static final String MANUAL_LABEL_SIZE = "manual.label.size";
+	public static final String MANUAL_LABEL_SIZE = "manual.label.size"; //$NON-NLS-1$
 
-	private static final String CUSTOM_EXTENSION_INFO = "CustomExtensionInfo";
+	public static final String CUSTOM_EXTENSION_INFO = "CustomExtensionInfo"; //$NON-NLS-1$
 
 	public static boolean isManualSize(LifelineEditPart lp) {
 		View view = lp.getNotationView();
 		EAnnotation oldAnnotation = view.getEAnnotation(CUSTOM_EXTENSION_INFO);
 		if (oldAnnotation != null) {
 			String val = oldAnnotation.getDetails().get(MANUAL_LABEL_SIZE);
-			return "true".equalsIgnoreCase(val);
+			return "true".equalsIgnoreCase(val); //$NON-NLS-1$
 		}
 		LifelineFigure primaryShape = lp.getPrimaryShape();
 		Dimension namePreSize = primaryShape.getFigureLifelineNameContainerFigure().getPreferredSize();
@@ -99,13 +99,13 @@ public class LifelineResizeHelper {
 		private IAdaptable adapter;
 
 		public ManualLabelSizeCommand(TransactionalEditingDomain domain, EModelElement object, String eannotationName) {
-			super(domain, "manual size", null);
+			super(domain, "manual size", null); //$NON-NLS-1$
 			this.object = object;
 			this.eAnnotationName = eannotationName;
 		}
 
 		public ManualLabelSizeCommand(TransactionalEditingDomain domain, IAdaptable adapter, String eannotationName) {
-			super(domain, "manual size", null);
+			super(domain, "manual size", null); //$NON-NLS-1$
 			this.adapter = adapter;
 			this.eAnnotationName = eannotationName;
 		}
@@ -127,7 +127,7 @@ public class LifelineResizeHelper {
 				oldAnnotation = createEAnnotation();
 				attachEannotation(oldAnnotation, getObject());
 			}
-			oldAnnotation.getDetails().put(MANUAL_LABEL_SIZE, "true");
+			oldAnnotation.getDetails().put(MANUAL_LABEL_SIZE, "true"); //$NON-NLS-1$
 			return CommandResult.newOKCommandResult();
 		}
 	}
