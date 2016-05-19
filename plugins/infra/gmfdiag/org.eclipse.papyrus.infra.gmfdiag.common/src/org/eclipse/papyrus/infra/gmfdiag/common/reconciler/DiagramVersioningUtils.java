@@ -36,7 +36,7 @@ public class DiagramVersioningUtils {
 	 * Returns the "current" diagram version. Diagrams with this version don't require the reconciliation until the Papyrus version updates in such a
 	 * way that some diagram needs reconciliation.
 	 * <p/>
-	 * The current value returned by this method is "1.1.0".
+	 * The current value returned by this method is "1.2.0".
 	 * <p/>
 	 * The value itself, howewer, should NOT be used outside of this package to avoid weird dependency issues. Instead, external code should use {@link DiagramVersioningUtils#stampCurrentVersion(Diagram)} and
 	 * {@link DiagramVersioningUtils#createStampCurrentVersionCommand(Diagram)}.
@@ -44,7 +44,7 @@ public class DiagramVersioningUtils {
 	 * This method is intentinally NOT a constant but indeed the method. This method is intentionally private and should NOT be made public.
 	 */
 	private static String CURRENT_DIAGRAM_VERSION() {
-		return "1.2.0";
+		return "1.2.0"; //$NON-NLS-1$
 	}
 
 	/**
@@ -83,13 +83,13 @@ public class DiagramVersioningUtils {
 	 * <p/>
 	 * The value for this constant is "diagram_compatibility_version", it is intentionally the same as been used for SysML diagrams versioning.
 	 */
-	public static final String COMPATIBILITY_VERSION = "diagram_compatibility_version";
+	public static final String COMPATIBILITY_VERSION = "diagram_compatibility_version";//$NON-NLS-1$
 
 	/**
 	 * The version constant for the diagrams that does not have a {@link DiagramVersioningUtils#COMPATIBILITY_VERSION} style.
 	 * It may be assumed that these diagrams had been created before Papyrus 1.0.
 	 */
-	public static final String UNDEFINED_VERSION = "undefined";
+	public static final String UNDEFINED_VERSION = "undefined";//$NON-NLS-1$
 
 	private static final String DELIM_VERSION = ".";//$NON-NLS-1$
 

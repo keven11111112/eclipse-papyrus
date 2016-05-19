@@ -1419,6 +1419,12 @@
              source="1.1.0"
              target="1.2.0">
        </diagramReconciler>
+       <diagramReconciler
+             diagramType="PapyrusUMLSequenceDiagram"
+             reconcilerClass="org.eclipse.papyrus.uml.diagram.sequence.migration.SequenceDiagramLunaToMarsReconciler"
+             source="1.0.0"
+             target="1.2.0">
+   	   </diagramReconciler>
     </extension>
    <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
       <?gmfgen generated="true"?>
