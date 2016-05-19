@@ -257,7 +257,7 @@ public class ElementEditHelperAdviceTests extends AbstractElementTypeTests imple
 			try {
 				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(TypeContext.getContext().getId(), (ElementTypeSetConfiguration) root);
 				IEditHelperAdvice[] advicesAfterLoading = ElementTypeRegistry.getInstance().getEditHelperAdvice(classElementType);
-				Arrays.sort(advicesAfterLoading, new AdviceComparator(TypeContext.getContext().getId()));
+				Arrays.sort(advicesAfterLoading, new AdviceComparator(classElementType, TypeContext.getContext().getId()));
 				int advice1Index = -1;
 				int advice2Index = -1;
 				int advice3Index = -1;

@@ -383,8 +383,8 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAdviceConfiguration_Before() {
-		return (EAttribute)adviceConfigurationEClass.getEStructuralFeatures().get(0);
+	public EReference getAdviceConfiguration_Before() {
+		return (EReference)adviceConfigurationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -392,8 +392,8 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAdviceConfiguration_After() {
-		return (EAttribute)adviceConfigurationEClass.getEStructuralFeatures().get(1);
+	public EReference getAdviceConfiguration_After() {
+		return (EReference)adviceConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -455,17 +455,8 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSpecializationTypeConfiguration_SpecializedTypesID() {
-		return (EAttribute)specializationTypeConfigurationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getSpecializationTypeConfiguration_EditHelperAdviceConfiguration() {
-		return (EReference)specializationTypeConfigurationEClass.getEStructuralFeatures().get(1);
+		return (EReference)specializationTypeConfigurationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -474,7 +465,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * @generated
 	 */
 	public EReference getSpecializationTypeConfiguration_ContainerConfiguration() {
-		return (EReference)specializationTypeConfigurationEClass.getEStructuralFeatures().get(2);
+		return (EReference)specializationTypeConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -483,6 +474,15 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * @generated
 	 */
 	public EReference getSpecializationTypeConfiguration_MatcherConfiguration() {
+		return (EReference)specializationTypeConfigurationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSpecializationTypeConfiguration_SpecializedTypes() {
 		return (EReference)specializationTypeConfigurationEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -723,8 +723,8 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		abstractMatcherConfigurationEClass = createEClass(ABSTRACT_MATCHER_CONFIGURATION);
 
 		adviceConfigurationEClass = createEClass(ADVICE_CONFIGURATION);
-		createEAttribute(adviceConfigurationEClass, ADVICE_CONFIGURATION__BEFORE);
-		createEAttribute(adviceConfigurationEClass, ADVICE_CONFIGURATION__AFTER);
+		createEReference(adviceConfigurationEClass, ADVICE_CONFIGURATION__BEFORE);
+		createEReference(adviceConfigurationEClass, ADVICE_CONFIGURATION__AFTER);
 
 		abstractAdviceBindingConfigurationEClass = createEClass(ABSTRACT_ADVICE_BINDING_CONFIGURATION);
 		createEReference(abstractAdviceBindingConfigurationEClass, ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET);
@@ -733,10 +733,10 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		createEAttribute(abstractAdviceBindingConfigurationEClass, ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE);
 
 		specializationTypeConfigurationEClass = createEClass(SPECIALIZATION_TYPE_CONFIGURATION);
-		createEAttribute(specializationTypeConfigurationEClass, SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID);
 		createEReference(specializationTypeConfigurationEClass, SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION);
 		createEReference(specializationTypeConfigurationEClass, SPECIALIZATION_TYPE_CONFIGURATION__CONTAINER_CONFIGURATION);
 		createEReference(specializationTypeConfigurationEClass, SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION);
+		createEReference(specializationTypeConfigurationEClass, SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES);
 
 		containerConfigurationEClass = createEClass(CONTAINER_CONFIGURATION);
 		createEReference(containerConfigurationEClass, CONTAINER_CONFIGURATION__CONTAINER_MATCHER_CONFIGURATION);
@@ -839,8 +839,8 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		initEClass(abstractMatcherConfigurationEClass, AbstractMatcherConfiguration.class, "AbstractMatcherConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(adviceConfigurationEClass, AdviceConfiguration.class, "AdviceConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAdviceConfiguration_Before(), ecorePackage.getEString(), "before", null, 0, -1, AdviceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAdviceConfiguration_After(), ecorePackage.getEString(), "after", null, 0, -1, AdviceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAdviceConfiguration_Before(), this.getAdviceConfiguration(), null, "before", null, 0, -1, AdviceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAdviceConfiguration_After(), this.getAdviceConfiguration(), null, "after", null, 0, -1, AdviceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractAdviceBindingConfigurationEClass, AbstractAdviceBindingConfiguration.class, "AbstractAdviceBindingConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAbstractAdviceBindingConfiguration_Target(), this.getElementTypeConfiguration(), null, "target", null, 0, 1, AbstractAdviceBindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -849,10 +849,10 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		initEAttribute(getAbstractAdviceBindingConfiguration_Inheritance(), this.getInheritanceKind(), "inheritance", null, 1, 1, AbstractAdviceBindingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(specializationTypeConfigurationEClass, SpecializationTypeConfiguration.class, "SpecializationTypeConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSpecializationTypeConfiguration_SpecializedTypesID(), ecorePackage.getEString(), "specializedTypesID", null, 1, -1, SpecializationTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecializationTypeConfiguration_EditHelperAdviceConfiguration(), this.getAbstractEditHelperAdviceConfiguration(), this.getAbstractEditHelperAdviceConfiguration_Target(), "editHelperAdviceConfiguration", null, 0, 1, SpecializationTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecializationTypeConfiguration_ContainerConfiguration(), this.getContainerConfiguration(), null, "containerConfiguration", null, 0, 1, SpecializationTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecializationTypeConfiguration_MatcherConfiguration(), this.getAbstractMatcherConfiguration(), null, "matcherConfiguration", null, 0, 1, SpecializationTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecializationTypeConfiguration_SpecializedTypes(), this.getElementTypeConfiguration(), null, "specializedTypes", null, 0, -1, SpecializationTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(containerConfigurationEClass, ContainerConfiguration.class, "ContainerConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getContainerConfiguration_ContainerMatcherConfiguration(), this.getAbstractMatcherConfiguration(), null, "containerMatcherConfiguration", null, 0, 1, ContainerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -34,35 +34,35 @@ import org.eclipse.emf.common.util.EList;
 public interface AdviceConfiguration extends ConfigurationElement {
 
 	/**
-	 * Returns the value of the '<em><b>Before</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
+	 * Returns the value of the '<em><b>Before</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.types.AdviceConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Before</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Before</em>' attribute list.
+	 * @return the value of the '<em>Before</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getAdviceConfiguration_Before()
 	 * @model
 	 * @generated
 	 */
-	EList<String> getBefore();
+	EList<AdviceConfiguration> getBefore();
 
 	/**
-	 * Returns the value of the '<em><b>After</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
+	 * Returns the value of the '<em><b>After</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.types.AdviceConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>After</em>' attribute list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>After</em>' attribute list.
+	 * @return the value of the '<em>After</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getAdviceConfiguration_After()
 	 * @model
 	 * @generated
 	 */
-	EList<String> getAfter();
+	EList<AdviceConfiguration> getAfter();
 
 } // AdviceConfiguration

@@ -13,19 +13,30 @@
 
 package org.eclipse.papyrus.infra.types.core.utils;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 
 
 public class AdviceComparator implements Comparator<IEditHelperAdvice> {
 
-	protected OrientedGraph<String> dependencies;
+	protected Collection<OrientedGraph<String>> dependencies;
 
 
-	public AdviceComparator(String contextId) {
-		this.dependencies = ElementTypeSetConfigurationRegistry.getInstance().getAdvicesDeps(contextId);
+	public AdviceComparator(IElementType[] types, String contextId) {
+		this.dependencies = new ArrayList<OrientedGraph<String>>();
+		for (IElementType iElementType : types) {
+			this.dependencies.add(ElementTypeSetConfigurationRegistry.getInstance().getAdvicesDeps(iElementType.getId(), contextId));
+		}
+	}
+
+	public AdviceComparator(IElementType elementType, String contextId) {
+		this.dependencies = new ArrayList<OrientedGraph<String>>();
+		this.dependencies.add(ElementTypeSetConfigurationRegistry.getInstance().getAdvicesDeps(elementType.getId(), contextId));
 	}
 
 	@Override
@@ -33,16 +44,23 @@ public class AdviceComparator implements Comparator<IEditHelperAdvice> {
 
 		String arg0Name = arg0.getClass().getName();
 		String arg1Name = arg1.getClass().getName();
-		if (dependencies.getEdges().containsKey(arg0Name)) {
-			if (dependencies.getAllConnex(arg0Name).contains(arg1Name)) {
-				return -1;
+
+		for (OrientedGraph<String> orientedGraph : dependencies) {
+			if (orientedGraph.getEdges().containsKey(arg0Name)) {
+				if (orientedGraph.getAllConnex(arg0Name).contains(arg1Name)) {
+					return -1;
+				}
 			}
 		}
-		if (dependencies.getEdges().containsKey(arg1Name)) {
-			if (dependencies.getAllConnex(arg1Name).contains(arg0Name)) {
-				return 1;
+
+		for (OrientedGraph<String> orientedGraph : dependencies) {
+			if (orientedGraph.getEdges().containsKey(arg1Name)) {
+				if (orientedGraph.getAllConnex(arg1Name).contains(arg0Name)) {
+					return 1;
+				}
 			}
 		}
+
 		return 0;
 	}
 

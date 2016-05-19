@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.papyrus.infra.types.AbstractEditHelperAdviceConfiguration;
 import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
 import org.eclipse.papyrus.infra.types.ContainerConfiguration;
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.types.core.Activator;
 import org.eclipse.papyrus.infra.types.core.impl.ConfiguredHintedSpecializationElementType;
@@ -65,13 +66,13 @@ public class SpecializationTypeFactory extends AbstractElementTypeConfigurationF
 
 	protected IElementType[] getSpecializedID(SpecializationTypeConfiguration elementTypeConfiguration) {
 		// Specialized elementTypes
-		List<IElementType> specializedTypes = new ArrayList<IElementType>((elementTypeConfiguration).getSpecializedTypesID().size());
-		for (String specializedTypeId : (elementTypeConfiguration).getSpecializedTypesID()) {
-			IElementType specializedType = ElementTypeRegistry.getInstance().getType(specializedTypeId);
+		List<IElementType> specializedTypes = new ArrayList<IElementType>((elementTypeConfiguration).getSpecializedTypes().size());
+		for (ElementTypeConfiguration specializedTypeConfiguration : (elementTypeConfiguration).getSpecializedTypes()) {
+			IElementType specializedType = ElementTypeRegistry.getInstance().getType(specializedTypeConfiguration.getIdentifier());
 			if (specializedType != null) {
 				specializedTypes.add(specializedType);
 			} else {
-				Activator.log.info("Unable to add specialization \"" + getID(elementTypeConfiguration) + "\" to \"" + specializedTypeId + "\"");
+				Activator.log.info("Unable to add specialization \"" + getID(elementTypeConfiguration) + "\" to \"" + specializedTypeConfiguration + "\"");
 			}
 		}
 		IElementType[] elementTypes = specializedTypes.toArray(new IElementType[] {});

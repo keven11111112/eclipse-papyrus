@@ -12,19 +12,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.types.generator
 
+import java.util.List
 import javax.inject.Inject
 import javax.inject.Singleton
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
-
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory
+import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration
+import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherFactory
 import org.eclipse.uml2.uml.Stereotype
 
 import static extension org.eclipse.emf.common.util.URI.decode
-import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration
-import org.eclipse.papyrus.infra.types.ElementTypeConfiguration
-import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory
-import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherFactory
 
 /**
  * Transformation rule for generating a {@link SpecializationTypeConfiguration} from a UML metaclass {@link Extension}.
@@ -44,11 +44,23 @@ class ElementTypeRule {
 
         // Basics
         identifier = umlExtension.toElementTypeID(supertype)
-        if (supertype.hasSemanticSupertype) {
+        if (hasSemanticSupertype(supertype)) {
             // Add the base semantic type in addition to the parent visual type
-            specializedTypesID.add(umlExtension.toElementTypeID(umlExtension.metaclass.elementTypeConfiguration))
+			val baseType = createSpecializationTypeConfiguration();
+			val baseTypeId = umlExtension.toElementTypeID(umlExtension.metaclass.elementTypeConfiguration);
+			baseType.identifier = baseTypeId;
+			baseType.specializedTypes.add(umlExtension.metaclass.elementTypeConfiguration)
+			baseType.hint = umlExtension.metaclass.elementTypeConfiguration.hint
+        	baseType.name = umlExtension.toElementTypeName(umlExtension.metaclass.elementTypeConfiguration)
+        	// Icon
+        	var icon = umlExtension.stereotype.iconEntry
+        	baseType.iconEntry = if(icon != null) icon else umlExtension.metaclass.iconEntry
+
+        	
+			val addedBaseType = ConfigurationSetRule.addElementType(baseType)
+			specializedTypes.add(addedBaseType)
         }
-        specializedTypesID.add(supertype.identifier)
+        specializedTypes.add(supertype)
         hint = supertype.hint
         name = umlExtension.toElementTypeName(supertype)
 
@@ -57,7 +69,7 @@ class ElementTypeRule {
         iconEntry = if(icon != null) icon else umlExtension.metaclass.iconEntry
 
         // Add stereotype matcher, if it isn't inherited from a semantic supertype
-        if (!supertype.hasSemanticSupertype) {
+        if (!hasSemanticSupertype(supertype)) {
             matcherConfiguration = umlExtension.toMatcherConfiguration(supertype)
         }
     }

@@ -132,15 +132,6 @@ public interface RuleBasedPackage extends EPackage {
 	int RULE_BASED_TYPE_CONFIGURATION__ICON_ENTRY = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__ICON_ENTRY;
 
 	/**
-	 * The feature id for the '<em><b>Specialized Types ID</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RULE_BASED_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID;
-
-	/**
 	 * The feature id for the '<em><b>Edit Helper Advice Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -166,6 +157,15 @@ public interface RuleBasedPackage extends EPackage {
 	 * @ordered
 	 */
 	int RULE_BASED_TYPE_CONFIGURATION__MATCHER_CONFIGURATION = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION;
+
+	/**
+	 * The feature id for the '<em><b>Specialized Types</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RULE_BASED_TYPE_CONFIGURATION__SPECIALIZED_TYPES = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES;
 
 	/**
 	 * The feature id for the '<em><b>Rule Configuration</b></em>' containment reference.

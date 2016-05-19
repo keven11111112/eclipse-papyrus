@@ -1,29 +1,8 @@
-<?xml version="1.0" encoding="ASCII"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
-    xmi:id="_rWI4YHPzEeSnGJwaJWHCSg"
-    description=""
-    identifier="org.eclipse.papyrus.uml.diagram.communication-notation.elementTypeSet"
-    name="PapyrusUMLCommunicationDiagram-Notation"
-    metamodelNsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
-      xmi:id="_8pEBQA3lEeagBvXqZ3ul9A"
-      identifier="org.eclipse.papyrus.gmfdiag.common.Diagram"
-      name="GMF::Diagram"
-      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass
-        href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"/>
+<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" description="" identifier="org.eclipse.papyrus.uml.diagram.communication-notation.elementTypeSet" metamodelNsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation" name="PapyrusUMLCommunicationDiagram-Notation" xmi:id="_rWI4YHPzEeSnGJwaJWHCSg" xmi:version="2.0">
+  <elementTypeConfigurations editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper" identifier="org.eclipse.papyrus.gmfdiag.common.Diagram" name="GMF::Diagram" xmi:id="_8pEBQA3lEeagBvXqZ3ul9A" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration">
+    <eClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_3JRnoPs1EeWBLbCxWzTFGw"
-      identifier="org.eclipse.papyrus.uml.diagram.communication.Diagram_ShortcutShape"
-      name="Diagram_ShortcutShape"
-      hint="Diagram_ShortcutShape">
-    <specializedTypesID>org.eclipse.papyrus.gmfdiag.common.Diagram</specializedTypesID>
-  </elementTypeConfigurations>
+  <elementTypeConfigurations hint="Diagram_ShortcutShape" identifier="org.eclipse.papyrus.uml.diagram.communication.Diagram_ShortcutShape" name="Diagram_ShortcutShape" xmi:id="_3JRnoPs1EeWBLbCxWzTFGw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    
+  <specializedTypes href="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/model/notation.elementtypesconfigurations#_ScP1oVYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/></elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

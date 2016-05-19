@@ -24,6 +24,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
 
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
@@ -68,9 +69,9 @@ public class DiagramSpecificElementTypesGenerationBug461717Test extends Abstract
 		for (SpecializationTypeConfiguration next : specializationTypes) {
 			assertThat(next.getIdentifier(), startsWith(idPrefix));
 
-			List<String> specializedTypeIDs = next.getSpecializedTypesID();
-			assertThat(specializedTypeIDs.size(), is(1));
-			assertThat(specializedTypeIDs.get(0), regexContains("Actor_")); // a visual ID
+			List<ElementTypeConfiguration> specializedType = next.getSpecializedTypes();
+			assertThat(specializedType.size(), is(1));
+			assertThat(specializedType.get(0).getIdentifier(), regexContains("Actor_")); // a visual ID
 		}
 	}
 

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IEditHelperContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -344,29 +345,41 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 		}
 
 		if (advices == null) {
-
 			if (editHelperContext instanceof EObject) {
-				// IElementType type = ElementTypeRegistry.getInstance().getElementType((EObject) editHelperContext, req.getClientContext());
-				// advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), type);
 				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice((EObject) editHelperContext, req.getClientContext());
+				IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching((EObject) editHelperContext, req.getClientContext());
+				Arrays.sort(advices, new AdviceComparator(types, req.getClientContext().getId()));
 
 			} else if (editHelperContext instanceof IElementType) {
 				advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), ((IElementType) editHelperContext));
+				Arrays.sort(advices, new AdviceComparator((IElementType) editHelperContext, req.getClientContext().getId()));
 
 			} else if (editHelperContext instanceof IEditHelperContext) {
-				IElementType type = ((IEditHelperContext) editHelperContext).getElementType();
-				if (type != null) {
-					advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), type);
-				} else {
-					advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
-				}
-			} else {
-				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
-			}
-		}
+				IClientContext clientContext = ((IEditHelperContext) editHelperContext).getClientContext();
+				IElementType elementType = ((IEditHelperContext) editHelperContext).getElementType();
+				EObject eObject = ((IEditHelperContext) editHelperContext).getEObject();
 
-		if (null != advices) {
-			Arrays.sort(advices, new AdviceComparator(req.getClientContext().getId()));
+				if (clientContext != null) {
+					if (elementType != null) {
+						advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), elementType);
+						Arrays.sort(advices, new AdviceComparator(elementType, req.getClientContext().getId()));
+					} else if (eObject != null) {
+						IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching(eObject, req.getClientContext());
+						advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
+						Arrays.sort(advices, new AdviceComparator(types, req.getClientContext().getId()));
+
+					}
+				} else {
+					if (elementType != null) {
+						advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), elementType);
+						Arrays.sort(advices, new AdviceComparator(elementType, req.getClientContext().getId()));
+					} else if (eObject != null) {
+						IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching(eObject, req.getClientContext());
+						advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
+						Arrays.sort(advices, new AdviceComparator(types, req.getClientContext().getId()));
+					}
+				}
+			}
 		}
 
 		return advices;

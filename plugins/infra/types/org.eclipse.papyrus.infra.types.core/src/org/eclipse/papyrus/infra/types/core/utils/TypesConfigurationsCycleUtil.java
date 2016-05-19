@@ -13,7 +13,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IAdviceBindingDescriptor;
 import org.eclipse.papyrus.infra.types.AdviceConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
-import org.eclipse.papyrus.infra.types.core.Activator;
 import org.eclipse.papyrus.infra.types.core.registries.AdviceConfigurationTypeRegistry;
 
 //Implements Tarjan's strongly connected components algorithm
@@ -65,32 +64,31 @@ public class TypesConfigurationsCycleUtil {
 		}
 	}
 
-	static public OrientedGraph<String> getDependenciesAmongAdvices(Collection<AdviceConfiguration> adviceConfigurations) {
-		OrientedGraph<String> adviceDependencies = new OrientedGraph<String>();
+	static public Map<String, OrientedGraph<String>> getDependenciesAmongAdvices(Collection<AdviceConfiguration> adviceConfigurations) {
+		Map<String, OrientedGraph<String>> adviceDependencies = new HashMap<String, OrientedGraph<String>>();
 		for (AdviceConfiguration adviceConfiguration : adviceConfigurations) {
 			IAdviceBindingDescriptor descriptor = AdviceConfigurationTypeRegistry.getInstance().getEditHelperAdviceDecriptor(adviceConfiguration);
 
+			String type = descriptor.getTypeId();
+
 			String currentAdviceConfigurationClassName = descriptor.getEditHelperAdvice().getClass().getName();
 			// Add current to the vertices
-			adviceDependencies.addVertex(currentAdviceConfigurationClassName);
+			if (!adviceDependencies.containsKey(type)) {
+				adviceDependencies.put(type, new OrientedGraph<String>());
+			}
+			OrientedGraph<String> deps = adviceDependencies.get(type);
+			deps.addVertex(currentAdviceConfigurationClassName);
 
 			// Add dependencies vertices
-			for (String after : adviceConfiguration.getAfter()) {
-				if (after == null) {
-					Activator.log.warn("The following AdviceConfiguration has ill-defined after : " + adviceConfiguration);
-					break;
-				}
-				adviceDependencies.addEdge(currentAdviceConfigurationClassName, after);
+			for (AdviceConfiguration after : adviceConfiguration.getAfter()) {
+				IAdviceBindingDescriptor descriptorAfter = AdviceConfigurationTypeRegistry.getInstance().getEditHelperAdviceDecriptor(after);
+				deps.addEdge(currentAdviceConfigurationClassName, descriptorAfter.getEditHelperAdvice().getClass().getName());
 			}
 
-			for (String before : adviceConfiguration.getBefore()) {
-				if (before == null) {
-					Activator.log.warn("The following AdviceConfiguration has ill-defined before : " + adviceConfiguration);
-					break;
-				}
-				adviceDependencies.addEdge(before, currentAdviceConfigurationClassName);
+			for (AdviceConfiguration before : adviceConfiguration.getBefore()) {
+				IAdviceBindingDescriptor descriptorBefore = AdviceConfigurationTypeRegistry.getInstance().getEditHelperAdviceDecriptor(before);
+				deps.addEdge(descriptorBefore.getEditHelperAdvice().getClass().getName(), currentAdviceConfigurationClassName);
 			}
-
 		}
 
 		return adviceDependencies;
@@ -112,8 +110,8 @@ public class TypesConfigurationsCycleUtil {
 
 			// Add dependencies vertices
 			if (elementTypeConfiguration instanceof SpecializationTypeConfiguration) {
-				for (String specializedTypeID : ((SpecializationTypeConfiguration) elementTypeConfiguration).getSpecializedTypesID()) {
-					elementTypeDependencies.addEdge(currentElementTypeID, specializedTypeID);
+				for (ElementTypeConfiguration specializedType : ((SpecializationTypeConfiguration) elementTypeConfiguration).getSpecializedTypes()) {
+					elementTypeDependencies.addEdge(currentElementTypeID, specializedType.getIdentifier());
 				}
 			}
 		}

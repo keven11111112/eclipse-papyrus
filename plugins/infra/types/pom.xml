@@ -8,7 +8,7 @@
 	    <artifactId>org.eclipse.papyrus.infra</artifactId>
 	    <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <name>Papyrus Infra Extended Element Types</name>
+    <name>Papyrus Infra Element Types Configurations</name>
 	<description>Plug-ins contributing model-driven types to the GMF Run-time Element-Types registry.</description>
 
 	<modules>

@@ -23,10 +23,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration#getSpecializedTypesID <em>Specialized Types ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration#getEditHelperAdviceConfiguration <em>Edit Helper Advice Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration#getContainerConfiguration <em>Container Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration#getMatcherConfiguration <em>Matcher Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration#getSpecializedTypes <em>Specialized Types</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getSpecializationTypeConfiguration()
@@ -34,22 +34,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface SpecializationTypeConfiguration extends ElementTypeConfiguration {
-	/**
-	 * Returns the value of the '<em><b>Specialized Types ID</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Specialized Types ID</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Specialized Types ID</em>' attribute list.
-	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getSpecializationTypeConfiguration_SpecializedTypesID()
-	 * @model required="true"
-	 * @generated
-	 */
-	EList<String> getSpecializedTypesID();
-
 	/**
 	 * Returns the value of the '<em><b>Edit Helper Advice Configuration</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.types.AbstractEditHelperAdviceConfiguration#getTarget <em>Target</em>}'.
@@ -129,5 +113,21 @@ public interface SpecializationTypeConfiguration extends ElementTypeConfiguratio
 	 * @generated
 	 */
 	void setMatcherConfiguration(AbstractMatcherConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Specialized Types</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.types.ElementTypeConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Specialized Types</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Specialized Types</em>' reference list.
+	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getSpecializationTypeConfiguration_SpecializedTypes()
+	 * @model
+	 * @generated
+	 */
+	EList<ElementTypeConfiguration> getSpecializedTypes();
 
 } // SpecializationTypeConfiguration

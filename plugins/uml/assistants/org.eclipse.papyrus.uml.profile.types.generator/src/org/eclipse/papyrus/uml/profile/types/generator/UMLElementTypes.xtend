@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.UMLPackage
 import java.util.regex.Pattern
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory
+import java.util.List
 
 /**
  * Utility extensions for working with and generating objects for the base UML element types specialized by the profile.
@@ -95,7 +96,7 @@ class UMLElementTypes {
         type.hint.isVisualID
     }
     
-    def hasSemanticSupertype(ElementTypeConfiguration type) {
+    public def hasSemanticSupertype(ElementTypeConfiguration type) {
         type.isDiagramSpecific && !suppressSemanticSuperElementTypes
     }
     
@@ -118,9 +119,20 @@ class UMLElementTypes {
             ]
         else
             baseElementTypeSet.elementTypeConfigurations.filter(SpecializationTypeConfiguration).filter [
-                validType && specializedTypesID.contains(metaclass.elementTypeID)
+                validType && specializedTypes.containsId(metaclass.elementTypeID)
             ]
     }
+
+	private def containsId(List<ElementTypeConfiguration> elementTypeConfigurations, String id){
+		for (elementTypeConfiguration : elementTypeConfigurations) {
+			if(elementTypeConfiguration.identifier.equals(id)){
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
 
     private def canContain(IElementType containerType, EClass containedEClass) {
         containerType.EClass.EAllContainments.exists[EReferenceType.isSuperTypeOf(containedEClass)]
@@ -139,8 +151,8 @@ class UMLElementTypes {
     }
 
     def dispatch canContainType(ElementTypeConfiguration containerType, SpecializationTypeConfiguration containedTypeConfiguration) {
-        containedTypeConfiguration.specializedTypesID.exists [ supertype |
-            containerType.canContain(ElementTypeRegistry.getInstance.getType(supertype).EClass)
+        containedTypeConfiguration.specializedTypes.exists [ supertype |
+            containerType.canContain(ElementTypeRegistry.getInstance.getType(supertype.identifier).EClass)
         ]
     }
 
@@ -165,7 +177,7 @@ class UMLElementTypes {
         if (registered != null) {
             registered.metaclass
         } else {
-            elementType.specializedTypesID.map[ElementTypeRegistry.instance.getType(it)].filterNull.head?.EClass
+            elementType.specializedTypes.map[ElementTypeRegistry.instance.getType(it.identifier)].filterNull.head?.EClass
         }
     }
     
@@ -202,8 +214,8 @@ class UMLElementTypes {
     }
 
     def dispatch canSourceToType(ElementTypeConfiguration sourceType, SpecializationTypeConfiguration relationshipTypeConfiguration) {
-        relationshipTypeConfiguration.specializedTypesID.exists [ supertypeID |
-            val supertype = ElementTypeRegistry.getInstance.getType(supertypeID)
+        relationshipTypeConfiguration.specializedTypes.exists [ supertypeConfiguration |
+            val supertype = ElementTypeRegistry.getInstance.getType(supertypeConfiguration.identifier)
             (supertype != null) && supertype.EClass.isRelationship && sourceType.canSourceTo(supertype.EClass)
         ]
     }
@@ -225,8 +237,8 @@ class UMLElementTypes {
     }
 
     def dispatch canTargetFromType(ElementTypeConfiguration targetType, SpecializationTypeConfiguration relationshipTypeConfiguration) {
-        relationshipTypeConfiguration.specializedTypesID.exists [ supertypeID |
-            val supertype = ElementTypeRegistry.getInstance.getType(supertypeID)
+        relationshipTypeConfiguration.specializedTypes.exists [ supertypeConfiguration |
+            val supertype = ElementTypeRegistry.getInstance.getType(supertypeConfiguration.identifier)
             (supertype != null) && supertype.EClass.isRelationship && targetType.canTargetFrom(supertype.EClass)
         ]
     }

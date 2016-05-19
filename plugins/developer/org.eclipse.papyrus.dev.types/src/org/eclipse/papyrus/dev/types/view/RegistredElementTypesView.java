@@ -12,13 +12,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.dev.types.view;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -26,14 +33,20 @@ import org.eclipse.papyrus.dev.types.providers.ElementTypesContentProvider;
 import org.eclipse.papyrus.dev.types.providers.ElementTypesDetailsContentProvider;
 import org.eclipse.papyrus.dev.types.providers.ElementTypesDetailsLabelProvider;
 import org.eclipse.papyrus.dev.types.providers.ElementTypesLabelProvider;
+import org.eclipse.papyrus.infra.types.core.utils.AdviceComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.dialogs.FilteredTree;
 import org.eclipse.ui.dialogs.PatternFilter;
 import org.eclipse.ui.part.ViewPart;
@@ -93,6 +106,55 @@ public class RegistredElementTypesView extends ViewPart {
 			public void widgetDefaultSelected(SelectionEvent e) {
 
 
+			}
+		});
+
+		Button exportButton = new Button(parent, SWT.NONE);
+		exportButton.setText("Export registry");
+		exportButton.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseUp(MouseEvent e) {
+				FileDialog dialog = new FileDialog(Display.getCurrent().getActiveShell(), SWT.SAVE);
+				String dest = dialog.open();
+				if (dest != null) {
+					File file = new File(dest);
+					if (file != null) {
+						BufferedWriter writer = null;
+						try {
+							writer = new BufferedWriter(new FileWriter(file));
+
+							for (String clientContexId : itemsList) {
+								writer.write(clientContexId + "\n");
+								IElementType[] elementTypes = ElementTypeRegistry.getInstance().getElementTypes(ClientContextManager.getInstance().getClientContext(clientContexId));
+								for (int j = 0; j < elementTypes.length; j++) {
+									IElementType elementType = elementTypes[j];
+									writer.write("\t" + elementType.getId() + "\n");
+
+
+									IEditHelperAdvice[] advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(elementType);
+									List<IEditHelperAdvice> advicesList = Arrays.asList(advices);
+									Collections.sort(advicesList, new AdviceComparator(elementType, clientContexId));
+									for (IEditHelperAdvice advice : advicesList) {
+										writer.write("\t\t" + advice.getClass().getName() + "\n");
+									}
+								}
+							}
+
+							writer.flush();
+
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						} finally {
+							try {
+								writer.close();
+							} catch (Exception e1) {
+								e1.printStackTrace();
+							}
+						}
+
+					}
+				}
 			}
 		});
 

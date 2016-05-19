@@ -49,7 +49,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1";
+	String eNS_URI = "http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2";
 
 	/**
 	 * The package namespace name.
@@ -370,7 +370,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ADVICE_CONFIGURATION__DESCRIPTION = CONFIGURATION_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Before</b></em>' attribute list.
+	 * The feature id for the '<em><b>Before</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -379,7 +379,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ADVICE_CONFIGURATION__BEFORE = CONFIGURATION_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>After</b></em>' attribute list.
+	 * The feature id for the '<em><b>After</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -541,7 +541,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__DESCRIPTION = IDENTIFIED_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Before</b></em>' attribute list.
+	 * The feature id for the '<em><b>Before</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -550,7 +550,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE = IDENTIFIED_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>After</b></em>' attribute list.
+	 * The feature id for the '<em><b>After</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -667,22 +667,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int SPECIALIZATION_TYPE_CONFIGURATION__ICON_ENTRY = ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY;
 
 	/**
-	 * The feature id for the '<em><b>Specialized Types ID</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID = ELEMENT_TYPE_CONFIGURATION_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Edit Helper Advice Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION = ELEMENT_TYPE_CONFIGURATION_FEATURE_COUNT + 1;
+	int SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION = ELEMENT_TYPE_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Container Configuration</b></em>' containment reference.
@@ -691,7 +682,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIALIZATION_TYPE_CONFIGURATION__CONTAINER_CONFIGURATION = ELEMENT_TYPE_CONFIGURATION_FEATURE_COUNT + 2;
+	int SPECIALIZATION_TYPE_CONFIGURATION__CONTAINER_CONFIGURATION = ELEMENT_TYPE_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
@@ -700,7 +691,16 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION = ELEMENT_TYPE_CONFIGURATION_FEATURE_COUNT + 3;
+	int SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION = ELEMENT_TYPE_CONFIGURATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Specialized Types</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES = ELEMENT_TYPE_CONFIGURATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Specialization Type Configuration</em>' class.
@@ -856,7 +856,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__DESCRIPTION = ADVICE_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Before</b></em>' attribute list.
+	 * The feature id for the '<em><b>Before</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -865,7 +865,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__BEFORE = ADVICE_CONFIGURATION__BEFORE;
 
 	/**
-	 * The feature id for the '<em><b>After</b></em>' attribute list.
+	 * The feature id for the '<em><b>After</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -910,7 +910,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int EDIT_HELPER_ADVICE_CONFIGURATION__DESCRIPTION = ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Before</b></em>' attribute list.
+	 * The feature id for the '<em><b>Before</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -919,7 +919,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int EDIT_HELPER_ADVICE_CONFIGURATION__BEFORE = ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__BEFORE;
 
 	/**
-	 * The feature id for the '<em><b>After</b></em>' attribute list.
+	 * The feature id for the '<em><b>After</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -982,7 +982,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ADVICE_BINDING_CONFIGURATION__DESCRIPTION = ABSTRACT_ADVICE_BINDING_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Before</b></em>' attribute list.
+	 * The feature id for the '<em><b>Before</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -991,7 +991,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ADVICE_BINDING_CONFIGURATION__BEFORE = ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE;
 
 	/**
-	 * The feature id for the '<em><b>After</b></em>' attribute list.
+	 * The feature id for the '<em><b>After</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1237,7 +1237,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int EXTERNALLY_REGISTERED_ADVICE__DESCRIPTION = ADVICE_BINDING_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Before</b></em>' attribute list.
+	 * The feature id for the '<em><b>Before</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1246,7 +1246,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int EXTERNALLY_REGISTERED_ADVICE__BEFORE = ADVICE_BINDING_CONFIGURATION__BEFORE;
 
 	/**
-	 * The feature id for the '<em><b>After</b></em>' attribute list.
+	 * The feature id for the '<em><b>After</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1488,26 +1488,26 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	EClass getAdviceConfiguration();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.types.AdviceConfiguration#getBefore <em>Before</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.types.AdviceConfiguration#getBefore <em>Before</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Before</em>'.
+	 * @return the meta object for the reference list '<em>Before</em>'.
 	 * @see org.eclipse.papyrus.infra.types.AdviceConfiguration#getBefore()
 	 * @see #getAdviceConfiguration()
 	 * @generated
 	 */
-	EAttribute getAdviceConfiguration_Before();
+	EReference getAdviceConfiguration_Before();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.types.AdviceConfiguration#getAfter <em>After</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.types.AdviceConfiguration#getAfter <em>After</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>After</em>'.
+	 * @return the meta object for the reference list '<em>After</em>'.
 	 * @see org.eclipse.papyrus.infra.types.AdviceConfiguration#getAfter()
 	 * @see #getAdviceConfiguration()
 	 * @generated
 	 */
-	EAttribute getAdviceConfiguration_After();
+	EReference getAdviceConfiguration_After();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration <em>Abstract Advice Binding Configuration</em>}'.
@@ -1574,17 +1574,6 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	EClass getSpecializationTypeConfiguration();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration#getSpecializedTypesID <em>Specialized Types ID</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Specialized Types ID</em>'.
-	 * @see org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration#getSpecializedTypesID()
-	 * @see #getSpecializationTypeConfiguration()
-	 * @generated
-	 */
-	EAttribute getSpecializationTypeConfiguration_SpecializedTypesID();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration#getEditHelperAdviceConfiguration <em>Edit Helper Advice Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1616,6 +1605,17 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSpecializationTypeConfiguration_MatcherConfiguration();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration#getSpecializedTypes <em>Specialized Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Specialized Types</em>'.
+	 * @see org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration#getSpecializedTypes()
+	 * @see #getSpecializationTypeConfiguration()
+	 * @generated
+	 */
+	EReference getSpecializationTypeConfiguration_SpecializedTypes();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.types.ContainerConfiguration <em>Container Configuration</em>}'.
@@ -1993,20 +1993,20 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 		EClass ADVICE_CONFIGURATION = eINSTANCE.getAdviceConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Before</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>Before</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ADVICE_CONFIGURATION__BEFORE = eINSTANCE.getAdviceConfiguration_Before();
+		EReference ADVICE_CONFIGURATION__BEFORE = eINSTANCE.getAdviceConfiguration_Before();
 
 		/**
-		 * The meta object literal for the '<em><b>After</b></em>' attribute list feature.
+		 * The meta object literal for the '<em><b>After</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ADVICE_CONFIGURATION__AFTER = eINSTANCE.getAdviceConfiguration_After();
+		EReference ADVICE_CONFIGURATION__AFTER = eINSTANCE.getAdviceConfiguration_After();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl <em>Abstract Advice Binding Configuration</em>}' class.
@@ -2061,14 +2061,6 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 		EClass SPECIALIZATION_TYPE_CONFIGURATION = eINSTANCE.getSpecializationTypeConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Specialized Types ID</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID = eINSTANCE.getSpecializationTypeConfiguration_SpecializedTypesID();
-
-		/**
 		 * The meta object literal for the '<em><b>Edit Helper Advice Configuration</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2091,6 +2083,14 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION = eINSTANCE.getSpecializationTypeConfiguration_MatcherConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Specialized Types</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES = eINSTANCE.getSpecializationTypeConfiguration_SpecializedTypes();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.types.impl.ContainerConfigurationImpl <em>Container Configuration</em>}' class.

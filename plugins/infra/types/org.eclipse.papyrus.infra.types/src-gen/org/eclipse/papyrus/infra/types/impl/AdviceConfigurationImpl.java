@@ -15,7 +15,7 @@ package org.eclipse.papyrus.infra.types.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.papyrus.infra.types.AdviceConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
@@ -35,23 +35,23 @@ import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
  */
 public abstract class AdviceConfigurationImpl extends ConfigurationElementImpl implements AdviceConfiguration {
 	/**
-	 * The cached value of the '{@link #getBefore() <em>Before</em>}' attribute list.
+	 * The cached value of the '{@link #getBefore() <em>Before</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getBefore()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> before;
+	protected EList<AdviceConfiguration> before;
 	/**
-	 * The cached value of the '{@link #getAfter() <em>After</em>}' attribute list.
+	 * The cached value of the '{@link #getAfter() <em>After</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getAfter()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> after;
+	protected EList<AdviceConfiguration> after;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -77,9 +77,9 @@ public abstract class AdviceConfigurationImpl extends ConfigurationElementImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getBefore() {
+	public EList<AdviceConfiguration> getBefore() {
 		if (before == null) {
-			before = new EDataTypeUniqueEList<String>(String.class, this, ElementTypesConfigurationsPackage.ADVICE_CONFIGURATION__BEFORE);
+			before = new EObjectResolvingEList<AdviceConfiguration>(AdviceConfiguration.class, this, ElementTypesConfigurationsPackage.ADVICE_CONFIGURATION__BEFORE);
 		}
 		return before;
 	}
@@ -89,9 +89,9 @@ public abstract class AdviceConfigurationImpl extends ConfigurationElementImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getAfter() {
+	public EList<AdviceConfiguration> getAfter() {
 		if (after == null) {
-			after = new EDataTypeUniqueEList<String>(String.class, this, ElementTypesConfigurationsPackage.ADVICE_CONFIGURATION__AFTER);
+			after = new EObjectResolvingEList<AdviceConfiguration>(AdviceConfiguration.class, this, ElementTypesConfigurationsPackage.ADVICE_CONFIGURATION__AFTER);
 		}
 		return after;
 	}
@@ -123,11 +123,11 @@ public abstract class AdviceConfigurationImpl extends ConfigurationElementImpl i
 		switch (featureID) {
 			case ElementTypesConfigurationsPackage.ADVICE_CONFIGURATION__BEFORE:
 				getBefore().clear();
-				getBefore().addAll((Collection<? extends String>)newValue);
+				getBefore().addAll((Collection<? extends AdviceConfiguration>)newValue);
 				return;
 			case ElementTypesConfigurationsPackage.ADVICE_CONFIGURATION__AFTER:
 				getAfter().clear();
-				getAfter().addAll((Collection<? extends String>)newValue);
+				getAfter().addAll((Collection<? extends AdviceConfiguration>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -165,24 +165,6 @@ public abstract class AdviceConfigurationImpl extends ConfigurationElementImpl i
 				return after != null && !after.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (before: ");
-		result.append(before);
-		result.append(", after: ");
-		result.append(after);
-		result.append(')');
-		return result.toString();
 	}
 
 } //AdviceConfigurationImpl

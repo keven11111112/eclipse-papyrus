@@ -1,23 +1,5 @@
-<?xml version="1.0" encoding="ASCII"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
-    xmi:id="_ScP1oFYCEeS0WsAAtVmToA"
-    name="Stereotype Editing Advice"
-    description="Advice definitions supporting the editing of stereotypes."
-    identifier="org.eclipse.papyrus.uml.diagram.stereotype.edition.advice"
-    metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-  <adviceBindingsConfigurations
-      xsi:type="elementtypesconfigurations:AdviceBindingConfiguration"
-      xmi:id="_4rSa8Dm8EeWMHpLNzlgfaQ"
-      description="Adds applied-stereotype views to the dependents of a notation view that is being deleted."
-      identifier="org.eclipse.papyrus.uml.diagram.stereotype.edition.advice.AppliedStereotypeNotationDependents"
-      editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.stereotype.edition.internal.edithelper.advice.AppliedStereotypeNotationDependentsAdvice"
-      inheritance="all">
-    <target
-        xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
-        href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScgUUFYCEeS0WsAAtVmToA"/>
+<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" description="Advice definitions supporting the editing of stereotypes." identifier="org.eclipse.papyrus.uml.diagram.stereotype.edition.advice" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML" name="Stereotype Editing Advice" xmi:id="_ScP1oFYCEeS0WsAAtVmToA" xmi:version="2.0">
+  <adviceBindingsConfigurations description="Adds applied-stereotype views to the dependents of a notation view that is being deleted." editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.stereotype.edition.internal.edithelper.advice.AppliedStereotypeNotationDependentsAdvice" identifier="org.eclipse.papyrus.uml.diagram.stereotype.edition.advice.AppliedStereotypeNotationDependents" inheritance="all" xmi:id="_4rSa8Dm8EeWMHpLNzlgfaQ" xsi:type="elementtypesconfigurations:AdviceBindingConfiguration">
+    <target href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScgUUFYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </adviceBindingsConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

@@ -1,36 +1,36 @@
-<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1" xmlns:applystereotypeadvice="http://www.eclipse.org/papyrus/uml/types/applystereotypeadvice/1.1" xmlns:invariantcontainerrule="http://www.eclipse.org/papyrus/emf/types/invariantcontainerrule/1.1" xmlns:invariantstereotyperule="http://www.eclipse.org/papyrus/uml/types/invariantstereotyperule/1.1" xmlns:rulebased="http://www.eclipse.org/papyrus/infra/types/rulebased/1.1" xmlns:setvaluesadvice="http://www.eclipse.org/papyrus/emf/types/setvaluesadvice/1.1" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" identifier="org.eclipse.papyrus.infra.types.tests.tests" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML" name="Test element types" xmi:id="_ScP1oFYCEeS0WsAAtVmToA" xmi:version="2.0">
+<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:applystereotypeadvice="http://www.eclipse.org/papyrus/uml/types/applystereotypeadvice/1.1" xmlns:invariantcontainerrule="http://www.eclipse.org/papyrus/emf/types/invariantcontainerrule/1.1" xmlns:invariantstereotyperule="http://www.eclipse.org/papyrus/uml/types/invariantstereotyperule/1.1" xmlns:rulebased="http://www.eclipse.org/papyrus/infra/types/rulebased/1.1" xmlns:setvaluesadvice="http://www.eclipse.org/papyrus/emf/types/setvaluesadvice/1.1" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" identifier="org.eclipse.papyrus.infra.types.tests.tests" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML" name="Test element types" xmi:id="_ScP1oFYCEeS0WsAAtVmToA" xmi:version="2.0">
   <elementTypeConfigurations description="" hint="ElementTypes" identifier="org.eclipse.papyrus.infra.types.tests.specificcomponent" name="Component in specific package only" xmi:id="_JIwuQLg9EeS0cu6lbJ9jDQ" xsi:type="rulebased:RuleBasedTypeConfiguration">
     <iconEntry bundleId="org.eclipse.ui" iconPath="icons/full/obj16/add_obj.gif" xmi:id="_FW5wwLg-EeS0cu6lbJ9jDQ"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
+    
     <ruleConfiguration xmi:id="_N9YeYLg-EeS0cu6lbJ9jDQ" xsi:type="invariantcontainerrule:InvariantContainerRuleConfiguration">
       <permissions containerType="org.eclipse.papyrus.uml.Package" xmi:id="_Ow-egLg-EeS0cu6lbJ9jDQ"/>
       <permissions containerType="org.eclipse.papyrus.infra.types.tests.packagewithcomponentsonly" permitted="true" strict="true" xmi:id="_QsZCULg-EeS0cu6lbJ9jDQ"/>
     </ruleConfiguration>
-  </elementTypeConfigurations>
+  <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Scbb6FYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/></elementTypeConfigurations>
   <elementTypeConfigurations description="Package that can contain only components" hint="ElementTypes" identifier="org.eclipse.papyrus.infra.types.tests.packagewithcomponentsonly" name="PackageWithComponentsOnly" xmi:id="_Zn1TULg-EeS0cu6lbJ9jDQ" xsi:type="rulebased:RuleBasedTypeConfiguration">
-    <specializedTypesID>org.eclipse.papyrus.uml.Package</specializedTypesID>
+    
     <ruleConfiguration requiredProfile="" stereotypeQualifiedName="ElementTypesTestsProfile::PackageWithComponents" xmi:id="_mzVEQLg-EeS0cu6lbJ9jDQ" xsi:type="invariantstereotyperule:InvariantStereotypeRuleConfiguration"/>
-  </elementTypeConfigurations>
+  <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sc9nZVYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/></elementTypeConfigurations>
   <elementTypeConfigurations description="Semantic element type to create abstract classes" hint="Abstract Class Creation Action" identifier="org.eclipse.papyrus.infra.types.tests.aspectabstractclass" name="Abstract Class Creation Action" xmi:id="_mhW74My1EeS2aYvfnAB4ZA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
-    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    
     <matcherConfiguration matcherClassName="org.eclipse.gmf.runtime.emf.type.core.NullElementMatcher" xmi:id="_qI4JwNLXEeSAkKOodzTEYg" xsi:type="elementtypesconfigurations:MatcherConfiguration"/>
-  </elementTypeConfigurations>
+  <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sca0wVYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/></elementTypeConfigurations>
   <elementTypeConfigurations description="Test elementTypeConfigurations" hint="ElementElementTypeConfigurations" identifier="org.eclipse.papyrus.infra.types.tests.classSimpleStereotype" name="Class With Stereotype" xmi:id="_CSBmcMy2EeS2aYvfnAB4ZA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
-    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    
     <matcherConfiguration matcherClassName="org.eclipse.gmf.runtime.emf.type.core.NullElementMatcher" xmi:id="_8kqIkNLXEeSAkKOodzTEYg" xsi:type="elementtypesconfigurations:MatcherConfiguration"/>
-  </elementTypeConfigurations>
+  <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sca0wVYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/></elementTypeConfigurations>
   <elementTypeConfigurations description="Test elementTypeConfigurations" hint="ElementElementTypeConfigurations" identifier="org.eclipse.papyrus.infra.types.tests.classSimpleStereotypeRename" name="Package With Stereotype And Renamed" xmi:id="_5vXW8My3EeS2aYvfnAB4ZA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
-    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    
     <matcherConfiguration matcherClassName="org.eclipse.gmf.runtime.emf.type.core.NullElementMatcher" xmi:id="_8yABANLXEeSAkKOodzTEYg" xsi:type="elementtypesconfigurations:MatcherConfiguration"/>
-  </elementTypeConfigurations>
+  <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sca0wVYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/></elementTypeConfigurations>
   <elementTypeConfigurations description="Test elementTypeConfigurations" hint="ElementElementTypeConfigurations" identifier="org.eclipse.papyrus.infra.types.tests.classSimpleStereotypeSetValues" name="Package With Stereotype And Renamed" xmi:id="_HT1okMy4EeS2aYvfnAB4ZA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
-    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    
     <matcherConfiguration matcherClassName="org.eclipse.gmf.runtime.emf.type.core.NullElementMatcher" xmi:id="_8-EHENLXEeSAkKOodzTEYg" xsi:type="elementtypesconfigurations:MatcherConfiguration"/>
-  </elementTypeConfigurations>
+  <specializedTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sca0wVYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/></elementTypeConfigurations>
   <elementTypeConfigurations description="Test elementTypeConfigurations" hint="ElementElementTypeConfigurations" identifier="org.eclipse.papyrus.infra.types.tests.abstractclassSimpleStereotype" name="Package With Stereotype And Renamed" xmi:id="_mrg2EMy4EeS2aYvfnAB4ZA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
-    <specializedTypesID>org.eclipse.papyrus.infra.types.tests.aspectabstractclass</specializedTypesID>
+    
     <matcherConfiguration matcherClassName="org.eclipse.gmf.runtime.emf.type.core.NullElementMatcher" xmi:id="_9KgAkNLXEeSAkKOodzTEYg" xsi:type="elementtypesconfigurations:MatcherConfiguration"/>
-  </elementTypeConfigurations>
+  <specializedTypes href="#_mhW74My1EeS2aYvfnAB4ZA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/></elementTypeConfigurations>
   <adviceBindingsConfigurations description="Aspect Semantic element type to create abstract classes" identifier="org.eclipse.papyrus.infra.types.tests.aspectabstractclass.advice" target="_mhW74My1EeS2aYvfnAB4ZA" xmi:id="_6Zq8QLg_EeS0cu6lbJ9jDQ" xsi:type="setvaluesadvice:SetValuesAdviceConfiguration">
     <featuresToSet featureName="isAbstract" xmi:id="_7FIUELg_EeS0cu6lbJ9jDQ">
       <value xmi:id="_-d4_oLg_EeS0cu6lbJ9jDQ" xsi:type="setvaluesadvice:ConstantValue">

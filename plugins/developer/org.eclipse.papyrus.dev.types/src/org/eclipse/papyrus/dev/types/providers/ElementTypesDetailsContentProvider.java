@@ -136,7 +136,7 @@ public class ElementTypesDetailsContentProvider implements ITreeContentProvider 
 	@Override
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof List<?>) {
-			Collections.sort((List<IEditHelperAdvice>) parentElement, new AdviceComparator(contextID));
+			Collections.sort((List<IEditHelperAdvice>) parentElement, new AdviceComparator(ElementTypeRegistry.getInstance().getType(typeID), contextID));
 			return ((List<?>) parentElement).toArray();
 		}
 

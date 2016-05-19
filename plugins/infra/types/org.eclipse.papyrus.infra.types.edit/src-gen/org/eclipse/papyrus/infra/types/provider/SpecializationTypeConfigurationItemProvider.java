@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory;
@@ -58,29 +57,29 @@ public class SpecializationTypeConfigurationItemProvider extends ElementTypeConf
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSpecializedTypesIDPropertyDescriptor(object);
+			addSpecializedTypesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Specialized Types ID feature.
+	 * This adds a property descriptor for the Specialized Types feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSpecializedTypesIDPropertyDescriptor(Object object) {
+	protected void addSpecializedTypesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SpecializationTypeConfiguration_specializedTypesID_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SpecializationTypeConfiguration_specializedTypesID_feature", "_UI_SpecializationTypeConfiguration_type"),
-				 ElementTypesConfigurationsPackage.Literals.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID,
+				 getString("_UI_SpecializationTypeConfiguration_specializedTypes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SpecializationTypeConfiguration_specializedTypes_feature", "_UI_SpecializationTypeConfiguration_type"),
+				 ElementTypesConfigurationsPackage.Literals.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -155,9 +154,6 @@ public class SpecializationTypeConfigurationItemProvider extends ElementTypeConf
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SpecializationTypeConfiguration.class)) {
-			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION:
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__CONTAINER_CONFIGURATION:
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION:

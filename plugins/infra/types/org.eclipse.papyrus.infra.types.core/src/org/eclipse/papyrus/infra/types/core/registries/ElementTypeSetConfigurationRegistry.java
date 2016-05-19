@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,13 +28,14 @@ import java.util.Set;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeUtil;
@@ -67,7 +69,7 @@ public class ElementTypeSetConfigurationRegistry {
 	protected Map<String, Map<String, ElementTypeSetConfiguration>> elementTypeSetConfigurations = null;
 
 	/** Advice execution order dependencies per clientContextId per IElementType */
-	protected Map<String, OrientedGraph<String>> advicesDeps = null;
+	protected Map<String, Map<String, OrientedGraph<String>>> advicesDeps = null;
 
 
 	/** unique resource set to load all elementType sets models */
@@ -93,7 +95,7 @@ public class ElementTypeSetConfigurationRegistry {
 		// 0. Resets values
 		elementTypeSetConfigurationResourceSet = null;
 		elementTypeSetConfigurations = new HashMap<String, Map<String, ElementTypeSetConfiguration>>();
-		advicesDeps = new HashMap<String, OrientedGraph<String>>();
+		advicesDeps = new HashMap<String, Map<String, OrientedGraph<String>>>();
 		// 1. creates the resource set
 		elementTypeSetConfigurationResourceSet = createResourceSet();
 		// 2. creates the list only when registry is acceded for the first time,
@@ -167,11 +169,16 @@ public class ElementTypeSetConfigurationRegistry {
 		return loadElementTypeSetConfigurations(clientContextID, Collections.singleton(elementTypeSetConfiguration));
 	}
 
-	public OrientedGraph<String> getAdvicesDeps(String clientContextID) {
-		OrientedGraph<String> dependencies = advicesDeps.get(clientContextID);
+	public OrientedGraph<String> getAdvicesDeps(String elementTypeID, String clientContextID) {
+		Map<String, OrientedGraph<String>> allDependencies = advicesDeps.get(clientContextID);
+		if (allDependencies == null) {
+			allDependencies = new HashMap<String, OrientedGraph<String>>();
+			advicesDeps.put(clientContextID, allDependencies);
+		}
+		OrientedGraph<String> dependencies = allDependencies.get(elementTypeID);
 		if (dependencies == null) {
 			dependencies = new OrientedGraph<String>();
-			advicesDeps.put(clientContextID, dependencies);
+			allDependencies.put(elementTypeID, dependencies);
 		}
 		return dependencies;
 	}
@@ -180,9 +187,9 @@ public class ElementTypeSetConfigurationRegistry {
 		if (ElementTypeRegistry.getInstance().getType(elementTypeID) != null) {
 			if (!elementTypeID.equals(NullElementType.ID)) {
 				if (ElementTypeRegistryUtils.getType(context, elementTypeID) == null) {
-					// The elementType is already existing but not binded yet
+					// The elementType is already existing but not bound yet
 					context.bindId(elementTypeID);
-					Activator.log.info(elementTypeID + " is already registred elementtype but it is not binded yet. It has been binded to Papyrus context. ");
+					Activator.log.info(elementTypeID + " is already registred elementtype but it is not bound yet. It has been bound to Papyrus context. ");
 				}
 			}
 			return true;
@@ -199,20 +206,14 @@ public class ElementTypeSetConfigurationRegistry {
 
 		if (elementTypeConfiguration instanceof SpecializationTypeConfiguration) {
 			// First, check if dependencies are registered
-			for (String specializedTypeId : ((SpecializationTypeConfiguration) elementTypeConfiguration).getSpecializedTypesID()) {
+			for (ElementTypeConfiguration specializedTypeConfiguration : ((SpecializationTypeConfiguration) elementTypeConfiguration).getSpecializedTypes()) {
 
-				if (!isAlreadyRegistred(specializedTypeId, context)) {
+				if (!isAlreadyRegistred(specializedTypeConfiguration.getIdentifier(), context)) {
 					// try to register the dependency
-					ElementTypeConfiguration specializedTypeConfiguration = elementTypeConfigurationsDefinitions.get(specializedTypeId);
 					if (specializedTypeConfiguration != null) {
 						boolean registred = registerElementTypeConfiguration(specializedTypeConfiguration, elementTypeConfigurationsDefinitions, context);
 						if (!registred) {
-							Activator.log.info("Failed to register " + specializedTypeId);
-							return false;
-						}
-					} else {
-						if (!specializedTypeId.equals(NullElementType.ID)) {
-							Activator.log.info("Cannot find ElementTypeConfiguration for " + specializedTypeId);
+							Activator.log.info("Failed to register " + specializedTypeConfiguration);
 							return false;
 						}
 					}
@@ -242,6 +243,8 @@ public class ElementTypeSetConfigurationRegistry {
 			}
 		}
 
+		Activator.log.info("Couldn't create ElementType from: " + elementTypeConfiguration);
+
 		return false;
 
 	}
@@ -261,8 +264,6 @@ public class ElementTypeSetConfigurationRegistry {
 
 		Map<String, ElementTypeConfiguration> elementTypeConfigurationsDefinitions = new HashMap<String, ElementTypeConfiguration>();
 
-
-
 		// Read from elementTypeSetConfigurations
 		Set<ElementTypeSetConfiguration> registrableElementTypeSetConfiguration = new HashSet<ElementTypeSetConfiguration>();
 		for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSetConfigurationsToRegister) {
@@ -270,13 +271,28 @@ public class ElementTypeSetConfigurationRegistry {
 				Activator.log.warn("The collection of elementTypesconfigurations contains a null value. Loading aborted. ");
 				return false;
 			}
-			// Check if not already registered
-			if (elementTypeSetConfigurations.containsKey(elementTypeSetConfiguration.getIdentifier())) {
-				Activator.log.warn("The following ElementTypesSetConfiguration has been ignored because the same ID already registreted: " + elementTypeSetConfiguration.getIdentifier());
+
+			Diagnostic diagnostic = Diagnostician.INSTANCE.validate(elementTypeSetConfiguration);
+			if (diagnostic.getSeverity() != Diagnostic.ERROR) {
+				// Check if not already registered
+				if (elementTypeSetConfigurations.containsKey(elementTypeSetConfiguration.getIdentifier())) {
+					Activator.log.warn("The following ElementTypesSetConfiguration has been ignored because the same ID already registreted: " + elementTypeSetConfiguration.getIdentifier());
+				} else {
+					registrableElementTypeSetConfiguration.add(elementTypeSetConfiguration);
+					for (ElementTypeConfiguration elementTypeConfiguration : elementTypeSetConfiguration.getElementTypeConfigurations()) {
+						elementTypeConfigurationsDefinitions.put(elementTypeConfiguration.getIdentifier(), elementTypeConfiguration);
+					}
+				}
 			} else {
-				registrableElementTypeSetConfiguration.add(elementTypeSetConfiguration);
-				for (ElementTypeConfiguration elementTypeConfiguration : elementTypeSetConfiguration.getElementTypeConfigurations()) {
-					elementTypeConfigurationsDefinitions.put(elementTypeConfiguration.getIdentifier(), elementTypeConfiguration);
+				Activator.log.warn(diagnostic.getMessage());
+				Iterator<Diagnostic> it = diagnostic.getChildren().iterator();
+				while (it.hasNext()) {
+					Diagnostic childDiagnostic = (Diagnostic) it.next();
+					switch (childDiagnostic.getSeverity()) {
+					case Diagnostic.ERROR:
+					case Diagnostic.WARNING:
+						Activator.log.warn("\t" + childDiagnostic.getMessage());
+					}
 				}
 			}
 		}
@@ -306,7 +322,7 @@ public class ElementTypeSetConfigurationRegistry {
 			for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSetConfigurations.get(contexId).values()) {
 				TreeIterator<EObject> it = elementTypeSetConfiguration.eAllContents();
 				while (it.hasNext()) {
-					EObject element = it.next();
+					EObject element = (EObject) it.next();
 					if (element instanceof AdviceConfiguration) {
 						adviceToCheck.add((AdviceConfiguration) element);
 					}
@@ -318,7 +334,7 @@ public class ElementTypeSetConfigurationRegistry {
 		for (ElementTypeSetConfiguration elementTypeSetConfiguration : registrableElementTypeSetConfiguration) {
 			TreeIterator<EObject> it = elementTypeSetConfiguration.eAllContents();
 			while (it.hasNext()) {
-				EObject element = it.next();
+				EObject element = (EObject) it.next();
 				if (element instanceof AdviceConfiguration) {
 					adviceToCheck.add((AdviceConfiguration) element);
 
@@ -327,11 +343,13 @@ public class ElementTypeSetConfigurationRegistry {
 		}
 
 		// Check that there is no cyclic dependencies among advices introduced by this loading
-		OrientedGraph<String> deps = TypesConfigurationsCycleUtil.getDependenciesAmongAdvices(adviceToCheck);
-		Collection<Collection<Object>> cyclesAdvices = TypesConfigurationsCycleUtil.getCyclesInAdvices(deps.getVertices(), deps.getEdges());
-		if (!cyclesAdvices.isEmpty()) {
-			Activator.log.warn("The ElementTypesConfiguration registration has been aborted because there is at least a cyclic-dependencies in the Advices definitions: " + cyclesAdvices);
-			return false;
+		Map<String, OrientedGraph<String>> deps = TypesConfigurationsCycleUtil.getDependenciesAmongAdvices(adviceToCheck);
+		for (String type : deps.keySet()) {
+			Collection<Collection<Object>> cyclesAdvices = TypesConfigurationsCycleUtil.getCyclesInAdvices(deps.get(type).getVertices(), deps.get(type).getEdges());
+			if (!cyclesAdvices.isEmpty()) {
+				Activator.log.warn("The ElementTypesConfiguration registration has been aborted because there is at least a cyclic-dependencies in the Advices definitions: " + cyclesAdvices);
+				return false;
+			}
 		}
 
 		// If we reached that point, we should be able to register safely the none already registered elementTypeSets
@@ -421,14 +439,14 @@ public class ElementTypeSetConfigurationRegistry {
 		for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSetConfigurations.get(contextId).values()) {
 			TreeIterator<EObject> it = elementTypeSetConfiguration.eAllContents();
 			while (it.hasNext()) {
-				EObject element = it.next();
+				EObject element = (EObject) it.next();
 				if (element instanceof AdviceConfiguration) {
 					advices.add((AdviceConfiguration) element);
 				}
 
 			}
 		}
-		OrientedGraph<String> deps = TypesConfigurationsCycleUtil.getDependenciesAmongAdvices(advices);
+		Map<String, OrientedGraph<String>> deps = TypesConfigurationsCycleUtil.getDependenciesAmongAdvices(advices);
 		advicesDeps.put(contextId, deps);
 
 		return true;
@@ -464,7 +482,7 @@ public class ElementTypeSetConfigurationRegistry {
 			if (Platform.inDebugMode()) {
 				Activator.log.debug("[Reading extension point]");
 				Activator.log.debug("-  Path to the model: " + modelPath);
-				Activator.log.debug("-  ClientContext the model should be registreted to: " + clientContextId);
+				Activator.log.debug("-  ClientContext the model will be registreted to: " + clientContextId);
 				Activator.log.debug("-  id of the container bundle: " + contributorID);
 			}
 			ElementTypeSetConfiguration set = getElementTypeSetConfiguration(modelPath, contributorID);
@@ -571,11 +589,6 @@ public class ElementTypeSetConfigurationRegistry {
 
 	protected ResourceSet createResourceSet() {
 		ResourceSet set = new ResourceSetImpl();
-		// Bug 488674 - Safe load and disable the URI to HTTP connection
-		set.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
-		set.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
-		set.getLoadOptions().put(XMLResource.OPTION_USE_PACKAGE_NS_URI_AS_LOCATION, Boolean.FALSE);
-
 		return set;
 	}
 

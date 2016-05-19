@@ -23,12 +23,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.papyrus.infra.types.AbstractEditHelperAdviceConfiguration;
 import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
 import org.eclipse.papyrus.infra.types.ContainerConfiguration;
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 
@@ -40,25 +39,15 @@ import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.types.impl.SpecializationTypeConfigurationImpl#getSpecializedTypesID <em>Specialized Types ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.SpecializationTypeConfigurationImpl#getEditHelperAdviceConfiguration <em>Edit Helper Advice Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.SpecializationTypeConfigurationImpl#getContainerConfiguration <em>Container Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.SpecializationTypeConfigurationImpl#getMatcherConfiguration <em>Matcher Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.impl.SpecializationTypeConfigurationImpl#getSpecializedTypes <em>Specialized Types</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SpecializationTypeConfigurationImpl extends ElementTypeConfigurationImpl implements SpecializationTypeConfiguration {
-	/**
-	 * The cached value of the '{@link #getSpecializedTypesID() <em>Specialized Types ID</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSpecializedTypesID()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> specializedTypesID;
-
 	/**
 	 * The cached value of the '{@link #getEditHelperAdviceConfiguration() <em>Edit Helper Advice Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -90,6 +79,16 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	protected AbstractMatcherConfiguration matcherConfiguration;
 
 	/**
+	 * The cached value of the '{@link #getSpecializedTypes() <em>Specialized Types</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSpecializedTypes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ElementTypeConfiguration> specializedTypes;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -106,18 +105,6 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	@Override
 	protected EClass eStaticClass() {
 		return ElementTypesConfigurationsPackage.Literals.SPECIALIZATION_TYPE_CONFIGURATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<String> getSpecializedTypesID() {
-		if (specializedTypesID == null) {
-			specializedTypesID = new EDataTypeUniqueEList<String>(String.class, this, ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID);
-		}
-		return specializedTypesID;
 	}
 
 	/**
@@ -254,6 +241,18 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ElementTypeConfiguration> getSpecializedTypes() {
+		if (specializedTypes == null) {
+			specializedTypes = new EObjectResolvingEList<ElementTypeConfiguration>(ElementTypeConfiguration.class, this, ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES);
+		}
+		return specializedTypes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -291,14 +290,14 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID:
-				return getSpecializedTypesID();
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION:
 				return getEditHelperAdviceConfiguration();
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__CONTAINER_CONFIGURATION:
 				return getContainerConfiguration();
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION:
 				return getMatcherConfiguration();
+			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES:
+				return getSpecializedTypes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -312,10 +311,6 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID:
-				getSpecializedTypesID().clear();
-				getSpecializedTypesID().addAll((Collection<? extends String>)newValue);
-				return;
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION:
 				setEditHelperAdviceConfiguration((AbstractEditHelperAdviceConfiguration)newValue);
 				return;
@@ -324,6 +319,10 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 				return;
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION:
 				setMatcherConfiguration((AbstractMatcherConfiguration)newValue);
+				return;
+			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES:
+				getSpecializedTypes().clear();
+				getSpecializedTypes().addAll((Collection<? extends ElementTypeConfiguration>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -337,9 +336,6 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID:
-				getSpecializedTypesID().clear();
-				return;
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION:
 				setEditHelperAdviceConfiguration((AbstractEditHelperAdviceConfiguration)null);
 				return;
@@ -348,6 +344,9 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 				return;
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION:
 				setMatcherConfiguration((AbstractMatcherConfiguration)null);
+				return;
+			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES:
+				getSpecializedTypes().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -361,32 +360,16 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID:
-				return specializedTypesID != null && !specializedTypesID.isEmpty();
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION:
 				return editHelperAdviceConfiguration != null;
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__CONTAINER_CONFIGURATION:
 				return containerConfiguration != null;
 			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION:
 				return matcherConfiguration != null;
+			case ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES:
+				return specializedTypes != null && !specializedTypes.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (specializedTypesID: ");
-		result.append(specializedTypesID);
-		result.append(')');
-		return result.toString();
 	}
 
 } //SpecializationTypeConfigurationImpl

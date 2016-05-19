@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.papyrus.infra.emf.utils.EMFFunctions;
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.IconEntry;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
@@ -80,12 +81,14 @@ public class DiagramSpecificElementTypesGenerationTest extends AbstractPapyrusTe
 		String idPrefix = semanticParentID + "_";
 
 		for (SpecializationTypeConfiguration next : specializationTypes) {
-			assertThat(next.getIdentifier(), startsWith(idPrefix));
+			if (!next.getIdentifier().equals(semanticParentID)) {
+				assertThat(next.getIdentifier(), startsWith(idPrefix));
 
-			List<String> specializedTypeIDs = next.getSpecializedTypesID();
-			assertThat(specializedTypeIDs.size(), is(2));
-			assertThat(specializedTypeIDs.get(0), is(semanticParentID));
-			assertThat(specializedTypeIDs.get(1), regexContains("Actor_")); // a visual ID
+				List<ElementTypeConfiguration> specializedType = next.getSpecializedTypes();
+				assertThat(specializedType.size(), is(2));
+				assertThat(specializedType.get(0).getIdentifier(), is(semanticParentID));
+				assertThat(specializedType.get(1).getIdentifier(), regexContains("Actor_")); // a visual ID
+			}
 		}
 	}
 

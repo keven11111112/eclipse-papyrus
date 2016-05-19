@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_yNA-cBEtEeaDmLeqAKxD1Q" name="types" URI="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_yNA-cBEtEeaDmLeqAKxD1Q" name="types" URI="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1">
   <packagedElement xmi:type="uml:Class" xmi:id="_yNA-cREtEeaDmLeqAKxD1Q" name="ElementTypeSetConfiguration" isAbstract="true">
     <generalization xmi:type="uml:Generalization" xmi:id="_yNA-chEtEeaDmLeqAKxD1Q" general="_yNA-fBEtEeaDmLeqAKxD1Q"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_yNA-cxEtEeaDmLeqAKxD1Q" name="elementTypeConfigurations" type="_yNA-gxEtEeaDmLeqAKxD1Q" isOrdered="true" aggregation="composite" association="_yNA-lhEtEeaDmLeqAKxD1Q">
@@ -86,15 +86,13 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_yNA-ohEtEeaDmLeqAKxD1Q" name="AdviceConfiguration" isAbstract="true">
     <generalization xmi:type="uml:Generalization" xmi:id="_yNA-oxEtEeaDmLeqAKxD1Q" general="_yNA-fBEtEeaDmLeqAKxD1Q"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_yNA-pBEtEeaDmLeqAKxD1Q" name="before" visibility="public" isOrdered="true">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yNA-pREtEeaDmLeqAKxD1Q"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yNA-phEtEeaDmLeqAKxD1Q" value="*"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_VZVZoEUgEeaij82q7PgU2Q" name="before" type="_yNA-ohEtEeaDmLeqAKxD1Q" association="_VZIlUEUgEeaij82q7PgU2Q">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k6VpYEUgEeaij82q7PgU2Q"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k6s1wEUgEeaij82q7PgU2Q" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_yNA-pxEtEeaDmLeqAKxD1Q" name="after" visibility="public" isOrdered="true">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yNA-qBEtEeaDmLeqAKxD1Q"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yNA-qREtEeaDmLeqAKxD1Q" value="*"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_eEJ0sUUgEeaij82q7PgU2Q" name="after" type="_yNA-ohEtEeaDmLeqAKxD1Q" association="_eEGxYEUgEeaij82q7PgU2Q">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jne6YEUgEeaij82q7PgU2Q"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jnwnMEUgEeaij82q7PgU2Q" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_yNA-qhEtEeaDmLeqAKxD1Q" memberEnd="_yNA-mhEtEeaDmLeqAKxD1Q _yNA-qxEtEeaDmLeqAKxD1Q">
@@ -132,10 +130,6 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_yNA-wBEtEeaDmLeqAKxD1Q" name="SpecializationTypeConfiguration">
     <generalization xmi:type="uml:Generalization" xmi:id="_yNA-wREtEeaDmLeqAKxD1Q" general="_yNA-gxEtEeaDmLeqAKxD1Q"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_yNA-whEtEeaDmLeqAKxD1Q" name="specializedTypesID" visibility="public" isOrdered="true">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yNA-wxEtEeaDmLeqAKxD1Q" value="*"/>
-    </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_yNA-xBEtEeaDmLeqAKxD1Q" name="editHelperAdviceConfiguration" type="_yNA-yhEtEeaDmLeqAKxD1Q" isOrdered="true" aggregation="composite" association="_yNA-zREtEeaDmLeqAKxD1Q">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yNA-xREtEeaDmLeqAKxD1Q"/>
     </ownedAttribute>
@@ -144,6 +138,10 @@
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_yNA-yBEtEeaDmLeqAKxD1Q" name="matcherConfiguration" type="_yNA-shEtEeaDmLeqAKxD1Q" isOrdered="true" aggregation="composite" association="_yNA-0BEtEeaDmLeqAKxD1Q">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yNA-yREtEeaDmLeqAKxD1Q"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_pSswwEUgEeaij82q7PgU2Q" name="specializedTypes" type="_yNA-gxEtEeaDmLeqAKxD1Q" association="_pSptcEUgEeaij82q7PgU2Q">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2H3FUEUgEeaij82q7PgU2Q"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2ITKMEUgEeaij82q7PgU2Q" value="*"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_yNA-yhEtEeaDmLeqAKxD1Q" name="AbstractEditHelperAdviceConfiguration" isAbstract="true">
@@ -194,5 +192,23 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_yNA-5REtEeaDmLeqAKxD1Q" name="ExternallyRegisteredAdvice">
     <generalization xmi:type="uml:Generalization" xmi:id="_yNA-5hEtEeaDmLeqAKxD1Q" general="_yNA-3REtEeaDmLeqAKxD1Q"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_VZIlUEUgEeaij82q7PgU2Q" memberEnd="_VZVZoEUgEeaij82q7PgU2Q _VZWAsEUgEeaij82q7PgU2Q">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VZULgEUgEeaij82q7PgU2Q" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VZUykEUgEeaij82q7PgU2Q" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_VZWAsEUgEeaij82q7PgU2Q" name="adviceconfiguration" type="_yNA-ohEtEeaDmLeqAKxD1Q" association="_VZIlUEUgEeaij82q7PgU2Q"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_eEGxYEUgEeaij82q7PgU2Q" memberEnd="_eEJ0sUUgEeaij82q7PgU2Q _eELC0EUgEeaij82q7PgU2Q">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_eEJNoEUgEeaij82q7PgU2Q" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_eEJ0sEUgEeaij82q7PgU2Q" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_eELC0EUgEeaij82q7PgU2Q" name="adviceconfiguration" type="_yNA-ohEtEeaDmLeqAKxD1Q" association="_eEGxYEUgEeaij82q7PgU2Q"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_pSptcEUgEeaij82q7PgU2Q" memberEnd="_pSswwEUgEeaij82q7PgU2Q _pStX0EUgEeaij82q7PgU2Q">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_pSsJsEUgEeaij82q7PgU2Q" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pSsJsUUgEeaij82q7PgU2Q" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_pStX0EUgEeaij82q7PgU2Q" name="specializationtypeconfiguration" type="_yNA-wBEtEeaDmLeqAKxD1Q" association="_pSptcEUgEeaij82q7PgU2Q"/>
   </packagedElement>
 </uml:Model>

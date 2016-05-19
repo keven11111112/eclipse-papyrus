@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
 import org.eclipse.papyrus.infra.types.AdviceConfiguration;
@@ -95,24 +95,24 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObj
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getBefore() <em>Before</em>}' attribute list.
+	 * The cached value of the '{@link #getBefore() <em>Before</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getBefore()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> before;
+	protected EList<AdviceConfiguration> before;
 
 	/**
-	 * The cached value of the '{@link #getAfter() <em>After</em>}' attribute list.
+	 * The cached value of the '{@link #getAfter() <em>After</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getAfter()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<String> after;
+	protected EList<AdviceConfiguration> after;
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
@@ -230,9 +230,9 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObj
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getBefore() {
+	public EList<AdviceConfiguration> getBefore() {
 		if (before == null) {
-			before = new EDataTypeUniqueEList<String>(String.class, this, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE);
+			before = new EObjectResolvingEList<AdviceConfiguration>(AdviceConfiguration.class, this, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE);
 		}
 		return before;
 	}
@@ -242,9 +242,9 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObj
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getAfter() {
+	public EList<AdviceConfiguration> getAfter() {
 		if (after == null) {
-			after = new EDataTypeUniqueEList<String>(String.class, this, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER);
+			after = new EObjectResolvingEList<AdviceConfiguration>(AdviceConfiguration.class, this, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER);
 		}
 		return after;
 	}
@@ -456,11 +456,11 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObj
 				return;
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE:
 				getBefore().clear();
-				getBefore().addAll((Collection<? extends String>)newValue);
+				getBefore().addAll((Collection<? extends AdviceConfiguration>)newValue);
 				return;
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER:
 				getAfter().clear();
-				getAfter().addAll((Collection<? extends String>)newValue);
+				getAfter().addAll((Collection<? extends AdviceConfiguration>)newValue);
 				return;
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET:
 				setTarget((ElementTypeConfiguration)newValue);
@@ -602,10 +602,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends MinimalEObj
 		result.append(identifier);
 		result.append(", description: ");
 		result.append(description);
-		result.append(", before: ");
-		result.append(before);
-		result.append(", after: ");
-		result.append(after);
 		result.append(", inheritance: ");
 		result.append(inheritance);
 		result.append(')');

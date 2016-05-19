@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="types" nsURI="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="types" nsURI="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2"
     nsPrefix="elementtypesconfigurations">
   <eClassifiers xsi:type="ecore:EClass" name="ElementTypeSetConfiguration" eSuperTypes="#//ConfigurationElement #//IdentifiedConfiguration #//NamedConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypeConfigurations"
@@ -29,10 +29,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="AbstractMatcherConfiguration" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="AdviceConfiguration" abstract="true"
       eSuperTypes="#//ConfigurationElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="before" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="after" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="before" upperBound="-1"
+        eType="#//AdviceConfiguration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="after" upperBound="-1"
+        eType="#//AdviceConfiguration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractAdviceBindingConfiguration"
       abstract="true" eSuperTypes="#//IdentifiedConfiguration #//AdviceConfiguration">
@@ -45,14 +45,14 @@
         eType="#//InheritanceKind"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SpecializationTypeConfiguration" eSuperTypes="#//ElementTypeConfiguration">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="specializedTypesID" lowerBound="1"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="editHelperAdviceConfiguration"
         eType="#//AbstractEditHelperAdviceConfiguration" containment="true" eOpposite="#//AbstractEditHelperAdviceConfiguration/target"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="containerConfiguration"
         eType="#//ContainerConfiguration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="matcherConfiguration" eType="#//AbstractMatcherConfiguration"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specializedTypes" upperBound="-1"
+        eType="#//ElementTypeConfiguration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContainerConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="containerMatcherConfiguration"

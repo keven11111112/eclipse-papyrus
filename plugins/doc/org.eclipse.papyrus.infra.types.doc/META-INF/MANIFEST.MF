@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.help;bundle-version="[3.7.0,4.0.0)"
 Bundle-Vendor: %Bundle-Vendor
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 3.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.types.doc;singleton:=true

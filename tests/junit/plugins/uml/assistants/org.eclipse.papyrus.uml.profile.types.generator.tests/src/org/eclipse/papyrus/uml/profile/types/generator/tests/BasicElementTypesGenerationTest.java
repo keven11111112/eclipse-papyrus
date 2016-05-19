@@ -22,6 +22,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
 
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.IconEntry;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
@@ -69,9 +70,9 @@ public class BasicElementTypesGenerationTest extends AbstractPapyrusTest {
 
 		assertThat(specialization.getIdentifier(), is(fixture.prefix + ".Bean"));
 
-		List<String> specializedTypeIDs = specialization.getSpecializedTypesID();
-		assertThat(specializedTypeIDs.size(), is(1));
-		assertThat(specializedTypeIDs.get(0), is(UMLElementTypes.CLASS.getId()));
+		List<ElementTypeConfiguration> specializedTypes = specialization.getSpecializedTypes();
+		assertThat(specializedTypes.size(), is(1));
+		assertThat(specializedTypes.get(0).getIdentifier(), is(UMLElementTypes.CLASS.getId()));
 	}
 
 	@Test
