@@ -28,8 +28,8 @@ location xpand "http://download.eclipse.org/modeling/m2t/xpand/updates/milestone
 //manualUpdate
 
 location nebula "http://download.eclipse.org/technology/nebula/releases/1.0.0/" {
-	org.eclipse.nebula.widgets.tablecombo.feature.feature.group
-	org.eclipse.nebula.widgets.richtext.feature.feature.group
+	org.eclipse.nebula.widgets.tablecombo.feature.feature.group lazy
+	org.eclipse.nebula.widgets.richtext.feature.feature.group lazy
 }
 
 //updateFrom("MDT UML2",0) 

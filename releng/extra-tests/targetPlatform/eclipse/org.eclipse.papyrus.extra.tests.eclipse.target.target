@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra Tests" sequenceNumber="1463647766">
+<target name="Papyrus Extra Tests" sequenceNumber="1463664540">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.b3.aggregator.editor.source.feature.feature.group" version="0.3.0.v20140928-0617"/>
@@ -55,8 +55,8 @@
       <repository id="xpand" location="file:/home/data/httpd/download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201603220642/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.nebula.widgets.tablecombo.feature.feature.group" version="1.0.0.201605182147"/>
-      <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.0.0.201605182147"/>
+      <unit id="org.eclipse.nebula.widgets.tablecombo.feature.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="0.0.0"/>
       <repository id="nebula" location="file:/home/data/httpd/download.eclipse.org/technology/nebula/releases/1.0.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
