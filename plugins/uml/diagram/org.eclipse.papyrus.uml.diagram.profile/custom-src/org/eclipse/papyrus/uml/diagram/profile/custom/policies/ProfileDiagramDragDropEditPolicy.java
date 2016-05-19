@@ -11,6 +11,8 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram
  *  Christian W. Damus - bug 433206
+ *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 492893
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.profile.custom.policies;
 
@@ -78,6 +80,7 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
 /**
@@ -148,11 +151,19 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 *
 	 * @return the command
 	 */
-	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
-		Collection<?> endtypes = ProfileLinkMappingHelper.getInstance().getSource(semanticLink);
+	protected Command dropAssociation(final DropObjectsRequest dropRequest, final Element semanticLink, final int nodeVISUALID) {
+		final List<?> endtypes = new ArrayList<Object>(ProfileLinkMappingHelper.getInstance().getSource(semanticLink));
 		if (endtypes.size() == 2) {
-			Element source = (Element) endtypes.toArray()[0];
-			Element target = (Element) endtypes.toArray()[1];
+			Element source = null;
+			Element target = null;
+			final List<Property> memberEnds = ((Association) semanticLink).getMemberEnds();
+			if (memberEnds.get(0).equals(endtypes.get(0))) {
+				source = (Element) endtypes.get(0);
+				target = (Element) endtypes.get(1);
+			} else {
+				source = (Element) endtypes.get(1);
+				target = (Element) endtypes.get(0);
+			}
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4001, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		}
 		if (endtypes.size() > 2) {
@@ -507,7 +518,6 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 		Collection<EditPart> profileContents = new ArrayList<EditPart>();
 		Collection<EditPart> editPartSet = getHost().getViewer().getEditPartRegistry().values();
 		Iterator<EditPart> editPartIterator = editPartSet.iterator();
-		// Je recherche les �l�ments qui ont le m�me parent que mon extension
 		while (editPartIterator.hasNext()) {
 			currentEditPart = editPartIterator.next();
 			if (currentEditPart.getParent() != null) {
