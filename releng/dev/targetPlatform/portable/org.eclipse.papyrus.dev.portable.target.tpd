@@ -18,7 +18,7 @@ location upr "http://download.eclipse.org/upr/0.9RC1/update/" {
 
 //updateFrom("oomph",0) 
 
-location oomph "http://download.eclipse.org/oomph/drops/milestone/S20160504-131816-1.4.0-M7" {
+location oomph "http://download.eclipse.org/oomph/drops/milestone/S20160518-131056-1.4.0-RC1" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group
