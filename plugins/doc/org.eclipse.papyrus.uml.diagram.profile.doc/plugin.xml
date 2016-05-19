@@ -35,6 +35,10 @@
             file="target/generated-eclipse-help/users/simplifiedUsageOfProfilesAndStereotypes-toc.xml"
             primary="true">
       </toc>
+      <toc
+            file="target/generated-eclipse-help/users/generatingStaticProfiles-toc.xml"
+            primary="true">
+      </toc>
    </extension>
 
 </plugin>

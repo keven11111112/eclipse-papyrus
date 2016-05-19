@@ -7,6 +7,7 @@
           <link toc="target/generated-eclipse-help/users/definingProfilesAndStereotypes-toc.xml" />
            <link toc="target/generated-eclipse-help/users/usingProfilesAndStereotypes-toc.xml" />
       <link toc="target/generated-eclipse-help/users/simplifiedUsageOfProfilesAndStereotypes-toc.xml" />
+      <link toc="target/generated-eclipse-help/users/generatingStaticProfiles-toc.xml"/>
        <anchor id="profiles" />
         <link toc="target/generated-eclipse-help/users/papyrusProfileLimitations-toc.xml" />
       <anchor id="profiles-end" />
