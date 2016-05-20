@@ -16,8 +16,6 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
 import static org.eclipse.papyrus.moka.fuml.statemachines.Activator.logger;
 
-import java.util.List;
-
 import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_SignalInstance;
 import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.BooleanValue;
@@ -25,11 +23,12 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Evaluation;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalEventOccurrence;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.CallEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Values.SM_OpaqueExpressionEvaluation;
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
+import org.eclipse.uml2.uml.CallEvent;
+import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.OpaqueExpression;
-import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Trigger;
@@ -128,31 +127,46 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		return result;
 	}
 	
-	public boolean hasTrigger(final SignalInstance signal){
-		// Return true if the following transition has a trigger that is reactive
-		// to the given signal instance.
+	public boolean hasTrigger(EventOccurrence eventOccurrence){
+		// Return true if the event occurrence matches a trigger of this transition.
+		// The following cases are supported:
+		// 1] If 'onPort' is specified then the event occurrence can only be a signal event occurrence.
+		//    **NOTE**: This limitation is related to the fact that PSCS is for the moment not able to
+		//    manage event occurrences that are not signal events.   
+		// 2] Otherwise, call event occurrence as well signal event occurrence are supported
 		int i = 0;
-		Transition transition = (Transition)this.node;
+		Transition transition = (Transition) this.node;
 		Trigger trigger = null;
-		while(i < transition.getTriggers().size() && trigger==null){
+		while(trigger==null && i < transition.getTriggers().size()){
 			Trigger currentTrigger = transition.getTriggers().get(i);
-			if(currentTrigger.getEvent()!=null && 
-					currentTrigger.getEvent() instanceof SignalEvent
-					&& ((SignalEvent)currentTrigger.getEvent()).getSignal()==signal.type){
-				if(currentTrigger.getPorts().size() > 0) {
-					List<Port> portsOfTrigger = currentTrigger.getPorts();
-					Port onPort = ((CS_SignalInstance)signal).interactionPoint.definingPort;
-					Boolean portMatches = false;
-					int j = 1;
-					while(!portMatches & j <= portsOfTrigger.size()) {
-						portMatches = onPort == portsOfTrigger.get(j - 1);
-						j = j + 1;
-					}
-					if(portMatches){
+			if(currentTrigger.getPorts().size() > 0){
+				Event event = currentTrigger.getEvent();
+				if(event instanceof SignalEvent & eventOccurrence instanceof SignalEventOccurrence){
+					if(((SignalEvent)event).getSignal() == ((SignalEventOccurrence)eventOccurrence).signalInstance.type){
 						trigger = currentTrigger;
 					}
-				}else{
-					trigger = currentTrigger;
+					if(trigger != null){
+						int j = 0;
+						boolean matchingPort = false; 
+						while(j < trigger.getPorts().size() & !matchingPort){
+							matchingPort = ((CS_SignalInstance)((SignalEventOccurrence)eventOccurrence).signalInstance).interactionPoint == trigger.getPorts().get(j); 
+							j = j + 1;
+						}
+						if(!matchingPort){
+							trigger = null;
+						}
+					}
+				}
+			}else{
+				Event event = currentTrigger.getEvent();
+				if(event instanceof CallEvent & eventOccurrence instanceof CallEventOccurrence){
+					if(((CallEvent)event).getOperation() == ((CallEventOccurrence)eventOccurrence).execution.operation){
+						trigger = currentTrigger;
+					}
+				}else if(event instanceof SignalEvent & eventOccurrence instanceof SignalEventOccurrence){
+					if(((SignalEvent)event).getSignal() == ((SignalEventOccurrence)eventOccurrence).signalInstance.type){
+						trigger = currentTrigger;
+					}
 				}
 			}
 			i++;
@@ -174,9 +188,8 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 			reactive = !this.isTriggered() &&
 						this.getSourceActivation()==((CompletionEventOccurrence)eventOccurrence).stateActivation &&
 						this.evaluateGuard();
-		}else if(eventOccurrence instanceof SignalEventOccurrence){
-			reactive = this.hasTrigger(((SignalEventOccurrence)eventOccurrence).signalInstance) &&
-					   this.evaluateGuard();
+		}else if(eventOccurrence instanceof SignalEventOccurrence | eventOccurrence instanceof CallEventOccurrence){
+			reactive = this.hasTrigger(eventOccurrence) && this.evaluateGuard();
 		}else{
 			reactive = false;
 		}

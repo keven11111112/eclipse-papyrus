@@ -33,4 +33,5 @@ public class SM_Object extends CS_Object {
 		}
 		super.destroy();
 	}
+
 }
