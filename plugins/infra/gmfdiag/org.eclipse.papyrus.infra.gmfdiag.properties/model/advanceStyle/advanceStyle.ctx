@@ -17,7 +17,7 @@
   <tabs xmi:id="_b0dE8AU3EeWyLrX3gM3cmQ" label="Appearance" id="appearance" category="org.eclipse.papyrus" priority="75"/>
   <views xmi:id="_XRw1UPP-EeSAco7o1Suyeg" elementMultiplicity="-1" name="GenericNodeShape" sections="_LSzTgPP_EeSAco7o1Suyeg">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_iKCmcPP-EeSAco7o1Suyeg" name="RoundedCompartmentEditPart">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/model/ConstraintEnvironment.xmi#//@constraintTypes.3"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_ZYvMEPQCEeSAco7o1Suyeg" name="class" value="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"/>
     </constraints>
   </views>
@@ -29,13 +29,13 @@
   </views>
   <views xmi:id="_lYPpQP09EeSv6-u-klIJ1Q" elementMultiplicity="-1" name="FloatingLabel" sections="_7dELUP09EeSv6-u-klIJ1Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_MZzFUP1WEeSv6-u-klIJ1Q" name="isFloatingLabel">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/model/ConstraintEnvironment.xmi#//@constraintTypes.3"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_VjJtIP1vEeSv6-u-klIJ1Q" name="class" value="org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart"/>
     </constraints>
   </views>
   <views xmi:id="_JCvLcP1tEeSv6-u-klIJ1Q" elementMultiplicity="-1" name="PortStyle" sections="_W4rVoP1vEeSv6-u-klIJ1Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Ab6NoP1vEeSv6-u-klIJ1Q" name="isPortEditPart">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/model/ConstraintEnvironment.xmi#//@constraintTypes.3"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_VjJtIf1vEeSv6-u-klIJ1Q" name="class" value="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart"/>
     </constraints>
   </views>
