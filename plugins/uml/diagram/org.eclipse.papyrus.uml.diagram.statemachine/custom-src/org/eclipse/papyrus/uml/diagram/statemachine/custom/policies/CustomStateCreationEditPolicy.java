@@ -32,7 +32,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetPropertyCommand;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -55,7 +54,6 @@ import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomFirstR
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
@@ -71,10 +69,10 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 	public static final String VISIBILITY = "Visibility"; //$NON-NLS-1$
 
 	/**
-	 * Default location for new vertex, if called from popup-bar 
+	 * Default location for new vertex, if called from popup-bar
 	 */
 	public final static Rectangle defaultLocation = new Rectangle(20, 20, -1, -1);
-	
+
 	/**
 	 * No specific ZONE
 	 */
@@ -82,7 +80,7 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 
 	/**
 	 * Vertical offset for region compartment within composite state (cannot be calculated from host figure, since
-	 * the region compartment has not been created when the position calculation is done. 
+	 * the region compartment has not been created when the position calculation is done.
 	 */
 	public final static int REGION_OFFSET = 20;
 
@@ -104,7 +102,7 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 				CreateUnspecifiedTypeRequest unspecReq = (CreateUnspecifiedTypeRequest) request;
 				for (Object elementTypeObj : unspecReq.getElementTypes()) {
 					IElementType elementType = (IElementType) elementTypeObj;
-					
+
 					CreateRequest createRequest = unspecReq.getRequestForType(elementType);
 					Command cmd = getCustomCreateCommand(request, createRequest, ((IHintedType) elementType).getSemanticHint());
 					if (cmd != null) {
@@ -140,7 +138,7 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 	 * adaptable and does not allow the use of the standard creation commands.
 	 * This command is used only in composition with region creation in CustomStateCreationEditPolicy
 	 */
-	public class CustomVertexCreateElementCommand extends AbstractTransactionalCommand {
+	public static class CustomVertexCreateElementCommand extends AbstractTransactionalCommand {
 
 		IAdaptable adaptable;
 
@@ -158,10 +156,10 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 		}
 
 		protected void doConfigure(Vertex newElement, IProgressMonitor monitor, IAdaptable info, View regionView) throws ExecutionException {
-			
+
 			String semanticHint = viewDescriptor.getSemanticHint();
 			createElementRequest = new CreateElementRequest(getEditingDomain(), regionView, UMLElementTypes.getElementType(semanticHint));
-			
+
 			IElementType elementType = createElementRequest.getElementType();
 			ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 			configureRequest.setClientContext(createElementRequest.getClientContext());
@@ -181,21 +179,21 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 			IElementType elementType = UMLElementTypes.getElementType(viewDescriptor.getSemanticHint());
 			Vertex newVertex = (Vertex)
 					UMLFactory.eINSTANCE.create((EClass) UMLElementTypes.getElement(elementType));
-			
+
 			Region region = (Region) regionView.getElement();
 			region.getSubvertices().add(newVertex);
 
 			doConfigure(newVertex, monitor, info, regionView);
 
 			View view =
-					ViewService.getInstance().createView(
-						viewDescriptor.getViewKind(),
-						new SemanticAdapter(newVertex, null),
-						compartment,
-						viewDescriptor.getSemanticHint(),
-						viewDescriptor.getIndex(),
-						viewDescriptor.isPersisted(),
-						viewDescriptor.getPreferencesHint());
+				ViewService.getInstance().createView(
+					viewDescriptor.getViewKind(),
+					new SemanticAdapter(newVertex, null),
+					compartment,
+					viewDescriptor.getSemanticHint(),
+					viewDescriptor.getIndex(),
+					viewDescriptor.isPersisted(),
+					viewDescriptor.getPreferencesHint());
 			Assert.isNotNull(view, "failed to create a view"); //$NON-NLS-1$
 			viewDescriptor.setView(view);
 
@@ -207,11 +205,23 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);
 
-		if (semanticHint.equals(((IHintedType) UMLElementTypes.Region_Shape).getSemanticHint())) {
+		// starting point is the state node on which mouse was moving
+		View stateView = (View) getHost().getModel();
+		View stateCompartmentView = CustomStateEditPart.getStateCompartmentView(stateView);
 
-			// starting point is the state node on which mouse was moving
-			View stateView = (View) getHost().getModel();
-			View stateCompartmentView = CustomStateEditPart.getStateCompartmentView(stateView);
+		View existingRegionView = null;
+		// State already has a region
+		if (!stateCompartmentView.getChildren().isEmpty()) {
+			// treat specific case of popup assistant on state, but command is effectively for one of its regions
+			if (stateCompartmentView.getChildren().size() == 1) {
+				existingRegionView = (View) stateCompartmentView.getChildren().get(0);
+			} else {
+				// let super class handle it
+				return null;
+			}
+		}
+
+		if (semanticHint.equals(((IHintedType) UMLElementTypes.Region_Shape).getSemanticHint())) {
 
 			// get and adaptable for it, to pass on to commands
 			IAdaptable adaptableForStateCompartmentView = new SemanticAdapter(null, stateCompartmentView);
@@ -234,41 +244,45 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 				|| semanticHint.equals(((IHintedType) UMLElementTypes.Pseudostate_TerminateShape).getSemanticHint())
 				|| semanticHint.equals(((IHintedType) UMLElementTypes.State_Shape).getSemanticHint())
 				|| semanticHint.equals(((IHintedType) UMLElementTypes.FinalState_Shape).getSemanticHint())) {
-			
-			// starting point is the state node on which mouse was moving
-			View stateView = (View) getHost().getModel();
 
-			View stateCompartmentView = ViewUtil.getChildBySemanticHint(stateView, String.valueOf(StateCompartmentEditPart.VISUAL_ID));
-			// transfer the request to the super method to deal with regular Entry/ExitPoint creation
-			if (!stateCompartmentView.getChildren().isEmpty()) {
-				return super.getCommand(request);
-			}
 			// get an adaptable for it, to pass on to commands
 			IAdaptable adaptableForStateCompartmentView = new SemanticAdapter(null, stateCompartmentView);
 
-			CustomFirstRegionInCompositeStateCreateElementCommand createNewRegion = new CustomFirstRegionInCompositeStateCreateElementCommand(adaptableForStateCompartmentView, null, ((IGraphicalEditPart) getHost()).getDiagramPreferencesHint(),
-					editingDomain, DiagramUIMessages.CreateCommand_Label, dropLocation);
-			EList<Region> regions = ((State) stateView.getElement()).getRegions();
-			if (!regions.isEmpty()) {
-				// the view does not contain any region, but the model has already at least one. Use the first
-				// existing region.
-				createNewRegion.useExistingRegion(regions.get(0));
-			}
-			
-			SetPropertyCommand showCompartment = new SetPropertyCommand(editingDomain, adaptableForStateCompartmentView, NOTATION_VIEW_VISIBLE, VISIBILITY, true);
-		
-			ViewDescriptor viewDescriptor = new ViewDescriptor(
-					(IAdaptable) createNewRegion.getCommandResult().getReturnValue(),
-					Node.class,
-					semanticHint,
-					((IGraphicalEditPart) getHost()).getDiagramPreferencesHint());
-			CustomVertexCreateElementCommand createVertex =
-					new CustomVertexCreateElementCommand(editingDomain, viewDescriptor, (IAdaptable) createNewRegion.getCommandResult().getReturnValue(), DiagramUIMessages.CreateCommand_Label);
+			ViewDescriptor viewDescriptor;
+			if (existingRegionView == null) {
+				CustomFirstRegionInCompositeStateCreateElementCommand createNewRegion = new CustomFirstRegionInCompositeStateCreateElementCommand(adaptableForStateCompartmentView, null, ((IGraphicalEditPart) getHost()).getDiagramPreferencesHint(),
+						editingDomain, DiagramUIMessages.CreateCommand_Label, dropLocation);
+				EList<Region> regions = ((State) stateView.getElement()).getRegions();
+				if (!regions.isEmpty()) {
+					// the view does not contain any region, but the model has already at least one. Use the first
+					// existing region.
+					createNewRegion.useExistingRegion(regions.get(0));
+				}
 
-			cc.compose(showCompartment);
-			cc.compose(createNewRegion);
-			cc.compose(createVertex);
-			
+				SetPropertyCommand showCompartment = new SetPropertyCommand(editingDomain, adaptableForStateCompartmentView, NOTATION_VIEW_VISIBLE, VISIBILITY, true);
+
+				viewDescriptor = new ViewDescriptor(
+						(IAdaptable) createNewRegion.getCommandResult().getReturnValue(),
+						Node.class,
+						semanticHint,
+						((IGraphicalEditPart) getHost()).getDiagramPreferencesHint());
+				CustomVertexCreateElementCommand createVertex = new CustomVertexCreateElementCommand(editingDomain, viewDescriptor, (IAdaptable) createNewRegion.getCommandResult().getReturnValue(), DiagramUIMessages.CreateCommand_Label);
+
+				cc.compose(showCompartment);
+				cc.compose(createNewRegion);
+				cc.compose(createVertex);
+			}
+			else {
+				// region view exists, only create vertex within
+				viewDescriptor = new ViewDescriptor(
+						null, Node.class, semanticHint,
+						((IGraphicalEditPart) getHost()).getDiagramPreferencesHint());
+				IAdaptable adapter = new SemanticAdapter(null, existingRegionView);
+				CustomVertexCreateElementCommand createVertex =
+					new CustomVertexCreateElementCommand(editingDomain, viewDescriptor, adapter, DiagramUIMessages.CreateCommand_Label);
+				cc.compose(createVertex);
+			}
+
 			if (request instanceof CreateRequest) {
 				CreateRequest req = (CreateRequest) request;
 
@@ -282,7 +296,7 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 				// take this into account.
 				getHostFigure().translateToRelative(requestedLocation);
 				Rectangle proposedBounds = new Rectangle(requestedLocation.x, requestedLocation.y - REGION_OFFSET, -1, -1);
-				
+
 				// Convert the calculated preferred bounds as relative to parent location
 				Rectangle creationBounds;
 				if (request instanceof CreateUnspecifiedTypeRequest) {

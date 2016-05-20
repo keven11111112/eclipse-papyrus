@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part;
 
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
@@ -20,14 +19,6 @@ public class CustomStateEditPart extends StateEditPart {
 
 	public CustomStateEditPart(View view) {
 		super(view);
-	}
-
-	@Override
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
-
 	}
 
 	/**
@@ -61,7 +52,7 @@ public class CustomStateEditPart extends StateEditPart {
 		for (Object viewObj : stateView.getChildren()) {
 			if (viewObj instanceof View) {
 				View view = (View) viewObj;
-				if (view.getType().equals("" + StateCompartmentEditPart.VISUAL_ID)) { //$NON-NLS-1$
+				if (view.getType().equals(StateCompartmentEditPart.VISUAL_ID)) {
 					return view;
 				}
 			}

@@ -858,4 +858,8 @@
       </binding>
    </extension>
 
+<extension point="org.eclipse.papyrus.infra.gmfdiag.assistant.modelProviders">
+    <modelProvider uri="model/stateMachineDiagram.assistants"/>
+</extension>
+
 </plugin>
