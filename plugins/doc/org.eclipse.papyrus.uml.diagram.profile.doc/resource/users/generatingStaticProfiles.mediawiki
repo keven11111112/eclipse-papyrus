@@ -90,7 +90,7 @@ To test if the static profile registered successfully, open an '''Apply Register
 
 [[Image:images/applyRegisteredProfile.png|Apply Registered Profile]]<br> 
 
-<hr>
+<hr/>
 ''Tested on Papyrus 2.0 on Eclipse 4.6 RC1''<br>
 ''Last updated: May 20, 2016 by Önder Gürcan <[mailto:onder.gurcan@cea.fr onder.gurcan@cea.fr]>'' 
 
