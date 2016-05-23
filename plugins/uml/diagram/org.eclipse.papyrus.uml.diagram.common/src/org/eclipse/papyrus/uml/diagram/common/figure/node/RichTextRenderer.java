@@ -101,23 +101,23 @@ public class RichTextRenderer implements HTMLRenderer {
 				height = getPreferredSize().y;
 				changeBounds = true;
 			}
-			
+
 			// Changing bounds means creating a new image with new width and height, its gc, and the new bounds for the painter
 			if (changeBounds) {
 				gc.dispose();
 				htmlImage.dispose();
-				
+
 				htmlImage = getTransparentBackground(Display.getDefault(), width, height);
 				if (htmlImage == null) {
 					htmlImage = new Image(Display.getDefault(), width, height);
 				}
 				gc = new GC(htmlImage);
-				
+
 				bounds = new Rectangle(x, y, width, height);
 			}
 			
 			// Paint and clean up
-			painter.paintHTML(text != null ? text : "", gc, bounds);
+			painter.paintHTML(text != null ? text : "", gc, bounds); //$NON-NLS-1$
 			if (gc != null) {
 				gc.dispose();
 			}
@@ -125,23 +125,23 @@ public class RichTextRenderer implements HTMLRenderer {
 			renderFigure.setImage(htmlImage);
 		}
 	}
-	
+
 	@Override
 	public Point getPreferredSize() {
 		return painter.getPreferredSize();
 	}
-	
+
 	private Image getTransparentBackground(Display device, int width, int height) {
 		try {
 			Image src = new Image(device, width, height);
-		    ImageData imageData = src.getImageData();
-		    imageData.transparentPixel = imageData.getPixel(0, 0);
-		    src.dispose();
-		    return new Image(device, imageData);
+			ImageData imageData = src.getImageData();
+			imageData.alpha = 0;
+			src.dispose();
+			return new Image(device, imageData); 
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
-		
+
 		return null;
 	}
 }
