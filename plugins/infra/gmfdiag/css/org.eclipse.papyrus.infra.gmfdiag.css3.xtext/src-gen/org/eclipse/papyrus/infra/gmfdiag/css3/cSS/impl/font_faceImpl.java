@@ -37,12 +37,13 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.keyframe_selector;
  *
  * @generated
  */
-public class font_faceImpl extends keyframesImpl implements font_face {
+public class font_faceImpl extends keyframesImpl implements font_face
+{
 	/**
 	 * The cached value of the '{@link #getDeclarations() <em>Declarations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getDeclarations()
 	 * @generated
 	 * @ordered
@@ -53,7 +54,7 @@ public class font_faceImpl extends keyframesImpl implements font_face {
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -64,7 +65,7 @@ public class font_faceImpl extends keyframesImpl implements font_face {
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -75,7 +76,7 @@ public class font_faceImpl extends keyframesImpl implements font_face {
 	 * The cached value of the '{@link #getKeyframeselectors() <em>Keyframeselectors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getKeyframeselectors()
 	 * @generated
 	 * @ordered
@@ -85,32 +86,37 @@ public class font_faceImpl extends keyframesImpl implements font_face {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	protected font_faceImpl() {
+	protected font_faceImpl()
+	{
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return CSSPackage.Literals.FONT_FACE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EList<css_declaration> getDeclarations() {
-		if (declarations == null) {
+	@Override
+	public EList<css_declaration> getDeclarations()
+	{
+		if (declarations == null)
+		{
 			declarations = new EObjectContainmentEList<css_declaration>(css_declaration.class, this, CSSPackage.FONT_FACE__DECLARATIONS);
 		}
 		return declarations;
@@ -119,34 +125,42 @@ public class font_faceImpl extends keyframesImpl implements font_face {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public String getName() {
+	@Override
+	public String getName()
+	{
 		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void setName(String newName) {
+	@Override
+	public void setName(String newName)
+	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.FONT_FACE__NAME, oldName, name));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EList<keyframe_selector> getKeyframeselectors() {
-		if (keyframeselectors == null) {
+	@Override
+	public EList<keyframe_selector> getKeyframeselectors()
+	{
+		if (keyframeselectors == null)
+		{
 			keyframeselectors = new EObjectContainmentEList<keyframe_selector>(keyframe_selector.class, this, CSSPackage.FONT_FACE__KEYFRAMESELECTORS);
 		}
 		return keyframeselectors;
@@ -155,12 +169,14 @@ public class font_faceImpl extends keyframesImpl implements font_face {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.FONT_FACE__DECLARATIONS:
 			return ((InternalEList<?>) getDeclarations()).basicRemove(otherEnd, msgs);
 		case CSSPackage.FONT_FACE__KEYFRAMESELECTORS:
@@ -172,12 +188,14 @@ public class font_faceImpl extends keyframesImpl implements font_face {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.FONT_FACE__DECLARATIONS:
 			return getDeclarations();
 		case CSSPackage.FONT_FACE__NAME:
@@ -191,13 +209,15 @@ public class font_faceImpl extends keyframesImpl implements font_face {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.FONT_FACE__DECLARATIONS:
 			getDeclarations().clear();
 			getDeclarations().addAll((Collection<? extends css_declaration>) newValue);
@@ -216,12 +236,14 @@ public class font_faceImpl extends keyframesImpl implements font_face {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.FONT_FACE__DECLARATIONS:
 			getDeclarations().clear();
 			return;
@@ -238,12 +260,14 @@ public class font_faceImpl extends keyframesImpl implements font_face {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.FONT_FACE__DECLARATIONS:
 			return declarations != null && !declarations.isEmpty();
 		case CSSPackage.FONT_FACE__NAME:
@@ -257,13 +281,15 @@ public class font_faceImpl extends keyframesImpl implements font_face {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy())
+	public String toString()
+	{
+		if (eIsProxy()) {
 			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");

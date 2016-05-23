@@ -20,16 +20,16 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface charset extends EObject {
+public interface charset extends EObject
+{
 	/**
 	 * Returns the value of the '<em><b>Charset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Charset</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Charset</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Charset</em>' attribute.
 	 * @see #setCharset(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getcharset_Charset()
@@ -42,7 +42,7 @@ public interface charset extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.charset#getCharset <em>Charset</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @param value
 	 *            the new value of the '<em>Charset</em>' attribute.
 	 * @see #getCharset()

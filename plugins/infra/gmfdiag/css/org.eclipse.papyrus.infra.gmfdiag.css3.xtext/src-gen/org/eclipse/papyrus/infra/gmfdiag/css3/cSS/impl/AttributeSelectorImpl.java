@@ -26,12 +26,13 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage;
  *
  * @generated
  */
-public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeSelector {
+public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeSelector
+{
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -42,7 +43,7 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -53,7 +54,7 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * The default value of the '{@link #getOp() <em>Op</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getOp()
 	 * @generated
 	 * @ordered
@@ -64,7 +65,7 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * The cached value of the '{@link #getOp() <em>Op</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getOp()
 	 * @generated
 	 * @ordered
@@ -75,7 +76,7 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -86,7 +87,7 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -96,102 +97,121 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	protected AttributeSelectorImpl() {
+	protected AttributeSelectorImpl()
+	{
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return CSSPackage.Literals.ATTRIBUTE_SELECTOR;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public String getName() {
+	@Override
+	public String getName()
+	{
 		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void setName(String newName) {
+	@Override
+	public void setName(String newName)
+	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.ATTRIBUTE_SELECTOR__NAME, oldName, name));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public String getOp() {
+	@Override
+	public String getOp()
+	{
 		return op;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void setOp(String newOp) {
+	@Override
+	public void setOp(String newOp)
+	{
 		String oldOp = op;
 		op = newOp;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.ATTRIBUTE_SELECTOR__OP, oldOp, op));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public String getValue() {
+	@Override
+	public String getValue()
+	{
 		return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void setValue(String newValue) {
+	@Override
+	public void setValue(String newValue)
+	{
 		String oldValue = value;
 		value = newValue;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.ATTRIBUTE_SELECTOR__VALUE, oldValue, value));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.ATTRIBUTE_SELECTOR__NAME:
 			return getName();
 		case CSSPackage.ATTRIBUTE_SELECTOR__OP:
@@ -205,12 +225,14 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.ATTRIBUTE_SELECTOR__NAME:
 			setName((String) newValue);
 			return;
@@ -227,12 +249,14 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.ATTRIBUTE_SELECTOR__NAME:
 			setName(NAME_EDEFAULT);
 			return;
@@ -249,12 +273,14 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.ATTRIBUTE_SELECTOR__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case CSSPackage.ATTRIBUTE_SELECTOR__OP:
@@ -268,13 +294,15 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy())
+	public String toString()
+	{
+		if (eIsProxy()) {
 			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");

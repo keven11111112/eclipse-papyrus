@@ -39,12 +39,13 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.simple_selector;
  *
  * @generated
  */
-public class simple_selectorImpl extends MinimalEObjectImpl.Container implements simple_selector {
+public class simple_selectorImpl extends MinimalEObjectImpl.Container implements simple_selector
+{
 	/**
 	 * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getElement()
 	 * @generated
 	 * @ordered
@@ -55,7 +56,7 @@ public class simple_selectorImpl extends MinimalEObjectImpl.Container implements
 	 * The cached value of the '{@link #getUniversal() <em>Universal</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getUniversal()
 	 * @generated
 	 * @ordered
@@ -66,7 +67,7 @@ public class simple_selectorImpl extends MinimalEObjectImpl.Container implements
 	 * The cached value of the '{@link #getSubSelectors() <em>Sub Selectors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getSubSelectors()
 	 * @generated
 	 * @ordered
@@ -76,49 +77,56 @@ public class simple_selectorImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	protected simple_selectorImpl() {
+	protected simple_selectorImpl()
+	{
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return CSSPackage.Literals.SIMPLE_SELECTOR;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public ElementSelector getElement() {
+	@Override
+	public ElementSelector getElement()
+	{
 		return element;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public NotificationChain basicSetElement(ElementSelector newElement, NotificationChain msgs) {
+	public NotificationChain basicSetElement(ElementSelector newElement, NotificationChain msgs)
+	{
 		ElementSelector oldElement = element;
 		element = newElement;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSSPackage.SIMPLE_SELECTOR__ELEMENT, oldElement, newElement);
-			if (msgs == null)
+			if (msgs == null) {
 				msgs = notification;
-			else
+			} else {
 				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -126,48 +134,61 @@ public class simple_selectorImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void setElement(ElementSelector newElement) {
-		if (newElement != element) {
+	@Override
+	public void setElement(ElementSelector newElement)
+	{
+		if (newElement != element)
+		{
 			NotificationChain msgs = null;
-			if (element != null)
+			if (element != null) {
 				msgs = ((InternalEObject) element).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSSPackage.SIMPLE_SELECTOR__ELEMENT, null, msgs);
-			if (newElement != null)
+			}
+			if (newElement != null) {
 				msgs = ((InternalEObject) newElement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSSPackage.SIMPLE_SELECTOR__ELEMENT, null, msgs);
+			}
 			msgs = basicSetElement(newElement, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
-		} else if (eNotificationRequired())
+			}
+		}
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.SIMPLE_SELECTOR__ELEMENT, newElement, newElement));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public UniversalSelector getUniversal() {
+	@Override
+	public UniversalSelector getUniversal()
+	{
 		return universal;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public NotificationChain basicSetUniversal(UniversalSelector newUniversal, NotificationChain msgs) {
+	public NotificationChain basicSetUniversal(UniversalSelector newUniversal, NotificationChain msgs)
+	{
 		UniversalSelector oldUniversal = universal;
 		universal = newUniversal;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSSPackage.SIMPLE_SELECTOR__UNIVERSAL, oldUniversal, newUniversal);
-			if (msgs == null)
+			if (msgs == null) {
 				msgs = notification;
-			else
+			} else {
 				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -175,31 +196,42 @@ public class simple_selectorImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void setUniversal(UniversalSelector newUniversal) {
-		if (newUniversal != universal) {
+	@Override
+	public void setUniversal(UniversalSelector newUniversal)
+	{
+		if (newUniversal != universal)
+		{
 			NotificationChain msgs = null;
-			if (universal != null)
+			if (universal != null) {
 				msgs = ((InternalEObject) universal).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSSPackage.SIMPLE_SELECTOR__UNIVERSAL, null, msgs);
-			if (newUniversal != null)
+			}
+			if (newUniversal != null) {
 				msgs = ((InternalEObject) newUniversal).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSSPackage.SIMPLE_SELECTOR__UNIVERSAL, null, msgs);
+			}
 			msgs = basicSetUniversal(newUniversal, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
-		} else if (eNotificationRequired())
+			}
+		}
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.SIMPLE_SELECTOR__UNIVERSAL, newUniversal, newUniversal));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EList<CssSelector> getSubSelectors() {
-		if (subSelectors == null) {
+	@Override
+	public EList<CssSelector> getSubSelectors()
+	{
+		if (subSelectors == null)
+		{
 			subSelectors = new EObjectContainmentEList<CssSelector>(CssSelector.class, this, CSSPackage.SIMPLE_SELECTOR__SUB_SELECTORS);
 		}
 		return subSelectors;
@@ -208,12 +240,14 @@ public class simple_selectorImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.SIMPLE_SELECTOR__ELEMENT:
 			return basicSetElement(null, msgs);
 		case CSSPackage.SIMPLE_SELECTOR__UNIVERSAL:
@@ -227,12 +261,14 @@ public class simple_selectorImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.SIMPLE_SELECTOR__ELEMENT:
 			return getElement();
 		case CSSPackage.SIMPLE_SELECTOR__UNIVERSAL:
@@ -246,13 +282,15 @@ public class simple_selectorImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.SIMPLE_SELECTOR__ELEMENT:
 			setElement((ElementSelector) newValue);
 			return;
@@ -270,12 +308,14 @@ public class simple_selectorImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.SIMPLE_SELECTOR__ELEMENT:
 			setElement((ElementSelector) null);
 			return;
@@ -292,12 +332,14 @@ public class simple_selectorImpl extends MinimalEObjectImpl.Container implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.SIMPLE_SELECTOR__ELEMENT:
 			return element != null;
 		case CSSPackage.SIMPLE_SELECTOR__UNIVERSAL:

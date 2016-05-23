@@ -25,12 +25,13 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.UniversalSelector;
  *
  * @generated
  */
-public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implements UniversalSelector {
+public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implements UniversalSelector
+{
 	/**
 	 * The default value of the '{@link #getNamespace() <em>Namespace</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getNamespace()
 	 * @generated
 	 * @ordered
@@ -41,7 +42,7 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getNamespace()
 	 * @generated
 	 * @ordered
@@ -51,56 +52,65 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	protected UniversalSelectorImpl() {
+	protected UniversalSelectorImpl()
+	{
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return CSSPackage.Literals.UNIVERSAL_SELECTOR;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public String getNamespace() {
+	@Override
+	public String getNamespace()
+	{
 		return namespace;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void setNamespace(String newNamespace) {
+	@Override
+	public void setNamespace(String newNamespace)
+	{
 		String oldNamespace = namespace;
 		namespace = newNamespace;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.UNIVERSAL_SELECTOR__NAMESPACE, oldNamespace, namespace));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.UNIVERSAL_SELECTOR__NAMESPACE:
 			return getNamespace();
 		}
@@ -110,12 +120,14 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.UNIVERSAL_SELECTOR__NAMESPACE:
 			setNamespace((String) newValue);
 			return;
@@ -126,12 +138,14 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.UNIVERSAL_SELECTOR__NAMESPACE:
 			setNamespace(NAMESPACE_EDEFAULT);
 			return;
@@ -142,12 +156,14 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.UNIVERSAL_SELECTOR__NAMESPACE:
 			return NAMESPACE_EDEFAULT == null ? namespace != null : !NAMESPACE_EDEFAULT.equals(namespace);
 		}
@@ -157,13 +173,15 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy())
+	public String toString()
+	{
+		if (eIsProxy()) {
 			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (namespace: ");

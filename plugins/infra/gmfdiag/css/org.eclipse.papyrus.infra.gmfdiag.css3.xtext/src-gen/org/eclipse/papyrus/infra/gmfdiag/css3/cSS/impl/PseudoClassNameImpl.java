@@ -24,12 +24,13 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.PseudoClassName;
  *
  * @generated
  */
-public class PseudoClassNameImpl extends PseudoClassImpl implements PseudoClassName {
+public class PseudoClassNameImpl extends PseudoClassImpl implements PseudoClassName
+{
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -40,7 +41,7 @@ public class PseudoClassNameImpl extends PseudoClassImpl implements PseudoClassN
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -50,56 +51,65 @@ public class PseudoClassNameImpl extends PseudoClassImpl implements PseudoClassN
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	protected PseudoClassNameImpl() {
+	protected PseudoClassNameImpl()
+	{
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return CSSPackage.Literals.PSEUDO_CLASS_NAME;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public String getName() {
+	@Override
+	public String getName()
+	{
 		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void setName(String newName) {
+	@Override
+	public void setName(String newName)
+	{
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.PSEUDO_CLASS_NAME__NAME, oldName, name));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.PSEUDO_CLASS_NAME__NAME:
 			return getName();
 		}
@@ -109,12 +119,14 @@ public class PseudoClassNameImpl extends PseudoClassImpl implements PseudoClassN
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.PSEUDO_CLASS_NAME__NAME:
 			setName((String) newValue);
 			return;
@@ -125,12 +137,14 @@ public class PseudoClassNameImpl extends PseudoClassImpl implements PseudoClassN
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.PSEUDO_CLASS_NAME__NAME:
 			setName(NAME_EDEFAULT);
 			return;
@@ -141,12 +155,14 @@ public class PseudoClassNameImpl extends PseudoClassImpl implements PseudoClassN
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.PSEUDO_CLASS_NAME__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
@@ -156,13 +172,15 @@ public class PseudoClassNameImpl extends PseudoClassImpl implements PseudoClassN
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy())
+	public String toString()
+	{
+		if (eIsProxy()) {
 			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");

@@ -24,16 +24,16 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface keyframe_selector extends EObject {
+public interface keyframe_selector extends EObject
+{
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getkeyframe_selector_Type()
@@ -46,7 +46,7 @@ public interface keyframe_selector extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.keyframe_selector#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @param value
 	 *            the new value of the '<em>Type</em>' attribute.
 	 * @see #getType()
@@ -58,11 +58,10 @@ public interface keyframe_selector extends EObject {
 	 * Returns the value of the '<em><b>Percentage</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Percentage</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Percentage</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Percentage</em>' attribute.
 	 * @see #setPercentage(double)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getkeyframe_selector_Percentage()
@@ -75,7 +74,7 @@ public interface keyframe_selector extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.keyframe_selector#getPercentage <em>Percentage</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @param value
 	 *            the new value of the '<em>Percentage</em>' attribute.
 	 * @see #getPercentage()
@@ -88,11 +87,10 @@ public interface keyframe_selector extends EObject {
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Declarations</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Declarations</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Declarations</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getkeyframe_selector_Declarations()
 	 * @model containment="true"

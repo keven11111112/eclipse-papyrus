@@ -14,5 +14,6 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface keyframes extends EObject {
+public interface keyframes extends EObject
+{
 } // keyframes

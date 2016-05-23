@@ -1,78 +1,75 @@
 package org.eclipse.papyrus.infra.gmfdiag.css3.ui.contentassist.antlr.internal;
 
-// Hack: Use our own Lexer superclass by means of import. 
+// Hack: Use our own Lexer superclass by means of import.
 // Currently there is no other way to specify the superclass for the lexer.
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 
 import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalCSSLexer extends Lexer {
-	public static final int T__50 = 50;
-	public static final int RULE_IMPORTANT_SYM = 18;
-	public static final int T__59 = 59;
-	public static final int RULE_CSSSTRING = 6;
-	public static final int RULE_UNDERSCORE = 11;
+	public static final int T__64 = 64;
+	public static final int T__29 = 29;
+	public static final int T__28 = 28;
+	public static final int T__27 = 27;
+	public static final int T__62 = 62;
+	public static final int T__26 = 26;
+	public static final int T__63 = 63;
+	public static final int T__25 = 25;
+	public static final int T__24 = 24;
+	public static final int T__23 = 23;
+	public static final int RULE_INCLUDES = 4;
+	public static final int T__22 = 22;
+	public static final int T__21 = 21;
+	public static final int T__20 = 20;
+	public static final int RULE_ONE_INT = 16;
+	public static final int RULE_PERCENT = 9;
+	public static final int T__61 = 61;
+	public static final int EOF = -1;
+	public static final int T__60 = 60;
 	public static final int T__55 = 55;
 	public static final int T__56 = 56;
 	public static final int T__57 = 57;
 	public static final int T__58 = 58;
-	public static final int RULE_PERCENT = 9;
 	public static final int T__51 = 51;
 	public static final int T__52 = 52;
 	public static final int T__53 = 53;
 	public static final int T__54 = 54;
-	public static final int T__60 = 60;
-	public static final int T__61 = 61;
-	public static final int RULE_COMMA = 8;
-	public static final int RULE_COLON = 12;
-	public static final int RULE_HASHMARK = 13;
-	public static final int T__26 = 26;
-	public static final int T__27 = 27;
-	public static final int RULE_DASHMATCH = 5;
-	public static final int T__28 = 28;
-	public static final int T__29 = 29;
-	public static final int T__22 = 22;
-	public static final int RULE_ML_COMMENT = 19;
-	public static final int T__23 = 23;
-	public static final int T__24 = 24;
-	public static final int T__25 = 25;
-	public static final int T__62 = 62;
-	public static final int T__63 = 63;
-	public static final int T__20 = 20;
-	public static final int T__64 = 64;
-	public static final int RULE_INCLUDES = 4;
-	public static final int T__21 = 21;
+	public static final int RULE_ONE_NON_HEX_LETTER = 15;
+	public static final int T__59 = 59;
+	public static final int T__50 = 50;
+	public static final int T__42 = 42;
+	public static final int T__43 = 43;
+	public static final int T__40 = 40;
+	public static final int T__41 = 41;
+	public static final int T__46 = 46;
+	public static final int T__47 = 47;
+	public static final int T__44 = 44;
+	public static final int T__45 = 45;
+	public static final int T__48 = 48;
+	public static final int T__49 = 49;
+	public static final int RULE_UNDERSCORE = 11;
+	public static final int RULE_PLUS = 7;
 	public static final int RULE_ONE_HEX_LETTER = 14;
-	public static final int T__37 = 37;
-	public static final int T__38 = 38;
-	public static final int T__39 = 39;
-	public static final int RULE_DASH = 10;
-	public static final int RULE_ONE_INT = 16;
+	public static final int RULE_COMMA = 8;
+	public static final int RULE_HASHMARK = 13;
+	public static final int RULE_ML_COMMENT = 19;
+	public static final int RULE_DASHMATCH = 5;
+	public static final int T__30 = 30;
+	public static final int T__31 = 31;
+	public static final int RULE_COLON = 12;
+	public static final int T__32 = 32;
 	public static final int T__33 = 33;
 	public static final int T__34 = 34;
 	public static final int T__35 = 35;
-	public static final int RULE_PLUS = 7;
 	public static final int T__36 = 36;
-	public static final int EOF = -1;
-	public static final int T__30 = 30;
-	public static final int T__31 = 31;
-	public static final int RULE_ONE_NON_HEX_LETTER = 15;
-	public static final int T__32 = 32;
+	public static final int T__37 = 37;
+	public static final int T__38 = 38;
+	public static final int T__39 = 39;
+	public static final int RULE_CSSSTRING = 6;
+	public static final int RULE_IMPORTANT_SYM = 18;
 	public static final int RULE_WS = 17;
-	public static final int T__48 = 48;
-	public static final int T__49 = 49;
-	public static final int T__44 = 44;
-	public static final int T__45 = 45;
-	public static final int T__46 = 46;
-	public static final int T__47 = 47;
-	public static final int T__40 = 40;
-	public static final int T__41 = 41;
-	public static final int T__42 = 42;
-	public static final int T__43 = 43;
+	public static final int RULE_DASH = 10;
 
 	// delegates
 	// delegators
@@ -90,6 +87,7 @@ public class InternalCSSLexer extends Lexer {
 
 	}
 
+	@Override
 	public String getGrammarFileName() {
 		return "../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g";
 	}
@@ -112,6 +110,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__20"
 
 	// $ANTLR start "T__21"
@@ -132,6 +131,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__21"
 
 	// $ANTLR start "T__22"
@@ -152,6 +152,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__22"
 
 	// $ANTLR start "T__23"
@@ -172,6 +173,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__23"
 
 	// $ANTLR start "T__24"
@@ -192,6 +194,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__24"
 
 	// $ANTLR start "T__25"
@@ -212,6 +215,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__25"
 
 	// $ANTLR start "T__26"
@@ -232,6 +236,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__26"
 
 	// $ANTLR start "T__27"
@@ -252,6 +257,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__27"
 
 	// $ANTLR start "T__28"
@@ -272,6 +278,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__28"
 
 	// $ANTLR start "T__29"
@@ -292,6 +299,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__29"
 
 	// $ANTLR start "T__30"
@@ -312,6 +320,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__30"
 
 	// $ANTLR start "T__31"
@@ -332,6 +341,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__31"
 
 	// $ANTLR start "T__32"
@@ -352,6 +362,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__32"
 
 	// $ANTLR start "T__33"
@@ -372,6 +383,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__33"
 
 	// $ANTLR start "T__34"
@@ -392,6 +404,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__34"
 
 	// $ANTLR start "T__35"
@@ -411,6 +424,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__35"
 
 	// $ANTLR start "T__36"
@@ -430,6 +444,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__36"
 
 	// $ANTLR start "T__37"
@@ -449,6 +464,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__37"
 
 	// $ANTLR start "T__38"
@@ -468,6 +484,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__38"
 
 	// $ANTLR start "T__39"
@@ -487,6 +504,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__39"
 
 	// $ANTLR start "T__40"
@@ -506,6 +524,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__40"
 
 	// $ANTLR start "T__41"
@@ -525,6 +544,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__41"
 
 	// $ANTLR start "T__42"
@@ -544,6 +564,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__42"
 
 	// $ANTLR start "T__43"
@@ -563,6 +584,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__43"
 
 	// $ANTLR start "T__44"
@@ -582,6 +604,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__44"
 
 	// $ANTLR start "T__45"
@@ -601,6 +624,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__45"
 
 	// $ANTLR start "T__46"
@@ -620,6 +644,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__46"
 
 	// $ANTLR start "T__47"
@@ -639,6 +664,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__47"
 
 	// $ANTLR start "T__48"
@@ -658,6 +684,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__48"
 
 	// $ANTLR start "T__49"
@@ -678,6 +705,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__49"
 
 	// $ANTLR start "T__50"
@@ -698,6 +726,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__50"
 
 	// $ANTLR start "T__51"
@@ -718,6 +747,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__51"
 
 	// $ANTLR start "T__52"
@@ -738,6 +768,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__52"
 
 	// $ANTLR start "T__53"
@@ -758,6 +789,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__53"
 
 	// $ANTLR start "T__54"
@@ -778,6 +810,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__54"
 
 	// $ANTLR start "T__55"
@@ -798,6 +831,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__55"
 
 	// $ANTLR start "T__56"
@@ -818,6 +852,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__56"
 
 	// $ANTLR start "T__57"
@@ -838,6 +873,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__57"
 
 	// $ANTLR start "T__58"
@@ -857,6 +893,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__58"
 
 	// $ANTLR start "T__59"
@@ -876,6 +913,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__59"
 
 	// $ANTLR start "T__60"
@@ -895,6 +933,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__60"
 
 	// $ANTLR start "T__61"
@@ -914,6 +953,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__61"
 
 	// $ANTLR start "T__62"
@@ -933,6 +973,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__62"
 
 	// $ANTLR start "T__63"
@@ -953,6 +994,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__63"
 
 	// $ANTLR start "T__64"
@@ -973,6 +1015,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "T__64"
 
 	// $ANTLR start "RULE_IMPORTANT_SYM"
@@ -980,8 +1023,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_IMPORTANT_SYM;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8846:20: ( '!important' )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8846:22: '!important'
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8942:20: ( '!important' )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8942:22: '!important'
 			{
 				match("!important");
 
@@ -993,6 +1036,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_IMPORTANT_SYM"
 
 	// $ANTLR start "RULE_ONE_INT"
@@ -1000,8 +1044,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_ONE_INT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8848:14: ( '0' .. '9' )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8848:16: '0' .. '9'
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8944:14: ( '0' .. '9' )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8944:16: '0' .. '9'
 			{
 				matchRange('0', '9');
 
@@ -1012,6 +1056,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_ONE_INT"
 
 	// $ANTLR start "RULE_ONE_HEX_LETTER"
@@ -1019,13 +1064,14 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_ONE_HEX_LETTER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8850:21: ( ( 'a' .. 'f' | 'A' .. 'F' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8850:23: ( 'a' .. 'f' | 'A' .. 'F' )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8946:21: ( ( 'a' .. 'f' | 'A' .. 'F' ) )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8946:23: ( 'a' .. 'f' | 'A' .. 'F' )
 			{
 				if ((input.LA(1) >= 'A' && input.LA(1) <= 'F') || (input.LA(1) >= 'a' && input.LA(1) <= 'f')) {
 					input.consume();
 
-				} else {
+				}
+				else {
 					MismatchedSetException mse = new MismatchedSetException(null, input);
 					recover(mse);
 					throw mse;
@@ -1039,6 +1085,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_ONE_HEX_LETTER"
 
 	// $ANTLR start "RULE_ONE_NON_HEX_LETTER"
@@ -1046,13 +1093,14 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_ONE_NON_HEX_LETTER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8852:25: ( ( 'g' .. 'z' | 'G' .. 'Z' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8852:27: ( 'g' .. 'z' | 'G' .. 'Z' )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8948:25: ( ( 'g' .. 'z' | 'G' .. 'Z' ) )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8948:27: ( 'g' .. 'z' | 'G' .. 'Z' )
 			{
 				if ((input.LA(1) >= 'G' && input.LA(1) <= 'Z') || (input.LA(1) >= 'g' && input.LA(1) <= 'z')) {
 					input.consume();
 
-				} else {
+				}
+				else {
 					MismatchedSetException mse = new MismatchedSetException(null, input);
 					recover(mse);
 					throw mse;
@@ -1066,6 +1114,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_ONE_NON_HEX_LETTER"
 
 	// $ANTLR start "RULE_UNDERSCORE"
@@ -1073,8 +1122,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_UNDERSCORE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8854:17: ( '_' )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8854:19: '_'
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8950:17: ( '_' )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8950:19: '_'
 			{
 				match('_');
 
@@ -1085,6 +1134,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_UNDERSCORE"
 
 	// $ANTLR start "RULE_DASH"
@@ -1092,8 +1142,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_DASH;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8856:11: ( '-' )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8856:13: '-'
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8952:11: ( '-' )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8952:13: '-'
 			{
 				match('-');
 
@@ -1104,6 +1154,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_DASH"
 
 	// $ANTLR start "RULE_PLUS"
@@ -1111,8 +1162,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_PLUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8858:11: ( '+' )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8858:13: '+'
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8954:11: ( '+' )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8954:13: '+'
 			{
 				match('+');
 
@@ -1123,6 +1174,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_PLUS"
 
 	// $ANTLR start "RULE_HASHMARK"
@@ -1130,8 +1182,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_HASHMARK;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8860:15: ( '#' )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8860:17: '#'
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8956:15: ( '#' )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8956:17: '#'
 			{
 				match('#');
 
@@ -1142,6 +1194,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_HASHMARK"
 
 	// $ANTLR start "RULE_COMMA"
@@ -1149,8 +1202,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_COMMA;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8862:12: ( ',' )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8862:14: ','
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8958:12: ( ',' )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8958:14: ','
 			{
 				match(',');
 
@@ -1161,6 +1214,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_COMMA"
 
 	// $ANTLR start "RULE_PERCENT"
@@ -1168,8 +1222,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_PERCENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8864:14: ( '%' )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8864:16: '%'
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8960:14: ( '%' )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8960:16: '%'
 			{
 				match('%');
 
@@ -1180,6 +1234,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_PERCENT"
 
 	// $ANTLR start "RULE_ML_COMMENT"
@@ -1187,12 +1242,12 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_ML_COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8866:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8866:19: '/*' ( options {greedy=false; } : . )* '*/'
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8962:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8962:19: '/*' ( options {greedy=false; } : . )* '*/'
 			{
 				match("/*");
 
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8866:24: ( options {greedy=false; } : . )*
+				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8962:24: ( options {greedy=false; } : . )*
 				loop1: do {
 					int alt1 = 2;
 					int LA1_0 = input.LA(1);
@@ -1202,19 +1257,21 @@ public class InternalCSSLexer extends Lexer {
 
 						if ((LA1_1 == '/')) {
 							alt1 = 2;
-						} else if (((LA1_1 >= '\u0000' && LA1_1 <= '.') || (LA1_1 >= '0' && LA1_1 <= '\uFFFF'))) {
+						}
+						else if (((LA1_1 >= '\u0000' && LA1_1 <= '.') || (LA1_1 >= '0' && LA1_1 <= '\uFFFF'))) {
 							alt1 = 1;
 						}
 
 
-					} else if (((LA1_0 >= '\u0000' && LA1_0 <= ')') || (LA1_0 >= '+' && LA1_0 <= '\uFFFF'))) {
+					}
+					else if (((LA1_0 >= '\u0000' && LA1_0 <= ')') || (LA1_0 >= '+' && LA1_0 <= '\uFFFF'))) {
 						alt1 = 1;
 					}
 
 
 					switch (alt1) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8866:52: .
+					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8962:52: .
 					{
 						matchAny();
 
@@ -1236,6 +1293,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_ML_COMMENT"
 
 	// $ANTLR start "RULE_WS"
@@ -1243,10 +1301,10 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8868:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8868:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8964:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8964:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8868:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8964:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
 				int cnt2 = 0;
 				loop2: do {
 					int alt2 = 2;
@@ -1264,7 +1322,8 @@ public class InternalCSSLexer extends Lexer {
 						if ((input.LA(1) >= '\t' && input.LA(1) <= '\n') || input.LA(1) == '\r' || input.LA(1) == ' ') {
 							input.consume();
 
-						} else {
+						}
+						else {
 							MismatchedSetException mse = new MismatchedSetException(null, input);
 							recover(mse);
 							throw mse;
@@ -1275,9 +1334,11 @@ public class InternalCSSLexer extends Lexer {
 						break;
 
 					default:
-						if (cnt2 >= 1)
+						if (cnt2 >= 1) {
 							break loop2;
-						EarlyExitException eee = new EarlyExitException(2, input);
+						}
+						EarlyExitException eee =
+								new EarlyExitException(2, input);
 						throw eee;
 					}
 					cnt2++;
@@ -1291,6 +1352,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_WS"
 
 	// $ANTLR start "RULE_CSSSTRING"
@@ -1298,32 +1360,35 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_CSSSTRING;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8870:16: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8966:16: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
 			// 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8870:18: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f'
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8966:18: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f'
 			// | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8870:18: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
+				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8966:18: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
 				// 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
 				int alt5 = 2;
 				int LA5_0 = input.LA(1);
 
 				if ((LA5_0 == '\"')) {
 					alt5 = 1;
-				} else if ((LA5_0 == '\'')) {
+				}
+				else if ((LA5_0 == '\'')) {
 					alt5 = 2;
-				} else {
-					NoViableAltException nvae = new NoViableAltException("", 5, 0, input);
+				}
+				else {
+					NoViableAltException nvae =
+							new NoViableAltException("", 5, 0, input);
 
 					throw nvae;
 				}
 				switch (alt5) {
 				case 1:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8870:19: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
+				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8966:19: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
 				// 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
 				{
 					match('\"');
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8870:23: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
+					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8966:23: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
 					// 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
 					loop3: do {
 						int alt3 = 3;
@@ -1331,14 +1396,15 @@ public class InternalCSSLexer extends Lexer {
 
 						if ((LA3_0 == '\\')) {
 							alt3 = 1;
-						} else if (((LA3_0 >= '\u0000' && LA3_0 <= '!') || (LA3_0 >= '#' && LA3_0 <= '[') || (LA3_0 >= ']' && LA3_0 <= '\uFFFF'))) {
+						}
+						else if (((LA3_0 >= '\u0000' && LA3_0 <= '!') || (LA3_0 >= '#' && LA3_0 <= '[') || (LA3_0 >= ']' && LA3_0 <= '\uFFFF'))) {
 							alt3 = 2;
 						}
 
 
 						switch (alt3) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8870:24: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
+						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8966:24: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
 						// 'f' | 'A' .. 'F' | '\\\\' )
 						{
 							match('\\');
@@ -1346,7 +1412,8 @@ public class InternalCSSLexer extends Lexer {
 									|| input.LA(1) == 'r' || (input.LA(1) >= 't' && input.LA(1) <= 'u')) {
 								input.consume();
 
-							} else {
+							}
+							else {
 								MismatchedSetException mse = new MismatchedSetException(null, input);
 								recover(mse);
 								throw mse;
@@ -1356,12 +1423,13 @@ public class InternalCSSLexer extends Lexer {
 						}
 							break;
 						case 2:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8870:96: ~ ( ( '\\\\' | '\"' ) )
+						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8966:96: ~ ( ( '\\\\' | '\"' ) )
 						{
 							if ((input.LA(1) >= '\u0000' && input.LA(1) <= '!') || (input.LA(1) >= '#' && input.LA(1) <= '[') || (input.LA(1) >= ']' && input.LA(1) <= '\uFFFF')) {
 								input.consume();
 
-							} else {
+							}
+							else {
 								MismatchedSetException mse = new MismatchedSetException(null, input);
 								recover(mse);
 								throw mse;
@@ -1381,11 +1449,11 @@ public class InternalCSSLexer extends Lexer {
 				}
 					break;
 				case 2:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8870:116: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
+				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8966:116: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
 				// 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
 				{
 					match('\'');
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8870:121: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
+					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8966:121: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
 					// 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
 					loop4: do {
 						int alt4 = 3;
@@ -1393,14 +1461,15 @@ public class InternalCSSLexer extends Lexer {
 
 						if ((LA4_0 == '\\')) {
 							alt4 = 1;
-						} else if (((LA4_0 >= '\u0000' && LA4_0 <= '&') || (LA4_0 >= '(' && LA4_0 <= '[') || (LA4_0 >= ']' && LA4_0 <= '\uFFFF'))) {
+						}
+						else if (((LA4_0 >= '\u0000' && LA4_0 <= '&') || (LA4_0 >= '(' && LA4_0 <= '[') || (LA4_0 >= ']' && LA4_0 <= '\uFFFF'))) {
 							alt4 = 2;
 						}
 
 
 						switch (alt4) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8870:122: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
+						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8966:122: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' ..
 						// 'f' | 'A' .. 'F' | '\\\\' )
 						{
 							match('\\');
@@ -1408,7 +1477,8 @@ public class InternalCSSLexer extends Lexer {
 									|| input.LA(1) == 'r' || (input.LA(1) >= 't' && input.LA(1) <= 'u')) {
 								input.consume();
 
-							} else {
+							}
+							else {
 								MismatchedSetException mse = new MismatchedSetException(null, input);
 								recover(mse);
 								throw mse;
@@ -1418,12 +1488,13 @@ public class InternalCSSLexer extends Lexer {
 						}
 							break;
 						case 2:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8870:194: ~ ( ( '\\\\' | '\\'' ) )
+						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8966:194: ~ ( ( '\\\\' | '\\'' ) )
 						{
 							if ((input.LA(1) >= '\u0000' && input.LA(1) <= '&') || (input.LA(1) >= '(' && input.LA(1) <= '[') || (input.LA(1) >= ']' && input.LA(1) <= '\uFFFF')) {
 								input.consume();
 
-							} else {
+							}
+							else {
 								MismatchedSetException mse = new MismatchedSetException(null, input);
 								recover(mse);
 								throw mse;
@@ -1453,6 +1524,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_CSSSTRING"
 
 	// $ANTLR start "RULE_INCLUDES"
@@ -1460,8 +1532,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_INCLUDES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8872:15: ( '~=' )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8872:17: '~='
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8968:15: ( '~=' )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8968:17: '~='
 			{
 				match("~=");
 
@@ -1473,6 +1545,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_INCLUDES"
 
 	// $ANTLR start "RULE_DASHMATCH"
@@ -1480,8 +1553,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_DASHMATCH;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8874:16: ( '|=' )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8874:18: '|='
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8970:16: ( '|=' )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8970:18: '|='
 			{
 				match("|=");
 
@@ -1493,6 +1566,7 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_DASHMATCH"
 
 	// $ANTLR start "RULE_COLON"
@@ -1500,8 +1574,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_COLON;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8876:12: ( ':' )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8876:14: ':'
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8972:12: ( ':' )
+			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:8972:14: ':'
 			{
 				match(':');
 
@@ -1512,8 +1586,10 @@ public class InternalCSSLexer extends Lexer {
 		} finally {
 		}
 	}
+
 	// $ANTLR end "RULE_COLON"
 
+	@Override
 	public void mTokens() throws RecognitionException {
 		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/ui/contentassist/antlr/internal/InternalCSS.g:1:8: ( T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 |
 		// T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 |
@@ -1956,23 +2032,29 @@ public class InternalCSSLexer extends Lexer {
 
 
 	protected DFA6 dfa6 = new DFA6(this);
-	static final String DFA6_eotS = "\1\uffff\1\60\1\uffff\1\62\1\64\2\uffff\1\66\1\uffff\1\70\3\uffff" +
-			"\1\72\2\uffff\2\32\3\uffff\1\103\45\uffff\1\105\1\107\7\uffff\1" +
-			"\111\1\uffff\1\113\5\uffff";
-	static final String DFA6_eofS = "\114\uffff";
-	static final String DFA6_minS = "\1\11\1\103\1\uffff\2\75\2\uffff\1\75\1\uffff\1\52\3\uffff\1\151" +
-			"\2\uffff\1\157\1\162\1\40\2\uffff\1\75\45\uffff\1\164\1\154\7\uffff" +
-			"\1\50\1\uffff\1\50\5\uffff";
-	static final String DFA6_maxS = "\1\176\1\160\1\uffff\2\75\2\uffff\1\75\1\uffff\1\52\3\uffff\1\151" +
-			"\2\uffff\1\157\1\162\1\51\2\uffff\1\75\45\uffff\1\164\1\154\7\uffff" +
-			"\1\50\1\uffff\1\50\5\uffff";
-	static final String DFA6_acceptS = "\2\uffff\1\15\2\uffff\1\20\1\22\1\uffff\1\24\1\uffff\1\26\1\27" +
-			"\1\30\1\uffff\1\34\1\35\3\uffff\1\47\1\50\1\uffff\1\52\1\53\1\57" +
-			"\1\60\1\61\1\62\1\63\1\64\1\65\1\66\1\67\1\71\1\72\1\75\1\1\1\2" +
-			"\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\31\1\16\1\33\1\17" +
-			"\1\21\1\73\1\23\1\70\1\25\1\56\1\32\2\uffff\1\42\1\43\1\44\1\45" +
-			"\1\46\1\74\1\51\1\uffff\1\37\1\uffff\1\41\1\54\1\36\1\55\1\40";
-	static final String DFA6_specialS = "\114\uffff}>";
+	static final String DFA6_eotS =
+			"\1\uffff\1\60\1\uffff\1\62\1\64\2\uffff\1\66\1\uffff\1\70\3\uffff" +
+					"\1\72\2\uffff\2\32\3\uffff\1\103\45\uffff\1\105\1\107\7\uffff\1" +
+					"\111\1\uffff\1\113\5\uffff";
+	static final String DFA6_eofS =
+			"\114\uffff";
+	static final String DFA6_minS =
+			"\1\11\1\103\1\uffff\2\75\2\uffff\1\75\1\uffff\1\52\3\uffff\1\151" +
+					"\2\uffff\1\157\1\162\1\40\2\uffff\1\75\45\uffff\1\164\1\154\7\uffff" +
+					"\1\50\1\uffff\1\50\5\uffff";
+	static final String DFA6_maxS =
+			"\1\176\1\160\1\uffff\2\75\2\uffff\1\75\1\uffff\1\52\3\uffff\1\151" +
+					"\2\uffff\1\157\1\162\1\51\2\uffff\1\75\45\uffff\1\164\1\154\7\uffff" +
+					"\1\50\1\uffff\1\50\5\uffff";
+	static final String DFA6_acceptS =
+			"\2\uffff\1\15\2\uffff\1\20\1\22\1\uffff\1\24\1\uffff\1\26\1\27" +
+					"\1\30\1\uffff\1\34\1\35\3\uffff\1\47\1\50\1\uffff\1\52\1\53\1\57" +
+					"\1\60\1\61\1\62\1\63\1\64\1\65\1\66\1\67\1\71\1\72\1\75\1\1\1\2" +
+					"\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\31\1\16\1\33\1\17" +
+					"\1\21\1\73\1\23\1\70\1\25\1\56\1\32\2\uffff\1\42\1\43\1\44\1\45" +
+					"\1\46\1\74\1\51\1\uffff\1\37\1\uffff\1\41\1\54\1\36\1\55\1\40";
+	static final String DFA6_specialS =
+			"\114\uffff}>";
 	static final String[] DFA6_transitionS = {
 			"\2\41\2\uffff\1\41\22\uffff\1\41\1\15\1\42\1\36\1\3\1\40\1" +
 					"\16\1\42\1\27\1\26\1\4\1\35\1\37\1\34\1\10\1\11\12\30\1\43\1" +
@@ -2087,6 +2169,7 @@ public class InternalCSSLexer extends Lexer {
 			this.transition = DFA6_transition;
 		}
 
+		@Override
 		public String getDescription() {
 			return "1:1: Tokens : ( T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | RULE_IMPORTANT_SYM | RULE_ONE_INT | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_UNDERSCORE | RULE_DASH | RULE_PLUS | RULE_HASHMARK | RULE_COMMA | RULE_PERCENT | RULE_ML_COMMENT | RULE_WS | RULE_CSSSTRING | RULE_INCLUDES | RULE_DASHMATCH | RULE_COLON );";
 		}

@@ -50,14 +50,15 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.stylesheet;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
-public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
+public class CSSPackageImpl extends EPackageImpl implements CSSPackage
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass stylesheetEClass = null;
@@ -65,7 +66,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass charsetEClass = null;
@@ -73,7 +74,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass importExpressionEClass = null;
@@ -81,7 +82,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass pageEClass = null;
@@ -89,7 +90,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass mediaEClass = null;
@@ -97,7 +98,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass font_faceEClass = null;
@@ -105,7 +106,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass keyframesEClass = null;
@@ -113,7 +114,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass keyframe_selectorEClass = null;
@@ -121,7 +122,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass rulesetEClass = null;
@@ -129,7 +130,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass selectorEClass = null;
@@ -137,7 +138,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass simpleSelectorForNegationEClass = null;
@@ -145,7 +146,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass cssSelectorEClass = null;
@@ -153,7 +154,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass simple_selectorEClass = null;
@@ -161,7 +162,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass classSelectorEClass = null;
@@ -169,7 +170,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass elementSelectorEClass = null;
@@ -177,7 +178,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass universalSelectorEClass = null;
@@ -185,7 +186,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass idSelectorEClass = null;
@@ -193,7 +194,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass css_declarationEClass = null;
@@ -201,7 +202,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass css_propertyEClass = null;
@@ -209,7 +210,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass pseudoClassOrFuncEClass = null;
@@ -217,7 +218,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass pseudoClassEClass = null;
@@ -225,7 +226,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass pseudoClassNameEClass = null;
@@ -233,7 +234,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass pseudoClassFunctionEClass = null;
@@ -241,7 +242,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass cssTokEClass = null;
@@ -249,7 +250,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass urlTypeEClass = null;
@@ -257,7 +258,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass attributeSelectorEClass = null;
@@ -265,7 +266,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass symbolTokEClass = null;
@@ -273,7 +274,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass wsTokEClass = null;
@@ -281,7 +282,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass stringTokEClass = null;
@@ -289,7 +290,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass numberTokEClass = null;
@@ -297,7 +298,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass urlTokEClass = null;
@@ -305,7 +306,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass colorTokEClass = null;
@@ -313,7 +314,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass identifierTokEClass = null;
@@ -321,57 +322,51 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private EClass funcTokEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private CSSPackageImpl() {
+	private CSSPackageImpl()
+	{
 		super(eNS_URI, CSSFactory.eINSTANCE);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>
-	 * This method is used to initialize {@link CSSPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
+	 * This method is used to initialize {@link CSSPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static CSSPackage init() {
-		if (isInited)
+	public static CSSPackage init()
+	{
+		if (isInited) {
 			return (CSSPackage) EPackage.Registry.INSTANCE.getEPackage(CSSPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
 		CSSPackageImpl theCSSPackage = (CSSPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof CSSPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new CSSPackageImpl());
@@ -396,917 +391,1099 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getstylesheet() {
+	@Override
+	public EClass getstylesheet()
+	{
 		return stylesheetEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getstylesheet_Charset() {
+	@Override
+	public EReference getstylesheet_Charset()
+	{
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getstylesheet_Imports() {
+	@Override
+	public EReference getstylesheet_Imports()
+	{
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getstylesheet_Ruleset() {
+	@Override
+	public EReference getstylesheet_Ruleset()
+	{
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getstylesheet_Media() {
+	@Override
+	public EReference getstylesheet_Media()
+	{
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getstylesheet_Page() {
+	@Override
+	public EReference getstylesheet_Page()
+	{
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getstylesheet_Font_face() {
+	@Override
+	public EReference getstylesheet_Font_face()
+	{
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getstylesheet_Keyframes() {
+	@Override
+	public EReference getstylesheet_Keyframes()
+	{
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getcharset() {
+	@Override
+	public EClass getcharset()
+	{
 		return charsetEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getcharset_Charset() {
+	@Override
+	public EAttribute getcharset_Charset()
+	{
 		return (EAttribute) charsetEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getimportExpression() {
+	@Override
+	public EClass getimportExpression()
+	{
 		return importExpressionEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getimportExpression_Value() {
+	@Override
+	public EAttribute getimportExpression_Value()
+	{
 		return (EAttribute) importExpressionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getpage() {
+	@Override
+	public EClass getpage()
+	{
 		return pageEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getpage_PseudoPage() {
+	@Override
+	public EAttribute getpage_PseudoPage()
+	{
 		return (EAttribute) pageEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getpage_Declarations() {
+	@Override
+	public EReference getpage_Declarations()
+	{
 		return (EReference) pageEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getmedia() {
+	@Override
+	public EClass getmedia()
+	{
 		return mediaEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getmedia_Medialist() {
+	@Override
+	public EAttribute getmedia_Medialist()
+	{
 		return (EAttribute) mediaEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getmedia_Rulesets() {
+	@Override
+	public EReference getmedia_Rulesets()
+	{
 		return (EReference) mediaEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getfont_face() {
+	@Override
+	public EClass getfont_face()
+	{
 		return font_faceEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getfont_face_Declarations() {
+	@Override
+	public EReference getfont_face_Declarations()
+	{
 		return (EReference) font_faceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getfont_face_Name() {
+	@Override
+	public EAttribute getfont_face_Name()
+	{
 		return (EAttribute) font_faceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getfont_face_Keyframeselectors() {
+	@Override
+	public EReference getfont_face_Keyframeselectors()
+	{
 		return (EReference) font_faceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getkeyframes() {
+	@Override
+	public EClass getkeyframes()
+	{
 		return keyframesEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getkeyframe_selector() {
+	@Override
+	public EClass getkeyframe_selector()
+	{
 		return keyframe_selectorEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getkeyframe_selector_Type() {
+	@Override
+	public EAttribute getkeyframe_selector_Type()
+	{
 		return (EAttribute) keyframe_selectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getkeyframe_selector_Percentage() {
+	@Override
+	public EAttribute getkeyframe_selector_Percentage()
+	{
 		return (EAttribute) keyframe_selectorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getkeyframe_selector_Declarations() {
+	@Override
+	public EReference getkeyframe_selector_Declarations()
+	{
 		return (EReference) keyframe_selectorEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getruleset() {
+	@Override
+	public EClass getruleset()
+	{
 		return rulesetEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getruleset_Selectors() {
+	@Override
+	public EReference getruleset_Selectors()
+	{
 		return (EReference) rulesetEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getruleset_Declarations() {
+	@Override
+	public EReference getruleset_Declarations()
+	{
 		return (EReference) rulesetEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getselector() {
+	@Override
+	public EClass getselector()
+	{
 		return selectorEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getselector_Simpleselectors() {
+	@Override
+	public EReference getselector_Simpleselectors()
+	{
 		return (EReference) selectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getselector_Combinator() {
+	@Override
+	public EAttribute getselector_Combinator()
+	{
 		return (EAttribute) selectorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getselector_Selector() {
+	@Override
+	public EReference getselector_Selector()
+	{
 		return (EReference) selectorEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getSimpleSelectorForNegation() {
+	@Override
+	public EClass getSimpleSelectorForNegation()
+	{
 		return simpleSelectorForNegationEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getSimpleSelectorForNegation_Element() {
+	@Override
+	public EReference getSimpleSelectorForNegation_Element()
+	{
 		return (EReference) simpleSelectorForNegationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getSimpleSelectorForNegation_Universal() {
+	@Override
+	public EReference getSimpleSelectorForNegation_Universal()
+	{
 		return (EReference) simpleSelectorForNegationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getSimpleSelectorForNegation_SubSelectors() {
+	@Override
+	public EReference getSimpleSelectorForNegation_SubSelectors()
+	{
 		return (EReference) simpleSelectorForNegationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getCssSelector() {
+	@Override
+	public EClass getCssSelector()
+	{
 		return cssSelectorEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getsimple_selector() {
+	@Override
+	public EClass getsimple_selector()
+	{
 		return simple_selectorEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getsimple_selector_Element() {
+	@Override
+	public EReference getsimple_selector_Element()
+	{
 		return (EReference) simple_selectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getsimple_selector_Universal() {
+	@Override
+	public EReference getsimple_selector_Universal()
+	{
 		return (EReference) simple_selectorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getsimple_selector_SubSelectors() {
+	@Override
+	public EReference getsimple_selector_SubSelectors()
+	{
 		return (EReference) simple_selectorEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getClassSelector() {
+	@Override
+	public EClass getClassSelector()
+	{
 		return classSelectorEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getClassSelector_Name() {
+	@Override
+	public EAttribute getClassSelector_Name()
+	{
 		return (EAttribute) classSelectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getElementSelector() {
+	@Override
+	public EClass getElementSelector()
+	{
 		return elementSelectorEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getElementSelector_Name() {
+	@Override
+	public EAttribute getElementSelector_Name()
+	{
 		return (EAttribute) elementSelectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getUniversalSelector() {
+	@Override
+	public EClass getUniversalSelector()
+	{
 		return universalSelectorEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getUniversalSelector_Namespace() {
+	@Override
+	public EAttribute getUniversalSelector_Namespace()
+	{
 		return (EAttribute) universalSelectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getIdSelector() {
+	@Override
+	public EClass getIdSelector()
+	{
 		return idSelectorEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getIdSelector_Name() {
+	@Override
+	public EAttribute getIdSelector_Name()
+	{
 		return (EAttribute) idSelectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getcss_declaration() {
+	@Override
+	public EClass getcss_declaration()
+	{
 		return css_declarationEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getcss_declaration_Property() {
+	@Override
+	public EReference getcss_declaration_Property()
+	{
 		return (EReference) css_declarationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getcss_declaration_ValueTokens() {
+	@Override
+	public EReference getcss_declaration_ValueTokens()
+	{
 		return (EReference) css_declarationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getcss_declaration_Important() {
+	@Override
+	public EAttribute getcss_declaration_Important()
+	{
 		return (EAttribute) css_declarationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getcss_property() {
+	@Override
+	public EClass getcss_property()
+	{
 		return css_propertyEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getcss_property_Name() {
+	@Override
+	public EAttribute getcss_property_Name()
+	{
 		return (EAttribute) css_propertyEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getPseudoClassOrFunc() {
+	@Override
+	public EClass getPseudoClassOrFunc()
+	{
 		return pseudoClassOrFuncEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getPseudoClass() {
+	@Override
+	public EClass getPseudoClass()
+	{
 		return pseudoClassEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getPseudoClassName() {
+	@Override
+	public EClass getPseudoClassName()
+	{
 		return pseudoClassNameEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getPseudoClassName_Name() {
+	@Override
+	public EAttribute getPseudoClassName_Name()
+	{
 		return (EAttribute) pseudoClassNameEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getPseudoClassFunction() {
+	@Override
+	public EClass getPseudoClassFunction()
+	{
 		return pseudoClassFunctionEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getPseudoClassFunction_Not() {
+	@Override
+	public EAttribute getPseudoClassFunction_Not()
+	{
 		return (EAttribute) pseudoClassFunctionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getPseudoClassFunction_ParamSelector() {
+	@Override
+	public EReference getPseudoClassFunction_ParamSelector()
+	{
 		return (EReference) pseudoClassFunctionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getPseudoClassFunction_Name() {
+	@Override
+	public EAttribute getPseudoClassFunction_Name()
+	{
 		return (EAttribute) pseudoClassFunctionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getPseudoClassFunction_Params() {
+	@Override
+	public EReference getPseudoClassFunction_Params()
+	{
 		return (EReference) pseudoClassFunctionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getCssTok() {
+	@Override
+	public EClass getCssTok()
+	{
 		return cssTokEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getURLType() {
+	@Override
+	public EClass getURLType()
+	{
 		return urlTypeEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getURLType_MediaList() {
+	@Override
+	public EAttribute getURLType_MediaList()
+	{
 		return (EAttribute) urlTypeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getURLType_Url() {
+	@Override
+	public EAttribute getURLType_Url()
+	{
 		return (EAttribute) urlTypeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getAttributeSelector() {
+	@Override
+	public EClass getAttributeSelector()
+	{
 		return attributeSelectorEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getAttributeSelector_Name() {
+	@Override
+	public EAttribute getAttributeSelector_Name()
+	{
 		return (EAttribute) attributeSelectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getAttributeSelector_Op() {
+	@Override
+	public EAttribute getAttributeSelector_Op()
+	{
 		return (EAttribute) attributeSelectorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getAttributeSelector_Value() {
+	@Override
+	public EAttribute getAttributeSelector_Value()
+	{
 		return (EAttribute) attributeSelectorEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getSymbolTok() {
+	@Override
+	public EClass getSymbolTok()
+	{
 		return symbolTokEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getSymbolTok_Symbol() {
+	@Override
+	public EAttribute getSymbolTok_Symbol()
+	{
 		return (EAttribute) symbolTokEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getWSTok() {
+	@Override
+	public EClass getWSTok()
+	{
 		return wsTokEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getStringTok() {
+	@Override
+	public EClass getStringTok()
+	{
 		return stringTokEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getStringTok_Value() {
+	@Override
+	public EAttribute getStringTok_Value()
+	{
 		return (EAttribute) stringTokEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getNumberTok() {
+	@Override
+	public EClass getNumberTok()
+	{
 		return numberTokEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getNumberTok_Val() {
+	@Override
+	public EAttribute getNumberTok_Val()
+	{
 		return (EAttribute) numberTokEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getUrlTok() {
+	@Override
+	public EClass getUrlTok()
+	{
 		return urlTokEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getUrlTok_Url() {
+	@Override
+	public EReference getUrlTok_Url()
+	{
 		return (EReference) urlTokEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getColorTok() {
+	@Override
+	public EClass getColorTok()
+	{
 		return colorTokEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getColorTok_Value() {
+	@Override
+	public EAttribute getColorTok_Value()
+	{
 		return (EAttribute) colorTokEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getIdentifierTok() {
+	@Override
+	public EClass getIdentifierTok()
+	{
 		return identifierTokEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EAttribute getIdentifierTok_Name() {
+	@Override
+	public EAttribute getIdentifierTok_Name()
+	{
 		return (EAttribute) identifierTokEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EClass getFuncTok() {
+	@Override
+	public EClass getFuncTok()
+	{
 		return funcTokEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getFuncTok_Name() {
+	@Override
+	public EReference getFuncTok_Name()
+	{
 		return (EReference) funcTokEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EReference getFuncTok_Params() {
+	@Override
+	public EReference getFuncTok_Params()
+	{
 		return (EReference) funcTokEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public CSSFactory getCSSFactory() {
+	@Override
+	public CSSFactory getCSSFactory()
+	{
 		return (CSSFactory) getEFactoryInstance();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -1316,12 +1493,14 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void createPackageContents() {
-		if (isCreated)
+	public void createPackageContents()
+	{
+		if (isCreated) {
 			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -1453,7 +1632,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -1463,12 +1642,14 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void initializePackageContents() {
-		if (isInitialized)
+	public void initializePackageContents()
+	{
+		if (isInitialized) {
 			return;
+		}
 		isInitialized = true;
 
 		// Initialize package
@@ -1601,8 +1782,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 		initEReference(getPseudoClassFunction_ParamSelector(), this.getSimpleSelectorForNegation(), null, "paramSelector", null, 0, 1, PseudoClassFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPseudoClassFunction_Name(), ecorePackage.getEString(), "name", null, 0, 1, PseudoClassFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPseudoClassFunction_Params(), this.getCssTok(), null, "params", null, 0, -1, PseudoClassFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEReference(getPseudoClassFunction_Params(), this.getCssTok(), null, "params", null, 0, -1, PseudoClassFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(cssTokEClass, CssTok.class, "CssTok", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

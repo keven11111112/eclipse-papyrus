@@ -13,5 +13,6 @@ package org.eclipse.papyrus.infra.gmfdiag.css3.cSS;
  * @model
  * @generated
  */
-public interface PseudoClassOrFunc extends CssSelector {
+public interface PseudoClassOrFunc extends CssSelector
+{
 } // PseudoClassOrFunc

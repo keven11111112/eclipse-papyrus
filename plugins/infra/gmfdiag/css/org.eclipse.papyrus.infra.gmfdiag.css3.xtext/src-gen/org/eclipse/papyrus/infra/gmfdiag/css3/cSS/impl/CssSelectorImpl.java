@@ -16,25 +16,28 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssSelector;
  *
  * @generated
  */
-public class CssSelectorImpl extends MinimalEObjectImpl.Container implements CssSelector {
+public class CssSelectorImpl extends MinimalEObjectImpl.Container implements CssSelector
+{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	protected CssSelectorImpl() {
+	protected CssSelectorImpl()
+	{
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return CSSPackage.Literals.CSS_SELECTOR;
 	}
 

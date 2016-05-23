@@ -19,16 +19,16 @@ package org.eclipse.papyrus.infra.gmfdiag.css3.cSS;
  * @model
  * @generated
  */
-public interface ClassSelector extends CssSelector {
+public interface ClassSelector extends CssSelector
+{
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getClassSelector_Name()
@@ -41,7 +41,7 @@ public interface ClassSelector extends CssSelector {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ClassSelector#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @param value
 	 *            the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()

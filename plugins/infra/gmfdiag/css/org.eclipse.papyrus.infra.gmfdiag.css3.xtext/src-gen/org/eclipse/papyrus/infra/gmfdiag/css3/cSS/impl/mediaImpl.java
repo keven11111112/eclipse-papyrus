@@ -36,12 +36,13 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ruleset;
  *
  * @generated
  */
-public class mediaImpl extends MinimalEObjectImpl.Container implements media {
+public class mediaImpl extends MinimalEObjectImpl.Container implements media
+{
 	/**
 	 * The default value of the '{@link #getMedialist() <em>Medialist</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getMedialist()
 	 * @generated
 	 * @ordered
@@ -52,7 +53,7 @@ public class mediaImpl extends MinimalEObjectImpl.Container implements media {
 	 * The cached value of the '{@link #getMedialist() <em>Medialist</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getMedialist()
 	 * @generated
 	 * @ordered
@@ -63,7 +64,7 @@ public class mediaImpl extends MinimalEObjectImpl.Container implements media {
 	 * The cached value of the '{@link #getRulesets() <em>Rulesets</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getRulesets()
 	 * @generated
 	 * @ordered
@@ -73,55 +74,65 @@ public class mediaImpl extends MinimalEObjectImpl.Container implements media {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	protected mediaImpl() {
+	protected mediaImpl()
+	{
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return CSSPackage.Literals.MEDIA;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public String getMedialist() {
+	@Override
+	public String getMedialist()
+	{
 		return medialist;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void setMedialist(String newMedialist) {
+	@Override
+	public void setMedialist(String newMedialist)
+	{
 		String oldMedialist = medialist;
 		medialist = newMedialist;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.MEDIA__MEDIALIST, oldMedialist, medialist));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EList<ruleset> getRulesets() {
-		if (rulesets == null) {
+	@Override
+	public EList<ruleset> getRulesets()
+	{
+		if (rulesets == null)
+		{
 			rulesets = new EObjectContainmentEList<ruleset>(ruleset.class, this, CSSPackage.MEDIA__RULESETS);
 		}
 		return rulesets;
@@ -130,12 +141,14 @@ public class mediaImpl extends MinimalEObjectImpl.Container implements media {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.MEDIA__RULESETS:
 			return ((InternalEList<?>) getRulesets()).basicRemove(otherEnd, msgs);
 		}
@@ -145,12 +158,14 @@ public class mediaImpl extends MinimalEObjectImpl.Container implements media {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.MEDIA__MEDIALIST:
 			return getMedialist();
 		case CSSPackage.MEDIA__RULESETS:
@@ -162,13 +177,15 @@ public class mediaImpl extends MinimalEObjectImpl.Container implements media {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.MEDIA__MEDIALIST:
 			setMedialist((String) newValue);
 			return;
@@ -183,12 +200,14 @@ public class mediaImpl extends MinimalEObjectImpl.Container implements media {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.MEDIA__MEDIALIST:
 			setMedialist(MEDIALIST_EDEFAULT);
 			return;
@@ -202,12 +221,14 @@ public class mediaImpl extends MinimalEObjectImpl.Container implements media {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.MEDIA__MEDIALIST:
 			return MEDIALIST_EDEFAULT == null ? medialist != null : !MEDIALIST_EDEFAULT.equals(medialist);
 		case CSSPackage.MEDIA__RULESETS:
@@ -219,13 +240,15 @@ public class mediaImpl extends MinimalEObjectImpl.Container implements media {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy())
+	public String toString()
+	{
+		if (eIsProxy()) {
 			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (medialist: ");

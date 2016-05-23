@@ -24,12 +24,13 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ColorTok;
  *
  * @generated
  */
-public class ColorTokImpl extends CssTokImpl implements ColorTok {
+public class ColorTokImpl extends CssTokImpl implements ColorTok
+{
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -40,7 +41,7 @@ public class ColorTokImpl extends CssTokImpl implements ColorTok {
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -50,56 +51,65 @@ public class ColorTokImpl extends CssTokImpl implements ColorTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	protected ColorTokImpl() {
+	protected ColorTokImpl()
+	{
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return CSSPackage.Literals.COLOR_TOK;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public String getValue() {
+	@Override
+	public String getValue()
+	{
 		return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void setValue(String newValue) {
+	@Override
+	public void setValue(String newValue)
+	{
 		String oldValue = value;
 		value = newValue;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.COLOR_TOK__VALUE, oldValue, value));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.COLOR_TOK__VALUE:
 			return getValue();
 		}
@@ -109,12 +119,14 @@ public class ColorTokImpl extends CssTokImpl implements ColorTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.COLOR_TOK__VALUE:
 			setValue((String) newValue);
 			return;
@@ -125,12 +137,14 @@ public class ColorTokImpl extends CssTokImpl implements ColorTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.COLOR_TOK__VALUE:
 			setValue(VALUE_EDEFAULT);
 			return;
@@ -141,12 +155,14 @@ public class ColorTokImpl extends CssTokImpl implements ColorTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.COLOR_TOK__VALUE:
 			return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
@@ -156,13 +172,15 @@ public class ColorTokImpl extends CssTokImpl implements ColorTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy())
+	public String toString()
+	{
+		if (eIsProxy()) {
 			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (value: ");

@@ -444,8 +444,8 @@ public class CustomCSSProposalProvider extends AbstractCSSProposalProvider {
 				prefix = context.getPrefix();
 				autocomplete = true;
 			} else
-			// second call as IdentifierTok without prefix
-			if (model instanceof IdentifierTok) {
+				// second call as IdentifierTok without prefix
+				if (model instanceof IdentifierTok) {
 				IdentifierTok declaration = (IdentifierTok) model;
 				prefix = context.getPrefix();
 				// Third call IndentifierTok with the good prefix

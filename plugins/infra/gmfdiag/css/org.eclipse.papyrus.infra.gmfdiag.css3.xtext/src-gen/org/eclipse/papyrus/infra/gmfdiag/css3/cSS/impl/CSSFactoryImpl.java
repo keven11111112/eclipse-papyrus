@@ -16,24 +16,29 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.*;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
-public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
+public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory
+{
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public static CSSFactory init() {
-		try {
+	public static CSSFactory init()
+	{
+		try
+		{
 			CSSFactory theCSSFactory = (CSSFactory) EPackage.Registry.INSTANCE.getEFactory(CSSPackage.eNS_URI);
-			if (theCSSFactory != null) {
+			if (theCSSFactory != null)
+			{
 				return theCSSFactory;
 			}
-		} catch (Exception exception) {
+		} catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new CSSFactoryImpl();
@@ -43,22 +48,25 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public CSSFactoryImpl() {
+	public CSSFactoryImpl()
+	{
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+	public EObject create(EClass eClass)
+	{
+		switch (eClass.getClassifierID())
+		{
 		case CSSPackage.STYLESHEET:
 			return createstylesheet();
 		case CSSPackage.CHARSET:
@@ -135,10 +143,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public stylesheet createstylesheet() {
+	@Override
+	public stylesheet createstylesheet()
+	{
 		stylesheetImpl stylesheet = new stylesheetImpl();
 		return stylesheet;
 	}
@@ -146,10 +156,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public charset createcharset() {
+	@Override
+	public charset createcharset()
+	{
 		charsetImpl charset = new charsetImpl();
 		return charset;
 	}
@@ -157,10 +169,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public importExpression createimportExpression() {
+	@Override
+	public importExpression createimportExpression()
+	{
 		importExpressionImpl importExpression = new importExpressionImpl();
 		return importExpression;
 	}
@@ -168,10 +182,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public page createpage() {
+	@Override
+	public page createpage()
+	{
 		pageImpl page = new pageImpl();
 		return page;
 	}
@@ -179,10 +195,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public media createmedia() {
+	@Override
+	public media createmedia()
+	{
 		mediaImpl media = new mediaImpl();
 		return media;
 	}
@@ -190,10 +208,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public font_face createfont_face() {
+	@Override
+	public font_face createfont_face()
+	{
 		font_faceImpl font_face = new font_faceImpl();
 		return font_face;
 	}
@@ -201,10 +221,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public keyframes createkeyframes() {
+	@Override
+	public keyframes createkeyframes()
+	{
 		keyframesImpl keyframes = new keyframesImpl();
 		return keyframes;
 	}
@@ -212,10 +234,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public keyframe_selector createkeyframe_selector() {
+	@Override
+	public keyframe_selector createkeyframe_selector()
+	{
 		keyframe_selectorImpl keyframe_selector = new keyframe_selectorImpl();
 		return keyframe_selector;
 	}
@@ -223,10 +247,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public ruleset createruleset() {
+	@Override
+	public ruleset createruleset()
+	{
 		rulesetImpl ruleset = new rulesetImpl();
 		return ruleset;
 	}
@@ -234,10 +260,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public selector createselector() {
+	@Override
+	public selector createselector()
+	{
 		selectorImpl selector = new selectorImpl();
 		return selector;
 	}
@@ -245,10 +273,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public SimpleSelectorForNegation createSimpleSelectorForNegation() {
+	@Override
+	public SimpleSelectorForNegation createSimpleSelectorForNegation()
+	{
 		SimpleSelectorForNegationImpl simpleSelectorForNegation = new SimpleSelectorForNegationImpl();
 		return simpleSelectorForNegation;
 	}
@@ -256,10 +286,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public CssSelector createCssSelector() {
+	@Override
+	public CssSelector createCssSelector()
+	{
 		CssSelectorImpl cssSelector = new CssSelectorImpl();
 		return cssSelector;
 	}
@@ -267,10 +299,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public simple_selector createsimple_selector() {
+	@Override
+	public simple_selector createsimple_selector()
+	{
 		simple_selectorImpl simple_selector = new simple_selectorImpl();
 		return simple_selector;
 	}
@@ -278,10 +312,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public ClassSelector createClassSelector() {
+	@Override
+	public ClassSelector createClassSelector()
+	{
 		ClassSelectorImpl classSelector = new ClassSelectorImpl();
 		return classSelector;
 	}
@@ -289,10 +325,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public ElementSelector createElementSelector() {
+	@Override
+	public ElementSelector createElementSelector()
+	{
 		ElementSelectorImpl elementSelector = new ElementSelectorImpl();
 		return elementSelector;
 	}
@@ -300,10 +338,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public UniversalSelector createUniversalSelector() {
+	@Override
+	public UniversalSelector createUniversalSelector()
+	{
 		UniversalSelectorImpl universalSelector = new UniversalSelectorImpl();
 		return universalSelector;
 	}
@@ -311,10 +351,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public IdSelector createIdSelector() {
+	@Override
+	public IdSelector createIdSelector()
+	{
 		IdSelectorImpl idSelector = new IdSelectorImpl();
 		return idSelector;
 	}
@@ -322,10 +364,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public css_declaration createcss_declaration() {
+	@Override
+	public css_declaration createcss_declaration()
+	{
 		css_declarationImpl css_declaration = new css_declarationImpl();
 		return css_declaration;
 	}
@@ -333,10 +377,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public css_property createcss_property() {
+	@Override
+	public css_property createcss_property()
+	{
 		css_propertyImpl css_property = new css_propertyImpl();
 		return css_property;
 	}
@@ -344,10 +390,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public PseudoClassOrFunc createPseudoClassOrFunc() {
+	@Override
+	public PseudoClassOrFunc createPseudoClassOrFunc()
+	{
 		PseudoClassOrFuncImpl pseudoClassOrFunc = new PseudoClassOrFuncImpl();
 		return pseudoClassOrFunc;
 	}
@@ -355,10 +403,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public PseudoClass createPseudoClass() {
+	@Override
+	public PseudoClass createPseudoClass()
+	{
 		PseudoClassImpl pseudoClass = new PseudoClassImpl();
 		return pseudoClass;
 	}
@@ -366,10 +416,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public PseudoClassName createPseudoClassName() {
+	@Override
+	public PseudoClassName createPseudoClassName()
+	{
 		PseudoClassNameImpl pseudoClassName = new PseudoClassNameImpl();
 		return pseudoClassName;
 	}
@@ -377,10 +429,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public PseudoClassFunction createPseudoClassFunction() {
+	@Override
+	public PseudoClassFunction createPseudoClassFunction()
+	{
 		PseudoClassFunctionImpl pseudoClassFunction = new PseudoClassFunctionImpl();
 		return pseudoClassFunction;
 	}
@@ -388,10 +442,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public CssTok createCssTok() {
+	@Override
+	public CssTok createCssTok()
+	{
 		CssTokImpl cssTok = new CssTokImpl();
 		return cssTok;
 	}
@@ -399,10 +455,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public URLType createURLType() {
+	@Override
+	public URLType createURLType()
+	{
 		URLTypeImpl urlType = new URLTypeImpl();
 		return urlType;
 	}
@@ -410,10 +468,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public AttributeSelector createAttributeSelector() {
+	@Override
+	public AttributeSelector createAttributeSelector()
+	{
 		AttributeSelectorImpl attributeSelector = new AttributeSelectorImpl();
 		return attributeSelector;
 	}
@@ -421,10 +481,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public SymbolTok createSymbolTok() {
+	@Override
+	public SymbolTok createSymbolTok()
+	{
 		SymbolTokImpl symbolTok = new SymbolTokImpl();
 		return symbolTok;
 	}
@@ -432,10 +494,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public WSTok createWSTok() {
+	@Override
+	public WSTok createWSTok()
+	{
 		WSTokImpl wsTok = new WSTokImpl();
 		return wsTok;
 	}
@@ -443,10 +507,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public StringTok createStringTok() {
+	@Override
+	public StringTok createStringTok()
+	{
 		StringTokImpl stringTok = new StringTokImpl();
 		return stringTok;
 	}
@@ -454,10 +520,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public NumberTok createNumberTok() {
+	@Override
+	public NumberTok createNumberTok()
+	{
 		NumberTokImpl numberTok = new NumberTokImpl();
 		return numberTok;
 	}
@@ -465,10 +533,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public UrlTok createUrlTok() {
+	@Override
+	public UrlTok createUrlTok()
+	{
 		UrlTokImpl urlTok = new UrlTokImpl();
 		return urlTok;
 	}
@@ -476,10 +546,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public ColorTok createColorTok() {
+	@Override
+	public ColorTok createColorTok()
+	{
 		ColorTokImpl colorTok = new ColorTokImpl();
 		return colorTok;
 	}
@@ -487,10 +559,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public IdentifierTok createIdentifierTok() {
+	@Override
+	public IdentifierTok createIdentifierTok()
+	{
 		IdentifierTokImpl identifierTok = new IdentifierTokImpl();
 		return identifierTok;
 	}
@@ -498,10 +572,12 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public FuncTok createFuncTok() {
+	@Override
+	public FuncTok createFuncTok()
+	{
 		FuncTokImpl funcTok = new FuncTokImpl();
 		return funcTok;
 	}
@@ -509,22 +585,25 @@ public class CSSFactoryImpl extends EFactoryImpl implements CSSFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public CSSPackage getCSSPackage() {
+	@Override
+	public CSSPackage getCSSPackage()
+	{
 		return (CSSPackage) getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @deprecated
 	 * @generated
 	 */
 	@Deprecated
-	public static CSSPackage getPackage() {
+	public static CSSPackage getPackage()
+	{
 		return CSSPackage.eINSTANCE;
 	}
 

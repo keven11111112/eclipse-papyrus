@@ -37,12 +37,13 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.simple_selector;
  *
  * @generated
  */
-public class selectorImpl extends MinimalEObjectImpl.Container implements selector {
+public class selectorImpl extends MinimalEObjectImpl.Container implements selector
+{
 	/**
 	 * The cached value of the '{@link #getSimpleselectors() <em>Simpleselectors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getSimpleselectors()
 	 * @generated
 	 * @ordered
@@ -53,7 +54,7 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 * The default value of the '{@link #getCombinator() <em>Combinator</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getCombinator()
 	 * @generated
 	 * @ordered
@@ -64,7 +65,7 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 * The cached value of the '{@link #getCombinator() <em>Combinator</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getCombinator()
 	 * @generated
 	 * @ordered
@@ -75,7 +76,7 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 * The cached value of the '{@link #getSelector() <em>Selector</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getSelector()
 	 * @generated
 	 * @ordered
@@ -85,32 +86,37 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	protected selectorImpl() {
+	protected selectorImpl()
+	{
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return CSSPackage.Literals.SELECTOR;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EList<simple_selector> getSimpleselectors() {
-		if (simpleselectors == null) {
+	@Override
+	public EList<simple_selector> getSimpleselectors()
+	{
+		if (simpleselectors == null)
+		{
 			simpleselectors = new EObjectContainmentEList<simple_selector>(simple_selector.class, this, CSSPackage.SELECTOR__SIMPLESELECTORS);
 		}
 		return simpleselectors;
@@ -119,51 +125,61 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public String getCombinator() {
+	@Override
+	public String getCombinator()
+	{
 		return combinator;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void setCombinator(String newCombinator) {
+	@Override
+	public void setCombinator(String newCombinator)
+	{
 		String oldCombinator = combinator;
 		combinator = newCombinator;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.SELECTOR__COMBINATOR, oldCombinator, combinator));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public selector getSelector() {
+	@Override
+	public selector getSelector()
+	{
 		return selector;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public NotificationChain basicSetSelector(selector newSelector, NotificationChain msgs) {
+	public NotificationChain basicSetSelector(selector newSelector, NotificationChain msgs)
+	{
 		selector oldSelector = selector;
 		selector = newSelector;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSSPackage.SELECTOR__SELECTOR, oldSelector, newSelector);
-			if (msgs == null)
+			if (msgs == null) {
 				msgs = notification;
-			else
+			} else {
 				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -171,32 +187,42 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void setSelector(selector newSelector) {
-		if (newSelector != selector) {
+	@Override
+	public void setSelector(selector newSelector)
+	{
+		if (newSelector != selector)
+		{
 			NotificationChain msgs = null;
-			if (selector != null)
+			if (selector != null) {
 				msgs = ((InternalEObject) selector).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSSPackage.SELECTOR__SELECTOR, null, msgs);
-			if (newSelector != null)
+			}
+			if (newSelector != null) {
 				msgs = ((InternalEObject) newSelector).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSSPackage.SELECTOR__SELECTOR, null, msgs);
+			}
 			msgs = basicSetSelector(newSelector, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
-		} else if (eNotificationRequired())
+			}
+		}
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.SELECTOR__SELECTOR, newSelector, newSelector));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.SELECTOR__SIMPLESELECTORS:
 			return ((InternalEList<?>) getSimpleselectors()).basicRemove(otherEnd, msgs);
 		case CSSPackage.SELECTOR__SELECTOR:
@@ -208,12 +234,14 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.SELECTOR__SIMPLESELECTORS:
 			return getSimpleselectors();
 		case CSSPackage.SELECTOR__COMBINATOR:
@@ -227,13 +255,15 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.SELECTOR__SIMPLESELECTORS:
 			getSimpleselectors().clear();
 			getSimpleselectors().addAll((Collection<? extends simple_selector>) newValue);
@@ -251,12 +281,14 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.SELECTOR__SIMPLESELECTORS:
 			getSimpleselectors().clear();
 			return;
@@ -273,12 +305,14 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.SELECTOR__SIMPLESELECTORS:
 			return simpleselectors != null && !simpleselectors.isEmpty();
 		case CSSPackage.SELECTOR__COMBINATOR:
@@ -292,13 +326,15 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy())
+	public String toString()
+	{
+		if (eIsProxy()) {
 			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (combinator: ");

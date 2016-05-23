@@ -4,7 +4,6 @@
 package org.eclipse.papyrus.infra.gmfdiag.css3.serializer;
 
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.AttributeSelector;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage;
@@ -37,15 +36,9 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.selector;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.simple_selector;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.stylesheet;
 import org.eclipse.papyrus.infra.gmfdiag.css3.services.CSSGrammarAccess;
-import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
-import org.eclipse.xtext.serializer.diagnostic.ISemanticSequencerDiagnosticProvider;
-import org.eclipse.xtext.serializer.diagnostic.ISerializationDiagnostic.Acceptor;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
-import org.eclipse.xtext.serializer.sequencer.GenericSequencer;
 import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEObjectProvider;
-import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
-import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 
 @SuppressWarnings("all")
@@ -56,7 +49,7 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 
 	@Override
 	public void createSequence(EObject context, EObject semanticObject) {
-		if (semanticObject.eClass().getEPackage() == CSSPackage.eINSTANCE)
+		if (semanticObject.eClass().getEPackage() == CSSPackage.eINSTANCE) {
 			switch (semanticObject.eClass().getClassifierID()) {
 			case CSSPackage.ATTRIBUTE_SELECTOR:
 				sequence_AttributeSelector(context, (AttributeSelector) semanticObject);
@@ -101,11 +94,13 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if (context == grammarAccess.getURLTypeRule()) {
 					sequence_URLType(context, (URLType) semanticObject);
 					return;
-				} else if (context == grammarAccess.getImportExpressionRule()) {
+				}
+				else if (context == grammarAccess.getImportExpressionRule()) {
 					sequence_URLType_importExpression(context, (URLType) semanticObject);
 					return;
-				} else
+				} else {
 					break;
+				}
 			case CSSPackage.UNIVERSAL_SELECTOR:
 				sequence_UniversalSelector(context, (UniversalSelector) semanticObject);
 				return;
@@ -128,11 +123,13 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				if (context == grammarAccess.getFont_faceRule()) {
 					sequence_font_face(context, (font_face) semanticObject);
 					return;
-				} else if (context == grammarAccess.getKeyframesRule()) {
+				}
+				else if (context == grammarAccess.getKeyframesRule()) {
 					sequence_keyframes(context, (font_face) semanticObject);
 					return;
-				} else
+				} else {
 					break;
+				}
 			case CSSPackage.IMPORT_EXPRESSION:
 				sequence_importExpression(context, (importExpression) semanticObject);
 				return;
@@ -158,8 +155,10 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_stylesheet(context, (stylesheet) semanticObject);
 				return;
 			}
-		if (errorAcceptor != null)
+		}
+		if (errorAcceptor != null) {
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
+		}
 	}
 
 	/**
@@ -190,8 +189,9 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_ClassSelector(EObject context, ClassSelector semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.CLASS_SELECTOR__NAME) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.CLASS_SELECTOR__NAME) == ValueTransient.YES) {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CSSPackage.Literals.CLASS_SELECTOR__NAME));
+			}
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -206,8 +206,9 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_ColorTok(EObject context, ColorTok semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.COLOR_TOK__VALUE) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.COLOR_TOK__VALUE) == ValueTransient.YES) {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CSSPackage.Literals.COLOR_TOK__VALUE));
+			}
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -222,8 +223,9 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_ElementSelector(EObject context, ElementSelector semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.ELEMENT_SELECTOR__NAME) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.ELEMENT_SELECTOR__NAME) == ValueTransient.YES) {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CSSPackage.Literals.ELEMENT_SELECTOR__NAME));
+			}
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -238,8 +240,9 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_IdSelector(EObject context, IdSelector semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.ID_SELECTOR__NAME) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.ID_SELECTOR__NAME) == ValueTransient.YES) {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CSSPackage.Literals.ID_SELECTOR__NAME));
+			}
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -263,8 +266,9 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_IdentifierOrFuncTok(EObject context, IdentifierTok semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.IDENTIFIER_TOK__NAME) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.IDENTIFIER_TOK__NAME) == ValueTransient.YES) {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CSSPackage.Literals.IDENTIFIER_TOK__NAME));
+			}
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -279,8 +283,9 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_NumberTok(EObject context, NumberTok semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.NUMBER_TOK__VAL) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.NUMBER_TOK__VAL) == ValueTransient.YES) {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CSSPackage.Literals.NUMBER_TOK__VAL));
+			}
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -304,8 +309,9 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_PseudoClassName(EObject context, PseudoClassName semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.PSEUDO_CLASS_NAME__NAME) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.PSEUDO_CLASS_NAME__NAME) == ValueTransient.YES) {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CSSPackage.Literals.PSEUDO_CLASS_NAME__NAME));
+			}
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -329,8 +335,9 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_StringTok(EObject context, StringTok semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.STRING_TOK__VALUE) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.STRING_TOK__VALUE) == ValueTransient.YES) {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CSSPackage.Literals.STRING_TOK__VALUE));
+			}
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -381,8 +388,9 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_UrlTok(EObject context, UrlTok semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.URL_TOK__URL) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.URL_TOK__URL) == ValueTransient.YES) {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CSSPackage.Literals.URL_TOK__URL));
+			}
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -406,8 +414,9 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_charset(EObject context, charset semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.CHARSET__CHARSET) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.CHARSET__CHARSET) == ValueTransient.YES) {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CSSPackage.Literals.CHARSET__CHARSET));
+			}
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -431,8 +440,9 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_css_property(EObject context, css_property semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.CSS_PROPERTY__NAME) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.CSS_PROPERTY__NAME) == ValueTransient.YES) {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CSSPackage.Literals.CSS_PROPERTY__NAME));
+			}
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -456,8 +466,9 @@ public class CSSSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_importExpression(EObject context, importExpression semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.IMPORT_EXPRESSION__VALUE) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, CSSPackage.Literals.IMPORT_EXPRESSION__VALUE) == ValueTransient.YES) {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CSSPackage.Literals.IMPORT_EXPRESSION__VALUE));
+			}
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);

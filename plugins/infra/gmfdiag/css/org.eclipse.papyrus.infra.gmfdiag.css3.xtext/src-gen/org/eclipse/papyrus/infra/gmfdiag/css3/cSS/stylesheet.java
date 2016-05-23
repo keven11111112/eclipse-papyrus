@@ -28,16 +28,16 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface stylesheet extends EObject {
+public interface stylesheet extends EObject
+{
 	/**
 	 * Returns the value of the '<em><b>Charset</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Charset</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Charset</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Charset</em>' containment reference.
 	 * @see #setCharset(charset)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getstylesheet_Charset()
@@ -50,7 +50,7 @@ public interface stylesheet extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.stylesheet#getCharset <em>Charset</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @param value
 	 *            the new value of the '<em>Charset</em>' containment reference.
 	 * @see #getCharset()
@@ -63,11 +63,10 @@ public interface stylesheet extends EObject {
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.importExpression}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Imports</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Imports</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Imports</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getstylesheet_Imports()
 	 * @model containment="true"
@@ -80,11 +79,10 @@ public interface stylesheet extends EObject {
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ruleset}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Ruleset</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Ruleset</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Ruleset</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getstylesheet_Ruleset()
 	 * @model containment="true"
@@ -97,11 +95,10 @@ public interface stylesheet extends EObject {
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.media}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Media</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Media</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Media</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getstylesheet_Media()
 	 * @model containment="true"
@@ -114,11 +111,10 @@ public interface stylesheet extends EObject {
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.page}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Page</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Page</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Page</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getstylesheet_Page()
 	 * @model containment="true"
@@ -131,11 +127,10 @@ public interface stylesheet extends EObject {
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.font_face}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Font face</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Font face</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Font face</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getstylesheet_Font_face()
 	 * @model containment="true"
@@ -148,11 +143,10 @@ public interface stylesheet extends EObject {
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.keyframes}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Keyframes</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Keyframes</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @return the value of the '<em>Keyframes</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#getstylesheet_Keyframes()
 	 * @model containment="true"

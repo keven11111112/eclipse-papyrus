@@ -24,12 +24,13 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.SymbolTok;
  *
  * @generated
  */
-public class SymbolTokImpl extends CssTokImpl implements SymbolTok {
+public class SymbolTokImpl extends CssTokImpl implements SymbolTok
+{
 	/**
 	 * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getSymbol()
 	 * @generated
 	 * @ordered
@@ -40,7 +41,7 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok {
 	 * The cached value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getSymbol()
 	 * @generated
 	 * @ordered
@@ -50,56 +51,65 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	protected SymbolTokImpl() {
+	protected SymbolTokImpl()
+	{
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return CSSPackage.Literals.SYMBOL_TOK;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public String getSymbol() {
+	@Override
+	public String getSymbol()
+	{
 		return symbol;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void setSymbol(String newSymbol) {
+	@Override
+	public void setSymbol(String newSymbol)
+	{
 		String oldSymbol = symbol;
 		symbol = newSymbol;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.SYMBOL_TOK__SYMBOL, oldSymbol, symbol));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.SYMBOL_TOK__SYMBOL:
 			return getSymbol();
 		}
@@ -109,12 +119,14 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.SYMBOL_TOK__SYMBOL:
 			setSymbol((String) newValue);
 			return;
@@ -125,12 +137,14 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.SYMBOL_TOK__SYMBOL:
 			setSymbol(SYMBOL_EDEFAULT);
 			return;
@@ -141,12 +155,14 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.SYMBOL_TOK__SYMBOL:
 			return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
 		}
@@ -156,13 +172,15 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public String toString() {
-		if (eIsProxy())
+	public String toString()
+	{
+		if (eIsProxy()) {
 			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (symbol: ");

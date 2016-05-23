@@ -1062,16 +1062,23 @@ ruleruleset returns [EObject current=null]
 
 // Entry rule entryRuleselector
 entryRuleselector returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
+	}
 	:
 	{ newCompositeNode(grammarAccess.getSelectorRule()); }
 	 iv_ruleselector=ruleselector 
 	 { $current=$iv_ruleselector.current; } 
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule selector
 ruleselector returns [EObject current=null] 
     @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
     }
     @after { leaveRule(); }:
 ((
@@ -1179,6 +1186,9 @@ ruleselector returns [EObject current=null]
 )
 )))?)
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 
 
@@ -1345,16 +1355,23 @@ ruleSubSelectorForNegation returns [EObject current=null]
 
 // Entry rule entryRulesimple_selector
 entryRulesimple_selector returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
+	}
 	:
 	{ newCompositeNode(grammarAccess.getSimple_selectorRule()); }
 	 iv_rulesimple_selector=rulesimple_selector 
 	 { $current=$iv_rulesimple_selector.current; } 
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule simple_selector
 rulesimple_selector returns [EObject current=null] 
     @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
     }
     @after { leaveRule(); }:
 ((((
@@ -1433,6 +1450,9 @@ rulesimple_selector returns [EObject current=null]
 )
 )+)
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 
 
@@ -1910,16 +1930,23 @@ rulecss_namespace_prefix returns [AntlrDatatypeRuleToken current=new AntlrDataty
 
 // Entry rule entryRulecss_declaration
 entryRulecss_declaration returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
+	}
 	:
 	{ newCompositeNode(grammarAccess.getCss_declarationRule()); }
 	 iv_rulecss_declaration=rulecss_declaration 
 	 { $current=$iv_rulecss_declaration.current; } 
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule css_declaration
 rulecss_declaration returns [EObject current=null] 
     @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
     }
     @after { leaveRule(); }:
 ((this_WS_0=RULE_WS
@@ -1990,6 +2017,9 @@ rulecss_declaration returns [EObject current=null]
 )
 )?)
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 
 
@@ -2301,16 +2331,23 @@ rulePseudoClassFunction returns [EObject current=null]
 
 // Entry rule entryRuleNotFunctionCall
 entryRuleNotFunctionCall returns [String current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+	}
 	:
 	{ newCompositeNode(grammarAccess.getNotFunctionCallRule()); } 
 	 iv_ruleNotFunctionCall=ruleNotFunctionCall 
 	 { $current=$iv_ruleNotFunctionCall.current.getText(); }  
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule NotFunctionCall
 ruleNotFunctionCall returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
     }
     @after { leaveRule(); }:
 (    this_COLON_0=RULE_COLON    {
@@ -2328,6 +2365,9 @@ ruleNotFunctionCall returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRul
     }
 )
     ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 
 
@@ -2520,16 +2560,23 @@ ruleStringTok returns [EObject current=null]
 
 // Entry rule entryRuleNumberTok
 entryRuleNumberTok returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+	}
 	:
 	{ newCompositeNode(grammarAccess.getNumberTokRule()); }
 	 iv_ruleNumberTok=ruleNumberTok 
 	 { $current=$iv_ruleNumberTok.current; } 
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule NumberTok
 ruleNumberTok returns [EObject current=null] 
     @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
     }
     @after { leaveRule(); }:
 ((
@@ -2558,6 +2605,9 @@ ruleNumberTok returns [EObject current=null]
 )
 ))
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 
 
@@ -2610,16 +2660,23 @@ ruleUrlTok returns [EObject current=null]
 
 // Entry rule entryRuleColorTok
 entryRuleColorTok returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+	}
 	:
 	{ newCompositeNode(grammarAccess.getColorTokRule()); }
 	 iv_ruleColorTok=ruleColorTok 
 	 { $current=$iv_ruleColorTok.current; } 
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule ColorTok
 ruleColorTok returns [EObject current=null] 
     @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
     }
     @after { leaveRule(); }:
 ((
@@ -2648,6 +2705,9 @@ ruleColorTok returns [EObject current=null]
 )
 ))
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 
 
@@ -2655,16 +2715,23 @@ ruleColorTok returns [EObject current=null]
 
 // Entry rule entryRuleIdentifierOrFuncTok
 entryRuleIdentifierOrFuncTok returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
+	}
 	:
 	{ newCompositeNode(grammarAccess.getIdentifierOrFuncTokRule()); }
 	 iv_ruleIdentifierOrFuncTok=ruleIdentifierOrFuncTok 
 	 { $current=$iv_ruleIdentifierOrFuncTok.current; } 
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule IdentifierOrFuncTok
 ruleIdentifierOrFuncTok returns [EObject current=null] 
     @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
     }
     @after { leaveRule(); }:
 ((
@@ -2725,6 +2792,9 @@ ruleIdentifierOrFuncTok returns [EObject current=null]
     }
 )?)
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 
 
@@ -2732,16 +2802,23 @@ ruleIdentifierOrFuncTok returns [EObject current=null]
 
 // Entry rule entryRuleCssTok
 entryRuleCssTok returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
+	}
 	:
 	{ newCompositeNode(grammarAccess.getCssTokRule()); }
 	 iv_ruleCssTok=ruleCssTok 
 	 { $current=$iv_ruleCssTok.current; } 
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule CssTok
 ruleCssTok returns [EObject current=null] 
     @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_ML_COMMENT");
     }
     @after { leaveRule(); }:
 (
@@ -2815,6 +2892,9 @@ ruleCssTok returns [EObject current=null]
     }
 )
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 
 
@@ -2822,16 +2902,23 @@ ruleCssTok returns [EObject current=null]
 
 // Entry rule entryRuleURLType
 entryRuleURLType returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+	}
 	:
 	{ newCompositeNode(grammarAccess.getURLTypeRule()); }
 	 iv_ruleURLType=ruleURLType 
 	 { $current=$iv_ruleURLType.current; } 
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule URLType
 ruleURLType returns [EObject current=null] 
     @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
     }
     @after { leaveRule(); }:
 (	otherlv_0='url(' 
@@ -2862,6 +2949,9 @@ ruleURLType returns [EObject current=null]
     }
 )
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 
 
@@ -3087,16 +3177,23 @@ ruleKeywordHack returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
 
 // Entry rule entryRuleValidURL
 entryRuleValidURL returns [String current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+	}
 	:
 	{ newCompositeNode(grammarAccess.getValidURLRule()); } 
 	 iv_ruleValidURL=ruleValidURL 
 	 { $current=$iv_ruleValidURL.current.getText(); }  
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule ValidURL
 ruleValidURL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
     }
     @after { leaveRule(); }:
 (    this_CSSSTRING_0=RULE_CSSSTRING    {
@@ -3229,6 +3326,9 @@ ruleValidURL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
     }
 )))+)
     ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 
 
@@ -3236,16 +3336,23 @@ ruleValidURL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
 
 // Entry rule entryRuleIdentifier
 entryRuleIdentifier returns [String current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+	}
 	:
 	{ newCompositeNode(grammarAccess.getIdentifierRule()); } 
 	 iv_ruleIdentifier=ruleIdentifier 
 	 { $current=$iv_ruleIdentifier.current.getText(); }  
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule Identifier
 ruleIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
     }
     @after { leaveRule(); }:
 ((    this_DASH_0=RULE_DASH    {
@@ -3348,6 +3455,9 @@ ruleIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToke
     }
 ))*)
     ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 
 
@@ -3355,16 +3465,23 @@ ruleIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToke
 
 // Entry rule entryRuleNum
 entryRuleNum returns [String current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+	}
 	:
 	{ newCompositeNode(grammarAccess.getNumRule()); } 
 	 iv_ruleNum=ruleNum 
 	 { $current=$iv_ruleNum.current.getText(); }  
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule Num
 ruleNum returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
     }
     @after { leaveRule(); }:
 ((    this_PLUS_0=RULE_PLUS    {
@@ -3420,6 +3537,9 @@ ruleNum returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
     }
 )+)?)))
     ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 
 

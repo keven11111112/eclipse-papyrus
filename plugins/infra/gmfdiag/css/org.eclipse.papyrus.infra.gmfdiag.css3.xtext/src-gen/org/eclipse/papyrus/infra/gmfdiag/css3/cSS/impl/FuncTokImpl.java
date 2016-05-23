@@ -36,12 +36,13 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IdentifierTok;
  *
  * @generated
  */
-public class FuncTokImpl extends CssTokImpl implements FuncTok {
+public class FuncTokImpl extends CssTokImpl implements FuncTok
+{
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -52,7 +53,7 @@ public class FuncTokImpl extends CssTokImpl implements FuncTok {
 	 * The cached value of the '{@link #getParams() <em>Params</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getParams()
 	 * @generated
 	 * @ordered
@@ -62,49 +63,56 @@ public class FuncTokImpl extends CssTokImpl implements FuncTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	protected FuncTokImpl() {
+	protected FuncTokImpl()
+	{
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+	{
 		return CSSPackage.Literals.FUNC_TOK;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public IdentifierTok getName() {
+	@Override
+	public IdentifierTok getName()
+	{
 		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public NotificationChain basicSetName(IdentifierTok newName, NotificationChain msgs) {
+	public NotificationChain basicSetName(IdentifierTok newName, NotificationChain msgs)
+	{
 		IdentifierTok oldName = name;
 		name = newName;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSSPackage.FUNC_TOK__NAME, oldName, newName);
-			if (msgs == null)
+			if (msgs == null) {
 				msgs = notification;
-			else
+			} else {
 				msgs.add(notification);
+			}
 		}
 		return msgs;
 	}
@@ -112,31 +120,42 @@ public class FuncTokImpl extends CssTokImpl implements FuncTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public void setName(IdentifierTok newName) {
-		if (newName != name) {
+	@Override
+	public void setName(IdentifierTok newName)
+	{
+		if (newName != name)
+		{
 			NotificationChain msgs = null;
-			if (name != null)
+			if (name != null) {
 				msgs = ((InternalEObject) name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSSPackage.FUNC_TOK__NAME, null, msgs);
-			if (newName != null)
+			}
+			if (newName != null) {
 				msgs = ((InternalEObject) newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CSSPackage.FUNC_TOK__NAME, null, msgs);
+			}
 			msgs = basicSetName(newName, msgs);
-			if (msgs != null)
+			if (msgs != null) {
 				msgs.dispatch();
-		} else if (eNotificationRequired())
+			}
+		}
+		else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.FUNC_TOK__NAME, newName, newName));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
-	public EList<CssTok> getParams() {
-		if (params == null) {
+	@Override
+	public EList<CssTok> getParams()
+	{
+		if (params == null)
+		{
 			params = new EObjectContainmentEList<CssTok>(CssTok.class, this, CSSPackage.FUNC_TOK__PARAMS);
 		}
 		return params;
@@ -145,12 +164,14 @@ public class FuncTokImpl extends CssTokImpl implements FuncTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.FUNC_TOK__NAME:
 			return basicSetName(null, msgs);
 		case CSSPackage.FUNC_TOK__PARAMS:
@@ -162,12 +183,14 @@ public class FuncTokImpl extends CssTokImpl implements FuncTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.FUNC_TOK__NAME:
 			return getName();
 		case CSSPackage.FUNC_TOK__PARAMS:
@@ -179,13 +202,15 @@ public class FuncTokImpl extends CssTokImpl implements FuncTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.FUNC_TOK__NAME:
 			setName((IdentifierTok) newValue);
 			return;
@@ -200,12 +225,14 @@ public class FuncTokImpl extends CssTokImpl implements FuncTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.FUNC_TOK__NAME:
 			setName((IdentifierTok) null);
 			return;
@@ -219,12 +246,14 @@ public class FuncTokImpl extends CssTokImpl implements FuncTok {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
 		case CSSPackage.FUNC_TOK__NAME:
 			return name != null;
 		case CSSPackage.FUNC_TOK__PARAMS:

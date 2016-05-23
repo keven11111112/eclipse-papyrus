@@ -13,5 +13,6 @@ package org.eclipse.papyrus.infra.gmfdiag.css3.cSS;
  * @model
  * @generated
  */
-public interface WSTok extends CssTok {
+public interface WSTok extends CssTok
+{
 } // WSTok
