@@ -173,11 +173,11 @@ public class StringMultilineWithReferences extends AbstractPropertyEditor {
 		return (org.eclipse.papyrus.infra.widgets.editors.StringEditor) valueEditor;
 	}
 
-	protected void setContentProvider(IStaticContentProvider provider) {
+	public void setContentProvider(IStaticContentProvider provider) {
 		editor.setReferenceBrowserContentProvider(provider);
 	}
 
-	protected void setLabelProvider(ILabelProvider labelProvider) {
+	public void setLabelProvider(ILabelProvider labelProvider) {
 		editor.setLabelProvider(labelProvider);
 	}
 }

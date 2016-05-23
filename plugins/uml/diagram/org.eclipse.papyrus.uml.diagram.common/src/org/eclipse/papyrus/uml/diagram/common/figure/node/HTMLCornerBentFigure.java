@@ -32,10 +32,12 @@ import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.draw2d.text.TextFlow;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.AnimatableScrollPane;
 import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.parser.HTMLCleaner;
+import org.eclipse.papyrus.uml.diagram.common.preferences.RichtextPreferencePage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
@@ -93,6 +95,10 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	protected HTMLRenderer htmlRenderer;
 	
 	/**
+	 * Preference boolean
+	 */
+	protected Boolean useHtmlRenderer = null;
+	/**
 	 * Body size to remember so layout changes are not fired infinitely
 	 * 
 	 * @since 2.0
@@ -138,31 +144,35 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 * Generates the basic contents for this figure
 	 */
 	protected void createContents() {
-		if (htmlRenderer == null) {
-			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
-
-			for (IConfigurationElement e : config) {
-				if (!"contributor".equals(e.getName())) {
-					continue;
-				}
-				try {
-					Object instance = e.createExecutableExtension("contributor");
-					if (instance instanceof HTMLRenderer) {
-						htmlRenderer = (HTMLRenderer) instance;
-						break;
-					}
-				} catch (Exception ex) {
-					Activator.log.warn("Invalid html renderer contribution from: " + e.getContributor());
-				}
-			}
-		}
-		
-		if (htmlRenderer == null) {
+		if (!useHtmlRenderer()) {
 			page = new FlowPage();
 			page.setForegroundColor(getForegroundColor());
 			this.add(page);
 		} else {
-			IFigure htmlContent = htmlRenderer.getFigure();
+			if (htmlRenderer == null) {
+				IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
+
+				for (IConfigurationElement e : config) {
+					if (!"contributor".equals(e.getName())) {
+						continue;
+					}
+					try {
+						Object instance = e.createExecutableExtension("contributor");
+						if (instance instanceof HTMLRenderer) {
+							htmlRenderer = (HTMLRenderer) instance;
+							break;
+						}
+					} catch (Exception ex) {
+						Activator.log.warn("Invalid html renderer contribution from: " + e.getContributor());
+					}
+				}
+			}
+			
+			IFigure htmlContent = null;
+			
+			if (htmlRenderer != null) {
+				htmlContent = htmlRenderer.getFigure();
+			}
 			
 			if (htmlContent != null) {
 				this.add(htmlContent);
@@ -196,19 +206,21 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	}
 	
 	private void paintHTML() {
-		try {
-			if (this.isVisible()) {
-				if (Display.getDefault() != null) {
-					int width = getClientArea().width;
-					int height = getClientArea().height;
-					
-					if (width > 0 && height > 0) { // width and height can be nil before figures are displayed
-						htmlRenderer.paintHTML(text, width, height, 0, 0);
+		if (htmlRenderer != null) {
+			try {
+				if (this.isVisible()) {
+					if (Display.getDefault() != null) {
+						int width = getClientArea().width;
+						int height = getClientArea().height;
+						
+						if (width > 0 && height > 0) { // width and height can be nil before figures are displayed
+							htmlRenderer.paintHTML(text, width, height, 0, 0);
+						}
 					}
 				}
+			} catch (Exception e) {
+				Activator.log.error(e);
 			}
-		} catch (Exception e) {
-			Activator.log.error(e);
 		}
 	}
 
@@ -279,15 +291,17 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 
 		this.text = text;
 
-		if (htmlRenderer == null) {
-			// remove all children from page.
-			page.removeAll();
+		if (!useHtmlRenderer() || htmlRenderer == null) {
+			if (page != null) {
+				// remove all children from page.
+				page.removeAll();
 
-			// init the first font data
-			currentFontData = new FontData("Wingdings", 8, SWT.NORMAL);
+				// init the first font data
+				currentFontData = new FontData("Wingdings", 8, SWT.NORMAL);
 
-			// generates new ones
-			generateBlockForText(text, page);
+				// generates new ones
+				generateBlockForText(text, page);
+			}
 		} else {
 			paintHTML();
 		}
@@ -908,5 +922,17 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	@Override
 	public Point getEditionLocation() {
 		return getBounds().getTopLeft();
+	}
+	
+	private boolean useHtmlRenderer() {
+		if (useHtmlRenderer == null) {
+			useHtmlRenderer = false;
+			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+			if (store != null) {
+				useHtmlRenderer = store.getBoolean(RichtextPreferencePage.USE_HTML_RENDERER);
+			}
+		}
+		
+		return useHtmlRenderer;
 	}
 }
