@@ -13,33 +13,36 @@
 
 package org.eclipse.papyrus.uml.diagram.wizards.profile;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.diagram.wizards.Activator;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.widget.ExtensionFilter;
 import org.eclipse.papyrus.uml.extensionpoints.profile.IRegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
+import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
+import org.eclipse.uml2.uml.Profile;
 
 /**
  * @author Quentin Le Menez
@@ -97,7 +100,7 @@ public class ProfileChooserComposite extends Composite {
 		treeDialog = new ElementTreeSelectionDialog(getShell(), new ProfileChooserLabelProvider(), new ProfileChooserContentProvider());
 		treeDialog.setInput(RegisteredProfile.getRegisteredProfiles());
 		treeDialog.setAllowMultiple(false);
-		treeDialog.setTitle(Messages.SelectDiagramKindPage_ProfileComposite_RegisteredProfilesDialog);
+		treeDialog.setTitle(Messages.ProfileChooserComposite_RegisteredProfilesDialog);
 
 		SelectionListener selectionListener = new SelectionListener() {
 
@@ -132,14 +135,59 @@ public class ProfileChooserComposite extends Composite {
 		workspaceButton = new Button(parent, SWT.NONE);
 		workspaceButton.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		workspaceButton.addSelectionListener(selectionListener);
-		workspaceButton.setText(Messages.SelectDiagramKindPage_ProfileComposite_WorkspaceSelectionButton);
+		workspaceButton.setText(Messages.ProfileChooserComposite_WorkspaceSelectionButton);
 
 		registeredButton = new Button(parent, SWT.NONE);
 		registeredButton.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		registeredButton.addSelectionListener(selectionListener);
-		registeredButton.setText(Messages.SelectDiagramKindPage_ProfileComposite_RegisteredSelectionButton);
+		registeredButton.setText(Messages.ProfileChooserComposite_RegisteredSelectionButton);
 
 
+	}
+
+	/**
+	 * Check that the provided path matches against a known Profile and that it is defined
+	 * 
+	 * @return
+	 * 		The IStatus of the fetched profile
+	 */
+	public IStatus getProfileDefinitionStatus() {
+		ResourceSet resourceSet = Util.createTemporaryResourceSet();
+
+		try {
+			String profilePath = getProfileURI();
+			if (profilePath == null || profilePath.equalsIgnoreCase("")) {//$NON-NLS-1$
+				return Status.OK_STATUS;
+			}
+
+			URI profileURI = URI.createURI(profilePath);
+			Resource resource = resourceSet.getResource(profileURI, true);
+
+			if (resource == null) {
+				return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.ProfileChooserComposite_ProfileStatus_NullResource);
+			}
+			if (resource.getContents().isEmpty()) {
+				return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.ProfileChooserComposite_ProfileStatus_EmptyResource);
+			}
+
+			EObject eObject = resource.getContents().get(0);
+			if (!(eObject instanceof Profile)) {
+				return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.ProfileChooserComposite_ProfileStatus_NotAProfile);
+			}
+
+			Profile profile = (Profile) eObject;
+			if (!profile.isDefined()) {
+				return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.ProfileChooserComposite_ProfileStatus_ProfileNotDefined);
+			}
+
+			return Status.OK_STATUS;
+
+		} catch (WrappedException ex) {
+			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.ProfileChooserComposite_ProfileStatus_UnavailableResource, ex);
+		} finally {
+			// Unload the created resourceSet to avoid memory leaks
+			EMFHelper.unload(resourceSet);
+		}
 	}
 
 	/**
@@ -174,6 +222,10 @@ public class ProfileChooserComposite extends Composite {
 		filters.clear();
 		ExtensionFilter filter = new ExtensionFilter(extensions);
 		filters.add(filter);
+	}
+
+	public Text getTextField() {
+		return textField;
 	}
 
 }

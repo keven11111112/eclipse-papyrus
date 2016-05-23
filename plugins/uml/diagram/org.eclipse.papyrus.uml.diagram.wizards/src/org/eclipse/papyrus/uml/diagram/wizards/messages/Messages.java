@@ -144,11 +144,22 @@ public class Messages extends NLS {
 
 	public static String SelectDiagramKindPage_Set_Root_Name_Error;
 
-	public static String SelectDiagramKindPage_ProfileComposite_RegisteredProfilesDialog;
 
-	public static String SelectDiagramKindPage_ProfileComposite_WorkspaceSelectionButton;
+	public static String ProfileChooserComposite_RegisteredProfilesDialog;
 
-	public static String SelectDiagramKindPage_ProfileComposite_RegisteredSelectionButton;
+	public static String ProfileChooserComposite_WorkspaceSelectionButton;
+
+	public static String ProfileChooserComposite_RegisteredSelectionButton;
+
+	public static String ProfileChooserComposite_ProfileStatus_UnavailableResource;
+
+	public static String ProfileChooserComposite_ProfileStatus_EmptyResource;
+
+	public static String ProfileChooserComposite_ProfileStatus_NotAProfile;
+
+	public static String ProfileChooserComposite_ProfileStatus_NullResource;
+
+	public static String ProfileChooserComposite_ProfileStatus_ProfileNotDefined;
 
 
 	/** The Select root element page_select_root_element_desc. */

@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -161,10 +162,28 @@ public class SelectDiagramKindPage extends WizardPage {
 	private void createProfileFileChooser(Composite parent) {
 		Group group = createGroup(parent, Messages.SelectDiagramKindPage_0);
 		profileChooserComposite = new ProfileChooserComposite(group);
+		profileChooserComposite.getTextField().addModifyListener(new ModifyListener() {
+
+			@Override
+			public void modifyText(ModifyEvent ev) {
+				validatePage();
+			}
+
+		});
 	}
 
 	public String getProfileURI() {
 		return profileChooserComposite.getProfileURI();
+	}
+
+	/**
+	 * Check that the provided path matches against a known Profile and that it is defined
+	 * 
+	 * @return
+	 * 		true if the retrieved profile is correctly defined, false otherwise
+	 */
+	public IStatus getProfileDefinitionStatus() {
+		return profileChooserComposite.getProfileDefinitionStatus();
 	}
 
 	/**
@@ -414,8 +433,14 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @return true, if successful
 	 */
 	private boolean validatePage() {
-		if (diagramKindComposite.getDiagramName().size() == 0) {
+		IStatus profileStatus = profileChooserComposite.getProfileDefinitionStatus();
+		if (!profileStatus.isOK()) {
+			this.setErrorMessage(profileStatus.getMessage());
 			return false;
+		} else {
+			// Resets the displayed message
+			this.setErrorMessage(null);
+			this.setMessage(Messages.SelectDiagramKindPage_page_desc);
 		}
 		return true;
 	}

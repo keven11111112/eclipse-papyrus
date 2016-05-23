@@ -331,7 +331,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	private void initProfile(ModelSet modelSet) {
 		boolean isToApplyProfile = selectDiagramKindPage.getProfileURI() != null;
-		if (isToApplyProfile) {
+		boolean isProfileDefined = selectDiagramKindPage.getProfileDefinitionStatus().isOK();
+		if (isToApplyProfile & isProfileDefined) {
 			applyProfile(modelSet);
 		}
 	}
