@@ -12,7 +12,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.ui.internal.CSSActivator;
 
 /**
  * This class was generated. Customizations should only happen in a newly
- * introduced subclass. 
+ * introduced subclass.
  */
 public class CSSExecutableExtensionFactory extends AbstractGuiceAwareExecutableExtensionFactory {
 
@@ -20,10 +20,10 @@ public class CSSExecutableExtensionFactory extends AbstractGuiceAwareExecutableE
 	protected Bundle getBundle() {
 		return CSSActivator.getInstance().getBundle();
 	}
-	
+
 	@Override
 	protected Injector getInjector() {
 		return CSSActivator.getInstance().getInjector(CSSActivator.ORG_ECLIPSE_PAPYRUS_INFRA_GMFDIAG_CSS3_CSS);
 	}
-	
+
 }

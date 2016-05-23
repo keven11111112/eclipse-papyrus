@@ -44,24 +44,29 @@ public class CSSSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_selector_WSTerminalRuleCall_1_0_1_a;
 	protected AbstractElementAlias match_selector_WSTerminalRuleCall_1_1_0_p;
 	protected AbstractElementAlias match_selector_WSTerminalRuleCall_1_1_1_1_a;
-	
+
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (CSSGrammarAccess) access;
 		match_PseudoClass_COLONTerminalRuleCall_1_q = new TokenAlias(false, true, grammarAccess.getPseudoClassAccess().getCOLONTerminalRuleCall_1());
-		match_charset_CHARSETKeyword_0_1_or_CharsetKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCharsetAccess().getCHARSETKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getCharsetAccess().getCharsetKeyword_0_0()));
+		match_charset_CHARSETKeyword_0_1_or_CharsetKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCharsetAccess().getCHARSETKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getCharsetAccess()
+				.getCharsetKeyword_0_0()));
 		match_css_declaration_WSTerminalRuleCall_0_a = new TokenAlias(true, true, grammarAccess.getCss_declarationAccess().getWSTerminalRuleCall_0());
 		match_css_declaration_WSTerminalRuleCall_2_a = new TokenAlias(true, true, grammarAccess.getCss_declarationAccess().getWSTerminalRuleCall_2());
-		match_font_face_FONTFACEKeyword_1_1_or_FontFaceKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFont_faceAccess().getFONTFACEKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getFont_faceAccess().getFontFaceKeyword_1_0()));
+		match_font_face_FONTFACEKeyword_1_1_or_FontFaceKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFont_faceAccess().getFONTFACEKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getFont_faceAccess()
+				.getFontFaceKeyword_1_0()));
 		match_font_face_SemicolonKeyword_4_0_a = new TokenAlias(true, true, grammarAccess.getFont_faceAccess().getSemicolonKeyword_4_0());
 		match_font_face_SemicolonKeyword_4_0_p = new TokenAlias(true, false, grammarAccess.getFont_faceAccess().getSemicolonKeyword_4_0());
-		match_importExpression_IMPORTKeyword_0_1_or_ImportKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getImportExpressionAccess().getIMPORTKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getImportExpressionAccess().getImportKeyword_0_0()));
+		match_importExpression_IMPORTKeyword_0_1_or_ImportKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getImportExpressionAccess().getIMPORTKeyword_0_1()), new TokenAlias(false, false, grammarAccess
+				.getImportExpressionAccess().getImportKeyword_0_0()));
 		match_keyframe_selector_SemicolonKeyword_3_0_a = new TokenAlias(true, true, grammarAccess.getKeyframe_selectorAccess().getSemicolonKeyword_3_0());
 		match_keyframe_selector_SemicolonKeyword_3_0_p = new TokenAlias(true, false, grammarAccess.getKeyframe_selectorAccess().getSemicolonKeyword_3_0());
-		match_keyframes_KEYFRAMESKeyword_1_1_or_KeyframesKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getKeyframesAccess().getKEYFRAMESKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getKeyframesAccess().getKeyframesKeyword_1_0()));
+		match_keyframes_KEYFRAMESKeyword_1_1_or_KeyframesKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getKeyframesAccess().getKEYFRAMESKeyword_1_1()), new TokenAlias(false, false, grammarAccess
+				.getKeyframesAccess().getKeyframesKeyword_1_0()));
 		match_keyframes_SemicolonKeyword_5_0_a = new TokenAlias(true, true, grammarAccess.getKeyframesAccess().getSemicolonKeyword_5_0());
 		match_keyframes_SemicolonKeyword_5_0_p = new TokenAlias(true, false, grammarAccess.getKeyframesAccess().getSemicolonKeyword_5_0());
-		match_media_MEDIAKeyword_0_1_or_MediaKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getMediaAccess().getMEDIAKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getMediaAccess().getMediaKeyword_0_0()));
+		match_media_MEDIAKeyword_0_1_or_MediaKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getMediaAccess().getMEDIAKeyword_0_1()),
+				new TokenAlias(false, false, grammarAccess.getMediaAccess().getMediaKeyword_0_0()));
 		match_page_PAGEKeyword_1_1_or_PageKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPageAccess().getPAGEKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getPageAccess().getPageKeyword_1_0()));
 		match_page_SemicolonKeyword_5_0_a = new TokenAlias(true, true, grammarAccess.getPageAccess().getSemicolonKeyword_5_0());
 		match_page_SemicolonKeyword_5_0_p = new TokenAlias(true, false, grammarAccess.getPageAccess().getSemicolonKeyword_5_0());
@@ -72,420 +77,432 @@ public class CSSSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_selector_WSTerminalRuleCall_1_1_0_p = new TokenAlias(true, false, grammarAccess.getSelectorAccess().getWSTerminalRuleCall_1_1_0());
 		match_selector_WSTerminalRuleCall_1_1_1_1_a = new TokenAlias(true, true, grammarAccess.getSelectorAccess().getWSTerminalRuleCall_1_1_1_1());
 	}
-	
+
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getCOLONRule())
+		if (ruleCall.getRule() == grammarAccess.getCOLONRule()) {
 			return getCOLONToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getCOMMARule())
+		} else if (ruleCall.getRule() == grammarAccess.getCOMMARule()) {
 			return getCOMMAToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getHASHMARKRule())
+		} else if (ruleCall.getRule() == grammarAccess.getHASHMARKRule()) {
 			return getHASHMARKToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getIMPORTANT_SYMRule())
+		} else if (ruleCall.getRule() == grammarAccess.getIMPORTANT_SYMRule()) {
 			return getIMPORTANT_SYMToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getNotFunctionCallRule())
+		} else if (ruleCall.getRule() == grammarAccess.getNotFunctionCallRule()) {
 			return getNotFunctionCallToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getPERCENTRule())
+		} else if (ruleCall.getRule() == grammarAccess.getPERCENTRule()) {
 			return getPERCENTToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getWSRule())
+		} else if (ruleCall.getRule() == grammarAccess.getWSRule()) {
 			return getWSToken(semanticObject, ruleCall, node);
+		}
 		return "";
 	}
-	
+
 	/**
 	 * terminal COLON: ':';
 	 */
 	protected String getCOLONToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
+		if (node != null) {
 			return getTokenText(node);
+		}
 		return ":";
 	}
-	
+
 	/**
 	 * terminal COMMA: ',';
 	 */
 	protected String getCOMMAToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
+		if (node != null) {
 			return getTokenText(node);
+		}
 		return ",";
 	}
-	
+
 	/**
 	 * terminal HASHMARK: '#';
 	 */
 	protected String getHASHMARKToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
+		if (node != null) {
 			return getTokenText(node);
+		}
 		return "#";
 	}
-	
+
 	/**
 	 * terminal IMPORTANT_SYM:
-	 * 	'!important'
+	 * '!important'
 	 * ;
 	 */
 	protected String getIMPORTANT_SYMToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
+		if (node != null) {
 			return getTokenText(node);
+		}
 		return "!important";
 	}
-	
+
 	/**
-	 * NotFunctionCall:
-	 * 	COLON 'not('
+	 * NotFunctionCall hidden():
+	 * COLON 'not('
 	 * ;
 	 */
 	protected String getNotFunctionCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
+		if (node != null) {
 			return getTokenText(node);
+		}
 		return ":not(";
 	}
-	
+
 	/**
 	 * terminal PERCENT: '%';
 	 */
 	protected String getPERCENTToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
+		if (node != null) {
 			return getTokenText(node);
+		}
 		return "%";
 	}
-	
+
 	/**
-	 * terminal WS			: (' '|'\t'|'\r'|'\n')+;
+	 * terminal WS : (' '|'\t'|'\r'|'\n')+;
 	 */
 	protected String getWSToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
+		if (node != null) {
 			return getTokenText(node);
+		}
 		return " ";
 	}
-	
+
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
-		if (transition.getAmbiguousSyntaxes().isEmpty()) return;
+		if (transition.getAmbiguousSyntaxes().isEmpty()) {
+			return;
+		}
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_PseudoClass_COLONTerminalRuleCall_1_q.equals(syntax))
+			if (match_PseudoClass_COLONTerminalRuleCall_1_q.equals(syntax)) {
 				emit_PseudoClass_COLONTerminalRuleCall_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_charset_CHARSETKeyword_0_1_or_CharsetKeyword_0_0.equals(syntax))
+			} else if (match_charset_CHARSETKeyword_0_1_or_CharsetKeyword_0_0.equals(syntax)) {
 				emit_charset_CHARSETKeyword_0_1_or_CharsetKeyword_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_css_declaration_WSTerminalRuleCall_0_a.equals(syntax))
+			} else if (match_css_declaration_WSTerminalRuleCall_0_a.equals(syntax)) {
 				emit_css_declaration_WSTerminalRuleCall_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_css_declaration_WSTerminalRuleCall_2_a.equals(syntax))
+			} else if (match_css_declaration_WSTerminalRuleCall_2_a.equals(syntax)) {
 				emit_css_declaration_WSTerminalRuleCall_2_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_font_face_FONTFACEKeyword_1_1_or_FontFaceKeyword_1_0.equals(syntax))
+			} else if (match_font_face_FONTFACEKeyword_1_1_or_FontFaceKeyword_1_0.equals(syntax)) {
 				emit_font_face_FONTFACEKeyword_1_1_or_FontFaceKeyword_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_font_face_SemicolonKeyword_4_0_a.equals(syntax))
+			} else if (match_font_face_SemicolonKeyword_4_0_a.equals(syntax)) {
 				emit_font_face_SemicolonKeyword_4_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_font_face_SemicolonKeyword_4_0_p.equals(syntax))
+			} else if (match_font_face_SemicolonKeyword_4_0_p.equals(syntax)) {
 				emit_font_face_SemicolonKeyword_4_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_importExpression_IMPORTKeyword_0_1_or_ImportKeyword_0_0.equals(syntax))
+			} else if (match_importExpression_IMPORTKeyword_0_1_or_ImportKeyword_0_0.equals(syntax)) {
 				emit_importExpression_IMPORTKeyword_0_1_or_ImportKeyword_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_keyframe_selector_SemicolonKeyword_3_0_a.equals(syntax))
+			} else if (match_keyframe_selector_SemicolonKeyword_3_0_a.equals(syntax)) {
 				emit_keyframe_selector_SemicolonKeyword_3_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_keyframe_selector_SemicolonKeyword_3_0_p.equals(syntax))
+			} else if (match_keyframe_selector_SemicolonKeyword_3_0_p.equals(syntax)) {
 				emit_keyframe_selector_SemicolonKeyword_3_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_keyframes_KEYFRAMESKeyword_1_1_or_KeyframesKeyword_1_0.equals(syntax))
+			} else if (match_keyframes_KEYFRAMESKeyword_1_1_or_KeyframesKeyword_1_0.equals(syntax)) {
 				emit_keyframes_KEYFRAMESKeyword_1_1_or_KeyframesKeyword_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_keyframes_SemicolonKeyword_5_0_a.equals(syntax))
+			} else if (match_keyframes_SemicolonKeyword_5_0_a.equals(syntax)) {
 				emit_keyframes_SemicolonKeyword_5_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_keyframes_SemicolonKeyword_5_0_p.equals(syntax))
+			} else if (match_keyframes_SemicolonKeyword_5_0_p.equals(syntax)) {
 				emit_keyframes_SemicolonKeyword_5_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_media_MEDIAKeyword_0_1_or_MediaKeyword_0_0.equals(syntax))
+			} else if (match_media_MEDIAKeyword_0_1_or_MediaKeyword_0_0.equals(syntax)) {
 				emit_media_MEDIAKeyword_0_1_or_MediaKeyword_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_page_PAGEKeyword_1_1_or_PageKeyword_1_0.equals(syntax))
+			} else if (match_page_PAGEKeyword_1_1_or_PageKeyword_1_0.equals(syntax)) {
 				emit_page_PAGEKeyword_1_1_or_PageKeyword_1_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_page_SemicolonKeyword_5_0_a.equals(syntax))
+			} else if (match_page_SemicolonKeyword_5_0_a.equals(syntax)) {
 				emit_page_SemicolonKeyword_5_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_page_SemicolonKeyword_5_0_p.equals(syntax))
+			} else if (match_page_SemicolonKeyword_5_0_p.equals(syntax)) {
 				emit_page_SemicolonKeyword_5_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ruleset_SemicolonKeyword_4_2_q.equals(syntax))
+			} else if (match_ruleset_SemicolonKeyword_4_2_q.equals(syntax)) {
 				emit_ruleset_SemicolonKeyword_4_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ruleset_WSTerminalRuleCall_1_0_a.equals(syntax))
+			} else if (match_ruleset_WSTerminalRuleCall_1_0_a.equals(syntax)) {
 				emit_ruleset_WSTerminalRuleCall_1_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ruleset_WSTerminalRuleCall_2_a.equals(syntax))
+			} else if (match_ruleset_WSTerminalRuleCall_2_a.equals(syntax)) {
 				emit_ruleset_WSTerminalRuleCall_2_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_selector_WSTerminalRuleCall_1_0_1_a.equals(syntax))
+			} else if (match_selector_WSTerminalRuleCall_1_0_1_a.equals(syntax)) {
 				emit_selector_WSTerminalRuleCall_1_0_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_selector_WSTerminalRuleCall_1_1_0_p.equals(syntax))
+			} else if (match_selector_WSTerminalRuleCall_1_1_0_p.equals(syntax)) {
 				emit_selector_WSTerminalRuleCall_1_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_selector_WSTerminalRuleCall_1_1_1_1_a.equals(syntax))
+			} else if (match_selector_WSTerminalRuleCall_1_1_1_1_a.equals(syntax)) {
 				emit_selector_WSTerminalRuleCall_1_1_1_1_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else acceptNodes(getLastNavigableState(), syntaxNodes);
+			} else {
+				acceptNodes(getLastNavigableState(), syntaxNodes);
+			}
 		}
 	}
 
 	/**
 	 * Ambiguous syntax:
-	 *     COLON?
+	 * COLON?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) COLON (ambiguity) name=Identifier
+	 * (rule start) COLON (ambiguity) name=Identifier
 	 */
 	protected void emit_PseudoClass_COLONTerminalRuleCall_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     '@charset' | '@CHARSET'
+	 * '@charset' | '@CHARSET'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) charset=CSSSTRING
+	 * (rule start) (ambiguity) charset=CSSSTRING
 	 */
 	protected void emit_charset_CHARSETKeyword_0_1_or_CharsetKeyword_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     WS*
+	 * WS*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) property=css_property
+	 * (rule start) (ambiguity) property=css_property
 	 */
 	protected void emit_css_declaration_WSTerminalRuleCall_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     WS*
+	 * WS*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     property=css_property (ambiguity) COLON valueTokens+=CssTok
+	 * property=css_property (ambiguity) COLON valueTokens+=CssTok
 	 */
 	protected void emit_css_declaration_WSTerminalRuleCall_2_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     '@font-face' | '@FONT-FACE'
+	 * '@font-face' | '@FONT-FACE'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '{' ';'* '}' (rule start)
-	 *     (rule start) (ambiguity) '{' ';'+ declarations+=css_declaration
-	 *     (rule start) (ambiguity) '{' declarations+=css_declaration
+	 * (rule start) (ambiguity) '{' ';'* '}' (rule start)
+	 * (rule start) (ambiguity) '{' ';'+ declarations+=css_declaration
+	 * (rule start) (ambiguity) '{' declarations+=css_declaration
 	 */
 	protected void emit_font_face_FONTFACEKeyword_1_1_or_FontFaceKeyword_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     ';'*
+	 * ';'*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) ('@font-face' | '@FONT-FACE') '{' (ambiguity) '}' (rule start)
-	 *     declarations+=css_declaration (ambiguity) '}' (rule end)
+	 * (rule start) ('@font-face' | '@FONT-FACE') '{' (ambiguity) '}' (rule start)
+	 * declarations+=css_declaration (ambiguity) '}' (rule end)
 	 */
 	protected void emit_font_face_SemicolonKeyword_4_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     ';'+
+	 * ';'+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) ('@font-face' | '@FONT-FACE') '{' (ambiguity) declarations+=css_declaration
-	 *     declarations+=css_declaration (ambiguity) declarations+=css_declaration
+	 * (rule start) ('@font-face' | '@FONT-FACE') '{' (ambiguity) declarations+=css_declaration
+	 * declarations+=css_declaration (ambiguity) declarations+=css_declaration
 	 */
 	protected void emit_font_face_SemicolonKeyword_4_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     '@import' | '@IMPORT'
+	 * '@import' | '@IMPORT'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'url(' url=ValidURL
-	 *     (rule start) (ambiguity) value=CSSSTRING
+	 * (rule start) (ambiguity) 'url(' url=ValidURL
+	 * (rule start) (ambiguity) value=CSSSTRING
 	 */
 	protected void emit_importExpression_IMPORTKeyword_0_1_or_ImportKeyword_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     ';'*
+	 * ';'*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     declarations+=css_declaration (ambiguity) '}' (rule end)
-	 *     percentage=Num PERCENT '{' (ambiguity) '}' (rule end)
-	 *     type=Identifier '{' (ambiguity) '}' (rule end)
+	 * declarations+=css_declaration (ambiguity) '}' (rule end)
+	 * percentage=Num PERCENT '{' (ambiguity) '}' (rule end)
+	 * type=Identifier '{' (ambiguity) '}' (rule end)
 	 */
 	protected void emit_keyframe_selector_SemicolonKeyword_3_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     ';'+
+	 * ';'+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     declarations+=css_declaration (ambiguity) declarations+=css_declaration
-	 *     percentage=Num PERCENT '{' (ambiguity) declarations+=css_declaration
-	 *     type=Identifier '{' (ambiguity) declarations+=css_declaration
+	 * declarations+=css_declaration (ambiguity) declarations+=css_declaration
+	 * percentage=Num PERCENT '{' (ambiguity) declarations+=css_declaration
+	 * type=Identifier '{' (ambiguity) declarations+=css_declaration
 	 */
 	protected void emit_keyframe_selector_SemicolonKeyword_3_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     '@keyframes' | '@KEYFRAMES'
+	 * '@keyframes' | '@KEYFRAMES'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) name=Identifier
+	 * (rule start) (ambiguity) name=Identifier
 	 */
 	protected void emit_keyframes_KEYFRAMESKeyword_1_1_or_KeyframesKeyword_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     ';'*
+	 * ';'*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     keyframeselectors+=keyframe_selector (ambiguity) '}' (rule end)
-	 *     name=Identifier '{' (ambiguity) '}' (rule end)
+	 * keyframeselectors+=keyframe_selector (ambiguity) '}' (rule end)
+	 * name=Identifier '{' (ambiguity) '}' (rule end)
 	 */
 	protected void emit_keyframes_SemicolonKeyword_5_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     ';'+
+	 * ';'+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     keyframeselectors+=keyframe_selector (ambiguity) keyframeselectors+=keyframe_selector
-	 *     name=Identifier '{' (ambiguity) keyframeselectors+=keyframe_selector
+	 * keyframeselectors+=keyframe_selector (ambiguity) keyframeselectors+=keyframe_selector
+	 * name=Identifier '{' (ambiguity) keyframeselectors+=keyframe_selector
 	 */
 	protected void emit_keyframes_SemicolonKeyword_5_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     '@media' | '@MEDIA'
+	 * '@media' | '@MEDIA'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) medialist=media_list
+	 * (rule start) (ambiguity) medialist=media_list
 	 */
 	protected void emit_media_MEDIAKeyword_0_1_or_MediaKeyword_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     '@page' | '@PAGE'
+	 * '@page' | '@PAGE'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '{' ';'* '}' (rule start)
-	 *     (rule start) (ambiguity) '{' ';'+ declarations+=css_declaration
-	 *     (rule start) (ambiguity) '{' declarations+=css_declaration
-	 *     (rule start) (ambiguity) pseudoPage=pseudo_page
+	 * (rule start) (ambiguity) '{' ';'* '}' (rule start)
+	 * (rule start) (ambiguity) '{' ';'+ declarations+=css_declaration
+	 * (rule start) (ambiguity) '{' declarations+=css_declaration
+	 * (rule start) (ambiguity) pseudoPage=pseudo_page
 	 */
 	protected void emit_page_PAGEKeyword_1_1_or_PageKeyword_1_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     ';'*
+	 * ';'*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) ('@page' | '@PAGE') '{' (ambiguity) '}' (rule start)
-	 *     declarations+=css_declaration (ambiguity) '}' (rule end)
-	 *     pseudoPage=pseudo_page '{' (ambiguity) '}' (rule end)
+	 * (rule start) ('@page' | '@PAGE') '{' (ambiguity) '}' (rule start)
+	 * declarations+=css_declaration (ambiguity) '}' (rule end)
+	 * pseudoPage=pseudo_page '{' (ambiguity) '}' (rule end)
 	 */
 	protected void emit_page_SemicolonKeyword_5_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     ';'+
+	 * ';'+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) ('@page' | '@PAGE') '{' (ambiguity) declarations+=css_declaration
-	 *     declarations+=css_declaration (ambiguity) declarations+=css_declaration
-	 *     pseudoPage=pseudo_page '{' (ambiguity) declarations+=css_declaration
+	 * (rule start) ('@page' | '@PAGE') '{' (ambiguity) declarations+=css_declaration
+	 * declarations+=css_declaration (ambiguity) declarations+=css_declaration
+	 * pseudoPage=pseudo_page '{' (ambiguity) declarations+=css_declaration
 	 */
 	protected void emit_page_SemicolonKeyword_5_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     ';'?
+	 * ';'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     declarations+=css_declaration (ambiguity) '}' (rule end)
+	 * declarations+=css_declaration (ambiguity) '}' (rule end)
 	 */
 	protected void emit_ruleset_SemicolonKeyword_4_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     WS*
+	 * WS*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     selectors+=selector (ambiguity) COMMA selectors+=selector
+	 * selectors+=selector (ambiguity) COMMA selectors+=selector
 	 */
 	protected void emit_ruleset_WSTerminalRuleCall_1_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     WS*
+	 * WS*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     selectors+=selector (ambiguity) '{' '}' (rule end)
-	 *     selectors+=selector (ambiguity) '{' declarations+=css_declaration
+	 * selectors+=selector (ambiguity) '{' '}' (rule end)
+	 * selectors+=selector (ambiguity) '{' declarations+=css_declaration
 	 */
 	protected void emit_ruleset_WSTerminalRuleCall_2_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     WS*
+	 * WS*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     combinator=combinator (ambiguity) selector=selector
+	 * combinator=combinator (ambiguity) selector=selector
 	 */
 	protected void emit_selector_WSTerminalRuleCall_1_0_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     WS+
+	 * WS+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     simpleselectors+=simple_selector (ambiguity) combinator=combinator
-	 *     simpleselectors+=simple_selector (ambiguity) selector=selector
+	 * simpleselectors+=simple_selector (ambiguity) combinator=combinator
+	 * simpleselectors+=simple_selector (ambiguity) selector=selector
 	 */
 	protected void emit_selector_WSTerminalRuleCall_1_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 	/**
 	 * Ambiguous syntax:
-	 *     WS*
+	 * WS*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     combinator=combinator (ambiguity) selector=selector
+	 * combinator=combinator (ambiguity) selector=selector
 	 */
 	protected void emit_selector_WSTerminalRuleCall_1_1_1_1_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
-	
+
 }
