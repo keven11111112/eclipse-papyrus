@@ -190,10 +190,18 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	private class HTMLLayoutListener extends LayoutListener.Stub {
 		@Override
 		public void postLayout(IFigure container) {
+			if (htmlLayoutListener != null) {
+				container.removeLayoutListener(htmlLayoutListener);
+			}
+			
 			if (oldWidth != container.getClientArea().width || oldHeight != container.getClientArea().height) {
 				oldWidth = container.getClientArea().width;
 				oldHeight = container.getClientArea().height;
 				paintHTML();
+			}
+			
+			if (htmlLayoutListener != null) {
+				container.addLayoutListener(htmlLayoutListener);
 			}
 		}
 	}

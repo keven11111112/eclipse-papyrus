@@ -55,7 +55,7 @@ public class RichTextRenderer implements HTMLRenderer {
 		contentPane = new AnimatableScrollPane();
 		//contentPane = new ScrollPane();
 		contentPane.setOpaque(false);
-		contentPane.setScrollBarVisibility(ScrollPane.AUTOMATIC);
+		contentPane.setScrollBarVisibility(ScrollPane.NEVER);
 		contentPane.setContents(renderFigure);
 
 		painter = new RichTextPainter(true);
