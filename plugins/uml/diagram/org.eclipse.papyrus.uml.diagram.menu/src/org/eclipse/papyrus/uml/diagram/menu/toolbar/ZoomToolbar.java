@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gef.editparts.ZoomListener;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -24,18 +25,20 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.actions.ZoomContributionItem;
 import org.eclipse.gmf.runtime.diagram.ui.internal.util.IUIConstants;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
-import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.ui.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.util.WorkbenchPartHelper;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.menu.actions.ZoomAction;
 import org.eclipse.papyrus.uml.diagram.menu.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.ToolBar;
@@ -46,6 +49,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.menus.WorkbenchWindowControlContribution;
 
 /**
  * This class provides a Combo box in the toolbar for the Zoom Action
@@ -54,21 +58,19 @@ import org.eclipse.ui.PlatformUI;
  * A part of this code comes from {@link ZoomContributionItem}
  */
 @SuppressWarnings("restriction")
-public class ZoomToolbar extends ContributionItem implements ZoomListener, Listener, org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener {
+public class ZoomToolbar extends WorkbenchWindowControlContribution implements ZoomListener, Listener, org.eclipse.papyrus.infra.core.sasheditor.editor.IPageChangedListener {
 
 	/** the combo box */
 	protected Combo combo = null;
 
-	/**
-	 * the part service
-	 */
+	/** the part service */
 	private IPartService partService = null;
 
-	/**
-	 * the listener for the part service
-	 */
-
+	/** the listener for the part service */
 	private IPartListener partListener = null;
+
+	/** The previous part used to remove the listeners */
+	private IWorkbenchPart previousPart = null;
 
 
 	/**
@@ -129,16 +131,16 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.jface.action.ContributionItem#fill(org.eclipse.swt.widgets.ToolBar, int)
+	 * @see org.eclipse.jface.action.ControlContribution#createControl(org.eclipse.swt.widgets.Composite)
 	 *
 	 * @param parent
-	 * @param index
+	 * @return
 	 */
 	@Override
-	public void fill(ToolBar parent, int index) {
+	protected Control createControl(Composite parent) {
+		ToolBar toolbar = new ToolBar(parent, SWT.NONE);
 
-		ToolItem toolItem = new ToolItem(parent, SWT.SEPARATOR);
+		ToolItem toolItem = new ToolItem(toolbar, SWT.SEPARATOR);
 		Image zoomImage = Activator.getPluginIconImage("org.eclipse.papyrus.uml.diagram.menu", "/icons/zoomplus.gif"); //$NON-NLS-1$ //$NON-NLS-2$
 		/*
 		 * TODO : the image is not set, when we use SWT.SEPARATOR.
@@ -150,7 +152,7 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 		// this text is used in the perspective customization
 		toolItem.setToolTipText(Messages.ZoomToolbar_Zoom);
 
-		combo = new Combo(parent, SWT.DROP_DOWN);
+		combo = new Combo(toolbar, SWT.DROP_DOWN);
 		combo.setItems(getZoomLevelsAsText(getZoomManager()));
 		combo.setVisibleItemCount(IUIConstants.DEFAULT_DROP_DOWN_SIZE);
 		combo.pack();
@@ -163,7 +165,9 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 		combo.setEnabled(getDiagramEditPart() != null);
 
 		refreshCombo();
-		parent.pack();
+		toolbar.pack();
+
+		return toolbar;
 	}
 
 	/**
@@ -214,12 +218,17 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	 * @return The value of the <code>workbenchPart</code> instance variable.
 	 */
 	protected IDiagramWorkbenchPart getWorkbenchPart() {
-		IWorkbenchPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
+		IWorkbenchPart activePart = WorkbenchPartHelper.getCurrentActiveWorkbenchPart();
+		IDiagramWorkbenchPart editorPart = null;
 
-		if (part instanceof IDiagramWorkbenchPart) {
-			return (IDiagramWorkbenchPart) part;
+		if (activePart instanceof IDiagramWorkbenchPart) {
+			editorPart = (IDiagramWorkbenchPart) activePart;
 		}
-		return null;
+		if (activePart instanceof IAdaptable) {
+			editorPart = ((IAdaptable) activePart).getAdapter(IDiagramWorkbenchPart.class);
+		}
+
+		return editorPart;
 	}
 
 	/**
@@ -228,7 +237,8 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	 * @return The current part if it implements <code>IDiagramWorkbenchPart</code>; <code>null</code> otherwise
 	 */
 	protected IDiagramWorkbenchPart getDiagramWorkbenchPart() {
-		return getWorkbenchPart() instanceof IDiagramWorkbenchPart ? (IDiagramWorkbenchPart) getWorkbenchPart() : null;
+		IDiagramWorkbenchPart part = getWorkbenchPart();
+		return part instanceof IDiagramWorkbenchPart ? (IDiagramWorkbenchPart) part : null;
 	}
 
 	/**
@@ -246,11 +256,12 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	 * Returns the current zoom manager
 	 *
 	 * @return
-	 *         the current zoom manager
+	 * 		the current zoom manager
 	 */
 	protected ZoomManager getZoomManager() {
-		if (getDiagramWorkbenchPart() != null) {
-			return (ZoomManager) getDiagramWorkbenchPart().getAdapter(ZoomManager.class);
+		IDiagramWorkbenchPart part = getDiagramWorkbenchPart();
+		if (part != null) {
+			return part.getAdapter(ZoomManager.class);
 		}
 		return null;
 	}
@@ -262,6 +273,7 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	 *
 	 * @param zoom
 	 */
+	@Override
 	public void zoomChanged(double zoom) {
 		refreshCombo();
 	}
@@ -339,6 +351,7 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	 *
 	 * @param event
 	 */
+	@Override
 	public void handleEvent(Event event) {
 		if (event.type == SWT.KeyDown && event.character != '\r') {
 			return;
@@ -354,7 +367,7 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	 * @return the currently selected {@link IGraphicalEditPart}
 	 */
 	protected List<IGraphicalEditPart> getSelectedElements() {
-		List<IGraphicalEditPart> editparts = new ArrayList<IGraphicalEditPart>();
+		List<IGraphicalEditPart> editparts = new ArrayList<>();
 
 		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		if (activeWorkbenchWindow != null) {
@@ -386,12 +399,19 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	 *
 	 * @param newPage
 	 */
+	@Override
 	public void pageChanged(IPage newPage) {
 		refreshCombo();
 
 		// we update the listeners
-		removeListeners(partService.getActivePart());
-		addListeners(partService.getActivePart());
+		if (previousPart != null) {
+			// Remove listeners if any were previously set, skip it otherwise
+			removeListeners(previousPart);
+		}
+
+		IWorkbenchPart activePart = partService.getActivePart();
+		addListeners(activePart);
+		previousPart = activePart;
 	}
 
 	/**
@@ -402,13 +422,13 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	 */
 	protected void removeListeners(IWorkbenchPart part) {
 		// we remove the zoom listener
-		ZoomManager manager = (ZoomManager) part.getAdapter(ZoomManager.class);
+		ZoomManager manager = part.getAdapter(ZoomManager.class);
 		if (manager != null) {
 			manager.removeZoomListener(getInstance());
 		}
 
 		// we remove the page changed listener
-		ISashWindowsContainer windowContainer = (ISashWindowsContainer) part.getAdapter(ISashWindowsContainer.class);
+		ISashWindowsContainer windowContainer = part.getAdapter(ISashWindowsContainer.class);
 		if (windowContainer != null) {
 			windowContainer.removePageChangedListener(getInstance());
 		}
@@ -424,13 +444,13 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	 */
 	protected void addListeners(IWorkbenchPart part) {
 		// we add listener on the zoom manager
-		ZoomManager manager = (ZoomManager) part.getAdapter(ZoomManager.class);
+		ZoomManager manager = part.getAdapter(ZoomManager.class);
 		if (manager != null) {
 			manager.addZoomListener(getInstance());
 		}
 
 		// we add listener on the window container
-		ISashWindowsContainer windowContainer = (ISashWindowsContainer) part.getAdapter(ISashWindowsContainer.class);
+		ISashWindowsContainer windowContainer = part.getAdapter(ISashWindowsContainer.class);
 		if (windowContainer != null) {
 			windowContainer.addPageChangedListener(getInstance());
 		}
@@ -445,7 +465,7 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	 *            refresh the state of the combo
 	 */
 	protected void refreshStatusCombo(IWorkbenchPart part) {
-		ZoomManager zoomManager = (ZoomManager) part.getAdapter(ZoomManager.class);
+		ZoomManager zoomManager = part.getAdapter(ZoomManager.class);
 
 		if (combo != null && !combo.isDisposed()) {
 			if (zoomManager == null) {
@@ -461,7 +481,7 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	 * Returns the current instance of {@link ZoomToolbar} (this)
 	 *
 	 * @return
-	 *         the current instance of {@link ZoomToolbar} (this)
+	 * 		the current instance of {@link ZoomToolbar} (this)
 	 */
 	protected ZoomToolbar getInstance() {
 		return this;
@@ -481,6 +501,7 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 		 *
 		 * @param part
 		 */
+		@Override
 		public void partActivated(IWorkbenchPart part) {
 			if (part instanceof CoreMultiDiagramEditor) {
 				removeListeners(part);
@@ -495,6 +516,7 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 		 *
 		 * @param part
 		 */
+		@Override
 		public void partBroughtToTop(IWorkbenchPart part) {
 			refreshStatusCombo(part);
 		}
@@ -505,6 +527,7 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 		 *
 		 * @param part
 		 */
+		@Override
 		public void partClosed(IWorkbenchPart part) {
 			refreshStatusCombo(part);
 		}
@@ -515,6 +538,7 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 		 *
 		 * @param part
 		 */
+		@Override
 		public void partDeactivated(IWorkbenchPart part) {
 			if (part instanceof CoreMultiDiagramEditor) {
 
@@ -528,6 +552,7 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 		 *
 		 * @param part
 		 */
+		@Override
 		public void partOpened(IWorkbenchPart part) {
 			if (part instanceof CoreMultiDiagramEditor) {
 				removeListeners(part);

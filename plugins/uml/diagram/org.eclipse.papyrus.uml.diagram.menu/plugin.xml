@@ -413,11 +413,11 @@
                </and>
             </visibleWhen>
          </command>
-                  <dynamic
+         <dynamic
                class="org.eclipse.papyrus.uml.diagram.menu.toolbar.ZoomToolbar"
                id="zoomToolBar">
             <visibleWhen
-                  checkEnabled="true">
+                  checkEnabled="false">
                <and>
                   <with
                   variable="activeEditorId">
