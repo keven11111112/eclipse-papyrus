@@ -466,13 +466,6 @@
             genModel="model/ExpansionModel.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated ExpansionModel -->
-      <parser
-            type="expansionmodel"
-            class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.util.ExpansionmodelResourceFactoryImpl"/>
-   </extension>
-
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <!-- @generated NOT  ExpandModel -->
