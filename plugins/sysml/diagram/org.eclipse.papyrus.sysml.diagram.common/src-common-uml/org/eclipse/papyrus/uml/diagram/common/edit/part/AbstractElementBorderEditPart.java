@@ -9,7 +9,7 @@
  * Contributors:
  *
  *		CEA LIST - Initial API and implementation
- *
+ *      Vincent Lorenzo (CEA-LIST) - vincent.lorenzo@cea.fr (bug 493876)
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.edit.part;
 
@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.linklf.LinkLFNodeFigure;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
@@ -149,7 +150,7 @@ public abstract class AbstractElementBorderEditPart extends AbstractBorderEditPa
 		IPreferenceStore store = Activator.getInstance().getPreferenceStore();
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+		DefaultSizeNodeFigure result = new LinkLFNodeFigure(this,store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
 		// FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
