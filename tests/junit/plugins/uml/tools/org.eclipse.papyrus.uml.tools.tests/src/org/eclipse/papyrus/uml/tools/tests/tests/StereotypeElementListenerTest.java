@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,13 @@
  *
  * Contributors:
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
- *  Christian W. Damus - bug 450523
- *  Christian W. Damus - bug 399859
+ *  Christian W. Damus - bugs 450523, 399859, 494478
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.tests.tests;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -722,6 +724,60 @@ public class StereotypeElementListenerTest extends AbstractPapyrusTest {
 	}
 
 	/**
+	 * Test relative timing of notifications when undoing and redoing
+	 * stereotype application.
+	 * 
+	 * @see <a href="http://eclip.se/494478">bug 494478</a>
+	 */
+	@Test
+	public void testUndoRedoAddStereotypeTiming() {
+		initialiseTestCase();
+
+		TransactionalEditingDomain editingDomain = modelSetFixture.getEditingDomain();
+		final Stereotype member = profile.getOwnedStereotype("First");
+
+		// Additionally assert the timing of notification relative to object state
+		assertAppliedStereotypeNotification = new AssertNotificationAdapter(assertAppliedStereotypeNotification.eventType) {
+			@Override
+			protected void verifyNotification(StereotypeExtensionNotification msg, Object notifier) {
+				assertThat("Stereotype not applied, yet",
+						((Element) notifier).isStereotypeApplied(member),
+						is(true));
+			}
+		};
+		assertUnappliedStereotypeNotification = new AssertNotificationAdapter(assertUnappliedStereotypeNotification.eventType) {
+			@Override
+			protected void verifyNotification(StereotypeExtensionNotification msg, Object notifier) {
+				assertThat("Stereotype not unapplied, yet",
+						((Element) notifier).isStereotypeApplied(member),
+						is(false));
+			}
+		};
+
+		element.eAdapters().add(assertAppliedStereotypeNotification);
+		element.eAdapters().add(assertUnappliedStereotypeNotification);
+		element.eAdapters().add(assertModifiedStereotypeNotification);
+
+		// Execute should apply the stereotype for the first time
+		editingDomain.getCommandStack().execute(new ApplyStereotypeCommand(element, member, editingDomain));
+		assertAppliedStereotypeNotification.assertNotification(1, element);
+
+		// Undo should unapply the stereotype for the first time
+		editingDomain.getCommandStack().undo();
+		assertUnappliedStereotypeNotification.assertNotification(1, element);
+
+		assertModifiedStereotypeNotification.assertNoNotification(element);
+
+		// Redo should apply the stereotype for a second time
+		editingDomain.getCommandStack().redo();
+		assertAppliedStereotypeNotification.assertNotification(2, element);
+	}
+
+	//
+	// Test framework
+	//
+
+	/**
 	 * Load and apply profile to model resource.
 	 */
 	private void initialiseTestCase() {
@@ -819,6 +875,22 @@ public class StereotypeElementListenerTest extends AbstractPapyrusTest {
 			notifiedEventList.put(eventNotifier, notifierEventMap);
 			notifierStereotypeMap.put(notificationEventType, stereotypes);
 			notifiedStereotypeList.put(eventNotifier, notifierStereotypeMap);
+
+			// Additional verification
+			verifyNotification(seMsg, eventNotifier);
+		}
+
+		/**
+		 * Hook for assertions to be performed immediately on receipt of the notification
+		 * (not later in the test script).
+		 * 
+		 * @param msg
+		 *            the stereotype-extension notification (we ignore all others)
+		 * @param notifier
+		 *            the notifier that dispatched it
+		 */
+		protected void verifyNotification(StereotypeExtensionNotification msg, Object notifier) {
+			// Pass
 		}
 
 		/**
