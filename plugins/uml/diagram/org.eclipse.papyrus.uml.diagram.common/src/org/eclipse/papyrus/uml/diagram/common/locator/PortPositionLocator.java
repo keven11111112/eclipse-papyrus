@@ -432,7 +432,7 @@ public class PortPositionLocator implements IBorderItemLocator {
 
 		// Refresh nodeShape bounds in case of resize
 		RoundedRectangleNodePlateFigure nodePlateFigure = FigureUtils.findChildFigureInstance(figure, RoundedRectangleNodePlateFigure.class);
-		if (figure instanceof RoundedRectangleNodePlateFigure || null != nodePlateFigure) {
+		if (figure instanceof RoundedRectangleNodePlateFigure && nodePlateFigure != null) {
 			for (Object child : nodePlateFigure.getChildren()) {
 				if (child instanceof IFigure) {
 					((IFigure) child).setBounds(rect);
