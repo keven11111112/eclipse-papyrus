@@ -23,14 +23,14 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ruleset extends EObject
-{
+public interface ruleset extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Selectors</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.selector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Selectors</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Selectors</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -46,7 +46,8 @@ public interface ruleset extends EObject
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Declarations</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Declarations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *

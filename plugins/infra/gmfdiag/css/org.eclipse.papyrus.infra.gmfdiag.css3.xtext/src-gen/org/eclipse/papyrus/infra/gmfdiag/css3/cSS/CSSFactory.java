@@ -13,8 +13,7 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage
  * @generated
  */
-public interface CSSFactory extends EFactory
-{
+public interface CSSFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->

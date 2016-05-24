@@ -37,8 +37,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.simple_selector;
  *
  * @generated
  */
-public class selectorImpl extends MinimalEObjectImpl.Container implements selector
-{
+public class selectorImpl extends MinimalEObjectImpl.Container implements selector {
 	/**
 	 * The cached value of the '{@link #getSimpleselectors() <em>Simpleselectors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -89,8 +88,7 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 *
 	 * @generated
 	 */
-	protected selectorImpl()
-	{
+	protected selectorImpl() {
 		super();
 	}
 
@@ -101,8 +99,7 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.SELECTOR;
 	}
 
@@ -113,10 +110,8 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 * @generated
 	 */
 	@Override
-	public EList<simple_selector> getSimpleselectors()
-	{
-		if (simpleselectors == null)
-		{
+	public EList<simple_selector> getSimpleselectors() {
+		if (simpleselectors == null) {
 			simpleselectors = new EObjectContainmentEList<simple_selector>(simple_selector.class, this, CSSPackage.SELECTOR__SIMPLESELECTORS);
 		}
 		return simpleselectors;
@@ -129,8 +124,7 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 * @generated
 	 */
 	@Override
-	public String getCombinator()
-	{
+	public String getCombinator() {
 		return combinator;
 	}
 
@@ -141,8 +135,7 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 * @generated
 	 */
 	@Override
-	public void setCombinator(String newCombinator)
-	{
+	public void setCombinator(String newCombinator) {
 		String oldCombinator = combinator;
 		combinator = newCombinator;
 		if (eNotificationRequired()) {
@@ -157,8 +150,7 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 * @generated
 	 */
 	@Override
-	public selector getSelector()
-	{
+	public selector getSelector() {
 		return selector;
 	}
 
@@ -168,12 +160,10 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 *
 	 * @generated
 	 */
-	public NotificationChain basicSetSelector(selector newSelector, NotificationChain msgs)
-	{
+	public NotificationChain basicSetSelector(selector newSelector, NotificationChain msgs) {
 		selector oldSelector = selector;
 		selector = newSelector;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSSPackage.SELECTOR__SELECTOR, oldSelector, newSelector);
 			if (msgs == null) {
 				msgs = notification;
@@ -191,10 +181,8 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 * @generated
 	 */
 	@Override
-	public void setSelector(selector newSelector)
-	{
-		if (newSelector != selector)
-		{
+	public void setSelector(selector newSelector) {
+		if (newSelector != selector) {
 			NotificationChain msgs = null;
 			if (selector != null) {
 				msgs = ((InternalEObject) selector).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSSPackage.SELECTOR__SELECTOR, null, msgs);
@@ -206,8 +194,7 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.SELECTOR__SELECTOR, newSelector, newSelector));
 		}
 	}
@@ -219,10 +206,8 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case CSSPackage.SELECTOR__SIMPLESELECTORS:
 			return ((InternalEList<?>) getSimpleselectors()).basicRemove(otherEnd, msgs);
 		case CSSPackage.SELECTOR__SELECTOR:
@@ -238,10 +223,8 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.SELECTOR__SIMPLESELECTORS:
 			return getSimpleselectors();
 		case CSSPackage.SELECTOR__COMBINATOR:
@@ -260,10 +243,8 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.SELECTOR__SIMPLESELECTORS:
 			getSimpleselectors().clear();
 			getSimpleselectors().addAll((Collection<? extends simple_selector>) newValue);
@@ -285,10 +266,8 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.SELECTOR__SIMPLESELECTORS:
 			getSimpleselectors().clear();
 			return;
@@ -309,10 +288,8 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.SELECTOR__SIMPLESELECTORS:
 			return simpleselectors != null && !simpleselectors.isEmpty();
 		case CSSPackage.SELECTOR__COMBINATOR:
@@ -330,8 +307,7 @@ public class selectorImpl extends MinimalEObjectImpl.Container implements select
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}

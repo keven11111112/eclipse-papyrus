@@ -23,13 +23,13 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface PseudoClassFunction extends PseudoClassOrFunc
-{
+public interface PseudoClassFunction extends PseudoClassOrFunc {
 	/**
 	 * Returns the value of the '<em><b>Not</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Not</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Not</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -57,7 +57,8 @@ public interface PseudoClassFunction extends PseudoClassOrFunc
 	 * Returns the value of the '<em><b>Param Selector</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Param Selector</em>' containment reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Param Selector</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -85,7 +86,8 @@ public interface PseudoClassFunction extends PseudoClassOrFunc
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -114,7 +116,8 @@ public interface PseudoClassFunction extends PseudoClassOrFunc
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssTok}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Params</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Params</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *

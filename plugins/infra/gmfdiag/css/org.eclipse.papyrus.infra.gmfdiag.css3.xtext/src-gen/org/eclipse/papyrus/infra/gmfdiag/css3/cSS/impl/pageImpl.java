@@ -36,8 +36,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.page;
  *
  * @generated
  */
-public class pageImpl extends MinimalEObjectImpl.Container implements page
-{
+public class pageImpl extends MinimalEObjectImpl.Container implements page {
 	/**
 	 * The default value of the '{@link #getPseudoPage() <em>Pseudo Page</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -77,8 +76,7 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	 *
 	 * @generated
 	 */
-	protected pageImpl()
-	{
+	protected pageImpl() {
 		super();
 	}
 
@@ -89,8 +87,7 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.PAGE;
 	}
 
@@ -101,8 +98,7 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	 * @generated
 	 */
 	@Override
-	public String getPseudoPage()
-	{
+	public String getPseudoPage() {
 		return pseudoPage;
 	}
 
@@ -113,8 +109,7 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	 * @generated
 	 */
 	@Override
-	public void setPseudoPage(String newPseudoPage)
-	{
+	public void setPseudoPage(String newPseudoPage) {
 		String oldPseudoPage = pseudoPage;
 		pseudoPage = newPseudoPage;
 		if (eNotificationRequired()) {
@@ -129,10 +124,8 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	 * @generated
 	 */
 	@Override
-	public EList<css_declaration> getDeclarations()
-	{
-		if (declarations == null)
-		{
+	public EList<css_declaration> getDeclarations() {
+		if (declarations == null) {
 			declarations = new EObjectContainmentEList<css_declaration>(css_declaration.class, this, CSSPackage.PAGE__DECLARATIONS);
 		}
 		return declarations;
@@ -145,10 +138,8 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case CSSPackage.PAGE__DECLARATIONS:
 			return ((InternalEList<?>) getDeclarations()).basicRemove(otherEnd, msgs);
 		}
@@ -162,10 +153,8 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.PAGE__PSEUDO_PAGE:
 			return getPseudoPage();
 		case CSSPackage.PAGE__DECLARATIONS:
@@ -182,10 +171,8 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.PAGE__PSEUDO_PAGE:
 			setPseudoPage((String) newValue);
 			return;
@@ -204,10 +191,8 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.PAGE__PSEUDO_PAGE:
 			setPseudoPage(PSEUDO_PAGE_EDEFAULT);
 			return;
@@ -225,10 +210,8 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.PAGE__PSEUDO_PAGE:
 			return PSEUDO_PAGE_EDEFAULT == null ? pseudoPage != null : !PSEUDO_PAGE_EDEFAULT.equals(pseudoPage);
 		case CSSPackage.PAGE__DECLARATIONS:
@@ -244,8 +227,7 @@ public class pageImpl extends MinimalEObjectImpl.Container implements page
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}

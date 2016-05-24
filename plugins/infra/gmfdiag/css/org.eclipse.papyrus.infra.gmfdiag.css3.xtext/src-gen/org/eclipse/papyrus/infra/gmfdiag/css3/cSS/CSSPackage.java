@@ -23,8 +23,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface CSSPackage extends EPackage
-{
+public interface CSSPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -2415,8 +2414,7 @@ public interface CSSPackage extends EPackage
 	 *
 	 * @generated
 	 */
-	interface Literals
-	{
+	interface Literals {
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.impl.stylesheetImpl <em>stylesheet</em>}' class.
 		 * <!-- begin-user-doc -->

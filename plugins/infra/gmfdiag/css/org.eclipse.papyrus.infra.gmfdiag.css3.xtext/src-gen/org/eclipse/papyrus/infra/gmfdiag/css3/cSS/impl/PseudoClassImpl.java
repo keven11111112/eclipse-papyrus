@@ -14,16 +14,14 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.PseudoClass;
  *
  * @generated
  */
-public class PseudoClassImpl extends CssSelectorImpl implements PseudoClass
-{
+public class PseudoClassImpl extends CssSelectorImpl implements PseudoClass {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
-	protected PseudoClassImpl()
-	{
+	protected PseudoClassImpl() {
 		super();
 	}
 
@@ -34,8 +32,7 @@ public class PseudoClassImpl extends CssSelectorImpl implements PseudoClass
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.PSEUDO_CLASS;
 	}
 

@@ -156,10 +156,14 @@ public abstract class AbstractCSSRuntimeModule extends org.eclipse.xtext.common.
 		return org.eclipse.papyrus.infra.gmfdiag.css3.generator.CSSGenerator.class;
 	}
 
-	// contributed by org.eclipse.xtext.generator.formatting.FormatterFragment
-	@Override
-	public Class<? extends org.eclipse.xtext.formatting.IFormatter> bindIFormatter() {
-		return org.eclipse.papyrus.infra.gmfdiag.css3.formatting.CSSFormatter.class;
+	// contributed by org.eclipse.xtext.generator.formatting2.Formatter2Fragment
+	public Class<? extends org.eclipse.xtext.formatting2.IFormatter2> bindIFormatter2() {
+		return org.eclipse.papyrus.infra.gmfdiag.css3.formatting2.CSSFormatter.class;
+	}
+
+	// contributed by org.eclipse.xtext.generator.formatting2.Formatter2Fragment
+	public void configureFormatterPreferences(com.google.inject.Binder binder) {
+		binder.bind(org.eclipse.xtext.preferences.IPreferenceValuesProvider.class).annotatedWith(org.eclipse.xtext.formatting2.FormatterPreferences.class).to(org.eclipse.xtext.formatting2.FormatterPreferenceValuesProvider.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment

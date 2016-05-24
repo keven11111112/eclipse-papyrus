@@ -14,6 +14,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface CssSelector extends EObject
-{
+public interface CssSelector extends EObject {
 } // CssSelector

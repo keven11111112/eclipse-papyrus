@@ -20,13 +20,13 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface css_property extends EObject
-{
+public interface css_property extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *

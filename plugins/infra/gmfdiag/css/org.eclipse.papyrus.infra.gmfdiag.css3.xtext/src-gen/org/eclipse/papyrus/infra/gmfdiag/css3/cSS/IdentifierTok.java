@@ -19,13 +19,13 @@ package org.eclipse.papyrus.infra.gmfdiag.css3.cSS;
  * @model
  * @generated
  */
-public interface IdentifierTok extends CssTok
-{
+public interface IdentifierTok extends CssTok {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *

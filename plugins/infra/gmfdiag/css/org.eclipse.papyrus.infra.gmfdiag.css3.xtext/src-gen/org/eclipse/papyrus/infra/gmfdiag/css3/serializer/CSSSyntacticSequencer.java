@@ -49,20 +49,20 @@ public class CSSSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (CSSGrammarAccess) access;
 		match_PseudoClass_COLONTerminalRuleCall_1_q = new TokenAlias(false, true, grammarAccess.getPseudoClassAccess().getCOLONTerminalRuleCall_1());
-		match_charset_CHARSETKeyword_0_1_or_CharsetKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCharsetAccess().getCHARSETKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getCharsetAccess()
-				.getCharsetKeyword_0_0()));
+		match_charset_CHARSETKeyword_0_1_or_CharsetKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCharsetAccess().getCHARSETKeyword_0_1()),
+				new TokenAlias(false, false, grammarAccess.getCharsetAccess().getCharsetKeyword_0_0()));
 		match_css_declaration_WSTerminalRuleCall_0_a = new TokenAlias(true, true, grammarAccess.getCss_declarationAccess().getWSTerminalRuleCall_0());
 		match_css_declaration_WSTerminalRuleCall_2_a = new TokenAlias(true, true, grammarAccess.getCss_declarationAccess().getWSTerminalRuleCall_2());
-		match_font_face_FONTFACEKeyword_1_1_or_FontFaceKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFont_faceAccess().getFONTFACEKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getFont_faceAccess()
-				.getFontFaceKeyword_1_0()));
+		match_font_face_FONTFACEKeyword_1_1_or_FontFaceKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFont_faceAccess().getFONTFACEKeyword_1_1()),
+				new TokenAlias(false, false, grammarAccess.getFont_faceAccess().getFontFaceKeyword_1_0()));
 		match_font_face_SemicolonKeyword_4_0_a = new TokenAlias(true, true, grammarAccess.getFont_faceAccess().getSemicolonKeyword_4_0());
 		match_font_face_SemicolonKeyword_4_0_p = new TokenAlias(true, false, grammarAccess.getFont_faceAccess().getSemicolonKeyword_4_0());
-		match_importExpression_IMPORTKeyword_0_1_or_ImportKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getImportExpressionAccess().getIMPORTKeyword_0_1()), new TokenAlias(false, false, grammarAccess
-				.getImportExpressionAccess().getImportKeyword_0_0()));
+		match_importExpression_IMPORTKeyword_0_1_or_ImportKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getImportExpressionAccess().getIMPORTKeyword_0_1()),
+				new TokenAlias(false, false, grammarAccess.getImportExpressionAccess().getImportKeyword_0_0()));
 		match_keyframe_selector_SemicolonKeyword_3_0_a = new TokenAlias(true, true, grammarAccess.getKeyframe_selectorAccess().getSemicolonKeyword_3_0());
 		match_keyframe_selector_SemicolonKeyword_3_0_p = new TokenAlias(true, false, grammarAccess.getKeyframe_selectorAccess().getSemicolonKeyword_3_0());
-		match_keyframes_KEYFRAMESKeyword_1_1_or_KeyframesKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getKeyframesAccess().getKEYFRAMESKeyword_1_1()), new TokenAlias(false, false, grammarAccess
-				.getKeyframesAccess().getKeyframesKeyword_1_0()));
+		match_keyframes_KEYFRAMESKeyword_1_1_or_KeyframesKeyword_1_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getKeyframesAccess().getKEYFRAMESKeyword_1_1()),
+				new TokenAlias(false, false, grammarAccess.getKeyframesAccess().getKeyframesKeyword_1_0()));
 		match_keyframes_SemicolonKeyword_5_0_a = new TokenAlias(true, true, grammarAccess.getKeyframesAccess().getSemicolonKeyword_5_0());
 		match_keyframes_SemicolonKeyword_5_0_p = new TokenAlias(true, false, grammarAccess.getKeyframesAccess().getSemicolonKeyword_5_0());
 		match_media_MEDIAKeyword_0_1_or_MediaKeyword_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getMediaAccess().getMEDIAKeyword_0_1()),

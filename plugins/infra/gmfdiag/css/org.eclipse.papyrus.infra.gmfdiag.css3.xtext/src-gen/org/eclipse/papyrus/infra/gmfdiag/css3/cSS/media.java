@@ -23,13 +23,13 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface media extends EObject
-{
+public interface media extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Medialist</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Medialist</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Medialist</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -58,7 +58,8 @@ public interface media extends EObject
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ruleset}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Rulesets</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Rulesets</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *

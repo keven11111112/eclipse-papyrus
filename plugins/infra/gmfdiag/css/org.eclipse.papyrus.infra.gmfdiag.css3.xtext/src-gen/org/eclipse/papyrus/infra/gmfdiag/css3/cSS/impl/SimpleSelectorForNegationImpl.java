@@ -39,8 +39,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.UniversalSelector;
  *
  * @generated
  */
-public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container implements SimpleSelectorForNegation
-{
+public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container implements SimpleSelectorForNegation {
 	/**
 	 * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -80,8 +79,7 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 	 *
 	 * @generated
 	 */
-	protected SimpleSelectorForNegationImpl()
-	{
+	protected SimpleSelectorForNegationImpl() {
 		super();
 	}
 
@@ -92,8 +90,7 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.SIMPLE_SELECTOR_FOR_NEGATION;
 	}
 
@@ -104,8 +101,7 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public ElementSelector getElement()
-	{
+	public ElementSelector getElement() {
 		return element;
 	}
 
@@ -115,12 +111,10 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 	 *
 	 * @generated
 	 */
-	public NotificationChain basicSetElement(ElementSelector newElement, NotificationChain msgs)
-	{
+	public NotificationChain basicSetElement(ElementSelector newElement, NotificationChain msgs) {
 		ElementSelector oldElement = element;
 		element = newElement;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__ELEMENT, oldElement, newElement);
 			if (msgs == null) {
 				msgs = notification;
@@ -138,10 +132,8 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public void setElement(ElementSelector newElement)
-	{
-		if (newElement != element)
-		{
+	public void setElement(ElementSelector newElement) {
+		if (newElement != element) {
 			NotificationChain msgs = null;
 			if (element != null) {
 				msgs = ((InternalEObject) element).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__ELEMENT, null, msgs);
@@ -153,8 +145,7 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__ELEMENT, newElement, newElement));
 		}
 	}
@@ -166,8 +157,7 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public UniversalSelector getUniversal()
-	{
+	public UniversalSelector getUniversal() {
 		return universal;
 	}
 
@@ -177,12 +167,10 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 	 *
 	 * @generated
 	 */
-	public NotificationChain basicSetUniversal(UniversalSelector newUniversal, NotificationChain msgs)
-	{
+	public NotificationChain basicSetUniversal(UniversalSelector newUniversal, NotificationChain msgs) {
 		UniversalSelector oldUniversal = universal;
 		universal = newUniversal;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__UNIVERSAL, oldUniversal, newUniversal);
 			if (msgs == null) {
 				msgs = notification;
@@ -200,10 +188,8 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public void setUniversal(UniversalSelector newUniversal)
-	{
-		if (newUniversal != universal)
-		{
+	public void setUniversal(UniversalSelector newUniversal) {
+		if (newUniversal != universal) {
 			NotificationChain msgs = null;
 			if (universal != null) {
 				msgs = ((InternalEObject) universal).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__UNIVERSAL, null, msgs);
@@ -215,8 +201,7 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__UNIVERSAL, newUniversal, newUniversal));
 		}
 	}
@@ -228,10 +213,8 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public EList<CssSelector> getSubSelectors()
-	{
-		if (subSelectors == null)
-		{
+	public EList<CssSelector> getSubSelectors() {
+		if (subSelectors == null) {
 			subSelectors = new EObjectContainmentEList<CssSelector>(CssSelector.class, this, CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__SUB_SELECTORS);
 		}
 		return subSelectors;
@@ -244,10 +227,8 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__ELEMENT:
 			return basicSetElement(null, msgs);
 		case CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__UNIVERSAL:
@@ -265,10 +246,8 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__ELEMENT:
 			return getElement();
 		case CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__UNIVERSAL:
@@ -287,10 +266,8 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__ELEMENT:
 			setElement((ElementSelector) newValue);
 			return;
@@ -312,10 +289,8 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__ELEMENT:
 			setElement((ElementSelector) null);
 			return;
@@ -336,10 +311,8 @@ public class SimpleSelectorForNegationImpl extends MinimalEObjectImpl.Container 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__ELEMENT:
 			return element != null;
 		case CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION__UNIVERSAL:

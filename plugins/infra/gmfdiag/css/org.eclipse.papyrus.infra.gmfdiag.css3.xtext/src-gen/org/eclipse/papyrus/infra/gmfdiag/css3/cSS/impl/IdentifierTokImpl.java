@@ -24,8 +24,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IdentifierTok;
  *
  * @generated
  */
-public class IdentifierTokImpl extends CssTokImpl implements IdentifierTok
-{
+public class IdentifierTokImpl extends CssTokImpl implements IdentifierTok {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -54,8 +53,7 @@ public class IdentifierTokImpl extends CssTokImpl implements IdentifierTok
 	 *
 	 * @generated
 	 */
-	protected IdentifierTokImpl()
-	{
+	protected IdentifierTokImpl() {
 		super();
 	}
 
@@ -66,8 +64,7 @@ public class IdentifierTokImpl extends CssTokImpl implements IdentifierTok
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.IDENTIFIER_TOK;
 	}
 
@@ -78,8 +75,7 @@ public class IdentifierTokImpl extends CssTokImpl implements IdentifierTok
 	 * @generated
 	 */
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -90,8 +86,7 @@ public class IdentifierTokImpl extends CssTokImpl implements IdentifierTok
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName)
-	{
+	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired()) {
@@ -106,10 +101,8 @@ public class IdentifierTokImpl extends CssTokImpl implements IdentifierTok
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.IDENTIFIER_TOK__NAME:
 			return getName();
 		}
@@ -123,10 +116,8 @@ public class IdentifierTokImpl extends CssTokImpl implements IdentifierTok
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.IDENTIFIER_TOK__NAME:
 			setName((String) newValue);
 			return;
@@ -141,10 +132,8 @@ public class IdentifierTokImpl extends CssTokImpl implements IdentifierTok
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.IDENTIFIER_TOK__NAME:
 			setName(NAME_EDEFAULT);
 			return;
@@ -159,10 +148,8 @@ public class IdentifierTokImpl extends CssTokImpl implements IdentifierTok
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.IDENTIFIER_TOK__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
@@ -176,8 +163,7 @@ public class IdentifierTokImpl extends CssTokImpl implements IdentifierTok
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}

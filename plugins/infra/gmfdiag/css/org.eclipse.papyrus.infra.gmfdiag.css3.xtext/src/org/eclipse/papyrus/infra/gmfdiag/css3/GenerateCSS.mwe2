@@ -32,14 +32,9 @@ Workflow {
     	directory = "${runtimeProject}.ui/src-gen"
     }
     
-    component = DirectoryCleaner {
-    	directory = "${runtimeProject}.tests/src-gen"
-    }
-    
     component = Generator {
     	pathRtProject = runtimeProject
     	pathUiProject = "${runtimeProject}.ui"
-    	pathTestProject = "${runtimeProject}.tests"
     	projectNameRt = projectName
     	projectNameUi = "${projectName}.ui"
     	encoding = encoding
@@ -89,7 +84,7 @@ Workflow {
     		fragment = generator.GeneratorFragment auto-inject {}
     
     		// formatter API
-    		fragment = formatting.FormatterFragment auto-inject {}
+    		fragment = formatting2.Formatter2Fragment auto-inject {}
     
     		// labeling API
     		fragment = labeling.LabelProviderFragment auto-inject {}
@@ -106,10 +101,7 @@ Workflow {
     
     		// generates a more lightweight Antlr parser and lexer tailored for content assist
     		fragment = parser.antlr.XtextAntlrUiGeneratorFragment auto-inject {}
-    
-    		// generates junit test support classes into Generator#pathTestProject
-    		fragment = junit.Junit4Fragment auto-inject {}
-    
+        
     		// rename refactoring
     		fragment = refactoring.RefactorElementNameFragment auto-inject {}
     

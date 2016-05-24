@@ -47,8 +47,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.stylesheet;
  *
  * @generated
  */
-public class stylesheetImpl extends MinimalEObjectImpl.Container implements stylesheet
-{
+public class stylesheetImpl extends MinimalEObjectImpl.Container implements stylesheet {
 	/**
 	 * The cached value of the '{@link #getCharset() <em>Charset</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -132,8 +131,7 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 *
 	 * @generated
 	 */
-	protected stylesheetImpl()
-	{
+	protected stylesheetImpl() {
 		super();
 	}
 
@@ -144,8 +142,7 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.STYLESHEET;
 	}
 
@@ -156,8 +153,7 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * @generated
 	 */
 	@Override
-	public charset getCharset()
-	{
+	public charset getCharset() {
 		return charset;
 	}
 
@@ -167,12 +163,10 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 *
 	 * @generated
 	 */
-	public NotificationChain basicSetCharset(charset newCharset, NotificationChain msgs)
-	{
+	public NotificationChain basicSetCharset(charset newCharset, NotificationChain msgs) {
 		charset oldCharset = charset;
 		charset = newCharset;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSSPackage.STYLESHEET__CHARSET, oldCharset, newCharset);
 			if (msgs == null) {
 				msgs = notification;
@@ -190,10 +184,8 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * @generated
 	 */
 	@Override
-	public void setCharset(charset newCharset)
-	{
-		if (newCharset != charset)
-		{
+	public void setCharset(charset newCharset) {
+		if (newCharset != charset) {
 			NotificationChain msgs = null;
 			if (charset != null) {
 				msgs = ((InternalEObject) charset).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSSPackage.STYLESHEET__CHARSET, null, msgs);
@@ -205,8 +197,7 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.STYLESHEET__CHARSET, newCharset, newCharset));
 		}
 	}
@@ -218,10 +209,8 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * @generated
 	 */
 	@Override
-	public EList<importExpression> getImports()
-	{
-		if (imports == null)
-		{
+	public EList<importExpression> getImports() {
+		if (imports == null) {
 			imports = new EObjectContainmentEList<importExpression>(importExpression.class, this, CSSPackage.STYLESHEET__IMPORTS);
 		}
 		return imports;
@@ -234,10 +223,8 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * @generated
 	 */
 	@Override
-	public EList<ruleset> getRuleset()
-	{
-		if (ruleset == null)
-		{
+	public EList<ruleset> getRuleset() {
+		if (ruleset == null) {
 			ruleset = new EObjectContainmentEList<ruleset>(ruleset.class, this, CSSPackage.STYLESHEET__RULESET);
 		}
 		return ruleset;
@@ -250,10 +237,8 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * @generated
 	 */
 	@Override
-	public EList<media> getMedia()
-	{
-		if (media == null)
-		{
+	public EList<media> getMedia() {
+		if (media == null) {
 			media = new EObjectContainmentEList<media>(media.class, this, CSSPackage.STYLESHEET__MEDIA);
 		}
 		return media;
@@ -266,10 +251,8 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * @generated
 	 */
 	@Override
-	public EList<page> getPage()
-	{
-		if (page == null)
-		{
+	public EList<page> getPage() {
+		if (page == null) {
 			page = new EObjectContainmentEList<page>(page.class, this, CSSPackage.STYLESHEET__PAGE);
 		}
 		return page;
@@ -282,10 +265,8 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * @generated
 	 */
 	@Override
-	public EList<font_face> getFont_face()
-	{
-		if (font_face == null)
-		{
+	public EList<font_face> getFont_face() {
+		if (font_face == null) {
 			font_face = new EObjectContainmentEList<font_face>(font_face.class, this, CSSPackage.STYLESHEET__FONT_FACE);
 		}
 		return font_face;
@@ -298,10 +279,8 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * @generated
 	 */
 	@Override
-	public EList<keyframes> getKeyframes()
-	{
-		if (keyframes == null)
-		{
+	public EList<keyframes> getKeyframes() {
+		if (keyframes == null) {
 			keyframes = new EObjectContainmentEList<keyframes>(keyframes.class, this, CSSPackage.STYLESHEET__KEYFRAMES);
 		}
 		return keyframes;
@@ -314,10 +293,8 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case CSSPackage.STYLESHEET__CHARSET:
 			return basicSetCharset(null, msgs);
 		case CSSPackage.STYLESHEET__IMPORTS:
@@ -343,10 +320,8 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.STYLESHEET__CHARSET:
 			return getCharset();
 		case CSSPackage.STYLESHEET__IMPORTS:
@@ -373,10 +348,8 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.STYLESHEET__CHARSET:
 			setCharset((charset) newValue);
 			return;
@@ -415,10 +388,8 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.STYLESHEET__CHARSET:
 			setCharset((charset) null);
 			return;
@@ -451,10 +422,8 @@ public class stylesheetImpl extends MinimalEObjectImpl.Container implements styl
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.STYLESHEET__CHARSET:
 			return charset != null;
 		case CSSPackage.STYLESHEET__IMPORTS:

@@ -2,7 +2,8 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.css3.ui.quickfix,
  org.eclipse.papyrus.infra.gmfdiag.css3.ui.contentassist,
  org.eclipse.papyrus.infra.gmfdiag.css3.ui.internal,
- org.eclipse.papyrus.infra.gmfdiag.css3.ui.contentassist.antlr
+ org.eclipse.papyrus.infra.gmfdiag.css3.ui.contentassist.antlr,
+ org.eclipse.papyrus.infra.gmfdiag.css3.ui.contentassist.antlr.internal
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui; singleton:=true
 Bundle-Version: 1.1.4.qualifier
 Bundle-Name: CSS3 Xtext Editor (UI)

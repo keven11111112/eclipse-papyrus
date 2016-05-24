@@ -37,8 +37,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.keyframe_selector;
  *
  * @generated
  */
-public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implements keyframe_selector
-{
+public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implements keyframe_selector {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -100,8 +99,7 @@ public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implemen
 	 *
 	 * @generated
 	 */
-	protected keyframe_selectorImpl()
-	{
+	protected keyframe_selectorImpl() {
 		super();
 	}
 
@@ -112,8 +110,7 @@ public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.KEYFRAME_SELECTOR;
 	}
 
@@ -124,8 +121,7 @@ public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public String getType()
-	{
+	public String getType() {
 		return type;
 	}
 
@@ -136,8 +132,7 @@ public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public void setType(String newType)
-	{
+	public void setType(String newType) {
 		String oldType = type;
 		type = newType;
 		if (eNotificationRequired()) {
@@ -152,8 +147,7 @@ public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public double getPercentage()
-	{
+	public double getPercentage() {
 		return percentage;
 	}
 
@@ -164,8 +158,7 @@ public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public void setPercentage(double newPercentage)
-	{
+	public void setPercentage(double newPercentage) {
 		double oldPercentage = percentage;
 		percentage = newPercentage;
 		if (eNotificationRequired()) {
@@ -180,10 +173,8 @@ public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public EList<css_declaration> getDeclarations()
-	{
-		if (declarations == null)
-		{
+	public EList<css_declaration> getDeclarations() {
+		if (declarations == null) {
 			declarations = new EObjectContainmentEList<css_declaration>(css_declaration.class, this, CSSPackage.KEYFRAME_SELECTOR__DECLARATIONS);
 		}
 		return declarations;
@@ -196,10 +187,8 @@ public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case CSSPackage.KEYFRAME_SELECTOR__DECLARATIONS:
 			return ((InternalEList<?>) getDeclarations()).basicRemove(otherEnd, msgs);
 		}
@@ -213,10 +202,8 @@ public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.KEYFRAME_SELECTOR__TYPE:
 			return getType();
 		case CSSPackage.KEYFRAME_SELECTOR__PERCENTAGE:
@@ -235,10 +222,8 @@ public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.KEYFRAME_SELECTOR__TYPE:
 			setType((String) newValue);
 			return;
@@ -260,10 +245,8 @@ public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.KEYFRAME_SELECTOR__TYPE:
 			setType(TYPE_EDEFAULT);
 			return;
@@ -284,10 +267,8 @@ public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.KEYFRAME_SELECTOR__TYPE:
 			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		case CSSPackage.KEYFRAME_SELECTOR__PERCENTAGE:
@@ -305,8 +286,7 @@ public class keyframe_selectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}
