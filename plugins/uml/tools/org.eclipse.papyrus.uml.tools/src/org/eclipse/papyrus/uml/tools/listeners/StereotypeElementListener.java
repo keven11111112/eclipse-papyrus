@@ -9,7 +9,7 @@
  * Contributors:
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.fr - Bug 393532
- *  Christian W. Damus - bugs 450523, 399859, 492482
+ *  Christian W. Damus - bugs 450523, 399859, 492482, 494478
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.listeners;
@@ -38,6 +38,7 @@ import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
@@ -61,6 +62,12 @@ public class StereotypeElementListener extends ResourceSetListenerImpl {
 
 	private final StereotypeExtensionFinder finder;
 
+	/** Notifications to dispatch and invert at post-commit of undo/redo transactions. */
+	private final List<NotificationChain> undoRedoNotifications = new ArrayList<NotificationChain>();
+
+	/** The transaction option indicating that a transaction performs undo or redo of a command. */
+	private final Transaction.OptionMetadata undoRedoOption = Transaction.OptionMetadata.Registry.INSTANCE.getOptionMetadata(Transaction.OPTION_IS_UNDO_REDO_TRANSACTION);
+
 	/**
 	 * Instantiates a new stereotype element listener on an editing domain.
 	 *
@@ -83,18 +90,6 @@ public class StereotypeElementListener extends ResourceSetListenerImpl {
 		this.finder = new StereotypeExtensionFinder(resourceSet);
 	}
 
-	/**
-	 * I am a pre-commit listener. Trigger listeners need to be able to react to
-	 * these events. And they will be captured and automatically distributed again
-	 * when the transaction commits (if it doesn't roll back).
-	 *
-	 * @return {@code true}
-	 */
-	@Override
-	public boolean isPrecommitOnly() {
-		return true;
-	}
-
 	@Override
 	public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
 		Command result = null;
@@ -109,7 +104,7 @@ public class StereotypeElementListener extends ResourceSetListenerImpl {
 				handleFilteredNotification(notification, chain);
 			}
 
-			result = new AbstractCommand("Inject Stereotype Notifications") {
+			result = new AbstractCommand("Inject Stereotype Notifications") { //$NON-NLS-1$
 				private NotificationChain notifications;
 
 				@Override
@@ -125,38 +120,68 @@ public class StereotypeElementListener extends ResourceSetListenerImpl {
 
 				@Override
 				public void undo() {
-					dispatchAndInvert();
+					// Schedule dispatch and inversion at post-commit time
+					undoRedoNotifications.add(this.notifications);
 				}
 
 				@Override
 				public void redo() {
-					dispatchAndInvert();
+					// Schedule dispatch and inversion at post-commit time
+					undoRedoNotifications.add(this.notifications);
 				}
 
 				private void dispatchAndInvert() {
-					notifications.dispatch();
-					this.notifications = invertNotifications(notifications);
-				}
-
-				private NotificationChain invertNotifications(NotificationChain notifications) {
-					// The chain is implemented as an EList
-					@SuppressWarnings("unchecked")
-					EList<Notification> list = (EList<Notification>) notifications;
-
-					// Reverse the order
-					ECollections.reverse(list);
-
-					// And flip the type from applied <--> unapplied
-					for (Notification next : list) {
-						((StereotypeExtensionNotification) next).invert();
-					}
-
-					return notifications;
+					this.notifications.dispatch();
+					invertNotifications(this.notifications);
 				}
 			};
 		}
 
 		return result;
+	}
+
+	/**
+	 * Invert the semantics of a chain of stereotype-application {@code notifications}
+	 * in situ. This includes reversing the order in which they are dispatched.
+	 * 
+	 * @param notifications
+	 *            notifications to invert
+	 * @see StereotypeExtensionNotification#invert()
+	 */
+	private void invertNotifications(NotificationChain notifications) {
+		// The chain is implemented as an EList
+		@SuppressWarnings("unchecked")
+		EList<Notification> list = (EList<Notification>) notifications;
+
+		// Reverse the order
+		ECollections.reverse(list);
+
+		// And flip the type from applied <--> unapplied
+		for (Notification next : list) {
+			((StereotypeExtensionNotification) next).invert();
+		}
+	}
+
+	@Override
+	public void resourceSetChanged(ResourceSetChangeEvent event) {
+		if (Boolean.FALSE.equals(undoRedoOption.getValue(event.getTransaction().getOptions()))) {
+			// Not an undo/redo transaction? Purge any notifications that we may have
+			// had from a rolled-back undo or redo
+			undoRedoNotifications.clear();
+		} else if (!undoRedoNotifications.isEmpty()) {
+			// It's an undo/redo transaction. Dispatch the (inverted) notifications
+			// that were deferred by the notification-injector command
+			try {
+				for (NotificationChain next : undoRedoNotifications) {
+					next.dispatch();
+					invertNotifications(next);
+				}
+			} finally {
+				// Subsequent redo/undo of the injector command will collect
+				// these again
+				undoRedoNotifications.clear();
+			}
+		}
 	}
 
 	/**
