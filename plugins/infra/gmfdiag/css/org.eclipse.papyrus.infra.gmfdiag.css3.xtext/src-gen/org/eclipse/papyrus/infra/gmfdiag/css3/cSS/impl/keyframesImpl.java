@@ -16,16 +16,14 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.keyframes;
  *
  * @generated
  */
-public class keyframesImpl extends MinimalEObjectImpl.Container implements keyframes
-{
+public class keyframesImpl extends MinimalEObjectImpl.Container implements keyframes {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
-	protected keyframesImpl()
-	{
+	protected keyframesImpl() {
 		super();
 	}
 
@@ -36,8 +34,7 @@ public class keyframesImpl extends MinimalEObjectImpl.Container implements keyfr
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.KEYFRAMES;
 	}
 

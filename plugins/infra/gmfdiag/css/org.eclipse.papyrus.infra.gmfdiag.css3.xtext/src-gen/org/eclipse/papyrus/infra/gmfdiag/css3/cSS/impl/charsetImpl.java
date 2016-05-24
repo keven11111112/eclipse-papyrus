@@ -25,8 +25,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.charset;
  *
  * @generated
  */
-public class charsetImpl extends MinimalEObjectImpl.Container implements charset
-{
+public class charsetImpl extends MinimalEObjectImpl.Container implements charset {
 	/**
 	 * The default value of the '{@link #getCharset() <em>Charset</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -55,8 +54,7 @@ public class charsetImpl extends MinimalEObjectImpl.Container implements charset
 	 *
 	 * @generated
 	 */
-	protected charsetImpl()
-	{
+	protected charsetImpl() {
 		super();
 	}
 
@@ -67,8 +65,7 @@ public class charsetImpl extends MinimalEObjectImpl.Container implements charset
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.CHARSET;
 	}
 
@@ -79,8 +76,7 @@ public class charsetImpl extends MinimalEObjectImpl.Container implements charset
 	 * @generated
 	 */
 	@Override
-	public String getCharset()
-	{
+	public String getCharset() {
 		return charset;
 	}
 
@@ -91,8 +87,7 @@ public class charsetImpl extends MinimalEObjectImpl.Container implements charset
 	 * @generated
 	 */
 	@Override
-	public void setCharset(String newCharset)
-	{
+	public void setCharset(String newCharset) {
 		String oldCharset = charset;
 		charset = newCharset;
 		if (eNotificationRequired()) {
@@ -107,10 +102,8 @@ public class charsetImpl extends MinimalEObjectImpl.Container implements charset
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.CHARSET__CHARSET:
 			return getCharset();
 		}
@@ -124,10 +117,8 @@ public class charsetImpl extends MinimalEObjectImpl.Container implements charset
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.CHARSET__CHARSET:
 			setCharset((String) newValue);
 			return;
@@ -142,10 +133,8 @@ public class charsetImpl extends MinimalEObjectImpl.Container implements charset
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.CHARSET__CHARSET:
 			setCharset(CHARSET_EDEFAULT);
 			return;
@@ -160,10 +149,8 @@ public class charsetImpl extends MinimalEObjectImpl.Container implements charset
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.CHARSET__CHARSET:
 			return CHARSET_EDEFAULT == null ? charset != null : !CHARSET_EDEFAULT.equals(charset);
 		}
@@ -177,8 +164,7 @@ public class charsetImpl extends MinimalEObjectImpl.Container implements charset
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}

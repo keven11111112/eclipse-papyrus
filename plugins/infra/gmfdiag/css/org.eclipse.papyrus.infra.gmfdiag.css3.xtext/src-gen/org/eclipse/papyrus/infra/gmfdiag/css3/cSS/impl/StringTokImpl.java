@@ -24,8 +24,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.StringTok;
  *
  * @generated
  */
-public class StringTokImpl extends CssTokImpl implements StringTok
-{
+public class StringTokImpl extends CssTokImpl implements StringTok {
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -54,8 +53,7 @@ public class StringTokImpl extends CssTokImpl implements StringTok
 	 *
 	 * @generated
 	 */
-	protected StringTokImpl()
-	{
+	protected StringTokImpl() {
 		super();
 	}
 
@@ -66,8 +64,7 @@ public class StringTokImpl extends CssTokImpl implements StringTok
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.STRING_TOK;
 	}
 
@@ -78,8 +75,7 @@ public class StringTokImpl extends CssTokImpl implements StringTok
 	 * @generated
 	 */
 	@Override
-	public String getValue()
-	{
+	public String getValue() {
 		return value;
 	}
 
@@ -90,8 +86,7 @@ public class StringTokImpl extends CssTokImpl implements StringTok
 	 * @generated
 	 */
 	@Override
-	public void setValue(String newValue)
-	{
+	public void setValue(String newValue) {
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired()) {
@@ -106,10 +101,8 @@ public class StringTokImpl extends CssTokImpl implements StringTok
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.STRING_TOK__VALUE:
 			return getValue();
 		}
@@ -123,10 +116,8 @@ public class StringTokImpl extends CssTokImpl implements StringTok
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.STRING_TOK__VALUE:
 			setValue((String) newValue);
 			return;
@@ -141,10 +132,8 @@ public class StringTokImpl extends CssTokImpl implements StringTok
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.STRING_TOK__VALUE:
 			setValue(VALUE_EDEFAULT);
 			return;
@@ -159,10 +148,8 @@ public class StringTokImpl extends CssTokImpl implements StringTok
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.STRING_TOK__VALUE:
 			return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
@@ -176,8 +163,7 @@ public class StringTokImpl extends CssTokImpl implements StringTok
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}

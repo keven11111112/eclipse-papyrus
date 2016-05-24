@@ -19,13 +19,13 @@ package org.eclipse.papyrus.infra.gmfdiag.css3.cSS;
  * @model
  * @generated
  */
-public interface NumberTok extends CssTok
-{
+public interface NumberTok extends CssTok {
 	/**
 	 * Returns the value of the '<em><b>Val</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Val</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Val</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *

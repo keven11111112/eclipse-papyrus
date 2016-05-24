@@ -26,8 +26,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage;
  *
  * @generated
  */
-public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeSelector
-{
+public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeSelector {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -100,8 +99,7 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 *
 	 * @generated
 	 */
-	protected AttributeSelectorImpl()
-	{
+	protected AttributeSelectorImpl() {
 		super();
 	}
 
@@ -112,8 +110,7 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.ATTRIBUTE_SELECTOR;
 	}
 
@@ -124,8 +121,7 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * @generated
 	 */
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -136,8 +132,7 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName)
-	{
+	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired()) {
@@ -152,8 +147,7 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * @generated
 	 */
 	@Override
-	public String getOp()
-	{
+	public String getOp() {
 		return op;
 	}
 
@@ -164,8 +158,7 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * @generated
 	 */
 	@Override
-	public void setOp(String newOp)
-	{
+	public void setOp(String newOp) {
 		String oldOp = op;
 		op = newOp;
 		if (eNotificationRequired()) {
@@ -180,8 +173,7 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * @generated
 	 */
 	@Override
-	public String getValue()
-	{
+	public String getValue() {
 		return value;
 	}
 
@@ -192,8 +184,7 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * @generated
 	 */
 	@Override
-	public void setValue(String newValue)
-	{
+	public void setValue(String newValue) {
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired()) {
@@ -208,10 +199,8 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.ATTRIBUTE_SELECTOR__NAME:
 			return getName();
 		case CSSPackage.ATTRIBUTE_SELECTOR__OP:
@@ -229,10 +218,8 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.ATTRIBUTE_SELECTOR__NAME:
 			setName((String) newValue);
 			return;
@@ -253,10 +240,8 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.ATTRIBUTE_SELECTOR__NAME:
 			setName(NAME_EDEFAULT);
 			return;
@@ -277,10 +262,8 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.ATTRIBUTE_SELECTOR__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case CSSPackage.ATTRIBUTE_SELECTOR__OP:
@@ -298,8 +281,7 @@ public class AttributeSelectorImpl extends CssSelectorImpl implements AttributeS
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}

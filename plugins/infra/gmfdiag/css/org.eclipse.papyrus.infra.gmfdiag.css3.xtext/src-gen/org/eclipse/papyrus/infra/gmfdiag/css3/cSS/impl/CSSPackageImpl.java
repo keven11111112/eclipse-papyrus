@@ -53,8 +53,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.stylesheet;
  *
  * @generated
  */
-public class CSSPackageImpl extends EPackageImpl implements CSSPackage
-{
+public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -328,18 +327,23 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	private EClass funcTokEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private CSSPackageImpl()
-	{
+	private CSSPackageImpl() {
 		super(eNS_URI, CSSFactory.eINSTANCE);
 	}
 
@@ -355,15 +359,17 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link CSSPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link CSSPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static CSSPackage init()
-	{
+	public static CSSPackage init() {
 		if (isInited) {
 			return (CSSPackage) EPackage.Registry.INSTANCE.getEPackage(CSSPackage.eNS_URI);
 		}
@@ -395,8 +401,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getstylesheet()
-	{
+	public EClass getstylesheet() {
 		return stylesheetEClass;
 	}
 
@@ -407,8 +412,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getstylesheet_Charset()
-	{
+	public EReference getstylesheet_Charset() {
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -419,8 +423,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getstylesheet_Imports()
-	{
+	public EReference getstylesheet_Imports() {
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -431,8 +434,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getstylesheet_Ruleset()
-	{
+	public EReference getstylesheet_Ruleset() {
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -443,8 +445,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getstylesheet_Media()
-	{
+	public EReference getstylesheet_Media() {
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -455,8 +456,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getstylesheet_Page()
-	{
+	public EReference getstylesheet_Page() {
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -467,8 +467,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getstylesheet_Font_face()
-	{
+	public EReference getstylesheet_Font_face() {
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -479,8 +478,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getstylesheet_Keyframes()
-	{
+	public EReference getstylesheet_Keyframes() {
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -491,8 +489,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getcharset()
-	{
+	public EClass getcharset() {
 		return charsetEClass;
 	}
 
@@ -503,8 +500,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getcharset_Charset()
-	{
+	public EAttribute getcharset_Charset() {
 		return (EAttribute) charsetEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -515,8 +511,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getimportExpression()
-	{
+	public EClass getimportExpression() {
 		return importExpressionEClass;
 	}
 
@@ -527,8 +522,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getimportExpression_Value()
-	{
+	public EAttribute getimportExpression_Value() {
 		return (EAttribute) importExpressionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -539,8 +533,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getpage()
-	{
+	public EClass getpage() {
 		return pageEClass;
 	}
 
@@ -551,8 +544,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getpage_PseudoPage()
-	{
+	public EAttribute getpage_PseudoPage() {
 		return (EAttribute) pageEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -563,8 +555,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getpage_Declarations()
-	{
+	public EReference getpage_Declarations() {
 		return (EReference) pageEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -575,8 +566,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getmedia()
-	{
+	public EClass getmedia() {
 		return mediaEClass;
 	}
 
@@ -587,8 +577,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getmedia_Medialist()
-	{
+	public EAttribute getmedia_Medialist() {
 		return (EAttribute) mediaEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -599,8 +588,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getmedia_Rulesets()
-	{
+	public EReference getmedia_Rulesets() {
 		return (EReference) mediaEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -611,8 +599,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getfont_face()
-	{
+	public EClass getfont_face() {
 		return font_faceEClass;
 	}
 
@@ -623,8 +610,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getfont_face_Declarations()
-	{
+	public EReference getfont_face_Declarations() {
 		return (EReference) font_faceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -635,8 +621,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getfont_face_Name()
-	{
+	public EAttribute getfont_face_Name() {
 		return (EAttribute) font_faceEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -647,8 +632,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getfont_face_Keyframeselectors()
-	{
+	public EReference getfont_face_Keyframeselectors() {
 		return (EReference) font_faceEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -659,8 +643,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getkeyframes()
-	{
+	public EClass getkeyframes() {
 		return keyframesEClass;
 	}
 
@@ -671,8 +654,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getkeyframe_selector()
-	{
+	public EClass getkeyframe_selector() {
 		return keyframe_selectorEClass;
 	}
 
@@ -683,8 +665,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getkeyframe_selector_Type()
-	{
+	public EAttribute getkeyframe_selector_Type() {
 		return (EAttribute) keyframe_selectorEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -695,8 +676,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getkeyframe_selector_Percentage()
-	{
+	public EAttribute getkeyframe_selector_Percentage() {
 		return (EAttribute) keyframe_selectorEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -707,8 +687,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getkeyframe_selector_Declarations()
-	{
+	public EReference getkeyframe_selector_Declarations() {
 		return (EReference) keyframe_selectorEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -719,8 +698,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getruleset()
-	{
+	public EClass getruleset() {
 		return rulesetEClass;
 	}
 
@@ -731,8 +709,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getruleset_Selectors()
-	{
+	public EReference getruleset_Selectors() {
 		return (EReference) rulesetEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -743,8 +720,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getruleset_Declarations()
-	{
+	public EReference getruleset_Declarations() {
 		return (EReference) rulesetEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -755,8 +731,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getselector()
-	{
+	public EClass getselector() {
 		return selectorEClass;
 	}
 
@@ -767,8 +742,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getselector_Simpleselectors()
-	{
+	public EReference getselector_Simpleselectors() {
 		return (EReference) selectorEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -779,8 +753,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getselector_Combinator()
-	{
+	public EAttribute getselector_Combinator() {
 		return (EAttribute) selectorEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -791,8 +764,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getselector_Selector()
-	{
+	public EReference getselector_Selector() {
 		return (EReference) selectorEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -803,8 +775,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getSimpleSelectorForNegation()
-	{
+	public EClass getSimpleSelectorForNegation() {
 		return simpleSelectorForNegationEClass;
 	}
 
@@ -815,8 +786,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getSimpleSelectorForNegation_Element()
-	{
+	public EReference getSimpleSelectorForNegation_Element() {
 		return (EReference) simpleSelectorForNegationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -827,8 +797,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getSimpleSelectorForNegation_Universal()
-	{
+	public EReference getSimpleSelectorForNegation_Universal() {
 		return (EReference) simpleSelectorForNegationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -839,8 +808,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getSimpleSelectorForNegation_SubSelectors()
-	{
+	public EReference getSimpleSelectorForNegation_SubSelectors() {
 		return (EReference) simpleSelectorForNegationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -851,8 +819,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getCssSelector()
-	{
+	public EClass getCssSelector() {
 		return cssSelectorEClass;
 	}
 
@@ -863,8 +830,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getsimple_selector()
-	{
+	public EClass getsimple_selector() {
 		return simple_selectorEClass;
 	}
 
@@ -875,8 +841,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getsimple_selector_Element()
-	{
+	public EReference getsimple_selector_Element() {
 		return (EReference) simple_selectorEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -887,8 +852,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getsimple_selector_Universal()
-	{
+	public EReference getsimple_selector_Universal() {
 		return (EReference) simple_selectorEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -899,8 +863,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getsimple_selector_SubSelectors()
-	{
+	public EReference getsimple_selector_SubSelectors() {
 		return (EReference) simple_selectorEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -911,8 +874,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getClassSelector()
-	{
+	public EClass getClassSelector() {
 		return classSelectorEClass;
 	}
 
@@ -923,8 +885,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getClassSelector_Name()
-	{
+	public EAttribute getClassSelector_Name() {
 		return (EAttribute) classSelectorEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -935,8 +896,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getElementSelector()
-	{
+	public EClass getElementSelector() {
 		return elementSelectorEClass;
 	}
 
@@ -947,8 +907,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getElementSelector_Name()
-	{
+	public EAttribute getElementSelector_Name() {
 		return (EAttribute) elementSelectorEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -959,8 +918,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getUniversalSelector()
-	{
+	public EClass getUniversalSelector() {
 		return universalSelectorEClass;
 	}
 
@@ -971,8 +929,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getUniversalSelector_Namespace()
-	{
+	public EAttribute getUniversalSelector_Namespace() {
 		return (EAttribute) universalSelectorEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -983,8 +940,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getIdSelector()
-	{
+	public EClass getIdSelector() {
 		return idSelectorEClass;
 	}
 
@@ -995,8 +951,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getIdSelector_Name()
-	{
+	public EAttribute getIdSelector_Name() {
 		return (EAttribute) idSelectorEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1007,8 +962,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getcss_declaration()
-	{
+	public EClass getcss_declaration() {
 		return css_declarationEClass;
 	}
 
@@ -1019,8 +973,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getcss_declaration_Property()
-	{
+	public EReference getcss_declaration_Property() {
 		return (EReference) css_declarationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1031,8 +984,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getcss_declaration_ValueTokens()
-	{
+	public EReference getcss_declaration_ValueTokens() {
 		return (EReference) css_declarationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1043,8 +995,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getcss_declaration_Important()
-	{
+	public EAttribute getcss_declaration_Important() {
 		return (EAttribute) css_declarationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1055,8 +1006,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getcss_property()
-	{
+	public EClass getcss_property() {
 		return css_propertyEClass;
 	}
 
@@ -1067,8 +1017,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getcss_property_Name()
-	{
+	public EAttribute getcss_property_Name() {
 		return (EAttribute) css_propertyEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1079,8 +1028,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getPseudoClassOrFunc()
-	{
+	public EClass getPseudoClassOrFunc() {
 		return pseudoClassOrFuncEClass;
 	}
 
@@ -1091,8 +1039,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getPseudoClass()
-	{
+	public EClass getPseudoClass() {
 		return pseudoClassEClass;
 	}
 
@@ -1103,8 +1050,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getPseudoClassName()
-	{
+	public EClass getPseudoClassName() {
 		return pseudoClassNameEClass;
 	}
 
@@ -1115,8 +1061,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPseudoClassName_Name()
-	{
+	public EAttribute getPseudoClassName_Name() {
 		return (EAttribute) pseudoClassNameEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1127,8 +1072,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getPseudoClassFunction()
-	{
+	public EClass getPseudoClassFunction() {
 		return pseudoClassFunctionEClass;
 	}
 
@@ -1139,8 +1083,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPseudoClassFunction_Not()
-	{
+	public EAttribute getPseudoClassFunction_Not() {
 		return (EAttribute) pseudoClassFunctionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1151,8 +1094,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getPseudoClassFunction_ParamSelector()
-	{
+	public EReference getPseudoClassFunction_ParamSelector() {
 		return (EReference) pseudoClassFunctionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1163,8 +1105,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPseudoClassFunction_Name()
-	{
+	public EAttribute getPseudoClassFunction_Name() {
 		return (EAttribute) pseudoClassFunctionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1175,8 +1116,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getPseudoClassFunction_Params()
-	{
+	public EReference getPseudoClassFunction_Params() {
 		return (EReference) pseudoClassFunctionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1187,8 +1127,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getCssTok()
-	{
+	public EClass getCssTok() {
 		return cssTokEClass;
 	}
 
@@ -1199,8 +1138,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getURLType()
-	{
+	public EClass getURLType() {
 		return urlTypeEClass;
 	}
 
@@ -1211,8 +1149,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getURLType_MediaList()
-	{
+	public EAttribute getURLType_MediaList() {
 		return (EAttribute) urlTypeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1223,8 +1160,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getURLType_Url()
-	{
+	public EAttribute getURLType_Url() {
 		return (EAttribute) urlTypeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1235,8 +1171,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getAttributeSelector()
-	{
+	public EClass getAttributeSelector() {
 		return attributeSelectorEClass;
 	}
 
@@ -1247,8 +1182,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAttributeSelector_Name()
-	{
+	public EAttribute getAttributeSelector_Name() {
 		return (EAttribute) attributeSelectorEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1259,8 +1193,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAttributeSelector_Op()
-	{
+	public EAttribute getAttributeSelector_Op() {
 		return (EAttribute) attributeSelectorEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1271,8 +1204,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAttributeSelector_Value()
-	{
+	public EAttribute getAttributeSelector_Value() {
 		return (EAttribute) attributeSelectorEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1283,8 +1215,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getSymbolTok()
-	{
+	public EClass getSymbolTok() {
 		return symbolTokEClass;
 	}
 
@@ -1295,8 +1226,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getSymbolTok_Symbol()
-	{
+	public EAttribute getSymbolTok_Symbol() {
 		return (EAttribute) symbolTokEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1307,8 +1237,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getWSTok()
-	{
+	public EClass getWSTok() {
 		return wsTokEClass;
 	}
 
@@ -1319,8 +1248,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getStringTok()
-	{
+	public EClass getStringTok() {
 		return stringTokEClass;
 	}
 
@@ -1331,8 +1259,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getStringTok_Value()
-	{
+	public EAttribute getStringTok_Value() {
 		return (EAttribute) stringTokEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1343,8 +1270,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getNumberTok()
-	{
+	public EClass getNumberTok() {
 		return numberTokEClass;
 	}
 
@@ -1355,8 +1281,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getNumberTok_Val()
-	{
+	public EAttribute getNumberTok_Val() {
 		return (EAttribute) numberTokEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1367,8 +1292,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getUrlTok()
-	{
+	public EClass getUrlTok() {
 		return urlTokEClass;
 	}
 
@@ -1379,8 +1303,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getUrlTok_Url()
-	{
+	public EReference getUrlTok_Url() {
 		return (EReference) urlTokEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1391,8 +1314,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getColorTok()
-	{
+	public EClass getColorTok() {
 		return colorTokEClass;
 	}
 
@@ -1403,8 +1325,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getColorTok_Value()
-	{
+	public EAttribute getColorTok_Value() {
 		return (EAttribute) colorTokEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1415,8 +1336,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getIdentifierTok()
-	{
+	public EClass getIdentifierTok() {
 		return identifierTokEClass;
 	}
 
@@ -1427,8 +1347,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getIdentifierTok_Name()
-	{
+	public EAttribute getIdentifierTok_Name() {
 		return (EAttribute) identifierTokEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1439,8 +1358,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EClass getFuncTok()
-	{
+	public EClass getFuncTok() {
 		return funcTokEClass;
 	}
 
@@ -1451,8 +1369,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getFuncTok_Name()
-	{
+	public EReference getFuncTok_Name() {
 		return (EReference) funcTokEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1463,8 +1380,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public EReference getFuncTok_Params()
-	{
+	public EReference getFuncTok_Params() {
 		return (EReference) funcTokEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1475,8 +1391,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 * @generated
 	 */
 	@Override
-	public CSSFactory getCSSFactory()
-	{
+	public CSSFactory getCSSFactory() {
 		return (CSSFactory) getEFactoryInstance();
 	}
 
@@ -1496,8 +1411,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 *
 	 * @generated
 	 */
-	public void createPackageContents()
-	{
+	public void createPackageContents() {
 		if (isCreated) {
 			return;
 		}
@@ -1645,8 +1559,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 	 *
 	 * @generated
 	 */
-	public void initializePackageContents()
-	{
+	public void initializePackageContents() {
 		if (isInitialized) {
 			return;
 		}
@@ -1782,7 +1695,8 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage
 		initEReference(getPseudoClassFunction_ParamSelector(), this.getSimpleSelectorForNegation(), null, "paramSelector", null, 0, 1, PseudoClassFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPseudoClassFunction_Name(), ecorePackage.getEString(), "name", null, 0, 1, PseudoClassFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPseudoClassFunction_Params(), this.getCssTok(), null, "params", null, 0, -1, PseudoClassFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPseudoClassFunction_Params(), this.getCssTok(), null, "params", null, 0, -1, PseudoClassFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(cssTokEClass, CssTok.class, "CssTok", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -24,8 +24,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.SymbolTok;
  *
  * @generated
  */
-public class SymbolTokImpl extends CssTokImpl implements SymbolTok
-{
+public class SymbolTokImpl extends CssTokImpl implements SymbolTok {
 	/**
 	 * The default value of the '{@link #getSymbol() <em>Symbol</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -54,8 +53,7 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok
 	 *
 	 * @generated
 	 */
-	protected SymbolTokImpl()
-	{
+	protected SymbolTokImpl() {
 		super();
 	}
 
@@ -66,8 +64,7 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.SYMBOL_TOK;
 	}
 
@@ -78,8 +75,7 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok
 	 * @generated
 	 */
 	@Override
-	public String getSymbol()
-	{
+	public String getSymbol() {
 		return symbol;
 	}
 
@@ -90,8 +86,7 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok
 	 * @generated
 	 */
 	@Override
-	public void setSymbol(String newSymbol)
-	{
+	public void setSymbol(String newSymbol) {
 		String oldSymbol = symbol;
 		symbol = newSymbol;
 		if (eNotificationRequired()) {
@@ -106,10 +101,8 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.SYMBOL_TOK__SYMBOL:
 			return getSymbol();
 		}
@@ -123,10 +116,8 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.SYMBOL_TOK__SYMBOL:
 			setSymbol((String) newValue);
 			return;
@@ -141,10 +132,8 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.SYMBOL_TOK__SYMBOL:
 			setSymbol(SYMBOL_EDEFAULT);
 			return;
@@ -159,10 +148,8 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.SYMBOL_TOK__SYMBOL:
 			return SYMBOL_EDEFAULT == null ? symbol != null : !SYMBOL_EDEFAULT.equals(symbol);
 		}
@@ -176,8 +163,7 @@ public class SymbolTokImpl extends CssTokImpl implements SymbolTok
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}

@@ -25,8 +25,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.UniversalSelector;
  *
  * @generated
  */
-public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implements UniversalSelector
-{
+public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implements UniversalSelector {
 	/**
 	 * The default value of the '{@link #getNamespace() <em>Namespace</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -55,8 +54,7 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	 *
 	 * @generated
 	 */
-	protected UniversalSelectorImpl()
-	{
+	protected UniversalSelectorImpl() {
 		super();
 	}
 
@@ -67,8 +65,7 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.UNIVERSAL_SELECTOR;
 	}
 
@@ -79,8 +76,7 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public String getNamespace()
-	{
+	public String getNamespace() {
 		return namespace;
 	}
 
@@ -91,8 +87,7 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public void setNamespace(String newNamespace)
-	{
+	public void setNamespace(String newNamespace) {
 		String oldNamespace = namespace;
 		namespace = newNamespace;
 		if (eNotificationRequired()) {
@@ -107,10 +102,8 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.UNIVERSAL_SELECTOR__NAMESPACE:
 			return getNamespace();
 		}
@@ -124,10 +117,8 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.UNIVERSAL_SELECTOR__NAMESPACE:
 			setNamespace((String) newValue);
 			return;
@@ -142,10 +133,8 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.UNIVERSAL_SELECTOR__NAMESPACE:
 			setNamespace(NAMESPACE_EDEFAULT);
 			return;
@@ -160,10 +149,8 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.UNIVERSAL_SELECTOR__NAMESPACE:
 			return NAMESPACE_EDEFAULT == null ? namespace != null : !NAMESPACE_EDEFAULT.equals(namespace);
 		}
@@ -177,8 +164,7 @@ public class UniversalSelectorImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}

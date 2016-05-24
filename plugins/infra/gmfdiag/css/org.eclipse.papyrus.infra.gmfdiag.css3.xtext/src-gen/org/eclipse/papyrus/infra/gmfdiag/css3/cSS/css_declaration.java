@@ -24,13 +24,13 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface css_declaration extends EObject
-{
+public interface css_declaration extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Property</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Property</em>' containment reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Property</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -59,7 +59,8 @@ public interface css_declaration extends EObject
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssTok}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Value Tokens</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Value Tokens</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -74,7 +75,8 @@ public interface css_declaration extends EObject
 	 * Returns the value of the '<em><b>Important</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Important</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Important</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *

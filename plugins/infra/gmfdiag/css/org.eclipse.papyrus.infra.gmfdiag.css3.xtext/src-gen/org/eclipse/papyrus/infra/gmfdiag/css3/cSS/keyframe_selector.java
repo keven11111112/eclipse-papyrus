@@ -24,13 +24,13 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface keyframe_selector extends EObject
-{
+public interface keyframe_selector extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -58,7 +58,8 @@ public interface keyframe_selector extends EObject
 	 * Returns the value of the '<em><b>Percentage</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Percentage</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Percentage</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -87,7 +88,8 @@ public interface keyframe_selector extends EObject
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Declarations</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Declarations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *

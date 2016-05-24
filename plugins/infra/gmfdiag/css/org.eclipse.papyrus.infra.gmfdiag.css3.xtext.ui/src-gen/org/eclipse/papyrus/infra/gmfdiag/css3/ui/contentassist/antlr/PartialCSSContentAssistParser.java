@@ -30,8 +30,7 @@ public class PartialCSSContentAssistParser extends CSSParser implements IPartial
 			return Collections.emptyList();
 		}
 		String methodName = "entryRule" + rule.getName();
-		PolymorphicDispatcher<Collection<FollowElement>> dispatcher =
-				new PolymorphicDispatcher<Collection<FollowElement>>(methodName, 0, 0, Collections.singletonList(parser));
+		PolymorphicDispatcher<Collection<FollowElement>> dispatcher = new PolymorphicDispatcher<>(methodName, 0, 0, Collections.singletonList(parser));
 		dispatcher.invoke();
 		return parser.getFollowElements();
 	}

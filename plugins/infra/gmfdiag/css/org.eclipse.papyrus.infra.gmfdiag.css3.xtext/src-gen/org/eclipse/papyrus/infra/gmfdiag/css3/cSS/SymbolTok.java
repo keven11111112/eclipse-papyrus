@@ -19,13 +19,13 @@ package org.eclipse.papyrus.infra.gmfdiag.css3.cSS;
  * @model
  * @generated
  */
-public interface SymbolTok extends CssTok
-{
+public interface SymbolTok extends CssTok {
 	/**
 	 * Returns the value of the '<em><b>Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Symbol</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Symbol</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *

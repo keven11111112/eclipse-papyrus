@@ -18,7 +18,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 
 
 	public class StylesheetElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "stylesheet");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.stylesheet");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Assignment cCharsetAssignment_0 = (Assignment) cGroup.eContents().get(0);
 		private final RuleCall cCharsetCharsetParserRuleCall_0_0 = (RuleCall) cCharsetAssignment_0.eContents().get(0);
@@ -36,11 +36,12 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cKeyframesAssignment_2_4 = (Assignment) cAlternatives_2.eContents().get(4);
 		private final RuleCall cKeyframesKeyframesParserRuleCall_2_4_0 = (RuleCall) cKeyframesAssignment_2_4.eContents().get(0);
 
-		// / *
+		/// *
 		// * TODOS:
 		// * - add more CSS grammar like import
 		// * / stylesheet:
-		// charset=charset? imports+=importExpression* (ruleset+=ruleset | media+=media | page+=page | font_face+=font_face |
+		// charset=charset?
+		// imports+=importExpression* (ruleset+=ruleset | media+=media | page+=page | font_face+=font_face |
 		// keyframes+=keyframes)*;
 		@Override
 		public ParserRule getRule() {
@@ -130,7 +131,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class CharsetElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "charset");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.charset");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives) cGroup.eContents().get(0);
 		private final Keyword cCharsetKeyword_0_0 = (Keyword) cAlternatives_0.eContents().get(0);
@@ -140,28 +141,28 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_2 = (Keyword) cGroup.eContents().get(2);
 
 		// charset:
-		// ("@charset" | "@CHARSET") charset=CSSSTRING ";";
+		// ('@charset' | '@CHARSET') charset=CSSSTRING ';';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// ("@charset" | "@CHARSET") charset=CSSSTRING ";"
+		// ('@charset' | '@CHARSET') charset=CSSSTRING ';'
 		public Group getGroup() {
 			return cGroup;
 		}
 
-		// "@charset" | "@CHARSET"
+		// ('@charset' | '@CHARSET')
 		public Alternatives getAlternatives_0() {
 			return cAlternatives_0;
 		}
 
-		// "@charset"
+		// '@charset'
 		public Keyword getCharsetKeyword_0_0() {
 			return cCharsetKeyword_0_0;
 		}
 
-		// "@CHARSET"
+		// '@CHARSET'
 		public Keyword getCHARSETKeyword_0_1() {
 			return cCHARSETKeyword_0_1;
 		}
@@ -176,14 +177,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cCharsetCSSSTRINGTerminalRuleCall_1_0;
 		}
 
-		// ";"
+		// ';'
 		public Keyword getSemicolonKeyword_2() {
 			return cSemicolonKeyword_2;
 		}
 	}
 
 	public class ImportExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "importExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.importExpression");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives) cGroup.eContents().get(0);
 		private final Keyword cImportKeyword_0_0 = (Keyword) cAlternatives_0.eContents().get(0);
@@ -198,33 +199,33 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_2 = (Keyword) cGroup.eContents().get(2);
 
 		// importExpression:
-		// ("@import" | "@IMPORT") (value=CSSSTRING | URLType mediaList=media_list?) ";";
+		// ('@import' | '@IMPORT') (value=CSSSTRING | URLType mediaList=media_list?) ';';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// ("@import" | "@IMPORT") (value=CSSSTRING | URLType mediaList=media_list?) ";"
+		// ('@import' | '@IMPORT') (value=CSSSTRING | URLType mediaList=media_list?) ';'
 		public Group getGroup() {
 			return cGroup;
 		}
 
-		// "@import" | "@IMPORT"
+		// ('@import' | '@IMPORT')
 		public Alternatives getAlternatives_0() {
 			return cAlternatives_0;
 		}
 
-		// "@import"
+		// '@import'
 		public Keyword getImportKeyword_0_0() {
 			return cImportKeyword_0_0;
 		}
 
-		// "@IMPORT"
+		// '@IMPORT'
 		public Keyword getIMPORTKeyword_0_1() {
 			return cIMPORTKeyword_0_1;
 		}
 
-		// value=CSSSTRING | URLType mediaList=media_list?
+		// (value=CSSSTRING | URLType mediaList=media_list?)
 		public Alternatives getAlternatives_1() {
 			return cAlternatives_1;
 		}
@@ -259,14 +260,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cMediaListMedia_listParserRuleCall_1_1_1_0;
 		}
 
-		// ";"
+		// ';'
 		public Keyword getSemicolonKeyword_2() {
 			return cSemicolonKeyword_2;
 		}
 	}
 
 	public class PageElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "page");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.page");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cPageAction_0 = (Action) cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives) cGroup.eContents().get(1);
@@ -284,15 +285,15 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword) cGroup.eContents().get(6);
 
 		// page:
-		// {page} ("@page" | "@PAGE") pseudoPage=pseudo_page? "{" declarations+=css_declaration? (";"
-		// declarations+=css_declaration?)* "}";
+		// {page} ('@page' | '@PAGE') pseudoPage=pseudo_page?
+		// '{' declarations+=css_declaration? (';' declarations+=css_declaration?)* '}';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// {page} ("@page" | "@PAGE") pseudoPage=pseudo_page? "{" declarations+=css_declaration? (";"
-		// declarations+=css_declaration?)* "}"
+		// {page} ('@page' | '@PAGE') pseudoPage=pseudo_page? '{' declarations+=css_declaration? (';'
+		// declarations+=css_declaration?)* '}'
 		public Group getGroup() {
 			return cGroup;
 		}
@@ -302,17 +303,17 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cPageAction_0;
 		}
 
-		// "@page" | "@PAGE"
+		// ('@page' | '@PAGE')
 		public Alternatives getAlternatives_1() {
 			return cAlternatives_1;
 		}
 
-		// "@page"
+		// '@page'
 		public Keyword getPageKeyword_1_0() {
 			return cPageKeyword_1_0;
 		}
 
-		// "@PAGE"
+		// '@PAGE'
 		public Keyword getPAGEKeyword_1_1() {
 			return cPAGEKeyword_1_1;
 		}
@@ -327,7 +328,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cPseudoPagePseudo_pageParserRuleCall_2_0;
 		}
 
-		// "{"
+		// '{'
 		public Keyword getLeftCurlyBracketKeyword_3() {
 			return cLeftCurlyBracketKeyword_3;
 		}
@@ -342,12 +343,12 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cDeclarationsCss_declarationParserRuleCall_4_0;
 		}
 
-		// (";" declarations+=css_declaration?)*
+		// (';' declarations+=css_declaration?)*
 		public Group getGroup_5() {
 			return cGroup_5;
 		}
 
-		// ";"
+		// ';'
 		public Keyword getSemicolonKeyword_5_0() {
 			return cSemicolonKeyword_5_0;
 		}
@@ -362,14 +363,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cDeclarationsCss_declarationParserRuleCall_5_1_0;
 		}
 
-		// "}"
+		// '}'
 		public Keyword getRightCurlyBracketKeyword_6() {
 			return cRightCurlyBracketKeyword_6;
 		}
 	}
 
 	public class Pseudo_pageElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "pseudo_page");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.pseudo_page");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final RuleCall cCOLONTerminalRuleCall_0 = (RuleCall) cGroup.eContents().get(0);
 		private final RuleCall cIdentifierParserRuleCall_1 = (RuleCall) cGroup.eContents().get(1);
@@ -398,7 +399,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class MediaElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "media");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.media");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives) cGroup.eContents().get(0);
 		private final Keyword cMediaKeyword_0_0 = (Keyword) cAlternatives_0.eContents().get(0);
@@ -411,28 +412,28 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword) cGroup.eContents().get(4);
 
 		// media:
-		// ("@media" | "@MEDIA") medialist=media_list "{" rulesets+=ruleset* "}";
+		// ('@media' | '@MEDIA') medialist=media_list '{' rulesets+=ruleset* '}';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// ("@media" | "@MEDIA") medialist=media_list "{" rulesets+=ruleset* "}"
+		// ('@media' | '@MEDIA') medialist=media_list '{' rulesets+=ruleset* '}'
 		public Group getGroup() {
 			return cGroup;
 		}
 
-		// "@media" | "@MEDIA"
+		// ('@media' | '@MEDIA')
 		public Alternatives getAlternatives_0() {
 			return cAlternatives_0;
 		}
 
-		// "@media"
+		// '@media'
 		public Keyword getMediaKeyword_0_0() {
 			return cMediaKeyword_0_0;
 		}
 
-		// "@MEDIA"
+		// '@MEDIA'
 		public Keyword getMEDIAKeyword_0_1() {
 			return cMEDIAKeyword_0_1;
 		}
@@ -447,7 +448,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cMedialistMedia_listParserRuleCall_1_0;
 		}
 
-		// "{"
+		// '{'
 		public Keyword getLeftCurlyBracketKeyword_2() {
 			return cLeftCurlyBracketKeyword_2;
 		}
@@ -462,14 +463,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cRulesetsRulesetParserRuleCall_3_0;
 		}
 
-		// "}"
+		// '}'
 		public Keyword getRightCurlyBracketKeyword_4() {
 			return cRightCurlyBracketKeyword_4;
 		}
 	}
 
 	public class Media_listElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "media_list");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.media_list");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final RuleCall cMediumParserRuleCall_0 = (RuleCall) cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group) cGroup.eContents().get(1);
@@ -510,7 +511,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class MediumElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "medium");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.medium");
 		private final RuleCall cIdentifierParserRuleCall = (RuleCall) rule.eContents().get(1);
 
 		// medium:
@@ -527,7 +528,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class Font_faceElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "font_face");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.font_face");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cFont_faceAction_0 = (Action) cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives) cGroup.eContents().get(1);
@@ -543,14 +544,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword) cGroup.eContents().get(5);
 
 		// font_face:
-		// {font_face} ("@font-face" | "@FONT-FACE") "{" declarations+=css_declaration? (";" declarations+=css_declaration?)*
-		// "}";
+		// {font_face} ('@font-face' | '@FONT-FACE')
+		// '{' declarations+=css_declaration? (';' declarations+=css_declaration?)* '}';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// {font_face} ("@font-face" | "@FONT-FACE") "{" declarations+=css_declaration? (";" declarations+=css_declaration?)* "}"
+		// {font_face} ('@font-face' | '@FONT-FACE') '{' declarations+=css_declaration? (';' declarations+=css_declaration?)* '}'
 		public Group getGroup() {
 			return cGroup;
 		}
@@ -560,22 +561,22 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cFont_faceAction_0;
 		}
 
-		// "@font-face" | "@FONT-FACE"
+		// ('@font-face' | '@FONT-FACE')
 		public Alternatives getAlternatives_1() {
 			return cAlternatives_1;
 		}
 
-		// "@font-face"
+		// '@font-face'
 		public Keyword getFontFaceKeyword_1_0() {
 			return cFontFaceKeyword_1_0;
 		}
 
-		// "@FONT-FACE"
+		// '@FONT-FACE'
 		public Keyword getFONTFACEKeyword_1_1() {
 			return cFONTFACEKeyword_1_1;
 		}
 
-		// "{"
+		// '{'
 		public Keyword getLeftCurlyBracketKeyword_2() {
 			return cLeftCurlyBracketKeyword_2;
 		}
@@ -590,12 +591,12 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cDeclarationsCss_declarationParserRuleCall_3_0;
 		}
 
-		// (";" declarations+=css_declaration?)*
+		// (';' declarations+=css_declaration?)*
 		public Group getGroup_4() {
 			return cGroup_4;
 		}
 
-		// ";"
+		// ';'
 		public Keyword getSemicolonKeyword_4_0() {
 			return cSemicolonKeyword_4_0;
 		}
@@ -610,14 +611,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cDeclarationsCss_declarationParserRuleCall_4_1_0;
 		}
 
-		// "}"
+		// '}'
 		public Keyword getRightCurlyBracketKeyword_5() {
 			return cRightCurlyBracketKeyword_5;
 		}
 	}
 
 	public class KeyframesElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "keyframes");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.keyframes");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cFont_faceAction_0 = (Action) cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives) cGroup.eContents().get(1);
@@ -635,15 +636,15 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword) cGroup.eContents().get(6);
 
 		// keyframes:
-		// {font_face} ("@keyframes" | "@KEYFRAMES") name=Identifier "{" keyframeselectors+=keyframe_selector? (";"
-		// keyframeselectors+=keyframe_selector?)* "}";
+		// {font_face} ('@keyframes' | '@KEYFRAMES') name=Identifier
+		// '{' keyframeselectors+=keyframe_selector? (';' keyframeselectors+=keyframe_selector?)* '}';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// {font_face} ("@keyframes" | "@KEYFRAMES") name=Identifier "{" keyframeselectors+=keyframe_selector? (";"
-		// keyframeselectors+=keyframe_selector?)* "}"
+		// {font_face} ('@keyframes' | '@KEYFRAMES') name=Identifier '{' keyframeselectors+=keyframe_selector? (';'
+		// keyframeselectors+=keyframe_selector?)* '}'
 		public Group getGroup() {
 			return cGroup;
 		}
@@ -653,17 +654,17 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cFont_faceAction_0;
 		}
 
-		// "@keyframes" | "@KEYFRAMES"
+		// ('@keyframes' | '@KEYFRAMES')
 		public Alternatives getAlternatives_1() {
 			return cAlternatives_1;
 		}
 
-		// "@keyframes"
+		// '@keyframes'
 		public Keyword getKeyframesKeyword_1_0() {
 			return cKeyframesKeyword_1_0;
 		}
 
-		// "@KEYFRAMES"
+		// '@KEYFRAMES'
 		public Keyword getKEYFRAMESKeyword_1_1() {
 			return cKEYFRAMESKeyword_1_1;
 		}
@@ -678,7 +679,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cNameIdentifierParserRuleCall_2_0;
 		}
 
-		// "{"
+		// '{'
 		public Keyword getLeftCurlyBracketKeyword_3() {
 			return cLeftCurlyBracketKeyword_3;
 		}
@@ -693,12 +694,12 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cKeyframeselectorsKeyframe_selectorParserRuleCall_4_0;
 		}
 
-		// (";" keyframeselectors+=keyframe_selector?)*
+		// (';' keyframeselectors+=keyframe_selector?)*
 		public Group getGroup_5() {
 			return cGroup_5;
 		}
 
-		// ";"
+		// ';'
 		public Keyword getSemicolonKeyword_5_0() {
 			return cSemicolonKeyword_5_0;
 		}
@@ -713,14 +714,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cKeyframeselectorsKeyframe_selectorParserRuleCall_5_1_0;
 		}
 
-		// "}"
+		// '}'
 		public Keyword getRightCurlyBracketKeyword_6() {
 			return cRightCurlyBracketKeyword_6;
 		}
 	}
 
 	public class Keyframe_selectorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "keyframe_selector");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.keyframe_selector");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives) cGroup.eContents().get(0);
 		private final Assignment cTypeAssignment_0_0 = (Assignment) cAlternatives_0.eContents().get(0);
@@ -739,19 +740,20 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword) cGroup.eContents().get(4);
 
 		// keyframe_selector:
-		// (type=Identifier | percentage=Num PERCENT) "{" declarations+=css_declaration? (";" declarations+=css_declaration?)*
-		// "}";
+		// (type=Identifier | percentage=Num PERCENT) '{'
+		// declarations+=css_declaration? (';' declarations+=css_declaration?)*
+		// '}';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// (type=Identifier | percentage=Num PERCENT) "{" declarations+=css_declaration? (";" declarations+=css_declaration?)* "}"
+		// (type=Identifier | percentage=Num PERCENT) '{' declarations+=css_declaration? (';' declarations+=css_declaration?)* '}'
 		public Group getGroup() {
 			return cGroup;
 		}
 
-		// type=Identifier | percentage=Num PERCENT
+		// (type=Identifier | percentage=Num PERCENT)
 		public Alternatives getAlternatives_0() {
 			return cAlternatives_0;
 		}
@@ -786,7 +788,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cPERCENTTerminalRuleCall_0_1_1;
 		}
 
-		// "{"
+		// '{'
 		public Keyword getLeftCurlyBracketKeyword_1() {
 			return cLeftCurlyBracketKeyword_1;
 		}
@@ -801,12 +803,12 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cDeclarationsCss_declarationParserRuleCall_2_0;
 		}
 
-		// (";" declarations+=css_declaration?)*
+		// (';' declarations+=css_declaration?)*
 		public Group getGroup_3() {
 			return cGroup_3;
 		}
 
-		// ";"
+		// ';'
 		public Keyword getSemicolonKeyword_3_0() {
 			return cSemicolonKeyword_3_0;
 		}
@@ -821,14 +823,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cDeclarationsCss_declarationParserRuleCall_3_1_0;
 		}
 
-		// "}"
+		// '}'
 		public Keyword getRightCurlyBracketKeyword_4() {
 			return cRightCurlyBracketKeyword_4;
 		}
 	}
 
 	public class RulesetElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ruleset");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ruleset");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Assignment cSelectorsAssignment_0 = (Assignment) cGroup.eContents().get(0);
 		private final RuleCall cSelectorsSelectorParserRuleCall_0_0 = (RuleCall) cSelectorsAssignment_0.eContents().get(0);
@@ -850,15 +852,16 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword) cGroup.eContents().get(5);
 
 		// ruleset:
-		// selectors+=selector (WS* COMMA selectors+=selector)* WS* "{" (declarations+=css_declaration (";"
-		// declarations+=css_declaration)* ";"?)? "}";
+		// selectors+=selector (WS* COMMA selectors+=selector)* WS* '{' (declarations+=css_declaration (';'
+		// declarations+=css_declaration)* ';'?)?
+		// '}';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// selectors+=selector (WS* COMMA selectors+=selector)* WS* "{" (declarations+=css_declaration (";"
-		// declarations+=css_declaration)* ";"?)? "}"
+		// selectors+=selector (WS* COMMA selectors+=selector)* WS* '{' (declarations+=css_declaration (';'
+		// declarations+=css_declaration)* ';'?)? '}'
 		public Group getGroup() {
 			return cGroup;
 		}
@@ -903,12 +906,12 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cWSTerminalRuleCall_2;
 		}
 
-		// "{"
+		// '{'
 		public Keyword getLeftCurlyBracketKeyword_3() {
 			return cLeftCurlyBracketKeyword_3;
 		}
 
-		// (declarations+=css_declaration (";" declarations+=css_declaration)* ";"?)?
+		// (declarations+=css_declaration (';' declarations+=css_declaration)* ';'?)?
 		public Group getGroup_4() {
 			return cGroup_4;
 		}
@@ -923,12 +926,12 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cDeclarationsCss_declarationParserRuleCall_4_0_0;
 		}
 
-		// (";" declarations+=css_declaration)*
+		// (';' declarations+=css_declaration)*
 		public Group getGroup_4_1() {
 			return cGroup_4_1;
 		}
 
-		// ";"
+		// ';'
 		public Keyword getSemicolonKeyword_4_1_0() {
 			return cSemicolonKeyword_4_1_0;
 		}
@@ -943,19 +946,19 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cDeclarationsCss_declarationParserRuleCall_4_1_1_0;
 		}
 
-		// ";"?
+		// ';'?
 		public Keyword getSemicolonKeyword_4_2() {
 			return cSemicolonKeyword_4_2;
 		}
 
-		// "}"
+		// '}'
 		public Keyword getRightCurlyBracketKeyword_5() {
 			return cRightCurlyBracketKeyword_5;
 		}
 	}
 
 	public class SelectorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "selector");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.selector");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Assignment cSimpleselectorsAssignment_0 = (Assignment) cGroup.eContents().get(0);
 		private final RuleCall cSimpleselectorsSimple_selectorParserRuleCall_0_0 = (RuleCall) cSimpleselectorsAssignment_0.eContents().get(0);
@@ -975,7 +978,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSelectorAssignment_1_1_2 = (Assignment) cGroup_1_1.eContents().get(2);
 		private final RuleCall cSelectorSelectorParserRuleCall_1_1_2_0 = (RuleCall) cSelectorAssignment_1_1_2.eContents().get(0);
 
-		// // check simple_selctor cardinality
+		//// check simple_selctor cardinality
 		// selector hidden(ML_COMMENT):
 		// simpleselectors+=simple_selector (combinator=combinator WS* selector=selector | WS+ (combinator=combinator WS*)?
 		// selector=selector)?;
@@ -1077,7 +1080,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SimpleSelectorForNegationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SimpleSelectorForNegation");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.SimpleSelectorForNegation");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final Group cGroup_0 = (Group) cAlternatives.eContents().get(0);
 		private final Alternatives cAlternatives_0_0 = (Alternatives) cGroup_0.eContents().get(0);
@@ -1091,8 +1094,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSubSelectorsSubSelectorForNegationParserRuleCall_1_0 = (RuleCall) cSubSelectorsAssignment_1.eContents().get(0);
 
 		// SimpleSelectorForNegation:
-		// (element=ElementSelector | universal=UniversalSelector) subSelectors+=SubSelectorForNegation* | =>
-		// subSelectors+=SubSelectorForNegation+;
+		// (element=ElementSelector | universal=UniversalSelector) subSelectors+=SubSelectorForNegation* |
+		// => subSelectors+=SubSelectorForNegation+;
 		@Override
 		public ParserRule getRule() {
 			return rule;
@@ -1109,7 +1112,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cGroup_0;
 		}
 
-		// element=ElementSelector | universal=UniversalSelector
+		// (element=ElementSelector | universal=UniversalSelector)
 		public Alternatives getAlternatives_0_0() {
 			return cAlternatives_0_0;
 		}
@@ -1156,15 +1159,15 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SubSelectorForNegationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SubSelectorForNegation");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.SubSelectorForNegation");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final RuleCall cIdSelectorParserRuleCall_0 = (RuleCall) cAlternatives.eContents().get(0);
 		private final RuleCall cClassSelectorParserRuleCall_1 = (RuleCall) cAlternatives.eContents().get(1);
 		private final RuleCall cAttributeSelectorParserRuleCall_2 = (RuleCall) cAlternatives.eContents().get(2);
 		private final RuleCall cPseudoClassParserRuleCall_3 = (RuleCall) cAlternatives.eContents().get(3);
 
-		// SubSelectorForNegation returns CssSelector:
-		// IdSelector | ClassSelector | AttributeSelector | PseudoClass;
+		// SubSelectorForNegation CssSelector:
+		// IdSelector | ClassSelector | AttributeSelector | PseudoClass
 		@Override
 		public ParserRule getRule() {
 			return rule;
@@ -1197,7 +1200,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class Simple_selectorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "simple_selector");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.simple_selector");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final Group cGroup_0 = (Group) cAlternatives.eContents().get(0);
 		private final Alternatives cAlternatives_0_0 = (Alternatives) cGroup_0.eContents().get(0);
@@ -1227,7 +1230,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cGroup_0;
 		}
 
-		// element=ElementSelector | universal=UniversalSelector
+		// (element=ElementSelector | universal=UniversalSelector)
 		public Alternatives getAlternatives_0_0() {
 			return cAlternatives_0_0;
 		}
@@ -1274,15 +1277,15 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SubSelectorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SubSelector");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.SubSelector");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final RuleCall cIdSelectorParserRuleCall_0 = (RuleCall) cAlternatives.eContents().get(0);
 		private final RuleCall cClassSelectorParserRuleCall_1 = (RuleCall) cAlternatives.eContents().get(1);
 		private final RuleCall cAttributeSelectorParserRuleCall_2 = (RuleCall) cAlternatives.eContents().get(2);
 		private final RuleCall cPseudoClassOrFuncParserRuleCall_3 = (RuleCall) cAlternatives.eContents().get(3);
 
-		// SubSelector returns CssSelector:
-		// IdSelector | ClassSelector | AttributeSelector | PseudoClassOrFunc;
+		// SubSelector CssSelector:
+		// IdSelector | ClassSelector | AttributeSelector | PseudoClassOrFunc
 		@Override
 		public ParserRule getRule() {
 			return rule;
@@ -1315,7 +1318,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class AttributeSelectorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AttributeSelector");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.AttributeSelector");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cAttributeSelectorAction_0 = (Action) cGroup.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword) cGroup.eContents().get(1);
@@ -1336,16 +1339,16 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueCSSSTRINGTerminalRuleCall_3_1_0_1 = (RuleCall) cValueAlternatives_3_1_0.eContents().get(1);
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword) cGroup.eContents().get(4);
 
-		// AttributeSelector returns CssSelector:
-		// {AttributeSelector} "[" name=Identifier (op=("^=" | "$=" | "*=" | "=" | INCLUDES | DASHMATCH) value=(Identifier |
-		// CSSSTRING))? "]";
+		// AttributeSelector CssSelector:
+		// {AttributeSelector} '[' name=Identifier (op=('^=' | '$=' | '*=' | '=' | INCLUDES | DASHMATCH) value=(Identifier |
+		// CSSSTRING))? ']'
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// {AttributeSelector} "[" name=Identifier (op=("^=" | "$=" | "*=" | "=" | INCLUDES | DASHMATCH) value=(Identifier |
-		// CSSSTRING))? "]"
+		// {AttributeSelector} '[' name=Identifier (op=('^=' | '$=' | '*=' | '=' | INCLUDES | DASHMATCH) value=(Identifier |
+		// CSSSTRING))? ']'
 		public Group getGroup() {
 			return cGroup;
 		}
@@ -1355,7 +1358,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cAttributeSelectorAction_0;
 		}
 
-		// "["
+		// '['
 		public Keyword getLeftSquareBracketKeyword_1() {
 			return cLeftSquareBracketKeyword_1;
 		}
@@ -1370,37 +1373,37 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cNameIdentifierParserRuleCall_2_0;
 		}
 
-		// (op=("^=" | "$=" | "*=" | "=" | INCLUDES | DASHMATCH) value=(Identifier | CSSSTRING))?
+		// (op=('^=' | '$=' | '*=' | '=' | INCLUDES | DASHMATCH) value=(Identifier | CSSSTRING))?
 		public Group getGroup_3() {
 			return cGroup_3;
 		}
 
-		// op=("^=" | "$=" | "*=" | "=" | INCLUDES | DASHMATCH)
+		// op=('^=' | '$=' | '*=' | '=' | INCLUDES | DASHMATCH)
 		public Assignment getOpAssignment_3_0() {
 			return cOpAssignment_3_0;
 		}
 
-		// "^=" | "$=" | "*=" | "=" | INCLUDES | DASHMATCH
+		// ('^=' | '$=' | '*=' | '=' | INCLUDES | DASHMATCH)
 		public Alternatives getOpAlternatives_3_0_0() {
 			return cOpAlternatives_3_0_0;
 		}
 
-		// "^="
+		// '^='
 		public Keyword getOpCircumflexAccentEqualsSignKeyword_3_0_0_0() {
 			return cOpCircumflexAccentEqualsSignKeyword_3_0_0_0;
 		}
 
-		// "$="
+		// '$='
 		public Keyword getOpDollarSignEqualsSignKeyword_3_0_0_1() {
 			return cOpDollarSignEqualsSignKeyword_3_0_0_1;
 		}
 
-		// "*="
+		// '*='
 		public Keyword getOpAsteriskEqualsSignKeyword_3_0_0_2() {
 			return cOpAsteriskEqualsSignKeyword_3_0_0_2;
 		}
 
-		// "="
+		// '='
 		public Keyword getOpEqualsSignKeyword_3_0_0_3() {
 			return cOpEqualsSignKeyword_3_0_0_3;
 		}
@@ -1420,7 +1423,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cValueAssignment_3_1;
 		}
 
-		// Identifier | CSSSTRING
+		// (Identifier | CSSSTRING)
 		public Alternatives getValueAlternatives_3_1_0() {
 			return cValueAlternatives_3_1_0;
 		}
@@ -1435,14 +1438,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cValueCSSSTRINGTerminalRuleCall_3_1_0_1;
 		}
 
-		// "]"
+		// ']'
 		public Keyword getRightSquareBracketKeyword_4() {
 			return cRightSquareBracketKeyword_4;
 		}
 	}
 
 	public class ClassSelectorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ClassSelector");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ClassSelector");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cClassSelectorAction_0 = (Action) cGroup.eContents().get(0);
 		private final Keyword cFullStopKeyword_1 = (Keyword) cGroup.eContents().get(1);
@@ -1450,13 +1453,13 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIdentifierParserRuleCall_2_0 = (RuleCall) cNameAssignment_2.eContents().get(0);
 
 		// ClassSelector:
-		// {ClassSelector} "." name=Identifier;
+		// {ClassSelector} '.' name=Identifier;
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// {ClassSelector} "." name=Identifier
+		// {ClassSelector} '.' name=Identifier
 		public Group getGroup() {
 			return cGroup;
 		}
@@ -1466,7 +1469,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cClassSelectorAction_0;
 		}
 
-		// "."
+		// '.'
 		public Keyword getFullStopKeyword_1() {
 			return cFullStopKeyword_1;
 		}
@@ -1483,7 +1486,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ElementSelectorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ElementSelector");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ElementSelector");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cElementSelectorAction_0 = (Action) cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment) cGroup.eContents().get(1);
@@ -1518,7 +1521,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class UniversalSelectorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UniversalSelector");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.UniversalSelector");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cUniversalSelectorAction_0 = (Action) cGroup.eContents().get(0);
 		private final Assignment cNamespaceAssignment_1 = (Assignment) cGroup.eContents().get(1);
@@ -1526,13 +1529,13 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAsteriskKeyword_2 = (Keyword) cGroup.eContents().get(2);
 
 		// UniversalSelector:
-		// {UniversalSelector} namespace=css_namespace_prefix? "*";
+		// {UniversalSelector} namespace=css_namespace_prefix? '*';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// {UniversalSelector} namespace=css_namespace_prefix? "*"
+		// {UniversalSelector} namespace=css_namespace_prefix? '*'
 		public Group getGroup() {
 			return cGroup;
 		}
@@ -1552,14 +1555,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cNamespaceCss_namespace_prefixParserRuleCall_1_0;
 		}
 
-		// "*"
+		// '*'
 		public Keyword getAsteriskKeyword_2() {
 			return cAsteriskKeyword_2;
 		}
 	}
 
 	public class IdSelectorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IdSelector");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.IdSelector");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cIdSelectorAction_0 = (Action) cGroup.eContents().get(0);
 		private final RuleCall cHASHMARKTerminalRuleCall_1 = (RuleCall) cGroup.eContents().get(1);
@@ -1600,7 +1603,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class Css_namespace_prefixElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "css_namespace_prefix");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_namespace_prefix");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives) cGroup.eContents().get(0);
 		private final RuleCall cIdentifierParserRuleCall_0_0 = (RuleCall) cAlternatives_0.eContents().get(0);
@@ -1608,18 +1611,18 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cVerticalLineKeyword_1 = (Keyword) cGroup.eContents().get(1);
 
 		// css_namespace_prefix:
-		// (Identifier | "*")? "|";
+		// (Identifier | '*')? '|';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// (Identifier | "*")? "|"
+		// (Identifier | '*')? '|'
 		public Group getGroup() {
 			return cGroup;
 		}
 
-		// (Identifier | "*")?
+		// (Identifier | '*')?
 		public Alternatives getAlternatives_0() {
 			return cAlternatives_0;
 		}
@@ -1629,19 +1632,19 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cIdentifierParserRuleCall_0_0;
 		}
 
-		// "*"
+		// '*'
 		public Keyword getAsteriskKeyword_0_1() {
 			return cAsteriskKeyword_0_1;
 		}
 
-		// "|"
+		// '|'
 		public Keyword getVerticalLineKeyword_1() {
 			return cVerticalLineKeyword_1;
 		}
 	}
 
 	public class Css_declarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "css_declaration");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final RuleCall cWSTerminalRuleCall_0 = (RuleCall) cGroup.eContents().get(0);
 		private final Assignment cPropertyAssignment_1 = (Assignment) cGroup.eContents().get(1);
@@ -1712,7 +1715,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class Css_propertyElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "css_property");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_property");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cCss_propertyAction_0 = (Action) cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment) cGroup.eContents().get(1);
@@ -1747,7 +1750,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ValidPropertyIdentElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValidPropertyIdent");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ValidPropertyIdent");
 		private final RuleCall cIdentifierParserRuleCall = (RuleCall) rule.eContents().get(1);
 
 		// ValidPropertyIdent:
@@ -1764,7 +1767,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class PseudoClassOrFuncElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PseudoClassOrFunc");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.PseudoClassOrFunc");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final RuleCall cPseudoClassParserRuleCall_0 = (RuleCall) cAlternatives.eContents().get(0);
 		private final RuleCall cPseudoClassFunctionParserRuleCall_1 = (RuleCall) cAlternatives.eContents().get(1);
@@ -1793,7 +1796,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class PseudoClassElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PseudoClass");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.PseudoClass");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final RuleCall cCOLONTerminalRuleCall_0 = (RuleCall) cGroup.eContents().get(0);
 		private final RuleCall cCOLONTerminalRuleCall_1 = (RuleCall) cGroup.eContents().get(1);
@@ -1828,7 +1831,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class PseudoClassNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PseudoClassName");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.PseudoClassName");
 		private final Assignment cNameAssignment = (Assignment) rule.eContents().get(1);
 		private final RuleCall cNameIdentifierParserRuleCall_0 = (RuleCall) cNameAssignment.eContents().get(0);
 
@@ -1851,7 +1854,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class PseudoClassFunctionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PseudoClassFunction");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.PseudoClassFunction");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final Group cGroup_0 = (Group) cAlternatives.eContents().get(0);
 		private final Assignment cNotAssignment_0_0 = (Assignment) cGroup_0.eContents().get(0);
@@ -1869,18 +1872,18 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_1_4 = (Keyword) cGroup_1.eContents().get(4);
 
 		// PseudoClassFunction:
-		// not?=NotFunctionCall paramSelector=SimpleSelectorForNegation ")" | COLON name=Identifier "(" params+=CssTok* ")";
+		// not?=NotFunctionCall paramSelector=SimpleSelectorForNegation ')' | COLON name=Identifier '(' params+=CssTok* ')';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// not?=NotFunctionCall paramSelector=SimpleSelectorForNegation ")" | COLON name=Identifier "(" params+=CssTok* ")"
+		// not?=NotFunctionCall paramSelector=SimpleSelectorForNegation ')' | COLON name=Identifier '(' params+=CssTok* ')'
 		public Alternatives getAlternatives() {
 			return cAlternatives;
 		}
 
-		// not?=NotFunctionCall paramSelector=SimpleSelectorForNegation ")"
+		// not?=NotFunctionCall paramSelector=SimpleSelectorForNegation ')'
 		public Group getGroup_0() {
 			return cGroup_0;
 		}
@@ -1905,12 +1908,12 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cParamSelectorSimpleSelectorForNegationParserRuleCall_0_1_0;
 		}
 
-		// ")"
+		// ')'
 		public Keyword getRightParenthesisKeyword_0_2() {
 			return cRightParenthesisKeyword_0_2;
 		}
 
-		// COLON name=Identifier "(" params+=CssTok* ")"
+		// COLON name=Identifier '(' params+=CssTok* ')'
 		public Group getGroup_1() {
 			return cGroup_1;
 		}
@@ -1930,7 +1933,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cNameIdentifierParserRuleCall_1_1_0;
 		}
 
-		// "("
+		// '('
 		public Keyword getLeftParenthesisKeyword_1_2() {
 			return cLeftParenthesisKeyword_1_2;
 		}
@@ -1945,26 +1948,26 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cParamsCssTokParserRuleCall_1_3_0;
 		}
 
-		// ")"
+		// ')'
 		public Keyword getRightParenthesisKeyword_1_4() {
 			return cRightParenthesisKeyword_1_4;
 		}
 	}
 
 	public class NotFunctionCallElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NotFunctionCall");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.NotFunctionCall");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final RuleCall cCOLONTerminalRuleCall_0 = (RuleCall) cGroup.eContents().get(0);
 		private final Keyword cNotKeyword_1 = (Keyword) cGroup.eContents().get(1);
 
 		// NotFunctionCall hidden():
-		// COLON "not(";
+		// COLON 'not(';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// COLON "not("
+		// COLON 'not('
 		public Group getGroup() {
 			return cGroup;
 		}
@@ -1974,27 +1977,29 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cCOLONTerminalRuleCall_0;
 		}
 
-		// "not("
+		// 'not('
 		public Keyword getNotKeyword_1() {
 			return cNotKeyword_1;
 		}
 	}
 
 	public class CombinatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "combinator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.combinator");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final RuleCall cPLUSTerminalRuleCall_0 = (RuleCall) cAlternatives.eContents().get(0);
 		private final Keyword cGreaterThanSignKeyword_1 = (Keyword) cAlternatives.eContents().get(1);
 		private final Keyword cTildeKeyword_2 = (Keyword) cAlternatives.eContents().get(2);
 
 		// combinator:
-		// PLUS | ">" | "~";
+		// PLUS
+		// | '>'
+		// | '~';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// PLUS | ">" | "~"
+		// PLUS | '>' | '~'
 		public Alternatives getAlternatives() {
 			return cAlternatives;
 		}
@@ -2004,36 +2009,36 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cPLUSTerminalRuleCall_0;
 		}
 
-		// ">"
+		// '>'
 		public Keyword getGreaterThanSignKeyword_1() {
 			return cGreaterThanSignKeyword_1;
 		}
 
-		// "~"
+		// '~'
 		public Keyword getTildeKeyword_2() {
 			return cTildeKeyword_2;
 		}
 	}
 
 	public class OperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "operator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.operator");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final Keyword cSolidusKeyword_0 = (Keyword) cAlternatives.eContents().get(0);
 		private final RuleCall cCOMMATerminalRuleCall_1 = (RuleCall) cAlternatives.eContents().get(1);
 
 		// operator:
-		// "/" | COMMA;
+		// '/' | COMMA;
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// "/" | COMMA
+		// '/' | COMMA
 		public Alternatives getAlternatives() {
 			return cAlternatives;
 		}
 
-		// "/"
+		// '/'
 		public Keyword getSolidusKeyword_0() {
 			return cSolidusKeyword_0;
 		}
@@ -2045,7 +2050,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class Unary_operatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "unary_operator");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.unary_operator");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final RuleCall cDASHTerminalRuleCall_0 = (RuleCall) cAlternatives.eContents().get(0);
 		private final RuleCall cPLUSTerminalRuleCall_1 = (RuleCall) cAlternatives.eContents().get(1);
@@ -2074,7 +2079,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SymbolTokElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SymbolTok");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.SymbolTok");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cSymbolTokAction_0 = (Action) cGroup.eContents().get(0);
 		private final Assignment cSymbolAssignment_1 = (Assignment) cGroup.eContents().get(1);
@@ -2082,8 +2087,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSymbolCOMMATerminalRuleCall_1_0_0 = (RuleCall) cSymbolAlternatives_1_0.eContents().get(0);
 		private final RuleCall cSymbolPERCENTTerminalRuleCall_1_0_1 = (RuleCall) cSymbolAlternatives_1_0.eContents().get(1);
 
-		// SymbolTok returns CssTok:
-		// {SymbolTok} symbol=(COMMA | PERCENT);
+		// SymbolTok CssTok:
+		// {SymbolTok} symbol=(COMMA | PERCENT)
 		@Override
 		public ParserRule getRule() {
 			return rule;
@@ -2104,7 +2109,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cSymbolAssignment_1;
 		}
 
-		// COMMA | PERCENT
+		// (COMMA | PERCENT)
 		public Alternatives getSymbolAlternatives_1_0() {
 			return cSymbolAlternatives_1_0;
 		}
@@ -2121,13 +2126,13 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class WSTokElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "WSTok");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.WSTok");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cWSTokAction_0 = (Action) cGroup.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall) cGroup.eContents().get(1);
 
-		// WSTok returns CssTok:
-		// {WSTok} WS;
+		// WSTok CssTok:
+		// {WSTok} WS
 		@Override
 		public ParserRule getRule() {
 			return rule;
@@ -2150,14 +2155,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class StringTokElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringTok");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.StringTok");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cStringTokAction_0 = (Action) cGroup.eContents().get(0);
 		private final Assignment cValueAssignment_1 = (Assignment) cGroup.eContents().get(1);
 		private final RuleCall cValueCSSSTRINGTerminalRuleCall_1_0 = (RuleCall) cValueAssignment_1.eContents().get(0);
 
-		// StringTok returns CssTok:
-		// {StringTok} value=CSSSTRING;
+		// StringTok CssTok:
+		// {StringTok} value=CSSSTRING
 		@Override
 		public ParserRule getRule() {
 			return rule;
@@ -2185,17 +2190,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NumberTokElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NumberTok");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.NumberTok");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cNumberTokAction_0 = (Action) cGroup.eContents().get(0);
 		private final Assignment cValAssignment_1 = (Assignment) cGroup.eContents().get(1);
 		private final RuleCall cValNumParserRuleCall_1_0 = (RuleCall) cValAssignment_1.eContents().get(0);
 
-		// // {NumberTok} DASH? ( ONE_INT+ | ONE_INT* '.' => ONE_INT+)
-		// // {NumberTok} val=Integer | Real
-		// //sign=DASH? ( ival=Integer | dval=Real)
-		// NumberTok returns CssTok hidden():
-		// {NumberTok} val=Num;
+		// NumberTok CssTok hidden():
+		// {NumberTok} val=Num
 		@Override
 		public ParserRule getRule() {
 			return rule;
@@ -2223,14 +2225,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class UrlTokElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UrlTok");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.UrlTok");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cUrlTokAction_0 = (Action) cGroup.eContents().get(0);
 		private final Assignment cUrlAssignment_1 = (Assignment) cGroup.eContents().get(1);
 		private final RuleCall cUrlURLTypeParserRuleCall_1_0 = (RuleCall) cUrlAssignment_1.eContents().get(0);
 
-		// UrlTok returns CssTok:
-		// {UrlTok} url=URLType;
+		// UrlTok CssTok:
+		// {UrlTok} url=URLType
 		@Override
 		public ParserRule getRule() {
 			return rule;
@@ -2258,14 +2260,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ColorTokElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ColorTok");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ColorTok");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cColorTokAction_0 = (Action) cGroup.eContents().get(0);
 		private final Assignment cValueAssignment_1 = (Assignment) cGroup.eContents().get(1);
 		private final RuleCall cValueHexParserRuleCall_1_0 = (RuleCall) cValueAssignment_1.eContents().get(0);
 
-		// ColorTok returns CssTok hidden():
-		// {ColorTok} value=Hex;
+		// ColorTok CssTok hidden():
+		// {ColorTok} value=Hex
 		@Override
 		public ParserRule getRule() {
 			return rule;
@@ -2293,7 +2295,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class IdentifierOrFuncTokElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IdentifierOrFuncTok");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.IdentifierOrFuncTok");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Action cIdentifierTokAction_0 = (Action) cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment) cGroup.eContents().get(1);
@@ -2305,14 +2307,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cParamsCssTokParserRuleCall_2_2_0 = (RuleCall) cParamsAssignment_2_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_2_3 = (Keyword) cGroup_2.eContents().get(3);
 
-		// IdentifierOrFuncTok returns CssTok hidden(ML_COMMENT):
-		// {IdentifierTok} name=Identifier ({FuncTok.name=current} "(" params+=CssTok+ ")")?;
+		// IdentifierOrFuncTok CssTok hidden(ML_COMMENT):
+		// {IdentifierTok} name=Identifier ({FuncTok.name=current} '(' params+=CssTok+ ')')?
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// {IdentifierTok} name=Identifier ({FuncTok.name=current} "(" params+=CssTok+ ")")?
+		// {IdentifierTok} name=Identifier ({FuncTok.name=current} '(' params+=CssTok+ ')')?
 		public Group getGroup() {
 			return cGroup;
 		}
@@ -2332,7 +2334,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cNameIdentifierParserRuleCall_1_0;
 		}
 
-		// ({FuncTok.name=current} "(" params+=CssTok+ ")")?
+		// ({FuncTok.name=current} '(' params+=CssTok+ ')')?
 		public Group getGroup_2() {
 			return cGroup_2;
 		}
@@ -2342,7 +2344,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cFuncTokNameAction_2_0;
 		}
 
-		// "("
+		// '('
 		public Keyword getLeftParenthesisKeyword_2_1() {
 			return cLeftParenthesisKeyword_2_1;
 		}
@@ -2357,14 +2359,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cParamsCssTokParserRuleCall_2_2_0;
 		}
 
-		// ")"
+		// ')'
 		public Keyword getRightParenthesisKeyword_2_3() {
 			return cRightParenthesisKeyword_2_3;
 		}
 	}
 
 	public class CssTokElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CssTok");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CssTok");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final RuleCall cIdentifierOrFuncTokParserRuleCall_0 = (RuleCall) cAlternatives.eContents().get(0);
 		private final RuleCall cSymbolTokParserRuleCall_1 = (RuleCall) cAlternatives.eContents().get(1);
@@ -2423,7 +2425,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class URLTypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "URLType");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.URLType");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Keyword cUrlKeyword_0 = (Keyword) cGroup.eContents().get(0);
 		private final Assignment cUrlAssignment_1 = (Assignment) cGroup.eContents().get(1);
@@ -2431,20 +2433,20 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_2 = (Keyword) cGroup.eContents().get(2);
 
 		// URLType hidden(): // FULLURL
-		// "url(" url=ValidURL ")";
+		// 'url(' url=ValidURL ')';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// // FULLURL
-		// "url(" url=ValidURL ")"
+		//// FULLURL
+		// 'url(' url=ValidURL ')'
 		public Group getGroup() {
 			return cGroup;
 		}
 
-		// // FULLURL
-		// "url("
+		//// FULLURL
+		// 'url('
 		public Keyword getUrlKeyword_0() {
 			return cUrlKeyword_0;
 		}
@@ -2459,14 +2461,14 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cUrlValidURLParserRuleCall_1_0;
 		}
 
-		// ")"
+		// ')'
 		public Keyword getRightParenthesisKeyword_2() {
 			return cRightParenthesisKeyword_2;
 		}
 	}
 
 	public class ValidURLSymbolElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValidURLSymbol");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ValidURLSymbol");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final RuleCall cDASHTerminalRuleCall_0 = (RuleCall) cAlternatives.eContents().get(0);
 		private final Keyword cFullStopKeyword_1 = (Keyword) cAlternatives.eContents().get(1);
@@ -2491,15 +2493,18 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cKeywordHackParserRuleCall_18_1 = (RuleCall) cGroup_18.eContents().get(1);
 
 		// ValidURLSymbol:
-		// DASH / * "'" | '(' | ')' | need to be escaped* / | "." | UNDERSCORE | "~" | COLON | "/" | "?" | HASHMARK | "[" | "]" |
-		// "@" | "!" | "$" | "&" | "*" | PLUS | COMMA | ";" | "=" KeywordHack;
+		// DASH | '.' | UNDERSCORE | '~' | COLON |
+		// '/' | '?' | HASHMARK | '[' | ']' | '@' |
+		// '!' | '$' | '&' | / * "'" | '(' | ')' | need to be escaped* /
+		// '*' | PLUS | COMMA | ';' | '='
+		// KeywordHack;
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// DASH / * "'" | '(' | ')' | need to be escaped* / | "." | UNDERSCORE | "~" | COLON | "/" | "?" | HASHMARK | "[" | "]" | "@"
-		// | "!" | "$" | "&" | "*" | PLUS | COMMA | ";" | "=" KeywordHack
+		// DASH | '.' | UNDERSCORE | '~' | COLON | '/' | '?' | HASHMARK | '[' | ']' | '@' | '!' | '$' | '&' |
+		/// * "'" | '(' | ')' | need to be escaped* / '*' | PLUS | COMMA | ';' | '=' KeywordHack
 		public Alternatives getAlternatives() {
 			return cAlternatives;
 		}
@@ -2509,7 +2514,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cDASHTerminalRuleCall_0;
 		}
 
-		// "."
+		// '.'
 		public Keyword getFullStopKeyword_1() {
 			return cFullStopKeyword_1;
 		}
@@ -2519,7 +2524,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cUNDERSCORETerminalRuleCall_2;
 		}
 
-		// "~"
+		// '~'
 		public Keyword getTildeKeyword_3() {
 			return cTildeKeyword_3;
 		}
@@ -2529,12 +2534,12 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cCOLONTerminalRuleCall_4;
 		}
 
-		// "/"
+		// '/'
 		public Keyword getSolidusKeyword_5() {
 			return cSolidusKeyword_5;
 		}
 
-		// "?"
+		// '?'
 		public Keyword getQuestionMarkKeyword_6() {
 			return cQuestionMarkKeyword_6;
 		}
@@ -2544,37 +2549,37 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cHASHMARKTerminalRuleCall_7;
 		}
 
-		// "["
+		// '['
 		public Keyword getLeftSquareBracketKeyword_8() {
 			return cLeftSquareBracketKeyword_8;
 		}
 
-		// "]"
+		// ']'
 		public Keyword getRightSquareBracketKeyword_9() {
 			return cRightSquareBracketKeyword_9;
 		}
 
-		// "@"
+		// '@'
 		public Keyword getCommercialAtKeyword_10() {
 			return cCommercialAtKeyword_10;
 		}
 
-		// "!"
+		// '!'
 		public Keyword getExclamationMarkKeyword_11() {
 			return cExclamationMarkKeyword_11;
 		}
 
-		// "$"
+		// '$'
 		public Keyword getDollarSignKeyword_12() {
 			return cDollarSignKeyword_12;
 		}
 
-		// "&"
+		// '&'
 		public Keyword getAmpersandKeyword_13() {
 			return cAmpersandKeyword_13;
 		}
 
-		// "*"
+		/// * "'" | '(' | ')' | need to be escaped* / '*'
 		public Keyword getAsteriskKeyword_14() {
 			return cAsteriskKeyword_14;
 		}
@@ -2589,17 +2594,17 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cCOMMATerminalRuleCall_16;
 		}
 
-		// ";"
+		// ';'
 		public Keyword getSemicolonKeyword_17() {
 			return cSemicolonKeyword_17;
 		}
 
-		// "=" KeywordHack
+		// '=' KeywordHack
 		public Group getGroup_18() {
 			return cGroup_18;
 		}
 
-		// "="
+		// '='
 		public Keyword getEqualsSignKeyword_18_0() {
 			return cEqualsSignKeyword_18_0;
 		}
@@ -2611,7 +2616,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class KeywordHackElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "KeywordHack");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.KeywordHack");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final Keyword cNotKeyword_0 = (Keyword) cAlternatives.eContents().get(0);
 		private final Keyword cNoKeyword_1 = (Keyword) cAlternatives.eContents().get(1);
@@ -2619,40 +2624,43 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cUrKeyword_3 = (Keyword) cAlternatives.eContents().get(3);
 
 		// KeywordHack:
-		// "not" | "no" | "url" | "ur";
+		// 'not' |
+		// 'no' |
+		// 'url' |
+		// 'ur';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// "not" | "no" | "url" | "ur"
+		// 'not' | 'no' | 'url' | 'ur'
 		public Alternatives getAlternatives() {
 			return cAlternatives;
 		}
 
-		// "not"
+		// 'not'
 		public Keyword getNotKeyword_0() {
 			return cNotKeyword_0;
 		}
 
-		// "no"
+		// 'no'
 		public Keyword getNoKeyword_1() {
 			return cNoKeyword_1;
 		}
 
-		// "url"
+		// 'url'
 		public Keyword getUrlKeyword_2() {
 			return cUrlKeyword_2;
 		}
 
-		// "ur"
+		// 'ur'
 		public Keyword getUrKeyword_3() {
 			return cUrKeyword_3;
 		}
 	}
 
 	public class ValidURLElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValidURL");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ValidURL");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final RuleCall cCSSSTRINGTerminalRuleCall_0 = (RuleCall) cAlternatives.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives) cAlternatives.eContents().get(1);
@@ -2675,16 +2683,20 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cONE_INTTerminalRuleCall_1_10_2_0 = (RuleCall) cAlternatives_1_10_2.eContents().get(0);
 		private final RuleCall cONE_HEX_LETTERTerminalRuleCall_1_10_2_1 = (RuleCall) cAlternatives_1_10_2.eContents().get(1);
 
-		// ValidURL returns ecore::EString hidden():
-		// CSSSTRING | (ValidURLSymbol | KeywordHack | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | ONE_INT | "\\ " | "\\(" | "\\)" |
-		// "\\\'" | "\\\"" | PERCENT (ONE_INT | ONE_HEX_LETTER) (ONE_INT | ONE_HEX_LETTER))+;
+		// ValidURL hidden():
+		// CSSSTRING | (ValidURLSymbol | KeywordHack | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | ONE_INT |
+		// '\\ ' |
+		// '\\(' |
+		// '\\)' |
+		// '\\\'' |
+		// '\\"' | PERCENT (ONE_INT | ONE_HEX_LETTER) (ONE_INT | ONE_HEX_LETTER))+;
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// CSSSTRING | (ValidURLSymbol | KeywordHack | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | ONE_INT | "\\ " | "\\(" | "\\)" |
-		// "\\\'" | "\\\"" | PERCENT (ONE_INT | ONE_HEX_LETTER) (ONE_INT | ONE_HEX_LETTER))+
+		// CSSSTRING | (ValidURLSymbol | KeywordHack | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | ONE_INT | '\\ ' | '\\(' | '\\)' |
+		// '\\\'' | '\\"' | PERCENT (ONE_INT | ONE_HEX_LETTER) (ONE_INT | ONE_HEX_LETTER))+
 		public Alternatives getAlternatives() {
 			return cAlternatives;
 		}
@@ -2694,8 +2706,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cCSSSTRINGTerminalRuleCall_0;
 		}
 
-		// (ValidURLSymbol | KeywordHack | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | ONE_INT | "\\ " | "\\(" | "\\)" | "\\\'" | "\\\""
-		// | PERCENT (ONE_INT | ONE_HEX_LETTER) (ONE_INT | ONE_HEX_LETTER))+
+		// (ValidURLSymbol | KeywordHack | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | ONE_INT | '\\ ' | '\\(' | '\\)' | '\\\'' | '\\"' |
+		// PERCENT (ONE_INT | ONE_HEX_LETTER) (ONE_INT | ONE_HEX_LETTER))+
 		public Alternatives getAlternatives_1() {
 			return cAlternatives_1;
 		}
@@ -2725,27 +2737,27 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cONE_INTTerminalRuleCall_1_4;
 		}
 
-		// "\\ "
+		// '\\ '
 		public Keyword getReverseSolidusSpaceKeyword_1_5() {
 			return cReverseSolidusSpaceKeyword_1_5;
 		}
 
-		// "\\("
+		// '\\('
 		public Keyword getReverseSolidusLeftParenthesisKeyword_1_6() {
 			return cReverseSolidusLeftParenthesisKeyword_1_6;
 		}
 
-		// "\\)"
+		// '\\)'
 		public Keyword getReverseSolidusRightParenthesisKeyword_1_7() {
 			return cReverseSolidusRightParenthesisKeyword_1_7;
 		}
 
-		// "\\\'"
+		// '\\\''
 		public Keyword getReverseSolidusApostropheKeyword_1_8() {
 			return cReverseSolidusApostropheKeyword_1_8;
 		}
 
-		// "\\\""
+		// '\\"'
 		public Keyword getReverseSolidusQuotationMarkKeyword_1_9() {
 			return cReverseSolidusQuotationMarkKeyword_1_9;
 		}
@@ -2760,7 +2772,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cPERCENTTerminalRuleCall_1_10_0;
 		}
 
-		// ONE_INT | ONE_HEX_LETTER
+		// (ONE_INT | ONE_HEX_LETTER)
 		public Alternatives getAlternatives_1_10_1() {
 			return cAlternatives_1_10_1;
 		}
@@ -2775,7 +2787,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cONE_HEX_LETTERTerminalRuleCall_1_10_1_1;
 		}
 
-		// ONE_INT | ONE_HEX_LETTER
+		// (ONE_INT | ONE_HEX_LETTER)
 		public Alternatives getAlternatives_1_10_2() {
 			return cAlternatives_1_10_2;
 		}
@@ -2792,7 +2804,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class IdentifierElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Identifier");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final RuleCall cDASHTerminalRuleCall_0 = (RuleCall) cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives) cGroup.eContents().get(1);
@@ -2809,7 +2821,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cONE_INTTerminalRuleCall_2_0_4 = (RuleCall) cAlternatives_2_0.eContents().get(4);
 		private final RuleCall cKeywordHackParserRuleCall_2_0_5 = (RuleCall) cAlternatives_2_0.eContents().get(5);
 
-		// Identifier returns ecore::EString hidden():
+		// Identifier hidden():
 		// DASH? (UNDERSCORE | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | KeywordHack) => (UNDERSCORE | DASH | ONE_HEX_LETTER |
 		// ONE_NON_HEX_LETTER | ONE_INT | KeywordHack)*;
 		@Override
@@ -2828,7 +2840,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cDASHTerminalRuleCall_0;
 		}
 
-		// UNDERSCORE | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | KeywordHack
+		// (UNDERSCORE | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | KeywordHack)
 		public Alternatives getAlternatives_1() {
 			return cAlternatives_1;
 		}
@@ -2858,7 +2870,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cGroup_2;
 		}
 
-		// UNDERSCORE | DASH | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | ONE_INT | KeywordHack
+		// (UNDERSCORE | DASH | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | ONE_INT | KeywordHack)
 		public Alternatives getAlternatives_2_0() {
 			return cAlternatives_2_0;
 		}
@@ -2895,7 +2907,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NumElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Num");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Num");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives) cGroup.eContents().get(0);
 		private final RuleCall cPLUSTerminalRuleCall_0_0 = (RuleCall) cAlternatives_0.eContents().get(0);
@@ -2910,14 +2922,15 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFullStopKeyword_1_1_1_0 = (Keyword) cGroup_1_1_1.eContents().get(0);
 		private final RuleCall cONE_INTTerminalRuleCall_1_1_1_1 = (RuleCall) cGroup_1_1_1.eContents().get(1);
 
-		// Num returns ecore::EDouble hidden():
-		// (PLUS | DASH)? ("." => ONE_INT+ | ONE_INT+ ("." => ONE_INT+)?);
+		// Num ecore::EDouble hidden():
+		// (PLUS | DASH)? ('.' => ONE_INT+ |
+		// => ONE_INT+ (=> '.' => ONE_INT+)?)
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// (PLUS | DASH)? ("." => ONE_INT+ | ONE_INT+ ("." => ONE_INT+)?)
+		// (PLUS | DASH)? ('.' => ONE_INT+ | => ONE_INT+ (=> '.' => ONE_INT+)?)
 		public Group getGroup() {
 			return cGroup;
 		}
@@ -2937,17 +2950,17 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cDASHTerminalRuleCall_0_1;
 		}
 
-		// "." => ONE_INT+ | ONE_INT+ ("." => ONE_INT+)?
+		// ('.' => ONE_INT+ | => ONE_INT+ (=> '.' => ONE_INT+)?)
 		public Alternatives getAlternatives_1() {
 			return cAlternatives_1;
 		}
 
-		// "." => ONE_INT+
+		// '.' => ONE_INT+
 		public Group getGroup_1_0() {
 			return cGroup_1_0;
 		}
 
-		// "."
+		// '.'
 		public Keyword getFullStopKeyword_1_0_0() {
 			return cFullStopKeyword_1_0_0;
 		}
@@ -2957,7 +2970,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cONE_INTTerminalRuleCall_1_0_1;
 		}
 
-		// => ONE_INT+ ("." => ONE_INT+)?
+		// => ONE_INT+ (=> '.' => ONE_INT+)?
 		public Group getGroup_1_1() {
 			return cGroup_1_1;
 		}
@@ -2967,12 +2980,12 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cONE_INTTerminalRuleCall_1_1_0;
 		}
 
-		// (=> "." => ONE_INT+)?
+		// (=> '.' => ONE_INT+)?
 		public Group getGroup_1_1_1() {
 			return cGroup_1_1_1;
 		}
 
-		// => "."
+		// => '.'
 		public Keyword getFullStopKeyword_1_1_1_0() {
 			return cFullStopKeyword_1_1_1_0;
 		}
@@ -2984,7 +2997,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class HexElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Hex");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Hex");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final RuleCall cHASHMARKTerminalRuleCall_0 = (RuleCall) cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group) cGroup.eContents().get(1);
@@ -2992,7 +3005,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cONE_INTTerminalRuleCall_1_0_0 = (RuleCall) cAlternatives_1_0.eContents().get(0);
 		private final RuleCall cONE_HEX_LETTERTerminalRuleCall_1_0_1 = (RuleCall) cAlternatives_1_0.eContents().get(1);
 
-		// Hex returns ecore::EString:
+		// Hex:
 		// HASHMARK => (ONE_INT | ONE_HEX_LETTER)+;
 		@Override
 		public ParserRule getRule() {
@@ -3014,7 +3027,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 			return cGroup_1;
 		}
 
-		// ONE_INT | ONE_HEX_LETTER
+		// (ONE_INT | ONE_HEX_LETTER)
 		public Alternatives getAlternatives_1_0() {
 			return cAlternatives_1_0;
 		}
@@ -3148,25 +3161,25 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		this.pValidURLSymbol = new ValidURLSymbolElements();
 		this.pKeywordHack = new KeywordHackElements();
 		this.pValidURL = new ValidURLElements();
-		this.tIMPORTANT_SYM = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IMPORTANT_SYM");
+		this.tIMPORTANT_SYM = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.IMPORTANT_SYM");
 		this.pIdentifier = new IdentifierElements();
 		this.pNum = new NumElements();
 		this.pHex = new HexElements();
-		this.tONE_INT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ONE_INT");
-		this.tONE_HEX_LETTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ONE_HEX_LETTER");
-		this.tONE_NON_HEX_LETTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ONE_NON_HEX_LETTER");
-		this.tUNDERSCORE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UNDERSCORE");
-		this.tDASH = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DASH");
-		this.tPLUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PLUS");
-		this.tHASHMARK = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "HASHMARK");
-		this.tCOMMA = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COMMA");
-		this.tPERCENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PERCENT");
-		this.tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT");
-		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS");
-		this.tCSSSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "CSSSTRING");
-		this.tINCLUDES = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INCLUDES");
-		this.tDASHMATCH = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DASHMATCH");
-		this.tCOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "COLON");
+		this.tONE_INT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ONE_INT");
+		this.tONE_HEX_LETTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ONE_HEX_LETTER");
+		this.tONE_NON_HEX_LETTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ONE_NON_HEX_LETTER");
+		this.tUNDERSCORE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.UNDERSCORE");
+		this.tDASH = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.DASH");
+		this.tPLUS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.PLUS");
+		this.tHASHMARK = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.HASHMARK");
+		this.tCOMMA = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.COMMA");
+		this.tPERCENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.PERCENT");
+		this.tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ML_COMMENT");
+		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.WS");
+		this.tCSSSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CSSSTRING");
+		this.tINCLUDES = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.INCLUDES");
+		this.tDASHMATCH = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.DASHMATCH");
+		this.tCOLON = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.COLON");
 	}
 
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -3192,11 +3205,12 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 
 
 
-	// / *
+	/// *
 	// * TODOS:
 	// * - add more CSS grammar like import
 	// * / stylesheet:
-	// charset=charset? imports+=importExpression* (ruleset+=ruleset | media+=media | page+=page | font_face+=font_face |
+	// charset=charset?
+	// imports+=importExpression* (ruleset+=ruleset | media+=media | page+=page | font_face+=font_face |
 	// keyframes+=keyframes)*;
 	public StylesheetElements getStylesheetAccess() {
 		return pStylesheet;
@@ -3207,7 +3221,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// charset:
-	// ("@charset" | "@CHARSET") charset=CSSSTRING ";";
+	// ('@charset' | '@CHARSET') charset=CSSSTRING ';';
 	public CharsetElements getCharsetAccess() {
 		return pCharset;
 	}
@@ -3217,7 +3231,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// importExpression:
-	// ("@import" | "@IMPORT") (value=CSSSTRING | URLType mediaList=media_list?) ";";
+	// ('@import' | '@IMPORT') (value=CSSSTRING | URLType mediaList=media_list?) ';';
 	public ImportExpressionElements getImportExpressionAccess() {
 		return pImportExpression;
 	}
@@ -3227,8 +3241,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// page:
-	// {page} ("@page" | "@PAGE") pseudoPage=pseudo_page? "{" declarations+=css_declaration? (";"
-	// declarations+=css_declaration?)* "}";
+	// {page} ('@page' | '@PAGE') pseudoPage=pseudo_page?
+	// '{' declarations+=css_declaration? (';' declarations+=css_declaration?)* '}';
 	public PageElements getPageAccess() {
 		return pPage;
 	}
@@ -3248,7 +3262,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// media:
-	// ("@media" | "@MEDIA") medialist=media_list "{" rulesets+=ruleset* "}";
+	// ('@media' | '@MEDIA') medialist=media_list '{' rulesets+=ruleset* '}';
 	public MediaElements getMediaAccess() {
 		return pMedia;
 	}
@@ -3278,8 +3292,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// font_face:
-	// {font_face} ("@font-face" | "@FONT-FACE") "{" declarations+=css_declaration? (";" declarations+=css_declaration?)*
-	// "}";
+	// {font_face} ('@font-face' | '@FONT-FACE')
+	// '{' declarations+=css_declaration? (';' declarations+=css_declaration?)* '}';
 	public Font_faceElements getFont_faceAccess() {
 		return pFont_face;
 	}
@@ -3289,8 +3303,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// keyframes:
-	// {font_face} ("@keyframes" | "@KEYFRAMES") name=Identifier "{" keyframeselectors+=keyframe_selector? (";"
-	// keyframeselectors+=keyframe_selector?)* "}";
+	// {font_face} ('@keyframes' | '@KEYFRAMES') name=Identifier
+	// '{' keyframeselectors+=keyframe_selector? (';' keyframeselectors+=keyframe_selector?)* '}';
 	public KeyframesElements getKeyframesAccess() {
 		return pKeyframes;
 	}
@@ -3300,8 +3314,9 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// keyframe_selector:
-	// (type=Identifier | percentage=Num PERCENT) "{" declarations+=css_declaration? (";" declarations+=css_declaration?)*
-	// "}";
+	// (type=Identifier | percentage=Num PERCENT) '{'
+	// declarations+=css_declaration? (';' declarations+=css_declaration?)*
+	// '}';
 	public Keyframe_selectorElements getKeyframe_selectorAccess() {
 		return pKeyframe_selector;
 	}
@@ -3311,8 +3326,9 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// ruleset:
-	// selectors+=selector (WS* COMMA selectors+=selector)* WS* "{" (declarations+=css_declaration (";"
-	// declarations+=css_declaration)* ";"?)? "}";
+	// selectors+=selector (WS* COMMA selectors+=selector)* WS* '{' (declarations+=css_declaration (';'
+	// declarations+=css_declaration)* ';'?)?
+	// '}';
 	public RulesetElements getRulesetAccess() {
 		return pRuleset;
 	}
@@ -3321,7 +3337,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getRulesetAccess().getRule();
 	}
 
-	// // check simple_selctor cardinality
+	//// check simple_selctor cardinality
 	// selector hidden(ML_COMMENT):
 	// simpleselectors+=simple_selector (combinator=combinator WS* selector=selector | WS+ (combinator=combinator WS*)?
 	// selector=selector)?;
@@ -3334,8 +3350,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// SimpleSelectorForNegation:
-	// (element=ElementSelector | universal=UniversalSelector) subSelectors+=SubSelectorForNegation* | =>
-	// subSelectors+=SubSelectorForNegation+;
+	// (element=ElementSelector | universal=UniversalSelector) subSelectors+=SubSelectorForNegation* |
+	// => subSelectors+=SubSelectorForNegation+;
 	public SimpleSelectorForNegationElements getSimpleSelectorForNegationAccess() {
 		return pSimpleSelectorForNegation;
 	}
@@ -3344,8 +3360,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getSimpleSelectorForNegationAccess().getRule();
 	}
 
-	// SubSelectorForNegation returns CssSelector:
-	// IdSelector | ClassSelector | AttributeSelector | PseudoClass;
+	// SubSelectorForNegation CssSelector:
+	// IdSelector | ClassSelector | AttributeSelector | PseudoClass
 	public SubSelectorForNegationElements getSubSelectorForNegationAccess() {
 		return pSubSelectorForNegation;
 	}
@@ -3364,8 +3380,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getSimple_selectorAccess().getRule();
 	}
 
-	// SubSelector returns CssSelector:
-	// IdSelector | ClassSelector | AttributeSelector | PseudoClassOrFunc;
+	// SubSelector CssSelector:
+	// IdSelector | ClassSelector | AttributeSelector | PseudoClassOrFunc
 	public SubSelectorElements getSubSelectorAccess() {
 		return pSubSelector;
 	}
@@ -3374,9 +3390,9 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getSubSelectorAccess().getRule();
 	}
 
-	// AttributeSelector returns CssSelector:
-	// {AttributeSelector} "[" name=Identifier (op=("^=" | "$=" | "*=" | "=" | INCLUDES | DASHMATCH) value=(Identifier |
-	// CSSSTRING))? "]";
+	// AttributeSelector CssSelector:
+	// {AttributeSelector} '[' name=Identifier (op=('^=' | '$=' | '*=' | '=' | INCLUDES | DASHMATCH) value=(Identifier |
+	// CSSSTRING))? ']'
 	public AttributeSelectorElements getAttributeSelectorAccess() {
 		return pAttributeSelector;
 	}
@@ -3386,7 +3402,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// ClassSelector:
-	// {ClassSelector} "." name=Identifier;
+	// {ClassSelector} '.' name=Identifier;
 	public ClassSelectorElements getClassSelectorAccess() {
 		return pClassSelector;
 	}
@@ -3406,7 +3422,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// UniversalSelector:
-	// {UniversalSelector} namespace=css_namespace_prefix? "*";
+	// {UniversalSelector} namespace=css_namespace_prefix? '*';
 	public UniversalSelectorElements getUniversalSelectorAccess() {
 		return pUniversalSelector;
 	}
@@ -3426,7 +3442,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// css_namespace_prefix:
-	// (Identifier | "*")? "|";
+	// (Identifier | '*')? '|';
 	public Css_namespace_prefixElements getCss_namespace_prefixAccess() {
 		return pCss_namespace_prefix;
 	}
@@ -3496,7 +3512,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// PseudoClassFunction:
-	// not?=NotFunctionCall paramSelector=SimpleSelectorForNegation ")" | COLON name=Identifier "(" params+=CssTok* ")";
+	// not?=NotFunctionCall paramSelector=SimpleSelectorForNegation ')' | COLON name=Identifier '(' params+=CssTok* ')';
 	public PseudoClassFunctionElements getPseudoClassFunctionAccess() {
 		return pPseudoClassFunction;
 	}
@@ -3506,7 +3522,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// NotFunctionCall hidden():
-	// COLON "not(";
+	// COLON 'not(';
 	public NotFunctionCallElements getNotFunctionCallAccess() {
 		return pNotFunctionCall;
 	}
@@ -3516,7 +3532,9 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// combinator:
-	// PLUS | ">" | "~";
+	// PLUS
+	// | '>'
+	// | '~';
 	public CombinatorElements getCombinatorAccess() {
 		return pCombinator;
 	}
@@ -3526,7 +3544,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// operator:
-	// "/" | COMMA;
+	// '/' | COMMA;
 	public OperatorElements getOperatorAccess() {
 		return pOperator;
 	}
@@ -3545,8 +3563,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnary_operatorAccess().getRule();
 	}
 
-	// SymbolTok returns CssTok:
-	// {SymbolTok} symbol=(COMMA | PERCENT);
+	// SymbolTok CssTok:
+	// {SymbolTok} symbol=(COMMA | PERCENT)
 	public SymbolTokElements getSymbolTokAccess() {
 		return pSymbolTok;
 	}
@@ -3555,8 +3573,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getSymbolTokAccess().getRule();
 	}
 
-	// WSTok returns CssTok:
-	// {WSTok} WS;
+	// WSTok CssTok:
+	// {WSTok} WS
 	public WSTokElements getWSTokAccess() {
 		return pWSTok;
 	}
@@ -3565,8 +3583,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getWSTokAccess().getRule();
 	}
 
-	// StringTok returns CssTok:
-	// {StringTok} value=CSSSTRING;
+	// StringTok CssTok:
+	// {StringTok} value=CSSSTRING
 	public StringTokElements getStringTokAccess() {
 		return pStringTok;
 	}
@@ -3575,11 +3593,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getStringTokAccess().getRule();
 	}
 
-	// // {NumberTok} DASH? ( ONE_INT+ | ONE_INT* '.' => ONE_INT+)
-	// // {NumberTok} val=Integer | Real
-	// //sign=DASH? ( ival=Integer | dval=Real)
-	// NumberTok returns CssTok hidden():
-	// {NumberTok} val=Num;
+	// NumberTok CssTok hidden():
+	// {NumberTok} val=Num
 	public NumberTokElements getNumberTokAccess() {
 		return pNumberTok;
 	}
@@ -3588,8 +3603,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getNumberTokAccess().getRule();
 	}
 
-	// UrlTok returns CssTok:
-	// {UrlTok} url=URLType;
+	// UrlTok CssTok:
+	// {UrlTok} url=URLType
 	public UrlTokElements getUrlTokAccess() {
 		return pUrlTok;
 	}
@@ -3598,8 +3613,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getUrlTokAccess().getRule();
 	}
 
-	// ColorTok returns CssTok hidden():
-	// {ColorTok} value=Hex;
+	// ColorTok CssTok hidden():
+	// {ColorTok} value=Hex
 	public ColorTokElements getColorTokAccess() {
 		return pColorTok;
 	}
@@ -3608,8 +3623,8 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getColorTokAccess().getRule();
 	}
 
-	// IdentifierOrFuncTok returns CssTok hidden(ML_COMMENT):
-	// {IdentifierTok} name=Identifier ({FuncTok.name=current} "(" params+=CssTok+ ")")?;
+	// IdentifierOrFuncTok CssTok hidden(ML_COMMENT):
+	// {IdentifierTok} name=Identifier ({FuncTok.name=current} '(' params+=CssTok+ ')')?
 	public IdentifierOrFuncTokElements getIdentifierOrFuncTokAccess() {
 		return pIdentifierOrFuncTok;
 	}
@@ -3629,7 +3644,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// URLType hidden(): // FULLURL
-	// "url(" url=ValidURL ")";
+	// 'url(' url=ValidURL ')';
 	public URLTypeElements getURLTypeAccess() {
 		return pURLType;
 	}
@@ -3639,8 +3654,11 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// ValidURLSymbol:
-	// DASH / * "'" | '(' | ')' | need to be escaped* / | "." | UNDERSCORE | "~" | COLON | "/" | "?" | HASHMARK | "[" | "]" |
-	// "@" | "!" | "$" | "&" | "*" | PLUS | COMMA | ";" | "=" KeywordHack;
+	// DASH | '.' | UNDERSCORE | '~' | COLON |
+	// '/' | '?' | HASHMARK | '[' | ']' | '@' |
+	// '!' | '$' | '&' | / * "'" | '(' | ')' | need to be escaped* /
+	// '*' | PLUS | COMMA | ';' | '='
+	// KeywordHack;
 	public ValidURLSymbolElements getValidURLSymbolAccess() {
 		return pValidURLSymbol;
 	}
@@ -3650,7 +3668,10 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// KeywordHack:
-	// "not" | "no" | "url" | "ur";
+	// 'not' |
+	// 'no' |
+	// 'url' |
+	// 'ur';
 	public KeywordHackElements getKeywordHackAccess() {
 		return pKeywordHack;
 	}
@@ -3659,9 +3680,13 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getKeywordHackAccess().getRule();
 	}
 
-	// ValidURL returns ecore::EString hidden():
-	// CSSSTRING | (ValidURLSymbol | KeywordHack | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | ONE_INT | "\\ " | "\\(" | "\\)" |
-	// "\\\'" | "\\\"" | PERCENT (ONE_INT | ONE_HEX_LETTER) (ONE_INT | ONE_HEX_LETTER))+;
+	// ValidURL hidden():
+	// CSSSTRING | (ValidURLSymbol | KeywordHack | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | ONE_INT |
+	// '\\ ' |
+	// '\\(' |
+	// '\\)' |
+	// '\\\'' |
+	// '\\"' | PERCENT (ONE_INT | ONE_HEX_LETTER) (ONE_INT | ONE_HEX_LETTER))+;
 	public ValidURLElements getValidURLAccess() {
 		return pValidURL;
 	}
@@ -3671,12 +3696,12 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// terminal IMPORTANT_SYM:
-	// "!important";
+	// '!important';
 	public TerminalRule getIMPORTANT_SYMRule() {
 		return tIMPORTANT_SYM;
 	}
 
-	// Identifier returns ecore::EString hidden():
+	// Identifier hidden():
 	// DASH? (UNDERSCORE | ONE_HEX_LETTER | ONE_NON_HEX_LETTER | KeywordHack) => (UNDERSCORE | DASH | ONE_HEX_LETTER |
 	// ONE_NON_HEX_LETTER | ONE_INT | KeywordHack)*;
 	public IdentifierElements getIdentifierAccess() {
@@ -3687,8 +3712,9 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getIdentifierAccess().getRule();
 	}
 
-	// Num returns ecore::EDouble hidden():
-	// (PLUS | DASH)? ("." => ONE_INT+ | ONE_INT+ ("." => ONE_INT+)?);
+	// Num ecore::EDouble hidden():
+	// (PLUS | DASH)? ('.' => ONE_INT+ |
+	// => ONE_INT+ (=> '.' => ONE_INT+)?)
 	public NumElements getNumAccess() {
 		return pNum;
 	}
@@ -3697,7 +3723,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getNumAccess().getRule();
 	}
 
-	// Hex returns ecore::EString:
+	// Hex:
 	// HASHMARK => (ONE_INT | ONE_HEX_LETTER)+;
 	public HexElements getHexAccess() {
 		return pHex;
@@ -3707,94 +3733,77 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getHexAccess().getRule();
 	}
 
-	// //terminal fragment URL_ESCAPES:
-	// // '\\' (' '|'('|')'|"'"|'"')
-	// //;
-	// //
-	// //terminal FULLURL:
-	// // 'url('
-	// // '"' ( URL_ESCAPES | !('\\'|'"'|')') )* '"' |
-	// // "'" ( URL_ESCAPES | !('\\'|"'"|')') )* "'" |
-	// // ( URL_ESCAPES | !('\\'|')') )*
-	// // ')'
-	// //;
 	// terminal ONE_INT:
-	// "0".."9";
+	// '0'..'9';
 	public TerminalRule getONE_INTRule() {
 		return tONE_INT;
 	}
 
 	// terminal ONE_HEX_LETTER:
-	// "a".."f" | "A".."F";
+	// 'a'..'f' | 'A'..'F';
 	public TerminalRule getONE_HEX_LETTERRule() {
 		return tONE_HEX_LETTER;
 	}
 
 	// terminal ONE_NON_HEX_LETTER:
-	// "g".."z" | "G".."Z";
+	// 'g'..'z' | 'G'..'Z';
 	public TerminalRule getONE_NON_HEX_LETTERRule() {
 		return tONE_NON_HEX_LETTER;
 	}
 
 	// terminal UNDERSCORE:
-	// "_";
+	// '_';
 	public TerminalRule getUNDERSCORERule() {
 		return tUNDERSCORE;
 	}
 
 	// terminal DASH:
-	// "-";
+	// '-';
 	public TerminalRule getDASHRule() {
 		return tDASH;
 	}
 
 	// terminal PLUS:
-	// "+";
+	// '+';
 	public TerminalRule getPLUSRule() {
 		return tPLUS;
 	}
 
-	// //terminal INTEGER returns ecore::EInt: ('0'..'9')+;
-	// //terminal INTEGER:('0'..'9')+;
-	// //terminal REAL: (('0'..'9')*"."('0'..'9')+);
-	// //terminal HASH: '#' ('_' | '-' | 'a'..'z' | 'A'..'Z' | '0'..'9' )+;
 	// terminal HASHMARK:
-	// "#";
+	// '#';
 	public TerminalRule getHASHMARKRule() {
 		return tHASHMARK;
 	}
 
-	// //terminal COLORHASH: '#' ('a'..'z' | 'A'..'Z' | '0'..'9' )+;
-	// //terminal IDENT: ('_' | 'a'..'z' | 'A'..'Z' ) ('_' | '-' | 'a'..'z' | 'A'..'Z' | '0'..'9' )*;
-	// //terminal HEX: '###' ('a'..'z' | 'A'..'Z' | '0'..'9' )+;
 	// terminal COMMA:
-	// ",";
+	// ',';
 	public TerminalRule getCOMMARule() {
 		return tCOMMA;
 	}
 
 	// terminal PERCENT:
-	// "%";
+	// '%';
 	public TerminalRule getPERCENTRule() {
 		return tPERCENT;
 	}
 
 	// terminal ML_COMMENT:
-	// "/ *"->"* /";
+	// '/ *'->'* /';
 	public TerminalRule getML_COMMENTRule() {
 		return tML_COMMENT;
 	}
 
 	// terminal WS:
-	// (" " | "\t" | "\r" | "\n")+;
+	// ' ' | '\t' | '\r' | '\n'+;
 	public TerminalRule getWSRule() {
 		return tWS;
 	}
 
 	// terminal CSSSTRING:
-	// "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "0".."9" | "a".."f" | "A".."F" | "\\") | !("\\" |
-	// "\""))* "\"" | "\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "0".."9" | "a".."f" | "A".."F" | "\\") |
-	// !("\\" | "\'"))* "\'";
+	// '"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | 'u' | '"' | "'" | '0'..'9' | 'a'..'f' | 'A'..'F' | '\\') | !('\\' | '"'))*
+	// '"' |
+	// "'" ('\\' ('b' | 't' | 'n' | 'f' | 'r' | 'u' | '"' | "'" | '0'..'9' | 'a'..'f' | 'A'..'F' | '\\') | !('\\' | "'"))*
+	// "'";
 	public TerminalRule getCSSSTRINGRule() {
 		return tCSSSTRING;
 	}
@@ -3812,7 +3821,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// terminal COLON:
-	// ":";
+	// ':';
 	public TerminalRule getCOLONRule() {
 		return tCOLON;
 	}

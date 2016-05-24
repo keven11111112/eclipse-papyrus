@@ -116,7 +116,7 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 
 		ruleset ruleset = getRuleset(dialog);
 		selector baseSelector = CSSFactory.eINSTANCE.createselector();
-		simple_selector simple_selector = createSimpleElementSelector(selectorName, dialog.useSelectorName());
+		simple_selector simple_selector = createSimpleElementSelector(selectorName, !dialog.useSelectorName());
 
 		baseSelector.getSimpleselectors().add(simple_selector);
 
@@ -167,7 +167,7 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 		}
 
 		try {
-			resource.save(new HashMap<Object, Object>());
+			resource.save(new HashMap<>());
 			BaseCSSEngine.INSTANCE.reset();
 			DiagramHelper.forceRefresh();
 		} catch (IOException ex) {
@@ -202,7 +202,7 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 	protected abstract stylesheet getStyleSheet(AbstractStyleDialog dialog, View contextView);
 
 	protected Map<css_declaration, Boolean> handleStyles(View view) {
-		Map<css_declaration, Boolean> declarations = new LinkedHashMap<css_declaration, Boolean>();
+		Map<css_declaration, Boolean> declarations = new LinkedHashMap<>();
 
 		for (Object styleObject : view.getStyles()) {
 			Style style = (Style) styleObject;
@@ -221,7 +221,7 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 	}
 
 	protected Map<AttributeSelector, Boolean> handleSemantic(View view) {
-		Map<AttributeSelector, Boolean> result = new LinkedHashMap<AttributeSelector, Boolean>();
+		Map<AttributeSelector, Boolean> result = new LinkedHashMap<>();
 
 		EObject semanticElement = view.getElement();
 
@@ -277,7 +277,7 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 			return Collections.emptyMap();
 		}
 
-		Map<css_declaration, Boolean> declarations = new LinkedHashMap<css_declaration, Boolean>();
+		Map<css_declaration, Boolean> declarations = new LinkedHashMap<>();
 
 		for (EStructuralFeature feature : style.eClass().getEAllStructuralFeatures()) {
 			if (NotationPackage.eINSTANCE.getStyle().isSuperTypeOf(feature.getEContainingClass())) {
@@ -298,7 +298,7 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 	// FIXME: Use constants for the CSS Properties names
 	// FIXME: Use a helper to determine whether the custom styles are computed or forced
 	protected Map<css_declaration, Boolean> handleCustomStyle(CustomStyle customStyle, View view) {
-		Map<css_declaration, Boolean> declarations = new LinkedHashMap<css_declaration, Boolean>();
+		Map<css_declaration, Boolean> declarations = new LinkedHashMap<>();
 
 		GMFToCSSConverter converter = GMFToCSSConverter.instance;
 

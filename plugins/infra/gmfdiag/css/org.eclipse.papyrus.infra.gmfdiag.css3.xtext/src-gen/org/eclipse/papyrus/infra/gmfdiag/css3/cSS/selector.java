@@ -24,14 +24,14 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface selector extends EObject
-{
+public interface selector extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Simpleselectors</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.simple_selector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Simpleselectors</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Simpleselectors</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -46,7 +46,8 @@ public interface selector extends EObject
 	 * Returns the value of the '<em><b>Combinator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Combinator</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Combinator</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -74,7 +75,8 @@ public interface selector extends EObject
 	 * Returns the value of the '<em><b>Selector</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Selector</em>' containment reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Selector</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *

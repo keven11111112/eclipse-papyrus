@@ -38,8 +38,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.SimpleSelectorForNegation;
  *
  * @generated
  */
-public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements PseudoClassFunction
-{
+public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements PseudoClassFunction {
 	/**
 	 * The default value of the '{@link #isNot() <em>Not</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -112,8 +111,7 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 *
 	 * @generated
 	 */
-	protected PseudoClassFunctionImpl()
-	{
+	protected PseudoClassFunctionImpl() {
 		super();
 	}
 
@@ -124,8 +122,7 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.PSEUDO_CLASS_FUNCTION;
 	}
 
@@ -136,8 +133,7 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 * @generated
 	 */
 	@Override
-	public boolean isNot()
-	{
+	public boolean isNot() {
 		return not;
 	}
 
@@ -148,8 +144,7 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 * @generated
 	 */
 	@Override
-	public void setNot(boolean newNot)
-	{
+	public void setNot(boolean newNot) {
 		boolean oldNot = not;
 		not = newNot;
 		if (eNotificationRequired()) {
@@ -164,8 +159,7 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 * @generated
 	 */
 	@Override
-	public SimpleSelectorForNegation getParamSelector()
-	{
+	public SimpleSelectorForNegation getParamSelector() {
 		return paramSelector;
 	}
 
@@ -175,12 +169,10 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 *
 	 * @generated
 	 */
-	public NotificationChain basicSetParamSelector(SimpleSelectorForNegation newParamSelector, NotificationChain msgs)
-	{
+	public NotificationChain basicSetParamSelector(SimpleSelectorForNegation newParamSelector, NotificationChain msgs) {
 		SimpleSelectorForNegation oldParamSelector = paramSelector;
 		paramSelector = newParamSelector;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CSSPackage.PSEUDO_CLASS_FUNCTION__PARAM_SELECTOR, oldParamSelector, newParamSelector);
 			if (msgs == null) {
 				msgs = notification;
@@ -198,10 +190,8 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 * @generated
 	 */
 	@Override
-	public void setParamSelector(SimpleSelectorForNegation newParamSelector)
-	{
-		if (newParamSelector != paramSelector)
-		{
+	public void setParamSelector(SimpleSelectorForNegation newParamSelector) {
+		if (newParamSelector != paramSelector) {
 			NotificationChain msgs = null;
 			if (paramSelector != null) {
 				msgs = ((InternalEObject) paramSelector).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CSSPackage.PSEUDO_CLASS_FUNCTION__PARAM_SELECTOR, null, msgs);
@@ -213,8 +203,7 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, CSSPackage.PSEUDO_CLASS_FUNCTION__PARAM_SELECTOR, newParamSelector, newParamSelector));
 		}
 	}
@@ -226,8 +215,7 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 * @generated
 	 */
 	@Override
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -238,8 +226,7 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName)
-	{
+	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired()) {
@@ -254,11 +241,9 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 * @generated
 	 */
 	@Override
-	public EList<CssTok> getParams()
-	{
-		if (params == null)
-		{
-			params = new EObjectContainmentEList<CssTok>(CssTok.class, this, CSSPackage.PSEUDO_CLASS_FUNCTION__PARAMS);
+	public EList<CssTok> getParams() {
+		if (params == null) {
+			params = new EObjectContainmentEList<>(CssTok.class, this, CSSPackage.PSEUDO_CLASS_FUNCTION__PARAMS);
 		}
 		return params;
 	}
@@ -270,10 +255,8 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case CSSPackage.PSEUDO_CLASS_FUNCTION__PARAM_SELECTOR:
 			return basicSetParamSelector(null, msgs);
 		case CSSPackage.PSEUDO_CLASS_FUNCTION__PARAMS:
@@ -289,10 +272,8 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.PSEUDO_CLASS_FUNCTION__NOT:
 			return isNot();
 		case CSSPackage.PSEUDO_CLASS_FUNCTION__PARAM_SELECTOR:
@@ -313,10 +294,8 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.PSEUDO_CLASS_FUNCTION__NOT:
 			setNot((Boolean) newValue);
 			return;
@@ -341,10 +320,8 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.PSEUDO_CLASS_FUNCTION__NOT:
 			setNot(NOT_EDEFAULT);
 			return;
@@ -368,10 +345,8 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.PSEUDO_CLASS_FUNCTION__NOT:
 			return not != NOT_EDEFAULT;
 		case CSSPackage.PSEUDO_CLASS_FUNCTION__PARAM_SELECTOR:
@@ -391,8 +366,7 @@ public class PseudoClassFunctionImpl extends PseudoClassOrFuncImpl implements Ps
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}

@@ -20,13 +20,13 @@ package org.eclipse.papyrus.infra.gmfdiag.css3.cSS;
  * @model
  * @generated
  */
-public interface URLType extends importExpression
-{
+public interface URLType extends importExpression {
 	/**
 	 * Returns the value of the '<em><b>Media List</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Media List</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Media List</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -54,7 +54,8 @@ public interface URLType extends importExpression
 	 * Returns the value of the '<em><b>Url</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Url</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *

@@ -25,8 +25,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.URLType;
  *
  * @generated
  */
-public class URLTypeImpl extends importExpressionImpl implements URLType
-{
+public class URLTypeImpl extends importExpressionImpl implements URLType {
 	/**
 	 * The default value of the '{@link #getMediaList() <em>Media List</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -77,8 +76,7 @@ public class URLTypeImpl extends importExpressionImpl implements URLType
 	 *
 	 * @generated
 	 */
-	protected URLTypeImpl()
-	{
+	protected URLTypeImpl() {
 		super();
 	}
 
@@ -89,8 +87,7 @@ public class URLTypeImpl extends importExpressionImpl implements URLType
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.URL_TYPE;
 	}
 
@@ -101,8 +98,7 @@ public class URLTypeImpl extends importExpressionImpl implements URLType
 	 * @generated
 	 */
 	@Override
-	public String getMediaList()
-	{
+	public String getMediaList() {
 		return mediaList;
 	}
 
@@ -113,8 +109,7 @@ public class URLTypeImpl extends importExpressionImpl implements URLType
 	 * @generated
 	 */
 	@Override
-	public void setMediaList(String newMediaList)
-	{
+	public void setMediaList(String newMediaList) {
 		String oldMediaList = mediaList;
 		mediaList = newMediaList;
 		if (eNotificationRequired()) {
@@ -129,8 +124,7 @@ public class URLTypeImpl extends importExpressionImpl implements URLType
 	 * @generated
 	 */
 	@Override
-	public String getUrl()
-	{
+	public String getUrl() {
 		return url;
 	}
 
@@ -141,8 +135,7 @@ public class URLTypeImpl extends importExpressionImpl implements URLType
 	 * @generated
 	 */
 	@Override
-	public void setUrl(String newUrl)
-	{
+	public void setUrl(String newUrl) {
 		String oldUrl = url;
 		url = newUrl;
 		if (eNotificationRequired()) {
@@ -157,10 +150,8 @@ public class URLTypeImpl extends importExpressionImpl implements URLType
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.URL_TYPE__MEDIA_LIST:
 			return getMediaList();
 		case CSSPackage.URL_TYPE__URL:
@@ -176,10 +167,8 @@ public class URLTypeImpl extends importExpressionImpl implements URLType
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.URL_TYPE__MEDIA_LIST:
 			setMediaList((String) newValue);
 			return;
@@ -197,10 +186,8 @@ public class URLTypeImpl extends importExpressionImpl implements URLType
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.URL_TYPE__MEDIA_LIST:
 			setMediaList(MEDIA_LIST_EDEFAULT);
 			return;
@@ -218,10 +205,8 @@ public class URLTypeImpl extends importExpressionImpl implements URLType
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.URL_TYPE__MEDIA_LIST:
 			return MEDIA_LIST_EDEFAULT == null ? mediaList != null : !MEDIA_LIST_EDEFAULT.equals(mediaList);
 		case CSSPackage.URL_TYPE__URL:
@@ -237,8 +222,7 @@ public class URLTypeImpl extends importExpressionImpl implements URLType
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}

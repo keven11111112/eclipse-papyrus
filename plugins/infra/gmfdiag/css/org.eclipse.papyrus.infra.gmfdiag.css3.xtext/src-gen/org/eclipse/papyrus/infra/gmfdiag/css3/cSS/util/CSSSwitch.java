@@ -12,7 +12,8 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.*;
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.
- * It supports the call {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
+ * It supports the call {@link #doSwitch(EObject) doSwitch(object)}
+ * to invoke the <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object
  * and proceeding up the inheritance hierarchy
  * until a non-null result is returned,
@@ -22,8 +23,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.*;
  * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage
  * @generated
  */
-public class CSSSwitch<T> extends Switch<T>
-{
+public class CSSSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -40,10 +40,8 @@ public class CSSSwitch<T> extends Switch<T>
 	 *
 	 * @generated
 	 */
-	public CSSSwitch()
-	{
-		if (modelPackage == null)
-		{
+	public CSSSwitch() {
+		if (modelPackage == null) {
 			modelPackage = CSSPackage.eINSTANCE;
 		}
 	}
@@ -59,8 +57,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected boolean isSwitchFor(EPackage ePackage)
-	{
+	protected boolean isSwitchFor(EPackage ePackage) {
 		return ePackage == modelPackage;
 	}
 
@@ -73,10 +70,8 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject)
-	{
-		switch (classifierID)
-		{
+	protected T doSwitch(int classifierID, EObject theEObject) {
+		switch (classifierID) {
 		case CSSPackage.STYLESHEET: {
 			stylesheet stylesheet = (stylesheet) theEObject;
 			T result = casestylesheet(stylesheet);
@@ -430,8 +425,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casestylesheet(stylesheet object)
-	{
+	public T casestylesheet(stylesheet object) {
 		return null;
 	}
 
@@ -448,8 +442,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casecharset(charset object)
-	{
+	public T casecharset(charset object) {
 		return null;
 	}
 
@@ -466,8 +459,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseimportExpression(importExpression object)
-	{
+	public T caseimportExpression(importExpression object) {
 		return null;
 	}
 
@@ -484,8 +476,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casepage(page object)
-	{
+	public T casepage(page object) {
 		return null;
 	}
 
@@ -502,8 +493,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casemedia(media object)
-	{
+	public T casemedia(media object) {
 		return null;
 	}
 
@@ -520,8 +510,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casefont_face(font_face object)
-	{
+	public T casefont_face(font_face object) {
 		return null;
 	}
 
@@ -538,8 +527,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casekeyframes(keyframes object)
-	{
+	public T casekeyframes(keyframes object) {
 		return null;
 	}
 
@@ -556,8 +544,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casekeyframe_selector(keyframe_selector object)
-	{
+	public T casekeyframe_selector(keyframe_selector object) {
 		return null;
 	}
 
@@ -574,8 +561,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseruleset(ruleset object)
-	{
+	public T caseruleset(ruleset object) {
 		return null;
 	}
 
@@ -592,8 +578,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseselector(selector object)
-	{
+	public T caseselector(selector object) {
 		return null;
 	}
 
@@ -610,8 +595,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSimpleSelectorForNegation(SimpleSelectorForNegation object)
-	{
+	public T caseSimpleSelectorForNegation(SimpleSelectorForNegation object) {
 		return null;
 	}
 
@@ -628,8 +612,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCssSelector(CssSelector object)
-	{
+	public T caseCssSelector(CssSelector object) {
 		return null;
 	}
 
@@ -646,8 +629,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casesimple_selector(simple_selector object)
-	{
+	public T casesimple_selector(simple_selector object) {
 		return null;
 	}
 
@@ -664,8 +646,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseClassSelector(ClassSelector object)
-	{
+	public T caseClassSelector(ClassSelector object) {
 		return null;
 	}
 
@@ -682,8 +663,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseElementSelector(ElementSelector object)
-	{
+	public T caseElementSelector(ElementSelector object) {
 		return null;
 	}
 
@@ -700,8 +680,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseUniversalSelector(UniversalSelector object)
-	{
+	public T caseUniversalSelector(UniversalSelector object) {
 		return null;
 	}
 
@@ -718,8 +697,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIdSelector(IdSelector object)
-	{
+	public T caseIdSelector(IdSelector object) {
 		return null;
 	}
 
@@ -736,8 +714,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casecss_declaration(css_declaration object)
-	{
+	public T casecss_declaration(css_declaration object) {
 		return null;
 	}
 
@@ -754,8 +731,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casecss_property(css_property object)
-	{
+	public T casecss_property(css_property object) {
 		return null;
 	}
 
@@ -772,8 +748,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePseudoClassOrFunc(PseudoClassOrFunc object)
-	{
+	public T casePseudoClassOrFunc(PseudoClassOrFunc object) {
 		return null;
 	}
 
@@ -790,8 +765,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePseudoClass(PseudoClass object)
-	{
+	public T casePseudoClass(PseudoClass object) {
 		return null;
 	}
 
@@ -808,8 +782,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePseudoClassName(PseudoClassName object)
-	{
+	public T casePseudoClassName(PseudoClassName object) {
 		return null;
 	}
 
@@ -826,8 +799,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePseudoClassFunction(PseudoClassFunction object)
-	{
+	public T casePseudoClassFunction(PseudoClassFunction object) {
 		return null;
 	}
 
@@ -844,8 +816,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCssTok(CssTok object)
-	{
+	public T caseCssTok(CssTok object) {
 		return null;
 	}
 
@@ -862,8 +833,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseURLType(URLType object)
-	{
+	public T caseURLType(URLType object) {
 		return null;
 	}
 
@@ -880,8 +850,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttributeSelector(AttributeSelector object)
-	{
+	public T caseAttributeSelector(AttributeSelector object) {
 		return null;
 	}
 
@@ -898,8 +867,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSymbolTok(SymbolTok object)
-	{
+	public T caseSymbolTok(SymbolTok object) {
 		return null;
 	}
 
@@ -916,8 +884,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseWSTok(WSTok object)
-	{
+	public T caseWSTok(WSTok object) {
 		return null;
 	}
 
@@ -934,8 +901,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStringTok(StringTok object)
-	{
+	public T caseStringTok(StringTok object) {
 		return null;
 	}
 
@@ -952,8 +918,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNumberTok(NumberTok object)
-	{
+	public T caseNumberTok(NumberTok object) {
 		return null;
 	}
 
@@ -970,8 +935,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseUrlTok(UrlTok object)
-	{
+	public T caseUrlTok(UrlTok object) {
 		return null;
 	}
 
@@ -988,8 +952,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseColorTok(ColorTok object)
-	{
+	public T caseColorTok(ColorTok object) {
 		return null;
 	}
 
@@ -1006,8 +969,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIdentifierTok(IdentifierTok object)
-	{
+	public T caseIdentifierTok(IdentifierTok object) {
 		return null;
 	}
 
@@ -1024,8 +986,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFuncTok(FuncTok object)
-	{
+	public T caseFuncTok(FuncTok object) {
 		return null;
 	}
 
@@ -1043,8 +1004,7 @@ public class CSSSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	public T defaultCase(EObject object)
-	{
+	public T defaultCase(EObject object) {
 		return null;
 	}
 

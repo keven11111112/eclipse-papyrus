@@ -22,14 +22,14 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface font_face extends keyframes
-{
+public interface font_face extends keyframes {
 	/**
 	 * Returns the value of the '<em><b>Declarations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Declarations</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Declarations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -44,7 +44,8 @@ public interface font_face extends keyframes
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -73,7 +74,8 @@ public interface font_face extends keyframes
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css3.cSS.keyframe_selector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Keyframeselectors</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Keyframeselectors</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *

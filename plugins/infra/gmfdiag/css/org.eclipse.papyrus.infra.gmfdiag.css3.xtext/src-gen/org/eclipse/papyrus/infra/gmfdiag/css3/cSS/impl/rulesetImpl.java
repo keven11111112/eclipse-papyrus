@@ -35,8 +35,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.selector;
  *
  * @generated
  */
-public class rulesetImpl extends MinimalEObjectImpl.Container implements ruleset
-{
+public class rulesetImpl extends MinimalEObjectImpl.Container implements ruleset {
 	/**
 	 * The cached value of the '{@link #getSelectors() <em>Selectors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -65,8 +64,7 @@ public class rulesetImpl extends MinimalEObjectImpl.Container implements ruleset
 	 *
 	 * @generated
 	 */
-	protected rulesetImpl()
-	{
+	protected rulesetImpl() {
 		super();
 	}
 
@@ -77,8 +75,7 @@ public class rulesetImpl extends MinimalEObjectImpl.Container implements ruleset
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return CSSPackage.Literals.RULESET;
 	}
 
@@ -89,11 +86,9 @@ public class rulesetImpl extends MinimalEObjectImpl.Container implements ruleset
 	 * @generated
 	 */
 	@Override
-	public EList<selector> getSelectors()
-	{
-		if (selectors == null)
-		{
-			selectors = new EObjectContainmentEList<selector>(selector.class, this, CSSPackage.RULESET__SELECTORS);
+	public EList<selector> getSelectors() {
+		if (selectors == null) {
+			selectors = new EObjectContainmentEList<>(selector.class, this, CSSPackage.RULESET__SELECTORS);
 		}
 		return selectors;
 	}
@@ -105,11 +100,9 @@ public class rulesetImpl extends MinimalEObjectImpl.Container implements ruleset
 	 * @generated
 	 */
 	@Override
-	public EList<css_declaration> getDeclarations()
-	{
-		if (declarations == null)
-		{
-			declarations = new EObjectContainmentEList<css_declaration>(css_declaration.class, this, CSSPackage.RULESET__DECLARATIONS);
+	public EList<css_declaration> getDeclarations() {
+		if (declarations == null) {
+			declarations = new EObjectContainmentEList<>(css_declaration.class, this, CSSPackage.RULESET__DECLARATIONS);
 		}
 		return declarations;
 	}
@@ -121,10 +114,8 @@ public class rulesetImpl extends MinimalEObjectImpl.Container implements ruleset
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case CSSPackage.RULESET__SELECTORS:
 			return ((InternalEList<?>) getSelectors()).basicRemove(otherEnd, msgs);
 		case CSSPackage.RULESET__DECLARATIONS:
@@ -140,10 +131,8 @@ public class rulesetImpl extends MinimalEObjectImpl.Container implements ruleset
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case CSSPackage.RULESET__SELECTORS:
 			return getSelectors();
 		case CSSPackage.RULESET__DECLARATIONS:
@@ -160,10 +149,8 @@ public class rulesetImpl extends MinimalEObjectImpl.Container implements ruleset
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case CSSPackage.RULESET__SELECTORS:
 			getSelectors().clear();
 			getSelectors().addAll((Collection<? extends selector>) newValue);
@@ -183,10 +170,8 @@ public class rulesetImpl extends MinimalEObjectImpl.Container implements ruleset
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case CSSPackage.RULESET__SELECTORS:
 			getSelectors().clear();
 			return;
@@ -204,10 +189,8 @@ public class rulesetImpl extends MinimalEObjectImpl.Container implements ruleset
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case CSSPackage.RULESET__SELECTORS:
 			return selectors != null && !selectors.isEmpty();
 		case CSSPackage.RULESET__DECLARATIONS:

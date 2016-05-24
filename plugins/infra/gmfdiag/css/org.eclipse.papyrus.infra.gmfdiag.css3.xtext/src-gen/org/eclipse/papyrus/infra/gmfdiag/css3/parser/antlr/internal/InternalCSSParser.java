@@ -17,68 +17,68 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 			"'@keyframes'", "'@KEYFRAMES'", "'['", "'^='", "'$='", "'*='", "'='", "']'", "'.'", "'*'", "'|'", "')'", "'('", "'not('", "'>'", "'~'", "'url('", "'/'", "'?'", "'@'", "'!'", "'$'", "'&'", "'not'", "'no'", "'url'", "'ur'", "'\\\\ '", "'\\\\('",
 			"'\\\\)'", "'\\\\\\''", "'\\\\\"'"
 	};
-	public static final int T__64 = 64;
-	public static final int T__29 = 29;
-	public static final int T__28 = 28;
-	public static final int T__62 = 62;
-	public static final int T__27 = 27;
-	public static final int T__63 = 63;
-	public static final int T__26 = 26;
-	public static final int T__25 = 25;
-	public static final int T__24 = 24;
-	public static final int RULE_INCLUDES = 9;
-	public static final int T__23 = 23;
-	public static final int T__22 = 22;
-	public static final int T__21 = 21;
-	public static final int T__20 = 20;
-	public static final int RULE_ONE_INT = 18;
-	public static final int RULE_PERCENT = 7;
-	public static final int T__61 = 61;
-	public static final int T__60 = 60;
-	public static final int EOF = -1;
+	public static final int T__50 = 50;
+	public static final int RULE_IMPORTANT_SYM = 12;
+	public static final int T__59 = 59;
+	public static final int RULE_CSSSTRING = 4;
+	public static final int RULE_UNDERSCORE = 15;
 	public static final int T__55 = 55;
 	public static final int T__56 = 56;
 	public static final int T__57 = 57;
 	public static final int T__58 = 58;
+	public static final int RULE_PERCENT = 7;
 	public static final int T__51 = 51;
 	public static final int T__52 = 52;
 	public static final int T__53 = 53;
 	public static final int T__54 = 54;
-	public static final int RULE_ONE_NON_HEX_LETTER = 17;
-	public static final int T__59 = 59;
-	public static final int T__50 = 50;
-	public static final int T__42 = 42;
-	public static final int T__43 = 43;
-	public static final int T__40 = 40;
-	public static final int T__41 = 41;
-	public static final int T__46 = 46;
-	public static final int T__47 = 47;
-	public static final int T__44 = 44;
-	public static final int T__45 = 45;
-	public static final int T__48 = 48;
-	public static final int T__49 = 49;
-	public static final int RULE_UNDERSCORE = 15;
-	public static final int RULE_PLUS = 13;
-	public static final int RULE_ONE_HEX_LETTER = 16;
+	public static final int T__60 = 60;
+	public static final int T__61 = 61;
 	public static final int RULE_COMMA = 6;
-	public static final int RULE_HASHMARK = 11;
-	public static final int RULE_ML_COMMENT = 19;
-	public static final int RULE_DASHMATCH = 10;
-	public static final int T__30 = 30;
 	public static final int RULE_COLON = 5;
-	public static final int T__31 = 31;
-	public static final int T__32 = 32;
-	public static final int T__33 = 33;
-	public static final int T__34 = 34;
-	public static final int T__35 = 35;
-	public static final int T__36 = 36;
+	public static final int RULE_HASHMARK = 11;
+	public static final int T__26 = 26;
+	public static final int T__27 = 27;
+	public static final int RULE_DASHMATCH = 10;
+	public static final int T__28 = 28;
+	public static final int T__29 = 29;
+	public static final int T__22 = 22;
+	public static final int RULE_ML_COMMENT = 19;
+	public static final int T__23 = 23;
+	public static final int T__24 = 24;
+	public static final int T__25 = 25;
+	public static final int T__62 = 62;
+	public static final int T__63 = 63;
+	public static final int T__20 = 20;
+	public static final int T__64 = 64;
+	public static final int RULE_INCLUDES = 9;
+	public static final int T__21 = 21;
+	public static final int RULE_ONE_HEX_LETTER = 16;
 	public static final int T__37 = 37;
 	public static final int T__38 = 38;
 	public static final int T__39 = 39;
-	public static final int RULE_CSSSTRING = 4;
-	public static final int RULE_IMPORTANT_SYM = 12;
-	public static final int RULE_WS = 8;
 	public static final int RULE_DASH = 14;
+	public static final int RULE_ONE_INT = 18;
+	public static final int T__33 = 33;
+	public static final int T__34 = 34;
+	public static final int T__35 = 35;
+	public static final int RULE_PLUS = 13;
+	public static final int T__36 = 36;
+	public static final int EOF = -1;
+	public static final int T__30 = 30;
+	public static final int T__31 = 31;
+	public static final int RULE_ONE_NON_HEX_LETTER = 17;
+	public static final int T__32 = 32;
+	public static final int RULE_WS = 8;
+	public static final int T__48 = 48;
+	public static final int T__49 = 49;
+	public static final int T__44 = 44;
+	public static final int T__45 = 45;
+	public static final int T__46 = 46;
+	public static final int T__47 = 47;
+	public static final int T__40 = 40;
+	public static final int T__41 = 41;
+	public static final int T__42 = 42;
+	public static final int T__43 = 43;
 
 	// delegates
 	// delegators
@@ -101,7 +101,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 	@Override
 	public String getGrammarFileName() {
-		return "../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g";
+		return "InternalCSS.g";
 	}
 
 
@@ -127,7 +127,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 	// $ANTLR start "entryRulestylesheet"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:67:1: entryRulestylesheet returns [EObject current=null] : iv_rulestylesheet= rulestylesheet EOF ;
+	// InternalCSS.g:67:1: entryRulestylesheet returns [EObject current=null] : iv_rulestylesheet= rulestylesheet EOF ;
 	public final EObject entryRulestylesheet() throws RecognitionException {
 		EObject current = null;
 
@@ -135,13 +135,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:68:2: (iv_rulestylesheet= rulestylesheet EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:69:2: iv_rulestylesheet= rulestylesheet EOF
+			// InternalCSS.g:68:2: (iv_rulestylesheet= rulestylesheet EOF )
+			// InternalCSS.g:69:2: iv_rulestylesheet= rulestylesheet EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getStylesheetRule());
 				}
-				pushFollow(FOLLOW_rulestylesheet_in_entryRulestylesheet75);
+				pushFollow(FOLLOW_1);
 				iv_rulestylesheet = rulestylesheet();
 
 				state._fsp--;
@@ -151,7 +151,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulestylesheet;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulestylesheet85);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -167,13 +167,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulestylesheet"
 
 
 	// $ANTLR start "rulestylesheet"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:76:1: rulestylesheet returns [EObject current=null] : ( ( (lv_charset_0_0= rulecharset ) )? ( (lv_imports_1_0=
-	// ruleimportExpression ) )* ( ( (lv_ruleset_2_0= ruleruleset ) ) | ( (lv_media_3_0= rulemedia ) ) | ( (lv_page_4_0= rulepage ) ) | ( (lv_font_face_5_0= rulefont_face ) ) | ( (lv_keyframes_6_0= rulekeyframes ) ) )* ) ;
+	// InternalCSS.g:76:1: rulestylesheet returns [EObject current=null] : ( ( (lv_charset_0_0= rulecharset ) )? ( (lv_imports_1_0= ruleimportExpression ) )* ( ( (lv_ruleset_2_0= ruleruleset ) ) | ( (lv_media_3_0= rulemedia ) ) | ( (lv_page_4_0= rulepage ) ) |
+	// ( (lv_font_face_5_0= rulefont_face ) ) | ( (lv_keyframes_6_0= rulekeyframes ) ) )* ) ;
 	public final EObject rulestylesheet() throws RecognitionException {
 		EObject current = null;
 
@@ -195,17 +194,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:79:28: ( ( ( (lv_charset_0_0= rulecharset ) )? ( (lv_imports_1_0= ruleimportExpression ) )* ( ( (lv_ruleset_2_0=
-			// ruleruleset ) ) | ( (lv_media_3_0= rulemedia ) ) | ( (lv_page_4_0= rulepage ) ) | ( (lv_font_face_5_0= rulefont_face ) ) | ( (lv_keyframes_6_0= rulekeyframes ) ) )* ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:80:1: ( ( (lv_charset_0_0= rulecharset ) )? ( (lv_imports_1_0= ruleimportExpression ) )* ( ( (lv_ruleset_2_0=
-			// ruleruleset ) ) | ( (lv_media_3_0= rulemedia ) ) | ( (lv_page_4_0= rulepage ) ) | ( (lv_font_face_5_0= rulefont_face ) ) | ( (lv_keyframes_6_0= rulekeyframes ) ) )* )
+			// InternalCSS.g:79:28: ( ( ( (lv_charset_0_0= rulecharset ) )? ( (lv_imports_1_0= ruleimportExpression ) )* ( ( (lv_ruleset_2_0= ruleruleset ) ) | ( (lv_media_3_0= rulemedia ) ) | ( (lv_page_4_0= rulepage ) ) | ( (lv_font_face_5_0= rulefont_face )
+			// ) | ( (lv_keyframes_6_0= rulekeyframes ) ) )* ) )
+			// InternalCSS.g:80:1: ( ( (lv_charset_0_0= rulecharset ) )? ( (lv_imports_1_0= ruleimportExpression ) )* ( ( (lv_ruleset_2_0= ruleruleset ) ) | ( (lv_media_3_0= rulemedia ) ) | ( (lv_page_4_0= rulepage ) ) | ( (lv_font_face_5_0= rulefont_face ) )
+			// | ( (lv_keyframes_6_0= rulekeyframes ) ) )* )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:80:1: ( ( (lv_charset_0_0= rulecharset ) )? ( (lv_imports_1_0= ruleimportExpression ) )* ( ( (lv_ruleset_2_0=
-				// ruleruleset ) ) | ( (lv_media_3_0= rulemedia ) ) | ( (lv_page_4_0= rulepage ) ) | ( (lv_font_face_5_0= rulefont_face ) ) | ( (lv_keyframes_6_0= rulekeyframes ) ) )* )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:80:2: ( (lv_charset_0_0= rulecharset ) )? ( (lv_imports_1_0= ruleimportExpression ) )* ( ( (lv_ruleset_2_0=
-				// ruleruleset ) ) | ( (lv_media_3_0= rulemedia ) ) | ( (lv_page_4_0= rulepage ) ) | ( (lv_font_face_5_0= rulefont_face ) ) | ( (lv_keyframes_6_0= rulekeyframes ) ) )*
+				// InternalCSS.g:80:1: ( ( (lv_charset_0_0= rulecharset ) )? ( (lv_imports_1_0= ruleimportExpression ) )* ( ( (lv_ruleset_2_0= ruleruleset ) ) | ( (lv_media_3_0= rulemedia ) ) | ( (lv_page_4_0= rulepage ) ) | ( (lv_font_face_5_0= rulefont_face
+				// ) ) | ( (lv_keyframes_6_0= rulekeyframes ) ) )* )
+				// InternalCSS.g:80:2: ( (lv_charset_0_0= rulecharset ) )? ( (lv_imports_1_0= ruleimportExpression ) )* ( ( (lv_ruleset_2_0= ruleruleset ) ) | ( (lv_media_3_0= rulemedia ) ) | ( (lv_page_4_0= rulepage ) ) | ( (lv_font_face_5_0= rulefont_face )
+				// ) | ( (lv_keyframes_6_0= rulekeyframes ) ) )*
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:80:2: ( (lv_charset_0_0= rulecharset ) )?
+					// InternalCSS.g:80:2: ( (lv_charset_0_0= rulecharset ) )?
 					int alt1 = 2;
 					int LA1_0 = input.LA(1);
 
@@ -214,17 +213,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 					switch (alt1) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:81:1: (lv_charset_0_0= rulecharset )
+					// InternalCSS.g:81:1: (lv_charset_0_0= rulecharset )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:81:1: (lv_charset_0_0= rulecharset )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:82:3: lv_charset_0_0= rulecharset
+						// InternalCSS.g:81:1: (lv_charset_0_0= rulecharset )
+						// InternalCSS.g:82:3: lv_charset_0_0= rulecharset
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getStylesheetAccess().getCharsetCharsetParserRuleCall_0_0());
 
 							}
-							pushFollow(FOLLOW_rulecharset_in_rulestylesheet131);
+							pushFollow(FOLLOW_3);
 							lv_charset_0_0 = rulecharset();
 
 							state._fsp--;
@@ -240,7 +239,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"charset",
 										lv_charset_0_0,
-										"charset");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.charset");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -253,7 +252,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:98:3: ( (lv_imports_1_0= ruleimportExpression ) )*
+					// InternalCSS.g:98:3: ( (lv_imports_1_0= ruleimportExpression ) )*
 					loop2: do {
 						int alt2 = 2;
 						int LA2_0 = input.LA(1);
@@ -265,17 +264,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt2) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:99:1: (lv_imports_1_0= ruleimportExpression )
+						// InternalCSS.g:99:1: (lv_imports_1_0= ruleimportExpression )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:99:1: (lv_imports_1_0= ruleimportExpression )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:100:3: lv_imports_1_0= ruleimportExpression
+							// InternalCSS.g:99:1: (lv_imports_1_0= ruleimportExpression )
+							// InternalCSS.g:100:3: lv_imports_1_0= ruleimportExpression
 							{
 								if (state.backtracking == 0) {
 
 									newCompositeNode(grammarAccess.getStylesheetAccess().getImportsImportExpressionParserRuleCall_1_0());
 
 								}
-								pushFollow(FOLLOW_ruleimportExpression_in_rulestylesheet153);
+								pushFollow(FOLLOW_3);
 								lv_imports_1_0 = ruleimportExpression();
 
 								state._fsp--;
@@ -291,7 +290,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 											current,
 											"imports",
 											lv_imports_1_0,
-											"importExpression");
+											"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.importExpression");
 									afterParserOrEnumRuleCall();
 
 								}
@@ -307,8 +306,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 					} while (true);
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:116:3: ( ( (lv_ruleset_2_0= ruleruleset ) ) | ( (lv_media_3_0= rulemedia ) ) | ( (lv_page_4_0= rulepage )
-					// ) | ( (lv_font_face_5_0= rulefont_face ) ) | ( (lv_keyframes_6_0= rulekeyframes ) ) )*
+					// InternalCSS.g:116:3: ( ( (lv_ruleset_2_0= ruleruleset ) ) | ( (lv_media_3_0= rulemedia ) ) | ( (lv_page_4_0= rulepage ) ) | ( (lv_font_face_5_0= rulefont_face ) ) | ( (lv_keyframes_6_0= rulekeyframes ) ) )*
 					loop3: do {
 						int alt3 = 6;
 						switch (input.LA(1)) {
@@ -354,20 +352,20 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt3) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:116:4: ( (lv_ruleset_2_0= ruleruleset ) )
+						// InternalCSS.g:116:4: ( (lv_ruleset_2_0= ruleruleset ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:116:4: ( (lv_ruleset_2_0= ruleruleset ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:117:1: (lv_ruleset_2_0= ruleruleset )
+							// InternalCSS.g:116:4: ( (lv_ruleset_2_0= ruleruleset ) )
+							// InternalCSS.g:117:1: (lv_ruleset_2_0= ruleruleset )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:117:1: (lv_ruleset_2_0= ruleruleset )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:118:3: lv_ruleset_2_0= ruleruleset
+								// InternalCSS.g:117:1: (lv_ruleset_2_0= ruleruleset )
+								// InternalCSS.g:118:3: lv_ruleset_2_0= ruleruleset
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getStylesheetAccess().getRulesetRulesetParserRuleCall_2_0_0());
 
 									}
-									pushFollow(FOLLOW_ruleruleset_in_rulestylesheet176);
+									pushFollow(FOLLOW_4);
 									lv_ruleset_2_0 = ruleruleset();
 
 									state._fsp--;
@@ -383,7 +381,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"ruleset",
 												lv_ruleset_2_0,
-												"ruleset");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ruleset");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -397,20 +395,20 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 2:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:135:6: ( (lv_media_3_0= rulemedia ) )
+						// InternalCSS.g:135:6: ( (lv_media_3_0= rulemedia ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:135:6: ( (lv_media_3_0= rulemedia ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:136:1: (lv_media_3_0= rulemedia )
+							// InternalCSS.g:135:6: ( (lv_media_3_0= rulemedia ) )
+							// InternalCSS.g:136:1: (lv_media_3_0= rulemedia )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:136:1: (lv_media_3_0= rulemedia )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:137:3: lv_media_3_0= rulemedia
+								// InternalCSS.g:136:1: (lv_media_3_0= rulemedia )
+								// InternalCSS.g:137:3: lv_media_3_0= rulemedia
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getStylesheetAccess().getMediaMediaParserRuleCall_2_1_0());
 
 									}
-									pushFollow(FOLLOW_rulemedia_in_rulestylesheet203);
+									pushFollow(FOLLOW_4);
 									lv_media_3_0 = rulemedia();
 
 									state._fsp--;
@@ -426,7 +424,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"media",
 												lv_media_3_0,
-												"media");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.media");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -440,20 +438,20 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 3:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:154:6: ( (lv_page_4_0= rulepage ) )
+						// InternalCSS.g:154:6: ( (lv_page_4_0= rulepage ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:154:6: ( (lv_page_4_0= rulepage ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:155:1: (lv_page_4_0= rulepage )
+							// InternalCSS.g:154:6: ( (lv_page_4_0= rulepage ) )
+							// InternalCSS.g:155:1: (lv_page_4_0= rulepage )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:155:1: (lv_page_4_0= rulepage )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:156:3: lv_page_4_0= rulepage
+								// InternalCSS.g:155:1: (lv_page_4_0= rulepage )
+								// InternalCSS.g:156:3: lv_page_4_0= rulepage
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getStylesheetAccess().getPagePageParserRuleCall_2_2_0());
 
 									}
-									pushFollow(FOLLOW_rulepage_in_rulestylesheet230);
+									pushFollow(FOLLOW_4);
 									lv_page_4_0 = rulepage();
 
 									state._fsp--;
@@ -469,7 +467,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"page",
 												lv_page_4_0,
-												"page");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.page");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -483,20 +481,20 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 4:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:173:6: ( (lv_font_face_5_0= rulefont_face ) )
+						// InternalCSS.g:173:6: ( (lv_font_face_5_0= rulefont_face ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:173:6: ( (lv_font_face_5_0= rulefont_face ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:174:1: (lv_font_face_5_0= rulefont_face )
+							// InternalCSS.g:173:6: ( (lv_font_face_5_0= rulefont_face ) )
+							// InternalCSS.g:174:1: (lv_font_face_5_0= rulefont_face )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:174:1: (lv_font_face_5_0= rulefont_face )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:175:3: lv_font_face_5_0= rulefont_face
+								// InternalCSS.g:174:1: (lv_font_face_5_0= rulefont_face )
+								// InternalCSS.g:175:3: lv_font_face_5_0= rulefont_face
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getStylesheetAccess().getFont_faceFont_faceParserRuleCall_2_3_0());
 
 									}
-									pushFollow(FOLLOW_rulefont_face_in_rulestylesheet257);
+									pushFollow(FOLLOW_4);
 									lv_font_face_5_0 = rulefont_face();
 
 									state._fsp--;
@@ -512,7 +510,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"font_face",
 												lv_font_face_5_0,
-												"font_face");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.font_face");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -526,20 +524,20 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 5:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:192:6: ( (lv_keyframes_6_0= rulekeyframes ) )
+						// InternalCSS.g:192:6: ( (lv_keyframes_6_0= rulekeyframes ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:192:6: ( (lv_keyframes_6_0= rulekeyframes ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:193:1: (lv_keyframes_6_0= rulekeyframes )
+							// InternalCSS.g:192:6: ( (lv_keyframes_6_0= rulekeyframes ) )
+							// InternalCSS.g:193:1: (lv_keyframes_6_0= rulekeyframes )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:193:1: (lv_keyframes_6_0= rulekeyframes )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:194:3: lv_keyframes_6_0= rulekeyframes
+								// InternalCSS.g:193:1: (lv_keyframes_6_0= rulekeyframes )
+								// InternalCSS.g:194:3: lv_keyframes_6_0= rulekeyframes
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getStylesheetAccess().getKeyframesKeyframesParserRuleCall_2_4_0());
 
 									}
-									pushFollow(FOLLOW_rulekeyframes_in_rulestylesheet284);
+									pushFollow(FOLLOW_4);
 									lv_keyframes_6_0 = rulekeyframes();
 
 									state._fsp--;
@@ -555,7 +553,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"keyframes",
 												lv_keyframes_6_0,
-												"keyframes");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.keyframes");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -592,12 +590,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulestylesheet"
 
 
 	// $ANTLR start "entryRulecharset"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:218:1: entryRulecharset returns [EObject current=null] : iv_rulecharset= rulecharset EOF ;
+	// InternalCSS.g:218:1: entryRulecharset returns [EObject current=null] : iv_rulecharset= rulecharset EOF ;
 	public final EObject entryRulecharset() throws RecognitionException {
 		EObject current = null;
 
@@ -605,13 +602,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:219:2: (iv_rulecharset= rulecharset EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:220:2: iv_rulecharset= rulecharset EOF
+			// InternalCSS.g:219:2: (iv_rulecharset= rulecharset EOF )
+			// InternalCSS.g:220:2: iv_rulecharset= rulecharset EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getCharsetRule());
 				}
-				pushFollow(FOLLOW_rulecharset_in_entryRulecharset322);
+				pushFollow(FOLLOW_1);
 				iv_rulecharset = rulecharset();
 
 				state._fsp--;
@@ -621,7 +618,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulecharset;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulecharset332);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -637,13 +634,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulecharset"
 
 
 	// $ANTLR start "rulecharset"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:227:1: rulecharset returns [EObject current=null] : ( (otherlv_0= '@charset' | otherlv_1= '@CHARSET' ) ( (lv_charset_2_0=
-	// RULE_CSSSTRING ) ) otherlv_3= ';' ) ;
+	// InternalCSS.g:227:1: rulecharset returns [EObject current=null] : ( (otherlv_0= '@charset' | otherlv_1= '@CHARSET' ) ( (lv_charset_2_0= RULE_CSSSTRING ) ) otherlv_3= ';' ) ;
 	public final EObject rulecharset() throws RecognitionException {
 		EObject current = null;
 
@@ -655,39 +650,34 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:230:28: ( ( (otherlv_0= '@charset' | otherlv_1= '@CHARSET' ) ( (lv_charset_2_0= RULE_CSSSTRING ) ) otherlv_3= ';'
-			// ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:231:1: ( (otherlv_0= '@charset' | otherlv_1= '@CHARSET' ) ( (lv_charset_2_0= RULE_CSSSTRING ) ) otherlv_3= ';' )
+			// InternalCSS.g:230:28: ( ( (otherlv_0= '@charset' | otherlv_1= '@CHARSET' ) ( (lv_charset_2_0= RULE_CSSSTRING ) ) otherlv_3= ';' ) )
+			// InternalCSS.g:231:1: ( (otherlv_0= '@charset' | otherlv_1= '@CHARSET' ) ( (lv_charset_2_0= RULE_CSSSTRING ) ) otherlv_3= ';' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:231:1: ( (otherlv_0= '@charset' | otherlv_1= '@CHARSET' ) ( (lv_charset_2_0= RULE_CSSSTRING ) ) otherlv_3= ';'
-				// )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:231:2: (otherlv_0= '@charset' | otherlv_1= '@CHARSET' ) ( (lv_charset_2_0= RULE_CSSSTRING ) ) otherlv_3= ';'
+				// InternalCSS.g:231:1: ( (otherlv_0= '@charset' | otherlv_1= '@CHARSET' ) ( (lv_charset_2_0= RULE_CSSSTRING ) ) otherlv_3= ';' )
+				// InternalCSS.g:231:2: (otherlv_0= '@charset' | otherlv_1= '@CHARSET' ) ( (lv_charset_2_0= RULE_CSSSTRING ) ) otherlv_3= ';'
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:231:2: (otherlv_0= '@charset' | otherlv_1= '@CHARSET' )
+					// InternalCSS.g:231:2: (otherlv_0= '@charset' | otherlv_1= '@CHARSET' )
 					int alt4 = 2;
 					int LA4_0 = input.LA(1);
 
 					if ((LA4_0 == 20)) {
 						alt4 = 1;
-					}
-					else if ((LA4_0 == 21)) {
+					} else if ((LA4_0 == 21)) {
 						alt4 = 2;
-					}
-					else {
+					} else {
 						if (state.backtracking > 0) {
 							state.failed = true;
 							return current;
 						}
-						NoViableAltException nvae =
-								new NoViableAltException("", 4, 0, input);
+						NoViableAltException nvae = new NoViableAltException("", 4, 0, input);
 
 						throw nvae;
 					}
 					switch (alt4) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:231:4: otherlv_0= '@charset'
+					// InternalCSS.g:231:4: otherlv_0= '@charset'
 					{
-						otherlv_0 = (Token) match(input, 20, FOLLOW_20_in_rulecharset370);
+						otherlv_0 = (Token) match(input, 20, FOLLOW_5);
 						if (state.failed) {
 							return current;
 						}
@@ -700,9 +690,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 2:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:236:7: otherlv_1= '@CHARSET'
+					// InternalCSS.g:236:7: otherlv_1= '@CHARSET'
 					{
-						otherlv_1 = (Token) match(input, 21, FOLLOW_21_in_rulecharset388);
+						otherlv_1 = (Token) match(input, 21, FOLLOW_5);
 						if (state.failed) {
 							return current;
 						}
@@ -717,13 +707,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:240:2: ( (lv_charset_2_0= RULE_CSSSTRING ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:241:1: (lv_charset_2_0= RULE_CSSSTRING )
+					// InternalCSS.g:240:2: ( (lv_charset_2_0= RULE_CSSSTRING ) )
+					// InternalCSS.g:241:1: (lv_charset_2_0= RULE_CSSSTRING )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:241:1: (lv_charset_2_0= RULE_CSSSTRING )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:242:3: lv_charset_2_0= RULE_CSSSTRING
+						// InternalCSS.g:241:1: (lv_charset_2_0= RULE_CSSSTRING )
+						// InternalCSS.g:242:3: lv_charset_2_0= RULE_CSSSTRING
 						{
-							lv_charset_2_0 = (Token) match(input, RULE_CSSSTRING, FOLLOW_RULE_CSSSTRING_in_rulecharset406);
+							lv_charset_2_0 = (Token) match(input, RULE_CSSSTRING, FOLLOW_6);
 							if (state.failed) {
 								return current;
 							}
@@ -741,7 +731,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"charset",
 										lv_charset_2_0,
-										"CSSSTRING");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CSSSTRING");
 
 							}
 
@@ -750,7 +740,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					otherlv_3 = (Token) match(input, 22, FOLLOW_22_in_rulecharset423);
+					otherlv_3 = (Token) match(input, 22, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -777,12 +767,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulecharset"
 
 
 	// $ANTLR start "entryRuleimportExpression"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:270:1: entryRuleimportExpression returns [EObject current=null] : iv_ruleimportExpression= ruleimportExpression EOF ;
+	// InternalCSS.g:270:1: entryRuleimportExpression returns [EObject current=null] : iv_ruleimportExpression= ruleimportExpression EOF ;
 	public final EObject entryRuleimportExpression() throws RecognitionException {
 		EObject current = null;
 
@@ -790,13 +779,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:271:2: (iv_ruleimportExpression= ruleimportExpression EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:272:2: iv_ruleimportExpression= ruleimportExpression EOF
+			// InternalCSS.g:271:2: (iv_ruleimportExpression= ruleimportExpression EOF )
+			// InternalCSS.g:272:2: iv_ruleimportExpression= ruleimportExpression EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getImportExpressionRule());
 				}
-				pushFollow(FOLLOW_ruleimportExpression_in_entryRuleimportExpression459);
+				pushFollow(FOLLOW_1);
 				iv_ruleimportExpression = ruleimportExpression();
 
 				state._fsp--;
@@ -806,7 +795,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleimportExpression;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleimportExpression469);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -822,13 +811,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleimportExpression"
 
 
 	// $ANTLR start "ruleimportExpression"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:279:1: ruleimportExpression returns [EObject current=null] : ( (otherlv_0= '@import' | otherlv_1= '@IMPORT' ) ( (
-	// (lv_value_2_0= RULE_CSSSTRING ) ) | (this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? ) ) otherlv_5= ';' ) ;
+	// InternalCSS.g:279:1: ruleimportExpression returns [EObject current=null] : ( (otherlv_0= '@import' | otherlv_1= '@IMPORT' ) ( ( (lv_value_2_0= RULE_CSSSTRING ) ) | (this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? ) ) otherlv_5= ';'
+	// ) ;
 	public final EObject ruleimportExpression() throws RecognitionException {
 		EObject current = null;
 
@@ -844,41 +832,34 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:282:28: ( ( (otherlv_0= '@import' | otherlv_1= '@IMPORT' ) ( ( (lv_value_2_0= RULE_CSSSTRING ) ) |
-			// (this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? ) ) otherlv_5= ';' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:283:1: ( (otherlv_0= '@import' | otherlv_1= '@IMPORT' ) ( ( (lv_value_2_0= RULE_CSSSTRING ) ) | (this_URLType_3=
-			// ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? ) ) otherlv_5= ';' )
+			// InternalCSS.g:282:28: ( ( (otherlv_0= '@import' | otherlv_1= '@IMPORT' ) ( ( (lv_value_2_0= RULE_CSSSTRING ) ) | (this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? ) ) otherlv_5= ';' ) )
+			// InternalCSS.g:283:1: ( (otherlv_0= '@import' | otherlv_1= '@IMPORT' ) ( ( (lv_value_2_0= RULE_CSSSTRING ) ) | (this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? ) ) otherlv_5= ';' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:283:1: ( (otherlv_0= '@import' | otherlv_1= '@IMPORT' ) ( ( (lv_value_2_0= RULE_CSSSTRING ) ) |
-				// (this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? ) ) otherlv_5= ';' )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:283:2: (otherlv_0= '@import' | otherlv_1= '@IMPORT' ) ( ( (lv_value_2_0= RULE_CSSSTRING ) ) | (this_URLType_3=
-				// ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? ) ) otherlv_5= ';'
+				// InternalCSS.g:283:1: ( (otherlv_0= '@import' | otherlv_1= '@IMPORT' ) ( ( (lv_value_2_0= RULE_CSSSTRING ) ) | (this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? ) ) otherlv_5= ';' )
+				// InternalCSS.g:283:2: (otherlv_0= '@import' | otherlv_1= '@IMPORT' ) ( ( (lv_value_2_0= RULE_CSSSTRING ) ) | (this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? ) ) otherlv_5= ';'
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:283:2: (otherlv_0= '@import' | otherlv_1= '@IMPORT' )
+					// InternalCSS.g:283:2: (otherlv_0= '@import' | otherlv_1= '@IMPORT' )
 					int alt5 = 2;
 					int LA5_0 = input.LA(1);
 
 					if ((LA5_0 == 23)) {
 						alt5 = 1;
-					}
-					else if ((LA5_0 == 24)) {
+					} else if ((LA5_0 == 24)) {
 						alt5 = 2;
-					}
-					else {
+					} else {
 						if (state.backtracking > 0) {
 							state.failed = true;
 							return current;
 						}
-						NoViableAltException nvae =
-								new NoViableAltException("", 5, 0, input);
+						NoViableAltException nvae = new NoViableAltException("", 5, 0, input);
 
 						throw nvae;
 					}
 					switch (alt5) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:283:4: otherlv_0= '@import'
+					// InternalCSS.g:283:4: otherlv_0= '@import'
 					{
-						otherlv_0 = (Token) match(input, 23, FOLLOW_23_in_ruleimportExpression507);
+						otherlv_0 = (Token) match(input, 23, FOLLOW_7);
 						if (state.failed) {
 							return current;
 						}
@@ -891,9 +872,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 2:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:288:7: otherlv_1= '@IMPORT'
+					// InternalCSS.g:288:7: otherlv_1= '@IMPORT'
 					{
-						otherlv_1 = (Token) match(input, 24, FOLLOW_24_in_ruleimportExpression525);
+						otherlv_1 = (Token) match(input, 24, FOLLOW_7);
 						if (state.failed) {
 							return current;
 						}
@@ -908,38 +889,34 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:292:2: ( ( (lv_value_2_0= RULE_CSSSTRING ) ) | (this_URLType_3= ruleURLType ( (lv_mediaList_4_0=
-					// rulemedia_list ) )? ) )
+					// InternalCSS.g:292:2: ( ( (lv_value_2_0= RULE_CSSSTRING ) ) | (this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? ) )
 					int alt7 = 2;
 					int LA7_0 = input.LA(1);
 
 					if ((LA7_0 == RULE_CSSSTRING)) {
 						alt7 = 1;
-					}
-					else if ((LA7_0 == 49)) {
+					} else if ((LA7_0 == 49)) {
 						alt7 = 2;
-					}
-					else {
+					} else {
 						if (state.backtracking > 0) {
 							state.failed = true;
 							return current;
 						}
-						NoViableAltException nvae =
-								new NoViableAltException("", 7, 0, input);
+						NoViableAltException nvae = new NoViableAltException("", 7, 0, input);
 
 						throw nvae;
 					}
 					switch (alt7) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:292:3: ( (lv_value_2_0= RULE_CSSSTRING ) )
+					// InternalCSS.g:292:3: ( (lv_value_2_0= RULE_CSSSTRING ) )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:292:3: ( (lv_value_2_0= RULE_CSSSTRING ) )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:293:1: (lv_value_2_0= RULE_CSSSTRING )
+						// InternalCSS.g:292:3: ( (lv_value_2_0= RULE_CSSSTRING ) )
+						// InternalCSS.g:293:1: (lv_value_2_0= RULE_CSSSTRING )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:293:1: (lv_value_2_0= RULE_CSSSTRING )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:294:3: lv_value_2_0= RULE_CSSSTRING
+							// InternalCSS.g:293:1: (lv_value_2_0= RULE_CSSSTRING )
+							// InternalCSS.g:294:3: lv_value_2_0= RULE_CSSSTRING
 							{
-								lv_value_2_0 = (Token) match(input, RULE_CSSSTRING, FOLLOW_RULE_CSSSTRING_in_ruleimportExpression544);
+								lv_value_2_0 = (Token) match(input, RULE_CSSSTRING, FOLLOW_6);
 								if (state.failed) {
 									return current;
 								}
@@ -957,7 +934,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 											current,
 											"value",
 											lv_value_2_0,
-											"CSSSTRING");
+											"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CSSSTRING");
 
 								}
 
@@ -970,17 +947,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 2:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:311:6: (this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? )
+					// InternalCSS.g:311:6: (this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:311:6: (this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:312:5: this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )?
+						// InternalCSS.g:311:6: (this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )? )
+						// InternalCSS.g:312:5: this_URLType_3= ruleURLType ( (lv_mediaList_4_0= rulemedia_list ) )?
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getImportExpressionAccess().getURLTypeParserRuleCall_1_1_0());
 
 							}
-							pushFollow(FOLLOW_ruleURLType_in_ruleimportExpression578);
+							pushFollow(FOLLOW_8);
 							this_URLType_3 = ruleURLType();
 
 							state._fsp--;
@@ -993,7 +970,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								afterParserOrEnumRuleCall();
 
 							}
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:320:1: ( (lv_mediaList_4_0= rulemedia_list ) )?
+							// InternalCSS.g:320:1: ( (lv_mediaList_4_0= rulemedia_list ) )?
 							int alt6 = 2;
 							int LA6_0 = input.LA(1);
 
@@ -1002,17 +979,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 							switch (alt6) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:321:1: (lv_mediaList_4_0= rulemedia_list )
+							// InternalCSS.g:321:1: (lv_mediaList_4_0= rulemedia_list )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:321:1: (lv_mediaList_4_0= rulemedia_list )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:322:3: lv_mediaList_4_0= rulemedia_list
+								// InternalCSS.g:321:1: (lv_mediaList_4_0= rulemedia_list )
+								// InternalCSS.g:322:3: lv_mediaList_4_0= rulemedia_list
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getImportExpressionAccess().getMediaListMedia_listParserRuleCall_1_1_1_0());
 
 									}
-									pushFollow(FOLLOW_rulemedia_list_in_ruleimportExpression598);
+									pushFollow(FOLLOW_6);
 									lv_mediaList_4_0 = rulemedia_list();
 
 									state._fsp--;
@@ -1028,7 +1005,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"mediaList",
 												lv_mediaList_4_0,
-												"media_list");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.media_list");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -1050,7 +1027,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					otherlv_5 = (Token) match(input, 22, FOLLOW_22_in_ruleimportExpression613);
+					otherlv_5 = (Token) match(input, 22, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -1077,12 +1054,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleimportExpression"
 
 
 	// $ANTLR start "entryRulepage"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:350:1: entryRulepage returns [EObject current=null] : iv_rulepage= rulepage EOF ;
+	// InternalCSS.g:350:1: entryRulepage returns [EObject current=null] : iv_rulepage= rulepage EOF ;
 	public final EObject entryRulepage() throws RecognitionException {
 		EObject current = null;
 
@@ -1090,13 +1066,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:351:2: (iv_rulepage= rulepage EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:352:2: iv_rulepage= rulepage EOF
+			// InternalCSS.g:351:2: (iv_rulepage= rulepage EOF )
+			// InternalCSS.g:352:2: iv_rulepage= rulepage EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getPageRule());
 				}
-				pushFollow(FOLLOW_rulepage_in_entryRulepage649);
+				pushFollow(FOLLOW_1);
 				iv_rulepage = rulepage();
 
 				state._fsp--;
@@ -1106,7 +1082,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulepage;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulepage659);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -1122,13 +1098,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulepage"
 
 
 	// $ANTLR start "rulepage"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:359:1: rulepage returns [EObject current=null] : ( () (otherlv_1= '@page' | otherlv_2= '@PAGE' ) ( (lv_pseudoPage_3_0=
-	// rulepseudo_page ) )? otherlv_4= '{' ( (lv_declarations_5_0= rulecss_declaration ) )? (otherlv_6= ';' ( (lv_declarations_7_0= rulecss_declaration ) )? )* otherlv_8= '}' ) ;
+	// InternalCSS.g:359:1: rulepage returns [EObject current=null] : ( () (otherlv_1= '@page' | otherlv_2= '@PAGE' ) ( (lv_pseudoPage_3_0= rulepseudo_page ) )? otherlv_4= '{' ( (lv_declarations_5_0= rulecss_declaration ) )? (otherlv_6= ';' (
+	// (lv_declarations_7_0= rulecss_declaration ) )? )* otherlv_8= '}' ) ;
 	public final EObject rulepage() throws RecognitionException {
 		EObject current = null;
 
@@ -1147,18 +1122,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:362:28: ( ( () (otherlv_1= '@page' | otherlv_2= '@PAGE' ) ( (lv_pseudoPage_3_0= rulepseudo_page ) )? otherlv_4=
-			// '{' ( (lv_declarations_5_0= rulecss_declaration ) )? (otherlv_6= ';' ( (lv_declarations_7_0= rulecss_declaration ) )? )* otherlv_8= '}' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:363:1: ( () (otherlv_1= '@page' | otherlv_2= '@PAGE' ) ( (lv_pseudoPage_3_0= rulepseudo_page ) )? otherlv_4= '{' (
-			// (lv_declarations_5_0= rulecss_declaration ) )? (otherlv_6= ';' ( (lv_declarations_7_0= rulecss_declaration ) )? )* otherlv_8= '}' )
+			// InternalCSS.g:362:28: ( ( () (otherlv_1= '@page' | otherlv_2= '@PAGE' ) ( (lv_pseudoPage_3_0= rulepseudo_page ) )? otherlv_4= '{' ( (lv_declarations_5_0= rulecss_declaration ) )? (otherlv_6= ';' ( (lv_declarations_7_0= rulecss_declaration ) )?
+			// )* otherlv_8= '}' ) )
+			// InternalCSS.g:363:1: ( () (otherlv_1= '@page' | otherlv_2= '@PAGE' ) ( (lv_pseudoPage_3_0= rulepseudo_page ) )? otherlv_4= '{' ( (lv_declarations_5_0= rulecss_declaration ) )? (otherlv_6= ';' ( (lv_declarations_7_0= rulecss_declaration ) )? )*
+			// otherlv_8= '}' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:363:1: ( () (otherlv_1= '@page' | otherlv_2= '@PAGE' ) ( (lv_pseudoPage_3_0= rulepseudo_page ) )? otherlv_4=
-				// '{' ( (lv_declarations_5_0= rulecss_declaration ) )? (otherlv_6= ';' ( (lv_declarations_7_0= rulecss_declaration ) )? )* otherlv_8= '}' )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:363:2: () (otherlv_1= '@page' | otherlv_2= '@PAGE' ) ( (lv_pseudoPage_3_0= rulepseudo_page ) )? otherlv_4= '{'
-				// ( (lv_declarations_5_0= rulecss_declaration ) )? (otherlv_6= ';' ( (lv_declarations_7_0= rulecss_declaration ) )? )* otherlv_8= '}'
+				// InternalCSS.g:363:1: ( () (otherlv_1= '@page' | otherlv_2= '@PAGE' ) ( (lv_pseudoPage_3_0= rulepseudo_page ) )? otherlv_4= '{' ( (lv_declarations_5_0= rulecss_declaration ) )? (otherlv_6= ';' ( (lv_declarations_7_0= rulecss_declaration ) )?
+				// )* otherlv_8= '}' )
+				// InternalCSS.g:363:2: () (otherlv_1= '@page' | otherlv_2= '@PAGE' ) ( (lv_pseudoPage_3_0= rulepseudo_page ) )? otherlv_4= '{' ( (lv_declarations_5_0= rulecss_declaration ) )? (otherlv_6= ';' ( (lv_declarations_7_0= rulecss_declaration ) )? )*
+				// otherlv_8= '}'
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:363:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:364:5:
+					// InternalCSS.g:363:2: ()
+					// InternalCSS.g:364:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -1170,31 +1145,28 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:369:2: (otherlv_1= '@page' | otherlv_2= '@PAGE' )
+					// InternalCSS.g:369:2: (otherlv_1= '@page' | otherlv_2= '@PAGE' )
 					int alt8 = 2;
 					int LA8_0 = input.LA(1);
 
 					if ((LA8_0 == 25)) {
 						alt8 = 1;
-					}
-					else if ((LA8_0 == 26)) {
+					} else if ((LA8_0 == 26)) {
 						alt8 = 2;
-					}
-					else {
+					} else {
 						if (state.backtracking > 0) {
 							state.failed = true;
 							return current;
 						}
-						NoViableAltException nvae =
-								new NoViableAltException("", 8, 0, input);
+						NoViableAltException nvae = new NoViableAltException("", 8, 0, input);
 
 						throw nvae;
 					}
 					switch (alt8) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:369:4: otherlv_1= '@page'
+					// InternalCSS.g:369:4: otherlv_1= '@page'
 					{
-						otherlv_1 = (Token) match(input, 25, FOLLOW_25_in_rulepage706);
+						otherlv_1 = (Token) match(input, 25, FOLLOW_9);
 						if (state.failed) {
 							return current;
 						}
@@ -1207,9 +1179,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 2:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:374:7: otherlv_2= '@PAGE'
+					// InternalCSS.g:374:7: otherlv_2= '@PAGE'
 					{
-						otherlv_2 = (Token) match(input, 26, FOLLOW_26_in_rulepage724);
+						otherlv_2 = (Token) match(input, 26, FOLLOW_9);
 						if (state.failed) {
 							return current;
 						}
@@ -1224,7 +1196,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:378:2: ( (lv_pseudoPage_3_0= rulepseudo_page ) )?
+					// InternalCSS.g:378:2: ( (lv_pseudoPage_3_0= rulepseudo_page ) )?
 					int alt9 = 2;
 					int LA9_0 = input.LA(1);
 
@@ -1233,17 +1205,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 					switch (alt9) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:379:1: (lv_pseudoPage_3_0= rulepseudo_page )
+					// InternalCSS.g:379:1: (lv_pseudoPage_3_0= rulepseudo_page )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:379:1: (lv_pseudoPage_3_0= rulepseudo_page )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:380:3: lv_pseudoPage_3_0= rulepseudo_page
+						// InternalCSS.g:379:1: (lv_pseudoPage_3_0= rulepseudo_page )
+						// InternalCSS.g:380:3: lv_pseudoPage_3_0= rulepseudo_page
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getPageAccess().getPseudoPagePseudo_pageParserRuleCall_2_0());
 
 							}
-							pushFollow(FOLLOW_rulepseudo_page_in_rulepage746);
+							pushFollow(FOLLOW_10);
 							lv_pseudoPage_3_0 = rulepseudo_page();
 
 							state._fsp--;
@@ -1259,7 +1231,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"pseudoPage",
 										lv_pseudoPage_3_0,
-										"pseudo_page");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.pseudo_page");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -1272,7 +1244,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					otherlv_4 = (Token) match(input, 27, FOLLOW_27_in_rulepage759);
+					otherlv_4 = (Token) match(input, 27, FOLLOW_11);
 					if (state.failed) {
 						return current;
 					}
@@ -1281,7 +1253,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newLeafNode(otherlv_4, grammarAccess.getPageAccess().getLeftCurlyBracketKeyword_3());
 
 					}
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:400:1: ( (lv_declarations_5_0= rulecss_declaration ) )?
+					// InternalCSS.g:400:1: ( (lv_declarations_5_0= rulecss_declaration ) )?
 					int alt10 = 2;
 					int LA10_0 = input.LA(1);
 
@@ -1290,17 +1262,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 					switch (alt10) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:401:1: (lv_declarations_5_0= rulecss_declaration )
+					// InternalCSS.g:401:1: (lv_declarations_5_0= rulecss_declaration )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:401:1: (lv_declarations_5_0= rulecss_declaration )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:402:3: lv_declarations_5_0= rulecss_declaration
+						// InternalCSS.g:401:1: (lv_declarations_5_0= rulecss_declaration )
+						// InternalCSS.g:402:3: lv_declarations_5_0= rulecss_declaration
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getPageAccess().getDeclarationsCss_declarationParserRuleCall_4_0());
 
 							}
-							pushFollow(FOLLOW_rulecss_declaration_in_rulepage780);
+							pushFollow(FOLLOW_12);
 							lv_declarations_5_0 = rulecss_declaration();
 
 							state._fsp--;
@@ -1316,7 +1288,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"declarations",
 										lv_declarations_5_0,
-										"css_declaration");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -1329,7 +1301,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:418:3: (otherlv_6= ';' ( (lv_declarations_7_0= rulecss_declaration ) )? )*
+					// InternalCSS.g:418:3: (otherlv_6= ';' ( (lv_declarations_7_0= rulecss_declaration ) )? )*
 					loop12: do {
 						int alt12 = 2;
 						int LA12_0 = input.LA(1);
@@ -1341,9 +1313,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt12) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:418:5: otherlv_6= ';' ( (lv_declarations_7_0= rulecss_declaration ) )?
+						// InternalCSS.g:418:5: otherlv_6= ';' ( (lv_declarations_7_0= rulecss_declaration ) )?
 						{
-							otherlv_6 = (Token) match(input, 22, FOLLOW_22_in_rulepage794);
+							otherlv_6 = (Token) match(input, 22, FOLLOW_11);
 							if (state.failed) {
 								return current;
 							}
@@ -1352,7 +1324,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								newLeafNode(otherlv_6, grammarAccess.getPageAccess().getSemicolonKeyword_5_0());
 
 							}
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:422:1: ( (lv_declarations_7_0= rulecss_declaration ) )?
+							// InternalCSS.g:422:1: ( (lv_declarations_7_0= rulecss_declaration ) )?
 							int alt11 = 2;
 							int LA11_0 = input.LA(1);
 
@@ -1361,17 +1333,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 							switch (alt11) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:423:1: (lv_declarations_7_0= rulecss_declaration )
+							// InternalCSS.g:423:1: (lv_declarations_7_0= rulecss_declaration )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:423:1: (lv_declarations_7_0= rulecss_declaration )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:424:3: lv_declarations_7_0= rulecss_declaration
+								// InternalCSS.g:423:1: (lv_declarations_7_0= rulecss_declaration )
+								// InternalCSS.g:424:3: lv_declarations_7_0= rulecss_declaration
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getPageAccess().getDeclarationsCss_declarationParserRuleCall_5_1_0());
 
 									}
-									pushFollow(FOLLOW_rulecss_declaration_in_rulepage815);
+									pushFollow(FOLLOW_12);
 									lv_declarations_7_0 = rulecss_declaration();
 
 									state._fsp--;
@@ -1387,7 +1359,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"declarations",
 												lv_declarations_7_0,
-												"css_declaration");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -1409,7 +1381,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 					} while (true);
 
-					otherlv_8 = (Token) match(input, 28, FOLLOW_28_in_rulepage830);
+					otherlv_8 = (Token) match(input, 28, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -1436,12 +1408,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulepage"
 
 
 	// $ANTLR start "entryRulepseudo_page"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:452:1: entryRulepseudo_page returns [String current=null] : iv_rulepseudo_page= rulepseudo_page EOF ;
+	// InternalCSS.g:452:1: entryRulepseudo_page returns [String current=null] : iv_rulepseudo_page= rulepseudo_page EOF ;
 	public final String entryRulepseudo_page() throws RecognitionException {
 		String current = null;
 
@@ -1449,13 +1420,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:453:2: (iv_rulepseudo_page= rulepseudo_page EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:454:2: iv_rulepseudo_page= rulepseudo_page EOF
+			// InternalCSS.g:453:2: (iv_rulepseudo_page= rulepseudo_page EOF )
+			// InternalCSS.g:454:2: iv_rulepseudo_page= rulepseudo_page EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getPseudo_pageRule());
 				}
-				pushFollow(FOLLOW_rulepseudo_page_in_entryRulepseudo_page867);
+				pushFollow(FOLLOW_1);
 				iv_rulepseudo_page = rulepseudo_page();
 
 				state._fsp--;
@@ -1465,7 +1436,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulepseudo_page.getText();
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulepseudo_page878);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -1481,13 +1452,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulepseudo_page"
 
 
 	// $ANTLR start "rulepseudo_page"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:461:1: rulepseudo_page returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_COLON_0= RULE_COLON
-	// this_Identifier_1= ruleIdentifier ) ;
+	// InternalCSS.g:461:1: rulepseudo_page returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_COLON_0= RULE_COLON this_Identifier_1= ruleIdentifier ) ;
 	public final AntlrDatatypeRuleToken rulepseudo_page() throws RecognitionException {
 		AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -1498,13 +1467,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:464:28: ( (this_COLON_0= RULE_COLON this_Identifier_1= ruleIdentifier ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:465:1: (this_COLON_0= RULE_COLON this_Identifier_1= ruleIdentifier )
+			// InternalCSS.g:464:28: ( (this_COLON_0= RULE_COLON this_Identifier_1= ruleIdentifier ) )
+			// InternalCSS.g:465:1: (this_COLON_0= RULE_COLON this_Identifier_1= ruleIdentifier )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:465:1: (this_COLON_0= RULE_COLON this_Identifier_1= ruleIdentifier )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:465:6: this_COLON_0= RULE_COLON this_Identifier_1= ruleIdentifier
+				// InternalCSS.g:465:1: (this_COLON_0= RULE_COLON this_Identifier_1= ruleIdentifier )
+				// InternalCSS.g:465:6: this_COLON_0= RULE_COLON this_Identifier_1= ruleIdentifier
 				{
-					this_COLON_0 = (Token) match(input, RULE_COLON, FOLLOW_RULE_COLON_in_rulepseudo_page918);
+					this_COLON_0 = (Token) match(input, RULE_COLON, FOLLOW_13);
 					if (state.failed) {
 						return current;
 					}
@@ -1523,7 +1492,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newCompositeNode(grammarAccess.getPseudo_pageAccess().getIdentifierParserRuleCall_1());
 
 					}
-					pushFollow(FOLLOW_ruleIdentifier_in_rulepseudo_page945);
+					pushFollow(FOLLOW_2);
 					this_Identifier_1 = ruleIdentifier();
 
 					state._fsp--;
@@ -1558,12 +1527,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulepseudo_page"
 
 
 	// $ANTLR start "entryRulemedia"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:491:1: entryRulemedia returns [EObject current=null] : iv_rulemedia= rulemedia EOF ;
+	// InternalCSS.g:491:1: entryRulemedia returns [EObject current=null] : iv_rulemedia= rulemedia EOF ;
 	public final EObject entryRulemedia() throws RecognitionException {
 		EObject current = null;
 
@@ -1571,13 +1539,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:492:2: (iv_rulemedia= rulemedia EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:493:2: iv_rulemedia= rulemedia EOF
+			// InternalCSS.g:492:2: (iv_rulemedia= rulemedia EOF )
+			// InternalCSS.g:493:2: iv_rulemedia= rulemedia EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getMediaRule());
 				}
-				pushFollow(FOLLOW_rulemedia_in_entryRulemedia990);
+				pushFollow(FOLLOW_1);
 				iv_rulemedia = rulemedia();
 
 				state._fsp--;
@@ -1587,7 +1555,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulemedia;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulemedia1000);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -1603,13 +1571,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulemedia"
 
 
 	// $ANTLR start "rulemedia"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:500:1: rulemedia returns [EObject current=null] : ( (otherlv_0= '@media' | otherlv_1= '@MEDIA' ) ( (lv_medialist_2_0=
-	// rulemedia_list ) ) otherlv_3= '{' ( (lv_rulesets_4_0= ruleruleset ) )* otherlv_5= '}' ) ;
+	// InternalCSS.g:500:1: rulemedia returns [EObject current=null] : ( (otherlv_0= '@media' | otherlv_1= '@MEDIA' ) ( (lv_medialist_2_0= rulemedia_list ) ) otherlv_3= '{' ( (lv_rulesets_4_0= ruleruleset ) )* otherlv_5= '}' ) ;
 	public final EObject rulemedia() throws RecognitionException {
 		EObject current = null;
 
@@ -1625,41 +1591,34 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:503:28: ( ( (otherlv_0= '@media' | otherlv_1= '@MEDIA' ) ( (lv_medialist_2_0= rulemedia_list ) ) otherlv_3= '{' (
-			// (lv_rulesets_4_0= ruleruleset ) )* otherlv_5= '}' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:504:1: ( (otherlv_0= '@media' | otherlv_1= '@MEDIA' ) ( (lv_medialist_2_0= rulemedia_list ) ) otherlv_3= '{' (
-			// (lv_rulesets_4_0= ruleruleset ) )* otherlv_5= '}' )
+			// InternalCSS.g:503:28: ( ( (otherlv_0= '@media' | otherlv_1= '@MEDIA' ) ( (lv_medialist_2_0= rulemedia_list ) ) otherlv_3= '{' ( (lv_rulesets_4_0= ruleruleset ) )* otherlv_5= '}' ) )
+			// InternalCSS.g:504:1: ( (otherlv_0= '@media' | otherlv_1= '@MEDIA' ) ( (lv_medialist_2_0= rulemedia_list ) ) otherlv_3= '{' ( (lv_rulesets_4_0= ruleruleset ) )* otherlv_5= '}' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:504:1: ( (otherlv_0= '@media' | otherlv_1= '@MEDIA' ) ( (lv_medialist_2_0= rulemedia_list ) ) otherlv_3= '{' (
-				// (lv_rulesets_4_0= ruleruleset ) )* otherlv_5= '}' )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:504:2: (otherlv_0= '@media' | otherlv_1= '@MEDIA' ) ( (lv_medialist_2_0= rulemedia_list ) ) otherlv_3= '{' (
-				// (lv_rulesets_4_0= ruleruleset ) )* otherlv_5= '}'
+				// InternalCSS.g:504:1: ( (otherlv_0= '@media' | otherlv_1= '@MEDIA' ) ( (lv_medialist_2_0= rulemedia_list ) ) otherlv_3= '{' ( (lv_rulesets_4_0= ruleruleset ) )* otherlv_5= '}' )
+				// InternalCSS.g:504:2: (otherlv_0= '@media' | otherlv_1= '@MEDIA' ) ( (lv_medialist_2_0= rulemedia_list ) ) otherlv_3= '{' ( (lv_rulesets_4_0= ruleruleset ) )* otherlv_5= '}'
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:504:2: (otherlv_0= '@media' | otherlv_1= '@MEDIA' )
+					// InternalCSS.g:504:2: (otherlv_0= '@media' | otherlv_1= '@MEDIA' )
 					int alt13 = 2;
 					int LA13_0 = input.LA(1);
 
 					if ((LA13_0 == 29)) {
 						alt13 = 1;
-					}
-					else if ((LA13_0 == 30)) {
+					} else if ((LA13_0 == 30)) {
 						alt13 = 2;
-					}
-					else {
+					} else {
 						if (state.backtracking > 0) {
 							state.failed = true;
 							return current;
 						}
-						NoViableAltException nvae =
-								new NoViableAltException("", 13, 0, input);
+						NoViableAltException nvae = new NoViableAltException("", 13, 0, input);
 
 						throw nvae;
 					}
 					switch (alt13) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:504:4: otherlv_0= '@media'
+					// InternalCSS.g:504:4: otherlv_0= '@media'
 					{
-						otherlv_0 = (Token) match(input, 29, FOLLOW_29_in_rulemedia1038);
+						otherlv_0 = (Token) match(input, 29, FOLLOW_13);
 						if (state.failed) {
 							return current;
 						}
@@ -1672,9 +1631,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 2:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:509:7: otherlv_1= '@MEDIA'
+					// InternalCSS.g:509:7: otherlv_1= '@MEDIA'
 					{
-						otherlv_1 = (Token) match(input, 30, FOLLOW_30_in_rulemedia1056);
+						otherlv_1 = (Token) match(input, 30, FOLLOW_13);
 						if (state.failed) {
 							return current;
 						}
@@ -1689,18 +1648,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:513:2: ( (lv_medialist_2_0= rulemedia_list ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:514:1: (lv_medialist_2_0= rulemedia_list )
+					// InternalCSS.g:513:2: ( (lv_medialist_2_0= rulemedia_list ) )
+					// InternalCSS.g:514:1: (lv_medialist_2_0= rulemedia_list )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:514:1: (lv_medialist_2_0= rulemedia_list )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:515:3: lv_medialist_2_0= rulemedia_list
+						// InternalCSS.g:514:1: (lv_medialist_2_0= rulemedia_list )
+						// InternalCSS.g:515:3: lv_medialist_2_0= rulemedia_list
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getMediaAccess().getMedialistMedia_listParserRuleCall_1_0());
 
 							}
-							pushFollow(FOLLOW_rulemedia_list_in_rulemedia1078);
+							pushFollow(FOLLOW_10);
 							lv_medialist_2_0 = rulemedia_list();
 
 							state._fsp--;
@@ -1716,7 +1675,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"medialist",
 										lv_medialist_2_0,
-										"media_list");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.media_list");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -1726,7 +1685,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					otherlv_3 = (Token) match(input, 27, FOLLOW_27_in_rulemedia1090);
+					otherlv_3 = (Token) match(input, 27, FOLLOW_14);
 					if (state.failed) {
 						return current;
 					}
@@ -1735,7 +1694,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newLeafNode(otherlv_3, grammarAccess.getMediaAccess().getLeftCurlyBracketKeyword_2());
 
 					}
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:535:1: ( (lv_rulesets_4_0= ruleruleset ) )*
+					// InternalCSS.g:535:1: ( (lv_rulesets_4_0= ruleruleset ) )*
 					loop14: do {
 						int alt14 = 2;
 						int LA14_0 = input.LA(1);
@@ -1747,17 +1706,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt14) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:536:1: (lv_rulesets_4_0= ruleruleset )
+						// InternalCSS.g:536:1: (lv_rulesets_4_0= ruleruleset )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:536:1: (lv_rulesets_4_0= ruleruleset )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:537:3: lv_rulesets_4_0= ruleruleset
+							// InternalCSS.g:536:1: (lv_rulesets_4_0= ruleruleset )
+							// InternalCSS.g:537:3: lv_rulesets_4_0= ruleruleset
 							{
 								if (state.backtracking == 0) {
 
 									newCompositeNode(grammarAccess.getMediaAccess().getRulesetsRulesetParserRuleCall_3_0());
 
 								}
-								pushFollow(FOLLOW_ruleruleset_in_rulemedia1111);
+								pushFollow(FOLLOW_14);
 								lv_rulesets_4_0 = ruleruleset();
 
 								state._fsp--;
@@ -1773,7 +1732,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 											current,
 											"rulesets",
 											lv_rulesets_4_0,
-											"ruleset");
+											"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ruleset");
 									afterParserOrEnumRuleCall();
 
 								}
@@ -1789,7 +1748,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 					} while (true);
 
-					otherlv_5 = (Token) match(input, 28, FOLLOW_28_in_rulemedia1124);
+					otherlv_5 = (Token) match(input, 28, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -1816,12 +1775,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulemedia"
 
 
 	// $ANTLR start "entryRulemedia_list"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:565:1: entryRulemedia_list returns [String current=null] : iv_rulemedia_list= rulemedia_list EOF ;
+	// InternalCSS.g:565:1: entryRulemedia_list returns [String current=null] : iv_rulemedia_list= rulemedia_list EOF ;
 	public final String entryRulemedia_list() throws RecognitionException {
 		String current = null;
 
@@ -1829,13 +1787,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:566:2: (iv_rulemedia_list= rulemedia_list EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:567:2: iv_rulemedia_list= rulemedia_list EOF
+			// InternalCSS.g:566:2: (iv_rulemedia_list= rulemedia_list EOF )
+			// InternalCSS.g:567:2: iv_rulemedia_list= rulemedia_list EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getMedia_listRule());
 				}
-				pushFollow(FOLLOW_rulemedia_list_in_entryRulemedia_list1161);
+				pushFollow(FOLLOW_1);
 				iv_rulemedia_list = rulemedia_list();
 
 				state._fsp--;
@@ -1845,7 +1803,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulemedia_list.getText();
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulemedia_list1172);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -1861,13 +1819,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulemedia_list"
 
 
 	// $ANTLR start "rulemedia_list"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:574:1: rulemedia_list returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_medium_0= rulemedium
-	// (this_COMMA_1= RULE_COMMA this_medium_2= rulemedium )* ) ;
+	// InternalCSS.g:574:1: rulemedia_list returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_medium_0= rulemedium (this_COMMA_1= RULE_COMMA this_medium_2= rulemedium )* ) ;
 	public final AntlrDatatypeRuleToken rulemedia_list() throws RecognitionException {
 		AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -1880,18 +1836,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:577:28: ( (this_medium_0= rulemedium (this_COMMA_1= RULE_COMMA this_medium_2= rulemedium )* ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:578:1: (this_medium_0= rulemedium (this_COMMA_1= RULE_COMMA this_medium_2= rulemedium )* )
+			// InternalCSS.g:577:28: ( (this_medium_0= rulemedium (this_COMMA_1= RULE_COMMA this_medium_2= rulemedium )* ) )
+			// InternalCSS.g:578:1: (this_medium_0= rulemedium (this_COMMA_1= RULE_COMMA this_medium_2= rulemedium )* )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:578:1: (this_medium_0= rulemedium (this_COMMA_1= RULE_COMMA this_medium_2= rulemedium )* )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:579:5: this_medium_0= rulemedium (this_COMMA_1= RULE_COMMA this_medium_2= rulemedium )*
+				// InternalCSS.g:578:1: (this_medium_0= rulemedium (this_COMMA_1= RULE_COMMA this_medium_2= rulemedium )* )
+				// InternalCSS.g:579:5: this_medium_0= rulemedium (this_COMMA_1= RULE_COMMA this_medium_2= rulemedium )*
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getMedia_listAccess().getMediumParserRuleCall_0());
 
 					}
-					pushFollow(FOLLOW_rulemedium_in_rulemedia_list1219);
+					pushFollow(FOLLOW_15);
 					this_medium_0 = rulemedium();
 
 					state._fsp--;
@@ -1908,7 +1864,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						afterParserOrEnumRuleCall();
 
 					}
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:589:1: (this_COMMA_1= RULE_COMMA this_medium_2= rulemedium )*
+					// InternalCSS.g:589:1: (this_COMMA_1= RULE_COMMA this_medium_2= rulemedium )*
 					loop15: do {
 						int alt15 = 2;
 						int LA15_0 = input.LA(1);
@@ -1920,9 +1876,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt15) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:589:6: this_COMMA_1= RULE_COMMA this_medium_2= rulemedium
+						// InternalCSS.g:589:6: this_COMMA_1= RULE_COMMA this_medium_2= rulemedium
 						{
-							this_COMMA_1 = (Token) match(input, RULE_COMMA, FOLLOW_RULE_COMMA_in_rulemedia_list1240);
+							this_COMMA_1 = (Token) match(input, RULE_COMMA, FOLLOW_13);
 							if (state.failed) {
 								return current;
 							}
@@ -1941,7 +1897,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								newCompositeNode(grammarAccess.getMedia_listAccess().getMediumParserRuleCall_1_1());
 
 							}
-							pushFollow(FOLLOW_rulemedium_in_rulemedia_list1267);
+							pushFollow(FOLLOW_15);
 							this_medium_2 = rulemedium();
 
 							state._fsp--;
@@ -1985,12 +1941,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulemedia_list"
 
 
 	// $ANTLR start "entryRulemedium"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:615:1: entryRulemedium returns [String current=null] : iv_rulemedium= rulemedium EOF ;
+	// InternalCSS.g:615:1: entryRulemedium returns [String current=null] : iv_rulemedium= rulemedium EOF ;
 	public final String entryRulemedium() throws RecognitionException {
 		String current = null;
 
@@ -1998,13 +1953,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:616:2: (iv_rulemedium= rulemedium EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:617:2: iv_rulemedium= rulemedium EOF
+			// InternalCSS.g:616:2: (iv_rulemedium= rulemedium EOF )
+			// InternalCSS.g:617:2: iv_rulemedium= rulemedium EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getMediumRule());
 				}
-				pushFollow(FOLLOW_rulemedium_in_entryRulemedium1315);
+				pushFollow(FOLLOW_1);
 				iv_rulemedium = rulemedium();
 
 				state._fsp--;
@@ -2014,7 +1969,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulemedium.getText();
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulemedium1326);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -2030,13 +1985,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulemedium"
 
 
 	// $ANTLR start "rulemedium"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:624:1: rulemedium returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_Identifier_0=
-	// ruleIdentifier ;
+	// InternalCSS.g:624:1: rulemedium returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_Identifier_0= ruleIdentifier ;
 	public final AntlrDatatypeRuleToken rulemedium() throws RecognitionException {
 		AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -2046,15 +1999,15 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:627:28: (this_Identifier_0= ruleIdentifier )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:629:5: this_Identifier_0= ruleIdentifier
+			// InternalCSS.g:627:28: (this_Identifier_0= ruleIdentifier )
+			// InternalCSS.g:629:5: this_Identifier_0= ruleIdentifier
 			{
 				if (state.backtracking == 0) {
 
 					newCompositeNode(grammarAccess.getMediumAccess().getIdentifierParserRuleCall());
 
 				}
-				pushFollow(FOLLOW_ruleIdentifier_in_rulemedium1372);
+				pushFollow(FOLLOW_2);
 				this_Identifier_0 = ruleIdentifier();
 
 				state._fsp--;
@@ -2086,12 +2039,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulemedium"
 
 
 	// $ANTLR start "entryRulefont_face"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:647:1: entryRulefont_face returns [EObject current=null] : iv_rulefont_face= rulefont_face EOF ;
+	// InternalCSS.g:647:1: entryRulefont_face returns [EObject current=null] : iv_rulefont_face= rulefont_face EOF ;
 	public final EObject entryRulefont_face() throws RecognitionException {
 		EObject current = null;
 
@@ -2099,13 +2051,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:648:2: (iv_rulefont_face= rulefont_face EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:649:2: iv_rulefont_face= rulefont_face EOF
+			// InternalCSS.g:648:2: (iv_rulefont_face= rulefont_face EOF )
+			// InternalCSS.g:649:2: iv_rulefont_face= rulefont_face EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getFont_faceRule());
 				}
-				pushFollow(FOLLOW_rulefont_face_in_entryRulefont_face1416);
+				pushFollow(FOLLOW_1);
 				iv_rulefont_face = rulefont_face();
 
 				state._fsp--;
@@ -2115,7 +2067,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulefont_face;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulefont_face1426);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -2131,13 +2083,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulefont_face"
 
 
 	// $ANTLR start "rulefont_face"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:656:1: rulefont_face returns [EObject current=null] : ( () (otherlv_1= '@font-face' | otherlv_2= '@FONT-FACE' ) otherlv_3=
-	// '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}' ) ;
+	// InternalCSS.g:656:1: rulefont_face returns [EObject current=null] : ( () (otherlv_1= '@font-face' | otherlv_2= '@FONT-FACE' ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration )
+	// )? )* otherlv_7= '}' ) ;
 	public final EObject rulefont_face() throws RecognitionException {
 		EObject current = null;
 
@@ -2154,18 +2105,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:659:28: ( ( () (otherlv_1= '@font-face' | otherlv_2= '@FONT-FACE' ) otherlv_3= '{' ( (lv_declarations_4_0=
-			// rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:660:1: ( () (otherlv_1= '@font-face' | otherlv_2= '@FONT-FACE' ) otherlv_3= '{' ( (lv_declarations_4_0=
-			// rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}' )
+			// InternalCSS.g:659:28: ( ( () (otherlv_1= '@font-face' | otherlv_2= '@FONT-FACE' ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}' ) )
+			// InternalCSS.g:660:1: ( () (otherlv_1= '@font-face' | otherlv_2= '@FONT-FACE' ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:660:1: ( () (otherlv_1= '@font-face' | otherlv_2= '@FONT-FACE' ) otherlv_3= '{' ( (lv_declarations_4_0=
-				// rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}' )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:660:2: () (otherlv_1= '@font-face' | otherlv_2= '@FONT-FACE' ) otherlv_3= '{' ( (lv_declarations_4_0=
-				// rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}'
+				// InternalCSS.g:660:1: ( () (otherlv_1= '@font-face' | otherlv_2= '@FONT-FACE' ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}' )
+				// InternalCSS.g:660:2: () (otherlv_1= '@font-face' | otherlv_2= '@FONT-FACE' ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}'
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:660:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:661:5:
+					// InternalCSS.g:660:2: ()
+					// InternalCSS.g:661:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -2177,31 +2124,28 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:666:2: (otherlv_1= '@font-face' | otherlv_2= '@FONT-FACE' )
+					// InternalCSS.g:666:2: (otherlv_1= '@font-face' | otherlv_2= '@FONT-FACE' )
 					int alt16 = 2;
 					int LA16_0 = input.LA(1);
 
 					if ((LA16_0 == 31)) {
 						alt16 = 1;
-					}
-					else if ((LA16_0 == 32)) {
+					} else if ((LA16_0 == 32)) {
 						alt16 = 2;
-					}
-					else {
+					} else {
 						if (state.backtracking > 0) {
 							state.failed = true;
 							return current;
 						}
-						NoViableAltException nvae =
-								new NoViableAltException("", 16, 0, input);
+						NoViableAltException nvae = new NoViableAltException("", 16, 0, input);
 
 						throw nvae;
 					}
 					switch (alt16) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:666:4: otherlv_1= '@font-face'
+					// InternalCSS.g:666:4: otherlv_1= '@font-face'
 					{
-						otherlv_1 = (Token) match(input, 31, FOLLOW_31_in_rulefont_face1473);
+						otherlv_1 = (Token) match(input, 31, FOLLOW_10);
 						if (state.failed) {
 							return current;
 						}
@@ -2214,9 +2158,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 2:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:671:7: otherlv_2= '@FONT-FACE'
+					// InternalCSS.g:671:7: otherlv_2= '@FONT-FACE'
 					{
-						otherlv_2 = (Token) match(input, 32, FOLLOW_32_in_rulefont_face1491);
+						otherlv_2 = (Token) match(input, 32, FOLLOW_10);
 						if (state.failed) {
 							return current;
 						}
@@ -2231,7 +2175,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					otherlv_3 = (Token) match(input, 27, FOLLOW_27_in_rulefont_face1504);
+					otherlv_3 = (Token) match(input, 27, FOLLOW_11);
 					if (state.failed) {
 						return current;
 					}
@@ -2240,7 +2184,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newLeafNode(otherlv_3, grammarAccess.getFont_faceAccess().getLeftCurlyBracketKeyword_2());
 
 					}
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:679:1: ( (lv_declarations_4_0= rulecss_declaration ) )?
+					// InternalCSS.g:679:1: ( (lv_declarations_4_0= rulecss_declaration ) )?
 					int alt17 = 2;
 					int LA17_0 = input.LA(1);
 
@@ -2249,17 +2193,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 					switch (alt17) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:680:1: (lv_declarations_4_0= rulecss_declaration )
+					// InternalCSS.g:680:1: (lv_declarations_4_0= rulecss_declaration )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:680:1: (lv_declarations_4_0= rulecss_declaration )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:681:3: lv_declarations_4_0= rulecss_declaration
+						// InternalCSS.g:680:1: (lv_declarations_4_0= rulecss_declaration )
+						// InternalCSS.g:681:3: lv_declarations_4_0= rulecss_declaration
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getFont_faceAccess().getDeclarationsCss_declarationParserRuleCall_3_0());
 
 							}
-							pushFollow(FOLLOW_rulecss_declaration_in_rulefont_face1525);
+							pushFollow(FOLLOW_12);
 							lv_declarations_4_0 = rulecss_declaration();
 
 							state._fsp--;
@@ -2275,7 +2219,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"declarations",
 										lv_declarations_4_0,
-										"css_declaration");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -2288,7 +2232,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:697:3: (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )*
+					// InternalCSS.g:697:3: (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )*
 					loop19: do {
 						int alt19 = 2;
 						int LA19_0 = input.LA(1);
@@ -2300,9 +2244,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt19) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:697:5: otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )?
+						// InternalCSS.g:697:5: otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )?
 						{
-							otherlv_5 = (Token) match(input, 22, FOLLOW_22_in_rulefont_face1539);
+							otherlv_5 = (Token) match(input, 22, FOLLOW_11);
 							if (state.failed) {
 								return current;
 							}
@@ -2311,7 +2255,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								newLeafNode(otherlv_5, grammarAccess.getFont_faceAccess().getSemicolonKeyword_4_0());
 
 							}
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:701:1: ( (lv_declarations_6_0= rulecss_declaration ) )?
+							// InternalCSS.g:701:1: ( (lv_declarations_6_0= rulecss_declaration ) )?
 							int alt18 = 2;
 							int LA18_0 = input.LA(1);
 
@@ -2320,17 +2264,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 							switch (alt18) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:702:1: (lv_declarations_6_0= rulecss_declaration )
+							// InternalCSS.g:702:1: (lv_declarations_6_0= rulecss_declaration )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:702:1: (lv_declarations_6_0= rulecss_declaration )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:703:3: lv_declarations_6_0= rulecss_declaration
+								// InternalCSS.g:702:1: (lv_declarations_6_0= rulecss_declaration )
+								// InternalCSS.g:703:3: lv_declarations_6_0= rulecss_declaration
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getFont_faceAccess().getDeclarationsCss_declarationParserRuleCall_4_1_0());
 
 									}
-									pushFollow(FOLLOW_rulecss_declaration_in_rulefont_face1560);
+									pushFollow(FOLLOW_12);
 									lv_declarations_6_0 = rulecss_declaration();
 
 									state._fsp--;
@@ -2346,7 +2290,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"declarations",
 												lv_declarations_6_0,
-												"css_declaration");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -2368,7 +2312,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 					} while (true);
 
-					otherlv_7 = (Token) match(input, 28, FOLLOW_28_in_rulefont_face1575);
+					otherlv_7 = (Token) match(input, 28, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -2395,12 +2339,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulefont_face"
 
 
 	// $ANTLR start "entryRulekeyframes"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:731:1: entryRulekeyframes returns [EObject current=null] : iv_rulekeyframes= rulekeyframes EOF ;
+	// InternalCSS.g:731:1: entryRulekeyframes returns [EObject current=null] : iv_rulekeyframes= rulekeyframes EOF ;
 	public final EObject entryRulekeyframes() throws RecognitionException {
 		EObject current = null;
 
@@ -2408,13 +2351,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:732:2: (iv_rulekeyframes= rulekeyframes EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:733:2: iv_rulekeyframes= rulekeyframes EOF
+			// InternalCSS.g:732:2: (iv_rulekeyframes= rulekeyframes EOF )
+			// InternalCSS.g:733:2: iv_rulekeyframes= rulekeyframes EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getKeyframesRule());
 				}
-				pushFollow(FOLLOW_rulekeyframes_in_entryRulekeyframes1611);
+				pushFollow(FOLLOW_1);
 				iv_rulekeyframes = rulekeyframes();
 
 				state._fsp--;
@@ -2424,7 +2367,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulekeyframes;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulekeyframes1621);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -2440,13 +2383,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulekeyframes"
 
 
 	// $ANTLR start "rulekeyframes"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:740:1: rulekeyframes returns [EObject current=null] : ( () (otherlv_1= '@keyframes' | otherlv_2= '@KEYFRAMES' ) (
-	// (lv_name_3_0= ruleIdentifier ) ) otherlv_4= '{' ( (lv_keyframeselectors_5_0= rulekeyframe_selector ) )? (otherlv_6= ';' ( (lv_keyframeselectors_7_0= rulekeyframe_selector ) )? )* otherlv_8= '}' ) ;
+	// InternalCSS.g:740:1: rulekeyframes returns [EObject current=null] : ( () (otherlv_1= '@keyframes' | otherlv_2= '@KEYFRAMES' ) ( (lv_name_3_0= ruleIdentifier ) ) otherlv_4= '{' ( (lv_keyframeselectors_5_0= rulekeyframe_selector ) )? (otherlv_6= ';' (
+	// (lv_keyframeselectors_7_0= rulekeyframe_selector ) )? )* otherlv_8= '}' ) ;
 	public final EObject rulekeyframes() throws RecognitionException {
 		EObject current = null;
 
@@ -2465,18 +2407,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:743:28: ( ( () (otherlv_1= '@keyframes' | otherlv_2= '@KEYFRAMES' ) ( (lv_name_3_0= ruleIdentifier ) ) otherlv_4=
-			// '{' ( (lv_keyframeselectors_5_0= rulekeyframe_selector ) )? (otherlv_6= ';' ( (lv_keyframeselectors_7_0= rulekeyframe_selector ) )? )* otherlv_8= '}' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:744:1: ( () (otherlv_1= '@keyframes' | otherlv_2= '@KEYFRAMES' ) ( (lv_name_3_0= ruleIdentifier ) ) otherlv_4= '{'
-			// ( (lv_keyframeselectors_5_0= rulekeyframe_selector ) )? (otherlv_6= ';' ( (lv_keyframeselectors_7_0= rulekeyframe_selector ) )? )* otherlv_8= '}' )
+			// InternalCSS.g:743:28: ( ( () (otherlv_1= '@keyframes' | otherlv_2= '@KEYFRAMES' ) ( (lv_name_3_0= ruleIdentifier ) ) otherlv_4= '{' ( (lv_keyframeselectors_5_0= rulekeyframe_selector ) )? (otherlv_6= ';' ( (lv_keyframeselectors_7_0=
+			// rulekeyframe_selector ) )? )* otherlv_8= '}' ) )
+			// InternalCSS.g:744:1: ( () (otherlv_1= '@keyframes' | otherlv_2= '@KEYFRAMES' ) ( (lv_name_3_0= ruleIdentifier ) ) otherlv_4= '{' ( (lv_keyframeselectors_5_0= rulekeyframe_selector ) )? (otherlv_6= ';' ( (lv_keyframeselectors_7_0=
+			// rulekeyframe_selector ) )? )* otherlv_8= '}' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:744:1: ( () (otherlv_1= '@keyframes' | otherlv_2= '@KEYFRAMES' ) ( (lv_name_3_0= ruleIdentifier ) ) otherlv_4=
-				// '{' ( (lv_keyframeselectors_5_0= rulekeyframe_selector ) )? (otherlv_6= ';' ( (lv_keyframeselectors_7_0= rulekeyframe_selector ) )? )* otherlv_8= '}' )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:744:2: () (otherlv_1= '@keyframes' | otherlv_2= '@KEYFRAMES' ) ( (lv_name_3_0= ruleIdentifier ) ) otherlv_4=
-				// '{' ( (lv_keyframeselectors_5_0= rulekeyframe_selector ) )? (otherlv_6= ';' ( (lv_keyframeselectors_7_0= rulekeyframe_selector ) )? )* otherlv_8= '}'
+				// InternalCSS.g:744:1: ( () (otherlv_1= '@keyframes' | otherlv_2= '@KEYFRAMES' ) ( (lv_name_3_0= ruleIdentifier ) ) otherlv_4= '{' ( (lv_keyframeselectors_5_0= rulekeyframe_selector ) )? (otherlv_6= ';' ( (lv_keyframeselectors_7_0=
+				// rulekeyframe_selector ) )? )* otherlv_8= '}' )
+				// InternalCSS.g:744:2: () (otherlv_1= '@keyframes' | otherlv_2= '@KEYFRAMES' ) ( (lv_name_3_0= ruleIdentifier ) ) otherlv_4= '{' ( (lv_keyframeselectors_5_0= rulekeyframe_selector ) )? (otherlv_6= ';' ( (lv_keyframeselectors_7_0=
+				// rulekeyframe_selector ) )? )* otherlv_8= '}'
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:744:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:745:5:
+					// InternalCSS.g:744:2: ()
+					// InternalCSS.g:745:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -2488,31 +2430,28 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:750:2: (otherlv_1= '@keyframes' | otherlv_2= '@KEYFRAMES' )
+					// InternalCSS.g:750:2: (otherlv_1= '@keyframes' | otherlv_2= '@KEYFRAMES' )
 					int alt20 = 2;
 					int LA20_0 = input.LA(1);
 
 					if ((LA20_0 == 33)) {
 						alt20 = 1;
-					}
-					else if ((LA20_0 == 34)) {
+					} else if ((LA20_0 == 34)) {
 						alt20 = 2;
-					}
-					else {
+					} else {
 						if (state.backtracking > 0) {
 							state.failed = true;
 							return current;
 						}
-						NoViableAltException nvae =
-								new NoViableAltException("", 20, 0, input);
+						NoViableAltException nvae = new NoViableAltException("", 20, 0, input);
 
 						throw nvae;
 					}
 					switch (alt20) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:750:4: otherlv_1= '@keyframes'
+					// InternalCSS.g:750:4: otherlv_1= '@keyframes'
 					{
-						otherlv_1 = (Token) match(input, 33, FOLLOW_33_in_rulekeyframes1668);
+						otherlv_1 = (Token) match(input, 33, FOLLOW_13);
 						if (state.failed) {
 							return current;
 						}
@@ -2525,9 +2464,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 2:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:755:7: otherlv_2= '@KEYFRAMES'
+					// InternalCSS.g:755:7: otherlv_2= '@KEYFRAMES'
 					{
-						otherlv_2 = (Token) match(input, 34, FOLLOW_34_in_rulekeyframes1686);
+						otherlv_2 = (Token) match(input, 34, FOLLOW_13);
 						if (state.failed) {
 							return current;
 						}
@@ -2542,18 +2481,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:759:2: ( (lv_name_3_0= ruleIdentifier ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:760:1: (lv_name_3_0= ruleIdentifier )
+					// InternalCSS.g:759:2: ( (lv_name_3_0= ruleIdentifier ) )
+					// InternalCSS.g:760:1: (lv_name_3_0= ruleIdentifier )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:760:1: (lv_name_3_0= ruleIdentifier )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:761:3: lv_name_3_0= ruleIdentifier
+						// InternalCSS.g:760:1: (lv_name_3_0= ruleIdentifier )
+						// InternalCSS.g:761:3: lv_name_3_0= ruleIdentifier
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getKeyframesAccess().getNameIdentifierParserRuleCall_2_0());
 
 							}
-							pushFollow(FOLLOW_ruleIdentifier_in_rulekeyframes1708);
+							pushFollow(FOLLOW_10);
 							lv_name_3_0 = ruleIdentifier();
 
 							state._fsp--;
@@ -2569,7 +2508,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"name",
 										lv_name_3_0,
-										"Identifier");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -2579,7 +2518,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					otherlv_4 = (Token) match(input, 27, FOLLOW_27_in_rulekeyframes1720);
+					otherlv_4 = (Token) match(input, 27, FOLLOW_16);
 					if (state.failed) {
 						return current;
 					}
@@ -2588,7 +2527,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newLeafNode(otherlv_4, grammarAccess.getKeyframesAccess().getLeftCurlyBracketKeyword_3());
 
 					}
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:781:1: ( (lv_keyframeselectors_5_0= rulekeyframe_selector ) )?
+					// InternalCSS.g:781:1: ( (lv_keyframeselectors_5_0= rulekeyframe_selector ) )?
 					int alt21 = 2;
 					int LA21_0 = input.LA(1);
 
@@ -2597,17 +2536,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 					switch (alt21) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:782:1: (lv_keyframeselectors_5_0= rulekeyframe_selector )
+					// InternalCSS.g:782:1: (lv_keyframeselectors_5_0= rulekeyframe_selector )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:782:1: (lv_keyframeselectors_5_0= rulekeyframe_selector )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:783:3: lv_keyframeselectors_5_0= rulekeyframe_selector
+						// InternalCSS.g:782:1: (lv_keyframeselectors_5_0= rulekeyframe_selector )
+						// InternalCSS.g:783:3: lv_keyframeselectors_5_0= rulekeyframe_selector
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getKeyframesAccess().getKeyframeselectorsKeyframe_selectorParserRuleCall_4_0());
 
 							}
-							pushFollow(FOLLOW_rulekeyframe_selector_in_rulekeyframes1741);
+							pushFollow(FOLLOW_12);
 							lv_keyframeselectors_5_0 = rulekeyframe_selector();
 
 							state._fsp--;
@@ -2623,7 +2562,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"keyframeselectors",
 										lv_keyframeselectors_5_0,
-										"keyframe_selector");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.keyframe_selector");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -2636,7 +2575,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:799:3: (otherlv_6= ';' ( (lv_keyframeselectors_7_0= rulekeyframe_selector ) )? )*
+					// InternalCSS.g:799:3: (otherlv_6= ';' ( (lv_keyframeselectors_7_0= rulekeyframe_selector ) )? )*
 					loop23: do {
 						int alt23 = 2;
 						int LA23_0 = input.LA(1);
@@ -2648,9 +2587,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt23) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:799:5: otherlv_6= ';' ( (lv_keyframeselectors_7_0= rulekeyframe_selector ) )?
+						// InternalCSS.g:799:5: otherlv_6= ';' ( (lv_keyframeselectors_7_0= rulekeyframe_selector ) )?
 						{
-							otherlv_6 = (Token) match(input, 22, FOLLOW_22_in_rulekeyframes1755);
+							otherlv_6 = (Token) match(input, 22, FOLLOW_16);
 							if (state.failed) {
 								return current;
 							}
@@ -2659,7 +2598,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								newLeafNode(otherlv_6, grammarAccess.getKeyframesAccess().getSemicolonKeyword_5_0());
 
 							}
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:803:1: ( (lv_keyframeselectors_7_0= rulekeyframe_selector ) )?
+							// InternalCSS.g:803:1: ( (lv_keyframeselectors_7_0= rulekeyframe_selector ) )?
 							int alt22 = 2;
 							int LA22_0 = input.LA(1);
 
@@ -2668,17 +2607,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 							switch (alt22) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:804:1: (lv_keyframeselectors_7_0= rulekeyframe_selector )
+							// InternalCSS.g:804:1: (lv_keyframeselectors_7_0= rulekeyframe_selector )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:804:1: (lv_keyframeselectors_7_0= rulekeyframe_selector )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:805:3: lv_keyframeselectors_7_0= rulekeyframe_selector
+								// InternalCSS.g:804:1: (lv_keyframeselectors_7_0= rulekeyframe_selector )
+								// InternalCSS.g:805:3: lv_keyframeselectors_7_0= rulekeyframe_selector
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getKeyframesAccess().getKeyframeselectorsKeyframe_selectorParserRuleCall_5_1_0());
 
 									}
-									pushFollow(FOLLOW_rulekeyframe_selector_in_rulekeyframes1776);
+									pushFollow(FOLLOW_12);
 									lv_keyframeselectors_7_0 = rulekeyframe_selector();
 
 									state._fsp--;
@@ -2694,7 +2633,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"keyframeselectors",
 												lv_keyframeselectors_7_0,
-												"keyframe_selector");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.keyframe_selector");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -2716,7 +2655,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 					} while (true);
 
-					otherlv_8 = (Token) match(input, 28, FOLLOW_28_in_rulekeyframes1791);
+					otherlv_8 = (Token) match(input, 28, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -2743,12 +2682,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulekeyframes"
 
 
 	// $ANTLR start "entryRulekeyframe_selector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:833:1: entryRulekeyframe_selector returns [EObject current=null] : iv_rulekeyframe_selector= rulekeyframe_selector EOF ;
+	// InternalCSS.g:833:1: entryRulekeyframe_selector returns [EObject current=null] : iv_rulekeyframe_selector= rulekeyframe_selector EOF ;
 	public final EObject entryRulekeyframe_selector() throws RecognitionException {
 		EObject current = null;
 
@@ -2756,13 +2694,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:834:2: (iv_rulekeyframe_selector= rulekeyframe_selector EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:835:2: iv_rulekeyframe_selector= rulekeyframe_selector EOF
+			// InternalCSS.g:834:2: (iv_rulekeyframe_selector= rulekeyframe_selector EOF )
+			// InternalCSS.g:835:2: iv_rulekeyframe_selector= rulekeyframe_selector EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getKeyframe_selectorRule());
 				}
-				pushFollow(FOLLOW_rulekeyframe_selector_in_entryRulekeyframe_selector1827);
+				pushFollow(FOLLOW_1);
 				iv_rulekeyframe_selector = rulekeyframe_selector();
 
 				state._fsp--;
@@ -2772,7 +2710,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulekeyframe_selector;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulekeyframe_selector1837);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -2788,13 +2726,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulekeyframe_selector"
 
 
 	// $ANTLR start "rulekeyframe_selector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:842:1: rulekeyframe_selector returns [EObject current=null] : ( ( ( (lv_type_0_0= ruleIdentifier ) ) | ( (
-	// (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT ) ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}' ) ;
+	// InternalCSS.g:842:1: rulekeyframe_selector returns [EObject current=null] : ( ( ( (lv_type_0_0= ruleIdentifier ) ) | ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT ) ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )?
+	// (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}' ) ;
 	public final EObject rulekeyframe_selector() throws RecognitionException {
 		EObject current = null;
 
@@ -2814,36 +2751,32 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:845:28: ( ( ( ( (lv_type_0_0= ruleIdentifier ) ) | ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2=
-			// RULE_PERCENT ) ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:846:1: ( ( ( (lv_type_0_0= ruleIdentifier ) ) | ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT )
-			// ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}' )
+			// InternalCSS.g:845:28: ( ( ( ( (lv_type_0_0= ruleIdentifier ) ) | ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT ) ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0=
+			// rulecss_declaration ) )? )* otherlv_7= '}' ) )
+			// InternalCSS.g:846:1: ( ( ( (lv_type_0_0= ruleIdentifier ) ) | ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT ) ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0=
+			// rulecss_declaration ) )? )* otherlv_7= '}' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:846:1: ( ( ( (lv_type_0_0= ruleIdentifier ) ) | ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2=
-				// RULE_PERCENT ) ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}' )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:846:2: ( ( (lv_type_0_0= ruleIdentifier ) ) | ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT
-				// ) ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )* otherlv_7= '}'
+				// InternalCSS.g:846:1: ( ( ( (lv_type_0_0= ruleIdentifier ) ) | ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT ) ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0=
+				// rulecss_declaration ) )? )* otherlv_7= '}' )
+				// InternalCSS.g:846:2: ( ( (lv_type_0_0= ruleIdentifier ) ) | ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT ) ) otherlv_3= '{' ( (lv_declarations_4_0= rulecss_declaration ) )? (otherlv_5= ';' ( (lv_declarations_6_0=
+				// rulecss_declaration ) )? )* otherlv_7= '}'
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:846:2: ( ( (lv_type_0_0= ruleIdentifier ) ) | ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2=
-					// RULE_PERCENT ) )
+					// InternalCSS.g:846:2: ( ( (lv_type_0_0= ruleIdentifier ) ) | ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT ) )
 					int alt24 = 2;
 					switch (input.LA(1)) {
 					case RULE_DASH: {
 						int LA24_1 = input.LA(2);
 
-						if (((LA24_1 >= RULE_UNDERSCORE && LA24_1 <= RULE_ONE_NON_HEX_LETTER) || (LA24_1 >= 56 && LA24_1 <= 59))) {
-							alt24 = 1;
-						}
-						else if ((LA24_1 == RULE_ONE_INT || LA24_1 == 41)) {
+						if ((LA24_1 == RULE_ONE_INT || LA24_1 == 41)) {
 							alt24 = 2;
-						}
-						else {
+						} else if (((LA24_1 >= RULE_UNDERSCORE && LA24_1 <= RULE_ONE_NON_HEX_LETTER) || (LA24_1 >= 56 && LA24_1 <= 59))) {
+							alt24 = 1;
+						} else {
 							if (state.backtracking > 0) {
 								state.failed = true;
 								return current;
 							}
-							NoViableAltException nvae =
-									new NoViableAltException("", 24, 1, input);
+							NoViableAltException nvae = new NoViableAltException("", 24, 1, input);
 
 							throw nvae;
 						}
@@ -2870,28 +2803,27 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							state.failed = true;
 							return current;
 						}
-						NoViableAltException nvae =
-								new NoViableAltException("", 24, 0, input);
+						NoViableAltException nvae = new NoViableAltException("", 24, 0, input);
 
 						throw nvae;
 					}
 
 					switch (alt24) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:846:3: ( (lv_type_0_0= ruleIdentifier ) )
+					// InternalCSS.g:846:3: ( (lv_type_0_0= ruleIdentifier ) )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:846:3: ( (lv_type_0_0= ruleIdentifier ) )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:847:1: (lv_type_0_0= ruleIdentifier )
+						// InternalCSS.g:846:3: ( (lv_type_0_0= ruleIdentifier ) )
+						// InternalCSS.g:847:1: (lv_type_0_0= ruleIdentifier )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:847:1: (lv_type_0_0= ruleIdentifier )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:848:3: lv_type_0_0= ruleIdentifier
+							// InternalCSS.g:847:1: (lv_type_0_0= ruleIdentifier )
+							// InternalCSS.g:848:3: lv_type_0_0= ruleIdentifier
 							{
 								if (state.backtracking == 0) {
 
 									newCompositeNode(grammarAccess.getKeyframe_selectorAccess().getTypeIdentifierParserRuleCall_0_0_0());
 
 								}
-								pushFollow(FOLLOW_ruleIdentifier_in_rulekeyframe_selector1884);
+								pushFollow(FOLLOW_10);
 								lv_type_0_0 = ruleIdentifier();
 
 								state._fsp--;
@@ -2907,7 +2839,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 											current,
 											"type",
 											lv_type_0_0,
-											"Identifier");
+											"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 									afterParserOrEnumRuleCall();
 
 								}
@@ -2921,23 +2853,23 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 2:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:865:6: ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT )
+					// InternalCSS.g:865:6: ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:865:6: ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:865:7: ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT
+						// InternalCSS.g:865:6: ( ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT )
+						// InternalCSS.g:865:7: ( (lv_percentage_1_0= ruleNum ) ) this_PERCENT_2= RULE_PERCENT
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:865:7: ( (lv_percentage_1_0= ruleNum ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:866:1: (lv_percentage_1_0= ruleNum )
+							// InternalCSS.g:865:7: ( (lv_percentage_1_0= ruleNum ) )
+							// InternalCSS.g:866:1: (lv_percentage_1_0= ruleNum )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:866:1: (lv_percentage_1_0= ruleNum )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:867:3: lv_percentage_1_0= ruleNum
+								// InternalCSS.g:866:1: (lv_percentage_1_0= ruleNum )
+								// InternalCSS.g:867:3: lv_percentage_1_0= ruleNum
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getKeyframe_selectorAccess().getPercentageNumParserRuleCall_0_1_0_0());
 
 									}
-									pushFollow(FOLLOW_ruleNum_in_rulekeyframe_selector1912);
+									pushFollow(FOLLOW_17);
 									lv_percentage_1_0 = ruleNum();
 
 									state._fsp--;
@@ -2953,7 +2885,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"percentage",
 												lv_percentage_1_0,
-												"Num");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Num");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -2963,7 +2895,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 							}
 
-							this_PERCENT_2 = (Token) match(input, RULE_PERCENT, FOLLOW_RULE_PERCENT_in_rulekeyframe_selector1923);
+							this_PERCENT_2 = (Token) match(input, RULE_PERCENT, FOLLOW_10);
 							if (state.failed) {
 								return current;
 							}
@@ -2981,7 +2913,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					otherlv_3 = (Token) match(input, 27, FOLLOW_27_in_rulekeyframe_selector1936);
+					otherlv_3 = (Token) match(input, 27, FOLLOW_11);
 					if (state.failed) {
 						return current;
 					}
@@ -2990,7 +2922,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newLeafNode(otherlv_3, grammarAccess.getKeyframe_selectorAccess().getLeftCurlyBracketKeyword_1());
 
 					}
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:891:1: ( (lv_declarations_4_0= rulecss_declaration ) )?
+					// InternalCSS.g:891:1: ( (lv_declarations_4_0= rulecss_declaration ) )?
 					int alt25 = 2;
 					int LA25_0 = input.LA(1);
 
@@ -2999,17 +2931,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 					switch (alt25) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:892:1: (lv_declarations_4_0= rulecss_declaration )
+					// InternalCSS.g:892:1: (lv_declarations_4_0= rulecss_declaration )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:892:1: (lv_declarations_4_0= rulecss_declaration )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:893:3: lv_declarations_4_0= rulecss_declaration
+						// InternalCSS.g:892:1: (lv_declarations_4_0= rulecss_declaration )
+						// InternalCSS.g:893:3: lv_declarations_4_0= rulecss_declaration
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getKeyframe_selectorAccess().getDeclarationsCss_declarationParserRuleCall_2_0());
 
 							}
-							pushFollow(FOLLOW_rulecss_declaration_in_rulekeyframe_selector1957);
+							pushFollow(FOLLOW_12);
 							lv_declarations_4_0 = rulecss_declaration();
 
 							state._fsp--;
@@ -3025,7 +2957,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"declarations",
 										lv_declarations_4_0,
-										"css_declaration");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -3038,7 +2970,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:909:3: (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )*
+					// InternalCSS.g:909:3: (otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )? )*
 					loop27: do {
 						int alt27 = 2;
 						int LA27_0 = input.LA(1);
@@ -3050,9 +2982,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt27) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:909:5: otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )?
+						// InternalCSS.g:909:5: otherlv_5= ';' ( (lv_declarations_6_0= rulecss_declaration ) )?
 						{
-							otherlv_5 = (Token) match(input, 22, FOLLOW_22_in_rulekeyframe_selector1971);
+							otherlv_5 = (Token) match(input, 22, FOLLOW_11);
 							if (state.failed) {
 								return current;
 							}
@@ -3061,7 +2993,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								newLeafNode(otherlv_5, grammarAccess.getKeyframe_selectorAccess().getSemicolonKeyword_3_0());
 
 							}
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:913:1: ( (lv_declarations_6_0= rulecss_declaration ) )?
+							// InternalCSS.g:913:1: ( (lv_declarations_6_0= rulecss_declaration ) )?
 							int alt26 = 2;
 							int LA26_0 = input.LA(1);
 
@@ -3070,17 +3002,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 							switch (alt26) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:914:1: (lv_declarations_6_0= rulecss_declaration )
+							// InternalCSS.g:914:1: (lv_declarations_6_0= rulecss_declaration )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:914:1: (lv_declarations_6_0= rulecss_declaration )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:915:3: lv_declarations_6_0= rulecss_declaration
+								// InternalCSS.g:914:1: (lv_declarations_6_0= rulecss_declaration )
+								// InternalCSS.g:915:3: lv_declarations_6_0= rulecss_declaration
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getKeyframe_selectorAccess().getDeclarationsCss_declarationParserRuleCall_3_1_0());
 
 									}
-									pushFollow(FOLLOW_rulecss_declaration_in_rulekeyframe_selector1992);
+									pushFollow(FOLLOW_12);
 									lv_declarations_6_0 = rulecss_declaration();
 
 									state._fsp--;
@@ -3096,7 +3028,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"declarations",
 												lv_declarations_6_0,
-												"css_declaration");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -3118,7 +3050,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 					} while (true);
 
-					otherlv_7 = (Token) match(input, 28, FOLLOW_28_in_rulekeyframe_selector2007);
+					otherlv_7 = (Token) match(input, 28, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -3145,12 +3077,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulekeyframe_selector"
 
 
 	// $ANTLR start "entryRuleruleset"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:943:1: entryRuleruleset returns [EObject current=null] : iv_ruleruleset= ruleruleset EOF ;
+	// InternalCSS.g:943:1: entryRuleruleset returns [EObject current=null] : iv_ruleruleset= ruleruleset EOF ;
 	public final EObject entryRuleruleset() throws RecognitionException {
 		EObject current = null;
 
@@ -3158,13 +3089,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:944:2: (iv_ruleruleset= ruleruleset EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:945:2: iv_ruleruleset= ruleruleset EOF
+			// InternalCSS.g:944:2: (iv_ruleruleset= ruleruleset EOF )
+			// InternalCSS.g:945:2: iv_ruleruleset= ruleruleset EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getRulesetRule());
 				}
-				pushFollow(FOLLOW_ruleruleset_in_entryRuleruleset2043);
+				pushFollow(FOLLOW_1);
 				iv_ruleruleset = ruleruleset();
 
 				state._fsp--;
@@ -3174,7 +3105,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleruleset;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleruleset2053);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -3190,14 +3121,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleruleset"
 
 
 	// $ANTLR start "ruleruleset"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:952:1: ruleruleset returns [EObject current=null] : ( ( (lv_selectors_0_0= ruleselector ) ) ( (this_WS_1= RULE_WS )*
-	// this_COMMA_2= RULE_COMMA ( (lv_selectors_3_0= ruleselector ) ) )* (this_WS_4= RULE_WS )* otherlv_5= '{' ( ( (lv_declarations_6_0= rulecss_declaration ) ) (otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) ) )* (otherlv_9= ';' )? )?
-	// otherlv_10= '}' ) ;
+	// InternalCSS.g:952:1: ruleruleset returns [EObject current=null] : ( ( (lv_selectors_0_0= ruleselector ) ) ( (this_WS_1= RULE_WS )* this_COMMA_2= RULE_COMMA ( (lv_selectors_3_0= ruleselector ) ) )* (this_WS_4= RULE_WS )* otherlv_5= '{' ( (
+	// (lv_declarations_6_0= rulecss_declaration ) ) (otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) ) )* (otherlv_9= ';' )? )? otherlv_10= '}' ) ;
 	public final EObject ruleruleset() throws RecognitionException {
 		EObject current = null;
 
@@ -3220,28 +3149,28 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:955:28: ( ( ( (lv_selectors_0_0= ruleselector ) ) ( (this_WS_1= RULE_WS )* this_COMMA_2= RULE_COMMA (
-			// (lv_selectors_3_0= ruleselector ) ) )* (this_WS_4= RULE_WS )* otherlv_5= '{' ( ( (lv_declarations_6_0= rulecss_declaration ) ) (otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) ) )* (otherlv_9= ';' )? )? otherlv_10= '}' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:956:1: ( ( (lv_selectors_0_0= ruleselector ) ) ( (this_WS_1= RULE_WS )* this_COMMA_2= RULE_COMMA (
-			// (lv_selectors_3_0= ruleselector ) ) )* (this_WS_4= RULE_WS )* otherlv_5= '{' ( ( (lv_declarations_6_0= rulecss_declaration ) ) (otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) ) )* (otherlv_9= ';' )? )? otherlv_10= '}' )
+			// InternalCSS.g:955:28: ( ( ( (lv_selectors_0_0= ruleselector ) ) ( (this_WS_1= RULE_WS )* this_COMMA_2= RULE_COMMA ( (lv_selectors_3_0= ruleselector ) ) )* (this_WS_4= RULE_WS )* otherlv_5= '{' ( ( (lv_declarations_6_0= rulecss_declaration ) )
+			// (otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) ) )* (otherlv_9= ';' )? )? otherlv_10= '}' ) )
+			// InternalCSS.g:956:1: ( ( (lv_selectors_0_0= ruleselector ) ) ( (this_WS_1= RULE_WS )* this_COMMA_2= RULE_COMMA ( (lv_selectors_3_0= ruleselector ) ) )* (this_WS_4= RULE_WS )* otherlv_5= '{' ( ( (lv_declarations_6_0= rulecss_declaration ) )
+			// (otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) ) )* (otherlv_9= ';' )? )? otherlv_10= '}' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:956:1: ( ( (lv_selectors_0_0= ruleselector ) ) ( (this_WS_1= RULE_WS )* this_COMMA_2= RULE_COMMA (
-				// (lv_selectors_3_0= ruleselector ) ) )* (this_WS_4= RULE_WS )* otherlv_5= '{' ( ( (lv_declarations_6_0= rulecss_declaration ) ) (otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) ) )* (otherlv_9= ';' )? )? otherlv_10= '}' )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:956:2: ( (lv_selectors_0_0= ruleselector ) ) ( (this_WS_1= RULE_WS )* this_COMMA_2= RULE_COMMA (
-				// (lv_selectors_3_0= ruleselector ) ) )* (this_WS_4= RULE_WS )* otherlv_5= '{' ( ( (lv_declarations_6_0= rulecss_declaration ) ) (otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) ) )* (otherlv_9= ';' )? )? otherlv_10= '}'
+				// InternalCSS.g:956:1: ( ( (lv_selectors_0_0= ruleselector ) ) ( (this_WS_1= RULE_WS )* this_COMMA_2= RULE_COMMA ( (lv_selectors_3_0= ruleselector ) ) )* (this_WS_4= RULE_WS )* otherlv_5= '{' ( ( (lv_declarations_6_0= rulecss_declaration ) )
+				// (otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) ) )* (otherlv_9= ';' )? )? otherlv_10= '}' )
+				// InternalCSS.g:956:2: ( (lv_selectors_0_0= ruleselector ) ) ( (this_WS_1= RULE_WS )* this_COMMA_2= RULE_COMMA ( (lv_selectors_3_0= ruleselector ) ) )* (this_WS_4= RULE_WS )* otherlv_5= '{' ( ( (lv_declarations_6_0= rulecss_declaration ) )
+				// (otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) ) )* (otherlv_9= ';' )? )? otherlv_10= '}'
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:956:2: ( (lv_selectors_0_0= ruleselector ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:957:1: (lv_selectors_0_0= ruleselector )
+					// InternalCSS.g:956:2: ( (lv_selectors_0_0= ruleselector ) )
+					// InternalCSS.g:957:1: (lv_selectors_0_0= ruleselector )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:957:1: (lv_selectors_0_0= ruleselector )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:958:3: lv_selectors_0_0= ruleselector
+						// InternalCSS.g:957:1: (lv_selectors_0_0= ruleselector )
+						// InternalCSS.g:958:3: lv_selectors_0_0= ruleselector
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getRulesetAccess().getSelectorsSelectorParserRuleCall_0_0());
 
 							}
-							pushFollow(FOLLOW_ruleselector_in_ruleruleset2099);
+							pushFollow(FOLLOW_18);
 							lv_selectors_0_0 = ruleselector();
 
 							state._fsp--;
@@ -3257,7 +3186,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"selectors",
 										lv_selectors_0_0,
-										"selector");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.selector");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -3267,15 +3196,15 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:974:2: ( (this_WS_1= RULE_WS )* this_COMMA_2= RULE_COMMA ( (lv_selectors_3_0= ruleselector ) ) )*
+					// InternalCSS.g:974:2: ( (this_WS_1= RULE_WS )* this_COMMA_2= RULE_COMMA ( (lv_selectors_3_0= ruleselector ) ) )*
 					loop29: do {
 						int alt29 = 2;
 						alt29 = dfa29.predict(input);
 						switch (alt29) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:974:3: (this_WS_1= RULE_WS )* this_COMMA_2= RULE_COMMA ( (lv_selectors_3_0= ruleselector ) )
+						// InternalCSS.g:974:3: (this_WS_1= RULE_WS )* this_COMMA_2= RULE_COMMA ( (lv_selectors_3_0= ruleselector ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:974:3: (this_WS_1= RULE_WS )*
+							// InternalCSS.g:974:3: (this_WS_1= RULE_WS )*
 							loop28: do {
 								int alt28 = 2;
 								int LA28_0 = input.LA(1);
@@ -3287,9 +3216,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 								switch (alt28) {
 								case 1:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:974:4: this_WS_1= RULE_WS
+								// InternalCSS.g:974:4: this_WS_1= RULE_WS
 								{
-									this_WS_1 = (Token) match(input, RULE_WS, FOLLOW_RULE_WS_in_ruleruleset2112);
+									this_WS_1 = (Token) match(input, RULE_WS, FOLLOW_19);
 									if (state.failed) {
 										return current;
 									}
@@ -3307,7 +3236,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								}
 							} while (true);
 
-							this_COMMA_2 = (Token) match(input, RULE_COMMA, FOLLOW_RULE_COMMA_in_ruleruleset2124);
+							this_COMMA_2 = (Token) match(input, RULE_COMMA, FOLLOW_20);
 							if (state.failed) {
 								return current;
 							}
@@ -3316,18 +3245,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								newLeafNode(this_COMMA_2, grammarAccess.getRulesetAccess().getCOMMATerminalRuleCall_1_1());
 
 							}
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:982:1: ( (lv_selectors_3_0= ruleselector ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:983:1: (lv_selectors_3_0= ruleselector )
+							// InternalCSS.g:982:1: ( (lv_selectors_3_0= ruleselector ) )
+							// InternalCSS.g:983:1: (lv_selectors_3_0= ruleselector )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:983:1: (lv_selectors_3_0= ruleselector )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:984:3: lv_selectors_3_0= ruleselector
+								// InternalCSS.g:983:1: (lv_selectors_3_0= ruleselector )
+								// InternalCSS.g:984:3: lv_selectors_3_0= ruleselector
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getRulesetAccess().getSelectorsSelectorParserRuleCall_1_2_0());
 
 									}
-									pushFollow(FOLLOW_ruleselector_in_ruleruleset2144);
+									pushFollow(FOLLOW_18);
 									lv_selectors_3_0 = ruleselector();
 
 									state._fsp--;
@@ -3343,7 +3272,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"selectors",
 												lv_selectors_3_0,
-												"selector");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.selector");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -3362,7 +3291,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 					} while (true);
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1000:4: (this_WS_4= RULE_WS )*
+					// InternalCSS.g:1000:4: (this_WS_4= RULE_WS )*
 					loop30: do {
 						int alt30 = 2;
 						int LA30_0 = input.LA(1);
@@ -3374,9 +3303,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt30) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1000:5: this_WS_4= RULE_WS
+						// InternalCSS.g:1000:5: this_WS_4= RULE_WS
 						{
-							this_WS_4 = (Token) match(input, RULE_WS, FOLLOW_RULE_WS_in_ruleruleset2158);
+							this_WS_4 = (Token) match(input, RULE_WS, FOLLOW_21);
 							if (state.failed) {
 								return current;
 							}
@@ -3394,7 +3323,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 					} while (true);
 
-					otherlv_5 = (Token) match(input, 27, FOLLOW_27_in_ruleruleset2171);
+					otherlv_5 = (Token) match(input, 27, FOLLOW_22);
 					if (state.failed) {
 						return current;
 					}
@@ -3403,8 +3332,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newLeafNode(otherlv_5, grammarAccess.getRulesetAccess().getLeftCurlyBracketKeyword_3());
 
 					}
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1008:1: ( ( (lv_declarations_6_0= rulecss_declaration ) ) (otherlv_7= ';' ( (lv_declarations_8_0=
-					// rulecss_declaration ) ) )* (otherlv_9= ';' )? )?
+					// InternalCSS.g:1008:1: ( ( (lv_declarations_6_0= rulecss_declaration ) ) (otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) ) )* (otherlv_9= ';' )? )?
 					int alt33 = 2;
 					int LA33_0 = input.LA(1);
 
@@ -3413,21 +3341,20 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 					switch (alt33) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1008:2: ( (lv_declarations_6_0= rulecss_declaration ) ) (otherlv_7= ';' ( (lv_declarations_8_0=
-					// rulecss_declaration ) ) )* (otherlv_9= ';' )?
+					// InternalCSS.g:1008:2: ( (lv_declarations_6_0= rulecss_declaration ) ) (otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) ) )* (otherlv_9= ';' )?
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1008:2: ( (lv_declarations_6_0= rulecss_declaration ) )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1009:1: (lv_declarations_6_0= rulecss_declaration )
+						// InternalCSS.g:1008:2: ( (lv_declarations_6_0= rulecss_declaration ) )
+						// InternalCSS.g:1009:1: (lv_declarations_6_0= rulecss_declaration )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1009:1: (lv_declarations_6_0= rulecss_declaration )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1010:3: lv_declarations_6_0= rulecss_declaration
+							// InternalCSS.g:1009:1: (lv_declarations_6_0= rulecss_declaration )
+							// InternalCSS.g:1010:3: lv_declarations_6_0= rulecss_declaration
 							{
 								if (state.backtracking == 0) {
 
 									newCompositeNode(grammarAccess.getRulesetAccess().getDeclarationsCss_declarationParserRuleCall_4_0_0());
 
 								}
-								pushFollow(FOLLOW_rulecss_declaration_in_ruleruleset2193);
+								pushFollow(FOLLOW_12);
 								lv_declarations_6_0 = rulecss_declaration();
 
 								state._fsp--;
@@ -3443,7 +3370,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 											current,
 											"declarations",
 											lv_declarations_6_0,
-											"css_declaration");
+											"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 									afterParserOrEnumRuleCall();
 
 								}
@@ -3453,7 +3380,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						}
 
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1026:2: (otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) ) )*
+						// InternalCSS.g:1026:2: (otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) ) )*
 						loop31: do {
 							int alt31 = 2;
 							int LA31_0 = input.LA(1);
@@ -3471,9 +3398,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 							switch (alt31) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1026:4: otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) )
+							// InternalCSS.g:1026:4: otherlv_7= ';' ( (lv_declarations_8_0= rulecss_declaration ) )
 							{
-								otherlv_7 = (Token) match(input, 22, FOLLOW_22_in_ruleruleset2206);
+								otherlv_7 = (Token) match(input, 22, FOLLOW_23);
 								if (state.failed) {
 									return current;
 								}
@@ -3482,18 +3409,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 									newLeafNode(otherlv_7, grammarAccess.getRulesetAccess().getSemicolonKeyword_4_1_0());
 
 								}
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1030:1: ( (lv_declarations_8_0= rulecss_declaration ) )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1031:1: (lv_declarations_8_0= rulecss_declaration )
+								// InternalCSS.g:1030:1: ( (lv_declarations_8_0= rulecss_declaration ) )
+								// InternalCSS.g:1031:1: (lv_declarations_8_0= rulecss_declaration )
 								{
-									// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1031:1: (lv_declarations_8_0= rulecss_declaration )
-									// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1032:3: lv_declarations_8_0= rulecss_declaration
+									// InternalCSS.g:1031:1: (lv_declarations_8_0= rulecss_declaration )
+									// InternalCSS.g:1032:3: lv_declarations_8_0= rulecss_declaration
 									{
 										if (state.backtracking == 0) {
 
 											newCompositeNode(grammarAccess.getRulesetAccess().getDeclarationsCss_declarationParserRuleCall_4_1_1_0());
 
 										}
-										pushFollow(FOLLOW_rulecss_declaration_in_ruleruleset2227);
+										pushFollow(FOLLOW_12);
 										lv_declarations_8_0 = rulecss_declaration();
 
 										state._fsp--;
@@ -3509,7 +3436,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 													current,
 													"declarations",
 													lv_declarations_8_0,
-													"css_declaration");
+													"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_declaration");
 											afterParserOrEnumRuleCall();
 
 										}
@@ -3528,7 +3455,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 						} while (true);
 
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1048:4: (otherlv_9= ';' )?
+						// InternalCSS.g:1048:4: (otherlv_9= ';' )?
 						int alt32 = 2;
 						int LA32_0 = input.LA(1);
 
@@ -3537,9 +3464,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 						switch (alt32) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1048:6: otherlv_9= ';'
+						// InternalCSS.g:1048:6: otherlv_9= ';'
 						{
-							otherlv_9 = (Token) match(input, 22, FOLLOW_22_in_ruleruleset2242);
+							otherlv_9 = (Token) match(input, 22, FOLLOW_24);
 							if (state.failed) {
 								return current;
 							}
@@ -3560,7 +3487,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					otherlv_10 = (Token) match(input, 28, FOLLOW_28_in_ruleruleset2258);
+					otherlv_10 = (Token) match(input, 28, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -3587,12 +3514,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleruleset"
 
 
 	// $ANTLR start "entryRuleselector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1064:1: entryRuleselector returns [EObject current=null] : iv_ruleselector= ruleselector EOF ;
+	// InternalCSS.g:1064:1: entryRuleselector returns [EObject current=null] : iv_ruleselector= ruleselector EOF ;
 	public final EObject entryRuleselector() throws RecognitionException {
 		EObject current = null;
 
@@ -3603,13 +3529,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens("RULE_ML_COMMENT");
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1068:2: (iv_ruleselector= ruleselector EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1069:2: iv_ruleselector= ruleselector EOF
+			// InternalCSS.g:1068:2: (iv_ruleselector= ruleselector EOF )
+			// InternalCSS.g:1069:2: iv_ruleselector= ruleselector EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getSelectorRule());
 				}
-				pushFollow(FOLLOW_ruleselector_in_entryRuleselector2300);
+				pushFollow(FOLLOW_1);
 				iv_ruleselector = ruleselector();
 
 				state._fsp--;
@@ -3619,7 +3545,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleselector;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleselector2310);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -3638,13 +3564,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleselector"
 
 
 	// $ANTLR start "ruleselector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1079:1: ruleselector returns [EObject current=null] : ( ( (lv_simpleselectors_0_0= rulesimple_selector ) ) ( ( (
-	// (lv_combinator_1_0= rulecombinator ) ) (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector ) ) ) | ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )? ( (lv_selector_7_0= ruleselector ) ) ) )? ) ;
+	// InternalCSS.g:1079:1: ruleselector returns [EObject current=null] : ( ( (lv_simpleselectors_0_0= rulesimple_selector ) ) ( ( ( (lv_combinator_1_0= rulecombinator ) ) (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector ) ) ) | ( (this_WS_4= RULE_WS
+	// )+ ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )? ( (lv_selector_7_0= ruleselector ) ) ) )? ) ;
 	public final EObject ruleselector() throws RecognitionException {
 		EObject current = null;
 
@@ -3666,28 +3591,28 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens("RULE_ML_COMMENT");
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1083:28: ( ( ( (lv_simpleselectors_0_0= rulesimple_selector ) ) ( ( ( (lv_combinator_1_0= rulecombinator ) )
-			// (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector ) ) ) | ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )? ( (lv_selector_7_0= ruleselector ) ) ) )? ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1084:1: ( ( (lv_simpleselectors_0_0= rulesimple_selector ) ) ( ( ( (lv_combinator_1_0= rulecombinator ) )
-			// (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector ) ) ) | ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )? ( (lv_selector_7_0= ruleselector ) ) ) )? )
+			// InternalCSS.g:1083:28: ( ( ( (lv_simpleselectors_0_0= rulesimple_selector ) ) ( ( ( (lv_combinator_1_0= rulecombinator ) ) (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector ) ) ) | ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0=
+			// rulecombinator ) ) (this_WS_6= RULE_WS )* )? ( (lv_selector_7_0= ruleselector ) ) ) )? ) )
+			// InternalCSS.g:1084:1: ( ( (lv_simpleselectors_0_0= rulesimple_selector ) ) ( ( ( (lv_combinator_1_0= rulecombinator ) ) (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector ) ) ) | ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0=
+			// rulecombinator ) ) (this_WS_6= RULE_WS )* )? ( (lv_selector_7_0= ruleselector ) ) ) )? )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1084:1: ( ( (lv_simpleselectors_0_0= rulesimple_selector ) ) ( ( ( (lv_combinator_1_0= rulecombinator ) )
-				// (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector ) ) ) | ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )? ( (lv_selector_7_0= ruleselector ) ) ) )? )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1084:2: ( (lv_simpleselectors_0_0= rulesimple_selector ) ) ( ( ( (lv_combinator_1_0= rulecombinator ) )
-				// (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector ) ) ) | ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )? ( (lv_selector_7_0= ruleselector ) ) ) )?
+				// InternalCSS.g:1084:1: ( ( (lv_simpleselectors_0_0= rulesimple_selector ) ) ( ( ( (lv_combinator_1_0= rulecombinator ) ) (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector ) ) ) | ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0=
+				// rulecombinator ) ) (this_WS_6= RULE_WS )* )? ( (lv_selector_7_0= ruleselector ) ) ) )? )
+				// InternalCSS.g:1084:2: ( (lv_simpleselectors_0_0= rulesimple_selector ) ) ( ( ( (lv_combinator_1_0= rulecombinator ) ) (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector ) ) ) | ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0=
+				// rulecombinator ) ) (this_WS_6= RULE_WS )* )? ( (lv_selector_7_0= ruleselector ) ) ) )?
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1084:2: ( (lv_simpleselectors_0_0= rulesimple_selector ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1085:1: (lv_simpleselectors_0_0= rulesimple_selector )
+					// InternalCSS.g:1084:2: ( (lv_simpleselectors_0_0= rulesimple_selector ) )
+					// InternalCSS.g:1085:1: (lv_simpleselectors_0_0= rulesimple_selector )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1085:1: (lv_simpleselectors_0_0= rulesimple_selector )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1086:3: lv_simpleselectors_0_0= rulesimple_selector
+						// InternalCSS.g:1085:1: (lv_simpleselectors_0_0= rulesimple_selector )
+						// InternalCSS.g:1086:3: lv_simpleselectors_0_0= rulesimple_selector
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getSelectorAccess().getSimpleselectorsSimple_selectorParserRuleCall_0_0());
 
 							}
-							pushFollow(FOLLOW_rulesimple_selector_in_ruleselector2360);
+							pushFollow(FOLLOW_25);
 							lv_simpleselectors_0_0 = rulesimple_selector();
 
 							state._fsp--;
@@ -3703,7 +3628,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"simpleselectors",
 										lv_simpleselectors_0_0,
-										"simple_selector");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.simple_selector");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -3713,32 +3638,29 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1102:2: ( ( ( (lv_combinator_1_0= rulecombinator ) ) (this_WS_2= RULE_WS )* ( (lv_selector_3_0=
-					// ruleselector ) ) ) | ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )? ( (lv_selector_7_0= ruleselector ) ) ) )?
+					// InternalCSS.g:1102:2: ( ( ( (lv_combinator_1_0= rulecombinator ) ) (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector ) ) ) | ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )? (
+					// (lv_selector_7_0= ruleselector ) ) ) )?
 					int alt38 = 3;
 					alt38 = dfa38.predict(input);
 					switch (alt38) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1102:3: ( ( (lv_combinator_1_0= rulecombinator ) ) (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector
-					// ) ) )
+					// InternalCSS.g:1102:3: ( ( (lv_combinator_1_0= rulecombinator ) ) (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector ) ) )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1102:3: ( ( (lv_combinator_1_0= rulecombinator ) ) (this_WS_2= RULE_WS )* ( (lv_selector_3_0=
-						// ruleselector ) ) )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1102:4: ( (lv_combinator_1_0= rulecombinator ) ) (this_WS_2= RULE_WS )* ( (lv_selector_3_0=
-						// ruleselector ) )
+						// InternalCSS.g:1102:3: ( ( (lv_combinator_1_0= rulecombinator ) ) (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector ) ) )
+						// InternalCSS.g:1102:4: ( (lv_combinator_1_0= rulecombinator ) ) (this_WS_2= RULE_WS )* ( (lv_selector_3_0= ruleselector ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1102:4: ( (lv_combinator_1_0= rulecombinator ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1103:1: (lv_combinator_1_0= rulecombinator )
+							// InternalCSS.g:1102:4: ( (lv_combinator_1_0= rulecombinator ) )
+							// InternalCSS.g:1103:1: (lv_combinator_1_0= rulecombinator )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1103:1: (lv_combinator_1_0= rulecombinator )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1104:3: lv_combinator_1_0= rulecombinator
+								// InternalCSS.g:1103:1: (lv_combinator_1_0= rulecombinator )
+								// InternalCSS.g:1104:3: lv_combinator_1_0= rulecombinator
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getSelectorAccess().getCombinatorCombinatorParserRuleCall_1_0_0_0());
 
 									}
-									pushFollow(FOLLOW_rulecombinator_in_ruleselector2383);
+									pushFollow(FOLLOW_26);
 									lv_combinator_1_0 = rulecombinator();
 
 									state._fsp--;
@@ -3754,7 +3676,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"combinator",
 												lv_combinator_1_0,
-												"combinator");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.combinator");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -3764,7 +3686,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 							}
 
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1120:2: (this_WS_2= RULE_WS )*
+							// InternalCSS.g:1120:2: (this_WS_2= RULE_WS )*
 							loop34: do {
 								int alt34 = 2;
 								int LA34_0 = input.LA(1);
@@ -3776,9 +3698,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 								switch (alt34) {
 								case 1:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1120:3: this_WS_2= RULE_WS
+								// InternalCSS.g:1120:3: this_WS_2= RULE_WS
 								{
-									this_WS_2 = (Token) match(input, RULE_WS, FOLLOW_RULE_WS_in_ruleselector2395);
+									this_WS_2 = (Token) match(input, RULE_WS, FOLLOW_26);
 									if (state.failed) {
 										return current;
 									}
@@ -3796,18 +3718,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								}
 							} while (true);
 
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1124:3: ( (lv_selector_3_0= ruleselector ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1125:1: (lv_selector_3_0= ruleselector )
+							// InternalCSS.g:1124:3: ( (lv_selector_3_0= ruleselector ) )
+							// InternalCSS.g:1125:1: (lv_selector_3_0= ruleselector )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1125:1: (lv_selector_3_0= ruleselector )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1126:3: lv_selector_3_0= ruleselector
+								// InternalCSS.g:1125:1: (lv_selector_3_0= ruleselector )
+								// InternalCSS.g:1126:3: lv_selector_3_0= ruleselector
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getSelectorAccess().getSelectorSelectorParserRuleCall_1_0_2_0());
 
 									}
-									pushFollow(FOLLOW_ruleselector_in_ruleselector2417);
+									pushFollow(FOLLOW_2);
 									lv_selector_3_0 = ruleselector();
 
 									state._fsp--;
@@ -3823,7 +3745,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"selector",
 												lv_selector_3_0,
-												"selector");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.selector");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -3840,15 +3762,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 2:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1143:6: ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )? (
-					// (lv_selector_7_0= ruleselector ) ) )
+					// InternalCSS.g:1143:6: ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )? ( (lv_selector_7_0= ruleselector ) ) )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1143:6: ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )?
-						// ( (lv_selector_7_0= ruleselector ) ) )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1143:7: (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )? (
-						// (lv_selector_7_0= ruleselector ) )
+						// InternalCSS.g:1143:6: ( (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )? ( (lv_selector_7_0= ruleselector ) ) )
+						// InternalCSS.g:1143:7: (this_WS_4= RULE_WS )+ ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )? ( (lv_selector_7_0= ruleselector ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1143:7: (this_WS_4= RULE_WS )+
+							// InternalCSS.g:1143:7: (this_WS_4= RULE_WS )+
 							int cnt35 = 0;
 							loop35: do {
 								int alt35 = 2;
@@ -3861,9 +3780,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 								switch (alt35) {
 								case 1:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1143:8: this_WS_4= RULE_WS
+								// InternalCSS.g:1143:8: this_WS_4= RULE_WS
 								{
-									this_WS_4 = (Token) match(input, RULE_WS, FOLLOW_RULE_WS_in_ruleselector2437);
+									this_WS_4 = (Token) match(input, RULE_WS, FOLLOW_27);
 									if (state.failed) {
 										return current;
 									}
@@ -3884,14 +3803,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										state.failed = true;
 										return current;
 									}
-									EarlyExitException eee =
-											new EarlyExitException(35, input);
+									EarlyExitException eee = new EarlyExitException(35, input);
 									throw eee;
 								}
 								cnt35++;
 							} while (true);
 
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1147:3: ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )?
+							// InternalCSS.g:1147:3: ( ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )* )?
 							int alt37 = 2;
 							int LA37_0 = input.LA(1);
 
@@ -3900,20 +3818,20 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 							switch (alt37) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1147:4: ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )*
+							// InternalCSS.g:1147:4: ( (lv_combinator_5_0= rulecombinator ) ) (this_WS_6= RULE_WS )*
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1147:4: ( (lv_combinator_5_0= rulecombinator ) )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1148:1: (lv_combinator_5_0= rulecombinator )
+								// InternalCSS.g:1147:4: ( (lv_combinator_5_0= rulecombinator ) )
+								// InternalCSS.g:1148:1: (lv_combinator_5_0= rulecombinator )
 								{
-									// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1148:1: (lv_combinator_5_0= rulecombinator )
-									// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1149:3: lv_combinator_5_0= rulecombinator
+									// InternalCSS.g:1148:1: (lv_combinator_5_0= rulecombinator )
+									// InternalCSS.g:1149:3: lv_combinator_5_0= rulecombinator
 									{
 										if (state.backtracking == 0) {
 
 											newCompositeNode(grammarAccess.getSelectorAccess().getCombinatorCombinatorParserRuleCall_1_1_1_0_0());
 
 										}
-										pushFollow(FOLLOW_rulecombinator_in_ruleselector2460);
+										pushFollow(FOLLOW_26);
 										lv_combinator_5_0 = rulecombinator();
 
 										state._fsp--;
@@ -3929,7 +3847,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 													current,
 													"combinator",
 													lv_combinator_5_0,
-													"combinator");
+													"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.combinator");
 											afterParserOrEnumRuleCall();
 
 										}
@@ -3939,7 +3857,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 								}
 
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1165:2: (this_WS_6= RULE_WS )*
+								// InternalCSS.g:1165:2: (this_WS_6= RULE_WS )*
 								loop36: do {
 									int alt36 = 2;
 									int LA36_0 = input.LA(1);
@@ -3951,9 +3869,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 									switch (alt36) {
 									case 1:
-									// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1165:3: this_WS_6= RULE_WS
+									// InternalCSS.g:1165:3: this_WS_6= RULE_WS
 									{
-										this_WS_6 = (Token) match(input, RULE_WS, FOLLOW_RULE_WS_in_ruleselector2472);
+										this_WS_6 = (Token) match(input, RULE_WS, FOLLOW_26);
 										if (state.failed) {
 											return current;
 										}
@@ -3977,18 +3895,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 							}
 
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1169:5: ( (lv_selector_7_0= ruleselector ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1170:1: (lv_selector_7_0= ruleselector )
+							// InternalCSS.g:1169:5: ( (lv_selector_7_0= ruleselector ) )
+							// InternalCSS.g:1170:1: (lv_selector_7_0= ruleselector )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1170:1: (lv_selector_7_0= ruleselector )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1171:3: lv_selector_7_0= ruleselector
+								// InternalCSS.g:1170:1: (lv_selector_7_0= ruleselector )
+								// InternalCSS.g:1171:3: lv_selector_7_0= ruleselector
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getSelectorAccess().getSelectorSelectorParserRuleCall_1_1_2_0());
 
 									}
-									pushFollow(FOLLOW_ruleselector_in_ruleselector2496);
+									pushFollow(FOLLOW_2);
 									lv_selector_7_0 = ruleselector();
 
 									state._fsp--;
@@ -4004,7 +3922,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"selector",
 												lv_selector_7_0,
-												"selector");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.selector");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -4044,13 +3962,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleselector"
 
 
 	// $ANTLR start "entryRuleSimpleSelectorForNegation"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1198:1: entryRuleSimpleSelectorForNegation returns [EObject current=null] : iv_ruleSimpleSelectorForNegation=
-	// ruleSimpleSelectorForNegation EOF ;
+	// InternalCSS.g:1198:1: entryRuleSimpleSelectorForNegation returns [EObject current=null] : iv_ruleSimpleSelectorForNegation= ruleSimpleSelectorForNegation EOF ;
 	public final EObject entryRuleSimpleSelectorForNegation() throws RecognitionException {
 		EObject current = null;
 
@@ -4058,13 +3974,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1199:2: (iv_ruleSimpleSelectorForNegation= ruleSimpleSelectorForNegation EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1200:2: iv_ruleSimpleSelectorForNegation= ruleSimpleSelectorForNegation EOF
+			// InternalCSS.g:1199:2: (iv_ruleSimpleSelectorForNegation= ruleSimpleSelectorForNegation EOF )
+			// InternalCSS.g:1200:2: iv_ruleSimpleSelectorForNegation= ruleSimpleSelectorForNegation EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getSimpleSelectorForNegationRule());
 				}
-				pushFollow(FOLLOW_ruleSimpleSelectorForNegation_in_entryRuleSimpleSelectorForNegation2539);
+				pushFollow(FOLLOW_1);
 				iv_ruleSimpleSelectorForNegation = ruleSimpleSelectorForNegation();
 
 				state._fsp--;
@@ -4074,7 +3990,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleSimpleSelectorForNegation;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleSimpleSelectorForNegation2549);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -4090,13 +4006,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleSimpleSelectorForNegation"
 
 
 	// $ANTLR start "ruleSimpleSelectorForNegation"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1207:1: ruleSimpleSelectorForNegation returns [EObject current=null] : ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) |
-	// ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )* ) | ( ( ( ruleSubSelectorForNegation ) )=> (lv_subSelectors_3_0= ruleSubSelectorForNegation ) )+ ) ;
+	// InternalCSS.g:1207:1: ruleSimpleSelectorForNegation returns [EObject current=null] : ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )* ) | ( ( (
+	// ruleSubSelectorForNegation ) )=> (lv_subSelectors_3_0= ruleSubSelectorForNegation ) )+ ) ;
 	public final EObject ruleSimpleSelectorForNegation() throws RecognitionException {
 		EObject current = null;
 
@@ -4112,62 +4027,55 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1210:28: ( ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) (
-			// (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )* ) | ( ( ( ruleSubSelectorForNegation ) )=> (lv_subSelectors_3_0= ruleSubSelectorForNegation ) )+ ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1211:1: ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) (
-			// (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )* ) | ( ( ( ruleSubSelectorForNegation ) )=> (lv_subSelectors_3_0= ruleSubSelectorForNegation ) )+ )
+			// InternalCSS.g:1210:28: ( ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )* ) | ( ( ( ruleSubSelectorForNegation ) )=> (lv_subSelectors_3_0=
+			// ruleSubSelectorForNegation ) )+ ) )
+			// InternalCSS.g:1211:1: ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )* ) | ( ( ( ruleSubSelectorForNegation ) )=> (lv_subSelectors_3_0=
+			// ruleSubSelectorForNegation ) )+ )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1211:1: ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) (
-				// (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )* ) | ( ( ( ruleSubSelectorForNegation ) )=> (lv_subSelectors_3_0= ruleSubSelectorForNegation ) )+ )
+				// InternalCSS.g:1211:1: ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )* ) | ( ( ( ruleSubSelectorForNegation ) )=>
+				// (lv_subSelectors_3_0= ruleSubSelectorForNegation ) )+ )
 				int alt42 = 2;
 				int LA42_0 = input.LA(1);
 
 				if (((LA42_0 >= RULE_DASH && LA42_0 <= RULE_ONE_NON_HEX_LETTER) || (LA42_0 >= 42 && LA42_0 <= 43) || (LA42_0 >= 56 && LA42_0 <= 59))) {
 					alt42 = 1;
-				}
-				else if ((LA42_0 == RULE_COLON || LA42_0 == RULE_HASHMARK || LA42_0 == 35 || LA42_0 == 41)) {
+				} else if ((LA42_0 == RULE_COLON || LA42_0 == RULE_HASHMARK || LA42_0 == 35 || LA42_0 == 41)) {
 					alt42 = 2;
-				}
-				else {
+				} else {
 					if (state.backtracking > 0) {
 						state.failed = true;
 						return current;
 					}
-					NoViableAltException nvae =
-							new NoViableAltException("", 42, 0, input);
+					NoViableAltException nvae = new NoViableAltException("", 42, 0, input);
 
 					throw nvae;
 				}
 				switch (alt42) {
 				case 1:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1211:2: ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) (
-				// (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )* )
+				// InternalCSS.g:1211:2: ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )* )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1211:2: ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) )
-					// ( (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )* )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1211:3: ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) (
-					// (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )*
+					// InternalCSS.g:1211:2: ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )* )
+					// InternalCSS.g:1211:3: ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )*
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1211:3: ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) )
-						// )
+						// InternalCSS.g:1211:3: ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) )
 						int alt39 = 2;
 						alt39 = dfa39.predict(input);
 						switch (alt39) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1211:4: ( (lv_element_0_0= ruleElementSelector ) )
+						// InternalCSS.g:1211:4: ( (lv_element_0_0= ruleElementSelector ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1211:4: ( (lv_element_0_0= ruleElementSelector ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1212:1: (lv_element_0_0= ruleElementSelector )
+							// InternalCSS.g:1211:4: ( (lv_element_0_0= ruleElementSelector ) )
+							// InternalCSS.g:1212:1: (lv_element_0_0= ruleElementSelector )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1212:1: (lv_element_0_0= ruleElementSelector )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1213:3: lv_element_0_0= ruleElementSelector
+								// InternalCSS.g:1212:1: (lv_element_0_0= ruleElementSelector )
+								// InternalCSS.g:1213:3: lv_element_0_0= ruleElementSelector
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getSimpleSelectorForNegationAccess().getElementElementSelectorParserRuleCall_0_0_0_0());
 
 									}
-									pushFollow(FOLLOW_ruleElementSelector_in_ruleSimpleSelectorForNegation2597);
+									pushFollow(FOLLOW_28);
 									lv_element_0_0 = ruleElementSelector();
 
 									state._fsp--;
@@ -4183,7 +4091,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"element",
 												lv_element_0_0,
-												"ElementSelector");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ElementSelector");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -4197,20 +4105,20 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 2:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1230:6: ( (lv_universal_1_0= ruleUniversalSelector ) )
+						// InternalCSS.g:1230:6: ( (lv_universal_1_0= ruleUniversalSelector ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1230:6: ( (lv_universal_1_0= ruleUniversalSelector ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1231:1: (lv_universal_1_0= ruleUniversalSelector )
+							// InternalCSS.g:1230:6: ( (lv_universal_1_0= ruleUniversalSelector ) )
+							// InternalCSS.g:1231:1: (lv_universal_1_0= ruleUniversalSelector )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1231:1: (lv_universal_1_0= ruleUniversalSelector )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1232:3: lv_universal_1_0= ruleUniversalSelector
+								// InternalCSS.g:1231:1: (lv_universal_1_0= ruleUniversalSelector )
+								// InternalCSS.g:1232:3: lv_universal_1_0= ruleUniversalSelector
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getSimpleSelectorForNegationAccess().getUniversalUniversalSelectorParserRuleCall_0_0_1_0());
 
 									}
-									pushFollow(FOLLOW_ruleUniversalSelector_in_ruleSimpleSelectorForNegation2624);
+									pushFollow(FOLLOW_28);
 									lv_universal_1_0 = ruleUniversalSelector();
 
 									state._fsp--;
@@ -4226,7 +4134,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"universal",
 												lv_universal_1_0,
-												"UniversalSelector");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.UniversalSelector");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -4242,7 +4150,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						}
 
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1248:3: ( (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )*
+						// InternalCSS.g:1248:3: ( (lv_subSelectors_2_0= ruleSubSelectorForNegation ) )*
 						loop40: do {
 							int alt40 = 2;
 							int LA40_0 = input.LA(1);
@@ -4254,17 +4162,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 							switch (alt40) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1249:1: (lv_subSelectors_2_0= ruleSubSelectorForNegation )
+							// InternalCSS.g:1249:1: (lv_subSelectors_2_0= ruleSubSelectorForNegation )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1249:1: (lv_subSelectors_2_0= ruleSubSelectorForNegation )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1250:3: lv_subSelectors_2_0= ruleSubSelectorForNegation
+								// InternalCSS.g:1249:1: (lv_subSelectors_2_0= ruleSubSelectorForNegation )
+								// InternalCSS.g:1250:3: lv_subSelectors_2_0= ruleSubSelectorForNegation
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getSimpleSelectorForNegationAccess().getSubSelectorsSubSelectorForNegationParserRuleCall_0_1_0());
 
 									}
-									pushFollow(FOLLOW_ruleSubSelectorForNegation_in_ruleSimpleSelectorForNegation2646);
+									pushFollow(FOLLOW_28);
 									lv_subSelectors_2_0 = ruleSubSelectorForNegation();
 
 									state._fsp--;
@@ -4280,7 +4188,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"subSelectors",
 												lv_subSelectors_2_0,
-												"SubSelectorForNegation");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.SubSelectorForNegation");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -4303,9 +4211,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 2:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1267:6: ( ( ( ruleSubSelectorForNegation ) )=> (lv_subSelectors_3_0= ruleSubSelectorForNegation ) )+
+				// InternalCSS.g:1267:6: ( ( ( ruleSubSelectorForNegation ) )=> (lv_subSelectors_3_0= ruleSubSelectorForNegation ) )+
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1267:6: ( ( ( ruleSubSelectorForNegation ) )=> (lv_subSelectors_3_0= ruleSubSelectorForNegation ) )+
+					// InternalCSS.g:1267:6: ( ( ( ruleSubSelectorForNegation ) )=> (lv_subSelectors_3_0= ruleSubSelectorForNegation ) )+
 					int cnt41 = 0;
 					loop41: do {
 						int alt41 = 2;
@@ -4313,31 +4221,28 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						if ((LA41_0 == RULE_HASHMARK) && (synpred1_InternalCSS())) {
 							alt41 = 1;
-						}
-						else if ((LA41_0 == 41) && (synpred1_InternalCSS())) {
+						} else if ((LA41_0 == 41) && (synpred1_InternalCSS())) {
 							alt41 = 1;
-						}
-						else if ((LA41_0 == 35) && (synpred1_InternalCSS())) {
+						} else if ((LA41_0 == 35) && (synpred1_InternalCSS())) {
 							alt41 = 1;
-						}
-						else if ((LA41_0 == RULE_COLON) && (synpred1_InternalCSS())) {
+						} else if ((LA41_0 == RULE_COLON) && (synpred1_InternalCSS())) {
 							alt41 = 1;
 						}
 
 
 						switch (alt41) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1267:7: ( ( ruleSubSelectorForNegation ) )=> (lv_subSelectors_3_0= ruleSubSelectorForNegation )
+						// InternalCSS.g:1267:7: ( ( ruleSubSelectorForNegation ) )=> (lv_subSelectors_3_0= ruleSubSelectorForNegation )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1272:1: (lv_subSelectors_3_0= ruleSubSelectorForNegation )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1273:3: lv_subSelectors_3_0= ruleSubSelectorForNegation
+							// InternalCSS.g:1272:1: (lv_subSelectors_3_0= ruleSubSelectorForNegation )
+							// InternalCSS.g:1273:3: lv_subSelectors_3_0= ruleSubSelectorForNegation
 							{
 								if (state.backtracking == 0) {
 
 									newCompositeNode(grammarAccess.getSimpleSelectorForNegationAccess().getSubSelectorsSubSelectorForNegationParserRuleCall_1_0());
 
 								}
-								pushFollow(FOLLOW_ruleSubSelectorForNegation_in_ruleSimpleSelectorForNegation2685);
+								pushFollow(FOLLOW_28);
 								lv_subSelectors_3_0 = ruleSubSelectorForNegation();
 
 								state._fsp--;
@@ -4353,7 +4258,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 											current,
 											"subSelectors",
 											lv_subSelectors_3_0,
-											"SubSelectorForNegation");
+											"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.SubSelectorForNegation");
 									afterParserOrEnumRuleCall();
 
 								}
@@ -4372,8 +4277,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								state.failed = true;
 								return current;
 							}
-							EarlyExitException eee =
-									new EarlyExitException(41, input);
+							EarlyExitException eee = new EarlyExitException(41, input);
 							throw eee;
 						}
 						cnt41++;
@@ -4400,13 +4304,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleSimpleSelectorForNegation"
 
 
 	// $ANTLR start "entryRuleSubSelectorForNegation"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1297:1: entryRuleSubSelectorForNegation returns [EObject current=null] : iv_ruleSubSelectorForNegation=
-	// ruleSubSelectorForNegation EOF ;
+	// InternalCSS.g:1297:1: entryRuleSubSelectorForNegation returns [EObject current=null] : iv_ruleSubSelectorForNegation= ruleSubSelectorForNegation EOF ;
 	public final EObject entryRuleSubSelectorForNegation() throws RecognitionException {
 		EObject current = null;
 
@@ -4414,13 +4316,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1298:2: (iv_ruleSubSelectorForNegation= ruleSubSelectorForNegation EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1299:2: iv_ruleSubSelectorForNegation= ruleSubSelectorForNegation EOF
+			// InternalCSS.g:1298:2: (iv_ruleSubSelectorForNegation= ruleSubSelectorForNegation EOF )
+			// InternalCSS.g:1299:2: iv_ruleSubSelectorForNegation= ruleSubSelectorForNegation EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getSubSelectorForNegationRule());
 				}
-				pushFollow(FOLLOW_ruleSubSelectorForNegation_in_entryRuleSubSelectorForNegation2722);
+				pushFollow(FOLLOW_1);
 				iv_ruleSubSelectorForNegation = ruleSubSelectorForNegation();
 
 				state._fsp--;
@@ -4430,7 +4332,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleSubSelectorForNegation;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleSubSelectorForNegation2732);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -4446,13 +4348,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleSubSelectorForNegation"
 
 
 	// $ANTLR start "ruleSubSelectorForNegation"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1306:1: ruleSubSelectorForNegation returns [EObject current=null] : (this_IdSelector_0= ruleIdSelector |
-	// this_ClassSelector_1= ruleClassSelector | this_AttributeSelector_2= ruleAttributeSelector | this_PseudoClass_3= rulePseudoClass ) ;
+	// InternalCSS.g:1306:1: ruleSubSelectorForNegation returns [EObject current=null] : (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1= ruleClassSelector | this_AttributeSelector_2= ruleAttributeSelector | this_PseudoClass_3= rulePseudoClass ) ;
 	public final EObject ruleSubSelectorForNegation() throws RecognitionException {
 		EObject current = null;
 
@@ -4468,13 +4368,10 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1309:28: ( (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1= ruleClassSelector |
-			// this_AttributeSelector_2= ruleAttributeSelector | this_PseudoClass_3= rulePseudoClass ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1310:1: (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1= ruleClassSelector | this_AttributeSelector_2=
-			// ruleAttributeSelector | this_PseudoClass_3= rulePseudoClass )
+			// InternalCSS.g:1309:28: ( (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1= ruleClassSelector | this_AttributeSelector_2= ruleAttributeSelector | this_PseudoClass_3= rulePseudoClass ) )
+			// InternalCSS.g:1310:1: (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1= ruleClassSelector | this_AttributeSelector_2= ruleAttributeSelector | this_PseudoClass_3= rulePseudoClass )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1310:1: (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1= ruleClassSelector |
-				// this_AttributeSelector_2= ruleAttributeSelector | this_PseudoClass_3= rulePseudoClass )
+				// InternalCSS.g:1310:1: (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1= ruleClassSelector | this_AttributeSelector_2= ruleAttributeSelector | this_PseudoClass_3= rulePseudoClass )
 				int alt43 = 4;
 				switch (input.LA(1)) {
 				case RULE_HASHMARK: {
@@ -4498,22 +4395,21 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						state.failed = true;
 						return current;
 					}
-					NoViableAltException nvae =
-							new NoViableAltException("", 43, 0, input);
+					NoViableAltException nvae = new NoViableAltException("", 43, 0, input);
 
 					throw nvae;
 				}
 
 				switch (alt43) {
 				case 1:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1311:5: this_IdSelector_0= ruleIdSelector
+				// InternalCSS.g:1311:5: this_IdSelector_0= ruleIdSelector
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getSubSelectorForNegationAccess().getIdSelectorParserRuleCall_0());
 
 					}
-					pushFollow(FOLLOW_ruleIdSelector_in_ruleSubSelectorForNegation2779);
+					pushFollow(FOLLOW_2);
 					this_IdSelector_0 = ruleIdSelector();
 
 					state._fsp--;
@@ -4530,14 +4426,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 2:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1321:5: this_ClassSelector_1= ruleClassSelector
+				// InternalCSS.g:1321:5: this_ClassSelector_1= ruleClassSelector
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getSubSelectorForNegationAccess().getClassSelectorParserRuleCall_1());
 
 					}
-					pushFollow(FOLLOW_ruleClassSelector_in_ruleSubSelectorForNegation2806);
+					pushFollow(FOLLOW_2);
 					this_ClassSelector_1 = ruleClassSelector();
 
 					state._fsp--;
@@ -4554,14 +4450,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 3:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1331:5: this_AttributeSelector_2= ruleAttributeSelector
+				// InternalCSS.g:1331:5: this_AttributeSelector_2= ruleAttributeSelector
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getSubSelectorForNegationAccess().getAttributeSelectorParserRuleCall_2());
 
 					}
-					pushFollow(FOLLOW_ruleAttributeSelector_in_ruleSubSelectorForNegation2833);
+					pushFollow(FOLLOW_2);
 					this_AttributeSelector_2 = ruleAttributeSelector();
 
 					state._fsp--;
@@ -4578,14 +4474,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 4:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1341:5: this_PseudoClass_3= rulePseudoClass
+				// InternalCSS.g:1341:5: this_PseudoClass_3= rulePseudoClass
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getSubSelectorForNegationAccess().getPseudoClassParserRuleCall_3());
 
 					}
-					pushFollow(FOLLOW_rulePseudoClass_in_ruleSubSelectorForNegation2860);
+					pushFollow(FOLLOW_2);
 					this_PseudoClass_3 = rulePseudoClass();
 
 					state._fsp--;
@@ -4619,12 +4515,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleSubSelectorForNegation"
 
 
 	// $ANTLR start "entryRulesimple_selector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1357:1: entryRulesimple_selector returns [EObject current=null] : iv_rulesimple_selector= rulesimple_selector EOF ;
+	// InternalCSS.g:1357:1: entryRulesimple_selector returns [EObject current=null] : iv_rulesimple_selector= rulesimple_selector EOF ;
 	public final EObject entryRulesimple_selector() throws RecognitionException {
 		EObject current = null;
 
@@ -4635,13 +4530,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens("RULE_ML_COMMENT");
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1361:2: (iv_rulesimple_selector= rulesimple_selector EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1362:2: iv_rulesimple_selector= rulesimple_selector EOF
+			// InternalCSS.g:1361:2: (iv_rulesimple_selector= rulesimple_selector EOF )
+			// InternalCSS.g:1362:2: iv_rulesimple_selector= rulesimple_selector EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getSimple_selectorRule());
 				}
-				pushFollow(FOLLOW_rulesimple_selector_in_entryRulesimple_selector2901);
+				pushFollow(FOLLOW_1);
 				iv_rulesimple_selector = rulesimple_selector();
 
 				state._fsp--;
@@ -4651,7 +4546,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulesimple_selector;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulesimple_selector2911);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -4670,13 +4565,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulesimple_selector"
 
 
 	// $ANTLR start "rulesimple_selector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1372:1: rulesimple_selector returns [EObject current=null] : ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | (
-	// (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelector ) )* ) | ( (lv_subSelectors_3_0= ruleSubSelector ) )+ ) ;
+	// InternalCSS.g:1372:1: rulesimple_selector returns [EObject current=null] : ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelector ) )* ) | ( (lv_subSelectors_3_0=
+	// ruleSubSelector ) )+ ) ;
 	public final EObject rulesimple_selector() throws RecognitionException {
 		EObject current = null;
 
@@ -4693,62 +4587,52 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens("RULE_ML_COMMENT");
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1376:28: ( ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) (
-			// (lv_subSelectors_2_0= ruleSubSelector ) )* ) | ( (lv_subSelectors_3_0= ruleSubSelector ) )+ ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1377:1: ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) (
-			// (lv_subSelectors_2_0= ruleSubSelector ) )* ) | ( (lv_subSelectors_3_0= ruleSubSelector ) )+ )
+			// InternalCSS.g:1376:28: ( ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelector ) )* ) | ( (lv_subSelectors_3_0= ruleSubSelector ) )+ ) )
+			// InternalCSS.g:1377:1: ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelector ) )* ) | ( (lv_subSelectors_3_0= ruleSubSelector ) )+ )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1377:1: ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) (
-				// (lv_subSelectors_2_0= ruleSubSelector ) )* ) | ( (lv_subSelectors_3_0= ruleSubSelector ) )+ )
+				// InternalCSS.g:1377:1: ( ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelector ) )* ) | ( (lv_subSelectors_3_0= ruleSubSelector ) )+ )
 				int alt47 = 2;
 				int LA47_0 = input.LA(1);
 
 				if (((LA47_0 >= RULE_DASH && LA47_0 <= RULE_ONE_NON_HEX_LETTER) || (LA47_0 >= 42 && LA47_0 <= 43) || (LA47_0 >= 56 && LA47_0 <= 59))) {
 					alt47 = 1;
-				}
-				else if ((LA47_0 == RULE_COLON || LA47_0 == RULE_HASHMARK || LA47_0 == 35 || LA47_0 == 41)) {
+				} else if ((LA47_0 == RULE_COLON || LA47_0 == RULE_HASHMARK || LA47_0 == 35 || LA47_0 == 41)) {
 					alt47 = 2;
-				}
-				else {
+				} else {
 					if (state.backtracking > 0) {
 						state.failed = true;
 						return current;
 					}
-					NoViableAltException nvae =
-							new NoViableAltException("", 47, 0, input);
+					NoViableAltException nvae = new NoViableAltException("", 47, 0, input);
 
 					throw nvae;
 				}
 				switch (alt47) {
 				case 1:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1377:2: ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) (
-				// (lv_subSelectors_2_0= ruleSubSelector ) )* )
+				// InternalCSS.g:1377:2: ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelector ) )* )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1377:2: ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) )
-					// ( (lv_subSelectors_2_0= ruleSubSelector ) )* )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1377:3: ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) (
-					// (lv_subSelectors_2_0= ruleSubSelector ) )*
+					// InternalCSS.g:1377:2: ( ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelector ) )* )
+					// InternalCSS.g:1377:3: ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) ) ( (lv_subSelectors_2_0= ruleSubSelector ) )*
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1377:3: ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) )
-						// )
+						// InternalCSS.g:1377:3: ( ( (lv_element_0_0= ruleElementSelector ) ) | ( (lv_universal_1_0= ruleUniversalSelector ) ) )
 						int alt44 = 2;
 						alt44 = dfa44.predict(input);
 						switch (alt44) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1377:4: ( (lv_element_0_0= ruleElementSelector ) )
+						// InternalCSS.g:1377:4: ( (lv_element_0_0= ruleElementSelector ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1377:4: ( (lv_element_0_0= ruleElementSelector ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1378:1: (lv_element_0_0= ruleElementSelector )
+							// InternalCSS.g:1377:4: ( (lv_element_0_0= ruleElementSelector ) )
+							// InternalCSS.g:1378:1: (lv_element_0_0= ruleElementSelector )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1378:1: (lv_element_0_0= ruleElementSelector )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1379:3: lv_element_0_0= ruleElementSelector
+								// InternalCSS.g:1378:1: (lv_element_0_0= ruleElementSelector )
+								// InternalCSS.g:1379:3: lv_element_0_0= ruleElementSelector
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getSimple_selectorAccess().getElementElementSelectorParserRuleCall_0_0_0_0());
 
 									}
-									pushFollow(FOLLOW_ruleElementSelector_in_rulesimple_selector2963);
+									pushFollow(FOLLOW_29);
 									lv_element_0_0 = ruleElementSelector();
 
 									state._fsp--;
@@ -4764,7 +4648,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"element",
 												lv_element_0_0,
-												"ElementSelector");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ElementSelector");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -4778,20 +4662,20 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 2:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1396:6: ( (lv_universal_1_0= ruleUniversalSelector ) )
+						// InternalCSS.g:1396:6: ( (lv_universal_1_0= ruleUniversalSelector ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1396:6: ( (lv_universal_1_0= ruleUniversalSelector ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1397:1: (lv_universal_1_0= ruleUniversalSelector )
+							// InternalCSS.g:1396:6: ( (lv_universal_1_0= ruleUniversalSelector ) )
+							// InternalCSS.g:1397:1: (lv_universal_1_0= ruleUniversalSelector )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1397:1: (lv_universal_1_0= ruleUniversalSelector )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1398:3: lv_universal_1_0= ruleUniversalSelector
+								// InternalCSS.g:1397:1: (lv_universal_1_0= ruleUniversalSelector )
+								// InternalCSS.g:1398:3: lv_universal_1_0= ruleUniversalSelector
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getSimple_selectorAccess().getUniversalUniversalSelectorParserRuleCall_0_0_1_0());
 
 									}
-									pushFollow(FOLLOW_ruleUniversalSelector_in_rulesimple_selector2990);
+									pushFollow(FOLLOW_29);
 									lv_universal_1_0 = ruleUniversalSelector();
 
 									state._fsp--;
@@ -4807,7 +4691,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"universal",
 												lv_universal_1_0,
-												"UniversalSelector");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.UniversalSelector");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -4823,7 +4707,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						}
 
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1414:3: ( (lv_subSelectors_2_0= ruleSubSelector ) )*
+						// InternalCSS.g:1414:3: ( (lv_subSelectors_2_0= ruleSubSelector ) )*
 						loop45: do {
 							int alt45 = 2;
 							int LA45_0 = input.LA(1);
@@ -4835,17 +4719,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 							switch (alt45) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1415:1: (lv_subSelectors_2_0= ruleSubSelector )
+							// InternalCSS.g:1415:1: (lv_subSelectors_2_0= ruleSubSelector )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1415:1: (lv_subSelectors_2_0= ruleSubSelector )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1416:3: lv_subSelectors_2_0= ruleSubSelector
+								// InternalCSS.g:1415:1: (lv_subSelectors_2_0= ruleSubSelector )
+								// InternalCSS.g:1416:3: lv_subSelectors_2_0= ruleSubSelector
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getSimple_selectorAccess().getSubSelectorsSubSelectorParserRuleCall_0_1_0());
 
 									}
-									pushFollow(FOLLOW_ruleSubSelector_in_rulesimple_selector3012);
+									pushFollow(FOLLOW_29);
 									lv_subSelectors_2_0 = ruleSubSelector();
 
 									state._fsp--;
@@ -4861,7 +4745,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"subSelectors",
 												lv_subSelectors_2_0,
-												"SubSelector");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.SubSelector");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -4884,9 +4768,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 2:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1433:6: ( (lv_subSelectors_3_0= ruleSubSelector ) )+
+				// InternalCSS.g:1433:6: ( (lv_subSelectors_3_0= ruleSubSelector ) )+
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1433:6: ( (lv_subSelectors_3_0= ruleSubSelector ) )+
+					// InternalCSS.g:1433:6: ( (lv_subSelectors_3_0= ruleSubSelector ) )+
 					int cnt46 = 0;
 					loop46: do {
 						int alt46 = 2;
@@ -4899,17 +4783,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt46) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1434:1: (lv_subSelectors_3_0= ruleSubSelector )
+						// InternalCSS.g:1434:1: (lv_subSelectors_3_0= ruleSubSelector )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1434:1: (lv_subSelectors_3_0= ruleSubSelector )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1435:3: lv_subSelectors_3_0= ruleSubSelector
+							// InternalCSS.g:1434:1: (lv_subSelectors_3_0= ruleSubSelector )
+							// InternalCSS.g:1435:3: lv_subSelectors_3_0= ruleSubSelector
 							{
 								if (state.backtracking == 0) {
 
 									newCompositeNode(grammarAccess.getSimple_selectorAccess().getSubSelectorsSubSelectorParserRuleCall_1_0());
 
 								}
-								pushFollow(FOLLOW_ruleSubSelector_in_rulesimple_selector3041);
+								pushFollow(FOLLOW_29);
 								lv_subSelectors_3_0 = ruleSubSelector();
 
 								state._fsp--;
@@ -4925,7 +4809,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 											current,
 											"subSelectors",
 											lv_subSelectors_3_0,
-											"SubSelector");
+											"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.SubSelector");
 									afterParserOrEnumRuleCall();
 
 								}
@@ -4944,8 +4828,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								state.failed = true;
 								return current;
 							}
-							EarlyExitException eee =
-									new EarlyExitException(46, input);
+							EarlyExitException eee = new EarlyExitException(46, input);
 							throw eee;
 						}
 						cnt46++;
@@ -4975,12 +4858,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulesimple_selector"
 
 
 	// $ANTLR start "entryRuleSubSelector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1462:1: entryRuleSubSelector returns [EObject current=null] : iv_ruleSubSelector= ruleSubSelector EOF ;
+	// InternalCSS.g:1462:1: entryRuleSubSelector returns [EObject current=null] : iv_ruleSubSelector= ruleSubSelector EOF ;
 	public final EObject entryRuleSubSelector() throws RecognitionException {
 		EObject current = null;
 
@@ -4988,13 +4870,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1463:2: (iv_ruleSubSelector= ruleSubSelector EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1464:2: iv_ruleSubSelector= ruleSubSelector EOF
+			// InternalCSS.g:1463:2: (iv_ruleSubSelector= ruleSubSelector EOF )
+			// InternalCSS.g:1464:2: iv_ruleSubSelector= ruleSubSelector EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getSubSelectorRule());
 				}
-				pushFollow(FOLLOW_ruleSubSelector_in_entryRuleSubSelector3082);
+				pushFollow(FOLLOW_1);
 				iv_ruleSubSelector = ruleSubSelector();
 
 				state._fsp--;
@@ -5004,7 +4886,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleSubSelector;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleSubSelector3092);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -5020,13 +4902,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleSubSelector"
 
 
 	// $ANTLR start "ruleSubSelector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1471:1: ruleSubSelector returns [EObject current=null] : (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1=
-	// ruleClassSelector | this_AttributeSelector_2= ruleAttributeSelector | this_PseudoClassOrFunc_3= rulePseudoClassOrFunc ) ;
+	// InternalCSS.g:1471:1: ruleSubSelector returns [EObject current=null] : (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1= ruleClassSelector | this_AttributeSelector_2= ruleAttributeSelector | this_PseudoClassOrFunc_3= rulePseudoClassOrFunc ) ;
 	public final EObject ruleSubSelector() throws RecognitionException {
 		EObject current = null;
 
@@ -5042,13 +4922,10 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1474:28: ( (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1= ruleClassSelector |
-			// this_AttributeSelector_2= ruleAttributeSelector | this_PseudoClassOrFunc_3= rulePseudoClassOrFunc ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1475:1: (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1= ruleClassSelector | this_AttributeSelector_2=
-			// ruleAttributeSelector | this_PseudoClassOrFunc_3= rulePseudoClassOrFunc )
+			// InternalCSS.g:1474:28: ( (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1= ruleClassSelector | this_AttributeSelector_2= ruleAttributeSelector | this_PseudoClassOrFunc_3= rulePseudoClassOrFunc ) )
+			// InternalCSS.g:1475:1: (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1= ruleClassSelector | this_AttributeSelector_2= ruleAttributeSelector | this_PseudoClassOrFunc_3= rulePseudoClassOrFunc )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1475:1: (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1= ruleClassSelector |
-				// this_AttributeSelector_2= ruleAttributeSelector | this_PseudoClassOrFunc_3= rulePseudoClassOrFunc )
+				// InternalCSS.g:1475:1: (this_IdSelector_0= ruleIdSelector | this_ClassSelector_1= ruleClassSelector | this_AttributeSelector_2= ruleAttributeSelector | this_PseudoClassOrFunc_3= rulePseudoClassOrFunc )
 				int alt48 = 4;
 				switch (input.LA(1)) {
 				case RULE_HASHMARK: {
@@ -5072,22 +4949,21 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						state.failed = true;
 						return current;
 					}
-					NoViableAltException nvae =
-							new NoViableAltException("", 48, 0, input);
+					NoViableAltException nvae = new NoViableAltException("", 48, 0, input);
 
 					throw nvae;
 				}
 
 				switch (alt48) {
 				case 1:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1476:5: this_IdSelector_0= ruleIdSelector
+				// InternalCSS.g:1476:5: this_IdSelector_0= ruleIdSelector
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getSubSelectorAccess().getIdSelectorParserRuleCall_0());
 
 					}
-					pushFollow(FOLLOW_ruleIdSelector_in_ruleSubSelector3139);
+					pushFollow(FOLLOW_2);
 					this_IdSelector_0 = ruleIdSelector();
 
 					state._fsp--;
@@ -5104,14 +4980,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 2:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1486:5: this_ClassSelector_1= ruleClassSelector
+				// InternalCSS.g:1486:5: this_ClassSelector_1= ruleClassSelector
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getSubSelectorAccess().getClassSelectorParserRuleCall_1());
 
 					}
-					pushFollow(FOLLOW_ruleClassSelector_in_ruleSubSelector3166);
+					pushFollow(FOLLOW_2);
 					this_ClassSelector_1 = ruleClassSelector();
 
 					state._fsp--;
@@ -5128,14 +5004,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 3:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1496:5: this_AttributeSelector_2= ruleAttributeSelector
+				// InternalCSS.g:1496:5: this_AttributeSelector_2= ruleAttributeSelector
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getSubSelectorAccess().getAttributeSelectorParserRuleCall_2());
 
 					}
-					pushFollow(FOLLOW_ruleAttributeSelector_in_ruleSubSelector3193);
+					pushFollow(FOLLOW_2);
 					this_AttributeSelector_2 = ruleAttributeSelector();
 
 					state._fsp--;
@@ -5152,14 +5028,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 4:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1506:5: this_PseudoClassOrFunc_3= rulePseudoClassOrFunc
+				// InternalCSS.g:1506:5: this_PseudoClassOrFunc_3= rulePseudoClassOrFunc
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getSubSelectorAccess().getPseudoClassOrFuncParserRuleCall_3());
 
 					}
-					pushFollow(FOLLOW_rulePseudoClassOrFunc_in_ruleSubSelector3220);
+					pushFollow(FOLLOW_2);
 					this_PseudoClassOrFunc_3 = rulePseudoClassOrFunc();
 
 					state._fsp--;
@@ -5193,12 +5069,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleSubSelector"
 
 
 	// $ANTLR start "entryRuleAttributeSelector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1522:1: entryRuleAttributeSelector returns [EObject current=null] : iv_ruleAttributeSelector= ruleAttributeSelector EOF ;
+	// InternalCSS.g:1522:1: entryRuleAttributeSelector returns [EObject current=null] : iv_ruleAttributeSelector= ruleAttributeSelector EOF ;
 	public final EObject entryRuleAttributeSelector() throws RecognitionException {
 		EObject current = null;
 
@@ -5206,13 +5081,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1523:2: (iv_ruleAttributeSelector= ruleAttributeSelector EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1524:2: iv_ruleAttributeSelector= ruleAttributeSelector EOF
+			// InternalCSS.g:1523:2: (iv_ruleAttributeSelector= ruleAttributeSelector EOF )
+			// InternalCSS.g:1524:2: iv_ruleAttributeSelector= ruleAttributeSelector EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getAttributeSelectorRule());
 				}
-				pushFollow(FOLLOW_ruleAttributeSelector_in_entryRuleAttributeSelector3255);
+				pushFollow(FOLLOW_1);
 				iv_ruleAttributeSelector = ruleAttributeSelector();
 
 				state._fsp--;
@@ -5222,7 +5097,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleAttributeSelector;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleAttributeSelector3265);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -5238,13 +5113,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleAttributeSelector"
 
 
 	// $ANTLR start "ruleAttributeSelector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1531:1: ruleAttributeSelector returns [EObject current=null] : ( () otherlv_1= '[' ( (lv_name_2_0= ruleIdentifier ) ) ( (
-	// ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) ) ( ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) ) )? otherlv_5= ']' ) ;
+	// InternalCSS.g:1531:1: ruleAttributeSelector returns [EObject current=null] : ( () otherlv_1= '[' ( (lv_name_2_0= ruleIdentifier ) ) ( ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6=
+	// RULE_DASHMATCH ) ) ) ( ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) ) )? otherlv_5= ']' ) ;
 	public final EObject ruleAttributeSelector() throws RecognitionException {
 		EObject current = null;
 
@@ -5265,18 +5139,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1534:28: ( ( () otherlv_1= '[' ( (lv_name_2_0= ruleIdentifier ) ) ( ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' |
-			// lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) ) ( ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) ) )? otherlv_5= ']' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1535:1: ( () otherlv_1= '[' ( (lv_name_2_0= ruleIdentifier ) ) ( ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' |
-			// lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) ) ( ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) ) )? otherlv_5= ']' )
+			// InternalCSS.g:1534:28: ( ( () otherlv_1= '[' ( (lv_name_2_0= ruleIdentifier ) ) ( ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) ) ( ( (lv_value_4_1=
+			// ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) ) )? otherlv_5= ']' ) )
+			// InternalCSS.g:1535:1: ( () otherlv_1= '[' ( (lv_name_2_0= ruleIdentifier ) ) ( ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) ) ( ( (lv_value_4_1=
+			// ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) ) )? otherlv_5= ']' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1535:1: ( () otherlv_1= '[' ( (lv_name_2_0= ruleIdentifier ) ) ( ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' |
-				// lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) ) ( ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) ) )? otherlv_5= ']' )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1535:2: () otherlv_1= '[' ( (lv_name_2_0= ruleIdentifier ) ) ( ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' |
-				// lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) ) ( ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) ) )? otherlv_5= ']'
+				// InternalCSS.g:1535:1: ( () otherlv_1= '[' ( (lv_name_2_0= ruleIdentifier ) ) ( ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) ) ( ( (lv_value_4_1=
+				// ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) ) )? otherlv_5= ']' )
+				// InternalCSS.g:1535:2: () otherlv_1= '[' ( (lv_name_2_0= ruleIdentifier ) ) ( ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) ) ( ( (lv_value_4_1=
+				// ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) ) )? otherlv_5= ']'
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1535:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1536:5:
+					// InternalCSS.g:1535:2: ()
+					// InternalCSS.g:1536:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -5288,7 +5162,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					otherlv_1 = (Token) match(input, 35, FOLLOW_35_in_ruleAttributeSelector3311);
+					otherlv_1 = (Token) match(input, 35, FOLLOW_13);
 					if (state.failed) {
 						return current;
 					}
@@ -5297,18 +5171,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newLeafNode(otherlv_1, grammarAccess.getAttributeSelectorAccess().getLeftSquareBracketKeyword_1());
 
 					}
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1545:1: ( (lv_name_2_0= ruleIdentifier ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1546:1: (lv_name_2_0= ruleIdentifier )
+					// InternalCSS.g:1545:1: ( (lv_name_2_0= ruleIdentifier ) )
+					// InternalCSS.g:1546:1: (lv_name_2_0= ruleIdentifier )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1546:1: (lv_name_2_0= ruleIdentifier )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1547:3: lv_name_2_0= ruleIdentifier
+						// InternalCSS.g:1546:1: (lv_name_2_0= ruleIdentifier )
+						// InternalCSS.g:1547:3: lv_name_2_0= ruleIdentifier
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getAttributeSelectorAccess().getNameIdentifierParserRuleCall_2_0());
 
 							}
-							pushFollow(FOLLOW_ruleIdentifier_in_ruleAttributeSelector3332);
+							pushFollow(FOLLOW_30);
 							lv_name_2_0 = ruleIdentifier();
 
 							state._fsp--;
@@ -5324,7 +5198,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"name",
 										lv_name_2_0,
-										"Identifier");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -5334,8 +5208,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1563:2: ( ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5=
-					// RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) ) ( ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) ) )?
+					// InternalCSS.g:1563:2: ( ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) ) ( ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) ) )?
 					int alt51 = 2;
 					int LA51_0 = input.LA(1);
 
@@ -5344,21 +5217,15 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 					switch (alt51) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1563:3: ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5=
-					// RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) ) ( ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) )
+					// InternalCSS.g:1563:3: ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) ) ( ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1563:3: ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5=
-						// RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1564:1: ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5=
-						// RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) )
+						// InternalCSS.g:1563:3: ( ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) ) )
+						// InternalCSS.g:1564:1: ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1564:1: ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5=
-							// RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1565:1: (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5=
-							// RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH )
+							// InternalCSS.g:1564:1: ( (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH ) )
+							// InternalCSS.g:1565:1: (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1565:1: (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5=
-								// RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH )
+								// InternalCSS.g:1565:1: (lv_op_3_1= '^=' | lv_op_3_2= '$=' | lv_op_3_3= '*=' | lv_op_3_4= '=' | lv_op_3_5= RULE_INCLUDES | lv_op_3_6= RULE_DASHMATCH )
 								int alt49 = 6;
 								switch (input.LA(1)) {
 								case 36: {
@@ -5390,17 +5257,16 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										state.failed = true;
 										return current;
 									}
-									NoViableAltException nvae =
-											new NoViableAltException("", 49, 0, input);
+									NoViableAltException nvae = new NoViableAltException("", 49, 0, input);
 
 									throw nvae;
 								}
 
 								switch (alt49) {
 								case 1:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1566:3: lv_op_3_1= '^='
+								// InternalCSS.g:1566:3: lv_op_3_1= '^='
 								{
-									lv_op_3_1 = (Token) match(input, 36, FOLLOW_36_in_ruleAttributeSelector3353);
+									lv_op_3_1 = (Token) match(input, 36, FOLLOW_31);
 									if (state.failed) {
 										return current;
 									}
@@ -5421,9 +5287,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								}
 									break;
 								case 2:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1578:8: lv_op_3_2= '$='
+								// InternalCSS.g:1578:8: lv_op_3_2= '$='
 								{
-									lv_op_3_2 = (Token) match(input, 37, FOLLOW_37_in_ruleAttributeSelector3382);
+									lv_op_3_2 = (Token) match(input, 37, FOLLOW_31);
 									if (state.failed) {
 										return current;
 									}
@@ -5444,9 +5310,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								}
 									break;
 								case 3:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1590:8: lv_op_3_3= '*='
+								// InternalCSS.g:1590:8: lv_op_3_3= '*='
 								{
-									lv_op_3_3 = (Token) match(input, 38, FOLLOW_38_in_ruleAttributeSelector3411);
+									lv_op_3_3 = (Token) match(input, 38, FOLLOW_31);
 									if (state.failed) {
 										return current;
 									}
@@ -5467,9 +5333,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								}
 									break;
 								case 4:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1602:8: lv_op_3_4= '='
+								// InternalCSS.g:1602:8: lv_op_3_4= '='
 								{
-									lv_op_3_4 = (Token) match(input, 39, FOLLOW_39_in_ruleAttributeSelector3440);
+									lv_op_3_4 = (Token) match(input, 39, FOLLOW_31);
 									if (state.failed) {
 										return current;
 									}
@@ -5490,9 +5356,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								}
 									break;
 								case 5:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1614:8: lv_op_3_5= RULE_INCLUDES
+								// InternalCSS.g:1614:8: lv_op_3_5= RULE_INCLUDES
 								{
-									lv_op_3_5 = (Token) match(input, RULE_INCLUDES, FOLLOW_RULE_INCLUDES_in_ruleAttributeSelector3468);
+									lv_op_3_5 = (Token) match(input, RULE_INCLUDES, FOLLOW_31);
 									if (state.failed) {
 										return current;
 									}
@@ -5510,16 +5376,16 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"op",
 												lv_op_3_5,
-												"INCLUDES");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.INCLUDES");
 
 									}
 
 								}
 									break;
 								case 6:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1629:8: lv_op_3_6= RULE_DASHMATCH
+								// InternalCSS.g:1629:8: lv_op_3_6= RULE_DASHMATCH
 								{
-									lv_op_3_6 = (Token) match(input, RULE_DASHMATCH, FOLLOW_RULE_DASHMATCH_in_ruleAttributeSelector3488);
+									lv_op_3_6 = (Token) match(input, RULE_DASHMATCH, FOLLOW_31);
 									if (state.failed) {
 										return current;
 									}
@@ -5537,7 +5403,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"op",
 												lv_op_3_6,
-												"DASHMATCH");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.DASHMATCH");
 
 									}
 
@@ -5552,42 +5418,39 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						}
 
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1647:2: ( ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1648:1: ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) )
+						// InternalCSS.g:1647:2: ( ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) ) )
+						// InternalCSS.g:1648:1: ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1648:1: ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1649:1: (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING )
+							// InternalCSS.g:1648:1: ( (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING ) )
+							// InternalCSS.g:1649:1: (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1649:1: (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING )
+								// InternalCSS.g:1649:1: (lv_value_4_1= ruleIdentifier | lv_value_4_2= RULE_CSSSTRING )
 								int alt50 = 2;
 								int LA50_0 = input.LA(1);
 
 								if (((LA50_0 >= RULE_DASH && LA50_0 <= RULE_ONE_NON_HEX_LETTER) || (LA50_0 >= 56 && LA50_0 <= 59))) {
 									alt50 = 1;
-								}
-								else if ((LA50_0 == RULE_CSSSTRING)) {
+								} else if ((LA50_0 == RULE_CSSSTRING)) {
 									alt50 = 2;
-								}
-								else {
+								} else {
 									if (state.backtracking > 0) {
 										state.failed = true;
 										return current;
 									}
-									NoViableAltException nvae =
-											new NoViableAltException("", 50, 0, input);
+									NoViableAltException nvae = new NoViableAltException("", 50, 0, input);
 
 									throw nvae;
 								}
 								switch (alt50) {
 								case 1:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1650:3: lv_value_4_1= ruleIdentifier
+								// InternalCSS.g:1650:3: lv_value_4_1= ruleIdentifier
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getAttributeSelectorAccess().getValueIdentifierParserRuleCall_3_1_0_0());
 
 									}
-									pushFollow(FOLLOW_ruleIdentifier_in_ruleAttributeSelector3519);
+									pushFollow(FOLLOW_32);
 									lv_value_4_1 = ruleIdentifier();
 
 									state._fsp--;
@@ -5603,7 +5466,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"value",
 												lv_value_4_1,
-												"Identifier");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -5611,9 +5474,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								}
 									break;
 								case 2:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1665:8: lv_value_4_2= RULE_CSSSTRING
+								// InternalCSS.g:1665:8: lv_value_4_2= RULE_CSSSTRING
 								{
-									lv_value_4_2 = (Token) match(input, RULE_CSSSTRING, FOLLOW_RULE_CSSSTRING_in_ruleAttributeSelector3534);
+									lv_value_4_2 = (Token) match(input, RULE_CSSSTRING, FOLLOW_32);
 									if (state.failed) {
 										return current;
 									}
@@ -5631,7 +5494,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"value",
 												lv_value_4_2,
-												"CSSSTRING");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CSSSTRING");
 
 									}
 
@@ -5652,7 +5515,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					otherlv_5 = (Token) match(input, 40, FOLLOW_40_in_ruleAttributeSelector3556);
+					otherlv_5 = (Token) match(input, 40, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -5679,12 +5542,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleAttributeSelector"
 
 
 	// $ANTLR start "entryRuleClassSelector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1695:1: entryRuleClassSelector returns [EObject current=null] : iv_ruleClassSelector= ruleClassSelector EOF ;
+	// InternalCSS.g:1695:1: entryRuleClassSelector returns [EObject current=null] : iv_ruleClassSelector= ruleClassSelector EOF ;
 	public final EObject entryRuleClassSelector() throws RecognitionException {
 		EObject current = null;
 
@@ -5692,13 +5554,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1696:2: (iv_ruleClassSelector= ruleClassSelector EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1697:2: iv_ruleClassSelector= ruleClassSelector EOF
+			// InternalCSS.g:1696:2: (iv_ruleClassSelector= ruleClassSelector EOF )
+			// InternalCSS.g:1697:2: iv_ruleClassSelector= ruleClassSelector EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getClassSelectorRule());
 				}
-				pushFollow(FOLLOW_ruleClassSelector_in_entryRuleClassSelector3592);
+				pushFollow(FOLLOW_1);
 				iv_ruleClassSelector = ruleClassSelector();
 
 				state._fsp--;
@@ -5708,7 +5570,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleClassSelector;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleClassSelector3602);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -5724,12 +5586,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleClassSelector"
 
 
 	// $ANTLR start "ruleClassSelector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1704:1: ruleClassSelector returns [EObject current=null] : ( () otherlv_1= '.' ( (lv_name_2_0= ruleIdentifier ) ) ) ;
+	// InternalCSS.g:1704:1: ruleClassSelector returns [EObject current=null] : ( () otherlv_1= '.' ( (lv_name_2_0= ruleIdentifier ) ) ) ;
 	public final EObject ruleClassSelector() throws RecognitionException {
 		EObject current = null;
 
@@ -5740,14 +5601,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1707:28: ( ( () otherlv_1= '.' ( (lv_name_2_0= ruleIdentifier ) ) ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1708:1: ( () otherlv_1= '.' ( (lv_name_2_0= ruleIdentifier ) ) )
+			// InternalCSS.g:1707:28: ( ( () otherlv_1= '.' ( (lv_name_2_0= ruleIdentifier ) ) ) )
+			// InternalCSS.g:1708:1: ( () otherlv_1= '.' ( (lv_name_2_0= ruleIdentifier ) ) )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1708:1: ( () otherlv_1= '.' ( (lv_name_2_0= ruleIdentifier ) ) )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1708:2: () otherlv_1= '.' ( (lv_name_2_0= ruleIdentifier ) )
+				// InternalCSS.g:1708:1: ( () otherlv_1= '.' ( (lv_name_2_0= ruleIdentifier ) ) )
+				// InternalCSS.g:1708:2: () otherlv_1= '.' ( (lv_name_2_0= ruleIdentifier ) )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1708:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1709:5:
+					// InternalCSS.g:1708:2: ()
+					// InternalCSS.g:1709:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -5759,7 +5620,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					otherlv_1 = (Token) match(input, 41, FOLLOW_41_in_ruleClassSelector3648);
+					otherlv_1 = (Token) match(input, 41, FOLLOW_13);
 					if (state.failed) {
 						return current;
 					}
@@ -5768,18 +5629,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newLeafNode(otherlv_1, grammarAccess.getClassSelectorAccess().getFullStopKeyword_1());
 
 					}
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1718:1: ( (lv_name_2_0= ruleIdentifier ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1719:1: (lv_name_2_0= ruleIdentifier )
+					// InternalCSS.g:1718:1: ( (lv_name_2_0= ruleIdentifier ) )
+					// InternalCSS.g:1719:1: (lv_name_2_0= ruleIdentifier )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1719:1: (lv_name_2_0= ruleIdentifier )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1720:3: lv_name_2_0= ruleIdentifier
+						// InternalCSS.g:1719:1: (lv_name_2_0= ruleIdentifier )
+						// InternalCSS.g:1720:3: lv_name_2_0= ruleIdentifier
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getClassSelectorAccess().getNameIdentifierParserRuleCall_2_0());
 
 							}
-							pushFollow(FOLLOW_ruleIdentifier_in_ruleClassSelector3669);
+							pushFollow(FOLLOW_2);
 							lv_name_2_0 = ruleIdentifier();
 
 							state._fsp--;
@@ -5795,7 +5656,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"name",
 										lv_name_2_0,
-										"Identifier");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -5823,12 +5684,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleClassSelector"
 
 
 	// $ANTLR start "entryRuleElementSelector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1744:1: entryRuleElementSelector returns [EObject current=null] : iv_ruleElementSelector= ruleElementSelector EOF ;
+	// InternalCSS.g:1744:1: entryRuleElementSelector returns [EObject current=null] : iv_ruleElementSelector= ruleElementSelector EOF ;
 	public final EObject entryRuleElementSelector() throws RecognitionException {
 		EObject current = null;
 
@@ -5836,13 +5696,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1745:2: (iv_ruleElementSelector= ruleElementSelector EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1746:2: iv_ruleElementSelector= ruleElementSelector EOF
+			// InternalCSS.g:1745:2: (iv_ruleElementSelector= ruleElementSelector EOF )
+			// InternalCSS.g:1746:2: iv_ruleElementSelector= ruleElementSelector EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getElementSelectorRule());
 				}
-				pushFollow(FOLLOW_ruleElementSelector_in_entryRuleElementSelector3705);
+				pushFollow(FOLLOW_1);
 				iv_ruleElementSelector = ruleElementSelector();
 
 				state._fsp--;
@@ -5852,7 +5712,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleElementSelector;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleElementSelector3715);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -5868,12 +5728,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleElementSelector"
 
 
 	// $ANTLR start "ruleElementSelector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1753:1: ruleElementSelector returns [EObject current=null] : ( () ( (lv_name_1_0= ruleIdentifier ) ) ) ;
+	// InternalCSS.g:1753:1: ruleElementSelector returns [EObject current=null] : ( () ( (lv_name_1_0= ruleIdentifier ) ) ) ;
 	public final EObject ruleElementSelector() throws RecognitionException {
 		EObject current = null;
 
@@ -5883,14 +5742,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1756:28: ( ( () ( (lv_name_1_0= ruleIdentifier ) ) ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1757:1: ( () ( (lv_name_1_0= ruleIdentifier ) ) )
+			// InternalCSS.g:1756:28: ( ( () ( (lv_name_1_0= ruleIdentifier ) ) ) )
+			// InternalCSS.g:1757:1: ( () ( (lv_name_1_0= ruleIdentifier ) ) )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1757:1: ( () ( (lv_name_1_0= ruleIdentifier ) ) )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1757:2: () ( (lv_name_1_0= ruleIdentifier ) )
+				// InternalCSS.g:1757:1: ( () ( (lv_name_1_0= ruleIdentifier ) ) )
+				// InternalCSS.g:1757:2: () ( (lv_name_1_0= ruleIdentifier ) )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1757:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1758:5:
+					// InternalCSS.g:1757:2: ()
+					// InternalCSS.g:1758:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -5902,18 +5761,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1763:2: ( (lv_name_1_0= ruleIdentifier ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1764:1: (lv_name_1_0= ruleIdentifier )
+					// InternalCSS.g:1763:2: ( (lv_name_1_0= ruleIdentifier ) )
+					// InternalCSS.g:1764:1: (lv_name_1_0= ruleIdentifier )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1764:1: (lv_name_1_0= ruleIdentifier )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1765:3: lv_name_1_0= ruleIdentifier
+						// InternalCSS.g:1764:1: (lv_name_1_0= ruleIdentifier )
+						// InternalCSS.g:1765:3: lv_name_1_0= ruleIdentifier
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getElementSelectorAccess().getNameIdentifierParserRuleCall_1_0());
 
 							}
-							pushFollow(FOLLOW_ruleIdentifier_in_ruleElementSelector3770);
+							pushFollow(FOLLOW_2);
 							lv_name_1_0 = ruleIdentifier();
 
 							state._fsp--;
@@ -5929,7 +5788,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"name",
 										lv_name_1_0,
-										"Identifier");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -5957,12 +5816,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleElementSelector"
 
 
 	// $ANTLR start "entryRuleUniversalSelector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1789:1: entryRuleUniversalSelector returns [EObject current=null] : iv_ruleUniversalSelector= ruleUniversalSelector EOF ;
+	// InternalCSS.g:1789:1: entryRuleUniversalSelector returns [EObject current=null] : iv_ruleUniversalSelector= ruleUniversalSelector EOF ;
 	public final EObject entryRuleUniversalSelector() throws RecognitionException {
 		EObject current = null;
 
@@ -5970,13 +5828,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1790:2: (iv_ruleUniversalSelector= ruleUniversalSelector EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1791:2: iv_ruleUniversalSelector= ruleUniversalSelector EOF
+			// InternalCSS.g:1790:2: (iv_ruleUniversalSelector= ruleUniversalSelector EOF )
+			// InternalCSS.g:1791:2: iv_ruleUniversalSelector= ruleUniversalSelector EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getUniversalSelectorRule());
 				}
-				pushFollow(FOLLOW_ruleUniversalSelector_in_entryRuleUniversalSelector3806);
+				pushFollow(FOLLOW_1);
 				iv_ruleUniversalSelector = ruleUniversalSelector();
 
 				state._fsp--;
@@ -5986,7 +5844,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleUniversalSelector;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleUniversalSelector3816);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -6002,13 +5860,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleUniversalSelector"
 
 
 	// $ANTLR start "ruleUniversalSelector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1798:1: ruleUniversalSelector returns [EObject current=null] : ( () ( (lv_namespace_1_0= rulecss_namespace_prefix ) )?
-	// otherlv_2= '*' ) ;
+	// InternalCSS.g:1798:1: ruleUniversalSelector returns [EObject current=null] : ( () ( (lv_namespace_1_0= rulecss_namespace_prefix ) )? otherlv_2= '*' ) ;
 	public final EObject ruleUniversalSelector() throws RecognitionException {
 		EObject current = null;
 
@@ -6019,14 +5875,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1801:28: ( ( () ( (lv_namespace_1_0= rulecss_namespace_prefix ) )? otherlv_2= '*' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1802:1: ( () ( (lv_namespace_1_0= rulecss_namespace_prefix ) )? otherlv_2= '*' )
+			// InternalCSS.g:1801:28: ( ( () ( (lv_namespace_1_0= rulecss_namespace_prefix ) )? otherlv_2= '*' ) )
+			// InternalCSS.g:1802:1: ( () ( (lv_namespace_1_0= rulecss_namespace_prefix ) )? otherlv_2= '*' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1802:1: ( () ( (lv_namespace_1_0= rulecss_namespace_prefix ) )? otherlv_2= '*' )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1802:2: () ( (lv_namespace_1_0= rulecss_namespace_prefix ) )? otherlv_2= '*'
+				// InternalCSS.g:1802:1: ( () ( (lv_namespace_1_0= rulecss_namespace_prefix ) )? otherlv_2= '*' )
+				// InternalCSS.g:1802:2: () ( (lv_namespace_1_0= rulecss_namespace_prefix ) )? otherlv_2= '*'
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1802:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1803:5:
+					// InternalCSS.g:1802:2: ()
+					// InternalCSS.g:1803:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -6038,14 +5894,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1808:2: ( (lv_namespace_1_0= rulecss_namespace_prefix ) )?
+					// InternalCSS.g:1808:2: ( (lv_namespace_1_0= rulecss_namespace_prefix ) )?
 					int alt52 = 2;
 					int LA52_0 = input.LA(1);
 
 					if (((LA52_0 >= RULE_DASH && LA52_0 <= RULE_ONE_NON_HEX_LETTER) || LA52_0 == 43 || (LA52_0 >= 56 && LA52_0 <= 59))) {
 						alt52 = 1;
-					}
-					else if ((LA52_0 == 42)) {
+					} else if ((LA52_0 == 42)) {
 						int LA52_2 = input.LA(2);
 
 						if ((LA52_2 == 43)) {
@@ -6054,17 +5909,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 					switch (alt52) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1809:1: (lv_namespace_1_0= rulecss_namespace_prefix )
+					// InternalCSS.g:1809:1: (lv_namespace_1_0= rulecss_namespace_prefix )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1809:1: (lv_namespace_1_0= rulecss_namespace_prefix )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1810:3: lv_namespace_1_0= rulecss_namespace_prefix
+						// InternalCSS.g:1809:1: (lv_namespace_1_0= rulecss_namespace_prefix )
+						// InternalCSS.g:1810:3: lv_namespace_1_0= rulecss_namespace_prefix
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getUniversalSelectorAccess().getNamespaceCss_namespace_prefixParserRuleCall_1_0());
 
 							}
-							pushFollow(FOLLOW_rulecss_namespace_prefix_in_ruleUniversalSelector3871);
+							pushFollow(FOLLOW_33);
 							lv_namespace_1_0 = rulecss_namespace_prefix();
 
 							state._fsp--;
@@ -6080,7 +5935,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"namespace",
 										lv_namespace_1_0,
-										"css_namespace_prefix");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_namespace_prefix");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -6093,7 +5948,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					otherlv_2 = (Token) match(input, 42, FOLLOW_42_in_ruleUniversalSelector3884);
+					otherlv_2 = (Token) match(input, 42, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -6120,12 +5975,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleUniversalSelector"
 
 
 	// $ANTLR start "entryRuleIdSelector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1838:1: entryRuleIdSelector returns [EObject current=null] : iv_ruleIdSelector= ruleIdSelector EOF ;
+	// InternalCSS.g:1838:1: entryRuleIdSelector returns [EObject current=null] : iv_ruleIdSelector= ruleIdSelector EOF ;
 	public final EObject entryRuleIdSelector() throws RecognitionException {
 		EObject current = null;
 
@@ -6133,13 +5987,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1839:2: (iv_ruleIdSelector= ruleIdSelector EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1840:2: iv_ruleIdSelector= ruleIdSelector EOF
+			// InternalCSS.g:1839:2: (iv_ruleIdSelector= ruleIdSelector EOF )
+			// InternalCSS.g:1840:2: iv_ruleIdSelector= ruleIdSelector EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getIdSelectorRule());
 				}
-				pushFollow(FOLLOW_ruleIdSelector_in_entryRuleIdSelector3920);
+				pushFollow(FOLLOW_1);
 				iv_ruleIdSelector = ruleIdSelector();
 
 				state._fsp--;
@@ -6149,7 +6003,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleIdSelector;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleIdSelector3930);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -6165,13 +6019,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleIdSelector"
 
 
 	// $ANTLR start "ruleIdSelector"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1847:1: ruleIdSelector returns [EObject current=null] : ( () this_HASHMARK_1= RULE_HASHMARK ( (lv_name_2_0= ruleIdentifier
-	// ) ) ) ;
+	// InternalCSS.g:1847:1: ruleIdSelector returns [EObject current=null] : ( () this_HASHMARK_1= RULE_HASHMARK ( (lv_name_2_0= ruleIdentifier ) ) ) ;
 	public final EObject ruleIdSelector() throws RecognitionException {
 		EObject current = null;
 
@@ -6182,14 +6034,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1850:28: ( ( () this_HASHMARK_1= RULE_HASHMARK ( (lv_name_2_0= ruleIdentifier ) ) ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1851:1: ( () this_HASHMARK_1= RULE_HASHMARK ( (lv_name_2_0= ruleIdentifier ) ) )
+			// InternalCSS.g:1850:28: ( ( () this_HASHMARK_1= RULE_HASHMARK ( (lv_name_2_0= ruleIdentifier ) ) ) )
+			// InternalCSS.g:1851:1: ( () this_HASHMARK_1= RULE_HASHMARK ( (lv_name_2_0= ruleIdentifier ) ) )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1851:1: ( () this_HASHMARK_1= RULE_HASHMARK ( (lv_name_2_0= ruleIdentifier ) ) )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1851:2: () this_HASHMARK_1= RULE_HASHMARK ( (lv_name_2_0= ruleIdentifier ) )
+				// InternalCSS.g:1851:1: ( () this_HASHMARK_1= RULE_HASHMARK ( (lv_name_2_0= ruleIdentifier ) ) )
+				// InternalCSS.g:1851:2: () this_HASHMARK_1= RULE_HASHMARK ( (lv_name_2_0= ruleIdentifier ) )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1851:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1852:5:
+					// InternalCSS.g:1851:2: ()
+					// InternalCSS.g:1852:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -6201,7 +6053,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					this_HASHMARK_1 = (Token) match(input, RULE_HASHMARK, FOLLOW_RULE_HASHMARK_in_ruleIdSelector3975);
+					this_HASHMARK_1 = (Token) match(input, RULE_HASHMARK, FOLLOW_13);
 					if (state.failed) {
 						return current;
 					}
@@ -6210,18 +6062,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newLeafNode(this_HASHMARK_1, grammarAccess.getIdSelectorAccess().getHASHMARKTerminalRuleCall_1());
 
 					}
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1861:1: ( (lv_name_2_0= ruleIdentifier ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1862:1: (lv_name_2_0= ruleIdentifier )
+					// InternalCSS.g:1861:1: ( (lv_name_2_0= ruleIdentifier ) )
+					// InternalCSS.g:1862:1: (lv_name_2_0= ruleIdentifier )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1862:1: (lv_name_2_0= ruleIdentifier )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1863:3: lv_name_2_0= ruleIdentifier
+						// InternalCSS.g:1862:1: (lv_name_2_0= ruleIdentifier )
+						// InternalCSS.g:1863:3: lv_name_2_0= ruleIdentifier
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getIdSelectorAccess().getNameIdentifierParserRuleCall_2_0());
 
 							}
-							pushFollow(FOLLOW_ruleIdentifier_in_ruleIdSelector3995);
+							pushFollow(FOLLOW_2);
 							lv_name_2_0 = ruleIdentifier();
 
 							state._fsp--;
@@ -6237,7 +6089,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"name",
 										lv_name_2_0,
-										"Identifier");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -6265,13 +6117,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleIdSelector"
 
 
 	// $ANTLR start "entryRulecss_namespace_prefix"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1887:1: entryRulecss_namespace_prefix returns [String current=null] : iv_rulecss_namespace_prefix=
-	// rulecss_namespace_prefix EOF ;
+	// InternalCSS.g:1887:1: entryRulecss_namespace_prefix returns [String current=null] : iv_rulecss_namespace_prefix= rulecss_namespace_prefix EOF ;
 	public final String entryRulecss_namespace_prefix() throws RecognitionException {
 		String current = null;
 
@@ -6279,13 +6129,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1888:2: (iv_rulecss_namespace_prefix= rulecss_namespace_prefix EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1889:2: iv_rulecss_namespace_prefix= rulecss_namespace_prefix EOF
+			// InternalCSS.g:1888:2: (iv_rulecss_namespace_prefix= rulecss_namespace_prefix EOF )
+			// InternalCSS.g:1889:2: iv_rulecss_namespace_prefix= rulecss_namespace_prefix EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getCss_namespace_prefixRule());
 				}
-				pushFollow(FOLLOW_rulecss_namespace_prefix_in_entryRulecss_namespace_prefix4032);
+				pushFollow(FOLLOW_1);
 				iv_rulecss_namespace_prefix = rulecss_namespace_prefix();
 
 				state._fsp--;
@@ -6295,7 +6145,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulecss_namespace_prefix.getText();
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulecss_namespace_prefix4043);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -6311,13 +6161,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulecss_namespace_prefix"
 
 
 	// $ANTLR start "rulecss_namespace_prefix"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1896:1: rulecss_namespace_prefix returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (
-	// (this_Identifier_0= ruleIdentifier | kw= '*' )? kw= '|' ) ;
+	// InternalCSS.g:1896:1: rulecss_namespace_prefix returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_Identifier_0= ruleIdentifier | kw= '*' )? kw= '|' ) ;
 	public final AntlrDatatypeRuleToken rulecss_namespace_prefix() throws RecognitionException {
 		AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -6328,32 +6176,31 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1899:28: ( ( (this_Identifier_0= ruleIdentifier | kw= '*' )? kw= '|' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1900:1: ( (this_Identifier_0= ruleIdentifier | kw= '*' )? kw= '|' )
+			// InternalCSS.g:1899:28: ( ( (this_Identifier_0= ruleIdentifier | kw= '*' )? kw= '|' ) )
+			// InternalCSS.g:1900:1: ( (this_Identifier_0= ruleIdentifier | kw= '*' )? kw= '|' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1900:1: ( (this_Identifier_0= ruleIdentifier | kw= '*' )? kw= '|' )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1900:2: (this_Identifier_0= ruleIdentifier | kw= '*' )? kw= '|'
+				// InternalCSS.g:1900:1: ( (this_Identifier_0= ruleIdentifier | kw= '*' )? kw= '|' )
+				// InternalCSS.g:1900:2: (this_Identifier_0= ruleIdentifier | kw= '*' )? kw= '|'
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1900:2: (this_Identifier_0= ruleIdentifier | kw= '*' )?
+					// InternalCSS.g:1900:2: (this_Identifier_0= ruleIdentifier | kw= '*' )?
 					int alt53 = 3;
 					int LA53_0 = input.LA(1);
 
 					if (((LA53_0 >= RULE_DASH && LA53_0 <= RULE_ONE_NON_HEX_LETTER) || (LA53_0 >= 56 && LA53_0 <= 59))) {
 						alt53 = 1;
-					}
-					else if ((LA53_0 == 42)) {
+					} else if ((LA53_0 == 42)) {
 						alt53 = 2;
 					}
 					switch (alt53) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1901:5: this_Identifier_0= ruleIdentifier
+					// InternalCSS.g:1901:5: this_Identifier_0= ruleIdentifier
 					{
 						if (state.backtracking == 0) {
 
 							newCompositeNode(grammarAccess.getCss_namespace_prefixAccess().getIdentifierParserRuleCall_0_0());
 
 						}
-						pushFollow(FOLLOW_ruleIdentifier_in_rulecss_namespace_prefix4091);
+						pushFollow(FOLLOW_34);
 						this_Identifier_0 = ruleIdentifier();
 
 						state._fsp--;
@@ -6374,9 +6221,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 2:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1913:2: kw= '*'
+					// InternalCSS.g:1913:2: kw= '*'
 					{
-						kw = (Token) match(input, 42, FOLLOW_42_in_rulecss_namespace_prefix4115);
+						kw = (Token) match(input, 42, FOLLOW_34);
 						if (state.failed) {
 							return current;
 						}
@@ -6392,7 +6239,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					kw = (Token) match(input, 43, FOLLOW_43_in_rulecss_namespace_prefix4130);
+					kw = (Token) match(input, 43, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -6420,12 +6267,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulecss_namespace_prefix"
 
 
 	// $ANTLR start "entryRulecss_declaration"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1932:1: entryRulecss_declaration returns [EObject current=null] : iv_rulecss_declaration= rulecss_declaration EOF ;
+	// InternalCSS.g:1932:1: entryRulecss_declaration returns [EObject current=null] : iv_rulecss_declaration= rulecss_declaration EOF ;
 	public final EObject entryRulecss_declaration() throws RecognitionException {
 		EObject current = null;
 
@@ -6436,13 +6282,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens("RULE_ML_COMMENT");
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1936:2: (iv_rulecss_declaration= rulecss_declaration EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1937:2: iv_rulecss_declaration= rulecss_declaration EOF
+			// InternalCSS.g:1936:2: (iv_rulecss_declaration= rulecss_declaration EOF )
+			// InternalCSS.g:1937:2: iv_rulecss_declaration= rulecss_declaration EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getCss_declarationRule());
 				}
-				pushFollow(FOLLOW_rulecss_declaration_in_entryRulecss_declaration4176);
+				pushFollow(FOLLOW_1);
 				iv_rulecss_declaration = rulecss_declaration();
 
 				state._fsp--;
@@ -6452,7 +6298,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulecss_declaration;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulecss_declaration4186);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -6471,13 +6317,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulecss_declaration"
 
 
 	// $ANTLR start "rulecss_declaration"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1947:1: rulecss_declaration returns [EObject current=null] : ( (this_WS_0= RULE_WS )* ( (lv_property_1_0= rulecss_property
-	// ) ) (this_WS_2= RULE_WS )* this_COLON_3= RULE_COLON ( (lv_valueTokens_4_0= ruleCssTok ) )+ ( (lv_important_5_0= RULE_IMPORTANT_SYM ) )? ) ;
+	// InternalCSS.g:1947:1: rulecss_declaration returns [EObject current=null] : ( (this_WS_0= RULE_WS )* ( (lv_property_1_0= rulecss_property ) ) (this_WS_2= RULE_WS )* this_COLON_3= RULE_COLON ( (lv_valueTokens_4_0= ruleCssTok ) )+ ( (lv_important_5_0=
+	// RULE_IMPORTANT_SYM ) )? ) ;
 	public final EObject rulecss_declaration() throws RecognitionException {
 		EObject current = null;
 
@@ -6494,17 +6339,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens("RULE_ML_COMMENT");
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1951:28: ( ( (this_WS_0= RULE_WS )* ( (lv_property_1_0= rulecss_property ) ) (this_WS_2= RULE_WS )* this_COLON_3=
-			// RULE_COLON ( (lv_valueTokens_4_0= ruleCssTok ) )+ ( (lv_important_5_0= RULE_IMPORTANT_SYM ) )? ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1952:1: ( (this_WS_0= RULE_WS )* ( (lv_property_1_0= rulecss_property ) ) (this_WS_2= RULE_WS )* this_COLON_3=
-			// RULE_COLON ( (lv_valueTokens_4_0= ruleCssTok ) )+ ( (lv_important_5_0= RULE_IMPORTANT_SYM ) )? )
+			// InternalCSS.g:1951:28: ( ( (this_WS_0= RULE_WS )* ( (lv_property_1_0= rulecss_property ) ) (this_WS_2= RULE_WS )* this_COLON_3= RULE_COLON ( (lv_valueTokens_4_0= ruleCssTok ) )+ ( (lv_important_5_0= RULE_IMPORTANT_SYM ) )? ) )
+			// InternalCSS.g:1952:1: ( (this_WS_0= RULE_WS )* ( (lv_property_1_0= rulecss_property ) ) (this_WS_2= RULE_WS )* this_COLON_3= RULE_COLON ( (lv_valueTokens_4_0= ruleCssTok ) )+ ( (lv_important_5_0= RULE_IMPORTANT_SYM ) )? )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1952:1: ( (this_WS_0= RULE_WS )* ( (lv_property_1_0= rulecss_property ) ) (this_WS_2= RULE_WS )* this_COLON_3=
-				// RULE_COLON ( (lv_valueTokens_4_0= ruleCssTok ) )+ ( (lv_important_5_0= RULE_IMPORTANT_SYM ) )? )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1952:2: (this_WS_0= RULE_WS )* ( (lv_property_1_0= rulecss_property ) ) (this_WS_2= RULE_WS )* this_COLON_3=
-				// RULE_COLON ( (lv_valueTokens_4_0= ruleCssTok ) )+ ( (lv_important_5_0= RULE_IMPORTANT_SYM ) )?
+				// InternalCSS.g:1952:1: ( (this_WS_0= RULE_WS )* ( (lv_property_1_0= rulecss_property ) ) (this_WS_2= RULE_WS )* this_COLON_3= RULE_COLON ( (lv_valueTokens_4_0= ruleCssTok ) )+ ( (lv_important_5_0= RULE_IMPORTANT_SYM ) )? )
+				// InternalCSS.g:1952:2: (this_WS_0= RULE_WS )* ( (lv_property_1_0= rulecss_property ) ) (this_WS_2= RULE_WS )* this_COLON_3= RULE_COLON ( (lv_valueTokens_4_0= ruleCssTok ) )+ ( (lv_important_5_0= RULE_IMPORTANT_SYM ) )?
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1952:2: (this_WS_0= RULE_WS )*
+					// InternalCSS.g:1952:2: (this_WS_0= RULE_WS )*
 					loop54: do {
 						int alt54 = 2;
 						int LA54_0 = input.LA(1);
@@ -6516,9 +6357,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt54) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1952:3: this_WS_0= RULE_WS
+						// InternalCSS.g:1952:3: this_WS_0= RULE_WS
 						{
-							this_WS_0 = (Token) match(input, RULE_WS, FOLLOW_RULE_WS_in_rulecss_declaration4227);
+							this_WS_0 = (Token) match(input, RULE_WS, FOLLOW_23);
 							if (state.failed) {
 								return current;
 							}
@@ -6536,18 +6377,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 					} while (true);
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1956:3: ( (lv_property_1_0= rulecss_property ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1957:1: (lv_property_1_0= rulecss_property )
+					// InternalCSS.g:1956:3: ( (lv_property_1_0= rulecss_property ) )
+					// InternalCSS.g:1957:1: (lv_property_1_0= rulecss_property )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1957:1: (lv_property_1_0= rulecss_property )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1958:3: lv_property_1_0= rulecss_property
+						// InternalCSS.g:1957:1: (lv_property_1_0= rulecss_property )
+						// InternalCSS.g:1958:3: lv_property_1_0= rulecss_property
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getCss_declarationAccess().getPropertyCss_propertyParserRuleCall_1_0());
 
 							}
-							pushFollow(FOLLOW_rulecss_property_in_rulecss_declaration4249);
+							pushFollow(FOLLOW_35);
 							lv_property_1_0 = rulecss_property();
 
 							state._fsp--;
@@ -6563,7 +6404,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"property",
 										lv_property_1_0,
-										"css_property");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.css_property");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -6573,7 +6414,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1974:2: (this_WS_2= RULE_WS )*
+					// InternalCSS.g:1974:2: (this_WS_2= RULE_WS )*
 					loop55: do {
 						int alt55 = 2;
 						int LA55_0 = input.LA(1);
@@ -6585,9 +6426,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt55) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1974:3: this_WS_2= RULE_WS
+						// InternalCSS.g:1974:3: this_WS_2= RULE_WS
 						{
-							this_WS_2 = (Token) match(input, RULE_WS, FOLLOW_RULE_WS_in_rulecss_declaration4261);
+							this_WS_2 = (Token) match(input, RULE_WS, FOLLOW_35);
 							if (state.failed) {
 								return current;
 							}
@@ -6605,7 +6446,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 					} while (true);
 
-					this_COLON_3 = (Token) match(input, RULE_COLON, FOLLOW_RULE_COLON_in_rulecss_declaration4273);
+					this_COLON_3 = (Token) match(input, RULE_COLON, FOLLOW_36);
 					if (state.failed) {
 						return current;
 					}
@@ -6614,7 +6455,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newLeafNode(this_COLON_3, grammarAccess.getCss_declarationAccess().getCOLONTerminalRuleCall_3());
 
 					}
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1982:1: ( (lv_valueTokens_4_0= ruleCssTok ) )+
+					// InternalCSS.g:1982:1: ( (lv_valueTokens_4_0= ruleCssTok ) )+
 					int cnt56 = 0;
 					loop56: do {
 						int alt56 = 2;
@@ -6627,17 +6468,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt56) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1983:1: (lv_valueTokens_4_0= ruleCssTok )
+						// InternalCSS.g:1983:1: (lv_valueTokens_4_0= ruleCssTok )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1983:1: (lv_valueTokens_4_0= ruleCssTok )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1984:3: lv_valueTokens_4_0= ruleCssTok
+							// InternalCSS.g:1983:1: (lv_valueTokens_4_0= ruleCssTok )
+							// InternalCSS.g:1984:3: lv_valueTokens_4_0= ruleCssTok
 							{
 								if (state.backtracking == 0) {
 
 									newCompositeNode(grammarAccess.getCss_declarationAccess().getValueTokensCssTokParserRuleCall_4_0());
 
 								}
-								pushFollow(FOLLOW_ruleCssTok_in_rulecss_declaration4293);
+								pushFollow(FOLLOW_37);
 								lv_valueTokens_4_0 = ruleCssTok();
 
 								state._fsp--;
@@ -6653,7 +6494,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 											current,
 											"valueTokens",
 											lv_valueTokens_4_0,
-											"CssTok");
+											"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CssTok");
 									afterParserOrEnumRuleCall();
 
 								}
@@ -6672,14 +6513,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								state.failed = true;
 								return current;
 							}
-							EarlyExitException eee =
-									new EarlyExitException(56, input);
+							EarlyExitException eee = new EarlyExitException(56, input);
 							throw eee;
 						}
 						cnt56++;
 					} while (true);
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2000:3: ( (lv_important_5_0= RULE_IMPORTANT_SYM ) )?
+					// InternalCSS.g:2000:3: ( (lv_important_5_0= RULE_IMPORTANT_SYM ) )?
 					int alt57 = 2;
 					int LA57_0 = input.LA(1);
 
@@ -6688,12 +6528,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 					switch (alt57) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2001:1: (lv_important_5_0= RULE_IMPORTANT_SYM )
+					// InternalCSS.g:2001:1: (lv_important_5_0= RULE_IMPORTANT_SYM )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2001:1: (lv_important_5_0= RULE_IMPORTANT_SYM )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2002:3: lv_important_5_0= RULE_IMPORTANT_SYM
+						// InternalCSS.g:2001:1: (lv_important_5_0= RULE_IMPORTANT_SYM )
+						// InternalCSS.g:2002:3: lv_important_5_0= RULE_IMPORTANT_SYM
 						{
-							lv_important_5_0 = (Token) match(input, RULE_IMPORTANT_SYM, FOLLOW_RULE_IMPORTANT_SYM_in_rulecss_declaration4311);
+							lv_important_5_0 = (Token) match(input, RULE_IMPORTANT_SYM, FOLLOW_2);
 							if (state.failed) {
 								return current;
 							}
@@ -6711,7 +6551,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"important",
 										true,
-										"IMPORTANT_SYM");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.IMPORTANT_SYM");
 
 							}
 
@@ -6744,12 +6584,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulecss_declaration"
 
 
 	// $ANTLR start "entryRulecss_property"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2029:1: entryRulecss_property returns [EObject current=null] : iv_rulecss_property= rulecss_property EOF ;
+	// InternalCSS.g:2029:1: entryRulecss_property returns [EObject current=null] : iv_rulecss_property= rulecss_property EOF ;
 	public final EObject entryRulecss_property() throws RecognitionException {
 		EObject current = null;
 
@@ -6757,13 +6596,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2030:2: (iv_rulecss_property= rulecss_property EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2031:2: iv_rulecss_property= rulecss_property EOF
+			// InternalCSS.g:2030:2: (iv_rulecss_property= rulecss_property EOF )
+			// InternalCSS.g:2031:2: iv_rulecss_property= rulecss_property EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getCss_propertyRule());
 				}
-				pushFollow(FOLLOW_rulecss_property_in_entryRulecss_property4357);
+				pushFollow(FOLLOW_1);
 				iv_rulecss_property = rulecss_property();
 
 				state._fsp--;
@@ -6773,7 +6612,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulecss_property;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulecss_property4367);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -6789,12 +6628,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulecss_property"
 
 
 	// $ANTLR start "rulecss_property"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2038:1: rulecss_property returns [EObject current=null] : ( () ( (lv_name_1_0= ruleValidPropertyIdent ) ) ) ;
+	// InternalCSS.g:2038:1: rulecss_property returns [EObject current=null] : ( () ( (lv_name_1_0= ruleValidPropertyIdent ) ) ) ;
 	public final EObject rulecss_property() throws RecognitionException {
 		EObject current = null;
 
@@ -6804,14 +6642,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2041:28: ( ( () ( (lv_name_1_0= ruleValidPropertyIdent ) ) ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2042:1: ( () ( (lv_name_1_0= ruleValidPropertyIdent ) ) )
+			// InternalCSS.g:2041:28: ( ( () ( (lv_name_1_0= ruleValidPropertyIdent ) ) ) )
+			// InternalCSS.g:2042:1: ( () ( (lv_name_1_0= ruleValidPropertyIdent ) ) )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2042:1: ( () ( (lv_name_1_0= ruleValidPropertyIdent ) ) )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2042:2: () ( (lv_name_1_0= ruleValidPropertyIdent ) )
+				// InternalCSS.g:2042:1: ( () ( (lv_name_1_0= ruleValidPropertyIdent ) ) )
+				// InternalCSS.g:2042:2: () ( (lv_name_1_0= ruleValidPropertyIdent ) )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2042:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2043:5:
+					// InternalCSS.g:2042:2: ()
+					// InternalCSS.g:2043:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -6823,18 +6661,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2048:2: ( (lv_name_1_0= ruleValidPropertyIdent ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2049:1: (lv_name_1_0= ruleValidPropertyIdent )
+					// InternalCSS.g:2048:2: ( (lv_name_1_0= ruleValidPropertyIdent ) )
+					// InternalCSS.g:2049:1: (lv_name_1_0= ruleValidPropertyIdent )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2049:1: (lv_name_1_0= ruleValidPropertyIdent )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2050:3: lv_name_1_0= ruleValidPropertyIdent
+						// InternalCSS.g:2049:1: (lv_name_1_0= ruleValidPropertyIdent )
+						// InternalCSS.g:2050:3: lv_name_1_0= ruleValidPropertyIdent
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getCss_propertyAccess().getNameValidPropertyIdentParserRuleCall_1_0());
 
 							}
-							pushFollow(FOLLOW_ruleValidPropertyIdent_in_rulecss_property4422);
+							pushFollow(FOLLOW_2);
 							lv_name_1_0 = ruleValidPropertyIdent();
 
 							state._fsp--;
@@ -6850,7 +6688,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"name",
 										lv_name_1_0,
-										"ValidPropertyIdent");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ValidPropertyIdent");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -6878,13 +6716,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulecss_property"
 
 
 	// $ANTLR start "entryRuleValidPropertyIdent"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2074:1: entryRuleValidPropertyIdent returns [String current=null] : iv_ruleValidPropertyIdent= ruleValidPropertyIdent EOF
-	// ;
+	// InternalCSS.g:2074:1: entryRuleValidPropertyIdent returns [String current=null] : iv_ruleValidPropertyIdent= ruleValidPropertyIdent EOF ;
 	public final String entryRuleValidPropertyIdent() throws RecognitionException {
 		String current = null;
 
@@ -6892,13 +6728,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2075:2: (iv_ruleValidPropertyIdent= ruleValidPropertyIdent EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2076:2: iv_ruleValidPropertyIdent= ruleValidPropertyIdent EOF
+			// InternalCSS.g:2075:2: (iv_ruleValidPropertyIdent= ruleValidPropertyIdent EOF )
+			// InternalCSS.g:2076:2: iv_ruleValidPropertyIdent= ruleValidPropertyIdent EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getValidPropertyIdentRule());
 				}
-				pushFollow(FOLLOW_ruleValidPropertyIdent_in_entryRuleValidPropertyIdent4459);
+				pushFollow(FOLLOW_1);
 				iv_ruleValidPropertyIdent = ruleValidPropertyIdent();
 
 				state._fsp--;
@@ -6908,7 +6744,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleValidPropertyIdent.getText();
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleValidPropertyIdent4470);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -6924,13 +6760,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleValidPropertyIdent"
 
 
 	// $ANTLR start "ruleValidPropertyIdent"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2083:1: ruleValidPropertyIdent returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_Identifier_0=
-	// ruleIdentifier ;
+	// InternalCSS.g:2083:1: ruleValidPropertyIdent returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_Identifier_0= ruleIdentifier ;
 	public final AntlrDatatypeRuleToken ruleValidPropertyIdent() throws RecognitionException {
 		AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -6940,15 +6774,15 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2086:28: (this_Identifier_0= ruleIdentifier )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2088:5: this_Identifier_0= ruleIdentifier
+			// InternalCSS.g:2086:28: (this_Identifier_0= ruleIdentifier )
+			// InternalCSS.g:2088:5: this_Identifier_0= ruleIdentifier
 			{
 				if (state.backtracking == 0) {
 
 					newCompositeNode(grammarAccess.getValidPropertyIdentAccess().getIdentifierParserRuleCall());
 
 				}
-				pushFollow(FOLLOW_ruleIdentifier_in_ruleValidPropertyIdent4516);
+				pushFollow(FOLLOW_2);
 				this_Identifier_0 = ruleIdentifier();
 
 				state._fsp--;
@@ -6980,12 +6814,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleValidPropertyIdent"
 
 
 	// $ANTLR start "entryRulePseudoClassOrFunc"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2106:1: entryRulePseudoClassOrFunc returns [EObject current=null] : iv_rulePseudoClassOrFunc= rulePseudoClassOrFunc EOF ;
+	// InternalCSS.g:2106:1: entryRulePseudoClassOrFunc returns [EObject current=null] : iv_rulePseudoClassOrFunc= rulePseudoClassOrFunc EOF ;
 	public final EObject entryRulePseudoClassOrFunc() throws RecognitionException {
 		EObject current = null;
 
@@ -6993,13 +6826,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2107:2: (iv_rulePseudoClassOrFunc= rulePseudoClassOrFunc EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2108:2: iv_rulePseudoClassOrFunc= rulePseudoClassOrFunc EOF
+			// InternalCSS.g:2107:2: (iv_rulePseudoClassOrFunc= rulePseudoClassOrFunc EOF )
+			// InternalCSS.g:2108:2: iv_rulePseudoClassOrFunc= rulePseudoClassOrFunc EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getPseudoClassOrFuncRule());
 				}
-				pushFollow(FOLLOW_rulePseudoClassOrFunc_in_entryRulePseudoClassOrFunc4560);
+				pushFollow(FOLLOW_1);
 				iv_rulePseudoClassOrFunc = rulePseudoClassOrFunc();
 
 				state._fsp--;
@@ -7009,7 +6842,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulePseudoClassOrFunc;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulePseudoClassOrFunc4570);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -7025,13 +6858,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulePseudoClassOrFunc"
 
 
 	// $ANTLR start "rulePseudoClassOrFunc"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2115:1: rulePseudoClassOrFunc returns [EObject current=null] : (this_PseudoClass_0= rulePseudoClass |
-	// this_PseudoClassFunction_1= rulePseudoClassFunction ) ;
+	// InternalCSS.g:2115:1: rulePseudoClassOrFunc returns [EObject current=null] : (this_PseudoClass_0= rulePseudoClass | this_PseudoClassFunction_1= rulePseudoClassFunction ) ;
 	public final EObject rulePseudoClassOrFunc() throws RecognitionException {
 		EObject current = null;
 
@@ -7043,22 +6874,22 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2118:28: ( (this_PseudoClass_0= rulePseudoClass | this_PseudoClassFunction_1= rulePseudoClassFunction ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2119:1: (this_PseudoClass_0= rulePseudoClass | this_PseudoClassFunction_1= rulePseudoClassFunction )
+			// InternalCSS.g:2118:28: ( (this_PseudoClass_0= rulePseudoClass | this_PseudoClassFunction_1= rulePseudoClassFunction ) )
+			// InternalCSS.g:2119:1: (this_PseudoClass_0= rulePseudoClass | this_PseudoClassFunction_1= rulePseudoClassFunction )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2119:1: (this_PseudoClass_0= rulePseudoClass | this_PseudoClassFunction_1= rulePseudoClassFunction )
+				// InternalCSS.g:2119:1: (this_PseudoClass_0= rulePseudoClass | this_PseudoClassFunction_1= rulePseudoClassFunction )
 				int alt58 = 2;
 				alt58 = dfa58.predict(input);
 				switch (alt58) {
 				case 1:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2120:5: this_PseudoClass_0= rulePseudoClass
+				// InternalCSS.g:2120:5: this_PseudoClass_0= rulePseudoClass
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getPseudoClassOrFuncAccess().getPseudoClassParserRuleCall_0());
 
 					}
-					pushFollow(FOLLOW_rulePseudoClass_in_rulePseudoClassOrFunc4617);
+					pushFollow(FOLLOW_2);
 					this_PseudoClass_0 = rulePseudoClass();
 
 					state._fsp--;
@@ -7075,14 +6906,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 2:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2130:5: this_PseudoClassFunction_1= rulePseudoClassFunction
+				// InternalCSS.g:2130:5: this_PseudoClassFunction_1= rulePseudoClassFunction
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getPseudoClassOrFuncAccess().getPseudoClassFunctionParserRuleCall_1());
 
 					}
-					pushFollow(FOLLOW_rulePseudoClassFunction_in_rulePseudoClassOrFunc4644);
+					pushFollow(FOLLOW_2);
 					this_PseudoClassFunction_1 = rulePseudoClassFunction();
 
 					state._fsp--;
@@ -7116,12 +6947,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulePseudoClassOrFunc"
 
 
 	// $ANTLR start "entryRulePseudoClass"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2146:1: entryRulePseudoClass returns [EObject current=null] : iv_rulePseudoClass= rulePseudoClass EOF ;
+	// InternalCSS.g:2146:1: entryRulePseudoClass returns [EObject current=null] : iv_rulePseudoClass= rulePseudoClass EOF ;
 	public final EObject entryRulePseudoClass() throws RecognitionException {
 		EObject current = null;
 
@@ -7129,13 +6959,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2147:2: (iv_rulePseudoClass= rulePseudoClass EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2148:2: iv_rulePseudoClass= rulePseudoClass EOF
+			// InternalCSS.g:2147:2: (iv_rulePseudoClass= rulePseudoClass EOF )
+			// InternalCSS.g:2148:2: iv_rulePseudoClass= rulePseudoClass EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getPseudoClassRule());
 				}
-				pushFollow(FOLLOW_rulePseudoClass_in_entryRulePseudoClass4679);
+				pushFollow(FOLLOW_1);
 				iv_rulePseudoClass = rulePseudoClass();
 
 				state._fsp--;
@@ -7145,7 +6975,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulePseudoClass;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulePseudoClass4689);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -7161,13 +6991,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulePseudoClass"
 
 
 	// $ANTLR start "rulePseudoClass"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2155:1: rulePseudoClass returns [EObject current=null] : (this_COLON_0= RULE_COLON (this_COLON_1= RULE_COLON )?
-	// this_PseudoClassName_2= rulePseudoClassName ) ;
+	// InternalCSS.g:2155:1: rulePseudoClass returns [EObject current=null] : (this_COLON_0= RULE_COLON (this_COLON_1= RULE_COLON )? this_PseudoClassName_2= rulePseudoClassName ) ;
 	public final EObject rulePseudoClass() throws RecognitionException {
 		EObject current = null;
 
@@ -7179,13 +7007,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2158:28: ( (this_COLON_0= RULE_COLON (this_COLON_1= RULE_COLON )? this_PseudoClassName_2= rulePseudoClassName ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2159:1: (this_COLON_0= RULE_COLON (this_COLON_1= RULE_COLON )? this_PseudoClassName_2= rulePseudoClassName )
+			// InternalCSS.g:2158:28: ( (this_COLON_0= RULE_COLON (this_COLON_1= RULE_COLON )? this_PseudoClassName_2= rulePseudoClassName ) )
+			// InternalCSS.g:2159:1: (this_COLON_0= RULE_COLON (this_COLON_1= RULE_COLON )? this_PseudoClassName_2= rulePseudoClassName )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2159:1: (this_COLON_0= RULE_COLON (this_COLON_1= RULE_COLON )? this_PseudoClassName_2= rulePseudoClassName )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2159:2: this_COLON_0= RULE_COLON (this_COLON_1= RULE_COLON )? this_PseudoClassName_2= rulePseudoClassName
+				// InternalCSS.g:2159:1: (this_COLON_0= RULE_COLON (this_COLON_1= RULE_COLON )? this_PseudoClassName_2= rulePseudoClassName )
+				// InternalCSS.g:2159:2: this_COLON_0= RULE_COLON (this_COLON_1= RULE_COLON )? this_PseudoClassName_2= rulePseudoClassName
 				{
-					this_COLON_0 = (Token) match(input, RULE_COLON, FOLLOW_RULE_COLON_in_rulePseudoClass4725);
+					this_COLON_0 = (Token) match(input, RULE_COLON, FOLLOW_38);
 					if (state.failed) {
 						return current;
 					}
@@ -7194,7 +7022,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newLeafNode(this_COLON_0, grammarAccess.getPseudoClassAccess().getCOLONTerminalRuleCall_0());
 
 					}
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2163:1: (this_COLON_1= RULE_COLON )?
+					// InternalCSS.g:2163:1: (this_COLON_1= RULE_COLON )?
 					int alt59 = 2;
 					int LA59_0 = input.LA(1);
 
@@ -7203,9 +7031,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 					switch (alt59) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2163:2: this_COLON_1= RULE_COLON
+					// InternalCSS.g:2163:2: this_COLON_1= RULE_COLON
 					{
-						this_COLON_1 = (Token) match(input, RULE_COLON, FOLLOW_RULE_COLON_in_rulePseudoClass4736);
+						this_COLON_1 = (Token) match(input, RULE_COLON, FOLLOW_38);
 						if (state.failed) {
 							return current;
 						}
@@ -7225,7 +7053,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newCompositeNode(grammarAccess.getPseudoClassAccess().getPseudoClassNameParserRuleCall_2());
 
 					}
-					pushFollow(FOLLOW_rulePseudoClassName_in_rulePseudoClass4759);
+					pushFollow(FOLLOW_2);
 					this_PseudoClassName_2 = rulePseudoClassName();
 
 					state._fsp--;
@@ -7256,12 +7084,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulePseudoClass"
 
 
 	// $ANTLR start "entryRulePseudoClassName"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2184:1: entryRulePseudoClassName returns [EObject current=null] : iv_rulePseudoClassName= rulePseudoClassName EOF ;
+	// InternalCSS.g:2184:1: entryRulePseudoClassName returns [EObject current=null] : iv_rulePseudoClassName= rulePseudoClassName EOF ;
 	public final EObject entryRulePseudoClassName() throws RecognitionException {
 		EObject current = null;
 
@@ -7269,13 +7096,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2185:2: (iv_rulePseudoClassName= rulePseudoClassName EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2186:2: iv_rulePseudoClassName= rulePseudoClassName EOF
+			// InternalCSS.g:2185:2: (iv_rulePseudoClassName= rulePseudoClassName EOF )
+			// InternalCSS.g:2186:2: iv_rulePseudoClassName= rulePseudoClassName EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getPseudoClassNameRule());
 				}
-				pushFollow(FOLLOW_rulePseudoClassName_in_entryRulePseudoClassName4794);
+				pushFollow(FOLLOW_1);
 				iv_rulePseudoClassName = rulePseudoClassName();
 
 				state._fsp--;
@@ -7285,7 +7112,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulePseudoClassName;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulePseudoClassName4804);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -7301,12 +7128,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulePseudoClassName"
 
 
 	// $ANTLR start "rulePseudoClassName"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2193:1: rulePseudoClassName returns [EObject current=null] : ( (lv_name_0_0= ruleIdentifier ) ) ;
+	// InternalCSS.g:2193:1: rulePseudoClassName returns [EObject current=null] : ( (lv_name_0_0= ruleIdentifier ) ) ;
 	public final EObject rulePseudoClassName() throws RecognitionException {
 		EObject current = null;
 
@@ -7316,21 +7142,21 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2196:28: ( ( (lv_name_0_0= ruleIdentifier ) ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2197:1: ( (lv_name_0_0= ruleIdentifier ) )
+			// InternalCSS.g:2196:28: ( ( (lv_name_0_0= ruleIdentifier ) ) )
+			// InternalCSS.g:2197:1: ( (lv_name_0_0= ruleIdentifier ) )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2197:1: ( (lv_name_0_0= ruleIdentifier ) )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2198:1: (lv_name_0_0= ruleIdentifier )
+				// InternalCSS.g:2197:1: ( (lv_name_0_0= ruleIdentifier ) )
+				// InternalCSS.g:2198:1: (lv_name_0_0= ruleIdentifier )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2198:1: (lv_name_0_0= ruleIdentifier )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2199:3: lv_name_0_0= ruleIdentifier
+					// InternalCSS.g:2198:1: (lv_name_0_0= ruleIdentifier )
+					// InternalCSS.g:2199:3: lv_name_0_0= ruleIdentifier
 					{
 						if (state.backtracking == 0) {
 
 							newCompositeNode(grammarAccess.getPseudoClassNameAccess().getNameIdentifierParserRuleCall_0());
 
 						}
-						pushFollow(FOLLOW_ruleIdentifier_in_rulePseudoClassName4849);
+						pushFollow(FOLLOW_2);
 						lv_name_0_0 = ruleIdentifier();
 
 						state._fsp--;
@@ -7346,7 +7172,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 									current,
 									"name",
 									lv_name_0_0,
-									"Identifier");
+									"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 							afterParserOrEnumRuleCall();
 
 						}
@@ -7371,13 +7197,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulePseudoClassName"
 
 
 	// $ANTLR start "entryRulePseudoClassFunction"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2223:1: entryRulePseudoClassFunction returns [EObject current=null] : iv_rulePseudoClassFunction= rulePseudoClassFunction
-	// EOF ;
+	// InternalCSS.g:2223:1: entryRulePseudoClassFunction returns [EObject current=null] : iv_rulePseudoClassFunction= rulePseudoClassFunction EOF ;
 	public final EObject entryRulePseudoClassFunction() throws RecognitionException {
 		EObject current = null;
 
@@ -7385,13 +7209,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2224:2: (iv_rulePseudoClassFunction= rulePseudoClassFunction EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2225:2: iv_rulePseudoClassFunction= rulePseudoClassFunction EOF
+			// InternalCSS.g:2224:2: (iv_rulePseudoClassFunction= rulePseudoClassFunction EOF )
+			// InternalCSS.g:2225:2: iv_rulePseudoClassFunction= rulePseudoClassFunction EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getPseudoClassFunctionRule());
 				}
-				pushFollow(FOLLOW_rulePseudoClassFunction_in_entryRulePseudoClassFunction4884);
+				pushFollow(FOLLOW_1);
 				iv_rulePseudoClassFunction = rulePseudoClassFunction();
 
 				state._fsp--;
@@ -7401,7 +7225,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulePseudoClassFunction;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulePseudoClassFunction4894);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -7417,13 +7241,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulePseudoClassFunction"
 
 
 	// $ANTLR start "rulePseudoClassFunction"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2232:1: rulePseudoClassFunction returns [EObject current=null] : ( ( ( (lv_not_0_0= ruleNotFunctionCall ) ) (
-	// (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) ) otherlv_2= ')' ) | (this_COLON_3= RULE_COLON ( (lv_name_4_0= ruleIdentifier ) ) otherlv_5= '(' ( (lv_params_6_0= ruleCssTok ) )* otherlv_7= ')' ) ) ;
+	// InternalCSS.g:2232:1: rulePseudoClassFunction returns [EObject current=null] : ( ( ( (lv_not_0_0= ruleNotFunctionCall ) ) ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) ) otherlv_2= ')' ) | (this_COLON_3= RULE_COLON ( (lv_name_4_0=
+	// ruleIdentifier ) ) otherlv_5= '(' ( (lv_params_6_0= ruleCssTok ) )* otherlv_7= ')' ) ) ;
 	public final EObject rulePseudoClassFunction() throws RecognitionException {
 		EObject current = null;
 
@@ -7443,13 +7266,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2235:28: ( ( ( ( (lv_not_0_0= ruleNotFunctionCall ) ) ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) )
-			// otherlv_2= ')' ) | (this_COLON_3= RULE_COLON ( (lv_name_4_0= ruleIdentifier ) ) otherlv_5= '(' ( (lv_params_6_0= ruleCssTok ) )* otherlv_7= ')' ) ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2236:1: ( ( ( (lv_not_0_0= ruleNotFunctionCall ) ) ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) )
-			// otherlv_2= ')' ) | (this_COLON_3= RULE_COLON ( (lv_name_4_0= ruleIdentifier ) ) otherlv_5= '(' ( (lv_params_6_0= ruleCssTok ) )* otherlv_7= ')' ) )
+			// InternalCSS.g:2235:28: ( ( ( ( (lv_not_0_0= ruleNotFunctionCall ) ) ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) ) otherlv_2= ')' ) | (this_COLON_3= RULE_COLON ( (lv_name_4_0= ruleIdentifier ) ) otherlv_5= '(' ( (lv_params_6_0=
+			// ruleCssTok ) )* otherlv_7= ')' ) ) )
+			// InternalCSS.g:2236:1: ( ( ( (lv_not_0_0= ruleNotFunctionCall ) ) ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) ) otherlv_2= ')' ) | (this_COLON_3= RULE_COLON ( (lv_name_4_0= ruleIdentifier ) ) otherlv_5= '(' ( (lv_params_6_0=
+			// ruleCssTok ) )* otherlv_7= ')' ) )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2236:1: ( ( ( (lv_not_0_0= ruleNotFunctionCall ) ) ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) )
-				// otherlv_2= ')' ) | (this_COLON_3= RULE_COLON ( (lv_name_4_0= ruleIdentifier ) ) otherlv_5= '(' ( (lv_params_6_0= ruleCssTok ) )* otherlv_7= ')' ) )
+				// InternalCSS.g:2236:1: ( ( ( (lv_not_0_0= ruleNotFunctionCall ) ) ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) ) otherlv_2= ')' ) | (this_COLON_3= RULE_COLON ( (lv_name_4_0= ruleIdentifier ) ) otherlv_5= '(' ( (lv_params_6_0=
+				// ruleCssTok ) )* otherlv_7= ')' ) )
 				int alt61 = 2;
 				int LA61_0 = input.LA(1);
 
@@ -7458,53 +7281,45 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					if (((LA61_1 >= RULE_DASH && LA61_1 <= RULE_ONE_NON_HEX_LETTER) || (LA61_1 >= 56 && LA61_1 <= 59))) {
 						alt61 = 2;
-					}
-					else if ((LA61_1 == 46)) {
+					} else if ((LA61_1 == 46)) {
 						alt61 = 1;
-					}
-					else {
+					} else {
 						if (state.backtracking > 0) {
 							state.failed = true;
 							return current;
 						}
-						NoViableAltException nvae =
-								new NoViableAltException("", 61, 1, input);
+						NoViableAltException nvae = new NoViableAltException("", 61, 1, input);
 
 						throw nvae;
 					}
-				}
-				else {
+				} else {
 					if (state.backtracking > 0) {
 						state.failed = true;
 						return current;
 					}
-					NoViableAltException nvae =
-							new NoViableAltException("", 61, 0, input);
+					NoViableAltException nvae = new NoViableAltException("", 61, 0, input);
 
 					throw nvae;
 				}
 				switch (alt61) {
 				case 1:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2236:2: ( ( (lv_not_0_0= ruleNotFunctionCall ) ) ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) )
-				// otherlv_2= ')' )
+				// InternalCSS.g:2236:2: ( ( (lv_not_0_0= ruleNotFunctionCall ) ) ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) ) otherlv_2= ')' )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2236:2: ( ( (lv_not_0_0= ruleNotFunctionCall ) ) ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation )
-					// ) otherlv_2= ')' )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2236:3: ( (lv_not_0_0= ruleNotFunctionCall ) ) ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) )
-					// otherlv_2= ')'
+					// InternalCSS.g:2236:2: ( ( (lv_not_0_0= ruleNotFunctionCall ) ) ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) ) otherlv_2= ')' )
+					// InternalCSS.g:2236:3: ( (lv_not_0_0= ruleNotFunctionCall ) ) ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) ) otherlv_2= ')'
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2236:3: ( (lv_not_0_0= ruleNotFunctionCall ) )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2237:1: (lv_not_0_0= ruleNotFunctionCall )
+						// InternalCSS.g:2236:3: ( (lv_not_0_0= ruleNotFunctionCall ) )
+						// InternalCSS.g:2237:1: (lv_not_0_0= ruleNotFunctionCall )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2237:1: (lv_not_0_0= ruleNotFunctionCall )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2238:3: lv_not_0_0= ruleNotFunctionCall
+							// InternalCSS.g:2237:1: (lv_not_0_0= ruleNotFunctionCall )
+							// InternalCSS.g:2238:3: lv_not_0_0= ruleNotFunctionCall
 							{
 								if (state.backtracking == 0) {
 
 									newCompositeNode(grammarAccess.getPseudoClassFunctionAccess().getNotNotFunctionCallParserRuleCall_0_0_0());
 
 								}
-								pushFollow(FOLLOW_ruleNotFunctionCall_in_rulePseudoClassFunction4941);
+								pushFollow(FOLLOW_20);
 								lv_not_0_0 = ruleNotFunctionCall();
 
 								state._fsp--;
@@ -7520,7 +7335,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 											current,
 											"not",
 											true,
-											"NotFunctionCall");
+											"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.NotFunctionCall");
 									afterParserOrEnumRuleCall();
 
 								}
@@ -7530,18 +7345,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						}
 
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2254:2: ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2255:1: (lv_paramSelector_1_0= ruleSimpleSelectorForNegation )
+						// InternalCSS.g:2254:2: ( (lv_paramSelector_1_0= ruleSimpleSelectorForNegation ) )
+						// InternalCSS.g:2255:1: (lv_paramSelector_1_0= ruleSimpleSelectorForNegation )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2255:1: (lv_paramSelector_1_0= ruleSimpleSelectorForNegation )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2256:3: lv_paramSelector_1_0= ruleSimpleSelectorForNegation
+							// InternalCSS.g:2255:1: (lv_paramSelector_1_0= ruleSimpleSelectorForNegation )
+							// InternalCSS.g:2256:3: lv_paramSelector_1_0= ruleSimpleSelectorForNegation
 							{
 								if (state.backtracking == 0) {
 
 									newCompositeNode(grammarAccess.getPseudoClassFunctionAccess().getParamSelectorSimpleSelectorForNegationParserRuleCall_0_1_0());
 
 								}
-								pushFollow(FOLLOW_ruleSimpleSelectorForNegation_in_rulePseudoClassFunction4962);
+								pushFollow(FOLLOW_39);
 								lv_paramSelector_1_0 = ruleSimpleSelectorForNegation();
 
 								state._fsp--;
@@ -7557,7 +7372,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 											current,
 											"paramSelector",
 											lv_paramSelector_1_0,
-											"SimpleSelectorForNegation");
+											"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.SimpleSelectorForNegation");
 									afterParserOrEnumRuleCall();
 
 								}
@@ -7567,7 +7382,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						}
 
-						otherlv_2 = (Token) match(input, 44, FOLLOW_44_in_rulePseudoClassFunction4974);
+						otherlv_2 = (Token) match(input, 44, FOLLOW_2);
 						if (state.failed) {
 							return current;
 						}
@@ -7583,15 +7398,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 2:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2277:6: (this_COLON_3= RULE_COLON ( (lv_name_4_0= ruleIdentifier ) ) otherlv_5= '(' ( (lv_params_6_0=
-				// ruleCssTok ) )* otherlv_7= ')' )
+				// InternalCSS.g:2277:6: (this_COLON_3= RULE_COLON ( (lv_name_4_0= ruleIdentifier ) ) otherlv_5= '(' ( (lv_params_6_0= ruleCssTok ) )* otherlv_7= ')' )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2277:6: (this_COLON_3= RULE_COLON ( (lv_name_4_0= ruleIdentifier ) ) otherlv_5= '(' ( (lv_params_6_0=
-					// ruleCssTok ) )* otherlv_7= ')' )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2277:7: this_COLON_3= RULE_COLON ( (lv_name_4_0= ruleIdentifier ) ) otherlv_5= '(' ( (lv_params_6_0=
-					// ruleCssTok ) )* otherlv_7= ')'
+					// InternalCSS.g:2277:6: (this_COLON_3= RULE_COLON ( (lv_name_4_0= ruleIdentifier ) ) otherlv_5= '(' ( (lv_params_6_0= ruleCssTok ) )* otherlv_7= ')' )
+					// InternalCSS.g:2277:7: this_COLON_3= RULE_COLON ( (lv_name_4_0= ruleIdentifier ) ) otherlv_5= '(' ( (lv_params_6_0= ruleCssTok ) )* otherlv_7= ')'
 					{
-						this_COLON_3 = (Token) match(input, RULE_COLON, FOLLOW_RULE_COLON_in_rulePseudoClassFunction4993);
+						this_COLON_3 = (Token) match(input, RULE_COLON, FOLLOW_13);
 						if (state.failed) {
 							return current;
 						}
@@ -7600,18 +7412,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							newLeafNode(this_COLON_3, grammarAccess.getPseudoClassFunctionAccess().getCOLONTerminalRuleCall_1_0());
 
 						}
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2281:1: ( (lv_name_4_0= ruleIdentifier ) )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2282:1: (lv_name_4_0= ruleIdentifier )
+						// InternalCSS.g:2281:1: ( (lv_name_4_0= ruleIdentifier ) )
+						// InternalCSS.g:2282:1: (lv_name_4_0= ruleIdentifier )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2282:1: (lv_name_4_0= ruleIdentifier )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2283:3: lv_name_4_0= ruleIdentifier
+							// InternalCSS.g:2282:1: (lv_name_4_0= ruleIdentifier )
+							// InternalCSS.g:2283:3: lv_name_4_0= ruleIdentifier
 							{
 								if (state.backtracking == 0) {
 
 									newCompositeNode(grammarAccess.getPseudoClassFunctionAccess().getNameIdentifierParserRuleCall_1_1_0());
 
 								}
-								pushFollow(FOLLOW_ruleIdentifier_in_rulePseudoClassFunction5013);
+								pushFollow(FOLLOW_40);
 								lv_name_4_0 = ruleIdentifier();
 
 								state._fsp--;
@@ -7627,7 +7439,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 											current,
 											"name",
 											lv_name_4_0,
-											"Identifier");
+											"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 									afterParserOrEnumRuleCall();
 
 								}
@@ -7637,7 +7449,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						}
 
-						otherlv_5 = (Token) match(input, 45, FOLLOW_45_in_rulePseudoClassFunction5025);
+						otherlv_5 = (Token) match(input, 45, FOLLOW_41);
 						if (state.failed) {
 							return current;
 						}
@@ -7646,7 +7458,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							newLeafNode(otherlv_5, grammarAccess.getPseudoClassFunctionAccess().getLeftParenthesisKeyword_1_2());
 
 						}
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2303:1: ( (lv_params_6_0= ruleCssTok ) )*
+						// InternalCSS.g:2303:1: ( (lv_params_6_0= ruleCssTok ) )*
 						loop60: do {
 							int alt60 = 2;
 							int LA60_0 = input.LA(1);
@@ -7658,17 +7470,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 							switch (alt60) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2304:1: (lv_params_6_0= ruleCssTok )
+							// InternalCSS.g:2304:1: (lv_params_6_0= ruleCssTok )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2304:1: (lv_params_6_0= ruleCssTok )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2305:3: lv_params_6_0= ruleCssTok
+								// InternalCSS.g:2304:1: (lv_params_6_0= ruleCssTok )
+								// InternalCSS.g:2305:3: lv_params_6_0= ruleCssTok
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getPseudoClassFunctionAccess().getParamsCssTokParserRuleCall_1_3_0());
 
 									}
-									pushFollow(FOLLOW_ruleCssTok_in_rulePseudoClassFunction5046);
+									pushFollow(FOLLOW_41);
 									lv_params_6_0 = ruleCssTok();
 
 									state._fsp--;
@@ -7684,7 +7496,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"params",
 												lv_params_6_0,
-												"CssTok");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CssTok");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -7700,7 +7512,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 						} while (true);
 
-						otherlv_7 = (Token) match(input, 44, FOLLOW_44_in_rulePseudoClassFunction5059);
+						otherlv_7 = (Token) match(input, 44, FOLLOW_2);
 						if (state.failed) {
 							return current;
 						}
@@ -7733,12 +7545,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulePseudoClassFunction"
 
 
 	// $ANTLR start "entryRuleNotFunctionCall"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2333:1: entryRuleNotFunctionCall returns [String current=null] : iv_ruleNotFunctionCall= ruleNotFunctionCall EOF ;
+	// InternalCSS.g:2333:1: entryRuleNotFunctionCall returns [String current=null] : iv_ruleNotFunctionCall= ruleNotFunctionCall EOF ;
 	public final String entryRuleNotFunctionCall() throws RecognitionException {
 		String current = null;
 
@@ -7749,13 +7560,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2337:2: (iv_ruleNotFunctionCall= ruleNotFunctionCall EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2338:2: iv_ruleNotFunctionCall= ruleNotFunctionCall EOF
+			// InternalCSS.g:2337:2: (iv_ruleNotFunctionCall= ruleNotFunctionCall EOF )
+			// InternalCSS.g:2338:2: iv_ruleNotFunctionCall= ruleNotFunctionCall EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getNotFunctionCallRule());
 				}
-				pushFollow(FOLLOW_ruleNotFunctionCall_in_entryRuleNotFunctionCall5103);
+				pushFollow(FOLLOW_1);
 				iv_ruleNotFunctionCall = ruleNotFunctionCall();
 
 				state._fsp--;
@@ -7765,7 +7576,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleNotFunctionCall.getText();
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleNotFunctionCall5114);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -7784,13 +7595,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleNotFunctionCall"
 
 
 	// $ANTLR start "ruleNotFunctionCall"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2348:1: ruleNotFunctionCall returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_COLON_0=
-	// RULE_COLON kw= 'not(' ) ;
+	// InternalCSS.g:2348:1: ruleNotFunctionCall returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_COLON_0= RULE_COLON kw= 'not(' ) ;
 	public final AntlrDatatypeRuleToken ruleNotFunctionCall() throws RecognitionException {
 		AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -7801,13 +7610,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2352:28: ( (this_COLON_0= RULE_COLON kw= 'not(' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2353:1: (this_COLON_0= RULE_COLON kw= 'not(' )
+			// InternalCSS.g:2352:28: ( (this_COLON_0= RULE_COLON kw= 'not(' ) )
+			// InternalCSS.g:2353:1: (this_COLON_0= RULE_COLON kw= 'not(' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2353:1: (this_COLON_0= RULE_COLON kw= 'not(' )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2353:6: this_COLON_0= RULE_COLON kw= 'not('
+				// InternalCSS.g:2353:1: (this_COLON_0= RULE_COLON kw= 'not(' )
+				// InternalCSS.g:2353:6: this_COLON_0= RULE_COLON kw= 'not('
 				{
-					this_COLON_0 = (Token) match(input, RULE_COLON, FOLLOW_RULE_COLON_in_ruleNotFunctionCall5158);
+					this_COLON_0 = (Token) match(input, RULE_COLON, FOLLOW_42);
 					if (state.failed) {
 						return current;
 					}
@@ -7821,7 +7630,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newLeafNode(this_COLON_0, grammarAccess.getNotFunctionCallAccess().getCOLONTerminalRuleCall_0());
 
 					}
-					kw = (Token) match(input, 46, FOLLOW_46_in_ruleNotFunctionCall5176);
+					kw = (Token) match(input, 46, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -7852,12 +7661,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleNotFunctionCall"
 
 
 	// $ANTLR start "entryRulecombinator"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2377:1: entryRulecombinator returns [String current=null] : iv_rulecombinator= rulecombinator EOF ;
+	// InternalCSS.g:2377:1: entryRulecombinator returns [String current=null] : iv_rulecombinator= rulecombinator EOF ;
 	public final String entryRulecombinator() throws RecognitionException {
 		String current = null;
 
@@ -7865,13 +7673,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2378:2: (iv_rulecombinator= rulecombinator EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2379:2: iv_rulecombinator= rulecombinator EOF
+			// InternalCSS.g:2378:2: (iv_rulecombinator= rulecombinator EOF )
+			// InternalCSS.g:2379:2: iv_rulecombinator= rulecombinator EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getCombinatorRule());
 				}
-				pushFollow(FOLLOW_rulecombinator_in_entryRulecombinator5221);
+				pushFollow(FOLLOW_1);
 				iv_rulecombinator = rulecombinator();
 
 				state._fsp--;
@@ -7881,7 +7689,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_rulecombinator.getText();
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRulecombinator5232);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -7897,13 +7705,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRulecombinator"
 
 
 	// $ANTLR start "rulecombinator"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2386:1: rulecombinator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_PLUS_0= RULE_PLUS |
-	// kw= '>' | kw= '~' ) ;
+	// InternalCSS.g:2386:1: rulecombinator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_PLUS_0= RULE_PLUS | kw= '>' | kw= '~' ) ;
 	public final AntlrDatatypeRuleToken rulecombinator() throws RecognitionException {
 		AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -7913,10 +7719,10 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2389:28: ( (this_PLUS_0= RULE_PLUS | kw= '>' | kw= '~' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2390:1: (this_PLUS_0= RULE_PLUS | kw= '>' | kw= '~' )
+			// InternalCSS.g:2389:28: ( (this_PLUS_0= RULE_PLUS | kw= '>' | kw= '~' ) )
+			// InternalCSS.g:2390:1: (this_PLUS_0= RULE_PLUS | kw= '>' | kw= '~' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2390:1: (this_PLUS_0= RULE_PLUS | kw= '>' | kw= '~' )
+				// InternalCSS.g:2390:1: (this_PLUS_0= RULE_PLUS | kw= '>' | kw= '~' )
 				int alt62 = 3;
 				switch (input.LA(1)) {
 				case RULE_PLUS: {
@@ -7936,17 +7742,16 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						state.failed = true;
 						return current;
 					}
-					NoViableAltException nvae =
-							new NoViableAltException("", 62, 0, input);
+					NoViableAltException nvae = new NoViableAltException("", 62, 0, input);
 
 					throw nvae;
 				}
 
 				switch (alt62) {
 				case 1:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2390:6: this_PLUS_0= RULE_PLUS
+				// InternalCSS.g:2390:6: this_PLUS_0= RULE_PLUS
 				{
-					this_PLUS_0 = (Token) match(input, RULE_PLUS, FOLLOW_RULE_PLUS_in_rulecombinator5272);
+					this_PLUS_0 = (Token) match(input, RULE_PLUS, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -7964,9 +7769,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 2:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2399:2: kw= '>'
+				// InternalCSS.g:2399:2: kw= '>'
 				{
-					kw = (Token) match(input, 47, FOLLOW_47_in_rulecombinator5296);
+					kw = (Token) match(input, 47, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -7980,9 +7785,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 3:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2406:2: kw= '~'
+				// InternalCSS.g:2406:2: kw= '~'
 				{
-					kw = (Token) match(input, 48, FOLLOW_48_in_rulecombinator5315);
+					kw = (Token) match(input, 48, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -8013,12 +7818,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "rulecombinator"
 
 
 	// $ANTLR start "entryRuleSymbolTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2423:1: entryRuleSymbolTok returns [EObject current=null] : iv_ruleSymbolTok= ruleSymbolTok EOF ;
+	// InternalCSS.g:2423:1: entryRuleSymbolTok returns [EObject current=null] : iv_ruleSymbolTok= ruleSymbolTok EOF ;
 	public final EObject entryRuleSymbolTok() throws RecognitionException {
 		EObject current = null;
 
@@ -8026,13 +7830,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2424:2: (iv_ruleSymbolTok= ruleSymbolTok EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2425:2: iv_ruleSymbolTok= ruleSymbolTok EOF
+			// InternalCSS.g:2424:2: (iv_ruleSymbolTok= ruleSymbolTok EOF )
+			// InternalCSS.g:2425:2: iv_ruleSymbolTok= ruleSymbolTok EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getSymbolTokRule());
 				}
-				pushFollow(FOLLOW_ruleSymbolTok_in_entryRuleSymbolTok5359);
+				pushFollow(FOLLOW_1);
 				iv_ruleSymbolTok = ruleSymbolTok();
 
 				state._fsp--;
@@ -8042,7 +7846,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleSymbolTok;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleSymbolTok5369);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -8058,13 +7862,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleSymbolTok"
 
 
 	// $ANTLR start "ruleSymbolTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2432:1: ruleSymbolTok returns [EObject current=null] : ( () ( ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT )
-	// ) ) ) ;
+	// InternalCSS.g:2432:1: ruleSymbolTok returns [EObject current=null] : ( () ( ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) ) ) ) ;
 	public final EObject ruleSymbolTok() throws RecognitionException {
 		EObject current = null;
 
@@ -8074,14 +7876,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2435:28: ( ( () ( ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) ) ) ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2436:1: ( () ( ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) ) ) )
+			// InternalCSS.g:2435:28: ( ( () ( ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) ) ) ) )
+			// InternalCSS.g:2436:1: ( () ( ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) ) ) )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2436:1: ( () ( ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) ) ) )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2436:2: () ( ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) ) )
+				// InternalCSS.g:2436:1: ( () ( ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) ) ) )
+				// InternalCSS.g:2436:2: () ( ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) ) )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2436:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2437:5:
+					// InternalCSS.g:2436:2: ()
+					// InternalCSS.g:2437:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -8093,37 +7895,34 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2442:2: ( ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2443:1: ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) )
+					// InternalCSS.g:2442:2: ( ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) ) )
+					// InternalCSS.g:2443:1: ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2443:1: ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2444:1: (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT )
+						// InternalCSS.g:2443:1: ( (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT ) )
+						// InternalCSS.g:2444:1: (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2444:1: (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT )
+							// InternalCSS.g:2444:1: (lv_symbol_1_1= RULE_COMMA | lv_symbol_1_2= RULE_PERCENT )
 							int alt63 = 2;
 							int LA63_0 = input.LA(1);
 
 							if ((LA63_0 == RULE_COMMA)) {
 								alt63 = 1;
-							}
-							else if ((LA63_0 == RULE_PERCENT)) {
+							} else if ((LA63_0 == RULE_PERCENT)) {
 								alt63 = 2;
-							}
-							else {
+							} else {
 								if (state.backtracking > 0) {
 									state.failed = true;
 									return current;
 								}
-								NoViableAltException nvae =
-										new NoViableAltException("", 63, 0, input);
+								NoViableAltException nvae = new NoViableAltException("", 63, 0, input);
 
 								throw nvae;
 							}
 							switch (alt63) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2445:3: lv_symbol_1_1= RULE_COMMA
+							// InternalCSS.g:2445:3: lv_symbol_1_1= RULE_COMMA
 							{
-								lv_symbol_1_1 = (Token) match(input, RULE_COMMA, FOLLOW_RULE_COMMA_in_ruleSymbolTok5422);
+								lv_symbol_1_1 = (Token) match(input, RULE_COMMA, FOLLOW_2);
 								if (state.failed) {
 									return current;
 								}
@@ -8141,16 +7940,16 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 											current,
 											"symbol",
 											lv_symbol_1_1,
-											"COMMA");
+											"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.COMMA");
 
 								}
 
 							}
 								break;
 							case 2:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2460:8: lv_symbol_1_2= RULE_PERCENT
+							// InternalCSS.g:2460:8: lv_symbol_1_2= RULE_PERCENT
 							{
-								lv_symbol_1_2 = (Token) match(input, RULE_PERCENT, FOLLOW_RULE_PERCENT_in_ruleSymbolTok5442);
+								lv_symbol_1_2 = (Token) match(input, RULE_PERCENT, FOLLOW_2);
 								if (state.failed) {
 									return current;
 								}
@@ -8168,7 +7967,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 											current,
 											"symbol",
 											lv_symbol_1_2,
-											"PERCENT");
+											"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.PERCENT");
 
 								}
 
@@ -8201,12 +8000,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleSymbolTok"
 
 
 	// $ANTLR start "entryRuleWSTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2486:1: entryRuleWSTok returns [EObject current=null] : iv_ruleWSTok= ruleWSTok EOF ;
+	// InternalCSS.g:2486:1: entryRuleWSTok returns [EObject current=null] : iv_ruleWSTok= ruleWSTok EOF ;
 	public final EObject entryRuleWSTok() throws RecognitionException {
 		EObject current = null;
 
@@ -8214,13 +8012,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2487:2: (iv_ruleWSTok= ruleWSTok EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2488:2: iv_ruleWSTok= ruleWSTok EOF
+			// InternalCSS.g:2487:2: (iv_ruleWSTok= ruleWSTok EOF )
+			// InternalCSS.g:2488:2: iv_ruleWSTok= ruleWSTok EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getWSTokRule());
 				}
-				pushFollow(FOLLOW_ruleWSTok_in_entryRuleWSTok5486);
+				pushFollow(FOLLOW_1);
 				iv_ruleWSTok = ruleWSTok();
 
 				state._fsp--;
@@ -8230,7 +8028,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleWSTok;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleWSTok5496);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -8246,12 +8044,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleWSTok"
 
 
 	// $ANTLR start "ruleWSTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2495:1: ruleWSTok returns [EObject current=null] : ( () this_WS_1= RULE_WS ) ;
+	// InternalCSS.g:2495:1: ruleWSTok returns [EObject current=null] : ( () this_WS_1= RULE_WS ) ;
 	public final EObject ruleWSTok() throws RecognitionException {
 		EObject current = null;
 
@@ -8260,14 +8057,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2498:28: ( ( () this_WS_1= RULE_WS ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2499:1: ( () this_WS_1= RULE_WS )
+			// InternalCSS.g:2498:28: ( ( () this_WS_1= RULE_WS ) )
+			// InternalCSS.g:2499:1: ( () this_WS_1= RULE_WS )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2499:1: ( () this_WS_1= RULE_WS )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2499:2: () this_WS_1= RULE_WS
+				// InternalCSS.g:2499:1: ( () this_WS_1= RULE_WS )
+				// InternalCSS.g:2499:2: () this_WS_1= RULE_WS
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2499:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2500:5:
+					// InternalCSS.g:2499:2: ()
+					// InternalCSS.g:2500:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -8279,7 +8076,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					this_WS_1 = (Token) match(input, RULE_WS, FOLLOW_RULE_WS_in_ruleWSTok5541);
+					this_WS_1 = (Token) match(input, RULE_WS, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -8306,12 +8103,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleWSTok"
 
 
 	// $ANTLR start "entryRuleStringTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2517:1: entryRuleStringTok returns [EObject current=null] : iv_ruleStringTok= ruleStringTok EOF ;
+	// InternalCSS.g:2517:1: entryRuleStringTok returns [EObject current=null] : iv_ruleStringTok= ruleStringTok EOF ;
 	public final EObject entryRuleStringTok() throws RecognitionException {
 		EObject current = null;
 
@@ -8319,13 +8115,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2518:2: (iv_ruleStringTok= ruleStringTok EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2519:2: iv_ruleStringTok= ruleStringTok EOF
+			// InternalCSS.g:2518:2: (iv_ruleStringTok= ruleStringTok EOF )
+			// InternalCSS.g:2519:2: iv_ruleStringTok= ruleStringTok EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getStringTokRule());
 				}
-				pushFollow(FOLLOW_ruleStringTok_in_entryRuleStringTok5576);
+				pushFollow(FOLLOW_1);
 				iv_ruleStringTok = ruleStringTok();
 
 				state._fsp--;
@@ -8335,7 +8131,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleStringTok;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleStringTok5586);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -8351,12 +8147,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleStringTok"
 
 
 	// $ANTLR start "ruleStringTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2526:1: ruleStringTok returns [EObject current=null] : ( () ( (lv_value_1_0= RULE_CSSSTRING ) ) ) ;
+	// InternalCSS.g:2526:1: ruleStringTok returns [EObject current=null] : ( () ( (lv_value_1_0= RULE_CSSSTRING ) ) ) ;
 	public final EObject ruleStringTok() throws RecognitionException {
 		EObject current = null;
 
@@ -8365,14 +8160,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2529:28: ( ( () ( (lv_value_1_0= RULE_CSSSTRING ) ) ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2530:1: ( () ( (lv_value_1_0= RULE_CSSSTRING ) ) )
+			// InternalCSS.g:2529:28: ( ( () ( (lv_value_1_0= RULE_CSSSTRING ) ) ) )
+			// InternalCSS.g:2530:1: ( () ( (lv_value_1_0= RULE_CSSSTRING ) ) )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2530:1: ( () ( (lv_value_1_0= RULE_CSSSTRING ) ) )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2530:2: () ( (lv_value_1_0= RULE_CSSSTRING ) )
+				// InternalCSS.g:2530:1: ( () ( (lv_value_1_0= RULE_CSSSTRING ) ) )
+				// InternalCSS.g:2530:2: () ( (lv_value_1_0= RULE_CSSSTRING ) )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2530:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2531:5:
+					// InternalCSS.g:2530:2: ()
+					// InternalCSS.g:2531:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -8384,13 +8179,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2536:2: ( (lv_value_1_0= RULE_CSSSTRING ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2537:1: (lv_value_1_0= RULE_CSSSTRING )
+					// InternalCSS.g:2536:2: ( (lv_value_1_0= RULE_CSSSTRING ) )
+					// InternalCSS.g:2537:1: (lv_value_1_0= RULE_CSSSTRING )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2537:1: (lv_value_1_0= RULE_CSSSTRING )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2538:3: lv_value_1_0= RULE_CSSSTRING
+						// InternalCSS.g:2537:1: (lv_value_1_0= RULE_CSSSTRING )
+						// InternalCSS.g:2538:3: lv_value_1_0= RULE_CSSSTRING
 						{
-							lv_value_1_0 = (Token) match(input, RULE_CSSSTRING, FOLLOW_RULE_CSSSTRING_in_ruleStringTok5637);
+							lv_value_1_0 = (Token) match(input, RULE_CSSSTRING, FOLLOW_2);
 							if (state.failed) {
 								return current;
 							}
@@ -8408,7 +8203,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"value",
 										lv_value_1_0,
-										"CSSSTRING");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CSSSTRING");
 
 							}
 
@@ -8435,12 +8230,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleStringTok"
 
 
 	// $ANTLR start "entryRuleNumberTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2562:1: entryRuleNumberTok returns [EObject current=null] : iv_ruleNumberTok= ruleNumberTok EOF ;
+	// InternalCSS.g:2562:1: entryRuleNumberTok returns [EObject current=null] : iv_ruleNumberTok= ruleNumberTok EOF ;
 	public final EObject entryRuleNumberTok() throws RecognitionException {
 		EObject current = null;
 
@@ -8451,13 +8245,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2566:2: (iv_ruleNumberTok= ruleNumberTok EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2567:2: iv_ruleNumberTok= ruleNumberTok EOF
+			// InternalCSS.g:2566:2: (iv_ruleNumberTok= ruleNumberTok EOF )
+			// InternalCSS.g:2567:2: iv_ruleNumberTok= ruleNumberTok EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getNumberTokRule());
 				}
-				pushFollow(FOLLOW_ruleNumberTok_in_entryRuleNumberTok5684);
+				pushFollow(FOLLOW_1);
 				iv_ruleNumberTok = ruleNumberTok();
 
 				state._fsp--;
@@ -8467,7 +8261,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleNumberTok;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleNumberTok5694);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -8486,12 +8280,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleNumberTok"
 
 
 	// $ANTLR start "ruleNumberTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2577:1: ruleNumberTok returns [EObject current=null] : ( () ( (lv_val_1_0= ruleNum ) ) ) ;
+	// InternalCSS.g:2577:1: ruleNumberTok returns [EObject current=null] : ( () ( (lv_val_1_0= ruleNum ) ) ) ;
 	public final EObject ruleNumberTok() throws RecognitionException {
 		EObject current = null;
 
@@ -8502,14 +8295,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2581:28: ( ( () ( (lv_val_1_0= ruleNum ) ) ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2582:1: ( () ( (lv_val_1_0= ruleNum ) ) )
+			// InternalCSS.g:2581:28: ( ( () ( (lv_val_1_0= ruleNum ) ) ) )
+			// InternalCSS.g:2582:1: ( () ( (lv_val_1_0= ruleNum ) ) )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2582:1: ( () ( (lv_val_1_0= ruleNum ) ) )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2582:2: () ( (lv_val_1_0= ruleNum ) )
+				// InternalCSS.g:2582:1: ( () ( (lv_val_1_0= ruleNum ) ) )
+				// InternalCSS.g:2582:2: () ( (lv_val_1_0= ruleNum ) )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2582:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2583:5:
+					// InternalCSS.g:2582:2: ()
+					// InternalCSS.g:2583:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -8521,18 +8314,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2588:2: ( (lv_val_1_0= ruleNum ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2589:1: (lv_val_1_0= ruleNum )
+					// InternalCSS.g:2588:2: ( (lv_val_1_0= ruleNum ) )
+					// InternalCSS.g:2589:1: (lv_val_1_0= ruleNum )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2589:1: (lv_val_1_0= ruleNum )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2590:3: lv_val_1_0= ruleNum
+						// InternalCSS.g:2589:1: (lv_val_1_0= ruleNum )
+						// InternalCSS.g:2590:3: lv_val_1_0= ruleNum
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getNumberTokAccess().getValNumParserRuleCall_1_0());
 
 							}
-							pushFollow(FOLLOW_ruleNum_in_ruleNumberTok5753);
+							pushFollow(FOLLOW_2);
 							lv_val_1_0 = ruleNum();
 
 							state._fsp--;
@@ -8548,7 +8341,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"val",
 										lv_val_1_0,
-										"Num");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Num");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -8579,12 +8372,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleNumberTok"
 
 
 	// $ANTLR start "entryRuleUrlTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2617:1: entryRuleUrlTok returns [EObject current=null] : iv_ruleUrlTok= ruleUrlTok EOF ;
+	// InternalCSS.g:2617:1: entryRuleUrlTok returns [EObject current=null] : iv_ruleUrlTok= ruleUrlTok EOF ;
 	public final EObject entryRuleUrlTok() throws RecognitionException {
 		EObject current = null;
 
@@ -8592,13 +8384,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2618:2: (iv_ruleUrlTok= ruleUrlTok EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2619:2: iv_ruleUrlTok= ruleUrlTok EOF
+			// InternalCSS.g:2618:2: (iv_ruleUrlTok= ruleUrlTok EOF )
+			// InternalCSS.g:2619:2: iv_ruleUrlTok= ruleUrlTok EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getUrlTokRule());
 				}
-				pushFollow(FOLLOW_ruleUrlTok_in_entryRuleUrlTok5793);
+				pushFollow(FOLLOW_1);
 				iv_ruleUrlTok = ruleUrlTok();
 
 				state._fsp--;
@@ -8608,7 +8400,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleUrlTok;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleUrlTok5803);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -8624,12 +8416,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleUrlTok"
 
 
 	// $ANTLR start "ruleUrlTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2626:1: ruleUrlTok returns [EObject current=null] : ( () ( (lv_url_1_0= ruleURLType ) ) ) ;
+	// InternalCSS.g:2626:1: ruleUrlTok returns [EObject current=null] : ( () ( (lv_url_1_0= ruleURLType ) ) ) ;
 	public final EObject ruleUrlTok() throws RecognitionException {
 		EObject current = null;
 
@@ -8639,14 +8430,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2629:28: ( ( () ( (lv_url_1_0= ruleURLType ) ) ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2630:1: ( () ( (lv_url_1_0= ruleURLType ) ) )
+			// InternalCSS.g:2629:28: ( ( () ( (lv_url_1_0= ruleURLType ) ) ) )
+			// InternalCSS.g:2630:1: ( () ( (lv_url_1_0= ruleURLType ) ) )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2630:1: ( () ( (lv_url_1_0= ruleURLType ) ) )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2630:2: () ( (lv_url_1_0= ruleURLType ) )
+				// InternalCSS.g:2630:1: ( () ( (lv_url_1_0= ruleURLType ) ) )
+				// InternalCSS.g:2630:2: () ( (lv_url_1_0= ruleURLType ) )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2630:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2631:5:
+					// InternalCSS.g:2630:2: ()
+					// InternalCSS.g:2631:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -8658,18 +8449,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2636:2: ( (lv_url_1_0= ruleURLType ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2637:1: (lv_url_1_0= ruleURLType )
+					// InternalCSS.g:2636:2: ( (lv_url_1_0= ruleURLType ) )
+					// InternalCSS.g:2637:1: (lv_url_1_0= ruleURLType )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2637:1: (lv_url_1_0= ruleURLType )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2638:3: lv_url_1_0= ruleURLType
+						// InternalCSS.g:2637:1: (lv_url_1_0= ruleURLType )
+						// InternalCSS.g:2638:3: lv_url_1_0= ruleURLType
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getUrlTokAccess().getUrlURLTypeParserRuleCall_1_0());
 
 							}
-							pushFollow(FOLLOW_ruleURLType_in_ruleUrlTok5858);
+							pushFollow(FOLLOW_2);
 							lv_url_1_0 = ruleURLType();
 
 							state._fsp--;
@@ -8685,7 +8476,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"url",
 										lv_url_1_0,
-										"URLType");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.URLType");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -8713,12 +8504,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleUrlTok"
 
 
 	// $ANTLR start "entryRuleColorTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2662:1: entryRuleColorTok returns [EObject current=null] : iv_ruleColorTok= ruleColorTok EOF ;
+	// InternalCSS.g:2662:1: entryRuleColorTok returns [EObject current=null] : iv_ruleColorTok= ruleColorTok EOF ;
 	public final EObject entryRuleColorTok() throws RecognitionException {
 		EObject current = null;
 
@@ -8729,13 +8519,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2666:2: (iv_ruleColorTok= ruleColorTok EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2667:2: iv_ruleColorTok= ruleColorTok EOF
+			// InternalCSS.g:2666:2: (iv_ruleColorTok= ruleColorTok EOF )
+			// InternalCSS.g:2667:2: iv_ruleColorTok= ruleColorTok EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getColorTokRule());
 				}
-				pushFollow(FOLLOW_ruleColorTok_in_entryRuleColorTok5900);
+				pushFollow(FOLLOW_1);
 				iv_ruleColorTok = ruleColorTok();
 
 				state._fsp--;
@@ -8745,7 +8535,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleColorTok;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleColorTok5910);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -8764,12 +8554,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleColorTok"
 
 
 	// $ANTLR start "ruleColorTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2677:1: ruleColorTok returns [EObject current=null] : ( () ( (lv_value_1_0= ruleHex ) ) ) ;
+	// InternalCSS.g:2677:1: ruleColorTok returns [EObject current=null] : ( () ( (lv_value_1_0= ruleHex ) ) ) ;
 	public final EObject ruleColorTok() throws RecognitionException {
 		EObject current = null;
 
@@ -8780,14 +8569,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2681:28: ( ( () ( (lv_value_1_0= ruleHex ) ) ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2682:1: ( () ( (lv_value_1_0= ruleHex ) ) )
+			// InternalCSS.g:2681:28: ( ( () ( (lv_value_1_0= ruleHex ) ) ) )
+			// InternalCSS.g:2682:1: ( () ( (lv_value_1_0= ruleHex ) ) )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2682:1: ( () ( (lv_value_1_0= ruleHex ) ) )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2682:2: () ( (lv_value_1_0= ruleHex ) )
+				// InternalCSS.g:2682:1: ( () ( (lv_value_1_0= ruleHex ) ) )
+				// InternalCSS.g:2682:2: () ( (lv_value_1_0= ruleHex ) )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2682:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2683:5:
+					// InternalCSS.g:2682:2: ()
+					// InternalCSS.g:2683:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -8799,18 +8588,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2688:2: ( (lv_value_1_0= ruleHex ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2689:1: (lv_value_1_0= ruleHex )
+					// InternalCSS.g:2688:2: ( (lv_value_1_0= ruleHex ) )
+					// InternalCSS.g:2689:1: (lv_value_1_0= ruleHex )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2689:1: (lv_value_1_0= ruleHex )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2690:3: lv_value_1_0= ruleHex
+						// InternalCSS.g:2689:1: (lv_value_1_0= ruleHex )
+						// InternalCSS.g:2690:3: lv_value_1_0= ruleHex
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getColorTokAccess().getValueHexParserRuleCall_1_0());
 
 							}
-							pushFollow(FOLLOW_ruleHex_in_ruleColorTok5969);
+							pushFollow(FOLLOW_2);
 							lv_value_1_0 = ruleHex();
 
 							state._fsp--;
@@ -8826,7 +8615,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"value",
 										lv_value_1_0,
-										"Hex");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Hex");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -8857,13 +8646,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleColorTok"
 
 
 	// $ANTLR start "entryRuleIdentifierOrFuncTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2717:1: entryRuleIdentifierOrFuncTok returns [EObject current=null] : iv_ruleIdentifierOrFuncTok= ruleIdentifierOrFuncTok
-	// EOF ;
+	// InternalCSS.g:2717:1: entryRuleIdentifierOrFuncTok returns [EObject current=null] : iv_ruleIdentifierOrFuncTok= ruleIdentifierOrFuncTok EOF ;
 	public final EObject entryRuleIdentifierOrFuncTok() throws RecognitionException {
 		EObject current = null;
 
@@ -8874,13 +8661,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens("RULE_ML_COMMENT");
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2721:2: (iv_ruleIdentifierOrFuncTok= ruleIdentifierOrFuncTok EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2722:2: iv_ruleIdentifierOrFuncTok= ruleIdentifierOrFuncTok EOF
+			// InternalCSS.g:2721:2: (iv_ruleIdentifierOrFuncTok= ruleIdentifierOrFuncTok EOF )
+			// InternalCSS.g:2722:2: iv_ruleIdentifierOrFuncTok= ruleIdentifierOrFuncTok EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getIdentifierOrFuncTokRule());
 				}
-				pushFollow(FOLLOW_ruleIdentifierOrFuncTok_in_entryRuleIdentifierOrFuncTok6015);
+				pushFollow(FOLLOW_1);
 				iv_ruleIdentifierOrFuncTok = ruleIdentifierOrFuncTok();
 
 				state._fsp--;
@@ -8890,7 +8677,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleIdentifierOrFuncTok;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleIdentifierOrFuncTok6025);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -8909,13 +8696,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleIdentifierOrFuncTok"
 
 
 	// $ANTLR start "ruleIdentifierOrFuncTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2732:1: ruleIdentifierOrFuncTok returns [EObject current=null] : ( () ( (lv_name_1_0= ruleIdentifier ) ) ( () otherlv_3=
-	// '(' ( (lv_params_4_0= ruleCssTok ) )+ otherlv_5= ')' )? ) ;
+	// InternalCSS.g:2732:1: ruleIdentifierOrFuncTok returns [EObject current=null] : ( () ( (lv_name_1_0= ruleIdentifier ) ) ( () otherlv_3= '(' ( (lv_params_4_0= ruleCssTok ) )+ otherlv_5= ')' )? ) ;
 	public final EObject ruleIdentifierOrFuncTok() throws RecognitionException {
 		EObject current = null;
 
@@ -8930,18 +8715,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens("RULE_ML_COMMENT");
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2736:28: ( ( () ( (lv_name_1_0= ruleIdentifier ) ) ( () otherlv_3= '(' ( (lv_params_4_0= ruleCssTok ) )+
-			// otherlv_5= ')' )? ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2737:1: ( () ( (lv_name_1_0= ruleIdentifier ) ) ( () otherlv_3= '(' ( (lv_params_4_0= ruleCssTok ) )+ otherlv_5=
-			// ')' )? )
+			// InternalCSS.g:2736:28: ( ( () ( (lv_name_1_0= ruleIdentifier ) ) ( () otherlv_3= '(' ( (lv_params_4_0= ruleCssTok ) )+ otherlv_5= ')' )? ) )
+			// InternalCSS.g:2737:1: ( () ( (lv_name_1_0= ruleIdentifier ) ) ( () otherlv_3= '(' ( (lv_params_4_0= ruleCssTok ) )+ otherlv_5= ')' )? )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2737:1: ( () ( (lv_name_1_0= ruleIdentifier ) ) ( () otherlv_3= '(' ( (lv_params_4_0= ruleCssTok ) )+
-				// otherlv_5= ')' )? )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2737:2: () ( (lv_name_1_0= ruleIdentifier ) ) ( () otherlv_3= '(' ( (lv_params_4_0= ruleCssTok ) )+ otherlv_5=
-				// ')' )?
+				// InternalCSS.g:2737:1: ( () ( (lv_name_1_0= ruleIdentifier ) ) ( () otherlv_3= '(' ( (lv_params_4_0= ruleCssTok ) )+ otherlv_5= ')' )? )
+				// InternalCSS.g:2737:2: () ( (lv_name_1_0= ruleIdentifier ) ) ( () otherlv_3= '(' ( (lv_params_4_0= ruleCssTok ) )+ otherlv_5= ')' )?
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2737:2: ()
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2738:5:
+					// InternalCSS.g:2737:2: ()
+					// InternalCSS.g:2738:5:
 					{
 						if (state.backtracking == 0) {
 
@@ -8953,18 +8734,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2743:2: ( (lv_name_1_0= ruleIdentifier ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2744:1: (lv_name_1_0= ruleIdentifier )
+					// InternalCSS.g:2743:2: ( (lv_name_1_0= ruleIdentifier ) )
+					// InternalCSS.g:2744:1: (lv_name_1_0= ruleIdentifier )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2744:1: (lv_name_1_0= ruleIdentifier )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2745:3: lv_name_1_0= ruleIdentifier
+						// InternalCSS.g:2744:1: (lv_name_1_0= ruleIdentifier )
+						// InternalCSS.g:2745:3: lv_name_1_0= ruleIdentifier
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getIdentifierOrFuncTokAccess().getNameIdentifierParserRuleCall_1_0());
 
 							}
-							pushFollow(FOLLOW_ruleIdentifier_in_ruleIdentifierOrFuncTok6084);
+							pushFollow(FOLLOW_43);
 							lv_name_1_0 = ruleIdentifier();
 
 							state._fsp--;
@@ -8980,7 +8761,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"name",
 										lv_name_1_0,
-										"Identifier");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Identifier");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -8990,7 +8771,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2761:2: ( () otherlv_3= '(' ( (lv_params_4_0= ruleCssTok ) )+ otherlv_5= ')' )?
+					// InternalCSS.g:2761:2: ( () otherlv_3= '(' ( (lv_params_4_0= ruleCssTok ) )+ otherlv_5= ')' )?
 					int alt65 = 2;
 					int LA65_0 = input.LA(1);
 
@@ -8999,10 +8780,10 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 					switch (alt65) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2761:3: () otherlv_3= '(' ( (lv_params_4_0= ruleCssTok ) )+ otherlv_5= ')'
+					// InternalCSS.g:2761:3: () otherlv_3= '(' ( (lv_params_4_0= ruleCssTok ) )+ otherlv_5= ')'
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2761:3: ()
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2762:5:
+						// InternalCSS.g:2761:3: ()
+						// InternalCSS.g:2762:5:
 						{
 							if (state.backtracking == 0) {
 
@@ -9014,7 +8795,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						}
 
-						otherlv_3 = (Token) match(input, 45, FOLLOW_45_in_ruleIdentifierOrFuncTok6106);
+						otherlv_3 = (Token) match(input, 45, FOLLOW_36);
 						if (state.failed) {
 							return current;
 						}
@@ -9023,7 +8804,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							newLeafNode(otherlv_3, grammarAccess.getIdentifierOrFuncTokAccess().getLeftParenthesisKeyword_2_1());
 
 						}
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2771:1: ( (lv_params_4_0= ruleCssTok ) )+
+						// InternalCSS.g:2771:1: ( (lv_params_4_0= ruleCssTok ) )+
 						int cnt64 = 0;
 						loop64: do {
 							int alt64 = 2;
@@ -9036,17 +8817,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 							switch (alt64) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2772:1: (lv_params_4_0= ruleCssTok )
+							// InternalCSS.g:2772:1: (lv_params_4_0= ruleCssTok )
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2772:1: (lv_params_4_0= ruleCssTok )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2773:3: lv_params_4_0= ruleCssTok
+								// InternalCSS.g:2772:1: (lv_params_4_0= ruleCssTok )
+								// InternalCSS.g:2773:3: lv_params_4_0= ruleCssTok
 								{
 									if (state.backtracking == 0) {
 
 										newCompositeNode(grammarAccess.getIdentifierOrFuncTokAccess().getParamsCssTokParserRuleCall_2_2_0());
 
 									}
-									pushFollow(FOLLOW_ruleCssTok_in_ruleIdentifierOrFuncTok6127);
+									pushFollow(FOLLOW_41);
 									lv_params_4_0 = ruleCssTok();
 
 									state._fsp--;
@@ -9062,7 +8843,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 												current,
 												"params",
 												lv_params_4_0,
-												"CssTok");
+												"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CssTok");
 										afterParserOrEnumRuleCall();
 
 									}
@@ -9081,14 +8862,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 									state.failed = true;
 									return current;
 								}
-								EarlyExitException eee =
-										new EarlyExitException(64, input);
+								EarlyExitException eee = new EarlyExitException(64, input);
 								throw eee;
 							}
 							cnt64++;
 						} while (true);
 
-						otherlv_5 = (Token) match(input, 44, FOLLOW_44_in_ruleIdentifierOrFuncTok6140);
+						otherlv_5 = (Token) match(input, 44, FOLLOW_2);
 						if (state.failed) {
 							return current;
 						}
@@ -9124,12 +8904,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleIdentifierOrFuncTok"
 
 
 	// $ANTLR start "entryRuleCssTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2804:1: entryRuleCssTok returns [EObject current=null] : iv_ruleCssTok= ruleCssTok EOF ;
+	// InternalCSS.g:2804:1: entryRuleCssTok returns [EObject current=null] : iv_ruleCssTok= ruleCssTok EOF ;
 	public final EObject entryRuleCssTok() throws RecognitionException {
 		EObject current = null;
 
@@ -9140,13 +8919,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens("RULE_ML_COMMENT");
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2808:2: (iv_ruleCssTok= ruleCssTok EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2809:2: iv_ruleCssTok= ruleCssTok EOF
+			// InternalCSS.g:2808:2: (iv_ruleCssTok= ruleCssTok EOF )
+			// InternalCSS.g:2809:2: iv_ruleCssTok= ruleCssTok EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getCssTokRule());
 				}
-				pushFollow(FOLLOW_ruleCssTok_in_entryRuleCssTok6188);
+				pushFollow(FOLLOW_1);
 				iv_ruleCssTok = ruleCssTok();
 
 				state._fsp--;
@@ -9156,7 +8935,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleCssTok;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleCssTok6198);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -9175,13 +8954,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleCssTok"
 
 
 	// $ANTLR start "ruleCssTok"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2819:1: ruleCssTok returns [EObject current=null] : (this_IdentifierOrFuncTok_0= ruleIdentifierOrFuncTok |
-	// this_SymbolTok_1= ruleSymbolTok | this_WSTok_2= ruleWSTok | this_StringTok_3= ruleStringTok | this_NumberTok_4= ruleNumberTok | this_UrlTok_5= ruleUrlTok | this_ColorTok_6= ruleColorTok ) ;
+	// InternalCSS.g:2819:1: ruleCssTok returns [EObject current=null] : (this_IdentifierOrFuncTok_0= ruleIdentifierOrFuncTok | this_SymbolTok_1= ruleSymbolTok | this_WSTok_2= ruleWSTok | this_StringTok_3= ruleStringTok | this_NumberTok_4= ruleNumberTok |
+	// this_UrlTok_5= ruleUrlTok | this_ColorTok_6= ruleColorTok ) ;
 	public final EObject ruleCssTok() throws RecognitionException {
 		EObject current = null;
 
@@ -9204,13 +8982,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens("RULE_ML_COMMENT");
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2823:28: ( (this_IdentifierOrFuncTok_0= ruleIdentifierOrFuncTok | this_SymbolTok_1= ruleSymbolTok | this_WSTok_2=
-			// ruleWSTok | this_StringTok_3= ruleStringTok | this_NumberTok_4= ruleNumberTok | this_UrlTok_5= ruleUrlTok | this_ColorTok_6= ruleColorTok ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2824:1: (this_IdentifierOrFuncTok_0= ruleIdentifierOrFuncTok | this_SymbolTok_1= ruleSymbolTok | this_WSTok_2=
-			// ruleWSTok | this_StringTok_3= ruleStringTok | this_NumberTok_4= ruleNumberTok | this_UrlTok_5= ruleUrlTok | this_ColorTok_6= ruleColorTok )
+			// InternalCSS.g:2823:28: ( (this_IdentifierOrFuncTok_0= ruleIdentifierOrFuncTok | this_SymbolTok_1= ruleSymbolTok | this_WSTok_2= ruleWSTok | this_StringTok_3= ruleStringTok | this_NumberTok_4= ruleNumberTok | this_UrlTok_5= ruleUrlTok |
+			// this_ColorTok_6= ruleColorTok ) )
+			// InternalCSS.g:2824:1: (this_IdentifierOrFuncTok_0= ruleIdentifierOrFuncTok | this_SymbolTok_1= ruleSymbolTok | this_WSTok_2= ruleWSTok | this_StringTok_3= ruleStringTok | this_NumberTok_4= ruleNumberTok | this_UrlTok_5= ruleUrlTok |
+			// this_ColorTok_6= ruleColorTok )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2824:1: (this_IdentifierOrFuncTok_0= ruleIdentifierOrFuncTok | this_SymbolTok_1= ruleSymbolTok | this_WSTok_2=
-				// ruleWSTok | this_StringTok_3= ruleStringTok | this_NumberTok_4= ruleNumberTok | this_UrlTok_5= ruleUrlTok | this_ColorTok_6= ruleColorTok )
+				// InternalCSS.g:2824:1: (this_IdentifierOrFuncTok_0= ruleIdentifierOrFuncTok | this_SymbolTok_1= ruleSymbolTok | this_WSTok_2= ruleWSTok | this_StringTok_3= ruleStringTok | this_NumberTok_4= ruleNumberTok | this_UrlTok_5= ruleUrlTok |
+				// this_ColorTok_6= ruleColorTok )
 				int alt66 = 7;
 				switch (input.LA(1)) {
 				case RULE_DASH: {
@@ -9218,17 +8996,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					if ((LA66_1 == RULE_ONE_INT || LA66_1 == 41)) {
 						alt66 = 5;
-					}
-					else if (((LA66_1 >= RULE_UNDERSCORE && LA66_1 <= RULE_ONE_NON_HEX_LETTER) || (LA66_1 >= 56 && LA66_1 <= 59))) {
+					} else if (((LA66_1 >= RULE_UNDERSCORE && LA66_1 <= RULE_ONE_NON_HEX_LETTER) || (LA66_1 >= 56 && LA66_1 <= 59))) {
 						alt66 = 1;
-					}
-					else {
+					} else {
 						if (state.backtracking > 0) {
 							state.failed = true;
 							return current;
 						}
-						NoViableAltException nvae =
-								new NoViableAltException("", 66, 1, input);
+						NoViableAltException nvae = new NoViableAltException("", 66, 1, input);
 
 						throw nvae;
 					}
@@ -9276,22 +9051,21 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						state.failed = true;
 						return current;
 					}
-					NoViableAltException nvae =
-							new NoViableAltException("", 66, 0, input);
+					NoViableAltException nvae = new NoViableAltException("", 66, 0, input);
 
 					throw nvae;
 				}
 
 				switch (alt66) {
 				case 1:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2825:5: this_IdentifierOrFuncTok_0= ruleIdentifierOrFuncTok
+				// InternalCSS.g:2825:5: this_IdentifierOrFuncTok_0= ruleIdentifierOrFuncTok
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getCssTokAccess().getIdentifierOrFuncTokParserRuleCall_0());
 
 					}
-					pushFollow(FOLLOW_ruleIdentifierOrFuncTok_in_ruleCssTok6249);
+					pushFollow(FOLLOW_2);
 					this_IdentifierOrFuncTok_0 = ruleIdentifierOrFuncTok();
 
 					state._fsp--;
@@ -9308,14 +9082,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 2:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2835:5: this_SymbolTok_1= ruleSymbolTok
+				// InternalCSS.g:2835:5: this_SymbolTok_1= ruleSymbolTok
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getCssTokAccess().getSymbolTokParserRuleCall_1());
 
 					}
-					pushFollow(FOLLOW_ruleSymbolTok_in_ruleCssTok6276);
+					pushFollow(FOLLOW_2);
 					this_SymbolTok_1 = ruleSymbolTok();
 
 					state._fsp--;
@@ -9332,14 +9106,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 3:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2845:5: this_WSTok_2= ruleWSTok
+				// InternalCSS.g:2845:5: this_WSTok_2= ruleWSTok
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getCssTokAccess().getWSTokParserRuleCall_2());
 
 					}
-					pushFollow(FOLLOW_ruleWSTok_in_ruleCssTok6303);
+					pushFollow(FOLLOW_2);
 					this_WSTok_2 = ruleWSTok();
 
 					state._fsp--;
@@ -9356,14 +9130,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 4:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2855:5: this_StringTok_3= ruleStringTok
+				// InternalCSS.g:2855:5: this_StringTok_3= ruleStringTok
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getCssTokAccess().getStringTokParserRuleCall_3());
 
 					}
-					pushFollow(FOLLOW_ruleStringTok_in_ruleCssTok6330);
+					pushFollow(FOLLOW_2);
 					this_StringTok_3 = ruleStringTok();
 
 					state._fsp--;
@@ -9380,14 +9154,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 5:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2865:5: this_NumberTok_4= ruleNumberTok
+				// InternalCSS.g:2865:5: this_NumberTok_4= ruleNumberTok
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getCssTokAccess().getNumberTokParserRuleCall_4());
 
 					}
-					pushFollow(FOLLOW_ruleNumberTok_in_ruleCssTok6357);
+					pushFollow(FOLLOW_2);
 					this_NumberTok_4 = ruleNumberTok();
 
 					state._fsp--;
@@ -9404,14 +9178,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 6:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2875:5: this_UrlTok_5= ruleUrlTok
+				// InternalCSS.g:2875:5: this_UrlTok_5= ruleUrlTok
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getCssTokAccess().getUrlTokParserRuleCall_5());
 
 					}
-					pushFollow(FOLLOW_ruleUrlTok_in_ruleCssTok6384);
+					pushFollow(FOLLOW_2);
 					this_UrlTok_5 = ruleUrlTok();
 
 					state._fsp--;
@@ -9428,14 +9202,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 7:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2885:5: this_ColorTok_6= ruleColorTok
+				// InternalCSS.g:2885:5: this_ColorTok_6= ruleColorTok
 				{
 					if (state.backtracking == 0) {
 
 						newCompositeNode(grammarAccess.getCssTokAccess().getColorTokParserRuleCall_6());
 
 					}
-					pushFollow(FOLLOW_ruleColorTok_in_ruleCssTok6411);
+					pushFollow(FOLLOW_2);
 					this_ColorTok_6 = ruleColorTok();
 
 					state._fsp--;
@@ -9472,12 +9246,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleCssTok"
 
 
 	// $ANTLR start "entryRuleURLType"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2904:1: entryRuleURLType returns [EObject current=null] : iv_ruleURLType= ruleURLType EOF ;
+	// InternalCSS.g:2904:1: entryRuleURLType returns [EObject current=null] : iv_ruleURLType= ruleURLType EOF ;
 	public final EObject entryRuleURLType() throws RecognitionException {
 		EObject current = null;
 
@@ -9488,13 +9261,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2908:2: (iv_ruleURLType= ruleURLType EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2909:2: iv_ruleURLType= ruleURLType EOF
+			// InternalCSS.g:2908:2: (iv_ruleURLType= ruleURLType EOF )
+			// InternalCSS.g:2909:2: iv_ruleURLType= ruleURLType EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getURLTypeRule());
 				}
-				pushFollow(FOLLOW_ruleURLType_in_entryRuleURLType6456);
+				pushFollow(FOLLOW_1);
 				iv_ruleURLType = ruleURLType();
 
 				state._fsp--;
@@ -9504,7 +9277,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleURLType;
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleURLType6466);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -9523,12 +9296,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleURLType"
 
 
 	// $ANTLR start "ruleURLType"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2919:1: ruleURLType returns [EObject current=null] : (otherlv_0= 'url(' ( (lv_url_1_0= ruleValidURL ) ) otherlv_2= ')' ) ;
+	// InternalCSS.g:2919:1: ruleURLType returns [EObject current=null] : (otherlv_0= 'url(' ( (lv_url_1_0= ruleValidURL ) ) otherlv_2= ')' ) ;
 	public final EObject ruleURLType() throws RecognitionException {
 		EObject current = null;
 
@@ -9541,13 +9313,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2923:28: ( (otherlv_0= 'url(' ( (lv_url_1_0= ruleValidURL ) ) otherlv_2= ')' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2924:1: (otherlv_0= 'url(' ( (lv_url_1_0= ruleValidURL ) ) otherlv_2= ')' )
+			// InternalCSS.g:2923:28: ( (otherlv_0= 'url(' ( (lv_url_1_0= ruleValidURL ) ) otherlv_2= ')' ) )
+			// InternalCSS.g:2924:1: (otherlv_0= 'url(' ( (lv_url_1_0= ruleValidURL ) ) otherlv_2= ')' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2924:1: (otherlv_0= 'url(' ( (lv_url_1_0= ruleValidURL ) ) otherlv_2= ')' )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2924:3: otherlv_0= 'url(' ( (lv_url_1_0= ruleValidURL ) ) otherlv_2= ')'
+				// InternalCSS.g:2924:1: (otherlv_0= 'url(' ( (lv_url_1_0= ruleValidURL ) ) otherlv_2= ')' )
+				// InternalCSS.g:2924:3: otherlv_0= 'url(' ( (lv_url_1_0= ruleValidURL ) ) otherlv_2= ')'
 				{
-					otherlv_0 = (Token) match(input, 49, FOLLOW_49_in_ruleURLType6507);
+					otherlv_0 = (Token) match(input, 49, FOLLOW_44);
 					if (state.failed) {
 						return current;
 					}
@@ -9556,18 +9328,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newLeafNode(otherlv_0, grammarAccess.getURLTypeAccess().getUrlKeyword_0());
 
 					}
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2928:1: ( (lv_url_1_0= ruleValidURL ) )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2929:1: (lv_url_1_0= ruleValidURL )
+					// InternalCSS.g:2928:1: ( (lv_url_1_0= ruleValidURL ) )
+					// InternalCSS.g:2929:1: (lv_url_1_0= ruleValidURL )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2929:1: (lv_url_1_0= ruleValidURL )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2930:3: lv_url_1_0= ruleValidURL
+						// InternalCSS.g:2929:1: (lv_url_1_0= ruleValidURL )
+						// InternalCSS.g:2930:3: lv_url_1_0= ruleValidURL
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getURLTypeAccess().getUrlValidURLParserRuleCall_1_0());
 
 							}
-							pushFollow(FOLLOW_ruleValidURL_in_ruleURLType6528);
+							pushFollow(FOLLOW_39);
 							lv_url_1_0 = ruleValidURL();
 
 							state._fsp--;
@@ -9583,7 +9355,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										current,
 										"url",
 										lv_url_1_0,
-										"ValidURL");
+										"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ValidURL");
 								afterParserOrEnumRuleCall();
 
 							}
@@ -9593,7 +9365,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					otherlv_2 = (Token) match(input, 44, FOLLOW_44_in_ruleURLType6540);
+					otherlv_2 = (Token) match(input, 44, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -9623,12 +9395,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleURLType"
 
 
 	// $ANTLR start "entryRuleValidURLSymbol"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2961:1: entryRuleValidURLSymbol returns [String current=null] : iv_ruleValidURLSymbol= ruleValidURLSymbol EOF ;
+	// InternalCSS.g:2961:1: entryRuleValidURLSymbol returns [String current=null] : iv_ruleValidURLSymbol= ruleValidURLSymbol EOF ;
 	public final String entryRuleValidURLSymbol() throws RecognitionException {
 		String current = null;
 
@@ -9636,13 +9407,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2962:2: (iv_ruleValidURLSymbol= ruleValidURLSymbol EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2963:2: iv_ruleValidURLSymbol= ruleValidURLSymbol EOF
+			// InternalCSS.g:2962:2: (iv_ruleValidURLSymbol= ruleValidURLSymbol EOF )
+			// InternalCSS.g:2963:2: iv_ruleValidURLSymbol= ruleValidURLSymbol EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getValidURLSymbolRule());
 				}
-				pushFollow(FOLLOW_ruleValidURLSymbol_in_entryRuleValidURLSymbol6581);
+				pushFollow(FOLLOW_1);
 				iv_ruleValidURLSymbol = ruleValidURLSymbol();
 
 				state._fsp--;
@@ -9652,7 +9423,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleValidURLSymbol.getText();
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleValidURLSymbol6592);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -9668,14 +9439,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleValidURLSymbol"
 
 
 	// $ANTLR start "ruleValidURLSymbol"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2970:1: ruleValidURLSymbol returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_DASH_0= RULE_DASH
-	// | kw= '.' | this_UNDERSCORE_2= RULE_UNDERSCORE | kw= '~' | this_COLON_4= RULE_COLON | kw= '/' | kw= '?' | this_HASHMARK_7= RULE_HASHMARK | kw= '[' | kw= ']' | kw= '@' | kw= '!' | kw= '$' | kw= '&' | kw= '*' | this_PLUS_15= RULE_PLUS | this_COMMA_16=
-	// RULE_COMMA | kw= ';' | (kw= '=' this_KeywordHack_19= ruleKeywordHack ) ) ;
+	// InternalCSS.g:2970:1: ruleValidURLSymbol returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_DASH_0= RULE_DASH | kw= '.' | this_UNDERSCORE_2= RULE_UNDERSCORE | kw= '~' | this_COLON_4= RULE_COLON | kw= '/' | kw= '?' |
+	// this_HASHMARK_7= RULE_HASHMARK | kw= '[' | kw= ']' | kw= '@' | kw= '!' | kw= '$' | kw= '&' | kw= '*' | this_PLUS_15= RULE_PLUS | this_COMMA_16= RULE_COMMA | kw= ';' | (kw= '=' this_KeywordHack_19= ruleKeywordHack ) ) ;
 	public final AntlrDatatypeRuleToken ruleValidURLSymbol() throws RecognitionException {
 		AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -9692,16 +9461,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2973:28: ( (this_DASH_0= RULE_DASH | kw= '.' | this_UNDERSCORE_2= RULE_UNDERSCORE | kw= '~' | this_COLON_4=
-			// RULE_COLON | kw= '/' | kw= '?' | this_HASHMARK_7= RULE_HASHMARK | kw= '[' | kw= ']' | kw= '@' | kw= '!' | kw= '$' | kw= '&' | kw= '*' | this_PLUS_15= RULE_PLUS | this_COMMA_16= RULE_COMMA | kw= ';' | (kw= '=' this_KeywordHack_19= ruleKeywordHack
-			// ) ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2974:1: (this_DASH_0= RULE_DASH | kw= '.' | this_UNDERSCORE_2= RULE_UNDERSCORE | kw= '~' | this_COLON_4=
-			// RULE_COLON | kw= '/' | kw= '?' | this_HASHMARK_7= RULE_HASHMARK | kw= '[' | kw= ']' | kw= '@' | kw= '!' | kw= '$' | kw= '&' | kw= '*' | this_PLUS_15= RULE_PLUS | this_COMMA_16= RULE_COMMA | kw= ';' | (kw= '=' this_KeywordHack_19= ruleKeywordHack
-			// ) )
+			// InternalCSS.g:2973:28: ( (this_DASH_0= RULE_DASH | kw= '.' | this_UNDERSCORE_2= RULE_UNDERSCORE | kw= '~' | this_COLON_4= RULE_COLON | kw= '/' | kw= '?' | this_HASHMARK_7= RULE_HASHMARK | kw= '[' | kw= ']' | kw= '@' | kw= '!' | kw= '$' | kw= '&'
+			// | kw= '*' | this_PLUS_15= RULE_PLUS | this_COMMA_16= RULE_COMMA | kw= ';' | (kw= '=' this_KeywordHack_19= ruleKeywordHack ) ) )
+			// InternalCSS.g:2974:1: (this_DASH_0= RULE_DASH | kw= '.' | this_UNDERSCORE_2= RULE_UNDERSCORE | kw= '~' | this_COLON_4= RULE_COLON | kw= '/' | kw= '?' | this_HASHMARK_7= RULE_HASHMARK | kw= '[' | kw= ']' | kw= '@' | kw= '!' | kw= '$' | kw= '&' |
+			// kw= '*' | this_PLUS_15= RULE_PLUS | this_COMMA_16= RULE_COMMA | kw= ';' | (kw= '=' this_KeywordHack_19= ruleKeywordHack ) )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2974:1: (this_DASH_0= RULE_DASH | kw= '.' | this_UNDERSCORE_2= RULE_UNDERSCORE | kw= '~' | this_COLON_4=
-				// RULE_COLON | kw= '/' | kw= '?' | this_HASHMARK_7= RULE_HASHMARK | kw= '[' | kw= ']' | kw= '@' | kw= '!' | kw= '$' | kw= '&' | kw= '*' | this_PLUS_15= RULE_PLUS | this_COMMA_16= RULE_COMMA | kw= ';' | (kw= '=' this_KeywordHack_19=
-				// ruleKeywordHack ) )
+				// InternalCSS.g:2974:1: (this_DASH_0= RULE_DASH | kw= '.' | this_UNDERSCORE_2= RULE_UNDERSCORE | kw= '~' | this_COLON_4= RULE_COLON | kw= '/' | kw= '?' | this_HASHMARK_7= RULE_HASHMARK | kw= '[' | kw= ']' | kw= '@' | kw= '!' | kw= '$' | kw=
+				// '&' | kw= '*' | this_PLUS_15= RULE_PLUS | this_COMMA_16= RULE_COMMA | kw= ';' | (kw= '=' this_KeywordHack_19= ruleKeywordHack ) )
 				int alt67 = 19;
 				switch (input.LA(1)) {
 				case RULE_DASH: {
@@ -9785,17 +9551,16 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						state.failed = true;
 						return current;
 					}
-					NoViableAltException nvae =
-							new NoViableAltException("", 67, 0, input);
+					NoViableAltException nvae = new NoViableAltException("", 67, 0, input);
 
 					throw nvae;
 				}
 
 				switch (alt67) {
 				case 1:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2974:6: this_DASH_0= RULE_DASH
+				// InternalCSS.g:2974:6: this_DASH_0= RULE_DASH
 				{
-					this_DASH_0 = (Token) match(input, RULE_DASH, FOLLOW_RULE_DASH_in_ruleValidURLSymbol6632);
+					this_DASH_0 = (Token) match(input, RULE_DASH, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -9813,9 +9578,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 2:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2983:2: kw= '.'
+				// InternalCSS.g:2983:2: kw= '.'
 				{
-					kw = (Token) match(input, 41, FOLLOW_41_in_ruleValidURLSymbol6656);
+					kw = (Token) match(input, 41, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -9829,9 +9594,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 3:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2989:10: this_UNDERSCORE_2= RULE_UNDERSCORE
+				// InternalCSS.g:2989:10: this_UNDERSCORE_2= RULE_UNDERSCORE
 				{
-					this_UNDERSCORE_2 = (Token) match(input, RULE_UNDERSCORE, FOLLOW_RULE_UNDERSCORE_in_ruleValidURLSymbol6677);
+					this_UNDERSCORE_2 = (Token) match(input, RULE_UNDERSCORE, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -9849,9 +9614,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 4:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:2998:2: kw= '~'
+				// InternalCSS.g:2998:2: kw= '~'
 				{
-					kw = (Token) match(input, 48, FOLLOW_48_in_ruleValidURLSymbol6701);
+					kw = (Token) match(input, 48, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -9865,9 +9630,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 5:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3004:10: this_COLON_4= RULE_COLON
+				// InternalCSS.g:3004:10: this_COLON_4= RULE_COLON
 				{
-					this_COLON_4 = (Token) match(input, RULE_COLON, FOLLOW_RULE_COLON_in_ruleValidURLSymbol6722);
+					this_COLON_4 = (Token) match(input, RULE_COLON, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -9885,9 +9650,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 6:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3013:2: kw= '/'
+				// InternalCSS.g:3013:2: kw= '/'
 				{
-					kw = (Token) match(input, 50, FOLLOW_50_in_ruleValidURLSymbol6746);
+					kw = (Token) match(input, 50, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -9901,9 +9666,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 7:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3020:2: kw= '?'
+				// InternalCSS.g:3020:2: kw= '?'
 				{
-					kw = (Token) match(input, 51, FOLLOW_51_in_ruleValidURLSymbol6765);
+					kw = (Token) match(input, 51, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -9917,9 +9682,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 8:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3026:10: this_HASHMARK_7= RULE_HASHMARK
+				// InternalCSS.g:3026:10: this_HASHMARK_7= RULE_HASHMARK
 				{
-					this_HASHMARK_7 = (Token) match(input, RULE_HASHMARK, FOLLOW_RULE_HASHMARK_in_ruleValidURLSymbol6786);
+					this_HASHMARK_7 = (Token) match(input, RULE_HASHMARK, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -9937,9 +9702,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 9:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3035:2: kw= '['
+				// InternalCSS.g:3035:2: kw= '['
 				{
-					kw = (Token) match(input, 35, FOLLOW_35_in_ruleValidURLSymbol6810);
+					kw = (Token) match(input, 35, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -9953,9 +9718,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 10:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3042:2: kw= ']'
+				// InternalCSS.g:3042:2: kw= ']'
 				{
-					kw = (Token) match(input, 40, FOLLOW_40_in_ruleValidURLSymbol6829);
+					kw = (Token) match(input, 40, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -9969,9 +9734,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 11:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3049:2: kw= '@'
+				// InternalCSS.g:3049:2: kw= '@'
 				{
-					kw = (Token) match(input, 52, FOLLOW_52_in_ruleValidURLSymbol6848);
+					kw = (Token) match(input, 52, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -9985,9 +9750,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 12:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3056:2: kw= '!'
+				// InternalCSS.g:3056:2: kw= '!'
 				{
-					kw = (Token) match(input, 53, FOLLOW_53_in_ruleValidURLSymbol6867);
+					kw = (Token) match(input, 53, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -10001,9 +9766,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 13:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3063:2: kw= '$'
+				// InternalCSS.g:3063:2: kw= '$'
 				{
-					kw = (Token) match(input, 54, FOLLOW_54_in_ruleValidURLSymbol6886);
+					kw = (Token) match(input, 54, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -10017,9 +9782,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 14:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3070:2: kw= '&'
+				// InternalCSS.g:3070:2: kw= '&'
 				{
-					kw = (Token) match(input, 55, FOLLOW_55_in_ruleValidURLSymbol6905);
+					kw = (Token) match(input, 55, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -10033,9 +9798,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 15:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3077:2: kw= '*'
+				// InternalCSS.g:3077:2: kw= '*'
 				{
-					kw = (Token) match(input, 42, FOLLOW_42_in_ruleValidURLSymbol6924);
+					kw = (Token) match(input, 42, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -10049,9 +9814,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 16:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3083:10: this_PLUS_15= RULE_PLUS
+				// InternalCSS.g:3083:10: this_PLUS_15= RULE_PLUS
 				{
-					this_PLUS_15 = (Token) match(input, RULE_PLUS, FOLLOW_RULE_PLUS_in_ruleValidURLSymbol6945);
+					this_PLUS_15 = (Token) match(input, RULE_PLUS, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -10069,9 +9834,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 17:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3091:10: this_COMMA_16= RULE_COMMA
+				// InternalCSS.g:3091:10: this_COMMA_16= RULE_COMMA
 				{
-					this_COMMA_16 = (Token) match(input, RULE_COMMA, FOLLOW_RULE_COMMA_in_ruleValidURLSymbol6971);
+					this_COMMA_16 = (Token) match(input, RULE_COMMA, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -10089,9 +9854,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 18:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3100:2: kw= ';'
+				// InternalCSS.g:3100:2: kw= ';'
 				{
-					kw = (Token) match(input, 22, FOLLOW_22_in_ruleValidURLSymbol6995);
+					kw = (Token) match(input, 22, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -10105,12 +9870,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 19:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3106:6: (kw= '=' this_KeywordHack_19= ruleKeywordHack )
+				// InternalCSS.g:3106:6: (kw= '=' this_KeywordHack_19= ruleKeywordHack )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3106:6: (kw= '=' this_KeywordHack_19= ruleKeywordHack )
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3107:2: kw= '=' this_KeywordHack_19= ruleKeywordHack
+					// InternalCSS.g:3106:6: (kw= '=' this_KeywordHack_19= ruleKeywordHack )
+					// InternalCSS.g:3107:2: kw= '=' this_KeywordHack_19= ruleKeywordHack
 					{
-						kw = (Token) match(input, 39, FOLLOW_39_in_ruleValidURLSymbol7015);
+						kw = (Token) match(input, 39, FOLLOW_13);
 						if (state.failed) {
 							return current;
 						}
@@ -10125,7 +9890,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							newCompositeNode(grammarAccess.getValidURLSymbolAccess().getKeywordHackParserRuleCall_18_1());
 
 						}
-						pushFollow(FOLLOW_ruleKeywordHack_in_ruleValidURLSymbol7037);
+						pushFollow(FOLLOW_2);
 						this_KeywordHack_19 = ruleKeywordHack();
 
 						state._fsp--;
@@ -10166,12 +9931,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleValidURLSymbol"
 
 
 	// $ANTLR start "entryRuleKeywordHack"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3131:1: entryRuleKeywordHack returns [String current=null] : iv_ruleKeywordHack= ruleKeywordHack EOF ;
+	// InternalCSS.g:3131:1: entryRuleKeywordHack returns [String current=null] : iv_ruleKeywordHack= ruleKeywordHack EOF ;
 	public final String entryRuleKeywordHack() throws RecognitionException {
 		String current = null;
 
@@ -10179,13 +9943,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3132:2: (iv_ruleKeywordHack= ruleKeywordHack EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3133:2: iv_ruleKeywordHack= ruleKeywordHack EOF
+			// InternalCSS.g:3132:2: (iv_ruleKeywordHack= ruleKeywordHack EOF )
+			// InternalCSS.g:3133:2: iv_ruleKeywordHack= ruleKeywordHack EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getKeywordHackRule());
 				}
-				pushFollow(FOLLOW_ruleKeywordHack_in_entryRuleKeywordHack7084);
+				pushFollow(FOLLOW_1);
 				iv_ruleKeywordHack = ruleKeywordHack();
 
 				state._fsp--;
@@ -10195,7 +9959,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleKeywordHack.getText();
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleKeywordHack7095);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -10211,13 +9975,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleKeywordHack"
 
 
 	// $ANTLR start "ruleKeywordHack"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3140:1: ruleKeywordHack returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'not' | kw= 'no' |
-	// kw= 'url' | kw= 'ur' ) ;
+	// InternalCSS.g:3140:1: ruleKeywordHack returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'not' | kw= 'no' | kw= 'url' | kw= 'ur' ) ;
 	public final AntlrDatatypeRuleToken ruleKeywordHack() throws RecognitionException {
 		AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -10226,10 +9988,10 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3143:28: ( (kw= 'not' | kw= 'no' | kw= 'url' | kw= 'ur' ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3144:1: (kw= 'not' | kw= 'no' | kw= 'url' | kw= 'ur' )
+			// InternalCSS.g:3143:28: ( (kw= 'not' | kw= 'no' | kw= 'url' | kw= 'ur' ) )
+			// InternalCSS.g:3144:1: (kw= 'not' | kw= 'no' | kw= 'url' | kw= 'ur' )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3144:1: (kw= 'not' | kw= 'no' | kw= 'url' | kw= 'ur' )
+				// InternalCSS.g:3144:1: (kw= 'not' | kw= 'no' | kw= 'url' | kw= 'ur' )
 				int alt68 = 4;
 				switch (input.LA(1)) {
 				case 56: {
@@ -10253,17 +10015,16 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						state.failed = true;
 						return current;
 					}
-					NoViableAltException nvae =
-							new NoViableAltException("", 68, 0, input);
+					NoViableAltException nvae = new NoViableAltException("", 68, 0, input);
 
 					throw nvae;
 				}
 
 				switch (alt68) {
 				case 1:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3145:2: kw= 'not'
+				// InternalCSS.g:3145:2: kw= 'not'
 				{
-					kw = (Token) match(input, 56, FOLLOW_56_in_ruleKeywordHack7133);
+					kw = (Token) match(input, 56, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -10277,9 +10038,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 2:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3152:2: kw= 'no'
+				// InternalCSS.g:3152:2: kw= 'no'
 				{
-					kw = (Token) match(input, 57, FOLLOW_57_in_ruleKeywordHack7152);
+					kw = (Token) match(input, 57, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -10293,9 +10054,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 3:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3159:2: kw= 'url'
+				// InternalCSS.g:3159:2: kw= 'url'
 				{
-					kw = (Token) match(input, 58, FOLLOW_58_in_ruleKeywordHack7171);
+					kw = (Token) match(input, 58, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -10309,9 +10070,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 4:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3166:2: kw= 'ur'
+				// InternalCSS.g:3166:2: kw= 'ur'
 				{
-					kw = (Token) match(input, 59, FOLLOW_59_in_ruleKeywordHack7190);
+					kw = (Token) match(input, 59, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -10342,12 +10103,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleKeywordHack"
 
 
 	// $ANTLR start "entryRuleValidURL"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3179:1: entryRuleValidURL returns [String current=null] : iv_ruleValidURL= ruleValidURL EOF ;
+	// InternalCSS.g:3179:1: entryRuleValidURL returns [String current=null] : iv_ruleValidURL= ruleValidURL EOF ;
 	public final String entryRuleValidURL() throws RecognitionException {
 		String current = null;
 
@@ -10358,13 +10118,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3183:2: (iv_ruleValidURL= ruleValidURL EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3184:2: iv_ruleValidURL= ruleValidURL EOF
+			// InternalCSS.g:3183:2: (iv_ruleValidURL= ruleValidURL EOF )
+			// InternalCSS.g:3184:2: iv_ruleValidURL= ruleValidURL EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getValidURLRule());
 				}
-				pushFollow(FOLLOW_ruleValidURL_in_entryRuleValidURL7237);
+				pushFollow(FOLLOW_1);
 				iv_ruleValidURL = ruleValidURL();
 
 				state._fsp--;
@@ -10374,7 +10134,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleValidURL.getText();
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleValidURL7248);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -10393,14 +10153,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleValidURL"
 
 
 	// $ANTLR start "ruleValidURL"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3194:1: ruleValidURL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_CSSSTRING_0=
-	// RULE_CSSSTRING | (this_ValidURLSymbol_1= ruleValidURLSymbol | this_KeywordHack_2= ruleKeywordHack | this_ONE_HEX_LETTER_3= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_4= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_5= RULE_ONE_INT | kw= '\\\\ ' | kw=
-	// '\\\\(' | kw= '\\\\)' | kw= '\\\\\\'' | kw= '\\\\\"' | (this_PERCENT_11= RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER ) ) )+ ) ;
+	// InternalCSS.g:3194:1: ruleValidURL returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_CSSSTRING_0= RULE_CSSSTRING | (this_ValidURLSymbol_1= ruleValidURLSymbol | this_KeywordHack_2= ruleKeywordHack | this_ONE_HEX_LETTER_3=
+	// RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_4= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_5= RULE_ONE_INT | kw= '\\\\ ' | kw= '\\\\(' | kw= '\\\\)' | kw= '\\\\\\'' | kw= '\\\\\"' | (this_PERCENT_11= RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT |
+	// this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER ) ) )+ ) ;
 	public final AntlrDatatypeRuleToken ruleValidURL() throws RecognitionException {
 		AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -10423,40 +10182,38 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3198:28: ( (this_CSSSTRING_0= RULE_CSSSTRING | (this_ValidURLSymbol_1= ruleValidURLSymbol | this_KeywordHack_2=
-			// ruleKeywordHack | this_ONE_HEX_LETTER_3= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_4= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_5= RULE_ONE_INT | kw= '\\\\ ' | kw= '\\\\(' | kw= '\\\\)' | kw= '\\\\\\'' | kw= '\\\\\"' | (this_PERCENT_11=
-			// RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER ) ) )+ ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3199:1: (this_CSSSTRING_0= RULE_CSSSTRING | (this_ValidURLSymbol_1= ruleValidURLSymbol | this_KeywordHack_2=
-			// ruleKeywordHack | this_ONE_HEX_LETTER_3= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_4= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_5= RULE_ONE_INT | kw= '\\\\ ' | kw= '\\\\(' | kw= '\\\\)' | kw= '\\\\\\'' | kw= '\\\\\"' | (this_PERCENT_11=
-			// RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER ) ) )+ )
+			// InternalCSS.g:3198:28: ( (this_CSSSTRING_0= RULE_CSSSTRING | (this_ValidURLSymbol_1= ruleValidURLSymbol | this_KeywordHack_2= ruleKeywordHack | this_ONE_HEX_LETTER_3= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_4= RULE_ONE_NON_HEX_LETTER |
+			// this_ONE_INT_5= RULE_ONE_INT | kw= '\\\\ ' | kw= '\\\\(' | kw= '\\\\)' | kw= '\\\\\\'' | kw= '\\\\\"' | (this_PERCENT_11= RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT
+			// | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER ) ) )+ ) )
+			// InternalCSS.g:3199:1: (this_CSSSTRING_0= RULE_CSSSTRING | (this_ValidURLSymbol_1= ruleValidURLSymbol | this_KeywordHack_2= ruleKeywordHack | this_ONE_HEX_LETTER_3= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_4= RULE_ONE_NON_HEX_LETTER |
+			// this_ONE_INT_5= RULE_ONE_INT | kw= '\\\\ ' | kw= '\\\\(' | kw= '\\\\)' | kw= '\\\\\\'' | kw= '\\\\\"' | (this_PERCENT_11= RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT
+			// | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER ) ) )+ )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3199:1: (this_CSSSTRING_0= RULE_CSSSTRING | (this_ValidURLSymbol_1= ruleValidURLSymbol | this_KeywordHack_2=
-				// ruleKeywordHack | this_ONE_HEX_LETTER_3= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_4= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_5= RULE_ONE_INT | kw= '\\\\ ' | kw= '\\\\(' | kw= '\\\\)' | kw= '\\\\\\'' | kw= '\\\\\"' | (this_PERCENT_11=
-				// RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER ) ) )+ )
+				// InternalCSS.g:3199:1: (this_CSSSTRING_0= RULE_CSSSTRING | (this_ValidURLSymbol_1= ruleValidURLSymbol | this_KeywordHack_2= ruleKeywordHack | this_ONE_HEX_LETTER_3= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_4= RULE_ONE_NON_HEX_LETTER |
+				// this_ONE_INT_5= RULE_ONE_INT | kw= '\\\\ ' | kw= '\\\\(' | kw= '\\\\)' | kw= '\\\\\\'' | kw= '\\\\\"' | (this_PERCENT_11= RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14=
+				// RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER ) ) )+ )
 				int alt72 = 2;
 				int LA72_0 = input.LA(1);
 
 				if ((LA72_0 == RULE_CSSSTRING)) {
 					alt72 = 1;
-				}
-				else if (((LA72_0 >= RULE_COLON && LA72_0 <= RULE_PERCENT) || LA72_0 == RULE_HASHMARK || (LA72_0 >= RULE_PLUS && LA72_0 <= RULE_ONE_INT) || LA72_0 == 22 || LA72_0 == 35 || (LA72_0 >= 39 && LA72_0 <= 42) || LA72_0 == 48 || (LA72_0 >= 50 && LA72_0 <= 64))) {
+				} else if (((LA72_0 >= RULE_COLON && LA72_0 <= RULE_PERCENT) || LA72_0 == RULE_HASHMARK || (LA72_0 >= RULE_PLUS && LA72_0 <= RULE_ONE_INT) || LA72_0 == 22 || LA72_0 == 35 || (LA72_0 >= 39 && LA72_0 <= 42) || LA72_0 == 48
+						|| (LA72_0 >= 50 && LA72_0 <= 64))) {
 					alt72 = 2;
-				}
-				else {
+				} else {
 					if (state.backtracking > 0) {
 						state.failed = true;
 						return current;
 					}
-					NoViableAltException nvae =
-							new NoViableAltException("", 72, 0, input);
+					NoViableAltException nvae = new NoViableAltException("", 72, 0, input);
 
 					throw nvae;
 				}
 				switch (alt72) {
 				case 1:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3199:6: this_CSSSTRING_0= RULE_CSSSTRING
+				// InternalCSS.g:3199:6: this_CSSSTRING_0= RULE_CSSSTRING
 				{
-					this_CSSSTRING_0 = (Token) match(input, RULE_CSSSTRING, FOLLOW_RULE_CSSSTRING_in_ruleValidURL7292);
+					this_CSSSTRING_0 = (Token) match(input, RULE_CSSSTRING, FOLLOW_2);
 					if (state.failed) {
 						return current;
 					}
@@ -10474,13 +10231,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 					break;
 				case 2:
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3207:6: (this_ValidURLSymbol_1= ruleValidURLSymbol | this_KeywordHack_2= ruleKeywordHack |
-				// this_ONE_HEX_LETTER_3= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_4= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_5= RULE_ONE_INT | kw= '\\\\ ' | kw= '\\\\(' | kw= '\\\\)' | kw= '\\\\\\'' | kw= '\\\\\"' | (this_PERCENT_11= RULE_PERCENT
-				// (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER ) ) )+
+				// InternalCSS.g:3207:6: (this_ValidURLSymbol_1= ruleValidURLSymbol | this_KeywordHack_2= ruleKeywordHack | this_ONE_HEX_LETTER_3= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_4= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_5= RULE_ONE_INT | kw=
+				// '\\\\ ' | kw= '\\\\(' | kw= '\\\\)' | kw= '\\\\\\'' | kw= '\\\\\"' | (this_PERCENT_11= RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15=
+				// RULE_ONE_HEX_LETTER ) ) )+
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3207:6: (this_ValidURLSymbol_1= ruleValidURLSymbol | this_KeywordHack_2= ruleKeywordHack |
-					// this_ONE_HEX_LETTER_3= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_4= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_5= RULE_ONE_INT | kw= '\\\\ ' | kw= '\\\\(' | kw= '\\\\)' | kw= '\\\\\\'' | kw= '\\\\\"' | (this_PERCENT_11= RULE_PERCENT
-					// (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER ) ) )+
+					// InternalCSS.g:3207:6: (this_ValidURLSymbol_1= ruleValidURLSymbol | this_KeywordHack_2= ruleKeywordHack | this_ONE_HEX_LETTER_3= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_4= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_5= RULE_ONE_INT | kw=
+					// '\\\\ ' | kw= '\\\\(' | kw= '\\\\)' | kw= '\\\\\\'' | kw= '\\\\\"' | (this_PERCENT_11= RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15=
+					// RULE_ONE_HEX_LETTER ) ) )+
 					int cnt71 = 0;
 					loop71: do {
 						int alt71 = 12;
@@ -10555,14 +10312,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt71) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3208:5: this_ValidURLSymbol_1= ruleValidURLSymbol
+						// InternalCSS.g:3208:5: this_ValidURLSymbol_1= ruleValidURLSymbol
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getValidURLAccess().getValidURLSymbolParserRuleCall_1_0());
 
 							}
-							pushFollow(FOLLOW_ruleValidURLSymbol_in_ruleValidURL7326);
+							pushFollow(FOLLOW_45);
 							this_ValidURLSymbol_1 = ruleValidURLSymbol();
 
 							state._fsp--;
@@ -10583,14 +10340,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 2:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3220:5: this_KeywordHack_2= ruleKeywordHack
+						// InternalCSS.g:3220:5: this_KeywordHack_2= ruleKeywordHack
 						{
 							if (state.backtracking == 0) {
 
 								newCompositeNode(grammarAccess.getValidURLAccess().getKeywordHackParserRuleCall_1_1());
 
 							}
-							pushFollow(FOLLOW_ruleKeywordHack_in_ruleValidURL7359);
+							pushFollow(FOLLOW_45);
 							this_KeywordHack_2 = ruleKeywordHack();
 
 							state._fsp--;
@@ -10611,9 +10368,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 3:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3231:10: this_ONE_HEX_LETTER_3= RULE_ONE_HEX_LETTER
+						// InternalCSS.g:3231:10: this_ONE_HEX_LETTER_3= RULE_ONE_HEX_LETTER
 						{
-							this_ONE_HEX_LETTER_3 = (Token) match(input, RULE_ONE_HEX_LETTER, FOLLOW_RULE_ONE_HEX_LETTER_in_ruleValidURL7385);
+							this_ONE_HEX_LETTER_3 = (Token) match(input, RULE_ONE_HEX_LETTER, FOLLOW_45);
 							if (state.failed) {
 								return current;
 							}
@@ -10631,9 +10388,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 4:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3239:10: this_ONE_NON_HEX_LETTER_4= RULE_ONE_NON_HEX_LETTER
+						// InternalCSS.g:3239:10: this_ONE_NON_HEX_LETTER_4= RULE_ONE_NON_HEX_LETTER
 						{
-							this_ONE_NON_HEX_LETTER_4 = (Token) match(input, RULE_ONE_NON_HEX_LETTER, FOLLOW_RULE_ONE_NON_HEX_LETTER_in_ruleValidURL7411);
+							this_ONE_NON_HEX_LETTER_4 = (Token) match(input, RULE_ONE_NON_HEX_LETTER, FOLLOW_45);
 							if (state.failed) {
 								return current;
 							}
@@ -10651,9 +10408,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 5:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3247:10: this_ONE_INT_5= RULE_ONE_INT
+						// InternalCSS.g:3247:10: this_ONE_INT_5= RULE_ONE_INT
 						{
-							this_ONE_INT_5 = (Token) match(input, RULE_ONE_INT, FOLLOW_RULE_ONE_INT_in_ruleValidURL7437);
+							this_ONE_INT_5 = (Token) match(input, RULE_ONE_INT, FOLLOW_45);
 							if (state.failed) {
 								return current;
 							}
@@ -10671,9 +10428,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 6:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3256:2: kw= '\\\\ '
+						// InternalCSS.g:3256:2: kw= '\\\\ '
 						{
-							kw = (Token) match(input, 60, FOLLOW_60_in_ruleValidURL7461);
+							kw = (Token) match(input, 60, FOLLOW_45);
 							if (state.failed) {
 								return current;
 							}
@@ -10687,9 +10444,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 7:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3263:2: kw= '\\\\('
+						// InternalCSS.g:3263:2: kw= '\\\\('
 						{
-							kw = (Token) match(input, 61, FOLLOW_61_in_ruleValidURL7480);
+							kw = (Token) match(input, 61, FOLLOW_45);
 							if (state.failed) {
 								return current;
 							}
@@ -10703,9 +10460,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 8:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3270:2: kw= '\\\\)'
+						// InternalCSS.g:3270:2: kw= '\\\\)'
 						{
-							kw = (Token) match(input, 62, FOLLOW_62_in_ruleValidURL7499);
+							kw = (Token) match(input, 62, FOLLOW_45);
 							if (state.failed) {
 								return current;
 							}
@@ -10719,9 +10476,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 9:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3277:2: kw= '\\\\\\''
+						// InternalCSS.g:3277:2: kw= '\\\\\\''
 						{
-							kw = (Token) match(input, 63, FOLLOW_63_in_ruleValidURL7518);
+							kw = (Token) match(input, 63, FOLLOW_45);
 							if (state.failed) {
 								return current;
 							}
@@ -10735,9 +10492,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 10:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3284:2: kw= '\\\\\"'
+						// InternalCSS.g:3284:2: kw= '\\\\\"'
 						{
-							kw = (Token) match(input, 64, FOLLOW_64_in_ruleValidURL7537);
+							kw = (Token) match(input, 64, FOLLOW_45);
 							if (state.failed) {
 								return current;
 							}
@@ -10751,15 +10508,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						}
 							break;
 						case 11:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3290:6: (this_PERCENT_11= RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13=
-						// RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER ) )
+						// InternalCSS.g:3290:6: (this_PERCENT_11= RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER ) )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3290:6: (this_PERCENT_11= RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13=
-							// RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER ) )
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3290:11: this_PERCENT_11= RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13=
-							// RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER )
+							// InternalCSS.g:3290:6: (this_PERCENT_11= RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER ) )
+							// InternalCSS.g:3290:11: this_PERCENT_11= RULE_PERCENT (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER ) (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER )
 							{
-								this_PERCENT_11 = (Token) match(input, RULE_PERCENT, FOLLOW_RULE_PERCENT_in_ruleValidURL7559);
+								this_PERCENT_11 = (Token) match(input, RULE_PERCENT, FOLLOW_46);
 								if (state.failed) {
 									return current;
 								}
@@ -10773,31 +10527,28 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 									newLeafNode(this_PERCENT_11, grammarAccess.getValidURLAccess().getPERCENTTerminalRuleCall_1_10_0());
 
 								}
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3297:1: (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER )
+								// InternalCSS.g:3297:1: (this_ONE_INT_12= RULE_ONE_INT | this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER )
 								int alt69 = 2;
 								int LA69_0 = input.LA(1);
 
 								if ((LA69_0 == RULE_ONE_INT)) {
 									alt69 = 1;
-								}
-								else if ((LA69_0 == RULE_ONE_HEX_LETTER)) {
+								} else if ((LA69_0 == RULE_ONE_HEX_LETTER)) {
 									alt69 = 2;
-								}
-								else {
+								} else {
 									if (state.backtracking > 0) {
 										state.failed = true;
 										return current;
 									}
-									NoViableAltException nvae =
-											new NoViableAltException("", 69, 0, input);
+									NoViableAltException nvae = new NoViableAltException("", 69, 0, input);
 
 									throw nvae;
 								}
 								switch (alt69) {
 								case 1:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3297:6: this_ONE_INT_12= RULE_ONE_INT
+								// InternalCSS.g:3297:6: this_ONE_INT_12= RULE_ONE_INT
 								{
-									this_ONE_INT_12 = (Token) match(input, RULE_ONE_INT, FOLLOW_RULE_ONE_INT_in_ruleValidURL7580);
+									this_ONE_INT_12 = (Token) match(input, RULE_ONE_INT, FOLLOW_46);
 									if (state.failed) {
 										return current;
 									}
@@ -10815,9 +10566,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								}
 									break;
 								case 2:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3305:10: this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER
+								// InternalCSS.g:3305:10: this_ONE_HEX_LETTER_13= RULE_ONE_HEX_LETTER
 								{
-									this_ONE_HEX_LETTER_13 = (Token) match(input, RULE_ONE_HEX_LETTER, FOLLOW_RULE_ONE_HEX_LETTER_in_ruleValidURL7606);
+									this_ONE_HEX_LETTER_13 = (Token) match(input, RULE_ONE_HEX_LETTER, FOLLOW_46);
 									if (state.failed) {
 										return current;
 									}
@@ -10837,31 +10588,28 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 								}
 
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3312:2: (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER )
+								// InternalCSS.g:3312:2: (this_ONE_INT_14= RULE_ONE_INT | this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER )
 								int alt70 = 2;
 								int LA70_0 = input.LA(1);
 
 								if ((LA70_0 == RULE_ONE_INT)) {
 									alt70 = 1;
-								}
-								else if ((LA70_0 == RULE_ONE_HEX_LETTER)) {
+								} else if ((LA70_0 == RULE_ONE_HEX_LETTER)) {
 									alt70 = 2;
-								}
-								else {
+								} else {
 									if (state.backtracking > 0) {
 										state.failed = true;
 										return current;
 									}
-									NoViableAltException nvae =
-											new NoViableAltException("", 70, 0, input);
+									NoViableAltException nvae = new NoViableAltException("", 70, 0, input);
 
 									throw nvae;
 								}
 								switch (alt70) {
 								case 1:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3312:7: this_ONE_INT_14= RULE_ONE_INT
+								// InternalCSS.g:3312:7: this_ONE_INT_14= RULE_ONE_INT
 								{
-									this_ONE_INT_14 = (Token) match(input, RULE_ONE_INT, FOLLOW_RULE_ONE_INT_in_ruleValidURL7628);
+									this_ONE_INT_14 = (Token) match(input, RULE_ONE_INT, FOLLOW_45);
 									if (state.failed) {
 										return current;
 									}
@@ -10879,9 +10627,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								}
 									break;
 								case 2:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3320:10: this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER
+								// InternalCSS.g:3320:10: this_ONE_HEX_LETTER_15= RULE_ONE_HEX_LETTER
 								{
-									this_ONE_HEX_LETTER_15 = (Token) match(input, RULE_ONE_HEX_LETTER, FOLLOW_RULE_ONE_HEX_LETTER_in_ruleValidURL7654);
+									this_ONE_HEX_LETTER_15 = (Token) match(input, RULE_ONE_HEX_LETTER, FOLLOW_45);
 									if (state.failed) {
 										return current;
 									}
@@ -10916,8 +10664,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								state.failed = true;
 								return current;
 							}
-							EarlyExitException eee =
-									new EarlyExitException(71, input);
+							EarlyExitException eee = new EarlyExitException(71, input);
 							throw eee;
 						}
 						cnt71++;
@@ -10947,12 +10694,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleValidURL"
 
 
 	// $ANTLR start "entryRuleIdentifier"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3338:1: entryRuleIdentifier returns [String current=null] : iv_ruleIdentifier= ruleIdentifier EOF ;
+	// InternalCSS.g:3338:1: entryRuleIdentifier returns [String current=null] : iv_ruleIdentifier= ruleIdentifier EOF ;
 	public final String entryRuleIdentifier() throws RecognitionException {
 		String current = null;
 
@@ -10963,13 +10709,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3342:2: (iv_ruleIdentifier= ruleIdentifier EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3343:2: iv_ruleIdentifier= ruleIdentifier EOF
+			// InternalCSS.g:3342:2: (iv_ruleIdentifier= ruleIdentifier EOF )
+			// InternalCSS.g:3343:2: iv_ruleIdentifier= ruleIdentifier EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getIdentifierRule());
 				}
-				pushFollow(FOLLOW_ruleIdentifier_in_entryRuleIdentifier7714);
+				pushFollow(FOLLOW_1);
 				iv_ruleIdentifier = ruleIdentifier();
 
 				state._fsp--;
@@ -10979,7 +10725,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleIdentifier.getText();
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleIdentifier7725);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -10998,15 +10744,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleIdentifier"
 
 
 	// $ANTLR start "ruleIdentifier"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3353:1: ruleIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_DASH_0= RULE_DASH
-	// )? (this_UNDERSCORE_1= RULE_UNDERSCORE | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_3= RULE_ONE_NON_HEX_LETTER | this_KeywordHack_4= ruleKeywordHack ) ( ( ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER |
-	// RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack ) )=> (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT
-	// | this_KeywordHack_10= ruleKeywordHack ) )* ) ;
+	// InternalCSS.g:3353:1: ruleIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_DASH_0= RULE_DASH )? (this_UNDERSCORE_1= RULE_UNDERSCORE | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_3=
+	// RULE_ONE_NON_HEX_LETTER | this_KeywordHack_4= ruleKeywordHack ) ( ( ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack ) )=> (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH |
+	// this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT | this_KeywordHack_10= ruleKeywordHack ) )* ) ;
 	public final AntlrDatatypeRuleToken ruleIdentifier() throws RecognitionException {
 		AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -11028,21 +10772,21 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3357:28: ( ( (this_DASH_0= RULE_DASH )? (this_UNDERSCORE_1= RULE_UNDERSCORE | this_ONE_HEX_LETTER_2=
-			// RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_3= RULE_ONE_NON_HEX_LETTER | this_KeywordHack_4= ruleKeywordHack ) ( ( ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack ) )=>
-			// (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT | this_KeywordHack_10= ruleKeywordHack ) )* ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3358:1: ( (this_DASH_0= RULE_DASH )? (this_UNDERSCORE_1= RULE_UNDERSCORE | this_ONE_HEX_LETTER_2=
-			// RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_3= RULE_ONE_NON_HEX_LETTER | this_KeywordHack_4= ruleKeywordHack ) ( ( ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack ) )=>
-			// (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT | this_KeywordHack_10= ruleKeywordHack ) )* )
+			// InternalCSS.g:3357:28: ( ( (this_DASH_0= RULE_DASH )? (this_UNDERSCORE_1= RULE_UNDERSCORE | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_3= RULE_ONE_NON_HEX_LETTER | this_KeywordHack_4= ruleKeywordHack ) ( ( (
+			// RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack ) )=> (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER |
+			// this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT | this_KeywordHack_10= ruleKeywordHack ) )* ) )
+			// InternalCSS.g:3358:1: ( (this_DASH_0= RULE_DASH )? (this_UNDERSCORE_1= RULE_UNDERSCORE | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_3= RULE_ONE_NON_HEX_LETTER | this_KeywordHack_4= ruleKeywordHack ) ( ( (
+			// RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack ) )=> (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER |
+			// this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT | this_KeywordHack_10= ruleKeywordHack ) )* )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3358:1: ( (this_DASH_0= RULE_DASH )? (this_UNDERSCORE_1= RULE_UNDERSCORE | this_ONE_HEX_LETTER_2=
-				// RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_3= RULE_ONE_NON_HEX_LETTER | this_KeywordHack_4= ruleKeywordHack ) ( ( ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack ) )=>
-				// (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT | this_KeywordHack_10= ruleKeywordHack ) )* )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3358:2: (this_DASH_0= RULE_DASH )? (this_UNDERSCORE_1= RULE_UNDERSCORE | this_ONE_HEX_LETTER_2=
-				// RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_3= RULE_ONE_NON_HEX_LETTER | this_KeywordHack_4= ruleKeywordHack ) ( ( ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack ) )=>
-				// (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT | this_KeywordHack_10= ruleKeywordHack ) )*
+				// InternalCSS.g:3358:1: ( (this_DASH_0= RULE_DASH )? (this_UNDERSCORE_1= RULE_UNDERSCORE | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_3= RULE_ONE_NON_HEX_LETTER | this_KeywordHack_4= ruleKeywordHack ) ( ( (
+				// RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack ) )=> (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER |
+				// this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT | this_KeywordHack_10= ruleKeywordHack ) )* )
+				// InternalCSS.g:3358:2: (this_DASH_0= RULE_DASH )? (this_UNDERSCORE_1= RULE_UNDERSCORE | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_3= RULE_ONE_NON_HEX_LETTER | this_KeywordHack_4= ruleKeywordHack ) ( ( (
+				// RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack ) )=> (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER |
+				// this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT | this_KeywordHack_10= ruleKeywordHack ) )*
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3358:2: (this_DASH_0= RULE_DASH )?
+					// InternalCSS.g:3358:2: (this_DASH_0= RULE_DASH )?
 					int alt73 = 2;
 					int LA73_0 = input.LA(1);
 
@@ -11051,9 +10795,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 					switch (alt73) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3358:7: this_DASH_0= RULE_DASH
+					// InternalCSS.g:3358:7: this_DASH_0= RULE_DASH
 					{
-						this_DASH_0 = (Token) match(input, RULE_DASH, FOLLOW_RULE_DASH_in_ruleIdentifier7770);
+						this_DASH_0 = (Token) match(input, RULE_DASH, FOLLOW_13);
 						if (state.failed) {
 							return current;
 						}
@@ -11073,8 +10817,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3365:3: (this_UNDERSCORE_1= RULE_UNDERSCORE | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER |
-					// this_ONE_NON_HEX_LETTER_3= RULE_ONE_NON_HEX_LETTER | this_KeywordHack_4= ruleKeywordHack )
+					// InternalCSS.g:3365:3: (this_UNDERSCORE_1= RULE_UNDERSCORE | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_3= RULE_ONE_NON_HEX_LETTER | this_KeywordHack_4= ruleKeywordHack )
 					int alt74 = 4;
 					switch (input.LA(1)) {
 					case RULE_UNDERSCORE: {
@@ -11101,17 +10844,16 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							state.failed = true;
 							return current;
 						}
-						NoViableAltException nvae =
-								new NoViableAltException("", 74, 0, input);
+						NoViableAltException nvae = new NoViableAltException("", 74, 0, input);
 
 						throw nvae;
 					}
 
 					switch (alt74) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3365:8: this_UNDERSCORE_1= RULE_UNDERSCORE
+					// InternalCSS.g:3365:8: this_UNDERSCORE_1= RULE_UNDERSCORE
 					{
-						this_UNDERSCORE_1 = (Token) match(input, RULE_UNDERSCORE, FOLLOW_RULE_UNDERSCORE_in_ruleIdentifier7793);
+						this_UNDERSCORE_1 = (Token) match(input, RULE_UNDERSCORE, FOLLOW_47);
 						if (state.failed) {
 							return current;
 						}
@@ -11129,9 +10871,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 2:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3373:10: this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER
+					// InternalCSS.g:3373:10: this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER
 					{
-						this_ONE_HEX_LETTER_2 = (Token) match(input, RULE_ONE_HEX_LETTER, FOLLOW_RULE_ONE_HEX_LETTER_in_ruleIdentifier7819);
+						this_ONE_HEX_LETTER_2 = (Token) match(input, RULE_ONE_HEX_LETTER, FOLLOW_47);
 						if (state.failed) {
 							return current;
 						}
@@ -11149,9 +10891,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 3:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3381:10: this_ONE_NON_HEX_LETTER_3= RULE_ONE_NON_HEX_LETTER
+					// InternalCSS.g:3381:10: this_ONE_NON_HEX_LETTER_3= RULE_ONE_NON_HEX_LETTER
 					{
-						this_ONE_NON_HEX_LETTER_3 = (Token) match(input, RULE_ONE_NON_HEX_LETTER, FOLLOW_RULE_ONE_NON_HEX_LETTER_in_ruleIdentifier7845);
+						this_ONE_NON_HEX_LETTER_3 = (Token) match(input, RULE_ONE_NON_HEX_LETTER, FOLLOW_47);
 						if (state.failed) {
 							return current;
 						}
@@ -11169,14 +10911,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 4:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3390:5: this_KeywordHack_4= ruleKeywordHack
+					// InternalCSS.g:3390:5: this_KeywordHack_4= ruleKeywordHack
 					{
 						if (state.backtracking == 0) {
 
 							newCompositeNode(grammarAccess.getIdentifierAccess().getKeywordHackParserRuleCall_1_3());
 
 						}
-						pushFollow(FOLLOW_ruleKeywordHack_in_ruleIdentifier7878);
+						pushFollow(FOLLOW_47);
 						this_KeywordHack_4 = ruleKeywordHack();
 
 						state._fsp--;
@@ -11199,20 +10941,18 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3400:2: ( ( ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT |
-					// ruleKeywordHack ) )=> (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT | this_KeywordHack_10=
-					// ruleKeywordHack ) )*
+					// InternalCSS.g:3400:2: ( ( ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack ) )=> (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7=
+					// RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT | this_KeywordHack_10= ruleKeywordHack ) )*
 					loop76: do {
 						int alt76 = 2;
 						alt76 = dfa76.predict(input);
 						switch (alt76) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3400:3: ( ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT
-						// | ruleKeywordHack ) )=> (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT |
-						// this_KeywordHack_10= ruleKeywordHack )
+						// InternalCSS.g:3400:3: ( ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack ) )=> (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7=
+						// RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT | this_KeywordHack_10= ruleKeywordHack )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3405:26: (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7=
-							// RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT | this_KeywordHack_10= ruleKeywordHack )
+							// InternalCSS.g:3405:26: (this_UNDERSCORE_5= RULE_UNDERSCORE | this_DASH_6= RULE_DASH | this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER | this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER | this_ONE_INT_9= RULE_ONE_INT |
+							// this_KeywordHack_10= ruleKeywordHack )
 							int alt75 = 6;
 							switch (input.LA(1)) {
 							case RULE_UNDERSCORE: {
@@ -11247,17 +10987,16 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 									state.failed = true;
 									return current;
 								}
-								NoViableAltException nvae =
-										new NoViableAltException("", 75, 0, input);
+								NoViableAltException nvae = new NoViableAltException("", 75, 0, input);
 
 								throw nvae;
 							}
 
 							switch (alt75) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3405:31: this_UNDERSCORE_5= RULE_UNDERSCORE
+							// InternalCSS.g:3405:31: this_UNDERSCORE_5= RULE_UNDERSCORE
 							{
-								this_UNDERSCORE_5 = (Token) match(input, RULE_UNDERSCORE, FOLLOW_RULE_UNDERSCORE_in_ruleIdentifier7948);
+								this_UNDERSCORE_5 = (Token) match(input, RULE_UNDERSCORE, FOLLOW_47);
 								if (state.failed) {
 									return current;
 								}
@@ -11275,9 +11014,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 								break;
 							case 2:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3413:10: this_DASH_6= RULE_DASH
+							// InternalCSS.g:3413:10: this_DASH_6= RULE_DASH
 							{
-								this_DASH_6 = (Token) match(input, RULE_DASH, FOLLOW_RULE_DASH_in_ruleIdentifier7974);
+								this_DASH_6 = (Token) match(input, RULE_DASH, FOLLOW_47);
 								if (state.failed) {
 									return current;
 								}
@@ -11295,9 +11034,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 								break;
 							case 3:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3421:10: this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER
+							// InternalCSS.g:3421:10: this_ONE_HEX_LETTER_7= RULE_ONE_HEX_LETTER
 							{
-								this_ONE_HEX_LETTER_7 = (Token) match(input, RULE_ONE_HEX_LETTER, FOLLOW_RULE_ONE_HEX_LETTER_in_ruleIdentifier8000);
+								this_ONE_HEX_LETTER_7 = (Token) match(input, RULE_ONE_HEX_LETTER, FOLLOW_47);
 								if (state.failed) {
 									return current;
 								}
@@ -11315,9 +11054,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 								break;
 							case 4:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3429:10: this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER
+							// InternalCSS.g:3429:10: this_ONE_NON_HEX_LETTER_8= RULE_ONE_NON_HEX_LETTER
 							{
-								this_ONE_NON_HEX_LETTER_8 = (Token) match(input, RULE_ONE_NON_HEX_LETTER, FOLLOW_RULE_ONE_NON_HEX_LETTER_in_ruleIdentifier8026);
+								this_ONE_NON_HEX_LETTER_8 = (Token) match(input, RULE_ONE_NON_HEX_LETTER, FOLLOW_47);
 								if (state.failed) {
 									return current;
 								}
@@ -11335,9 +11074,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 								break;
 							case 5:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3437:10: this_ONE_INT_9= RULE_ONE_INT
+							// InternalCSS.g:3437:10: this_ONE_INT_9= RULE_ONE_INT
 							{
-								this_ONE_INT_9 = (Token) match(input, RULE_ONE_INT, FOLLOW_RULE_ONE_INT_in_ruleIdentifier8052);
+								this_ONE_INT_9 = (Token) match(input, RULE_ONE_INT, FOLLOW_47);
 								if (state.failed) {
 									return current;
 								}
@@ -11355,14 +11094,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 								break;
 							case 6:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3446:5: this_KeywordHack_10= ruleKeywordHack
+							// InternalCSS.g:3446:5: this_KeywordHack_10= ruleKeywordHack
 							{
 								if (state.backtracking == 0) {
 
 									newCompositeNode(grammarAccess.getIdentifierAccess().getKeywordHackParserRuleCall_2_0_5());
 
 								}
-								pushFollow(FOLLOW_ruleKeywordHack_in_ruleIdentifier8085);
+								pushFollow(FOLLOW_47);
 								this_KeywordHack_10 = ruleKeywordHack();
 
 								state._fsp--;
@@ -11415,12 +11154,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleIdentifier"
 
 
 	// $ANTLR start "entryRuleNum"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3467:1: entryRuleNum returns [String current=null] : iv_ruleNum= ruleNum EOF ;
+	// InternalCSS.g:3467:1: entryRuleNum returns [String current=null] : iv_ruleNum= ruleNum EOF ;
 	public final String entryRuleNum() throws RecognitionException {
 		String current = null;
 
@@ -11431,13 +11169,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3471:2: (iv_ruleNum= ruleNum EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3472:2: iv_ruleNum= ruleNum EOF
+			// InternalCSS.g:3471:2: (iv_ruleNum= ruleNum EOF )
+			// InternalCSS.g:3472:2: iv_ruleNum= ruleNum EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getNumRule());
 				}
-				pushFollow(FOLLOW_ruleNum_in_entryRuleNum8144);
+				pushFollow(FOLLOW_1);
 				iv_ruleNum = ruleNum();
 
 				state._fsp--;
@@ -11447,7 +11185,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleNum.getText();
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleNum8155);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -11466,13 +11204,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleNum"
 
 
 	// $ANTLR start "ruleNum"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3482:1: ruleNum returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_PLUS_0= RULE_PLUS |
-	// this_DASH_1= RULE_DASH )? ( (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+ ) | ( ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+ )? ) ) ) ;
+	// InternalCSS.g:3482:1: ruleNum returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_PLUS_0= RULE_PLUS | this_DASH_1= RULE_DASH )? ( (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+ ) | ( ( ( RULE_ONE_INT
+	// )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+ )? ) ) ) ;
 	public final AntlrDatatypeRuleToken ruleNum() throws RecognitionException {
 		AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -11487,31 +11224,30 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream) input).setHiddenTokens();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3486:28: ( ( (this_PLUS_0= RULE_PLUS | this_DASH_1= RULE_DASH )? ( (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3=
-			// RULE_ONE_INT )+ ) | ( ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+ )? ) ) ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3487:1: ( (this_PLUS_0= RULE_PLUS | this_DASH_1= RULE_DASH )? ( (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3=
-			// RULE_ONE_INT )+ ) | ( ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+ )? ) ) )
+			// InternalCSS.g:3486:28: ( ( (this_PLUS_0= RULE_PLUS | this_DASH_1= RULE_DASH )? ( (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+ ) | ( ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT
+			// )=>this_ONE_INT_6= RULE_ONE_INT )+ )? ) ) ) )
+			// InternalCSS.g:3487:1: ( (this_PLUS_0= RULE_PLUS | this_DASH_1= RULE_DASH )? ( (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+ ) | ( ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT
+			// )=>this_ONE_INT_6= RULE_ONE_INT )+ )? ) ) )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3487:1: ( (this_PLUS_0= RULE_PLUS | this_DASH_1= RULE_DASH )? ( (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3=
-				// RULE_ONE_INT )+ ) | ( ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+ )? ) ) )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3487:2: (this_PLUS_0= RULE_PLUS | this_DASH_1= RULE_DASH )? ( (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3=
-				// RULE_ONE_INT )+ ) | ( ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+ )? ) )
+				// InternalCSS.g:3487:1: ( (this_PLUS_0= RULE_PLUS | this_DASH_1= RULE_DASH )? ( (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+ ) | ( ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT
+				// )=>this_ONE_INT_6= RULE_ONE_INT )+ )? ) ) )
+				// InternalCSS.g:3487:2: (this_PLUS_0= RULE_PLUS | this_DASH_1= RULE_DASH )? ( (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+ ) | ( ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT
+				// )=>this_ONE_INT_6= RULE_ONE_INT )+ )? ) )
 				{
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3487:2: (this_PLUS_0= RULE_PLUS | this_DASH_1= RULE_DASH )?
+					// InternalCSS.g:3487:2: (this_PLUS_0= RULE_PLUS | this_DASH_1= RULE_DASH )?
 					int alt77 = 3;
 					int LA77_0 = input.LA(1);
 
 					if ((LA77_0 == RULE_PLUS)) {
 						alt77 = 1;
-					}
-					else if ((LA77_0 == RULE_DASH)) {
+					} else if ((LA77_0 == RULE_DASH)) {
 						alt77 = 2;
 					}
 					switch (alt77) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3487:7: this_PLUS_0= RULE_PLUS
+					// InternalCSS.g:3487:7: this_PLUS_0= RULE_PLUS
 					{
-						this_PLUS_0 = (Token) match(input, RULE_PLUS, FOLLOW_RULE_PLUS_in_ruleNum8200);
+						this_PLUS_0 = (Token) match(input, RULE_PLUS, FOLLOW_48);
 						if (state.failed) {
 							return current;
 						}
@@ -11529,9 +11265,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 2:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3495:10: this_DASH_1= RULE_DASH
+					// InternalCSS.g:3495:10: this_DASH_1= RULE_DASH
 					{
-						this_DASH_1 = (Token) match(input, RULE_DASH, FOLLOW_RULE_DASH_in_ruleNum8226);
+						this_DASH_1 = (Token) match(input, RULE_DASH, FOLLOW_48);
 						if (state.failed) {
 							return current;
 						}
@@ -11551,35 +11287,31 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 					}
 
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3502:3: ( (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+ ) | ( ( ( RULE_ONE_INT
-					// )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+ )? ) )
+					// InternalCSS.g:3502:3: ( (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+ ) | ( ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+ )? ) )
 					int alt82 = 2;
 					int LA82_0 = input.LA(1);
 
 					if ((LA82_0 == 41)) {
 						alt82 = 1;
-					}
-					else if ((LA82_0 == RULE_ONE_INT)) {
+					} else if ((LA82_0 == RULE_ONE_INT)) {
 						alt82 = 2;
-					}
-					else {
+					} else {
 						if (state.backtracking > 0) {
 							state.failed = true;
 							return current;
 						}
-						NoViableAltException nvae =
-								new NoViableAltException("", 82, 0, input);
+						NoViableAltException nvae = new NoViableAltException("", 82, 0, input);
 
 						throw nvae;
 					}
 					switch (alt82) {
 					case 1:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3502:4: (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+ )
+					// InternalCSS.g:3502:4: (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+ )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3502:4: (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+ )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3503:2: kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+
+						// InternalCSS.g:3502:4: (kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+ )
+						// InternalCSS.g:3503:2: kw= '.' ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+
 						{
-							kw = (Token) match(input, 41, FOLLOW_41_in_ruleNum8248);
+							kw = (Token) match(input, 41, FOLLOW_49);
 							if (state.failed) {
 								return current;
 							}
@@ -11589,7 +11321,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								newLeafNode(kw, grammarAccess.getNumAccess().getFullStopKeyword_1_0_0());
 
 							}
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3508:1: ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+
+							// InternalCSS.g:3508:1: ( ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT )+
 							int cnt78 = 0;
 							loop78: do {
 								int alt78 = 2;
@@ -11608,9 +11340,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 								switch (alt78) {
 								case 1:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3508:2: ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT
+								// InternalCSS.g:3508:2: ( RULE_ONE_INT )=>this_ONE_INT_3= RULE_ONE_INT
 								{
-									this_ONE_INT_3 = (Token) match(input, RULE_ONE_INT, FOLLOW_RULE_ONE_INT_in_ruleNum8269);
+									this_ONE_INT_3 = (Token) match(input, RULE_ONE_INT, FOLLOW_50);
 									if (state.failed) {
 										return current;
 									}
@@ -11636,8 +11368,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										state.failed = true;
 										return current;
 									}
-									EarlyExitException eee =
-											new EarlyExitException(78, input);
+									EarlyExitException eee = new EarlyExitException(78, input);
 									throw eee;
 								}
 								cnt78++;
@@ -11650,15 +11381,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					}
 						break;
 					case 2:
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3516:6: ( ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT
-					// )=>this_ONE_INT_6= RULE_ONE_INT )+ )? )
+					// InternalCSS.g:3516:6: ( ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+ )? )
 					{
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3516:6: ( ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT
-						// )=>this_ONE_INT_6= RULE_ONE_INT )+ )? )
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3516:7: ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT
-						// )=>this_ONE_INT_6= RULE_ONE_INT )+ )?
+						// InternalCSS.g:3516:6: ( ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+ )? )
+						// InternalCSS.g:3516:7: ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+ ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+ )?
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3516:7: ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+
+							// InternalCSS.g:3516:7: ( ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT )+
 							int cnt79 = 0;
 							loop79: do {
 								int alt79 = 2;
@@ -11677,9 +11405,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 								switch (alt79) {
 								case 1:
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3516:8: ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT
+								// InternalCSS.g:3516:8: ( RULE_ONE_INT )=>this_ONE_INT_4= RULE_ONE_INT
 								{
-									this_ONE_INT_4 = (Token) match(input, RULE_ONE_INT, FOLLOW_RULE_ONE_INT_in_ruleNum8305);
+									this_ONE_INT_4 = (Token) match(input, RULE_ONE_INT, FOLLOW_51);
 									if (state.failed) {
 										return current;
 									}
@@ -11705,14 +11433,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 										state.failed = true;
 										return current;
 									}
-									EarlyExitException eee =
-											new EarlyExitException(79, input);
+									EarlyExitException eee = new EarlyExitException(79, input);
 									throw eee;
 								}
 								cnt79++;
 							} while (true);
 
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3523:3: ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+ )?
+							// InternalCSS.g:3523:3: ( ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+ )?
 							int alt81 = 2;
 							int LA81_0 = input.LA(1);
 
@@ -11729,12 +11456,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 							switch (alt81) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3523:4: ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+
+							// InternalCSS.g:3523:4: ( ( '.' )=>kw= '.' ) ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+
 							{
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3523:4: ( ( '.' )=>kw= '.' )
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3523:5: ( '.' )=>kw= '.'
+								// InternalCSS.g:3523:4: ( ( '.' )=>kw= '.' )
+								// InternalCSS.g:3523:5: ( '.' )=>kw= '.'
 								{
-									kw = (Token) match(input, 41, FOLLOW_41_in_ruleNum8335);
+									kw = (Token) match(input, 41, FOLLOW_49);
 									if (state.failed) {
 										return current;
 									}
@@ -11747,7 +11474,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 								}
 
-								// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3531:2: ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+
+								// InternalCSS.g:3531:2: ( ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT )+
 								int cnt80 = 0;
 								loop80: do {
 									int alt80 = 2;
@@ -11766,9 +11493,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 									switch (alt80) {
 									case 1:
-									// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3531:3: ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT
+									// InternalCSS.g:3531:3: ( RULE_ONE_INT )=>this_ONE_INT_6= RULE_ONE_INT
 									{
-										this_ONE_INT_6 = (Token) match(input, RULE_ONE_INT, FOLLOW_RULE_ONE_INT_in_ruleNum8357);
+										this_ONE_INT_6 = (Token) match(input, RULE_ONE_INT, FOLLOW_50);
 										if (state.failed) {
 											return current;
 										}
@@ -11794,8 +11521,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 											state.failed = true;
 											return current;
 										}
-										EarlyExitException eee =
-												new EarlyExitException(80, input);
+										EarlyExitException eee = new EarlyExitException(80, input);
 										throw eee;
 									}
 									cnt80++;
@@ -11837,12 +11563,11 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleNum"
 
 
 	// $ANTLR start "entryRuleHex"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3549:1: entryRuleHex returns [String current=null] : iv_ruleHex= ruleHex EOF ;
+	// InternalCSS.g:3549:1: entryRuleHex returns [String current=null] : iv_ruleHex= ruleHex EOF ;
 	public final String entryRuleHex() throws RecognitionException {
 		String current = null;
 
@@ -11850,13 +11575,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3550:2: (iv_ruleHex= ruleHex EOF )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3551:2: iv_ruleHex= ruleHex EOF
+			// InternalCSS.g:3550:2: (iv_ruleHex= ruleHex EOF )
+			// InternalCSS.g:3551:2: iv_ruleHex= ruleHex EOF
 			{
 				if (state.backtracking == 0) {
 					newCompositeNode(grammarAccess.getHexRule());
 				}
-				pushFollow(FOLLOW_ruleHex_in_entryRuleHex8413);
+				pushFollow(FOLLOW_1);
 				iv_ruleHex = ruleHex();
 
 				state._fsp--;
@@ -11866,7 +11591,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				if (state.backtracking == 0) {
 					current = iv_ruleHex.getText();
 				}
-				match(input, EOF, FOLLOW_EOF_in_entryRuleHex8424);
+				match(input, EOF, FOLLOW_2);
 				if (state.failed) {
 					return current;
 				}
@@ -11882,13 +11607,12 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleHex"
 
 
 	// $ANTLR start "ruleHex"
-	// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3558:1: ruleHex returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_HASHMARK_0= RULE_HASHMARK (
-	// ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )=> (this_ONE_INT_1= RULE_ONE_INT | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER ) )+ ) ;
+	// InternalCSS.g:3558:1: ruleHex returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_HASHMARK_0= RULE_HASHMARK ( ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )=> (this_ONE_INT_1= RULE_ONE_INT | this_ONE_HEX_LETTER_2=
+	// RULE_ONE_HEX_LETTER ) )+ ) ;
 	public final AntlrDatatypeRuleToken ruleHex() throws RecognitionException {
 		AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -11899,17 +11623,13 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3561:28: ( (this_HASHMARK_0= RULE_HASHMARK ( ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )=> (this_ONE_INT_1=
-			// RULE_ONE_INT | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER ) )+ ) )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3562:1: (this_HASHMARK_0= RULE_HASHMARK ( ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )=> (this_ONE_INT_1=
-			// RULE_ONE_INT | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER ) )+ )
+			// InternalCSS.g:3561:28: ( (this_HASHMARK_0= RULE_HASHMARK ( ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )=> (this_ONE_INT_1= RULE_ONE_INT | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER ) )+ ) )
+			// InternalCSS.g:3562:1: (this_HASHMARK_0= RULE_HASHMARK ( ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )=> (this_ONE_INT_1= RULE_ONE_INT | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER ) )+ )
 			{
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3562:1: (this_HASHMARK_0= RULE_HASHMARK ( ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )=> (this_ONE_INT_1=
-				// RULE_ONE_INT | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER ) )+ )
-				// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3562:6: this_HASHMARK_0= RULE_HASHMARK ( ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )=> (this_ONE_INT_1=
-				// RULE_ONE_INT | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER ) )+
+				// InternalCSS.g:3562:1: (this_HASHMARK_0= RULE_HASHMARK ( ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )=> (this_ONE_INT_1= RULE_ONE_INT | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER ) )+ )
+				// InternalCSS.g:3562:6: this_HASHMARK_0= RULE_HASHMARK ( ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )=> (this_ONE_INT_1= RULE_ONE_INT | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER ) )+
 				{
-					this_HASHMARK_0 = (Token) match(input, RULE_HASHMARK, FOLLOW_RULE_HASHMARK_in_ruleHex8464);
+					this_HASHMARK_0 = (Token) match(input, RULE_HASHMARK, FOLLOW_46);
 					if (state.failed) {
 						return current;
 					}
@@ -11923,8 +11643,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 						newLeafNode(this_HASHMARK_0, grammarAccess.getHexAccess().getHASHMARKTerminalRuleCall_0());
 
 					}
-					// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3569:1: ( ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )=> (this_ONE_INT_1= RULE_ONE_INT |
-					// this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER ) )+
+					// InternalCSS.g:3569:1: ( ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )=> (this_ONE_INT_1= RULE_ONE_INT | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER ) )+
 					int cnt84 = 0;
 					loop84: do {
 						int alt84 = 2;
@@ -11938,8 +11657,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 
 
-						}
-						else if ((LA84_0 == RULE_ONE_INT)) {
+						} else if ((LA84_0 == RULE_ONE_INT)) {
 							int LA84_3 = input.LA(2);
 
 							if ((synpred7_InternalCSS())) {
@@ -11952,34 +11670,30 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 						switch (alt84) {
 						case 1:
-						// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3569:2: ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )=> (this_ONE_INT_1= RULE_ONE_INT |
-						// this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER )
+						// InternalCSS.g:3569:2: ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )=> (this_ONE_INT_1= RULE_ONE_INT | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER )
 						{
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3570:30: (this_ONE_INT_1= RULE_ONE_INT | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER )
+							// InternalCSS.g:3570:30: (this_ONE_INT_1= RULE_ONE_INT | this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER )
 							int alt83 = 2;
 							int LA83_0 = input.LA(1);
 
 							if ((LA83_0 == RULE_ONE_INT)) {
 								alt83 = 1;
-							}
-							else if ((LA83_0 == RULE_ONE_HEX_LETTER)) {
+							} else if ((LA83_0 == RULE_ONE_HEX_LETTER)) {
 								alt83 = 2;
-							}
-							else {
+							} else {
 								if (state.backtracking > 0) {
 									state.failed = true;
 									return current;
 								}
-								NoViableAltException nvae =
-										new NoViableAltException("", 83, 0, input);
+								NoViableAltException nvae = new NoViableAltException("", 83, 0, input);
 
 								throw nvae;
 							}
 							switch (alt83) {
 							case 1:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3570:35: this_ONE_INT_1= RULE_ONE_INT
+							// InternalCSS.g:3570:35: this_ONE_INT_1= RULE_ONE_INT
 							{
-								this_ONE_INT_1 = (Token) match(input, RULE_ONE_INT, FOLLOW_RULE_ONE_INT_in_ruleHex8501);
+								this_ONE_INT_1 = (Token) match(input, RULE_ONE_INT, FOLLOW_52);
 								if (state.failed) {
 									return current;
 								}
@@ -11997,9 +11711,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 							}
 								break;
 							case 2:
-							// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3578:10: this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER
+							// InternalCSS.g:3578:10: this_ONE_HEX_LETTER_2= RULE_ONE_HEX_LETTER
 							{
-								this_ONE_HEX_LETTER_2 = (Token) match(input, RULE_ONE_HEX_LETTER, FOLLOW_RULE_ONE_HEX_LETTER_in_ruleHex8527);
+								this_ONE_HEX_LETTER_2 = (Token) match(input, RULE_ONE_HEX_LETTER, FOLLOW_52);
 								if (state.failed) {
 									return current;
 								}
@@ -12031,8 +11745,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 								state.failed = true;
 								return current;
 							}
-							EarlyExitException eee =
-									new EarlyExitException(84, input);
+							EarlyExitException eee = new EarlyExitException(84, input);
 							throw eee;
 						}
 						cnt84++;
@@ -12056,18 +11769,17 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleHex"
 
 	// $ANTLR start synpred1_InternalCSS
 	public final void synpred1_InternalCSS_fragment() throws RecognitionException {
-		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1267:7: ( ( ruleSubSelectorForNegation ) )
-		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1268:1: ( ruleSubSelectorForNegation )
+		// InternalCSS.g:1267:7: ( ( ruleSubSelectorForNegation ) )
+		// InternalCSS.g:1268:1: ( ruleSubSelectorForNegation )
 		{
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1268:1: ( ruleSubSelectorForNegation )
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:1269:1: ruleSubSelectorForNegation
+			// InternalCSS.g:1268:1: ( ruleSubSelectorForNegation )
+			// InternalCSS.g:1269:1: ruleSubSelectorForNegation
 			{
-				pushFollow(FOLLOW_ruleSubSelectorForNegation_in_synpred1_InternalCSS2668);
+				pushFollow(FOLLOW_2);
 				ruleSubSelectorForNegation();
 
 				state._fsp--;
@@ -12080,18 +11792,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 		}
 	}
-
 	// $ANTLR end synpred1_InternalCSS
 
 	// $ANTLR start synpred2_InternalCSS
 	public final void synpred2_InternalCSS_fragment() throws RecognitionException {
-		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3400:3: ( ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT |
-		// ruleKeywordHack ) )
-		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3400:4: ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack
-		// )
+		// InternalCSS.g:3400:3: ( ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack ) )
+		// InternalCSS.g:3400:4: ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack )
 		{
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3400:4: ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT |
-			// ruleKeywordHack )
+			// InternalCSS.g:3400:4: ( RULE_UNDERSCORE | RULE_DASH | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_ONE_INT | ruleKeywordHack )
 			int alt85 = 6;
 			switch (input.LA(1)) {
 			case RULE_UNDERSCORE: {
@@ -12126,17 +11834,16 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					state.failed = true;
 					return;
 				}
-				NoViableAltException nvae =
-						new NoViableAltException("", 85, 0, input);
+				NoViableAltException nvae = new NoViableAltException("", 85, 0, input);
 
 				throw nvae;
 			}
 
 			switch (alt85) {
 			case 1:
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3400:6: RULE_UNDERSCORE
+			// InternalCSS.g:3400:6: RULE_UNDERSCORE
 			{
-				match(input, RULE_UNDERSCORE, FOLLOW_RULE_UNDERSCORE_in_synpred2_InternalCSS7897);
+				match(input, RULE_UNDERSCORE, FOLLOW_2);
 				if (state.failed) {
 					return;
 				}
@@ -12144,9 +11851,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 			}
 				break;
 			case 2:
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3401:7: RULE_DASH
+			// InternalCSS.g:3401:7: RULE_DASH
 			{
-				match(input, RULE_DASH, FOLLOW_RULE_DASH_in_synpred2_InternalCSS7905);
+				match(input, RULE_DASH, FOLLOW_2);
 				if (state.failed) {
 					return;
 				}
@@ -12154,9 +11861,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 			}
 				break;
 			case 3:
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3402:7: RULE_ONE_HEX_LETTER
+			// InternalCSS.g:3402:7: RULE_ONE_HEX_LETTER
 			{
-				match(input, RULE_ONE_HEX_LETTER, FOLLOW_RULE_ONE_HEX_LETTER_in_synpred2_InternalCSS7913);
+				match(input, RULE_ONE_HEX_LETTER, FOLLOW_2);
 				if (state.failed) {
 					return;
 				}
@@ -12164,9 +11871,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 			}
 				break;
 			case 4:
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3403:7: RULE_ONE_NON_HEX_LETTER
+			// InternalCSS.g:3403:7: RULE_ONE_NON_HEX_LETTER
 			{
-				match(input, RULE_ONE_NON_HEX_LETTER, FOLLOW_RULE_ONE_NON_HEX_LETTER_in_synpred2_InternalCSS7921);
+				match(input, RULE_ONE_NON_HEX_LETTER, FOLLOW_2);
 				if (state.failed) {
 					return;
 				}
@@ -12174,9 +11881,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 			}
 				break;
 			case 5:
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3404:7: RULE_ONE_INT
+			// InternalCSS.g:3404:7: RULE_ONE_INT
 			{
-				match(input, RULE_ONE_INT, FOLLOW_RULE_ONE_INT_in_synpred2_InternalCSS7929);
+				match(input, RULE_ONE_INT, FOLLOW_2);
 				if (state.failed) {
 					return;
 				}
@@ -12184,9 +11891,9 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 			}
 				break;
 			case 6:
-			// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3405:7: ruleKeywordHack
+			// InternalCSS.g:3405:7: ruleKeywordHack
 			{
-				pushFollow(FOLLOW_ruleKeywordHack_in_synpred2_InternalCSS7937);
+				pushFollow(FOLLOW_2);
 				ruleKeywordHack();
 
 				state._fsp--;
@@ -12202,80 +11909,74 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 		}
 	}
-
 	// $ANTLR end synpred2_InternalCSS
 
 	// $ANTLR start synpred3_InternalCSS
 	public final void synpred3_InternalCSS_fragment() throws RecognitionException {
-		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3508:2: ( RULE_ONE_INT )
-		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3508:4: RULE_ONE_INT
+		// InternalCSS.g:3508:2: ( RULE_ONE_INT )
+		// InternalCSS.g:3508:4: RULE_ONE_INT
 		{
-			match(input, RULE_ONE_INT, FOLLOW_RULE_ONE_INT_in_synpred3_InternalCSS8260);
+			match(input, RULE_ONE_INT, FOLLOW_2);
 			if (state.failed) {
 				return;
 			}
 
 		}
 	}
-
 	// $ANTLR end synpred3_InternalCSS
 
 	// $ANTLR start synpred4_InternalCSS
 	public final void synpred4_InternalCSS_fragment() throws RecognitionException {
-		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3516:8: ( RULE_ONE_INT )
-		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3516:10: RULE_ONE_INT
+		// InternalCSS.g:3516:8: ( RULE_ONE_INT )
+		// InternalCSS.g:3516:10: RULE_ONE_INT
 		{
-			match(input, RULE_ONE_INT, FOLLOW_RULE_ONE_INT_in_synpred4_InternalCSS8296);
+			match(input, RULE_ONE_INT, FOLLOW_2);
 			if (state.failed) {
 				return;
 			}
 
 		}
 	}
-
 	// $ANTLR end synpred4_InternalCSS
 
 	// $ANTLR start synpred5_InternalCSS
 	public final void synpred5_InternalCSS_fragment() throws RecognitionException {
-		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3523:5: ( '.' )
-		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3524:2: '.'
+		// InternalCSS.g:3523:5: ( '.' )
+		// InternalCSS.g:3524:2: '.'
 		{
-			match(input, 41, FOLLOW_41_in_synpred5_InternalCSS8326);
+			match(input, 41, FOLLOW_2);
 			if (state.failed) {
 				return;
 			}
 
 		}
 	}
-
 	// $ANTLR end synpred5_InternalCSS
 
 	// $ANTLR start synpred6_InternalCSS
 	public final void synpred6_InternalCSS_fragment() throws RecognitionException {
-		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3531:3: ( RULE_ONE_INT )
-		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3531:5: RULE_ONE_INT
+		// InternalCSS.g:3531:3: ( RULE_ONE_INT )
+		// InternalCSS.g:3531:5: RULE_ONE_INT
 		{
-			match(input, RULE_ONE_INT, FOLLOW_RULE_ONE_INT_in_synpred6_InternalCSS8348);
+			match(input, RULE_ONE_INT, FOLLOW_2);
 			if (state.failed) {
 				return;
 			}
 
 		}
 	}
-
 	// $ANTLR end synpred6_InternalCSS
 
 	// $ANTLR start synpred7_InternalCSS
 	public final void synpred7_InternalCSS_fragment() throws RecognitionException {
-		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3569:2: ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )
-		// ../org.eclipse.papyrus.infra.gmfdiag.css3.xtext/src-gen/org/eclipse/papyrus/infra/gmfdiag/css3/parser/antlr/internal/InternalCSS.g:3569:3: ( RULE_ONE_INT | RULE_ONE_HEX_LETTER )
+		// InternalCSS.g:3569:2: ( ( RULE_ONE_INT | RULE_ONE_HEX_LETTER ) )
+		// InternalCSS.g:3569:3: ( RULE_ONE_INT | RULE_ONE_HEX_LETTER )
 		{
 			if (input.LA(1) == RULE_ONE_HEX_LETTER || input.LA(1) == RULE_ONE_INT) {
 				input.consume();
 				state.errorRecovery = false;
 				state.failed = false;
-			}
-			else {
+			} else {
 				if (state.backtracking > 0) {
 					state.failed = true;
 					return;
@@ -12287,16 +11988,75 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 
 		}
 	}
-
 	// $ANTLR end synpred7_InternalCSS
 
 	// Delegated rules
+
+	public final boolean synpred4_InternalCSS() {
+		state.backtracking++;
+		int start = input.mark();
+		try {
+			synpred4_InternalCSS_fragment(); // can never throw exception
+		} catch (RecognitionException re) {
+			System.err.println("impossible: " + re);
+		}
+		boolean success = !state.failed;
+		input.rewind(start);
+		state.backtracking--;
+		state.failed = false;
+		return success;
+	}
+
+	public final boolean synpred6_InternalCSS() {
+		state.backtracking++;
+		int start = input.mark();
+		try {
+			synpred6_InternalCSS_fragment(); // can never throw exception
+		} catch (RecognitionException re) {
+			System.err.println("impossible: " + re);
+		}
+		boolean success = !state.failed;
+		input.rewind(start);
+		state.backtracking--;
+		state.failed = false;
+		return success;
+	}
 
 	public final boolean synpred5_InternalCSS() {
 		state.backtracking++;
 		int start = input.mark();
 		try {
 			synpred5_InternalCSS_fragment(); // can never throw exception
+		} catch (RecognitionException re) {
+			System.err.println("impossible: " + re);
+		}
+		boolean success = !state.failed;
+		input.rewind(start);
+		state.backtracking--;
+		state.failed = false;
+		return success;
+	}
+
+	public final boolean synpred1_InternalCSS() {
+		state.backtracking++;
+		int start = input.mark();
+		try {
+			synpred1_InternalCSS_fragment(); // can never throw exception
+		} catch (RecognitionException re) {
+			System.err.println("impossible: " + re);
+		}
+		boolean success = !state.failed;
+		input.rewind(start);
+		state.backtracking--;
+		state.failed = false;
+		return success;
+	}
+
+	public final boolean synpred2_InternalCSS() {
+		state.backtracking++;
+		int start = input.mark();
+		try {
+			synpred2_InternalCSS_fragment(); // can never throw exception
 		} catch (RecognitionException re) {
 			System.err.println("impossible: " + re);
 		}
@@ -12337,66 +12097,6 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		return success;
 	}
 
-	public final boolean synpred6_InternalCSS() {
-		state.backtracking++;
-		int start = input.mark();
-		try {
-			synpred6_InternalCSS_fragment(); // can never throw exception
-		} catch (RecognitionException re) {
-			System.err.println("impossible: " + re);
-		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
-		return success;
-	}
-
-	public final boolean synpred4_InternalCSS() {
-		state.backtracking++;
-		int start = input.mark();
-		try {
-			synpred4_InternalCSS_fragment(); // can never throw exception
-		} catch (RecognitionException re) {
-			System.err.println("impossible: " + re);
-		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
-		return success;
-	}
-
-	public final boolean synpred2_InternalCSS() {
-		state.backtracking++;
-		int start = input.mark();
-		try {
-			synpred2_InternalCSS_fragment(); // can never throw exception
-		} catch (RecognitionException re) {
-			System.err.println("impossible: " + re);
-		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
-		return success;
-	}
-
-	public final boolean synpred1_InternalCSS() {
-		state.backtracking++;
-		int start = input.mark();
-		try {
-			synpred1_InternalCSS_fragment(); // can never throw exception
-		} catch (RecognitionException re) {
-			System.err.println("impossible: " + re);
-		}
-		boolean success = !state.failed;
-		input.rewind(start);
-		state.backtracking--;
-		state.failed = false;
-		return success;
-	}
-
 
 	protected DFA29 dfa29 = new DFA29(this);
 	protected DFA38 dfa38 = new DFA38(this);
@@ -12404,53 +12104,37 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 	protected DFA44 dfa44 = new DFA44(this);
 	protected DFA58 dfa58 = new DFA58(this);
 	protected DFA76 dfa76 = new DFA76(this);
-	static final String DFA29_eotS =
-			"\4\uffff";
-	static final String DFA29_eofS =
-			"\4\uffff";
-	static final String DFA29_minS =
-			"\2\6\2\uffff";
-	static final String DFA29_maxS =
-			"\2\33\2\uffff";
-	static final String DFA29_acceptS =
-			"\2\uffff\1\2\1\1";
-	static final String DFA29_specialS =
-			"\4\uffff}>";
-	static final String[] DFA29_transitionS = {
+	static final String dfa_1s = "\4\uffff";
+	static final String dfa_2s = "\2\6\2\uffff";
+	static final String dfa_3s = "\2\33\2\uffff";
+	static final String dfa_4s = "\2\uffff\1\2\1\1";
+	static final String dfa_5s = "\4\uffff}>";
+	static final String[] dfa_6s = {
 			"\1\3\1\uffff\1\1\22\uffff\1\2",
 			"\1\3\1\uffff\1\1\22\uffff\1\2",
 			"",
 			""
 	};
 
-	static final short[] DFA29_eot = DFA.unpackEncodedString(DFA29_eotS);
-	static final short[] DFA29_eof = DFA.unpackEncodedString(DFA29_eofS);
-	static final char[] DFA29_min = DFA.unpackEncodedStringToUnsignedChars(DFA29_minS);
-	static final char[] DFA29_max = DFA.unpackEncodedStringToUnsignedChars(DFA29_maxS);
-	static final short[] DFA29_accept = DFA.unpackEncodedString(DFA29_acceptS);
-	static final short[] DFA29_special = DFA.unpackEncodedString(DFA29_specialS);
-	static final short[][] DFA29_transition;
-
-	static {
-		int numStates = DFA29_transitionS.length;
-		DFA29_transition = new short[numStates][];
-		for (int i = 0; i < numStates; i++) {
-			DFA29_transition[i] = DFA.unpackEncodedString(DFA29_transitionS[i]);
-		}
-	}
+	static final short[] dfa_1 = DFA.unpackEncodedString(dfa_1s);
+	static final char[] dfa_2 = DFA.unpackEncodedStringToUnsignedChars(dfa_2s);
+	static final char[] dfa_3 = DFA.unpackEncodedStringToUnsignedChars(dfa_3s);
+	static final short[] dfa_4 = DFA.unpackEncodedString(dfa_4s);
+	static final short[] dfa_5 = DFA.unpackEncodedString(dfa_5s);
+	static final short[][] dfa_6 = unpackEncodedStringArray(dfa_6s);
 
 	class DFA29 extends DFA {
 
 		public DFA29(BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 29;
-			this.eot = DFA29_eot;
-			this.eof = DFA29_eof;
-			this.min = DFA29_min;
-			this.max = DFA29_max;
-			this.accept = DFA29_accept;
-			this.special = DFA29_special;
-			this.transition = DFA29_transition;
+			this.eot = dfa_1;
+			this.eof = dfa_1;
+			this.min = dfa_2;
+			this.max = dfa_3;
+			this.accept = dfa_4;
+			this.special = dfa_5;
+			this.transition = dfa_6;
 		}
 
 		@Override
@@ -12459,55 +12143,40 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 	}
 
-	static final String DFA38_eotS =
-			"\5\uffff";
-	static final String DFA38_eofS =
-			"\1\3\4\uffff";
-	static final String DFA38_minS =
-			"\1\6\1\uffff\1\5\2\uffff";
-	static final String DFA38_maxS =
-			"\1\60\1\uffff\1\73\2\uffff";
-	static final String DFA38_acceptS =
-			"\1\uffff\1\1\1\uffff\1\3\1\2";
-	static final String DFA38_specialS =
-			"\5\uffff}>";
-	static final String[] DFA38_transitionS = {
+	static final String dfa_7s = "\5\uffff";
+	static final String dfa_8s = "\1\3\4\uffff";
+	static final String dfa_9s = "\1\6\1\uffff\1\5\2\uffff";
+	static final String dfa_10s = "\1\60\1\uffff\1\73\2\uffff";
+	static final String dfa_11s = "\1\uffff\1\1\1\uffff\1\3\1\2";
+	static final String dfa_12s = "\5\uffff}>";
+	static final String[] dfa_13s = {
 			"\1\3\1\uffff\1\2\4\uffff\1\1\15\uffff\1\3\23\uffff\2\1",
 			"",
-			"\1\4\1\3\1\uffff\1\2\2\uffff\1\4\1\uffff\5\4\11\uffff\1\3" +
-					"\7\uffff\1\4\5\uffff\3\4\3\uffff\2\4\7\uffff\4\4",
+			"\1\4\1\3\1\uffff\1\2\2\uffff\1\4\1\uffff\5\4\11\uffff\1\3\7\uffff\1\4\5\uffff\3\4\3\uffff\2\4\7\uffff\4\4",
 			"",
 			""
 	};
 
-	static final short[] DFA38_eot = DFA.unpackEncodedString(DFA38_eotS);
-	static final short[] DFA38_eof = DFA.unpackEncodedString(DFA38_eofS);
-	static final char[] DFA38_min = DFA.unpackEncodedStringToUnsignedChars(DFA38_minS);
-	static final char[] DFA38_max = DFA.unpackEncodedStringToUnsignedChars(DFA38_maxS);
-	static final short[] DFA38_accept = DFA.unpackEncodedString(DFA38_acceptS);
-	static final short[] DFA38_special = DFA.unpackEncodedString(DFA38_specialS);
-	static final short[][] DFA38_transition;
-
-	static {
-		int numStates = DFA38_transitionS.length;
-		DFA38_transition = new short[numStates][];
-		for (int i = 0; i < numStates; i++) {
-			DFA38_transition[i] = DFA.unpackEncodedString(DFA38_transitionS[i]);
-		}
-	}
+	static final short[] dfa_7 = DFA.unpackEncodedString(dfa_7s);
+	static final short[] dfa_8 = DFA.unpackEncodedString(dfa_8s);
+	static final char[] dfa_9 = DFA.unpackEncodedStringToUnsignedChars(dfa_9s);
+	static final char[] dfa_10 = DFA.unpackEncodedStringToUnsignedChars(dfa_10s);
+	static final short[] dfa_11 = DFA.unpackEncodedString(dfa_11s);
+	static final short[] dfa_12 = DFA.unpackEncodedString(dfa_12s);
+	static final short[][] dfa_13 = unpackEncodedStringArray(dfa_13s);
 
 	class DFA38 extends DFA {
 
 		public DFA38(BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 38;
-			this.eot = DFA38_eot;
-			this.eof = DFA38_eof;
-			this.min = DFA38_min;
-			this.max = DFA38_max;
-			this.accept = DFA38_accept;
-			this.special = DFA38_special;
-			this.transition = DFA38_transition;
+			this.eot = dfa_7;
+			this.eof = dfa_8;
+			this.min = dfa_9;
+			this.max = dfa_10;
+			this.accept = dfa_11;
+			this.special = dfa_12;
+			this.transition = dfa_13;
 		}
 
 		@Override
@@ -12516,101 +12185,55 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 	}
 
-	static final String DFA39_eotS =
-			"\24\uffff";
-	static final String DFA39_eofS =
-			"\2\uffff\7\23\1\uffff\11\23\1\uffff";
-	static final String DFA39_minS =
-			"\1\16\1\17\7\5\1\uffff\11\5\1\uffff";
-	static final String DFA39_maxS =
-			"\11\73\1\uffff\11\73\1\uffff";
-	static final String DFA39_acceptS =
-			"\11\uffff\1\2\11\uffff\1\1";
-	static final String DFA39_specialS =
-			"\24\uffff}>";
-	static final String[] DFA39_transitionS = {
+	static final String dfa_14s = "\24\uffff";
+	static final String dfa_15s = "\2\uffff\7\23\1\uffff\11\23\1\uffff";
+	static final String dfa_16s = "\1\16\1\17\7\5\1\uffff\11\5\1\uffff";
+	static final String dfa_17s = "\11\73\1\uffff\11\73\1\uffff";
+	static final String dfa_18s = "\11\uffff\1\2\11\uffff\1\1";
+	static final String dfa_19s = "\24\uffff}>";
+	static final String[] dfa_20s = {
 			"\1\1\1\2\1\3\1\4\30\uffff\2\11\14\uffff\1\5\1\6\1\7\1\10",
 			"\1\2\1\3\1\4\46\uffff\1\5\1\6\1\7\1\10",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
 			"",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
-			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff" +
-					"\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21" +
-					"\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
+			"\1\23\5\uffff\1\23\2\uffff\1\13\1\12\1\14\1\15\1\16\20\uffff\1\23\5\uffff\1\23\1\uffff\1\11\1\23\13\uffff\1\17\1\20\1\21\1\22",
 			""
 	};
 
-	static final short[] DFA39_eot = DFA.unpackEncodedString(DFA39_eotS);
-	static final short[] DFA39_eof = DFA.unpackEncodedString(DFA39_eofS);
-	static final char[] DFA39_min = DFA.unpackEncodedStringToUnsignedChars(DFA39_minS);
-	static final char[] DFA39_max = DFA.unpackEncodedStringToUnsignedChars(DFA39_maxS);
-	static final short[] DFA39_accept = DFA.unpackEncodedString(DFA39_acceptS);
-	static final short[] DFA39_special = DFA.unpackEncodedString(DFA39_specialS);
-	static final short[][] DFA39_transition;
-
-	static {
-		int numStates = DFA39_transitionS.length;
-		DFA39_transition = new short[numStates][];
-		for (int i = 0; i < numStates; i++) {
-			DFA39_transition[i] = DFA.unpackEncodedString(DFA39_transitionS[i]);
-		}
-	}
+	static final short[] dfa_14 = DFA.unpackEncodedString(dfa_14s);
+	static final short[] dfa_15 = DFA.unpackEncodedString(dfa_15s);
+	static final char[] dfa_16 = DFA.unpackEncodedStringToUnsignedChars(dfa_16s);
+	static final char[] dfa_17 = DFA.unpackEncodedStringToUnsignedChars(dfa_17s);
+	static final short[] dfa_18 = DFA.unpackEncodedString(dfa_18s);
+	static final short[] dfa_19 = DFA.unpackEncodedString(dfa_19s);
+	static final short[][] dfa_20 = unpackEncodedStringArray(dfa_20s);
 
 	class DFA39 extends DFA {
 
 		public DFA39(BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 39;
-			this.eot = DFA39_eot;
-			this.eof = DFA39_eof;
-			this.min = DFA39_min;
-			this.max = DFA39_max;
-			this.accept = DFA39_accept;
-			this.special = DFA39_special;
-			this.transition = DFA39_transition;
+			this.eot = dfa_14;
+			this.eof = dfa_15;
+			this.min = dfa_16;
+			this.max = dfa_17;
+			this.accept = dfa_18;
+			this.special = dfa_19;
+			this.transition = dfa_20;
 		}
 
 		@Override
@@ -12619,101 +12242,42 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 	}
 
-	static final String DFA44_eotS =
-			"\24\uffff";
-	static final String DFA44_eofS =
-			"\2\uffff\7\23\1\uffff\11\23\1\uffff";
-	static final String DFA44_minS =
-			"\1\16\1\17\7\5\1\uffff\11\5\1\uffff";
-	static final String DFA44_maxS =
-			"\11\73\1\uffff\11\73\1\uffff";
-	static final String DFA44_acceptS =
-			"\11\uffff\1\2\11\uffff\1\1";
-	static final String DFA44_specialS =
-			"\24\uffff}>";
-	static final String[] DFA44_transitionS = {
+	static final String[] dfa_21s = {
 			"\1\1\1\2\1\3\1\4\30\uffff\2\11\14\uffff\1\5\1\6\1\7\1\10",
 			"\1\2\1\3\1\4\46\uffff\1\5\1\6\1\7\1\10",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
 			"",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
-			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14" +
-					"\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1" +
-					"\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
+			"\2\23\1\uffff\1\23\2\uffff\1\23\1\uffff\1\23\1\13\1\12\1\14\1\15\1\16\10\uffff\1\23\7\uffff\1\23\5\uffff\1\23\1\uffff\1\11\3\uffff\2\23\7\uffff\1\17\1\20\1\21\1\22",
 			""
 	};
-
-	static final short[] DFA44_eot = DFA.unpackEncodedString(DFA44_eotS);
-	static final short[] DFA44_eof = DFA.unpackEncodedString(DFA44_eofS);
-	static final char[] DFA44_min = DFA.unpackEncodedStringToUnsignedChars(DFA44_minS);
-	static final char[] DFA44_max = DFA.unpackEncodedStringToUnsignedChars(DFA44_maxS);
-	static final short[] DFA44_accept = DFA.unpackEncodedString(DFA44_acceptS);
-	static final short[] DFA44_special = DFA.unpackEncodedString(DFA44_specialS);
-	static final short[][] DFA44_transition;
-
-	static {
-		int numStates = DFA44_transitionS.length;
-		DFA44_transition = new short[numStates][];
-		for (int i = 0; i < numStates; i++) {
-			DFA44_transition[i] = DFA.unpackEncodedString(DFA44_transitionS[i]);
-		}
-	}
+	static final short[][] dfa_21 = unpackEncodedStringArray(dfa_21s);
 
 	class DFA44 extends DFA {
 
 		public DFA44(BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 44;
-			this.eot = DFA44_eot;
-			this.eof = DFA44_eof;
-			this.min = DFA44_min;
-			this.max = DFA44_max;
-			this.accept = DFA44_accept;
-			this.special = DFA44_special;
-			this.transition = DFA44_transition;
+			this.eot = dfa_14;
+			this.eof = dfa_15;
+			this.min = dfa_16;
+			this.max = dfa_17;
+			this.accept = dfa_18;
+			this.special = dfa_19;
+			this.transition = dfa_21;
 		}
 
 		@Override
@@ -12722,103 +12286,56 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 	}
 
-	static final String DFA58_eotS =
-			"\25\uffff";
-	static final String DFA58_eofS =
-			"\4\uffff\7\2\1\uffff\11\2";
-	static final String DFA58_minS =
-			"\2\5\1\uffff\1\17\7\5\1\uffff\11\5";
-	static final String DFA58_maxS =
-			"\1\5\1\73\1\uffff\10\73\1\uffff\11\73";
-	static final String DFA58_acceptS =
-			"\2\uffff\1\1\10\uffff\1\2\11\uffff";
-	static final String DFA58_specialS =
-			"\25\uffff}>";
-	static final String[] DFA58_transitionS = {
+	static final String dfa_22s = "\25\uffff";
+	static final String dfa_23s = "\4\uffff\7\13\1\uffff\11\13";
+	static final String dfa_24s = "\2\5\1\uffff\1\17\7\5\1\uffff\11\5";
+	static final String dfa_25s = "\1\5\1\73\1\uffff\10\73\1\uffff\11\73";
+	static final String dfa_26s = "\2\uffff\1\2\10\uffff\1\1\11\uffff";
+	static final String dfa_27s = "\25\uffff}>";
+	static final String[] dfa_28s = {
 			"\1\1",
-			"\1\2\10\uffff\1\3\1\4\1\5\1\6\34\uffff\1\13\11\uffff\1\7\1" +
-					"\10\1\11\1\12",
+			"\1\13\10\uffff\1\3\1\4\1\5\1\6\34\uffff\1\2\11\uffff\1\7\1\10\1\11\1\12",
 			"",
 			"\1\4\1\5\1\6\46\uffff\1\7\1\10\1\11\1\12",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
 			"",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24",
-			"\2\2\1\uffff\1\2\2\uffff\1\2\1\uffff\1\2\1\15\1\14\1\16\1" +
-					"\17\1\20\10\uffff\1\2\7\uffff\1\2\5\uffff\1\2\3\uffff\1\13\1" +
-					"\uffff\2\2\7\uffff\1\21\1\22\1\23\1\24"
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24",
+			"\2\13\1\uffff\1\13\2\uffff\1\13\1\uffff\1\13\1\15\1\14\1\16\1\17\1\20\10\uffff\1\13\7\uffff\1\13\5\uffff\1\13\3\uffff\1\2\1\uffff\2\13\7\uffff\1\21\1\22\1\23\1\24"
 	};
 
-	static final short[] DFA58_eot = DFA.unpackEncodedString(DFA58_eotS);
-	static final short[] DFA58_eof = DFA.unpackEncodedString(DFA58_eofS);
-	static final char[] DFA58_min = DFA.unpackEncodedStringToUnsignedChars(DFA58_minS);
-	static final char[] DFA58_max = DFA.unpackEncodedStringToUnsignedChars(DFA58_maxS);
-	static final short[] DFA58_accept = DFA.unpackEncodedString(DFA58_acceptS);
-	static final short[] DFA58_special = DFA.unpackEncodedString(DFA58_specialS);
-	static final short[][] DFA58_transition;
-
-	static {
-		int numStates = DFA58_transitionS.length;
-		DFA58_transition = new short[numStates][];
-		for (int i = 0; i < numStates; i++) {
-			DFA58_transition[i] = DFA.unpackEncodedString(DFA58_transitionS[i]);
-		}
-	}
+	static final short[] dfa_22 = DFA.unpackEncodedString(dfa_22s);
+	static final short[] dfa_23 = DFA.unpackEncodedString(dfa_23s);
+	static final char[] dfa_24 = DFA.unpackEncodedStringToUnsignedChars(dfa_24s);
+	static final char[] dfa_25 = DFA.unpackEncodedStringToUnsignedChars(dfa_25s);
+	static final short[] dfa_26 = DFA.unpackEncodedString(dfa_26s);
+	static final short[] dfa_27 = DFA.unpackEncodedString(dfa_27s);
+	static final short[][] dfa_28 = unpackEncodedStringArray(dfa_28s);
 
 	class DFA58 extends DFA {
 
 		public DFA58(BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 58;
-			this.eot = DFA58_eot;
-			this.eof = DFA58_eof;
-			this.min = DFA58_min;
-			this.max = DFA58_max;
-			this.accept = DFA58_accept;
-			this.special = DFA58_special;
-			this.transition = DFA58_transition;
+			this.eot = dfa_22;
+			this.eof = dfa_23;
+			this.min = dfa_24;
+			this.max = dfa_25;
+			this.accept = dfa_26;
+			this.special = dfa_27;
+			this.transition = dfa_28;
 		}
 
 		@Override
@@ -12827,21 +12344,14 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 		}
 	}
 
-	static final String DFA76_eotS =
-			"\14\uffff";
-	static final String DFA76_eofS =
-			"\1\1\13\uffff";
-	static final String DFA76_minS =
-			"\1\4\1\uffff\11\0\1\uffff";
-	static final String DFA76_maxS =
-			"\1\73\1\uffff\11\0\1\uffff";
-	static final String DFA76_acceptS =
-			"\1\uffff\1\2\11\uffff\1\1";
-	static final String DFA76_specialS =
-			"\2\uffff\1\4\1\3\1\6\1\1\1\7\1\5\1\2\1\0\1\10\1\uffff}>";
-	static final String[] DFA76_transitionS = {
-			"\12\1\1\2\1\3\1\4\1\5\1\12\3\uffff\1\1\4\uffff\2\1\6\uffff" +
-					"\7\1\1\uffff\3\1\1\uffff\3\1\6\uffff\1\6\1\7\1\10\1\11",
+	static final String dfa_29s = "\14\uffff";
+	static final String dfa_30s = "\1\1\13\uffff";
+	static final String dfa_31s = "\1\4\1\uffff\11\0\1\uffff";
+	static final String dfa_32s = "\1\73\1\uffff\11\0\1\uffff";
+	static final String dfa_33s = "\1\uffff\1\2\11\uffff\1\1";
+	static final String dfa_34s = "\2\uffff\1\6\1\0\1\10\1\1\1\2\1\3\1\4\1\5\1\7\1\uffff}>";
+	static final String[] dfa_35s = {
+			"\12\1\1\2\1\3\1\4\1\5\1\12\3\uffff\1\1\4\uffff\2\1\6\uffff\7\1\1\uffff\3\1\1\uffff\3\1\6\uffff\1\6\1\7\1\10\1\11",
 			"",
 			"\1\uffff",
 			"\1\uffff",
@@ -12855,34 +12365,26 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 			""
 	};
 
-	static final short[] DFA76_eot = DFA.unpackEncodedString(DFA76_eotS);
-	static final short[] DFA76_eof = DFA.unpackEncodedString(DFA76_eofS);
-	static final char[] DFA76_min = DFA.unpackEncodedStringToUnsignedChars(DFA76_minS);
-	static final char[] DFA76_max = DFA.unpackEncodedStringToUnsignedChars(DFA76_maxS);
-	static final short[] DFA76_accept = DFA.unpackEncodedString(DFA76_acceptS);
-	static final short[] DFA76_special = DFA.unpackEncodedString(DFA76_specialS);
-	static final short[][] DFA76_transition;
-
-	static {
-		int numStates = DFA76_transitionS.length;
-		DFA76_transition = new short[numStates][];
-		for (int i = 0; i < numStates; i++) {
-			DFA76_transition[i] = DFA.unpackEncodedString(DFA76_transitionS[i]);
-		}
-	}
+	static final short[] dfa_29 = DFA.unpackEncodedString(dfa_29s);
+	static final short[] dfa_30 = DFA.unpackEncodedString(dfa_30s);
+	static final char[] dfa_31 = DFA.unpackEncodedStringToUnsignedChars(dfa_31s);
+	static final char[] dfa_32 = DFA.unpackEncodedStringToUnsignedChars(dfa_32s);
+	static final short[] dfa_33 = DFA.unpackEncodedString(dfa_33s);
+	static final short[] dfa_34 = DFA.unpackEncodedString(dfa_34s);
+	static final short[][] dfa_35 = unpackEncodedStringArray(dfa_35s);
 
 	class DFA76 extends DFA {
 
 		public DFA76(BaseRecognizer recognizer) {
 			this.recognizer = recognizer;
 			this.decisionNumber = 76;
-			this.eot = DFA76_eot;
-			this.eof = DFA76_eof;
-			this.min = DFA76_min;
-			this.max = DFA76_max;
-			this.accept = DFA76_accept;
-			this.special = DFA76_special;
-			this.transition = DFA76_transition;
+			this.eot = dfa_29;
+			this.eof = dfa_30;
+			this.min = dfa_31;
+			this.max = dfa_32;
+			this.accept = dfa_33;
+			this.special = dfa_34;
+			this.transition = dfa_35;
 		}
 
 		@Override
@@ -12896,10 +12398,10 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 			int _s = s;
 			switch (s) {
 			case 0:
-				int LA76_9 = input.LA(1);
+				int LA76_3 = input.LA(1);
 
 
-				int index76_9 = input.index();
+				int index76_3 = input.index();
 				input.rewind();
 				s = -1;
 				if ((synpred2_InternalCSS())) {
@@ -12911,7 +12413,7 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 
 
-				input.seek(index76_9);
+				input.seek(index76_3);
 				if (s >= 0) {
 					return s;
 				}
@@ -12938,111 +12440,6 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 				}
 				break;
 			case 2:
-				int LA76_8 = input.LA(1);
-
-
-				int index76_8 = input.index();
-				input.rewind();
-				s = -1;
-				if ((synpred2_InternalCSS())) {
-					s = 11;
-				}
-
-				else if ((true)) {
-					s = 1;
-				}
-
-
-				input.seek(index76_8);
-				if (s >= 0) {
-					return s;
-				}
-				break;
-			case 3:
-				int LA76_3 = input.LA(1);
-
-
-				int index76_3 = input.index();
-				input.rewind();
-				s = -1;
-				if ((synpred2_InternalCSS())) {
-					s = 11;
-				}
-
-				else if ((true)) {
-					s = 1;
-				}
-
-
-				input.seek(index76_3);
-				if (s >= 0) {
-					return s;
-				}
-				break;
-			case 4:
-				int LA76_2 = input.LA(1);
-
-
-				int index76_2 = input.index();
-				input.rewind();
-				s = -1;
-				if ((synpred2_InternalCSS())) {
-					s = 11;
-				}
-
-				else if ((true)) {
-					s = 1;
-				}
-
-
-				input.seek(index76_2);
-				if (s >= 0) {
-					return s;
-				}
-				break;
-			case 5:
-				int LA76_7 = input.LA(1);
-
-
-				int index76_7 = input.index();
-				input.rewind();
-				s = -1;
-				if ((synpred2_InternalCSS())) {
-					s = 11;
-				}
-
-				else if ((true)) {
-					s = 1;
-				}
-
-
-				input.seek(index76_7);
-				if (s >= 0) {
-					return s;
-				}
-				break;
-			case 6:
-				int LA76_4 = input.LA(1);
-
-
-				int index76_4 = input.index();
-				input.rewind();
-				s = -1;
-				if ((synpred2_InternalCSS())) {
-					s = 11;
-				}
-
-				else if ((true)) {
-					s = 1;
-				}
-
-
-				input.seek(index76_4);
-				if (s >= 0) {
-					return s;
-				}
-				break;
-			case 7:
 				int LA76_6 = input.LA(1);
 
 
@@ -13063,7 +12460,91 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					return s;
 				}
 				break;
-			case 8:
+			case 3:
+				int LA76_7 = input.LA(1);
+
+
+				int index76_7 = input.index();
+				input.rewind();
+				s = -1;
+				if ((synpred2_InternalCSS())) {
+					s = 11;
+				}
+
+				else if ((true)) {
+					s = 1;
+				}
+
+
+				input.seek(index76_7);
+				if (s >= 0) {
+					return s;
+				}
+				break;
+			case 4:
+				int LA76_8 = input.LA(1);
+
+
+				int index76_8 = input.index();
+				input.rewind();
+				s = -1;
+				if ((synpred2_InternalCSS())) {
+					s = 11;
+				}
+
+				else if ((true)) {
+					s = 1;
+				}
+
+
+				input.seek(index76_8);
+				if (s >= 0) {
+					return s;
+				}
+				break;
+			case 5:
+				int LA76_9 = input.LA(1);
+
+
+				int index76_9 = input.index();
+				input.rewind();
+				s = -1;
+				if ((synpred2_InternalCSS())) {
+					s = 11;
+				}
+
+				else if ((true)) {
+					s = 1;
+				}
+
+
+				input.seek(index76_9);
+				if (s >= 0) {
+					return s;
+				}
+				break;
+			case 6:
+				int LA76_2 = input.LA(1);
+
+
+				int index76_2 = input.index();
+				input.rewind();
+				s = -1;
+				if ((synpred2_InternalCSS())) {
+					s = 11;
+				}
+
+				else if ((true)) {
+					s = 1;
+				}
+
+
+				input.seek(index76_2);
+				if (s >= 0) {
+					return s;
+				}
+				break;
+			case 7:
 				int LA76_10 = input.LA(1);
 
 
@@ -13084,349 +12565,90 @@ public class InternalCSSParser extends AbstractInternalAntlrParser {
 					return s;
 				}
 				break;
+			case 8:
+				int LA76_4 = input.LA(1);
+
+
+				int index76_4 = input.index();
+				input.rewind();
+				s = -1;
+				if ((synpred2_InternalCSS())) {
+					s = 11;
+				}
+
+				else if ((true)) {
+					s = 1;
+				}
+
+
+				input.seek(index76_4);
+				if (s >= 0) {
+					return s;
+				}
+				break;
 			}
 			if (state.backtracking > 0) {
 				state.failed = true;
 				return -1;
 			}
-			NoViableAltException nvae =
-					new NoViableAltException(getDescription(), 76, _s, input);
+			NoViableAltException nvae = new NoViableAltException(getDescription(), 76, _s, input);
 			error(nvae);
 			throw nvae;
 		}
 	}
 
 
-	public static final BitSet FOLLOW_rulestylesheet_in_entryRulestylesheet75 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulestylesheet85 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulecharset_in_rulestylesheet131 = new BitSet(new long[] { 0x0F000E0FE783C822L });
-	public static final BitSet FOLLOW_ruleimportExpression_in_rulestylesheet153 = new BitSet(new long[] { 0x0F000E0FE783C822L });
-	public static final BitSet FOLLOW_ruleruleset_in_rulestylesheet176 = new BitSet(new long[] { 0x0F000E0FE603C822L });
-	public static final BitSet FOLLOW_rulemedia_in_rulestylesheet203 = new BitSet(new long[] { 0x0F000E0FE603C822L });
-	public static final BitSet FOLLOW_rulepage_in_rulestylesheet230 = new BitSet(new long[] { 0x0F000E0FE603C822L });
-	public static final BitSet FOLLOW_rulefont_face_in_rulestylesheet257 = new BitSet(new long[] { 0x0F000E0FE603C822L });
-	public static final BitSet FOLLOW_rulekeyframes_in_rulestylesheet284 = new BitSet(new long[] { 0x0F000E0FE603C822L });
-	public static final BitSet FOLLOW_rulecharset_in_entryRulecharset322 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulecharset332 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_20_in_rulecharset370 = new BitSet(new long[] { 0x0000000000000010L });
-	public static final BitSet FOLLOW_21_in_rulecharset388 = new BitSet(new long[] { 0x0000000000000010L });
-	public static final BitSet FOLLOW_RULE_CSSSTRING_in_rulecharset406 = new BitSet(new long[] { 0x0000000000400000L });
-	public static final BitSet FOLLOW_22_in_rulecharset423 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleimportExpression_in_entryRuleimportExpression459 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleimportExpression469 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_23_in_ruleimportExpression507 = new BitSet(new long[] { 0x0002000000000010L });
-	public static final BitSet FOLLOW_24_in_ruleimportExpression525 = new BitSet(new long[] { 0x0002000000000010L });
-	public static final BitSet FOLLOW_RULE_CSSSTRING_in_ruleimportExpression544 = new BitSet(new long[] { 0x0000000000400000L });
-	public static final BitSet FOLLOW_ruleURLType_in_ruleimportExpression578 = new BitSet(new long[] { 0x0F0000000043C000L });
-	public static final BitSet FOLLOW_rulemedia_list_in_ruleimportExpression598 = new BitSet(new long[] { 0x0000000000400000L });
-	public static final BitSet FOLLOW_22_in_ruleimportExpression613 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulepage_in_entryRulepage649 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulepage659 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_25_in_rulepage706 = new BitSet(new long[] { 0x0000000008000020L });
-	public static final BitSet FOLLOW_26_in_rulepage724 = new BitSet(new long[] { 0x0000000008000020L });
-	public static final BitSet FOLLOW_rulepseudo_page_in_rulepage746 = new BitSet(new long[] { 0x0000000008000000L });
-	public static final BitSet FOLLOW_27_in_rulepage759 = new BitSet(new long[] { 0x0F0000001043C100L });
-	public static final BitSet FOLLOW_rulecss_declaration_in_rulepage780 = new BitSet(new long[] { 0x0000000010400000L });
-	public static final BitSet FOLLOW_22_in_rulepage794 = new BitSet(new long[] { 0x0F0000001043C100L });
-	public static final BitSet FOLLOW_rulecss_declaration_in_rulepage815 = new BitSet(new long[] { 0x0000000010400000L });
-	public static final BitSet FOLLOW_28_in_rulepage830 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulepseudo_page_in_entryRulepseudo_page867 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulepseudo_page878 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_COLON_in_rulepseudo_page918 = new BitSet(new long[] { 0x0F0000000003C000L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_rulepseudo_page945 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulemedia_in_entryRulemedia990 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulemedia1000 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_29_in_rulemedia1038 = new BitSet(new long[] { 0x0F0000000003C000L });
-	public static final BitSet FOLLOW_30_in_rulemedia1056 = new BitSet(new long[] { 0x0F0000000003C000L });
-	public static final BitSet FOLLOW_rulemedia_list_in_rulemedia1078 = new BitSet(new long[] { 0x0000000008000000L });
-	public static final BitSet FOLLOW_27_in_rulemedia1090 = new BitSet(new long[] { 0x0F000E081003C820L });
-	public static final BitSet FOLLOW_ruleruleset_in_rulemedia1111 = new BitSet(new long[] { 0x0F000E081003C820L });
-	public static final BitSet FOLLOW_28_in_rulemedia1124 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulemedia_list_in_entryRulemedia_list1161 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulemedia_list1172 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulemedium_in_rulemedia_list1219 = new BitSet(new long[] { 0x0000000000000042L });
-	public static final BitSet FOLLOW_RULE_COMMA_in_rulemedia_list1240 = new BitSet(new long[] { 0x0F0000000003C000L });
-	public static final BitSet FOLLOW_rulemedium_in_rulemedia_list1267 = new BitSet(new long[] { 0x0000000000000042L });
-	public static final BitSet FOLLOW_rulemedium_in_entryRulemedium1315 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulemedium1326 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_rulemedium1372 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulefont_face_in_entryRulefont_face1416 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulefont_face1426 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_31_in_rulefont_face1473 = new BitSet(new long[] { 0x0000000008000000L });
-	public static final BitSet FOLLOW_32_in_rulefont_face1491 = new BitSet(new long[] { 0x0000000008000000L });
-	public static final BitSet FOLLOW_27_in_rulefont_face1504 = new BitSet(new long[] { 0x0F0000001043C100L });
-	public static final BitSet FOLLOW_rulecss_declaration_in_rulefont_face1525 = new BitSet(new long[] { 0x0000000010400000L });
-	public static final BitSet FOLLOW_22_in_rulefont_face1539 = new BitSet(new long[] { 0x0F0000001043C100L });
-	public static final BitSet FOLLOW_rulecss_declaration_in_rulefont_face1560 = new BitSet(new long[] { 0x0000000010400000L });
-	public static final BitSet FOLLOW_28_in_rulefont_face1575 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulekeyframes_in_entryRulekeyframes1611 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulekeyframes1621 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_33_in_rulekeyframes1668 = new BitSet(new long[] { 0x0F0000000003C000L });
-	public static final BitSet FOLLOW_34_in_rulekeyframes1686 = new BitSet(new long[] { 0x0F0000000003C000L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_rulekeyframes1708 = new BitSet(new long[] { 0x0000000008000000L });
-	public static final BitSet FOLLOW_27_in_rulekeyframes1720 = new BitSet(new long[] { 0x0F0002001047E000L });
-	public static final BitSet FOLLOW_rulekeyframe_selector_in_rulekeyframes1741 = new BitSet(new long[] { 0x0000000010400000L });
-	public static final BitSet FOLLOW_22_in_rulekeyframes1755 = new BitSet(new long[] { 0x0F0002001047E000L });
-	public static final BitSet FOLLOW_rulekeyframe_selector_in_rulekeyframes1776 = new BitSet(new long[] { 0x0000000010400000L });
-	public static final BitSet FOLLOW_28_in_rulekeyframes1791 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulekeyframe_selector_in_entryRulekeyframe_selector1827 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulekeyframe_selector1837 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_rulekeyframe_selector1884 = new BitSet(new long[] { 0x0000000008000000L });
-	public static final BitSet FOLLOW_ruleNum_in_rulekeyframe_selector1912 = new BitSet(new long[] { 0x0000000000000080L });
-	public static final BitSet FOLLOW_RULE_PERCENT_in_rulekeyframe_selector1923 = new BitSet(new long[] { 0x0000000008000000L });
-	public static final BitSet FOLLOW_27_in_rulekeyframe_selector1936 = new BitSet(new long[] { 0x0F0000001043C100L });
-	public static final BitSet FOLLOW_rulecss_declaration_in_rulekeyframe_selector1957 = new BitSet(new long[] { 0x0000000010400000L });
-	public static final BitSet FOLLOW_22_in_rulekeyframe_selector1971 = new BitSet(new long[] { 0x0F0000001043C100L });
-	public static final BitSet FOLLOW_rulecss_declaration_in_rulekeyframe_selector1992 = new BitSet(new long[] { 0x0000000010400000L });
-	public static final BitSet FOLLOW_28_in_rulekeyframe_selector2007 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleruleset_in_entryRuleruleset2043 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleruleset2053 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleselector_in_ruleruleset2099 = new BitSet(new long[] { 0x0000000008000140L });
-	public static final BitSet FOLLOW_RULE_WS_in_ruleruleset2112 = new BitSet(new long[] { 0x0000000000000140L });
-	public static final BitSet FOLLOW_RULE_COMMA_in_ruleruleset2124 = new BitSet(new long[] { 0x0F000E080003C820L });
-	public static final BitSet FOLLOW_ruleselector_in_ruleruleset2144 = new BitSet(new long[] { 0x0000000008000140L });
-	public static final BitSet FOLLOW_RULE_WS_in_ruleruleset2158 = new BitSet(new long[] { 0x0000000008000100L });
-	public static final BitSet FOLLOW_27_in_ruleruleset2171 = new BitSet(new long[] { 0x0F0000001003C100L });
-	public static final BitSet FOLLOW_rulecss_declaration_in_ruleruleset2193 = new BitSet(new long[] { 0x0000000010400000L });
-	public static final BitSet FOLLOW_22_in_ruleruleset2206 = new BitSet(new long[] { 0x0F0000000003C100L });
-	public static final BitSet FOLLOW_rulecss_declaration_in_ruleruleset2227 = new BitSet(new long[] { 0x0000000010400000L });
-	public static final BitSet FOLLOW_22_in_ruleruleset2242 = new BitSet(new long[] { 0x0000000010000000L });
-	public static final BitSet FOLLOW_28_in_ruleruleset2258 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleselector_in_entryRuleselector2300 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleselector2310 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulesimple_selector_in_ruleselector2360 = new BitSet(new long[] { 0x0001800000002102L });
-	public static final BitSet FOLLOW_rulecombinator_in_ruleselector2383 = new BitSet(new long[] { 0x0F000E080003C920L });
-	public static final BitSet FOLLOW_RULE_WS_in_ruleselector2395 = new BitSet(new long[] { 0x0F000E080003C920L });
-	public static final BitSet FOLLOW_ruleselector_in_ruleselector2417 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_WS_in_ruleselector2437 = new BitSet(new long[] { 0x0F018E080003E920L });
-	public static final BitSet FOLLOW_rulecombinator_in_ruleselector2460 = new BitSet(new long[] { 0x0F000E080003C920L });
-	public static final BitSet FOLLOW_RULE_WS_in_ruleselector2472 = new BitSet(new long[] { 0x0F000E080003C920L });
-	public static final BitSet FOLLOW_ruleselector_in_ruleselector2496 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleSimpleSelectorForNegation_in_entryRuleSimpleSelectorForNegation2539 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleSimpleSelectorForNegation2549 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleElementSelector_in_ruleSimpleSelectorForNegation2597 = new BitSet(new long[] { 0x0000020800000822L });
-	public static final BitSet FOLLOW_ruleUniversalSelector_in_ruleSimpleSelectorForNegation2624 = new BitSet(new long[] { 0x0000020800000822L });
-	public static final BitSet FOLLOW_ruleSubSelectorForNegation_in_ruleSimpleSelectorForNegation2646 = new BitSet(new long[] { 0x0000020800000822L });
-	public static final BitSet FOLLOW_ruleSubSelectorForNegation_in_ruleSimpleSelectorForNegation2685 = new BitSet(new long[] { 0x0000020800000822L });
-	public static final BitSet FOLLOW_ruleSubSelectorForNegation_in_entryRuleSubSelectorForNegation2722 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleSubSelectorForNegation2732 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleIdSelector_in_ruleSubSelectorForNegation2779 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleClassSelector_in_ruleSubSelectorForNegation2806 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleAttributeSelector_in_ruleSubSelectorForNegation2833 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulePseudoClass_in_ruleSubSelectorForNegation2860 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulesimple_selector_in_entryRulesimple_selector2901 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulesimple_selector2911 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleElementSelector_in_rulesimple_selector2963 = new BitSet(new long[] { 0x0F000E080003C822L });
-	public static final BitSet FOLLOW_ruleUniversalSelector_in_rulesimple_selector2990 = new BitSet(new long[] { 0x0F000E080003C822L });
-	public static final BitSet FOLLOW_ruleSubSelector_in_rulesimple_selector3012 = new BitSet(new long[] { 0x0F000E080003C822L });
-	public static final BitSet FOLLOW_ruleSubSelector_in_rulesimple_selector3041 = new BitSet(new long[] { 0x0F000E080003C822L });
-	public static final BitSet FOLLOW_ruleSubSelector_in_entryRuleSubSelector3082 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleSubSelector3092 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleIdSelector_in_ruleSubSelector3139 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleClassSelector_in_ruleSubSelector3166 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleAttributeSelector_in_ruleSubSelector3193 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulePseudoClassOrFunc_in_ruleSubSelector3220 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleAttributeSelector_in_entryRuleAttributeSelector3255 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleAttributeSelector3265 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_35_in_ruleAttributeSelector3311 = new BitSet(new long[] { 0x0F0000000003C000L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_ruleAttributeSelector3332 = new BitSet(new long[] { 0x000001F000000600L });
-	public static final BitSet FOLLOW_36_in_ruleAttributeSelector3353 = new BitSet(new long[] { 0x0F0000000003C010L });
-	public static final BitSet FOLLOW_37_in_ruleAttributeSelector3382 = new BitSet(new long[] { 0x0F0000000003C010L });
-	public static final BitSet FOLLOW_38_in_ruleAttributeSelector3411 = new BitSet(new long[] { 0x0F0000000003C010L });
-	public static final BitSet FOLLOW_39_in_ruleAttributeSelector3440 = new BitSet(new long[] { 0x0F0000000003C010L });
-	public static final BitSet FOLLOW_RULE_INCLUDES_in_ruleAttributeSelector3468 = new BitSet(new long[] { 0x0F0000000003C010L });
-	public static final BitSet FOLLOW_RULE_DASHMATCH_in_ruleAttributeSelector3488 = new BitSet(new long[] { 0x0F0000000003C010L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_ruleAttributeSelector3519 = new BitSet(new long[] { 0x0000010000000000L });
-	public static final BitSet FOLLOW_RULE_CSSSTRING_in_ruleAttributeSelector3534 = new BitSet(new long[] { 0x0000010000000000L });
-	public static final BitSet FOLLOW_40_in_ruleAttributeSelector3556 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleClassSelector_in_entryRuleClassSelector3592 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleClassSelector3602 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_41_in_ruleClassSelector3648 = new BitSet(new long[] { 0x0F0000000003C000L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_ruleClassSelector3669 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleElementSelector_in_entryRuleElementSelector3705 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleElementSelector3715 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_ruleElementSelector3770 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleUniversalSelector_in_entryRuleUniversalSelector3806 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleUniversalSelector3816 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulecss_namespace_prefix_in_ruleUniversalSelector3871 = new BitSet(new long[] { 0x0000040000000000L });
-	public static final BitSet FOLLOW_42_in_ruleUniversalSelector3884 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleIdSelector_in_entryRuleIdSelector3920 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleIdSelector3930 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_HASHMARK_in_ruleIdSelector3975 = new BitSet(new long[] { 0x0F0000000003C000L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_ruleIdSelector3995 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulecss_namespace_prefix_in_entryRulecss_namespace_prefix4032 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulecss_namespace_prefix4043 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_rulecss_namespace_prefix4091 = new BitSet(new long[] { 0x0000080000000000L });
-	public static final BitSet FOLLOW_42_in_rulecss_namespace_prefix4115 = new BitSet(new long[] { 0x0000080000000000L });
-	public static final BitSet FOLLOW_43_in_rulecss_namespace_prefix4130 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulecss_declaration_in_entryRulecss_declaration4176 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulecss_declaration4186 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_WS_in_rulecss_declaration4227 = new BitSet(new long[] { 0x0F0000000003C100L });
-	public static final BitSet FOLLOW_rulecss_property_in_rulecss_declaration4249 = new BitSet(new long[] { 0x0000000000000120L });
-	public static final BitSet FOLLOW_RULE_WS_in_rulecss_declaration4261 = new BitSet(new long[] { 0x0000000000000120L });
-	public static final BitSet FOLLOW_RULE_COLON_in_rulecss_declaration4273 = new BitSet(new long[] { 0x0F0202000007E9D0L });
-	public static final BitSet FOLLOW_ruleCssTok_in_rulecss_declaration4293 = new BitSet(new long[] { 0x0F0202000007F9D2L });
-	public static final BitSet FOLLOW_RULE_IMPORTANT_SYM_in_rulecss_declaration4311 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulecss_property_in_entryRulecss_property4357 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulecss_property4367 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleValidPropertyIdent_in_rulecss_property4422 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleValidPropertyIdent_in_entryRuleValidPropertyIdent4459 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleValidPropertyIdent4470 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_ruleValidPropertyIdent4516 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulePseudoClassOrFunc_in_entryRulePseudoClassOrFunc4560 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulePseudoClassOrFunc4570 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulePseudoClass_in_rulePseudoClassOrFunc4617 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulePseudoClassFunction_in_rulePseudoClassOrFunc4644 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulePseudoClass_in_entryRulePseudoClass4679 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulePseudoClass4689 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_COLON_in_rulePseudoClass4725 = new BitSet(new long[] { 0x0F0000000003C020L });
-	public static final BitSet FOLLOW_RULE_COLON_in_rulePseudoClass4736 = new BitSet(new long[] { 0x0F0000000003C020L });
-	public static final BitSet FOLLOW_rulePseudoClassName_in_rulePseudoClass4759 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulePseudoClassName_in_entryRulePseudoClassName4794 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulePseudoClassName4804 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_rulePseudoClassName4849 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulePseudoClassFunction_in_entryRulePseudoClassFunction4884 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulePseudoClassFunction4894 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleNotFunctionCall_in_rulePseudoClassFunction4941 = new BitSet(new long[] { 0x0F000E080003C820L });
-	public static final BitSet FOLLOW_ruleSimpleSelectorForNegation_in_rulePseudoClassFunction4962 = new BitSet(new long[] { 0x0000100000000000L });
-	public static final BitSet FOLLOW_44_in_rulePseudoClassFunction4974 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_COLON_in_rulePseudoClassFunction4993 = new BitSet(new long[] { 0x0F0000000003C000L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_rulePseudoClassFunction5013 = new BitSet(new long[] { 0x0000200000000000L });
-	public static final BitSet FOLLOW_45_in_rulePseudoClassFunction5025 = new BitSet(new long[] { 0x0F0212000007E9D0L });
-	public static final BitSet FOLLOW_ruleCssTok_in_rulePseudoClassFunction5046 = new BitSet(new long[] { 0x0F0212000007E9D0L });
-	public static final BitSet FOLLOW_44_in_rulePseudoClassFunction5059 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleNotFunctionCall_in_entryRuleNotFunctionCall5103 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleNotFunctionCall5114 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_COLON_in_ruleNotFunctionCall5158 = new BitSet(new long[] { 0x0000400000000000L });
-	public static final BitSet FOLLOW_46_in_ruleNotFunctionCall5176 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_rulecombinator_in_entryRulecombinator5221 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRulecombinator5232 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_PLUS_in_rulecombinator5272 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_47_in_rulecombinator5296 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_48_in_rulecombinator5315 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleSymbolTok_in_entryRuleSymbolTok5359 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleSymbolTok5369 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_COMMA_in_ruleSymbolTok5422 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_PERCENT_in_ruleSymbolTok5442 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleWSTok_in_entryRuleWSTok5486 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleWSTok5496 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_WS_in_ruleWSTok5541 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleStringTok_in_entryRuleStringTok5576 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleStringTok5586 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_CSSSTRING_in_ruleStringTok5637 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleNumberTok_in_entryRuleNumberTok5684 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleNumberTok5694 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleNum_in_ruleNumberTok5753 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleUrlTok_in_entryRuleUrlTok5793 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleUrlTok5803 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleURLType_in_ruleUrlTok5858 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleColorTok_in_entryRuleColorTok5900 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleColorTok5910 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleHex_in_ruleColorTok5969 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleIdentifierOrFuncTok_in_entryRuleIdentifierOrFuncTok6015 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleIdentifierOrFuncTok6025 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_ruleIdentifierOrFuncTok6084 = new BitSet(new long[] { 0x0000200000000002L });
-	public static final BitSet FOLLOW_45_in_ruleIdentifierOrFuncTok6106 = new BitSet(new long[] { 0x0F0202000007E9D0L });
-	public static final BitSet FOLLOW_ruleCssTok_in_ruleIdentifierOrFuncTok6127 = new BitSet(new long[] { 0x0F0212000007E9D0L });
-	public static final BitSet FOLLOW_44_in_ruleIdentifierOrFuncTok6140 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleCssTok_in_entryRuleCssTok6188 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleCssTok6198 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleIdentifierOrFuncTok_in_ruleCssTok6249 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleSymbolTok_in_ruleCssTok6276 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleWSTok_in_ruleCssTok6303 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleStringTok_in_ruleCssTok6330 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleNumberTok_in_ruleCssTok6357 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleUrlTok_in_ruleCssTok6384 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleColorTok_in_ruleCssTok6411 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleURLType_in_entryRuleURLType6456 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleURLType6466 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_49_in_ruleURLType6507 = new BitSet(new long[] { 0xFFFD07880047E8F0L, 0x0000000000000001L });
-	public static final BitSet FOLLOW_ruleValidURL_in_ruleURLType6528 = new BitSet(new long[] { 0x0000100000000000L });
-	public static final BitSet FOLLOW_44_in_ruleURLType6540 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleValidURLSymbol_in_entryRuleValidURLSymbol6581 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleValidURLSymbol6592 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_DASH_in_ruleValidURLSymbol6632 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_41_in_ruleValidURLSymbol6656 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_UNDERSCORE_in_ruleValidURLSymbol6677 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_48_in_ruleValidURLSymbol6701 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_COLON_in_ruleValidURLSymbol6722 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_50_in_ruleValidURLSymbol6746 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_51_in_ruleValidURLSymbol6765 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_HASHMARK_in_ruleValidURLSymbol6786 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_35_in_ruleValidURLSymbol6810 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_40_in_ruleValidURLSymbol6829 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_52_in_ruleValidURLSymbol6848 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_53_in_ruleValidURLSymbol6867 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_54_in_ruleValidURLSymbol6886 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_55_in_ruleValidURLSymbol6905 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_42_in_ruleValidURLSymbol6924 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_PLUS_in_ruleValidURLSymbol6945 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_COMMA_in_ruleValidURLSymbol6971 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_22_in_ruleValidURLSymbol6995 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_39_in_ruleValidURLSymbol7015 = new BitSet(new long[] { 0x0F0000000003C000L });
-	public static final BitSet FOLLOW_ruleKeywordHack_in_ruleValidURLSymbol7037 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleKeywordHack_in_entryRuleKeywordHack7084 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleKeywordHack7095 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_56_in_ruleKeywordHack7133 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_57_in_ruleKeywordHack7152 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_58_in_ruleKeywordHack7171 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_59_in_ruleKeywordHack7190 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleValidURL_in_entryRuleValidURL7237 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleValidURL7248 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_CSSSTRING_in_ruleValidURL7292 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleValidURLSymbol_in_ruleValidURL7326 = new BitSet(new long[] { 0xFFFD07880047E8E2L, 0x0000000000000001L });
-	public static final BitSet FOLLOW_ruleKeywordHack_in_ruleValidURL7359 = new BitSet(new long[] { 0xFFFD07880047E8E2L, 0x0000000000000001L });
-	public static final BitSet FOLLOW_RULE_ONE_HEX_LETTER_in_ruleValidURL7385 = new BitSet(new long[] { 0xFFFD07880047E8E2L, 0x0000000000000001L });
-	public static final BitSet FOLLOW_RULE_ONE_NON_HEX_LETTER_in_ruleValidURL7411 = new BitSet(new long[] { 0xFFFD07880047E8E2L, 0x0000000000000001L });
-	public static final BitSet FOLLOW_RULE_ONE_INT_in_ruleValidURL7437 = new BitSet(new long[] { 0xFFFD07880047E8E2L, 0x0000000000000001L });
-	public static final BitSet FOLLOW_60_in_ruleValidURL7461 = new BitSet(new long[] { 0xFFFD07880047E8E2L, 0x0000000000000001L });
-	public static final BitSet FOLLOW_61_in_ruleValidURL7480 = new BitSet(new long[] { 0xFFFD07880047E8E2L, 0x0000000000000001L });
-	public static final BitSet FOLLOW_62_in_ruleValidURL7499 = new BitSet(new long[] { 0xFFFD07880047E8E2L, 0x0000000000000001L });
-	public static final BitSet FOLLOW_63_in_ruleValidURL7518 = new BitSet(new long[] { 0xFFFD07880047E8E2L, 0x0000000000000001L });
-	public static final BitSet FOLLOW_64_in_ruleValidURL7537 = new BitSet(new long[] { 0xFFFD07880047E8E2L, 0x0000000000000001L });
-	public static final BitSet FOLLOW_RULE_PERCENT_in_ruleValidURL7559 = new BitSet(new long[] { 0x0000000000050000L });
-	public static final BitSet FOLLOW_RULE_ONE_INT_in_ruleValidURL7580 = new BitSet(new long[] { 0x0000000000050000L });
-	public static final BitSet FOLLOW_RULE_ONE_HEX_LETTER_in_ruleValidURL7606 = new BitSet(new long[] { 0x0000000000050000L });
-	public static final BitSet FOLLOW_RULE_ONE_INT_in_ruleValidURL7628 = new BitSet(new long[] { 0xFFFD07880047E8E2L, 0x0000000000000001L });
-	public static final BitSet FOLLOW_RULE_ONE_HEX_LETTER_in_ruleValidURL7654 = new BitSet(new long[] { 0xFFFD07880047E8E2L, 0x0000000000000001L });
-	public static final BitSet FOLLOW_ruleIdentifier_in_entryRuleIdentifier7714 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleIdentifier7725 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_DASH_in_ruleIdentifier7770 = new BitSet(new long[] { 0x0F0000000003C000L });
-	public static final BitSet FOLLOW_RULE_UNDERSCORE_in_ruleIdentifier7793 = new BitSet(new long[] { 0x0F0000000007C002L });
-	public static final BitSet FOLLOW_RULE_ONE_HEX_LETTER_in_ruleIdentifier7819 = new BitSet(new long[] { 0x0F0000000007C002L });
-	public static final BitSet FOLLOW_RULE_ONE_NON_HEX_LETTER_in_ruleIdentifier7845 = new BitSet(new long[] { 0x0F0000000007C002L });
-	public static final BitSet FOLLOW_ruleKeywordHack_in_ruleIdentifier7878 = new BitSet(new long[] { 0x0F0000000007C002L });
-	public static final BitSet FOLLOW_RULE_UNDERSCORE_in_ruleIdentifier7948 = new BitSet(new long[] { 0x0F0000000007C002L });
-	public static final BitSet FOLLOW_RULE_DASH_in_ruleIdentifier7974 = new BitSet(new long[] { 0x0F0000000007C002L });
-	public static final BitSet FOLLOW_RULE_ONE_HEX_LETTER_in_ruleIdentifier8000 = new BitSet(new long[] { 0x0F0000000007C002L });
-	public static final BitSet FOLLOW_RULE_ONE_NON_HEX_LETTER_in_ruleIdentifier8026 = new BitSet(new long[] { 0x0F0000000007C002L });
-	public static final BitSet FOLLOW_RULE_ONE_INT_in_ruleIdentifier8052 = new BitSet(new long[] { 0x0F0000000007C002L });
-	public static final BitSet FOLLOW_ruleKeywordHack_in_ruleIdentifier8085 = new BitSet(new long[] { 0x0F0000000007C002L });
-	public static final BitSet FOLLOW_ruleNum_in_entryRuleNum8144 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleNum8155 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_PLUS_in_ruleNum8200 = new BitSet(new long[] { 0x0000020000040000L });
-	public static final BitSet FOLLOW_RULE_DASH_in_ruleNum8226 = new BitSet(new long[] { 0x0000020000040000L });
-	public static final BitSet FOLLOW_41_in_ruleNum8248 = new BitSet(new long[] { 0x0000000000040000L });
-	public static final BitSet FOLLOW_RULE_ONE_INT_in_ruleNum8269 = new BitSet(new long[] { 0x0000000000040002L });
-	public static final BitSet FOLLOW_RULE_ONE_INT_in_ruleNum8305 = new BitSet(new long[] { 0x0000020000040002L });
-	public static final BitSet FOLLOW_41_in_ruleNum8335 = new BitSet(new long[] { 0x0000000000040000L });
-	public static final BitSet FOLLOW_RULE_ONE_INT_in_ruleNum8357 = new BitSet(new long[] { 0x0000000000040002L });
-	public static final BitSet FOLLOW_ruleHex_in_entryRuleHex8413 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleHex8424 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_HASHMARK_in_ruleHex8464 = new BitSet(new long[] { 0x0000000000050000L });
-	public static final BitSet FOLLOW_RULE_ONE_INT_in_ruleHex8501 = new BitSet(new long[] { 0x0000000000050002L });
-	public static final BitSet FOLLOW_RULE_ONE_HEX_LETTER_in_ruleHex8527 = new BitSet(new long[] { 0x0000000000050002L });
-	public static final BitSet FOLLOW_ruleSubSelectorForNegation_in_synpred1_InternalCSS2668 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_UNDERSCORE_in_synpred2_InternalCSS7897 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_DASH_in_synpred2_InternalCSS7905 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_ONE_HEX_LETTER_in_synpred2_InternalCSS7913 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_ONE_NON_HEX_LETTER_in_synpred2_InternalCSS7921 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_ONE_INT_in_synpred2_InternalCSS7929 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleKeywordHack_in_synpred2_InternalCSS7937 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_ONE_INT_in_synpred3_InternalCSS8260 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_ONE_INT_in_synpred4_InternalCSS8296 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_41_in_synpred5_InternalCSS8326 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_ONE_INT_in_synpred6_InternalCSS8348 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_set_in_synpred7_InternalCSS8480 = new BitSet(new long[] { 0x0000000000000002L });
+	public static final BitSet FOLLOW_1 = new BitSet(new long[] { 0x0000000000000000L });
+	public static final BitSet FOLLOW_2 = new BitSet(new long[] { 0x0000000000000002L });
+	public static final BitSet FOLLOW_3 = new BitSet(new long[] { 0x0F000E0FE783C822L });
+	public static final BitSet FOLLOW_4 = new BitSet(new long[] { 0x0F000E0FE603C822L });
+	public static final BitSet FOLLOW_5 = new BitSet(new long[] { 0x0000000000000010L });
+	public static final BitSet FOLLOW_6 = new BitSet(new long[] { 0x0000000000400000L });
+	public static final BitSet FOLLOW_7 = new BitSet(new long[] { 0x0002000000000010L });
+	public static final BitSet FOLLOW_8 = new BitSet(new long[] { 0x0F0000000043C000L });
+	public static final BitSet FOLLOW_9 = new BitSet(new long[] { 0x0000000008000020L });
+	public static final BitSet FOLLOW_10 = new BitSet(new long[] { 0x0000000008000000L });
+	public static final BitSet FOLLOW_11 = new BitSet(new long[] { 0x0F0000001043C100L });
+	public static final BitSet FOLLOW_12 = new BitSet(new long[] { 0x0000000010400000L });
+	public static final BitSet FOLLOW_13 = new BitSet(new long[] { 0x0F0000000003C000L });
+	public static final BitSet FOLLOW_14 = new BitSet(new long[] { 0x0F000E081003C820L });
+	public static final BitSet FOLLOW_15 = new BitSet(new long[] { 0x0000000000000042L });
+	public static final BitSet FOLLOW_16 = new BitSet(new long[] { 0x0F0002001047E000L });
+	public static final BitSet FOLLOW_17 = new BitSet(new long[] { 0x0000000000000080L });
+	public static final BitSet FOLLOW_18 = new BitSet(new long[] { 0x0000000008000140L });
+	public static final BitSet FOLLOW_19 = new BitSet(new long[] { 0x0000000000000140L });
+	public static final BitSet FOLLOW_20 = new BitSet(new long[] { 0x0F000E080003C820L });
+	public static final BitSet FOLLOW_21 = new BitSet(new long[] { 0x0000000008000100L });
+	public static final BitSet FOLLOW_22 = new BitSet(new long[] { 0x0F0000001003C100L });
+	public static final BitSet FOLLOW_23 = new BitSet(new long[] { 0x0F0000000003C100L });
+	public static final BitSet FOLLOW_24 = new BitSet(new long[] { 0x0000000010000000L });
+	public static final BitSet FOLLOW_25 = new BitSet(new long[] { 0x0001800000002102L });
+	public static final BitSet FOLLOW_26 = new BitSet(new long[] { 0x0F000E080003C920L });
+	public static final BitSet FOLLOW_27 = new BitSet(new long[] { 0x0F018E080003E920L });
+	public static final BitSet FOLLOW_28 = new BitSet(new long[] { 0x0000020800000822L });
+	public static final BitSet FOLLOW_29 = new BitSet(new long[] { 0x0F000E080003C822L });
+	public static final BitSet FOLLOW_30 = new BitSet(new long[] { 0x000001F000000600L });
+	public static final BitSet FOLLOW_31 = new BitSet(new long[] { 0x0F0000000003C010L });
+	public static final BitSet FOLLOW_32 = new BitSet(new long[] { 0x0000010000000000L });
+	public static final BitSet FOLLOW_33 = new BitSet(new long[] { 0x0000040000000000L });
+	public static final BitSet FOLLOW_34 = new BitSet(new long[] { 0x0000080000000000L });
+	public static final BitSet FOLLOW_35 = new BitSet(new long[] { 0x0000000000000120L });
+	public static final BitSet FOLLOW_36 = new BitSet(new long[] { 0x0F0202000007E9D0L });
+	public static final BitSet FOLLOW_37 = new BitSet(new long[] { 0x0F0202000007F9D2L });
+	public static final BitSet FOLLOW_38 = new BitSet(new long[] { 0x0F0000000003C020L });
+	public static final BitSet FOLLOW_39 = new BitSet(new long[] { 0x0000100000000000L });
+	public static final BitSet FOLLOW_40 = new BitSet(new long[] { 0x0000200000000000L });
+	public static final BitSet FOLLOW_41 = new BitSet(new long[] { 0x0F0212000007E9D0L });
+	public static final BitSet FOLLOW_42 = new BitSet(new long[] { 0x0000400000000000L });
+	public static final BitSet FOLLOW_43 = new BitSet(new long[] { 0x0000200000000002L });
+	public static final BitSet FOLLOW_44 = new BitSet(new long[] { 0xFFFD07880047E8F0L, 0x0000000000000001L });
+	public static final BitSet FOLLOW_45 = new BitSet(new long[] { 0xFFFD07880047E8E2L, 0x0000000000000001L });
+	public static final BitSet FOLLOW_46 = new BitSet(new long[] { 0x0000000000050000L });
+	public static final BitSet FOLLOW_47 = new BitSet(new long[] { 0x0F0000000007C002L });
+	public static final BitSet FOLLOW_48 = new BitSet(new long[] { 0x0000020000040000L });
+	public static final BitSet FOLLOW_49 = new BitSet(new long[] { 0x0000000000040000L });
+	public static final BitSet FOLLOW_50 = new BitSet(new long[] { 0x0000000000040002L });
+	public static final BitSet FOLLOW_51 = new BitSet(new long[] { 0x0000020000040002L });
+	public static final BitSet FOLLOW_52 = new BitSet(new long[] { 0x0000000000050002L });
 
 }

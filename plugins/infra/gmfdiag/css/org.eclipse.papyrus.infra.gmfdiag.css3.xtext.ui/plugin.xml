@@ -340,7 +340,7 @@
             point="org.eclipse.ui.ide.markerResolution">
         <markerResolutionGenerator
             class="org.eclipse.papyrus.infra.gmfdiag.css3.ui.CSSExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui.css.check.fast">
+            markerType="org.eclipse.papyrus.infra.gmfdiag.css3.ui.css.check.fast">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
@@ -348,7 +348,7 @@
         </markerResolutionGenerator>
         <markerResolutionGenerator
             class="org.eclipse.papyrus.infra.gmfdiag.css3.ui.CSSExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui.css.check.normal">
+            markerType="org.eclipse.papyrus.infra.gmfdiag.css3.ui.css.check.normal">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
@@ -356,7 +356,7 @@
         </markerResolutionGenerator>
         <markerResolutionGenerator
             class="org.eclipse.papyrus.infra.gmfdiag.css3.ui.CSSExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui.css.check.expensive">
+            markerType="org.eclipse.papyrus.infra.gmfdiag.css3.ui.css.check.expensive">
             <attribute
                 name="FIXABLE_KEY"
                 value="true">
