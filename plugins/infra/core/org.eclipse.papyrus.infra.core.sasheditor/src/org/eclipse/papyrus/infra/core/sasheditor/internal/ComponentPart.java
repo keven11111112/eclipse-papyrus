@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2015 CEA LIST & LIFL, Christian W. Damus, and others
+ * Copyright (c) 2009, 2016 CEA LIST & LIFL, Christian W. Damus, and others
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,10 +9,12 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *  Christian W. Damus - bug 469188
+ *  Christian W. Damus - bugs 469188, 494543
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
+
+import java.util.function.Supplier;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -62,7 +64,8 @@ public class ComponentPart extends PagePart implements IComponentPage {
 
 	@Override
 	public <T> T getAdapter(Class<T> adapter) {
-		return PlatformHelper.getAdapter(partModel, adapter, () -> super.getAdapter(adapter));
+		Supplier<T> fallback = () -> super.getAdapter(adapter);
+		return PlatformHelper.getAdapter(partModel, adapter, fallback);
 	}
 
 	/**

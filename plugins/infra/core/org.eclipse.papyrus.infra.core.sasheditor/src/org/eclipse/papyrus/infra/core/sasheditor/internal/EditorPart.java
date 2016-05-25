@@ -8,13 +8,14 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *  Christian W. Damus - bugs 469188, 474467
+ *  Christian W. Damus - bugs 469188, 474467, 494543
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.function.Supplier;
 
 import org.eclipse.core.runtime.ISafeRunnable;
 import org.eclipse.core.runtime.IStatus;
@@ -25,6 +26,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.AbstractPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IMultiPageEditorSite;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
@@ -176,9 +178,9 @@ public class EditorPart extends PagePart implements IEditorPage {
 
 	@Override
 	public <T> T getAdapter(Class<T> adapter) {
-		return PlatformHelper.getAdapter(editorPart, adapter, ()//
-		-> PlatformHelper.getAdapter(editorModel, adapter, ()//
-		-> super.getAdapter(adapter)));
+		Supplier<T> fallbackFallback = () -> super.getAdapter(adapter);
+		Supplier<T> fallback = () -> PlatformHelper.getAdapter(editorModel, adapter, fallbackFallback);
+		return PlatformHelper.getAdapter(editorPart, adapter, fallback);
 	}
 
 	/**
