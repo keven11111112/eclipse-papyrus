@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.DelegatingLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RelativeLocator;
+import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.TreeSearch;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -634,7 +634,9 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 	@Override
 	protected NodeFigure createMainFigureWithSVG() {
 		NodeFigure figure = createSVGNodePlate();
-		figure.setLayoutManager(new DelegatingLayout());
+          	// bug 494019: [Sequence Diagram] Opening Luna Sequence Diagram into Neon doesn't work : change the layout from DelegatingLayout to StackLayout
+		//figure.setLayoutManager(new DelegatingLayout());
+		figure.setLayoutManager(new StackLayout());
 		shape = createNodeShape();
 		figure.add(shape, new FillParentLocator());
 		setupContentPane(shape);
