@@ -10,7 +10,7 @@ location egit "http://download.eclipse.org/egit/staging/v4.4.0.201605041135-m1" 
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6RC1-201605121000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6RC2-201605191730/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 }
 
@@ -28,7 +28,7 @@ location mylyn "http://download.eclipse.org/mylyn/drops/3.19.0/v20160331-2042" {
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201605130604" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201605241249" {
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }
 
@@ -40,13 +40,13 @@ location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.12milestone
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20160518-0252" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20160524-0622" {
 	org.eclipse.emf.cdo.epp.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6RC1-201605121000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6RC2-201605191730/" {
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
 }
