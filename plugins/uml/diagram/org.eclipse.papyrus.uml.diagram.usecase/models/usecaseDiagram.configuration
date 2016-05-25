@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration:PapyrusConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmi:id="_ko07IErbEeSdQKzSRatBjg">
   <viewpoints xsi:type="configuration:PapyrusViewpoint" xmi:id="_xogdoErbEeSdQKzSRatBjg" name="Default Papyrus Viewpoint">
-    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_yeY0sHDvEeWh-MssWmCB_A" implementationID="UseCase">
+    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_yeY0sHDvEeWh-MssWmCB_A" implementationID="UseCase" customStyle="platform:/plugin/org.eclipse.papyrus.uml.diagram.usecase/models/usecase.css">
       <modelRules xmi:id="_yeY0sXDvEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
