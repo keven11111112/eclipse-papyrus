@@ -21,16 +21,20 @@ import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOpera
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.CustomAbstractViewProvider;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.BehaviorPortEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLViewProvider;
+import org.eclipse.uml2.uml.Port;
 
 /**
  * Provide views to create innerPort in Composite diagram
  */
 public class InnerPortViewProvider extends CustomAbstractViewProvider implements IViewProvider {
 
+		
 	private UMLViewProvider umlViewProvider = new UMLViewProvider();
 
 	/**
@@ -41,9 +45,18 @@ public class InnerPortViewProvider extends CustomAbstractViewProvider implements
 	 */
 	@Override
 	protected boolean provides(CreateNodeViewOperation operation) {
-		if (super.provides(operation)) {
-			String semanticHint = operation.getSemanticHint();
-			return BehaviorPortEditPart.VISUAL_ID.equals(semanticHint) || PortEditPart.VISUAL_ID.equals(semanticHint);
+		// check that view container element is a PORT
+		View containerView = operation.getContainerView();
+		if (containerView != null){
+			ViewPrototype viewPrototype = org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(containerView.getDiagram());
+			// Check the type of diagram derived from composite to avoid contamination
+			if (CompositeStructureDiagramEditPart.MODEL_ID.equals(viewPrototype.getImplementation())){
+				EObject element = containerView.getElement();
+				if (element instanceof Port){
+					String semanticHint = operation.getSemanticHint();
+					return BehaviorPortEditPart.VISUAL_ID.equals(semanticHint) || PortEditPart.VISUAL_ID.equals(semanticHint);
+				}				
+			}
 		}
 		return false;
 	}
