@@ -429,7 +429,8 @@ public class ZoomToolbar extends WorkbenchWindowControlContribution implements Z
 
 		// we remove the page changed listener
 		ISashWindowsContainer windowContainer = part.getAdapter(ISashWindowsContainer.class);
-		if (windowContainer != null) {
+
+		if (windowContainer != null && !windowContainer.isDisposed()) { //probably never done, because already disposed
 			windowContainer.removePageChangedListener(getInstance());
 		}
 		refreshStatusCombo(part);
@@ -451,7 +452,7 @@ public class ZoomToolbar extends WorkbenchWindowControlContribution implements Z
 
 		// we add listener on the window container
 		ISashWindowsContainer windowContainer = part.getAdapter(ISashWindowsContainer.class);
-		if (windowContainer != null) {
+		if (windowContainer != null && !windowContainer.isDisposed()) { //check on dispose is probably unecessary 
 			windowContainer.addPageChangedListener(getInstance());
 		}
 		refreshStatusCombo(part);
