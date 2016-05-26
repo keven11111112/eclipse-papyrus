@@ -18,6 +18,8 @@ import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -207,7 +209,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 
 	@Test
 	public void natTableDependencyVersionTest() {
-		testPapyrusDependencies2("org.eclipse.nebula.widgets.nattable", NATTABLE_VERSION);//$NON-NLS-1$
+		testPapyrusDependencies("org.eclipse.nebula.widgets.nattable", NATTABLE_VERSION, Collections.singletonList("org.eclipse.nebula.widgets.nattable.extension.nebula"));//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Test
@@ -337,8 +339,24 @@ public class BundlesTests extends AbstractPapyrusTest {
 	 *            the fullName or a part of the name of the plugin
 	 * @param wantedBundleVersionRegex
 	 *            a string like this : "bundle-version=\"[1.6.0,1.7.0)\")"
+	 * @deprecated since 2.0, use the method {@link BundlesTests#testPapyrusDependencies(String, String, List)} instead
 	 */
+	@Deprecated
 	protected void testPapyrusDependencies2(final String partialDependencyName, final String wantedVersion) {
+		testPapyrusDependencies(partialDependencyName, wantedVersion, Collections.emptyList());
+	}
+
+	/**
+	 *
+	 * @param partialDependencyName
+	 *            the fullName or a part of the name of the plugin
+	 * @param wantedBundleVersionRegex
+	 *            a string like this : "bundle-version=\"[1.6.0,1.7.0)\")"
+	 * @param list
+	 *            of dependencies to ignore
+	 * @since 2.0
+	 */
+	protected void testPapyrusDependencies(final String partialDependencyName, final String wantedVersion, List<String> exceptions) {
 		final StringBuilder builder = new StringBuilder();
 		int nb = 0;
 		final Version wanted = new Version(wantedVersion);
@@ -352,6 +370,9 @@ public class BundlesTests extends AbstractPapyrusTest {
 			final StringBuilder localBuilder = new StringBuilder();
 			while (matcher.find()) {
 				final String pluginName = matcher.group(1);
+				if (exceptions.contains(pluginName)) {
+					continue;
+				}
 				String versionString = null;
 				if (matcher.groupCount() > 1) {
 					versionString = matcher.group(2);
