@@ -21208,7 +21208,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"
         comment="Affixed Activity Parameter Node locator for Activity"
-        classpath="org.eclipse.papyrus.uml.diagram.activity.locator.ParameterNodeLocator"
+        classpath="org.eclipse.papyrus.uml.diagram.activity.locator.ActivityParameterNodePositionLocator"
         genChildSideAffixedNode="/0/@diagram/@childNodes.51"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"

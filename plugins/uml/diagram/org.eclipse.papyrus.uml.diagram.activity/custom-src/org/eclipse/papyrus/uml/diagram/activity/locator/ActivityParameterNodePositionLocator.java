@@ -52,7 +52,16 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 
 	@Override
 	public Rectangle getValidLocation(Rectangle proposedLocation, IFigure borderItem) {
+
 		Rectangle realLocation = new Rectangle(proposedLocation);
+
+		if(realLocation.width < DEFAULT_PIN_SIZE) {
+			realLocation.setWidth(DEFAULT_PIN_SIZE);
+		}
+		else if(realLocation.height < DEFAULT_PIN_SIZE){
+			realLocation.setHeight(DEFAULT_PIN_SIZE);
+		}
+
 		int side = findClosestSideOfParent(proposedLocation, getParentBorder());
 		Point newTopLeft = locateOnBorder(realLocation.getTopLeft(), side, 0, borderItem);
 		realLocation.setLocation(newTopLeft);
@@ -67,7 +76,9 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 	 * @return draw constant
 	 */
 	public static int findClosestSideOfParent(Rectangle proposedLocation, Rectangle parentBorder) {
+
 		int side = BorderItemLocator.findClosestSideOfParent(proposedLocation, parentBorder);
+
 		// relocate side for North
 		if (side == PositionConstants.NORTH) {
 			Point parentCenter = parentBorder.getCenter();
@@ -91,60 +102,70 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 	 */
 	@Override
 	protected Point locateOnParent(Point suggestedLocation, int suggestedSide, IFigure borderItem) {
-		Rectangle bounds = getParentBorder();
-		int parentFigureWidth = bounds.width;
-		int parentFigureHeight = bounds.height;
-		int parentFigureX = bounds.x;
-		int parentFigureY = bounds.y;
-		Dimension borderItemSize = getSize(borderItem);
+
+		Rectangle parent = getParentBorder();
+		Dimension borderItemSize = borderItem.getSize();
 		int newX = suggestedLocation.x;
 		int newY = suggestedLocation.y;
-		int westX = parentFigureX + getBorderItemOffset().width;
-		int eastX = parentFigureX + parentFigureWidth - getBorderItemOffset().width - borderItemSize.width;
-		int southY = parentFigureY + parentFigureHeight - getBorderItemOffset().height - borderItemSize.height;
-		int northY = parentFigureY + getBorderItemOffset().height + borderItemSize.height;
-		if (suggestedSide == PositionConstants.WEST) {
-			if (suggestedLocation.x != westX) {
-				newX = westX;
+
+		// default position is WEST
+		// set fixed coordinate
+		switch (suggestedSide) {
+
+		case PositionConstants.NORTH:
+			int northY = parent.y() - borderItemSize.height/2;
+			if (suggestedLocation.y != northY) {
+				newY = northY;
 			}
-			if (suggestedLocation.y < borderItemSize.height) {
-				newY = northY + borderItemSize.height;
-			} else if (suggestedLocation.y > bounds.getBottomLeft().y - borderItemSize.height) {
-				newY = southY - borderItemSize.height;
-			}
-		} else if (suggestedSide == PositionConstants.EAST) {
-			if (suggestedLocation.x != eastX) {
-				newX = eastX;
-			}
-			if (suggestedLocation.y < borderItemSize.height) {
-				newY = northY + borderItemSize.height;
-			} else if (suggestedLocation.y > bounds.getBottomLeft().y - borderItemSize.height) {
-				newY = southY - borderItemSize.height;
-			}
-		} else if (suggestedSide == PositionConstants.SOUTH) {
+			break;
+		case PositionConstants.SOUTH:
+			int southY = parent.bottom() - borderItemSize.height / 2;
 			if (suggestedLocation.y != southY) {
 				newY = southY;
 			}
-			if (suggestedLocation.x < bounds.getBottomLeft().x) {
-				newX = westX + borderItemSize.width;
-			} else if (suggestedLocation.x > bounds.getBottomRight().x - borderItemSize.width) {
-				newX = eastX - borderItemSize.width;
+			break;
+		case PositionConstants.EAST:
+			int eastX = parent.right() - borderItemSize.width / 2;
+			if (suggestedLocation.x != eastX) {
+				newX = eastX;
 			}
-		} else { // NORTH should not be suggested, consider WEST instead
+			break;
+		case PositionConstants.WEST:
+		default:
+			int westX = parent.x()  - borderItemSize.width / 2;
 			if (suggestedLocation.x != westX) {
 				newX = westX;
 			}
-			if (suggestedLocation.y < bounds.getTopLeft().y) {
-				newY = northY + borderItemSize.height;
-			} else if (suggestedLocation.y > bounds.getBottomLeft().y - borderItemSize.height) {
-				newY = southY - borderItemSize.height;
-			}
+			break;
 		}
+
+		/* set moving coordinate */
+		switch (suggestedSide) {
+		case PositionConstants.NORTH:
+		case PositionConstants.SOUTH:
+			if (suggestedLocation.x < parent.x() + EXTRA_BORDER_DEFAULT_OFFSET) {
+				newX = parent.x() + EXTRA_BORDER_DEFAULT_OFFSET;
+			} else if (suggestedLocation.x + borderItemSize.width > parent.getBottomRight().x - EXTRA_BORDER_DEFAULT_OFFSET) {
+				newX = parent.getBottomRight().x - EXTRA_BORDER_DEFAULT_OFFSET - borderItemSize.width;
+			}
+			break;
+		case PositionConstants.EAST:
+		case PositionConstants.WEST:
+		default:
+			if (suggestedLocation.y < parent.y() + EXTRA_BORDER_DEFAULT_OFFSET) {
+				newY = parent.y() + EXTRA_BORDER_DEFAULT_OFFSET;
+			} else if (suggestedLocation.y + borderItemSize.height > parent.getBottomLeft().y - EXTRA_BORDER_DEFAULT_OFFSET) {
+				newY = parent.getBottomLeft().y - EXTRA_BORDER_DEFAULT_OFFSET - borderItemSize.height;
+			}
+			break;
+		}
+
 		return new Point(newX, newY);
 	}
 
 	@Override
 	public void relocate(IFigure borderItem) {
+
 		// reset bounds of borderItem
 		Dimension size = getSize(borderItem);
 		Rectangle rectSuggested = getConstraint().getCopy();
@@ -166,38 +187,11 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 	@Override
 	protected Point getPreferredLocation(int side, IFigure borderItem) {
 		return super.getPreferredLocation(side, borderItem);
-		// manage position for in/out parameter
-		// Rectangle bounds = getParentBorder();
-		// int parentFigureWidth = bounds.width;
-		// int parentFigureHeight = bounds.height;
-		// int parentFigureX = bounds.x;
-		// int parentFigureY = bounds.y;
-		// int x = parentFigureX;
-		// int y = parentFigureY;
-		//
-		// Dimension borderItemSize = getSize(borderItem);
-		// switch(side) {
-		// case PositionConstants.NORTH:
-		// x += EXTRA_BORDER_DEFAULT_OFFSET + getBorderItemOffset().width;
-		// y += -borderItemSize.height + getBorderItemOffset().height;
-		// break;
-		// case PositionConstants.EAST:
-		// // take south east extremity to allow following pins placing above
-		// x += parentFigureWidth - getBorderItemOffset().width;
-		// y += parentFigureHeight - borderItemSize.height -
-		// EXTRA_BORDER_DEFAULT_OFFSET -
-		// getBorderItemOffset().height;
-		// break;
-		// case PositionConstants.SOUTH:
-		// x += EXTRA_BORDER_DEFAULT_OFFSET + getBorderItemOffset().width;
-		// y += parentFigureHeight - getBorderItemOffset().height;
-		// break;
-		// case PositionConstants.WEST:
-		// default:
-		// x += -borderItemSize.width + getBorderItemOffset().width;
-		// y += EXTRA_BORDER_DEFAULT_OFFSET + getBorderItemOffset().height;
-		// }
-		// return new Point(x, y);
+	}
+
+
+	@Override protected Point locateOnBorder(Point suggestedLocation, int suggestedSide, int circuitCount, IFigure borderItem) {
+		return super.locateOnBorder(suggestedLocation, suggestedSide, circuitCount, borderItem);
 	}
 
 	/**
@@ -214,10 +208,10 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 		// Calculate Max position around the graphical parent (1/2 size or the
 		// port around
 		// the graphical parent bounds.
-		int xMin = parentRec.x - borderItemOffset;
-		int xMax = parentRec.x - borderItemOffset + parentRec.width;
-		int yMin = parentRec.y - borderItemOffset;
-		int yMax = parentRec.y - borderItemOffset + parentRec.height;
+		int xMin = parentRec.x + borderItemOffset;
+		int xMax = parentRec.x + parentRec.width - borderItemOffset;
+		int yMin = parentRec.y + borderItemOffset;
+		int yMax = parentRec.y + parentRec.height - borderItemOffset;
 		// Modify Port location if MAX X or Y are exceeded
 		if (realLocation.x < xMin) {
 			realLocation.x = xMin;
