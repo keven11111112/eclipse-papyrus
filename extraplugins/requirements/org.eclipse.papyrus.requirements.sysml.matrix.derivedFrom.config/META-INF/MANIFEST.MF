@@ -22,5 +22,4 @@ Import-Package: org.eclipse.papyrus.commands.wrappers,
  org.eclipse.papyrus.sysml.requirements
 Export-Package: org.eclipse.papyrus.requirements.sysml.matrix.derivedFrom.config,
  org.eclipse.papyrus.requirements.sysml.matrix.derivedFrom.config.axismanager,
- org.eclipse.papyrus.requirements.sysml.matrix.derivedFrom.config.celleditor,
  org.eclipse.papyrus.requirements.sysml.matrix.derivedFrom.config.cellmanager
