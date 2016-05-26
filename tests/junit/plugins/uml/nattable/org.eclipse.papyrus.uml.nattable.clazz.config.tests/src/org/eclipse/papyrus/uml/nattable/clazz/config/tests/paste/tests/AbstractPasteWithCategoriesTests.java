@@ -39,7 +39,6 @@ import org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
-import org.eclipse.papyrus.infra.nattable.handler.PasteInTableHandler;
 import org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManager;
@@ -52,6 +51,7 @@ import org.eclipse.papyrus.infra.nattable.parsers.CSVParser;
 import org.eclipse.papyrus.infra.nattable.parsers.CellIterator;
 import org.eclipse.papyrus.infra.nattable.parsers.RowIterator;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
+import org.eclipse.papyrus.infra.nattable.utils.AbstractPasteInsertInTableHandler;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.CSVPasteHelper;
 import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
@@ -60,6 +60,7 @@ import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableClipboardUtils;
 import org.eclipse.papyrus.infra.tools.util.FileUtils;
 import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
+import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.Activator;
@@ -102,6 +103,7 @@ import ca.odell.glazedlists.TreeList.Node;
  * </ul>
  *
  */
+@InvalidTest("Bug 494265")
 public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTableTest {
 
 	public static final String PASTE_FOLDER_PATH = "/resources/paste_tests/"; //$NON-NLS-1$
@@ -258,8 +260,8 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 
 
 		final Map<Object, Object> parameters = new HashMap<Object, Object>();
-		parameters.put(PasteInTableHandler.OPEN_DIALOG_ON_FAIL_BOOLEAN_PARAMETER, Boolean.FALSE);
-		parameters.put(PasteInTableHandler.OPEN__PROGRESS_MONITOR_DIALOG, Boolean.FALSE);
+		parameters.put(AbstractPasteInsertInTableHandler.OPEN_DIALOG_ON_FAIL_BOOLEAN_PARAMETER, Boolean.FALSE);
+		parameters.put(AbstractPasteInsertInTableHandler.OPEN__PROGRESS_MONITOR_DIALOG, Boolean.FALSE);
 		final ExecutionEvent event = new ExecutionEvent(cmd, parameters, null, null);
 		flushDisplayEvents();
 		final Object res = cmd.executeWithChecks(event);
@@ -315,7 +317,7 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 
 	/**
 	 * This allows to check the undo and the redo.
-	 * 
+	 *
 	 * @param manager
 	 *            the nattable model manager.
 	 * @throws Exception
@@ -324,12 +326,12 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 	protected void checkUndo_Redo(final INattableModelManager manager) throws Exception {
 
 		((ITreeNattableModelManager) manager).doCollapseExpandAction(CollapseAndExpandActionsEnum.COLLAPSE_ALL, null);
-		
+
 		// Execute the undo and check the table content
 		final EditingDomainUndoContext undoContext = new EditingDomainUndoContext(getTransactionalEditingDomain());
 		getTransactionalEditingDomain().getCommandStack().undo();
 		CheckedOperationHistory.getInstance().undo(undoContext, null, null);
-		
+
 		flushDisplayEvents();
 
 		final List<?> rowElements = manager.getRowElementsList();
@@ -421,8 +423,9 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 
 	/**
 	 * This allows to check the returned status of the paste action.
-	 * 
-	 * @param status The status got.
+	 *
+	 * @param status
+	 *            The status got.
 	 */
 	protected void validateReturnedStatus(final IStatus status) {
 		String className = getClass().getSimpleName();
