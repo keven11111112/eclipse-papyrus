@@ -9,7 +9,7 @@
  * Contributors:
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *  Christian W. Damus - bugs 493858, 493853
- *
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - bug 494537
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
@@ -627,7 +627,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 *            the synchronized feature
 	 * @param rows
 	 * @return
-	 * 		the existing table of the new created one
+	 * 		the existing table or the new created one
 	 * @since 2.0
 	 */
 	protected Table getOrCreateTable(final EObject sourceElement, final EStructuralFeature synchronizedFeature, final Collection<?> rows) {
@@ -961,13 +961,17 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	protected void disposeListener() {
 		if (NattablePropertyEditor.this.serviceRegistry != null) {
 			// we dispose it to avoid unecessary refresh
-			NattablePropertyEditor.this.nattableManager.dispose();
-			NattablePropertyEditor.this.natTableWidget.dispose();
-
+			if (null != this.nattableManager) {
+				this.nattableManager.dispose();
+			}
+			if (null != this.natTableWidget) {
+				this.natTableWidget.dispose();
+			}
 			TransactionalEditingDomain domain = getTableEditingDomain();
-			Command cmd = getDisposeCommand(domain, table);
-			domain.getCommandStack().execute(cmd);
-
+			if (domain != null && this.table != null) {
+				Command cmd = getDisposeTableCommand(domain, this.table);
+				domain.getCommandStack().execute(cmd);
+			}
 			if (NattablePropertyEditor.this.resource != null) {
 				try {
 					NattablePropertyEditor.this.resource.save(saveOptions);
@@ -996,7 +1000,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * 		the command to use to clean the table before disposing it
 	 * @since 2.0
 	 */
-	protected CompoundCommand getDisposeCommand(final TransactionalEditingDomain domain, final Table table) {
+	protected CompoundCommand getDisposeTableCommand(final TransactionalEditingDomain domain, final Table table) {
 		CompoundCommand disposeCommand = new CompoundCommand("Command used to clean the table before disposing it"); //$NON-NLS-1$
 		disposeCommand.append(SetCommand.create(domain, table, NattablePackage.eINSTANCE.getTable_Context(), null));
 		disposeCommand.append(SetCommand.create(domain, table, NattablePackage.eINSTANCE.getTable_Owner(), null));
@@ -1036,19 +1040,12 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			dataSourceListener = new IDataSourceListener() {
 
 				public void dataSourceChanged(final DataSourceChangedEvent event) {
-					if (null != nattableManager) {
-						nattableManager.dispose();
-						nattableManager = null;
-					}
-					// Dispose the previous nattablewidget if necessary
-					if (null != natTableWidget) {
-						natTableWidget.dispose();
-						natTableWidget = null;
-					}
+					// bug 494537 - The diagram selection changed, but the property view has not been disposed
+					disposeListener();
 					// Bug 492560: The self children control was not all disposed correclty
-					if(null != self){
-						if(self.getChildren().length > 0){
-							for(Control control: self.getChildren()){
+					if (null != self) {
+						if (self.getChildren().length > 0) {
+							for (Control control : self.getChildren()) {
 								control.dispose();
 							}
 						}
