@@ -82,9 +82,9 @@ public class DeleteCommentLinkTest extends AbstractPapyrusTest {
 	@Rule
 	public final PapyrusEditorFixture fixture = new PapyrusEditorFixture();
 
-	private static final String COMMENT1_BODY = "This comment is displayed on ClassDiagram, Composite Diagram, Component Diagram and annotates Class1, Class2 and the Constraint Constraint1. It is commented by the second Comment."; //$NON-NLS-1$
+	private static final String COMMENT1_BODY_START = "Comment1"; //$NON-NLS-1$
 
-	private static final String COMMENT2_BODY = "This comment, comments the other comment."; //$NON-NLS-1$
+	private static final String COMMENT2_BODY_START = "Comment2"; //$NON-NLS-1$
 
 	private static final int NB_EDGES_BEFORE_DELETION_IN_CLASS_DIAGRAM = 10;
 
@@ -119,7 +119,7 @@ public class DeleteCommentLinkTest extends AbstractPapyrusTest {
 
 	private static final String COMPOSITE_DIAGRAM_NAME = "CompositeDiagram"; //$NON-NLS-1$
 
-	private static final String COMPONENT_DIAGRAM_NAME = "CompositeDiagram"; //$NON-NLS-1$
+	private static final String COMPONENT_DIAGRAM_NAME = "ComponentDiagram"; //$NON-NLS-1$
 
 	private Diagram classDiagram;
 
@@ -132,14 +132,14 @@ public class DeleteCommentLinkTest extends AbstractPapyrusTest {
 		// get the elements of the model
 		this.class1 = (Class) fixture.getModel().getOwnedMember("Class1"); //$NON-NLS-1$
 		this.class2 = (Class) fixture.getModel().getOwnedMember("Class2"); //$NON-NLS-1$
-		this.constraint1 = (Constraint) class1.getMember("Constraint1"); //$NON-NLS-1$
+		this.constraint1 = (Constraint) this.class1.getMember("Constraint1"); //$NON-NLS-1$
 
 		for (Comment current : fixture.getModel().getOwnedComments()) {
-			if (current.getBody().contains(COMMENT1_BODY)) {
+			if (current.getBody().contains(COMMENT1_BODY_START)) {
 				this.comment1 = current;
 				continue;
 			}
-			if (current.getBody().contains(COMMENT2_BODY)) {
+			if (current.getBody().contains(COMMENT2_BODY_START)) {
 				this.comment2 = current;
 				continue;
 			}
@@ -159,11 +159,14 @@ public class DeleteCommentLinkTest extends AbstractPapyrusTest {
 					classDiagram = (Diagram) current;
 				} else if (COMPOSITE_DIAGRAM_NAME.equals(name)) {
 					compositeDiagram = (Diagram) current;
+				} else if (COMPONENT_DIAGRAM_NAME.equals(name)) {
+					componentDiagram = (Diagram) current;
 				}
 			}
 		}
 		Assert.assertNotNull(classDiagram);
 		Assert.assertNotNull(compositeDiagram);
+		Assert.assertNotNull(componentDiagram);
 
 	}
 
@@ -337,7 +340,15 @@ public class DeleteCommentLinkTest extends AbstractPapyrusTest {
 
 	}
 
-
+	/**
+	 * 
+	 * @param diagram
+	 *            a diagram
+	 * @param nbEdgeAfterDeletion
+	 *            the number of link displayed in the diagram after the deletion
+	 * @param nbNodeInDiagram
+	 *            the number of node displayed in the diagram after the deletion
+	 */
 	protected void checkDiagramAfterLinkDeletion(Diagram diagram, int nbEdgeAfterDeletion, int nbNodeInDiagram) {
 		// Diagram diagram = fixture.getDiagram(classDiagram2).getDiagramView();
 		Assert.assertEquals(nbEdgeAfterDeletion, diagram.getEdges().size());

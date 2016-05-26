@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bugs 458685, 468071, 465899, 478314, 485220
- *   
+ *   Vincent Lorenzo - bug 492522
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.service.types.tests.suites;
