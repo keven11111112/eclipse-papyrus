@@ -14,6 +14,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.menu.providers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.papyrus.infra.gmfdiag.menu.handlers.ToggleCanonicalHandler;
 import org.eclipse.papyrus.uml.diagram.common.providers.AbstractActionStateSourceProvider;
@@ -94,6 +97,8 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 
 	public static final String SHOW_HIDE_CONNECTION_LABELS = "showHideLabels"; //$NON-NLS-1$
 
+	private Map<String, AbstractHandler> cachedHandlers;
+
 	/**
 	 *
 	 * Constructor.
@@ -129,6 +134,7 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 		currentState.put(LINE_STYLE_TREE, DISABLED);
 		currentState.put(SHOW_HIDE_CONNECTION_LABELS, DISABLED);
 
+		cachedHandlers = createCachedHandlers();
 	}
 
 
@@ -156,6 +162,43 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 
 	}
 
+	/**
+	 * Temporary fix for the multiple call of the method to avoid creating new handlers every time the user selects an object in the diagram (Bug 494613)
+	 * 
+	 * @since 2.0
+	 */
+	private Map<String, AbstractHandler> createCachedHandlers() {
+		Map<String, AbstractHandler> map = new HashMap<>();
+		map.put(SHOW_HIDE_COMPARTMENTS, new ShowHideCompartmentHandler());
+		map.put(SHOW_HIDE_CONTENTS, new ShowHideContentsHandler());
+		map.put(TOGGLE_CANONICAL, new ToggleCanonicalHandler());
+		map.put(COPY_APPEARANCE_PROPERTIES, new CopyAppearancePropertiesHandler());
+
+		map.put(SORT_FILTER_COMPARTMENT_ITEMS, new SortFilterCompartmentItemsHandler());
+		map.put(ZOOM, new ZoomHandler());
+
+		map.put(BRING_TO_FRONT, new ZOrderHandler(BRING_TO_FRONT));
+		map.put(SEND_TO_BACK, new ZOrderHandler(SEND_TO_BACK));
+		map.put(BRING_FORWARD, new ZOrderHandler(BRING_FORWARD));
+		map.put(SEND_BACKWARD, new ZOrderHandler(SEND_BACKWARD));
+		map.put(ARRANGE_ALL, new ArrangeHandler(ARRANGE_ALL));
+		map.put(ARRANGE_SELECTION, new ArrangeHandler(ARRANGE_SELECTION));
+
+		map.put(SELECT_ALL, new SelectHandler(SELECT_ALL));
+		map.put(SELECT_ALL_CONNECTORS, new SelectHandler(SELECT_ALL_CONNECTORS));
+		map.put(SELECT_ALL_SHAPES, new SelectHandler(SELECT_ALL_SHAPES));
+
+		map.put(FONT, new FontHandler());
+
+		map.put(FILL_COLOR, new FillColorHandler());
+		map.put(LINE_COLOR, new LineColorHandler());
+		map.put(LINE_STYLE, new LineStyleHandler(LineStyleAction.RECTILINEAR));
+		map.put(LINE_STYLE_TREE, new LineStyleHandler(LineStyleAction.TREE));
+		map.put(SHOW_HIDE_CONNECTION_LABELS, new ShowHideLabelsHandler(ShowHideLabelsAction.SHOW_PARAMETER));
+
+		return map;
+	}
+
 
 	/**
 	 *
@@ -164,33 +207,12 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 	 */
 	@Override
 	protected void refreshActions() {
-		refresh(SHOW_HIDE_CONTENTS, new ShowHideContentsHandler());
-		refresh(SHOW_HIDE_COMPARTMENTS, new ShowHideCompartmentHandler());
-		refresh(TOGGLE_CANONICAL, new ToggleCanonicalHandler());
-		refresh(COPY_APPEARANCE_PROPERTIES, new CopyAppearancePropertiesHandler());
-
-		refresh(SORT_FILTER_COMPARTMENT_ITEMS, new SortFilterCompartmentItemsHandler());
-		refresh(ZOOM, new ZoomHandler());
-
-		refresh(BRING_TO_FRONT, new ZOrderHandler(BRING_TO_FRONT));
-		refresh(SEND_TO_BACK, new ZOrderHandler(SEND_TO_BACK));
-		refresh(BRING_FORWARD, new ZOrderHandler(BRING_FORWARD));
-		refresh(SEND_BACKWARD, new ZOrderHandler(SEND_BACKWARD));
-		refresh(ARRANGE_ALL, new ArrangeHandler(ARRANGE_ALL));
-		refresh(ARRANGE_SELECTION, new ArrangeHandler(ARRANGE_SELECTION));
-
-		refresh(SELECT_ALL, new SelectHandler(SELECT_ALL));
-		refresh(SELECT_ALL_CONNECTORS, new SelectHandler(SELECT_ALL_CONNECTORS));
-		refresh(SELECT_ALL_SHAPES, new SelectHandler(SELECT_ALL_SHAPES));
-
-		refresh(FONT, new FontHandler());
-
-		refresh(FILL_COLOR, new FillColorHandler());
-		refresh(LINE_COLOR, new LineColorHandler());
-		refresh(LINE_STYLE, new LineStyleHandler(LineStyleAction.RECTILINEAR));
-		refresh(LINE_STYLE_TREE, new LineStyleHandler(LineStyleAction.TREE));
-		refresh(SHOW_HIDE_CONNECTION_LABELS, new ShowHideLabelsHandler(ShowHideLabelsAction.SHOW_PARAMETER));
+		for (String key : cachedHandlers.keySet()) {
+			refresh(key, cachedHandlers.get(key));
+		}
 	}
+
+
 
 	/**
 	 * Refresh the state of the handlers
@@ -215,7 +237,7 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 	 * @param handler
 	 *            the handler to refresh
 	 * @return
-	 *         <code>true</code> if the status of the handler is enabled
+	 * 		<code>true</code> if the status of the handler is enabled
 	 */
 	protected boolean test(AbstractHandler handler) {
 		return isSelectionInDiagram() && handler.isEnabled();
