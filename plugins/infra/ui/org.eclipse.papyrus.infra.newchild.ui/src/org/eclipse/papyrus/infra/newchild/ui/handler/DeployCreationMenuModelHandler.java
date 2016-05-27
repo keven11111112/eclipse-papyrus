@@ -108,7 +108,7 @@ public class DeployCreationMenuModelHandler extends AbstractHandler implements I
 					monitor.subTask(Messages.DeployCreationMenuModelHandler_Deploy + fileName);
 
 					try {
-						CreationMenuRegistry.getInstance().loadCreationMenuModel(URI.createURI(selectedFile.getLocationURI().toASCIIString()));
+						CreationMenuRegistry.getInstance().loadCreationMenuModel(URI.createPlatformResourceURI(selectedFile.getFullPath().toString(), true));
 						monitor.worked(1);
 						result.add(new Status(IStatus.OK, Activator.PLUGIN_ID, Messages.DeployCreationMenuModelHandler_Status_deployed + fileName));
 					} catch (Exception e) {

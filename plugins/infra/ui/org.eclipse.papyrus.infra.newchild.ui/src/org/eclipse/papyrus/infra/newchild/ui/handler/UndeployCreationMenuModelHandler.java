@@ -119,7 +119,7 @@ public class UndeployCreationMenuModelHandler extends AbstractHandler {
 					monitor.subTask(Messages.UndeployCreationMenuModelHandler_SubTaskTitle_ResetRegistry);
 
 					try {
-						CreationMenuRegistry.getInstance().unloadCreationMenuModel(URI.createURI(selectedFile.getLocationURI().toASCIIString()));
+						CreationMenuRegistry.getInstance().unloadCreationMenuModel(URI.createPlatformResourceURI(selectedFile.getFullPath().toString(), true));
 						monitor.worked(1);
 						result.add(new Status(IStatus.OK, Activator.PLUGIN_ID, Messages.UndeployCreationMenuModelHandler_SuccessfullyUndeployed + fileName));
 					} catch (Exception e) {

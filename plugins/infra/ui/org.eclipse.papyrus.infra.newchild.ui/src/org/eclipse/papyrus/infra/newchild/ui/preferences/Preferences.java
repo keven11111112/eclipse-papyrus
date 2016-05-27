@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.papyrus.infra.newchild.CreationMenuRegistry;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
@@ -76,7 +78,8 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 			boolean applied = folder.isVisible();
 			Button checkbox = new Button(self, SWT.CHECK);
 
-			checkbox.setText(creationMenuInstance.getFolderId(folder));
+			checkbox.setText(getName(folder));
+			checkbox.setToolTipText(getToolTipText(folder));
 			checkbox.setSelection(applied);
 
 			final Folder theFolder = folder;
@@ -95,6 +98,45 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 		createFooterContents(self);
 
 		return null;
+	}
+
+	/**
+	 * Gets the tool type text for a folder.
+	 */
+	private String getToolTipText(final Folder folder) {
+		URI uri = EcoreUtil.getURI(folder).trimFragment();
+		StringBuilder text = new StringBuilder();
+		if (null != uri) {
+
+			String FileName = uri.lastSegment();
+			text.append(FileName);
+			text.append(" - ");//$NON-NLS-1$
+			String pluginName = uri.segment(1);
+			text.append(pluginName);
+			String type = uri.segment(0);
+			text.append("(");//$NON-NLS-1$
+			text.append(type);
+			text.append(")");//$NON-NLS-1$
+		}
+		return text.toString();
+	}
+
+	/**
+	 * Gets the name to display of a folder.
+	 */
+	private String getName(final Folder folder) {
+		URI uri = EcoreUtil.getURI(folder).trimFragment();
+
+		StringBuilder name = new StringBuilder();
+		name.append(uri.lastSegment());
+		name.replace(name.indexOf("." + uri.fileExtension()), name.length(), "");//$NON-NLS-1$ //$NON-NLS-2$
+
+		if (uri.isPlatformPlugin()) {
+			name.append(" (Plugin)");//$NON-NLS-1$
+		} else if (uri.isPlatformResource()) {
+			name.append(" (Resource)");//$NON-NLS-1$
+		}
+		return name.toString();
 	}
 
 	/**

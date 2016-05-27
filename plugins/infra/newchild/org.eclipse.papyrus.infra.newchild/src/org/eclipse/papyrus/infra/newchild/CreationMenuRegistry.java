@@ -15,28 +15,26 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.newchild;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
+import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.preferences.ConfigurationScope;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
+import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu;
 import org.eclipse.papyrus.infra.newchild.messages.Messages;
 import org.osgi.framework.Bundle;
 import org.osgi.service.prefs.BackingStoreException;
@@ -67,7 +65,7 @@ public class CreationMenuRegistry {
 	private Preferences preferences;
 
 	/** the folders collection. */
-	private Map<String, Folder> rootFolders = new HashMap<>();
+	private List<Folder> folders = new ArrayList<>();
 
 	/** Default values of folder visibilities */
 	private Map<String, Boolean> defaultValues = new HashMap<>();
@@ -103,7 +101,7 @@ public class CreationMenuRegistry {
 		resourceSet.getPackageRegistry().put(ElementCreationMenuModelPackage.eINSTANCE.getNsURI(), ElementCreationMenuModelPackage.eINSTANCE);
 
 		// Preference init
-		preferences = ConfigurationScope.INSTANCE.getNode(Activator.PLUGIN_ID);
+		preferences = InstanceScope.INSTANCE.getNode(Activator.PLUGIN_ID);
 
 		// Reading data from plugins
 		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(MENU_CREATION_MODEL_EXTENSION_ID);
@@ -117,24 +115,14 @@ public class CreationMenuRegistry {
 	 * @return the set of root folders
 	 */
 	public List<Folder> getRootFolder() {
-		return new ArrayList<>(rootFolders.values());
+		return folders;
 	}
 
 	/**
 	 * Return the id of the folder if is loaded.
 	 */
-	public String getFolderId(Folder folder) {
-		String id = "";//$NON-NLS-1$
-
-		Iterator<Entry<String, Folder>> entrySet = rootFolders.entrySet().iterator();
-		while (entrySet.hasNext()) {
-			Entry<String, Folder> entry = entrySet.next();
-			if (folder.equals(entry.getValue())) {
-				id = entry.getKey();
-			}
-		}
-
-		return id;
+	public String getFolderKey(Folder folder) {
+		return EcoreUtil.getURI(folder).trimFragment().toPlatformString(true);
 	}
 
 	/**
@@ -166,11 +154,9 @@ public class CreationMenuRegistry {
 		unloadCreationMenuModel(uri);
 		try {
 			Folder folder = getCreationMenuModel(uri);
-			String creationMenuId = getCreationMenuId(uri);
-			rootFolders.put(creationMenuId, folder);
-			defaultValues.put(creationMenuId, folder.isVisible());
-
-			folder.setVisible(getPreferedVisibility(uri, DEFAULT_VISIBILITY));
+			folders.add(folder);
+			defaultValues.put(getFolderKey(folder), folder.isVisible());
+			folder.setVisible(getPreferedVisibility(folder, DEFAULT_VISIBILITY));
 
 		} catch (URISyntaxException e) {
 			throw new Exception(Messages.CreationMenuRegistry_Error_UnableToLoadCreationMenu + e);
@@ -186,11 +172,11 @@ public class CreationMenuRegistry {
 	 * @throws Exception
 	 */
 	public void unloadCreationMenuModel(final URI uri) throws Exception {
-		String creationMenuModelId = getCreationMenuId(uri);
-
-		rootFolders.remove(creationMenuModelId);
-		defaultValues.remove(creationMenuModelId);
-		preferences.remove(creationMenuModelId);
+		EObject folder = resourceSet.getResource(uri, true).getContents().get(0);
+		folders.remove(folder);
+		String folderKey = getFolderKey((Folder) folder);
+		defaultValues.remove(folderKey);
+		preferences.remove(folderKey);
 	}
 
 	/**
@@ -212,16 +198,15 @@ public class CreationMenuRegistry {
 			Bundle extensionBundle = Platform.getBundle(element.getDeclaringExtension().getNamespaceIdentifier());
 			URL url = extensionBundle.getResource(classAttribute);
 			if (null != url) {
-				URI uri = URI.createURI(url.toURI().toASCIIString());
+				URI uri = URI.createPlatformPluginURI(element.getContributor().getName() + File.separator + classAttribute, true);
 
-				String creationMenuId = getCreationMenuId(uri);
 				folder = getCreationMenuModel(uri);
-				defaultValues.put(creationMenuId, folder.isVisible());
+				defaultValues.put(getFolderKey(folder), folder.isVisible());
 
-				String visible = preferences.get(creationMenuId, "true"); //$NON-NLS-1$
+				String visible = preferences.get(uri.toPlatformString(true), String.valueOf(DEFAULT_VISIBILITY));
 				folder.setVisible(Boolean.valueOf(visible));
 
-				rootFolders.put(creationMenuId, folder);
+				folders.add(folder);
 			}
 
 		} catch (URISyntaxException e) {
@@ -230,40 +215,6 @@ public class CreationMenuRegistry {
 		return folder;
 	}
 
-	/**
-	 * Get the creation menu id from a {@link URI}.
-	 */
-	public String getCreationMenuId(URI uri) {
-
-		// FileLocator.resolve(url)(url).getPath();
-
-		String bundleId = "";//$NON-NLS-1$
-		String relativePath = "";//$NON-NLS-1$
-		String fileName = uri.lastSegment();
-
-		try {
-			// Bundle id
-			URL url = new URL(uri.toString());
-			String absolutePath = FileLocator.resolve(url).getPath();
-			String replace = absolutePath.replace(url.getPath(), "");//$NON-NLS-1$
-			int lastIndexOf = replace.lastIndexOf("/");//$NON-NLS-1$
-			bundleId = replace.substring(lastIndexOf + 1, replace.length());
-			// relative path
-			relativePath = url.getPath().replace(fileName, "");//$NON-NLS-1$
-		} catch (MalformedURLException e) {
-			Activator.log.error(e);
-		} catch (IOException e) {
-			Activator.log.error(e);
-		}
-
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(fileName);
-		stringBuilder.append(" - ");//$NON-NLS-1$
-		stringBuilder.append(bundleId);
-		stringBuilder.append(relativePath);
-
-		return stringBuilder.toString();
-	}
 
 	/**
 	 * @param uri
@@ -285,16 +236,21 @@ public class CreationMenuRegistry {
 	}
 
 	/**
-	 * Set the visibility of a menu by its id.
+	 * Set the visibility of a menu by its uri.
 	 * 
-	 * @param id
-	 *            The id.
+	 * @param uri
+	 *            The uri.
 	 * @param visibility
 	 *            The visibility to set.
 	 */
-	public void setCreationMenuVisibility(final String id, final Boolean visibility) {
-		preferences.put(id, String.valueOf(visibility));
-		rootFolders.get(id).setVisible(visibility);
+	public void setCreationMenuVisibility(final URI uri, final Boolean visibility) {
+		preferences.put(uri.toPlatformString(true), String.valueOf(visibility));
+
+		EObject eObject = resourceSet.getEObject(uri, true);
+		if (eObject instanceof Folder) {
+			((Menu) eObject).setVisible(visibility);
+		}
+
 		try {
 			// forces the application to save the preferences
 			preferences.flush();
@@ -312,13 +268,7 @@ public class CreationMenuRegistry {
 	 *            The visibility to set.
 	 */
 	public void setCreationMenuVisibility(final Folder folder, final Boolean visibility) {
-		Set<Entry<String, Folder>> entrySet = rootFolders.entrySet();
-
-		for (Entry<String, Folder> entry : entrySet) {
-			if (folder.equals(entry.getValue())) {
-				setCreationMenuVisibility(entry.getKey(), visibility);
-			}
-		}
+		setCreationMenuVisibility(EcoreUtil.getURI(folder), visibility);
 	}
 
 	/**
@@ -329,7 +279,7 @@ public class CreationMenuRegistry {
 	 * @return The current visibility of the folder.
 	 */
 	public boolean getCreationMenuVisibility(final Folder folder) {
-		String visible = preferences.get(getFolderId(folder), "");//$NON-NLS-1$
+		String visible = preferences.get(getFolderKey(folder), "");//$NON-NLS-1$
 		return "" == visible ? folder.isVisible() : Boolean.valueOf(visible);//$NON-NLS-1$
 	}
 
@@ -347,7 +297,7 @@ public class CreationMenuRegistry {
 		} catch (URISyntaxException e) {
 			Activator.log.error(e);
 		}
-		String visible = preferences.get(getCreationMenuId(uri), "");//$NON-NLS-1$
+		String visible = preferences.get(uri.toPlatformString(true), "");//$NON-NLS-1$
 		return "" == visible ? folder.isVisible() : Boolean.valueOf(visible);//$NON-NLS-1$
 	}
 
@@ -359,7 +309,7 @@ public class CreationMenuRegistry {
 	 * @return The default visibility of the folder.
 	 */
 	public boolean getDefaultCreationMenuVisibility(final Folder folder) {
-		Boolean defaultVisibility = defaultValues.get(getFolderId(folder));
+		Boolean defaultVisibility = defaultValues.get(getFolderKey(folder));
 		return null != defaultVisibility ? defaultVisibility : folder.isVisible();
 	}
 
@@ -391,7 +341,7 @@ public class CreationMenuRegistry {
 	 * 		The preferred visibility.
 	 */
 	public boolean getPreferedVisibility(final Folder folder, final boolean defautVisibility) {
-		String visible = preferences.get(getFolderId(folder), String.valueOf(defautVisibility));
+		String visible = preferences.get(getFolderKey(folder), String.valueOf(defautVisibility));
 		return Boolean.valueOf(visible);
 	}
 
@@ -406,7 +356,7 @@ public class CreationMenuRegistry {
 	 * 		The preferred visibility.
 	 */
 	public boolean getPreferedVisibility(final URI uri, final boolean defautVisibility) {
-		String visible = preferences.get(getCreationMenuId(uri), String.valueOf(defautVisibility));
+		String visible = preferences.get(uri.toPlatformString(true), String.valueOf(defautVisibility));
 		return Boolean.valueOf(visible);
 	}
 
@@ -419,9 +369,7 @@ public class CreationMenuRegistry {
 		} catch (BackingStoreException e) {
 			Activator.log.error(e);
 		}
-		Set<Entry<String, Folder>> entrySet = rootFolders.entrySet();
-		for (Entry<String, Folder> entry : entrySet) {
-			Folder folder = entry.getValue();
+		for (Folder folder : folders) {
 			folder.setVisible(getDefaultCreationMenuVisibility(folder));
 		}
 	}
