@@ -574,4 +574,13 @@
       </enablement>
    </visualChildrenStrategy>
 </extension>
+<extension
+       point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
+    <diagramReconciler
+          diagramType="AllDiagrams"
+          reconcilerClass="org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayDiagramReconciler"
+          source="1.0.0"
+          target="1.1.0">
+    </diagramReconciler>
+ </extension>
 </plugin>

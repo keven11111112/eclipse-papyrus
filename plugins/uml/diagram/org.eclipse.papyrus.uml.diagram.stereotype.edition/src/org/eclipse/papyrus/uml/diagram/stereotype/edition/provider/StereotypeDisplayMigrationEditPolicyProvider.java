@@ -9,6 +9,7 @@
  * Contributors:
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotype Display
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 493420
  *
  *****************************************************************************/
 
@@ -25,6 +26,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayDiagramReconciler;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeMigrationHelper;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.editpolicies.StereotypeEAnnotationLabelMigrationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.editpolicies.StereotypeEAnnotationNestedMigrationEditPolicy;
@@ -34,7 +36,9 @@ import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 /**
  * @author Céline JANSSENS
  *
+ * @deprecated Replaced by {@link StereotypeDisplayDiagramReconciler}
  */
+@Deprecated
 public class StereotypeDisplayMigrationEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
 
 

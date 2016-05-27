@@ -9,14 +9,17 @@
  * Contributors:
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotype Display
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 493420
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.stereotype.migration.editpolicies;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.commands.RemoveEAnnotationDetailCommand;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayDiagramReconciler;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayMigrationConstant;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.commands.StereotypeLabelMigrationCommand;
 import org.eclipse.papyrus.uml.diagram.common.util.CommandUtil;
@@ -26,8 +29,10 @@ import org.eclipse.papyrus.uml.diagram.common.util.CommandUtil;
  * Should be applied to every graphicalEditPart on which Stereotypes can be applied.
  * 
  * @author Céline JANSSENS
- *
+ * 
+ * @deprecated Replaced by {@link StereotypeDisplayDiagramReconciler}
  */
+@Deprecated
 public class StereotypeEAnnotationLabelMigrationEditPolicy extends StereotypeEAnnotationMigrationEditPolicy {
 
 	public static final String LABEL = "Migration of Stereotype Label";//$NON-NLS-1$
@@ -62,8 +67,7 @@ public class StereotypeEAnnotationLabelMigrationEditPolicy extends StereotypeEAn
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.stereotype.migration.editpolicies.StereotypeEAnnotationMigrationEditPolicy#hasEAnnotationDetails(org.eclipse.gmf.runtime.notation.View)
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean hasEAnnotationDetails(View view) {
@@ -72,14 +76,10 @@ public class StereotypeEAnnotationLabelMigrationEditPolicy extends StereotypeEAn
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.stereotype.migration.editpolicies.StereotypeEAnnotationMigrationEditPolicy#getStereotypeMigrationCommand(org.eclipse.gmf.runtime.notation.View)
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
-	public Runnable getStereotypeMigrationCommand(View view) {
-
+	public ICommand getStereotypeMigrationTransactionalCommand(View view) {
 		return new StereotypeLabelMigrationCommand(LABEL, view);
-
 	}
-
 }

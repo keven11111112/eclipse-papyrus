@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,32 +9,42 @@
  * Contributors:
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotype Display
- *   
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 493420
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.stereotype.migration.editpolicies;
 
 import java.util.Iterator;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.commands.RemoveEAnnotationCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayDiagramReconciler;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeMigrationHelper;
 import org.eclipse.papyrus.uml.diagram.common.util.CommandUtil;
 
 /**
  * This Edit Policy is in charge to migrate user preferences from old stereotype display structure
  * (which were using EAnnotation) to the new structure using NamedStyle and additional notation Views
- * 
+ *
  * @author Céline JANSSENS
  *
+ * @deprecated Replaced by {@link StereotypeDisplayDiagramReconciler}
  */
+@Deprecated
 public abstract class StereotypeEAnnotationMigrationEditPolicy extends AbstractEditPolicy {
 
 	public static final Object STEREOTYPE_RECONCILER = "Stereotype Display Reconciler"; //$NON-NLS-1$
@@ -50,7 +60,7 @@ public abstract class StereotypeEAnnotationMigrationEditPolicy extends AbstractE
 
 	/**
 	 * Set the attributes and launch the migration.
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#activate()
 	 *
 	 */
@@ -83,14 +93,14 @@ public abstract class StereotypeEAnnotationMigrationEditPolicy extends AbstractE
 
 	/**
 	 * Migrate all the Stereotype User preferences
-	 * 
+	 *
 	 */
 	protected void migrateStereotype() {
 
 		if (eAnnotation != null) {
 			if (hasEAnnotationDetails(hostView)) {
 				// Retrieve the migration Command and execute it.
-				Runnable command = getStereotypeMigrationCommand(hostView);
+				ICommand command = getStereotypeMigrationTransactionalCommand(hostView);
 				CommandUtil.executeUnsafeCommand(command, editPart);
 
 			}
@@ -139,7 +149,7 @@ public abstract class StereotypeEAnnotationMigrationEditPolicy extends AbstractE
 
 	/**
 	 * Clean EAnnotation Details in the model depending of what has been treated.
-	 * 
+	 *
 	 * @param hostView
 	 *            The view on which the Stereotype has been applied
 	 */
@@ -147,7 +157,7 @@ public abstract class StereotypeEAnnotationMigrationEditPolicy extends AbstractE
 
 	/**
 	 * Define if the Edit Policy detail for the specific EANnotation Detail is not Empty.
-	 * 
+	 *
 	 * @param view
 	 *            The view on which the Stereotype has been applied
 	 */
@@ -155,13 +165,31 @@ public abstract class StereotypeEAnnotationMigrationEditPolicy extends AbstractE
 
 	/**
 	 * Get the command to update the Node visibility related to the EAnnotation.
-	 * 
+	 *
 	 * @param hostView
 	 *            The view on which the Stereotype has been applied
 	 */
-	public abstract Runnable getStereotypeMigrationCommand(View view);
+	public Runnable getStereotypeMigrationCommand(View view) {
+		return null;
+	}
 
-
-
-
+	/**
+	 * Get the command to update the Node visibility related to the EAnnotation.
+	 *
+	 * @param hostView
+	 *            The view on which the Stereotype has been applied
+	 */
+	public ICommand getStereotypeMigrationTransactionalCommand(final View view) {
+		ICommand command = null;
+		if (null != getStereotypeMigrationCommand(view)) {
+			command = new AbstractTransactionalCommand(migrationHelper.getDomain(view), "Migration Stereotype", null) { //$NON-NLS-1$
+				@Override
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					getStereotypeMigrationCommand(view).run();
+					return CommandResult.newOKCommandResult();
+				}
+			};
+		}
+		return command;
+	}
 }
