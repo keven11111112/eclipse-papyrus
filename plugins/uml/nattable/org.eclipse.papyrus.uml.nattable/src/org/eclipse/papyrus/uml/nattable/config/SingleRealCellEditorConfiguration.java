@@ -36,7 +36,7 @@ public class SingleRealCellEditorConfiguration implements ICellAxisConfiguration
 	/**
 	 * The id of this editor.
 	 */
-	private static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.SingleRealCellEditorConfiguration.Text";//$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.SingleRealCellEditorConfiguration.Text";//$NON-NLS-1$
 
 	/**
 	 * {@inheritDoc}

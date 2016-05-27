@@ -29,7 +29,7 @@ public class UMLStereotypeSingleUMLReferenceCellEditorConfiguration extends Sing
 	/**
 	 * The id of this editor.
 	 */
-	private static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeSingleUMLReferenceCellEditorConfiguration.Reference";//$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeSingleUMLReferenceCellEditorConfiguration.Reference";//$NON-NLS-1$
 
 
 	/**

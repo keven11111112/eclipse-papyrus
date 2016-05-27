@@ -38,7 +38,7 @@ public class MultiBooleanCellEditorConfiguration implements ICellAxisConfigurati
 	/**
 	 * The id of this editor.
 	 */
-	private static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.MultiBooleanCellEditorConfiguration.MultiEditor";//$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.MultiBooleanCellEditorConfiguration.MultiEditor";//$NON-NLS-1$
 
 
 	/**

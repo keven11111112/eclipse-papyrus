@@ -16,28 +16,12 @@
             order="401">
       </configuration>
       <cellAxisConfiguration
-            class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeSingleUMLBooleanCellEditorConfiguration"
-            order="410">
-      </cellAxisConfiguration>
-      <cellAxisConfiguration
-            class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeMultiUMLBooleanCellEditorConfiguration"
-            order="411">
-      </cellAxisConfiguration>
-      <cellAxisConfiguration
             class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeSingleUMLEnumerationCellEditorConfiguration"
             order="420">
       </cellAxisConfiguration>
       <cellAxisConfiguration
             class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeMultiUMLEnumerationCellEditorConfiguration"
             order="421">
-      </cellAxisConfiguration>
-      <cellAxisConfiguration
-            class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeSingleUMLIntegerCellEditorConfiguration"
-            order="430">
-      </cellAxisConfiguration>
-      <cellAxisConfiguration
-            class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeMultiUMLIntegerCellEditorConfiguration"
-            order="431">
       </cellAxisConfiguration>
       <cellAxisConfiguration
             class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeSingleRealCellEditorConfiguration"
@@ -54,14 +38,6 @@
       <cellAxisConfiguration
             class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeMultiUnlimitedNaturalCellEditorConfiguration"
             order="451">
-      </cellAxisConfiguration>
-      <cellAxisConfiguration
-            class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeSingleUMLStringCellEditorConfiguration"
-            order="460">
-      </cellAxisConfiguration>
-      <cellAxisConfiguration
-            class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeMultiUMLStringCellEditorConfiguration"
-            order="461">
       </cellAxisConfiguration>
       <cellAxisConfiguration
             class="org.eclipse.papyrus.uml.nattable.config.UMLStereotypeSingleBooleanCellEditorConfiguration"

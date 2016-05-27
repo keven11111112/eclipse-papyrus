@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.config;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -24,16 +23,13 @@ import org.eclipse.nebula.widgets.nattable.edit.gui.AbstractDialogCellEditor;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.nattable.celleditor.AbstractPapyrusStyledTextCellEditor;
 import org.eclipse.papyrus.infra.nattable.celleditor.AbstractOpenDialogCellEditorButtonAction;
 import org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.uml.nattable.converter.UMLMultiReferenceDisplayConverter;
-import org.eclipse.papyrus.uml.nattable.converter.UMLSingleReferenceDisplayConverter;
 import org.eclipse.papyrus.uml.nattable.editor.MultiReferenceCellEditor;
-import org.eclipse.papyrus.uml.nattable.editor.SingleReferenceValueCellEditor;
 import org.eclipse.papyrus.uml.nattable.manager.cell.editor.UMLReferenceTextWithCompletionCellEditor;
 import org.eclipse.papyrus.uml.nattable.messages.Messages;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
@@ -41,7 +37,6 @@ import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * 
@@ -50,6 +45,11 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class UMLMultiReferenceTextualCellEditorWithButtonConfiguration implements IAxisCellEditorConfiguration {
 
+	/**
+	 * The id of this editor.
+	 */
+	public static final String ID = "org.eclipse.papyrus.uml.reference.text.with.completion.editor.and.dialog"; //$NON-NLS-1$
+	
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table, java.lang.Object)
@@ -189,7 +189,7 @@ public class UMLMultiReferenceTextualCellEditorWithButtonConfiguration implement
 	 */
 	@Override
 	public String getEditorConfigId() {
-		return "org.eclipse.papyrus.uml.reference.text.with.completion.editor.and.dialog"; //$NON-NLS-1$
+		return ID;
 	}
 
 	/**

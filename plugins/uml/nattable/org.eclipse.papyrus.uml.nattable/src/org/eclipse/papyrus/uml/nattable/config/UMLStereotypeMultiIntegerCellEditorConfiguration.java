@@ -30,7 +30,7 @@ public class UMLStereotypeMultiIntegerCellEditorConfiguration extends MultiInteg
 	/**
 	 * The id of this editor.
 	 */
-	private static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeMultiIntegerCellEditorConfiguration.MultiEditor";//$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeMultiIntegerCellEditorConfiguration.MultiEditor";//$NON-NLS-1$
 
 
 	/**

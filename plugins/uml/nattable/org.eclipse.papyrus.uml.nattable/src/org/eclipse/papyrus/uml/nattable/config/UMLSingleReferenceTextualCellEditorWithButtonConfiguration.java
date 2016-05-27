@@ -49,6 +49,11 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class UMLSingleReferenceTextualCellEditorWithButtonConfiguration implements IAxisCellEditorConfiguration {
 
 	/**
+	 * The id of this editor.
+	 */
+	public static final String ID = "org.eclipse.papyrus.uml.reference.text.with.completion.editor.and.dialog"; //$NON-NLS-1$
+	
+	/**
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table, java.lang.Object)
 	 *
@@ -182,7 +187,7 @@ public class UMLSingleReferenceTextualCellEditorWithButtonConfiguration implemen
 	 */
 	@Override
 	public String getEditorConfigId() {
-		return "org.eclipse.papyrus.uml.reference.text.with.completion.editor.and.dialog"; //$NON-NLS-1$
+		return ID;
 	}
 
 	/**

@@ -24,6 +24,10 @@ import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusT
 import org.eclipse.papyrus.junit.utils.TableUtils;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.uml.nattable.config.UMLStereotypeSingleBooleanCellEditorConfiguration;
+import org.eclipse.papyrus.uml.nattable.config.UMLStereotypeSingleIntegerCellEditorConfiguration;
+import org.eclipse.papyrus.uml.nattable.config.UMLStereotypeSingleRealCellEditorConfiguration;
+import org.eclipse.papyrus.uml.nattable.config.UMLStereotypeSingleStringCellEditorConfiguration;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.Model;
 import org.junit.Assert;
@@ -76,7 +80,7 @@ public class StereotypeInheritDisplayTest extends AbstractPapyrusTest {
 	 *             The caught exception.
 	 */
 	@Test
-	public void testStereotypePropeties() throws Exception {
+	public void testStereotypeProperties() throws Exception {
 		// Open the table and get the manager
 		final IPageManager pageManager = fixture.getPageManager();
 		final List<Object> pages = pageManager.allPages();
@@ -107,26 +111,22 @@ public class StereotypeInheritDisplayTest extends AbstractPapyrusTest {
 		final ILayerCell cell0 = currentManager.getBodyLayerStack().getCellByPosition(0, 0);
 		Assert.assertNotEquals("The first cell must have config labels", null, cell0.getConfigLabels()); //$NON-NLS-1$
 		Assert.assertNotEquals("The first cell must have at least one cell editor configuration", 0, cell0.getConfigLabels().getLabels().size()); //$NON-NLS-1$
-		Assert.assertEquals("The first cell editor must be an UMLStereotypeSingleStringCellEditorConfiguration", "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeSingleStringCellEditorConfiguration.MultiLineText0", //$NON-NLS-1$ //$NON-NLS-2$
-				cell0.getConfigLabels().getLabels().get(0));
+		Assert.assertEquals("The first cell editor is not the expected one", UMLStereotypeSingleStringCellEditorConfiguration.ID + "0", cell0.getConfigLabels().getLabels().get(0));//$NON-NLS-1$
 
 		final ILayerCell cell1 = currentManager.getBodyLayerStack().getCellByPosition(1, 0);
 		Assert.assertNotEquals("The second cell must have config labels", null, cell1.getConfigLabels()); //$NON-NLS-1$
 		Assert.assertNotEquals("The second cell must have at least one cell editor configuration", 0, cell1.getConfigLabels().getLabels().size()); //$NON-NLS-1$
-		Assert.assertEquals("The second cell editor must be an UMLStereotypeSingleBooleanCellEditorConfiguration", "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeSingleBooleanCellEditorConfiguration.CheckBox1", //$NON-NLS-1$ //$NON-NLS-2$
-				cell1.getConfigLabels().getLabels().get(0));
+		Assert.assertEquals("The second cell editor is not the expected one", UMLStereotypeSingleBooleanCellEditorConfiguration.ID + "1", cell1.getConfigLabels().getLabels().get(0));//$NON-NLS-1$
 
 		final ILayerCell cell2 = currentManager.getBodyLayerStack().getCellByPosition(2, 0);
 		Assert.assertNotEquals("The third cell must have config labels", null, cell2.getConfigLabels()); //$NON-NLS-1$
 		Assert.assertNotEquals("The third cell must have at least one cell editor configuration", 0, cell2.getConfigLabels().getLabels().size()); //$NON-NLS-1$
-		Assert.assertEquals("The third cell editor must be an UMLStereotypeSingleIntegerCellEditorConfiguration", "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeSingleIntegerCellEditorConfiguration.Text2", //$NON-NLS-1$ //$NON-NLS-2$
-				cell2.getConfigLabels().getLabels().get(0));
+		Assert.assertEquals("The third cell editor is not the expected one", UMLStereotypeSingleIntegerCellEditorConfiguration.ID + "2", cell2.getConfigLabels().getLabels().get(0)); //$NON-NLS-1$
 
 		final ILayerCell cell3 = currentManager.getBodyLayerStack().getCellByPosition(3, 0);
 		Assert.assertNotEquals("The fourth cell must have config labels", null, cell3.getConfigLabels()); //$NON-NLS-1$
 		Assert.assertNotEquals("The fourth cell must have at least one cell editor configuration", 0, cell3.getConfigLabels().getLabels().size()); //$NON-NLS-1$
-		Assert.assertEquals("The fourth cell editor must be an UMLStereotypeSingleRealCellEditorConfiguration", "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeSingleRealCellEditorConfiguration.Text3", //$NON-NLS-1$ //$NON-NLS-2$
-				cell3.getConfigLabels().getLabels().get(0));
+		Assert.assertEquals("The fourth cell editor is not the expected one", UMLStereotypeSingleRealCellEditorConfiguration.ID + "3", cell3.getConfigLabels().getLabels().get(0));//$NON-NLS-1$
 
 		// Check the values
 		Assert.assertEquals("The first value is not the expected one", "Vincent", currentManager.getDataValue(0, 0)); //$NON-NLS-1$ //$NON-NLS-2$

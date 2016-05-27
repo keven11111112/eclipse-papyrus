@@ -31,7 +31,7 @@ public class UMLStereotypeSingleBooleanCellEditorConfiguration extends SingleBoo
 	/**
 	 * The id of this editor.
 	 */
-	private static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeSingleBooleanCellEditorConfiguration.CheckBox";//$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeSingleBooleanCellEditorConfiguration.CheckBox";//$NON-NLS-1$
 
 
 	/**

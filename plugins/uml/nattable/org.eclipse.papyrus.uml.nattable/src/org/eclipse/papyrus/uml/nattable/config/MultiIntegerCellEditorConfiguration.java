@@ -38,7 +38,7 @@ public class MultiIntegerCellEditorConfiguration implements ICellAxisConfigurati
 	/**
 	 * The id of this editor.
 	 */
-	private static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.MultiIntegerCellEditorConfiguration.MultiEditor";//$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.MultiIntegerCellEditorConfiguration.MultiEditor";//$NON-NLS-1$
 
 
 	/**
