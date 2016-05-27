@@ -13,15 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
+
 public class InternalTransitionActivation extends TransitionActivation{
 	
 	@Override
-	protected void exitSource() {
+	protected void exitSource(EventOccurrence eventOccurrence) {
 		// An internal transition does not cause exit of the source state
 		return;
 	}
 	
-	protected void enterTarget() {
+	protected void enterTarget(EventOccurrence eventOccurrence) {
 		// An internal transition does not cause entry of the target state
 		return;
 	}

@@ -196,7 +196,7 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		return reactive;
 	}
 	
-	public void executeEffect(){
+	public void executeEffect(EventOccurrence eventOccurrence){
 		// Execute the effect that is on the transition if it exists one
 		Transition transition = (Transition) this.getNode();
 		Execution execution = this.getExecutionFor(transition.getEffect());
@@ -205,18 +205,18 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		}
 	}
 	
-	public void fire(){
+	public void fire(EventOccurrence eventOccurrence){
 		// The fire sequence is broken into the following set of actions
 		// 1 - Exit the source (depends on the kind of transition that is currently used)
 		// 2 - Execute the effect (if one exists for that transition)
 		// 3 - Enter the target (depends on the kind of transition that is currently used)
-		this.exitSource();
+		this.exitSource(eventOccurrence);
 		FUMLExecutionEngine.eInstance.getControlDelegate().control(this); 
-		this.executeEffect();
+		this.executeEffect(eventOccurrence);
 		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode()); 
 		this.setStatus(TransitionMetadata.TRAVERSED);
 		logger.info(this.getNode().getName()+" => TRAVERSED");
-		this.enterTarget();
+		this.enterTarget(eventOccurrence);
 	}
 	
 
@@ -235,13 +235,13 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	 * This operation is intended to be implemented by sub-classes.
 	 * Sub-classes capture how the source vertex activation must be exited. 
 	 */
-	protected abstract void exitSource();
+	protected abstract void exitSource(EventOccurrence eventOccurrence);
 	
 	/*
 	 * This operation is intended to be implemented by sub-classes.
 	 * Sub-classes capture how the target vertex activation must be entered.
 	 */
-	protected abstract void enterTarget();
+	protected abstract void enterTarget(EventOccurrence eventOccurrence);
 	
 	public String toString(){
 		return "["+this.getSourceActivation()+"] -> ["+this.getTargetActivation()+"]";

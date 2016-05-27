@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
+
 public class JoinPseudostateActivation extends PseudostateActivation {
 
 	public boolean isEnterable(TransitionActivation enteringTransition) {
@@ -31,7 +33,7 @@ public class JoinPseudostateActivation extends PseudostateActivation {
 	}
 
 	@Override
-	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
+	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
 		// When entered by the last incoming transition that had not already fired the Fork pseudo state
 		// is allowed to continue its execution. The continuation of the execution consist in firing the
 		// outgoing transition of the Join. Note that a Fork cannot have more than an outgoing transition
@@ -41,29 +43,29 @@ public class JoinPseudostateActivation extends PseudostateActivation {
 		if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
 			VertexActivation parentVertexActivation = this.getParentState();
 			if (parentVertexActivation != null) {
-				parentVertexActivation.enter(enteringTransition, leastCommonAncestor);
+				parentVertexActivation.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 			}
 		}
 		// The Join pseudo state is entered and its outgoing transition is fired (if possible)
-		super.enter(enteringTransition, leastCommonAncestor);
+		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 		if (!this.outgoingTransitionActivations.isEmpty()) {
 			TransitionActivation transitionActivation = this.outgoingTransitionActivations.get(0);
 			if (transitionActivation.evaluateGuard()) {
-				transitionActivation.fire();
+				transitionActivation.fire(eventOccurrence);
 			}
 		}
 	}
 
 	@Override
-	public void exit(TransitionActivation exitingTransition, RegionActivation leastCommonAncestor) {
+	public void exit(TransitionActivation exitingTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
 		// When the join pseudo state is exited then it also provokes the exit of all containing
 		// state that not directly belong to the least common ancestor before its outgoing transition
 		// fires
-		super.exit(exitingTransition, leastCommonAncestor);
+		super.exit(exitingTransition, eventOccurrence, leastCommonAncestor);
 		if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
 			VertexActivation parentVertexActivation = this.getParentState();
 			if (parentVertexActivation != null) {
-				parentVertexActivation.exit(exitingTransition, leastCommonAncestor);
+				parentVertexActivation.exit(exitingTransition, eventOccurrence, leastCommonAncestor);
 			}
 		}
 	}

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.uml2.uml.Vertex;
 
 public class LocalTransitionActivation extends TransitionActivation {
@@ -38,7 +39,7 @@ public class LocalTransitionActivation extends TransitionActivation {
 	}
 	
 	@Override
-	protected void exitSource() {
+	protected void exitSource(EventOccurrence eventOccurrence) {
 		// Exiting the source state of a local transition consists in the following set of actions:
 		// 1 - Check if the source state can be exited (if it cannot then do nothing)
 		// 2 - If the source can be exited and this latter is an entry point then the exit
@@ -50,7 +51,7 @@ public class LocalTransitionActivation extends TransitionActivation {
 		StateActivation containingState = this.getContainingState();
 		if(this.vertexSourceActivation.isExitable(this)){
 			if(this.vertexSourceActivation instanceof EntryPointActivation){
-				this.vertexSourceActivation.exit(this, null);
+				this.vertexSourceActivation.exit(this, eventOccurrence, null);
 			}else{
 				int i=0;
 				RegionActivation containingRegion = null; 
@@ -73,23 +74,23 @@ public class LocalTransitionActivation extends TransitionActivation {
 						i++;
 					}
 					if(vertexActivationToBeExited != null){
-						vertexActivationToBeExited.exit(this, null);
+						vertexActivationToBeExited.exit(this, eventOccurrence, null);
 					}
 				}
 				if(this.vertexSourceActivation != containingState){
-					this.vertexSourceActivation.exit(this, this.getLeastCommonAncestor());
+					this.vertexSourceActivation.exit(this, eventOccurrence, this.getLeastCommonAncestor());
 				}
 			}
 		}
 	}
 	
 	@Override
-	protected void enterTarget() {
+	protected void enterTarget(EventOccurrence eventOccurrence) {
 		// Entering the target of local transition consists in checking if the target can be entered. If
 		// this is the case then only when the target is not also the containing state it is entered 
 		if(this.vertexTargetActivation.isEnterable(this)){	
 			if(this.vertexTargetActivation != this.getContainingState()){
-				this.vertexTargetActivation.enter(this, this.getLeastCommonAncestor());
+				this.vertexTargetActivation.enter(this, eventOccurrence, this.getLeastCommonAncestor());
 			}
 		}
 	}

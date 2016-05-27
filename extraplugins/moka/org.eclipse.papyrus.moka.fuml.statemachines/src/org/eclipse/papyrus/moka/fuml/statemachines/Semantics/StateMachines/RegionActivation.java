@@ -16,6 +16,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
 import org.eclipse.uml2.uml.Region;
@@ -113,7 +114,7 @@ public class RegionActivation extends StateMachineSemanticVisitor{
 		return activation;
 	}
 	
-	protected void enter(TransitionActivation enteringTransition){
+	protected void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence){
 		// An implicit entry of a region means the initial transition is searched.
 		// If such transition exists then it is fired. An explicit entry as no impact on the region.
 		// In case the region is entered implicitly a initial pseudo state shall be found to
@@ -130,7 +131,7 @@ public class RegionActivation extends StateMachineSemanticVisitor{
 		}
 		if(initialNodeActivation!=null){
 			for(TransitionActivation transitionActivation : initialNodeActivation.getOutgoingTransitions()){
-				transitionActivation.fire();
+				transitionActivation.fire(eventOccurrence);
 			}
 		}else{
 			SemanticVisitor parent = this.getParent();
@@ -144,11 +145,11 @@ public class RegionActivation extends StateMachineSemanticVisitor{
 		}
 	}
 	
-	public void exit(TransitionActivation exitingTransition){
+	public void exit(TransitionActivation exitingTransition, EventOccurrence eventOccurrence){
 		// Exiting a region implies exiting all of is active vertices.
 		for(VertexActivation vertexActivation: this.getVertexActivations()){
 			if(vertexActivation.isActive()){
-				vertexActivation.exit(exitingTransition, null);
+				vertexActivation.exit(exitingTransition, eventOccurrence, null);
 			}
 		}
 	}

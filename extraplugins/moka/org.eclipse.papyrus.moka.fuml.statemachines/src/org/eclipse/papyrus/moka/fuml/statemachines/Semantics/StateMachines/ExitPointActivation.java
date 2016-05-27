@@ -16,6 +16,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.ChoiceStrategy;
 
 
@@ -50,7 +51,7 @@ public class ExitPointActivation extends ConnectionPointActivation {
 		return fireableTransitions;
 	}
 
-	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
+	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
 		// When the ExitPoint is entered then the state on which it is placed is exited.
 		// One outgoing transition is chosen non-deterministically in set of transition
 		// that can be used to leave the ExitPoint. This transition is fired. This lead
@@ -61,12 +62,12 @@ public class ExitPointActivation extends ConnectionPointActivation {
 			int chosenIndex = choiceStrategy.choose(fireableTransitions.size());
 			TransitionActivation selectedTransition = fireableTransitions.get(chosenIndex - 1);
 			RegionActivation newLeastCommonAncestor = this.getLeastCommonAncestor(selectedTransition.getTargetActivation());
-			super.enter(enteringTransition, leastCommonAncestor);
+			super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 			VertexActivation vertexActivation = this.getParentState();
 			if (vertexActivation != null) {
-				vertexActivation.exit(enteringTransition, newLeastCommonAncestor);
+				vertexActivation.exit(enteringTransition, eventOccurrence, newLeastCommonAncestor);
 			}
-			selectedTransition.fire();
+			selectedTransition.fire(null);
 		}
 	}
 }

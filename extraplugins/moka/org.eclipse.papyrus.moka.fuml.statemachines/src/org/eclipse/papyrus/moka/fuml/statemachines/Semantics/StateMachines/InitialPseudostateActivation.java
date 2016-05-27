@@ -13,17 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
+
 public class InitialPseudostateActivation extends PseudostateActivation{
 	
-	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
+	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
 		// If there is an outgoing transition then this outgoing transition is fired.
 		// If there is a guard or a trigger associated with this initial pseudo state then
 		// they are not taken into account. If there is no outgoing transitions then the model
 		// is considered as being ill-formed, similar interpretation occurs if there are more than
 		// an single outgoing transition for the initial pseudo state.
-		super.enter(enteringTransition, leastCommonAncestor);
-		if(this.outgoingTransitionActivations.size()==0){
-			this.outgoingTransitionActivations.get(0).fire();	
+		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
+		if(this.outgoingTransitionActivations.size()==1){
+			this.outgoingTransitionActivations.get(0).fire(eventOccurrence);	
 		}
 	}
 

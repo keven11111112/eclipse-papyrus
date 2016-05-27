@@ -51,7 +51,7 @@ public class StateMachineEventAccepter extends EventAccepter{
 			if(!fireableTransition.isEmpty()){
 				int i = 0;
 				while(i < fireableTransition.size()){
-					fireableTransition.get(i).fire();
+					fireableTransition.get(i).fire(eventOccurrence);
 					i++;
 				}
 			}

@@ -13,11 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.uml2.uml.Vertex;
 
 public class ExternalTransitionActivation extends TransitionActivation {
 
-	protected void exitSource(){
+	protected void exitSource(EventOccurrence eventOccurrence){
 		// The exiting phase of the source vertex activation is conditioned both by
 		// the prerequisites that apply to leave the source and the prerequisites that
 		// apply to enter the target. 
@@ -28,21 +29,21 @@ public class ExternalTransitionActivation extends TransitionActivation {
 		//         the exiting phase is not propagated to parent state (if required)
 		if(this.vertexSourceActivation.isExitable(this)){
 			if(this.vertexTargetActivation.isEnterable(this)){
-				this.vertexSourceActivation.exit(this, this.getLeastCommonAncestor());
+				this.vertexSourceActivation.exit(this, eventOccurrence, this.getLeastCommonAncestor());
 			}else{
-				this.vertexSourceActivation.exit(this, null);	
+				this.vertexSourceActivation.exit(this, eventOccurrence, null);	
 			}
 		}
 	}
 	
-	protected void enterTarget() {
+	protected void enterTarget(EventOccurrence eventOccurrence) {
 		// If the target vertex activation can be entered (i.e., its possible prerequisites
 		// are satisfied) then the entering process begins. Note that this process may lead
 		// to enter other states based on what is the common ancestor exiting between the
 		// the source and the target. Besides the prerequisites imposed by the target vertex
 		// activation there are no other constraints to enter the target state
 		if(this.vertexTargetActivation.isEnterable(this)){
-			this.vertexTargetActivation.enter(this, this.getLeastCommonAncestor());
+			this.vertexTargetActivation.enter(this, eventOccurrence, this.getLeastCommonAncestor());
 		}else{
 			if(this.vertexTargetActivation instanceof StateActivation){
 				StateActivation targetStateActivation = (StateActivation) this.vertexTargetActivation;

@@ -13,9 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
+
 public class FinalStateActivation extends StateActivation {
 
-	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
+	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
 		// The final state completes the region in which it is located*/
 		RegionActivation regionActivation = (RegionActivation) this.getParent();
 		regionActivation.isCompleted = true;

@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
+
 public class ForkPseudostateActivation extends PseudostateActivation {
 
 	
@@ -33,32 +35,32 @@ public class ForkPseudostateActivation extends PseudostateActivation {
 	}
 	
 	@Override
-	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
+	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
 		// Fires all outgoing transitions of the for **concurrently**
 		// Transitions outgoing from a fork are not guarded nor triggered
 		// If required parent state is entered first (the rule applies recursively)
 		if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
 			VertexActivation parentVertexActivation = this.getParentState();
 			if (parentVertexActivation != null) {
-				parentVertexActivation.enter(enteringTransition, leastCommonAncestor);
+				parentVertexActivation.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 			}
 		}
-		super.enter(enteringTransition, leastCommonAncestor);
+		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 		for(int i=0; i < this.outgoingTransitionActivations.size(); i++){
-			this.outgoingTransitionActivations.get(i).fire();
+			this.outgoingTransitionActivations.get(i).fire(eventOccurrence);
 		}
 	}
 	
 	@Override
-	public void exit(TransitionActivation exitingTransition, RegionActivation leastCommonAncestor) {
+	public void exit(TransitionActivation exitingTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
 		// A fork will only be allowed to exit when all other transitions outgoing
 		//this pseudo state have already been traversed
-		super.exit(exitingTransition, leastCommonAncestor);
+		super.exit(exitingTransition, eventOccurrence, leastCommonAncestor);
 		// If required parent state is exited (the rule applies recursively)
 		if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
 			VertexActivation parentVertexActivation = this.getParentState();
 			if (parentVertexActivation != null) {
-				parentVertexActivation.enter(exitingTransition, leastCommonAncestor);
+				parentVertexActivation.enter(exitingTransition, eventOccurrence, leastCommonAncestor);
 			}
 		}
 	}

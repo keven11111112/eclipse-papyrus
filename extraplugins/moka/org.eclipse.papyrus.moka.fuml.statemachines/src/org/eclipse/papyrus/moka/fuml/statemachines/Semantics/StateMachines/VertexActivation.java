@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.TransitionActivation.TransitionMetadata;
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
@@ -115,7 +116,7 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		return hierarchy;
 	}
 		
-	public void enter(TransitionActivation enteringTransition,  RegionActivation leastCommonAncestor){
+	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence,  RegionActivation leastCommonAncestor){
 		// 1-The vertex becomes active
 		// 2-Outgoing transitions of this vertex are tagged as being REACHED
 		// 3-The vertex starts to be highlighted
@@ -125,7 +126,7 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		FUMLExecutionEngine.eInstance.getControlDelegate().control(this);
 	}
 	
-	public void exit(TransitionActivation exitingTransition, RegionActivation leastCommonAncestor){
+	public void exit(TransitionActivation exitingTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor){
 		// 1-The representation of the vertex stops to be highlighted
 		// 2-The incoming transitions of this vertex get back to the NONE status
 		// 3- The vertex becomes IDLE

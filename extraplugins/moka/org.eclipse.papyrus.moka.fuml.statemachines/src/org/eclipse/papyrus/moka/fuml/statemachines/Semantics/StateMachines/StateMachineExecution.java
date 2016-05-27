@@ -94,7 +94,7 @@ public class StateMachineExecution extends Execution {
 		// 1 - An event accepter is placed in the list of waiting event accepters for this state-machine
 		// 2 - All visitors required to interpret the state-machine are instantiated and link together
 		// 3 - All top level regions (i.e. those directly owned by the executed state-machine) are entered
-		//     concurrently.
+		//     concurrently. Since they are top regions then there is no transition used to enter them
 		// Note: a state-machine always has at runtime a single event accepter
 		if(this.context!=null && this.context.objectActivation!=null){
 			this.context.register(new StateMachineEventAccepter(this));
@@ -107,7 +107,7 @@ public class StateMachineExecution extends Execution {
 			activation.activateTransitions();
 		}
 		for(RegionActivation regionActivation: this.regionActivation){
-			regionActivation.enter(null);
+			regionActivation.enter(null, null);
 		}
 	}
 
