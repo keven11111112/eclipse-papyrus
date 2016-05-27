@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,16 +8,23 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 461629
+ *  Christian W. Damus - bugs 461629, 436665
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.dom;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations;
+import org.w3c.dom.Element;
 
 /**
  * A Listener for notation and semantic properties changes
@@ -57,6 +64,51 @@ public class StyleListener extends AdapterImpl {
 			if (shouldPropagateNotationEvent(notification)) {
 				elementAdapter.notationPropertyChanged();
 			}
+
+			// Handle view containment changes
+			if (notification.getFeature() instanceof EReference) {
+				EReference reference = (EReference) notification.getFeature();
+				if (reference.getEContainingClass() == NotationPackage.Literals.VIEW) {
+					switch (notification.getFeatureID(View.class)) {
+					case NotationPackage.VIEW__PERSISTED_CHILDREN:
+					case NotationPackage.VIEW__TRANSIENT_CHILDREN:
+						elementAdapter.childrenChanged();
+
+						List<?> changedViews;
+						switch (notification.getEventType()) {
+						case Notification.ADD:
+							changedViews = Collections.singletonList(notification.getNewValue());
+							break;
+						case Notification.ADD_MANY:
+							changedViews = ((List<?>) notification.getNewValue());
+							break;
+						case Notification.REMOVE:
+							changedViews = Collections.singletonList(notification.getOldValue());
+							break;
+						case Notification.REMOVE_MANY:
+							changedViews = ((List<?>) notification.getOldValue());
+							break;
+						case Notification.SET:
+							changedViews = Arrays.asList(notification.getNewValue(), notification.getOldValue());
+							break;
+						default:
+							// Shouldn't be here
+							changedViews = Collections.emptyList();
+							break;
+						}
+
+						for (Object next : changedViews) {
+							Element element = elementAdapter.getEngine().getElement(next);
+							if (element instanceof GMFElementAdapter) {
+								((GMFElementAdapter) element).parentChanged();
+							}
+						}
+
+						break;
+					}
+				}
+			}
+
 			return;
 		}
 
@@ -100,8 +152,7 @@ public class StyleListener extends AdapterImpl {
 	}
 
 	private String getEventType(Notification notification) {
-		switch (notification.getEventType())
-		{
+		switch (notification.getEventType()) {
 		case Notification.SET:
 			return ("SET");
 		case Notification.UNSET:

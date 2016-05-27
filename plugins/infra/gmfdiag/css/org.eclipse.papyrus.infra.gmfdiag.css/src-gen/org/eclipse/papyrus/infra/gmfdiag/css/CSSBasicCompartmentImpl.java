@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 433206
+ *  Christian W. Damus - bugs 433206, 436665
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css;
 
@@ -26,7 +26,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSView;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSDrawerStyleDelegate;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSViewDelegate;
 
-public class CSSBasicCompartmentImpl extends BasicCompartmentImpl implements CSSDrawerStyle, CSSView {
+public class CSSBasicCompartmentImpl extends BasicCompartmentImpl implements CSSDrawerStyle, CSSView.Internal {
 
 	protected ExtendedCSSEngine engine;
 
@@ -53,6 +53,12 @@ public class CSSBasicCompartmentImpl extends BasicCompartmentImpl implements CSS
 			cssView = new CSSViewDelegate(this, getEngine());
 		}
 		return cssView;
+	}
+	
+	@Override
+	public void resetCSS() {
+		cssView = null;
+		engine = null;
 	}
 
 

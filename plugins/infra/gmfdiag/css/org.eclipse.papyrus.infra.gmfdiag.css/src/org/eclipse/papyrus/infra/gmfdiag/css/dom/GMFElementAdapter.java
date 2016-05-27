@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 461629
+ *  Christian W. Damus - bugs 461629, 436665
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 462381
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.dom;
@@ -279,7 +279,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		notationElement.eAdapters().add(cssStyleListener = new CustomStyleListener(notationElement, this, cssStyles));
 	}
 
-	private ExtendedCSSEngine getEngine() {
+	ExtendedCSSEngine getEngine() {
 		return (ExtendedCSSEngine) engine;
 	}
 
@@ -602,6 +602,32 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		namespaceURI = null;
 		children = null;
 		getEngine().notifyChange(this);
+	}
+
+	/**
+	 * Handles a notification for change in notation view containment.
+	 * <p>
+	 * Source: styleListener
+	 * </p>
+	 */
+	public void childrenChanged() {
+		if (children != null) {
+			children = null;
+			getEngine().notifyChange(this);
+		}
+	}
+
+	/**
+	 * Handles a notification for change in notation view containment.
+	 * <p>
+	 * Source: styleListener
+	 * </p>
+	 */
+	public void parentChanged() {
+		if (parentNode != null) {
+			parentNode = null;
+			getEngine().notifyChange(this);
+		}
 	}
 
 	/**
