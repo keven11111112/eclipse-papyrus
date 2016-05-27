@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bug 485220
+ *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 494730
  *   
  *****************************************************************************/
 
@@ -39,6 +40,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingle
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionsRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeConfigurationTypeRegistry;
+import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.junit.Assert;
@@ -75,6 +77,9 @@ public class ExpansionAddLink extends AbstractEditorTest {
 
 	@Test
 	public void load_DiagramExpansion() {
+		// Bug 494730: call getInstance to initialize ElementTypeSet Registry and load Dependeny_Link Specialized Type referred in AddLink.xmi
+		ElementTypeSetConfigurationRegistry.getInstance();
+
 		// loading
 		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("AddLink.xmi");
 		Assert.assertEquals("Size ot the registry must be equals to 1", 1, diagramExpansionsRegistry.getDiagramExpansions().size());
