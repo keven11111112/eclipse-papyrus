@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 433206
+ *  Christian W. Damus - bugs 433206, 436665
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.style;
 
@@ -50,4 +50,25 @@ public interface CSSView {
 	 * @see View#getStyle(EClass)
 	 */
 	public Style getCSSStyle(EClass eClass);
+	
+	//
+	// Nested types
+	//
+	
+	/**
+	 * Private interface for management of CSS lifecycle and other
+	 * internal concerns
+	 * 
+	 * @since 1.2
+	 * 
+	 * @noimplement This interface is not intended to be implemented by clients.
+	 * @noreference This method is not intended to be referenced by clients.
+	 */
+	interface Internal extends CSSView {
+		/**
+		 * Resets my association with the CSS engine and any local caches
+		 * thereof that I may have.
+		 */
+		void resetCSS();
+	}
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,8 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - support adapter instead of custom resource impl for CSS (CDO)
- *  Christian W. Damus - bug 433206
- *  Christian W. Damus - bug 464443
+ *  Christian W. Damus - bugs 433206, 464443, 436665
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.notation;
@@ -43,7 +42,7 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
  * @author Camille letavernier
  */
 @SuppressWarnings("restriction")
-public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram {
+public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram, CSSView.Internal {
 
 	protected ExtendedCSSEngine engine;
 
@@ -52,15 +51,26 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram {
 	@Override
 	public ExtendedCSSEngine getEngine() {
 		if (engine == null) {
-			engine = new DiagramCSSEngine(getModelEngine(), this);
+			ExtendedCSSEngine modelEngine = getModelEngine();
+			engine = new DiagramCSSEngine(modelEngine, this);
 		}
 		return engine;
 	}
 
-	private void disposeEngine() {
+	@Override
+	public void resetCSS() {
 		if (engine != null) {
+			cssView = null;
+
 			engine.dispose();
 			engine = null;
+
+			// And walk our contents to make all views forget their engine
+			eAllContents().forEachRemaining(o -> {
+				if (o instanceof CSSView.Internal) {
+					((CSSView.Internal) o).resetCSS();
+				}
+			});
 		}
 	}
 
@@ -73,7 +83,7 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram {
 		if (oldResource != resource) {
 			// My engine is now invalid because my resource is different than before,
 			// which makes its parent engine is obsolete
-			disposeEngine();
+			resetCSS();
 		}
 	}
 
