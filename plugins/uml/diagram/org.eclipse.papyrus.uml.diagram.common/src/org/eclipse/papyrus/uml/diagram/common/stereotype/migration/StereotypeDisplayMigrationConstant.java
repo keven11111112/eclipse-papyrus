@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,14 +9,14 @@
  * Contributors:
  *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotype Display
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.stereotype.migration;
 
 /**
  * This class regroups all the constant required for the Migration of the Stereotype Display User Preferences.
- * 
+ *
  * @author Céline JANSSENS
  *
  */
@@ -42,7 +42,7 @@ public final class StereotypeDisplayMigrationConstant {
 
 	/**
 	 * Property display Key
-	 * 
+	 *
 	 */
 	public static final String PROPERTY_STEREOTYPE_DISPLAY = "PropStereoDisplay";//$NON-NLS-1$
 
@@ -57,5 +57,9 @@ public final class StereotypeDisplayMigrationConstant {
 	public static final String OLD_COMMENT_TYPE = "AppliedStereotypesComment";//$NON-NLS-1$
 	public static final Object OLD_COMMENT_LINK_TYPE = "AppliedStereotypesCommentLink";//$NON-NLS-1$
 
-
+	/**
+	 * Separator Constants
+	 */
+	public final static String EANNOTATION_LIST_SEPARATOR = ","; //$NON-NLS-1$
+	public final static String EANNOTATION_PROPERTY_SEPARATOR = "."; //$NON-NLS-1$
 }

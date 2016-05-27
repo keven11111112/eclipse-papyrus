@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,8 @@
  * Contributors:
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotype Display
- *   
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 493420
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.stereotype.migration;
@@ -36,13 +37,11 @@ import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * This class regroups the methods required to create the new Stereotype Structure based on the Old Structure.
- * 
+ *
  * @author Céline JANSSENS
  *
  */
 public final class StereotypeMigrationHelper {
-
-
 	public static final String EMPTY_STRING = "";//$NON-NLS-1$
 
 	/**
@@ -75,12 +74,12 @@ public final class StereotypeMigrationHelper {
 	 * Get the Semantic Element of the Comment View.
 	 * The Comment View is not attached to its semantic element through the method {@link View#getElement()}.
 	 * To retrieve the semantic element, it has been added as a namedStyle with the name {@link StereotypeDisplayConstant#STEREOTYPE_COMMENT_RELATION_NAME}
-	 * 
+	 *
 	 * @param view
 	 *            The Stereotype Comment View (of type "StereotypeComment")
 	 * @return The Base Element of the Comment
 	 */
-	public Element getOldCommentSemanticElement(View view) {
+	public Element getOldCommentSemanticElement(final View view) {
 
 		Element elementSemantic = null;
 		if (isOldComment(view)) {
@@ -99,33 +98,34 @@ public final class StereotypeMigrationHelper {
 
 	/**
 	 * Get a Stereotype from its StereotypeName
-	 * 
+	 *
 	 * @param view
 	 *            View on which we try to retrieve the Stereotype
 	 * @param stereotypeName
 	 *            Stereotype Name
 	 * @return Stereotype Associated to the stereotype Name for the View.
 	 */
-	public Stereotype getStereotypeFromString(View view, String stereotypeName) {
-
+	public Stereotype getStereotypeFromString(final View view, final String stereotypeName) {
 		Stereotype stereotype = null;
 
 		Element element = helper.getSemanticElement(view);
-		stereotype = element.getAppliedStereotype(stereotypeName);
+		if (null != element) {
+			stereotype = element.getAppliedStereotype(stereotypeName);
+		}
 
 		return stereotype;
 	}
 
 	/**
 	 * Get a Property from its Name and its Stereotype
-	 * 
+	 *
 	 * @param view
 	 *            The View Containing the Property Compartment (i.e : ClassImpl)
 	 * @param propertyName
 	 *            The Property Name
 	 * @return The Property related to the View and to the Stereotype.
 	 */
-	public Property getPropertyFromString(View view, Stereotype stereotype, String propertyName) {
+	public Property getPropertyFromString(final View view, final Stereotype stereotype, final String propertyName) {
 		Property property = null;
 		if (view != null && !propertyName.isEmpty()) {
 
@@ -146,7 +146,7 @@ public final class StereotypeMigrationHelper {
 	/**
 	 * Check is the node is persistent and make it persistent if not
 	 * Check if the visibility should be modified, and do it accordingly
-	 * 
+	 *
 	 * @param view
 	 *            The View to modify
 	 * @param diagram
@@ -154,7 +154,7 @@ public final class StereotypeMigrationHelper {
 	 * @param visible
 	 *            true if the view has to be visible.
 	 */
-	public void updateVisibilityAndPersistence(View view, EObject object, boolean visible) {
+	public void updateVisibilityAndPersistence(final View view, final EObject object, final boolean visible) {
 		if (view != null) {
 			if (view.eContainer() instanceof View && !((View) view.eContainer()).getPersistedChildren().contains(view)) {
 				commandHelper.setPersistency(migrationHelper.getDomain(object), view, false);
@@ -170,25 +170,25 @@ public final class StereotypeMigrationHelper {
 
 	/**
 	 * Get the Editing domain from Eobject
-	 * 
+	 *
 	 * @param object
 	 *            Object used to retrieve the Transactional Editing Domain
 	 * @see {@link CommandUtil#resolveEditingDomain(Object)}
-	 * 
+	 *
 	 * @return Transactional Domain
 	 */
-	public TransactionalEditingDomain getDomain(EObject object) {
+	public TransactionalEditingDomain getDomain(final EObject object) {
 		return CommandUtil.resolveEditingDomain(object);
 	}
 
 	/**
 	 * Get the EAnnotation, dedicated to the Stereotype Display User preferences (Old structure to be replaced by the new one)
-	 * 
+	 *
 	 * @param view
 	 *            The View of which the EAnnotation is necessary.
 	 * @return The EAnnotation of the view . Null if does not exist.
 	 */
-	public EAnnotation getStereotypeEAnnotation(EModelElement view) {
+	public EAnnotation getStereotypeEAnnotation(final EModelElement view) {
 		EAnnotation annotation = null;
 		if (view != null) {
 			annotation = view.getEAnnotation(StereotypeDisplayMigrationConstant.STEREOTYPE_ANNOTATION);
@@ -198,30 +198,33 @@ public final class StereotypeMigrationHelper {
 	}
 
 	/**
-	 * 
+	 *
 	 * Define if a view has an Stereotype EAnnotation
-	 * 
+	 *
 	 * @param content
 	 *            The view
 	 * @return true if the Stereotype is not null.
 	 */
-	public boolean hasStereotypeEAnnotation(View content) {
+	public boolean hasStereotypeEAnnotation(final View content) {
 
 		return getStereotypeEAnnotation(content) != null;
 	}
 
 	/**
 	 * Retrieve the list of the appliedStereotypes from a View
-	 * 
+	 *
 	 * @param view
 	 *            The view for which the List of Stereotypes is asked
 	 * @return The appliedStereotype List. Null if no UML element related to the View.
 	 */
-	public EList<Stereotype> getAppliedStereotypesFromView(View view) {
+	public EList<Stereotype> getAppliedStereotypesFromView(final View view) {
 		EList<Stereotype> list = null;
 
 		Element element = helper.getSemanticElement(view);
-		list = element.getAppliedStereotypes();
+
+		if (null != element) {
+			list = element.getAppliedStereotypes();
+		}
 
 		return list;
 	}
@@ -237,7 +240,7 @@ public final class StereotypeMigrationHelper {
 	 *
 	 * @return the list of applied stereotype to display with their qualified name
 	 */
-	public String getStereotypesQNToDisplay(EModelElement view) {
+	public String getStereotypesQNToDisplay(final EModelElement view) {
 		EAnnotation eannotation = getStereotypeEAnnotation(view);
 		if (eannotation != null) {
 			EMap<String, String> entries = eannotation.getDetails();
@@ -260,7 +263,7 @@ public final class StereotypeMigrationHelper {
 	 *         display is represented by the qualified name of the stereotype
 	 *         Empty String by default.
 	 */
-	public String getStereotypesToDisplay(EModelElement view) {
+	public String getStereotypesToDisplay(final EModelElement view) {
 		EAnnotation eannotation = getStereotypeEAnnotation(view);
 		if (eannotation != null) {
 			EMap<String, String> entries = eannotation.getDetails();
@@ -281,7 +284,7 @@ public final class StereotypeMigrationHelper {
 	 *
 	 * @return the applied stereotypes properties localization
 	 */
-	public String getAppliedStereotypesPropertiesLocalization(EModelElement view) {
+	public String getAppliedStereotypesPropertiesLocalization(final EModelElement view) {
 		EAnnotation eannotation = getStereotypeEAnnotation(view);
 		if (eannotation != null) {
 			EMap<String, String> entries = eannotation.getDetails();
@@ -305,7 +308,7 @@ public final class StereotypeMigrationHelper {
 	 *
 	 * @return the applied stereotypes properties to display
 	 */
-	public String getAppliedStereotypesPropertiesToDisplay(EModelElement view) {
+	public String getAppliedStereotypesPropertiesToDisplay(final EModelElement view) {
 		EAnnotation eannotation = getStereotypeEAnnotation(view);
 		if (eannotation != null) {
 			EMap<String, String> entries = eannotation.getDetails();
@@ -320,12 +323,12 @@ public final class StereotypeMigrationHelper {
 
 	/**
 	 * Define if the passed object is the Old Comment View
-	 * 
+	 *
 	 * @param object
 	 *            The object to be tested
 	 * @return true if the object is a view of type {@link StereotypeDisplayMigrationConstant#OLD_COMMENT_TYPE}
 	 */
-	public boolean isOldComment(Object object) {
+	public boolean isOldComment(final Object object) {
 
 		if (object instanceof View) {
 			View view = (View) object;
@@ -340,12 +343,12 @@ public final class StereotypeMigrationHelper {
 
 	/**
 	 * Retrieve the old Comment from a hostView
-	 * 
+	 *
 	 * @param hostView
 	 *            The view of which the old comment is retrieve
 	 * @return The OldComment View or Null if not found.
 	 */
-	public View getOldStereotypeComment(View semanticView) {
+	public View getOldStereotypeComment(final View semanticView) {
 		Node node = null;
 		if (semanticView != null && semanticView.getSourceEdges() != null) {
 			// look for all links with the id AppliedStereotypesCommentLinkEditPart.ID
@@ -367,12 +370,12 @@ public final class StereotypeMigrationHelper {
 
 	/**
 	 * Retrieve the Old Link of the HostView
-	 * 
+	 *
 	 * @param hostView
 	 *            The view of which the old link is retrieve
 	 * @return The Old Link View or Null if not found.
 	 */
-	public Edge getOldStereotypeLinkComment(View semanticView) {
+	public Edge getOldStereotypeLinkComment(final View semanticView) {
 		Edge appliedStereotypeLink = null;
 		if (semanticView != null && semanticView.getSourceEdges() != null) {
 			// look for all links with the id AppliedStereotypesCommentLinkEditPart.ID
@@ -390,12 +393,12 @@ public final class StereotypeMigrationHelper {
 
 	/**
 	 * Define if an Old Comment is Orphan
-	 * 
+	 *
 	 * @param view
 	 *            The View of the Old Comment
 	 * @return True if the Comment is not related to another Element or if no stereotype is applied to this Element.
 	 */
-	public boolean isOrphanComment(View view) {
+	public boolean isOrphanComment(final View view) {
 		boolean orphanComment = false;
 
 		if (isOldComment(view)) {

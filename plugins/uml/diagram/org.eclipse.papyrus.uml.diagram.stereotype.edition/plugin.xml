@@ -9,12 +9,6 @@
             name="Low">
       </Priority>
    </editpolicyProvider>
-   <editpolicyProvider
-         class="org.eclipse.papyrus.uml.diagram.stereotype.edition.provider.StereotypeDisplayMigrationEditPolicyProvider">
-      <Priority
-            name="Medium">
-      </Priority>
-   </editpolicyProvider>
 </extension>
 <extension
        id="stereotype-ep-provider"

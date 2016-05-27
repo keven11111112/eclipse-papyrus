@@ -603,4 +603,13 @@
             label="Rich Text Renderer">
       </contributor>
    </extension>
+   <extension
+       point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
+    <diagramReconciler
+          diagramType="AllDiagrams"
+          reconcilerClass="org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeDisplayDiagramReconciler"
+          source="Undefined"
+          target="1.2.0">
+    </diagramReconciler>
+ </extension>
 </plugin>
