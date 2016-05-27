@@ -45,7 +45,6 @@ public class CallEventExecution extends Execution {
 	}
 	
 	private void _suspend(){
-		this.callerSuspended = true;
 		while(this.callerSuspended);
 	}
 	
@@ -60,9 +59,14 @@ public class CallEventExecution extends Execution {
 		// the event occurrence terminates.
 		CallEventOccurrence eventOccurrence = new CallEventOccurrence();
 		eventOccurrence.execution = this;
+		this.callerSuspended = true;
 		this._send(eventOccurrence);
 		this._suspend();
 		
+	}
+	
+	public void releaseCaller(){
+		this.callerSuspended = false;
 	}
 
 	@Override

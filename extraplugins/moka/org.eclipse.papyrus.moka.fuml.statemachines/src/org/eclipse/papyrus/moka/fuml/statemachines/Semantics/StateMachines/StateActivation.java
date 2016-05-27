@@ -162,7 +162,7 @@ public class StateActivation extends VertexActivation {
 		// If an entry behavior is specified for that state then it is executed
 		State state = (State) this.getNode();
 		if(!this.isEntryCompleted){
-			Execution execution = this.getExecutionFor(state.getEntry());
+			Execution execution = this.getExecutionFor(state.getEntry(), eventOccurrence);
 			if(execution!=null){
 				execution.execute();
 				this.isEntryCompleted = true;
@@ -186,7 +186,7 @@ public class StateActivation extends VertexActivation {
 				Object_ stateMachineExecutionContext = this.getExecutionContext();
 				this.doActivityContextObject.initialize(stateMachineExecutionContext);
 				this.doActivityContextObject.owner = this;
-				Execution doActivityExecution = this.getExecutionFor(doActivity);
+				Execution doActivityExecution = this.getExecutionFor(doActivity, eventOccurrence);
 				doActivityExecution.context = this.doActivityContextObject;
 				// The doActivity is started asynchronously. This is realized by adding an invocation event accepter
 				// for this doActivity within the event accepter list of the object activation attached to the currently
@@ -205,7 +205,7 @@ public class StateActivation extends VertexActivation {
 	protected void tryExecuteExit(EventOccurrence eventOccurrence){
 		// Execute the exit behavior if any
 		State state = (State) this.getNode();
-		Execution execution = this.getExecutionFor(state.getExit());
+		Execution execution = this.getExecutionFor(state.getExit(), eventOccurrence);
 		if(execution!=null){
 			execution.execute();
 		}

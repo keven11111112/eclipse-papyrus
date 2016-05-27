@@ -20,6 +20,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.ChoiceStrategy;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.CallEventOccurrence;
 
 public class StateMachineEventAccepter extends EventAccepter{
 
@@ -53,6 +54,13 @@ public class StateMachineEventAccepter extends EventAccepter{
 				while(i < fireableTransition.size()){
 					fireableTransition.get(i).fire(eventOccurrence);
 					i++;
+				}
+				// If the dispatched event was an CallEventOccurrence then check
+				// if the caller need to be released.
+				// FIXME: This moved on further updates to common behavior semantics
+				if(eventOccurrence instanceof CallEventOccurrence){
+					CallEventOccurrence callEventOccurrence = (CallEventOccurrence) eventOccurrence;
+					callEventOccurrence.execution.releaseCaller();
 				}
 			}
 		}

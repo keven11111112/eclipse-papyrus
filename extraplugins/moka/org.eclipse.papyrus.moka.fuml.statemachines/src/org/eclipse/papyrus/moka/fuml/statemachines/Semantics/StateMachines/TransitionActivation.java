@@ -199,7 +199,7 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	public void executeEffect(EventOccurrence eventOccurrence){
 		// Execute the effect that is on the transition if it exists one
 		Transition transition = (Transition) this.getNode();
-		Execution execution = this.getExecutionFor(transition.getEffect());
+		Execution execution = this.getExecutionFor(transition.getEffect(), eventOccurrence);
 		if(execution!=null){
 			execution.execute();
 		}
