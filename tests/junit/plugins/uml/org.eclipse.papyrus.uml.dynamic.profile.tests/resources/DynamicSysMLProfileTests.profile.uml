@@ -282,12 +282,6 @@
         <ownedAttribute xmi:type="uml:Property" xmi:id="_GdjFYLVBEdu2ieF4ON8UjA" name="base_Class" isUnique="false" association="_GdeM4LVBEdu2ieF4ON8UjA">
           <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_fI4_kPf6EeW7zZRsBQzNxg" name="base_Element" association="_fI3KYPf6EeW7zZRsBQzNxg">
-          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_DUTB0Pf7EeW7zZRsBQzNxg" name="base_Element" association="_DURMoPf7EeW7zZRsBQzNxg">
-          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
-        </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Extension" xmi:id="_GdeM4LVBEdu2ieF4ON8UjA" name="ClassBlock" memberEnd="_GdgpILVBEdu2ieF4ON8UjA _GdjFYLVBEdu2ieF4ON8UjA">
         <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_GdgpILVBEdu2ieF4ON8UjA" name="extension_Block" type="_8J2A8LVAEdu2ieF4ON8UjA" aggregation="composite" association="_GdeM4LVBEdu2ieF4ON8UjA"/>
@@ -417,12 +411,6 @@
       </packagedElement>
       <packagedElement xmi:type="uml:Extension" xmi:id="_kuv0oKGyEdyj2Ya50HPlXg" name="Extension_PropertySpecificType" memberEnd="_kv_KwKGyEdyj2Ya50HPlXg _kwLYAKGyEdyj2Ya50HPlXg">
         <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_kv_KwKGyEdyj2Ya50HPlXg" name="extension_PropertySpecificType" type="_aD-7EKGyEdyj2Ya50HPlXg" aggregation="composite" association="_kuv0oKGyEdyj2Ya50HPlXg"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Extension" xmi:id="_fI3KYPf6EeW7zZRsBQzNxg" name="E_Block_Element1" memberEnd="_fI4YgPf6EeW7zZRsBQzNxg _fI4_kPf6EeW7zZRsBQzNxg">
-        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_fI4YgPf6EeW7zZRsBQzNxg" name="extension_Block" type="_8J2A8LVAEdu2ieF4ON8UjA" aggregation="composite" association="_fI3KYPf6EeW7zZRsBQzNxg"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Extension" xmi:id="_DURMoPf7EeW7zZRsBQzNxg" name="E_Block_Element2" memberEnd="_DUSawPf7EeW7zZRsBQzNxg _DUTB0Pf7EeW7zZRsBQzNxg">
-        <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_DUSawPf7EeW7zZRsBQzNxg" name="extension_Block" type="_8J2A8LVAEdu2ieF4ON8UjA" aggregation="composite" association="_DURMoPf7EeW7zZRsBQzNxg"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Profile" xmi:id="_rpx28LX7EduFmqQsrNB9lw" name="PortAndFlows" URI="http://www.eclipse.org/papyrus/0.7.0/SysMLCopy/PortAndFlows">
