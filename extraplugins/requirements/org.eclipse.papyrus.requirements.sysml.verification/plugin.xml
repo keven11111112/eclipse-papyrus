@@ -5,7 +5,7 @@
          point="org.eclipse.emf.validation.constraintProviders">
       <category
             id="org.eclipse.papyrus.requirements.sysml.verification.rules.category"
-            name="Papyrus for Requirements Rules">
+            name="%category.name">
       </category>
       <constraintProvider
             mode="Batch">
@@ -20,14 +20,14 @@
                   isEnabledByDefault="true"
                   lang="Java"
                   mode="Batch"
-                  name="Papyrus 4 Requirements - Rule 1: Are all the requirements satisfied"
+                  name="%constraint.name"
                   severity="WARNING"
                   statusCode="1">
                <message>
-                  Papyrus 4 Requirements - Rule 1: {0}.
+                  %constraint.message
                </message>
                <description>
-                  The requirement is not liked by any Element
+                  %constraint.description
                </description>
                <target
                      class="Class">
@@ -39,14 +39,14 @@
                   isEnabledByDefault="true"
                   lang="Java"
                   mode="Batch"
-                  name="Papyrus 4 Requirements - Rule 2: Are all the requirements verified"
+                  name="%constraint.name.0"
                   severity="WARNING"
                   statusCode="2">
                <message>
-                  Papyrus 4 Requirements - Rule 1: {0}.
+                  %constraint.message.0
                </message>
                <description>
-                  The requirement is not liked by any Element
+                  %constraint.description.0
                </description>
                <target
                      class="Class">

@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Papyrus Req - RefinedBy Matrix
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.requirements.sysml.matrix.refinedBy.config;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.requirements.sysml.matrix.refinedBy.config.Activator
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.uml.nattable,
@@ -24,3 +24,4 @@ Import-Package: org.eclipse.papyrus.commands.wrappers,
 Export-Package: org.eclipse.papyrus.requirements.sysml.matrix.refinedBy.config,
  org.eclipse.papyrus.requirements.sysml.matrix.refinedBy.config.celleditor,
  org.eclipse.papyrus.requirements.sysml.matrix.refinedBy.config.cellmanager
+Bundle-Localization: bundle

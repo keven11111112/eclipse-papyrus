@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Papyrus Req - VerifiedBy Matrix
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.requirements.sysml.matrix.verifiedBy.config;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.requirements.sysml.matrix.verifiedBy.config.Activator
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.uml.nattable,
@@ -27,3 +27,4 @@ Export-Package: org.eclipse.papyrus.requirements.sysml.matrix.verifiedBy.config;
    org.eclipse.papyrus.infra.nattable.manager.cell,
    org.eclipse.papyrus.infra.nattable.manager.table,
    org.eclipse.emf.transaction"
+Bundle-Localization: bundle

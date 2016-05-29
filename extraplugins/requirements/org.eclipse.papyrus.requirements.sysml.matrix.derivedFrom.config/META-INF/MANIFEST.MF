@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Papyrus Req - DerivedFrom Matrix
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.requirements.sysml.matrix.derivedFrom.config;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.requirements.sysml.matrix.derivedFrom.config.Activator
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.uml.nattable,
@@ -23,3 +23,4 @@ Import-Package: org.eclipse.papyrus.commands.wrappers,
 Export-Package: org.eclipse.papyrus.requirements.sysml.matrix.derivedFrom.config,
  org.eclipse.papyrus.requirements.sysml.matrix.derivedFrom.config.axismanager,
  org.eclipse.papyrus.requirements.sysml.matrix.derivedFrom.config.cellmanager
+Bundle-Localization: bundle

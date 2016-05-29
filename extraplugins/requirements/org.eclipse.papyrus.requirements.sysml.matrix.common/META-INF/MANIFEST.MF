@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Papyrus Req - Common Parts for Matrices
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.requirements.sysml.matrix.common;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.requirements.sysml.matrix.common.Activator
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.nattable,
@@ -22,3 +22,4 @@ Export-Package: org.eclipse.papyrus.requirements.sysml.matrix.common,
  org.eclipse.papyrus.requirements.sysml.matrix.common.cellmanager,
  org.eclipse.papyrus.requirements.sysml.matrix.common.helpers,
  org.eclipse.papyrus.requirements.sysml.matrix.common.tester
+Bundle-Localization: bundle
