@@ -58,12 +58,6 @@ public class ShortCutPreviewEditPolicy extends PapyrusPopupBarEditPolicy {
 					&& ((GraphicalEditPart) getHost()).getNotationView().getElement() instanceof Diagram) {
 				diagram = (Diagram) ((GraphicalEditPart) getHost()).getNotationView().getElement();
 			}
-
-			try {
-				previewImage = DiagramRenderUtil.renderToSWTImage(diagram);
-			} catch(Exception e) {
-				Activator.log.error(e);
-			}
 		}
 	}
 	
@@ -76,6 +70,21 @@ public class ShortCutPreviewEditPolicy extends PapyrusPopupBarEditPolicy {
 		
 		if (scaledPreviewImage != null) {
 			scaledPreviewImage.dispose();
+		}
+	}
+	
+	/**
+	 * Loads the preview
+	 */
+	@Override
+	public void mouseHover(MouseEvent me) {
+		if (diagram != null) {
+			try {
+				previewImage = DiagramRenderUtil.renderToSWTImage(diagram);
+			} catch(Exception e) {
+				Activator.log.error(e);
+			}
+			super.mouseHover(me);
 		}
 	}
 	
