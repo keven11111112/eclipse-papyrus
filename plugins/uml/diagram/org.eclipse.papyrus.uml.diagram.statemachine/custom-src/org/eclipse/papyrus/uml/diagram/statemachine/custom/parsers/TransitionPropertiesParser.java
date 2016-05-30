@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Jeremie TATIBOUET (CEA LIST) - Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=477573
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.parsers;
 
@@ -153,14 +154,16 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	 * Get the unformatted registered string value which shall be displayed
 	 */
 	protected String getValueString(IAdaptable element, int flags) {
-		Object obj = element.getAdapter(EObject.class);
-		View view = null;
-		if (obj instanceof View) {
-			view = (View) obj;
-			obj = view.getElement();
+		EObject semanticElement = element.getAdapter(EObject.class);
+		View view = element.getAdapter(View.class);
+		// If it is not possible to adapt directly the element
+		// as an EObject then it might be possible to first retrieve
+		// the view and then obtain the EObject that is behind the view
+		if(semanticElement == null && view != null){
+			semanticElement = view.getElement(); 
 		}
-		if (obj instanceof Transition) {
-			Transition trans = (Transition) obj;
+		if (semanticElement instanceof Transition && view != null) {
+			Transition trans = (Transition) semanticElement;
 			StringBuilder result = new StringBuilder();
 			String textForTrigger = getTextForTrigger(view, trans);
 			if (textForTrigger != null && !EMPTY_STRING.equals(textForTrigger)) {
@@ -169,13 +172,11 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 			result.append(getTextForGuard(trans));
 			String textForEffect = getTextForEffect(view, trans);
 			if (textForEffect != null && !EMPTY_STRING.equals(textForEffect)) {
-				if (textForEffect != null && !EMPTY_STRING.equals(textForEffect)) {
-					result.append("/"); //$NON-NLS-1$
-					if (lineBreakBeforeEffect(view)) {
-						result.append("\n"); //$NON-NLS-1$
-					}
-					result.append(textForEffect);
+				result.append("/"); //$NON-NLS-1$
+				if (lineBreakBeforeEffect(view)) {
+					result.append("\n"); //$NON-NLS-1$
 				}
+				result.append(textForEffect);
 			}
 			return result.toString();
 		}
