@@ -256,29 +256,29 @@ public class ElementEditHelperAdviceTests extends AbstractElementTypeTests imple
 
 			try {
 				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(TypeContext.getContext().getId(), (ElementTypeSetConfiguration) root);
+				IEditHelperAdvice[] advicesAfterLoading = ElementTypeRegistry.getInstance().getEditHelperAdvice(classElementType);
+				Arrays.sort(advicesAfterLoading, new AdviceComparator(TypeContext.getContext().getId()));
+				int advice1Index = -1;
+				int advice2Index = -1;
+				int advice3Index = -1;
+				for (int i = 0; i < advicesAfterLoading.length; i++) {
+					IEditHelperAdvice iEditHelperAdvice = advicesAfterLoading[i];
+					if (iEditHelperAdvice.getClass().getName().equals(ADVICES_ID_1)) {
+						advice1Index = i;
+					} else if (iEditHelperAdvice.getClass().getName().equals(ADVICES_ID_2)) {
+						advice2Index = i;
+					} else if (iEditHelperAdvice.getClass().getName().equals(ADVICES_ID_3)) {
+						advice3Index = i;
+					}
+				}
+
+				Assert.assertTrue(ADVICES_ID_2 + " should be after " + ADVICES_ID_3, advice3Index < advice2Index);
+				Assert.assertTrue(ADVICES_ID_3 + " should be after " + ADVICES_ID_1, advice2Index < advice1Index);
 			} catch (ServiceException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			IEditHelperAdvice[] advicesAfterLoading = ElementTypeRegistry.getInstance().getEditHelperAdvice(classElementType);
-			Arrays.sort(advicesAfterLoading, new AdviceComparator());
 
-			int advice1Index = -1;
-			int advice2Index = -1;
-			int advice3Index = -1;
-			for (int i = 0; i < advicesAfterLoading.length; i++) {
-				IEditHelperAdvice iEditHelperAdvice = advicesAfterLoading[i];
-				if (iEditHelperAdvice.getClass().getName().equals(ADVICES_ID_1)) {
-					advice1Index = i;
-				} else if (iEditHelperAdvice.getClass().getName().equals(ADVICES_ID_2)) {
-					advice2Index = i;
-				} else if (iEditHelperAdvice.getClass().getName().equals(ADVICES_ID_3)) {
-					advice3Index = i;
-				}
-			}
-
-			Assert.assertTrue(ADVICES_ID_2 + " should be after " + ADVICES_ID_3, advice3Index < advice2Index);
-			Assert.assertTrue(ADVICES_ID_3 + " should be after " + ADVICES_ID_1, advice2Index < advice1Index);
 		} else {
 			Assert.fail("Failed to load test model: " + CYCLIC_ADVICES_CONFIGURATIONS);
 		}

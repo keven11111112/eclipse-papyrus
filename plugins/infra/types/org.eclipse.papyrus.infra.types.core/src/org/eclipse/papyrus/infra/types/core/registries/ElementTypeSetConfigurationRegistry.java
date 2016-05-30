@@ -66,7 +66,8 @@ public class ElementTypeSetConfigurationRegistry {
 	/** Map of retrieved elementType sets, key is their identifier */
 	protected Map<String, Map<String, ElementTypeSetConfiguration>> elementTypeSetConfigurations = null;
 
-	protected OrientedGraph<String> advicesDeps = null;
+	/** Advice execution order dependencies per clientContextId per IElementType */
+	protected Map<String, OrientedGraph<String>> advicesDeps = null;
 
 
 	/** unique resource set to load all elementType sets models */
@@ -92,6 +93,7 @@ public class ElementTypeSetConfigurationRegistry {
 		// 0. Resets values
 		elementTypeSetConfigurationResourceSet = null;
 		elementTypeSetConfigurations = new HashMap<String, Map<String, ElementTypeSetConfiguration>>();
+		advicesDeps = new HashMap<String, OrientedGraph<String>>();
 		// 1. creates the resource set
 		elementTypeSetConfigurationResourceSet = createResourceSet();
 		// 2. creates the list only when registry is acceded for the first time,
@@ -165,11 +167,13 @@ public class ElementTypeSetConfigurationRegistry {
 		return loadElementTypeSetConfigurations(clientContextID, Collections.singleton(elementTypeSetConfiguration));
 	}
 
-	public OrientedGraph<String> getAdvicesDeps() {
-		if (advicesDeps == null) {
-			advicesDeps = new OrientedGraph<>();
+	public OrientedGraph<String> getAdvicesDeps(String clientContextID) {
+		OrientedGraph<String> dependencies = advicesDeps.get(clientContextID);
+		if (dependencies == null) {
+			dependencies = new OrientedGraph<String>();
+			advicesDeps.put(clientContextID, dependencies);
 		}
-		return advicesDeps;
+		return dependencies;
 	}
 
 	protected boolean isAlreadyRegistred(String elementTypeID, IClientContext context) {
@@ -323,8 +327,8 @@ public class ElementTypeSetConfigurationRegistry {
 		}
 
 		// Check that there is no cyclic dependencies among advices introduced by this loading
-		advicesDeps = TypesConfigurationsCycleUtil.getDependenciesAmongAdvices(adviceToCheck);
-		Collection<Collection<Object>> cyclesAdvices = TypesConfigurationsCycleUtil.getCyclesInAdvices(advicesDeps.getVertices(), advicesDeps.getEdges());
+		OrientedGraph<String> deps = TypesConfigurationsCycleUtil.getDependenciesAmongAdvices(adviceToCheck);
+		Collection<Collection<Object>> cyclesAdvices = TypesConfigurationsCycleUtil.getCyclesInAdvices(deps.getVertices(), deps.getEdges());
 		if (!cyclesAdvices.isEmpty()) {
 			Activator.log.warn("The ElementTypesConfiguration registration has been aborted because there is at least a cyclic-dependencies in the Advices definitions: " + cyclesAdvices);
 			return false;
@@ -356,6 +360,9 @@ public class ElementTypeSetConfigurationRegistry {
 				}
 			}
 		}
+
+		// Store the advicesDependencies
+		advicesDeps.put(contexId, deps);
 
 		return true;
 	}
@@ -421,7 +428,8 @@ public class ElementTypeSetConfigurationRegistry {
 
 			}
 		}
-		advicesDeps = TypesConfigurationsCycleUtil.getDependenciesAmongAdvices(advices);
+		OrientedGraph<String> deps = TypesConfigurationsCycleUtil.getDependenciesAmongAdvices(advices);
+		advicesDeps.put(contextId, deps);
 
 		return true;
 	}

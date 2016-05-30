@@ -44,6 +44,7 @@ public class RegistredElementTypesView extends ViewPart {
 	SashForm sash = null;
 	FilteredTree elementTypesFilteredTree = null;
 	Combo combo = null;
+	ElementTypesDetailsContentProvider elementTypesDetailsContentProvider;
 
 
 	@Override
@@ -81,6 +82,7 @@ public class RegistredElementTypesView extends ViewPart {
 					IClientContext clientContex = ClientContextManager.getInstance().getClientContext(clientContexId);
 					if (clientContex != null) {
 						IElementType[] elementTypes = ElementTypeRegistry.getInstance().getElementTypes(clientContex);
+						elementTypesDetailsContentProvider.setContextID(clientContex.getId());
 						elementTypesFilteredTree.getViewer().setInput(elementTypes);
 					}
 				}
@@ -102,7 +104,8 @@ public class RegistredElementTypesView extends ViewPart {
 		elementTypesFilteredTree.getViewer().setContentProvider(new ElementTypesContentProvider());
 		detailsFilteredTree = new FilteredTree(sash, SWT.BORDER, new PatternFilter(), true);
 		detailsFilteredTree.getViewer().setLabelProvider(new ElementTypesDetailsLabelProvider());
-		detailsFilteredTree.getViewer().setContentProvider(new ElementTypesDetailsContentProvider());
+		elementTypesDetailsContentProvider = new ElementTypesDetailsContentProvider();
+		detailsFilteredTree.getViewer().setContentProvider(elementTypesDetailsContentProvider);
 
 		if (index != -1) {
 			combo.select(index);
@@ -113,7 +116,11 @@ public class RegistredElementTypesView extends ViewPart {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				if (event.getSelection() instanceof IStructuredSelection) {
-					detailsFilteredTree.getViewer().setInput(((IStructuredSelection) event.getSelection()).getFirstElement());
+					Object selection = ((IStructuredSelection) event.getSelection()).getFirstElement();
+					if (selection instanceof IElementType) {
+						elementTypesDetailsContentProvider.setTypeID(((IElementType) selection).getId());
+						detailsFilteredTree.getViewer().setInput(selection);
+					}
 				}
 
 			}

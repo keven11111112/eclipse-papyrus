@@ -26,9 +26,26 @@ import org.eclipse.gmf.runtime.emf.type.core.SpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.dev.types.utils.AdvicesComparator;
+import org.eclipse.papyrus.infra.types.core.utils.AdviceComparator;
 
 public class ElementTypesDetailsContentProvider implements ITreeContentProvider {
+
+	String contextID;
+
+	String typeID;
+
+
+	/**
+	 * @param contextID
+	 *            the contextID to set
+	 */
+	public void setContextID(String contextID) {
+		this.contextID = contextID;
+	}
+
+	public void setTypeID(String typeID) {
+		this.typeID = typeID;
+	}
 
 	/**
 	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
@@ -119,7 +136,7 @@ public class ElementTypesDetailsContentProvider implements ITreeContentProvider 
 	@Override
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof List<?>) {
-			Collections.sort((List<IEditHelperAdvice>) parentElement, new AdvicesComparator());
+			Collections.sort((List<IEditHelperAdvice>) parentElement, new AdviceComparator(contextID));
 			return ((List<?>) parentElement).toArray();
 		}
 

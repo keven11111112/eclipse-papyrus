@@ -21,14 +21,16 @@ import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurati
 
 public class AdviceComparator implements Comparator<IEditHelperAdvice> {
 
-	OrientedGraph<String> dependencies;
+	protected OrientedGraph<String> dependencies;
 
-	public AdviceComparator() {
-		this.dependencies = ElementTypeSetConfigurationRegistry.getInstance().getAdvicesDeps();
+
+	public AdviceComparator(String contextId) {
+		this.dependencies = ElementTypeSetConfigurationRegistry.getInstance().getAdvicesDeps(contextId);
 	}
 
 	@Override
 	public int compare(IEditHelperAdvice arg0, IEditHelperAdvice arg1) {
+
 		String arg0Name = arg0.getClass().getName();
 		String arg1Name = arg1.getClass().getName();
 		if (dependencies.getEdges().containsKey(arg0Name)) {
