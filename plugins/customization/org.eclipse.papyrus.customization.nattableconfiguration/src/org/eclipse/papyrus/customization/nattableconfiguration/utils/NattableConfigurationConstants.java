@@ -28,7 +28,7 @@ public class NattableConfigurationConstants {
 	/**
 	 * The extension for the nattable configuration file.
 	 */
-	public static final String NATTABLE_CONFIGURATION_EXTENSION_FILE = "nattableconfiguration"; //$NON-NLS-1$
+	public static final String NATTABLE_CONFIGURATION_EXTENSION_FILE = org.eclipse.papyrus.infra.nattable.utils.NattableConfigurationConstants.NATTABLE_CONFIGURATION_EXTENSION_FILE;
 	
 	/**
 	 * The config folder path.

@@ -7,16 +7,7 @@
             allPopups="true"
             locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu">
          <command
-               commandId="org.eclipse.papyrus.infra.nattable.create.configuration.wizard"
-               label="Create Table Configuration"
-               style="push">
-         </command>
-      </menuContribution>
-      <menuContribution
-            allPopups="true"
-            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu">
-         <command
-               commandId="org.eclipse.papyrus.infra.nattable.create.configuration.wizard"
+               commandId="org.eclipse.papyrus.infra.nattable.edit.configuration.wizard"
                label="Edit Table Configuration"
                style="push">
             <visibleWhen
@@ -33,32 +24,46 @@
                   </adapt>
                </iterate>
             </visibleWhen>
-            <parameter
-                  name="org.eclipse.papyrus.customization.nattableconfiguration.configurationParemeter"
-                  value="nattableconfiguration">
-            </parameter>
          </command>
       </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.eclipse.papyrus.customization.nattableconfiguration.handlers.CreateTableConfigurationWizardHandler"
-            id="org.eclipse.papyrus.infra.nattable.create.configuration.wizard"
-            name="Create Table Configuration Wizard">
-         <commandParameter
-               id="org.eclipse.papyrus.customization.nattableconfiguration.configurationParemeter"
-               name="selection"
-               optional="true">
-         </commandParameter>
+            defaultHandler="org.eclipse.papyrus.customization.nattableconfiguration.handlers.EditExistingTableConfigurationWizardHandler"
+            id="org.eclipse.papyrus.infra.nattable.edit.configuration.wizard"
+            name="Edit Table Configuration Wizard">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.commandImages">
       <image
-            commandId="org.eclipse.papyrus.infra.nattable.create.configuration.wizard"
+            commandId="org.eclipse.papyrus.infra.nattable.edit.configuration.wizard"
             icon="icons/wizard_icon.png">
       </image>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.eclipse.papyrus.wizards.category"
+            class="org.eclipse.papyrus.customization.nattableconfiguration.wizards.CreateNattableConfigurationProjectWizard"
+            hasPages="true"
+            icon="icons/wizard_icon.png"
+            id="org.eclipse.papyrus.customization.nattableconfiguration.createconfigurationproject"
+            name="Create Papyrus Table Configuration Project"
+            preferredPerspectives="org.eclipse.papyrus.infra.core.perspective"
+            project="true">
+      </wizard>
+      <wizard
+            category="org.eclipse.papyrus.wizards.category"
+            class="org.eclipse.papyrus.customization.nattableconfiguration.wizards.CreateAndEditTableConfigurationWizard"
+            hasPages="true"
+            icon="icons/wizard_icon.png"
+            id="org.eclipse.papyrus.customization.nattableconfiguration.createandeditconfigurationfile"
+            name="Create Papyrus Table Configuration File"
+            preferredPerspectives="org.eclipse.papyrus.infra.core.perspective"
+            project="true">
+      </wizard>
    </extension>
 
 </plugin>

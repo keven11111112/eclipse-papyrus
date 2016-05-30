@@ -31,12 +31,12 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.customization.nattableconfiguration,
- org.eclipse.papyrus.customization.nattableconfiguration.ediiton,
+ org.eclipse.papyrus.customization.nattableconfiguration.edition,
  org.eclipse.papyrus.customization.nattableconfiguration.handlers,
  org.eclipse.papyrus.customization.nattableconfiguration.helper,
  org.eclipse.papyrus.customization.nattableconfiguration.messages,
  org.eclipse.papyrus.customization.nattableconfiguration.pages,
  org.eclipse.papyrus.customization.nattableconfiguration.utils
 Bundle-Vendor: %Bundle-Vendor
-Bundle-Description: %pluginDescription
+Bundle-Description: %Bundle-Description
 Bundle-Localization: plugin

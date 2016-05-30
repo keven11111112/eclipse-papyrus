@@ -11,22 +11,26 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.customization.nattableconfiguration.ediiton;
+package org.eclipse.papyrus.customization.nattableconfiguration.edition;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.customization.nattableconfiguration.messages.Messages;
 import org.eclipse.papyrus.customization.nattableconfiguration.utils.NattableConfigurationConstants;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
+import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeUtils;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.editors.ITreeSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
@@ -37,26 +41,29 @@ import org.eclipse.papyrus.uml.nattable.provider.UMLFeatureRestrictedContentProv
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.SelectionDialog;
 
 /**
- * The dialog which allow to edit the feature filling configuration features.
+ * The dialog which allow to edit the paste configuration features.
  */
-public class FeatureFillingConfigurationDialog extends SelectionDialog {
+public class PasteEObjectConfigurationDialog extends SelectionDialog {
 
 	/**
-	 * A copy of initial feature filling configuration to modify with this dialog.
+	 * A copy of initial paste configuration to modify with this dialog.
 	 */
-	protected final EStructuralFeatureValueFillingConfiguration modifiedFeatureFillingConf;
+	protected final PasteEObjectConfiguration modifiedPasteConfiguration;
 
 	/**
 	 * The label provider for the UML elements.
@@ -64,17 +71,17 @@ public class FeatureFillingConfigurationDialog extends SelectionDialog {
 	protected final ILabelProvider labelProvider = new UMLLabelProvider();
 
 	/**
-	 * The CLabel composite for the listen feature.
+	 * The CLabel composite for the containment feature.
 	 */
-	protected CLabel listenFeatureText;
+	protected CLabel containmentFeatureText;
 
 	/**
-	 * The browse button which allow to edit the listen feature.
+	 * The browse button which allow to edit the containment feature.
 	 */
 	protected Button browseValuesButton;
 
 	/**
-	 * The delete button which allow to unset the listen feature value.
+	 * The delete button which allow to unset the containment feature value.
 	 */
 	protected Button deleteValuesButton;
 
@@ -83,13 +90,13 @@ public class FeatureFillingConfigurationDialog extends SelectionDialog {
 	 *
 	 * @param parentShell
 	 *            The parent shell of the dialog.
-	 * @param featureFillingConf
-	 *            The initial feature filling configuration to edit.
+	 * @param pasteConfiguration
+	 *            The initial paste configuration to edit.
 	 */
-	public FeatureFillingConfigurationDialog(final Shell parentShell, final EStructuralFeatureValueFillingConfiguration featureFillingConf) {
+	public PasteEObjectConfigurationDialog(final Shell parentShell, final PasteEObjectConfiguration pasteConfiguration) {
 		super(parentShell);
-		this.modifiedFeatureFillingConf = EcoreUtil.copy(featureFillingConf);
-		setTitle(org.eclipse.papyrus.customization.nattableconfiguration.messages.Messages.FeatureFillingConfigurationDialog_featureFillingConfigurationDialogName);
+		this.modifiedPasteConfiguration = EcoreUtil.copy(pasteConfiguration);
+		setTitle(org.eclipse.papyrus.customization.nattableconfiguration.messages.Messages.PasteEObjectConfigurationDialog_pasteEObjectConfigurationDialogName);
 	}
 
 	/**
@@ -120,18 +127,66 @@ public class FeatureFillingConfigurationDialog extends SelectionDialog {
 	}
 
 	/**
-	 * This allows to create the fields to edit the feature filling configuration.
+	 * This allows to create the fields to edit the paste configuration.
 	 * 
 	 * @param parent
 	 *            The parent composite.
 	 */
 	protected void createFields(final Composite parent) {
-		// Create the listen feature labels and dialog
-		final Label listenFeatureLabel = new Label(parent, SWT.NONE);
-		listenFeatureLabel.setText(Messages.FeatureFillingConfigurationDialog_listenFeature);
-		listenFeatureLabel.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
-		listenFeatureText = new CLabel(parent, SWT.BORDER);
-		listenFeatureText.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		// Create the detached mode checkbox
+		final Label detachedModeLabel = new Label(parent, SWT.NONE);
+		detachedModeLabel.setText(org.eclipse.papyrus.customization.nattableconfiguration.messages.Messages.PasteEObjectConfigurationDialog_detachedModeLabel);
+		detachedModeLabel.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		final Button detachedModeButton = new Button(parent, SWT.CHECK);
+		detachedModeButton.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false, 3, 1));
+		detachedModeButton.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(final SelectionEvent e) {
+				modifiedPasteConfiguration.setDetachedMode(detachedModeButton.getSelection());
+			}
+		});
+		detachedModeButton.setSelection(modifiedPasteConfiguration.isDetachedMode());
+
+		// Create the pasted element id combo box
+		final Label pastedElementIdLabel = new Label(parent, SWT.NONE);
+		pastedElementIdLabel.setText(org.eclipse.papyrus.customization.nattableconfiguration.messages.Messages.PasteEObjectConfigurationDialog_pastedElementIdLabel);
+		pastedElementIdLabel.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		final Combo pastedElementIdCombo = new Combo(parent, SWT.READ_ONLY);
+		pastedElementIdCombo.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false, 3, 1));
+		pastedElementIdCombo.addModifyListener(new ModifyListener() {
+
+			@Override
+			public void modifyText(ModifyEvent e) {
+				modifiedPasteConfiguration.setPastedElementId(pastedElementIdCombo.getText());
+			}
+		});
+
+		final Collection<IElementType> possibleValues = ElementTypeUtils.getAllExistingElementTypes();
+		final List<String> possibleValuesAsString = new ArrayList<String>(possibleValues.size());
+
+		int indexToSelect = -1;
+		int index = 0;
+
+		for (final IElementType elementType : possibleValues) {
+			possibleValuesAsString.add(elementType.getDisplayName());
+			if (elementType.getDisplayName().equals(modifiedPasteConfiguration.getPastedElementId())) {
+				indexToSelect = index;
+			}
+			index++;
+		}
+
+		pastedElementIdCombo.setItems((String[]) possibleValuesAsString.toArray(new String[possibleValuesAsString.size()]));
+		if (-1 != indexToSelect) {
+			pastedElementIdCombo.select(indexToSelect);
+		}
+
+		// Create the containment feature labels and dialog
+		final Label containmentFeatureLabel = new Label(parent, SWT.NONE);
+		containmentFeatureLabel.setText(org.eclipse.papyrus.customization.nattableconfiguration.messages.Messages.PasteEObjectConfigurationDialog_containmentFeatureLabel);
+		containmentFeatureLabel.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		containmentFeatureText = new CLabel(parent, SWT.BORDER);
+		containmentFeatureText.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
 		browseValuesButton = new Button(parent, SWT.PUSH);
 		browseValuesButton.setImage(Activator.getDefault().getImage(NattableConfigurationConstants.BROWSE_ICON_PATH));
 		browseValuesButton.setToolTipText(org.eclipse.papyrus.infra.widgets.messages.Messages.ReferenceDialog_EditValue);
@@ -139,7 +194,7 @@ public class FeatureFillingConfigurationDialog extends SelectionDialog {
 
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				browseAction(modifiedFeatureFillingConf.getListenFeature());
+				browseAction(modifiedPasteConfiguration.getPasteElementContainementFeature());
 			}
 		});
 
@@ -150,11 +205,13 @@ public class FeatureFillingConfigurationDialog extends SelectionDialog {
 
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				setListenFeature(null);
+				setPasteElementContainementFeature(null);
 			}
 		});
 
-		setListenFeature(modifiedFeatureFillingConf.getListenFeature());
+		setPasteElementContainementFeature(modifiedPasteConfiguration.getPasteElementContainementFeature());
+
+		// TODO : Post actions
 	}
 
 	/**
@@ -162,10 +219,10 @@ public class FeatureFillingConfigurationDialog extends SelectionDialog {
 	 * from a selection of already created objects.
 	 * 
 	 * @param value
-	 *            The initial value of the listen feature.
+	 *            The initial value of the containment feature.
 	 */
 	protected void browseAction(final Object value) {
-		final ITreeSelectorDialog dialog = new TreeSelectorDialog(getShell()) {
+		ITreeSelectorDialog dialog = new TreeSelectorDialog(getShell()) {
 			@Override
 			protected void initViewerAndProvider() {
 				super.initViewerAndProvider();
@@ -173,13 +230,13 @@ public class FeatureFillingConfigurationDialog extends SelectionDialog {
 				getViewer().setComparator(new ViewerComparator(new StringComparator()));// should always be string element
 			}
 		};
-		dialog.setTitle(org.eclipse.papyrus.customization.nattableconfiguration.messages.Messages.FeatureFillingConfigurationDialog_listenFeatureDialogName);
+		dialog.setTitle(org.eclipse.papyrus.customization.nattableconfiguration.messages.Messages.PasteEObjectConfigurationDialog_containmentFeatureDialogName);
 
 		final UMLFeatureRestrictedContentProvider contentProvider = new UMLFeatureRestrictedContentProvider(null, false);
 		final ReferenceSelector selector = new ReferenceSelector(false) {
 
 			@Override
-			public void createControls(Composite parent) {
+			public void createControls(final Composite parent) {
 				super.createControls(parent);
 				this.treeViewer.setComparator(new ViewerComparator(new StringComparator()));// should always be string element
 			}
@@ -209,36 +266,37 @@ public class FeatureFillingConfigurationDialog extends SelectionDialog {
 			}
 
 			if (0 == newValue.length) {
-				setListenFeature(null);
+				setPasteElementContainementFeature(null);
 			} else {
-				setListenFeature((EStructuralFeature) newValue[0]);
+				Object selectedValue = newValue[0];
+				setPasteElementContainementFeature((EStructuralFeature) selectedValue);
 			}
 		}
 	}
 
 	/**
-	 * This allows to set the listen feature and refresh the button corresponding to the listen feature value.
+	 * This allows to set the containment feature and refresh the button corresponding to the containment feature value.
 	 * 
 	 * @param structuralFeature
 	 *            The structural feature to set.
 	 */
-	protected void setListenFeature(final EStructuralFeature structuralFeature) {
-		if (null == modifiedFeatureFillingConf.getListenFeature() || !structuralFeature.equals(modifiedFeatureFillingConf.getListenFeature())) {
-			modifiedFeatureFillingConf.setListenFeature(structuralFeature);
+	protected void setPasteElementContainementFeature(final EStructuralFeature structuralFeature) {
+		if (null == modifiedPasteConfiguration.getPasteElementContainementFeature() || !structuralFeature.equals(modifiedPasteConfiguration.getPasteElementContainementFeature())) {
+			modifiedPasteConfiguration.setPasteElementContainementFeature(structuralFeature);
 		}
-		listenFeatureText.setImage(labelProvider.getImage(modifiedFeatureFillingConf.getListenFeature()));
-		listenFeatureText.setText(labelProvider.getText(modifiedFeatureFillingConf.getListenFeature()));
+		containmentFeatureText.setImage(labelProvider.getImage(modifiedPasteConfiguration.getPasteElementContainementFeature()));
+		containmentFeatureText.setText(labelProvider.getText(modifiedPasteConfiguration.getPasteElementContainementFeature()));
 
 		deleteValuesButton.setEnabled(null != structuralFeature);
 	}
 
 	/**
-	 * Returns the modified feature filling configuration.
+	 * Returns the modified paste configuration.
 	 * 
-	 * @return The modified feature filling configuration.
+	 * @return The modified paste configuration.
 	 */
-	public EStructuralFeatureValueFillingConfiguration getModifiedFeatureFillingConfiguration() {
-		return modifiedFeatureFillingConf;
+	public PasteEObjectConfiguration getModifiedPasteEObjectConfiguration() {
+		return modifiedPasteConfiguration;
 	}
 
 }

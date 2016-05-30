@@ -11,7 +11,7 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.customization.nattableconfiguration.ediiton;
+package org.eclipse.papyrus.customization.nattableconfiguration.edition;
 
 import java.util.ArrayList;
 import java.util.Arrays;

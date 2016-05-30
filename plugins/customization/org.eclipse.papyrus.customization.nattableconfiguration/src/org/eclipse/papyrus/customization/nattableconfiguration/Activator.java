@@ -15,6 +15,7 @@ package org.eclipse.papyrus.customization.nattableconfiguration;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -33,6 +34,8 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	private static Activator plugin;
 
+	
+	public static LogHelper log;
 	/**
 	 * The constructor
 	 */
@@ -48,6 +51,7 @@ public class Activator extends AbstractUIPlugin {
 	public void start(final BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		log = new LogHelper(this);
 	}
 
 	/**
@@ -70,45 +74,5 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
-	/**
-	 * Logs a warning message in the plugin log
-	 *
-	 * @param message
-	 *            the message to log
-	 */
-	public static void logWarning(final String message) {
-		getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, message));
-	}
-
-	/**
-	 * Logs an error message in the plugin log
-	 *
-	 * @param message
-	 *            the message to log
-	 */
-	public static void logError(final String message) {
-		getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, message));
-	}
-
-	/**
-	 * Logs an information message in the plugin log
-	 *
-	 * @param message
-	 *            the message to log
-	 */
-	public static void logInfo(final String message) {
-		getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, message));
-	}
-
-	/**
-	 * Logs an error message in the plugin log
-	 *
-	 * @param exception
-	 *            the exception to log
-	 */
-	public static void logException(final Exception exception) {
-		getDefault().getLog().log(
-				new Status(IStatus.ERROR, Activator.PLUGIN_ID, exception.getLocalizedMessage(), exception));
-	}
 
 }

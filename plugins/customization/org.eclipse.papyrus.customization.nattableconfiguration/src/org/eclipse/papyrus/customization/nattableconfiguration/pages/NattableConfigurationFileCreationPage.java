@@ -7,18 +7,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   CEA LIST - Initial API and implementation
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.customization.nattableconfiguration.pages;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.customization.nattableconfiguration.helper.TableConfigurationHelper;
 import org.eclipse.papyrus.customization.nattableconfiguration.messages.Messages;
-import org.eclipse.pde.internal.ui.wizards.plugin.AbstractFieldData;
-import org.eclipse.pde.internal.ui.wizards.plugin.NewProjectCreationPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -29,10 +25,10 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * This allows to initialise the nattable configuration creation by getting the name of the plugin to create and the nattable configuration name.
+ * This page allows to edit the name of the Papyrus Table configuration to create
+ * 
  */
-public class NattableConfigurationProjectCreationPage extends NewProjectCreationPage {
-
+public class NattableConfigurationFileCreationPage extends EditGenericNattableConfigurationFieldsNattableWizardPage {
 	/**
 	 * The nattable configuration file name text composite.
 	 */
@@ -48,15 +44,14 @@ public class NattableConfigurationProjectCreationPage extends NewProjectCreation
 			setPageComplete(canFlipToNextPage());
 		}
 	};
-	
+
 	/**
 	 * Constructor.
 	 *
 	 * @param helper
-	 *            The table configuration helper.
 	 */
-	public NattableConfigurationProjectCreationPage(final AbstractFieldData data, final IStructuredSelection selection) {
-		super(Messages.NattableConfigurationProjectCreationPage_pageName, data, false, selection);
+	public NattableConfigurationFileCreationPage(TableConfigurationHelper helper) {
+		super(helper);
 	}
 
 	/**
@@ -66,18 +61,17 @@ public class NattableConfigurationProjectCreationPage extends NewProjectCreation
 	 */
 	@Override
 	public void createControl(final Composite parent) {
-		
-		super.createControl(parent);
-		final Composite composite = (Composite) getControl();
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.DOWN, true, false));
+		Composite container = new Composite(parent, SWT.BORDER);
 		final GridLayout gridLayout = new GridLayout(1, false);
-		composite.setLayout(gridLayout);
-		setControl(composite);
-		final Group group = createGroup(composite, Messages.NattableConfigurationProjectCreationPage_nattableConfigurationFileNameLabel);
+		container.setLayout(gridLayout);
+		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		
+		final Group group = createGroup(container, Messages.NattableConfigurationProjectCreationPage_nattableConfigurationFileNameLabel);
 		nattableConfigurationFileName = new Text(group, SWT.BORDER);
 		nattableConfigurationFileName.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		nattableConfigurationFileName.addListener(SWT.Modify, fileNameModifyListener);
-		setPageComplete(false);
+		super.createControl(container);
+		setControl(container);
 	}
 
 	/**
@@ -101,8 +95,13 @@ public class NattableConfigurationProjectCreationPage extends NewProjectCreation
 		return group;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.customization.nattableconfiguration.pages.EditGenericNattableConfigurationFieldsNattableWizardPage#isPageComplete()
+	 *
+	 * @return
+	 */
 	@Override
-	protected boolean validatePage() {
+	public boolean isPageComplete() {
 		if (null != nattableConfigurationFileName) {
 			if ("".equals(nattableConfigurationFileName.getText())) { //$NON-NLS-1$
 				this.setErrorMessage("Set nattable configuration file name"); //$NON-NLS-1$
@@ -110,41 +109,11 @@ public class NattableConfigurationProjectCreationPage extends NewProjectCreation
 			}
 		}
 
-		return super.validatePage();
+		return super.isPageComplete();
 	}
-
+	
 	public String getNattableConfigurationFileName() {
 		return nattableConfigurationFileName.getText();
 	}
 
-	/**
-	 * This method is used to avoid case conflicts between existing and newly created projects
-	 * 
-	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
-	 *
-	 * @return
-	 */
-	@Override
-	public boolean canFlipToNextPage() {
-		// retrieve the selected elements and get its children
-		boolean canFlip = true;
-
-		final IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
-		if (canFlip) {
-			for (IProject iproject : projects) {
-				if (this.getProjectName().equalsIgnoreCase(iproject.getName())) {
-					canFlip = false;
-					this.setErrorMessage("There already is a project with this name: " + iproject.getName()); //$NON-NLS-1$
-					// A conflict has been found, no need to go further
-					break;
-				}
-			}
-		}
-
-		if (!validatePage()) {
-			canFlip = false;
-		}
-
-		return canFlip;
-	}
 }

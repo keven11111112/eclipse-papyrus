@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Bug 493756
  *   
  *****************************************************************************/
 
@@ -86,8 +87,8 @@ public class EditGenericNattableConfigurationFieldsNattableWizardPage extends Ab
 	public void createControl(final Composite parent) {
 		setPageComplete(isPageComplete());
 		final Composite container = new Composite(parent, SWT.BORDER);
-		container.setLayout(new GridLayout(2, false));
-
+		container.setLayout(new GridLayout(1, false));
+		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		// Create the table group and its grid data
 		final Group tableGroup = new Group(container, SWT.NONE);
 		tableGroup.setLayout(new GridLayout(2, false));

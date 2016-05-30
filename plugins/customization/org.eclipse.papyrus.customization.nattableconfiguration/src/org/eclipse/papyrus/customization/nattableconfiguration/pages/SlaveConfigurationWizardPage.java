@@ -681,8 +681,8 @@ public class SlaveConfigurationWizardPage extends AbstractTableConfigurationWiza
 	protected SlaveObjectAxisProvider getSlaveObjectAxisProvider(final TableConfiguration configuration) {
 		SlaveObjectAxisProvider slave = null;
 
-		// Try to get an existing master axis provider
-		if (0 < configuration.getRowAxisProviders().size()) {
+		// Try to get an existing slave axis provider
+		if (0 < configuration.getColumnAxisProviders().size()) {
 			final Iterator<AbstractAxisProvider> columnAxisProvidersIterator = configuration.getColumnAxisProviders().iterator();
 			while (columnAxisProvidersIterator.hasNext() && null == slave) {
 				AbstractAxisProvider axisProvider = columnAxisProvidersIterator.next();
@@ -705,13 +705,13 @@ public class SlaveConfigurationWizardPage extends AbstractTableConfigurationWiza
 	protected SlaveObjectAxisProvider getOrCreateSlaveObjectAxisProvider(final TableConfiguration configuration) {
 		SlaveObjectAxisProvider slave = getSlaveObjectAxisProvider(configuration);
 
-		// The master doesn't exist, create it
+		// The slave doesn't exist, create it
 		if (null == slave) {
 			slave = NattableaxisproviderFactory.eINSTANCE.createSlaveObjectAxisProvider();
 			configuration.getColumnAxisProviders().add(slave);
 		}
 
-		// Set the master as default row axis provider if this is not already done
+		// Set the slave as default row axis provider if this is not already done
 		if (null == configuration.getDefaultColumnAxisProvider()) {
 			configuration.setDefaultColumnAxisProvider(slave);
 		}
