@@ -9,11 +9,12 @@
  * Contributors:
  *  Tristan Faure (Atos Origin Integration) tristan.faure@atosorigin.com - Initial API and implementation
  *  Christian W. Damus - bug 485220
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.onefile.model.adapters;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.mapping.ResourceMapping;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.papyrus.infra.onefile.model.ISubResourceFile;
@@ -33,7 +34,7 @@ public class SubResourceAdapterFactory implements IAdapterFactory {
 			if (adaptableObject instanceof ISubResourceFile) {
 				return adapterType.cast(new SubResourceMapping((ISubResourceFile) adaptableObject));
 			}
-		} else if (IFile.class.equals(adapterType)) {
+		} else if (IFile.class.equals(adapterType) || IResource.class.equals(adapterType)) {
 			if (adaptableObject instanceof ISubResourceFile) {
 				return adapterType.cast(((ISubResourceFile) adaptableObject).getFile());
 			}
@@ -42,7 +43,7 @@ public class SubResourceAdapterFactory implements IAdapterFactory {
 	}
 
 	public Class<?>[] getAdapterList() {
-		return new Class[] { ResourceMapping.class, IFile.class };
+		return new Class[] { ResourceMapping.class, IFile.class, IResource.class };
 	}
 
 }
