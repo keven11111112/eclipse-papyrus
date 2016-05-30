@@ -124,9 +124,11 @@ public class StereotypesAppliedCommand extends AbstractTransactionalCommand {
 									createAppliedBraceCompartmentStereotype(stereotype);
 								}
 
-							} else if (StereotypeDisplayConstant.STEREOTYPE_COMMENT_LOCATION.equals(appliedStereotypesPropertiesLocalization)) {
-								createComment(allStereotypes);
 							}
+							/*
+							 * Always Create COmment and CommentLink but not displayed
+							 */
+							createComment(allStereotypes);
 						}
 					}
 				}
@@ -143,6 +145,7 @@ public class StereotypesAppliedCommand extends AbstractTransactionalCommand {
 	 */
 	private void createComment(final List<Stereotype> stereotypes) {
 		Node comment = helper.getStereotypeComment(currentView);
+		String appliedStereotypesLocalization = migrationHelper.getAppliedStereotypesPropertiesLocalization(currentView);
 
 		TransactionalEditingDomain currentDomain = getEditingDomain();
 		if (null == comment) {
@@ -156,14 +159,14 @@ public class StereotypesAppliedCommand extends AbstractTransactionalCommand {
 			for (Stereotype stereotype : stereotypes) {
 				BasicCompartment compartmentStructure = helper.getStereotypeCompartment(comment, stereotype);
 				if (compartmentStructure == null) { // No Compartment Exist for this Stereotype
-					if (!helper.isCompartmentExist(currentView, stereotype)) {
+					if (!helper.isCompartmentExist(comment, stereotype)) {
 						// Create Compartment
 						CreateAppliedStereotypeCompartmentCommand command = new CreateAppliedStereotypeCompartmentCommand(currentDomain, comment, stereotype, StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_TYPE);
 						CommandUtil.executeUnsafeCommand(command, currentView);
 					}
 				}
 				compartmentStructure = helper.getStereotypeCompartment(comment, stereotype);
-				if (compartmentStructure != null && stereotype != null) {
+				if (null != compartmentStructure && null != stereotype) {
 					EList<Property> properties = stereotype.allAttributes();
 					for (Property property : properties) {
 						// if stereotype is null all property of stereotype has to be removed!
@@ -177,10 +180,10 @@ public class StereotypesAppliedCommand extends AbstractTransactionalCommand {
 					}
 				}
 
-				BasicCompartment braceStructure = helper.getStereotypeCompartment(currentView, stereotype);
+				BasicCompartment braceStructure = helper.getStereotypeCompartment(comment, stereotype);
 				if (braceStructure == null) { // No Label Exist for this Stereotype
 					// doesn't exist already
-					if (!helper.isCompartmentExist(currentView, stereotype)) {
+					if (!helper.isCompartmentExist(comment, stereotype)) {
 						// Create Compartment
 						CreateAppliedStereotypeCompartmentCommand command = new CreateAppliedStereotypeCompartmentCommand(currentDomain, comment, stereotype, StereotypeDisplayConstant.STEREOTYPE_BRACE_TYPE);
 						CommandUtil.executeUnsafeCommand(command, currentView);
@@ -204,7 +207,9 @@ public class StereotypesAppliedCommand extends AbstractTransactionalCommand {
 				}
 			}
 
-			hideStereotypePropertiesNotDisplayed(StereotypeLocationEnum.IN_COMMENT);
+			if (StereotypeDisplayConstant.STEREOTYPE_COMMENT_LOCATION.equals(appliedStereotypesLocalization)) {
+				hideStereotypePropertiesNotDisplayed(StereotypeLocationEnum.IN_COMMENT);
+			}
 		}
 	}
 
@@ -214,7 +219,13 @@ public class StereotypesAppliedCommand extends AbstractTransactionalCommand {
 	 * @return The list of stereotypes.
 	 */
 	private List<Stereotype> getAllStereotypes() {
+
+
+
+
+
 		List<Stereotype> stereotypes = new ArrayList<Stereotype>();
+		// Get the stereotype on the stereotype list
 		String stereotypesToDisplay = migrationHelper.getStereotypesToDisplay(currentView);
 		if (!StereotypeMigrationHelper.EMPTY_STRING.equals(stereotypesToDisplay)) {
 			String[] split = stereotypesToDisplay.split(StereotypeDisplayMigrationConstant.EANNOTATION_LIST_SEPARATOR);
@@ -225,7 +236,42 @@ public class StereotypesAppliedCommand extends AbstractTransactionalCommand {
 				}
 			}
 		}
+
+		// Get the stereotypes on the PropStereoDisplay details
+		List<String> parsePropStereoDisplay = parsePropStereoDisplay();
+		for (String stereotypeName : parsePropStereoDisplay) {
+			Stereotype stereotypeFromString = migrationHelper.getStereotypeFromString(currentView, stereotypeName);
+			if ((null != stereotypeFromString) && (!stereotypes.contains(stereotypeFromString))) {
+				stereotypes.add(stereotypeFromString);
+			}
+		}
+
 		return stereotypes;
+	}
+
+	/**
+	 * Check all the Stereotype on the "PropStereoDisplay" details
+	 * 
+	 * @return
+	 */
+	private List<String> parsePropStereoDisplay() {
+		List<String> stringStereotypes = new ArrayList<String>();
+		String appliedStereotypesPropertiesToDisplay = migrationHelper.getAppliedStereotypesPropertiesToDisplay(currentView);
+		if (!StereotypeMigrationHelper.EMPTY_STRING.equals(appliedStereotypesPropertiesToDisplay)) {
+			String[] splitedProperties = appliedStereotypesPropertiesToDisplay.split(StereotypeDisplayMigrationConstant.EANNOTATION_LIST_SEPARATOR);
+			for (String property : splitedProperties) {
+				// SPlit on the property separator to get only the name of the Stereotype
+				int indexOf = property.indexOf(StereotypeDisplayMigrationConstant.EANNOTATION_PROPERTY_SEPARATOR);
+				if (-1 != indexOf) {
+					String substring = property.substring(0, indexOf);
+					if (!stringStereotypes.contains(substring)) {
+						stringStereotypes.add(substring);
+					}
+				}
+			}
+		}
+
+		return stringStereotypes;
 	}
 
 	/**
