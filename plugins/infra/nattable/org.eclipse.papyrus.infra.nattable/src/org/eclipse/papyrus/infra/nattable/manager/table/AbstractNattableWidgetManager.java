@@ -35,6 +35,7 @@ import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -772,31 +773,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 						int resizedColumnPosition = getRangeStart(event);
 						// get the resized value from this column
 						int newColumnSize = columnHeaderLayerStack.getColumnWidthByPosition(resizedColumnPosition);
-						// get the associated object
-						Object currentColumnObject = getColumnElement(resizedColumnPosition); // INattableModelManager -> ITableAxisElementProvider.getColumnElement
-						if (currentColumnObject instanceof IAxis) {
-							// the object is now the Axis in which the style will be applied
-							IAxis currentColumnIAxis = (IAxis) currentColumnObject;
-							if (currentColumnIAxis.eContainer() != null) {
-								IntValueStyle value = (IntValueStyle) currentColumnIAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.AXIS_WIDTH);
-								if (value != null && value.getIntValue() != newColumnSize) {
-									// Constructs a new request to set the value of a structural feature in a model element
-									SetRequest resizeColumnRequest = new SetRequest(tableDomain, value, NattablestylePackage.eINSTANCE.getIntValueStyle_IntValue(), newColumnSize);
-									// initialize the feature value if none before and replace the value if another existed prior to the resize
-									SetValueCommand resizeColumnCommand = new SetValueCommand(resizeColumnRequest);
-									resizeCommand.add(resizeColumnCommand);
-
-								} else if (value == null && newColumnSize != DefaultSizeUtils.getDefaultCellWidth()) {
-									// the element does not have any predefined width value attached to its resource so we create it
-									value = NattablestyleFactory.eINSTANCE.createIntValueStyle();
-									value.setIntValue(newColumnSize);
-									value.setName(NamedStyleConstants.AXIS_WIDTH);
-									SetRequest initColumnSizeRequest = new SetRequest(tableDomain, currentColumnIAxis, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), value);
-									SetValueCommand resizeColumnCommand = new SetValueCommand(initColumnSizeRequest);
-									resizeCommand.add(resizeColumnCommand);
-
-								}
-							}
+						ICommand cmd = createSetColumnSizeCommand(resizedColumnPosition, newColumnSize);
+						if (cmd != null && cmd.canExecute()) {
+							resizeCommand.add(cmd);
 						}
 
 					}
@@ -805,27 +784,11 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 					else if (event instanceof RowResizeEvent) {
 						int resizedRowPosition = getRangeStart(event);
 						int newRowSize = rowHeaderLayerStack.getRowHeightByPosition(resizedRowPosition);
-						Object currentRowObject = getRowElement(resizedRowPosition);
-						if (currentRowObject instanceof IAxis) {
-							IAxis currentRowIAxis = (IAxis) currentRowObject;
-							if (currentRowIAxis.eContainer() != null) {
-								IntValueStyle value = (IntValueStyle) currentRowIAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.AXIS_HEIGHT);
-								if (value != null && value.getIntValue() != newRowSize) {
-									SetRequest resizeRowRequest = new SetRequest(tableDomain, value, NattablestylePackage.eINSTANCE.getIntValueStyle_IntValue(), newRowSize);
-									SetValueCommand resizeRowCommand = new SetValueCommand(resizeRowRequest);
-									resizeCommand.add(resizeRowCommand);
-
-								} else if (value == null && newRowSize != DefaultSizeUtils.getDefaultCellHeight()) {
-									value = NattablestyleFactory.eINSTANCE.createIntValueStyle();
-									value.setIntValue(newRowSize);
-									value.setName(NamedStyleConstants.AXIS_HEIGHT);
-									SetRequest initRowSizeRequest = new SetRequest(tableDomain, currentRowIAxis, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), value);
-									SetValueCommand resizeRowCommand = new SetValueCommand(initRowSizeRequest);
-									resizeCommand.add(resizeRowCommand);
-
-								}
-							}
+						ICommand cmd = createSetRowSizeCommand(resizedRowPosition, newRowSize);
+						if (cmd != null && cmd.canExecute()) {
+							resizeCommand.add(cmd);
 						}
+
 					}
 					if (!resizeCommand.isEmpty()) {
 						tableDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(resizeCommand));
@@ -839,6 +802,99 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	}
 
+	/**
+	 * Create the set column size command for the column resizing.
+	 * 
+	 * @param columnIndex
+	 *            the column where we edit the width.
+	 * @param newColumnWidth
+	 *            the new width for the given column.
+	 * @return
+	 * 		the command to set the new column width when the column is saved as IAxis and <code>null</code> in others cases
+	 * 
+	 * @since 2.0
+	 */
+	private ICommand createSetColumnSizeCommand(final int resizedColumnPosition, final int newColumnWidth) {
+		final CompositeCommand compositeResizeCommand = new CompositeCommand("Resize Column"); //$NON-NLS-1$
+
+		// get the associated object
+		Object currentColumnObject = getColumnElement(resizedColumnPosition); // INattableModelManager -> ITableAxisElementProvider.getColumnElement
+		if (currentColumnObject instanceof IAxis) {
+			// the object is now the Axis in which the style will be applied
+			IAxis currentColumnIAxis = (IAxis) currentColumnObject;
+			if (currentColumnIAxis.eContainer() != null) {
+				IntValueStyle value = (IntValueStyle) currentColumnIAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.AXIS_WIDTH);
+				if (value != null && value.getIntValue() != newColumnWidth) {
+					// Constructs a new request to set the value of a structural feature in a model element
+					SetRequest resizeColumnRequest = new SetRequest(getTableEditingDomain(), value, NattablestylePackage.eINSTANCE.getIntValueStyle_IntValue(), newColumnWidth);
+					// initialize the feature value if none before and replace the value if another existed prior to the resize
+					compositeResizeCommand.add(new SetValueCommand(resizeColumnRequest));
+
+				} else if (value == null && newColumnWidth != DefaultSizeUtils.getDefaultCellWidth()) {
+					// the element does not have any predefined width value attached to its resource so we create it
+					value = NattablestyleFactory.eINSTANCE.createIntValueStyle();
+					value.setIntValue(newColumnWidth);
+					value.setName(NamedStyleConstants.AXIS_WIDTH);
+					SetRequest initColumnSizeRequest = new SetRequest(getTableEditingDomain(), currentColumnIAxis, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), value);
+					compositeResizeCommand.add(new SetValueCommand(initColumnSizeRequest));
+				}
+			}
+		}
+		
+		if(!compositeResizeCommand.isEmpty()){
+			// If the named style 'fillColumnSize' is used, this must be set to false to avoid re-fill
+			BooleanValueStyle fillColumnsSize = (BooleanValueStyle) getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.FILL_COLUMNS_SIZE);
+			if (fillColumnsSize == null) {
+				final TableConfiguration config = getTable().getTableConfiguration();
+				fillColumnsSize = (BooleanValueStyle) config.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.FILL_COLUMNS_SIZE);
+			}
+
+			if (null != fillColumnsSize && fillColumnsSize.isBooleanValue()) {
+				SetRequest fillColumnSizeRequest = new SetRequest(getTableEditingDomain(), fillColumnsSize, NattablestylePackage.eINSTANCE.getBooleanValueStyle_BooleanValue(), false);
+				compositeResizeCommand.add(new SetValueCommand(fillColumnSizeRequest));
+			}
+		}
+
+		return compositeResizeCommand;
+	}
+
+	/**
+	 * Create the set row size command for the row resizing.
+	 * 
+	 * @param columnIndex
+	 *            the row where we edit the height.
+	 * @param newRowHeight
+	 *            the new height for the given row.
+	 * @return
+	 * 		the command to set the new row height when the row is saved as IAxis and <code>null</code> in others cases
+	 * 
+	 * @since 2.0
+	 */
+	private ICommand createSetRowSizeCommand(final int resizedRowPosition, final int newRowHeight) {
+		ICommand resizeCommand = null;
+
+		Object currentRowObject = getRowElement(resizedRowPosition);
+		if (currentRowObject instanceof IAxis) {
+			IAxis currentRowIAxis = (IAxis) currentRowObject;
+			if (currentRowIAxis.eContainer() != null) {
+				IntValueStyle value = (IntValueStyle) currentRowIAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.AXIS_HEIGHT);
+				if (value != null && value.getIntValue() != newRowHeight) {
+					SetRequest resizeRowRequest = new SetRequest(getTableEditingDomain(), value, NattablestylePackage.eINSTANCE.getIntValueStyle_IntValue(), newRowHeight);
+					resizeCommand = new SetValueCommand(resizeRowRequest);
+
+				} else if (value == null && newRowHeight != DefaultSizeUtils.getDefaultCellHeight()) {
+					value = NattablestyleFactory.eINSTANCE.createIntValueStyle();
+					value.setIntValue(newRowHeight);
+					value.setName(NamedStyleConstants.AXIS_HEIGHT);
+					SetRequest initRowSizeRequest = new SetRequest(getTableEditingDomain(), currentRowIAxis, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), value);
+					resizeCommand = new SetValueCommand(initRowSizeRequest);
+
+				}
+			}
+		}
+
+		return resizeCommand;
+	}
 
 	/**
 	 * This method is used to get the position of the row or column being modified
@@ -973,6 +1029,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 						// all the commands are executed and the variables and their local headers are created or updated
 						if (resizeColumnHeaderCommand.canExecute() && !resizeColumnHeaderCommand.isEmpty()) {
+
 							tableDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(resizeColumnHeaderCommand));
 						}
 					}
