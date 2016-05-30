@@ -73,46 +73,33 @@ public class ShortCutPreviewEditPolicy extends PapyrusPopupBarEditPolicy {
 		}
 	}
 	
-	/**
-	 * Loads the preview
-	 */
-	@Override
-	public void mouseHover(MouseEvent me) {
-		if (diagram != null) {
-			try {
-				previewImage = DiagramRenderUtil.renderToSWTImage(diagram);
-			} catch(Exception e) {
-				Activator.log.error(e);
-			}
-			super.mouseHover(me);
-		}
-	}
-	
 	@Override
 	protected void showDiagramAssistant(Point referencePoint) {
-		if (diagram != null && previewImage != null) { // In case activation failed
-			// Only show the popup if we hover over the shortcut edit part (not its diagram name edit part for example)
-			/*EditPart hoveredOverEditPart = getHost().getViewer().findObjectAt(getMouseLocation());
-			if (!(hoveredOverEditPart instanceof AbstractShortCutDiagramEditPart)) {
-				return;
-			}*/
-			
-			int optimalWidth = (int) (this.getHost().getRoot().getViewer().getControl().getBounds().width * SCALE_FACTOR);
-			int optimalHeight = (int) (this.getHost().getRoot().getViewer().getControl().getBounds().height * SCALE_FACTOR);
-			
-			if (scaledPreviewImage == null || optimalWidth != maxWidth || optimalHeight != maxHeight) {
-				maxHeight = (int) optimalHeight;
-				maxWidth = (int) optimalWidth;
-				if (scaledPreviewImage != null) {
-					scaledPreviewImage.dispose();
+		if (diagram != null) {
+			if (previewImage == null) {
+				try {
+					previewImage = DiagramRenderUtil.renderToSWTImage(diagram);
+				} catch(Exception e) {
+					Activator.log.error(e);
 				}
-				scaledPreviewImage = resize(previewImage, maxHeight, maxWidth);
+			} else {
+				int optimalWidth = (int) (this.getHost().getRoot().getViewer().getControl().getBounds().width * SCALE_FACTOR);
+				int optimalHeight = (int) (this.getHost().getRoot().getViewer().getControl().getBounds().height * SCALE_FACTOR);
+				
+				if (scaledPreviewImage == null || optimalWidth != maxWidth || optimalHeight != maxHeight) {
+					maxHeight = (int) optimalHeight;
+					maxWidth = (int) optimalWidth;
+					if (scaledPreviewImage != null) {
+						scaledPreviewImage.dispose();
+					}
+					scaledPreviewImage = resize(previewImage, maxHeight, maxWidth);
+				}
+						
+				CUSTOM_ITEM_WIDTH = scaledPreviewImage.getBounds().width;
+				CUSTOM_ITEM_HEIGHT = scaledPreviewImage.getBounds().height;
+				
+				super.showDiagramAssistant(referencePoint);
 			}
-					
-			CUSTOM_ITEM_WIDTH = scaledPreviewImage.getBounds().width;
-			CUSTOM_ITEM_HEIGHT = scaledPreviewImage.getBounds().height;
-			
-			super.showDiagramAssistant(referencePoint);
 		}
 	}
 	
