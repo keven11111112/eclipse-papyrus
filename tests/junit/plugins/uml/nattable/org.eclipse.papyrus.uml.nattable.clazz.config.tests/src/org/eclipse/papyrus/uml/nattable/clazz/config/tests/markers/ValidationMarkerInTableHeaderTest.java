@@ -89,20 +89,24 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 
 
 	/**
-	 * the total of rows in the table
+	 * the total of rows in the table (without columns header).
 	 */
-	private static final int NB_ROWS = 13;
+	private static final int NB_ROWS_WITHOUT_HEADER = 11;
 
 	/**
-	 * the total of columns in the table
+	 * the total of columns in the table (without rows header).
 	 */
-	private static final int NB_COLUMNS = 8;
+	private static final int NB_COLUMNS_WITHOUT_HEADER = 1;
 
+	/**
+	 * The number of rows to check (including columns header).
+	 */
+	private static final int MAX_ROWS = 13;
 
-	private static final int MAX_ROWS = NB_ROWS;
-
-	// FIXME : it seems than we have an error in getColumnCount (we get 7 instead of 8)...
-	private static final int MAX_COLUMNS = NB_COLUMNS;
+	/**
+	 * The number of columns to check (including rows header).
+	 */
+	private static final int MAX_COLUMNS = 7;
 
 	/**
 	 * init the JUnit test
@@ -147,15 +151,12 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 		this.fixture.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 		this.fixture.flushDisplayEvents();
 
-		final NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
-		final int rowCount = natTable.getRowCount();
-		final int columnCount = natTable.getColumnCount();
-		Assert.assertEquals("The number of rows is not the excpected one", NB_ROWS, rowCount); //$NON-NLS-1$
-
-		// in fact , there is a bug here!
-		// TODO try to fix this test
-		// the bad test (which works on all screen size)
-		Assert.assertTrue("There are more columns than expected", columnCount <= NB_COLUMNS);
+		final int rowCount = manager.getRowElementsList().size();
+		final int columnCount = manager.getColumnElementsList().size();
+		// We check the number of elements in rows and columns instead of nattable rows and columns count
+		// because the nattable calculation is managed only on the displayed rows and columns
+		Assert.assertEquals("The number of rows is not the excpected one", NB_ROWS_WITHOUT_HEADER, rowCount); //$NON-NLS-1$
+		Assert.assertEquals("The number of columns is not the excpected one", NB_COLUMNS_WITHOUT_HEADER, columnCount); //$NON-NLS-1$
 
 		// the good test, but the result depends of the screen size (if there is a scrollbar, it doesn't work)
 		// Assert.assertEquals("The number of columns is not the excpected one", NB_COLUMNS, columnCount); //$NON-NLS-1$
