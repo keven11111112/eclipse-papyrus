@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.DiagramUtils;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
@@ -205,6 +206,7 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 	 * Case of an association between A and B, end a is owned by Block B and end b is owned by the association. End a is navigable but not End b. Test changes A to C.
 	 * 
 	 */
+	@InvalidTest("The SysML is no more available, so the BDD diagram can't be opened")
 	@Test
 	@PluginResource("/resources/418509/model.di")
 	public void testSysMLCase1() {
@@ -233,6 +235,7 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 	/**
 	 * Case of an association between A and B, end a is owned by Block B and end b is owned by the association. End a is navigable but not End b. Test changes B to D.
 	 */
+	@InvalidTest("The SysML is no more available, so the BDD diagram can't be opened")
 	@Test
 	@PluginResource("/resources/418509/model.di")
 	public void testSysMLCase2() {
@@ -261,6 +264,7 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 	/**
 	 * Case of an association between A and B, end a is owned by Block B and end b is owned by Block A. Both ends are navigable. Test changes B to D.
 	 */
+	@InvalidTest("The SysML is no more available, so the BDD diagram can't be opened")
 	@Test
 	@PluginResource("/resources/418509/model.di")
 	public void testSysMLCase3() {
@@ -296,6 +300,7 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 	/**
 	 * Case of an association between A and B, Both ends are not navigable and contained by the association. Test changes B to D.
 	 */
+	@InvalidTest("The SysML is no more available, so the BDD diagram can't be opened")
 	@Test
 	@PluginResource("/resources/418509/model.di")
 	public void testSysMLCase4() {
@@ -331,6 +336,7 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 	/**
 	 * Case of an Directed Composition association between B1 and B2, end B2 is owned by Block B1 and end B2 is owned by Association. Test changes B2 to B3.
 	 */
+	@InvalidTest("The SysML is no more available, so the BDD diagram can't be opened")
 	@Test
 	@PluginResource("/resources/418509/model.di")
 	public void testSysMLCase5() {

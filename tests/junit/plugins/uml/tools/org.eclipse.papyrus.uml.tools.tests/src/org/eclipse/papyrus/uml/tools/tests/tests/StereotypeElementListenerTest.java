@@ -514,7 +514,7 @@ public class StereotypeElementListenerTest extends AbstractPapyrusTest {
 		Stereotype stereotype = sysmlProfile.getOwnedStereotype("Block");
 		editingDomain.getCommandStack().execute(new ApplyStereotypeCommand(element, stereotype, editingDomain));
 
-		assertAppliedStereotypeNotification.assertNotification(2, element);
+		assertAppliedStereotypeNotification.assertNotification(element);
 		assertAppliedStereotypeNotification.assertNotification(element, stereotype);
 
 		assertModifiedStereotypeNotification.assertNoNotification(element);
@@ -536,7 +536,7 @@ public class StereotypeElementListenerTest extends AbstractPapyrusTest {
 		editingDomain.getCommandStack().execute(new ApplyStereotypeCommand(element, stereotype, editingDomain));
 		editingDomain.getCommandStack().execute(new UnapplyStereotypeCommand(element, stereotype, editingDomain));
 
-		assertUnappliedStereotypeNotification.assertNotification(2, element);
+		assertUnappliedStereotypeNotification.assertNotification(element);
 		assertUnappliedStereotypeNotification.assertNotification(element, stereotype);
 
 		assertModifiedStereotypeNotification.assertNoNotification(element);
@@ -557,10 +557,10 @@ public class StereotypeElementListenerTest extends AbstractPapyrusTest {
 
 		Stereotype member = sysmlProfile.getOwnedStereotype("Block");
 		editingDomain.getCommandStack().execute(new ApplyStereotypeCommand(element, member, editingDomain));
-		assertAppliedStereotypeNotification.assertNotification(2, element);
+		assertAppliedStereotypeNotification.assertNotification(element);
 
 		editingDomain.getCommandStack().undo();
-		assertUnappliedStereotypeNotification.assertNotification(2, element);
+		assertUnappliedStereotypeNotification.assertNotification(element);
 
 		assertModifiedStereotypeNotification.assertNoNotification(element);
 	}
@@ -581,14 +581,14 @@ public class StereotypeElementListenerTest extends AbstractPapyrusTest {
 		Stereotype member = sysmlProfile.getOwnedStereotype("Block");
 
 		editingDomain.getCommandStack().execute(new ApplyStereotypeCommand(element, member, editingDomain));
-		assertAppliedStereotypeNotification.assertNotification(2, element);
+		assertAppliedStereotypeNotification.assertNotification(element);
 
 		editingDomain.getCommandStack().execute(new UnapplyStereotypeCommand(element, member, editingDomain));
-		assertUnappliedStereotypeNotification.assertNotification(2, element);
+		assertUnappliedStereotypeNotification.assertNotification(element);
 
 
 		editingDomain.getCommandStack().undo();
-		assertAppliedStereotypeNotification.assertNotification(4, element);
+		assertAppliedStereotypeNotification.assertNotification(2, element);
 
 		assertModifiedStereotypeNotification.assertNoNotification(element);
 	}
