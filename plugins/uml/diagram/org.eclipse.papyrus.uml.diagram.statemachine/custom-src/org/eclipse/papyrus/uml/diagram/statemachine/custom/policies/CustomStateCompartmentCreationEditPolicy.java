@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 477384
+ *  Christian W. Damus - bugs 477384, 495087
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.policies;
 
@@ -71,8 +71,7 @@ public class CustomStateCompartmentCreationEditPolicy extends CreationEditPolicy
 						return new ICommandProxy(cc.reduce());
 					}
 				}
-			}
-			else if (request instanceof CreateUnspecifiedTypeRequest) {
+			} else if (request instanceof CreateUnspecifiedTypeRequest) {
 				// used by palette
 				CreateUnspecifiedTypeRequest unspecReq = (CreateUnspecifiedTypeRequest) request;
 				for (Iterator<?> iter = unspecReq.getElementTypes().iterator(); iter.hasNext();) {
@@ -94,7 +93,7 @@ public class CustomStateCompartmentCreationEditPolicy extends CreationEditPolicy
 				Point mouseLocation = changeBoundsRequest.getLocation();
 				DropObjectsRequest dropRequest = new DropObjectsRequest();
 				dropRequest.setLocation(mouseLocation);
-				List<View> list = new ArrayList<View>();
+				List<View> list = new ArrayList<>();
 				Iterator<?> it = changeBoundsRequest.getEditParts().iterator();
 				while (it.hasNext()) {
 					Object next = it.next();
@@ -141,7 +140,7 @@ public class CustomStateCompartmentCreationEditPolicy extends CreationEditPolicy
 		// would be an odd sort of a compound request), then only the regions will be
 		return (cc != null)
 				? new ICommandProxy(cc.reduce())
-				: super.getCommand(request);
+				: super.getCreateCommand(request);
 	}
 
 	@Override
