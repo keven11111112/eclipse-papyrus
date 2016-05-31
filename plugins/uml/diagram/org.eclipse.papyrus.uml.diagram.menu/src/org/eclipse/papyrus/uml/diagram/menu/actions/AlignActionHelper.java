@@ -11,6 +11,7 @@ package org.eclipse.papyrus.uml.diagram.menu.actions;
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr 		- Initial API and implementation
  *  Céline Janssens (ALL4TEC)  celine.janssens@all4tec.net 	- Code refractor and documentation
+ *  Jeremie TATIBOUET (CEA LIST) - Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=490000
  *
  *****************************************************************************/
 import java.util.Iterator;
@@ -167,7 +168,7 @@ public class AlignActionHelper {
 
 		isAllow = isAllow && isContained(newPosition, currentEP);
 		isAllow = isAllow && !isRefChild(refEditPart, currentEP);
-		isAllow = isAllow && isPortPositionAllowed(newPosition, currentEP);
+		isAllow = isAllow && isBorderItemPositionAllowed(newPosition, currentEP);
 		isAllow = isAllow && !isDependent(refEditPart, currentEP);
 		
 		
@@ -203,43 +204,28 @@ public class AlignActionHelper {
 
 
 	/**
-	 * Alignment Rule: In case of a Border Item, the Alignment is allowed only if the Port Position stay on his Parent Bounds.
+	 * Alignment Rule: when a border item is considered (e.g. pin / port)
+	 * the computed position is valid only if this latter remains stick to its parent
+	 * boundary.
+	 * 
 	 * @param newPosition
 	 * @param currentEP
 	 * @return
 	 */
-	private boolean isPortPositionAllowed(PrecisionRectangle newPosition,
+	private boolean isBorderItemPositionAllowed(PrecisionRectangle newPosition,
 			EditPart currentEP) {
-		boolean isPortAllow ;
-	
+		boolean allow = false;
 		if (currentEP instanceof AbstractBorderItemEditPart){
-
-			
-			PrecisionPoint portCenter = (PrecisionPoint) newPosition.getCenter();
 			PrecisionRectangle parentBounds = LayoutUtils.getAbsolutePosition(currentEP.getParent());
-
-			boolean isOnVerticalBounds = (portCenter.preciseX() == parentBounds.preciseX()) || (portCenter.preciseX() == parentBounds.preciseX()+ parentBounds.preciseWidth() );
-			boolean isOnHorizontalBounds = (portCenter.preciseY() == parentBounds.preciseY()) || (portCenter.preciseY() == parentBounds.preciseY()+ parentBounds.preciseHeight() );
-			boolean isBetweenHorizontalBounds = (portCenter.preciseY() >= parentBounds.preciseY()) && (portCenter.preciseY() <= parentBounds.preciseY()+parentBounds.preciseHeight());
-			boolean isBetweenVerticalBounds = (portCenter.preciseX() >= parentBounds.preciseX()) && (portCenter.preciseX() <= parentBounds.preciseX()+parentBounds.preciseWidth());
-
-			if ((isOnHorizontalBounds) && (isBetweenVerticalBounds)) {
-				isPortAllow = true;
-			} else if ((isOnVerticalBounds) && (isBetweenHorizontalBounds)) {
-				isPortAllow = true;
-			} else {
-				isPortAllow = false;
+			if(parentBounds != null){
+				allow = parentBounds.touches(newPosition) && !parentBounds.contains(newPosition.getCenter());
 			}
-
 		} else {
-			
-			isPortAllow = true;
+			allow = true;
 		}
-
-		return isPortAllow;
+		return allow;
 	}
-
-
+	
 	/**
 	 * Alignment Rule: the EditPart should be still contained in its parent after the alignment
 	 * @param newPosition
