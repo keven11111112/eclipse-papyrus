@@ -4,13 +4,13 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 include "../../../extra/targetPlatform/portable/org.eclipse.papyrus.extra.portable.target.tpd"
 
 //updateFrom("EGIT",0)
-location egit "http://download.eclipse.org/egit/staging/v4.4.0.201605041135-m1" {
+location egit "http://download.eclipse.org/egit/staging/v4.4.0.201605250940-rc1" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6RC2-201605191730/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6-I-builds/I20160525-2000/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 }
 
@@ -28,13 +28,13 @@ location mylyn "http://download.eclipse.org/mylyn/drops/3.19.0/v20160331-2042" {
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201605241249" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201605311222" {
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.12milestones/" {
+location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.12/" {
 	org.eclipse.xsd.sdk.feature.group
 }
 
@@ -46,7 +46,7 @@ location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20160524-0622"
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6RC2-201605191730/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6-I-builds/I20160525-2000/" {
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
 }

@@ -48,8 +48,8 @@ location tpd "http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/latest/
 
 //updateFrom("EGIT",0) 
 
-location egit "http://download.eclipse.org/egit/staging/v4.4.0.201605041135-m1" //
+location egit "http://download.eclipse.org/egit/staging/v4.4.0.201605250940-rc1" //
 
 //updateFrom("m2e",0)
 
-location m2e "http://download.eclipse.org/technology/m2e/milestones/1.7/1.7.0.20160524-1815" //
+location m2e "http://download.eclipse.org/technology/m2e/milestones/1.7/1.7.0.20160531-2022" //

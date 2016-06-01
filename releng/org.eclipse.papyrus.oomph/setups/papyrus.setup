@@ -78,7 +78,7 @@
       <requirement name="org.eclipse.uml2.sdk.feature.group"/>
       <requirement name="org.eclipse.emf.sdk.feature.group"/>
       <repositoryList name="Neon">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6RC2-201605191730/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.6-I-builds/I20160525-2000/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -86,7 +86,7 @@
           </annotation>
         </repository>
         <repository url="${base.downloads.url}/tools/orbit/downloads/drops/R20150519210750/repository"/>
-        <repository url="http://download.eclipse.org/modeling/emf/emf/updates/2.12milestones/">
+        <repository url="http://download.eclipse.org/modeling/emf/emf/updates/2.12/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF (Core)</value>
@@ -128,21 +128,21 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.3/S201506090500">
+        <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>GMF Tooling</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201604291319/">
+        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.0/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMFT MWE</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.6.0/S201605240757">
+        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.6.0/S201605300654">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>QVT Operational</value>
@@ -156,7 +156,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201605230436">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201605300614">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>MDT OCL 6.0</value>
@@ -170,21 +170,21 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201603220642/">
+        <repository url="http://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201605260315/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>M2T XPAND</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201605170305/">
+        <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.10.0/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Xtext, Xtend</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201605241249">
+        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201605311222">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF COMPARE</value>

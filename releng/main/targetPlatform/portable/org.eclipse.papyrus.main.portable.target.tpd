@@ -2,13 +2,13 @@ target "Papyrus Main" with requirements source
 
 //manualUpdate
 
-location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20150821153341/repository" {
+location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository" {
 
 }
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.6.0/S201605240757" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.6.0/S201605300654" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -20,7 +20,7 @@ location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/up
 
 //updateFrom("M2T XPAND",0) 
 
-location xpand "http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201603220642/" {
+location xpand "http://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201605260315/" {
 	org.eclipse.xpand.sdk.feature.group
 	org.eclipse.xtend.feature.group
 }
@@ -46,13 +46,13 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6RC2-201605191730/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6-I-builds/I20160525-2000/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("MDT OCL 6.0",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201605230436" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201605300614" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -65,7 +65,7 @@ location xwt "http://download.eclipse.org/xwt/release-1.2.0" {
 
 //updateFrom("Xtext, Xtend",0) 
 
-location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201605170305/" {
+location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.10.0/" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -84,7 +84,7 @@ location nattable "http://download.eclipse.org/nattable/snapshots/latest/reposit
 
 //updateFrom("EMFT MWE",0)
 
-location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201604291319/" {
+location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.0/" {
 	org.eclipse.emf.mwe2.language.sdk.feature.group
 }
 
@@ -121,13 +121,13 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.12milestones/" {
+location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.12/" {
 	org.eclipse.emf.sdk.feature.group
 }
 
 //updateFrom("GMF Tooling",0) 
 
-location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.3/S201506090500" {
+location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" {
 	org.eclipse.gmf.tooling.feature.group
 	org.eclipse.gmf.tooling.runtime.feature.group
 	org.eclipse.gmf.tooling.codegen.xtend2.feature.group
