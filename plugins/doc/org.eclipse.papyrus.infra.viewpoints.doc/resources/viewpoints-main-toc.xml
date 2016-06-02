@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<toc label="Viewpoints" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
+<toc label="Viewpoints" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocCustom">
    <topic href="target/generated-eclipse-help/viewpoints.html" label="Viewpoints in Papyrus">
       <link toc="target/generated-eclipse-help/viewpoints-toc.xml"/>
       <anchor id="ViewpointsID"/>

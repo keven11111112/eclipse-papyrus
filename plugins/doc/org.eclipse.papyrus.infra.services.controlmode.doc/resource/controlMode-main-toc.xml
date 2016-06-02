@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<toc label="Submodel Creation and Reintegration" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
-   <topic href="target/generated-eclipse-help/controlMode.html" label="Submodel Creation and Reintegration">
+<toc label="Creating and reintegrating submodels" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusTasks">
+   <topic href="target/generated-eclipse-help/controlMode.html" label="Creating and reintegrating submodels">
       <link toc="target/generated-eclipse-help/controlMode-toc.xml"/>
       <anchor id="controlMode"/>
    </topic>	

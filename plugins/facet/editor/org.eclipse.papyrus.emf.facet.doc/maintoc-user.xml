@@ -11,7 +11,7 @@ Contributors:
     Gregoire Dupe (Mia-Software) - Bug 337584 - Documentation set up
     Nicolas Bros (Mia-Software) - Bug 375789 - Documentation
 -->
-<toc label="Facet Documentation" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
+<toc label="Facet Documentation" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocCustom">
    <topic label="Facet">
       <anchor id="user.anchor.1"/>
       <anchor id="user.anchor.2"/>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<toc label="Search" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
-   <topic href="target/generated-eclipse-help/search.html" label="Search in Models">
+<toc label="Search" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusTasks">
+   <topic href="target/generated-eclipse-help/search.html" label="Searching in Models">
       <link toc="target/generated-eclipse-help/search-toc.xml"/>
       <anchor id="SearchID"/>
    </topic>

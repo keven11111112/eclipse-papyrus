@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<toc label="References" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
-   <topic href="target/generated-eclipse-help/reference-view.html" label="References view">
+<toc label="Browsing references to/from an element" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocTasks">
+   <topic href="target/generated-eclipse-help/reference-view.html" label="Browsing references to/from an element">
       <link toc="target/generated-eclipse-help/references-view-toc.xml"/>
       <anchor id="references-view"/>
    </topic>	
