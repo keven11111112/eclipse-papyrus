@@ -11,3 +11,4 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: bundle
+Export-Package: org.eclipse.papyrus.requirements.templates
