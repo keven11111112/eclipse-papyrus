@@ -15,13 +15,21 @@ package org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.overwrite;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.nebula.widgets.nattable.NatTable;
-import org.eclipse.nebula.widgets.nattable.selection.command.ClearAllSelectionsCommand;
+import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
+import org.eclipse.papyrus.infra.nattable.export.file.PapyrusFileExportCommandHandler;
+import org.eclipse.papyrus.infra.nattable.export.file.PapyrusFileExporter;
+import org.eclipse.papyrus.infra.nattable.export.file.command.PapyrusFileExportCommand;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
-import org.eclipse.papyrus.infra.nattable.utils.TableClipboardUtils;
+import org.eclipse.papyrus.infra.nattable.style.configattribute.PapyrusExportConfigAttributes;
 import org.eclipse.papyrus.infra.tools.util.FileUtils;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.Activator;
@@ -126,15 +134,32 @@ public abstract class AbstractPasteInsertTest extends AbstractOpenTableTest {
 	protected void checkTableContent(final NattableModelManager manager, final String suffixFileName) throws Exception {
 		final NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
 		flushDisplayEvents();
-		natTable.doCommand(new ClearAllSelectionsCommand());
-		manager.selectAll();
-		manager.copyToClipboard();
-		String clipboard = getClipboardContent();
+
+		// Unregister and register the papyrus file export to manage it without the shell
+		final GridLayer gridLayer = manager.getGridLayer();
+		gridLayer.unregisterCommandHandler(PapyrusFileExportCommand.class);
+		gridLayer.registerCommandHandler(new PapyrusFileExportCommandHandler(gridLayer.getBodyLayer(), false));
+
+		// Modify the config attribute of the file export to use the file name without the shell
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		final String wsFolder = workspace.getRoot().getLocation().toFile().getPath().toString();
+		final String contentFile = wsFolder + "\\content.txt"; //$NON-NLS-1$
+		natTable.getConfigRegistry().unregisterConfigAttribute(PapyrusExportConfigAttributes.SIMPLE_FILE_EXPORTER);
+		natTable.getConfigRegistry().registerConfigAttribute(PapyrusExportConfigAttributes.SIMPLE_FILE_EXPORTER, new PapyrusFileExporter(contentFile));
+		manager.exportToFile();
+
+		final StringBuilder content = new StringBuilder();
+		final List<String> allLines = Files.readAllLines(Paths.get(contentFile));
+		for (int index = 0; index < allLines.size(); index++) {
+			content.append(allLines.get(index));
+			if (index < allLines.size() - 1) {
+				content.append(FileUtils.getSystemPropertyLineSeparator());
+			}
+		}
+
+		final String str = getWantedString(getSuffixStateFileName(manager, suffixFileName));
 		// we check than the contents of the clipboard (so the displayed table) is the same than the wanted result
-		Assert.assertNotNull("Clipboard must not be null", clipboard); //$NON-NLS-1$
-		String str = getWantedString(getSuffixStateFileName(manager, suffixFileName));
-		// we check than the contents of the clipboard (so the displayed table) is the same than the wanted result
-		Assert.assertEquals("The clipboard must be equals to string which one it is filled", str, clipboard); //$NON-NLS-1$
+		Assert.assertEquals("The clipboard must be equals to string which one it is filled", str, content.toString()); //$NON-NLS-1$
 	}
 
 	/**
@@ -166,17 +191,6 @@ public abstract class AbstractPasteInsertTest extends AbstractOpenTableTest {
 		buffer.append(FileUtils.DOT_STRING);
 		buffer.append(FileUtils.TEXT_EXTENSION);
 		return buffer.toString();
-	}
-
-	/**
-	 * Get the clipboard contents.
-	 * 
-	 * @return
-	 * 		the clipboard contents.
-	 */
-	protected String getClipboardContent() {
-		String clipboard = TableClipboardUtils.getClipboardContentsAsString();
-		return clipboard;
 	}
 
 	/**

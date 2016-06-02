@@ -75,8 +75,10 @@ public class PasteInTableHandler extends AbstractPasteInsertInTableHandler {
 		final Object userAction = event.getParameters().get(USER_ACTION__PREFERRED_USER_ACTION);
 		final int preferredUserAction = null == userAction ? UserActionConstants.UNDEFINED_USER_ACTION : Integer.parseInt(userAction.toString());
 
+		final Object textToPaste = event.getParameters().get(TEXT_TO_PASTE);
+		final String clipboardContentsAsString = null != textToPaste ? (String) textToPaste : TableClipboardUtils.getClipboardContentsAsString();
+		
 		IStatus result = null;
-		final String clipboardContentsAsString = TableClipboardUtils.getClipboardContentsAsString();
 		if (null != clipboardContentsAsString && !clipboardContentsAsString.isEmpty()) {
 			final PasteAxisInNattableManager pasteManager = new PasteAxisInNattableManager(currentNattableModelManager, pasteHelper, openProgressMonitor, openDialog, preferredUserAction, tableSelectionWrapper, clipboardContentsAsString);
 			result = pasteManager.doAction();

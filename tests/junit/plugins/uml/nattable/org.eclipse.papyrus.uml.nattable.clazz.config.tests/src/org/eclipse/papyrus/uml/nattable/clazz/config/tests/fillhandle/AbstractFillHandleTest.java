@@ -13,21 +13,30 @@
 
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle;
 
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.command.ILayerCommand;
 import org.eclipse.nebula.widgets.nattable.copy.command.CopyDataToClipboardCommand;
-import org.eclipse.nebula.widgets.nattable.selection.command.ClearAllSelectionsCommand;
+import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
+import org.eclipse.papyrus.infra.nattable.export.file.PapyrusFileExportCommandHandler;
+import org.eclipse.papyrus.infra.nattable.export.file.PapyrusFileExporter;
+import org.eclipse.papyrus.infra.nattable.export.file.command.PapyrusFileExportCommand;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
+import org.eclipse.papyrus.infra.nattable.style.configattribute.PapyrusExportConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
-import org.eclipse.papyrus.infra.nattable.utils.TableClipboardUtils;
 import org.eclipse.papyrus.infra.tools.util.FileUtils;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.rules.ActiveTable;
@@ -349,16 +358,62 @@ public abstract class AbstractFillHandleTest extends AbstractTableTest {
 		fixture.flushDisplayEvents();
 		treeManager.doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 		final NatTable natTable = (NatTable) treeManager.getAdapter(NatTable.class);
-		fixture.flushDisplayEvents();
-		natTable.doCommand(new ClearAllSelectionsCommand());
-		treeManager.selectAll();
-		treeManager.copyToClipboard();
-		String clipboard = getClipboardContent();
+
+		// Unregister and register the papyrus file export to manage it without the shell
+		final GridLayer gridLayer = treeManager.getGridLayer();
+		gridLayer.unregisterCommandHandler(PapyrusFileExportCommand.class);
+		gridLayer.registerCommandHandler(new PapyrusFileExportCommandHandler(gridLayer.getBodyLayer(), false));
+
+		// Modify the config attribute of the file export to use the file name without the shell
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		final String wsFolder = workspace.getRoot().getLocation().toFile().getPath().toString();
+		final String contentFile = wsFolder + "\\content.txt"; //$NON-NLS-1$
+		natTable.getConfigRegistry().unregisterConfigAttribute(PapyrusExportConfigAttributes.SIMPLE_FILE_EXPORTER);
+		natTable.getConfigRegistry().registerConfigAttribute(PapyrusExportConfigAttributes.SIMPLE_FILE_EXPORTER, new PapyrusFileExporter(contentFile));
+		treeManager.exportToFile();
+
+		final String content = getStringFromFile(contentFile);
+
+		final String str = getWantedString(getSuffixStateFileName(treeManager, suffixFileName));
 		// we check than the contents of the clipboard (so the displayed table) is the same than the wanted result
-		Assert.assertNotNull("Clipboard must not be null", clipboard); //$NON-NLS-1$
-		String str = getWantedString(getSuffixStateFileName(treeManager, suffixFileName));
-		// we check than the contents of the clipboard (so the displayed table) is the same than the wanted result
-		Assert.assertEquals("The clipboard must be equals to string which one it is filled", str, clipboard); //$NON-NLS-1$
+		Assert.assertEquals("The clipboard must be equals to string which one it is filled", str, content); //$NON-NLS-1$
+
+		// Remove the content file
+		File file = new File(contentFile);
+		file.delete();
+	}
+
+	/**
+	 * Get the content file.
+	 * 
+	 * @param fileName
+	 *            The file name.
+	 * @return The content of the file.
+	 */
+	protected String getStringFromFile(final String fileName) {
+		final StringBuilder builder = new StringBuilder();
+		final URL url;
+		try {
+			url = new URL("file:/" + fileName); //$NON-NLS-1$
+			InputStream inputStream = url.openConnection().getInputStream();
+			BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+			String inputLine = in.readLine();
+
+			while (inputLine != null) {
+				builder.append(inputLine);
+				inputLine = in.readLine();
+				if (inputLine != null) {
+					builder.append(FileUtils.getSystemPropertyLineSeparator());
+				}
+			}
+
+			in.close();
+
+		} catch (final IOException e) {
+			Activator.log.error(e);
+		}
+
+		return builder.toString();
 	}
 
 	/**
@@ -390,32 +445,6 @@ public abstract class AbstractFillHandleTest extends AbstractTableTest {
 		buffer.append(FileUtils.DOT_STRING);
 		buffer.append(FileUtils.TEXT_EXTENSION);
 		return buffer.toString();
-	}
-
-	/**
-	 * Get the clipboard contents.
-	 * 
-	 * @return
-	 * 		the clipboard contents.
-	 */
-	protected String getClipboardContent() {
-		String clipboard = TableClipboardUtils.getClipboardContentsAsString();
-		return clipboard;
-	}
-
-	/**
-	 * This allows to fill the clipboard with the string in parameter.
-	 * 
-	 * @param newClipBoardContents
-	 *            The string needed to fill the clipboard.
-	 */
-	protected void fillClipboard(final String newClipBoardContents) {
-
-		// its seems that the clipboard must be filled with the same way than we read it!
-		java.awt.datatransfer.Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-
-		StringSelection s = new StringSelection(newClipBoardContents);
-		clipboard.setContents(s, s);
 	}
 
 	/**

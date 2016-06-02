@@ -119,6 +119,13 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	public void selectAll();
 
 	public void exportToXLS();
+	
+	/**
+	 * This allows to export the table contents into a file.
+	 * 
+	 * @since 2.0
+	 */
+	public void exportToFile();
 
 	/**
 	 * Opens a dialog to choose the columns to display or to destroy. This action doesn't create or destroy model element. It can only create/destroy

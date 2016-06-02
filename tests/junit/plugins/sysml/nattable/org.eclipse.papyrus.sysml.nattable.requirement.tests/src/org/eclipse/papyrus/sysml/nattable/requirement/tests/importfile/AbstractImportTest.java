@@ -13,16 +13,12 @@
 
 package org.eclipse.papyrus.sysml.nattable.requirement.tests.importfile;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.handler.ImportTableHandler;
@@ -30,13 +26,11 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.tools.util.FileUtils;
 import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
-import org.eclipse.papyrus.sysml.nattable.requirement.tests.Activator;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.overwrite.AbstractPasteInsertTest;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.commands.ICommandService;
 import org.junit.Assert;
 import org.junit.Test;
-import org.osgi.framework.Bundle;
 
 /**
  * This class allows to manage the import CSV file tests.
