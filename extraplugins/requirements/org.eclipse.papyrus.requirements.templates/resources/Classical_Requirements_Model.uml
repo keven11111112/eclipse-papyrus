@@ -3,17 +3,19 @@
   <packagedElement xmi:type="uml:Package" xmi:id="_DVdgsArZEea-iNJ2w1lH8g" name="Requirements">
     <packagedElement xmi:type="uml:Package" xmi:id="_3g9X4ArYEea-iNJ2w1lH8g" name="Business">
       <ownedComment xmi:type="uml:Comment" xmi:id="_XiSXYAt-EeamXuALL4idIg" annotatedElement="_3g9X4ArYEea-iNJ2w1lH8g">
-        <body>Requirements in this package should express business needs or objectives. They should be independent of system requirements in the Concrete package {@link #_4M-JUArYEea-iNJ2w1lH8g}. </body>
+        <body>&lt;p>Requirements in this package should express business needs or goals. They should be independent of system requirements in the &amp;quot;Concrete&amp;quot; package.&lt;/p>
+</body>
       </ownedComment>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_4M-JUArYEea-iNJ2w1lH8g" name="Concrete">
       <ownedComment xmi:type="uml:Comment" xmi:id="_-plDUAt7EeamXuALL4idIg" annotatedElement="_4M-JUArYEea-iNJ2w1lH8g">
-        <body>Requirements in this package should depend on the requirements in the Business package {@link #_3g9X4ArYEea-iNJ2w1lH8g} via «DeriveReqt» relationships. For example, a system requirement in the “Concrete” package may be derived from a business need in the “Business” package.</body>
+        <body>&lt;p>Requirements in this package should depend on the requirements in the &amp;ldquo;Business&amp;rdquo; package via &amp;laquo;DeriveReqt&amp;raquo; relationships. For example, a system requirement in the &amp;ldquo;Concrete&amp;rdquo; package may be derived from a business need or goal in the &amp;ldquo;Business&amp;rdquo; package.&lt;/p>
+</body>
       </ownedComment>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_J28MQAt_EeamXuALL4idIg" name="Logical domain">
       <ownedComment xmi:type="uml:Comment" xmi:id="_fao-QAt_EeamXuALL4idIg" annotatedElement="_J28MQAt_EeamXuALL4idIg">
-        <body>This package should contain a models that describe real world entities and the relationships between them, which collectively describe the problem domain space. Entities can be referenced in the Business and Concrete requirements packages&#xD;
+        <body>&lt;p>This package should contain models that describe real world entities and the relationships between them, which collectively describe the problem domain space or logical domain. Entities can be referenced in the Business and Concrete requirements packages.&lt;/p>
 </body>
       </ownedComment>
     </packagedElement>
