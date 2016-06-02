@@ -84,24 +84,6 @@
    <feature url="features/org.eclipse.papyrus.bpmn.extra.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.bpmn.extra.feature.source" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.dd.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.dd.feature" version="0.7.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.dd.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.notation.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.notation.feature" version="0.7.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.dd.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.umldi.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.umldi.feature" version="0.7.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.dd.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.dd.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.dd.feature.source" version="0.7.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.dd.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.notation.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.notation.feature.source" version="0.7.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.dd.category"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.umldi.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.umldi.feature.source" version="0.7.0.qualifier">
-      <category name="org.eclipse.papyrus.extra.dd.category"/>
-   </feature>
    <feature url="features/org.eclipse.papyrus.metrics.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.metrics.feature" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
@@ -167,11 +149,6 @@
       </description>
    </category-def>
    <category-def name="org.eclipse.papyrus.extra.others.category" label="Papyrus Extra (Others)"/>
-   <category-def name="org.eclipse.papyrus.extra.dd.category" label="Papyrus Diagram Definition">
-      <description>
-         Diagram Definition Category
-      </description>
-   </category-def>
    <category-def name="org.eclipse.papyrus.category.sysml11" label="Papyrus SysML 1.1">
       <description>
          Papyrus SysML 1.1 Category
