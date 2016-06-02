@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <!--
- Copyright (c) 2009, 2015 MOSKitt, CEA, Christian W. Damus, and others.
+ Copyright (c) 2009, 2016 MOSKitt, CEA, Christian W. Damus, and others.
  
  All rights reserved. This program and the accompanying materials
  are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  Contributors:
    MOSKitt - Initial API and implementation
    Christian W. Damus (CEA) - bug 323802
-   Christian W. Damus - bug 433206, 463513
+   Christian W. Damus - bug 433206, 463513, 495279
    
 -->
 <plugin>
@@ -265,7 +265,7 @@
 
    <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
       <editpartProvider class="org.eclipse.papyrus.uml.diagram.statemachine.custom.providers.CustomUMLEditPartProvider">
-         <Priority name="Highest"/>
+         <Priority name="Low"/>
          <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
             <method name="getType()" value="PapyrusUMLStateMachineDiagram"/>
          </object>
