@@ -18,7 +18,7 @@ location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/mi
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20160524-0622" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20160601-1307" {
 	org.eclipse.net4j.feature.group
 	org.eclipse.emf.cdo.server.feature.group
 	org.eclipse.emf.cdo.dawn.feature.group
@@ -64,7 +64,7 @@ location gef "http://download.eclipse.org/tools/gef/updates/milestones/4.0.0M7_g
 
 //updateFrom("Graphiti",0)
 
-location graphiti "http://download.eclipse.org/graphiti/updates/milestones/S-0.13.0M7-201605040920/" //
+location graphiti "http://download.eclipse.org/graphiti/updates/milestones/S-0.13.0RC3-201606010657/" //
 
 //updateFrom("Sphinx",0)
 

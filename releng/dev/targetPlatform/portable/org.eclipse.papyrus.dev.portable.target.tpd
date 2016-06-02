@@ -18,7 +18,7 @@ location upr "http://download.eclipse.org/upr/0.9RC1/update/" {
 
 //updateFrom("oomph",0) 
 
-location oomph "http://download.eclipse.org/oomph/drops/milestone/S20160524-103354-1.4.0-RC2" {
+location oomph "http://download.eclipse.org/oomph/drops/milestone/S20160601-090549-1.4.0-RC3" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group
@@ -48,7 +48,7 @@ location tpd "http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/latest/
 
 //updateFrom("EGIT",0) 
 
-location egit "http://download.eclipse.org/egit/staging/v4.4.0.201605250940-rc1" //
+location egit "http://download.eclipse.org/egit/staging/v4.4.0.201606011500-rc2" //
 
 //updateFrom("m2e",0)
 

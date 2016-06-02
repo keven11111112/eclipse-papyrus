@@ -4,7 +4,7 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 include "../../../extra/targetPlatform/portable/org.eclipse.papyrus.extra.portable.target.tpd"
 
 //updateFrom("EGIT",0)
-location egit "http://download.eclipse.org/egit/staging/v4.4.0.201605250940-rc1" {
+location egit "http://download.eclipse.org/egit/staging/v4.4.0.201606011500-rc2" {
 	org.eclipse.egit.feature.group
 }
 
@@ -16,7 +16,7 @@ location platform "http://download.eclipse.org/eclipse/updates/4.6-I-builds/I201
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.19.0/v20160331-2042" {
+location mylyn "http://download.eclipse.org/mylyn/drops/3.20.0/v20160531-1750" {
 	org.eclipse.mylyn.ide_feature.feature.group
 	org.eclipse.mylyn.java_feature.feature.group
 	org.eclipse.mylyn.pde_feature.feature.group
@@ -40,7 +40,7 @@ location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.12/" {
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20160524-0622" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20160601-1307" {
 	org.eclipse.emf.cdo.epp.feature.group
 }
 
