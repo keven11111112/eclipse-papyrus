@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.nattable.configuration;
 import org.eclipse.nebula.widgets.nattable.grid.layer.config.DefaultGridLayerConfiguration;
 import org.eclipse.nebula.widgets.nattable.layer.CompositeLayer;
 import org.eclipse.papyrus.infra.nattable.export.PapyrusExportBindings;
+import org.eclipse.papyrus.infra.nattable.export.file.PapyrusFileExportBindings;
 
 /**
  * We change the edit configuration
@@ -33,6 +34,7 @@ public class PapyrusGridLayerConfiguration extends DefaultGridLayerConfiguration
 	 */
 	public PapyrusGridLayerConfiguration(CompositeLayer gridLayer) {
 		super(gridLayer);
+		addFileExportUIBindings();
 	}
 
 	/**
@@ -63,5 +65,14 @@ public class PapyrusGridLayerConfiguration extends DefaultGridLayerConfiguration
 	@Override
 	protected void addExcelExportUIBindings() {
 		addConfiguration(new PapyrusExportBindings());
+	}
+	
+	/**
+	 * Add the file export binding.
+	 * 
+	 * @since 2.0
+	 */
+	protected void addFileExportUIBindings(){
+		addConfiguration(new PapyrusFileExportBindings());
 	}
 }

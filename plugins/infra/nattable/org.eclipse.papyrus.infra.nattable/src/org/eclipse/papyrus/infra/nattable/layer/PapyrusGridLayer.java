@@ -20,6 +20,7 @@ import org.eclipse.nebula.widgets.nattable.edit.command.EditCellCommand;
 import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusGridLayerConfiguration;
+import org.eclipse.papyrus.infra.nattable.export.file.PapyrusFileExportCommandHandler;
 import org.eclipse.papyrus.infra.nattable.handler.TransactionalEditCellCommandHandler;
 
 /**
@@ -92,6 +93,19 @@ public class PapyrusGridLayer extends GridLayer {
 		}
 
 		super.registerCommandHandler(commandHandler);
+		
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer#registerCommandHandlers()
+	 */
+	@Override
+	protected void registerCommandHandlers() {
+		super.registerCommandHandlers();
+		// register the file export command handler on the gird layer for the body layer
+		registerCommandHandler(new PapyrusFileExportCommandHandler(getBodyLayer()));
 	}
 
 }

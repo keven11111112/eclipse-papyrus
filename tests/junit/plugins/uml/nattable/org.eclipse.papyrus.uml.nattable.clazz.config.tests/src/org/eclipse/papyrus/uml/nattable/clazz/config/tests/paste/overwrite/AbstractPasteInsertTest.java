@@ -15,19 +15,20 @@ package org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
-import java.util.HashMap;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.NatTable;
-import org.eclipse.nebula.widgets.nattable.selection.command.ClearAllSelectionsCommand;
+import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -35,7 +36,9 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
-import org.eclipse.papyrus.infra.nattable.handler.PasteInTableHandler;
+import org.eclipse.papyrus.infra.nattable.export.file.PapyrusFileExportCommandHandler;
+import org.eclipse.papyrus.infra.nattable.export.file.PapyrusFileExporter;
+import org.eclipse.papyrus.infra.nattable.export.file.command.PapyrusFileExportCommand;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
@@ -43,10 +46,10 @@ import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
+import org.eclipse.papyrus.infra.nattable.style.configattribute.PapyrusExportConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
-import org.eclipse.papyrus.infra.nattable.utils.TableClipboardUtils;
 import org.eclipse.papyrus.infra.tools.util.FileUtils;
 import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
@@ -54,7 +57,6 @@ import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.Activator;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests.AbstractOpenTableTest;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.commands.ICommandService;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
@@ -196,7 +198,7 @@ public abstract class AbstractPasteInsertTest extends AbstractOpenTableTest {
 							Assert.assertTrue("The pasted element id is not correctly defined", CLASS_ELEMENT_ID.equals(pasteConf.getPastedElementId())); //$NON-NLS-1$
 						}
 					}
-				}else if (depth == 1) {
+				} else if (depth == 1) {
 					boolean nestedClass = false;
 					boolean operation = false;
 					boolean property = false;
@@ -223,7 +225,7 @@ public abstract class AbstractPasteInsertTest extends AbstractOpenTableTest {
 						Assert.assertTrue("Table configuration must contains opration", operation); //$NON-NLS-1$
 						Assert.assertTrue("Table configuration must not contains nestedClass", !nestedClass); //$NON-NLS-1$
 					}
-				}else if (depth == 2) {
+				} else if (depth == 2) {
 					for (TreeFillingConfiguration tmp : confs) {
 						PasteEObjectConfiguration pasteConf = tmp.getPasteConfiguration();
 						Assert.assertNotNull("We don't have paste configuration for a TreeFillingConfiguration, depth=" + tmp.getDepth(), pasteConf); //$NON-NLS-1$
@@ -317,19 +319,35 @@ public abstract class AbstractPasteInsertTest extends AbstractOpenTableTest {
 	 *             The caught exception.
 	 */
 	protected void checkTableContent(final TreeNattableModelManager treeManager, final String suffixFileName) throws Exception {
-		flushDisplayEvents();
 		treeManager.doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 		final NatTable natTable = (NatTable) treeManager.getAdapter(NatTable.class);
 		flushDisplayEvents();
-		natTable.doCommand(new ClearAllSelectionsCommand());
-		treeManager.selectAll();
-		treeManager.copyToClipboard();
-		String clipboard = getClipboardContent();
+
+		// Unregister and register the papyrus file export to manage it without the shell
+		final GridLayer gridLayer = treeManager.getGridLayer();
+		gridLayer.unregisterCommandHandler(PapyrusFileExportCommand.class);
+		gridLayer.registerCommandHandler(new PapyrusFileExportCommandHandler(gridLayer.getBodyLayer(), false));
+
+		// Modify the config attribute of the file export to use the file name without the shell
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		final String wsFolder = workspace.getRoot().getLocation().toFile().getPath().toString();
+		final String contentFile = wsFolder + "\\content.txt"; //$NON-NLS-1$
+		natTable.getConfigRegistry().unregisterConfigAttribute(PapyrusExportConfigAttributes.SIMPLE_FILE_EXPORTER);
+		natTable.getConfigRegistry().registerConfigAttribute(PapyrusExportConfigAttributes.SIMPLE_FILE_EXPORTER, new PapyrusFileExporter(contentFile));
+		treeManager.exportToFile();
+
+		final StringBuilder content = new StringBuilder();
+		final List<String> allLines = Files.readAllLines(Paths.get(contentFile));
+		for (int index = 0; index < allLines.size(); index++) {
+			content.append(allLines.get(index));
+			if (index < allLines.size() - 1) {
+				content.append(FileUtils.getSystemPropertyLineSeparator());
+			}
+		}
+
+		final String str = getWantedString(getSuffixStateFileName(treeManager, suffixFileName));
 		// we check than the contents of the clipboard (so the displayed table) is the same than the wanted result
-		Assert.assertNotNull("Clipboard must not be null", clipboard); //$NON-NLS-1$
-		String str = getWantedString(getSuffixStateFileName(treeManager, suffixFileName));
-		// we check than the contents of the clipboard (so the displayed table) is the same than the wanted result
-		Assert.assertEquals("The clipboard must be equals to string which one it is filled", str, clipboard); //$NON-NLS-1$
+		Assert.assertEquals("The clipboard must be equals to string which one it is filled", str, content.toString()); //$NON-NLS-1$
 	}
 
 	/**
@@ -372,17 +390,6 @@ public abstract class AbstractPasteInsertTest extends AbstractOpenTableTest {
 		buffer.append(FileUtils.DOT_STRING);
 		buffer.append(FileUtils.TEXT_EXTENSION);
 		return buffer.toString();
-	}
-
-	/**
-	 * Get the clipboard contents.
-	 * 
-	 * @return
-	 * 		the clipboard contents.
-	 */
-	protected String getClipboardContent() {
-		String clipboard = TableClipboardUtils.getClipboardContentsAsString();
-		return clipboard;
 	}
 
 	/**

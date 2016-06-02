@@ -79,7 +79,7 @@ public abstract class AbstractInsertTest extends AbstractPasteInsertTest {
 		Assert.assertNotNull("The command service must not be null", commandService); //$NON-NLS-1$
 		final String fileName = getSuffixStateFileName(treeManager, TOCOPY_POST_FILE_NAME);
 		final String str = FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID, getSourcePath(), fileName);
-		fillClipboard(str);
+		fillClipboard("Fill the clipboard to enable the handler"); //$NON-NLS-1$
 
 		// Get the paste command
 		final Command cmd = commandService.getCommand(getCommandId()); //$NON-NLS-1$
@@ -90,6 +90,8 @@ public abstract class AbstractInsertTest extends AbstractPasteInsertTest {
 		final Map<Object, Object> parameters = new HashMap<Object, Object>();
 		parameters.put(PasteInTableHandler.OPEN_DIALOG_ON_FAIL_BOOLEAN_PARAMETER, Boolean.FALSE);
 		parameters.put(PasteInTableHandler.OPEN__PROGRESS_MONITOR_DIALOG, Boolean.FALSE);
+		// This parameters allows to set the text to paste instead of copy/paste it programmatically (this may be overwrite by other copy)
+		parameters.put(PasteInTableHandler.TEXT_TO_PASTE, str);
 		manageParameters(parameters);
 		final ExecutionEvent event = new ExecutionEvent(cmd, parameters, null, null);
 		flushDisplayEvents();
@@ -115,9 +117,10 @@ public abstract class AbstractInsertTest extends AbstractPasteInsertTest {
 	/**
 	 * This allows to add parameters if necessary
 	 * 
-	 * @param parameters The parameters for the command.
+	 * @param parameters
+	 *            The parameters for the command.
 	 */
-	public void manageParameters(final Map<Object, Object> parameters){
+	public void manageParameters(final Map<Object, Object> parameters) {
 		// Do nothing
 	}
 

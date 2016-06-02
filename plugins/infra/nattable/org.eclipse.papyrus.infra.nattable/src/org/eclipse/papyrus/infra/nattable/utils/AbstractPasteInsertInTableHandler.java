@@ -39,6 +39,11 @@ public abstract class AbstractPasteInsertInTableHandler extends AbstractTableHan
 	 * The variable name to determinate if the paste action must use the progress monitor;
 	 */
 	public static final String OPEN__PROGRESS_MONITOR_DIALOG = "openProgressMonitorDialog"; //$NON-NLS-1$
+	
+	/**
+	 * The variable name to determinate the text to paste
+	 */
+	public static final String TEXT_TO_PASTE = "textToPaste"; //$NON-NLS-1$
 
 	/**
 	 * The variable name to determinate the preferred user action to use for the row insert action when he is not determinate.

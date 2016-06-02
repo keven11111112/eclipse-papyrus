@@ -39,6 +39,7 @@ import org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
+import org.eclipse.papyrus.infra.nattable.handler.PasteInTableHandler;
 import org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManager;
@@ -252,7 +253,7 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 		Assert.assertNotNull(commandService);
 		final String fileName = getPasteFileName();
 		final String str = FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID, getSourcePath(), fileName);
-		fillClipboard(str);
+		fillClipboard("Fill the clipboard to enable the handler"); //$NON-NLS-1$
 
 		final Command cmd = commandService.getCommand("org.eclipse.ui.edit.paste"); //$NON-NLS-1$
 		final IHandler handler = cmd.getHandler();
@@ -262,6 +263,8 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 		final Map<Object, Object> parameters = new HashMap<Object, Object>();
 		parameters.put(AbstractPasteInsertInTableHandler.OPEN_DIALOG_ON_FAIL_BOOLEAN_PARAMETER, Boolean.FALSE);
 		parameters.put(AbstractPasteInsertInTableHandler.OPEN__PROGRESS_MONITOR_DIALOG, Boolean.FALSE);
+		// This parameters allows to set the text to paste instead of copy/paste it programmatically (this may be overwrite by other copy)
+		parameters.put(PasteInTableHandler.TEXT_TO_PASTE, str);
 		final ExecutionEvent event = new ExecutionEvent(cmd, parameters, null, null);
 		flushDisplayEvents();
 		final Object res = cmd.executeWithChecks(event);

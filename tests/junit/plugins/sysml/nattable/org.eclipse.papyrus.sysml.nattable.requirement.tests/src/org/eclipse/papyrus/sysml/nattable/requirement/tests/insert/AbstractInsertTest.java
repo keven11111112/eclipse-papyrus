@@ -26,12 +26,10 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.tools.util.FileUtils;
 import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
-import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.Activator;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.overwrite.AbstractPasteInsertTest;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.commands.ICommandService;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -80,7 +78,7 @@ public abstract class AbstractInsertTest extends AbstractPasteInsertTest {
 		Assert.assertNotNull("The command service must not be null", commandService); //$NON-NLS-1$
 		final String fileName = getSuffixStateFileName(manager, TOCOPY_POST_FILE_NAME);
 		final String str = FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID, getSourcePath(), fileName);
-		fillClipboard(str);
+		fillClipboard("Fill the clipboard to enable the handler"); //$NON-NLS-1$
 
 		// Get the paste command
 		final Command cmd = commandService.getCommand(getCommandId()); // $NON-NLS-1$
@@ -91,6 +89,8 @@ public abstract class AbstractInsertTest extends AbstractPasteInsertTest {
 		final Map<Object, Object> parameters = new HashMap<Object, Object>();
 		parameters.put(PasteInTableHandler.OPEN_DIALOG_ON_FAIL_BOOLEAN_PARAMETER, Boolean.FALSE);
 		parameters.put(PasteInTableHandler.OPEN__PROGRESS_MONITOR_DIALOG, Boolean.FALSE);
+		// This parameters allows to set the text to paste instead of copy/paste it programmatically (this may be overwrite by other copy)
+		parameters.put(PasteInTableHandler.TEXT_TO_PASTE, str);
 		manageParameters(parameters);
 		final ExecutionEvent event = new ExecutionEvent(cmd, parameters, null, null);
 		flushDisplayEvents();

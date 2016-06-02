@@ -98,6 +98,7 @@ import org.eclipse.papyrus.infra.nattable.dataprovider.ColumnLabelHeaderDataProv
 import org.eclipse.papyrus.infra.nattable.dataprovider.CompositeColumnHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.CompositeRowHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.display.converter.ObjectNameAndPathDisplayConverter;
+import org.eclipse.papyrus.infra.nattable.export.file.command.PapyrusFileExportCommand;
 import org.eclipse.papyrus.infra.nattable.fillhandle.config.PapyrusFillHandleConfiguration;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.IFilterConfiguration;
 import org.eclipse.papyrus.infra.nattable.layer.FilterRowHeaderComposite;
@@ -1290,6 +1291,16 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	@Override
 	public void exportToXLS() {
 		this.natTable.doCommand(new ExportCommand(this.natTable.getConfigRegistry(), this.natTable.getShell()));
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#exportToFile()
+	 */
+	@Override
+	public void exportToFile() {
+		this.natTable.doCommand(new PapyrusFileExportCommand(this.natTable.getConfigRegistry(), this.natTable.getShell()));
 	}
 
 	public void copyToClipboard() {

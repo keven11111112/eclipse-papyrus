@@ -19,8 +19,6 @@ import java.util.Map;
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.handler.ImportTableHandler;
@@ -125,8 +123,8 @@ public abstract class AbstractImportTest extends AbstractPasteInsertTest {
 		buffer.append(FileUtils.CSV_EXTENSIOn);
 
 		String csvFileAsString = getWantedString(buffer.toString());
-        
-        parameters.put(ImportTableHandler.SELECTED_FILE_PATH_STRING_PARAMETER, csvFileAsString);
+
+		parameters.put(ImportTableHandler.SELECTED_FILE_PATH_STRING_PARAMETER, csvFileAsString);
 	}
 
 	/**
