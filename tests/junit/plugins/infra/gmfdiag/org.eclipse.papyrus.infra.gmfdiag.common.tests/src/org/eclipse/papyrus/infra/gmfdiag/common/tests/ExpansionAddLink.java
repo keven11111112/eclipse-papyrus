@@ -40,7 +40,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingle
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionsRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeConfigurationTypeRegistry;
-import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.junit.Assert;
@@ -77,8 +76,14 @@ public class ExpansionAddLink extends AbstractEditorTest {
 
 	@Test
 	public void load_DiagramExpansion() {
-		// Bug 494730: call getInstance to initialize ElementTypeSet Registry and load Dependeny_Link Specialized Type referred in AddLink.xmi
-		ElementTypeSetConfigurationRegistry.getInstance();
+		try {
+			// Bug 494730: open at first the diagram to loads all element types needed
+			initModel("ExpansionModelProject", "ExpansionModelTest", getBundle());
+			openDiagram(editor, "NewDiagram");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		// loading
 		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("AddLink.xmi");
@@ -89,43 +94,35 @@ public class ExpansionAddLink extends AbstractEditorTest {
 		ChildrenListRepresentation childrenListRepresentation = diagramExpansionsRegistry.mapChildreen.get(CLASS_DIAGRAM_TYPE);
 		System.out.println(childrenListRepresentation);
 		Assert.assertNotNull("A usage contex has been defined for " + CLASS_DIAGRAM_TYPE, childrenListRepresentation);
-
+		ElementTypeConfigurationTypeRegistry.getInstance();
 		Assert.assertNotNull("The Link of NewDependency has been added", childrenListRepresentation.IDMap.get(DEPENDENCY_HINT));
 		List<String> the_ClassDiagram_Children = childrenListRepresentation.parentChildrenRelation.get(CLASS_DIAGRAM_TYPE);
 		Assert.assertEquals("The class Diagram can have a new child", 1, the_ClassDiagram_Children.size());
 		Assert.assertEquals("class Diagram has to contain " + DEPENDENCY_HINT, DEPENDENCY_HINT, the_ClassDiagram_Children.get(0));
 
-
 		// the model is valid
 		// now launch a class diagram
 
-		try {
-			initModel("ExpansionModelProject", "ExpansionModelTest", getBundle());
-			openDiagram(editor, "NewDiagram");
-			SynchronizableGmfDiagramEditor diagramEditor = (SynchronizableGmfDiagramEditor) editor.getActiveEditor();
-			DiagramEditPart diagramEditPart = editor.getAdapter(DiagramEditPart.class);
-			Assert.assertNotNull("A Class edit Part must exist", diagramEditPart);
-			Assert.assertNotNull("The diagram must be opened", diagramEditPart);
-			Assert.assertEquals("The class diagram has to contain two class representation", 2, diagramEditPart.getChildren().size());
-			IGraphicalEditPart myclassEditPart = (IGraphicalEditPart) diagramEditPart.getChildren().get(0);
-			IGraphicalEditPart myOtherclassEditPart = (IGraphicalEditPart) diagramEditPart.getChildren().get(1);
-			Assert.assertNotNull("myclassEditPart edit Part must exist", myclassEditPart);
-			Assert.assertNotNull("myOtherclassEditPart edit Part must exist", myOtherclassEditPart);
-			ElementTypeConfigurationTypeRegistry.getInstance();
-			final IElementType elementType_Dependency = ElementTypeRegistry.getInstance().getType(NEW_DEPENDENCY_ELEMENTTYPE_ID);
+		SynchronizableGmfDiagramEditor diagramEditor = (SynchronizableGmfDiagramEditor) editor.getActiveEditor();
+		DiagramEditPart diagramEditPart = editor.getAdapter(DiagramEditPart.class);
+		Assert.assertNotNull("A Class edit Part must exist", diagramEditPart);
+		Assert.assertNotNull("The diagram must be opened", diagramEditPart);
+		Assert.assertEquals("The class diagram has to contain two class representation", 2, diagramEditPart.getChildren().size());
+		IGraphicalEditPart myclassEditPart = (IGraphicalEditPart) diagramEditPart.getChildren().get(0);
+		IGraphicalEditPart myOtherclassEditPart = (IGraphicalEditPart) diagramEditPart.getChildren().get(1);
+		Assert.assertNotNull("myclassEditPart edit Part must exist", myclassEditPart);
+		Assert.assertNotNull("myOtherclassEditPart edit Part must exist", myOtherclassEditPart);
 
-			Command command = myOtherclassEditPart.getCommand(createConnectionViewRequest(elementType_Dependency, myclassEditPart, myOtherclassEditPart, diagramEditPart));
-			assertNotNull("The command to create link must be not null", command);
-			assertTrue("The command to create link must be executable", command.canExecute() == true);
-			diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-			assertTrue("The edge must be created", (diagramEditPart.getDiagramView()).getEdges().size() == 1);
-			org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart linkEditPart = (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart) diagramEditPart.getConnections().get(0);
-			Assert.assertNotNull("linkEditPart edit Part must exist", linkEditPart);
-			Assert.assertEquals("The link must have the type " + DEPENDENCY_HINT, DEPENDENCY_HINT, linkEditPart.getNotationView().getType());
+		final IElementType elementType_Dependency = ElementTypeRegistry.getInstance().getType(NEW_DEPENDENCY_ELEMENTTYPE_ID);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		Command command = myOtherclassEditPart.getCommand(createConnectionViewRequest(elementType_Dependency, myclassEditPart, myOtherclassEditPart, diagramEditPart));
+		assertNotNull("The command to create link must be not null", command);
+		assertTrue("The command to create link must be executable", command.canExecute() == true);
+		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+		assertTrue("The edge must be created", (diagramEditPart.getDiagramView()).getEdges().size() == 1);
+		org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart linkEditPart = (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart) diagramEditPart.getConnections().get(0);
+		Assert.assertNotNull("linkEditPart edit Part must exist", linkEditPart);
+		Assert.assertEquals("The link must have the type " + DEPENDENCY_HINT, DEPENDENCY_HINT, linkEditPart.getNotationView().getType());
 
 	}
 
