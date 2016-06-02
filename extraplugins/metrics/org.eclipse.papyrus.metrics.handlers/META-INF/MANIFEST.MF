@@ -25,4 +25,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.metrics.handlers
 Bundle-Localization: bundle
+Bundle-Vendor: %Bundle-Vendor
 

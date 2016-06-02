@@ -16,3 +16,4 @@ Export-Package: org.eclipse.papyrus.metrics.extensionpoints,
  org.eclipse.papyrus.metrics.extensionpoints.helpers,
  org.eclipse.papyrus.metrics.extensionpoints.interfaces
 Bundle-Localization: bundle
+Bundle-Vendor: %Bundle-Vendor

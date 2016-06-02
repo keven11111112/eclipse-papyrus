@@ -15,3 +15,4 @@ Import-Package: org.eclipse.papyrus.sysml.requirements,
 Export-Package: org.eclipse.papyrus.requirements.sysml.verfication.rules,
  org.eclipse.papyrus.requirements.sysml.verification
 Bundle-Localization: bundle
+Bundle-Vendor: %Bundle-Vendor
