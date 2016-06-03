@@ -24,6 +24,269 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_g7H-4PZdEeWp2tPQOjfd1A" name="Remove display of applied stereotype "/>
       <packagedElement xmi:type="uml:Class" xmi:id="_1jei8PZdEeWp2tPQOjfd1A" name="Update display"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_Nf_joPHCEeWxfJc8tP3QkA" name="UseCases">
+      <packagedElement xmi:type="uml:Component" xmi:id="_9YUK8BaoEeK2bPy_5yA69Q" name="Papyrus stereotype display" useCase="_DZH58PHFEeWxfJc8tP3QkA _Im4_UPHFEeWxfJc8tP3QkA _Mao9wPHFEeWxfJc8tP3QkA _P7spsPHFEeWxfJc8tP3QkA _T1AdkPHFEeWxfJc8tP3QkA _fVgsUPHFEeWxfJc8tP3QkA _KvenAPHGEeWxfJc8tP3QkA _vjorUPHGEeWxfJc8tP3QkA _97xDkPZdEeWp2tPQOjfd1A">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_T1AdkPHFEeWxfJc8tP3QkA" name="Display applied stereotype name" subject="_9YUK8BaoEeK2bPy_5yA69Q">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_UUhkkPZ6EeWfXdmtYb4ggQ">
+            <body>The diagram contains a shape. When you applied a stereotype on the element, the applied stereotype name is displayed on the shape below the name of the element.&#xD;
+When an element is dropped form the model explorer to the diagram, the applied stereotype named is displayed on the shape.&#xD;
+This is the same behavior for links. </body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_YZuUkPv6EeWkK6hum4lQXg">
+            <body>Inside  papyrus, it is possible to display the name of applied stereotype. &#xD;
+To do that:&#xD;
+1. Apply the profile  that contains the stereotype on your model.&#xD;
+2. Apply the wanted stereotype on the element.</body>
+          </ownedComment>
+          <include xmi:type="uml:Include" xmi:id="_PSHEsPHGEeWxfJc8tP3QkA" addition="_KvenAPHGEeWxfJc8tP3QkA"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_Im4_UPHFEeWxfJc8tP3QkA" name="Display stereotype properties" subject="_9YUK8BaoEeK2bPy_5yA69Q">
+          <ownedComment xmi:type="uml:Comment" xmi:id="__YMM8Pv9EeWkK6hum4lQXg">
+            <body>It is possible to display properties of stereotypes as &quot;comment&quot;, as &quot;compartment&quot;, as &quot;brace&quot;</body>
+          </ownedComment>
+          <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_nVgowPHFEeWxfJc8tP3QkA" name="ExtensionPoint1"/>
+          <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_n0ylwPHFEeWxfJc8tP3QkA" name="ExtensionPoint2"/>
+          <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_obARMPHFEeWxfJc8tP3QkA" name="ExtensionPoint3"/>
+          <include xmi:type="uml:Include" xmi:id="_vXPDgPHFEeWxfJc8tP3QkA" addition="_DZH58PHFEeWxfJc8tP3QkA"/>
+          <include xmi:type="uml:Include" xmi:id="_dMVj4PHGEeWxfJc8tP3QkA" addition="_KvenAPHGEeWxfJc8tP3QkA"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_Mao9wPHFEeWxfJc8tP3QkA" name="Display as &quot;brace&quot;" subject="_9YUK8BaoEeK2bPy_5yA69Q">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_SC4KcPv-EeWkK6hum4lQXg">
+            <body>Properties of applied stereotype can be displayed as &quot;brace&quot;. This is label that is set below the name, and contains a sequence of properties name with their values.</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_kzM14Pv-EeWkK6hum4lQXg">
+            <body>To do that:&#xD;
+1. Select your Element&#xD;
+2. Select the Appearance Tab in the property view&#xD;
+3. Select &quot;In braces&quot; for the line of your applied stereotype</body>
+          </ownedComment>
+          <extend xmi:type="uml:Extend" xmi:id="_n0x-sPHFEeWxfJc8tP3QkA" extendedCase="_Im4_UPHFEeWxfJc8tP3QkA" extensionLocation="_n0ylwPHFEeWxfJc8tP3QkA"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_P7spsPHFEeWxfJc8tP3QkA" name="Display as &quot;compartment&quot;" subject="_9YUK8BaoEeK2bPy_5yA69Q">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_dLTTkPwCEeWkK6hum4lQXg">
+            <body>Properties of applied stereotype can be displayed as a compartment. This compartment contains all labels that are properties of the applied stereotype.</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_d2dwcPwCEeWkK6hum4lQXg">
+            <body>To do that:&#xD;
+1. Select your Element&#xD;
+2. Select the Appearance Tab in the property view&#xD;
+3. Select &quot;In Compartment&quot; for the line of your applied stereotype</body>
+          </ownedComment>
+          <extend xmi:type="uml:Extend" xmi:id="_oa_qIPHFEeWxfJc8tP3QkA" extendedCase="_Im4_UPHFEeWxfJc8tP3QkA" extensionLocation="_obARMPHFEeWxfJc8tP3QkA"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_fVgsUPHFEeWxfJc8tP3QkA" name="Display as &quot;Comment&quot;" subject="_9YUK8BaoEeK2bPy_5yA69Q">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_vG0BcPwDEeWkK6hum4lQXg">
+            <body>Properties of applied stereotype can be displayed as a comment. This comment representation that contains all labels that are properties of the applied stereotype.</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_vG0ogPwDEeWkK6hum4lQXg">
+            <body>To do that:&#xD;
+1. Select your Element&#xD;
+2. Select the Appearance Tab in the property view&#xD;
+3. Select &quot;In Comment&quot; for the line of your applied stereotype</body>
+          </ownedComment>
+          <extend xmi:type="uml:Extend" xmi:id="_nVdlcPHFEeWxfJc8tP3QkA" extendedCase="_Im4_UPHFEeWxfJc8tP3QkA" extensionLocation="_nVgowPHFEeWxfJc8tP3QkA"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_DZH58PHFEeWxfJc8tP3QkA" name="Choose properties to display" subject="_9YUK8BaoEeK2bPy_5yA69Q">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_Sq2sQPwFEeWkK6hum4lQXg">
+            <body>The list of properties of stereotypes can be chosen by the user by using the property view or by writing a css.&#xD;
+This choice runs for the 3 representations of applied stereotypes: brace, compartment, comment.</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_oa8UcPwFEeWkK6hum4lQXg">
+            <body>By using the property view, it is possible to select the list of property of stereotype.&#xD;
+To do that:&#xD;
+1. Select your element.&#xD;
+2. Check that the applied stereotype has been displayed as brace, compartment or comment&#xD;
+3. Select lines that correspond to wanted properties of stereotype.</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_seudgPwGEeWkK6hum4lQXg">
+            <body>By using CSS file:&#xD;
+Compartment[type=StereotypeCompartment]{&#xD;
+	visible:true;&#xD;
+}&#xD;
+Compartment[type=StereotypeCompartment]>[property=&quot;derived&quot;]{&#xD;
+	visible:false;&#xD;
+}&#xD;
+Compartment[type=StereotypeCompartment]>[property=&quot;derivedFrom&quot;]{&#xD;
+	visible:false;&#xD;
+}&#xD;
+The compartment is displayed and the property derived and derivedFrom are not displayed&#xD;
+&#xD;
+&#xD;
+</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_RExicPwJEeWkK6hum4lQXg">
+            <body>The following CSS rules are implemented by default for all the Diagrams:&#xD;
+Shape[type=StereotypeComment]{&#xD;
+	visible:false;&#xD;
+}&#xD;
+&#xD;
+StereotypeComment Compartment[type=StereotypeBrace]{&#xD;
+	visible:false;&#xD;
+}&#xD;
+&#xD;
+Compartment[type=StereotypeCompartment]{&#xD;
+	visible:false;&#xD;
+}&#xD;
+&#xD;
+Compartment[type=StereotypeBrace]{&#xD;
+	visible:false;&#xD;
+}&#xD;
+&#xD;
+Label[type=StereotypeLabel]{&#xD;
+	depth:&quot;none&quot;;&#xD;
+}&#xD;
+&#xD;
+&#xD;
+&#xD;
+&#xD;
+Here is some example of CSS to display the Stereotype:&#xD;
+/* To modify the depth */&#xD;
+Label[type=StereotypeLabel]{&#xD;
+	depth:&quot;-1&quot;;&#xD;
+}&#xD;
+&#xD;
+/* To make the properties visible into compartment */&#xD;
+Compartment[type=StereotypeCompartment]{&#xD;
+	visible:true;&#xD;
+}&#xD;
+&#xD;
+/* Hide the property &quot;allocatedTo&quot; into the compartment */&#xD;
+Compartment[type=StereotypeCompartment]>[property=&quot;allocatedTo&quot;]{&#xD;
+	visible:false;&#xD;
+}&#xD;
+&#xD;
+/* Hide all the properties into the Compartment of the stereotype Block */&#xD;
+Compartment[stereotype=&quot;SysML::Blocks::Block&quot;]{&#xD;
+	visible:false;&#xD;
+}&#xD;
+&#xD;
+/* Display the Comment shape */&#xD;
+StereotypeComment{&#xD;
+	visible:true;&#xD;
+}&#xD;
+&#xD;
+/* Display the properties in Brace into the Comment*/&#xD;
+StereotypeComment Compartment[type=StereotypeBrace]{&#xD;
+	visible:true;&#xD;
+}&#xD;
+&#xD;
+</body>
+          </ownedComment>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_KvenAPHGEeWxfJc8tP3QkA" name="Choose QN depth" subject="_9YUK8BaoEeK2bPy_5yA69Q">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_p5pKQPwJEeWkK6hum4lQXg">
+            <body>The stereotype name can be displayed by choosing the depth. I consists on choosing the size of the qualified name of the stereotype.&#xD;
+full = all the qualified name&#xD;
+0= only the name of stereotype&#xD;
+-1= the name of its parent + the name of the stereotype&#xD;
+-2=the name of its great-parent+ the name of its parent + the name of the stereotype</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_C02DkPwKEeWkK6hum4lQXg">
+            <body>Using Css: &#xD;
+Label[type=StereotypeLabel]{&#xD;
+	depth:&quot;-1&quot;;&#xD;
+}&#xD;
+ By using the property view:&#xD;
+1. Select the element.&#xD;
+2. Select the appearance Tab&#xD;
+3. Select the name depth and choose the size</body>
+          </ownedComment>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_vjorUPHGEeWxfJc8tP3QkA" name="Remove display of stereotype properties" subject="_9YUK8BaoEeK2bPy_5yA69Q">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_7Px6MPwKEeWkK6hum4lQXg">
+            <body>The display of stereotype can be removed by selection or by unapply stereotype or profile container</body>
+          </ownedComment>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_97xDkPZdEeWp2tPQOjfd1A" name="Update the display of applied stereotype properties" subject="_9YUK8BaoEeK2bPy_5yA69Q">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_ELdbwPwLEeWkK6hum4lQXg">
+            <body>When the value associated to the property of stereotype has been modified, the display must be modified.</body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_epsOEPwLEeWkK6hum4lQXg">
+            <body>It is possible to edit value of stereotype property by double click on the property in the diagram.&#xD;
+Important: the property must be writable and Real are not yet editable. </body>
+          </ownedComment>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_PchD0PwMEeWkK6hum4lQXg">
+            <body>It is possible to edit property of applied stereotype by using the property view:&#xD;
+1. Select your element&#xD;
+2. Select the Profile tab&#xD;
+3. Expand the stereotype&#xD;
+4. Select the property&#xD;
+5. Edit at right the property of the stereotype</body>
+          </ownedComment>
+        </ownedUseCase>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_zFbB8PHEEeWxfJc8tP3QkA" name="Papyrus user"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ZzUPEPHFEeWxfJc8tP3QkA" memberEnd="_ZzU2IvHFEeWxfJc8tP3QkA _ZzU2I_HFEeWxfJc8tP3QkA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ZzU2IPHFEeWxfJc8tP3QkA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ZzU2IfHFEeWxfJc8tP3QkA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_ZzU2IvHFEeWxfJc8tP3QkA" name="display applied stereotype name" type="_T1AdkPHFEeWxfJc8tP3QkA" association="_ZzUPEPHFEeWxfJc8tP3QkA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_ZzU2I_HFEeWxfJc8tP3QkA" name="papyrus user" type="_zFbB8PHEEeWxfJc8tP3QkA" association="_ZzUPEPHFEeWxfJc8tP3QkA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_bRp1UPHFEeWxfJc8tP3QkA" memberEnd="_bRp1U_HFEeWxfJc8tP3QkA _bRqcYPHFEeWxfJc8tP3QkA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bRp1UfHFEeWxfJc8tP3QkA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bRp1UvHFEeWxfJc8tP3QkA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_bRp1U_HFEeWxfJc8tP3QkA" name="display stereotype property as a comment" type="_Im4_UPHFEeWxfJc8tP3QkA" association="_bRp1UPHFEeWxfJc8tP3QkA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_bRqcYPHFEeWxfJc8tP3QkA" name="papyrus user" type="_zFbB8PHEEeWxfJc8tP3QkA" association="_bRp1UPHFEeWxfJc8tP3QkA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_jXNKsPHGEeWxfJc8tP3QkA" memberEnd="_jXNxwvHGEeWxfJc8tP3QkA _jXNxw_HGEeWxfJc8tP3QkA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jXNxwPHGEeWxfJc8tP3QkA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jXNxwfHGEeWxfJc8tP3QkA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_jXNxwvHGEeWxfJc8tP3QkA" name="choose properties to display" type="_DZH58PHFEeWxfJc8tP3QkA" association="_jXNKsPHGEeWxfJc8tP3QkA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_jXNxw_HGEeWxfJc8tP3QkA" name="papyrus user" type="_zFbB8PHEEeWxfJc8tP3QkA" association="_jXNKsPHGEeWxfJc8tP3QkA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_zi7LYPHGEeWxfJc8tP3QkA" memberEnd="_zi7LY_HGEeWxfJc8tP3QkA _zi7LZPHGEeWxfJc8tP3QkA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_zi7LYfHGEeWxfJc8tP3QkA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_zi7LYvHGEeWxfJc8tP3QkA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_zi7LY_HGEeWxfJc8tP3QkA" name="remove display of stereotype properties" type="_vjorUPHGEeWxfJc8tP3QkA" association="_zi7LYPHGEeWxfJc8tP3QkA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_zi7LZPHGEeWxfJc8tP3QkA" name="papyrus user" type="_zFbB8PHEEeWxfJc8tP3QkA" association="_zi7LYPHGEeWxfJc8tP3QkA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_7hp8gPHGEeWxfJc8tP3QkA" name="Applied Stereotype"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="__VgBkPHGEeWxfJc8tP3QkA" memberEnd="__VgoovHGEeWxfJc8tP3QkA __Vgoo_HGEeWxfJc8tP3QkA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__VgooPHGEeWxfJc8tP3QkA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__VgoofHGEeWxfJc8tP3QkA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="__VgoovHGEeWxfJc8tP3QkA" name="remove display of stereotype properties" type="_vjorUPHGEeWxfJc8tP3QkA" association="__VgBkPHGEeWxfJc8tP3QkA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="__Vgoo_HGEeWxfJc8tP3QkA" name="applied stereotype" type="_7hp8gPHGEeWxfJc8tP3QkA" association="__VgBkPHGEeWxfJc8tP3QkA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_CL-fcPHHEeWxfJc8tP3QkA" name="Applied profile"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_Dx1qAPHHEeWxfJc8tP3QkA" memberEnd="_Dx2REPHHEeWxfJc8tP3QkA _Dx2REfHHEeWxfJc8tP3QkA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Dx1qAfHHEeWxfJc8tP3QkA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Dx1qAvHHEeWxfJc8tP3QkA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_Dx2REPHHEeWxfJc8tP3QkA" name="remove display of stereotype properties" type="_vjorUPHGEeWxfJc8tP3QkA" association="_Dx1qAPHHEeWxfJc8tP3QkA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_Dx2REfHHEeWxfJc8tP3QkA" name="profile" type="_CL-fcPHHEeWxfJc8tP3QkA" association="_Dx1qAPHHEeWxfJc8tP3QkA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_MmhLsPHHEeWxfJc8tP3QkA" name="Css file">
+        <generalization xmi:type="uml:Generalization" xmi:id="_S6PMgPHHEeWxfJc8tP3QkA" general="_zFbB8PHEEeWxfJc8tP3QkA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_8RoScPZcEeWp2tPQOjfd1A" name="Satisfies_Use CSS file" client="_DZH58PHFEeWxfJc8tP3QkA" supplier="_5bc-oPG-EeWxfJc8tP3QkA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_8RtK8PZcEeWp2tPQOjfd1A" name="Satisfies_Use property view" client="_DZH58PHFEeWxfJc8tP3QkA" supplier="_8L2CoPG-EeWxfJc8tP3QkA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_Bv21sPZdEeWp2tPQOjfd1A" name="Satisfies_Stereotype application properties dipslay" client="_Im4_UPHFEeWxfJc8tP3QkA" supplier="_m3qqgPDmEeWDLtABNBHFOA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_GI7HsPZdEeWp2tPQOjfd1A" name="Satisfies_Display Requirement as a &quot;brace&quot;" client="_Mao9wPHFEeWxfJc8tP3QkA" supplier="_HJJvoPG9EeWxfJc8tP3QkA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_J2JnYPZdEeWp2tPQOjfd1A" name="Satisfies_Display Requirement as a &quot;compartment&quot;" client="_P7spsPHFEeWxfJc8tP3QkA" supplier="_m3_9cPGxEeWxfJc8tP3QkA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_VfKR4PZdEeWp2tPQOjfd1A" name="Satisfies_Apply a stereotype" client="_T1AdkPHFEeWxfJc8tP3QkA" supplier="_u81BcPGvEeWxfJc8tP3QkA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_VfMuIPZdEeWp2tPQOjfd1A" name="Satisfies_Drop from  the model explorer" client="_T1AdkPHFEeWxfJc8tP3QkA" supplier="_3p4RIPGvEeWxfJc8tP3QkA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_VfN8QfZdEeWp2tPQOjfd1A" name="Satisfies_Display the name of the stereotype " client="_T1AdkPHFEeWxfJc8tP3QkA" supplier="_D5Xs0PGwEeWxfJc8tP3QkA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_VfPxcPZdEeWp2tPQOjfd1A" name="Satisfies_Display Each applied stereotype  name differently" client="_T1AdkPHFEeWxfJc8tP3QkA" supplier="_LK5ZsPGwEeWxfJc8tP3QkA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_aokbsPZdEeWp2tPQOjfd1A" name="Satisfies_Display Requirement as a &quot;comment&quot;" client="_fVgsUPHFEeWxfJc8tP3QkA" supplier="_B0AGUPGxEeWxfJc8tP3QkA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_c9qq0PZdEeWp2tPQOjfd1A" name="Satisfies_Qualified name depth" client="_KvenAPHGEeWxfJc8tP3QkA" supplier="_UBW7sPG-EeWxfJc8tP3QkA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_zxxUwPZdEeWp2tPQOjfd1A" name="Satisfies_Remove display of applied stereotype " client="_vjorUPHGEeWxfJc8tP3QkA" supplier="_g7H-4PZdEeWp2tPQOjfd1A"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_EybZYPZeEeWp2tPQOjfd1A" name="Satisfies_REQ_006" client="_97xDkPZdEeWp2tPQOjfd1A" supplier="_1jei8PZdEeWp2tPQOjfd1A"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_LlwvkPZ4EeWfXdmtYb4ggQ" name="Satisfies_Display stereotype name" client="_T1AdkPHFEeWxfJc8tP3QkA" supplier="_Idqz4PGvEeWxfJc8tP3QkA"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_Y1F3oPZ4EeWfXdmtYb4ggQ" name="Satisfies_Choice on Stereotype properties to display" client="_DZH58PHFEeWxfJc8tP3QkA" supplier="_tJhS8PG-EeWxfJc8tP3QkA"/>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_ysUHMCljEeaHSopWHHQ84Q" name="Actor1"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_ztAIICljEeaHSopWHHQ84Q" memberEnd="_ztug4CljEeaHSopWHHQ84Q _ztvH8CljEeaHSopWHHQ84Q">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ztRN4CljEeaHSopWHHQ84Q" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ztRN4SljEeaHSopWHHQ84Q" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_ztug4CljEeaHSopWHHQ84Q" name="actor1" type="_ysUHMCljEeaHSopWHHQ84Q" association="_ztAIICljEeaHSopWHHQ84Q"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_ztvH8CljEeaHSopWHHQ84Q" name="display applied stereotype name" type="_T1AdkPHFEeWxfJc8tP3QkA" association="_ztAIICljEeaHSopWHHQ84Q"/>
+      </packagedElement>
+    </packagedElement>
     <packagedElement xmi:type="uml:Model" xmi:id="_SpZYUPHAEeWxfJc8tP3QkA" name="Design">
       <packagedElement xmi:type="uml:Package" xmi:id="_IubgovZ5EeWfXdmtYb4ggQ" name="org.eclipse.papyrus.uml.diagram.stereotype.edition">
         <packagedElement xmi:type="uml:Class" xmi:id="_IudV0PZ5EeWfXdmtYb4ggQ" name="Activator" visibility="public">
@@ -2261,261 +2524,6 @@
           </packagedElement>
         </packagedElement>
       </packagedElement>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Model" xmi:id="_Nf_joPHCEeWxfJc8tP3QkA" name="UseCases">
-      <packagedElement xmi:type="uml:Component" xmi:id="_9YUK8BaoEeK2bPy_5yA69Q" name="Papyrus stereotype display" useCase="_DZH58PHFEeWxfJc8tP3QkA _Im4_UPHFEeWxfJc8tP3QkA _Mao9wPHFEeWxfJc8tP3QkA _P7spsPHFEeWxfJc8tP3QkA _T1AdkPHFEeWxfJc8tP3QkA _fVgsUPHFEeWxfJc8tP3QkA _KvenAPHGEeWxfJc8tP3QkA _vjorUPHGEeWxfJc8tP3QkA _97xDkPZdEeWp2tPQOjfd1A">
-        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_T1AdkPHFEeWxfJc8tP3QkA" name="Display applied stereotype name" subject="_9YUK8BaoEeK2bPy_5yA69Q">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_UUhkkPZ6EeWfXdmtYb4ggQ">
-            <body>The diagram contains a shape. When you applied a stereotype on the element, the applied stereotype name is displayed on the shape below the name of the element.&#xD;
-When an element is dropped form the model explorer to the diagram, the applied stereotype named is displayed on the shape.&#xD;
-This is the same behavior for links. </body>
-          </ownedComment>
-          <ownedComment xmi:type="uml:Comment" xmi:id="_YZuUkPv6EeWkK6hum4lQXg">
-            <body>Inside  papyrus, it is possible to display the name of applied stereotype. &#xD;
-To do that:&#xD;
-1. Apply the profile  that contains the stereotype on your model.&#xD;
-2. Apply the wanted stereotype on the element.</body>
-          </ownedComment>
-          <include xmi:type="uml:Include" xmi:id="_PSHEsPHGEeWxfJc8tP3QkA" addition="_KvenAPHGEeWxfJc8tP3QkA"/>
-        </ownedUseCase>
-        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_Im4_UPHFEeWxfJc8tP3QkA" name="Display stereotype properties" subject="_9YUK8BaoEeK2bPy_5yA69Q">
-          <ownedComment xmi:type="uml:Comment" xmi:id="__YMM8Pv9EeWkK6hum4lQXg">
-            <body>It is possible to display properties of stereotypes as &quot;comment&quot;, as &quot;compartment&quot;, as &quot;brace&quot;</body>
-          </ownedComment>
-          <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_nVgowPHFEeWxfJc8tP3QkA" name="ExtensionPoint1"/>
-          <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_n0ylwPHFEeWxfJc8tP3QkA" name="ExtensionPoint2"/>
-          <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_obARMPHFEeWxfJc8tP3QkA" name="ExtensionPoint3"/>
-          <include xmi:type="uml:Include" xmi:id="_vXPDgPHFEeWxfJc8tP3QkA" addition="_DZH58PHFEeWxfJc8tP3QkA"/>
-          <include xmi:type="uml:Include" xmi:id="_dMVj4PHGEeWxfJc8tP3QkA" addition="_KvenAPHGEeWxfJc8tP3QkA"/>
-        </ownedUseCase>
-        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_Mao9wPHFEeWxfJc8tP3QkA" name="As &quot;brace&quot;" subject="_9YUK8BaoEeK2bPy_5yA69Q">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_SC4KcPv-EeWkK6hum4lQXg">
-            <body>Properties of applied stereotype can be displayed as &quot;brace&quot;. This is label that is set below the name, and contains a sequence of properties name with their values.</body>
-          </ownedComment>
-          <ownedComment xmi:type="uml:Comment" xmi:id="_kzM14Pv-EeWkK6hum4lQXg">
-            <body>To do that:&#xD;
-1. Select your Element&#xD;
-2. Select the Appearance Tab in the property view&#xD;
-3. Select &quot;In braces&quot; for the line of your applied stereotype</body>
-          </ownedComment>
-          <extend xmi:type="uml:Extend" xmi:id="_n0x-sPHFEeWxfJc8tP3QkA" extendedCase="_Im4_UPHFEeWxfJc8tP3QkA" extensionLocation="_n0ylwPHFEeWxfJc8tP3QkA"/>
-        </ownedUseCase>
-        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_P7spsPHFEeWxfJc8tP3QkA" name="As &quot;compartment&quot;" subject="_9YUK8BaoEeK2bPy_5yA69Q">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_dLTTkPwCEeWkK6hum4lQXg">
-            <body>Properties of applied stereotype can be displayed as a compartment. This compartment contains all labels that are properties of the applied stereotype.</body>
-          </ownedComment>
-          <ownedComment xmi:type="uml:Comment" xmi:id="_d2dwcPwCEeWkK6hum4lQXg">
-            <body>To do that:&#xD;
-1. Select your Element&#xD;
-2. Select the Appearance Tab in the property view&#xD;
-3. Select &quot;In Compartment&quot; for the line of your applied stereotype</body>
-          </ownedComment>
-          <extend xmi:type="uml:Extend" xmi:id="_oa_qIPHFEeWxfJc8tP3QkA" extendedCase="_Im4_UPHFEeWxfJc8tP3QkA" extensionLocation="_obARMPHFEeWxfJc8tP3QkA"/>
-        </ownedUseCase>
-        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_fVgsUPHFEeWxfJc8tP3QkA" name="As &quot;Comment&quot;" subject="_9YUK8BaoEeK2bPy_5yA69Q">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_vG0BcPwDEeWkK6hum4lQXg">
-            <body>Properties of applied stereotype can be displayed as a comment. This comment representation that contains all labels that are properties of the applied stereotype.</body>
-          </ownedComment>
-          <ownedComment xmi:type="uml:Comment" xmi:id="_vG0ogPwDEeWkK6hum4lQXg">
-            <body>To do that:&#xD;
-1. Select your Element&#xD;
-2. Select the Appearance Tab in the property view&#xD;
-3. Select &quot;In Comment&quot; for the line of your applied stereotype</body>
-          </ownedComment>
-          <extend xmi:type="uml:Extend" xmi:id="_nVdlcPHFEeWxfJc8tP3QkA" extendedCase="_Im4_UPHFEeWxfJc8tP3QkA" extensionLocation="_nVgowPHFEeWxfJc8tP3QkA"/>
-        </ownedUseCase>
-        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_DZH58PHFEeWxfJc8tP3QkA" name="Choose properties to display" subject="_9YUK8BaoEeK2bPy_5yA69Q">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_Sq2sQPwFEeWkK6hum4lQXg">
-            <body>The list of properties of stereotypes can be chosen by the user by using the property view or by writing a css.&#xD;
-This choice runs for the 3 representations of applied stereotypes: brace, compartment, comment.</body>
-          </ownedComment>
-          <ownedComment xmi:type="uml:Comment" xmi:id="_oa8UcPwFEeWkK6hum4lQXg">
-            <body>By using the property view, it is possible to select the list of property of stereotype.&#xD;
-To do that:&#xD;
-1. Select your element.&#xD;
-2. Check that the applied stereotype has been displayed as brace, compartment or comment&#xD;
-3. Select lines that correspond to wanted properties of stereotype.</body>
-          </ownedComment>
-          <ownedComment xmi:type="uml:Comment" xmi:id="_seudgPwGEeWkK6hum4lQXg">
-            <body>By using CSS file:&#xD;
-Compartment[type=StereotypeCompartment]{&#xD;
-	visible:true;&#xD;
-}&#xD;
-Compartment[type=StereotypeCompartment]>[property=&quot;derived&quot;]{&#xD;
-	visible:false;&#xD;
-}&#xD;
-Compartment[type=StereotypeCompartment]>[property=&quot;derivedFrom&quot;]{&#xD;
-	visible:false;&#xD;
-}&#xD;
-The compartment is displayed and the property derived and derivedFrom are not displayed&#xD;
-&#xD;
-&#xD;
-</body>
-          </ownedComment>
-          <ownedComment xmi:type="uml:Comment" xmi:id="_RExicPwJEeWkK6hum4lQXg">
-            <body>The following CSS rules are implemented by default for all the Diagrams:&#xD;
-Shape[type=StereotypeComment]{&#xD;
-	visible:false;&#xD;
-}&#xD;
-&#xD;
-StereotypeComment Compartment[type=StereotypeBrace]{&#xD;
-	visible:false;&#xD;
-}&#xD;
-&#xD;
-Compartment[type=StereotypeCompartment]{&#xD;
-	visible:false;&#xD;
-}&#xD;
-&#xD;
-Compartment[type=StereotypeBrace]{&#xD;
-	visible:false;&#xD;
-}&#xD;
-&#xD;
-Label[type=StereotypeLabel]{&#xD;
-	depth:&quot;none&quot;;&#xD;
-}&#xD;
-&#xD;
-&#xD;
-&#xD;
-&#xD;
-Here is some example of CSS to display the Stereotype:&#xD;
-/* To modify the depth */&#xD;
-Label[type=StereotypeLabel]{&#xD;
-	depth:&quot;-1&quot;;&#xD;
-}&#xD;
-&#xD;
-/* To make the properties visible into compartment */&#xD;
-Compartment[type=StereotypeCompartment]{&#xD;
-	visible:true;&#xD;
-}&#xD;
-&#xD;
-/* Hide the property &quot;allocatedTo&quot; into the compartment */&#xD;
-Compartment[type=StereotypeCompartment]>[property=&quot;allocatedTo&quot;]{&#xD;
-	visible:false;&#xD;
-}&#xD;
-&#xD;
-/* Hide all the properties into the Compartment of the stereotype Block */&#xD;
-Compartment[stereotype=&quot;SysML::Blocks::Block&quot;]{&#xD;
-	visible:false;&#xD;
-}&#xD;
-&#xD;
-/* Display the Comment shape */&#xD;
-StereotypeComment{&#xD;
-	visible:true;&#xD;
-}&#xD;
-&#xD;
-/* Display the properties in Brace into the Comment*/&#xD;
-StereotypeComment Compartment[type=StereotypeBrace]{&#xD;
-	visible:true;&#xD;
-}&#xD;
-&#xD;
-</body>
-          </ownedComment>
-        </ownedUseCase>
-        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_KvenAPHGEeWxfJc8tP3QkA" name="Choose QN depth" subject="_9YUK8BaoEeK2bPy_5yA69Q">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_p5pKQPwJEeWkK6hum4lQXg">
-            <body>The stereotype name can be displayed by choosing the depth. I consists on choosing the size of the qualified name of the stereotype.&#xD;
-full = all the qualified name&#xD;
-0= only the name of stereotype&#xD;
--1= the name of its parent + the name of the stereotype&#xD;
--2=the name of its great-parent+ the name of its parent + the name of the stereotype</body>
-          </ownedComment>
-          <ownedComment xmi:type="uml:Comment" xmi:id="_C02DkPwKEeWkK6hum4lQXg">
-            <body>Using Css: &#xD;
-Label[type=StereotypeLabel]{&#xD;
-	depth:&quot;-1&quot;;&#xD;
-}&#xD;
- By using the property view:&#xD;
-1. Select the element.&#xD;
-2. Select the appearance Tab&#xD;
-3. Select the name depth and choose the size</body>
-          </ownedComment>
-        </ownedUseCase>
-        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_vjorUPHGEeWxfJc8tP3QkA" name="Remove display of stereotype properties" subject="_9YUK8BaoEeK2bPy_5yA69Q">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_7Px6MPwKEeWkK6hum4lQXg">
-            <body>The display of stereotype can be removed by selection or by unapply stereotype or profile container</body>
-          </ownedComment>
-        </ownedUseCase>
-        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_97xDkPZdEeWp2tPQOjfd1A" name="Update the display of applied stereotype properties" subject="_9YUK8BaoEeK2bPy_5yA69Q">
-          <ownedComment xmi:type="uml:Comment" xmi:id="_ELdbwPwLEeWkK6hum4lQXg">
-            <body>When the value associated to the property of stereotype has been modified, the display must be modified.</body>
-          </ownedComment>
-          <ownedComment xmi:type="uml:Comment" xmi:id="_epsOEPwLEeWkK6hum4lQXg">
-            <body>It is possible to edit value of stereotype property by double click on the property in the diagram.&#xD;
-Important: the property must be writable and Real are not yet editable. </body>
-          </ownedComment>
-          <ownedComment xmi:type="uml:Comment" xmi:id="_PchD0PwMEeWkK6hum4lQXg">
-            <body>It is possible to edit property of applied stereotype by using the property view:&#xD;
-1. Select your element&#xD;
-2. Select the Profile tab&#xD;
-3. Expand the stereotype&#xD;
-4. Select the property&#xD;
-5. Edit at right the property of the stereotype</body>
-          </ownedComment>
-        </ownedUseCase>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Actor" xmi:id="_zFbB8PHEEeWxfJc8tP3QkA" name="Papyrus user"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="_ZzUPEPHFEeWxfJc8tP3QkA" memberEnd="_ZzU2IvHFEeWxfJc8tP3QkA _ZzU2I_HFEeWxfJc8tP3QkA">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ZzU2IPHFEeWxfJc8tP3QkA" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ZzU2IfHFEeWxfJc8tP3QkA" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_ZzU2IvHFEeWxfJc8tP3QkA" name="display applied stereotype name" type="_T1AdkPHFEeWxfJc8tP3QkA" association="_ZzUPEPHFEeWxfJc8tP3QkA"/>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_ZzU2I_HFEeWxfJc8tP3QkA" name="papyrus user" type="_zFbB8PHEEeWxfJc8tP3QkA" association="_ZzUPEPHFEeWxfJc8tP3QkA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_bRp1UPHFEeWxfJc8tP3QkA" memberEnd="_bRp1U_HFEeWxfJc8tP3QkA _bRqcYPHFEeWxfJc8tP3QkA">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bRp1UfHFEeWxfJc8tP3QkA" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bRp1UvHFEeWxfJc8tP3QkA" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_bRp1U_HFEeWxfJc8tP3QkA" name="display stereotype property as a comment" type="_Im4_UPHFEeWxfJc8tP3QkA" association="_bRp1UPHFEeWxfJc8tP3QkA"/>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_bRqcYPHFEeWxfJc8tP3QkA" name="papyrus user" type="_zFbB8PHEEeWxfJc8tP3QkA" association="_bRp1UPHFEeWxfJc8tP3QkA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_jXNKsPHGEeWxfJc8tP3QkA" memberEnd="_jXNxwvHGEeWxfJc8tP3QkA _jXNxw_HGEeWxfJc8tP3QkA">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jXNxwPHGEeWxfJc8tP3QkA" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jXNxwfHGEeWxfJc8tP3QkA" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_jXNxwvHGEeWxfJc8tP3QkA" name="choose properties to display" type="_DZH58PHFEeWxfJc8tP3QkA" association="_jXNKsPHGEeWxfJc8tP3QkA"/>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_jXNxw_HGEeWxfJc8tP3QkA" name="papyrus user" type="_zFbB8PHEEeWxfJc8tP3QkA" association="_jXNKsPHGEeWxfJc8tP3QkA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_zi7LYPHGEeWxfJc8tP3QkA" memberEnd="_zi7LY_HGEeWxfJc8tP3QkA _zi7LZPHGEeWxfJc8tP3QkA">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_zi7LYfHGEeWxfJc8tP3QkA" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_zi7LYvHGEeWxfJc8tP3QkA" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_zi7LY_HGEeWxfJc8tP3QkA" name="remove display of stereotype properties" type="_vjorUPHGEeWxfJc8tP3QkA" association="_zi7LYPHGEeWxfJc8tP3QkA"/>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_zi7LZPHGEeWxfJc8tP3QkA" name="papyrus user" type="_zFbB8PHEEeWxfJc8tP3QkA" association="_zi7LYPHGEeWxfJc8tP3QkA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Actor" xmi:id="_7hp8gPHGEeWxfJc8tP3QkA" name="Applied Stereotype"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="__VgBkPHGEeWxfJc8tP3QkA" memberEnd="__VgoovHGEeWxfJc8tP3QkA __Vgoo_HGEeWxfJc8tP3QkA">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__VgooPHGEeWxfJc8tP3QkA" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__VgoofHGEeWxfJc8tP3QkA" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="__VgoovHGEeWxfJc8tP3QkA" name="remove display of stereotype properties" type="_vjorUPHGEeWxfJc8tP3QkA" association="__VgBkPHGEeWxfJc8tP3QkA"/>
-        <ownedEnd xmi:type="uml:Property" xmi:id="__Vgoo_HGEeWxfJc8tP3QkA" name="applied stereotype" type="_7hp8gPHGEeWxfJc8tP3QkA" association="__VgBkPHGEeWxfJc8tP3QkA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Actor" xmi:id="_CL-fcPHHEeWxfJc8tP3QkA" name="Applied profile"/>
-      <packagedElement xmi:type="uml:Association" xmi:id="_Dx1qAPHHEeWxfJc8tP3QkA" memberEnd="_Dx2REPHHEeWxfJc8tP3QkA _Dx2REfHHEeWxfJc8tP3QkA">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Dx1qAfHHEeWxfJc8tP3QkA" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Dx1qAvHHEeWxfJc8tP3QkA" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_Dx2REPHHEeWxfJc8tP3QkA" name="remove display of stereotype properties" type="_vjorUPHGEeWxfJc8tP3QkA" association="_Dx1qAPHHEeWxfJc8tP3QkA"/>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_Dx2REfHHEeWxfJc8tP3QkA" name="profile" type="_CL-fcPHHEeWxfJc8tP3QkA" association="_Dx1qAPHHEeWxfJc8tP3QkA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Actor" xmi:id="_MmhLsPHHEeWxfJc8tP3QkA" name="Css file">
-        <generalization xmi:type="uml:Generalization" xmi:id="_S6PMgPHHEeWxfJc8tP3QkA" general="_zFbB8PHEEeWxfJc8tP3QkA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_8RoScPZcEeWp2tPQOjfd1A" name="Satisfies_Use CSS file" client="_DZH58PHFEeWxfJc8tP3QkA" supplier="_5bc-oPG-EeWxfJc8tP3QkA"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_8RtK8PZcEeWp2tPQOjfd1A" name="Satisfies_Use property view" client="_DZH58PHFEeWxfJc8tP3QkA" supplier="_8L2CoPG-EeWxfJc8tP3QkA"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_Bv21sPZdEeWp2tPQOjfd1A" name="Satisfies_Stereotype application properties dipslay" client="_Im4_UPHFEeWxfJc8tP3QkA" supplier="_m3qqgPDmEeWDLtABNBHFOA"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_GI7HsPZdEeWp2tPQOjfd1A" name="Satisfies_Display Requirement as a &quot;brace&quot;" client="_Mao9wPHFEeWxfJc8tP3QkA" supplier="_HJJvoPG9EeWxfJc8tP3QkA"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_J2JnYPZdEeWp2tPQOjfd1A" name="Satisfies_Display Requirement as a &quot;compartment&quot;" client="_P7spsPHFEeWxfJc8tP3QkA" supplier="_m3_9cPGxEeWxfJc8tP3QkA"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_VfKR4PZdEeWp2tPQOjfd1A" name="Satisfies_Apply a stereotype" client="_T1AdkPHFEeWxfJc8tP3QkA" supplier="_u81BcPGvEeWxfJc8tP3QkA"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_VfMuIPZdEeWp2tPQOjfd1A" name="Satisfies_Drop from  the model explorer" client="_T1AdkPHFEeWxfJc8tP3QkA" supplier="_3p4RIPGvEeWxfJc8tP3QkA"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_VfN8QfZdEeWp2tPQOjfd1A" name="Satisfies_Display the name of the stereotype " client="_T1AdkPHFEeWxfJc8tP3QkA" supplier="_D5Xs0PGwEeWxfJc8tP3QkA"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_VfPxcPZdEeWp2tPQOjfd1A" name="Satisfies_Display Each applied stereotype  name differently" client="_T1AdkPHFEeWxfJc8tP3QkA" supplier="_LK5ZsPGwEeWxfJc8tP3QkA"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_aokbsPZdEeWp2tPQOjfd1A" name="Satisfies_Display Requirement as a &quot;comment&quot;" client="_fVgsUPHFEeWxfJc8tP3QkA" supplier="_B0AGUPGxEeWxfJc8tP3QkA"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_c9qq0PZdEeWp2tPQOjfd1A" name="Satisfies_Qualified name depth" client="_KvenAPHGEeWxfJc8tP3QkA" supplier="_UBW7sPG-EeWxfJc8tP3QkA"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_zxxUwPZdEeWp2tPQOjfd1A" name="Satisfies_Remove display of applied stereotype " client="_vjorUPHGEeWxfJc8tP3QkA" supplier="_g7H-4PZdEeWp2tPQOjfd1A"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_EybZYPZeEeWp2tPQOjfd1A" name="Satisfies_REQ_006" client="_97xDkPZdEeWp2tPQOjfd1A" supplier="_1jei8PZdEeWp2tPQOjfd1A"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_LlwvkPZ4EeWfXdmtYb4ggQ" name="Satisfies_Display stereotype name" client="_T1AdkPHFEeWxfJc8tP3QkA" supplier="_Idqz4PGvEeWxfJc8tP3QkA"/>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_Y1F3oPZ4EeWfXdmtYb4ggQ" name="Satisfies_Choice on Stereotype properties to display" client="_DZH58PHFEeWxfJc8tP3QkA" supplier="_tJhS8PG-EeWxfJc8tP3QkA"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Model" xmi:id="_uJ1C8PHKEeWxfJc8tP3QkA" name="Test">
       <packagedElement xmi:type="uml:Abstraction" xmi:id="_exn2sPdYEeWfXdmtYb4ggQ" name="Verifies_Stereotype application properties dipslay0" client="_aFFkAPc1EeWfXdmtYb4ggQ" supplier="_m3qqgPDmEeWDLtABNBHFOA"/>

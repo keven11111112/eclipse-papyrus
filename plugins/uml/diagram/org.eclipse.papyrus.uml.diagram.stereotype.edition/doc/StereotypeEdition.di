@@ -29,6 +29,15 @@
         <children>
           <emfPageIdentifier href="StereotypeEdition.notation#_mFZaYPv6EeWkK6hum4lQXg"/>
         </children>
+        <children>
+          <emfPageIdentifier href="StereotypeEdition.notation#_J0_4oBaqEeK2bPy_5yA69Q"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="StereotypeEdition.notation#_c2ivQBzyEeK0rNOLRzw-aQ"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="StereotypeEdition.notation#_ybvNMClmEea22tp98GOmjw"/>
+        </children>
       </children>
     </windows>
   </sashModel>
