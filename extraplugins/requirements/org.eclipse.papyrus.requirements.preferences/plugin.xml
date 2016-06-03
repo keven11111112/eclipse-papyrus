@@ -6,7 +6,7 @@
       <page
             category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             class="org.eclipse.papyrus.requirements.preferences.PreferencePage"
-            id="org.eclipse.papyrus.requirements.sysml.preferences.PreferencePage"
+            id="org.eclipse.papyrus.requirements.preferences.PreferencePage"
             name="%page.name">
       </page>
    </extension>

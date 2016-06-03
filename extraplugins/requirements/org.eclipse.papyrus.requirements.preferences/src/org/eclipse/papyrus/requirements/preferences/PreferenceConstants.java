@@ -22,6 +22,7 @@ public class PreferenceConstants {
 	public static final String REQUIREMENT_ID_PREFIX = "REQUIREMENT_ID_PREFIX";
 	public static final String REQUIREMENT_ID_DIGIT = "REQUIREMENT_ID_DIGIT";
 	public static final String CHILD_REQUIREMENTS_SEPARATOR = "CHILD_REQUIREMENTS_SEPARATOR";
+	public static final String REQUIREMENT_ID_UNIQUE_IN_ENTIRE_MODEL = "REQUIREMENT_ID_UNIQUE_IN_ENTIRE_MODEL";
 	//Options for the generation of a profile based on a domain model
 	public static final String NSURI_PREFIX = "NSURI_PREFIX";
 	public static final String GENERATE_ABSTRACTIONS_MODEL = "GENERATE_ABSTRACTIONS_MODEL";

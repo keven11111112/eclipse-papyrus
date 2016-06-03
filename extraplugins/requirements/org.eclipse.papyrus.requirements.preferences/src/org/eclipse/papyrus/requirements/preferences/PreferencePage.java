@@ -27,7 +27,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 /**
- * Preference page related to SysML Papyrus REQ
+ * Preference page related to SysML Papyrus for Requirements
  *
  */
 public class PreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
@@ -52,6 +52,8 @@ public class PreferencePage extends FieldEditorPreferencePage implements IWorkbe
 				reqCreationOptions));
 		addField(new StringFieldEditor(PreferenceConstants.CHILD_REQUIREMENTS_SEPARATOR,
 				"Separator between parent and child requirements IDs", reqCreationOptions));
+		addField(new BooleanFieldEditor(PreferenceConstants.REQUIREMENT_ID_UNIQUE_IN_ENTIRE_MODEL,
+				"ID must be unique in the entire model?", reqCreationOptions));
 
 		Group profileCreationOptions = createGroup("Generation of a profile based on a domain model");
 		addField(new StringFieldEditor(PreferenceConstants.NSURI_PREFIX, "Ns URI prefix for new profile",

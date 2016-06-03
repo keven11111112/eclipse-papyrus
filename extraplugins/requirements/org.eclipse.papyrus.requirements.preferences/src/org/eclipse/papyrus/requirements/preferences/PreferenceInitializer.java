@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 /**
- * Initializes the preferences for the creation of Papyrus REQ SysML
+ * Initializes the preferences for the creation of Papyrus for Requirements SysML
  * requirements
  *
  */
@@ -29,10 +29,10 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 
 		// Options for requirements creation
-		store.setDefault(PreferenceConstants.REQUIREMENT_ID_PREFIX, "REQ_");
-		store.setDefault(PreferenceConstants.REQUIREMENT_ID_DIGIT, 3);
-		store.setDefault(PreferenceConstants.CHILD_REQUIREMENTS_SEPARATOR, "_");
-
+		store.setDefault(PreferenceConstants.REQUIREMENT_ID_PREFIX, "R-");
+		store.setDefault(PreferenceConstants.REQUIREMENT_ID_DIGIT, 2);
+		store.setDefault(PreferenceConstants.CHILD_REQUIREMENTS_SEPARATOR, "-");
+		store.setDefault(PreferenceConstants.REQUIREMENT_ID_UNIQUE_IN_ENTIRE_MODEL, true);
 		// Options for the generation of a profile based on a domain model
 		store.setDefault(PreferenceConstants.NSURI_PREFIX, "https://www.eclipse.org/papyrus/");
 		store.setDefault(PreferenceConstants.GENERATE_ABSTRACTIONS_MODEL, false);
