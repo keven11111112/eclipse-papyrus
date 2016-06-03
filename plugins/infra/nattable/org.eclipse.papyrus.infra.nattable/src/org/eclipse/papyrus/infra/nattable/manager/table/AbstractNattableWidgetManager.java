@@ -268,6 +268,11 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * the cell editor axis configuration
 	 */
 	private CellEditorAxisConfiguration cellAxisConfiguration;
+	
+	/**
+	 * Keep the decoration service as variable to avoid possible memory leak.
+	 */
+	protected DecorationService decorationService;
 
 	/**
 	 *
@@ -626,17 +631,19 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * 		the decoration service
 	 */
 	protected DecorationService getDecorationService() {
-		// Bug 490067: We need to check if the resource of the context is existing before to get the decoration service (to avoid useless log exception)
-		// The resource of the context is not existing in the case of deletion (EObject was already deleted but the reference of table always exists)
-		if(null != this.table.getContext().eResource()){
-			try {
-				ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table.getContext());// get context and NOT get table for the usecase where the table is not in a resource
-				return serviceRegistry.getService(DecorationService.class);
-			} catch (ServiceException e) {
-				Activator.log.error(e);
+		if(null == decorationService){
+			// Bug 490067: We need to check if the resource of the context is existing before to get the decoration service (to avoid useless log exception)
+			// The resource of the context is not existing in the case of deletion (EObject was already deleted but the reference of table always exists)
+			if(null != this.table.getContext().eResource()){
+				try {
+					ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table.getContext());// get context and NOT get table for the usecase where the table is not in a resource
+					return serviceRegistry.getService(DecorationService.class);
+				} catch (ServiceException e) {
+					Activator.log.error(e);
+				}
 			}
 		}
-		return null;
+		return decorationService;
 	}
 
 	/**
@@ -1227,6 +1234,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		}
 		if (this.filterStrategy instanceof IDisposable) {
 			((IDisposable) this.filterStrategy).dispose();
+		}
+		if(null != this.decorationService){
+			this.decorationService = null;
 		}
 		this.cellAxisConfiguration = null;
 		this.filterConfiguration = null;
