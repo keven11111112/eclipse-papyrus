@@ -816,9 +816,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	public void dispose() {
 		if (this.decoractionServiceObserver != null) {
 			// Bug 490067: Check if the decoration service is available to avoid null pointer
-			final DecorationService decorationService = getDecorationService();
-			if (null != decorationService) {
-				decorationService.deleteListener(this.decoractionServiceObserver);
+			if (null != this.decorationService) {
+				this.decorationService.deleteListener(this.decoractionServiceObserver);
 			}
 			this.decoractionServiceObserver = null;
 		}
