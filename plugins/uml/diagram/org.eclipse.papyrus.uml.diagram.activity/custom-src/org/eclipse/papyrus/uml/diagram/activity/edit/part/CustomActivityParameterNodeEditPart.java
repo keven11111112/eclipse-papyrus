@@ -16,6 +16,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -74,6 +75,15 @@ public class CustomActivityParameterNodeEditPart extends ActivityParameterNodeEd
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
+		}
+	}
+
+	@Override
+	public void refreshBounds() {
+		super.refreshBounds();
+		IBorderItemLocator locator = getBorderItemLocator();
+		if (locator != null) {
+			locator.relocate(getFigure());
 		}
 	}
 
