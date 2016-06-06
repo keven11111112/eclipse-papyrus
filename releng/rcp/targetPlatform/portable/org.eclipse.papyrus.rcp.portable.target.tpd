@@ -10,7 +10,7 @@ location egit "http://download.eclipse.org/egit/staging/v4.4.0.201606011500-rc2"
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6-I-builds/I20160525-2000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6RC4-201606031000/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 }
 
@@ -46,7 +46,7 @@ location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20160601-1307"
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6-I-builds/I20160525-2000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6RC4-201606031000/" {
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
 }

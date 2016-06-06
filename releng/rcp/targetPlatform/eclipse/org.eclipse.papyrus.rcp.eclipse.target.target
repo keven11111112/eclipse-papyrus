@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus RCP" sequenceNumber="1464858629">
+<target name="Papyrus RCP" sequenceNumber="1465202200">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="file:/home/data/httpd/download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
@@ -74,7 +74,7 @@
       <repository id="emfValidation" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/validation/updates/milestones"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.team.svn.feature.group" version="4.0.0.I20160427-1700"/>
+      <unit id="org.eclipse.team.svn.feature.group" version="4.0.0.I20160604-1700"/>
       <repository id="subversive" location="file:/home/data/httpd/download.eclipse.org/technology/subversive/4.0/neon-site/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
@@ -88,7 +88,7 @@
       <repository id="gmfTooling" location="file:/home/data/httpd/download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.epp.logging.aeri.feature.feature.group" version="2.0.1.v20160601-1814"/>
+      <unit id="org.eclipse.epp.logging.aeri.feature.feature.group" version="2.0.1.v20160605-1811"/>
       <repository id="aeri" location="file:/home/data/httpd/download.eclipse.org/technology/epp/logging/milestones/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
@@ -158,11 +158,11 @@
       <repository id="cdo" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/cdo/drops/S20160601-1307"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20160525-2000"/>
+      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20160603-1000"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="3.6.300.v20160525-1303"/>
       <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="4.5.100.v20160503-0947"/>
-      <unit id="org.eclipse.sdk.feature.group" version="4.6.0.v20160525-2000"/>
-      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.6-I-builds/I20160525-2000/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.6.0.v20160603-1336"/>
+      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.6milestones/S-4.6RC4-201606031000/"/>
     </location>
   </locations>
 </target>
