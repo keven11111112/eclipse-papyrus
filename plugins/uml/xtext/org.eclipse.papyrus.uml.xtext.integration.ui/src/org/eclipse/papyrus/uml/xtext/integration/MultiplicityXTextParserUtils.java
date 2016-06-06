@@ -53,15 +53,28 @@ public class MultiplicityXTextParserUtils {
 	 */
 	public static ICommand updateOneMultiplicityCommand(final IElementEditService provider, final EObject eObject, final String bound) {
 		final CompositeCommand compositeCommand = new CompositeCommand("Multiplicity update");
+		CompositeCommand updateLower, updateUpper;
 		if (UNLIMITED_KEYWORD.equals(bound)) {
 			// The bound filled is the '*' character
-			compositeCommand.add(updateLowerValueSpecificationMultiplicityCommand(provider, eObject, "0"));
-			compositeCommand.add(updateUpperValueSpecificationMultiplicityCommand(provider, eObject, "-1"));
+			updateLower = updateLowerValueSpecificationMultiplicityCommand(provider, eObject, "0"); //$NON-NLS-1$
+			updateUpper = updateUpperValueSpecificationMultiplicityCommand(provider, eObject, "-1"); //$NON-NLS-1$
 		} else {
-			compositeCommand.add(updateLowerValueSpecificationMultiplicityCommand(provider, eObject, bound));
-			compositeCommand.add(updateUpperValueSpecificationMultiplicityCommand(provider, eObject, bound));
+			updateLower = updateLowerValueSpecificationMultiplicityCommand(provider, eObject, bound);
+			updateUpper = updateUpperValueSpecificationMultiplicityCommand(provider, eObject, bound);
 		}
-		return compositeCommand;
+		if (!updateLower.isEmpty()) {
+			compositeCommand.add(updateLower);
+		}
+		if (!updateUpper.isEmpty()) {
+			compositeCommand.add(updateUpper);
+		}
+		
+		if (compositeCommand.isEmpty()) {
+			return null;
+		}
+		else {
+			return compositeCommand.reduce();
+		}
 	}
 
 	/**
@@ -80,15 +93,27 @@ public class MultiplicityXTextParserUtils {
 	public static ICommand updateTwoMultiplicityCommand(final IElementEditService provider, final EObject eObject, final String lowerBound, final String upperBound) {
 		final CompositeCommand compositeCommand = new CompositeCommand("Multiplicity update");
 		
-		compositeCommand.add(updateLowerValueSpecificationMultiplicityCommand(provider, eObject, lowerBound));
-
-		if (UNLIMITED_KEYWORD.equals(upperBound)) {
-			// The upper bound filled is the '*' character
-			compositeCommand.add(updateUpperValueSpecificationMultiplicityCommand(provider, eObject, "-1"));
-		} else {
-			compositeCommand.add(updateUpperValueSpecificationMultiplicityCommand(provider, eObject, upperBound));
+		CompositeCommand updateLower = updateLowerValueSpecificationMultiplicityCommand(provider, eObject, lowerBound);
+		if (!updateLower.isEmpty()) {
+			compositeCommand.add(updateLower);
 		}
-		return compositeCommand;
+
+		// The upper bound filled is the '*' character
+		String upperBoundVal = UNLIMITED_KEYWORD.equals(upperBound) ?
+				"-1" : //$NON-NLS-1$
+				upperBound;
+
+		CompositeCommand updateUpper = updateUpperValueSpecificationMultiplicityCommand(provider, eObject, upperBoundVal);
+		if (!updateUpper.isEmpty()) {
+			compositeCommand.add(updateUpper);
+		}
+		
+		if (compositeCommand.isEmpty()) {
+			return null;
+		}
+		else {
+			return compositeCommand.reduce();
+		}
 	}
 
 	/**
@@ -102,7 +127,7 @@ public class MultiplicityXTextParserUtils {
 	 *            The bound string representation.
 	 * @return The command to update the lower multiplicity.
 	 */
-	private static ICommand updateLowerValueSpecificationMultiplicityCommand(final IElementEditService provider, final EObject eObject, final String bound) {
+	private static CompositeCommand updateLowerValueSpecificationMultiplicityCommand(final IElementEditService provider, final EObject eObject, final String bound) {
 		final CompositeCommand compositeCommand = new CompositeCommand("Lower Multiplicity update");
 		
 		ValueSpecification newLowerValueSpecification = (ValueSpecification) eObject.eGet(UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue());
@@ -142,7 +167,7 @@ public class MultiplicityXTextParserUtils {
 	 *            The bound string representation.
 	 * @return The command to update the upper multiplicity.
 	 */
-	private static ICommand updateUpperValueSpecificationMultiplicityCommand(final IElementEditService provider, final EObject eObject, final String bound) {
+	private static CompositeCommand updateUpperValueSpecificationMultiplicityCommand(final IElementEditService provider, final EObject eObject, final String bound) {
 		final CompositeCommand compositeCommand = new CompositeCommand("Upper Multiplicity update");
 		
 		ValueSpecification newUpperValueSpecification = (ValueSpecification) eObject.eGet(UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue());

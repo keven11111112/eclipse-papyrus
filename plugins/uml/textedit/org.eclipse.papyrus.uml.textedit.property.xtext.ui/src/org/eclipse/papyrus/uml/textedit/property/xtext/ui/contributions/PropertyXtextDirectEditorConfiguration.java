@@ -138,7 +138,10 @@ public class PropertyXtextDirectEditorConfiguration extends DefaultXtextDirectEd
 
 		if (propertyRuleObject.getMultiplicity() != null) {
 			// Manage the lower and the upper value specifications
-			updateCommand.add(updateMultiplicityCommand(provider, property, propertyRuleObject));
+			ICommand updateMultiplicity = updateMultiplicityCommand(provider, property, propertyRuleObject);
+			if (updateMultiplicity != null) {
+				updateCommand.add(updateMultiplicity);
+			}
 		}
 
 		if (propertyRuleObject.getDefault() != null) {
