@@ -63,7 +63,7 @@ import org.junit.Test;
 
 /**
  * Create a class on the class diagram, apply "stereotype1" on this class. Test if the "stereotype1" is displayed under the name.
- * 
+ *
  * Verify requirements org.eclipse.papyrus.uml.diagram.stereotype.edition.REQ_0021
  * - When the stereotype is applied, the shape displays automatically the name of the stereotype in the label of stereotype
  * Verify requirements org.eclipse.papyrus.uml.diagram.stereotype.edition.REQ_0023
@@ -224,7 +224,7 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		IRegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("TestProfile");
+		IRegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("StereotypePropertyTestProfile");
 		final Model root = ((Model) getDiagramEditPart().resolveSemanticElement());
 		URI modelUri = registeredProfile.getUri();
 		final Resource modelResource = EMFHelper.getResourceSet(root).getResource(modelUri, true);

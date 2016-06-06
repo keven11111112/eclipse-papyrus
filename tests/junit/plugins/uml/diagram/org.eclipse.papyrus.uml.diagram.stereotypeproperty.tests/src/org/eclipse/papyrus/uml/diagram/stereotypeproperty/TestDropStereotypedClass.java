@@ -37,8 +37,8 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IShapeCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
@@ -65,7 +65,7 @@ import org.junit.Test;
  * - When a element is dropped form the model explorer to the diagram, the shape of the element must display the name of the applied stereotype in the label of stereotype
  * Verify requirements org.eclipse.papyrus.uml.diagram.stereotype.edition.REQ_0023
  * - Each applied stereotype can be either displayed with a short name or with the Qualified Name in the label of stereotype
- * 
+ *
  */
 public class TestDropStereotypedClass extends AbstractPapyrusTestCase {
 
@@ -84,7 +84,6 @@ public class TestDropStereotypedClass extends AbstractPapyrusTestCase {
 	@Test
 	public void testStereotypeApplicationOnClass() {
 		testToDropAStereotypedClass(UMLElementTypes.Class_Shape);
-
 	}
 
 
@@ -98,10 +97,8 @@ public class TestDropStereotypedClass extends AbstractPapyrusTestCase {
 
 		// VARIABLES
 		org.eclipse.uml2.uml.Class class1 = null;
-		// stereotype that is applied on class1
-		Stereotype stereotypeTest = null;
 		// view of the class
-		View NotationClass1 = null;
+		View notationClass1 = null;
 		// editpart of class1
 		GraphicalEditPart classEditPart = null;
 		// compartment of stereotype
@@ -113,10 +110,6 @@ public class TestDropStereotypedClass extends AbstractPapyrusTestCase {
 
 		// compartment Shape
 		View shapeCompartmentView = null;
-		// the view of the applied stereotype property
-		View stereotypePropertyView = null;
-		GraphicalEditPart stereotypeClassLabelEditPart = null;
-
 
 		// CREATION of the class in class diagram
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 0);
@@ -178,15 +171,15 @@ public class TestDropStereotypedClass extends AbstractPapyrusTestCase {
 			assertTrue(DROP + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
 			// execute the drop
 			executeOnUIThread(command);
-			assertEquals("Teh class1 must be dropped form the model explorer", 1, getDiagramEditPart().getChildren().size());
+			assertEquals("The class1 must be dropped form the model explorer", 1, getDiagramEditPart().getChildren().size());
 		}
 		classEditPart = (ClassEditPart) getDiagramEditPart().getChildren().get(0);
 		classEditPart.refresh();
 		// look for the applied stereotype compartment
-		NotationClass1 = classEditPart.getNotationView();
+		notationClass1 = classEditPart.getNotationView();
 
-		for (int i = 0; i < NotationClass1.getTransientChildren().size(); i++) {
-			View view = (View) NotationClass1.getTransientChildren().get(i);
+		for (int i = 0; i < notationClass1.getTransientChildren().size(); i++) {
+			View view = (View) notationClass1.getTransientChildren().get(i);
 			if (view.getType().equals(StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_TYPE)) {
 				appliedStereotypeCompartmentNotation = view;
 			}
@@ -208,8 +201,6 @@ public class TestDropStereotypedClass extends AbstractPapyrusTestCase {
 		assertTrue("No stereotype  shape Compartment found in the notation", shapeCompartmentView != null);
 
 		assertTrue("No stereotype Label in the notation must be visible", appliedStereotypeLabelNotation.isVisible());
-		// now display stereotypes
-		stereotypeTest = class1.getAppliedStereotypes().get(0);
 
 		{// Test display stereotype1
 			org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure nodePlate = (org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure) ((BorderedNodeFigure) classEditPart.getFigure()).getChildren().get(0);
@@ -229,7 +220,7 @@ public class TestDropStereotypedClass extends AbstractPapyrusTestCase {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		IRegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("TestProfile");
+		IRegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("StereotypePropertyTestProfile");
 		final Model root = ((Model) getDiagramEditPart().resolveSemanticElement());
 		URI modelUri = registeredProfile.getUri();
 		final Resource modelResource = EMFHelper.getResourceSet(root).getResource(modelUri, true);

@@ -60,7 +60,7 @@ import org.junit.Test;
 /**
  * Create a class on the class diagram, apply "stereotype3" on this class. Display property of sterotype as compartment
  * Verify that the compartment is created and verify that all properties of stereotype are displayed.
- * 
+ *
  * Verify requirements org.eclipse.papyrus.uml.diagram.stereotype.edition.REQ_001
  * - Stereotype application properties could be displayed as "comment" inside a compartment, or as brace label
  * Verify requirements org.eclipse.papyrus.uml.diagram.stereotype.edition.REQ_0012
@@ -213,7 +213,7 @@ public class TestDisplayAsCompartment extends AbstractPapyrusTestCase {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		IRegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("TestProfile");
+		IRegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("StereotypePropertyTestProfile");
 		final Model root = ((Model) getDiagramEditPart().resolveSemanticElement());
 		URI modelUri = registeredProfile.getUri();
 		final Resource modelResource = EMFHelper.getResourceSet(root).getResource(modelUri, true);

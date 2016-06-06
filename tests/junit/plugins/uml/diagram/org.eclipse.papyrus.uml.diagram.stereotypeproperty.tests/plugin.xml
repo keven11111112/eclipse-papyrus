@@ -14,7 +14,7 @@
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
             description="Test profile use to test papyrus"
-            name="TestProfile"
+            name="StereotypePropertyTestProfile"
             path="pathmap://Test_PROFILES/testProfile.profile.uml"
             provider="Eclipse.org">
       </profile>

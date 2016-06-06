@@ -61,7 +61,7 @@ import org.junit.Test;
  * Create a class.
  * Apply stereotype1.
  * Set the depth to full, the name of the profile must be display in the label of applied stereotype
- * 
+ *
  * Verify requirements org.eclipse.papyrus.uml.diagram.stereotype.edition.REQ_002
  * - The shape can display the name of the stereotypes that are applied on the UML element
  * Verify requirements org.eclipse.papyrus.uml.diagram.stereotype.edition.REQ_003
@@ -202,7 +202,7 @@ public class TestStereotypeApplicationQualifiedName extends AbstractPapyrusTestC
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		IRegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("TestProfile");
+		IRegisteredProfile registeredProfile = RegisteredProfile.getRegisteredProfile("StereotypePropertyTestProfile");
 		final Model root = ((Model) getDiagramEditPart().resolveSemanticElement());
 		URI modelUri = registeredProfile.getUri();
 		final Resource modelResource = EMFHelper.getResourceSet(root).getResource(modelUri, true);
