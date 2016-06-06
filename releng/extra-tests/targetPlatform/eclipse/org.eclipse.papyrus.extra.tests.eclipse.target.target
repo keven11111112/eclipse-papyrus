@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra Tests" sequenceNumber="1465202200">
+<target name="Papyrus Extra Tests" sequenceNumber="1465219552">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.b3.aggregator.editor.source.feature.feature.group" version="0.3.0.v20140928-0617"/>
@@ -174,7 +174,7 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.zest.layouts" version="1.1.300.201605020204"/>
       <unit id="org.eclipse.gef.feature.group" version="3.11.0.201605020204"/>
-      <repository id="gef" location="file:/home/data/httpd/download.eclipse.org/tools/gef/updates/milestones/4.0.0M7_gef-master_1912"/>
+      <repository id="gef" location="file:/home/data/httpd/download.eclipse.org/tools/gef/updates/legacy/milestones/4.0.0M7_gef-master_1912"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="graphiti" location="file:/home/data/httpd/download.eclipse.org/graphiti/updates/milestones/S-0.13.0RC3-201606010657/"/>

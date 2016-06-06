@@ -135,7 +135,7 @@ location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/update
 
 //updateFrom("GEF",0)
 
-location gef "http://download.eclipse.org/tools/gef/updates/milestones/4.0.0M7_gef-master_1912" {
+location gef "http://download.eclipse.org/tools/gef/updates/legacy/milestones/4.0.0M7_gef-master_1912" {
 	org.eclipse.gef.feature.group
 }
 
