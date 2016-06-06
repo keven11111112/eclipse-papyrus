@@ -143,7 +143,7 @@ public class AbstractPapyrusPopupMenuAction implements IMouseAction, IMenuListen
 
 		final IMenuService menuService = PlatformUI.getWorkbench().getService(IMenuService.class);
 		final NatEventData natEventData = (NatEventData) this.menuManager.getMenu().getData(MenuConstants.NAT_EVENT_DATA_KEY);
-		
+
 		MenuUtils.registerNatTableWidgetInEclipseContext(natEventData);
 
 		if (menuService != null && menuManager instanceof MenuManager) {
@@ -152,6 +152,15 @@ public class AbstractPapyrusPopupMenuAction implements IMouseAction, IMenuListen
 		// we must not remove the value after the menu creation!!!
 		// state.removeVariable(MenuConstants.NAT_EVENT_DATA_KEY);
 
+	}
+
+	/**
+	 * Dispose the {@link MenuManager}.
+	 */
+	public void dispose() {
+		if (null != menuManager) {
+			menuManager.dispose();
+		}
 	}
 
 }

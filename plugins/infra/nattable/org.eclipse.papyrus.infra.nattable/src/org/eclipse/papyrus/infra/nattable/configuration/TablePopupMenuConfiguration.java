@@ -36,6 +36,21 @@ public class TablePopupMenuConfiguration extends AbstractUiBindingConfiguration 
 	protected final NatTable natTable;
 
 	/**
+	 * Popup menu action for the body.
+	 */
+	private PapyrusBodyPopupMenuAction bodyPopupMenuAction;
+
+	/**
+	 * Popup menu action for the row header.
+	 */
+	private PapyrusHeaderPopupMenuAction rowHeaderPopupMenuAction;
+
+	/**
+	 * Popup menu action for the column header.
+	 */
+	private PapyrusHeaderPopupMenuAction columnHeaderMenuAction;
+
+	/**
 	 * Constructor.
 	 *
 	 */
@@ -63,7 +78,8 @@ public class TablePopupMenuConfiguration extends AbstractUiBindingConfiguration 
 	 * 
 	 */
 	protected void registerBodyPopupMenu(final UiBindingRegistry uiBindingRegistry) {
-		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.BODY, MouseEventMatcher.RIGHT_BUTTON), new PapyrusBodyPopupMenuAction(MenuConstants.BODY_POPUP_MENU_ID, this.natTable));
+		bodyPopupMenuAction = new PapyrusBodyPopupMenuAction(MenuConstants.BODY_POPUP_MENU_ID, this.natTable);
+		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.BODY, MouseEventMatcher.RIGHT_BUTTON), bodyPopupMenuAction);
 	}
 
 	/**
@@ -73,7 +89,8 @@ public class TablePopupMenuConfiguration extends AbstractUiBindingConfiguration 
 	 * 
 	 */
 	protected void registerRowHeaderPopupMenu(final UiBindingRegistry uiBindingRegistry) {
-		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.ROW_HEADER, MouseEventMatcher.RIGHT_BUTTON), new PapyrusHeaderPopupMenuAction(MenuConstants.ROW_HEADER_POPUP_MENU_ID, this.natTable));
+		rowHeaderPopupMenuAction = new PapyrusHeaderPopupMenuAction(MenuConstants.ROW_HEADER_POPUP_MENU_ID, this.natTable);
+		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.ROW_HEADER, MouseEventMatcher.RIGHT_BUTTON), rowHeaderPopupMenuAction);
 	}
 
 	/**
@@ -83,6 +100,22 @@ public class TablePopupMenuConfiguration extends AbstractUiBindingConfiguration 
 	 * 
 	 */
 	protected void registerColumnHeaderPopupMenu(final UiBindingRegistry uiBindingRegistry) {
-		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.COLUMN_HEADER, MouseEventMatcher.RIGHT_BUTTON), new PapyrusHeaderPopupMenuAction(MenuConstants.COLUMN_HEADER_POPUP_MENU_ID, this.natTable));
+		columnHeaderMenuAction = new PapyrusHeaderPopupMenuAction(MenuConstants.COLUMN_HEADER_POPUP_MENU_ID, this.natTable);
+		uiBindingRegistry.registerMouseDownBinding(new MouseEventMatcher(SWT.NONE, GridRegion.COLUMN_HEADER, MouseEventMatcher.RIGHT_BUTTON), columnHeaderMenuAction);
+	}
+
+	/**
+	 * Dispose actions.
+	 */
+	public void dispose() {
+		if (null != bodyPopupMenuAction) {
+			bodyPopupMenuAction.dispose();
+		}
+		if (null != rowHeaderPopupMenuAction) {
+			rowHeaderPopupMenuAction.dispose();
+		}
+		if (null != columnHeaderMenuAction) {
+			columnHeaderMenuAction.dispose();
+		}
 	}
 }

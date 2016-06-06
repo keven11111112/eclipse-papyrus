@@ -277,6 +277,11 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	private CellEditorAxisConfiguration cellAxisConfiguration;
 
 	/**
+	 * The table popup menu configuration.
+	 */
+	private TablePopupMenuConfiguration tablePopupMenuConfiguration;
+
+	/**
 	 *
 	 * Constructor.
 	 *
@@ -432,7 +437,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @since 2.0
 	 */
 	protected void registerPopupMenuConfiguration(final NatTable natTable) {
-		natTable.addConfiguration(new TablePopupMenuConfiguration(natTable));
+		tablePopupMenuConfiguration = new TablePopupMenuConfiguration(natTable);
+		natTable.addConfiguration(tablePopupMenuConfiguration);
 	}
 
 	/**
@@ -840,8 +846,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 				}
 			}
 		}
-		
-		if(!compositeResizeCommand.isEmpty()){
+
+		if (!compositeResizeCommand.isEmpty()) {
 			// If the named style 'fillColumnSize' is used, this must be set to false to avoid re-fill
 			BooleanValueStyle fillColumnsSize = (BooleanValueStyle) getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.FILL_COLUMNS_SIZE);
 			if (fillColumnsSize == null) {
@@ -1332,6 +1338,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.tableContext = null;
 		if (this.natTable != null) {
 			this.natTable.dispose();
+		}
+		if(this.tablePopupMenuConfiguration != null){
+			tablePopupMenuConfiguration.dispose();
 		}
 	}
 
