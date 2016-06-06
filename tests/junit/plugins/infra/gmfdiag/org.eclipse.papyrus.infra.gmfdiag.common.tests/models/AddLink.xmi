@@ -13,9 +13,10 @@
       name="library">
     <representations
         xsi:type="expansionmodel:Representation"
-        editPartQualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.DependencyEditPart"
+        editPartQualifiedName="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyEditPart"
         name="NewDependency"
         viewFactory="org.eclipse.gmf.runtime.diagram.ui.view.factories.optimal.ConnectorViewFactory"
+        description=""
         graphicalElementType="org.eclipse.papyrus.uml.diagram.testexpansion.Dependency_Link"/>
   </libraries>
 </expansionmodel:DiagramExpansion>

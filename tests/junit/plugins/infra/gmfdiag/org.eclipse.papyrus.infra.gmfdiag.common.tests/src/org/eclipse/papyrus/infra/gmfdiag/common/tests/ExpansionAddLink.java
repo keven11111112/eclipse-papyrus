@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bug 485220
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 494730
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.tests;
@@ -50,7 +50,7 @@ import org.osgi.framework.FrameworkUtil;
 /**
  * this Test is used to test if it is possible to add compartment
  * see #Test T005-Add link
- * 
+ *
  *
  */
 public class ExpansionAddLink extends AbstractEditorTest {
@@ -75,15 +75,10 @@ public class ExpansionAddLink extends AbstractEditorTest {
 	protected static final String NEW_DEPENDENCY_ELEMENTTYPE_ID = "org.eclipse.papyrus.uml.diagram.testexpansion.Dependency_Link";
 
 	@Test
-	public void load_DiagramExpansion() {
-		try {
-			// Bug 494730: open at first the diagram to loads all element types needed
-			initModel("ExpansionModelProject", "ExpansionModelTest", getBundle());
-			openDiagram(editor, "NewDiagram");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void load_DiagramExpansion() throws Exception {
+		// Bug 494730: open at first the diagram to loads all element types needed
+		initModel("ExpansionModelProject", "ExpansionModelTest", getBundle());
+		openDiagram(editor, "NewDiagram");
 
 		// loading
 		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("AddLink.xmi");
@@ -92,7 +87,6 @@ public class ExpansionAddLink extends AbstractEditorTest {
 
 		// test the data structure that is interpreted by the framework
 		ChildrenListRepresentation childrenListRepresentation = diagramExpansionsRegistry.mapChildreen.get(CLASS_DIAGRAM_TYPE);
-		System.out.println(childrenListRepresentation);
 		Assert.assertNotNull("A usage contex has been defined for " + CLASS_DIAGRAM_TYPE, childrenListRepresentation);
 		ElementTypeConfigurationTypeRegistry.getInstance();
 		Assert.assertNotNull("The Link of NewDependency has been added", childrenListRepresentation.IDMap.get(DEPENDENCY_HINT));
@@ -123,7 +117,6 @@ public class ExpansionAddLink extends AbstractEditorTest {
 		org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart linkEditPart = (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart) diagramEditPart.getConnections().get(0);
 		Assert.assertNotNull("linkEditPart edit Part must exist", linkEditPart);
 		Assert.assertEquals("The link must have the type " + DEPENDENCY_HINT, DEPENDENCY_HINT, linkEditPart.getNotationView().getType());
-
 	}
 
 	public CreateConnectionViewRequest createConnectionViewRequest(IElementType type, EditPart source, EditPart target, DiagramEditPart diagramEditPart) {
@@ -145,7 +138,7 @@ public class ExpansionAddLink extends AbstractEditorTest {
 		DiagramExpansionsRegistry diagramExpansionsRegistry = DiagramExpansionSingleton.getInstance().getDiagramExpansionRegistry();
 		diagramExpansionsRegistry.clear();
 		Assert.assertEquals("Size ot the registry must be equals to 0", 0, diagramExpansionsRegistry.getDiagramExpansions().size());
-		Assert.assertEquals("Size ot the map childreen must be equals to 0", 0, diagramExpansionsRegistry.mapChildreen.size());
+		Assert.assertEquals("Size ot the map children must be equals to 0", 0, diagramExpansionsRegistry.mapChildreen.size());
 		URI badContextExpansion = URI.createPlatformPluginURI("org.eclipse.papyrus.infra.gmfdiag.common.tests", true);
 		badContextExpansion = badContextExpansion.appendSegment("models");
 		badContextExpansion = badContextExpansion.appendSegment(filename);
