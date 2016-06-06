@@ -21,9 +21,9 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Type;
 
 /**
  * Context link destroy command
@@ -42,7 +42,7 @@ public class ConstraintContextDestroyCommand extends EditElementCommand {
 		if (target == null || getElementToEdit() == null) {
 			return false;
 		}
-		return getElementToEdit() instanceof Constraint && (target instanceof Type || target instanceof Package);
+		return getElementToEdit() instanceof Constraint && (target instanceof Element);
 	}
 
 	@Override
@@ -51,10 +51,11 @@ public class ConstraintContextDestroyCommand extends EditElementCommand {
 			return CommandResult.newCancelledCommandResult();
 		}
 		((Constraint) getElementToEdit()).setContext((Namespace) null);
-		if (target instanceof Package) {
-			((Package) target).getPackagedElements().add((Constraint) getElementToEdit());
-		} else if (target instanceof Type) {
-			((Type) target).getPackage().getPackagedElements().add((Constraint) getElementToEdit());
+		if (target instanceof Element) {
+			Package nearest = ((Element) target).getNearestPackage();
+			if (nearest != null) {
+				nearest.getPackagedElements().add((Constraint) getElementToEdit());
+			}
 		}
 		return CommandResult.newOKCommandResult();
 	}
