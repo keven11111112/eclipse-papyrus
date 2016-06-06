@@ -21,9 +21,6 @@
         <element xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/ownedElement"/>
       </axisUsedAsAxisProvider>
     </ownedAxisConfigurations>
-    <ownedAxisConfigurations xsi:type="nattableaxisconfiguration:TreeFillingConfiguration" depth="1" labelProvider="//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.2" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider">
-      <axisUsedAsAxisProvider xsi:type="nattableaxis:EOperationAxis"/>
-    </ownedAxisConfigurations>
     <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.infra.uml.nattable.tree.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" headerLabelConfiguration="//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.0" specificAxisConfigurations="//@rowHeaderAxisConfiguration/@ownedAxisConfigurations.0 //@rowHeaderAxisConfiguration/@ownedAxisConfigurations.1 //@rowHeaderAxisConfiguration/@ownedAxisConfigurations.2"/>
   </rowHeaderAxisConfiguration>
   <columnHeaderAxisConfiguration xsi:type="nattableaxisconfiguration:TableHeaderAxisConfiguration">

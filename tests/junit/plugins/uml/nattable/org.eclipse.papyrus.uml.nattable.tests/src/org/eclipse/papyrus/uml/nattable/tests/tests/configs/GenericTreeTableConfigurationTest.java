@@ -19,7 +19,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
+import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -28,7 +30,7 @@ import org.junit.Test;
  * 
  * @author Benoit Maggi
  */
-public class GenericTreeTableConfigurationTest {
+public class GenericTreeTableConfigurationTest extends AbstractPapyrusTest{
 	
 	// path to the model
 	public static final String GENERIC_TREE_TABLE_CONFIGURATION_MODEL_PATH = org.eclipse.papyrus.uml.nattable.Activator.PLUGIN_ID+"/configs/genericTreeTable.configuration"; //$NON-NLS-0$

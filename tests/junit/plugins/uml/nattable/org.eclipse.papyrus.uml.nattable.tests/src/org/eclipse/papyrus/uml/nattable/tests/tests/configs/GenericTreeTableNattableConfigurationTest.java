@@ -19,7 +19,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
+import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -28,7 +30,7 @@ import org.junit.Test;
  * 
  * @author Benoit Maggi
  */
-public class GenericTreeTableNattableConfigurationTest {
+public class GenericTreeTableNattableConfigurationTest extends AbstractPapyrusTest{
 	
 	// path to the model
 	public static final String GENERIC_TREE_TABLE_CONFIGURATION_MODEL_PATH = org.eclipse.papyrus.uml.nattable.Activator.PLUGIN_ID+"/configs/genericTreeTable.nattableconfiguration"; //$NON-NLS-0$
@@ -36,7 +38,6 @@ public class GenericTreeTableNattableConfigurationTest {
 	/**
 	 * Validate the model with the rules defined in the meta-model tooling
 	 */
-	@InvalidTest("The current model is not complient with the ecore model")
 	@Test
 	public void validateGenericTreeTableConfigurationModel() {
 		URI createPlatformPluginURI = URI.createPlatformPluginURI(GENERIC_TREE_TABLE_CONFIGURATION_MODEL_PATH, true);
