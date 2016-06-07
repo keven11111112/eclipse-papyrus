@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bug 485220
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.tests;
@@ -30,7 +30,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
@@ -38,17 +40,17 @@ import org.osgi.framework.FrameworkUtil;
 /**
  * this Test is used to test if it is possible to add compartment
  * see #Test T004-Add Border Item
- * 
+ *
  *
  */
 public class ExpansionAddBorderItem extends AbstractEditorTest {
 
 	/**
-	 * 
+	 *
 	 */
 	protected static final String INTERFACE_BORDER_ITEM = "Interface_BorderItem";
 	/**
-	 * 
+	 *
 	 */
 	protected static final String NESTED_INTERFACE_LABEL = "Interface_Label";
 
@@ -67,15 +69,15 @@ public class ExpansionAddBorderItem extends AbstractEditorTest {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	protected static final String CLASS_DIAGRAM_TYPE = "Class Diagram";
 	/**
-	 * 
+	 *
 	 */
 	protected static final String CLASS_VISUALID = ClassEditPart.VISUAL_ID;
 	/**
-	 * 
+	 *
 	 */
 	protected static final String IMPLEMENTED_INTERFACES_HINT = "Implemented Interfaces";
 
@@ -116,7 +118,6 @@ public class ExpansionAddBorderItem extends AbstractEditorTest {
 
 	protected DiagramExpansionsRegistry loadXMIExpansionModel(String filename) {
 		DiagramExpansionsRegistry diagramExpansionsRegistry = DiagramExpansionSingleton.getInstance().getDiagramExpansionRegistry();
-		diagramExpansionsRegistry.clear();
 		Assert.assertEquals("Size ot the registry must be equals to 0", 0, diagramExpansionsRegistry.getDiagramExpansions().size());
 		Assert.assertEquals("Size ot the map childreen must be equals to 0", 0, diagramExpansionsRegistry.mapChildreen.size());
 		URI badContextExpansion = URI.createPlatformPluginURI("org.eclipse.papyrus.infra.gmfdiag.common.tests", true);
@@ -141,5 +142,11 @@ public class ExpansionAddBorderItem extends AbstractEditorTest {
 	@Override
 	protected Bundle getBundle() {
 		return FrameworkUtil.getBundle(getClass());
+	}
+
+	@After
+	@Before
+	public void clearExpansionRegistry() {
+		DiagramExpansionSingleton.getInstance().getDiagramExpansionRegistry().clear();
 	}
 }

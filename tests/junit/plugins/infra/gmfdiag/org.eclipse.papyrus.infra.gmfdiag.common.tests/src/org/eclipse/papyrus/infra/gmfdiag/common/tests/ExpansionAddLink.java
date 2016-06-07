@@ -42,7 +42,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeConfigurationTypeRegistry;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
@@ -136,7 +138,6 @@ public class ExpansionAddLink extends AbstractEditorTest {
 
 	protected DiagramExpansionsRegistry loadXMIExpansionModel(String filename) {
 		DiagramExpansionsRegistry diagramExpansionsRegistry = DiagramExpansionSingleton.getInstance().getDiagramExpansionRegistry();
-		diagramExpansionsRegistry.clear();
 		Assert.assertEquals("Size ot the registry must be equals to 0", 0, diagramExpansionsRegistry.getDiagramExpansions().size());
 		Assert.assertEquals("Size ot the map children must be equals to 0", 0, diagramExpansionsRegistry.mapChildreen.size());
 		URI badContextExpansion = URI.createPlatformPluginURI("org.eclipse.papyrus.infra.gmfdiag.common.tests", true);
@@ -161,5 +162,11 @@ public class ExpansionAddLink extends AbstractEditorTest {
 	@Override
 	protected Bundle getBundle() {
 		return FrameworkUtil.getBundle(getClass());
+	}
+
+	@After
+	@Before
+	public void clearExpansionRegistry() {
+		DiagramExpansionSingleton.getInstance().getDiagramExpansionRegistry().clear();
 	}
 }
