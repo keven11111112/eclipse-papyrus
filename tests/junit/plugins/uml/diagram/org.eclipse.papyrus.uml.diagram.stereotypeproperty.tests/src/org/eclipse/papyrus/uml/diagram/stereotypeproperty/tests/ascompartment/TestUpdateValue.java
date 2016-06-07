@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Francois Le Fevre  francois.le-fevre@cea.fr - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.ascompartment;
 
@@ -41,7 +41,7 @@ import org.junit.Test;
  * Observe the value of the stereotype.
  * Change the value.
  * The display must have changed.
- * 
+ *
  * Verify requirements org.eclipse.papyrus.uml.diagram.stereotype.edition.REQ_006
  * - Update the display of applied stereotype properties when the affected values have changed
  */
@@ -81,7 +81,7 @@ public class TestUpdateValue extends AbstractPapyrusTestCase {
 		stereotypedClassEditPart.refresh();
 		// look for the the editpart for the comment
 		AppliedStereotypeCompartmentEditPart appliedStereotypeCompartmentEditPart = null;
-		for (Iterator iterator = stereotypedClassEditPart.getChildren().iterator(); iterator.hasNext();) {
+		for (Iterator<?> iterator = stereotypedClassEditPart.getChildren().iterator(); iterator.hasNext();) {
 			Object child = iterator.next();
 			if (child instanceof AppliedStereotypeCompartmentEditPart) {
 				appliedStereotypeCompartmentEditPart = (AppliedStereotypeCompartmentEditPart) child;

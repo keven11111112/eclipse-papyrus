@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Francois Le Fevre  francois.le-fevre@cea.fr - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.ascompartment;
 
@@ -35,7 +35,7 @@ import org.junit.Test;
 /**
  * Reopen a file in which applied stereotypes are displayed as compartment only on the class .
  * Verify that all properties for the applied stereotype are displayed.
- * 
+ *
  * Verify requirements org.eclipse.papyrus.uml.diagram.stereotype.edition.REQ_001
  * - Stereotype application properties could be displayed as "comment" inside a compartment, or as brace label
  * Verify requirements org.eclipse.papyrus.uml.diagram.stereotype.edition.REQ_0012
@@ -78,7 +78,7 @@ public class TestReopenAsCompartment extends AbstractPapyrusTestCase {
 			stereotypedClassEditPart.refresh();
 			// look for the the editpart for the comment
 			AppliedStereotypeCompartmentEditPart appliedStereotypeCompartmentEditPart = null;
-			for (Iterator iterator = stereotypedClassEditPart.getChildren().iterator(); iterator.hasNext();) {
+			for (Iterator<?> iterator = stereotypedClassEditPart.getChildren().iterator(); iterator.hasNext();) {
 				Object child = iterator.next();
 				if (child instanceof AppliedStereotypeCompartmentEditPart) {
 					appliedStereotypeCompartmentEditPart = (AppliedStereotypeCompartmentEditPart) child;

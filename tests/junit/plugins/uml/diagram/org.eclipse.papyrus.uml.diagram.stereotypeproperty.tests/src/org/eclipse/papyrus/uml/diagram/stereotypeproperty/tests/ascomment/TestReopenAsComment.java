@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Francois Le Fevre  francois.le-fevre@cea.fr - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.ascomment;
 
@@ -80,7 +80,7 @@ public class TestReopenAsComment extends AbstractPapyrusTestCase {
 			EditPart stereotypedClassEditPart = fixture.findEditPart(stereotypedClass);
 			AppliedStereotypeCommentEditPart theCommentEditPart = null;
 
-			for (Iterator iterator = fixture.getActiveDiagram().getChildren().iterator(); iterator.hasNext();) {
+			for (Iterator<?> iterator = fixture.getActiveDiagram().getChildren().iterator(); iterator.hasNext();) {
 				Object child = iterator.next();
 				if (child instanceof AppliedStereotypeCommentEditPart) {
 					AppliedStereotypeCommentEditPart commentEditPart = null;
@@ -108,7 +108,7 @@ public class TestReopenAsComment extends AbstractPapyrusTestCase {
 			EditPart stereotypedLinkEditPart = fixture.findEditPart(stereotypedLink);
 			AppliedStereotypeCommentEditPart theCommentEditPart = null;
 
-			for (Iterator iterator = fixture.getActiveDiagram().getChildren().iterator(); iterator.hasNext();) {
+			for (Iterator<?> iterator = fixture.getActiveDiagram().getChildren().iterator(); iterator.hasNext();) {
 				Object child = iterator.next();
 				if (child instanceof AppliedStereotypeCommentEditPart) {
 					AppliedStereotypeCommentEditPart commentEditPart = null;

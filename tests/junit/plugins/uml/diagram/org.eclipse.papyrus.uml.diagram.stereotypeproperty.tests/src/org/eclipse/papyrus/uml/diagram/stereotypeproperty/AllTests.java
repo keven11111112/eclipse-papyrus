@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,6 +23,7 @@ import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.ascompartment.Te
 import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.displayname.Test2StereotypeApplications;
 import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.displayname.TestStereotypeApplication;
 import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.displayname.TestStereotypeApplicationQualifiedName;
+import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.layout.TestLayoutWithStereotype;
 import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.layout.TestLayoutWithStereotypeOnEclipseHIPPInstance;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
@@ -44,6 +45,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		Test2StereotypeApplications.class,
 		TestStereotypeApplication.class,
 		TestStereotypeApplicationQualifiedName.class,
+		TestLayoutWithStereotype.class,
 		TestLayoutWithStereotypeOnEclipseHIPPInstance.class,
 
 })

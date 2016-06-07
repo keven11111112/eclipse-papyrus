@@ -33,7 +33,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IShapeCompartmentEditPart;
@@ -82,7 +82,7 @@ public class Test2StereotypeApplications extends AbstractPapyrusTestCase {
 
 	@Test
 	public void test2StereotypeApplicationsOnClass() {
-		Test2StereotypeApplications(UMLElementTypes.Class_Shape);
+		test2StereotypeApplications(UMLElementTypes.Class_Shape);
 
 	}
 
@@ -93,7 +93,7 @@ public class Test2StereotypeApplications extends AbstractPapyrusTestCase {
 	 * @param type
 	 *            the type
 	 */
-	public void Test2StereotypeApplications(IElementType type) {
+	public void test2StereotypeApplications(IElementType type) {
 
 		// VARIABLES
 		org.eclipse.uml2.uml.Class class1 = null;

@@ -34,8 +34,8 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IShapeCompartmentEditPart;
 import org.eclipse.papyrus.junit.utils.DisplayUtils;
@@ -194,7 +194,7 @@ public class TestDisplayAsCompartment extends AbstractPapyrusTestCase {
 			DisplayUtils.flushEventLoop();
 			// look for the the editpart for the comment
 			AppliedStereotypeCompartmentEditPart appliedStereotypeCompartmentEditPart = null;
-			for (Iterator iterator = classEditPart.getChildren().iterator(); iterator.hasNext();) {
+			for (Iterator<?> iterator = classEditPart.getChildren().iterator(); iterator.hasNext();) {
 				Object child = iterator.next();
 				if (child instanceof AppliedStereotypeCompartmentEditPart) {
 					appliedStereotypeCompartmentEditPart = (AppliedStereotypeCompartmentEditPart) child;
