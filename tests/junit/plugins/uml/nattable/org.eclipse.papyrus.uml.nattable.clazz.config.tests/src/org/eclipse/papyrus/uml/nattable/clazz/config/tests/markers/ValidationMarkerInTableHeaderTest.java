@@ -47,11 +47,11 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-
-
 /**
- * @author VL222926
- *
+ * Check the validation markers tests.
+ * 
+ * TODO: It must be preferable to check the result of the validation command in a first hand and the tooltip in another hand
+ *       because the tooltip is not managed correctly if the cell is not displayed by the application.
  */
 @PluginResource("resources/validation_markers/model.di")
 public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
@@ -101,12 +101,12 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 	/**
 	 * The number of rows to check (including columns header).
 	 */
-	private static final int MAX_ROWS = 13;
+	private static final int MAX_ROWS = 8;
 
 	/**
 	 * The number of columns to check (including rows header).
 	 */
-	private static final int MAX_COLUMNS = 7;
+	private static final int MAX_COLUMNS = 6;
 
 	/**
 	 * init the JUnit test
@@ -390,10 +390,12 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 	 */
 	private void initializeMapForToolTipTests(final Map<String, Boolean> createToolTip, final Map<String, String> valuesToCheck) {
 		createToolTip.put("0_0", false); //$NON-NLS-1$
-		createToolTip.put("0_1", false); //$NON-NLS-1$
+		createToolTip.put("0_1", true); //$NON-NLS-1$
+		valuesToCheck.put("0_1", "RootElement::Class1 (Class)\nNamed element 'RootElement::Class1' is not distinguishable from all other members of namespace\n  'RootElement'.\nNot all the members of namespace 'RootElement::Class1' are distinguishable within it.\n2 warnings(s) in the children"); //$NON-NLS-1$ //$NON-NLS-2$
 		createToolTip.put("0_2", false); //$NON-NLS-1$
 		createToolTip.put("0_3", false); //$NON-NLS-1$
-		createToolTip.put("0_4", false); //$NON-NLS-1$
+		createToolTip.put("0_4", true); //$NON-NLS-1$
+		valuesToCheck.put("0_4", "RootElement::Class1 (Class)\nNamed element 'RootElement::Class1' is not distinguishable from all other members of namespace\n  'RootElement'.\n3 warnings(s) in the children"); //$NON-NLS-1$ //$NON-NLS-2$
 		createToolTip.put("0_5", false); //$NON-NLS-1$
 		createToolTip.put("0_6", false); //$NON-NLS-1$
 		createToolTip.put("0_7", false); //$NON-NLS-1$
@@ -401,35 +403,35 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 		createToolTip.put("0_9", false); //$NON-NLS-1$
 		createToolTip.put("0_10", false); //$NON-NLS-1$
 		createToolTip.put("0_11", false); //$NON-NLS-1$
-		createToolTip.put("0_12", false); //$NON-NLS-1$
 		createToolTip.put("1_0", false); //$NON-NLS-1$
 		createToolTip.put("1_1", false); //$NON-NLS-1$
-		createToolTip.put("1_2", false); //$NON-NLS-1$
-		createToolTip.put("1_3", false); //$NON-NLS-1$
+		createToolTip.put("1_2", true); //$NON-NLS-1$
+		valuesToCheck.put("1_2", "RootElement::Class1::Property1 (Property)\nNamed element 'RootElement::Class1::Property1' is not distinguishable from all other members of\n  namespace 'RootElement::Class1'."); //$NON-NLS-1$ //$NON-NLS-2$
+		createToolTip.put("1_3", true); //$NON-NLS-1$
+		valuesToCheck.put("1_3", "RootElement::Class1::Property1 (Property)\nNamed element 'RootElement::Class1::Property1' is not distinguishable from all other members of\n  namespace 'RootElement::Class1'."); //$NON-NLS-1$ //$NON-NLS-2$
 		createToolTip.put("1_4", false); //$NON-NLS-1$
-		createToolTip.put("1_5", false); //$NON-NLS-1$
+		createToolTip.put("1_5", true); //$NON-NLS-1$
+		valuesToCheck.put("1_5", "RootElement::Class1::Operation1 (Operation)\nNot all the members of namespace 'RootElement::Class1::Operation1' are distinguishable within it.\n2 warnings(s) in the children"); //$NON-NLS-1$ //$NON-NLS-2$
 		createToolTip.put("1_6", false); //$NON-NLS-1$
 		createToolTip.put("1_7", false); //$NON-NLS-1$
 		createToolTip.put("1_8", false); //$NON-NLS-1$
 		createToolTip.put("1_9", false); //$NON-NLS-1$
 		createToolTip.put("1_10", false); //$NON-NLS-1$
 		createToolTip.put("1_11", false); //$NON-NLS-1$
-		createToolTip.put("1_12", false); //$NON-NLS-1$
 		createToolTip.put("2_0", false); //$NON-NLS-1$
 		createToolTip.put("2_1", false); //$NON-NLS-1$
 		createToolTip.put("2_2", false); //$NON-NLS-1$
-		createToolTip.put("2_3", true); //$NON-NLS-1$
-		valuesToCheck.put("2_3", "RootElement::Class1 (Class)\nNamed element '<Class> Class1' is not distinguishable from all other members of namespace '<Model>\n  RootElement'.\nNamed element RootElement::Class1::Property1 is not distinguishable from all other members of\n  namespace RootElement::Class1.\nNamed element RootElement::Class1::Property1 is not distinguishable from all other members of\n  namespace RootElement::Class1.\nNot all the members of namespace RootElement::Class1 are distinguishable within it.\nNot all the members of namespace '<Class> Class1' are distinguishable within it.\n2 warnings(s) in the children"); //$NON-NLS-1$ //$NON-NLS-2$
+		createToolTip.put("2_3", false); //$NON-NLS-1$
 		createToolTip.put("2_4", false); //$NON-NLS-1$
 		createToolTip.put("2_5", false); //$NON-NLS-1$
-		createToolTip.put("2_6", false); //$NON-NLS-1$
+		createToolTip.put("2_6", true); //$NON-NLS-1$
+		valuesToCheck.put("2_6", "RootElement::Class1::Operation1::Parameter1 (Parameter)\nNamed element 'RootElement::Class1::Operation1::Parameter1' is not distinguishable from all other\n  members of namespace 'RootElement::Class1::Operation1'."); //$NON-NLS-1$ //$NON-NLS-2$
 		createToolTip.put("2_7", true); //$NON-NLS-1$
-		valuesToCheck.put("2_7", "RootElement::Class1 (Class)\nNamed element '<Class> Class1' is not distinguishable from all other members of namespace '<Model>\n  RootElement'.\n6 warnings(s) in the children"); //$NON-NLS-1$ //$NON-NLS-2$
+		valuesToCheck.put("2_7", "RootElement::Class1::Operation1::Parameter1 (Parameter)\nNamed element 'RootElement::Class1::Operation1::Parameter1' is not distinguishable from all other\n  members of namespace 'RootElement::Class1::Operation1'."); //$NON-NLS-1$ //$NON-NLS-2$
 		createToolTip.put("2_8", false); //$NON-NLS-1$
 		createToolTip.put("2_9", false); //$NON-NLS-1$
 		createToolTip.put("2_10", false); //$NON-NLS-1$
 		createToolTip.put("2_11", false); //$NON-NLS-1$
-		createToolTip.put("2_12", false); //$NON-NLS-1$
 		createToolTip.put("3_0", false); //$NON-NLS-1$
 		createToolTip.put("3_1", false); //$NON-NLS-1$
 		createToolTip.put("3_2", false); //$NON-NLS-1$
@@ -442,28 +444,27 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 		createToolTip.put("3_9", false); //$NON-NLS-1$
 		createToolTip.put("3_10", false); //$NON-NLS-1$
 		createToolTip.put("3_11", false); //$NON-NLS-1$
-		createToolTip.put("3_12", false); //$NON-NLS-1$
 		createToolTip.put("4_0", false); //$NON-NLS-1$
-		createToolTip.put("4_1", false); //$NON-NLS-1$
+		createToolTip.put("4_1", true); //$NON-NLS-1$
+		valuesToCheck.put("4_1", "RootElement::Class1 (Class)\nNamed element 'RootElement::Class1' is not distinguishable from all other members of namespace\n  'RootElement'.\nNot all the members of namespace 'RootElement::Class1' are distinguishable within it.\n2 warnings(s) in the children"); //$NON-NLS-1$ //$NON-NLS-2$
 		createToolTip.put("4_2", false); //$NON-NLS-1$
 		createToolTip.put("4_3", false); //$NON-NLS-1$
-		createToolTip.put("4_4", false); //$NON-NLS-1$
-		createToolTip.put("4_5", true); //$NON-NLS-1$
-		valuesToCheck.put("4_5", "RootElement::Class1::Property1 (Property)\nNamed element '<Property> Property1' is not distinguishable from all other members of namespace\n  '<Class> Class1'."); //$NON-NLS-1$ //$NON-NLS-2$
-		createToolTip.put("4_6", true); //$NON-NLS-1$
-		valuesToCheck.put("4_6", "RootElement::Class1::Property1 (Property)\nNamed element '<Property> Property1' is not distinguishable from all other members of namespace\n  '<Class> Class1'."); //$NON-NLS-1$ //$NON-NLS-2$
+		createToolTip.put("4_4", true); //$NON-NLS-1$
+		valuesToCheck.put("4_4", "RootElement::Class1 (Class)\nNamed element 'RootElement::Class1' is not distinguishable from all other members of namespace\n  'RootElement'.\n3 warnings(s) in the children"); //$NON-NLS-1$ //$NON-NLS-2$
+		createToolTip.put("4_5", false); //$NON-NLS-1$
+		createToolTip.put("4_6", false); //$NON-NLS-1$
 		createToolTip.put("4_7", false); //$NON-NLS-1$
 		createToolTip.put("4_8", false); //$NON-NLS-1$
-		createToolTip.put("4_9", true); //$NON-NLS-1$
-		valuesToCheck.put("4_9", "RootElement::Class1::Operation1 (Operation)\nNot all the members of namespace RootElement::Class1::Operation1 are distinguishable within it.\nNamed element RootElement::Class1::Operation1::Parameter1 is not distinguishable from all other\n  members of namespace RootElement::Class1::Operation1.\nNot all the members of namespace '<Operation> Operation1 (Parameter1, Parameter1)' are\n  distinguishable within it.\nNamed element RootElement::Class1::Operation1::Parameter1 is not distinguishable from all other\n  members of namespace RootElement::Class1::Operation1.\n2 warnings(s) in the children"); //$NON-NLS-1$ //$NON-NLS-2$
+		createToolTip.put("4_9", false); //$NON-NLS-1$
 		createToolTip.put("4_10", false); //$NON-NLS-1$
 		createToolTip.put("4_11", false); //$NON-NLS-1$
-		createToolTip.put("4_12", false); //$NON-NLS-1$
 		createToolTip.put("5_0", false); //$NON-NLS-1$
-		createToolTip.put("5_1", false); //$NON-NLS-1$
+		createToolTip.put("5_1", true); //$NON-NLS-1$
+		valuesToCheck.put("5_1", "RootElement::Class1 (Class)\nNamed element 'RootElement::Class1' is not distinguishable from all other members of namespace\n  'RootElement'.\nNot all the members of namespace 'RootElement::Class1' are distinguishable within it.\n2 warnings(s) in the children"); //$NON-NLS-1$ //$NON-NLS-2$
 		createToolTip.put("5_2", false); //$NON-NLS-1$
 		createToolTip.put("5_3", false); //$NON-NLS-1$
-		createToolTip.put("5_4", false); //$NON-NLS-1$
+		createToolTip.put("5_4", true); //$NON-NLS-1$
+		valuesToCheck.put("5_4", "RootElement::Class1 (Class)\nNamed element 'RootElement::Class1' is not distinguishable from all other members of namespace\n  'RootElement'.\n3 warnings(s) in the children"); //$NON-NLS-1$ //$NON-NLS-2$
 		createToolTip.put("5_5", false); //$NON-NLS-1$
 		createToolTip.put("5_6", false); //$NON-NLS-1$
 		createToolTip.put("5_7", false); //$NON-NLS-1$
@@ -471,34 +472,5 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 		createToolTip.put("5_9", false); //$NON-NLS-1$
 		createToolTip.put("5_10", false); //$NON-NLS-1$
 		createToolTip.put("5_11", false); //$NON-NLS-1$
-		createToolTip.put("5_12", false); //$NON-NLS-1$
-		createToolTip.put("6_0", false); //$NON-NLS-1$
-		createToolTip.put("6_1", false); //$NON-NLS-1$
-		createToolTip.put("6_2", false); //$NON-NLS-1$
-		createToolTip.put("6_3", false); //$NON-NLS-1$
-		createToolTip.put("6_4", false); //$NON-NLS-1$
-		createToolTip.put("6_5", false); //$NON-NLS-1$
-		createToolTip.put("6_6", false); //$NON-NLS-1$
-		createToolTip.put("6_7", false); //$NON-NLS-1$
-		createToolTip.put("6_8", false); //$NON-NLS-1$
-		createToolTip.put("6_9", false); //$NON-NLS-1$
-		createToolTip.put("6_10", false); //$NON-NLS-1$
-		createToolTip.put("6_11", true); //$NON-NLS-1$
-		valuesToCheck.put("6_11", "RootElement::Class1::Operation1::Parameter1 (Parameter)\nNamed element '<Parameter> Parameter1' is not distinguishable from all other members of namespace\n  '<Operation> Operation1 (Parameter1, Parameter1)'."); //$NON-NLS-1$ //$NON-NLS-2$
-		createToolTip.put("6_12", true); //$NON-NLS-1$
-		valuesToCheck.put("6_12", "RootElement::Class1::Operation1::Parameter1 (Parameter)\nNamed element '<Parameter> Parameter1' is not distinguishable from all other members of namespace\n  '<Operation> Operation1 (Parameter1, Parameter1)'."); //$NON-NLS-1$ //$NON-NLS-2$
-		createToolTip.put("7_0", false); //$NON-NLS-1$
-		createToolTip.put("7_1", false); //$NON-NLS-1$
-		createToolTip.put("7_2", false); //$NON-NLS-1$
-		createToolTip.put("7_3", false); //$NON-NLS-1$
-		createToolTip.put("7_4", false); //$NON-NLS-1$
-		createToolTip.put("7_5", false); //$NON-NLS-1$
-		createToolTip.put("7_6", false); //$NON-NLS-1$
-		createToolTip.put("7_7", false); //$NON-NLS-1$
-		createToolTip.put("7_8", false); //$NON-NLS-1$
-		createToolTip.put("7_9", false); //$NON-NLS-1$
-		createToolTip.put("7_10", false); //$NON-NLS-1$
-		createToolTip.put("7_11", false); //$NON-NLS-1$
-		createToolTip.put("7_12", false); //$NON-NLS-1$
 	}
 }
