@@ -8,13 +8,13 @@ location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R2016052
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.6.0/S201605300654" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/releases/3.6.0" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
 //updateFrom("EMF TRANSACTION",0)
 
-location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/milestones" {
+location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/releases" {
 	org.eclipse.emf.transaction.sdk.feature.group
 }
 
@@ -40,13 +40,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.2milestone
 
 //updateFrom("GMF Runtime",0) 
 
-location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones" {
+location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases" {
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6RC4-201606031000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6RC4a-201606061100/" {
 	org.eclipse.sdk.feature.group
 }
 
@@ -90,7 +90,7 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9
 
 //updateFrom("EMF Query",0) 
 
-location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/milestones" {
+location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releases" {
 	org.eclipse.emf.query.sdk.feature.group
 }
 
@@ -103,7 +103,7 @@ location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.8.0/S
 
 //updateFrom("EMF VALIDATION",0)
 
-location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/milestones" {
+location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/releases" {
 	org.eclipse.emf.validation.sdk.feature.group
 }
 
@@ -115,7 +115,7 @@ location subversive "http://download.eclipse.org/technology/subversive/4.0/neon-
 
 //updateFrom("GMF Notation",0)
 
-location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones" {
+location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases" {
 	org.eclipse.gmf.runtime.notation.sdk.feature.group
 }
 
@@ -135,7 +135,7 @@ location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/update
 
 //updateFrom("GEF",0)
 
-location gef "http://download.eclipse.org/tools/gef/updates/legacy/milestones/4.0.0M7_gef-master_1912" {
+location gef "http://download.eclipse.org/tools/gef/updates/legacy/milestones/4.0.0RC4_gef-master_1952" {
 	org.eclipse.gef.feature.group
 }
 

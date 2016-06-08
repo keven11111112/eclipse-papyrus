@@ -18,7 +18,7 @@ location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/mi
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20160601-1307" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209" {
 	org.eclipse.net4j.feature.group
 	org.eclipse.emf.cdo.server.feature.group
 	org.eclipse.emf.cdo.dawn.feature.group
@@ -56,7 +56,7 @@ location eef "http://download.eclipse.org/modeling/emft/eef/updates/releases/1.5
 
 //updateFrom("GEF",0) 
 
-location gef "http://download.eclipse.org/tools/gef/updates/legacy/milestones/4.0.0M7_gef-master_1912" {
+location gef "http://download.eclipse.org/tools/gef/updates/legacy/milestones/4.0.0RC4_gef-master_1952" {
 	org.eclipse.zest.layouts
 }
 
