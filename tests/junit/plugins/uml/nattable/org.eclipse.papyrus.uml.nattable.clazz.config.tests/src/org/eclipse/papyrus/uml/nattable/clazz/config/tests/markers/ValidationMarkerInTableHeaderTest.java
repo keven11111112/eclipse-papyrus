@@ -7,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Add the diagnostic check
  *   
  *****************************************************************************/
 
@@ -17,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
@@ -49,9 +51,6 @@ import org.junit.Test;
 
 /**
  * Check the validation markers tests.
- * 
- * TODO: It must be preferable to check the result of the validation command in a first hand and the tooltip in another hand
- *       because the tooltip is not managed correctly if the cell is not displayed by the application.
  */
 @PluginResource("resources/validation_markers/model.di")
 public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
@@ -87,6 +86,11 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 	 */
 	private TreeNattableModelManager manager;
 
+	/**
+	 * The model validation command diagnostic.
+	 */
+	protected Diagnostic diagnostic;
+
 
 	/**
 	 * the total of rows in the table (without columns header).
@@ -118,12 +122,12 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 		INattableModelManager m = this.fixture.getActiveTableManager();
 		Assert.assertTrue("TreeTableManager not found", m instanceof TreeNattableModelManager); //$NON-NLS-1$
 		// these tests works only without scrollbar
-        if (Display.getDefault() != null) {
-               Shell shell = Display.getDefault().getActiveShell();
-               if (shell != null) {
-                      shell.setMaximized(true);
-               }
-        }
+		if (Display.getDefault() != null) {
+			Shell shell = Display.getDefault().getActiveShell();
+			if (shell != null) {
+				shell.setMaximized(true);
+			}
+		}
 
 		this.manager = (TreeNattableModelManager) m;
 		Assert.assertNotNull(this.root);
@@ -161,9 +165,52 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 		// the good test, but the result depends of the screen size (if there is a scrollbar, it doesn't work)
 		// Assert.assertEquals("The number of columns is not the excpected one", NB_COLUMNS, columnCount); //$NON-NLS-1$
 		generateMapInitializationFortestNattableTooltipProviderTests();
-	
+
+		diagnostic = cmd.getDiagnostic();
 	}
 
+	/**
+	 * This allows to check the diagnostic of the model validation.
+	 * 
+	 * @throws Exception
+	 *             the exception.
+	 */
+	@Test
+	public void testDiagnostic() throws Exception {
+		// Check the diagnostic properties
+		Assert.assertEquals("The diagnostic must have warning severity", Diagnostic.WARNING, diagnostic.getSeverity()); //$NON-NLS-1$
+		Assert.assertEquals("The number of diagnostic children is not the correct one", 9, diagnostic.getChildren().size()); //$NON-NLS-1$
+
+		// Check the diagnostics children
+		Assert.assertEquals("The first disganostic child must have warning severity", Diagnostic.WARNING, diagnostic.getChildren().get(0).getSeverity()); //$NON-NLS-1$
+		Assert.assertEquals("The first disganostic child must be the following", "Named element 'RootElement::Class1' is not distinguishable from all other members of namespace 'RootElement'.", diagnostic.getChildren().get(0).getMessage()); //$NON-NLS-1$ //$NON-NLS-2$
+
+		Assert.assertEquals("The second disganostic child must have warning severity", Diagnostic.WARNING, diagnostic.getChildren().get(1).getSeverity()); //$NON-NLS-1$
+		Assert.assertEquals("The second disganostic child must be the following", "Named element 'RootElement::Class1' is not distinguishable from all other members of namespace 'RootElement'.", diagnostic.getChildren().get(1).getMessage()); //$NON-NLS-1$ //$NON-NLS-2$
+
+		Assert.assertEquals("The third disganostic child must have warning severity", Diagnostic.WARNING, diagnostic.getChildren().get(2).getSeverity()); //$NON-NLS-1$
+		Assert.assertEquals("The third disganostic child must be the following", "Not all the members of namespace 'RootElement' are distinguishable within it.", diagnostic.getChildren().get(2).getMessage()); //$NON-NLS-1$ //$NON-NLS-2$
+
+		Assert.assertEquals("The fourth disganostic child must have warning severity", Diagnostic.WARNING, diagnostic.getChildren().get(3).getSeverity()); //$NON-NLS-1$
+		Assert.assertEquals("The fourth disganostic child must be the following", "Named element 'RootElement::Class1::Property1' is not distinguishable from all other members of namespace 'RootElement::Class1'.", diagnostic.getChildren().get(3).getMessage()); //$NON-NLS-1$ //$NON-NLS-2$
+
+		Assert.assertEquals("The fifth disganostic child must have warning severity", Diagnostic.WARNING, diagnostic.getChildren().get(4).getSeverity()); //$NON-NLS-1$
+		Assert.assertEquals("The fifth disganostic child must be the following", "Named element 'RootElement::Class1::Property1' is not distinguishable from all other members of namespace 'RootElement::Class1'.", diagnostic.getChildren().get(4).getMessage()); //$NON-NLS-1$ //$NON-NLS-2$
+
+		Assert.assertEquals("The sixth disganostic child must have warning severity", Diagnostic.WARNING, diagnostic.getChildren().get(5).getSeverity()); //$NON-NLS-1$
+		Assert.assertEquals("The sixth disganostic child must be the following", "Not all the members of namespace 'RootElement::Class1' are distinguishable within it.", diagnostic.getChildren().get(5).getMessage()); //$NON-NLS-1$ //$NON-NLS-2$
+
+		Assert.assertEquals("The seventh disganostic child must have warning severity", Diagnostic.WARNING, diagnostic.getChildren().get(6).getSeverity()); //$NON-NLS-1$
+		Assert.assertEquals("The seventh disganostic child must be the following", "Named element 'RootElement::Class1::Operation1::Parameter1' is not distinguishable from all other members of namespace 'RootElement::Class1::Operation1'.", //$NON-NLS-1$ //$NON-NLS-2$
+				diagnostic.getChildren().get(6).getMessage());
+
+		Assert.assertEquals("The heighth disganostic child must have warning severity", Diagnostic.WARNING, diagnostic.getChildren().get(7).getSeverity()); //$NON-NLS-1$
+		Assert.assertEquals("The heighth disganostic child must be the following", "Named element 'RootElement::Class1::Operation1::Parameter1' is not distinguishable from all other members of namespace 'RootElement::Class1::Operation1'.", //$NON-NLS-1$ //$NON-NLS-2$
+				diagnostic.getChildren().get(7).getMessage());
+
+		Assert.assertEquals("The nineth disganostic child must have warning severity", Diagnostic.WARNING, diagnostic.getChildren().get(8).getSeverity()); //$NON-NLS-1$
+		Assert.assertEquals("The nineth disganostic child must be the following", "Not all the members of namespace 'RootElement::Class1::Operation1' are distinguishable within it.", diagnostic.getChildren().get(8).getMessage()); //$NON-NLS-1$ //$NON-NLS-2$
+	}
 
 	/**
 	 * This test checks that there is no NPE for cells which are not representing an element (empty cell) using the getImage of the label provider
@@ -171,16 +218,16 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testTopLabelProvider() {
+	public void testTopLabelProvider() throws Exception {
 		final NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
 		final NattableTopLabelProvider provider = new NattableTopLabelProvider();
 		final LabelProviderCellContextElementWrapper wrapper = new LabelProviderCellContextElementWrapper();
 		final StringBuilder builder = new StringBuilder();
 		wrapper.setConfigRegistry(natTable.getConfigRegistry());
 		int columnCount = MAX_COLUMNS;
-		//TODO, find the good fix to remove this second assignation (the result depends of the screen size (if there is a scrollbar, it doesn't work))
+		// TODO, find the good fix to remove this second assignation (the result depends of the screen size (if there is a scrollbar, it doesn't work))
 		columnCount = natTable.getColumnCount();
-		//for (int columnPosition = 0; columnPosition < MAX_COLUMNS; columnPosition++) {
+		// for (int columnPosition = 0; columnPosition < MAX_COLUMNS; columnPosition++) {
 		for (int columnPosition = 0; columnPosition < columnCount; columnPosition++) {
 			for (int rowPosition = 0; rowPosition < MAX_ROWS; rowPosition++) {
 				ILayerCell cell = natTable.getCellByPosition(columnPosition, rowPosition);
@@ -204,7 +251,7 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testNattableTooltipProvider() {
+	public void testNattableTooltipProvider() throws Exception {
 		final NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
 		final LabelProviderCellContextElementWrapper wrapper = new LabelProviderCellContextElementWrapper();
 		final TestedPapyrusNatTableToolTipProvider provider = new TestedPapyrusNatTableToolTipProvider(natTable, GridRegion.BODY, GridRegion.COLUMN_HEADER, GridRegion.ROW_HEADER);
@@ -215,9 +262,9 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 		Map<String, Boolean> createToolTip = new HashMap<String, Boolean>();
 		initializeMapForToolTipTests(createToolTip, valueToCheck);
 		int columnCount = MAX_COLUMNS;
-		//TODO, find the good fix to remove this second assignation (the result depends of the screen size (if there is a scrollbar, it doesn't work))
+		// TODO, find the good fix to remove this second assignation (the result depends of the screen size (if there is a scrollbar, it doesn't work))
 		columnCount = natTable.getColumnCount();
-		//for (int columnPosition = 0; columnPosition < MAX_COLUMNS; columnPosition++) {
+		// for (int columnPosition = 0; columnPosition < MAX_COLUMNS; columnPosition++) {
 		for (int columnPosition = 0; columnPosition < columnCount; columnPosition++) {
 			for (int rowPosition = 0; rowPosition < MAX_ROWS; rowPosition++) {
 				int startX = natTable.getStartXOfColumnPosition(columnPosition);
@@ -267,7 +314,7 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 		Assert.assertTrue(builder.toString(), builder.length() == 0);
 	}
 
-	
+
 	/**
 	 * 
 	 * This test checks that the good text is displayed by the tooltip
@@ -277,8 +324,8 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 	 * @{@link FailingTest} it fails because the order of concatenated messages for an object seems changes between validations
 	 */
 	@Test
-	@FailingTest  
-	public void testNattableTooltipProviderText() {
+	@FailingTest
+	public void testNattableTooltipProviderText() throws Exception {
 		final NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
 		final LabelProviderCellContextElementWrapper wrapper = new LabelProviderCellContextElementWrapper();
 		final TestedPapyrusNatTableToolTipProvider provider = new TestedPapyrusNatTableToolTipProvider(natTable, GridRegion.BODY, GridRegion.COLUMN_HEADER, GridRegion.ROW_HEADER);
@@ -289,11 +336,11 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 		Map<String, Boolean> createToolTip = new HashMap<String, Boolean>();
 		initializeMapForToolTipTests(createToolTip, valueToCheck);
 		int columnCount = MAX_COLUMNS;
-		//TODO, find the good fix to remove this second assignation (the result depends of the screen size (if there is a scrollbar, it doesn't work))
+		// TODO, find the good fix to remove this second assignation (the result depends of the screen size (if there is a scrollbar, it doesn't work))
 		columnCount = natTable.getColumnCount();
-		//for (int columnPosition = 0; columnPosition < MAX_COLUMNS; columnPosition++) {
+		// for (int columnPosition = 0; columnPosition < MAX_COLUMNS; columnPosition++) {
 		for (int columnPosition = 0; columnPosition < columnCount; columnPosition++) {
-//		for (int columnPosition = 0; columnPosition < MAX_COLUMNS; columnPosition++) {
+			// for (int columnPosition = 0; columnPosition < MAX_COLUMNS; columnPosition++) {
 			for (int rowPosition = 0; rowPosition < MAX_ROWS; rowPosition++) {
 				int startX = natTable.getStartXOfColumnPosition(columnPosition);
 				int startY = natTable.getStartYOfRowPosition(rowPosition);
@@ -380,6 +427,7 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 	}
 
 	/**
+	 * This allows to add the code to check by the tooltip in the table.
 	 * 
 	 * @param createToolTip
 	 *            the map to know if a tooltip must be displayed
@@ -391,7 +439,8 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 	private void initializeMapForToolTipTests(final Map<String, Boolean> createToolTip, final Map<String, String> valuesToCheck) {
 		createToolTip.put("0_0", false); //$NON-NLS-1$
 		createToolTip.put("0_1", true); //$NON-NLS-1$
-		valuesToCheck.put("0_1", "RootElement::Class1 (Class)\nNamed element 'RootElement::Class1' is not distinguishable from all other members of namespace\n  'RootElement'.\nNot all the members of namespace 'RootElement::Class1' are distinguishable within it.\n2 warnings(s) in the children"); //$NON-NLS-1$ //$NON-NLS-2$
+		valuesToCheck.put("0_1", //$NON-NLS-1$
+				"RootElement::Class1 (Class)\nNamed element 'RootElement::Class1' is not distinguishable from all other members of namespace\n  'RootElement'.\nNot all the members of namespace 'RootElement::Class1' are distinguishable within it.\n2 warnings(s) in the children"); //$NON-NLS-1$
 		createToolTip.put("0_2", false); //$NON-NLS-1$
 		createToolTip.put("0_3", false); //$NON-NLS-1$
 		createToolTip.put("0_4", true); //$NON-NLS-1$
@@ -446,7 +495,8 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 		createToolTip.put("3_11", false); //$NON-NLS-1$
 		createToolTip.put("4_0", false); //$NON-NLS-1$
 		createToolTip.put("4_1", true); //$NON-NLS-1$
-		valuesToCheck.put("4_1", "RootElement::Class1 (Class)\nNamed element 'RootElement::Class1' is not distinguishable from all other members of namespace\n  'RootElement'.\nNot all the members of namespace 'RootElement::Class1' are distinguishable within it.\n2 warnings(s) in the children"); //$NON-NLS-1$ //$NON-NLS-2$
+		valuesToCheck.put("4_1", //$NON-NLS-1$
+				"RootElement::Class1 (Class)\nNamed element 'RootElement::Class1' is not distinguishable from all other members of namespace\n  'RootElement'.\nNot all the members of namespace 'RootElement::Class1' are distinguishable within it.\n2 warnings(s) in the children"); //$NON-NLS-1$
 		createToolTip.put("4_2", false); //$NON-NLS-1$
 		createToolTip.put("4_3", false); //$NON-NLS-1$
 		createToolTip.put("4_4", true); //$NON-NLS-1$
@@ -460,7 +510,8 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 		createToolTip.put("4_11", false); //$NON-NLS-1$
 		createToolTip.put("5_0", false); //$NON-NLS-1$
 		createToolTip.put("5_1", true); //$NON-NLS-1$
-		valuesToCheck.put("5_1", "RootElement::Class1 (Class)\nNamed element 'RootElement::Class1' is not distinguishable from all other members of namespace\n  'RootElement'.\nNot all the members of namespace 'RootElement::Class1' are distinguishable within it.\n2 warnings(s) in the children"); //$NON-NLS-1$ //$NON-NLS-2$
+		valuesToCheck.put("5_1", //$NON-NLS-1$
+				"RootElement::Class1 (Class)\nNamed element 'RootElement::Class1' is not distinguishable from all other members of namespace\n  'RootElement'.\nNot all the members of namespace 'RootElement::Class1' are distinguishable within it.\n2 warnings(s) in the children"); //$NON-NLS-1$
 		createToolTip.put("5_2", false); //$NON-NLS-1$
 		createToolTip.put("5_3", false); //$NON-NLS-1$
 		createToolTip.put("5_4", true); //$NON-NLS-1$
