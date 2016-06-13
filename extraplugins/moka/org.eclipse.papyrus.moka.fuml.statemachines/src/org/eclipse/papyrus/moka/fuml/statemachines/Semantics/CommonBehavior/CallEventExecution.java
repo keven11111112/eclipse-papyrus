@@ -86,6 +86,7 @@ public class CallEventExecution extends Execution {
 				parameter.setType(operationParameter.getType());
 				parameter.setLower(operationParameter.getLower());
 				parameter.setUpper(operationParameter.getUpper());
+				parameter.setDirection(operationParameter.getDirection());
 				this.behavior.getOwnedParameters().add(parameter);
 			}
 		}

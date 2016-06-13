@@ -25,6 +25,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.Ev
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.InvocationEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.EventTriggeredExecution;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.SM_ObjectActivation;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Port;
@@ -188,6 +189,9 @@ public class StateActivation extends VertexActivation {
 				this.doActivityContextObject.owner = this;
 				Execution doActivityExecution = this.getExecutionFor(doActivity, eventOccurrence);
 				doActivityExecution.context = this.doActivityContextObject;
+				if(doActivityExecution instanceof EventTriggeredExecution){
+					((EventTriggeredExecution)doActivityExecution).wrappedExecution.context = this.doActivityContextObject;
+				}
 				// The doActivity is started asynchronously. This is realized by adding an invocation event accepter
 				// for this doActivity within the event accepter list of the object activation attached to the currently
 				// executed state machine

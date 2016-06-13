@@ -15,7 +15,6 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci;
 
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_ExecutionFactory;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Activities.SM_CallOperationActionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ChoicePseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.EntryPointActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ExitPointActivation;
@@ -31,7 +30,6 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.State
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.StateMachineExecution;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.TerminatePseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Values.SM_OpaqueExpressionEvaluation;
-import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.OpaqueExpression;
@@ -78,8 +76,6 @@ public class SM_ExecutionFactory extends CS_ExecutionFactory {
 			visitor = new RegionActivation();
 		}else if(element instanceof OpaqueExpression) {
 			visitor = new SM_OpaqueExpressionEvaluation();
-		}else if(element instanceof CallOperationAction) {
-			visitor = new SM_CallOperationActionActivation();
 		}else {
 			visitor = super.instantiateVisitor(element);
 		}
