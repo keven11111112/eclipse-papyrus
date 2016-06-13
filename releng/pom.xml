@@ -28,7 +28,7 @@
 
 		<!-- Papyrus repositories. Used when we're building individual components 
 			(vs building the parent pom including everything) -->
-		<papyrus.eclipse.target>neon</papyrus.eclipse.target>
+		<papyrus.eclipse.target>oxygen</papyrus.eclipse.target>
 		<eclipse.download>http://download.eclipse.org</eclipse.download> <!-- Deprecated; kept for Legacy. Can be set to file:/home/data/httpd/download.eclipse.org when building on HIPP -->
 		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/main</papyrus.repo.main>
 		<papyrus.repo.extra>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/extra</papyrus.repo.extra>
