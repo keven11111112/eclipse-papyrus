@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ArrivalSignal;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 
@@ -26,21 +27,15 @@ public class DoActivityExecutionEventAccepter extends EventAccepter {
 	
 	@Override
 	public void accept(EventOccurrence eventOccurrence) {
-		// Execute the RTC step related to the acceptance of this event.
-		// Afterwards check if there are remaining accepters registered in
-		// the for the object activation which is attached to the do activity
-		// context object.
-		this.context.unregister(this.encapsulatedAccepter);
-		this.encapsulatedAccepter.accept(eventOccurrence);
-		if(this.context.objectActivation.waitingEventAccepters.isEmpty()){
-			// Make the state to complete if it is ready to do so
-			if(this.context.owner!=null){
-				this.context.owner.isDoActivityCompleted = true;
-				if(this.context.owner.hasCompleted()){
-					this.context.owner.notifyCompletion();
-				}
-			}
-		}
+		// The event accepted through the state-machine event pool leads
+		// to the triggering of a RTC step in the context of the doActivity.
+		// As this needs to be realized the execution thread of the doActivity
+		// the accepted event occurrence is registered at the event pool of the
+		// DoActivityContextObjectActivation. This will trigger a new RTC step
+		// that will effectively be realized in the DoActivityContextObject and
+		// not in the State Machine context.
+		this.context.objectActivation.eventPool.add(eventOccurrence);
+		this.context.objectActivation._send(new ArrivalSignal());
 	}
 
 	@Override

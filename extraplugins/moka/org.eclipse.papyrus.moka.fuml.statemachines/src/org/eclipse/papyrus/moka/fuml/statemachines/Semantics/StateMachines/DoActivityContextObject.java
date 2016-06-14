@@ -19,9 +19,11 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.FeatureValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ArrivalSignal;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ObjectActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.SM_ObjectActivation;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.StructuralFeature;
 
@@ -37,25 +39,45 @@ public class DoActivityContextObject extends Object_ {
 	
 	public void initialize(Object_ context){
 		// Create the object activation and reference the context of the executing state-machine
-		this.objectActivation = new ObjectActivation();
+		this.objectActivation = new DoActivityContextObjectActivation();
 		this.objectActivation.object = this;
 		if(context!=null){
 			this.context = context;
+			this.locus = context.locus;
 		}
 	}
 	
 	@Override
 	public void register(EventAccepter accepter) {
-		// The accepter is registered in the object activation event accepter list.
-		// In addition the accepter is also registered in the object activation of
-		// the context object of state machine to which the state activation belongs
+		// When the executing doActivity registers an accepter it searches through the deferred event
+		// pool of the object activation associated to the state-machine context.
+		// 1. If the accepter being registered matches one of the deferred events then this event is
+		//    transferred into the event pool of the doActivity object activation. This implies the
+		//    event will be dispatched in a RTC step performed by the doActivity object activation. 
+		// 2. If the accepter being registered does not match one of the deferred events then this latter
+		//    is wrapped in another accepter which is registered by the state machine context object activation.
+		//    This is realized in order to guarantee that the doActivity will have a chance to match an event
+		//    received by the state-machine context object.
 		super.register(accepter);
-		if(this.owner!=null){
-			Object_ stateMachineExecutionContext =  this.owner.getExecutionContext();
+		SM_ObjectActivation contextObjectActivation = (SM_ObjectActivation) this.context.objectActivation;
+		int i = 1;
+		DeferredEventOccurrence matchedDeferredEvent = null; 
+		while(matchedDeferredEvent == null && i <= contextObjectActivation.deferredEventPool.size()){
+			DeferredEventOccurrence eventOccurrence = contextObjectActivation.deferredEventPool.get(i-1);
+			if(accepter.match(eventOccurrence.deferredEventOccurrence)){
+				matchedDeferredEvent = eventOccurrence;
+			}
+			i++;
+		}
+		if(matchedDeferredEvent == null){
 			DoActivityExecutionEventAccepter encapsulatingAccepter = new DoActivityExecutionEventAccepter();
 			encapsulatingAccepter.encapsulatedAccepter = accepter;
 			encapsulatingAccepter.context = this;
-			stateMachineExecutionContext.register(encapsulatingAccepter);
+			this.context.register(encapsulatingAccepter);
+		}else{
+			contextObjectActivation.deferredEventPool.remove(matchedDeferredEvent);
+			this.objectActivation.eventPool.add(matchedDeferredEvent.deferredEventOccurrence);
+			this.objectActivation._send(new ArrivalSignal());
 		}
 	}
 	

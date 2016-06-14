@@ -86,7 +86,25 @@ public class StateMachineEventAccepter extends EventAccepter{
 		// 1 - One active state in the hierarchy declares the event types as being deferred.
 		// 2 - No transitions (ready to fire) with a higher priority than the deferring state
 		//     could be found.
-		return this._isDeferred(eventOccurrence, this.registrationContext.getConfiguration().rootConfiguration);
+		// 3 - It does not exist any running doActivity having already registered an accepter
+		//     for the given event occurrence
+		boolean deferred = this._isDeferred(eventOccurrence, this.registrationContext.getConfiguration().rootConfiguration);
+		if(deferred){
+			Object_ context = this.registrationContext.context;
+			if(context != null && context.objectActivation != null){
+				int  i = 1;
+				while(deferred && i <= context.objectActivation.waitingEventAccepters.size()){
+					EventAccepter currentEventAccepter = context.objectActivation.waitingEventAccepters.get(i - 1);
+					if(currentEventAccepter != this 
+							&& currentEventAccepter instanceof DoActivityExecutionEventAccepter
+							&& currentEventAccepter.match(eventOccurrence)){
+						deferred = false;;
+					}
+					i++;
+				}
+			}
+		}
+		return deferred;
 	}
 	
 	protected boolean _isDeferred(EventOccurrence eventOccurrence, StateConfiguration stateConfiguration){

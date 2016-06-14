@@ -195,9 +195,9 @@ public class StateActivation extends VertexActivation {
 				// The doActivity is started asynchronously. This is realized by adding an invocation event accepter
 				// for this doActivity within the event accepter list of the object activation attached to the currently
 				// executed state machine
-				ClassifierBehaviorInvocationEventAccepter invocation = new ClassifierBehaviorInvocationEventAccepter();
-				invocation.execution = doActivityExecution;
-				doActivityExecution.context.register(invocation);
+				ClassifierBehaviorInvocationEventAccepter invocationAccepter = new ClassifierBehaviorInvocationEventAccepter();
+				invocationAccepter.execution = doActivityExecution;
+				doActivityExecution.context.register(invocationAccepter);
 				InvocationEventOccurrence eventOccurence = new InvocationEventOccurrence();
 				eventOccurence.execution = doActivityExecution;
 				stateMachineExecutionContext.objectActivation.eventPool.add(eventOccurence);
