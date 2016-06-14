@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.nattable.tests.tests;
 
 
 import org.eclipse.papyrus.uml.nattable.tests.bugs.DeleteRowElementTest;
+import org.eclipse.papyrus.uml.nattable.tests.bugs.MoveElementInSynchronizedTableTest;
 import org.eclipse.papyrus.uml.nattable.tests.tests.configs.GenericTreeTableConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.tests.tests.configs.GenericTreeTableNattableConfigurationTest;
 import org.junit.runner.RunWith;
@@ -25,7 +26,10 @@ import org.junit.runners.Suite.SuiteClasses;
 	GenericTreeTableNattableConfigurationTest.class,
 	
 	// Delete row elements
-	DeleteRowElementTest.class
+	DeleteRowElementTest.class,
+	
+	// Bug 495312: Move Elements,
+	MoveElementInSynchronizedTableTest.class
 })
 public class AllTests {
 
