@@ -704,7 +704,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 		}
 
 		// case 3 - the notifier is a known element
-		if (this.managedElements.containsKey(notifier)) {
+		if (this.managedElements.containsKey(notifier) && !this.managedElements.containsKey(newValue)) {
 			final Set<ITreeItemAxis> itemAxisRepresentations = this.managedElements.get(notifier);
 			// we need to add a child for each representation of its parent in the table
 			for (final ITreeItemAxis curr : itemAxisRepresentations) {
