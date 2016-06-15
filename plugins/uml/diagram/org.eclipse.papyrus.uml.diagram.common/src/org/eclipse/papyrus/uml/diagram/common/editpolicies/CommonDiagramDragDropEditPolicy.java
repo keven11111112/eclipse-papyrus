@@ -14,6 +14,8 @@
  *  Christian W. Damus (CEA) - bug 430726
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - bug 450341 
  *  Christian W. Damus - bug 450944
+ *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 493430
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
@@ -69,6 +71,7 @@ import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateViewCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.SemanticElementAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AbstractDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewServiceUtil;
@@ -175,7 +178,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 		IAdaptable sourceAdapter = findAdapter(cc, source, getLinkSourceDropLocation(absoluteLocation, source, target));
 		IAdaptable targetAdapter = findAdapter(cc, target, getLinkTargetDropLocation(absoluteLocation, source, target));
 		// descriptor of the link
-		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(getUMLElementType(linkVISUALID), ((IHintedType) getUMLElementType(linkVISUALID)).getSemanticHint(),
+
+		SemanticElementAdapter adapter = new SemanticElementAdapter(semanticLink, getUMLElementType(linkVISUALID));
+		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(adapter, ((IHintedType) getUMLElementType(linkVISUALID)).getSemanticHint(),
 				getDiagramPreferencesHint());
 
 		CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(),

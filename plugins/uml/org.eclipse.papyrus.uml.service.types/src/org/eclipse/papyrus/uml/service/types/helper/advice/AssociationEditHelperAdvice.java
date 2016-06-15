@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
  *		CEA LIST - Initial API and implementation
+ *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 493430
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
@@ -38,6 +38,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -324,12 +325,25 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		// Retrieve property ends of the binary Association
 		if (association.getMemberEnds().size() == 2) {
+			Property semanticSource = association.getMemberEnds().get(0);
+			Property semanticTarget = association.getMemberEnds().get(1);
+
+			if (semanticSource.getType().equals(semanticTarget.getType())) {
+				if (request.getDirection() == ReorientRequest.REORIENT_SOURCE) {
+					changeType = semanticTarget;
+				}
+
+				if (request.getDirection() == ReorientRequest.REORIENT_TARGET) {
+					changeType = semanticSource;
+				}
+			}
+
 			// if this a binary
 			// 1 property change its parents, if it is not contains by the association
 			// 1 property change its types
-			changeContainer = association.getMemberEnds().get(0);
-			if (changeType.equals(association.getMemberEnds().get(0))) {
-				changeContainer = association.getMemberEnds().get(1);
+			changeContainer = semanticSource;
+			if (changeType.equals(semanticSource)) {
+				changeContainer = semanticTarget;
 			}
 			if (!association.getOwnedEnds().contains(changeContainer)) {
 				moveRequest = new MoveRequest(request.getNewRelationshipEnd(), changeContainer);
@@ -339,10 +353,11 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 
 
+
+
 			if (moveRequest != null) {
 				// Propagate parameters to the move request
 				moveRequest.addParameters(request.getParameters());
-
 				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(request.getNewRelationshipEnd());
 				if (provider != null) {
 					ICommand moveCommand = provider.getEditCommand(moveRequest);

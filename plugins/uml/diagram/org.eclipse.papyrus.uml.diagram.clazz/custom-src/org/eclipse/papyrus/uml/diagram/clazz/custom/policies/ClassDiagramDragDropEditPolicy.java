@@ -70,6 +70,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.strategy.paste.ShowConstraintContextLink;
+import org.eclipse.papyrus.uml.diagram.common.util.AssociationUtil;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Constraint;
@@ -77,7 +78,6 @@ import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.PackageableElement;
-import org.eclipse.uml2.uml.Property;
 
 /**
  * The Class ClassDiagramDragDropEditPolicy.
@@ -247,16 +247,9 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, AssociationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		}
 		if (endtypes.size() == 2) {
-			Element source = null;
-			Element target = null;
-			final List<Property> memberEnds = ((Association) semanticLink).getMemberEnds();
-			if (memberEnds.get(0).equals(endtypes.get(0))) {
-				source = (Element) endtypes.get(0);
-				target = (Element) endtypes.get(1);
-			} else {
-				source = (Element) endtypes.get(1);
-				target = (Element) endtypes.get(0);
-			}
+			// Source link is based on the target property and the target link is based on the source property
+			Element source = AssociationUtil.getTargetSecondEnd((Association) semanticLink).getType();
+			Element target = AssociationUtil.getSourceFirstEnd((Association) semanticLink).getType();
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, AssociationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		}
 		if (endtypes.size() > 2) {

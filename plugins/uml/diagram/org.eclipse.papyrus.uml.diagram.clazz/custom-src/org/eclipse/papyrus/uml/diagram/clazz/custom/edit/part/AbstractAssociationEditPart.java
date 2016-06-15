@@ -10,6 +10,8 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Benoit Maggi (CEA LIST) - Bug 468026
+ *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 493430
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
 
@@ -19,9 +21,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.AssociationFigure;
+import org.eclipse.papyrus.uml.diagram.common.util.AssociationUtil;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
@@ -56,8 +58,8 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 		if (semanticElement instanceof Association) {
 			Association association = (Association) semanticElement;
 			if (association.getMemberEnds().size() >= 2) {
-				EObject sourceEnd = association.getMemberEnds().get(0);
-				EObject targetEnd = association.getMemberEnds().get(1);
+				EObject sourceEnd = getSourceProperty(association);
+				EObject targetEnd = getTargetProperty(association);
 				addListenerFilter(ASSOCIATION_END_LISTENERS_SOURCE, this, sourceEnd);
 				addListenerFilter(ASSOCIATION_END_LISTENERS_TARGET, this, targetEnd);
 			}
@@ -106,23 +108,30 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 			if (((GraphicalEditPart) getSource()).resolveSemanticElement() == null || ((GraphicalEditPart) getTarget()).resolveSemanticElement() == null) {
 				return;
 			}
-			Property source = null;
-			Property target = null;
-			// Get the association
-			Element umlElement = getUMLElement();
-			if (umlElement instanceof Association) {
+
+			if (getUMLElement() instanceof Association) {
 				Association association = (Association) getUMLElement();
-				assert (association.getMemberEnds().size() >= 2);
-				if (association.getMemberEnds() != null && association.getMemberEnds().size() >= 2) {
-					Property firstProperty = association.getMemberEnds().get(0);
-					Type firstPropertyType = firstProperty.getType();
-					if (firstPropertyType!= null && firstPropertyType.equals(((GraphicalEditPart) getSource()).resolveSemanticElement())) {
-						source = (firstProperty);
-						target = ((association.getMemberEnds().get(1)));
-					} else {
-						source = ((association.getMemberEnds().get(1)));
-						target = (firstProperty);
+				if (null != association.getMemberEnds() && 2 <= association.getMemberEnds().size()) {
+					Property source = getSourceProperty(association);
+					Property target = getTargetProperty(association);
+
+					if (null == source || null == target) {
+						return;
 					}
+
+					if (!source.getType().equals(target.getType())) {
+						Property propertyGet0 = association.getMemberEnds().get(0);
+						Property propertyGet1 = association.getMemberEnds().get(1);
+						Type propertyTypeGet0 = propertyGet0.getType();
+						if (null != propertyTypeGet0 && propertyTypeGet0.equals(((GraphicalEditPart) getSource()).resolveSemanticElement())) {
+							source = propertyGet0;
+							target = propertyGet1;
+						} else {
+							source = propertyGet1;
+							target = propertyGet0;
+						}
+					}
+
 					int sourceType = 0;
 					int targetType = 0;
 					// to display the dot.
@@ -163,6 +172,28 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 			}
 		}
 		super.refreshVisuals();
+	}
+
+	/**
+	 * Get the source member end of the Association.
+	 *
+	 * @param association
+	 *            The Association.
+	 * @return The source member end.
+	 */
+	protected Property getSourceProperty(final Association association) {
+		return AssociationUtil.getTargetSecondEnd(association);
+	}
+
+	/**
+	 * Get the target member end of the Association.
+	 *
+	 * @param association
+	 *            The Association.
+	 * @return The target member end.
+	 */
+	protected Property getTargetProperty(final Association association) {
+		return AssociationUtil.getSourceFirstEnd(association);
 	}
 
 	/**
