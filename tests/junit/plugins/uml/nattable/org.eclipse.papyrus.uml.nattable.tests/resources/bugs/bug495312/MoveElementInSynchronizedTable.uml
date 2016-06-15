@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_bFfeMDSYEea00sqPDPZMjg" name="RootElement">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_chpTIDSYEea00sqPDPZMjg" name="Activity1" node="_dRk7QDSYEea00sqPDPZMjg _eFg5oDSYEea00sqPDPZMjg _e5iXkDSYEea00sqPDPZMjg _fia8gDSYEea00sqPDPZMjg">
+    <node xmi:type="uml:AcceptEventAction" xmi:id="_dRk7QDSYEea00sqPDPZMjg" name="AcceptEventAction1"/>
+    <node xmi:type="uml:AcceptEventAction" xmi:id="_eFg5oDSYEea00sqPDPZMjg" name="AcceptEventAction2"/>
+    <node xmi:type="uml:AcceptEventAction" xmi:id="_e5iXkDSYEea00sqPDPZMjg" name="AcceptEventAction3"/>
+    <node xmi:type="uml:AcceptEventAction" xmi:id="_fia8gDSYEea00sqPDPZMjg" name="AcceptEventAction4"/>
+  </packagedElement>
+</uml:Model>

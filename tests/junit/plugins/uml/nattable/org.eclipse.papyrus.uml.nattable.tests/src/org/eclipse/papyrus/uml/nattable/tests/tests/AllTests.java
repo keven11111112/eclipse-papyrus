@@ -12,13 +12,16 @@
 package org.eclipse.papyrus.uml.nattable.tests.tests;
 
 
+import org.eclipse.papyrus.uml.nattable.tests.bugs.MoveElementInSynchronizedTableTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ UMLRestrictedContentProviderTest.class, UMLRestrictedContentProviderTestCustomProfile.class
-
+@SuiteClasses({ UMLRestrictedContentProviderTest.class, UMLRestrictedContentProviderTestCustomProfile.class,
+	
+	// Bug 495312: Move Elements
+	MoveElementInSynchronizedTableTest.class
 })
 public class AllTests {
 
