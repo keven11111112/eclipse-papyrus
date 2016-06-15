@@ -132,14 +132,17 @@ public class TableHelper {
 	 * 		the display style to use for the table, the return value is never <code>null</code>
 	 */
 	public static final DisplayStyle getTableDisplayStyle(final Table table) {
-		TableDisplayStyle displayStyle = (TableDisplayStyle) table.getStyle(NattablestylePackage.eINSTANCE.getTableDisplayStyle());
-		if (displayStyle == null) {
-			displayStyle = (TableDisplayStyle) table.getTableConfiguration().getStyle(NattablestylePackage.eINSTANCE.getTableDisplayStyle());
+		DisplayStyle result = DisplayStyle.NORMAL;
+		if (null != table) {
+			TableDisplayStyle displayStyle = (TableDisplayStyle) table.getStyle(NattablestylePackage.eINSTANCE.getTableDisplayStyle());
+			if (null == displayStyle && null != table.getTableConfiguration()) {
+				displayStyle = (TableDisplayStyle) table.getTableConfiguration().getStyle(NattablestylePackage.eINSTANCE.getTableDisplayStyle());
+			}
+			if (displayStyle != null) {
+				result = displayStyle.getDisplayStyle();
+			}
 		}
-		if (displayStyle != null) {
-			return displayStyle.getDisplayStyle();
-		}
-		return DisplayStyle.NORMAL;
+		return result;
 	}
 
 
