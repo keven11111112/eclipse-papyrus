@@ -13,8 +13,10 @@
 package org.eclipse.papyrus.infra.nattable.common.handlers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -106,7 +108,15 @@ public class CreateNatTableFromCatalogHandler extends AbstractHandler {
 	// return null;
 	// }
 
-
+	/**
+	 * The view prototypes to create by the table creation wizard.
+	 */
+	private Map<ViewPrototype, Integer> viewPrototypes = null;
+	
+	/**
+	 * The view prototypes names of the table to create (names from wizard).
+	 */
+	private Map<ViewPrototype, String> tableNames = null;
 
 	// NEW CODE using ViewPrototype
 	/**
@@ -118,7 +128,17 @@ public class CreateNatTableFromCatalogHandler extends AbstractHandler {
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		final EObject context = getSelection().get(0);
-		final CreateNattableFromCatalogWizard wizard = new CreateNattableFromCatalogWizard(context);
+		final CreateNattableFromCatalogWizard wizard = new CreateNattableFromCatalogWizard(context){
+			
+			@Override
+			public void dispose() {
+				// Get the view prototypes and the table names before the dispose values
+				// Create a new hashmap because the reference must be deleted with the dispose
+				viewPrototypes = new HashMap<ViewPrototype, Integer>(this.getSelectedViewPrototypes());
+				tableNames = new HashMap<ViewPrototype, String>(this.getTableNames());
+				super.dispose();
+			}
+		};
 		final WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), wizard);
 		ServicesRegistry serviceRegistry = null;
 		TransactionalEditingDomain domain = null;
@@ -131,26 +151,30 @@ public class CreateNatTableFromCatalogHandler extends AbstractHandler {
 		}
 
 		if (Window.OK == dialog.open()) {
-
+			
 			final RecordingCommand rc = new RecordingCommand(domain) {
 
 				@Override
 				protected void doExecute() {
-					for (final ViewPrototype viewPrototype : wizard.getSelectedViewPrototypes().keySet()) {
+					for (final ViewPrototype viewPrototype : viewPrototypes.keySet()) {
 						if (null != viewPrototype) {
 							// See how many tables were required for this type
-							Integer tablesQuantity = wizard.getSelectedViewPrototypes().get(viewPrototype);
+							final Integer tablesQuantity = viewPrototypes.get(viewPrototype);
 
 							// Get the chosen name for the tables under this configuration
-							final String tableConfigName = wizard.getTableNames().get(viewPrototype);
+							final String tableConfigName = null != tableNames.get(viewPrototype) && !tableNames.get(viewPrototype).isEmpty() ? tableNames.get(viewPrototype) : viewPrototype.getLabel();
 							for (int i = 0; i < tablesQuantity; i++) {
+								final String tableNameToCreate = 1 < tablesQuantity ? tableConfigName + "_" + i : tableConfigName; //$NON-NLS-1$
 								// TODO : The following code line must be replaced by TableEditorCreationHelper.getTableConfigurationURI when the API for table creation is merged
-								PolicyDefinedTableHandler handler = new PolicyDefinedTableHandler(getTableConfigurationURI((TableViewPrototype) viewPrototype), context, tableConfigName + "_" + i); //$NON-NLS-1$
+								PolicyDefinedTableHandler handler = new PolicyDefinedTableHandler(getTableConfigurationURI((TableViewPrototype) viewPrototype), context, tableNameToCreate);
 								handler.execute(viewPrototype);
 							}
 						}
 
 					}
+					// Re-initialize the global variables because we don't need it after
+					viewPrototypes = null;
+					tableNames = null;
 				}
 			};
 			domain.getCommandStack().execute(rc);
