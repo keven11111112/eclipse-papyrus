@@ -64,7 +64,7 @@ public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements Notif
 	}
 
 	public void udaptePortBehavior() {
-		GraphicalEditPart parentEditPart = (GraphicalEditPart)((GraphicalEditPart) getHost()).getParent();
+		GraphicalEditPart parentEditPart = (GraphicalEditPart) ((GraphicalEditPart) getHost()).getParent();
 		ShapeCompartmentEditPart targetEditPart = (parentEditPart == null) ? null : getPossibleCompartment(parentEditPart);
 		if (targetEditPart != null) {
 			// remove old BehaviorPort presentation
@@ -75,16 +75,18 @@ public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements Notif
 		if (getHost() instanceof PortEditPart) {
 			IFigure hostFigure = ((PortEditPart) getHost()).getContentPane();
 			if (hostFigure instanceof PortFigure) {
-				PortFigure port = (PortFigure) hostFigure;
-
-				if (getUMLElement().isBehavior()) {
-					if (parentEditPart.resolveSemanticElement() instanceof Classifier || targetEditPart != null) {
-						port.restoreBehaviorFigure();
+				PortFigure portFigure = (PortFigure) hostFigure;
+				Port port = getUMLElement();
+				if (port != null) {
+					if (port.isBehavior()) {
+						if (parentEditPart.resolveSemanticElement() instanceof Classifier || targetEditPart != null) {
+							portFigure.restoreBehaviorFigure();
+						} else {
+							portFigure.removeBehavior();
+						}
 					} else {
-						port.removeBehavior();
+						portFigure.removeBehavior();
 					}
-				} else {
-					port.removeBehavior();
 				}
 			}
 		}
