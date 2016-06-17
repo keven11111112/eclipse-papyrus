@@ -18,6 +18,7 @@ import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite.Dy
 import org.eclipse.papyrus.uml.diagram.clazz.test.canonical.AllCanonicalTests;
 import org.eclipse.papyrus.uml.diagram.clazz.test.canonical.TestClassDiagram;
 import org.eclipse.papyrus.uml.diagram.clazz.test.copyPaste.ConstraintPasteStrategyTest;
+import org.eclipse.papyrus.uml.diagram.clazz.test.dnd.DragAndDropAssociationsTest;
 import org.eclipse.papyrus.uml.diagram.clazz.test.legacy.PackageDiagramLegacyTest;
 import org.eclipse.papyrus.uml.diagram.clazz.test.tests.Bug382954_InstanceSpecificationLink;
 import org.eclipse.papyrus.uml.diagram.clazz.test.tests.Bug476872_MoveCommandTest;
@@ -41,7 +42,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		RoundedCompartmentTest.class,
 		Bug476872_MoveCommandTest.class,
 		Bug481317_MoveGeneralizationTest.class,
-		MoveContentsTest.class
+		MoveContentsTest.class,
+		DragAndDropAssociationsTest.class
 		// load
 		// LoadTests.class
 

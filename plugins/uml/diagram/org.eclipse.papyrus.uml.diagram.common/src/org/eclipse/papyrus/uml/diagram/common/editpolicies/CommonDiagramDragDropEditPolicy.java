@@ -12,9 +12,10 @@
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - refactor common behavior between diagrams
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - add the line 	ViewServiceUtil.forceLoad();
  *  Christian W. Damus (CEA) - bug 430726
- *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - bug 450341 
+ *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - bug 450341
  *  Christian W. Damus - bug 450944
  *  Christian W. Damus - bug 477384
+ *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 493430
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
@@ -70,6 +71,7 @@ import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateViewCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.SemanticElementAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AbstractDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype.VisualTypeService;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
@@ -140,7 +142,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 
 	/**
 	 * Gets the notational diagram in which my host edit part is rendering a view.
-	 * 
+	 *
 	 * @return the contextual diagram
 	 */
 	protected Diagram getContextDiagram() {
@@ -194,7 +196,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 		IAdaptable sourceAdapter = findAdapter(cc, source, getLinkSourceDropLocation(absoluteLocation, source, target));
 		IAdaptable targetAdapter = findAdapter(cc, target, getLinkTargetDropLocation(absoluteLocation, source, target));
 		// descriptor of the link
-		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(getUMLElementType(linkVISUALID), ((IHintedType) getUMLElementType(linkVISUALID)).getSemanticHint(),
+
+		SemanticElementAdapter adapter = new SemanticElementAdapter(semanticLink, getUMLElementType(linkVISUALID));
+		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(adapter, ((IHintedType) getUMLElementType(linkVISUALID)).getSemanticHint(),
 				getDiagramPreferencesHint());
 
 		CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(),
@@ -258,17 +262,17 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 		/*
 		 * when it's the first action after the opening of Papyrus, the
 		 * viewService is not loaded! see bug 302555
-		 * 
+		 *
 		 * Duration test for 100000 creations of DropCommand : Here 2 solutions
 		 * : - call ViewServiceUtil.forceLoad(); for each drop -> ~2500ms
-		 * 
+		 *
 		 * - test if the command cc can be executed at the end of the method,
 		 * and if not : - call ViewServiceUtil.forceLoad(); - and return
 		 * getDropObjectsCommand(getDropObjectsCommand) -> ~4700ms
-		 * 
+		 *
 		 * - for information : without call ViewServiceUtil.forceLoad(); ->
 		 * ~1600ms
-		 * 
+		 *
 		 * It's better don't test if the command is executable!
 		 */
 		ViewServiceUtil.forceLoad();
@@ -714,7 +718,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	/**
 	 * Returns The command to drop the {@link Constraint} and the links, if the
 	 * constraints elements are on the diagram
-	 * 
+	 *
 	 * @param comment
 	 *            the comment to drop
 	 * @param viewer
@@ -738,7 +742,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 		int nbAnnotated = constraint.getConstrainedElements().size();
 
 		// 0. Obtain list of the annotatedElement
-		ArrayList<Element> endToConnect = new ArrayList<Element>(constraint.getConstrainedElements());
+		ArrayList<Element> endToConnect = new ArrayList<>(constraint.getConstrainedElements());
 		GraphicalEditPart[] endEditPart = new GraphicalEditPart[nbAnnotated];
 
 		// 1. Look for if each annotated element is on the diagram
@@ -791,7 +795,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	/**
 	 * Returns The command to drop the {@link Comment} and the links, if the
 	 * attached elements are on the diagram
-	 * 
+	 *
 	 * @param comment
 	 *            the comment to drop
 	 * @param viewer
@@ -816,7 +820,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 		int nbAnnotated = comment.getAnnotatedElements().size();
 
 		// 0. Obtain list of the annotatedElement
-		ArrayList<Element> endToConnect = new ArrayList<Element>(comment.getAnnotatedElements());
+		ArrayList<Element> endToConnect = new ArrayList<>(comment.getAnnotatedElements());
 		GraphicalEditPart[] endEditPart = new GraphicalEditPart[nbAnnotated];
 
 		// 1. Look for if each annotated element is on the diagram
@@ -879,7 +883,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 * - a Class that owns or inherits the Port
 	 * - a Property which type owns or inherits the Port
 	 * </pre>
-	 * 
+	 *
 	 * @param dropRequest
 	 *            the drop request
 	 * @param droppedElement
@@ -967,10 +971,10 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 
 	/**
 	 * <pre>
-	 * This method returns the drop command for AffixedNode (Port, Parameter) 
+	 * This method returns the drop command for AffixedNode (Port, Parameter)
 	 * in case the node is dropped on a ShapeCompartmentEditPart.
 	 * </pre>
-	 * 
+	 *
 	 * @param nodeVISUALID
 	 *            the node visual identifier
 	 * @param location
@@ -1006,7 +1010,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 * Find source/target adapter
 	 * If the source and the target views do not exist, these views will be
 	 * created.
-	 * 
+	 *
 	 * @see dropBinaryLink(CompositeCommand cc, Element source, Element target, int linkVISUALID
 	 *      , Point absoluteLocation, Element semanticLink)
 	 *

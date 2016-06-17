@@ -12,7 +12,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.util;
 
+import java.util.List;
+
 import org.eclipse.uml2.uml.AggregationKind;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -80,5 +83,33 @@ public class AssociationUtil {
 		}
 
 		return identicalNavigable;
+	}
+
+	/**
+	 * 
+	 * @param association
+	 * @return
+	 */
+	public static Property getSourceFirstEnd(final Association association) {
+		Property source = null;
+		List<Property> memberEnds = association.getMemberEnds();
+		if (!memberEnds.isEmpty()) {
+			source = memberEnds.get(0);
+		}
+		return source;
+	}
+
+	/**
+	 * 
+	 * @param association
+	 * @return
+	 */
+	public static Property getTargetSecondEnd(final Association association) {
+		Property target = null;
+		List<Property> memberEnds = association.getMemberEnds();
+		if (2 <= memberEnds.size()) {
+			target = memberEnds.get(1);
+		}
+		return target;
 	}
 }

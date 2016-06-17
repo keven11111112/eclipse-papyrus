@@ -29,13 +29,13 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.util.AssociationUtil;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.helper.UseCaseLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Property;
 
 /**
  * This class is used to execute the drag and drop from the outline. It can manage the drop of nodes
@@ -120,16 +120,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			Element target = (Element) endtypes.get(0);
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		} else if (endtypes.size() == 2) {
-			Element source = null;
-			Element target = null;
-			final List<Property> memberEnds = ((Association) semanticLink).getMemberEnds();
-			if (memberEnds.get(0).equals(endtypes.get(0))) {
-				source = (Element) endtypes.get(0);
-				target = (Element) endtypes.get(1);
-			} else {
-				source = (Element) endtypes.get(1);
-				target = (Element) endtypes.get(0);
-			}
+			// Source link is based on the target property and the target link is based on the source property
+			Element source = AssociationUtil.getTargetSecondEnd((Association) semanticLink).getType();
+			Element target = AssociationUtil.getSourceFirstEnd((Association) semanticLink).getType();
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		} else {
 			return UnexecutableCommand.INSTANCE;

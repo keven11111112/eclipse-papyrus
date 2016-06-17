@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
  *		CEA LIST - Initial API and implementation
+ *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 493430
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -42,7 +43,6 @@ import org.eclipse.papyrus.uml.service.types.Activator;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ClassifierUtils;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
-import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
@@ -57,7 +57,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * This method provides the source type provided as {@link ConfigureRequest} parameter.
-	 * 
+	 *
 	 * @return the target role
 	 */
 	protected Classifier getSourceOwnerType(ConfigureRequest req) {
@@ -72,7 +72,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * This method provides the target type provided as {@link ConfigureRequest} parameter.
-	 * 
+	 *
 	 * @return the target role
 	 */
 	protected Classifier getTargetOwnerType(ConfigureRequest req) {
@@ -87,7 +87,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * Creates a new source {@link Property} from the targetType.
-	 * 
+	 *
 	 * @param targetType
 	 *            the type of the {@link Property}
 	 * @return the new {@link Property}
@@ -105,7 +105,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * Creates a new target {@link Property} from the sourceType.
-	 * 
+	 *
 	 * @param sourceType
 	 *            the type of the {@link Property}
 	 * @return the new {@link Property}
@@ -124,7 +124,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * Add the source {@link Property} in the correct container.
-	 * 
+	 *
 	 * @param sourceEnd
 	 *            the semantic end
 	 * @param owner
@@ -145,7 +145,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * Add the source {@link Property} in the correct container.
-	 * 
+	 *
 	 * @param targetEnd
 	 *            the semantic end
 	 * @param owner
@@ -167,11 +167,11 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 	/**
 	 * <pre>
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * Complete the {@link Association} creation by:
 	 * 		adding its {@link Property} ends in the model
 	 * 		adding the UML Nature on the {@link Association}.
-	 * 
+	 *
 	 * </pre>
 	 */
 	@Override
@@ -221,17 +221,18 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 	/**
 	 * <pre>
 	 * {@inheritDoc}
-	 * 
-	 * Add a command to destroy {@link Association} ends referenced by the {@link Association} 
+	 *
+	 * Add a command to destroy {@link Association} ends referenced by the {@link Association}
 	 * to delete.
-	 * 
+	 *
 	 * </pre>
 	 */
 	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest req) {
 		List<EObject> dependentsToDestroy = new ArrayList<EObject>();
 
-		List<EObject> dependentsToKeep = (req.getParameter(RequestParameterConstants.DEPENDENTS_TO_KEEP) != null) ? (List<EObject>) req.getParameter(RequestParameterConstants.DEPENDENTS_TO_KEEP) : new ArrayList<EObject>();
+		List<EObject> dependentsToKeep = (req.getParameter(org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants.DEPENDENTS_TO_KEEP) != null)
+				? (List<EObject>) req.getParameter(org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants.DEPENDENTS_TO_KEEP) : new ArrayList<EObject>();
 
 		Association association = (Association) req.getElementToDestroy();
 		for (Property end : association.getMemberEnds()) {
@@ -251,9 +252,9 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 	/**
 	 * <pre>
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * Add a command to destroy {@link Association} when only 1 end remains.
-	 * 
+	 *
 	 * </pre>
 	 */
 	@Override
@@ -284,9 +285,9 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 	/**
 	 * <pre>
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * Add a command to related association end during re-orient.
-	 * 
+	 *
 	 * </pre>
 	 */
 	@Override
@@ -304,7 +305,8 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 		// 1 property change its types
 		Property changeContainer = null;
 		Property changeType = getMemberEnd(association, (Classifier) request.getOldRelationshipEnd());
-		List<EObject> currentlyRefactoredElements = (request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) != null) ? (List<EObject>) request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS)
+		List<EObject> currentlyRefactoredElements = (request.getParameter(org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) != null)
+				? (List<EObject>) request.getParameter(org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS)
 				: new ArrayList<EObject>();
 
 		if (currentlyRefactoredElements.contains(association)) {
@@ -313,17 +315,30 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		} else {
 			currentlyRefactoredElements.add(association);
-			request.getParameters().put(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS, currentlyRefactoredElements);
+			request.getParameters().put(org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS, currentlyRefactoredElements);
 		}
 
 		// Retrieve property ends of the binary Association
-		if (association.getMemberEnds().size() == 2) {
+		if (2 == association.getMemberEnds().size()) {
+			// Retrieve property ends of the Association (assumed to be binary)
+			Property semanticSource = association.getMemberEnds().get(0);
+			Property semanticTarget = association.getMemberEnds().get(1);
+			if (semanticSource.getType().equals(semanticTarget.getType())) {
+				if (request.getDirection() == ReorientRequest.REORIENT_SOURCE) {
+					changeType = semanticTarget;
+				}
+
+				if (request.getDirection() == ReorientRequest.REORIENT_TARGET) {
+					changeType = semanticSource;
+				}
+			}
+
 			// if this a binary
 			// 1 property change its parents, if it is not contains by the association
 			// 1 property change its types
-			changeContainer = association.getMemberEnds().get(0);
-			if (changeType.equals(association.getMemberEnds().get(0))) {
-				changeContainer = association.getMemberEnds().get(1);
+			changeContainer = semanticSource;
+			if (changeType.equals(semanticSource)) {
+				changeContainer = semanticTarget;
 			}
 			if (!association.getOwnedEnds().contains(changeContainer)) {
 				moveRequest = new MoveRequest(request.getNewRelationshipEnd(), changeContainer);
@@ -331,12 +346,9 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 			setTypeRequest = new SetRequest(changeType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
 
-
-
 			if (moveRequest != null) {
 				// Propagate parameters to the move request
 				moveRequest.addParameters(request.getParameters());
-
 				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(request.getNewRelationshipEnd());
 				if (provider != null) {
 					ICommand moveCommand = provider.getEditCommand(moveRequest);
@@ -351,7 +363,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 			// Process nary-association
 			// we do pay attention to change container
 			// Forbid source reorient
-			if (request.getDirection() == ReorientRelationshipRequest.REORIENT_SOURCE) {
+			if (request.getDirection() == ReorientRequest.REORIENT_SOURCE) {
 				return UnexecutableCommand.INSTANCE;
 			}
 
@@ -382,7 +394,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * Find the first memberEnd of an association that is typed by the specified classifier
-	 * 
+	 *
 	 * @param association
 	 * @param classifier
 	 * @return
