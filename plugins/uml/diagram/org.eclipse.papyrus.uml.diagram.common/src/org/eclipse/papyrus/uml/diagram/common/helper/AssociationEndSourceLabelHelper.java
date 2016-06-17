@@ -10,6 +10,8 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) - Initial API and implementation
  *  Benoit Maggi (CEA LIST)    - Bug 468026
+ *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 493430
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.helper;
 
@@ -20,6 +22,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.util.AssociationUtil;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 
@@ -49,8 +52,17 @@ public class AssociationEndSourceLabelHelper extends AssociationEndPropertyLabel
 			if (sourceContainer == null) {
 				return null;
 			}
-			
+
 			Property propertyToDisplay = null;
+
+			if (model != null && (model.getElement() instanceof Association)) {
+				propertyToDisplay = AssociationUtil.getTargetSecondEnd((Association) model.getElement());
+			}
+
+			if (null != propertyToDisplay) {
+				return propertyToDisplay;
+			}
+
 			if (model != null && (model.getElement() instanceof Association)) {
 				// look for the property that is typed by the classifier
 				Iterator<Property> propertiesIterator = ((Association) model.getElement()).getMemberEnds().iterator();
@@ -68,7 +80,7 @@ public class AssociationEndSourceLabelHelper extends AssociationEndPropertyLabel
 			}
 			// /in the case of reorient the property must be not found,
 			// so we have to find the property that is different from the source.
-			
+
 			if (model != null && (model.getElement() instanceof Association)) {
 				// look for the property that is typed by the classifier
 				Iterator<Property> propertiesIterator = ((Association) model.getElement()).getMemberEnds().iterator();

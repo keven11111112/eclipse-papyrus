@@ -12,7 +12,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram
  *  Christian W. Damus - bug 433206
  *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 492893
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.profile.custom.policies;
 
@@ -58,6 +58,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateCon
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.strategy.paste.ShowConstraintContextLink;
+import org.eclipse.papyrus.uml.diagram.common.util.AssociationUtil;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
 import org.eclipse.papyrus.uml.diagram.profile.custom.commands.SetStereotypeVisibleOnMetaclassCommand;
 import org.eclipse.papyrus.uml.diagram.profile.custom.helper.MultiAssociationHelper;
@@ -84,7 +85,6 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
 /**
@@ -158,16 +158,9 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	protected Command dropAssociation(final DropObjectsRequest dropRequest, final Element semanticLink, final String nodeVISUALID) {
 		final List<?> endtypes = new ArrayList<>(ProfileLinkMappingHelper.getInstance().getSource(semanticLink));
 		if (endtypes.size() == 2) {
-			Element source = null;
-			Element target = null;
-			final List<Property> memberEnds = ((Association) semanticLink).getMemberEnds();
-			if (memberEnds.get(0).equals(endtypes.get(0))) {
-				source = (Element) endtypes.get(0);
-				target = (Element) endtypes.get(1);
-			} else {
-				source = (Element) endtypes.get(1);
-				target = (Element) endtypes.get(0);
-			}
+			// Source link is based on the target property and the target link is based on the source property
+			Element source = AssociationUtil.getTargetSecondEnd((Association) semanticLink).getType();
+			Element target = AssociationUtil.getSourceFirstEnd((Association) semanticLink).getType();
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("Drop Association"), source, target, AssociationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		}
 		if (endtypes.size() > 2) {
