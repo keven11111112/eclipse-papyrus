@@ -51,19 +51,22 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
 	public static final String BEHAVIOR_PORT = "BehaviorPortPolicy";
+	private Port port;
 
 	@Override
 	public void notifyChanged(Notification notification) {
 
 		// Don't react to notifications for unvisualized ports
 		if (UMLPackage.eINSTANCE.getPort_IsBehavior().equals(notification.getFeature())
-				&& getHost().isActive()) {
-
+				&& getHost().isActive() && isActive()) {
 			udaptePortBehavior();
 		}
 	}
 
 	public void udaptePortBehavior() {
+		if (!isActive()) {
+			return;
+		}
 		GraphicalEditPart parentEditPart = (GraphicalEditPart) ((GraphicalEditPart) getHost()).getParent();
 		ShapeCompartmentEditPart targetEditPart = (parentEditPart == null) ? null : getPossibleCompartment(parentEditPart);
 		if (targetEditPart != null) {
@@ -76,20 +79,26 @@ public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements Notif
 			IFigure hostFigure = ((PortEditPart) getHost()).getContentPane();
 			if (hostFigure instanceof PortFigure) {
 				PortFigure portFigure = (PortFigure) hostFigure;
-				Port port = getUMLElement();
-				if (port != null) {
-					if (port.isBehavior()) {
-						if (parentEditPart.resolveSemanticElement() instanceof Classifier || targetEditPart != null) {
-							portFigure.restoreBehaviorFigure();
-						} else {
-							portFigure.removeBehavior();
-						}
+				if (port.isBehavior()) {
+					if (parentEditPart.resolveSemanticElement() instanceof Classifier || targetEditPart != null) {
+						portFigure.restoreBehaviorFigure();
 					} else {
 						portFigure.removeBehavior();
 					}
+				} else {
+					portFigure.removeBehavior();
 				}
 			}
 		}
+	}
+
+	/**
+	 * Checks if current edit policy is active, e.g. it has been already activated.
+	 * 
+	 * @return <code>true</code> if the edit policy has been activated. It will be <code>false</code> when ti has been deactivated also.
+	 */
+	protected boolean isActive() {
+		return port != null;
 	}
 
 	protected void executeBehaviorPortDeletion(final TransactionalEditingDomain domain, final View behaviorNode) {
@@ -166,18 +175,20 @@ public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements Notif
 		// adds a listener on the view and the element controlled by the
 		// editpart
 		getDiagramEventBroker().addNotificationListener(view, this);
-		if (getUMLElement() == null) {
-			return;
+		port = getUMLElement();
+		if (port != null) {
+			getDiagramEventBroker().addNotificationListener(port, this);
 		}
-		getDiagramEventBroker().addNotificationListener(getUMLElement(), this);
 		udaptePortBehavior();
 	}
 
 	@Override
 	public void deactivate() {
 		// remove notification on element
-		getDiagramEventBroker().removeNotificationListener(getUMLElement(), this);
-
+		getDiagramEventBroker().removeNotificationListener(port, this);
+		getDiagramEventBroker().removeNotificationListener(getView(), this);
+		// release link to the semantic element
+		port = null;
 		super.deactivate();
 	}
 

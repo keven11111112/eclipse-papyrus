@@ -103,16 +103,4 @@ public class ResizablePortEditPart extends PortEditPart {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart#refreshVisuals()
-	 */
-	@Override
-	protected void refreshVisuals() {
-		BehaviorPortEditPolicy policy = (BehaviorPortEditPolicy) getEditPolicy(BehaviorPortEditPolicy.BEHAVIOR_PORT);
-		policy.udaptePortBehavior();
-		super.refreshVisuals();
-	}
-
 }
