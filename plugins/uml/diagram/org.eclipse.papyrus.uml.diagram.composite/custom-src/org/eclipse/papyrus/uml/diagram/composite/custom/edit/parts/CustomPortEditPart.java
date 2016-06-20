@@ -27,10 +27,4 @@ public class CustomPortEditPart extends PortEditPart {
 		super(view);
 	}
 
-	@Override
-	protected void refreshVisuals() {
-		BehaviorPortEditPolicy policy = (BehaviorPortEditPolicy)getEditPolicy(BehaviorPortEditPolicy.BEHAVIOR_PORT);
-		policy.udaptePortBehavior();
-		super.refreshVisuals();
-	}
 }
