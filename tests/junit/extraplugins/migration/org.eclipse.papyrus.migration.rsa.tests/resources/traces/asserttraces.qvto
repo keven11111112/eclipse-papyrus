@@ -1,0 +1,33 @@
+/*****************************************************************************
+ * Copyright (c) 2016 Christian W. Damus and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Christian W. Damus - Initial API and implementation
+ *
+ *****************************************************************************/
+
+import org.eclipse.papyrus.m2m.qvto.Traces;
+
+modeltype uml "strict" uses 'http://www.eclipse.org/uml2/5.0.0/UML';
+modeltype notation "strict" uses 'http://www.eclipse.org/gmf/runtime/1.0.2/notation';
+modeltype sash "strict" uses 'http://www.eclipse.org/papyrus/0.7.0/sashdi';
+modeltype config "strict" uses 'http:///RSAToPapyrusParameters.ecore';
+
+transformation PapyrusRTDiagrams(inout semantics : uml, inout graphics : notation, out di : sash, in param : config);
+
+main() {
+	graphics.rootObjects()[notation::Diagram].map checkTraces();
+}
+
+mapping inout notation::Diagram::checkTraces()
+{
+	var source := self.traceFrom('notation::Diagram');
+	assert fatal (not source.oclIsUndefined() and
+					source.oclIsKindOf(notation::Diagram) and
+					source <> self);
+}

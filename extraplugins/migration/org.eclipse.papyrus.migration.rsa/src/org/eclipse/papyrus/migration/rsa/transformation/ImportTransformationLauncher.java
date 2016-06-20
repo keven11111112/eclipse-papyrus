@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 496439
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.transformation;
 
@@ -159,7 +160,7 @@ public class ImportTransformationLauncher {
 		analysisHelper = new DependencyAnalysisHelper(config);
 
 		for (URI uri : urisToImport) {
-			ImportTransformation transformation = new ImportTransformation(uri, config, analysisHelper);
+			ImportTransformation transformation = createTransformation(uri);
 			transformations.add(transformation);
 		}
 
@@ -167,6 +168,10 @@ public class ImportTransformationLauncher {
 		importModels(transformations);
 	}
 
+	protected ImportTransformation createTransformation(URI transformationURI) {
+		return new ImportTransformation(transformationURI, config, analysisHelper);
+	}
+	
 	/**
 	 * Start a Job and delegate to {@link #importModels(IProgressMonitor, List)}
 	 *
