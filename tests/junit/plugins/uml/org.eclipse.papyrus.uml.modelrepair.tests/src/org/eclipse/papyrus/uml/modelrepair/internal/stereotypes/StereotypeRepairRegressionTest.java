@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,12 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bugs 455248, 455329, 436666, 458736, 459488, 488791
+ *   Martin Fleck - bug 496307
  *
  */
 package org.eclipse.papyrus.uml.modelrepair.internal.stereotypes;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -36,17 +38,22 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.AbstractHouseKeeperRule.CleanUp;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.junit.utils.rules.ModelSetFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.StereotypeApplicationRepairSnippetTest.MyStereotypeApplicationRepairSnippet;
+import org.eclipse.papyrus.uml.modelrepair.internal.uripattern.ProfileNamespaceURIPattern;
+import org.eclipse.papyrus.uml.modelrepair.internal.uripattern.ProfileNamespaceURIPatternRegistry;
 import org.eclipse.papyrus.uml.modelrepair.ui.IZombieStereotypePresenter;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Class;
@@ -62,6 +69,8 @@ import org.junit.Test;
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
+import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
@@ -99,7 +108,7 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	/**
 	 * Tests that a scenario involving nested profiles and profile applications in nested packages that are all actually
 	 * well-formed does not trigger the repair function.
-	 * 
+	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=434302
 	 */
 	@Test
@@ -111,7 +120,7 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	/**
 	 * Tests that a scenario involving a nested profile gone AWOL in profile applications in a nested packages is
 	 * correctly repaired.
-	 * 
+	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=434302
 	 */
 	@Test
@@ -140,7 +149,7 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	/**
 	 * Tests that a scenario involving a single nested profile schema declaration gone AWOL in two different profile applications
 	 * in two different nested packages is correctly repaired.
-	 * 
+	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=434302
 	 */
 	@Test
@@ -180,7 +189,7 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	/**
 	 * Tests that a scenario involving well-formed stereotypes contained in a simple package nested in a profile
 	 * does not trigger the repair function.
-	 * 
+	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=436666
 	 */
 	@Test
@@ -193,7 +202,7 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	/**
 	 * Tests that a scenario involving stereotypes from a nested EPackage gone AWOL, which EPackage is defined by a nested
 	 * simple package in the UML profile, is correctly repaired.
-	 * 
+	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=436666
 	 */
 	@Test
@@ -222,7 +231,7 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	/**
 	 * Tests that a scenario involving non-UML root elements that are recognizably not stereotype
 	 * applications do not trigger the repair function.
-	 * 
+	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=436666
 	 */
 	@Test
@@ -236,7 +245,7 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	 * Tests that a sub-united model in which package units do not repeat profile applications,
 	 * but rather just inherit them from parent units, such as might be imported from some other
 	 * UML tool, does not falsely trigger repair.
-	 * 
+	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=455248
 	 */
 	@Test
@@ -249,7 +258,7 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	/**
 	 * Tests that a model applying a registered dynamic profile does not detect spurious broken
 	 * stereotype applications.
-	 * 
+	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=455329
 	 */
 	@Test
@@ -261,7 +270,7 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 
 	/**
 	 * Tests that orphaned stereotype instances are correctly detected where they are of the currently applied profile schema.
-	 * 
+	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=436666
 	 */
 	@Test
@@ -280,7 +289,7 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 
 	/**
 	 * Tests that orphaned stereotype instances are correctly detected where they are of a profile version that is not currently applied.
-	 * 
+	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=436666
 	 */
 	@Test
@@ -302,7 +311,7 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	 * but rather just inherit them from parent units, such as might be imported from some other
 	 * UML tool, does not falsely trigger repair in the case where sub-units are lazily loaded
 	 * by cross-references after the main model has been loaded.
-	 * 
+	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=458736
 	 */
 	@Test
@@ -318,7 +327,7 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	/**
 	 * Tests that a scenario involving a malformed XSI schema-location for a profile schema in a non-package model fragment
 	 * (sub-unit resource) is correctly detected and repaired.
-	 * 
+	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=459488
 	 */
 	@Test
@@ -341,6 +350,105 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 
 		// And that the migrated stereotype application is in the correct resource (the sub-model unit)
 		assertThat("Stereotype1 application in wrong resource", class1.getStereotypeApplication(stereotype1).eResource(), is(class1.eResource()));
+	}
+
+	/**
+	 * Tests that bug 496307 is present and there are cases where zombie stereotypes are not correctly
+	 * assigned to the expected package, because the namespace URI (schema) is not understood correctly.
+	 *
+	 * In the test model we have one class with two stereotypes applied:
+	 * - Block from PackageA with schema http://www.eclipse.org/product/0.6.0/Language/PackageA
+	 * - ViewPoint from PackageB with schema http://www.eclipse.org/product/0.6.0/Language/PackageB
+	 *
+	 * Both schemas do not conform to the default pattern, so they are reduced to the schema
+	 * http://www.eclipse.org/product/0.6.0/Language#/ during comparison.
+	 * As a result, both zombie stereotypes are assigned to both schemas and wrongly assigned
+	 * zombie stereotypes may be deleted.
+	 *
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=496307
+	 */
+	@Test
+	@Bug("496307")
+	@PluginResource("/resources/regression/bug496307/model.uml")
+	public void incorrectZombieGroupingWithoutProfileNamespaceURIPattern_bug496307() {
+		Collection<? extends IAdaptable> schemata = zombies.getZombieSchemas();
+		assertThat("Expected two schemata", schemata.size(), is(2));
+
+		Optional<? extends IAdaptable> packageA = Iterables.tryFind(schemata,
+				ePackage("http://www.eclipse.org/product/0.6.0/Language/PackageA"));
+		assertThat("PackageA not found", packageA.isPresent());
+
+		Optional<? extends IAdaptable> packageB = Iterables.tryFind(schemata,
+				ePackage("http://www.eclipse.org/product/0.6.0/Language/PackageB"));
+		assertThat("PackageB not found", packageB.isPresent());
+
+		Collection<? extends EObject> packageAzombies = zombies.getZombies(packageA.get());
+		assertThat("Expected two zombies in PackageA", packageAzombies.size(), is(2));
+
+		Collection<? extends EObject> packageBzombies = zombies.getZombies(packageB.get());
+		assertThat("Expected two zombies in PackageB", packageBzombies.size(), is(2));
+
+		assertThat("Same zombies in PackageA and PackageB expected", packageAzombies.containsAll(packageBzombies));
+	}
+
+	/**
+	 * Tests that bug 496307 is resolved through {@link ProfileNamespaceURIPattern}s which provide a mechanism to
+	 * understand namespace URI schemas.
+	 *
+	 * In the test model we have one class with two stereotypes applied:
+	 * - Block from PackageA with package schema http://www.eclipse.org/product/0.6.0/Language/PackageA
+	 * - ViewPoint from PackageB with package schema http://www.eclipse.org/product/0.6.0/Language/PackageB
+	 *
+	 * Both schemas do not conform to the default pattern, but we provide the namespace URI pattern
+	 * ^http://www\\.eclipse\\.org/product/([^/]+)/Language/.*$ during comparison.
+	 * As a result, both zombie stereotypes are correctly assigned to their respective schema.
+	 *
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=496307
+	 */
+	@Test
+	@Bug("496307")
+	@PluginResource("/resources/regression/bug496307/model.uml")
+	public void correctZombieGroupingWithProfileNamespaceURIPattern_bug496307() {
+		ProfileNamespaceURIPatternRegistry registry = ProfileNamespaceURIPatternRegistry.INSTANCE;
+		ProfileNamespaceURIPattern pattern = new ProfileNamespaceURIPattern(
+				"^http://www\\.eclipse\\.org/product/([^/]+)/Language/.*$");
+
+		try {
+			registry.register(pattern);
+
+			Collection<? extends IAdaptable> schemata = zombies.getZombieSchemas();
+
+			assertThat("Expected two schemata", schemata.size(), is(2));
+
+			Optional<? extends IAdaptable> packageA = Iterables.tryFind(schemata,
+					ePackage("http://www.eclipse.org/product/0.6.0/Language/PackageA"));
+			assertThat("PackageA not found", packageA.isPresent());
+
+			Optional<? extends IAdaptable> packageB = Iterables.tryFind(schemata,
+					ePackage("http://www.eclipse.org/product/0.6.0/Language/PackageB"));
+			assertThat("PackageB not found", packageB.isPresent());
+
+			Collection<? extends EObject> packageAzombies = zombies.getZombies(packageA.get());
+			assertThat("Expected one zombies in PackageA", packageAzombies.size(), is(1));
+
+			EObject packageAzombie = packageAzombies.iterator().next();
+			assertThat("Expected zombie stereotype (AnyType)", packageAzombie, instanceOf(AnyType.class));
+
+			EClass packageAzombieClass = packageAzombie.eClass();
+			assertThat("PackageA zombie should be Block", packageAzombieClass.getName(), is("Block"));
+
+			Collection<? extends EObject> packageBzombies = zombies.getZombies(packageB.get());
+			assertThat("Expected one zombies in PackageB", packageBzombies.size(), is(1));
+
+			EObject packageBzombie = packageBzombies.iterator().next();
+			assertThat("Expected zombie stereotype (AnyType)", packageBzombie, instanceOf(AnyType.class));
+
+			EClass packageBzombieClass = packageBzombie.eClass();
+			assertThat("PackageB zombie should be ViewPoint", packageBzombieClass.getName(), is("ViewPoint"));
+		} finally {
+			// ensure that the pattern is unregistered for further tests
+			registry.unregister(pattern);
+		}
 	}
 
 	//
@@ -425,7 +533,7 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 		}), "dispose", modelSet.getResourceSet());
 	}
 
-	@Bug({ "436666bis", "455248", "455329" })
+	@Bug({ "436666bis", "455248", "455329", "496307" })
 	protected MyStereotypeApplicationRepairSnippet createSimpleFixture() {
 		return houseKeeper.cleanUpLater(new MyStereotypeApplicationRepairSnippet(null, Functions.constant((Profile) null)), "dispose", modelSet.getResourceSet());
 	}
@@ -504,6 +612,16 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 		Synchronizer sync = new Synchronizer();
 		presenter.asyncAddZombies(sync);
 		sync.await();
+	}
+
+	Predicate<IAdaptable> ePackage(final String uri) {
+		return new Predicate<IAdaptable>() {
+			@Override
+			public boolean apply(IAdaptable adaptable) {
+				EPackage ePackage = PlatformHelper.getAdapter(adaptable, EPackage.class);
+				return ePackage != null && ePackage.getNsURI() != null && ePackage.getNsURI().equals(uri);
+			}
+		};
 	}
 
 	//

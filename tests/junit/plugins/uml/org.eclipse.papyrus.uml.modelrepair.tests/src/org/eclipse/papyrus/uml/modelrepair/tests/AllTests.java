@@ -9,6 +9,7 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bug 485220
+ *   Martin Fleck - bug 496307
  *
  */
 package org.eclipse.papyrus.uml.modelrepair.tests;
@@ -17,6 +18,7 @@ import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.junit.framework.runner.Headless;
 import org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.StereotypeApplicationRepairSnippetTest;
 import org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.StereotypeRepairRegressionTest;
+import org.eclipse.papyrus.uml.modelrepair.internal.uripattern.ProfileNamespaceURIPatternTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
@@ -26,7 +28,8 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @Headless
 @RunWith(ClassificationSuite.class)
-@SuiteClasses({ StereotypeApplicationRepairSnippetTest.class, StereotypeRepairRegressionTest.class })
+@SuiteClasses({ StereotypeApplicationRepairSnippetTest.class, StereotypeRepairRegressionTest.class,
+		ProfileNamespaceURIPatternTest.class })
 public class AllTests {
 	// JUnit 4 Test Suite
 }

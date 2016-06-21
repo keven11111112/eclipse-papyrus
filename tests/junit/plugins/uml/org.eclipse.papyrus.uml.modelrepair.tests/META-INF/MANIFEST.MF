@@ -6,6 +6,7 @@ Require-Bundle: org.junit;bundle-version="4.10.0",
  org.eclipse.uml2.uml;bundle-version="[5.2.0,6.0.0)",
  org.eclipse.papyrus.infra.emf.readonly;bundle-version="[2.0.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.uml.modelrepair.internal.stereotypes,
+ org.eclipse.papyrus.uml.modelrepair.internal.uripattern,
  org.eclipse.papyrus.uml.modelrepair.tests
 Bundle-Vendor: %providerName
 Bundle-Version: 1.2.0.qualifier

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,8 +9,9 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bug 399859
- *  Christian W. Damus - bug 451338
+ *   Christian W. Damus - bug 451338
  *   Christian W. Damus - bug 436666
+ *   Martin Fleck - bug 496307
  *
  */
 package org.eclipse.papyrus.uml.modelrepair.internal.stereotypes;
@@ -41,6 +42,8 @@ import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.uml.modelrepair.internal.participants.StereotypesUtil;
+import org.eclipse.papyrus.uml.modelrepair.internal.uripattern.ProfileNamespaceURIPatternComparison;
+import org.eclipse.papyrus.uml.modelrepair.internal.uripattern.ProfileNamespaceURIPatternRegistry;
 import org.eclipse.papyrus.uml.tools.helper.IProfileApplicationDelegate;
 import org.eclipse.papyrus.uml.tools.helper.ProfileApplicationDelegateRegistry;
 import org.eclipse.uml2.uml.Element;
@@ -53,6 +56,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
+import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
@@ -178,7 +182,7 @@ public class ZombieStereotypesDescriptor {
 	 * <li>adapts to {@link EPackage} to provide the EMF schema that is unresolved or otherwise broken</li>
 	 * <li>may possibly adapt to {@link IStereotypeOrphanGroup} representing stereotype applications from a broken schema that are not repairable by profile migration and so are treated separately with a distinct set of available actions
 	 * </ul>
-	 * 
+	 *
 	 * @return the zombie schemas that are detected
 	 */
 	public Collection<? extends IAdaptable> getZombieSchemas() {
@@ -308,7 +312,7 @@ public class ZombieStereotypesDescriptor {
 
 	/**
 	 * Obtains a repair action of the specified {@code kind} for a broken {@code schema}, if it is available.
-	 * 
+	 *
 	 * @param schema
 	 *            a schema to repair
 	 * @param kind
@@ -454,9 +458,20 @@ public class ZombieStereotypesDescriptor {
 
 		result = schema1 == schema2;
 		if (!result && (schema1 != null)) { // Implies that schema2 != null, also
-			result = Objects.equal(schema1.getNsURI(), schema2.getNsURI());
+			String schema1uri = schema1.getNsURI();
+			String schema2uri = schema2.getNsURI();
+			result = Objects.equal(schema1uri, schema2uri);
 
 			if (!result) {
+				// No perfect equality, try to use provided profile package patterns
+
+				// Try to find find a pattern comparison that matches both URIs
+				Optional<ProfileNamespaceURIPatternComparison> comparison = ProfileNamespaceURIPatternRegistry.INSTANCE.tryFindComparison(schema1uri, schema2uri);
+				if (comparison.isPresent()) {
+					return comparison.get().isEqualVersionlessNamespaceURI();
+				}
+
+				// No pattern found that handles the URIs
 				// Maybe one is a proxy whose URI is the schema-location of the other (being a demand-created package)
 				URI uri1 = guessURI(schema1);
 				URI uri2 = guessURI(schema2);
@@ -479,6 +494,7 @@ public class ZombieStereotypesDescriptor {
 		}
 
 		return result;
+
 	}
 
 	static URI guessURI(EPackage schema) {

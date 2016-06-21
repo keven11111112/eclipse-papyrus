@@ -2,6 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="org.eclipse.papyrus.uml.modelrepair.profileSwitchPreconditions" name="Profile Switch Preconditions" schema="schema/profileSwitchPreconditions.exsd"/>
+   <extension-point id="org.eclipse.papyrus.uml.modelrepair.profileNamespaceURIPattern" name="Profile Namespace URI Pattern" schema="schema/profileNamespaceURIPattern.exsd"/>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
