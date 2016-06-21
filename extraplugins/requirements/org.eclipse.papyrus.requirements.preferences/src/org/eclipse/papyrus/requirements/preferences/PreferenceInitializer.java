@@ -33,6 +33,11 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.REQUIREMENT_ID_DIGIT, 2);
 		store.setDefault(PreferenceConstants.CHILD_REQUIREMENTS_SEPARATOR, "-");
 		store.setDefault(PreferenceConstants.REQUIREMENT_ID_UNIQUE_IN_ENTIRE_MODEL, true);
+		
+		store.setDefault(PreferenceConstants.INITIAL_CHAR, "["); 
+		store.setDefault(PreferenceConstants.FINAL_CHAR, "]");
+		store.setDefault(PreferenceConstants.MEANING_OF_TEXT_BETWEEN_CHARS, "Stakeholder: ");
+				
 		// Options for the generation of a profile based on a domain model
 		store.setDefault(PreferenceConstants.NSURI_PREFIX, "https://www.eclipse.org/papyrus/");
 		store.setDefault(PreferenceConstants.GENERATE_ABSTRACTIONS_MODEL, false);

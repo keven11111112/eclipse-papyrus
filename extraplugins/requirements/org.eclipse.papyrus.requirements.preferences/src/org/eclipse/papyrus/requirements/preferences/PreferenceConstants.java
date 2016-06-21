@@ -23,6 +23,12 @@ public class PreferenceConstants {
 	public static final String REQUIREMENT_ID_DIGIT = "REQUIREMENT_ID_DIGIT";
 	public static final String CHILD_REQUIREMENTS_SEPARATOR = "CHILD_REQUIREMENTS_SEPARATOR";
 	public static final String REQUIREMENT_ID_UNIQUE_IN_ENTIRE_MODEL = "REQUIREMENT_ID_UNIQUE_IN_ENTIRE_MODEL";
+	
+	//Options for the command "Extract annotations as comments"
+	public static final String INITIAL_CHAR = "INITIAL_CHAR";
+	public static final String FINAL_CHAR = "FINAL_CHAR";
+	public static final String MEANING_OF_TEXT_BETWEEN_CHARS = "MEANING_OF_TEXT_BETWEEN_CHARS";
+	
 	//Options for the generation of a profile based on a domain model
 	public static final String NSURI_PREFIX = "NSURI_PREFIX";
 	public static final String GENERATE_ABSTRACTIONS_MODEL = "GENERATE_ABSTRACTIONS_MODEL";

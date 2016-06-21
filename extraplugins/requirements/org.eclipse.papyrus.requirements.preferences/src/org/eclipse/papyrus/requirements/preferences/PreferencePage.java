@@ -54,7 +54,16 @@ public class PreferencePage extends FieldEditorPreferencePage implements IWorkbe
 				"Separator between parent and child requirements IDs", reqCreationOptions));
 		addField(new BooleanFieldEditor(PreferenceConstants.REQUIREMENT_ID_UNIQUE_IN_ENTIRE_MODEL,
 				"ID must be unique in the entire model?", reqCreationOptions));
-
+		
+		Group annotationsOptions = createGroup("Requirements extract annotations as comments");
+		addField(new StringFieldEditor(PreferenceConstants.INITIAL_CHAR, "Initial character",
+				annotationsOptions));
+		addField(new StringFieldEditor(PreferenceConstants.FINAL_CHAR, "Final character",
+				annotationsOptions));
+		addField(new StringFieldEditor(PreferenceConstants.MEANING_OF_TEXT_BETWEEN_CHARS, "Label to identify what is between the initial and characters",
+				annotationsOptions));
+		
+		
 		Group profileCreationOptions = createGroup("Generation of a profile based on a domain model");
 		addField(new StringFieldEditor(PreferenceConstants.NSURI_PREFIX, "Ns URI prefix for new profile",
 				profileCreationOptions));
