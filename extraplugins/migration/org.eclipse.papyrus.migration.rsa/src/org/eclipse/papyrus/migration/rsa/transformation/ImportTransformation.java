@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 496439
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.transformation;
 
@@ -67,11 +68,14 @@ import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
+import org.eclipse.m2m.qvt.oml.util.ISessionData;
+import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.eclipse.m2m.qvt.oml.util.WriterLog;
 import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.PapyrusDSMLValidationRulePackage;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
+import org.eclipse.papyrus.m2m.qvto.TraceHelper;
 import org.eclipse.papyrus.m2m.qvto.TransformationUI;
 import org.eclipse.papyrus.migration.rsa.Activator;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config;
@@ -161,6 +165,12 @@ public class ImportTransformation {
 
 	/** The extension point contributing {@link TransformationExtension}s */
 	public static final String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".extensions";
+
+	/** Accumulation of incremental update traces from each transformation. */
+	private Trace trace = Trace.createEmptyTrace();
+
+	/** Transformation execution context used for all transformation runs. */
+	private ExecutionContext context;
 
 	static {
 		sourceEPackages.add(org.eclipse.papyrus.migration.rsa.default_.DefaultPackage.eINSTANCE);
@@ -489,52 +499,65 @@ public class ImportTransformation {
 		String statusMessage = String.format("Import %s", getModelName());
 		MultiStatus generationStatus = new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, statusMessage, null);
 
-		ExecutionContext context = createExecutionContext(monitor, generationStatus);
+		context = createExecutionContext(monitor, generationStatus);
 
-		getInPapyrusProfiles(); // Preload profiles
+		try {
+			getInPapyrusProfiles(); // Preload profiles
 
-		long endLoad = System.nanoTime();
-		loadingTime = endLoad - startLoad;
+			long endLoad = System.nanoTime();
+			loadingTime = endLoad - startLoad;
 
-		//
-		// TRANSFORMATIONS
-		//
+			//
+			// TRANSFORMATIONS
+			//
 
-		IStatus result; // Result of an individual transformation (Will be aggregated to the complete GenerationStatus)
+			IStatus result; // Result of an individual transformation (Will be aggregated to the complete GenerationStatus)
 
-		prepareExtensions();
+			prepareExtensions();
 
-		long startExtensions = System.nanoTime();
-		result = importExtensions(context, monitor, ExtensionFunction::executeBefore);
-		long endExtensions = System.nanoTime();
-		this.importExtensionsTime = endExtensions - startExtensions;
-		generationStatus.add(result);
-
-		// Diagrams
-		Collection<URI> transformations = getDiagramTransformationURIs();
-
-		monitor.subTask("Importing diagrams...");
-		for (URI transformationURI : transformations) {
-			result = runTransformation(transformationURI, context, monitor, extents);
+			long startExtensions = System.nanoTime();
+			result = importExtensions(context, monitor, ExtensionFunction::executeBefore);
+			long endExtensions = System.nanoTime();
+			this.importExtensionsTime = endExtensions - startExtensions;
 			generationStatus.add(result);
-		}
 
-		// Semantic model changes (Default language for OpaqueExpressions...)
-		monitor.subTask("Importing semantic model...");
-		result = runTransformation(getSemanticTransformationURI(), context, monitor, extents);
-		generationStatus.add(result);
+			// Diagrams
+			Collection<URI> transformations = getDiagramTransformationURIs();
 
-		if (!monitor.isCanceled()) {
-			monitor.subTask("Handle additional profiles...");
-			// Default.epx and ProfileBase.epx
-			result = importRSAProfiles(context, monitor);
+			monitor.subTask("Importing diagrams...");
+			for (URI transformationURI : transformations) {
+				result = runTransformation(transformationURI, extents, monitor);
+				generationStatus.add(result);
+			}
+
+			// Semantic model changes (Default language for OpaqueExpressions...)
+			monitor.subTask("Importing semantic model...");
+			result = runTransformation(getSemanticTransformationURI(), extents, monitor);
 			generationStatus.add(result);
-		}
 
-		long startExtensionsAfter = System.nanoTime();
-		result = importExtensions(context, monitor, ExtensionFunction::executeAfter);
-		long endExtensionsAfter = System.nanoTime();
-		this.importExtensionsTime += endExtensionsAfter - startExtensionsAfter;
+			if (!monitor.isCanceled()) {
+				monitor.subTask("Handle additional profiles...");
+				// Default.epx and ProfileBase.epx
+				result = importRSAProfiles(context, monitor);
+				generationStatus.add(result);
+			}
+
+			Collection<URI> additional = getAdditionalTransformationURIs();
+			if (!additional.isEmpty()) {
+				monitor.subTask("Additional transformations...");
+				for (URI transformationURI : additional) {
+					result = runTransformation(transformationURI, extents, monitor);
+					generationStatus.add(result);
+				}
+			}
+
+			long startExtensionsAfter = System.nanoTime();
+			result = importExtensions(context, monitor, ExtensionFunction::executeAfter);
+			long endExtensionsAfter = System.nanoTime();
+			this.importExtensionsTime += endExtensionsAfter - startExtensionsAfter;
+		} finally {
+			context = null;
+		}
 
 		//
 		// FRAGMENTS & SAVE
@@ -777,30 +800,10 @@ public class ImportTransformation {
 		extents.add(getInProfileDefinitions());
 		extents.add(getInConfig());
 
-		TransformationExecutor executor;
-		try {
-			executor = getTransformation(transformationURI, monitor);
-		} catch (DiagnosticException ex) {
-			Diagnostic diagnostic = ex.getDiagnostic();
-
-			Activator.log.warn(String.format("Cannot load the transformation : %s. Diagnostic: %s", transformationURI, diagnostic.getMessage()));
-			return createStatusFromDiagnostic(diagnostic);
-		}
-
-		ExecutionDiagnostic transformationResult;
-		synchronized (executor) {
-			try {
-				transformationResult = executor.execute(context, extents.toArray(new ModelExtent[0]));
-			} finally {
-				executor.cleanup();
-				executorsPool.releaseExecutor(executor);
-			}
-		}
-
+		IStatus transformationStatus = runTransformation(transformationURI, extents, monitor);
 		IStatus loadedProfilesStatus = createStatusFromDiagnostic(loadedProfiles);
-		IStatus transformationStatus = createStatusFromDiagnostic(transformationResult);
 
-		int severity = Math.max(loadedProfiles.getSeverity(), transformationResult.getSeverity());
+		int severity = Math.max(loadedProfiles.getSeverity(), transformationStatus.getSeverity());
 
 		String message;
 		if (severity > IStatus.OK) {
@@ -1085,6 +1088,22 @@ public class ImportTransformation {
 		}
 	}
 
+	/**
+	 * Runs a transformation using the context shared by all transformations.
+	 * 
+	 * @param transformationURI
+	 *            the transformation to run
+	 * @param extents
+	 *            the extents on which to apply the transformation
+	 * @param monitor
+	 *            progress monitor
+	 * 
+	 * @return the result of the transformation execution
+	 */
+	public IStatus runTransformation(URI transformationURI, List<ModelExtent> extents, IProgressMonitor monitor) {
+		return runTransformation(transformationURI, context, monitor, extents);
+	}
+
 	protected IStatus runTransformation(URI transformationURI, ExecutionContext context, IProgressMonitor monitor, List<ModelExtent> extents) {
 		if (monitor.isCanceled()) {
 			return new Status(IStatus.CANCEL, Activator.PLUGIN_ID, "Operation canceled");
@@ -1103,7 +1122,18 @@ public class ImportTransformation {
 		ExecutionDiagnostic result;
 		synchronized (executor) {
 			try {
+				// Gather the new execution traces
+				Trace newTraces = Trace.createEmptyTrace();
+				@SuppressWarnings("restriction")
+				ISessionData.SimpleEntry<Trace> traceKey = org.eclipse.m2m.internal.qvt.oml.evaluator.QVTEvaluationOptions.INCREMENTAL_UPDATE_TRACE;
+				context.getSessionData().setValue(traceKey, newTraces);
+
 				result = executor.execute(context, extents.toArray(new ModelExtent[0]));
+
+				// Append to our history
+				List<EObject> history = new ArrayList<EObject>(trace.getTraceContent());
+				history.addAll(newTraces.getTraceContent());
+				trace.setTraceContent(history);
 			} finally {
 				executor.cleanup();
 				executorsPool.releaseExecutor(executor);
@@ -1151,6 +1181,10 @@ public class ImportTransformation {
 		});
 
 		initTransformationProperties(context);
+
+		// Invoke extensions as incremental transformations
+
+		context.getSessionData().setValue(TraceHelper.TRACE_HISTORY, trace);
 
 		return context;
 	}
@@ -1304,10 +1338,15 @@ public class ImportTransformation {
 		return getTransformationURI("RSAProfilesToPapyrus");
 	}
 
+	protected Collection<URI> getAdditionalTransformationURIs() {
+		return Collections.emptyList();
+	}
+
 	protected Collection<URI> getAllTransformationURIs() {
 		Collection<URI> allTransformations = getDiagramTransformationURIs();
 		allTransformations.add(getProfilesTransformationURI());
 		allTransformations.add(getSemanticTransformationURI());
+		allTransformations.addAll(getAdditionalTransformationURIs());
 		return allTransformations;
 	}
 

@@ -47,6 +47,17 @@
             </metamodel>
          </library>
       </unit>
+      <unit
+            description="Provides access to the incremental trace model for ad hoc trace queries."
+            name="Traces"
+            namespace="org.eclipse.papyrus.m2m.qvto">
+         <library
+               class="org.eclipse.papyrus.m2m.qvto.TraceHelper">
+            <metamodel
+                  nsURI="http://www.eclipse.org/emf/2002/Ecore">
+            </metamodel>
+         </library>
+      </unit>
    </extension>
    <extension
          point="org.eclipse.m2m.qvt.oml.runtime.qvtTransformation">

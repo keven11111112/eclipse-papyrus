@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  * 	Thibault Le Ouay (Sherpa Engineering) t.leouay@sherpa-eng.com - Initial API and implementation
  * 	Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
+ * 	Christian W. Damus - bug 496439
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.tests;
 
@@ -17,6 +18,7 @@ import org.eclipse.papyrus.migration.rsa.tests.qvt.BatchImportTest;
 import org.eclipse.papyrus.migration.rsa.tests.qvt.ImportDiagramTest;
 import org.eclipse.papyrus.migration.rsa.tests.qvt.ImportModelsTest;
 import org.eclipse.papyrus.migration.rsa.tests.qvt.ImportProfilesTest;
+import org.eclipse.papyrus.migration.rsa.tests.qvt.TracesTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -24,7 +26,10 @@ import org.junit.runners.Suite.SuiteClasses;
 
 
 @RunWith(Suite.class)
-@SuiteClasses({ ImportDiagramTest.class, ImportModelsTest.class, BatchImportTest.class, ImportProfilesTest.class, ThreadSafeResourceSetTest.class })
+@SuiteClasses({
+		ImportDiagramTest.class, ImportModelsTest.class, BatchImportTest.class, ImportProfilesTest.class,
+		TracesTest.class,
+		ThreadSafeResourceSetTest.class })
 public class AllTests {
 	// Test suite
 }

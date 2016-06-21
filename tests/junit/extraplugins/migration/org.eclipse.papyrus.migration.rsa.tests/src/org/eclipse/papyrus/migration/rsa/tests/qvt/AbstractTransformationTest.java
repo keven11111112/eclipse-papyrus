@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +8,12 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 496439
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.tests.qvt;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,6 +32,7 @@ import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusT
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.RSAToPapyrusParametersFactory;
+import org.eclipse.papyrus.migration.rsa.transformation.DependencyAnalysisHelper;
 import org.eclipse.papyrus.migration.rsa.transformation.ImportTransformation;
 import org.eclipse.papyrus.migration.rsa.transformation.ImportTransformationLauncher;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
@@ -74,7 +78,7 @@ public class AbstractTransformationTest extends AbstractPapyrusTest {
 			config.setAlwaysAcceptSuggestedMappings(true);
 			config.setRemoveUnmappedProfilesAndStereotypes(true);
 
-			ImportTransformationLauncher launcher = new ImportTransformationLauncher(config);
+			ImportTransformationLauncher launcher = createTransformationLauncher(config);
 			launcher.run(Collections.singletonList(sourceURI));
 
 			launcher.waitForCompletion();
@@ -85,7 +89,7 @@ public class AbstractTransformationTest extends AbstractPapyrusTest {
 			Config config = RSAToPapyrusParametersFactory.eINSTANCE.createConfig();
 			config.setRemoveUnmappedProfilesAndStereotypes(true);
 
-			ImportTransformation transformation = new ImportTransformation(sourceURI, config, null);
+			ImportTransformation transformation = createTransformation(sourceURI, config, null);
 			transformation.run(false);
 			transformation.waitForCompletion();
 
@@ -132,7 +136,8 @@ public class AbstractTransformationTest extends AbstractPapyrusTest {
 		config.setMaxThreads(4);
 		config.setAlwaysAcceptSuggestedMappings(true);
 		config.setRemoveUnmappedProfilesAndStereotypes(true);
-		ImportTransformationLauncher launcher = new ImportTransformationLauncher(config);
+
+		ImportTransformationLauncher launcher = createTransformationLauncher(config);
 		launcher.run(urisToImport);
 
 		launcher.waitForCompletion();
@@ -142,6 +147,54 @@ public class AbstractTransformationTest extends AbstractPapyrusTest {
 		for (IFile sourceFile : mainModelFiles) {
 			checkResultFile(sourceFile);
 		}
+	}
+
+	private ImportTransformationLauncher createTransformationLauncher(Config config) {
+		ImportTransformationLauncher result;
+
+		final URI[] additionalTransformations = getAdditionalTransformations();
+		if (additionalTransformations.length == 0) {
+			result = new ImportTransformationLauncher(config);
+		} else {
+			// Append some more transformations to the chain
+			result = new ImportTransformationLauncher(config) {
+				@Override
+				protected ImportTransformation createTransformation(URI transformationURI) {
+					return AbstractTransformationTest.this.createTransformation(
+							transformationURI, config, analysisHelper);
+				}
+			};
+		}
+
+		return result;
+	}
+
+	private ImportTransformation createTransformation(URI transformationURI, Config config, DependencyAnalysisHelper analysisHelper) {
+		ImportTransformation result;
+
+		final URI[] additionalTransformations = getAdditionalTransformations();
+		if (additionalTransformations.length == 0) {
+			result = new ImportTransformation(transformationURI, config, analysisHelper);
+		} else {
+			result = new ImportTransformation(transformationURI, config, analysisHelper) {
+				@Override
+				protected Collection<URI> getAdditionalTransformationURIs() {
+					return Arrays.asList(additionalTransformations);
+				}
+			};
+		}
+
+		return result;
+	}
+
+	/**
+	 * Obtains the URIs of zero or more additional transformations to append to the
+	 * standard transformation chain.
+	 * 
+	 * @return additional transformations, or an empty array if none
+	 */
+	protected URI[] getAdditionalTransformations() {
+		return new URI[0];
 	}
 
 	protected void checkResultFile(IFile sourceFile) {
