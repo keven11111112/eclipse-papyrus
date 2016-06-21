@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9">
   <contexts:Context xmi:id="_bYd04JLDEeWbp4A9_-WIrQ" name="nattable" label="Table Configuration Models">
-    <tabs xmi:id="_bYd04ZLDEeWbp4A9_-WIrQ" label="Table" id="Table" category="default" priority="1">
+    <tabs xmi:id="_bYd04ZLDEeWbp4A9_-WIrQ" label="Table" id="Table" category="org.eclipse.papyrus" priority="11">
       <sections xmi:id="_bYd04pLDEeWbp4A9_-WIrQ" name="Single Table" sectionFile="ui/SingleTable.xwt">
         <widget href="ui/SingleTable.xwt#/"/>
       </sections>
@@ -197,8 +197,14 @@
       <sections xmi:id="_lFizkJOGEeWeQ8lFehLIEQ" name="Single Tree Table" sectionFile="ui/SingleTreeTable.xwt">
         <widget href="ui/SingleTreeTable.xwt#/"/>
       </sections>
+      <sections xmi:id="_bYd04pLDEeWbp4A9_-WIrR" name="EObject In Flat Table" sectionFile="ui/EObjectInFlatTable.xwt">
+        <widget href="ui/EObjectInFlatTable.xwt#/"/>
+      </sections>
+      <sections xmi:id="_bYd04pLDEeWbp4A9_-WIrS" name="EObject In Tree Table" sectionFile="ui/EObjectInTreeTable.xwt">
+        <widget href="ui/EObjectInTreeTable.xwt#/"/>
+      </sections>
     </tabs>
-    <tabs xmi:id="_bYfDCJLDEeWbp4A9_-WIrQ" label="Appearance" id="TableAppearance" category="default" afterTab="_bYd04ZLDEeWbp4A9_-WIrQ">
+    <tabs xmi:id="_bYfDCJLDEeWbp4A9_-WIrQ" label="Appearance" id="TableAppearance" category="org.eclipse.papyrus" afterTab="_bYd04ZLDEeWbp4A9_-WIrQ" priority="12">
       <sections xmi:id="_hIAtIJQtEeWx9KtEop_Tug" name="SingleNormalTableAppearance" sectionFile="ui/SingleNormalTableAppearance.xwt">
         <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_2SAlsJQtEeWx9KtEop_Tug" name="isNormalTable">
           <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.nattable.properties/model/Environment.xmi#//@constraintTypes.0"/>
@@ -237,8 +243,46 @@
         </constraints>
         <widget href="ui/RowObjectLabelProviderConfiguration.xwt#/"/>
       </sections>
+      <sections xmi:id="_hIAtIJQtEeWx9KtEop_Tuh" name="EObjectInNormalTableAppearance" sectionFile="ui/EObjectInNormalTableAppearance.xwt">
+        <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zMeJgETkEeaBQ-vHVYbtqQ" name="hasColumnFeatureLabelConfigurationConstraint" overrideable="false">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_zMeJgUTkEeaBQ-vHVYbtqQ" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.EObjectInTableIsFlatTableConstraint"/>
+        </constraints>
+        <widget href="ui/EObjectInNormalTableAppearance.xwt#/"/>
+      </sections>
+      <sections xmi:id="_bYfDCZLDEeWbp4A9_-WIrR" name="EObjectInTableAppearance" sectionFile="ui/EObjectInTableAppearance.xwt">
+        <widget href="ui/EObjectInTableAppearance.xwt#/"/>
+      </sections>
+      <sections xmi:id="_bYfDCpLDEeWbp4A9_-WIrR" name="EObjectInTableColumnFeatureLabelProviderConfiguration" sectionFile="ui/EObjectInTableColumnFeatureLabelProviderConfiguration.xwt">
+        <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zMeJgkTkEeaBQ-vHVYbtqQ" name="hasColumnFeatureLabelConfigurationConstraint" overrideable="false">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_zMeJg0TkEeaBQ-vHVYbtqQ" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.EObjectInTableHasColumnFeatureLabelConfigurationConstraint"/>
+        </constraints>
+        <widget href="ui/EObjectInTableColumnFeatureLabelProviderConfiguration.xwt#/"/>
+      </sections>
+      <sections xmi:id="_bYfDDZLDEeWbp4A9_-WIrR" name="EObjectInTableColumnObjectLabelProviderConfiguration" sectionFile="ui/EObjectInTableColumnObjectLabelProviderConfiguration.xwt">
+        <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zMeJhETkEeaBQ-vHVYbtqQ" name="hasColumnObjectLabelConfigurationConstraint" overrideable="false">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_zMeJhUTkEeaBQ-vHVYbtqQ" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.EObjectInTableHasColumnObjectLabelConfigurationConstraint"/>
+        </constraints>
+        <widget href="ui/EObjectInTableColumnObjectLabelProviderConfiguration.xwt#/"/>
+      </sections>
+      <sections xmi:id="_bYfDEJLDEeWbp4A9_-WIrR" name="EObjectInTableRowFeatureLabelProviderConfiguration" sectionFile="ui/EObjectInTableRowFeatureLabelProviderConfiguration.xwt">
+        <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zMeJhkTkEeaBQ-vHVYbtqQ" name="hasRowFeatureLabelConfigurationConstraint" overrideable="false">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_zMeJh0TkEeaBQ-vHVYbtqQ" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.EObjectInTableHasRowFeatureLabelConfigurationConstraint"/>
+        </constraints>
+        <widget href="ui/EObjectInTableRowFeatureLabelProviderConfiguration.xwt#/"/>
+      </sections>
+      <sections xmi:id="_bYfDE5LDEeWbp4A9_-WIrR" name="EObjectInTableRowObjectLabelProviderConfiguration" sectionFile="ui/EObjectInTableRowObjectLabelProviderConfiguration.xwt">
+        <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zMeJiETkEeaBQ-vHVYbtqQ" name="hasRowObjectLabelConfigurationConstraint" overrideable="false">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_zMeJiUTkEeaBQ-vHVYbtqQ" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.EObjectInTableHasRowObjectLabelConfigurationConstraint"/>
+        </constraints>
+        <widget href="ui/EObjectInTableRowObjectLabelProviderConfiguration.xwt#/"/>
+      </sections>
     </tabs>
-    <tabs xmi:id="_bYfDFpLDEeWbp4A9_-WIrQ" label="Paste" id="Paste In Table" category="default" afterTab="_bYfDCJLDEeWbp4A9_-WIrQ">
+    <tabs xmi:id="_bYfDFpLDEeWbp4A9_-WIrQ" label="Paste" id="Paste In Table" category="org.eclipse.papyrus" afterTab="_bYfDCJLDEeWbp4A9_-WIrQ" priority="13">
       <sections xmi:id="_bYfDF5LDEeWbp4A9_-WIrQ" name="CanPasteEObjectColumnSection" sectionFile="ui/CanPasteEObjectColumnSection.xwt">
         <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_bYfDGJLDEeWbp4A9_-WIrQ" name="canPasteColumnEObjectConstraint">
           <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.4"/>
@@ -273,6 +317,41 @@
           <properties xsi:type="constraints:ValueProperty" xmi:id="_sEFvqqOFEeWeQ8lFehLIEQ" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.HasTreeFillingConfigurationConstraint"/>
         </constraints>
         <widget href="ui/HasTreeFillingConfiguration.xwt#/"/>
+      </sections>
+      <sections xmi:id="_bYfDF5LDEeWbp4A9_-WIrR" name="EObjectInTableCanPasteEObjectColumnSection" sectionFile="ui/CanPasteEObjectColumnSection.xwt">
+        <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zMeJikTkEeaBQ-vHVYbtqQ" name="EObjectInTableCanPasteColumnEObjectConstraint">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_zMeJi0TkEeaBQ-vHVYbtqQ" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.EObjectInTableCanCreateColumnElementContraint"/>
+        </constraints>
+        <widget href="ui/EObjectInTableCanPasteEObjectColumnSection.xwt#/"/>
+      </sections>
+      <sections xmi:id="_bYfDGpLDEeWbp4A9_-WIrR" name="EObjectInTableCantPasteEObjectColumnSection" sectionFile="ui/EObjectInTableCantPasteEObjectColumnSection.xwt">
+        <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zMeJjETkEeaBQ-vHVYbtqQ" name="EObjectInTableCantPasteColumnEObjectConstraint">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_zMeJjUTkEeaBQ-vHVYbtqQ" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.EObjectInTableCantCreateColumnElementContraint"/>
+        </constraints>
+        <widget href="ui/EObjectInTableCantPasteEObjectColumnSection.xwt#/"/>
+      </sections>
+      <sections xmi:id="_bYfDHZLDEeWbp4A9_-WIrR" name="EObjectInTableCanPasteEObjectRowSection" sectionFile="ui/EObjectInTableCanPasteEObjectRowSection.xwt">
+        <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zMeJjkTkEeaBQ-vHVYbtqQ" name="EObjectInTableCanPasteEObjectRowConstraint">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_zMeJj0TkEeaBQ-vHVYbtqQ" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.EObjectInTableCanCreateRowElementContraint"/>
+        </constraints>
+        <widget href="ui/EObjectInTableCanPasteEObjectRowSection.xwt#/"/>
+      </sections>
+      <sections xmi:id="_bYfDIJLDEeWbp4A9_-WIrR" name="EObjectInTableCantPasteEObjectRowSection" sectionFile="ui/EObjectInTableCantPasteEObjectRowSection.xwt">
+        <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zMeJkETkEeaBQ-vHVYbtqQ" name="EObjectInTableCantPasteEObjectRowConstraint">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.4"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_zMeJkUTkEeaBQ-vHVYbtqQ" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.EObjectInTableCantCreateRowElementContraint"/>
+        </constraints>
+        <widget href="ui/EObjectInTableCantPasteEObjectRowSection.xwt#/"/>
+      </sections>
+      <sections xmi:id="_HDwIwJQnEeWx9KtEop_Tuh" name="EObjectInTableHasTreeFillingConfiguration" sectionFile="ui/EObjectInTableHasTreeFillingConfiguration.xwt">
+        <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zMeJkkTkEeaBQ-vHVYbtqQ" name="EObjectInTableHasTreeFillingConfigurationConstraint">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.4"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_zMeJk0TkEeaBQ-vHVYbtqQ" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.EObjectInTableHasTreeFillingConfigurationConstraint"/>
+        </constraints>
+        <widget href="ui/EObjectInTableHasTreeFillingConfiguration.xwt#/"/>
       </sections>
     </tabs>
     <views xmi:id="_bYfDI5LDEeWbp4A9_-WIrQ" name="Single Table" sections="_bYd04pLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_bYg4hJLDEeWbp4A9_-WIrQ">
@@ -748,7 +827,7 @@
         <properties xsi:type="constraints:ValueProperty" xmi:id="_bYg4epLDEeWbp4A9_-WIrQ" name="className" value="ObjectIdAxis"/>
       </constraints>
     </views>
-    <views xmi:id="_bYg4e5LDEeWbp4A9_-WIrQ" name="SingleTableAppearance" sections="_bYfDCZLDEeWbp4A9_-WIrQ _bYfDCpLDEeWbp4A9_-WIrQ _bYfDDZLDEeWbp4A9_-WIrQ _bYfDEJLDEeWbp4A9_-WIrQ _bYfDE5LDEeWbp4A9_-WIrQ">
+    <views xmi:id="_bYg4e5LDEeWbp4A9_-WIrQ" name="SingleTableAppearance" sections="_hIAtIJQtEeWx9KtEop_Tug _bYfDCZLDEeWbp4A9_-WIrQ _bYfDCpLDEeWbp4A9_-WIrQ _bYfDDZLDEeWbp4A9_-WIrQ _bYfDEJLDEeWbp4A9_-WIrQ _bYfDE5LDEeWbp4A9_-WIrQ">
       <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_bYg4fJLDEeWbp4A9_-WIrQ" name="singleTable">
         <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
         <properties xsi:type="constraints:ValueProperty" xmi:id="_bYg4fZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
@@ -760,6 +839,30 @@
         <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
         <properties xsi:type="constraints:ValueProperty" xmi:id="_bYg4gZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
         <properties xsi:type="constraints:ValueProperty" xmi:id="_bYg4gpLDEeWbp4A9_-WIrQ" name="className" value="Table"/>
+      </constraints>
+    </views>
+    <views xmi:id="_bYfDI5LDEeWbp4A9_-WIrR" name="EObjectInFlatTable" sections="_bYd04pLDEeWbp4A9_-WIrR" automaticContext="true" datacontexts="_bYg4g5LDEeWbp4A9_-WIrR">
+      <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_rQ-gUDPSEeatstN8F-Z_Kw" name="isEObjectInFlatTable">
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.nattable.properties/model/Environment.xmi#//@constraintTypes.2"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_1knLypNSEeWeQ8lFehLIEQ" name="expectedValue" value="true"/>
+      </constraints>
+    </views>
+    <views xmi:id="_bYfDI5LDEeWbp4A9_-WIrS" name="EObjectInTreeTable" sections="_bYd04pLDEeWbp4A9_-WIrS" automaticContext="true" datacontexts="_bYg4g5LDEeWbp4A9_-WIrR">
+      <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zMnTcETkEeaBQ-vHVYbtqQ" name="isEObjectInTreeTable">
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.nattable.properties/model/Environment.xmi#//@constraintTypes.3"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_zMnTcUTkEeaBQ-vHVYbtqQ" name="expectedValue" value="true"/>
+      </constraints>
+    </views>
+    <views xmi:id="_bYfDI5LDEeWbp4A9_-WIrR" name="EObjectInTableAppearance" sections="_hIAtIJQtEeWx9KtEop_Tuh _bYfDCZLDEeWbp4A9_-WIrR _bYfDCpLDEeWbp4A9_-WIrR _bYfDDZLDEeWbp4A9_-WIrR _bYfDEJLDEeWbp4A9_-WIrR _bYfDE5LDEeWbp4A9_-WIrR" automaticContext="true" datacontexts="_bYg4g5LDEeWbp4A9_-WIrR">
+      <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zMnTckTkEeaBQ-vHVYbtqQ" name="EObjectInTable">
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.nattable.properties/model/Environment.xmi#//@constraintTypes.1"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_zMnTc0TkEeaBQ-vHVYbtqQ" name="expectedValue" value="true"/>
+      </constraints>
+    </views>
+    <views xmi:id="_bYg4f5LDEeWbp4A9_-WIrQ" name="EObjectInTablePasteInTable" sections="_bYfDF5LDEeWbp4A9_-WIrR _bYfDGpLDEeWbp4A9_-WIrR _bYfDHZLDEeWbp4A9_-WIrR _bYfDIJLDEeWbp4A9_-WIrR">
+      <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zMnTdETkEeaBQ-vHVYbtqQ" name="EObjectInTable">
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.nattable.properties/model/Environment.xmi#//@constraintTypes.1"/>
+        <properties xsi:type="constraints:ValueProperty" xmi:id="_zMnTdUTkEeaBQ-vHVYbtqQ" name="expectedValue" value="true"/>
       </constraints>
     </views>
     <dataContexts xmi:id="_bYg4g5LDEeWbp4A9_-WIrQ" name="nattable" label="nattable">
@@ -905,6 +1008,78 @@
         <elements xmi:id="_bYhfr5LDEeWbp4A9_-WIrQ" name="ObjectIdAxis" supertypes="_bYhfpJLDEeWbp4A9_-WIrQ _bYhfqpLDEeWbp4A9_-WIrQ"/>
       </elements>
       <modelElementFactory href="Environment.xmi#//@modelElementFactories.0"/>
+    </dataContexts>
+    <dataContexts xmi:id="_bYg4g5LDEeWbp4A9_-WIrR" name="EObjectInTable" label="EMF">
+      <elements xmi:id="_bYhfXJLDEeWbp4A9_-WIrR" name="TableNamedElement">
+        <properties xmi:id="_bYhfXZLDEeWbp4A9_-WIrR" name="description"/>
+        <properties xmi:id="_bYhfXpLDEeWbp4A9_-WIrR" name="name"/>
+      </elements>
+      <elements xmi:id="_bYg4hJLDEeWbp4A9_-WIrQ" name="Table" supertypes="_bYhfXJLDEeWbp4A9_-WIrR">
+        <properties xmi:id="_bYhfQJLDEeWbp4A9_-WIrR" name="context" type="Reference"/>
+        <properties xmi:id="_bYhfQZLDEeWbp4A9_-WIrR" name="tableConfiguration" type="Reference"/>
+        <properties xmi:id="_bYhfRZLDEeWbp4A9_-WIrQ" name="localRowHeaderAxisConfiguration" type="Reference"/>
+        <properties xmi:id="_bYhfRpLDEeWbp4A9_-WIrQ" name="localColumnHeaderAxisConfiguration" type="Reference"/>
+        <properties xmi:id="_bYhfSZLDEeWbp4A9_-WIrQ" name="columnFeatureLabelProviderConfigurationDisplayIcon" label="Display Column FeatureIcon" type="Boolean" description="Display Column Icon"/>
+        <properties xmi:id="_bYhfSpLDEeWbp4A9_-WIrQ" name="columnFeatureLabelProviderConfigurationDisplayLabel" label="Display Column Feature Label" type="Boolean" description="Display Column Label"/>
+        <properties xmi:id="_bYhfS5LDEeWbp4A9_-WIrQ" name="columnFeatureLabelProviderConfigurationDisplayIsDerived" label="Display Column Feature IsDerived" type="Boolean" description="Display Column Feature IsDerived"/>
+        <properties xmi:id="_bYhfTJLDEeWbp4A9_-WIrQ" name="columnFeatureLabelProviderConfigurationDisplayType" label="Display Column Feature Type" type="Boolean" description="Display Column Feature Type"/>
+        <properties xmi:id="_bYhfTZLDEeWbp4A9_-WIrQ" name="columnFeatureLabelProviderConfigurationDisplayMultiplicity" label="Display Column Feature Multiplicity" type="Boolean" description="Display Column Feature Multiplicity"/>
+        <properties xmi:id="_bYhfTpLDEeWbp4A9_-WIrQ" name="columnFeatureLabelProviderConfigurationDisplayName" label="Display Column Feature Name" type="Boolean" description="Display Column Feature Name"/>
+        <properties xmi:id="_bYhfT5LDEeWbp4A9_-WIrQ" name="columnObjectLabelProviderConfigurationDisplayIcon" label="Display Column Object Icon" type="Boolean" description="Display Column Object Icon"/>
+        <properties xmi:id="_bYhfUJLDEeWbp4A9_-WIrQ" name="columnObjectLabelProviderConfigurationDisplayLabel" label="Display Column Object Label" type="Boolean" description="Display Column Object Label"/>
+        <properties xmi:id="_bYhfUZLDEeWbp4A9_-WIrQ" name="rowFeatureLabelProviderConfigurationDisplayIcon" label="Display Row FeatureIcon" type="Boolean" description="Display Row Icon"/>
+        <properties xmi:id="_bYhfUpLDEeWbp4A9_-WIrQ" name="rowFeatureLabelProviderConfigurationDisplayLabel" label="Display Row Feature Label" type="Boolean" description="Display Row Label"/>
+        <properties xmi:id="_bYhfU5LDEeWbp4A9_-WIrQ" name="rowFeatureLabelProviderConfigurationDisplayIsDerived" label="Display Row Feature IsDerived" type="Boolean" description="Display Row Feature IsDerived"/>
+        <properties xmi:id="_bYhfVJLDEeWbp4A9_-WIrQ" name="rowFeatureLabelProviderConfigurationDisplayType" label="Display Row Feature Type" type="Boolean" description="Display Row Feature Type"/>
+        <properties xmi:id="_bYhfVZLDEeWbp4A9_-WIrQ" name="rowFeatureLabelProviderConfigurationDisplayMultiplicity" label="Display Row Feature Multiplicity" type="Boolean" description="Display Row Feature Multiplicity"/>
+        <properties xmi:id="_bYhfVpLDEeWbp4A9_-WIrQ" name="rowFeatureLabelProviderConfigurationDisplayName" label="Display Row Feature Name" type="Boolean" description="Display Row Feature Name"/>
+        <properties xmi:id="_bYhfV5LDEeWbp4A9_-WIrQ" name="rowObjectLabelProviderConfigurationDisplayIcon" label="Display Row Object Icon" type="Boolean" description="Display Row Object Icon"/>
+        <properties xmi:id="_bYhfWJLDEeWbp4A9_-WIrQ" name="rowObjectLabelProviderConfigurationDisplayLabel" label="Display Row Object Label" type="Boolean" description="Display Row Object Label"/>
+        <properties xmi:id="_bYhfWZLDEeWbp4A9_-WIrQ" name="rowPastedEObjectId" label="Row Pasted Element Type Id" description="Row Pasted Element Type Id"/>
+        <properties xmi:id="_bYhfWpLDEeWbp4A9_-WIrQ" name="rowPastedEObjectContainmentFeature" label="Row Pasted EObject Contaiment Feature"/>
+        <properties xmi:id="_bYhfQpLDEeWbp4A9_-WIrR" name="invertAxis"/>
+      </elements>
+      <elements xsi:type="contexts:DataContextPackage" xmi:id="_bYhffZLDEeWbp4A9_-WIrR" name="nattableaxisconfiguration">
+        <elements xmi:id="_bYhffpLDEeWbp4A9_-WIrR" name="AbstractHeaderAxisConfiguration">
+          <properties xmi:id="_bYhff5LDEeWbp4A9_-WIrR" name="indexStyle" type="Enumeration"/>
+          <properties xmi:id="_bYhfgJLDEeWbp4A9_-WIrR" name="displayLabel"/>
+          <properties xmi:id="_bYhfgZLDEeWbp4A9_-WIrR" name="displayFilter"/>
+          <properties xmi:id="_bYhfgpLDEeWbp4A9_-WIrR" name="displayIndex"/>
+          <properties xmi:id="_bYhfg5LDEeWbp4A9_-WIrR" name="ownedLabelConfigurations" type="Reference" multiplicity="-1"/>
+          <properties xmi:id="_bYhfhJLDEeWbp4A9_-WIrR" name="ownedAxisConfigurations" type="Reference" multiplicity="-1"/>
+        </elements>
+        <elements xmi:id="_bYhfhZLDEeWbp4A9_-WIrR" name="AxisManagerRepresentation">
+          <properties xmi:id="_bYhfhpLDEeWbp4A9_-WIrR" name="axisManagerId"/>
+          <properties xmi:id="_bYhfh5LDEeWbp4A9_-WIrR" name="labelProviderContext"/>
+          <properties xmi:id="_bYhfiJLDEeWbp4A9_-WIrR" name="headerLabelConfiguration" type="Reference"/>
+          <properties xmi:id="_bYhfiZLDEeWbp4A9_-WIrR" name="specificAxisConfigurations" type="Reference" multiplicity="-1"/>
+        </elements>
+        <elements xmi:id="_bYhfipLDEeWbp4A9_-WIrR" name="AxisManagerConfiguration">
+          <properties xmi:id="_bYhfi5LDEeWbp4A9_-WIrR" name="localHeaderLabelConfiguration" type="Reference"/>
+          <properties xmi:id="_bYhfjJLDEeWbp4A9_-WIrR" name="axisManager" type="Reference"/>
+          <properties xmi:id="_bYhfjZLDEeWbp4A9_-WIrR" name="localSpecificConfigurations" type="Reference" multiplicity="-1"/>
+        </elements>
+        <elements xmi:id="_bYhfjpLDEeWbp4A9_-WIrR" name="TableHeaderAxisConfiguration" supertypes="_bYhffpLDEeWbp4A9_-WIrR">
+          <properties xmi:id="_bYhfj5LDEeWbp4A9_-WIrR" name="axisManagers" type="Reference" multiplicity="-1"/>
+        </elements>
+        <elements xmi:id="_bYhfkJLDEeWbp4A9_-WIrR" name="LocalTableHeaderAxisConfiguration" supertypes="_bYhffpLDEeWbp4A9_-WIrR">
+          <properties xmi:id="_bYhfkZLDEeWbp4A9_-WIrR" name="axisManagerConfigurations" type="Reference" multiplicity="-1"/>
+        </elements>
+        <elements xmi:id="_bYhfkpLDEeWbp4A9_-WIrR" name="IAxisConfiguration"/>
+        <elements xmi:id="_bYhfk5LDEeWbp4A9_-WIrR" name="FeatureAxisConfiguration" supertypes="_bYhfkpLDEeWbp4A9_-WIrR">
+          <properties xmi:id="_bYhflJLDEeWbp4A9_-WIrR" name="showOnlyCommonFeature" type="Boolean"/>
+        </elements>
+        <elements xmi:id="_bYhflZLDEeWbp4A9_-WIrR" name="IFillingConfiguration" supertypes="_bYhfkpLDEeWbp4A9_-WIrR"/>
+        <elements xmi:id="_bYhflpLDEeWbp4A9_-WIrR" name="EStructuralFeatureValueFillingConfiguration" supertypes="_bYhflZLDEeWbp4A9_-WIrR">
+          <properties xmi:id="_bYhfl5LDEeWbp4A9_-WIrR" name="listenFeature" type="Reference"/>
+        </elements>
+        <elements xmi:id="_bYhfmJLDEeWbp4A9_-WIrR" name="IPasteConfiguration" supertypes="_bYhfkpLDEeWbp4A9_-WIrR"/>
+        <elements xmi:id="_bYhfmZLDEeWbp4A9_-WIrR" name="PasteEObjectConfiguration" supertypes="_bYhfmJLDEeWbp4A9_-WIrR">
+          <properties xmi:id="_bYhfmpLDEeWbp4A9_-WIrR" name="pastedElementId"/>
+          <properties xmi:id="_bYhfm5LDEeWbp4A9_-WIrR" name="pasteElementContainementFeature" type="Reference"/>
+        </elements>
+      </elements>
+      <modelElementFactory href="Environment.xmi#//@modelElementFactories.1"/>
     </dataContexts>
   </contexts:Context>
   <contexts:View xmi:id="_bYhfsJLDEeWbp4A9_-WIrQ" name="Single TableNamedElement" automaticContext="true" datacontexts="_bYhfXJLDEeWbp4A9_-WIrQ">

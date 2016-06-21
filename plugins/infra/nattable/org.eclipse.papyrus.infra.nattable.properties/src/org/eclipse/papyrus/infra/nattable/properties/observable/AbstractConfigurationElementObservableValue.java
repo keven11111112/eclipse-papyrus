@@ -129,4 +129,15 @@ public abstract class AbstractConfigurationElementObservableValue extends Abstra
 		return table;
 	}
 
+	/**
+	 * Set the table.
+	 * 
+	 * @param table the table to set
+	 * 
+	 * @since 2.1
+	 */
+	public void setTable(final Table table) {
+		this.table = table;
+	}
+
 }

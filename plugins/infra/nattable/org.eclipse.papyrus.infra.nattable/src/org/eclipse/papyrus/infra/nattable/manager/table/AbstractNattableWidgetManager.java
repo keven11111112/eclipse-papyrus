@@ -46,6 +46,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.coordinate.PositionCoordinate;
 import org.eclipse.nebula.widgets.nattable.coordinate.Range;
 import org.eclipse.nebula.widgets.nattable.copy.command.CopyDataToClipboardCommand;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
@@ -148,11 +149,17 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
+import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchPartSite;
@@ -276,7 +283,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * the cell editor axis configuration
 	 */
 	private CellEditorAxisConfiguration cellAxisConfiguration;
-	
+
 	/**
 	 * Keep the decoration service as variable to avoid possible memory leak.
 	 */
@@ -286,6 +293,20 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * The table popup menu configuration.
 	 */
 	private TablePopupMenuConfiguration tablePopupMenuConfiguration;
+	
+	/**
+	 * The CTabFolder.
+	 * 
+	 * @since 2.1
+	 */
+	private CTabFolder cTabFolder;
+
+	/**
+	 * The CTabFolder selection listener.
+	 * 
+	 * @since 2.1
+	 */
+	private SelectionListener cTabFolderSelectionListener;
 
 	/**
 	 *
@@ -401,6 +422,14 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.natTable.setConfigRegistry(configRegistry);
 		this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
 		this.selectionProvider = new TableSelectionProvider(this, this.bodyLayerStack.getSelectionLayer());
+		// This allows to define the table context as selection on the table opening
+		this.selectionProvider.setSelection(new TableStructuredSelection(getTable().getContext(), new TableSelectionWrapper(Collections.<PositionCoordinate> emptyList())));
+
+		// Add a selection listener on the CTabFolder to select the table context
+		final CTabFolder tabFolder = getParentCTabFolder();
+		if (null != tabFolder) {
+			tabFolder.addSelectionListener(getCTabFolderSelectionListener());
+		}
 
 		if (site != null) {
 			// we are creating an editor
@@ -433,6 +462,84 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		new PapyrusNatTableToolTipProvider(this.natTable, GridRegion.BODY, GridRegion.COLUMN_HEADER, GridRegion.ROW_HEADER);
 		initResourceSetListener();
 		return this.natTable;
+	}
+
+	/**
+	 * Get the parent CTabFolder if exists.
+	 * 
+	 * @return The parent CTabFolder or <code>null</code>.
+	 * 
+	 * @since 2.1
+	 */
+	protected CTabFolder getParentCTabFolder() {
+		if(null == cTabFolder){
+			Control currentControl = natTable.getParent();
+			while (null != currentControl && !(currentControl instanceof CTabFolder)) {
+				currentControl = currentControl.getParent();
+			}
+			if (currentControl instanceof CTabFolder) {
+				cTabFolder = (CTabFolder) currentControl;
+			}
+		}
+		return cTabFolder;
+	}
+
+	/**
+	 * Get the CTabFolder selection listener created if doesn't exists.
+	 * 
+	 * @return The CTabFolder selection listener.
+	 * 
+	 * @since 2.1
+	 */
+	protected SelectionListener getCTabFolderSelectionListener() {
+		if (null == cTabFolderSelectionListener) {
+			cTabFolderSelectionListener = new SelectionAdapter() {
+
+				@Override
+				public void widgetSelected(final SelectionEvent e) {
+					// Manage only the selection change when the current display is the nattable display
+					if (getNattableTopParentComposite() == ((CTabItem) e.item).getControl()) {
+						boolean hasSelection = false;
+
+						final TableStructuredSelection selectionInTable = getSelectionInTable();
+						if (null != selectionInTable) {
+							final TableSelectionWrapper tableSelectionWrapper = (TableSelectionWrapper) selectionInTable.getAdapter(TableSelectionWrapper.class);
+							hasSelection = !(tableSelectionWrapper.getSelectedCells().isEmpty() && tableSelectionWrapper.getFullySelectedRows().isEmpty() && tableSelectionWrapper.getFullySelectedColumns().isEmpty());
+						}
+
+						if (!hasSelection && null != natTable && null != selectionProvider && null != getTable().getContext()) {
+							if(selectionInTable.getFirstElement().equals(getTable().getContext())){
+								// Set the table as selection to force the properties view to refresh it
+								selectionProvider.setSelection(new TableStructuredSelection(getTable(), new TableSelectionWrapper(Collections.<PositionCoordinate> emptyList())));
+							}
+							// This allows to define the table context as selection on the table opening
+							selectionProvider.setSelection(new TableStructuredSelection(getTable().getContext(), new TableSelectionWrapper(Collections.<PositionCoordinate> emptyList())));
+						}
+					}
+				}
+			};
+		}
+		return cTabFolderSelectionListener;
+	}
+
+	/**
+	 * Get the display of the top composite of nattable editor.
+	 * 
+	 * @return The display of the top composite.
+	 * 
+	 * @since 2.1
+	 */
+	protected Control getNattableTopParentComposite() {
+		Control currentControl = natTable.getParent();
+		boolean hasToStop = false;
+		while (null != currentControl && !hasToStop) {
+			if (null == currentControl.getParent() || currentControl.getParent() instanceof CTabFolder) {
+				hasToStop = true;
+			}else{
+				currentControl = currentControl.getParent();
+			}
+		}
+		return null == currentControl ? null : currentControl;
 	}
 
 	/**
@@ -656,7 +763,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * 		the decoration service
 	 */
 	protected DecorationService getDecorationService() {
-		if(null == decorationService){
+		if (null == decorationService) {
 			// Bug 490067: We need to check if the resource of the context is existing before to get the decoration service (to avoid useless log exception)
 			// The resource of the context is not existing in the case of deletion (EObject was already deleted but the reference of table always exists)
 			if (null != this.table.getContext().eResource()) {
@@ -1318,6 +1425,11 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		return this.bodyLayerStack;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.services.IDisposable#dispose()
+	 */
 	@Override
 	public void dispose() {
 		if (this.bodyDataProvider != null) {
@@ -1349,7 +1461,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		if (this.filterStrategy instanceof IDisposable) {
 			((IDisposable) this.filterStrategy).dispose();
 		}
-		if(null != this.decorationService){
+		if (null != this.decorationService) {
 			this.decorationService = null;
 		}
 		this.cellAxisConfiguration = null;
@@ -1358,9 +1470,12 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.contextEditingDomain = null;
 		this.tableContext = null;
 		if (this.natTable != null) {
+			if (null != cTabFolder) {
+				cTabFolder.removeSelectionListener(getCTabFolderSelectionListener());
+			}
 			this.natTable.dispose();
 		}
-		if(this.tablePopupMenuConfiguration != null){
+		if (this.tablePopupMenuConfiguration != null) {
 			tablePopupMenuConfiguration.dispose();
 		}
 	}

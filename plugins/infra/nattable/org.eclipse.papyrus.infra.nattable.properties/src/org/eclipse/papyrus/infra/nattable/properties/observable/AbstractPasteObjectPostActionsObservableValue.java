@@ -82,6 +82,17 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 	protected Table getTable() {
 		return this.table;
 	}
+	
+	/**
+	 * Set the table.
+	 * 
+	 * @param table the table to set
+	 * 
+	 * @since 2.1
+	 */
+	public void setTable(Table table) {
+		this.table = table;
+	}
 
 	/**
 	 *

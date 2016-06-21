@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+<Composite xmlns:x="http://www.eclipse.org/xwt"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
-	xmlns:x="http://www.eclipse.org/xwt" xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
-	xmlns:j="clr-namespace:java.lang">
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:j="clr-namespace:java.lang">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
@@ -12,9 +12,12 @@
 		</Composite.layout>
 		<ppe:StringEditor input="{Binding}"
 			property="nattable:nattableconfiguration:TableNamedElement:name"></ppe:StringEditor>
-		<ppe:ReferenceLabel input="{Binding}" property="nattable:Table:prototype" readOnly="true" customLabel="View Type"></ppe:ReferenceLabel>
-		<ppe:ReferenceLabel input="{Binding}" property="nattable:Table:owner" readOnly="true" customLabel="Owner"></ppe:ReferenceLabel>
-		<ppe:ReferenceDialog input="{Binding}" property="nattable:Table:context" customLabel="Root element"></ppe:ReferenceDialog>
+		<ppe:ReferenceLabel input="{Binding}"
+			property="nattable:Table:prototype" readOnly="true" customLabel="View Type"></ppe:ReferenceLabel>
+		<ppe:ReferenceDialog input="{Binding}" property="nattable:Table:owner"
+			customLabel="Owner"></ppe:ReferenceDialog>
+		<ppe:ReferenceLabel input="{Binding}" property="nattable:Table:context"
+			customLabel="Root element"></ppe:ReferenceLabel>
 		<ppe:BooleanRadio input="{Binding}" property="nattable:Table:invertAxis"></ppe:BooleanRadio>
 	</Composite>
 	<Composite>

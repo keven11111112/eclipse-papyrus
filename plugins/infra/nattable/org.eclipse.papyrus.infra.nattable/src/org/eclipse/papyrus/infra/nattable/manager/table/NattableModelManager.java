@@ -114,7 +114,6 @@ import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
-import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;

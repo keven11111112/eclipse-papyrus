@@ -198,9 +198,14 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 			} else {
 				selection = calculateSelectionRowsAndColumnsWithoutTypeSelectionEvent(wrapper, event);
 			}
-			newSelection = new TableStructuredSelection(selection.toArray(), wrapper);
+			// If no selection appended, the selection must be the context of the table 
+			if(selection.isEmpty()){
+				newSelection = new TableStructuredSelection(manager.getTable().getContext(), wrapper);
+			}else{
+				newSelection = new TableStructuredSelection(selection.toArray(), wrapper);
+			}
 		} else {
-			newSelection = new StructuredSelection();
+			newSelection = new StructuredSelection(manager.getTable().getContext());
 		}
 		setSelection(newSelection);
 	}

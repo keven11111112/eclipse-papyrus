@@ -232,4 +232,15 @@ public abstract class AbstractModelElement implements ModelElement, IDataSourceL
 	public IPapyrusConverter getPapyrusConverter(String propertyPath) {
 		return null;
 	}
+	
+	/**
+	 * Get the observables map by property path.
+	 * 
+	 * @return the observables.
+	 * 
+	 * @since 1.3
+	 */
+	public Map<String, IObservable> getObservables() {
+		return observables;
+	}
 }
