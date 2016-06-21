@@ -88,6 +88,12 @@ public abstract class StateMachineSemanticVisitor extends SemanticVisitor {
 		return this.getStateMachineExecution().context;
 	}
 	
+	public boolean isVisitorFor(NamedElement node){
+		// A visitor is the interpreter for a model if the node given as parameter is the
+		// this model element.
+		return this.node == node;
+	}
+	
 	public void activate(){
 		// This operation is intended to be overridden by sub-classes. For required sub-classes
 		// (e.g., RegionActivation, StateActivation) it will initiate the instantiation phase of

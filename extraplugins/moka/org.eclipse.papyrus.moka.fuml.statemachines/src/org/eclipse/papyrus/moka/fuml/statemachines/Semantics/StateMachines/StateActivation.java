@@ -28,6 +28,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.Si
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.EventTriggeredExecution;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.SM_ObjectActivation;
 import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.Region;
@@ -99,6 +100,22 @@ public class StateActivation extends VertexActivation {
 		}
 		return activation;
 	}
+	
+	@Override
+	public boolean isVisitorFor(NamedElement node) {
+		// A state activation is the interpreter of a state if the specified node is
+		// the state or if the state redefines the specified node (which is of course)
+		// a state.
+		// 
+		// Note: as soon as vertex will be redefineable elements, this constraints will be
+		// moved to the vertex activation class.
+		boolean isVisitor = super.isVisitorFor(node);
+		if(!isVisitor){
+			isVisitor = ((State)this.node).getRedefinedState() == node;
+		}
+		return isVisitor; 
+	}
+	
 	
 	protected VertexActivation getVertexActivation(Vertex vertex){
 		VertexActivation vertexActivation = null;

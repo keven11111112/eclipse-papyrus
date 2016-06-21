@@ -64,7 +64,7 @@ public class DoActivityContextObject extends Object_ {
 		DeferredEventOccurrence matchedDeferredEvent = null; 
 		while(matchedDeferredEvent == null && i <= contextObjectActivation.deferredEventPool.size()){
 			DeferredEventOccurrence eventOccurrence = contextObjectActivation.deferredEventPool.get(i-1);
-			if(accepter.match(eventOccurrence.deferredEventOccurrence)){
+			if(this.owner == eventOccurrence.constrainingStateActivation  && accepter.match(eventOccurrence.deferredEventOccurrence)){
 				matchedDeferredEvent = eventOccurrence;
 			}
 			i++;
