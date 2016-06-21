@@ -62,7 +62,11 @@ public class RegionActivation extends StateMachineSemanticVisitor{
 			while(!isRedefined && i < vertices.size()){
 				Vertex currentVertex = vertices.get(i); 
 				if(currentVertex instanceof State){
-					isRedefined = ((State) currentVertex).getRedefinedState() == vertex;
+					State state = ((State) currentVertex).getRedefinedState();
+					while(!isRedefined && state != null){
+						isRedefined = state == vertex;
+						state = state.getRedefinedState();
+					}
 				}
 				i++;
 			}
@@ -100,10 +104,16 @@ public class RegionActivation extends StateMachineSemanticVisitor{
 	}
 	
 	private boolean isRedefined(List<Transition> transitions, Transition transition){
+		// Ensure that the given transition is not redefined by another transition
+		// already included in the transition list.
 		boolean isRedefined = false;
 		int i = 0;
-		while(!isRedefined && i < transitions.size()){ 
-			isRedefined = transitions.get(i).getRedefinedTransition() == transition;
+		while(!isRedefined && i < transitions.size()){
+			Transition currentTransition = transitions.get(i).getRedefinedTransition();
+			while(!isRedefined && currentTransition != null){
+				isRedefined = currentTransition == transition;
+				currentTransition = currentTransition.getRedefinedTransition();
+			}
 			i++;
 		}
 		return isRedefined;
