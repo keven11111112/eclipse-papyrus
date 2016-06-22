@@ -96,7 +96,7 @@ location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releas
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.8.0/S-3.8.0RC3-20160601010110/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.8.0/R-3.8.0-20160608130753/repository/" {
 	org.eclipse.wst.xml_sdk.feature.feature.group
 	org.eclipse.wst.xml_ui.feature.feature.group
 }
@@ -135,7 +135,7 @@ location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/update
 
 //updateFrom("GEF",0)
 
-location gef "http://download.eclipse.org/tools/gef/updates/legacy/milestones/4.0.0RC4_gef-master_1952" {
+location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952" {
 	org.eclipse.gef.feature.group
 }
 
@@ -143,4 +143,4 @@ location gef "http://download.eclipse.org/tools/gef/updates/legacy/milestones/4.
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.20.0/v20160531-1750"
+location mylyn "http://download.eclipse.org/mylyn/drops/3.20.0/v20160608-1917"
