@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra" sequenceNumber="1465372185">
+<target name="Papyrus Extra" sequenceNumber="1466603909">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
@@ -71,7 +71,7 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.wst.xml_sdk.feature.feature.group" version="3.8.0.v201605120129"/>
       <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.8.0.v201605120129"/>
-      <repository id="webtools" location="http://download.eclipse.org/webtools/downloads/drops/R3.8.0/S-3.8.0RC3-20160601010110/repository/"/>
+      <repository id="webtools" location="http://download.eclipse.org/webtools/downloads/drops/R3.8.0/R-3.8.0-20160608130753/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.validation.sdk.feature.group" version="1.10.0.201606071713"/>
@@ -96,10 +96,10 @@
       <repository id="gmfTooling" location="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="mylyn" location="http://download.eclipse.org/mylyn/drops/3.20.0/v20160531-1750"/>
+      <repository id="mylyn" location="http://download.eclipse.org/mylyn/drops/3.20.0/v20160608-1917"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.epp.logging.aeri.feature.feature.group" version="2.0.1.v20160605-1811"/>
+      <unit id="org.eclipse.epp.logging.aeri.feature.feature.group" version="2.0.1.v20160620-1403"/>
       <repository id="aeri" location="http://download.eclipse.org/technology/epp/logging/milestones/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
@@ -139,10 +139,10 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.zest.layouts" version="1.1.300.201606061308"/>
       <unit id="org.eclipse.gef.feature.group" version="3.11.0.201606061308"/>
-      <repository id="gef" location="http://download.eclipse.org/tools/gef/updates/legacy/milestones/4.0.0RC4_gef-master_1952"/>
+      <repository id="gef" location="http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="graphiti" location="http://download.eclipse.org/graphiti/updates/milestones/S-0.13.0RC3-201606010657/"/>
+      <repository id="graphiti" location="http://download.eclipse.org/graphiti/updates/milestones/S-0.13.0RC4-201606081043/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="sphinx" location="http://download.eclipse.org/sphinx/previews"/>
