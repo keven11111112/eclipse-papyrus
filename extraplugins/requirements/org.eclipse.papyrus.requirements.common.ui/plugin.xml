@@ -27,6 +27,10 @@
                visible="false">
          </separator>
          <separator
+               name="org.eclipse.papyrus.requirements.common.ui.preferences.additions"
+               visible="false">
+         </separator>
+         <separator
                name="org.eclipse.papyrus.requirements.common.ui.dummy"
                visible="true">
          </separator>
@@ -52,6 +56,10 @@
          </separator>
          <separator
                name="org.eclipse.papyrus.requirements.common.ui.metrics.additions"
+               visible="false">
+         </separator>
+         <separator
+               name="org.eclipse.papyrus.requirements.common.ui.preferences.additions"
                visible="false">
          </separator>
          <separator
