@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.papyrus.uml.alf.common" version="2">
-    <resource path="META-INF/MANIFEST.MF">
-        <filter comment="Dependency upper bound was implicit in Mars" id="927989779">
-            <message_arguments>
-                <message_argument value="1.2.0"/>
-                <message_argument value="org.eclipse.xtext"/>
-            </message_arguments>
-        </filter>
-    </resource>
     <resource path="META-INF/MANIFEST.MF" type="org.eclipse.xtext.generator.FileSystemSupportBasedFileSystemAccess">
         <filter comment="The xtext.generator dependency is optional and so could not reasonably have been re-exported or relied on by clients" id="305422471">
             <message_arguments>
