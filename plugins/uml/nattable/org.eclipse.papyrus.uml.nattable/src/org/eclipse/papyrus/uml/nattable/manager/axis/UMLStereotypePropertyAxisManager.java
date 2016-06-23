@@ -256,6 +256,10 @@ public class UMLStereotypePropertyAxisManager extends UMLFeatureAxisManager impl
 		for (final Object current : umlProperties) {
 			if (current instanceof Property && ((Property) current).eContainer() instanceof Stereotype) {
 				propIdToDestroy.add(Constants.PROPERTY_OF_STEREOTYPE_PREFIX + ((NamedElement) current).getQualifiedName());
+			}else if(current instanceof String){
+				propIdToDestroy.add((String)current);
+			}else if(current instanceof IAxis){
+				propIdToDestroy.add(((IAxis) current).getElement().toString());
 			}
 		}
 
