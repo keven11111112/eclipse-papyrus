@@ -643,7 +643,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 				objectsToRemove.add(objectToDestroy);
 			}
 		}
-		final Command cmd = new RemoveCommandWrapper(getDestroyAxisCommand(domain, toDestroy), objectsToRemove);
+		final Command cmd = getDestroyAxisCommand(domain, objectsToRemove);
 		domain.getCommandStack().execute(cmd);
 	}
 
