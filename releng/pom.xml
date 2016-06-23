@@ -7,8 +7,8 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<tycho-version>0.23.1</tycho-version>
-		<tychoExtrasVersion>0.23.1</tychoExtrasVersion>
+		<tycho-version>0.25.0</tycho-version>
+		<tychoExtrasVersion>0.25.0</tychoExtrasVersion>
 		<tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/papyrus/org.eclipse.papyrus</tycho.scmUrl>
 		<jarSignerVersion>1.1.2</jarSignerVersion>
 		<findbugs.version>3.0.1</findbugs.version>
