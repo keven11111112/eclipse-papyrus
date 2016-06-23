@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -151,10 +151,10 @@ public class CommandTreeIterator<C> implements Iterator<C> {
 		Object result = command;
 
 		if (command instanceof ICommandWrapper<?>) {
-			return ((ICommandWrapper<?>) command).getWrappedCommand();
+			result = ((ICommandWrapper<?>) command).getWrappedCommand();
 		} else if (ICommandWrapper.isWrapper(command, Object.class)) {
 			// Try a registered foreign wrapper
-			return ICommandWrapper.unwrap(command, Object.class);
+			result = ICommandWrapper.unwrap(command, Object.class);
 		}
 
 		if (result != command) {
