@@ -5,11 +5,11 @@
 <extension
       point="org.eclipse.ui.importWizards">
    <category
-         id="org.eclipse.papyrus.editor.category"
+         id="org.eclipse.papyrus.infra.core.importcategory"
          name="Papyrus">
    </category>
    <wizard
-         category="org.eclipse.papyrus.editor.category"
+         category="org.eclipse.papyrus.infra.core.importcategory"
          class="org.eclipse.papyrus.requirements.reqif.integration.assistant.ReqIFImportWizard"
          icon="img/Papyrus_Req_logo_16x16.bmp"
          id="com.cea.darwin.reqif.importWizard"
@@ -19,11 +19,11 @@
 <extension
       point="org.eclipse.ui.exportWizards">
    <category
-         id="org.eclipse.papyrus.editor.category"
+         id="org.eclipse.papyrus.infra.core.exportcategory"
          name="Papyrus">
    </category>
    <wizard
-         category="org.eclipse.papyrus.editor.category"
+         category="org.eclipse.papyrus.infra.core.exportcategory"
          class="org.eclipse.papyrus.requirements.reqif.integration.assistant.ReqIFExportWizard"
          icon="img/Papyrus_Req_logo_16x16.bmp"
          id="com.cea.darwin.reqif.exportWizard"
