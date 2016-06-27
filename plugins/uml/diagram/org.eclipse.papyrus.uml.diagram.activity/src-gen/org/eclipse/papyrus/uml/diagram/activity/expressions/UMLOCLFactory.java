@@ -242,7 +242,7 @@ public class UMLOCLFactory {
 		}
 		if (cached.expressions[index] == null) {
 			cached.expressions[index] = getExpression(cached.expressionBodies[index], context,
-					environment == null ? Collections.<String, EClassifier>emptyMap() : environment);
+					environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}
 		return cached.expressions[index];
 	}
@@ -259,7 +259,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context) {
-		return getExpression(body, context, Collections.<String, EClassifier>emptyMap());
+		return getExpression(body, context, Collections.<String, EClassifier> emptyMap());
 	}
 
 	/**

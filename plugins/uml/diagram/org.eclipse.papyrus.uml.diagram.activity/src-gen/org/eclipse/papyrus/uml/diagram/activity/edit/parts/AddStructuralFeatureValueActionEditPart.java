@@ -100,8 +100,8 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.AddStructuralFeatureValueActionCanonicalEditPolicy());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.AddStructuralFeatureValueActionCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
@@ -196,7 +196,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(
@@ -204,7 +204,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(
@@ -212,7 +212,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsInserAtEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(
@@ -220,7 +220,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(
@@ -228,7 +228,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(
@@ -236,7 +236,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(
@@ -244,7 +244,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(
@@ -252,7 +252,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(
@@ -260,7 +260,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(
@@ -268,7 +268,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.SOUTH);
 			getBorderedFigure().getBorderItemContainer().add(

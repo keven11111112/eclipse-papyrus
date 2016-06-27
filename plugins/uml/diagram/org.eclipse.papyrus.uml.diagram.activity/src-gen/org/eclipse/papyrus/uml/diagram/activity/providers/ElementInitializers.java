@@ -82,8 +82,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_Activity_Shape(Activity instance) {
 		try {
 			Object value_0 = name_Activity_Shape(instance);

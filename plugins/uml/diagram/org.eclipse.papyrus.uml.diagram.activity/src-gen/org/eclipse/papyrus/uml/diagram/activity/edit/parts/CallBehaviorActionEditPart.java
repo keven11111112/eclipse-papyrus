@@ -105,8 +105,8 @@ public class CallBehaviorActionEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.CallBehaviorActionCanonicalEditPolicy());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.CallBehaviorActionCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
@@ -234,7 +234,7 @@ public class CallBehaviorActionEditPart extends RoundedCompartmentEditPart {
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInCallBeActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInCallBeActEditPart) childEditPart).getFigure(),
@@ -242,7 +242,7 @@ public class CallBehaviorActionEditPart extends RoundedCompartmentEditPart {
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionInputPinInCallBeActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer()
@@ -250,7 +250,7 @@ public class CallBehaviorActionEditPart extends RoundedCompartmentEditPart {
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInCallBeActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInCallBeActEditPart) childEditPart).getFigure(),
@@ -258,7 +258,7 @@ public class CallBehaviorActionEditPart extends RoundedCompartmentEditPart {
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Pin locator for Actions
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInCallBeActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInCallBeActEditPart) childEditPart).getFigure(),
