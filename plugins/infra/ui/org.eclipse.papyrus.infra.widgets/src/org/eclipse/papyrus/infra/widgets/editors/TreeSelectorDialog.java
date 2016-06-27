@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2016 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 408491
+ *  Philip Langer (EclipseSource) planger@eclipsesource.com - bug 495394
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
@@ -126,7 +127,9 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 		descriptionLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
 		if (description != null) {
-			descriptionLabel.setText(description);
+			showDescriptionLabel();
+		} else {
+			hideDescriptionLabel();
 		}
 
 		treeViewer = new TreeViewer(getDialogArea(), SWT.BORDER);
@@ -214,6 +217,18 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 
 	}
 
+	private void hideDescriptionLabel() {
+		descriptionLabel.setText(""); //$NON-NLS-1$
+		descriptionLabel.setVisible(false);
+		((GridData)descriptionLabel.getLayoutData()).exclude = true;
+	}
+
+	private void showDescriptionLabel() {
+		descriptionLabel.setText(description);
+		descriptionLabel.setVisible(true);
+		((GridData)descriptionLabel.getLayoutData()).exclude = false;
+	}
+
 	/**
 	 * Sets the description for this Dialog. The description is displayed on
 	 * top of the dialog
@@ -226,7 +241,12 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 		this.description = description;
 
 		if ((descriptionLabel != null) && !descriptionLabel.isDisposed()) {
-			descriptionLabel.setText(description == null ? "" : description); //$NON-NLS-1$
+			if (description != null) {
+				showDescriptionLabel();
+			} else {
+				hideDescriptionLabel();
+			}
+			descriptionLabel.getParent().pack();
 		}
 	}
 
