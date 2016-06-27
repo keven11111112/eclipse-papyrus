@@ -277,6 +277,11 @@ UseCaseDiagram UseCase {
 	isOval: true;
 }
 
+UseCaseDiagram UseCase > Compartment[kind="points"] 
+{
+	visible:false;
+}
+
 UseCaseDiagram Actor
 {
 	displayBorder:false;
