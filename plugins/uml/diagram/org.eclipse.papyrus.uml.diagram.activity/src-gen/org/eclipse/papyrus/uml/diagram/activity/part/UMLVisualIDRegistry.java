@@ -5916,8 +5916,8 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static boolean isActionInputPin_CallOperationActionArgumentShape(ActionInputPin domainElement) {
 		Object result = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getActionInputPin(), null)
 				.evaluate(domainElement);
@@ -6829,7 +6829,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
 		if (candidate == null) {
-			//unrecognized id is always bad
+			// unrecognized id is always bad
 			return false;
 		}
 		String basic = getNodeVisualID(containerView, domainElement);
