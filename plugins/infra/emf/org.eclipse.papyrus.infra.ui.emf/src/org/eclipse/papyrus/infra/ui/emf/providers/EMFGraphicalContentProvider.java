@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2016 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,6 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Added graphic contributions for the filters
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial History implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - History integration
+ *  Philip Langer (EclipseSource) planger@eclipsesource.com - Revealing first match of filter
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.emf.providers;
@@ -38,8 +39,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IDetailLabelProvider;
 import org.eclipse.papyrus.infra.ui.internal.emf.Activator;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
@@ -55,6 +58,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
 
 /**
  * This providers adds a text-filter and an History to EMF-based content providers
@@ -63,6 +68,18 @@ import org.eclipse.swt.widgets.Table;
 public class EMFGraphicalContentProvider extends EncapsulatedContentProvider implements ISelectionChangedListener {
 
 	private static final String DIALOG_SETTINGS = EMFGraphicalContentProvider.class.getName();
+
+	private static final String HISTORY_SETTINGS = "History"; //$NON-NLS-1$
+
+	private static final String PREVIOUS_SELECTION = "PreviousSelection"; //$NON-NLS-1$
+
+	private static final int HISTORY_MAX_SIZE = 15;
+
+	/**
+	 * The maximum depth for {@link #findAndRevealFirstMatchingItem() finding and revealing}
+	 * items in the filtered tree {@link #viewer}.
+	 */
+	private static final int MAX_SEARCH_DEPTH = 15;
 
 	protected String historyId;
 
@@ -76,10 +93,6 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 
 	protected ViewerFilter patternFilter;
 
-	private static final String HISTORY_SETTINGS = "History"; //$NON-NLS-1$
-
-	private static final String PREVIOUS_SELECTION = "PreviousSelection"; //$NON-NLS-1$
-
 	protected List<EObject> selectionHistory;
 
 	protected CLabel detailLabel;
@@ -89,8 +102,6 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 	protected StructuredViewer viewer;
 
 	protected ResourceSet resourceSet;
-
-	private static final int HISTORY_MAX_SIZE = 15;
 
 	private String currentFilterPattern;
 
@@ -134,13 +145,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 				((PatternViewerFilter) patternFilter).setPattern(filterPattern);
 				viewer.refresh();
 				if (!("".equals(filterPattern) || currentFilterPattern.equals(filterPattern))) {
-
-					// FIXME: The reveal first match algorithm is not compatible with infinite trees and had bad performances
-					// Object firstMatch = getFirstMatchingElement(null);
-					// if(firstMatch != null) {
-					// revealSemanticElement(Collections.singletonList(firstMatch));
-					// }
-
+					findAndRevealFirstMatchingItem();
 					currentFilterPattern = filterPattern;
 				}
 			}
@@ -153,10 +158,62 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 	}
 
 	/**
+	 * Traverses to the first leaf item in the viewer tree and reveals it.
+	 * <p>
+	 * If this method is called after the filter has been updated and the viewer has been refreshed,
+	 * this will reveal and return the first item that matches the filter. Note that this only works
+	 * if {@link #viewer} is an instance of {@link TreeViewer}.
+	 * </p>
+	 * 
+	 * @return the semantic element of the revealed item, or <code>null</code> if it could not be found.
+	 */
+	protected EObject findAndRevealFirstMatchingItem() {
+		if (!(viewer instanceof TreeViewer)) {
+			return null;
+		}
+
+		// start to search from first root element
+		final Tree tree = ((TreeViewer) viewer).getTree();
+		if (tree.getItems().length > 0) {
+			return revealFirstLeaf(tree.getItem(0), MAX_SEARCH_DEPTH);
+		}
+
+		return null;
+	}
+
+	private EObject revealFirstLeaf(TreeItem item, int maxSearchDepth) {
+		if (maxSearchDepth < 1 || !(viewer instanceof TreeViewer)) {
+			return null;
+		}
+
+		// reveal to current item
+		final TreeViewer treeViewer = (TreeViewer) viewer;
+		final Object[] itemDataArray = Collections.singletonList(item.getData()).toArray();
+		treeViewer.setExpandedElements(itemDataArray);
+
+		if (item.getItems().length > 0) {
+			// continue with children of current item
+			return revealFirstLeaf(item.getItem(0), maxSearchDepth - 1);
+		} else {
+			// leaf item found: reveal and return it
+			final Object data = item.getData();
+			if (data instanceof EObjectTreeElement) {
+				final EObject semanticElement = ((EObjectTreeElement) data).getEObject();
+				revealSemanticElement(Collections.singletonList(semanticElement));
+				return semanticElement;
+			}
+		}
+
+		return null;
+	}
+
+	/**
 	 * Returns the first (encapsulated) element matching the current filters
-	 *
+	 * 
+	 * @deprecated Since 1.2.0. Use {@link #findAndRevealFirstMatchingItem(Object)} instead.
 	 * @return
 	 */
+	@Deprecated
 	protected Object getFirstMatchingElement(Object parent) {
 		// Browse from the root element
 		if (parent == null) {
