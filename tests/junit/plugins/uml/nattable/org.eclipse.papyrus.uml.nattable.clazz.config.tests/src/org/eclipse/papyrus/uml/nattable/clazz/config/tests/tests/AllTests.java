@@ -17,6 +17,7 @@ package org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.AxisChangeIndexWithConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.AxisChangeIndexWithoutConfigurationTest;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.ChangeCategoryNotExpandedTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.DeleteRequirementsWithNestedClassifier;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.DeleteRowElementTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.EditInvalidPastedText_V1_V3_V1;
@@ -204,6 +205,9 @@ import org.junit.runners.Suite.SuiteClasses;
 
 		// Move elements
 		MoveElementsTreeTableTest.class,
+		
+		// Bug 467723: Change categories with hidden categories display
+		ChangeCategoryNotExpandedTest.class,
 		
 		// Delete row elements
 		DeleteRowElementTest.class,
