@@ -107,7 +107,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/tools/gef/updates/legacy/milestones/4.0.0RC4_gef-master_1952">
+        <repository url="http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>GEF</value>
