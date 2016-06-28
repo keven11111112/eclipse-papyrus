@@ -49,12 +49,12 @@ class CanonicalTests {
         extent.contents.add(it)
         applyProfile(utp)
         
-        createTestPackage(gmfgenModel, appearancePackage)
+       // createTestPackage(gmfgenModel, appearancePackage)
         //remove test creation not usefull.
        // createTestPackage(gmfgenModel, createFromPalettePackage)
-        createTestPackage(gmfgenModel, directEditPackage)
-        createTestPackage(gmfgenModel, dropPackage)
-        createTestPackage(gmfgenModel, deletePackage)
+       // createTestPackage(gmfgenModel, directEditPackage)
+       // createTestPackage(gmfgenModel, dropPackage)
+       // createTestPackage(gmfgenModel, deletePackage)
       //  createTestPackage(gmfgenModel, synchronizationPackage)
     }
 }
