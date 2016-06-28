@@ -42,7 +42,7 @@ public class CommentReqCommand extends RecordingCommand {
 	protected void doExecute() {
 		for (Iterator<Element> iterator = selectedElements.iterator(); iterator.hasNext();) {
 			Element currentElement = (Element) iterator.next();
-				createAnnotatedComment(currentElement, "COMMENTS:\n");
+				createAnnotatedComment(currentElement, "Comments:\n");
 
 		}
 

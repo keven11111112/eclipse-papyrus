@@ -9,6 +9,8 @@
  *
  * Contributors:
 *     CEA LIST. - initial API and implementation
+*     Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Modifications and improvements
+*     
 *******************************************************************************/
 package org.eclipse.papyrus.requirements.sysml.assistant.commands;
 

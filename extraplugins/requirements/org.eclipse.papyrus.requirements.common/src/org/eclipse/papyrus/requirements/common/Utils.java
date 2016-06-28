@@ -14,13 +14,22 @@
  *****************************************************************************/
 package org.eclipse.papyrus.requirements.common;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.requirements.preferences.PreferenceConstants;
+import org.eclipse.papyrus.requirements.sysml.common.I_SysMLStereotype;
+import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.Class;
 
 public class Utils {
 
@@ -73,6 +82,69 @@ public class Utils {
 					"The profile " + missingProfile.getQualifiedName() + " was applied to "
 							+ thePackage.getName());
 		}
+	}
+
+	/**
+	 * Get a new id and name for a Papyrus SysML requirement based on the Papyrus for Requirements preferences page.
+	 * Also, if the parent is a requirement, the name and id will depend on the parent requirement's id and name.
+	 * 
+	 * @param parent
+	 *            the parent requirement
+	 * @return the name for a potential requirement
+	 */
+	public static String getNewRequirementID(Element parent) {
+		IPreferenceStore store = org.eclipse.papyrus.requirements.preferences.Activator.getDefault().getPreferenceStore();
+
+		String prefix = store.getString(PreferenceConstants.REQUIREMENT_ID_PREFIX);// by
+																					// default
+																					// "R-"
+		String separator = store.getString(PreferenceConstants.CHILD_REQUIREMENTS_SEPARATOR); // by
+																								// default
+																								// "-"
+		boolean idUniqueInModel = store.getBoolean(PreferenceConstants.REQUIREMENT_ID_UNIQUE_IN_ENTIRE_MODEL); // by default true
+		String parentRequirementId = "";
+		String parentRequirementIdSuffix = "";
+		if (parent instanceof Class) {
+			if (null != UMLUtil.getStereotypeApplication((Class) parent, Requirement.class)) {
+				// Parent is a requirement
+				parentRequirementId = (String) UMLUtil.getTaggedValue((Class) parent, I_SysMLStereotype.REQUIREMENT_STEREOTYPE, I_SysMLStereotype.REQUIREMENT_ID_ATT);
+				parentRequirementIdSuffix = parentRequirementId.replaceAll(prefix, "");
+			}
+		} else
+			separator = "";// we are not dealing with a child requirement, so the separator must be empty.
+
+
+		int digit = store.getInt(PreferenceConstants.REQUIREMENT_ID_DIGIT);// by
+																			// default 2
+		int i = 0;
+		DecimalFormat df = new DecimalFormat();
+		df.setMinimumIntegerDigits(digit);
+		String value = (df.format(i));
+		boolean IDexist = true;
+		while (IDexist) {
+			IDexist = false;
+			i++;
+			value = (df.format(i));
+			EList<Element> elements = null;
+			if (idUniqueInModel) {
+				elements = parent.getModel().allOwnedElements();
+			} else {
+				elements = parent.allOwnedElements();
+			}
+			for (Iterator<Element> iterator = elements.iterator(); iterator.hasNext() && (!IDexist);) {
+				Element element = (Element) iterator.next();
+				Object reqIdObject = UMLUtil.getTaggedValue(element, I_SysMLStereotype.REQUIREMENT_STEREOTYPE, I_SysMLStereotype.REQUIREMENT_ID_ATT);
+				if (reqIdObject != null) {
+					String existedID = (String) reqIdObject;
+					String newID = prefix + parentRequirementIdSuffix + separator + value;
+					// id already exists so increment suffix
+					if (newID.equals(existedID)) {
+						IDexist = true;
+					}
+				}
+			}
+		}
+		return prefix + parentRequirementIdSuffix + separator + value;
 	}
 
 }

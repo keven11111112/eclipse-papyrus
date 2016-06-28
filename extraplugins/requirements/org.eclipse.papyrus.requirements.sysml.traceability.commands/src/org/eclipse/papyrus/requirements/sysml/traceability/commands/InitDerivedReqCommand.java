@@ -22,7 +22,6 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.requirements.common.Utils;
-import org.eclipse.papyrus.requirements.sysml.assistant.commands.PapyrusReqSysMLRequirementCreateCommand;
 import org.eclipse.papyrus.requirements.sysml.common.I_SysMLStereotype;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
@@ -89,7 +88,7 @@ public class InitDerivedReqCommand extends RecordingCommand {
 			Utils.applyMissingProfiles(owner, missingProfiles);
 		}
 		
-		String ID = PapyrusReqSysMLRequirementCreateCommand.getNewIDReq(owner);
+		String ID = Utils.getNewRequirementID(owner);
 		Class req = owner.createOwnedClass(ID, false);
 		final Stereotype reqStereotype = req.getApplicableStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
 		req.applyStereotype(reqStereotype);

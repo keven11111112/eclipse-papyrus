@@ -9,26 +9,22 @@
  *
  * Contributors:
 *     CEA LIST. - initial API and implementation
+*     Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Modifications and improvements
+*     
 *******************************************************************************/
 package org.eclipse.papyrus.requirements.sysml.assistant.commands;
 
-import java.text.DecimalFormat;
-import java.util.Iterator;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.requirements.preferences.Activator;
-import org.eclipse.papyrus.requirements.preferences.PreferenceConstants;
 import org.eclipse.papyrus.requirements.sysml.common.I_SysMLStereotype;
+import org.eclipse.papyrus.requirements.common.Utils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.Class;
 
 /**
- * Creates a new SysML requirement based on the options chosen in the Papyrus Req preferences page.
+ * Creates a new SysML requirement based on the options chosen in the Papyrus for Requirements preferences page.
  *
  */
 public class PapyrusReqSysMLRequirementCreateCommand extends RecordingCommand {
@@ -39,69 +35,20 @@ public class PapyrusReqSysMLRequirementCreateCommand extends RecordingCommand {
 		this.selectedElement = selectedElements;
 	}
 
-	protected void createRequirement(org.eclipse.uml2.uml.Package owner, String text) {
-		org.eclipse.uml2.uml.Class requirement = owner.createOwnedClass("tmpName", false);
+	protected void createRequirement(Package owner, String id, String text) {
+		Class requirement = owner.createOwnedClass(id, false);
 		Stereotype reqStereotype = requirement.getApplicableStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
 		requirement.applyStereotype(reqStereotype);
-		String id = getNewIDReq(owner);
-		requirement.setName(id);
+		requirement.setValue(reqStereotype, I_SysMLStereotype.REQUIREMENT_TEXT_ATT, text);
 		requirement.setValue(reqStereotype, I_SysMLStereotype.REQUIREMENT_ID_ATT, id);
-	}
-
-	/**
-	 * get new name of Papyrus SysML requirement
-	 * 
-	 * @param owner
-	 *            the package that will contain requirement
-	 * @return the name for a potential requirement
-	 */
-	public static String getNewIDReq(org.eclipse.uml2.uml.Package owner) {
-		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-		String prefix = store.getString(PreferenceConstants.REQUIREMENT_ID_PREFIX);
-		int digit = store.getInt(PreferenceConstants.REQUIREMENT_ID_DIGIT);
-		int i = 0;
-
-		DecimalFormat df = new DecimalFormat();
-		// create suffix
-		df.setMinimumIntegerDigits(digit);
-		String value = (df.format(i));
-		// got through all elements
-		boolean IDexist = true;
-		while (IDexist) {
-			IDexist = false;
-			i++;
-			value = (df.format(i));
-			EList<PackageableElement> packelements = owner.getPackagedElements();
-			for (Iterator<PackageableElement> iterator = packelements.iterator(); iterator.hasNext() && (!IDexist);) {
-				PackageableElement packageableElement = (PackageableElement) iterator.next();
-				// current element is a Req?
-				Stereotype reqStereotype = packageableElement
-						.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
-
-				if (reqStereotype != null) {
-					if (packageableElement.getValue(reqStereotype, I_SysMLStereotype.REQUIREMENT_ID_ATT) != null) {
-						String existedID = (String) packageableElement.getValue(reqStereotype,
-								I_SysMLStereotype.REQUIREMENT_ID_ATT);
-						String newID = prefix + value;
-						// id already exist so increment suffix
-						if (newID.equals(existedID)) {
-							IDexist = true;
-						}
-					}
-				}
-			}
-
-		}
-		return prefix + value;
-
 	}
 
 	@Override
 	protected void doExecute() {
-		if (selectedElement instanceof Package) {
-			createRequirement((Package) selectedElement, "");
+		if (selectedElement.getNearestPackage() != null) {
+			Package owner = selectedElement.getNearestPackage();
+			String id = Utils.getNewRequirementID(owner);
+			createRequirement(owner, id, "");
 		}
-
 	}
-
 }
