@@ -9,7 +9,7 @@
  * Contributors:
  *  Tristan Faure (Atos Origin Integration) tristan.faure@atosorigin.com - Initial API and implementation
  *  Christian W. Damus - bug 485220
- *  Stefan Dirix (EclipseSource Muenchen GmbH) sdirix@eclipsesource.com - Remove adaption to IResource
+ *  Stefan Dirix (EclipseSource Muenchen GmbH) sdirix@eclipsesource.com - Remove adaption to IResource and IFile
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.onefile.model.adapters;
@@ -36,9 +36,6 @@ public class ModelAdapterFactory implements IAdapterFactory {
 				return adapterType.cast(new PapyrusResourceMapping((IPapyrusFile) adaptableObject));
 			}
 		}
-		if (adapterType == IFile.class) {
-			return adapterType.cast(((IPapyrusFile) adaptableObject).getMainFile());
-		}
 		if (Collection.class.equals(adapterType)) {
 			if (adaptableObject instanceof IPapyrusFile) {
 				return adapterType.cast(Arrays.asList(((IPapyrusFile) adaptableObject).getAssociatedResources()));
@@ -48,7 +45,7 @@ public class ModelAdapterFactory implements IAdapterFactory {
 	}
 
 	public Class<?>[] getAdapterList() {
-		return new Class[] { ResourceMapping.class, IFile.class, Collection.class };
+		return new Class[] { ResourceMapping.class, Collection.class };
 	}
 
 }

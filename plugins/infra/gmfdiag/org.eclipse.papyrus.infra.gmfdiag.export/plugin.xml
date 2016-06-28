@@ -23,13 +23,18 @@
                         <iterate
                               ifEmpty="false"
                               operator="or">
-                           <adapt
-                                 type="org.eclipse.core.resources.IFile">
-                              <test
-                                    property="org.eclipse.core.resources.extension"
-                                    value="di">
-                              </test>
-                           </adapt>
+                           <or>
+                              <adapt
+                                    type="org.eclipse.core.resources.IFile">
+                                 <test
+                                       property="org.eclipse.core.resources.extension"
+                                       value="di">
+                                 </test>
+                              </adapt>
+                              <adapt
+                                    type="org.eclipse.papyrus.infra.onefile.model.IPapyrusFile">
+                              </adapt>
+                           </or>
                         </iterate>
                      </with>
                </iterate>
