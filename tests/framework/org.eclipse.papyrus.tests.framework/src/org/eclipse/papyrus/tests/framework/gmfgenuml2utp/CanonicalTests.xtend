@@ -50,10 +50,11 @@ class CanonicalTests {
         applyProfile(utp)
         
         createTestPackage(gmfgenModel, appearancePackage)
-        createTestPackage(gmfgenModel, createFromPalettePackage)
+        //remove test creation not usefull.
+       // createTestPackage(gmfgenModel, createFromPalettePackage)
         createTestPackage(gmfgenModel, directEditPackage)
         createTestPackage(gmfgenModel, dropPackage)
         createTestPackage(gmfgenModel, deletePackage)
-        createTestPackage(gmfgenModel, synchronizationPackage)
+      //  createTestPackage(gmfgenModel, synchronizationPackage)
     }
 }
