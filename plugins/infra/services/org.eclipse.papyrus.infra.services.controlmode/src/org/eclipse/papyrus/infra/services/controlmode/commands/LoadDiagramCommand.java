@@ -79,7 +79,7 @@ public class LoadDiagramCommand implements Runnable {
 	 * @param pageManager
 	 *            the page manager in which to reload them, or {@code null} if none
 	 * 
-	 * @since 1.2
+	 * @since 1.3
 	 */
 	public LoadDiagramCommand(Resource resource, IPageManager pageManager) {
 		super();
@@ -92,6 +92,7 @@ public class LoadDiagramCommand implements Runnable {
 	 * Reloads hte pages associated with my resource, if any and if there is a
 	 * page manager.
 	 */
+	@Override
 	public void run() {
 
 		if (pageManager != null) {

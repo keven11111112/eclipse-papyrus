@@ -8,14 +8,22 @@
  *
  * Contributors:
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
- *  Christian W. Damus - bug 485220
+ *  Christian W. Damus - bugs 485220, 496299
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+import org.eclipse.core.resources.ISavedState;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -24,6 +32,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManagerFactory;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.papyrus.infra.emf.internal.resource.index.IndexManager;
+import org.eclipse.papyrus.infra.emf.internal.resource.index.IndexPersistenceManager;
 import org.eclipse.papyrus.infra.emf.spi.resolver.EObjectResolverService;
 import org.eclipse.papyrus.infra.emf.spi.resolver.IEObjectResolver;
 import org.osgi.framework.BundleContext;
@@ -66,6 +76,30 @@ public class Activator extends Plugin {
 		log = new LogHelper(this);
 
 		resolverService = new EObjectResolverService(context);
+
+		// Set up for workspace save and loading from saved state
+		WorkspaceSaveHelper saveHelper = new WorkspaceSaveHelper();
+		List<WorkspaceSaveHelper.SaveDelegate> saveDelegates = getSaveDelegates();
+		ISavedState state = ResourcesPlugin.getWorkspace().addSaveParticipant(
+				PLUGIN_ID,
+				saveHelper.createSaveParticipant(saveDelegates));
+		if ((state != null) && (state.getSaveNumber() != 0)) {
+			saveHelper.initializeSaveDelegates(state, saveDelegates);
+		}
+
+		// Kick off the workspace model indexing system
+		new Job("Initialize workspace model index") {
+			{
+				setSystem(true);
+			}
+
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				IndexManager.getInstance();
+
+				return Status.OK_STATUS;
+			}
+		}.schedule();
 	}
 
 	@Override
@@ -127,4 +161,10 @@ public class Activator extends Plugin {
 		return resolverService;
 	}
 
+	private List<WorkspaceSaveHelper.SaveDelegate> getSaveDelegates() {
+		return Arrays.asList(
+				new WorkspaceSaveHelper.SaveDelegate("index", //$NON-NLS-1$
+						IndexPersistenceManager.INSTANCE.getSaveParticipant(),
+						IndexPersistenceManager.INSTANCE::initialize));
+	}
 }

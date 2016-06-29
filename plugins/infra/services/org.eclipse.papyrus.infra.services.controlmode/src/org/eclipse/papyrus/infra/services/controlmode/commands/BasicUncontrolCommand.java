@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 Atos.
+ * Copyright (c) 2013, 2016 Atos, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Arthur Daussy (Atos) arthur.daussy@atos.net - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.ent - Bug 436998
+ *  Christian W. Damus - bug 496299
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.commands;
 
@@ -24,6 +25,7 @@ import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.resource.ShardResourceHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
@@ -85,7 +87,12 @@ public class BasicUncontrolCommand extends AbstractControlCommand {
 				IUncontrolledObjectsProvider service = ServiceUtilsForResource.getInstance().getService(IUncontrolledObjectsProvider.class, resource);
 				service.addUncontrolledObject(resource, uncontrolledObject);
 			} catch (ServiceException e) {
-				ControlModePlugin.log.error(UNCONTROL_OBJECT_ERROR, e); //$NON-NLS-1$
+				ControlModePlugin.log.error(UNCONTROL_OBJECT_ERROR, e); // $NON-NLS-1$
+			}
+
+			// If it was a "shard", make sure it isn't, now
+			try (ShardResourceHelper helper = new ShardResourceHelper(uncontrolledObject)) {
+				helper.setShard(false);
 			}
 
 			// Remove uncontrolled object to its resource
@@ -96,6 +103,6 @@ public class BasicUncontrolCommand extends AbstractControlCommand {
 			return CommandResult.newOKCommandResult();
 		}
 
-		return CommandResult.newErrorCommandResult(UNCONTROL_RESOURCE_ERROR); //$NON-NLS-1$
+		return CommandResult.newErrorCommandResult(UNCONTROL_RESOURCE_ERROR); // $NON-NLS-1$
 	}
 }

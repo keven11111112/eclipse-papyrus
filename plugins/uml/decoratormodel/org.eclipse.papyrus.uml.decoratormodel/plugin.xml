@@ -91,4 +91,11 @@
       </service>
    </extension>
 
+   <extension
+         point="org.eclipse.papyrus.infra.emf.index">
+      <indexProvider
+            class="org.eclipse.papyrus.uml.decoratormodel.internal.resource.DecoratorModelIndex$IndexProvider">
+      </indexProvider>
+   </extension>
+
 </plugin>

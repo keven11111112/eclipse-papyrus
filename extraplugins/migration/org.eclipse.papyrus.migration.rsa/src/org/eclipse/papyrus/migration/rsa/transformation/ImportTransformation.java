@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 496439
+ *  Christian W. Damus - bugs 496439, 496299
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.transformation;
 
@@ -47,6 +47,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -72,6 +73,7 @@ import org.eclipse.m2m.qvt.oml.util.ISessionData;
 import org.eclipse.m2m.qvt.oml.util.Trace;
 import org.eclipse.m2m.qvt.oml.util.WriterLog;
 import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.PapyrusDSMLValidationRulePackage;
+import org.eclipse.papyrus.infra.emf.resource.ShardResourceHelper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
@@ -143,17 +145,17 @@ public class ImportTransformation {
 	protected long importExtensionsTime = 0L;
 
 	/** Source URI to Target URI map (For Models/Libraries/Fragments) */
-	protected final Map<URI, URI> uriMappings = new HashMap<URI, URI>();
+	protected final Map<URI, URI> uriMappings = new HashMap<>();
 
 	/** Source URI to Target URI map (For Profiles) */
-	protected final Map<URI, URI> profileURIMappings = new HashMap<URI, URI>();
+	protected final Map<URI, URI> profileURIMappings = new HashMap<>();
 
-	protected List<Diagram> diagramsToDelete = new LinkedList<Diagram>();
+	protected List<Diagram> diagramsToDelete = new LinkedList<>();
 
 	protected static final ExecutorsPool executorsPool = new ExecutorsPool(2);
 
 	/** EPackages corresponding to source native profiles with specific support in the transformation */
-	protected static final Set<EPackage> sourceEPackages = new HashSet<EPackage>();
+	protected static final Set<EPackage> sourceEPackages = new HashSet<>();
 
 	protected final DependencyAnalysisHelper analysisHelper;
 
@@ -442,7 +444,7 @@ public class ImportTransformation {
 		return false;
 	}
 
-	protected static final Set<String> supportedDiagramIds = new HashSet<String>();
+	protected static final Set<String> supportedDiagramIds = new HashSet<>();
 
 	protected static boolean isSupported(Diagram diagram) {
 		return supportedDiagramIds.contains(diagram.getType());
@@ -592,7 +594,7 @@ public class ImportTransformation {
 			notationResource.getContents().addAll(outNotationObjects);
 
 			// Cleanup empty diagrams (FIXME: They should not be generated)
-			List<EObject> contentsCopy = new LinkedList<EObject>(notationResource.getContents());
+			List<EObject> contentsCopy = new LinkedList<>(notationResource.getContents());
 			for (EObject next : contentsCopy) {
 				if (next instanceof Diagram) {
 					Diagram diagram = (Diagram) next;
@@ -612,7 +614,7 @@ public class ImportTransformation {
 			configureResource((XMIResource) umlResource);
 
 			// Handle orphaned elements: remove them and log a warning (Log temporarily disabled to avoid spamming the console)
-			List<EObject> notationRootElements = new LinkedList<EObject>(notationResource.getContents());
+			List<EObject> notationRootElements = new LinkedList<>(notationResource.getContents());
 			for (EObject rootElement : notationRootElements) {
 				if (rootElement instanceof View) {
 					View rootView = (View) rootElement;
@@ -641,7 +643,7 @@ public class ImportTransformation {
 			Collection<Resource> resourcesToSave = handleFragments(umlResource, notationResource, sashResource);
 
 			for (Resource resource : resourcesToSave) {
-				List<EObject> rootElements = new LinkedList<EObject>(resource.getContents());
+				List<EObject> rootElements = new LinkedList<>(resource.getContents());
 				for (EObject rootElement : rootElements) {
 					EPackage ePackage = rootElement.eClass().getEPackage();
 					if (ePackage == ProfileBasePackage.eINSTANCE || ePackage == DefaultPackage.eINSTANCE) {
@@ -792,7 +794,7 @@ public class ImportTransformation {
 	protected IStatus importRSAProfiles(ExecutionContext context, IProgressMonitor monitor) {
 		URI transformationURI = getProfilesTransformationURI();
 
-		List<ModelExtent> extents = new LinkedList<ModelExtent>();
+		List<ModelExtent> extents = new LinkedList<>();
 		extents.add(getInOutUMLModel());
 		extents.add(getInoutNotationModel());
 		Diagnostic loadedProfiles = loadInPapyrusProfiles();
@@ -886,9 +888,9 @@ public class ImportTransformation {
 			return Diagnostic.OK_INSTANCE;
 		}
 
-		List<String> missingProfiles = new LinkedList<String>();
+		List<String> missingProfiles = new LinkedList<>();
 
-		List<EObject> allContents = new LinkedList<EObject>();
+		List<EObject> allContents = new LinkedList<>();
 		try {
 			URI validationProfileURI = URI.createURI("pathmap://DSMLValidation_PROFILES/PapyrusValidationRuleDSML.uml");
 			Resource validationProfile = resourceSet.getResource(validationProfileURI, true);
@@ -947,7 +949,7 @@ public class ImportTransformation {
 	}
 
 	protected Collection<Resource> handleFragments(Resource umlResource, Resource notationResource, Resource sashResource) {
-		Collection<Resource> result = new HashSet<Resource>();
+		Collection<Resource> result = new HashSet<>();
 		result.add(umlResource);
 		result.add(notationResource);
 		result.add(sashResource);
@@ -956,16 +958,23 @@ public class ImportTransformation {
 
 		Iterator<EObject> elementIterator = umlResource.getAllContents();
 
-		Set<Resource> fragmentResources = new HashSet<Resource>();
+		Set<Resource> fragmentResources = new HashSet<>();
+		List<EAnnotation> rsaAnnotations = new ArrayList<>();
 
 		while (elementIterator.hasNext()) {
 			EObject element = elementIterator.next();
-			if (element.eResource() != umlResource && element.eResource().getContents().contains(element)) { // Controlled/Fragment root
-				fragmentResources.add(element.eResource());
+			Resource possibleFragment = element.eResource();
+			if ((possibleFragment != umlResource) && possibleFragment.getContents().contains(element)) { // Controlled/Fragment root
+				fragmentResources.add(possibleFragment);
 			}
+
+			collectRSAAnnotations(element, rsaAnnotations);
 		}
 
-		List<Resource> fragmentUMLResources = new LinkedList<Resource>();
+		// Strip all RSA fragment annotations
+		rsaAnnotations.forEach(EcoreUtil::remove);
+
+		List<Resource> fragmentUMLResources = new LinkedList<>();
 
 		for (Resource fragmentResource : fragmentResources) {
 			URI papyrusFragmentURI = convertToPapyrus(fragmentResource.getURI(), UMLResource.FILE_EXTENSION);
@@ -989,12 +998,18 @@ public class ImportTransformation {
 			}
 
 			newResource.getContents().addAll(fragmentResource.getContents());
+
+			// Make it a Papyrus controlled unit of the "shard" variety
+			try (ShardResourceHelper shard = new ShardResourceHelper(newResource)) {
+				shard.setShard(true);
+			}
+
 			result.add(newResource);
 		}
 
 		deleteSourceStereotypes(fragmentResources);
 
-		List<EObject> importedElements = new LinkedList<EObject>(notationResource.getContents());
+		List<EObject> importedElements = new LinkedList<>(notationResource.getContents());
 		for (EObject notationElement : importedElements) {
 			if (notationElement instanceof Diagram) {
 				EObject semanticElement = ((Diagram) notationElement).getElement();
@@ -1062,20 +1077,53 @@ public class ImportTransformation {
 	}
 
 	protected void deleteSourceStereotypes(Collection<Resource> fragmentResources) {
-		Set<Resource> allResources = new HashSet<Resource>(fragmentResources);
+		Set<Resource> allResources = new HashSet<>(fragmentResources);
 		allResources.add(umlResource);
 
 		for (Resource resource : allResources) {
 
 			// For performance reasons, RSA RT Stereotypes have not been deleted during the QVTo transformation (Bug 444379)
 			// Delete them as a post-action. Iterate on all controlled models and delete the RealTime stereotypes at the root of each resource
-			List<EObject> resourceContents = new LinkedList<EObject>(resource.getContents());
+			List<EObject> resourceContents = new LinkedList<>(resource.getContents());
 			for (EObject rootElement : resourceContents) {
 				if (sourceEPackages.contains(rootElement.eClass().getEPackage())) {
 					delete(rootElement);
 				}
 			}
 		}
+	}
+
+	/**
+	 * Collects the RSA-style fragment linkage annotations, RSA diagrams, and other
+	 * RSA-specific annotations attached to an {@code object}.
+	 * 
+	 * @param object
+	 *            an object in the model
+	 * @param annotations
+	 *            collects the RSA-specific annotations
+	 */
+	protected void collectRSAAnnotations(EObject object, Collection<? super EAnnotation> annotations) {
+		if (object instanceof EModelElement) {
+			EModelElement modelElement = (EModelElement) object;
+			modelElement.getEAnnotations().stream()
+					.filter(this::isRSASpecificAnnotation)
+					.forEach(annotations::add);
+		}
+	}
+
+	protected boolean isRSASpecificAnnotation(EAnnotation annotation) {
+		boolean result = false;
+
+		String source = annotation.getSource();
+		if (source != null) {
+			// This covers both the fragments and the fragmentContainer annotation
+			result = source.startsWith("com.ibm.xtools.uml.msl.fragment") //$NON-NLS-1$
+					|| source.equals("uml2.diagrams") //$NON-NLS-1$
+					// Covers the UI-reduction annotation
+					|| source.startsWith("com.ibm.xtools.common.ui."); //$NON-NLS-1$
+		}
+
+		return result;
 	}
 
 	protected URI convertToPapyrus(URI rsaURI, String extension) {
@@ -1131,7 +1179,7 @@ public class ImportTransformation {
 				result = executor.execute(context, extents.toArray(new ModelExtent[0]));
 
 				// Append to our history
-				List<EObject> history = new ArrayList<EObject>(trace.getTraceContent());
+				List<EObject> history = new ArrayList<>(trace.getTraceContent());
 				history.addAll(newTraces.getTraceContent());
 				trace.setTraceContent(history);
 			} finally {
@@ -1210,7 +1258,7 @@ public class ImportTransformation {
 	}
 
 	protected void configureResource(XMIResource resource) {
-		Map<Object, Object> saveOptions = new HashMap<Object, Object>();
+		Map<Object, Object> saveOptions = new HashMap<>();
 
 		// default save options.
 		saveOptions.put(XMLResource.OPTION_DECLARE_XML, Boolean.TRUE);
@@ -1229,7 +1277,7 @@ public class ImportTransformation {
 	}
 
 	protected List<ModelExtent> getModelExtents() {
-		List<ModelExtent> allExtents = new LinkedList<ModelExtent>();
+		List<ModelExtent> allExtents = new LinkedList<>();
 		allExtents.add(getInOutUMLModel());
 		allExtents.add(getInoutNotationModel());
 		allExtents.add(getOutSashModel());
@@ -1251,9 +1299,9 @@ public class ImportTransformation {
 				 * We need to make all root Elements available to the QVTo ModelExtent (Including the ones
 				 * from fragments)
 				 */
-				List<EObject> allStereotypeApplications = new LinkedList<EObject>();
+				List<EObject> allStereotypeApplications = new LinkedList<>();
 				TreeIterator<EObject> allContents = resource.getAllContents();
-				Set<Resource> browsedResources = new HashSet<Resource>();
+				Set<Resource> browsedResources = new HashSet<>();
 				browsedResources.add(resource);
 				while (allContents.hasNext()) {
 					EObject next = allContents.next();
@@ -1275,7 +1323,7 @@ public class ImportTransformation {
 					}
 				}
 
-				List<EObject> allRootElements = new LinkedList<EObject>(resource.getContents());
+				List<EObject> allRootElements = new LinkedList<>(resource.getContents());
 				allRootElements.addAll(allStereotypeApplications);
 
 				// outUML = new BasicModelExtent(resource.getContents());

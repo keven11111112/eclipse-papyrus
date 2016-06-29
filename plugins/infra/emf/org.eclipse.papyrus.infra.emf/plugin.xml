@@ -18,6 +18,8 @@
 -->
 <plugin>
    <extension-point id="dependencyUpdateParticipant" name="Dependency Update Participants" schema="schema/dependencyUpdateParticipant.exsd"/>
+   <extension-point id="index" name="Workspace Model Index" schema="schema/index.exsd"/>
+   
    <extension
          point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
       <elementTypeSet
@@ -26,4 +28,11 @@
       </elementTypeSet>
    </extension>
 
+   <extension
+         point="org.eclipse.papyrus.infra.emf.index">
+      <indexProvider
+            class="org.eclipse.papyrus.infra.emf.internal.resource.CrossReferenceIndex$IndexProvider">
+      </indexProvider>
+   </extension>
+   
 </plugin>

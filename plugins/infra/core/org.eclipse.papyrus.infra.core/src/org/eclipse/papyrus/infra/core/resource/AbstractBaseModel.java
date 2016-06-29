@@ -10,7 +10,7 @@
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
  *  Christian W. Damus (CEA) - bug 437052
- *  Christian W. Damus - bugs 399859, 481149, 485220
+ *  Christian W. Damus - bugs 399859, 481149, 485220, 496299
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl.PlatformSchemeAware;
 import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.infra.core.internal.language.ILanguageModel;
 
 /**
  * An abstract implementation of model. This class should be subclassed to fit
@@ -276,7 +277,7 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	}
 
 	public static Map<Object, Object> getDefaultSaveOptions() {
-		Map<Object, Object> saveOptions = new HashMap<Object, Object>();
+		Map<Object, Object> saveOptions = new HashMap<>();
 
 		// default save options.
 		saveOptions.put(XMLResource.OPTION_DECLARE_XML, Boolean.TRUE);
@@ -298,7 +299,7 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	@Override
 	public void saveCopy(IPath targetPathWithoutExtension, Map<Object, Object> targetMap) {
 		// OutputStream targetStream = getOutputStream(targetPath);
-		Map<Object, Object> saveOptions = new HashMap<Object, Object>();
+		Map<Object, Object> saveOptions = new HashMap<>();
 
 		URI targetURI = getTargetURI(targetPathWithoutExtension);
 
@@ -461,4 +462,25 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 		return object.eContainer() == null;
 	}
 
+	/**
+	 * @since 2.1
+	 */
+	@Override
+	public <T> T getAdapter(Class<T> adapter) {
+		T result = null;
+
+		if (adapter == ILanguageModel.class) {
+			result = adapter.cast(new ILanguageModel() {
+
+				@Override
+				public String getModelFileExtension() {
+					return AbstractBaseModel.this.getModelFileExtension();
+				}
+			});
+		} else {
+			result = super.getAdapter(adapter);
+		}
+
+		return result;
+	}
 }

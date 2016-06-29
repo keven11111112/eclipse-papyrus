@@ -8,13 +8,16 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 399859, 465416, 485220
+ *   Christian W. Damus - bugs 399859, 465416, 485220, 496299
  *
  */
 package org.eclipse.papyrus.infra.emf.tests;
 
 import org.eclipse.papyrus.infra.emf.advice.ReadOnlyObjectEditAdviceTest;
 import org.eclipse.papyrus.infra.emf.edit.domain.PapyrusTransactionalEditingDomainTest;
+import org.eclipse.papyrus.infra.emf.resource.CrossReferenceIndexTest;
+import org.eclipse.papyrus.infra.emf.resource.ShardResourceHelperTest;
+import org.eclipse.papyrus.infra.emf.resource.ShardResourceLocatorTest;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndexTest;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceTest;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
@@ -37,8 +40,10 @@ import org.junit.runners.Suite.SuiteClasses;
 		PapyrusTransactionalEditingDomainTest.class,
 		// oep.infra.emf.utils
 		ServiceUtilsForResourceTest.class,
+		// oep.infra.emf.resource
+		ShardResourceHelperTest.class, ShardResourceLocatorTest.class, CrossReferenceIndexTest.class,
 		// oep.infra.emf.resource.index
-		WorkspaceModelIndexTest.class
+		WorkspaceModelIndexTest.class,
 })
 public class AllTests {
 

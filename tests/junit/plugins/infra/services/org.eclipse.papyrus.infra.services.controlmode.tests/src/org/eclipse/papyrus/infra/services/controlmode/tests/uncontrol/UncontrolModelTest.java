@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,27 +8,34 @@
  * Contributors:
  *     Juan Cadavid (CEA) juan.cadavid@cea.fr - Implementation initial and API 
  *     Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 459427
- *     Christian W. Damus - bug 480209
+ *     Christian W. Damus - bugs 480209, 496299
  ******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.tests.uncontrol;
 
+import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assume.assumeThat;
 
 import java.util.Collections;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.resource.ShardResourceHelper;
 import org.eclipse.papyrus.infra.services.controlmode.tests.Messages;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 /**
@@ -391,5 +398,39 @@ public class UncontrolModelTest extends AbstractUncontrolModelTest {
 			}
 		};
 		uncontrolAssertion.assertUncontrol();
+	}
+
+	/**
+	 * Test uncontrol of a "shard" resource sub-unit.
+	 */
+	@Test
+	public void testUncontrolShardSubunit() throws ServiceException {
+		ShardResourceHelper[] helper = { null };
+		EModelElement[] element = { null };
+
+		UncontrolModeAssertion uncontrolAssertion = new UncontrolModeAssertion(Messages.UncontrolModelTest_4) {
+			@Override
+			protected void assertBeforeUncontrol() {
+				super.assertBeforeUncontrol();
+
+				element[0] = getElementToUnControl();
+				helper[0] = new ShardResourceHelper(element[0]);
+				houseKeeper.cleanUpLater(helper[0], ShardResourceHelper::close);
+
+				editorFixture.execute(helper[0].getSetShardCommand(true));
+				assumeThat("Element does not appear to be a shard", helper[0].isShard(), is(true));
+			}
+		};
+		uncontrolAssertion.assertUncontrol();
+
+		assertThat("Element still appears to be a shard", helper[0].isShard(), is(false));
+		assertThat("Element still has an annotation", element[0].getEAnnotations(),
+				not(CoreMatchers.<EAnnotation> hasItem(anything())));
+
+		undo();
+		assertNotSame(model.eResource(), selectedElements.get(0).eResource());
+		assertThat("Element does not appear to be a shard", helper[0].isShard(), is(true));
+		assertThat("Element does not have any annotation", element[0].getEAnnotations(),
+				CoreMatchers.<EAnnotation> hasItem(anything()));
 	}
 }

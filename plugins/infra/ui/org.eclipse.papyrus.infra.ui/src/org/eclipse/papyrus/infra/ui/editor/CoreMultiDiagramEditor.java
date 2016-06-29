@@ -12,7 +12,7 @@
  *  Christian W. Damus (CEA) - bug 410346
  *  Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
  *  Christian W. Damus (CEA) - bug 437217
- *  Christian W. Damus - bugs 469464, 469188, 485220
+ *  Christian W. Damus - bugs 469464, 469188, 485220, 496299
  *
  *****************************************************************************/
 
@@ -36,7 +36,6 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -71,6 +70,8 @@ import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.resource.ICrossReferenceIndex;
+import org.eclipse.papyrus.infra.emf.resource.ShardResourceLocator;
 import org.eclipse.papyrus.infra.ui.Activator;
 import org.eclipse.papyrus.infra.ui.contentoutline.ContentOutlineRegistry;
 import org.eclipse.papyrus.infra.ui.editor.IReloadableEditor.DirtyPolicy;
@@ -84,14 +85,13 @@ import org.eclipse.papyrus.infra.ui.multidiagram.actionbarcontributor.CoreCompos
 import org.eclipse.papyrus.infra.ui.services.EditorLifecycleManager;
 import org.eclipse.papyrus.infra.ui.services.internal.EditorLifecycleManagerImpl;
 import org.eclipse.papyrus.infra.ui.services.internal.InternalEditorLifecycleManager;
+import org.eclipse.papyrus.infra.ui.util.EditorUtils;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.IURIEditorInput;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchActionConstants;
@@ -149,7 +149,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	protected ISaveAndDirtyService saveAndDirtyService;
 
-	private final List<IPropertySheetPage> propertiesPages = new LinkedList<IPropertySheetPage>();
+	private final List<IPropertySheetPage> propertiesPages = new LinkedList<>();
 
 	private final List<Runnable> closeActions = new ArrayList<>();
 
@@ -253,12 +253,12 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	/**
 	 * Editor reload listeners.
 	 */
-	private CopyOnWriteArrayList<IEditorReloadListener> reloadListeners = new CopyOnWriteArrayList<IEditorReloadListener>();
+	private CopyOnWriteArrayList<IEditorReloadListener> reloadListeners = new CopyOnWriteArrayList<>();
 
 	/**
 	 * A pending reload operation (awaiting next activation of the editor).
 	 */
-	private final AtomicReference<DeferredReload> pendingReload = new AtomicReference<DeferredReload>();
+	private final AtomicReference<DeferredReload> pendingReload = new AtomicReference<>();
 
 	public CoreMultiDiagramEditor() {
 		super();
@@ -586,30 +586,37 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		servicesRegistry.add(EditorLifecycleManager.class, 1, lifecycleManager, ServiceStartKind.LAZY);
 
 		// Start servicesRegistry
-		URI uri;
-		IEditorInput input = getEditorInput();
-		if (input instanceof IFileEditorInput) {
-			uri = URI.createPlatformResourceURI(((IFileEditorInput) input).getFile().getFullPath().toString(), true);
-		} else if (input instanceof URIEditorInput) {
-			uri = ((URIEditorInput) input).getURI();
-		} else {
-			uri = URI.createURI(((IURIEditorInput) input).getURI().toString());
-		}
+		URI uri = EditorUtils.getResourceURI(getEditorInput());
 
 		try {
 			// Start the ModelSet first, and load if from the specified File.
 			// Also start me so that I may be retrieved from the registry by other services
-			List<Class<?>> servicesToStart = new ArrayList<Class<?>>(1);
+			List<Class<?>> servicesToStart = new ArrayList<>(1);
 			servicesToStart.add(ModelSet.class);
 			servicesToStart.add(IMultiDiagramEditor.class);
 
 			servicesRegistry.startServicesByClassKeys(servicesToStart);
 
 			resourceSet = servicesRegistry.getService(ModelSet.class);
+
+			// Install shard resource handling
+			new ShardResourceLocator(resourceSet);
+
+			// Resolve a possible shard URI
+			uri = EditorUtils.resolveShardRoot(
+					ICrossReferenceIndex.getInstance(resourceSet), uri);
+
+			// Load it up
 			resourceSet.loadModels(uri);
 
 			// start remaining services
 			servicesRegistry.startRegistry();
+			
+			// In case of a shard
+			String name = uri.lastSegment();
+			if (!name.equals(getPartName())) {
+				setPartName(name);
+			}
 		} catch (ModelMultiException e) {
 			try {
 				// with the ModelMultiException it is still possible to open the
@@ -624,7 +631,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			log.error(e);
 			// throw new PartInitException("could not initialize services", e);
 		}
-
 
 		// Get required services
 

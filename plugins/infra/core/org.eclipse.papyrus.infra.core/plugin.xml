@@ -24,6 +24,10 @@
             description="Main Papyrus IModel"
             fileExtension="di"
             required="true">
+         <modelSnippet
+               classname="org.eclipse.papyrus.infra.core.resource.AdjunctResourceModelSnippet"
+               description="Snippet for DI resource of referenced model resources">
+         </modelSnippet>
       </model>
    </extension>
    <extension

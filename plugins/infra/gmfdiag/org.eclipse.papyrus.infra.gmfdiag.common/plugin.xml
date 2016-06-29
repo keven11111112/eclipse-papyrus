@@ -80,6 +80,10 @@
             description="Model for notation"
             fileExtension="notation"
             required="true">
+         <modelSnippet
+               classname="org.eclipse.papyrus.infra.core.resource.AdjunctResourceModelSnippet"
+               description="Snippet for notation resource of referenced model resources">
+         </modelSnippet>
       </model>
   </extension>
 

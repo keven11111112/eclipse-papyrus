@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 Christian W. Damus and others.
+ * Copyright (c) 2014, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -33,8 +33,7 @@ import com.google.common.collect.Sets;
  * </ul>
  */
 public class ProfileIndexHandler extends AbstractUMLIndexHandler {
-	private final Set<URI> referencedModelURIs = Sets.newHashSet();
-	private final Map<URI, Map<URI, URI>> packageToProfileApplications = Maps.newHashMap();
+	private final Set<String> referencedModelURIs = Sets.newHashSet();
 	private String externalizationName;
 
 	private String dependencyType;
@@ -56,12 +55,8 @@ public class ProfileIndexHandler extends AbstractUMLIndexHandler {
 		super(fileURI);
 	}
 
-	public Set<URI> getReferencedModelURIs() {
+	public Set<String> getReferencedModelURIs() {
 		return referencedModelURIs;
-	}
-
-	public Map<URI, Map<URI, URI>> getPackageToProfileApplications() {
-		return packageToProfileApplications;
 	}
 
 	public String getExternalizationName() {
@@ -117,7 +112,7 @@ public class ProfileIndexHandler extends AbstractUMLIndexHandler {
 	protected void handleDependencyClient(UMLElement client) {
 		URI href = client.getHREF();
 		if (href != null) {
-			referencedModelURIs.add(href.trimFragment());
+			referencedModelURIs.add(href.trimFragment().toString());
 			packageClients.put(currentPackage.id, href);
 		}
 	}
@@ -144,15 +139,15 @@ public class ProfileIndexHandler extends AbstractUMLIndexHandler {
 			if (applyingPackageURI != null) {
 				Collection<URIPair> profileApplications = packageProfileApplications.get(packageID);
 				if (!profileApplications.isEmpty()) {
-					Map<URI, URI> map = packageToProfileApplications.get(applyingPackageURI);
+					Map<String, String> map = getProfileApplicationsByPackage().get(applyingPackageURI.toString());
 					if (map == null) {
 						map = Maps.newHashMap();
-						packageToProfileApplications.put(applyingPackageURI, map);
+						getProfileApplicationsByPackage().put(applyingPackageURI.toString(), map);
 					}
 					for (URIPair profileApplication : profileApplications) {
 						// If we can't determine the Ecore definition, the profile is not properly applied
 						if (profileApplication.second != null) {
-							map.put(profileApplication.first, profileApplication.second);
+							map.put(profileApplication.first.toString(), profileApplication.second.toString());
 						}
 					}
 				}

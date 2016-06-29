@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   LIFL - Initial API and implementation
- *   Christian W. Damus - bug 485220
+ *   Christian W. Damus - bugs 485220, 496299
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -80,6 +80,7 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 			// Check if model is loaded.
 			if (resourceIsSet()) {
 				configureResource(resource);
+				startSnippets();
 				return;
 			}
 			// model is not loaded, do it.
@@ -192,7 +193,7 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 	@SuppressWarnings("unchecked")
 	public List<T> getModelRoots() {
 
-		List<T> roots = new ArrayList<T>();
+		List<T> roots = new ArrayList<>();
 
 		for (EObject object : getResource().getContents()) {
 			if (isModelRoot(object)) {
