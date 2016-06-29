@@ -214,20 +214,46 @@ public class CreateOrShowExistingElementHelper {
 		if (UMLPackage.eINSTANCE.getAssociation().equals(wantedEClass)) {
 			for (final Element current : ((Element) request.getContainer()).getOwnedElements()) {
 				if (hasWantedType(current, wantedElementType)) {
-					final Collection<?> sources = this.linkMappingHelper.getSource(current);
-					final Collection<?> targets = this.linkMappingHelper.getTarget(current);
-					if (sources.contains(request.getSource()) && targets.contains(request.getTarget())) {
+					List<?> sources = new ArrayList<>(this.linkMappingHelper.getSource(current));
+					List<?> targets = new ArrayList<>(this.linkMappingHelper.getTarget(current));
+
+					EObject sourceRequest = request.getSource();
+					EObject targetRequest = request.getTarget();
+
+					if (sources.contains(sourceRequest) && targets.contains(targetRequest)) {
 						boolean identicalAssociation = true;
-						final Iterator<Property> iterator = ((Association) current).getMemberEnds().iterator();
 
-						while (iterator.hasNext() && identicalAssociation) {
-							final Property property = iterator.next();
-							final boolean source = request.getSource().equals(property.getType());
+						// Check if association is reflexive
+						if (sourceRequest.equals(targetRequest)) {
+							identicalAssociation = false;
+							Property firstEnd = AssociationUtil.getSourceFirstEnd((Association) current);
+							Property secondEnd = AssociationUtil.getTargetSecondEnd((Association) current);
+							// Compare memebers ends of the current association
+							if (null != firstEnd && null != secondEnd) {
+								if (firstEnd.getType().equals(secondEnd.getType())) {
+									// Check with the firstEnd = source and the secondEnd = target
+									boolean checkSourceAndTarget = checkReflexiveAssociation(request, firstEnd, secondEnd);
+									// If it's not identical, check firstEnd = target and secondEnd = source.
+									if (!checkSourceAndTarget) {
+										checkSourceAndTarget = checkReflexiveAssociation(request, secondEnd, firstEnd);
+									}
+									if (checkSourceAndTarget) {
+										identicalAssociation = true;
+									}
+								}
+							}
+						} else {
+							final Iterator<Property> iterator = ((Association) current).getMemberEnds().iterator();
 
-							boolean expectedNavigable = getExpectedNavigable(source, request);
+							while (iterator.hasNext() && identicalAssociation) {
+								final Property property = iterator.next();
+								final boolean isSource = sourceRequest.equals(property.getType());
 
-							if (!AssociationUtil.isIdenticalProperties(expectedNavigable, AggregationKind.NONE_LITERAL, property)) {
-								identicalAssociation = false;
+								boolean expectedNavigable = getExpectedNavigable(isSource, request);
+
+								if (!AssociationUtil.isIdenticalProperties(expectedNavigable, AggregationKind.NONE_LITERAL, property)) {
+									identicalAssociation = false;
+								}
 							}
 						}
 
@@ -263,6 +289,31 @@ public class CreateOrShowExistingElementHelper {
 			}
 		}
 		return existingElement;
+	}
+
+	/**
+	 * Compare two memberEnds of a reflexive association.
+	 * 
+	 * @param request
+	 *            The CreateRelationshipRequest.
+	 * @param firstProperty
+	 *            The first property of the current association.
+	 * @param secondProperty
+	 *            The second property of the current association.
+	 * @return
+	 */
+	private boolean checkReflexiveAssociation(CreateRelationshipRequest request, Property firstProperty, Property secondProperty) {
+		boolean expectedNavigable = getExpectedNavigable(true, request);
+		if (!AssociationUtil.isIdenticalProperties(expectedNavigable, AggregationKind.NONE_LITERAL, firstProperty)) {
+			return false;
+		}
+
+		expectedNavigable = getExpectedNavigable(false, request);
+		if (!AssociationUtil.isIdenticalProperties(expectedNavigable, AggregationKind.NONE_LITERAL, secondProperty)) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
