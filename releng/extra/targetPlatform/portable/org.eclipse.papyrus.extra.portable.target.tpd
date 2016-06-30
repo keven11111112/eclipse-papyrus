@@ -64,7 +64,7 @@ location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.
 
 //updateFrom("Graphiti",0)
 
-location graphiti "http://download.eclipse.org/graphiti/updates/milestones/S-0.13.0RC4-201606081043/" //
+location graphiti "http://download.eclipse.org/graphiti/updates/0.13.0/" //
 
 //updateFrom("Sphinx",0)
 
