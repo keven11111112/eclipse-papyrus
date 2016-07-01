@@ -11,8 +11,12 @@
  */
 package org.eclipse.papyrus.dd.dg.presentation;
 
+import java.io.StringReader;
 import java.io.StringWriter;
 
+import org.apache.batik.dom.GenericDOMImplementation;
+import org.apache.batik.dom.util.DOMUtilities;
+import org.apache.batik.transcoder.svg2svg.PrettyPrinter;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.SourceViewer;
@@ -69,12 +73,12 @@ public class DGSVGSourcePage extends DDEditorPage {
 		String contents;
 		try {
 			StringWriter writer = new StringWriter();
-			// DOMUtilities.writeDocument(svgDocument, writer);
+			DOMUtilities.writeDocument(svgDocument, writer);
 			StringWriter formatted = new StringWriter();
-//			PrettyPrinter printer = new PrettyPrinter();
-//			pSrinter.setTabulationWidth(4);
-//			printer.setDocumentWidth(2000);
-//			printer.print(new StringReader(writer.toString()), formatted);
+			PrettyPrinter printer = new PrettyPrinter();
+			printer.setTabulationWidth(4);
+			printer.setDocumentWidth(2000);
+			printer.print(new StringReader(writer.toString()), formatted);
 			contents = formatted.toString().substring(1);
 			writer.close();
 		} catch (Exception e) {
@@ -97,8 +101,7 @@ public class DGSVGSourcePage extends DDEditorPage {
 
 			@Override
 			protected DOMImplementation getDOMImplementation() {
-				return null;
-				//return GenericDOMImplementation.getDOMImplementation();
+				return GenericDOMImplementation.getDOMImplementation();
 			}
 		};
 	}

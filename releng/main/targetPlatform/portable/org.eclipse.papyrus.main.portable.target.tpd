@@ -3,7 +3,15 @@ target "Papyrus Main" with requirements source
 //manualUpdate
 
 location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository" {
-
+	org.apache.batik.dom
+	org.apache.batik.dom.svg
+	org.apache.batik.extension
+	org.apache.batik.svggen
+	org.apache.batik.swing
+	org.apache.batik.transcoder
+	org.apache.batik.util
+	org.apache.batik.xml
+	org.w3c.dom.svg
 }
 
 //updateFrom("QVT Operational",0)

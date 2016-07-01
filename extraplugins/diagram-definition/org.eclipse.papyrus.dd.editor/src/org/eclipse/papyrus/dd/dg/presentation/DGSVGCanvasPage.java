@@ -15,8 +15,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Frame;
 
-//import org.apache.batik.swing.JSVGCanvas;
-//import org.apache.batik.swing.JSVGScrollPane;
+import org.apache.batik.swing.JSVGCanvas;
+import org.apache.batik.swing.JSVGScrollPane;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
@@ -95,7 +95,7 @@ public class DGSVGCanvasPage extends DDEditorPage {
 		/**
 		 * This is the embedded SVG canvas
 		 */
-//		private JSVGCanvas svgCanvas;
+		private JSVGCanvas svgCanvas;
 
 		/**
 		 * Constructs a new Canvas viewer
@@ -107,10 +107,10 @@ public class DGSVGCanvasPage extends DDEditorPage {
 			composite = new Composite(parent, SWT.EMBEDDED);
 			Frame frame = SWT_AWT.new_Frame(composite);
 			frame.setVisible(true);
-//			svgCanvas = new JSVGCanvas();
-//			svgCanvas.setDocumentState(JSVGCanvas.ALWAYS_DYNAMIC);
-//			JSVGScrollPane pane = new JSVGScrollPane(svgCanvas);
-//			frame.add(pane);
+			svgCanvas = new JSVGCanvas();
+			svgCanvas.setDocumentState(JSVGCanvas.ALWAYS_DYNAMIC);
+			JSVGScrollPane pane = new JSVGScrollPane(svgCanvas);
+			frame.add(pane);
 		}
 
 		@Override
@@ -120,8 +120,7 @@ public class DGSVGCanvasPage extends DDEditorPage {
 
 		@Override
 		public Object getInput() {
-//			return svgCanvas.getSVGDocument();
-			return null;
+			return svgCanvas.getSVGDocument();
 		}
 
 		@Override
@@ -131,16 +130,16 @@ public class DGSVGCanvasPage extends DDEditorPage {
 				@Override
 				public void run() {
 					Document doc = (Document)input;
-//					svgCanvas.setDocument(doc);
-//					// sets the background color of the canvas explicitly since
-//					// the CSS background-color
-//					// property is not supported by Batik yet
-//					Element svg = doc.getDocumentElement();
-//					String value = svg.getAttribute(DGToSVGConverter.SVG_BACKGROUND_COLOR_ATTRIBUTE);
-//					if(value != null && value.length() > 0)
-//						svgCanvas.setBackground(Color.decode(value));
-//					else
-//						svgCanvas.setBackground(Color.white);
+					svgCanvas.setDocument(doc);
+					// sets the background color of the canvas explicitly since
+					// the CSS background-color
+					// property is not supported by Batik yet
+					Element svg = doc.getDocumentElement();
+					String value = svg.getAttribute(DGToSVGConverter.SVG_BACKGROUND_COLOR_ATTRIBUTE);
+					if(value != null && value.length() > 0)
+						svgCanvas.setBackground(Color.decode(value));
+					else
+						svgCanvas.setBackground(Color.white);
 				}
 			});
 		}
