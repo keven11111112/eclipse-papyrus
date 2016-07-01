@@ -347,11 +347,14 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 			newIndex = 0;
 		}
 
-		if ((listSize == 0)
-				|| (oldIndex == newIndex)
-				|| (oldIndex < 0)) {
+		if (oldIndex == newIndex) {
 			return;
 		}
+
+		if (listSize == 0) {
+			return;
+		}
+
 
 		getChildren().move(newIndex, oldIndex);
 	}
