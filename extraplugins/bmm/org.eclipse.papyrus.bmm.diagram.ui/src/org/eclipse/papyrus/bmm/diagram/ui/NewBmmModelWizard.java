@@ -15,7 +15,7 @@ package org.eclipse.papyrus.bmm.diagram.ui;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.bmm.diagram.common.commands.CreateBmmModelCommand;
-import org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard;
+import org.eclipse.papyrus.uml.diagram.wizards.wizards.CreateModelWizard;
 import org.eclipse.ui.IWorkbench;
 
 /**
