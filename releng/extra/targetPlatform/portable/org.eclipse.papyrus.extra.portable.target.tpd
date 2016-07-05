@@ -2,6 +2,18 @@ target "Papyrus Extra" with requirements source
 
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
 
+location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository" {
+	org.apache.batik.dom lazy
+	org.apache.batik.dom.svg lazy
+	org.apache.batik.extension lazy
+	org.apache.batik.svggen lazy
+	org.apache.batik.swing lazy
+	org.apache.batik.transcoder lazy
+	org.apache.batik.util lazy
+	org.apache.batik.xml lazy
+	org.w3c.dom.svg lazy
+}
+
 //updateFrom("EPP Logging",0) 
 
 location aeri "http://download.eclipse.org/technology/epp/logging/milestones/" {
