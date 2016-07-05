@@ -8,19 +8,20 @@
  *
  * Contributors:
  *   Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
- *   Christian W. Damus - bug 485220
+ *   Christian W. Damus - bugs 485220, 497342
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.services.controlmode.listener;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.infra.core.resource.IModelSetSnippet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapter;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageManagerImpl;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.services.controlmode.commands.LoadDiagramCommand;
 
@@ -73,7 +74,7 @@ public class LoadResourceSnippet implements IModelSetSnippet {
 		 */
 		@Override
 		protected void handleResourceLoaded(Resource resource) {
-			EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(resource);
+			EditingDomain editingDomain = TransactionUtil.getEditingDomain(resource);
 			final LoadDiagramCommand loadCommand = new LoadDiagramCommand(resource);
 			try {
 				TransactionHelper.run(editingDomain, loadCommand);
