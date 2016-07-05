@@ -16,6 +16,7 @@ Artifact {
 	followSVGSymbol:true;
 	transparency:100;
 	bold:true;
+	displayTags:false;
 }
 
 /*Artifact> Label[kind="FloatingLabel"] {
