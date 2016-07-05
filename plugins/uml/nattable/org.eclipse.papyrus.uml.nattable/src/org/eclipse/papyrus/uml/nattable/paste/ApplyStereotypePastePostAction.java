@@ -35,6 +35,7 @@ import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -108,37 +109,47 @@ public class ApplyStereotypePastePostAction implements IPastePostAction {
 			final String stereotypeQN = postAction.replace(Constants.POST_ACTION_APPLY_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
 			alreadyApplied = elementToStereotype.eResource() != null && elementToStereotype.getAppliedStereotype(stereotypeQN) != null;
 			if (!alreadyApplied) {
-				final String profileQN = NamedElementUtil.getParentQualifiedName(stereotypeQN);
-				final String stereotypeName = NamedElementUtil.getNameFromQualifiedName(stereotypeQN);
-				final Package nearestPackage = tableContext.getNearestPackage().getAppliedProfile(profileQN, true);
-				if (nearestPackage != null) {
-					final Stereotype ste = (Stereotype) nearestPackage.getMember(stereotypeName, false, UMLPackage.eINSTANCE.getStereotype());
+				Stereotype findStereotype = null;
+				
+				// Search the stereotype corresponding to the stereotype qualified name
+				final Iterator<Profile> appliedProfilesIterator = tableContext.getNearestPackage().getAllAppliedProfiles().iterator();
+				while(appliedProfilesIterator.hasNext() && null == findStereotype){
+					final Profile existingAppliedProfile = appliedProfilesIterator.next();
 
-					if (ste != null) {
-						final EObject stereotypeApplication = CustomElementOperations.applyStereotype(tableContext.getNearestPackage(), elementToStereotype, ste);
-						final Collection<EObject> steAppList;
-						if (sharedMap.containsKey(STEREOTYPES_APPLICATIONS_TO_ADD_TO_RESOURCE)) {
-							steAppList = (Collection<EObject>) sharedMap.get(STEREOTYPES_APPLICATIONS_TO_ADD_TO_RESOURCE);
-						} else {
-							steAppList = new ArrayList<EObject>();
-							sharedMap.put(STEREOTYPES_APPLICATIONS_TO_ADD_TO_RESOURCE, steAppList);
+					// Bug 488082 : Loop on all stereotypes (check in sub packages)
+					final Iterator<Stereotype> stereotypesIterator = StereotypeUtil.getAllStereotypes(existingAppliedProfile).iterator();
+					while(stereotypesIterator.hasNext() && null == findStereotype){
+						final Stereotype ownedStereotype = stereotypesIterator.next();
+						if(ownedStereotype.getQualifiedName().equals(stereotypeQN)){
+							findStereotype = ownedStereotype;
 						}
-						steAppList.add(stereotypeApplication);
+					}
+				}
 
-						// build the mapping between the stereotype and its emf instanciation
-						Map<Property, EStructuralFeature> mapping = getMapping(ste, stereotypeApplication);
-						final List<StereotypeApplicationStructure> struct;
-						if (sharedMap.containsKey(elementToStereotype)) {
-							struct = (List<StereotypeApplicationStructure>) sharedMap.get(elementToStereotype);
-						} else {
-							struct = new ArrayList<StereotypeApplicationStructure>();
-							sharedMap.put(elementToStereotype, struct);
-						}
-						// create the structure used to store this mapping
-						for (final Entry<Property, EStructuralFeature> current : mapping.entrySet()) {
-							final StereotypeApplicationStructure structure = new StereotypeApplicationStructure(ste, stereotypeApplication, current.getKey(), current.getValue());
-							struct.add(structure);
-						}
+				if (findStereotype != null) {
+					final EObject stereotypeApplication = CustomElementOperations.applyStereotype(tableContext.getNearestPackage(), elementToStereotype, findStereotype);
+					final Collection<EObject> steAppList;
+					if (sharedMap.containsKey(STEREOTYPES_APPLICATIONS_TO_ADD_TO_RESOURCE)) {
+						steAppList = (Collection<EObject>) sharedMap.get(STEREOTYPES_APPLICATIONS_TO_ADD_TO_RESOURCE);
+					} else {
+						steAppList = new ArrayList<EObject>();
+						sharedMap.put(STEREOTYPES_APPLICATIONS_TO_ADD_TO_RESOURCE, steAppList);
+					}
+					steAppList.add(stereotypeApplication);
+
+					// build the mapping between the stereotype and its emf instanciation
+					Map<Property, EStructuralFeature> mapping = getMapping(findStereotype, stereotypeApplication);
+					final List<StereotypeApplicationStructure> struct;
+					if (sharedMap.containsKey(elementToStereotype)) {
+						struct = (List<StereotypeApplicationStructure>) sharedMap.get(elementToStereotype);
+					} else {
+						struct = new ArrayList<StereotypeApplicationStructure>();
+						sharedMap.put(elementToStereotype, struct);
+					}
+					// create the structure used to store this mapping
+					for (final Entry<Property, EStructuralFeature> current : mapping.entrySet()) {
+						final StereotypeApplicationStructure structure = new StereotypeApplicationStructure(findStereotype, stereotypeApplication, current.getKey(), current.getValue());
+						struct.add(structure);
 					}
 				}
 			}

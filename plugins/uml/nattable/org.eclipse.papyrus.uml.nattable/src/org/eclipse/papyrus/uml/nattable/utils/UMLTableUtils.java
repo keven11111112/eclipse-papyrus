@@ -93,42 +93,7 @@ public class UMLTableUtils {
 	 *         the UML::Property or <code>null</code> if we can't resolve it (the required profile is not applied)
 	 */
 	public static Property getRealStereotypeProperty(final EObject eobject, final String id) {
-		Property result = null;
-		
-		Assert.isTrue(id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX));
-		if (eobject instanceof Element) {
-			final Element element = (Element) eobject;
-			final String propertyQN = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
-
-			// Bug 435417 : Search the properties by their qualified name instead of search by its stereotypes first
-			// This allows to manage the inherit properties and the stereotypes in packages
-			if (null != element.getNearestPackage()){
-				final Iterator<Profile> appliedProfilesIterator = element.getNearestPackage().getAllAppliedProfiles().iterator();
-				while(appliedProfilesIterator.hasNext() && null == result){
-					final Profile appliedProfile = appliedProfilesIterator.next();
-	
-					// Bug 488082 : Loop on all stereotypes (check in sub packages)
-					final Iterator<Stereotype> stereotypesIterator = StereotypeUtil.getAllStereotypes(appliedProfile).iterator();
-					while(stereotypesIterator.hasNext() && null == result){
-						final Stereotype ownedStereotype = stereotypesIterator.next();
-						final Iterator<Property> propertiesIterator = ownedStereotype.getAllAttributes().iterator();
-						while(propertiesIterator.hasNext() && null == result){
-							final Property property = propertiesIterator.next();
-							if(property.getQualifiedName().equals(propertyQN)){
-								result = property;
-							}
-						}
-					}
-				}
-	
-				// 2. if not, the profile could be applied on a sub-package of the nearest package
-				/* the table can show element which are not children of its context, so the profile could not be available in its context */
-				if(null == result){
-					result = getProperty(element.getNearestPackage().getNestedPackages(), propertyQN);
-				}
-			}
-		}
-		return result;
+		return getRealStereotypeProperty(eobject, id, null);
 	}
 
 	/**
@@ -213,31 +178,51 @@ public class UMLTableUtils {
 	 *         the UML::Property or <code>null</code> if we can't resolve it (the required profile is not applied)
 	 */
 	public static Property getRealStereotypeProperty(final EObject eobject, final String id, final Map<?, ?> sharedMap) {
+		Property result = null;
+
 		Assert.isTrue(id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX));
 		if (eobject instanceof Element) {
 			final Element element = (Element) eobject;
 			final String propertyQN = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
-			final String propertyName = NamedElementUtil.getNameFromQualifiedName(propertyQN);
-			final String stereotypeQN = NamedElementUtil.getParentQualifiedName(propertyQN);
-			final String stereotypeName = NamedElementUtil.getNameFromQualifiedName(stereotypeQN);
-			final String profileQN = NamedElementUtil.getParentQualifiedName(stereotypeQN);
-			final Package nearestPackage;
-			if (sharedMap != null) {
+			
+			Package nearestPackage = null;
+			if (null != sharedMap) {
 				final Element context = (Element) sharedMap.get(Constants.PASTED_ELEMENT_CONTAINER_KEY);
 				nearestPackage = context.getNearestPackage();
 			} else {
 				nearestPackage = element.getNearestPackage();
 			}
-			if (nearestPackage != null) {
-				final Profile profile = nearestPackage.getAppliedProfile(profileQN, true);
-				if (profile != null) {
-					final Stereotype ste = profile.getOwnedStereotype(stereotypeName);
-					return (Property) ste.getMember(propertyName);
+			
+			if (null != nearestPackage) {
+				// Bug 435417 : Search the properties by their qualified name instead of search by its stereotypes first
+				// This allows to manage the inherit properties and the stereotypes in packages
+				final Iterator<Profile> appliedProfilesIterator = nearestPackage.getAllAppliedProfiles().iterator();
+				while(appliedProfilesIterator.hasNext() && null == result){
+					final Profile appliedProfile = appliedProfilesIterator.next();
+
+					// Bug 488082 : Loop on all stereotypes (check in sub packages)
+					final Iterator<Stereotype> stereotypesIterator = StereotypeUtil.getAllStereotypes(appliedProfile).iterator();
+					while(stereotypesIterator.hasNext() && null == result){
+						final Stereotype ownedStereotype = stereotypesIterator.next();
+						final Iterator<Property> propertiesIterator = ownedStereotype.getAllAttributes().iterator();
+						while(propertiesIterator.hasNext() && null == result){
+							final Property property = propertiesIterator.next();
+							if(property.getQualifiedName().equals(propertyQN)){
+								result = property;
+							}
+						}
+					}
+				}
+				
+				// 2. if not, the profile could be applied on a sub-package of the nearest package
+				/* the table can show element which are not children of its context, so the profile could not be available in its context */
+				if(null == result){
+					result = getProperty(element.getNearestPackage().getNestedPackages(), propertyQN);
 				}
 			}
 
 		}
-		return null;
+		return result;
 	}
 
 	/**

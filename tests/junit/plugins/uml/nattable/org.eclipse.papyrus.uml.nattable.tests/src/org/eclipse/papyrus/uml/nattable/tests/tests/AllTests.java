@@ -29,7 +29,10 @@ import org.junit.runners.Suite.SuiteClasses;
 	DeleteRowElementTest.class,
 	
 	// Bug 495312: Move Elements,
-	MoveElementInSynchronizedTableTest.class
+	MoveElementInSynchronizedTableTest.class,
+	
+	// Tests of the UMLTableUtils methods
+	UMLTableUtilsTest.class
 })
 public class AllTests {
 
