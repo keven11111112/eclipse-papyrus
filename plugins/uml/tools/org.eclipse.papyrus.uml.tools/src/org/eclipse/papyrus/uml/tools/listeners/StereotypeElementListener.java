@@ -9,7 +9,7 @@
  * Contributors:
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.fr - Bug 393532
- *  Christian W. Damus - bugs 450523, 399859, 492482, 494478
+ *  Christian W. Damus - bugs 450523, 399859, 492482, 494478, 497341
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.listeners;
@@ -97,7 +97,7 @@ public class StereotypeElementListener extends ResourceSetListenerImpl {
 		if (!event.getNotifications().isEmpty()) {
 			// Get filtered notifications
 			final NotificationChain chain = new NotificationChainImpl();
-			List<Notification> filteredNotificationsList = new ArrayList<Notification>(event.getNotifications());
+			List<Notification> filteredNotificationsList = new ArrayList<>(event.getNotifications());
 
 			// Handle each filtered notification
 			for (Notification notification : filteredNotificationsList) {
@@ -164,7 +164,7 @@ public class StereotypeElementListener extends ResourceSetListenerImpl {
 
 	@Override
 	public void resourceSetChanged(ResourceSetChangeEvent event) {
-		if (Boolean.FALSE.equals(undoRedoOption.getValue(event.getTransaction().getOptions()))) {
+		if ((event.getTransaction() == null) || Boolean.FALSE.equals(undoRedoOption.getValue(event.getTransaction().getOptions()))) {
 			// Not an undo/redo transaction? Purge any notifications that we may have
 			// had from a rolled-back undo or redo
 			undoRedoNotifications.clear();
