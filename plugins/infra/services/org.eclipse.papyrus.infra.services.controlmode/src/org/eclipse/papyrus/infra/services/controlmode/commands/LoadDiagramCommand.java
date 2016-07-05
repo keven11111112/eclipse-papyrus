@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Christian W. Damus - bug 485220
+ *   Christian W. Damus - bugs 485220, 497342
  *   
  *****************************************************************************/
 
@@ -31,45 +31,66 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
  */
 public class LoadDiagramCommand implements Runnable {
 
-	private IPageManager pageManager;
+	private final IPageManager pageManager;
 
 	/**
 	 * URI of the resource which the diagram is based on.
 	 */
-	private URI uri;
+	private final URI uri;
 
 
 	/**
-	 * Constructor.
-	 *
+	 * Initializes me as a no-op.
 	 */
 	public LoadDiagramCommand() {
-		super();
+		this(null, null);
 	}
 
 
 	/**
-	 * 
-	 * Constructor.
+	 * Initializes me with a page manager inferred from the {@code resource}.
 	 *
-	 * @param pageManager
-	 * @param uriOfDiagram
+	 * @param resource
+	 *            the resource in which there may be diagrams for me to reload
+	 *            in the page manager
 	 */
 	public LoadDiagramCommand(Resource resource) {
+		this(resource, getPageManager(resource));
+	}
+
+	private static IPageManager getPageManager(Resource resource) {
+		IPageManager result = null;
 
 		try {
-			pageManager = ServiceUtilsForResource.getInstance().getService(IPageManager.class, resource);
+			result = ServiceUtilsForResource.getInstance().getService(IPageManager.class, resource);
 		} catch (ServiceException e) {
 			// nothing to do
 		}
 
-		this.uri = resource.getURI();
-
+		return result;
 	}
 
 	/**
-	 * @see org.eclipse.emf.common.command.CompoundCommand#execute()
+	 * Initializes me.
 	 *
+	 * @param resource
+	 *            the resource in which there may be diagrams for me to reload
+	 *            in the page manager
+	 * @param pageManager
+	 *            the page manager in which to reload them, or {@code null} if none
+	 * 
+	 * @since 1.2
+	 */
+	public LoadDiagramCommand(Resource resource, IPageManager pageManager) {
+		super();
+
+		this.pageManager = pageManager;
+		this.uri = resource.getURI();
+	}
+
+	/**
+	 * Reloads hte pages associated with my resource, if any and if there is a
+	 * page manager.
 	 */
 	public void run() {
 
