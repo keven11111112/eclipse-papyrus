@@ -22,7 +22,10 @@ import org.eclipse.papyrus.infra.core.resource.IModelSetSnippet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapter;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageManagerImpl;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.services.controlmode.commands.LoadDiagramCommand;
 
 
@@ -67,21 +70,27 @@ public class LoadResourceSnippet implements IModelSetSnippet {
 	 */
 	private class LoadResourceAdapter extends ResourceAdapter {
 
-		/**
-		 * @see org.eclipse.papyrus.infra.core.resource.ResourceAdapter#handleResourceLoaded(org.eclipse.emf.ecore.resource.Resource)
-		 *
-		 * @param resource
-		 */
 		@Override
 		protected void handleResourceLoaded(Resource resource) {
-			EditingDomain editingDomain = TransactionUtil.getEditingDomain(resource);
-			final LoadDiagramCommand loadCommand = new LoadDiagramCommand(resource);
+			IPageManager pageManager = null;
+
 			try {
-				TransactionHelper.run(editingDomain, loadCommand);
-			} catch (InterruptedException e) {
-				// Nothing to do
-			} catch (RollbackException e) {
-				// Nothing to do
+				pageManager = ServiceUtilsForResource.getInstance().getIPageManager(resource);
+			} catch (ServiceException e) {
+				// No editor. That's okay
+			}
+
+			// If we have no page manager, then there's no editor and so nothing to do
+			if (pageManager != null) {
+				EditingDomain editingDomain = TransactionUtil.getEditingDomain(resource);
+				final LoadDiagramCommand loadCommand = new LoadDiagramCommand(resource, pageManager);
+				try {
+					TransactionHelper.run(editingDomain, loadCommand);
+				} catch (InterruptedException e) {
+					// Nothing to do
+				} catch (RollbackException e) {
+					// Nothing to do
+				}
 			}
 		}
 	}
