@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?>
+<elementtypesconfigurations:ElementTypeSetConfiguration
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
+    xmi:id="_fy_UkDxBEeW7COAmy3tOJw"
+    description="PropertyLifeCycle overrides"
+    identifier="org.eclipse.papyrus.infra.propertylifecycle.PropertyLifecycle"
+    name="PropertyLifeCycle"
+    metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+  <adviceBindingsConfigurations
+      xsi:type="elementtypesconfigurations:AdviceBindingConfiguration"
+      xmi:id="_mqX8YMHdEeSpuJnfbRdiWQ"
+      description=""
+      identifier="org.eclipse.papyrus.infra.propertylifecycle.helper.advice.PropertyLifecycleHelperAdvice"
+      inheritance="all"
+      editHelperAdviceClassName="org.eclipse.papyrus.infra.propertylifecycle.helper.advice.PropertyLifecycleHelperAdvice">
+    <target
+        xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+        href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScgUUFYCEeS0WsAAtVmToA"/>
+  </adviceBindingsConfigurations>
+</elementtypesconfigurations:ElementTypeSetConfiguration>

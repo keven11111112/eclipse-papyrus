@@ -1,0 +1,3 @@
+# Tracing options for the org.eclipse.paprus.uml.propertylifecycle plug-in
+org.eclipse.papyrus.uml.propertylifecycle/debug=true
+org.eclipse.papyrus.uml.propertylifecycle/debug/PLCStrategy_UMLproperty=true

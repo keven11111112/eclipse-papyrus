@@ -1,0 +1,57 @@
+/*--- ClassDiagram > Class ---*/
+ClassDiagram Class {
+	fillcolor: #FFFFFF;
+	elementIcon: false;
+}
+	
+ClassDiagram Class > Compartment[kind="operations"],
+ClassDiagram Class > Compartment[kind="nestedclassifiers"],
+ClassDiagram Class > Compartment[kind="symbol"] {
+	visible:false;
+}
+
+/*--- ClassDiagram > Enumeration ---*/
+ClassDiagram Enumeration {
+	fillcolor: white;
+	elementIcon: false;
+}
+	
+ClassDiagram Enumeration > Compartment[kind="symbol"] {
+	visible:false;
+}
+
+/*--- ClassDiagram > Model ---*/
+ClassDiagram Model {
+	fillcolor: rgb(255, 255, 255);
+	elementIcon: false;
+}
+
+/*--- ClassDiagram > Association ---*/
+ClassDiagram Association > Label:targetRole,
+ClassDiagram Association > Label:sourceRole {
+	visible: false;
+}
+
+ClassDiagram > Association {
+	targetDecoration: false;
+	sourceDecoration: false;
+}
+
+
+/*--- ClassDiagram > Property/EnumerationLiteral ---*/
+ClassDiagram Class > Compartment > Property,
+ClassDiagram Enumeration > Compartment > EnumerationLiteral {
+	elementIcon: false;
+	maskLabel: name multiplicity;
+}
+
+
+
+/*--- Tests ---*/
+
+
+/*--- Notes ---*/
+/* 
+ * 1- maskLabel does not mask the attached label(s) but displays it and masks all others 
+ * 
+ * */

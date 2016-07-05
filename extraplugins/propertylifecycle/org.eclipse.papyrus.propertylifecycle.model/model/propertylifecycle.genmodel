@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2016 CEA LIST and others.&#xD;&#xA;    &#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA; &#xD;&#xA;Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr - Initial API and implementation"
+    modelDirectory="/org.eclipse.papyrus.propertylifecycle.model/src-gen" editDirectory="/org.eclipse.papyrus.propertylifecycle.model.edit/src-gen"
+    editorDirectory="/org.eclipse.papyrus.propertylifecycle.model.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.propertylifecycle.model" templateDirectory=""
+    redirection="" modelName="Propertylifecycle" modelPluginClass="" editPluginClass="org.eclipse.papyrus.propertylifecycle.provider.PropertylifecycleEditPlugin"
+    editorPluginClass="org.eclipse.papyrus.propertylifecycle.presentation.PropertylifecycleEditorPlugin"
+    nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" commentFormatting="true" testsDirectory="/org.eclipse.papyrus.propertylifecycle.model.tests/src-gen"
+    testSuiteClass="org.eclipse.papyrus.propertylifecycle.tests.PropertylifecycleAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    editPluginID="org.eclipse.papyrus.propertylifecycle.model.edit" editorPluginID="org.eclipse.papyrus.propertylifecycle.model.editor"
+    operationReflection="true" cleanup="true">
+  <foreignModel>propertylifecycle.ecore</foreignModel>
+  <genPackages prefix="Propertylifecycle" basePackage="org.eclipse.papyrus" resource="XMI"
+      disposableProviderFactory="true" extensibleProviderFactory="true" contentTypeIdentifier="org.eclipse.papyrus.propertylifecycle"
+      ecorePackage="propertylifecycle.ecore#/">
+    <genClasses image="false" ecoreClass="propertylifecycle.ecore#//StrategyTemplate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute propertylifecycle.ecore#//StrategyTemplate/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute propertylifecycle.ecore#//StrategyTemplate/decription"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute propertylifecycle.ecore#//StrategyTemplate/id"/>
+    </genClasses>
+    <genClasses ecoreClass="propertylifecycle.ecore#//StrategySet">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference propertylifecycle.ecore#//StrategySet/strategies"/>
+    </genClasses>
+    <genClasses ecoreClass="propertylifecycle.ecore#//StrategyElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference propertylifecycle.ecore#//StrategyElement/elementContainers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference propertylifecycle.ecore#//StrategyElement/elementProperties"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="propertylifecycle.ecore#//ElementTemplate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute propertylifecycle.ecore#//ElementTemplate/baseType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute propertylifecycle.ecore#//ElementTemplate/specializedType"/>
+    </genClasses>
+    <genClasses ecoreClass="propertylifecycle.ecore#//ElementContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference propertylifecycle.ecore#//ElementContainer/containersContainer"/>
+    </genClasses>
+    <genClasses ecoreClass="propertylifecycle.ecore#//ElementProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute propertylifecycle.ecore#//ElementProperty/featureLabel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute propertylifecycle.ecore#//ElementProperty/priority"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference propertylifecycle.ecore#//ElementProperty/triggers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference propertylifecycle.ecore#//ElementProperty/valueProcessor"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="propertylifecycle.ecore#//AbstractTrigger"/>
+    <genClasses image="false" ecoreClass="propertylifecycle.ecore#//AbstractValueProcessor"/>
+    <genClasses ecoreClass="propertylifecycle.ecore#//JavaProcessor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute propertylifecycle.ecore#//JavaProcessor/className"/>
+    </genClasses>
+    <genClasses ecoreClass="propertylifecycle.ecore#//BasicTrigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute propertylifecycle.ecore#//BasicTrigger/onCreate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute propertylifecycle.ecore#//BasicTrigger/onDelete"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute propertylifecycle.ecore#//BasicTrigger/onOpen"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute propertylifecycle.ecore#//BasicTrigger/onMove"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

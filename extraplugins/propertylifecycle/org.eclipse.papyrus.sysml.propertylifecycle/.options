@@ -1,0 +1,3 @@
+# Tracing options for the org.eclipse.paprus.sysml.propertylifecycle plug-in
+org.eclipse.papyrus.sysml.propertylifecycle/debug=true
+org.eclipse.papyrus.sysml.propertylifecycle/debug/PLCStrategy_SYSMLproperty=true

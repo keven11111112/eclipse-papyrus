@@ -1,0 +1,7 @@
+# Tracing options for the org.eclipse.paprus.infra.propertylifecycle plug-in
+org.eclipse.papyrus.infra.propertylifecycle/debug=true
+org.eclipse.papyrus.infra.propertylifecycle/debug/PLCStrategy_Reorient=true
+org.eclipse.papyrus.infra.propertylifecycle/debug/PLCStrategy_Configure=true
+org.eclipse.papyrus.infra.propertylifecycle/debug/PLCStrategy=true
+org.eclipse.papyrus.infra.propertylifecycle/debug/PLCStrategy_Supertypes=true
+org.eclipse.papyrus.infra.propertylifecycle/debug/PLCStrategy_Types=false

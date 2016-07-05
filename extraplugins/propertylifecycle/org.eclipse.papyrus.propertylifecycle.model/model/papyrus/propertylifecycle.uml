@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements">
+  <uml:Model xmi:id="_-hZxkHb4EeWgXf4JsIe8SQ" name="propertylifecycle">
+    <packagedElement xmi:type="uml:Model" xmi:id="_1MrvAHcmEeW7365dAmHglw" name="StrategiesConfiguration">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_4-qnwLO_EeWthroTS8FGaQ">
+        <body>These informations are used to select and edit the property</body>
+      </ownedComment>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IV8RgXKKEeWqG7lDxSBeNQ" name="StrategyTemplate" isAbstract="true">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_zhY64HNBEeWMaapY9PW8Gw" annotatedElement="_IV8RgXKKEeWqG7lDxSBeNQ">
+          <body>Contains the standard informations needed to identify the strategy sets</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IV8Rg3KKEeWqG7lDxSBeNQ" name="name" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IV84kHKKEeWqG7lDxSBeNQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IV84kXKKEeWqG7lDxSBeNQ" name="decription" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IV84knKKEeWqG7lDxSBeNQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_SbHh4Lh_EeWvXZFuuA8B2g" name="id">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IV84k3KKEeWqG7lDxSBeNQ" name="StrategySet">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_y6PPwHNLEeWwzbMQPBkuTQ" annotatedElement="_IV84k3KKEeWqG7lDxSBeNQ">
+          <body>Root set containing the defined strategies</body>
+        </ownedComment>
+        <generalization xmi:type="uml:Generalization" xmi:id="_IV84lHKKEeWqG7lDxSBeNQ" general="_IV8RgXKKEeWqG7lDxSBeNQ"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IV84lXKKEeWqG7lDxSBeNQ" name="strategies" type="_IV84l3KKEeWqG7lDxSBeNQ" isOrdered="true" aggregation="composite" association="_IV84y3KKEeWqG7lDxSBeNQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IV84lnKKEeWqG7lDxSBeNQ" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IV84l3KKEeWqG7lDxSBeNQ" name="StrategyElement">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_7yFkwHNMEeWwzbMQPBkuTQ" annotatedElement="_IV84l3KKEeWqG7lDxSBeNQ">
+          <body>The element affected by this strategy</body>
+        </ownedComment>
+        <generalization xmi:type="uml:Generalization" xmi:id="_IV84mHKKEeWqG7lDxSBeNQ" general="_IV84pHKKEeWqG7lDxSBeNQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_ujAFcLk2EeWp56hvkK2Lrw" general="_IV8RgXKKEeWqG7lDxSBeNQ"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IV84oXKKEeWqG7lDxSBeNQ" name="elementContainers" type="_IV84x3KKEeWqG7lDxSBeNQ" isOrdered="true" aggregation="composite" association="_IV84yXKKEeWqG7lDxSBeNQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IV84onKKEeWqG7lDxSBeNQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IV84o3KKEeWqG7lDxSBeNQ" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IV84n3KKEeWqG7lDxSBeNQ" name="elementProperties" type="_IV84t3KKEeWqG7lDxSBeNQ" isOrdered="true" aggregation="composite" association="_IV84xXKKEeWqG7lDxSBeNQ">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IV84oHKKEeWqG7lDxSBeNQ" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IV84pHKKEeWqG7lDxSBeNQ" name="ElementTemplate" isAbstract="true">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_dWoH4HNMEeWwzbMQPBkuTQ" annotatedElement="_IV84pHKKEeWqG7lDxSBeNQ">
+          <body>Contains the standard informations needed to identify the elements affected by this strategy</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IV84pXKKEeWqG7lDxSBeNQ" name="baseType" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IV84pnKKEeWqG7lDxSBeNQ" name="specializedType" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IV84p3KKEeWqG7lDxSBeNQ"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IV84t3KKEeWqG7lDxSBeNQ" name="ElementProperty">
+        <ownedComment xmi:type="uml:Comment" xmi:id="__GRc4HNNEeWwzbMQPBkuTQ" annotatedElement="_IV84t3KKEeWqG7lDxSBeNQ">
+          <body>These informations are used to select and edit the property</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IV84uHKKEeWqG7lDxSBeNQ" name="featureLabel" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IV84vHKKEeWqG7lDxSBeNQ" name="priority" visibility="public" isOrdered="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EIntegerObject"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_WqypIrhEEeWJ68NTu2ajAQ" name="triggers" type="_Uf4QwLhEEeWJ68NTu2ajAQ" aggregation="composite" association="_WqyCELhEEeWJ68NTu2ajAQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dCiOULhEEeWJ68NTu2ajAQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dCkDgLhEEeWJ68NTu2ajAQ" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_m-GZMrg8EeWJ68NTu2ajAQ" name="valueProcessor" type="__rw3sLg6EeWJ68NTu2ajAQ" aggregation="composite" association="_m-FyILg8EeWJ68NTu2ajAQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qi1EMLg8EeWJ68NTu2ajAQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qjZE4Lg8EeWJ68NTu2ajAQ" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_IV84xXKKEeWqG7lDxSBeNQ" memberEnd="_IV84n3KKEeWqG7lDxSBeNQ _IV84xnKKEeWqG7lDxSBeNQ">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_IV84xnKKEeWqG7lDxSBeNQ" name="elementProperty" type="_IV84l3KKEeWqG7lDxSBeNQ" association="_IV84xXKKEeWqG7lDxSBeNQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IV84x3KKEeWqG7lDxSBeNQ" name="ElementContainer">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_ERG_gHNNEeWwzbMQPBkuTQ" annotatedElement="_IV84x3KKEeWqG7lDxSBeNQ">
+          <body>The informations defining the required immediate possible container(s) of the element</body>
+        </ownedComment>
+        <generalization xmi:type="uml:Generalization" xmi:id="_IV84yHKKEeWqG7lDxSBeNQ" general="_IV84pHKKEeWqG7lDxSBeNQ"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_qNsjwqPaEeWAw9SV1KeTXw" name="containersContainer" type="_IV84x3KKEeWqG7lDxSBeNQ" aggregation="composite" association="_qNrVoKPaEeWAw9SV1KeTXw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1tmVkKPaEeWAw9SV1KeTXw"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1toKwKPaEeWAw9SV1KeTXw" value="1"/>
+        </ownedAttribute>
+        <nestedClassifier xmi:type="uml:Association" xmi:id="_qNrVoKPaEeWAw9SV1KeTXw" memberEnd="_qNsjwqPaEeWAw9SV1KeTXw _qNuY8KPaEeWAw9SV1KeTXw">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qNsjwKPaEeWAw9SV1KeTXw" source="org.eclipse.papyrus">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qNsjwaPaEeWAw9SV1KeTXw" key="nature" value="UML_Nature"/>
+          </eAnnotations>
+          <ownedEnd xmi:type="uml:Property" xmi:id="_qNuY8KPaEeWAw9SV1KeTXw" name="elementcontainer" type="_IV84x3KKEeWqG7lDxSBeNQ" association="_qNrVoKPaEeWAw9SV1KeTXw">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_z1FUwKPaEeWAw9SV1KeTXw" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_z1HxAKPaEeWAw9SV1KeTXw" value="1"/>
+          </ownedEnd>
+        </nestedClassifier>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_IV84yXKKEeWqG7lDxSBeNQ" memberEnd="_IV84oXKKEeWqG7lDxSBeNQ _IV84ynKKEeWqG7lDxSBeNQ">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_IV84ynKKEeWqG7lDxSBeNQ" name="elementContainer" type="_IV84l3KKEeWqG7lDxSBeNQ" association="_IV84yXKKEeWqG7lDxSBeNQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vwCa0Lg6EeWJ68NTu2ajAQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vwFeILg6EeWJ68NTu2ajAQ" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_IV84y3KKEeWqG7lDxSBeNQ" memberEnd="_IV84lXKKEeWqG7lDxSBeNQ _IV84zHKKEeWqG7lDxSBeNQ">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_IV84zHKKEeWqG7lDxSBeNQ" name="strategyElement" type="_IV84k3KKEeWqG7lDxSBeNQ" association="_IV84y3KKEeWqG7lDxSBeNQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="__rw3sLg6EeWJ68NTu2ajAQ" name="AbstractValueProcessor" isAbstract="true">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_kMtOoLhHEeWJ68NTu2ajAQ" annotatedElement="__rw3sLg6EeWJ68NTu2ajAQ">
+          <body>Processor from which to compute the new value of the property</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_RcrfILg8EeWJ68NTu2ajAQ" name="JavaProcessor">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_7jHw4LhGEeWJ68NTu2ajAQ" annotatedElement="_RcrfILg8EeWJ68NTu2ajAQ">
+          <body>Process the new vaue from the specified java class</body>
+        </ownedComment>
+        <generalization xmi:type="uml:Generalization" xmi:id="_WWCawLg8EeWJ68NTu2ajAQ" general="__rw3sLg6EeWJ68NTu2ajAQ"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_Qt_hQLhJEeWJ68NTu2ajAQ" name="className">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_m-FyILg8EeWJ68NTu2ajAQ" memberEnd="_m-GZMrg8EeWJ68NTu2ajAQ _m-HAQLg8EeWJ68NTu2ajAQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_m-GZMLg8EeWJ68NTu2ajAQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_m-GZMbg8EeWJ68NTu2ajAQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_m-HAQLg8EeWJ68NTu2ajAQ" name="abstractValueProcessor" type="_IV84t3KKEeWqG7lDxSBeNQ" association="_m-FyILg8EeWJ68NTu2ajAQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_QXuvoLhEEeWJ68NTu2ajAQ" name="BasicTrigger">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_H_t0cLhHEeWJ68NTu2ajAQ" annotatedElement="_QXuvoLhEEeWJ68NTu2ajAQ">
+          <body>Specify the basic triggers of an element's lifecycle</body>
+        </ownedComment>
+        <generalization xmi:type="uml:Generalization" xmi:id="_eThVELhEEeWJ68NTu2ajAQ" general="_Uf4QwLhEEeWJ68NTu2ajAQ"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_M_wRwLhFEeWJ68NTu2ajAQ" name="onCreate">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_WgRlwLhFEeWJ68NTu2ajAQ" name="onDelete">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_e2rQALhFEeWJ68NTu2ajAQ" name="onOpen">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_kM4fsLhFEeWJ68NTu2ajAQ" name="onMove">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Uf4QwLhEEeWJ68NTu2ajAQ" name="AbstractTrigger" isAbstract="true">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_eyisALhHEeWJ68NTu2ajAQ" annotatedElement="_Uf4QwLhEEeWJ68NTu2ajAQ">
+          <body>Triggers specifying the lifecycle moment(s) from which to apply the processed value to the property</body>
+        </ownedComment>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_WqyCELhEEeWJ68NTu2ajAQ" memberEnd="_WqypIrhEEeWJ68NTu2ajAQ _WqzQMLhEEeWJ68NTu2ajAQ">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WqypILhEEeWJ68NTu2ajAQ" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_WqypIbhEEeWJ68NTu2ajAQ" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_WqzQMLhEEeWJ68NTu2ajAQ" name="abstractTrigger" type="_IV84t3KKEeWqG7lDxSBeNQ" association="_WqyCELhEEeWJ68NTu2ajAQ"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_bBVnAHcnEeW7365dAmHglw" name="ModelUsability">
+      <packagedElement xmi:type="uml:Class" xmi:id="_YCKRMHcIEeW7365dAmHglw" name="Customization EditStrategy"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_inB-IHcIEeW7365dAmHglw" name="Customization NewRepository"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_b7WmwHb8EeW7365dAmHglw" name="Customization NewStrategy"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_RsfYgHccEeW7365dAmHglw" name="Application DefaultBehavior"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_aD89QHcdEeW7365dAmHglw" name="Application DeploymentBehavior"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_JiZAsHcjEeW7365dAmHglw" name="Strategy CreationContext"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_eVJa8HdEEeWKENLFMGan-w" name="Customization Extension"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_sWQv0HdFEeWKENLFMGan-w" name="Customization LabelProvider"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_mzEHYHfREeW-pZnxtbVJ7A" name="Application Scope"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_5gWs8HfREeW-pZnxtbVJ7A" name="Application ProvidingValue"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_25KtsHcgEeW7365dAmHglw" name="Application SelectionContext"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_EjfvsHchEeW7365dAmHglw" name="Application SelectionPriority"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_iw53kHcjEeW7365dAmHglw" name="Application CreationContext"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_cNexYHckEeW7365dAmHglw" name="Strategy ElementID"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qmbz8HckEeW7365dAmHglw" name="Application Override"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_SC8nEHfUEeW-pZnxtbVJ7A" name="Strategy RepositoryID"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_bC92EHfUEeW-pZnxtbVJ7A" name="Strategy StrategyID"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qPFJAHfWEeW-pZnxtbVJ7A" name="Application ConcurentStrategies"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_x5dsgJKKEeW1-qKY3br1Ig" name="Application Redefinition"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_BHhwYHcnEeW7365dAmHglw" name="PreferencePage">
+      <packagedElement xmi:type="uml:Class" xmi:id="_6TyuYHcIEeW7365dAmHglw" name="Viewer RepositoryDisplay"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Gik_cHcJEeW7365dAmHglw" name="Repository Selection"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_V1-4EHcJEeW7365dAmHglw" name="Viewer StrategyDisplay"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_pKenkHcJEeW7365dAmHglw" name="Strategy Selection"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_6Ix7wHcJEeW7365dAmHglw" name="Repository Selected"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_DyKrUHcfEeW7365dAmHglw" name="Repository Browser"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_UKIYQHcfEeW7365dAmHglw" name="Customization NewRepository"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_hdJGcHcfEeW7365dAmHglw" name="Customization SaveRepository"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_vT2-oHcfEeW7365dAmHglw" name="Viewer SelectionSynchronization"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_VesiAHcgEeW7365dAmHglw" name="Viewer CrossSelection"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_DpCYsHfIEeWKENLFMGan-w" name="Customization AccessRepository"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_LkUlgHfOEeWKENLFMGan-w" name="Customization EditRepository"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="__nM10Hv3EeWZBetlvWKcoQ" name="Viewer StrategyDetails"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_QHqHsHcnEeW7365dAmHglw" name="UseCase">
+      <packagedElement xmi:type="uml:Actor" xmi:id="_RGOI4Hb_EeW7365dAmHglw" name="User"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_gjI38HcBEeW7365dAmHglw" name="Strategy Application" useCase="_Vk8PkHcCEeW7365dAmHglw _ilG6QHcCEeW7365dAmHglw _qX_yUHcDEeW7365dAmHglw _62qkMHcDEeW7365dAmHglw _FiuW4HcHEeW7365dAmHglw">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_Vk8PkHcCEeW7365dAmHglw" name="Create a new Element" subject="_gjI38HcBEeW7365dAmHglw"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_ilG6QHcCEeW7365dAmHglw" name="Reuse an existing Element" subject="_gjI38HcBEeW7365dAmHglw"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_qX_yUHcDEeW7365dAmHglw" name="Change the property value" subject="_gjI38HcBEeW7365dAmHglw">
+          <include xmi:type="uml:Include" xmi:id="_moIG8HcGEeW7365dAmHglw" addition="_62qkMHcDEeW7365dAmHglw"/>
+          <include xmi:type="uml:Include" xmi:id="_PxssUHcHEeW7365dAmHglw" addition="_FiuW4HcHEeW7365dAmHglw"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_62qkMHcDEeW7365dAmHglw" name="Evaluate the context of the Element" subject="_gjI38HcBEeW7365dAmHglw"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_FiuW4HcHEeW7365dAmHglw" name="Get the User strategy preferences" subject="_gjI38HcBEeW7365dAmHglw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_3duScHcDEeW7365dAmHglw" memberEnd="_3d-xIHcDEeW7365dAmHglw _3d-xIXcDEeW7365dAmHglw">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3d8U4HcDEeW7365dAmHglw" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3d8U4XcDEeW7365dAmHglw" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_3d-xIHcDEeW7365dAmHglw" name="change the property value" type="_qX_yUHcDEeW7365dAmHglw" association="_3duScHcDEeW7365dAmHglw"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_3d-xIXcDEeW7365dAmHglw" name="reuse an existing element" type="_ilG6QHcCEeW7365dAmHglw" association="_3duScHcDEeW7365dAmHglw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_36dRwHcDEeW7365dAmHglw" memberEnd="_36d40ncDEeW7365dAmHglw _36d403cDEeW7365dAmHglw">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_36d40HcDEeW7365dAmHglw" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_36d40XcDEeW7365dAmHglw" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_36d40ncDEeW7365dAmHglw" name="change the property value" type="_qX_yUHcDEeW7365dAmHglw" association="_36dRwHcDEeW7365dAmHglw"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_36d403cDEeW7365dAmHglw" name="create a new element" type="_Vk8PkHcCEeW7365dAmHglw" association="_36dRwHcDEeW7365dAmHglw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_mmD08HcHEeW7365dAmHglw" memberEnd="_mmD083cHEeW7365dAmHglw _mmD09HcHEeW7365dAmHglw">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mmD08XcHEeW7365dAmHglw" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mmD08ncHEeW7365dAmHglw" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_mmD083cHEeW7365dAmHglw" name="reuse an existing element" type="_gjI38HcBEeW7365dAmHglw" association="_mmD08HcHEeW7365dAmHglw"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_mmD09HcHEeW7365dAmHglw" name="user" type="_RGOI4Hb_EeW7365dAmHglw" association="_mmD08HcHEeW7365dAmHglw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_n-C7kHcHEeW7365dAmHglw" memberEnd="_n-EJsHcHEeW7365dAmHglw _n-EJsXcHEeW7365dAmHglw">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_n-DioHcHEeW7365dAmHglw" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_n-DioXcHEeW7365dAmHglw" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_n-EJsHcHEeW7365dAmHglw" name="create a new element" type="_Vk8PkHcCEeW7365dAmHglw" association="_n-C7kHcHEeW7365dAmHglw"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_n-EJsXcHEeW7365dAmHglw" name="user" type="_RGOI4Hb_EeW7365dAmHglw" association="_n-C7kHcHEeW7365dAmHglw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_MfemMHfOEeWKENLFMGan-w" name=""/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_0c1-sHfwEeW-pZnxtbVJ7A" memberEnd="_0c2lwnfwEeW-pZnxtbVJ7A _0c2lw3fwEeW-pZnxtbVJ7A">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0c2lwHfwEeW-pZnxtbVJ7A" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0c2lwXfwEeW-pZnxtbVJ7A" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_0c2lwnfwEeW-pZnxtbVJ7A" name="select whole strategy repositories" type="_OX4PQHfvEeW-pZnxtbVJ7A" association="_0c1-sHfwEeW-pZnxtbVJ7A"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_0c2lw3fwEeW-pZnxtbVJ7A" name="user" type="_RGOI4Hb_EeW7365dAmHglw" association="_0c1-sHfwEeW-pZnxtbVJ7A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_1NCskHfwEeW-pZnxtbVJ7A" memberEnd="_1NHlEHfwEeW-pZnxtbVJ7A _1NHlEXfwEeW-pZnxtbVJ7A">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1NDToHfwEeW-pZnxtbVJ7A" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1NDToXfwEeW-pZnxtbVJ7A" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_1NHlEHfwEeW-pZnxtbVJ7A" name="select a specific strategy" type="_Jq4fMHfwEeW-pZnxtbVJ7A" association="_1NCskHfwEeW-pZnxtbVJ7A"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_1NHlEXfwEeW-pZnxtbVJ7A" name="user" type="_RGOI4Hb_EeW7365dAmHglw" association="_1NCskHfwEeW-pZnxtbVJ7A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_160jIHfxEeW-pZnxtbVJ7A" memberEnd="_161xQHfxEeW-pZnxtbVJ7A _161xQXfxEeW-pZnxtbVJ7A">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_161KMHfxEeW-pZnxtbVJ7A" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_161KMXfxEeW-pZnxtbVJ7A" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_161xQHfxEeW-pZnxtbVJ7A" name="construct a custom repository" type="_zB7qcHfxEeW-pZnxtbVJ7A" association="_160jIHfxEeW-pZnxtbVJ7A"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_161xQXfxEeW-pZnxtbVJ7A" name="select a specific strategy" type="_d6Zz4HftEeW-pZnxtbVJ7A" association="_160jIHfxEeW-pZnxtbVJ7A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_KRao0HfyEeW-pZnxtbVJ7A" memberEnd="_KRbP4nfyEeW-pZnxtbVJ7A _KRbP43fyEeW-pZnxtbVJ7A">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KRbP4HfyEeW-pZnxtbVJ7A" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KRbP4XfyEeW-pZnxtbVJ7A" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_KRbP4nfyEeW-pZnxtbVJ7A" name="import existing repositories" type="_lsc3EHfxEeW-pZnxtbVJ7A" association="_KRao0HfyEeW-pZnxtbVJ7A"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_KRbP43fyEeW-pZnxtbVJ7A" name="user" type="_RGOI4Hb_EeW7365dAmHglw" association="_KRao0HfyEeW-pZnxtbVJ7A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_LGBVkHfyEeW-pZnxtbVJ7A" memberEnd="_LGB8onfyEeW-pZnxtbVJ7A _LGB8o3fyEeW-pZnxtbVJ7A">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_LGB8oHfyEeW-pZnxtbVJ7A" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_LGB8oXfyEeW-pZnxtbVJ7A" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_LGB8onfyEeW-pZnxtbVJ7A" name="save the custom repository" type="_srrTAHfxEeW-pZnxtbVJ7A" association="_LGBVkHfyEeW-pZnxtbVJ7A"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_LGB8o3fyEeW-pZnxtbVJ7A" name="user" type="_RGOI4Hb_EeW7365dAmHglw" association="_LGBVkHfyEeW-pZnxtbVJ7A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_J7m0EHf2EeW-pZnxtbVJ7A" memberEnd="_J7nbIHf2EeW-pZnxtbVJ7A _J7nbIXf2EeW-pZnxtbVJ7A">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_J7m0EXf2EeW-pZnxtbVJ7A" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_J7m0Enf2EeW-pZnxtbVJ7A" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_J7nbIHf2EeW-pZnxtbVJ7A" name="select a strategy" type="_CzKKsHf2EeW-pZnxtbVJ7A" association="_J7m0EHf2EeW-pZnxtbVJ7A"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_J7nbIXf2EeW-pZnxtbVJ7A" name="user" type="_RGOI4Hb_EeW7365dAmHglw" association="_J7m0EHf2EeW-pZnxtbVJ7A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_KfSv8Hf2EeW-pZnxtbVJ7A" memberEnd="_KfT-EHf2EeW-pZnxtbVJ7A _KfT-EXf2EeW-pZnxtbVJ7A">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KfTXAHf2EeW-pZnxtbVJ7A" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KfTXAXf2EeW-pZnxtbVJ7A" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_KfT-EHf2EeW-pZnxtbVJ7A" name="modify the strategy parameters" type="_EFiYkHf2EeW-pZnxtbVJ7A" association="_KfSv8Hf2EeW-pZnxtbVJ7A"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_KfT-EXf2EeW-pZnxtbVJ7A" name="select a strategy" type="_CzKKsHf2EeW-pZnxtbVJ7A" association="_KfSv8Hf2EeW-pZnxtbVJ7A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_d6Zz4HftEeW-pZnxtbVJ7A" name="Strategy Selection" useCase="_OX4PQHfvEeW-pZnxtbVJ7A _Jq4fMHfwEeW-pZnxtbVJ7A _3uNo0HfwEeW-pZnxtbVJ7A _HLGNkHfxEeW-pZnxtbVJ7A _zB7qcHfxEeW-pZnxtbVJ7A">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_OX4PQHfvEeW-pZnxtbVJ7A" name="Select whole strategy repositories" subject="_d6Zz4HftEeW-pZnxtbVJ7A">
+          <include xmi:type="uml:Include" xmi:id="_LSaBMHfxEeW-pZnxtbVJ7A" addition="_HLGNkHfxEeW-pZnxtbVJ7A"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_Jq4fMHfwEeW-pZnxtbVJ7A" name="Select a specific strategy" subject="_d6Zz4HftEeW-pZnxtbVJ7A">
+          <include xmi:type="uml:Include" xmi:id="_MI0EwHfxEeW-pZnxtbVJ7A" addition="_HLGNkHfxEeW-pZnxtbVJ7A"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_3uNo0HfwEeW-pZnxtbVJ7A" name="Display the strategies contained in each repository" subject="_d6Zz4HftEeW-pZnxtbVJ7A"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_HLGNkHfxEeW-pZnxtbVJ7A" name="Display the repositories" subject="_d6Zz4HftEeW-pZnxtbVJ7A"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_zB7qcHfxEeW-pZnxtbVJ7A" name="Construct a custom repository" subject="_d6Zz4HftEeW-pZnxtbVJ7A">
+          <include xmi:type="uml:Include" xmi:id="_Fl_4AHfxEeW-pZnxtbVJ7A" addition="_3uNo0HfwEeW-pZnxtbVJ7A"/>
+        </ownedUseCase>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_Uln5AHfxEeW-pZnxtbVJ7A" name="Strategy Management" useCase="_lsc3EHfxEeW-pZnxtbVJ7A _srrTAHfxEeW-pZnxtbVJ7A _RBjf4HfyEeW-pZnxtbVJ7A _TVi7wHfyEeW-pZnxtbVJ7A">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_lsc3EHfxEeW-pZnxtbVJ7A" name="Import Existing repositories" subject="_Uln5AHfxEeW-pZnxtbVJ7A">
+          <include xmi:type="uml:Include" xmi:id="_dElz8HfyEeW-pZnxtbVJ7A" addition="_RBjf4HfyEeW-pZnxtbVJ7A"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_srrTAHfxEeW-pZnxtbVJ7A" name="Save the custom repository" subject="_Uln5AHfxEeW-pZnxtbVJ7A">
+          <include xmi:type="uml:Include" xmi:id="_ciRxEHfyEeW-pZnxtbVJ7A" addition="_RBjf4HfyEeW-pZnxtbVJ7A"/>
+          <include xmi:type="uml:Include" xmi:id="_efbaQHfyEeW-pZnxtbVJ7A" addition="_TVi7wHfyEeW-pZnxtbVJ7A"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_RBjf4HfyEeW-pZnxtbVJ7A" name="Browse the system" subject="_Uln5AHfxEeW-pZnxtbVJ7A"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_TVi7wHfyEeW-pZnxtbVJ7A" name="Save in a new repository on disk" subject="_Uln5AHfxEeW-pZnxtbVJ7A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_9BJv0Hf1EeW-pZnxtbVJ7A" name="Strategy Edition" useCase="_CzKKsHf2EeW-pZnxtbVJ7A _EFiYkHf2EeW-pZnxtbVJ7A _QD19oHf2EeW-pZnxtbVJ7A _TJVu8Hf2EeW-pZnxtbVJ7A">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_CzKKsHf2EeW-pZnxtbVJ7A" name="Select a strategy" subject="_9BJv0Hf1EeW-pZnxtbVJ7A"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_EFiYkHf2EeW-pZnxtbVJ7A" name="Modify the strategy parameters" subject="_9BJv0Hf1EeW-pZnxtbVJ7A">
+          <include xmi:type="uml:Include" xmi:id="_YVFbEHf2EeW-pZnxtbVJ7A" addition="_QD19oHf2EeW-pZnxtbVJ7A"/>
+          <include xmi:type="uml:Include" xmi:id="_ucU_AHf2EeW-pZnxtbVJ7A" addition="_TJVu8Hf2EeW-pZnxtbVJ7A"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_QD19oHf2EeW-pZnxtbVJ7A" name="Browse the strategy repository" subject="_9BJv0Hf1EeW-pZnxtbVJ7A"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_TJVu8Hf2EeW-pZnxtbVJ7A" name="Edit the strategy repository" subject="_9BJv0Hf1EeW-pZnxtbVJ7A"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Component" xmi:id="_KdqhcIF8EeWOp44XR6VXyA" name="Multiple Strategies Application" useCase="_Dfk4gIF9EeWOp44XR6VXyA _IIN3kIF9EeWOp44XR6VXyA _LJJ5AIF9EeWOp44XR6VXyA _PBAUUIF9EeWOp44XR6VXyA">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_Dfk4gIF9EeWOp44XR6VXyA" name="Create a new Element" subject="_KdqhcIF8EeWOp44XR6VXyA"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_IIN3kIF9EeWOp44XR6VXyA" name="Browse the strategy repository" subject="_KdqhcIF8EeWOp44XR6VXyA"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_LJJ5AIF9EeWOp44XR6VXyA" name="Apply all the verified strategy" subject="_KdqhcIF8EeWOp44XR6VXyA">
+          <include xmi:type="uml:Include" xmi:id="_YXgwsIF9EeWOp44XR6VXyA" addition="_PBAUUIF9EeWOp44XR6VXyA"/>
+          <include xmi:type="uml:Include" xmi:id="_XMJw0IF9EeWOp44XR6VXyA" addition="_IIN3kIF9EeWOp44XR6VXyA"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_PBAUUIF9EeWOp44XR6VXyA" name="Verify the strategy priority" subject="_KdqhcIF8EeWOp44XR6VXyA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_Uz7xsIF8EeWOp44XR6VXyA" name="Toolsmith"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_UQi7UIF9EeWOp44XR6VXyA" memberEnd="_UQ0BEIF9EeWOp44XR6VXyA _UQ0BEYF9EeWOp44XR6VXyA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_UQwWsIF9EeWOp44XR6VXyA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_UQwWsYF9EeWOp44XR6VXyA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_UQ0BEIF9EeWOp44XR6VXyA" name="apply all the verified strategy" type="_LJJ5AIF9EeWOp44XR6VXyA" association="_UQi7UIF9EeWOp44XR6VXyA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_UQ0BEYF9EeWOp44XR6VXyA" name="create a new element" type="_Dfk4gIF9EeWOp44XR6VXyA" association="_UQi7UIF9EeWOp44XR6VXyA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_Vgm1AIF9EeWOp44XR6VXyA" memberEnd="_VgoDIIF9EeWOp44XR6VXyA _VgoDIYF9EeWOp44XR6VXyA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VgncEIF9EeWOp44XR6VXyA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VgncEYF9EeWOp44XR6VXyA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_VgoDIIF9EeWOp44XR6VXyA" name="create a new element" type="_Dfk4gIF9EeWOp44XR6VXyA" association="_Vgm1AIF9EeWOp44XR6VXyA"/>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_VgoDIYF9EeWOp44XR6VXyA" name="user" type="_RGOI4Hb_EeW7365dAmHglw" association="_Vgm1AIF9EeWOp44XR6VXyA"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_IV84zXKKEeWqG7lDxSBeNQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_IV84znKKEeWqG7lDxSBeNQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-ouhkHb4EeWgXf4JsIe8SQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-ow90Hb4EeWgXf4JsIe8SQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_TZ_nULU5EduiKqCzJMWbGw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-oyzAHb4EeWgXf4JsIe8SQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-oyzAXb4EeWgXf4JsIe8SQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//modelelements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_Gx8MgLX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-o788Hb4EeWgXf4JsIe8SQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-o788Xb4EeWgXf4JsIe8SQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_fSw28LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-o8kAHb4EeWgXf4JsIe8SQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-o8kAXb4EeWgXf4JsIe8SQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_rpx28LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-o8kAnb4EeWgXf4JsIe8SQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-o8kA3b4EeWgXf4JsIe8SQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//constraints"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_5WYJ0LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-o9LEHb4EeWgXf4JsIe8SQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-o9LEXb4EeWgXf4JsIe8SQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//activities"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_C2zXMLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-o9LEnb4EeWgXf4JsIe8SQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-o9yIHb4EeWgXf4JsIe8SQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//allocations"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_NxdG4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-o9yIXb4EeWgXf4JsIe8SQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-o9yInb4EeWgXf4JsIe8SQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-o-ZMHb4EeWgXf4JsIe8SQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-o-ZMXb4EeWgXf4JsIe8SQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//interactions"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_meOioLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-o-ZMnb4EeWgXf4JsIe8SQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-o-ZM3b4EeWgXf4JsIe8SQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//statemachines"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_nAF5kLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-o_AQHb4EeWgXf4JsIe8SQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-o_AQXb4EeWgXf4JsIe8SQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//usecases"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_neZmMLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+  </uml:Model>
+  <Requirements:Requirement xmi:id="_b7uaMHb8EeW7365dAmHglw" text="The system should allow an interaction with the strategy repository  in order to add new strategies corresponding to the user's needs" base_Class="_b7WmwHb8EeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_YCK4QHcIEeW7365dAmHglw" text="The user should be able to edit every existing strategies" base_Class="_YCKRMHcIEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_inB-IXcIEeW7365dAmHglw" text="The user should be able to create new strategy repositories" base_Class="_inB-IHcIEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_6TzVcHcIEeW7365dAmHglw" text="A preference page should be made available to the user in order to display the currently applied strategy models" base_Class="_6TyuYHcIEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_GioCwHcJEeW7365dAmHglw" text="The user should be able to select which of the preference page's displayed models need to be applied" base_Class="_Gik_cHcJEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_V2AGMHcJEeW7365dAmHglw" text="The User should be able to view the different strategies inside a model from the preference page" base_Class="_V1-4EHcJEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_pKf1sHcJEeW7365dAmHglw" text="The user should be able to select individual strategies from the preference page in addition or instead of a whole model selection" base_Class="_pKenkHcJEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_6Iyi0HcJEeW7365dAmHglw" text="The visualization of the applicable strategies should display the available models" base_Class="_6Ix7wHcJEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_Rsf_kHccEeW7365dAmHglw" text="The default strategy repositories should be deployed until the user chooses not to" base_Class="_RsfYgHccEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_aD9kUHcdEeW7365dAmHglw" text="The strategy repository should be deployable dynamically" base_Class="_aD89QHcdEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_DyNuoHcfEeW7365dAmHglw" text="The user should be able to retrieve any strategy repository from the disk" base_Class="_DyKrUHcfEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_UKI_UHcfEeW7365dAmHglw" text="The user should be able to create a custom model by selecting specific strategies from different existing models" base_Class="_UKIYQHcfEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_hdJGcXcfEeW7365dAmHglw" text="The user should be able to save on disk his custom model to be opened or modified later" base_Class="_hdJGcHcfEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_vT3lsHcfEeW7365dAmHglw" text="As the custom model can contain strategies from different existing models, the preference page should provide a way to quickly locate the model containing each strategy" base_Class="_vT2-oHcfEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_VetwIHcgEeW7365dAmHglw" text="The user should be able to see if single strategies are already selected in the Basic viewer or if a whole model is already selected in the Advanced viewer" base_Class="_VesiAHcgEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_25NJ8HcgEeW7365dAmHglw" text="The strategies will be filtered and applied based on the context of the element" base_Class="_25KtsHcgEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_EjfvsXchEeW7365dAmHglw" text="If multiple strategies can be applied to the same element, they should be ordered by priority and apply the heavier one last" base_Class="_EjfvsHchEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_JiZnwHcjEeW7365dAmHglw" text="The user should specify the context of the affected element in the strategy" base_Class="_JiZAsHcjEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_iw6eoHcjEeW7365dAmHglw" text="The strategies should be applicable to elements, created or modified in a diagram as well as in the model explorer" base_Class="_iw53kHcjEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_cNfYcHckEeW7365dAmHglw" text="The strategies should have the necessary parameters to assert the context and the type of the element they will affect" base_Class="_cNexYHckEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_qmcbAHckEeW7365dAmHglw" text="If there are predefined and mandatory settings, the user should be able to apply a strategy partialy" base_Class="_qmbz8HckEeW7365dAmHglw"/>
+  <Requirements:Requirement xmi:id="_eVeyIHdEEeWKENLFMGan-w" text="The framework should accomodate new filtering criteria for the strategies" base_Class="_eVJa8HdEEeWKENLFMGan-w"/>
+  <Requirements:Requirement xmi:id="_sWRW4HdFEeWKENLFMGan-w" text="A custom appearance should be made to be able to see the different part of the strategies clearly" base_Class="_sWQv0HdFEeWKENLFMGan-w"/>
+  <Requirements:Requirement xmi:id="_DpEN4HfIEeWKENLFMGan-w" text="If the user created a custom model using the advanced view of the preference page, the model should be remembered and accessed through the strategy preferences path node" base_Class="_DpCYsHfIEeWKENLFMGan-w"/>
+  <Requirements:Requirement xmi:id="_LkVMkHfOEeWKENLFMGan-w" text="The user should be able to select part of the strategy to affect the selected properties" base_Class="_LkUlgHfOEeWKENLFMGan-w"/>
+  <Requirements:Requirement xmi:id="_MffNQHfOEeWKENLFMGan-w" base_Class="_MfemMHfOEeWKENLFMGan-w"/>
+  <Requirements:Requirement xmi:id="_mzVNIHfREeW-pZnxtbVJ7A" text="A strategy should be able to affect multiple properties of a same Element at once" base_Class="_mzEHYHfREeW-pZnxtbVJ7A"/>
+  <Requirements:Requirement xmi:id="_5gYiIHfREeW-pZnxtbVJ7A" text="The strategy should be able to construct the new property value dynamically as well as providing a static value" base_Class="_5gWs8HfREeW-pZnxtbVJ7A"/>
+  <Requirements:Requirement xmi:id="_SC9OIHfUEeW-pZnxtbVJ7A" text="A strategy repository should be tagged by a unique identifier" base_Class="_SC8nEHfUEeW-pZnxtbVJ7A"/>
+  <Requirements:Requirement xmi:id="_bC_EMHfUEeW-pZnxtbVJ7A" text="A strategy should be tagged by a unique identifier" base_Class="_bC92EHfUEeW-pZnxtbVJ7A"/>
+  <Requirements:Requirement xmi:id="_qPJacHfWEeW-pZnxtbVJ7A" text="If there are concurent strategies they should both be apllied or partialy applied" id="" base_Class="_qPFJAHfWEeW-pZnxtbVJ7A"/>
+  <Requirements:Requirement xmi:id="__oG0wHv3EeWZBetlvWKcoQ" text="A foldable property view should be made available to the user to display the details of the selected strategy" base_Class="__nM10Hv3EeWZBetlvWKcoQ"/>
+  <Requirements:Requirement xmi:id="_x5zDsJKKEeW1-qKY3br1Ig" text="A strategy should be able to redefine/override the results of an applied strategy" id="" base_Class="_x5dsgJKKEeW1-qKY3br1Ig"/>
+</xmi:XMI>

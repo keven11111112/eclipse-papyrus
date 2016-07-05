@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (c) 2016 CEA LIST and others.
+     
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+  
+ Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr - Initial API and implementation
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated propertylifecycle -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.infra.propertylifecycle.presentation.PropertylifecycleModelWizardID"
+            name="%_UI_PropertylifecycleModelWizard_label"
+            class="org.eclipse.papyrus.propertylifecycle.presentation.PropertylifecycleModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/PropertylifecycleModelFile.gif">
+         <description>%_UI_PropertylifecycleModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated propertylifecycle -->
+      <editor
+            id="org.eclipse.papyrus.infra.propertylifecycle.presentation.PropertylifecycleEditorID"
+            name="%_UI_PropertylifecycleEditor_label"
+            icon="icons/full/obj16/PropertylifecycleModelFile.gif"
+            class="org.eclipse.papyrus.propertylifecycle.presentation.PropertylifecycleEditor"
+            contributorClass="org.eclipse.papyrus.propertylifecycle.presentation.PropertylifecycleActionBarContributor">
+         <contentTypeBinding contentTypeId="org.eclipse.papyrus.infra.propertylifecycle"/>
+      </editor>
+   </extension>
+
+</plugin>

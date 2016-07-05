@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+            class="org.eclipse.papyrus.propertylifecycle.preferences.pages.PropertyLifecyclePreferencesPage"
+            id="org.eclipse.papyrus.infra.propertylifecycle.preferences.pages.PropertyLifecyclePage"
+            name="Property Lifecycle Page">
+      </page>
+   </extension>
+
+</plugin>
