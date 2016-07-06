@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,9 +12,12 @@
  *  Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
  *  Patrick Tessier (CEA LIST) refacor to add allowing adding validation specific to UML
  *  Christian W. Damus (CEA) - bug 432813
+ *  Christian W. Damus - bug 497379
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.validation.commands;
+
+import static org.eclipse.papyrus.infra.ui.util.TransactionUIHelper.createPrivilegedRunnableWithProgress;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
@@ -154,7 +157,10 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 			// runs the operation, and shows progress.
 			try {
 				if (showUIfeedback) {
-					new ProgressMonitorDialog(shell).run(true, true, runValidationWithProgress);
+					// Share our current transaction with the modal context
+					IRunnableWithProgress privileged = createPrivilegedRunnableWithProgress(
+							getEditingDomain(), runValidationWithProgress);
+					new ProgressMonitorDialog(shell).run(true, true, privileged);
 				} else {
 					runValidationWithProgress.run(new NullProgressMonitor());
 				}
@@ -185,6 +191,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 				// don't fork this dialog, i.e. run it in the UI thread. This avoids that the diagrams are constantly refreshing *while*
 				// markers/decorations are changing. This greatly enhances update performance. See also bug 400593
 				if (showUIfeedback) {
+					// Running in the same thread, we don't have to share the transaction
 					new ProgressMonitorDialog(shell).run(false, true, createMarkersWithProgress);
 				} else {
 					createMarkersWithProgress.run(new NullProgressMonitor());
