@@ -102,8 +102,8 @@ public class ComponentEditPartCN extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.component.edit.policies.ComponentCanonicalEditPolicyCN());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.component.edit.policies.ComponentCanonicalEditPolicyCN());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
@@ -223,12 +223,12 @@ public class ComponentEditPartCN extends RoundedCompartmentEditPart {
 
 		if (childEditPart instanceof ComponentCompositeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ComponentCompositeCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed Port locator
+		// Papyrus Gencode :Affixed Port locator
 		if (childEditPart instanceof PortEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((PortEditPart) childEditPart).getFigure(), locator);

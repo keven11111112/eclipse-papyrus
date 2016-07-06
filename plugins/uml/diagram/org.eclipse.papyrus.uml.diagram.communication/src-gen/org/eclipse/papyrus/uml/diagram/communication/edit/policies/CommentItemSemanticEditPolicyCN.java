@@ -77,8 +77,7 @@ public class CommentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 	 */
 	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ?
-				getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
@@ -91,14 +90,14 @@ public class CommentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
-		
+
 		if (UMLElementTypes.Path_Edge == baseElementType) {
-			
+
 			return getGEFWrapper(new MessageCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.Comment_AnnotatedElementEdge == baseElementType) {
-			
+
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}

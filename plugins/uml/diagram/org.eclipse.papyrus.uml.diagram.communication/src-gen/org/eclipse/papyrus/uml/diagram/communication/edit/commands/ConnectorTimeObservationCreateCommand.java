@@ -78,8 +78,7 @@ public class ConnectorTimeObservationCreateCommand extends EditElementCommand {
 
 		if (getSource() != null && getTarget() != null) {
 			getSource().setEvent(
-					getTarget()
-					);
+					getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 

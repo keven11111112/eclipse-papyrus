@@ -42,8 +42,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_Actor_Shape(Actor instance) {
 		try {
 			Object value_0 = name_Actor_Shape(instance);

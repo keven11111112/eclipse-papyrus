@@ -165,7 +165,7 @@ public class DeviceEditPart extends NamedElementEditPart {
 
 		if (childEditPart instanceof DeviceCompositeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((DeviceCompositeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

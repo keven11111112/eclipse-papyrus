@@ -82,8 +82,8 @@ public class UMLElementTypes {
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final IElementType Package_StateMachineDiagram = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Package_StateMachineDiagram"); //$NON-NLS-1$
 
 	/**
@@ -92,8 +92,8 @@ public class UMLElementTypes {
 	public static final IElementType StateMachine_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.StateMachine_Shape"); //$NON-NLS-1$
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final IElementType State_Shape_TN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.State_Shape"); //$NON-NLS-1$
 
 	/**
@@ -256,7 +256,7 @@ public class UMLElementTypes {
 	 */
 	public static synchronized ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
-		if(elements == null) {
+		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 			elements.put(Package_StateMachineDiagram, UMLPackage.eINSTANCE.getPackage());
 			elements.put(StateMachine_Shape, UMLPackage.eINSTANCE.getStateMachine());
@@ -291,8 +291,8 @@ public class UMLElementTypes {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static IElementType getElementTypeByUniqueId(String id) {
 		return ElementTypeRegistry.getInstance().getType(id);
 	}
@@ -301,8 +301,8 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static IElementType getElementType(String visualID) {
-		if(visualID != null) {
-			switch(visualID) {
+		if (visualID != null) {
+			switch (visualID) {
 			case PackageEditPart.VISUAL_ID:
 				return Package_StateMachineDiagram;
 			case StateMachineEditPart.VISUAL_ID:
@@ -368,7 +368,7 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static synchronized boolean isKnownElementType(IElementType elementType) {
-		if(KNOWN_ELEMENT_TYPES == null) {
+		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Package_StateMachineDiagram);
 			KNOWN_ELEMENT_TYPES.add(StateMachine_Shape);
@@ -400,9 +400,9 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Constraint_ContextEdge);
 		}
 		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
-		if(!result) {
+		if (!result) {
 			IElementType[] supertypes = elementType.getAllSuperTypes();
-			for(int i = 0; !result && (i < supertypes.length); i++) {
+			for (int i = 0; !result && (i < supertypes.length); i++) {
 				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
 			}
 		}
@@ -444,9 +444,9 @@ public class UMLElementTypes {
 	 */
 	public static boolean isKindOf(IElementType subtype, IElementType supertype) {
 		boolean result = subtype == supertype;
-		if(!result) {
+		if (!result) {
 			IElementType[] supertypes = subtype.getAllSuperTypes();
-			for(int i = 0; !result && (i < supertypes.length); i++) {
+			for (int i = 0; !result && (i < supertypes.length); i++) {
 				result = supertype == supertypes[i];
 			}
 		}

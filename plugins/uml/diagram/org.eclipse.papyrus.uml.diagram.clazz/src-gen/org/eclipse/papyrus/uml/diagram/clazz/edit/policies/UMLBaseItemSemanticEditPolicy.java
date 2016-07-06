@@ -402,120 +402,120 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateAssociationClass_TetherEdge() {
 			return canExistAssociationClass_TetherEdge();
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateAssociationClass_Edge(Package container, Type source, Type target) {
 			return canExistAssociationClass_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateAssociation_Edge(Package container, Type source, Type target) {
 			return canExistAssociation_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateAssociation_BranchEdge(Package container, Type source, Type target) {
 			return canExistAssociation_BranchEdge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateGeneralization_Edge(Classifier source, Classifier target) {
 			return canExistGeneralization_Edge(null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateInterfaceRealization_Edge(BehavioredClassifier source, Interface target) {
 			return canExistInterfaceRealization_Edge(null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateSubstitution_Edge(Classifier container, Classifier source, Classifier target) {
 			return canExistSubstitution_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateRealization_Edge(Package container, NamedElement source, NamedElement target) {
 			return canExistRealization_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateAbstraction_Edge(Package container, NamedElement source, NamedElement target) {
 			return canExistAbstraction_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateUsage_Edge(Package container, NamedElement source, NamedElement target) {
 			return canExistUsage_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateDependency_Edge(Package container, NamedElement source, NamedElement target) {
 			return canExistDependency_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateDependency_BranchEdge(Package container, NamedElement source, NamedElement target) {
 			return canExistDependency_BranchEdge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateElementImport_Edge(Namespace source, PackageableElement target) {
 			return canExistElementImport_Edge(null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreatePackageImport_Edge(Namespace source, Package target) {
 			return canExistPackageImport_Edge(null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreatePackageMerge_Edge(Package container, Package source, Package target) {
 			return canExistPackageMerge_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateProfileApplication_Edge(Package source, Profile target) {
 			return canExistProfileApplication_Edge(null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateComment_AnnotatedElementEdge(Comment source, Element target) {
 			if (source != null) {
 				if (source.getAnnotatedElements().contains(target)) {
@@ -527,8 +527,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			if (source != null) {
 				if (source.getConstrainedElements().contains(target)) {
@@ -540,38 +540,38 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateTemplateBinding_Edge(TemplateableElement container, TemplateableElement source,
 				TemplateableElement target) {
 			return canExistTemplateBinding_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateGeneralizationSet_Edge(Package container, Generalization source,
 				Generalization target) {
 			return canExistGeneralizationSet_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateInstanceSpecification_Edge(Package container, Slot source, Slot target) {
 			return canExistInstanceSpecification_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateElement_ContainmentEdge() {
 			return canExistElement_ContainmentEdge();
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateTimeObservation_EventEdge(TimeObservation source, NamedElement target) {
 			if (source != null) {
 				if (source.getEvent() != null) {
@@ -583,8 +583,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateDurationObservation_EventEdge(DurationObservation source, NamedElement target) {
 			if (source != null) {
 				if (source.getEvents().size() >= 2 || source.getEvents().contains(target)) {
@@ -596,15 +596,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateInformationFlow_Edge(Package container, NamedElement source, NamedElement target) {
 			return canExistInformationFlow_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateConstraint_ContextEdge(Constraint source, Namespace target) {
 			if (source != null) {
 				if (source.getContext() != null) {
@@ -619,195 +619,195 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistAssociationClass_TetherEdge() {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistAssociationClass_Edge(Package container, AssociationClass linkInstance, Type source,
 				Type target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistAssociation_Edge(Package container, Association linkInstance, Type source, Type target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistAssociation_BranchEdge(Package container, Association linkInstance, Type source,
 				Type target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistGeneralization_Edge(Generalization linkInstance, Classifier source, Classifier target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistInterfaceRealization_Edge(InterfaceRealization linkInstance, BehavioredClassifier source,
 				Interface target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistSubstitution_Edge(Classifier container, Substitution linkInstance, Classifier source,
 				Classifier target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistRealization_Edge(Package container, Realization linkInstance, NamedElement source,
 				NamedElement target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistAbstraction_Edge(Package container, Abstraction linkInstance, NamedElement source,
 				NamedElement target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistUsage_Edge(Package container, Usage linkInstance, NamedElement source,
 				NamedElement target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistDependency_Edge(Package container, Dependency linkInstance, NamedElement source,
 				NamedElement target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistDependency_BranchEdge(Package container, Dependency linkInstance, NamedElement source,
 				NamedElement target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistElementImport_Edge(ElementImport linkInstance, Namespace source,
 				PackageableElement target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistPackageImport_Edge(PackageImport linkInstance, Namespace source, Package target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistPackageMerge_Edge(Package container, PackageMerge linkInstance, Package source,
 				Package target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistProfileApplication_Edge(ProfileApplication linkInstance, Package source,
 				Profile target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistComment_AnnotatedElementEdge(Comment source, Element target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistTemplateBinding_Edge(TemplateableElement container, TemplateBinding linkInstance,
 				TemplateableElement source, TemplateableElement target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistGeneralizationSet_Edge(Package container, GeneralizationSet linkInstance,
 				Generalization source, Generalization target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistInstanceSpecification_Edge(Package container, InstanceSpecification linkInstance,
 				Slot source, Slot target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistElement_ContainmentEdge() {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistTimeObservation_EventEdge(TimeObservation source, NamedElement target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistDurationObservation_EventEdge(DurationObservation source, NamedElement target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistInformationFlow_Edge(Package container, InformationFlow linkInstance,
 				NamedElement source, NamedElement target) {
 			try {
-				//Information Flow source constraint
+				// Information Flow source constraint
 				if (source != null) {
 					if (!((source instanceof Actor) || (source instanceof Node) || (source instanceof UseCase)
 							|| (source instanceof Artifact) || (source instanceof Class)
@@ -828,7 +828,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						}
 					}
 				}
-				//Information Flow target constraint
+				// Information Flow target constraint
 				if (target != null) {
 					if (!((target instanceof Actor) || (target instanceof Node) || (target instanceof UseCase)
 							|| (target instanceof Artifact) || (target instanceof Class)
@@ -857,8 +857,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistConstraint_ContextEdge(Constraint source, Namespace target) {
 			return true;
 		}

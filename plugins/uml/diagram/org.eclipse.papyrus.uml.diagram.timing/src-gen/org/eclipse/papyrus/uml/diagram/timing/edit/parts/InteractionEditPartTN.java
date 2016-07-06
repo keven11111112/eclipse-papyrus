@@ -173,14 +173,14 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 
 		if (childEditPart instanceof InteractionCompartmentEditPartTN) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((InteractionCompartmentEditPartTN) childEditPart).getFigure());
 			return true;
 		}
 
 		if (childEditPart instanceof TimeRulerCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getTimeRulerContainerFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((TimeRulerCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}

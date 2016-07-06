@@ -54,8 +54,8 @@ public class TransitionEditPart extends UMLConnectionNodeEditPart implements ITr
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof TransitionStereotypeEditPart) {
-			((TransitionStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof TransitionStereotypeEditPart) {
+			((TransitionStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -65,7 +65,7 @@ public class TransitionEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -75,7 +75,7 @@ public class TransitionEditPart extends UMLConnectionNodeEditPart implements ITr
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof TransitionStereotypeEditPart) {
+		if (childEditPart instanceof TransitionStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -86,7 +86,7 @@ public class TransitionEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -110,6 +110,6 @@ public class TransitionEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	@Override
 	public TransitionFigure getPrimaryShape() {
-		return (TransitionFigure)getFigure();
+		return (TransitionFigure) getFigure();
 	}
 }

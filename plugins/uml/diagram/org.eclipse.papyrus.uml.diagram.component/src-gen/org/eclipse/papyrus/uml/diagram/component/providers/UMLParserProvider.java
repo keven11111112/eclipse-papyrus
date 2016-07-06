@@ -86,8 +86,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class UMLParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser dependency_MultiNameLabel_Parser;
 
 	/**

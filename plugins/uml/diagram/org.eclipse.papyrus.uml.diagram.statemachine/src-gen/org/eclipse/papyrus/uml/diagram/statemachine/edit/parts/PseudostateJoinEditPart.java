@@ -103,17 +103,17 @@ public class PseudostateJoinEditPart extends RoundedCompartmentEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
+				View childView = (View) child.getModel();
 				String vid = UMLVisualIDRegistry.getVisualID(childView);
-				if(vid != null) {
-					switch(vid) {
+				if (vid != null) {
+					switch (vid) {
 					case PseudostateJoinFloatingLabelEditPart.VISUAL_ID:
 					case PseudostateJoinStereotypeEditPart.VISUAL_ID:
 						return new BorderItemSelectionEditPolicy() {
 
 							@Override
 							protected List<?> createSelectionHandles() {
-								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 								mh.setBorder(null);
 								return Collections.singletonList(mh);
 							}
@@ -121,7 +121,7 @@ public class PseudostateJoinEditPart extends RoundedCompartmentEditPart {
 					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -151,11 +151,11 @@ public class PseudostateJoinEditPart extends RoundedCompartmentEditPart {
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View)getModel()).getChildren();
-			if(false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
-				if(modelChildren.contains(event.getNotifier())) {
+			List<?> modelChildren = ((View) getModel()).getChildren();
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
@@ -178,7 +178,7 @@ public class PseudostateJoinEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	public RoundedCompartmentFigure getPrimaryShape() {
-		return (RoundedCompartmentFigure)primaryShape;
+		return (RoundedCompartmentFigure) primaryShape;
 	}
 
 	/**
@@ -186,10 +186,10 @@ public class PseudostateJoinEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof PseudostateJoinFloatingLabelEditPart) {
+		if (borderItemEditPart instanceof PseudostateJoinFloatingLabelEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if(borderItemEditPart instanceof PseudostateJoinStereotypeEditPart) {
+		} else if (borderItemEditPart instanceof PseudostateJoinStereotypeEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -237,7 +237,7 @@ public class PseudostateJoinEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -248,7 +248,7 @@ public class PseudostateJoinEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -266,8 +266,8 @@ public class PseudostateJoinEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

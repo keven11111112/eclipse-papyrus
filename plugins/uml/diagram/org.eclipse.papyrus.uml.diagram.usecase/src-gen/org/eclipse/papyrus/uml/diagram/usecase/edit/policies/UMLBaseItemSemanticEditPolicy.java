@@ -384,36 +384,36 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateInclude_Edge(UseCase container, UseCase source, UseCase target) {
 			return canExistInclude_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateExtend_Edge(UseCase container, UseCase source, UseCase target) {
 			return canExistExtend_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateGeneralization_Edge(Classifier container, Classifier source, Classifier target) {
 			return canExistGeneralization_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateAssociation_Edge(Package container, Type source, Type target) {
 			return canExistAssociation_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			if (source != null) {
 				if (source.getConstrainedElements().contains(target)) {
@@ -425,15 +425,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateDependency_Edge(Package container, NamedElement source, NamedElement target) {
 			return canExistDependency_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateComment_AnnotatedElementEdge(Comment source, Element target) {
 			if (source != null) {
 				if (source.getAnnotatedElements().contains(target)) {
@@ -445,64 +445,64 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateAbstraction_Edge(Package container, NamedElement source, NamedElement target) {
 			return canExistAbstraction_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateUsage_Edge(Package container, NamedElement source, NamedElement target) {
 			return canExistUsage_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateRealization_Edge(Package container, NamedElement source, NamedElement target) {
 			return canExistRealization_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreatePackageMerge_Edge(Package container, Package source, Package target) {
 			return canExistPackageMerge_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreatePackageImport_Edge(Namespace source, Package target) {
 			return canExistPackageImport_Edge(null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistInclude_Edge(UseCase container, Include linkInstance, UseCase source, UseCase target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistExtend_Edge(UseCase container, Extend linkInstance, UseCase source, UseCase target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistGeneralization_Edge(Classifier container, Generalization linkInstance, Classifier source,
 				Classifier target) {
 			try {
 				if (source == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier>singletonMap("oppositeEnd", //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", //$NON-NLS-1$
 							UMLPackage.eINSTANCE.getClassifier());
 					Object sourceVal = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getClassifier(), env)
 							.evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
@@ -513,7 +513,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if (target == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier>singletonMap("oppositeEnd", //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", //$NON-NLS-1$
 							UMLPackage.eINSTANCE.getClassifier());
 					Object targetVal = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getClassifier(), env)
 							.evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
@@ -529,8 +529,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistAssociation_Edge(Package container, Association linkInstance, Type source, Type target) {
 			try {
 				if ((source instanceof Class) || (source instanceof Component) || (source instanceof Actor)
@@ -571,22 +571,22 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistDependency_Edge(Package container, Dependency linkInstance, NamedElement source,
 				NamedElement target) {
 			try {
 				if (target == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier>singletonMap("oppositeEnd", //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", //$NON-NLS-1$
 							UMLPackage.eINSTANCE.getNamedElement());
 					Object targetVal = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getNamedElement(), env)
 							.evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
@@ -602,47 +602,47 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistComment_AnnotatedElementEdge(Comment source, Element target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistAbstraction_Edge(Package container, Abstraction linkInstance, NamedElement source,
 				NamedElement target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistUsage_Edge(Package container, Usage linkInstance, NamedElement source,
 				NamedElement target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistRealization_Edge(Package container, Realization linkInstance, NamedElement source,
 				NamedElement target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistPackageMerge_Edge(Package container, PackageMerge linkInstance, Package source,
 				Package target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistPackageImport_Edge(PackageImport linkInstance, Namespace source, Package target) {
 			return true;
 		}

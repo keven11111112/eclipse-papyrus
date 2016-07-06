@@ -48,8 +48,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_Component_PackagedElementShape(Component instance) {
 		try {
 			Object value_0 = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getComponent(), null)

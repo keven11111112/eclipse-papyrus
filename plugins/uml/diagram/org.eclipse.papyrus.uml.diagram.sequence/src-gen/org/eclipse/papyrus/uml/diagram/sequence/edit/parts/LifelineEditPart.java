@@ -92,8 +92,8 @@ public class LifelineEditPart extends NamedElementEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new LifelineXYLayoutEditPolicy());
@@ -184,7 +184,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			return true;
 		}
 
-		//Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
+		// Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
 		if (childEditPart instanceof StateInvariantEditPart) {
 			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((StateInvariantEditPart) childEditPart).getFigure(),
@@ -192,7 +192,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
+		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
 		if (childEditPart instanceof TimeConstraintEditPart) {
 			IBorderItemLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((TimeConstraintEditPart) childEditPart).getFigure(),
@@ -200,7 +200,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
+		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
 		if (childEditPart instanceof TimeObservationEditPart) {
 			IBorderItemLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((TimeObservationEditPart) childEditPart).getFigure(),
@@ -208,7 +208,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
+		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
 		if (childEditPart instanceof DurationConstraintEditPart) {
 			IBorderItemLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((DurationConstraintEditPart) childEditPart).getFigure(),
@@ -216,7 +216,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			return true;
 		}
 
-		//Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
+		// Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
 		if (childEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.SOUTH);
 			getBorderedFigure().getBorderItemContainer()

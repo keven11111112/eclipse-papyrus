@@ -21,11 +21,11 @@ import org.eclipse.papyrus.uml.diagram.activity.providers.CustomUMLEditPartProvi
 public class InheritedActivityDiagramEditPartProvider extends CustomUMLEditPartProvider {
 
 	/**
-	 * This is workaround for bug #464093. 
-	 * The view type 'compartment_shape_display' is auxiliary and is provided externally 
-	 * (from the org.eclipse.papyrus.uml.diagram.symbols plugin) for all diagrams. 
+	 * This is workaround for bug #464093.
+	 * The view type 'compartment_shape_display' is auxiliary and is provided externally
+	 * (from the org.eclipse.papyrus.uml.diagram.symbols plugin) for all diagrams.
 	 * 
-	 * Views of this kind shares semantic element with the main node so we can't distinguish them by semantic checks 
+	 * Views of this kind shares semantic element with the main node so we can't distinguish them by semantic checks
 	 * and have to explicitly rule them out to avoid interferention
 	 */
 	public static final String ALIEN_VIEW_TYPE = IShapeCompartmentEditPart.VIEW_TYPE;

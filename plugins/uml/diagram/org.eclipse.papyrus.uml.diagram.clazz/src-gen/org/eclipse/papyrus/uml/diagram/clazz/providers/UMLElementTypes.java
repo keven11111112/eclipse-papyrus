@@ -57,8 +57,8 @@ public class UMLElementTypes {
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final IElementType Package_ClassDiagram = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.Package_ClassDiagram"); //$NON-NLS-1$
 
@@ -144,8 +144,8 @@ public class UMLElementTypes {
 			"org.eclipse.papyrus.umldi.DataType_Shape"); //$NON-NLS-1$
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final IElementType Constraint_PackagedElementShape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.Constraint_PackagedElementShape"); //$NON-NLS-1$
 
@@ -174,8 +174,8 @@ public class UMLElementTypes {
 			"org.eclipse.papyrus.umldi.TimeObservation_Shape"); //$NON-NLS-1$
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final IElementType NamedElement_DefaultShape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.NamedElement_DefaultShape"); //$NON-NLS-1$
 
@@ -294,8 +294,8 @@ public class UMLElementTypes {
 			"org.eclipse.papyrus.umldi.EnumerationLiteral_LiteralLabel"); //$NON-NLS-1$
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final IElementType Reception_ReceptionLabel = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.Reception_ReceptionLabel"); //$NON-NLS-1$
 
@@ -396,8 +396,8 @@ public class UMLElementTypes {
 			"org.eclipse.papyrus.umldi.Comment_Shape_CN"); //$NON-NLS-1$
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final IElementType Constraint_PackagedElementShape_CN = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.Constraint_PackagedElementShape_CN"); //$NON-NLS-1$
 
@@ -909,8 +909,8 @@ public class UMLElementTypes {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static IElementType getElementTypeByUniqueId(String id) {
 		return ElementTypeRegistry.getInstance().getType(id);
 	}

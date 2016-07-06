@@ -136,7 +136,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 
 		if (childEditPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((TemplateSignatureTemplateParameterCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

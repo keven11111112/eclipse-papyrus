@@ -195,7 +195,7 @@ public class SubjectClassifierEditPartTN extends SubjectNodeEditPart {
 
 		if (childEditPart instanceof SubjectComponentUsecasesEditPart) {
 			IFigure pane = getPrimaryShape().getUseCasesContainerFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((SubjectComponentUsecasesEditPart) childEditPart).getFigure());
 			return true;
 		}

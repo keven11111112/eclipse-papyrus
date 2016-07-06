@@ -60,8 +60,8 @@ public class UMLDiagramContentInitializer {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private void createPackage_CompositeStructureDiagram_Children(View view) {
 		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE
 				.getPackage_CompositeStructureDiagram_SemanticChildren(view);
@@ -420,8 +420,8 @@ public class UMLDiagramContentInitializer {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private void createStringExpression_PackagedElementShape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors
@@ -1613,8 +1613,8 @@ public class UMLDiagramContentInitializer {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private Node getCompartment(View node, String visualID) {
 		String type = UMLVisualIDRegistry.getType(visualID);
 		for (Iterator it = node.getChildren().iterator(); it.hasNext();) {

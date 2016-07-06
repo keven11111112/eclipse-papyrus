@@ -467,8 +467,8 @@ public class Messages extends NLS {
 	public static String StateCompartmentEditPart_title;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static String StateCompartmentEditPartTN_title;
 
 	/**

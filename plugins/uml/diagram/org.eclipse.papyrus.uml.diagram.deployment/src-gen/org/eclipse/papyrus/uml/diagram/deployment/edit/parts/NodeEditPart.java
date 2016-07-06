@@ -164,7 +164,7 @@ public class NodeEditPart extends NamedElementEditPart {
 
 		if (childEditPart instanceof NodeCompositeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((NodeCompositeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

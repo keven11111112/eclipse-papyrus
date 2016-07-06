@@ -50,8 +50,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private final static String DEPLOYMENT_TOOL_DEVICE = "deployment.tool.device";//$NON-NLS-1$
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private final static String DEPLOYMENT_TOOL_DEPLOYMENTSPECIFICATION = "deployment.tool.deploymentspecification";//$NON-NLS-1$
 
 	/**
@@ -105,8 +105,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private final static String DEPLOYMENT_TOOL_MANIFESTATION = "deployment.tool.manifestation";//$NON-NLS-1$
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private final static String DEPLOYMENT_TOOL_COMMUNICATIONPATH = "deployment.tool.communicationpath";//$NON-NLS-1$
 
 	/**
@@ -206,8 +206,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private Tool createCommunicationPath1CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.CommunicationPath_Edge);
@@ -240,8 +240,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private Tool createDeploymentSpecification5CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(UMLElementTypes.DeploymentSpecification_Shape);

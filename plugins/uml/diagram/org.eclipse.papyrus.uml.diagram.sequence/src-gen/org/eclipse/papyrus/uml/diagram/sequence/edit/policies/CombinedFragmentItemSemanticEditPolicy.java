@@ -101,7 +101,7 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
-		
+
 		if (UMLElementTypes.Message_SynchEdge == baseElementType) {
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -141,7 +141,7 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
-		
+
 		if (UMLElementTypes.Message_SynchEdge == baseElementType) {
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}

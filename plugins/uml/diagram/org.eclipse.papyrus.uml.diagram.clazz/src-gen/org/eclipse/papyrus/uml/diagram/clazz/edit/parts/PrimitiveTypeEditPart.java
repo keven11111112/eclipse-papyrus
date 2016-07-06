@@ -103,8 +103,8 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.clazz.edit.policies.PrimitiveTypeCanonicalEditPolicy());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.clazz.edit.policies.PrimitiveTypeCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
@@ -220,19 +220,19 @@ public class PrimitiveTypeEditPart extends ClassifierEditPart {
 
 		if (childEditPart instanceof PrimitiveTypeAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((PrimitiveTypeAttributeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
 
 		if (childEditPart instanceof PrimitiveTypeOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((PrimitiveTypeOperationCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
 
-		//Papyrus Gencode :precise the locator for a template signature
+		// Papyrus Gencode :precise the locator for a template signature
 		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer()

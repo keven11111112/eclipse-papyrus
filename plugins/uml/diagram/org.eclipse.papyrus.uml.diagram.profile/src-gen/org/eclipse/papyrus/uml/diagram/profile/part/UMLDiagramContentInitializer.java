@@ -119,8 +119,8 @@ public class UMLDiagramContentInitializer {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private void createProfile_ProfileDiagram_Children(View view) {
 		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getProfile_ProfileDiagram_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
@@ -183,8 +183,8 @@ public class UMLDiagramContentInitializer {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private void createConstraint_PackagedElementShape_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getConstraint_PackagedElementShape_OutgoingLinks(view));
@@ -381,8 +381,8 @@ public class UMLDiagramContentInitializer {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private void createConstraint_PackagedElementShape_CN_Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.INSTANCE.getConstraint_PackagedElementShape_CN_OutgoingLinks(view));
@@ -798,8 +798,8 @@ public class UMLDiagramContentInitializer {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private Node getCompartment(View node, String visualID) {
 		String type = UMLVisualIDRegistry.getType(visualID);
 		for (Iterator it = node.getChildren().iterator(); it.hasNext();) {

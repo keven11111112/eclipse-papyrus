@@ -120,7 +120,7 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 
 			@Override
 			public void setVisible(boolean visible) {
-				if(visible) {
+				if (visible) {
 					String fileName = diagramModelFilePage.getFileName();
 					fileName = fileName.substring(0, fileName.length() - ".PapyrusUMLStateMachine_diagram".length()); //$NON-NLS-1$
 					setFileName(UMLDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), fileName, "PapyrusUMLStateMachine")); //$NON-NLS-1$
@@ -143,7 +143,7 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 			@Override
 			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
 				diagram = UMLDiagramEditorUtil.createDiagram(diagramModelFilePage.getURI(), domainModelFilePage.getURI(), monitor);
-				if(isOpenNewlyCreatedDiagramEditor() && diagram != null) {
+				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
 						UMLDiagramEditorUtil.openDiagram(diagram);
 					} catch (PartInitException e) {
@@ -157,8 +157,8 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 		} catch (InterruptedException e) {
 			return false;
 		} catch (InvocationTargetException e) {
-			if(e.getTargetException() instanceof CoreException) {
-				ErrorDialog.openError(getContainer().getShell(), Messages.UMLCreationWizardCreationError, null, ((CoreException)e.getTargetException()).getStatus());
+			if (e.getTargetException() instanceof CoreException) {
+				ErrorDialog.openError(getContainer().getShell(), Messages.UMLCreationWizardCreationError, null, ((CoreException) e.getTargetException()).getStatus());
 			} else {
 				UMLDiagramEditorPlugin.getInstance().logError("Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}

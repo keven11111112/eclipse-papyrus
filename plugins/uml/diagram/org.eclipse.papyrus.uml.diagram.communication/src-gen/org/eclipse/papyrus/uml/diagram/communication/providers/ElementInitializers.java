@@ -36,8 +36,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_Interaction_Shape(Interaction instance) {
 		try {
 			Object value_0 = name_Interaction_Shape(instance);

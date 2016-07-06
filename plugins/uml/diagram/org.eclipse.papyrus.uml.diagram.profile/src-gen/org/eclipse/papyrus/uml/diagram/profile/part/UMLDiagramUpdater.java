@@ -129,7 +129,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	protected UMLDiagramUpdater() {
-		//to prevent instantiation allowing the override
+		// to prevent instantiation allowing the override
 	}
 
 	/**
@@ -189,8 +189,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<UMLNodeDescriptor> getProfile_ProfileDiagram_SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.emptyList();
@@ -1311,8 +1311,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<UMLLinkDescriptor> getProfile_ProfileDiagram_ContainedLinks(View view) {
 		Profile modelElement = (Profile) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -1393,8 +1393,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<UMLLinkDescriptor> getConstraint_PackagedElementShape_ContainedLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -1650,8 +1650,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<UMLLinkDescriptor> getConstraint_PackagedElementShape_CN_ContainedLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -1881,8 +1881,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<UMLLinkDescriptor> getConstraint_PackagedElementShape_IncomingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
@@ -2220,8 +2220,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<UMLLinkDescriptor> getConstraint_PackagedElementShape_CN_IncomingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
@@ -2517,8 +2517,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<UMLLinkDescriptor> getConstraint_PackagedElementShape_OutgoingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -2778,8 +2778,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<UMLLinkDescriptor> getConstraint_PackagedElementShape_CN_OutgoingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -2921,8 +2921,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Extension_Edge(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
@@ -3163,8 +3163,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Extension_Edge(Class target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -3191,8 +3191,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Association_Edge(Type target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -3219,8 +3219,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_ProfileApplication_Edge(Profile target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -3242,8 +3242,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Association_BranchEdge(Type target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -3270,8 +3270,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Generalization_Edge(Classifier target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -3297,8 +3297,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Dependency_Edge(NamedElement target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -3325,8 +3325,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Dependency_BranchEdge(NamedElement target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -3353,8 +3353,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_ElementImport_Edge(PackageableElement target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -3376,8 +3376,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_PackageImport_Edge(Package target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -3399,8 +3399,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(
 			Element target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -3415,8 +3415,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(
 			Element target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -3432,8 +3432,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(Namespace target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();

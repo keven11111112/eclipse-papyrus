@@ -156,7 +156,7 @@ public class UseCaseAsRectangleEditPartTN extends NamedElementEditPart {
 
 		if (childEditPart instanceof UseCasePointsInRectangleEditPart) {
 			IFigure pane = getPrimaryShape().getExtensionPointContainerFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((UseCasePointsInRectangleEditPart) childEditPart).getFigure());
 			return true;
 		}

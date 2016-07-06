@@ -119,9 +119,8 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<UMLNodeDescriptor> childDescriptors =
-				UMLDiagramUpdater.INSTANCE
-						.getPackage_CommunicationDiagram_SemanticChildren((View) getHost().getModel());
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.INSTANCE
+				.getPackage_CommunicationDiagram_SemanticChildren((View) getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
@@ -203,10 +202,8 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		Domain2Notation domain2NotationMap = new Domain2Notation();
 		Collection<UMLLinkDescriptor> linkDescriptors = collectAllLinks(getDiagram(), domain2NotationMap);
 		List<View> edges = new ArrayList<View>();
-		for (Object edge : getDiagram().getEdges())
-		{
-			if (edge instanceof View)
-			{
+		for (Object edge : getDiagram().getEdges()) {
+			if (edge instanceof View) {
 				edges.add((View) edge);
 			}
 		}

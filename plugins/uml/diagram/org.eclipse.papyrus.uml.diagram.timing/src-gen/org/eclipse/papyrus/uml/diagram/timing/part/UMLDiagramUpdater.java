@@ -88,7 +88,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	protected UMLDiagramUpdater() {
-		//to prevent instantiation allowing the override
+		// to prevent instantiation allowing the override
 	}
 
 	/**
@@ -123,8 +123,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<UMLNodeDescriptor> getPackage_TimingDiagram_SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.emptyList();
@@ -408,8 +408,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public List<UMLLinkDescriptor> getPackage_TimingDiagram_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
@@ -1252,8 +1252,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_SynchEdge(MessageEnd target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -1275,8 +1275,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_AsynchEdge(MessageEnd target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -1298,8 +1298,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_ReplyEdge(MessageEnd target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -1321,8 +1321,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_CreateEdge(MessageEnd target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -1344,8 +1344,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_DeleteEdge(MessageEnd target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -1367,8 +1367,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_LostEdge(Element target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -1390,8 +1390,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	  * @generated
-	  */
+	 * @generated
+	 */
 	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_FoundEdge(MessageEnd target,
 			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();

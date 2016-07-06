@@ -91,8 +91,8 @@ public class UMLElementTypes {
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final IElementType Package_UseCaseDiagram = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.Package_UseCaseDiagram"); //$NON-NLS-1$
 
@@ -408,8 +408,8 @@ public class UMLElementTypes {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static IElementType getElementTypeByUniqueId(String id) {
 		return ElementTypeRegistry.getInstance().getType(id);
 	}

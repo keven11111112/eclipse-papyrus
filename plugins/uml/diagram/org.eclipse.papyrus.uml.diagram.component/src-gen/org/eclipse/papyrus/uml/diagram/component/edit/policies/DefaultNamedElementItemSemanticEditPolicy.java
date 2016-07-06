@@ -107,7 +107,7 @@ public class DefaultNamedElementItemSemanticEditPolicy extends UMLBaseItemSemant
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
-		
+
 		if (UMLElementTypes.Usage_Edge == baseElementType) {
 			return getGEFWrapper(new UsageCreateCommand(req,
 					req.getSource(), req.getTarget()));
@@ -158,7 +158,7 @@ public class DefaultNamedElementItemSemanticEditPolicy extends UMLBaseItemSemant
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
-		
+
 		if (UMLElementTypes.Usage_Edge == baseElementType) {
 			return getGEFWrapper(new UsageCreateCommand(req,
 					req.getSource(), req.getTarget()));

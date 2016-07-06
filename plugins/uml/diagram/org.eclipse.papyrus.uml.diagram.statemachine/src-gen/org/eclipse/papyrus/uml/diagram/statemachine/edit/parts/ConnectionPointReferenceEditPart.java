@@ -102,17 +102,17 @@ public class ConnectionPointReferenceEditPart extends AbstractBorderEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
+				View childView = (View) child.getModel();
 				String vid = UMLVisualIDRegistry.getVisualID(childView);
-				if(vid != null) {
-					switch(vid) {
+				if (vid != null) {
+					switch (vid) {
 					case ConnectionPointReferenceNameEditPart.VISUAL_ID:
 					case ConnectionPointReferenceStereotypeEditPart.VISUAL_ID:
 						return new BorderItemSelectionEditPolicy() {
 
 							@Override
 							protected List<?> createSelectionHandles() {
-								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 								mh.setBorder(null);
 								return Collections.singletonList(mh);
 							}
@@ -120,7 +120,7 @@ public class ConnectionPointReferenceEditPart extends AbstractBorderEditPart {
 					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -150,11 +150,11 @@ public class ConnectionPointReferenceEditPart extends AbstractBorderEditPart {
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View)getModel()).getChildren();
-			if(false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
-				if(modelChildren.contains(event.getNotifier())) {
+			List<?> modelChildren = ((View) getModel()).getChildren();
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
@@ -176,7 +176,7 @@ public class ConnectionPointReferenceEditPart extends AbstractBorderEditPart {
 	 */
 	@Override
 	public ConnectionPointReferenceFigure getPrimaryShape() {
-		return (ConnectionPointReferenceFigure)primaryShape;
+		return (ConnectionPointReferenceFigure) primaryShape;
 	}
 
 	/**
@@ -184,11 +184,11 @@ public class ConnectionPointReferenceEditPart extends AbstractBorderEditPart {
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof ConnectionPointReferenceStereotypeEditPart) {
+		if (borderItemEditPart instanceof ConnectionPointReferenceStereotypeEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if(borderItemEditPart instanceof ConnectionPointReferenceNameEditPart) {
+		} else if (borderItemEditPart instanceof ConnectionPointReferenceNameEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -239,7 +239,7 @@ public class ConnectionPointReferenceEditPart extends AbstractBorderEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -250,7 +250,7 @@ public class ConnectionPointReferenceEditPart extends AbstractBorderEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -268,8 +268,8 @@ public class ConnectionPointReferenceEditPart extends AbstractBorderEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

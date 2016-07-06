@@ -54,8 +54,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_Interaction_Shape(Interaction instance) {
 		try {
 			Object value_0 = name_Interaction_Shape(instance);
@@ -184,8 +184,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_TimeObservation_Shape(TimeObservation instance) {
 		try {
 			Object value_0 = name_TimeObservation_Shape(instance);
@@ -216,8 +216,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_DestructionOccurrenceSpecification_Shape(DestructionOccurrenceSpecification instance) {
 		try {
 			Object value_0 = name_DestructionOccurrenceSpecification_Shape(instance);
@@ -324,8 +324,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_DurationObservation_Shape(DurationObservation instance) {
 		try {
 			Object value_0 = name_DurationObservation_Shape(instance);

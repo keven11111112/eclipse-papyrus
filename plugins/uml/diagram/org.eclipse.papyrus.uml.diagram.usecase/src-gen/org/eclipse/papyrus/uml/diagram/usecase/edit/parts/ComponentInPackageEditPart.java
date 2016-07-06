@@ -195,7 +195,7 @@ public class ComponentInPackageEditPart extends SubjectNodeEditPart {
 
 		if (childEditPart instanceof ComponentUsecases3EditPart) {
 			IFigure pane = getPrimaryShape().getUseCasesContainerFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ComponentUsecases3EditPart) childEditPart).getFigure());
 			return true;
 		}

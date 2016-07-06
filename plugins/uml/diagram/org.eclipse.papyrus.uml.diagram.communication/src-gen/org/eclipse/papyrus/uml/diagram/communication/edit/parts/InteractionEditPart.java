@@ -199,7 +199,7 @@ public class InteractionEditPart extends AbstractInteractionEditPart {
 
 		if (childEditPart instanceof InteractionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((InteractionCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

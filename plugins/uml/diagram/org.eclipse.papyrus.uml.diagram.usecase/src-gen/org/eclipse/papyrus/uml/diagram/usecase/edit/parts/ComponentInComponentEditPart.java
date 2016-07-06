@@ -153,7 +153,7 @@ public class ComponentInComponentEditPart extends NamedElementEditPart {
 
 		if (childEditPart instanceof ComponentUsecases2EditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseSubjectFigure_contents();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ComponentUsecases2EditPart) childEditPart).getFigure());
 			return true;
 		}

@@ -102,7 +102,7 @@ public class BehaviorExecutionSpecificationItemSemanticEditPolicy extends UMLBas
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
-		
+
 		if (UMLElementTypes.Message_SynchEdge == baseElementType) {
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -143,7 +143,7 @@ public class BehaviorExecutionSpecificationItemSemanticEditPolicy extends UMLBas
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
-		
+
 		if (UMLElementTypes.Message_SynchEdge == baseElementType) {
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}

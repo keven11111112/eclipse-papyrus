@@ -81,8 +81,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class UMLParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private IParser dependency_MultiNameLabel_Parser;
 
 	/**
@@ -828,8 +828,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected IParser getParser(String visualID) {
 		if (visualID != null) {
 			switch (visualID) {

@@ -559,8 +559,8 @@ public class Messages extends NLS {
 	public static String CommandName_OpenDiagram;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Package_SequenceDiagram_links;
 
 	/**
