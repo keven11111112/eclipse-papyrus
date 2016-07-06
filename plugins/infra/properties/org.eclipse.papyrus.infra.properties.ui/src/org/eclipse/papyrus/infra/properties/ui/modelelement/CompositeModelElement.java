@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 417409
+ *  Alain Le Guennec (Esterel Technologies SAS) - bug 497372
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.modelelement;
@@ -46,6 +47,18 @@ public class CompositeModelElement extends AbstractModelElement {
 		super();
 
 		this.subModelElementFactory = subModelElementFactory;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void dispose() {
+		for (ModelElement element : elements) {
+			element.dispose();
+		}
+		super.dispose();
+		elements.clear();
 	}
 
 	@Override
