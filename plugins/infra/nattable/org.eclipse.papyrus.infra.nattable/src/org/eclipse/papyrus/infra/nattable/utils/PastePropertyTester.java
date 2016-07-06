@@ -67,11 +67,16 @@ public class PastePropertyTester extends PropertyTester {
 					// - rows when only rows are selected (and no single cells selected)
 					// - columns when only columns are selected (and no single cells selected)
 					result = false;
-					if (TypeSelectionEnum.CELL.equals(typeSelection) && TypeSelectionEnum.CELL.equals(typeSelectionFromWrapper)) {
-						result = tableSelectionWrapper.getFullySelectedColumns().isEmpty()
-								&& tableSelectionWrapper.getFullySelectedRows().isEmpty()
-								&& !tableSelectionWrapper.getSelectedCells().isEmpty()
-								&& tableSelectionWrapper.isContinuousCells();
+					
+					if (TypeSelectionEnum.CELL.equals(typeSelection)) {
+						if(TypeSelectionEnum.NONE.equals(typeSelectionFromWrapper)){
+							result = true;
+						}else if(TypeSelectionEnum.CELL.equals(typeSelectionFromWrapper)){
+							result = tableSelectionWrapper.getFullySelectedColumns().isEmpty()
+									&& tableSelectionWrapper.getFullySelectedRows().isEmpty()
+									&& !tableSelectionWrapper.getSelectedCells().isEmpty()
+									&& tableSelectionWrapper.isContinuousCells();
+						}
 					} else if (TypeSelectionEnum.ROW.equals(typeSelection) && TypeSelectionEnum.ROW.equals(typeSelectionFromWrapper)) {
 						result = tableSelectionWrapper.getFullySelectedColumns().isEmpty()
 								&& !tableSelectionWrapper.getFullySelectedRows().isEmpty()
