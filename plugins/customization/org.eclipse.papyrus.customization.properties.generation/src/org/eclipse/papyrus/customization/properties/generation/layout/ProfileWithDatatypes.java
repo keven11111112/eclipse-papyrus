@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Sebastien Gabel (Esterel Technologies SAS) - bug 497374 
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.layout;
 
@@ -207,7 +209,7 @@ public class ProfileWithDatatypes extends StandardLayoutGenerator {
 		public TypeCategory(Property property) {
 			super(property);
 			org.eclipse.uml2.uml.Property attribute = resolveProperty(property);
-			if (attribute != null) {
+			if (attribute != null && attribute.getType() != null) {
 				isDatatype = attribute.getType().eClass() == UMLPackage.eINSTANCE.getDataType();
 			}
 		}
