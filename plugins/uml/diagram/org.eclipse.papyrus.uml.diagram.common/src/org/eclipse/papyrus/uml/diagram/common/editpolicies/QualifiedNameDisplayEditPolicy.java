@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Alain Le Guennec (Esterel Technologies SAS) - bug 497391
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
@@ -224,8 +225,11 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 	 * Remove all parents listeners
 	 */
 	public void removeParentListeners() {
-		for (Object listener : parentListeners) {
-			getDiagramEventBroker().removeNotificationListener((EObject) listener, this);
+		if (parentListeners != null) {
+			for (Object listener : parentListeners) {
+				getDiagramEventBroker().removeNotificationListener((EObject) listener, this);
+			}
+			parentListeners.clear();
 		}
 	}
 }
