@@ -113,7 +113,7 @@ public class DurationConstraintInMessageItemSemanticEditPolicy extends UMLBaseIt
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
-		
+
 		if (UMLElementTypes.Message_SynchEdge == baseElementType) {
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -156,7 +156,7 @@ public class DurationConstraintInMessageItemSemanticEditPolicy extends UMLBaseIt
 			return null;
 		}
 		IElementType baseElementType = requestElementType;
-		
+
 		if (UMLElementTypes.Message_SynchEdge == baseElementType) {
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}

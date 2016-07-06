@@ -20,8 +20,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.updater.UpdaterNodeDescriptor;
 public class UMLNodeDescriptor extends UpdaterNodeDescriptor {
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public UMLNodeDescriptor(EObject modelElement, String visualID) {
 		super(modelElement, visualID);
 	}

@@ -23,8 +23,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPoli
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.AssociationFigure;
 
 /**
-	 * @generated
-	 */
+ * @generated
+ */
 public class CommunicationPathEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**

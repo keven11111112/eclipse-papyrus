@@ -94,8 +94,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_Activity_Shape(Activity instance) {
 		try {
 			Object value_0 = name_Activity_Shape(instance);
@@ -574,8 +574,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_StringExpression_PackagedElementShape(StringExpression instance) {
 		try {
 			Object value_0 = name_StringExpression_PackagedElementShape(instance);
@@ -1750,8 +1750,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String name_StringExpression_PackagedElementShape(StringExpression it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}

@@ -165,7 +165,7 @@ public class ExecutionEnvironmentEditPart extends NamedElementEditPart {
 
 		if (childEditPart instanceof ExecutionEnvironmentCompositeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ExecutionEnvironmentCompositeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

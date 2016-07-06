@@ -361,105 +361,105 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateMessage_SynchEdge(Interaction container, MessageEnd source, MessageEnd target) {
 			return canExistMessage_SynchEdge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateMessage_AsynchEdge(Interaction container, MessageEnd source, MessageEnd target) {
 			return canExistMessage_AsynchEdge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateMessage_ReplyEdge(Interaction container, MessageEnd source, MessageEnd target) {
 			return canExistMessage_ReplyEdge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateMessage_CreateEdge(Interaction container, MessageEnd source, MessageEnd target) {
 			return canExistMessage_CreateEdge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateMessage_DeleteEdge(Interaction container, MessageEnd source, MessageEnd target) {
 			return canExistMessage_DeleteEdge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateMessage_LostEdge(Interaction container, MessageEnd source, Element target) {
 			return canExistMessage_LostEdge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateMessage_FoundEdge(Interaction container, Element source, MessageEnd target) {
 			return canExistMessage_FoundEdge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistMessage_SynchEdge(Interaction container, Message linkInstance, MessageEnd source,
 				MessageEnd target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistMessage_AsynchEdge(Interaction container, Message linkInstance, MessageEnd source,
 				MessageEnd target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistMessage_ReplyEdge(Interaction container, Message linkInstance, MessageEnd source,
 				MessageEnd target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistMessage_CreateEdge(Interaction container, Message linkInstance, MessageEnd source,
 				MessageEnd target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistMessage_DeleteEdge(Interaction container, Message linkInstance, MessageEnd source,
 				MessageEnd target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistMessage_LostEdge(Interaction container, Message linkInstance, MessageEnd source,
 				Element target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistMessage_FoundEdge(Interaction container, Message linkInstance, Element source,
 				MessageEnd target) {
 			return true;

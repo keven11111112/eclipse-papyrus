@@ -204,7 +204,7 @@ public class EnumerationEditPart extends RoundedCompartmentEditPart {
 
 		if (childEditPart instanceof EnumerationEnumerationLiteralCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getEnumerationLiteralCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((EnumerationEnumerationLiteralCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

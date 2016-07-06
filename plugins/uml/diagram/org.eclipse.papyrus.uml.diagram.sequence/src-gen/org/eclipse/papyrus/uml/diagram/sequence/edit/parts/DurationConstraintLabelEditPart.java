@@ -262,8 +262,8 @@ public class DurationConstraintLabelEditPart extends PapyrusLabelEditPart
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void setParser(IParser parser) {
 		this.parser = parser;
 	}
@@ -523,8 +523,8 @@ public class DurationConstraintLabelEditPart extends PapyrusLabelEditPart
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	protected void initializeDirectEditManager(final Request request) {
 		// initialize the direct edit manager
 		try {
@@ -686,11 +686,11 @@ public class DurationConstraintLabelEditPart extends PapyrusLabelEditPart
 	}
 
 	/**
-	   * Returns the kind of associated editor for direct edition.
-	   * 
-	   * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
-	   * @generated
-	   */
+	 * Returns the kind of associated editor for direct edition.
+	 * 
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
+	 * @generated
+	 */
 	public int getDirectEditionType() {
 		if (checkExtendedEditor()) {
 			initExtendedEditorConfiguration();
@@ -729,6 +729,7 @@ public class DurationConstraintLabelEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Initializes the extended editor configuration
+	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -747,6 +748,7 @@ public class DurationConstraintLabelEditPart extends PapyrusLabelEditPart
 
 	/**
 	 * Updates the preference configuration
+	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -762,10 +764,12 @@ public class DurationConstraintLabelEditPart extends PapyrusLabelEditPart
 	}
 
 	/**
-	* Performs the direct edit usually used by GMF editors.
-	* @param theRequest the direct edit request that starts the direct edit system
-	* @generated
-	*/
+	 * Performs the direct edit usually used by GMF editors.
+	 * 
+	 * @param theRequest
+	 *            the direct edit request that starts the direct edit system
+	 * @generated
+	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {

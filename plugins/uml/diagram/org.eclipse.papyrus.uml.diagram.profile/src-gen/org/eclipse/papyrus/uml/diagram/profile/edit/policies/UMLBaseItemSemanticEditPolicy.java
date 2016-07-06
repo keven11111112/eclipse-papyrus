@@ -377,71 +377,71 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateExtension_Edge(Package container, Property source, Class target) {
 			return canExistExtension_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateAssociation_Edge(Package container, Type source, Type target) {
 			return canExistAssociation_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateProfileApplication_Edge(Package container, Package source, Profile target) {
 			return canExistProfileApplication_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateAssociation_BranchEdge(Package container, Type source, Type target) {
 			return canExistAssociation_BranchEdge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateGeneralization_Edge(Classifier source, Classifier target) {
 			return canExistGeneralization_Edge(null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateDependency_Edge(Package container, NamedElement source, NamedElement target) {
 			return canExistDependency_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateDependency_BranchEdge(Package container, NamedElement source, NamedElement target) {
 			return canExistDependency_BranchEdge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateElementImport_Edge(Namespace container, Namespace source, PackageableElement target) {
 			return canExistElementImport_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreatePackageImport_Edge(Namespace container, Namespace source, Package target) {
 			return canExistPackageImport_Edge(container, null, source, target);
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateComment_AnnotatedElementEdge(Comment source, Element target) {
 			if (source != null) {
 				if (source.getAnnotatedElements().contains(target)) {
@@ -453,8 +453,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			if (source != null) {
 				if (source.getConstrainedElements().contains(target)) {
@@ -466,8 +466,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canCreateConstraint_ContextEdge(Constraint source, Namespace target) {
 			if (source != null) {
 				if (source.getContext() != null) {
@@ -482,22 +482,24 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistExtension_Edge(Package container, Extension linkInstance, Property source,
 				Class target) {
 			try {
-				//ExtensionSource
-				/**we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
+				// ExtensionSource
+				/**
+				 * we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
 				 * 
 				 * @see org.eclipse.papyrus.uml.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
-				*/
-				//ExtensionTarget
+				 */
+				// ExtensionTarget
 
-				/**we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
+				/**
+				 * we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
 				 * 
 				 * @see org.eclipse.papyrus.uml.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
-				*/
+				 */
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
@@ -506,18 +508,18 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistAssociation_Edge(Package container, Association linkInstance, Type source, Type target) {
 			try {
-				//AssociationSource
+				// AssociationSource
 				if ((source instanceof Type) && Util.isMetaclass((Type) source)) {
 					return false;
 				}
 				if (source instanceof Extension) {
 					return false;
 				}
-				//AssociationTarget
+				// AssociationTarget
 				if (target != null) {
 					if (target instanceof Extension) {
 						return false;
@@ -531,27 +533,27 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistProfileApplication_Edge(Package container, ProfileApplication linkInstance,
 				Package source, Profile target) {
 			return true;
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistAssociation_BranchEdge(Package container, Association linkInstance, Type source,
 				Type target) {
 			try {
-				//AssociationSource
+				// AssociationSource
 				if ((source instanceof Type) && Util.isMetaclass((Type) source)) {
 					return false;
 				}
 				if (source instanceof Extension) {
 					return false;
 				}
-				//AssociationTarget
+				// AssociationTarget
 				if (target != null) {
 					if (target instanceof Extension) {
 						return false;
@@ -565,11 +567,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistGeneralization_Edge(Generalization linkInstance, Classifier source, Classifier target) {
 			try {
-				//GeneralizationSource
+				// GeneralizationSource
 				if (!(source instanceof Classifier)) {
 					return false;
 				}
@@ -577,9 +579,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 				if (source instanceof Extension) {
-					return false; //meaningless
+					return false; // meaningless
 				}
-				//GeneralizationTarget
+				// GeneralizationTarget
 				if (target != null) {
 					if (!(target instanceof Classifier)) {
 						return false;
@@ -588,7 +590,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						return false;
 					}
 					if (target instanceof Extension) {
-						return false;//meaningless
+						return false;// meaningless
 					}
 				}
 				return true;
@@ -599,19 +601,19 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistDependency_Edge(Package container, Dependency linkInstance, NamedElement source,
 				NamedElement target) {
 			try {
-				//DependencySource
+				// DependencySource
 				if ((source instanceof Type) && Util.isMetaclass((Type) source)) {
 					return false;
 				}
 				if (source instanceof Extension) {
 					return false;
 				}
-				//DependencyTarget 
+				// DependencyTarget
 				if (target != null) {
 					if (target instanceof Extension) {
 						return false;
@@ -625,19 +627,19 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistDependency_BranchEdge(Package container, Dependency linkInstance, NamedElement source,
 				NamedElement target) {
 			try {
-				//DependencySource
+				// DependencySource
 				if ((source instanceof Type) && Util.isMetaclass((Type) source)) {
 					return false;
 				}
 				if (source instanceof Extension) {
 					return false;
 				}
-				//DependencyTarget 
+				// DependencyTarget
 				if (target != null) {
 					if (target instanceof Extension) {
 						return false;
@@ -651,19 +653,19 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistElementImport_Edge(Namespace container, ElementImport linkInstance, Namespace source,
 				PackageableElement target) {
 			try {
-				//ElementImportSource
+				// ElementImportSource
 				if ((source instanceof Type) && Util.isMetaclass((Type) source)) {
 					return false;
 				}
 				if (source instanceof Extension) {
 					return false;
 				}
-				//ElementImportTarget
+				// ElementImportTarget
 				if (target != null) {
 					if (target instanceof Extension) {
 						return false;
@@ -677,12 +679,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistPackageImport_Edge(Namespace container, PackageImport linkInstance, Namespace source,
 				Package target) {
 			try {
-				//PackageImportSource
+				// PackageImportSource
 				if ((source instanceof Type) && Util.isMetaclass((Type) source)) {
 					return false;
 				}
@@ -697,11 +699,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistComment_AnnotatedElementEdge(Comment source, Element target) {
 			try {
-				//AnnotatedElementLink target
+				// AnnotatedElementLink target
 				if ((target instanceof Type) && Util.isMetaclass((Type) target)) {
 					return false;
 				}
@@ -713,11 +715,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			try {
-				//ConstraintedElementLink
+				// ConstraintedElementLink
 				if ((target instanceof Type) && Util.isMetaclass((Type) target)) {
 					return false;
 				}
@@ -729,8 +731,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		* @generated
-		*/
+		 * @generated
+		 */
 		public boolean canExistConstraint_ContextEdge(Constraint source, Namespace target) {
 			return true;
 		}

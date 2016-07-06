@@ -149,8 +149,8 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static String getType(String visualID) {
 		return visualID;
 	}
@@ -637,8 +637,8 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static boolean isMessage_SynchEdge(Message domainElement) {
 		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getMessage(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
@@ -697,11 +697,11 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
 		if (candidate == null) {
-			//unrecognized id is always bad
+			// unrecognized id is always bad
 			return false;
 		}
 		String basic = getNodeVisualID(containerView, domainElement);

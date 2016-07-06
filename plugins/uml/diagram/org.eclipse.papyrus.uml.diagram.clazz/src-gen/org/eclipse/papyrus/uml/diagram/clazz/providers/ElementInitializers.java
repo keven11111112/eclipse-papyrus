@@ -59,8 +59,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_AssociationClass_Shape(AssociationClass instance) {
 		try {
 			Object value_0 = name_AssociationClass_Shape(instance);
@@ -227,8 +227,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_Constraint_PackagedElementShape(Constraint instance) {
 		try {
 			Object value_0 = name_Constraint_PackagedElementShape(instance);
@@ -501,8 +501,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_Reception_ReceptionLabel(Reception instance) {
 		try {
 			Object value_0 = name_Reception_ReceptionLabel(instance);
@@ -711,8 +711,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_Constraint_PackagedElementShape_CN(Constraint instance) {
 		try {
 			Object value_0 = name_Constraint_PackagedElementShape_CN(instance);
@@ -1135,8 +1135,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String name_AssociationClass_Shape(AssociationClass it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
@@ -1219,8 +1219,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String name_Constraint_PackagedElementShape(Constraint it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
@@ -1354,8 +1354,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String name_Reception_ReceptionLabel(Reception it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
@@ -1452,8 +1452,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String name_Constraint_PackagedElementShape_CN(Constraint it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}

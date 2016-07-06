@@ -43,8 +43,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_Stereotype_Shape(Stereotype instance) {
 		try {
 			Object value_0 = name_Stereotype_Shape(instance);
@@ -99,8 +99,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_Constraint_PackagedElementShape(Constraint instance) {
 		try {
 			Object value_0 = name_Constraint_PackagedElementShape(instance);
@@ -383,8 +383,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_Constraint_PackagedElementShape_CN(Constraint instance) {
 		try {
 			Object value_0 = name_Constraint_PackagedElementShape_CN(instance);
@@ -502,7 +502,7 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private Boolean isAbstract_Class_MetaclassShape(Class it) {
-		//isAbstract = true
+		// isAbstract = true
 		return true;
 	}
 
@@ -514,8 +514,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String name_Constraint_PackagedElementShape(Constraint it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
@@ -631,7 +631,7 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private Boolean isAbstract_Class_MetaclassShape_CN(Class it) {
-		//isAbstract = true
+		// isAbstract = true
 		return true;
 	}
 
@@ -664,8 +664,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private String name_Constraint_PackagedElementShape_CN(Constraint it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}

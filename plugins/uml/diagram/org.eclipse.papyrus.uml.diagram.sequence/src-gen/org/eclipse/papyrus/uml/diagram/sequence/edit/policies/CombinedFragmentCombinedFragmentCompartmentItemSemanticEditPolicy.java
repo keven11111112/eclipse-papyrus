@@ -44,7 +44,7 @@ public class CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy e
 			return super.getCreateCommand(req);
 		}
 		IElementType baseElementType = requestElementType;
-		
+
 		if (UMLElementTypes.InteractionOperand_Shape == baseElementType) {
 			return getGEFWrapper(new InteractionOperandCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}

@@ -56,8 +56,8 @@ public class UMLElementTypes {
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final IElementType Package_CompositeStructureDiagram = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.Package_CompositeStructureDiagram"); //$NON-NLS-1$
 
@@ -261,8 +261,8 @@ public class UMLElementTypes {
 			"org.eclipse.papyrus.umldi.LiteralUnlimitedNatural_Shape"); //$NON-NLS-1$
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final IElementType StringExpression_PackagedElementShape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.StringExpression_PackagedElementShape"); //$NON-NLS-1$
 
@@ -942,8 +942,8 @@ public class UMLElementTypes {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static IElementType getElementTypeByUniqueId(String id) {
 		return ElementTypeRegistry.getInstance().getType(id);
 	}

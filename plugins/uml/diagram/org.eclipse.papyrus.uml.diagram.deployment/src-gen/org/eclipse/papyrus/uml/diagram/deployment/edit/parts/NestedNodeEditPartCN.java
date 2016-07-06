@@ -152,7 +152,7 @@ public class NestedNodeEditPartCN extends NodeEditPart {
 
 		if (childEditPart instanceof NodeCompositeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((NodeCompositeCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}

@@ -147,8 +147,8 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static String getType(String visualID) {
 		return visualID;
 	}
@@ -274,8 +274,8 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static boolean canCreateNode(View containerView, String nodeVisualID) {
 		String containerModelID = org.eclipse.papyrus.uml.diagram.timing.part.UMLVisualIDRegistry
 				.getModelID(containerView);
@@ -714,11 +714,11 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
 		if (candidate == null) {
-			//unrecognized id is always bad
+			// unrecognized id is always bad
 			return false;
 		}
 		String basic = getNodeVisualID(containerView, domainElement);

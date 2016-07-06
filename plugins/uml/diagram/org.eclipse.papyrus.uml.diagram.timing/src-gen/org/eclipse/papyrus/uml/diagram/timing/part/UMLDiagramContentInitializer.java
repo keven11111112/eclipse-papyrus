@@ -89,8 +89,8 @@ public class UMLDiagramContentInitializer {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private void createPackage_TimingDiagram_Children(View view) {
 		Collection childNodeDescriptors = UMLDiagramUpdater.INSTANCE.getPackage_TimingDiagram_SemanticChildren(view);
 		for (Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
@@ -431,8 +431,8 @@ public class UMLDiagramContentInitializer {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private Node getCompartment(View node, String visualID) {
 		String type = UMLVisualIDRegistry.getType(visualID);
 		for (Iterator it = node.getChildren().iterator(); it.hasNext();) {

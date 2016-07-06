@@ -42,8 +42,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public void init_Model_Shape(Model instance) {
 		try {
 			Object value_0 = name_Model_Shape(instance);

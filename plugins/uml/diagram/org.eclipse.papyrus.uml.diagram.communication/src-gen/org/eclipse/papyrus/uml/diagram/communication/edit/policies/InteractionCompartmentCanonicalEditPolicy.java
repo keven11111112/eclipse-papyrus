@@ -129,9 +129,8 @@ public class InteractionCompartmentCanonicalEditPolicy extends CanonicalEditPoli
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<UMLNodeDescriptor> childDescriptors =
-				UMLDiagramUpdater.INSTANCE
-						.getInteraction_SubfragmentCompartment_SemanticChildren((View) getHost().getModel());
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.INSTANCE
+				.getInteraction_SubfragmentCompartment_SemanticChildren((View) getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();

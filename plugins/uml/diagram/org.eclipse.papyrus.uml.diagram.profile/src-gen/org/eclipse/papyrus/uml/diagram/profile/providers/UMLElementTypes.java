@@ -99,8 +99,8 @@ public class UMLElementTypes {
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final IElementType Profile_ProfileDiagram = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.Profile_ProfileDiagram"); //$NON-NLS-1$
 
@@ -140,8 +140,8 @@ public class UMLElementTypes {
 			"org.eclipse.papyrus.umldi.Comment_Shape"); //$NON-NLS-1$
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final IElementType Constraint_PackagedElementShape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.Constraint_PackagedElementShape"); //$NON-NLS-1$
 
@@ -265,8 +265,8 @@ public class UMLElementTypes {
 			"org.eclipse.papyrus.umldi.Package_Shape_CN"); //$NON-NLS-1$
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static final IElementType Constraint_PackagedElementShape_CN = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.Constraint_PackagedElementShape_CN"); //$NON-NLS-1$
 
@@ -482,8 +482,8 @@ public class UMLElementTypes {
 	}
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	private static IElementType getElementTypeByUniqueId(String id) {
 		return ElementTypeRegistry.getInstance().getType(id);
 	}

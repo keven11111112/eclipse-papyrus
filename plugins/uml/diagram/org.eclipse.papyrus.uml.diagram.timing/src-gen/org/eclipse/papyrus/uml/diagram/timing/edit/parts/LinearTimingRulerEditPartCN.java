@@ -129,7 +129,7 @@ public class LinearTimingRulerEditPartCN extends NodeEditPart {
 
 		if (childEditPart instanceof LinearTimeRulerCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getLinearTimeRulerContainerFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((LinearTimeRulerCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

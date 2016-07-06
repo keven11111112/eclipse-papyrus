@@ -292,8 +292,8 @@ public class Messages extends NLS {
 	public static String PackageCreationTool_desc;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static String CommunicationPath1CreationTool_title;
 
 	/**
@@ -317,8 +317,8 @@ public class Messages extends NLS {
 	public static String DeviceCreationTool_desc;
 
 	/**
-	* @generated
-	*/
+	 * @generated
+	 */
 	public static String DeploymentSpecification5CreationTool_title;
 
 	/**

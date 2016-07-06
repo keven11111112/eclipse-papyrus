@@ -203,7 +203,7 @@ public class UseCaseEditPartTN extends UseCaseNodeEditPart {
 
 		if (childEditPart instanceof UseCasePointsEditPartTN) {
 			IFigure pane = getPrimaryShape().getExtensionPointContainerFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((UseCasePointsEditPartTN) childEditPart).getFigure());
 			return true;
 		}

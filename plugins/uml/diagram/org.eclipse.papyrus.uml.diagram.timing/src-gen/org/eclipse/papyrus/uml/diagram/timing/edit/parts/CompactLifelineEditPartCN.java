@@ -161,14 +161,14 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 
 		if (childEditPart instanceof CompactLifelineCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getTimelineContainerFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((CompactLifelineCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
 
 		if (childEditPart instanceof CompactLifelineTimeRulerCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getTimeRulerContainerFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((CompactLifelineTimeRulerCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}

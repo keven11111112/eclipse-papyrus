@@ -123,8 +123,7 @@ public class MessageAsyncReorientCommand extends EditElementCommand {
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
 		getLink().setReceiveEvent(
-				getNewSource()
-				);
+				getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -133,8 +132,7 @@ public class MessageAsyncReorientCommand extends EditElementCommand {
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
 		getLink().setSendEvent(
-				getNewTarget()
-				);
+				getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
