@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,8 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
+ *  Sebastien Gabel (Esterel Technologies SAS) - Bug 497361
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -84,10 +86,15 @@ public class BooleanRadio extends AbstractValueEditor {
 
 		setWidgetObservable(getObservable(), true);
 		controlDecoration = new ControlDecoration(trueRadio, SWT.TOP | SWT.LEFT);
-		GridData gridData = new GridData();
-		trueRadio.setLayoutData(gridData);
-		falseRadio.setLayoutData(gridData);
-		gridData.horizontalIndent = FieldDecorationRegistry.getDefault().getMaximumDecorationWidth();
+		
+		// Use a dedicated grid data for each radio, otherwise one of the two labels may be truncated.
+		GridData trueGd = new GridData();
+		trueGd.horizontalIndent = FieldDecorationRegistry.getDefault().getMaximumDecorationWidth();
+		trueRadio.setLayoutData(trueGd);
+
+		GridData falseGd = new GridData();
+		falseGd.horizontalIndent = FieldDecorationRegistry.getDefault().getMaximumDecorationWidth();
+		falseRadio.setLayoutData(falseGd);
 	}
 
 	/**
@@ -141,4 +148,19 @@ public class BooleanRadio extends AbstractValueEditor {
 		super.setLabelToolTipText(text);
 	}
 
+	public void setTrueLabel(String label) {
+		trueRadio.setText(label);
+	}
+
+	public String getTrueLabel() {
+		return trueRadio.getText();
+	}
+
+	public void setFalseLabel(String label) {
+		falseRadio.setText(label);
+	}
+
+	public String getFalseLabel() {
+		return falseRadio.getText();
+	}
 }
