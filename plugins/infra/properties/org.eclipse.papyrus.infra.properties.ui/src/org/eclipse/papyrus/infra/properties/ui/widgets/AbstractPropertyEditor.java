@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,6 +13,7 @@
  *  Christian W. Damus (CEA) - bug 443417
  *  Christian W. Damus (CEA) - bug 444227
  *  Christian W. Damus - bug 469188
+ *  Sebastien Gabel (Esterel Technologies SAS) - bug 497367
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.widgets;
@@ -39,6 +40,7 @@ import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Layout;
 
 
 /**
@@ -540,6 +542,27 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	}
 
 	/**
+	 * Sets the editor's Layout
+	 * 
+	 * @param layout
+	 */
+	public void setLayout(Layout layout) {
+		if (getEditor() != null) {
+			getEditor().setLayout(layout);
+		}
+	}
+
+	/**
+	 * Returns the editor's Layout
+	 * 
+	 * @return
+	 *         The editor's layout
+	 */
+	public Layout getLayout() {
+		return getEditor() == null ? null : getEditor().getLayout();
+	}
+
+	/** 
 	 * Indicates whether the editor's label should be displayed or not
 	 *
 	 * @param showLabel
