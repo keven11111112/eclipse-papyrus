@@ -21,13 +21,12 @@ import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
-//import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Executes the generation of a profile based on a class diagram according to
- * the preferences page of Papyrus Req
+ * the preferences page of Papyrus for Requirements
  *
  */
 public class InitCreateProfileFromDomainModelCommand extends RecordingCommand {
@@ -44,10 +43,9 @@ public class InitCreateProfileFromDomainModelCommand extends RecordingCommand {
 	protected void doExecute() {
 		Package sourcePackage = null;
 		if (!(selectedElement instanceof Package)) {
-			org.eclipse.uml2.uml.Package _package = (Package) selectedElement;
 			TreeSelectorDialog dialog = new TreeSelectorDialog(Display.getDefault().getActiveShell());
 			dialog.setContentProvider(
-					new UMLContentProvider(_package, UMLPackage.eINSTANCE.getPackage_NestedPackage()));
+					new UMLContentProvider(selectedElement.getModel(), UMLPackage.eINSTANCE.getPackage_NestedPackage()));
 			dialog.setLabelProvider(new UMLLabelProvider());
 			dialog.setMessage("Choose the domain model");
 			dialog.setTitle("Choose the domain model");
@@ -62,8 +60,7 @@ public class InitCreateProfileFromDomainModelCommand extends RecordingCommand {
 			CreateProfileFromDomainModelCommand createProfileFromDomainModelCommand = new CreateProfileFromDomainModelCommand(
 					domain, sourcePackage);
 			createProfileFromDomainModelCommand.execute();
-		} 
-			else {
+		} else {
 			sourcePackage = (Package) selectedElement;
 			CreateProfileFromDomainModelCommand createProfileFromDomainModelCommand = new CreateProfileFromDomainModelCommand(
 					domain, sourcePackage);
