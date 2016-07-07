@@ -3,6 +3,7 @@
 
 <plugin>
    <extension-point id="diagnosticians" name="Registered diagnostician" schema="schema/diagnosticians.exsd"/>
+   <extension-point id="validationHooks" name="Validation hooks" schema="schema/validationHooks.exsd"/>
    <extension
          point="org.eclipse.ui.preferencePages">
       <page

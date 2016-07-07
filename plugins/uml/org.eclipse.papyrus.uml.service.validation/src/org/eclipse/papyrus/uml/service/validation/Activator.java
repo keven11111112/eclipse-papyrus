@@ -12,6 +12,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.validation;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -61,5 +63,15 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static Activator getDefault() {
 		return plugin;
+	}
+	
+	/**
+	 * Log a message in the plugin's log.
+	 *
+	 * @param message
+	 *            the message to log
+	 */
+	public static void debug(String message) {
+		getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, IStatus.OK, message, null));
 	}
 }

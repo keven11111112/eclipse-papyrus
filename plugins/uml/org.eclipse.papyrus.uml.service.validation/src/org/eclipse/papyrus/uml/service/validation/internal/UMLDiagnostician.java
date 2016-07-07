@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
- * This is a specific diagnostician used to validate stereotype applications
+ * This is a specific diagnostician for UML. It is used to validate stereotype applications
  *
  */
 public class UMLDiagnostician extends EcoreDiagnostician {

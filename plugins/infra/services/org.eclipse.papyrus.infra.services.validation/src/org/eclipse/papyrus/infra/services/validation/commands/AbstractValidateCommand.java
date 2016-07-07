@@ -43,6 +43,7 @@ import org.eclipse.papyrus.infra.services.validation.Messages;
 import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 import org.eclipse.papyrus.infra.services.validation.ValidationUtils;
 import org.eclipse.papyrus.infra.services.validation.internal.ValidationRegistry;
+import org.eclipse.papyrus.infra.services.validation.internal.ValidationRegistry.HookType;
 import org.eclipse.papyrus.infra.services.validation.preferences.PreferenceUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -133,6 +134,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 
 	protected void runValidation(final EObject validateElement) {
 		final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		ValidationRegistry.executeHooks(selectedElement, HookType.BEFORE);
 		if (diagnostician == null) {
 			diagnostician = ValidationRegistry.getDiagnostician(selectedElement);
 		}
@@ -146,6 +148,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 					handleDiagnostic(progressMonitor, diagnostic, validateElement, shell);
 				} finally {
 					progressMonitor.done();
+					ValidationRegistry.executeHooks(selectedElement, HookType.AFTER);
 				}
 			}
 		};

@@ -11,8 +11,9 @@
   <extension
         point="org.eclipse.papyrus.infra.services.validation.diagnosticians">
         <diagnostician
-              class="org.eclipse.papyrus.uml.service.validation.internal.UMLDiagnostician"
-              id="org.eclipse.papyrus.uml.language">
+			id="org.eclipse.papyrus.uml.service.diagnostician"
+			filter="org.eclipse.papyrus.uml.service.validation.internal.UMLFilter"
+			diagnostician="org.eclipse.papyrus.uml.service.validation.internal.UMLDiagnostician">
         </diagnostician>    
   </extension>
 </plugin>

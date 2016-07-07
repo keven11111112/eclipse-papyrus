@@ -13,52 +13,63 @@
 
 package org.eclipse.papyrus.infra.services.validation.internal;
 
-import java.util.Set;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.language.ILanguage;
-import org.eclipse.papyrus.infra.core.language.ILanguageService;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.services.validation.Activator;
 import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
+import org.eclipse.papyrus.infra.services.validation.IValidationFilter;
+import org.eclipse.papyrus.infra.services.validation.IValidationHook;
 
 /**
- * A simple registry for language and diagnosticians pairs
- *
+ * Provides access to the extensions diagnosticians and validationHooks
  */
 public class ValidationRegistry {
 
 	public static final String ID_DIAGNOSTICIANS = Activator.PLUGIN_ID + ".diagnosticians"; //$NON-NLS-1$
 
+	public static final String ID_VALIDATION_HOOKS = Activator.PLUGIN_ID + ".validationHooks"; //$NON-NLS-1$
+
+	/**
+	 * Constants for tags in two extensions points
+	 */
+	public static final String DIAGNOSTICIAN = "diagnostician"; //$NON-NLS-1$
+
+	public static final String VALIDATION_HOOK = "hook"; //$NON-NLS-1$
+
+	public static final String FILTER = "filter"; //$NON-NLS-1$
+
+	public enum HookType {
+		BEFORE, AFTER
+	};
+
 	/**
 	 * Return a diagnostician for an element of a model.
-	 * TODO: It is possible that multiple languages are registered with a model.
-	 * This function currently returns the diagnostician for the first matching language.
 	 * 
 	 * @param element
 	 *            an element of a model (that must be contained in an eResource)
 	 * @return
 	 */
 	public static IPapyrusDiagnostician getDiagnostician(EObject element) {
-		try {
-			final ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(element);
-			ILanguageService languageService = serviceRegistry.getService(ILanguageService.class);
-			if (languageService != null) {
-				Set<ILanguage> languages = languageService.getLanguages(element.eResource().getURI(), true);
-				for (ILanguage language : languages) {
-					IPapyrusDiagnostician diagnostician = getDiagnostician(language.getID());
-					if (diagnostician != null) {
-						return diagnostician;
+		IExtensionRegistry reg = Platform.getExtensionRegistry();
+		IConfigurationElement[] configElements = reg.getConfigurationElementsFor(ID_DIAGNOSTICIANS);
+		for (IConfigurationElement configElement : configElements) {
+			try {
+				final Object obj = configElement.createExecutableExtension(FILTER);
+				if (obj instanceof IValidationFilter) {
+					IValidationFilter filter = (IValidationFilter) obj;
+					if (filter.isApplicable(element)) {
+						final Object diagnostician = configElement.createExecutableExtension(DIAGNOSTICIAN);
+						if (diagnostician instanceof IPapyrusDiagnostician) {
+							return (IPapyrusDiagnostician) diagnostician;
+						}
 					}
 				}
+			} catch (CoreException exception) {
+				Activator.log.error(exception);
 			}
-		} catch (ServiceException e) {
 		}
 		// fall back to ecore diagnostician
 		return new EcoreDiagnostician();
@@ -88,5 +99,40 @@ public class ValidationRegistry {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Execute validation hooks
+	 * 
+	 * @param element
+	 *            An element of the model we want to validate
+	 * @param hookType
+	 *            The hook type (currently before or after)
+	 */
+	public static void executeHooks(EObject element, HookType hookType) {
+		IExtensionRegistry reg = Platform.getExtensionRegistry();
+		IConfigurationElement[] configElements = reg.getConfigurationElementsFor(ID_VALIDATION_HOOKS);
+		for (IConfigurationElement configElement : configElements) {
+			try {
+				final Object obj = configElement.createExecutableExtension(FILTER);
+				if (obj instanceof IValidationFilter) {
+					IValidationFilter filter = (IValidationFilter) obj;
+					if (filter.isApplicable(element)) {
+						final Object hookObj = configElement.createExecutableExtension(VALIDATION_HOOK);
+						if (hookObj instanceof IValidationHook) {
+							IValidationHook validationHook = (IValidationHook) hookObj;
+							if (hookType == HookType.BEFORE) {
+								validationHook.beforeValidation(element);
+							} else if (hookType == HookType.AFTER) {
+								validationHook.afterValidation(element);
+							}
+						}
+					}
+				}
+			}
+			catch (CoreException exception) {
+				Activator.log.error(exception);
+			}
+		}
 	}
 }
