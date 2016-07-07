@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618
+ *  Alain Le Guennec (Esterel Technologies SAS) - Bug 497452
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.nattable.manager.cell;
@@ -193,7 +194,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 			final AbstractEditCommandRequest request = new SetRequest(domain, elementToEdit, featureToEdit, newValue);
 			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToEdit);
 			final ICommand cmd = provider.getEditCommand(request);
-			ICommand returnedCommand = cmd;
+			ICommand returnedCommand = (cmd != null) ? cmd : org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;;
 			if (cmd.canExecute() && featureToEdit instanceof EReference) {
 				boolean shouldOpenDialog = false;
 				final EReference editedReference = (EReference) featureToEdit;
