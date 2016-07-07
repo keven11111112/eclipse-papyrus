@@ -85,7 +85,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.emf.gmf.tests;bundle-version="1.2.1"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.1.qualifier
+Bundle-Version: 1.2.100.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
