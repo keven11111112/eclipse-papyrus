@@ -22,7 +22,7 @@ import org.eclipse.uml2.uml.Element;
 
 /**
  * Executes the generation of a profile based on a class diagram according to
- * the preferences page of Papyrus Req
+ * the preferences page of Papyrus for Requirements
  *
  */
 public class InitCreateInitialProfileFromDomainModelHandler extends PapyrusAbstractHandler {

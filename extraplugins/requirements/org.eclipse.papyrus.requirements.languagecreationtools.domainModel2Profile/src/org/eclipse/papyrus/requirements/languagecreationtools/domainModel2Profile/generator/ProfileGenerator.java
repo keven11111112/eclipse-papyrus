@@ -93,7 +93,7 @@ public class ProfileGenerator {
 
 	/**
 	 * Constructor to be called by Eclipse, takes into account generation
-	 * preferences in the Papyrus Req preference page.
+	 * preferences in the Papyrus for Requirements preference page.
 	 * 
 	 * @param selectedPackage The UML domain model
 	 */
@@ -119,7 +119,7 @@ public class ProfileGenerator {
 
 	/**
 	 * Constructor to be used in an standalone Java application. It does not takes
-	 * into account preferences in the Papyrus Req preference page.
+	 * into account preferences in the Papyrus for Requirements preference page.
 	 * 
 	 * @param _inputModelPath The path of the input model
 	 * @param _outputDirectoryPath The path to save the profile and if the abstractions model
