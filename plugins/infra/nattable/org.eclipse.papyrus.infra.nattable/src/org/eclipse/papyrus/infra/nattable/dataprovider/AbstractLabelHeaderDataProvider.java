@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Calin Glitia (Esterel Technologies SAS) - Bug 497470
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.dataprovider;
@@ -18,6 +19,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 
@@ -134,8 +136,15 @@ public abstract class AbstractLabelHeaderDataProvider extends AbstractDataProvid
 			this.listenAxisConfiguration.eAdapters().remove(this.axisListener);
 			this.listenAxisConfiguration = null;
 		}
-		this.manager.getTable().eAdapters().remove(this.invertedListener);
-		this.manager.getTable().eAdapters().remove(this.localHeaderConfigListener);
+		Table table = this.manager.getTable();
+		if (table != null) {
+			if (this.invertedListener != null) {
+				table.eAdapters().remove(this.invertedListener);
+			}
+			if (this.localHeaderConfigListener != null) {
+				table.eAdapters().remove(this.localHeaderConfigListener);
+			}
+		}
 	}
 
 	/**

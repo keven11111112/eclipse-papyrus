@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Calin Glitia (Esterel Technologies SAS) - Bug 497470
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
@@ -45,7 +46,9 @@ public class CreatableEObjectAxisUtils {
 	 */
 	public static final Collection<String> getCreatableElementIds(final Table table, final boolean onColumn) {
 		final INattableModelManager nattableModelManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(table, new ObjectsSelectionExtractor());
-		return getCreatableElementIds(nattableModelManager, onColumn);
+		Collection<String> creatableElementIds = getCreatableElementIds(nattableModelManager, onColumn);
+		nattableModelManager.dispose();
+		return creatableElementIds;
 	}
 
 	/**
