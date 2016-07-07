@@ -596,12 +596,12 @@ public class WorkspaceModelIndex<T> {
 		private final Deque<AbstractIndexJob> queue = Queues.newArrayDeque();
 
 		private final AtomicBoolean active = new AtomicBoolean();
-		private final int maxConcurrentJobs;
+		private final Semaphore indexJobSemaphore;
 
 		JobWrangler(int maxConcurrentJobs) {
 			super("Workspace model indexer", null);
 
-			this.maxConcurrentJobs = maxConcurrentJobs;
+			indexJobSemaphore = new Semaphore((maxConcurrentJobs <= 0) ? Integer.MAX_VALUE : maxConcurrentJobs);
 		}
 
 		@Override
@@ -641,7 +641,6 @@ public class WorkspaceModelIndex<T> {
 
 		@Override
 		protected IStatus doRun(IProgressMonitor progressMonitor) {
-			final Semaphore indexJobSemaphore = new Semaphore((maxConcurrentJobs <= 0) ? Integer.MAX_VALUE : maxConcurrentJobs);
 			final AtomicInteger pending = new AtomicInteger(); // How many permits have we issued?
 			final Condition pendingChanged = lock.newCondition();
 
