@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Sebastien Gabel (Esterel Technologies SAS) - Bug 497487
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.provider;
 
@@ -96,7 +98,7 @@ public class CSSClassContentProvider extends AbstractStaticContentProvider {
 		return result;
 	}
 
-	private List<String> findClassesFromSelector(Selector selector) {
+	protected List<String> findClassesFromSelector(Selector selector) {
 		List<String> result = new LinkedList<String>();
 		if (selector instanceof ConditionalSelector) {
 			result.addAll(findClassesFromSelector((ConditionalSelector) selector));
@@ -110,7 +112,7 @@ public class CSSClassContentProvider extends AbstractStaticContentProvider {
 		return result;
 	}
 
-	private List<String> findClassesFromSelector(ConditionalSelector selector) {
+	protected List<String> findClassesFromSelector(ConditionalSelector selector) {
 		List<String> result = new LinkedList<String>();
 
 		Selector simpleSelector = selector.getSimpleSelector();
@@ -127,7 +129,7 @@ public class CSSClassContentProvider extends AbstractStaticContentProvider {
 		return result;
 	}
 
-	private List<String> findClassesFromCondition(Condition condition) {
+	protected List<String> findClassesFromCondition(Condition condition) {
 		if (condition instanceof CSSClassConditionImpl) {
 			return Collections.singletonList(((CSSClassConditionImpl) condition).getValue());
 		} else if (condition instanceof CombinatorCondition) {
