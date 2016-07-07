@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -14,6 +14,7 @@
  *  Christian W. Damus (CEA) - bug 444227
  *  Christian W. Damus - bug 469188
  *  Sebastien Gabel (Esterel Technologies SAS) - bug 497367
+ *  Sebastien Gabel (Esterel Technologies SAS) - bug 497461
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.widgets;
@@ -250,10 +251,8 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 */
 	// TODO : This method handles a change on the DataSource. This should not be a ChangeEvent, as the DataSource is not an IObservable
 	// This method should be changed, and the source of the event should be checked (Otherwise, it cannot be extended).
-	// TODO : Remove the "final" modifier to let subclasses extend this behavior,
-	// when the source of the event is checked. Until then, it is not safe to override this method
 	@Override
-	public final void handleChange(ChangeEvent event) {
+	public void handleChange(ChangeEvent event) {
 		// Handle the "forceRefresh" behavior when the input DataSource sends a ChangeEvent
 		AbstractEditor editor = getEditor();
 		if (editor != null) {
