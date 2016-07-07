@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,10 +9,12 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497485
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
@@ -42,5 +44,14 @@ public class AffixedNodeAlignmentEditPolicy extends ConstrainedItemBorderLayoutE
 		}
 
 		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected Point getLayoutOrigin() {
+		// Could be move into ConstrainedItemBorderLayoutEditPolicy but requires important revalidation for all border items
+		// For Border items, return the top left point of the whole figure and not the top left point of the figure's client area
+		return getLayoutContainer().getBounds().getTopLeft();
 	}
 }
