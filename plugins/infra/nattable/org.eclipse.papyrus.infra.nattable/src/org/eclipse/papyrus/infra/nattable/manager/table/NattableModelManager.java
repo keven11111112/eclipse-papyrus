@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618
+ *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -861,8 +862,12 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			this.cellsMap.clear();
 		}
 		if (this.natTable != null) {
-			natTable.removeLayerListener(this.layerListener);
-			natTable.removeFocusListener(this.focusListener);
+			if (this.layerListener != null) {
+				natTable.removeLayerListener(this.layerListener);
+			}
+			if (this.focusListener != null) {
+				natTable.removeFocusListener(this.focusListener);
+			}
 		}
 
 		removeListeners();
