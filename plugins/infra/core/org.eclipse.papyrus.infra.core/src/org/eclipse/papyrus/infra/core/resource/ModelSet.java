@@ -207,7 +207,7 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	@Override
-	public Resource getResource(URI uri, boolean loadOnDemand) {
+	public Resource getResource(URI uri, boolean loadOnDemand) throws WrappedException {
 		if (uri.hasFragment()) {
 			Activator.log.warn("Invalid Resource URI: resource URIs cannot contain a fragment"); //$NON-NLS-1$
 			uri = uri.trimFragment(); // Fix and continue
@@ -218,9 +218,10 @@ public class ModelSet extends ResourceSetImpl {
 		} catch (WrappedException e) {
 			// Activator.log.error(e);
 			if (ModelUtils.isDegradedModeAllowed(e.getCause())) {
-				r = super.getResource(uri, false);
-				if (r == null) {
-					throw e;
+				try {
+					r = super.getResource(uri, false);
+				} catch (WrappedException ee) {
+					throw ee;
 				}
 			} else {
 				// don't log, but throw error again, bug 405047 - [core] FileNotFoundException during MARTE profile loads
