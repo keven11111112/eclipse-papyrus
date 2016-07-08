@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.Transition;
@@ -49,6 +50,27 @@ public class RegionActivation extends StateMachineSemanticVisitor{
 		this.isCompleted = false;
 		this.vertexActivations = new ArrayList<VertexActivation>();
 		this.transitionActivations = new ArrayList<TransitionActivation>();
+	}
+	
+	@Override
+	public boolean isVisitorFor(NamedElement node) {
+		// Determine if this visitor is a semantic visitor for the node
+		// provided as parameter. This case is verified if the node is the
+		// region attached to this semantic visitor or if the node matches
+		// a region that is extended (directly or indirectly) by the region
+		// attached to this semantic visitor.
+		boolean isVisitor = super.isVisitorFor(node);
+		if(!isVisitor){
+			Region region = ((Region)this.node).getExtendedRegion();
+			while(!isVisitor && region != null){
+				if(region == node){
+					isVisitor = true;
+				}else{
+					region = region.getExtendedRegion();
+				}
+			}
+		}
+		return isVisitor;
 	}
 	
 	private boolean isRedefined(List<Vertex> vertices, Vertex vertex){

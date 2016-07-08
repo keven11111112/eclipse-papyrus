@@ -28,6 +28,7 @@ public class SM_SemanticStrategyRegistry {
 	public void registerSemanticStrategies(Locus locus) {
 		locus.factory.setStrategy(new FirstChoiceStrategy());
 		locus.factory.setStrategy(new FIFOGetNextEventStrategy());
+		//locus.factory.setStrategy(new LIFOGetNextEventStrategy());
 		locus.factory.setStrategy(new SM_RedefinitionBasedDispatchedStrategy());
 		locus.factory.setStrategy(new CS_NameBased_StructuralFeatureOfInterfaceAccessStrategy());
 		locus.factory.setStrategy(new CS_DefaultRequestPropagationStrategy());

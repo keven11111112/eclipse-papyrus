@@ -13,9 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior;
 
-import java.util.List;
-
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 
 public class CallEventOccurrence extends EventOccurrence {
@@ -23,11 +20,4 @@ public class CallEventOccurrence extends EventOccurrence {
 	// Execution associated to the event occurrence
 	public CallEventExecution execution;
 	
-	public List<ParameterValue> getInputParameterValues(){
-		List<ParameterValue> parameterValues = null;
-		if(this.execution != null){
-			parameterValues = this.execution.getInputParameterValues();
-		}
-		return parameterValues;
-	}
 }

@@ -111,7 +111,14 @@ public class StateActivation extends VertexActivation {
 		// moved to the vertex activation class.
 		boolean isVisitor = super.isVisitorFor(node);
 		if(!isVisitor){
-			isVisitor = ((State)this.node).getRedefinedState() == node;
+			State state = ((State)this.node).getRedefinedState();
+			while(!isVisitor && state != null){
+				if(state == node){
+					isVisitor = true;
+				}else{
+					state = state.getRedefinedState();
+				}
+			}
 		}
 		return isVisitor; 
 	}

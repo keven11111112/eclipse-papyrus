@@ -28,6 +28,7 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Values.SM_OpaqueExp
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
 import org.eclipse.uml2.uml.CallEvent;
 import org.eclipse.uml2.uml.Event;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.Transition;
@@ -80,6 +81,26 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		return this.status.equals(TransitionMetadata.TRAVERSED);
 	}
 	
+	@Override
+	public boolean isVisitorFor(NamedElement node) {
+		// Determine if this visitor is a semantic visitor for the node
+		// provided as a parameter.This case is verified if the node is
+		// the same as the transition attached to the semantic visitor or
+		// if the node matches a transition that is redefined (directly or
+		// indirectly) by the transition attached to this semantic visitor.
+		boolean isVisitor = super.isVisitorFor(node);
+		if(!isVisitor){
+			Transition transition = ((Transition)this.node).getRedefinedTransition();
+			while(!isVisitor && transition != null){
+				if(transition == node){
+					isVisitor = true;
+				}else{
+					transition = transition.getRedefinedTransition();
+				}
+			}
+		}
+		return isVisitor;
+	}
 	
 	public boolean isTriggered(){
 		return !((Transition)this.node).getTriggers().isEmpty();
