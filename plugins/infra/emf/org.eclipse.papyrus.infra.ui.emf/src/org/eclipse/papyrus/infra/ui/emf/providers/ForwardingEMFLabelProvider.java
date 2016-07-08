@@ -13,14 +13,21 @@
 
 package org.eclipse.papyrus.infra.ui.emf.providers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
+import org.eclipse.emf.edit.provider.IViewerNotification;
+import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 
 import com.google.common.collect.MapMaker;
 
@@ -78,5 +85,23 @@ public class ForwardingEMFLabelProvider extends StandardEMFLabelProvider {
 		}
 		return forwardingListener;
 	}
+
+	@Override
+	public void notifyChanged(Notification notification)
+	  {
+	    if (isFireLabelUpdateNotifications())
+	    {
+	      if (!(notification instanceof IViewerNotification) || ((IViewerNotification)notification).isLabelUpdate())
+	      {
+	    	 // avoid ConcurrentModificationException 
+	    	 List<ILabelProviderListener> localCopy = new ArrayList<>(labelProviderListeners);
+	    	
+	    	 for (ILabelProviderListener labelProviderListener : localCopy)
+	        {
+	          labelProviderListener.labelProviderChanged(new LabelProviderChangedEvent(this, notification.getNotifier()));
+	        }
+	      }
+	    }
+	  }
 
 }
