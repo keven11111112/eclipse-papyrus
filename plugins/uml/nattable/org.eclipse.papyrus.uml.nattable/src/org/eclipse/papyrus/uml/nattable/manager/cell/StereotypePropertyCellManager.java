@@ -227,16 +227,14 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 
 					@Override
 					protected void doExecute() {
-						if (!applyRequiredStereotype(domain, el, id)) {
+						// This may apply the required stereotype if needed
+						applyRequiredStereotype(domain, el, id);
+						// Now recursively execute the set-string-value command
+						Command command = getSetValueCommand(domain, columnElement, rowElement, newValue, tableManager);
+						if (command == null || !command.canExecute()) {
 							throw new OperationCanceledException();
 						} else {
-							// Now recursively execute the set-string-value command
-							Command command = getSetValueCommand(domain, columnElement, rowElement, newValue, tableManager);
-							if (command == null || !command.canExecute()) {
-								throw new OperationCanceledException();
-							} else {
-								domain.getCommandStack().execute(command);
-							}
+							domain.getCommandStack().execute(command);
 						}
 					}
 				};
@@ -285,20 +283,18 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 
 					@Override
 					protected void doExecute() {
-						if (!applyRequiredStereotype(domain, el, id)) {
-							throw new OperationCanceledException();
-						} else {
-							// Now recursively execute the set-string-value command
-							Command command = getSetStringValueCommand(domain, columnElement, rowElement, newValue, valueSolver, tableManager);
-							if (command != null) {
-								if (!command.canExecute()) {
-									throw new OperationCanceledException();
-								} else {
-									domain.getCommandStack().execute(command);
-								}
+						// This may apply the required stereotype if needed
+						applyRequiredStereotype(domain, el, id);
+						// Now recursively execute the set-string-value command
+						Command command = getSetStringValueCommand(domain, columnElement, rowElement, newValue, valueSolver, tableManager);
+						if (command != null) {
+							if (!command.canExecute()) {
+								throw new OperationCanceledException();
 							} else {
-								// A null command is not an error, it just means there's nothing to set because the value is already correct.
+								domain.getCommandStack().execute(command);
 							}
+						} else {
+							// A null command is not an error, it just means there's nothing to set because the value is already correct.
 						}
 					}
 				};
