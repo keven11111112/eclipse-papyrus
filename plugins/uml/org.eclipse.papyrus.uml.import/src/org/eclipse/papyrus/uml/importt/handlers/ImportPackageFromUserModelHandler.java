@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.uml.importt.ui.PackageImportDialog;
@@ -31,8 +32,8 @@ import org.eclipse.uml2.uml.Package;
 public class ImportPackageFromUserModelHandler extends AbstractImportHandler {
 
 	@Override
-	protected ICommand getGMFCommand() {
-		return new ImportFromFileCommand();
+	protected ICommand getGMFCommand(final IEvaluationContext context) {
+		return new ImportFromFileCommand(context);
 	}
 
 	/**
@@ -52,7 +53,7 @@ public class ImportPackageFromUserModelHandler extends AbstractImportHandler {
 		 * @param description
 		 *            description of the command
 		 */
-		public ImportFromFileCommand() {
+		public ImportFromFileCommand(final IEvaluationContext context) {
 			super(new Runnable() {
 
 				public void run() {
@@ -95,7 +96,7 @@ public class ImportPackageFromUserModelHandler extends AbstractImportHandler {
 					}
 				}
 
-			}, "Import Libraries", "Import Libraries from Workspace"); //$NON-NLS-1$ //$NON-NLS-2$
+			}, context, "Import Libraries", "Import Libraries from Workspace"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 }

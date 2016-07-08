@@ -18,6 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
@@ -37,7 +38,7 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.infra.services.resourceloading.util.LoadingUtils;
-import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
+import org.eclipse.papyrus.infra.ui.command.AbstractCommandHandler;
 import org.eclipse.papyrus.views.modelexplorer.resourceloading.Activator;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
@@ -58,12 +59,11 @@ public class UnloadResourceHandler extends AbstractCommandHandler {
 
 
 	/**
-	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getCommand()
-	 * @return the command
+	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getCommand() {
-		TransactionalEditingDomain editingDomain = getEditingDomain();
+	protected Command getCommand(final IEvaluationContext context) {
+		TransactionalEditingDomain editingDomain = getEditingDomain(context);
 		List<EObject> selection = getSelectedElements();
 		if (editingDomain != null && editingDomain.getResourceSet() instanceof ModelSet && selection.size() > 0) {
 			final ModelSet set = (ModelSet) editingDomain.getResourceSet();

@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
@@ -33,13 +34,13 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.ui.command.AbstractCommandHandler;
 
 /**
  * Default handler for Delete command used in the ModelExplorer contextual menu.
  *
  */
 public class DeleteCommandHandler extends AbstractCommandHandler implements IHandler {
-
 
 	/**
 	 * Check if the selection allow delete
@@ -147,12 +148,12 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getCommand()
+	 * {@inheritDoc}
 	 *
 	 * @return current command (only built here when the stored command is null)
 	 */
 	@Override
-	protected Command getCommand() {
+	protected Command getCommand(final IEvaluationContext context) {
 		// Don't cache the command, as it is no more refreshed by isEnabled().
 		return buildDeleteCommand(getSelectedElements());
 	}
@@ -161,8 +162,7 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected boolean computeEnabled() {
+	protected boolean computeEnabled(final IEvaluationContext context) {
 		return isDeleteEnabled(getSelectedElements());
 	}
-
 }

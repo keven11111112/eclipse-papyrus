@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -45,8 +46,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class ImportRegisteredProfileHandler extends AbstractImportHandler {
 
 	@Override
-	protected ICommand getGMFCommand() {
-		return new ImportProfileCommand();
+	protected ICommand getGMFCommand(final IEvaluationContext context) {
+		return new ImportProfileCommand(context);
 	}
 
 
@@ -64,7 +65,7 @@ public class ImportRegisteredProfileHandler extends AbstractImportHandler {
 		 * @param editingDomain
 		 *            the editing domain
 		 */
-		public ImportProfileCommand() {
+		public ImportProfileCommand(final IEvaluationContext context) {
 			super(new Runnable() {
 
 				public void run() {
@@ -83,7 +84,7 @@ public class ImportRegisteredProfileHandler extends AbstractImportHandler {
 						importProfiles(profilesToImport.toArray(new IRegisteredProfile[profilesToImport.size()]));
 					}
 				}
-			}, "Import Profile", "Import Profile from Registred Profiles"); //$NON-NLS-1$ //$NON-NLS-2$
+			}, context, "Import Profile", "Import Profile from Registred Profiles"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -132,7 +133,7 @@ public class ImportRegisteredProfileHandler extends AbstractImportHandler {
 	 * Returns the list of the profiles which are already imported
 	 *
 	 * @return
-	 *         the list of the profiles which are already imported
+	 * 		the list of the profiles which are already imported
 	 */
 	protected Collection<IRegisteredProfile> getImportedProfiles() {
 		List<IRegisteredProfile> profiles = new ArrayList<IRegisteredProfile>();

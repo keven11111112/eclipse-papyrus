@@ -15,10 +15,12 @@ package org.eclipse.papyrus.views.modelexplorer.handler;
 
 import java.util.List;
 
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
+import org.eclipse.papyrus.infra.ui.command.AbstractCommandHandler;;
 
 /**
  * Handler for the Cut Action in Model Explorer : it's a copy followed by a delete
@@ -27,15 +29,12 @@ import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
 public class CutHandler extends AbstractCommandHandler {
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getCommand()
-	 *
-	 * @return
+	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getCommand() {
+	protected Command getCommand(final IEvaluationContext context) {
 		CompoundCommand cutInModelExplorerCommand = new CompoundCommand("Cut in Model Explorer Command"); //$NON-NLS-1$
-		Command copyCommand = CopyHandler.buildCopyCommand(getEditingDomain(), getSelectedElements());
+		Command copyCommand = CopyHandler.buildCopyCommand(getEditingDomain(context), getSelectedElements());
 		cutInModelExplorerCommand.append(copyCommand);
 		Command deleteCommand = DeleteCommandHandler.buildDeleteCommand(getSelectedElements());
 		cutInModelExplorerCommand.append(deleteCommand);
@@ -46,19 +45,17 @@ public class CutHandler extends AbstractCommandHandler {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected boolean computeEnabled() {
+	protected boolean computeEnabled(final IEvaluationContext context) {
 		List<EObject> selectedElements = getSelectedElements();
 		return CopyHandler.isCopyEnabled(selectedElements) && DeleteCommandHandler.isDeleteEnabled(selectedElements);
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#setEnabled(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {
+	public void setEnabled(final Object evaluationContext) {
 		PapyrusClipboard<Object> instance = PapyrusClipboard.getInstance();
 		super.setEnabled(evaluationContext); // setEnabled should'nt clear/modify the clipboard
 		PapyrusClipboard.setInstance(instance);

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -28,6 +29,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.strategy.copy.CopyStrategyManage
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.copy.ICopyStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.PasteStrategyManager;
+import org.eclipse.papyrus.infra.ui.command.AbstractCommandHandler;
 
 /**
  * Handler for the Copy Action
@@ -73,34 +75,27 @@ public class CopyHandler extends AbstractCommandHandler {
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getCommand()
-	 *
-	 * @return
+	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getCommand() {
-		return buildCopyCommand(getEditingDomain(), getSelectedElements());
+	protected Command getCommand(final IEvaluationContext context) {
+		return buildCopyCommand(getEditingDomain(context), getSelectedElements());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#computeEnabled()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
-	protected boolean computeEnabled() { // copy is enable as long as there is an EObject to put in the Clipboard
+	protected boolean computeEnabled(final IEvaluationContext context) { // copy is enable as long as there is an EObject to put in the Clipboard
 		return isCopyEnabled(getSelectedElements());
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#setEnabled(java.lang.Object)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {
+	public void setEnabled(final Object evaluationContext) {
 		PapyrusClipboard<Object> instance = PapyrusClipboard.getInstance();
 		super.setEnabled(evaluationContext); // setenabled should'nt clear/modify the clipboard
 		PapyrusClipboard.setInstance(instance);

@@ -17,6 +17,7 @@ package org.eclipse.papyrus.views.modelexplorer.resourceloading.handler;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.AbstractCommand.NonDirtying;
 import org.eclipse.emf.common.command.Command;
@@ -28,7 +29,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.services.resourceloading.util.LoadingUtils;
-import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
+import org.eclipse.papyrus.infra.ui.command.AbstractCommandHandler;
 
 /**
  * Handler for the load resource action.
@@ -40,12 +41,11 @@ public class LoadResourceHandler extends AbstractCommandHandler {
 	/**
 	 * Get the command to load resource of selected model object
 	 *
-	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getCommand()
 	 * @return the command
 	 */
 	@Override
-	protected Command getCommand() {
-		TransactionalEditingDomain editingDomain = getEditingDomain();
+	protected Command getCommand(final IEvaluationContext context) {
+		TransactionalEditingDomain editingDomain = getEditingDomain(context);
 		List<EObject> selection = getSelectedElements();
 		if (editingDomain != null && editingDomain.getResourceSet() instanceof ModelSet && selection.size() > 0) {
 			final ModelSet set = (ModelSet) editingDomain.getResourceSet();

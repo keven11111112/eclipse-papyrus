@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.commands.handler;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
@@ -27,8 +28,8 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.ui.command.AbstractCommandHandler;
 import org.eclipse.papyrus.views.modelexplorer.DirectEditorEditingSupport;
-import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -41,14 +42,11 @@ import org.eclipse.uml2.uml.NamedElement;
 public class RenameNamedElementHandler extends AbstractCommandHandler {
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getCommand()
-	 *
-	 * @return
+	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getCommand() {
-		TransactionalEditingDomain editingDomain = getEditingDomain();
+	protected Command getCommand(final IEvaluationContext context) {
+		TransactionalEditingDomain editingDomain = getEditingDomain(context);
 		List<EObject> selectedElements = getSelectedElements();
 		if (selectedElements.size() == 1 && selectedElements.get(0) instanceof NamedElement) {
 			final NamedElement namedElement = (NamedElement) selectedElements.get(0);
@@ -88,12 +86,11 @@ public class RenameNamedElementHandler extends AbstractCommandHandler {
 	}
 
 	/**
-	 *
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected boolean computeEnabled() {
-		boolean enabled = super.computeEnabled();
+	protected boolean computeEnabled(final IEvaluationContext context) {
+		boolean enabled = super.computeEnabled(context);
 		if (enabled) {
 			List<EObject> selectedElements = getSelectedElements();
 			EObject selection = selectedElements.get(0);

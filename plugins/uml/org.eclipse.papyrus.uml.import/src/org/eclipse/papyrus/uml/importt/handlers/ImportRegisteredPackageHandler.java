@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -41,8 +42,8 @@ import org.eclipse.uml2.uml.Package;
 public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 
 	@Override
-	protected ICommand getGMFCommand() {
-		return new ImportLibraryFromRepositoryCommand();
+	protected ICommand getGMFCommand(final IEvaluationContext context) {
+		return new ImportLibraryFromRepositoryCommand(context);
 	}
 
 	/**
@@ -148,7 +149,7 @@ public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 		 * @param description
 		 *            description of the command
 		 */
-		public ImportLibraryFromRepositoryCommand() {
+		public ImportLibraryFromRepositoryCommand(final IEvaluationContext context) {
 			super(new Runnable() {
 
 				public void run() {
@@ -167,7 +168,7 @@ public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 						importLibraries(librariesToImport.toArray(new IRegisteredLibrary[librariesToImport.size()]));
 					}
 				}
-			}, "Import Libraries", "Import Libraries from Repository"); //$NON-NLS-1$ //$NON-NLS-2$
+			}, context, "Import Libraries", "Import Libraries from Repository"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 }

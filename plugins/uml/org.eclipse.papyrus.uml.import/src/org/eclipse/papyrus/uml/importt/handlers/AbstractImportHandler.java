@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
- *
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.importt.handlers;
 
@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -33,7 +34,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
+import org.eclipse.papyrus.infra.ui.command.AbstractCommandHandler;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -47,8 +48,8 @@ public abstract class AbstractImportHandler extends AbstractCommandHandler {
 
 		private final String description;
 
-		protected AbstractImportCommand(Runnable runnable, String label, String description) {
-			super(AbstractImportHandler.this.getEditingDomain(), label, computeAffectedFiles(getSelectedElements()));
+		protected AbstractImportCommand(Runnable runnable, IEvaluationContext context, String label, String description) {
+			super(AbstractImportHandler.this.getEditingDomain(context), label, computeAffectedFiles(getSelectedElements()));
 
 			this.runnable = runnable;
 			this.description = description;
@@ -98,8 +99,8 @@ public abstract class AbstractImportHandler extends AbstractCommandHandler {
 	}
 
 	@Override
-	protected Command getCommand() {
-		ICommand command = getGMFCommand();
+	protected Command getCommand(final IEvaluationContext context) {
+		ICommand command = getGMFCommand(context);
 		GMFtoEMFCommandWrapper result = new GMFtoEMFCommandWrapper(command);
 
 		if (command instanceof AbstractImportCommand) {
@@ -109,7 +110,7 @@ public abstract class AbstractImportHandler extends AbstractCommandHandler {
 		return result;
 	}
 
-	protected abstract ICommand getGMFCommand();
+	protected abstract ICommand getGMFCommand(final IEvaluationContext context);
 
 	/**
 	 * Loads the Package resource into the current resource set

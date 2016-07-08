@@ -16,6 +16,7 @@ package org.eclipse.papyrus.views.modelexplorer.handler;
 
 import java.util.List;
 
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -25,6 +26,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.IStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.PasteStrategyManager;
+import org.eclipse.papyrus.infra.ui.command.AbstractCommandHandler;
 
 /**
  * Handler for the Paste Action
@@ -33,11 +35,10 @@ import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.PasteStrategyMana
 public class PasteHandler extends AbstractCommandHandler {
 
 	/**
-	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getCommand()
-	 * @return
+	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getCommand() {
+	protected Command getCommand(final IEvaluationContext context) {
 		List<EObject> selection = getSelectedElements();
 
 		List<IStrategy> allStrategies = PasteStrategyManager.getInstance()
@@ -47,7 +48,7 @@ public class PasteHandler extends AbstractCommandHandler {
 			CompoundCommand compoundCommand = new CompoundCommand();
 			for (IStrategy iStrategy : allStrategies) {
 				Command emfCommand = ((IPasteStrategy) iStrategy)
-						.getSemanticCommand(getEditingDomain(), selection.get(0), PapyrusClipboard.getInstance());
+						.getSemanticCommand(getEditingDomain(context), selection.get(0), PapyrusClipboard.getInstance());
 				if (emfCommand != null) {
 					compoundCommand.append(emfCommand);
 				}
@@ -57,13 +58,11 @@ public class PasteHandler extends AbstractCommandHandler {
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#computeEnabled()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
-	protected boolean computeEnabled() { // paste is only available on a simple selection and with a non empty Clipboard
+	protected boolean computeEnabled(final IEvaluationContext context) { // paste is only available on a simple selection and with a non empty Clipboard
 		boolean isEnabled = false;
 
 		if (!PapyrusClipboard.getInstance().isEmptyWithNoAdditionalData() && getSelectedElements().size() == 1) {
