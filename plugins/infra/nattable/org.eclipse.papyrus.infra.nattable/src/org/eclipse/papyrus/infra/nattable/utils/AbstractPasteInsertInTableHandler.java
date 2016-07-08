@@ -63,7 +63,9 @@ public abstract class AbstractPasteInsertInTableHandler extends AbstractTableHan
 	 * 
 	 * @param result
 	 *            the result status of the paste process
+	 * @deprecated since 2.0
 	 */
+	@Deprecated
 	protected void displayDialog(final IStatus result) {
 		if (null != result) {
 			// If the error is caracterized by the paste configuration error status, use the dialog concerning the paste configuration error
@@ -113,7 +115,9 @@ public abstract class AbstractPasteInsertInTableHandler extends AbstractTableHan
 	 * @param status
 	 *            the status
 	 * @return <code>true </code> if the status is a paste configuration error status, <code>false</code> otherwise.
+	 * @deprecated since 2.0
 	 */
+	@Deprecated
 	protected boolean isPasteConfigurationStatus(final IStatus status) {
 		boolean result = false;
 		switch (status.getSeverity()) {

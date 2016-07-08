@@ -22,9 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.commands.Command;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -33,6 +30,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.handler.PasteInTableHandler;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration;
@@ -40,8 +38,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.PasteInsertUtil;
 import org.eclipse.papyrus.infra.tools.util.FileUtils;
-import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
 import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.GenericUtils;
@@ -50,7 +48,6 @@ import org.eclipse.papyrus.junit.utils.ProjectUtils;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.Activator;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.NamedElement;
@@ -198,24 +195,17 @@ public abstract class AbstractPasteTests extends AbstractOpenTableTest {
 		Assert.assertEquals(1, size);
 
 		// fill the clipboard
-		ICommandService commandService = EclipseCommandUtils.getCommandService();
-		Assert.assertNotNull(commandService);
 		String fileName = getPasteFileName();
 		String str = FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID, getSourcePath(), fileName);
 		fillClipboard("Fill the clipboard to enable the handler"); //$NON-NLS-1$
-
-		Command cmd = commandService.getCommand("org.eclipse.ui.edit.paste"); //$NON-NLS-1$
-		IHandler handler = cmd.getHandler();
-		Assert.assertTrue(handler.isEnabled());
 
 		Map<Object, Object> parameters = new HashMap<Object, Object>();
 		parameters.put(PasteInTableHandler.OPEN_DIALOG_ON_FAIL_BOOLEAN_PARAMETER, Boolean.FALSE);
 		parameters.put(PasteInTableHandler.OPEN__PROGRESS_MONITOR_DIALOG, Boolean.FALSE);
 		// This parameters allows to set the text to paste instead of copy/paste it programmatically (this may be overwrite by other copy)
 		parameters.put(PasteInTableHandler.TEXT_TO_PASTE, str);
-		ExecutionEvent event = new ExecutionEvent(cmd, parameters, null, null);
 		flushDisplayEvents();
-		Object res = cmd.executeWithChecks(event);
+		Object res = PasteInsertUtil.paste(manager, ((NattableModelManager)manager).getSelectionInTable(), parameters);
 		Assert.assertTrue(res instanceof IStatus);
 		IStatus iStatus = (IStatus) res;
 		validateReturnedStatus(iStatus);

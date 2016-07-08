@@ -24,7 +24,6 @@ import java.util.Set;
 
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -43,6 +42,7 @@ import org.eclipse.papyrus.infra.nattable.handler.PasteInTableHandler;
 import org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
@@ -56,6 +56,7 @@ import org.eclipse.papyrus.infra.nattable.utils.AbstractPasteInsertInTableHandle
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.CSVPasteHelper;
 import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
+import org.eclipse.papyrus.infra.nattable.utils.PasteInsertUtil;
 import org.eclipse.papyrus.infra.nattable.utils.PasteSeverityCode;
 import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableClipboardUtils;
@@ -68,7 +69,6 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.Activator;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests.AbstractOpenTableTest;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Model;
@@ -249,25 +249,17 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 		Assert.assertEquals(0, size);
 
 		// fill the clipboard
-		final ICommandService commandService = EclipseCommandUtils.getCommandService();
-		Assert.assertNotNull(commandService);
 		final String fileName = getPasteFileName();
 		final String str = FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID, getSourcePath(), fileName);
 		fillClipboard("Fill the clipboard to enable the handler"); //$NON-NLS-1$
-
-		final Command cmd = commandService.getCommand("org.eclipse.ui.edit.paste"); //$NON-NLS-1$
-		final IHandler handler = cmd.getHandler();
-		Assert.assertTrue(handler.isEnabled());
-
 
 		final Map<Object, Object> parameters = new HashMap<Object, Object>();
 		parameters.put(AbstractPasteInsertInTableHandler.OPEN_DIALOG_ON_FAIL_BOOLEAN_PARAMETER, Boolean.FALSE);
 		parameters.put(AbstractPasteInsertInTableHandler.OPEN__PROGRESS_MONITOR_DIALOG, Boolean.FALSE);
 		// This parameters allows to set the text to paste instead of copy/paste it programmatically (this may be overwrite by other copy)
 		parameters.put(PasteInTableHandler.TEXT_TO_PASTE, str);
-		final ExecutionEvent event = new ExecutionEvent(cmd, parameters, null, null);
 		flushDisplayEvents();
-		final Object res = cmd.executeWithChecks(event);
+		final Object res = PasteInsertUtil.paste(manager, ((TreeNattableModelManager)manager).getSelectionInTable(), parameters);
 		Assert.assertTrue(res instanceof IStatus);
 		final IStatus iStatus = (IStatus) res;
 		validateReturnedStatus(iStatus);
