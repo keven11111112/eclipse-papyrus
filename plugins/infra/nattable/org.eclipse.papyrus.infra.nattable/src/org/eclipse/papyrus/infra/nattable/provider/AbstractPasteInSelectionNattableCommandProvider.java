@@ -1378,7 +1378,9 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 										final Object columnElement = getColumnElement(realColumnIndex);
 
 										// Edit the value if this is editable
-										final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, sharedMap);
+										final boolean isEditable = null == sharedMap ? 
+												CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement) :
+												CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, sharedMap);
 										if (isEditable) {
 											final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnElement, rowElement, tableManager, existingConverters, pasteHelper.getMultiValueSeparator());
 
