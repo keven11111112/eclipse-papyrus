@@ -126,7 +126,7 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		this.vertexTargetActivation = vertexTargetActivation;
 	}
 	
-	public boolean evaluateGuard(){
+	public boolean evaluateGuard(EventOccurrence eventOccurrence){
 		// Evaluate the guard specification thanks to an evaluation.
 		// The evaluation does not presume of the type of the guard specification.
 		boolean result = true;  
@@ -137,6 +137,7 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 				Evaluation evaluation = this.getExecutionLocus().factory.createEvaluation(specification);
 				if (specification instanceof OpaqueExpression) {
 					((SM_OpaqueExpressionEvaluation)evaluation).context = this.getExecutionContext() ;
+					((SM_OpaqueExpressionEvaluation)evaluation).initialize(eventOccurrence);
 				}
 				if(evaluation!=null){
 					BooleanValue evaluationResult = (BooleanValue)evaluation.evaluate() ;
@@ -208,9 +209,9 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		if(eventOccurrence instanceof CompletionEventOccurrence){
 			reactive = !this.isTriggered() &&
 						this.getSourceActivation()==((CompletionEventOccurrence)eventOccurrence).stateActivation &&
-						this.evaluateGuard();
+						this.evaluateGuard(eventOccurrence);
 		}else if(eventOccurrence instanceof SignalEventOccurrence | eventOccurrence instanceof CallEventOccurrence){
-			reactive = this.hasTrigger(eventOccurrence) && this.evaluateGuard();
+			reactive = this.hasTrigger(eventOccurrence) && this.evaluateGuard(eventOccurrence);
 		}else{
 			reactive = false;
 		}

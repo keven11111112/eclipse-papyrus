@@ -50,7 +50,7 @@ public class JoinPseudostateActivation extends PseudostateActivation {
 		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 		if (!this.outgoingTransitionActivations.isEmpty()) {
 			TransitionActivation transitionActivation = this.outgoingTransitionActivations.get(0);
-			if (transitionActivation.evaluateGuard()) {
+			if (transitionActivation.evaluateGuard(eventOccurrence)) {
 				transitionActivation.fire(eventOccurrence);
 			}
 		}

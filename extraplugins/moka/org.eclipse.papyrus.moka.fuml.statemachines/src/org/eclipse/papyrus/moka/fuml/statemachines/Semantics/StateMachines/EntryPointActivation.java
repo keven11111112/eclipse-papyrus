@@ -45,7 +45,7 @@ public class EntryPointActivation extends ConnectionPointActivation {
 		// are fired under the condition that the guard is true. 
 		for(int i = 0; i < this.getOutgoingTransitions().size(); i++){
 			TransitionActivation transitionActivation = this.getOutgoingTransitions().get(i);
-			if(transitionActivation.evaluateGuard()){
+			if(transitionActivation.evaluateGuard(eventOccurrence)){
 				transitionActivation.fire(eventOccurrence);
 			}
 		}

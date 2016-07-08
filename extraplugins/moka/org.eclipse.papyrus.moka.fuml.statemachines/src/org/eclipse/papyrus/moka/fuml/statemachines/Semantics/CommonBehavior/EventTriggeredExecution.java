@@ -23,7 +23,6 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.Ev
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalEventOccurrence;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Parameter;
-import org.eclipse.uml2.uml.ParameterDirectionKind;
 
 public class EventTriggeredExecution extends Execution {
 
@@ -53,17 +52,14 @@ public class EventTriggeredExecution extends Execution {
 			Behavior behavior = this.wrappedExecution.getBehavior();
 			if(this.triggeringEventOccurrence instanceof SignalEventOccurrence){
 				SignalEventOccurrence signalEventOccurrence = (SignalEventOccurrence) this.triggeringEventOccurrence;
-				if(behavior.getOwnedParameters().size() == 1){
-					Parameter parameter = behavior.getOwnedParameters().get(0);
-					if((parameter.getDirection() == ParameterDirectionKind.IN_LITERAL 
-							|| parameter.getDirection() == ParameterDirectionKind.INOUT_LITERAL)){
-						ParameterValue parameterValue = new ParameterValue();
-						parameterValue.parameter = parameter;
-						List<Value> values = new ArrayList<Value>();
-						values.add(signalEventOccurrence.signalInstance);
-						parameterValue.values = values;
-						this.wrappedExecution.setParameterValue(parameterValue);
-					}
+				if(behavior.inputParameters().size() == 1){
+					Parameter parameter = behavior.inputParameters().get(0);
+					ParameterValue parameterValue = new ParameterValue();
+					parameterValue.parameter = parameter;
+					List<Value> values = new ArrayList<Value>();
+					values.add(signalEventOccurrence.signalInstance);
+					parameterValue.values = values;
+					this.wrappedExecution.setParameterValue(parameterValue);
 				}
 			}else if(this.triggeringEventOccurrence instanceof CallEventOccurrence){
 				CallEventOccurrence callEventOccurrence = (CallEventOccurrence) this.triggeringEventOccurrence;

@@ -38,13 +38,13 @@ public class ExitPointActivation extends ConnectionPointActivation {
 		return isReady;
 	}
 
-	protected List<TransitionActivation> getFireableTransitions() {
+	protected List<TransitionActivation> getFireableTransitions(EventOccurrence eventOccurrence) {
 		// Determine the list of transitions originating from this pseudo-state that can be fired.
 		// A transition is considered as being fireable as soon as its guard evaluates to true.
 		List<TransitionActivation> fireableTransitions = new ArrayList<TransitionActivation>();
 		for (int i = 0; i < this.outgoingTransitionActivations.size(); i++) {
 			TransitionActivation transitionActivation = this.outgoingTransitionActivations.get(i);
-			if (transitionActivation.evaluateGuard()) {
+			if (transitionActivation.evaluateGuard(eventOccurrence)) {
 				fireableTransitions.add(transitionActivation);
 			}
 		}
@@ -56,7 +56,7 @@ public class ExitPointActivation extends ConnectionPointActivation {
 		// One outgoing transition is chosen non-deterministically in set of transition
 		// that can be used to leave the ExitPoint. This transition is fired. This lead
 		// to exit and parent states in cascade if required.
-		List<TransitionActivation> fireableTransitions = this.getFireableTransitions();
+		List<TransitionActivation> fireableTransitions = this.getFireableTransitions(eventOccurrence);
 		if (!fireableTransitions.isEmpty()) {
 			ChoiceStrategy choiceStrategy = (ChoiceStrategy) this.getExecutionLocus().factory.getStrategy("choice");
 			int chosenIndex = choiceStrategy.choose(fireableTransitions.size());

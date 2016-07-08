@@ -37,7 +37,7 @@ public class ChoicePseudostateActivation extends PseudostateActivation {
 			if(this.isElseTransition(currentTransitionActivation)){
 				elseTransitionActivation = currentTransitionActivation;
 			}else{
-				if (currentTransitionActivation.evaluateGuard()) {
+				if (currentTransitionActivation.evaluateGuard(eventOccurrence)) {
 					fireableTransitons.add(currentTransitionActivation);
 				}
 			}
@@ -63,6 +63,7 @@ public class ChoicePseudostateActivation extends PseudostateActivation {
 			if(transition.getGuard()!=null && transition.getGuard().getSpecification() instanceof Expression){
 				Expression expression = (Expression) transition.getGuard().getSpecification();
 				isElse = expression.getOperands().isEmpty() && expression.getSymbol() !=null && expression.getSymbol().toLowerCase().equals(ELSE_OPERATOR);
+				// TODO: The way we specify else must be specified in the abstract syntax.
 			}
 		}
 		return isElse;
