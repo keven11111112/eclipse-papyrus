@@ -19,6 +19,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -372,15 +375,18 @@ public abstract class AbstractFillHandleTest extends AbstractTableTest {
 		natTable.getConfigRegistry().registerConfigAttribute(PapyrusExportConfigAttributes.SIMPLE_FILE_EXPORTER, new PapyrusFileExporter(contentFile));
 		treeManager.exportToFile();
 
-		final String content = getStringFromFile(contentFile);
+		final StringBuilder content = new StringBuilder();
+		final List<String> allLines = Files.readAllLines(Paths.get(contentFile));
+		for (int index = 0; index < allLines.size(); index++) {
+			content.append(allLines.get(index));
+			if (index < allLines.size() - 1) {
+				content.append(FileUtils.getSystemPropertyLineSeparator());
+			}
+		}
 
 		final String str = getWantedString(getSuffixStateFileName(treeManager, suffixFileName));
 		// we check than the contents of the clipboard (so the displayed table) is the same than the wanted result
-		Assert.assertEquals("The clipboard must be equals to string which one it is filled", str, content); //$NON-NLS-1$
-
-		// Remove the content file
-		File file = new File(contentFile);
-		file.delete();
+		Assert.assertEquals("The clipboard must be equals to string which one it is filled", str, content.toString()); //$NON-NLS-1$
 	}
 
 	/**

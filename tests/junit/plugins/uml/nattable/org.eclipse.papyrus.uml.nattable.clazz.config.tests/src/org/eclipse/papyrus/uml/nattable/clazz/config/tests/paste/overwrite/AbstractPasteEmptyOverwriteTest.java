@@ -16,9 +16,6 @@ package org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.core.commands.Command;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.selection.command.ClearAllSelectionsCommand;
@@ -28,11 +25,10 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
+import org.eclipse.papyrus.infra.nattable.utils.PasteInsertUtil;
 import org.eclipse.papyrus.infra.tools.util.FileUtils;
-import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.Activator;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.commands.ICommandService;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -66,16 +62,9 @@ public abstract class AbstractPasteEmptyOverwriteTest extends AbstractPasteOverw
 		flushDisplayEvents();
 
 		// fill the clipboard
-		final ICommandService commandService = EclipseCommandUtils.getCommandService();
-		Assert.assertNotNull("The command service must not be null", commandService); //$NON-NLS-1$
 		final String fileName = getSuffixStateFileName(treeManager, TOCOPY_POST_FILE_NAME);
 		final String str = FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID, getSourcePath(), fileName);
 		fillClipboard("Fill the clipboard to enable the handler"); //$NON-NLS-1$
-
-		// Get the paste command
-		final Command cmd = commandService.getCommand("org.eclipse.ui.edit.paste"); //$NON-NLS-1$
-		final IHandler handler = cmd.getHandler();
-		Assert.assertTrue("The handler must be enabled", handler.isEnabled()); //$NON-NLS-1$
 
 		// Execute the command with the non-UI parameters
 		final Map<Object, Object> parameters = new HashMap<Object, Object>();
@@ -84,9 +73,8 @@ public abstract class AbstractPasteEmptyOverwriteTest extends AbstractPasteOverw
 		// This parameters allows to set the text to paste instead of copy/paste it programmatically (this may be overwrite by other copy)
 		parameters.put(PasteInTableHandler.TEXT_TO_PASTE, str);
 		manageParameters(parameters);
-		final ExecutionEvent event = new ExecutionEvent(cmd, parameters, null, null);
 		flushDisplayEvents();
-		final Object res = cmd.executeWithChecks(event);
+		final Object res = PasteInsertUtil.paste(treeManager, treeManager.getSelectionInTable(), parameters);
 		Assert.assertTrue("The result must be a status", res instanceof IStatus); //$NON-NLS-1$
 		final IStatus status = (IStatus) res;
 
@@ -104,16 +92,17 @@ public abstract class AbstractPasteEmptyOverwriteTest extends AbstractPasteOverw
 			testClose_Open();
 		}
 	}
-	
+
 	/**
 	 * This allows to add parameters if necessary
 	 * 
-	 * @param parameters The parameters for the command.
+	 * @param parameters
+	 *            The parameters for the command.
 	 */
-	public void manageParameters(final Map<Object, Object> parameters){
+	public void manageParameters(final Map<Object, Object> parameters) {
 		// Do nothing
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
