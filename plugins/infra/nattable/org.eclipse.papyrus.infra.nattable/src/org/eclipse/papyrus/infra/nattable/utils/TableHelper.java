@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Calin Glitia (Esterel Technologies SAS) - Bug 497654
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
@@ -154,7 +155,7 @@ public class TableHelper {
 	 * 		the display style to use for the managed table, the return value is never <code>null</code>
 	 */
 	public static final DisplayStyle getTableDisplayStyle(final INattableModelManager tableManager) {
-		return getTableDisplayStyle(tableManager.getTable());
+		return tableManager != null ? getTableDisplayStyle(tableManager.getTable()) : null;
 	}
 
 	/**
@@ -165,7 +166,7 @@ public class TableHelper {
 	 *         <code>true</code> if the managed table is a tree table
 	 */
 	public static final boolean isTreeTable(final INattableModelManager tableManager) {
-		return isTreeTable(tableManager.getTable());
+		return tableManager != null  ? isTreeTable(tableManager.getTable()) : false;
 	}
 
 	/**
@@ -242,7 +243,7 @@ public class TableHelper {
 	 *         <code>true</code> if the tableManager manages a tree table displayed on single column
 	 */
 	public static final boolean isSingleColumnTreeTable(final INattableModelManager tableManager) {
-		return isSingleColumnTreeTable(tableManager.getTable());
+		return tableManager != null ? isSingleColumnTreeTable(tableManager.getTable()) : false;
 	}
 
 
@@ -273,7 +274,7 @@ public class TableHelper {
 	 *         <code>true</code> if the tableManager manages a tree table displayed on multi column
 	 */
 	public static final boolean isMultiColumnTreeTable(final INattableModelManager tableManager) {
-		return isMultiColumnTreeTable(tableManager.getTable());
+		return tableManager != null ? isMultiColumnTreeTable(tableManager.getTable()) : false;
 	}
 
 	/**
@@ -306,7 +307,7 @@ public class TableHelper {
 	 * 		the way to use to declare cell editor for the current table manager, according to invert axis property
 	 */
 	public static final CellEditorDeclaration getCellEditorDeclaration(final INattableModelManager tableManager) {
-		return getCellEditorDeclaration(tableManager.getTable());
+		return tableManager != null ? getCellEditorDeclaration(tableManager.getTable()) : null;
 	}
 
 
