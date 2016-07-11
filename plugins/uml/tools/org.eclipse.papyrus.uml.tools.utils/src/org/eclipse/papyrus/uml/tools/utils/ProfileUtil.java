@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,7 @@
  *  Christian W. Damus - bug 399859
  *  Christian W. Damus - bug 451613
  *  Christian W. Damus - bug 474610
+ *  Calin Glitia (Esterel Technologies SAS) - bug 497699
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
@@ -76,7 +77,7 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 	 */
 	public static boolean isDirty(Package _package, Profile _profile) {
 		boolean isDirty = false;
-		if (_profile == null || _profile.eResource() == null || _package.eResource() == null) {
+		if (_profile == null || _profile.eResource() == null || _package == null || _package.eResource() == null) {
 			return false;
 		}
 
