@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2010, 2016 Atos Origin, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Sebastien Bordes (Esterel Technologies SAS) - Bug 497644
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.helper;
@@ -119,32 +120,34 @@ public class AcceptEventActionSwitchHelper extends NotificationHelper {
 	 * representation
 	 */
 	public void updateAcceptEventActionFigure() {
-		AcceptEventActionFigure actionFigure = editPart.getPrimaryShape();
-		boolean useHourglassFigure = CustomAcceptEventActionEditHelper.isAcceptTimeEventAction(getAction());
-		boolean hourglassAlreadyUsed = actionFigure.isTemplateForAcceptTimeEventActionUsed();
+		if (getAction() != null) {
+			AcceptEventActionFigure actionFigure = editPart.getPrimaryShape();
+			boolean useHourglassFigure = CustomAcceptEventActionEditHelper.isAcceptTimeEventAction(getAction());
+			boolean hourglassAlreadyUsed = actionFigure.isTemplateForAcceptTimeEventActionUsed();
 
 
-		if (useHourglassFigure != hourglassAlreadyUsed) {
-
-			// set usage of the correct figure
-			// actionFigure.useTemplateForAcceptTimeEventAction(useHourglassFigure);
-
-			// arrange the figure so that style remains coherent
-			// if (editPart.getModel() instanceof View) {
-			// int locX = actionFigure.getLocation().x;
-			// int width = actionFigure.getSize().width;
-			// int newWidth = width;
-			// if (useHourglassFigure) {
-			// // switching to hourglass, reduce width
-			// newWidth = width / REDUCE_WIDTH_FACTOR_FOR_HOURGLASS;
-			// } else {
-			// // switching to pentagon, augment width
-			// newWidth = width * REDUCE_WIDTH_FACTOR_FOR_HOURGLASS;
-			// }
-			// // adapt location to keep same center
-			// ViewUtil.setStructuralFeatureValue((View) editPart.getModel(), NotationPackage.eINSTANCE.getLocation_X(), locX + (width - newWidth) / 2);
-			// ViewUtil.setStructuralFeatureValue((View) editPart.getModel(), NotationPackage.eINSTANCE.getSize_Width(), newWidth);
-			// }
+			if (useHourglassFigure != hourglassAlreadyUsed) {
+	
+				// set usage of the correct figure
+				// actionFigure.useTemplateForAcceptTimeEventAction(useHourglassFigure);
+	
+				// arrange the figure so that style remains coherent
+				// if (editPart.getModel() instanceof View) {
+				// int locX = actionFigure.getLocation().x;
+				// int width = actionFigure.getSize().width;
+				// int newWidth = width;
+				// if (useHourglassFigure) {
+				// // switching to hourglass, reduce width
+				// newWidth = width / REDUCE_WIDTH_FACTOR_FOR_HOURGLASS;
+				// } else {
+				// // switching to pentagon, augment width
+				// newWidth = width * REDUCE_WIDTH_FACTOR_FOR_HOURGLASS;
+				// }
+				// // adapt location to keep same center
+				// ViewUtil.setStructuralFeatureValue((View) editPart.getModel(), NotationPackage.eINSTANCE.getLocation_X(), locX + (width - newWidth) / 2);
+				// ViewUtil.setStructuralFeatureValue((View) editPart.getModel(), NotationPackage.eINSTANCE.getSize_Width(), newWidth);
+				// }
+			}
 		}
 	}
 
