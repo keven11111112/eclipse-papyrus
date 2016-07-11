@@ -1,5 +1,6 @@
 /*******************************************************************************
- * Copyright (c) 2013 Soft-Maint.
+ * Copyright (c) 2013, 2016 Soft-Maint, Esterel Technologies SAS and others.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +9,8 @@
  * Contributors:
  *    David Couvrand (Soft-Maint) - Bug 418418 - [Customization] Overlay icons not implemented
  *    Thomas Cicognani (Soft-Maint) - Bug 424414 - ImageManager doesn't cache images
+ *    Nicolas Boulay (Esterel Technologies SAS) - Bug 497505
+ *
  *******************************************************************************/
 package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
@@ -53,20 +56,24 @@ public class ImageManager {
 
 	private ImageDescriptor createImageDescriptor(final String uriStr) {
 		ImageDescriptor imgDecriptor;
-		final URI uri = URI.createURI(uriStr);
-		final String bundleId = uri.segment(1);
-		final Bundle bundle = Platform.getBundle(bundleId);
-		final URI baseURI = URI.createPlatformPluginURI(bundleId + '/',
-				false);
-		final String resourcePath = uri.deresolve(baseURI).toString();
-		final URL url = bundle.getResource(resourcePath);
-
-		if (url == null) {
-			Logger.logError(NLS.bind("Resource not found: {0}", //$NON-NLS-1$
-					resourcePath), Activator.getDefault());
+		if (uriStr == null || "".equals(uriStr) ) {
 			imgDecriptor = ImageDescriptor.getMissingImageDescriptor();
 		} else {
-			imgDecriptor = ImageDescriptor.createFromURL(url);
+			final URI uri = URI.createURI(uriStr);
+			final String bundleId = uri.segment(1);
+			final Bundle bundle = Platform.getBundle(bundleId);
+			final URI baseURI = URI.createPlatformPluginURI(bundleId + '/',
+					false);
+			final String resourcePath = uri.deresolve(baseURI).toString();
+			final URL url = bundle.getResource(resourcePath);
+	
+			if (url == null) {
+				Logger.logError(NLS.bind("Resource not found: {0}", //$NON-NLS-1$
+						resourcePath), Activator.getDefault());
+				imgDecriptor = ImageDescriptor.getMissingImageDescriptor();
+			} else {
+				imgDecriptor = ImageDescriptor.createFromURL(url);
+			}
 		}
 		return imgDecriptor;
 	}
