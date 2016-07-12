@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Sebastien Bordes (Esterel Technologies SAS) - Bug 497756
  *
  *****************************************************************************/
 
@@ -58,7 +59,6 @@ import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.EventListHelper;
 import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
-
 
 /**
  * @author VL222926
@@ -117,7 +117,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 * @return
 	 * 		the created {@link ITreeItemAxis} representing objectToAdd
 	 */
-	protected final ITreeItemAxis addObject(final ITreeItemAxis parentAxis, final Object objectToAdd) {
+	protected ITreeItemAxis addObject(final ITreeItemAxis parentAxis, final Object objectToAdd) {
 		final ITreeItemAxis newAxis = createITreeItemAxis(parentAxis, objectToAdd);
 		if (objectToAdd instanceof TreeFillingConfiguration) {
 			TreeFillingConfiguration conf = (TreeFillingConfiguration) objectToAdd;
@@ -278,25 +278,26 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 *            a axis representing a semantic element
 	 */
 	protected void fillChildrenForSemanticElement(final ITreeItemAxis axis) {
-		Assert.isTrue(axis == null || axis.getChildren().size() == 0);
-		int nextDepth = -1;
-		Object context;
-		if (axis == null) {
-			nextDepth = 0;
-			context = getTableContext();
-		} else {
-			nextDepth = getSemanticDepth(axis) + 1;
-			context = axis.getElement();
-			Assert.isTrue(!(context instanceof TreeFillingConfiguration));
-		}
-		final List<TreeFillingConfiguration> confs = FillingConfigurationUtils.getTreeFillingConfigurationForDepth(getTable(), representedAxisManager, nextDepth);
-		for (TreeFillingConfiguration current : confs) {
-			final Collection<?> values = getFilteredValueAsCollection(current, context, nextDepth);
-			if (values.size() != 0) {
-				ITreeItemAxis newAxis = addObject(axis, current);
-				if (nextDepth == 0) {
-					for (Object curr : values) {
-						addObject(newAxis, curr);
+		if (axis == null || axis.getChildren().size() == 0) {
+			int nextDepth = -1;
+			Object context;
+			if (axis == null) {
+				nextDepth = 0;
+				context = getTableContext();
+			} else {
+				nextDepth = getSemanticDepth(axis) + 1;
+				context = axis.getElement();
+				Assert.isTrue(!(context instanceof TreeFillingConfiguration));
+			}
+			final List<TreeFillingConfiguration> confs = FillingConfigurationUtils.getTreeFillingConfigurationForDepth(getTable(), representedAxisManager, nextDepth);
+			for (TreeFillingConfiguration current : confs) {
+				final Collection<?> values = getFilteredValueAsCollection(current, context, nextDepth);
+				if (values.size() != 0) {
+					ITreeItemAxis newAxis = addObject(axis, current);
+					if (nextDepth == 0) {
+						for (Object curr : values) {
+							addObject(newAxis, curr);
+						}
 					}
 				}
 			}
@@ -503,26 +504,28 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	}
 
 	protected final void removeObject(final ITreeItemAxis axis) {
-		Collection<ITreeItemAxis> children = new ArrayList<ITreeItemAxis>(axis.getChildren());
-		for (ITreeItemAxis current : children) {
-			removeObject(current);
-			// EventListHelper.removeFromEventList(eventList, current);
-			// ITreeItemAxisHelper.unlinkITreeItemAxisToSemanticElement(this.managedElements, current);
-			// ITreeItemAxisHelper.destroyITreeItemAxis(getTableEditingDomain(), current);
-		}
-		final ITreeItemAxis parentAxis = axis.getParent();
-
-		EventListHelper.removeFromEventList(eventList, axis);
-		this.alreadyExpanded.remove(axis);
-		ITreeItemAxisHelper.unlinkITreeItemAxisToSemanticElement(this.managedElements, axis);
-		final TransactionalEditingDomain tableEditingDomain = getTableEditingDomain();
-		if(null != tableEditingDomain){
-			ITreeItemAxisHelper.destroyITreeItemAxis(tableEditingDomain, axis);
-		}
-		if (parentAxis != null) {
-			final Object representedElement = parentAxis.getElement();
-			if (representedElement instanceof TreeFillingConfiguration && parentAxis.getChildren().size() == 0) {
-				removeObject(parentAxis);
+		if (axis != null) {
+			Collection<ITreeItemAxis> children = new ArrayList<ITreeItemAxis>(axis.getChildren());
+			for (ITreeItemAxis current : children) {
+				removeObject(current);
+				// EventListHelper.removeFromEventList(eventList, current);
+				// ITreeItemAxisHelper.unlinkITreeItemAxisToSemanticElement(this.managedElements, current);
+				// ITreeItemAxisHelper.destroyITreeItemAxis(getTableEditingDomain(), current);
+			}
+			final ITreeItemAxis parentAxis = axis.getParent();
+	
+			EventListHelper.removeFromEventList(eventList, axis);
+			this.alreadyExpanded.remove(axis);
+			ITreeItemAxisHelper.unlinkITreeItemAxisToSemanticElement(this.managedElements, axis);
+			final TransactionalEditingDomain tableEditingDomain = getTableEditingDomain();
+			if(null != tableEditingDomain){
+				ITreeItemAxisHelper.destroyITreeItemAxis(tableEditingDomain, axis);
+			}
+			if (parentAxis != null) {
+				final Object representedElement = parentAxis.getElement();
+				if (representedElement instanceof TreeFillingConfiguration && parentAxis.getChildren().size() == 0) {
+					removeObject(parentAxis);
+				}
 			}
 		}
 	}
@@ -971,7 +974,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 				}
 
 				final Collection<?> values = getFilteredValueAsCollection(conf, context, nextDepth);
-				List<Object> knownElements = new ArrayList<Object>();
+				Set<Object> knownElements = new HashSet<Object>();
 				List<ITreeItemAxis> toRemove = new ArrayList<ITreeItemAxis>();
 				if (confRep != null) {
 					List<ITreeItemAxis> children = new ArrayList<ITreeItemAxis>(confRep.getChildren());
@@ -982,10 +985,11 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 						}
 						knownElements.add(child.getElement());
 					}
-					values.removeAll(knownElements);
 					if (alreadyExpanded.contains(current)) {
 						for (Object val : values) {
-							addObject(confRep, val);
+							if (!knownElements.contains(val)) {
+								addObject(confRep, val);
+							}
 						}
 					}
 
