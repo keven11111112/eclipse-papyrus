@@ -10,7 +10,8 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618
- *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467 
+ *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467
+ *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -819,6 +820,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			// Bug 490067: Check if the decoration service is available to avoid null pointer
 			if (null != this.decorationService) {
 				this.decorationService.deleteListener(this.decoractionServiceObserver);
+				this.decorationService = null;
 			}
 			this.decoractionServiceObserver = null;
 		}
@@ -840,10 +842,17 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 				this.contextEditingDomain.removeResourceSetListener(resourceSetListener);
 			}
 		}
-		this.columnManager.dispose();
-		this.columnManager = null;
-		this.rowManager.dispose();
-		this.rowManager = null;
+		
+		if (this.columnManager != null) {
+			this.columnManager.dispose();
+			this.columnManager = null;
+		}
+		
+		if (this.rowManager != null) {
+			this.rowManager.dispose();
+			this.rowManager = null;
+		}
+		
 		final Table table = getTable();
 		if (table != null) {
 
@@ -861,7 +870,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		if (this.cellsMap != null) {
 			this.cellsMap.clear();
 		}
-		if (this.natTable != null) {
+		if (this.natTable != null && !this.natTable.isDisposed()) {
 			if (this.layerListener != null) {
 				natTable.removeLayerListener(this.layerListener);
 			}

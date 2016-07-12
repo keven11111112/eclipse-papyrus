@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
  *
  *****************************************************************************/
 
@@ -152,7 +153,6 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	 */
 	@Override
 	public void dispose() {
-		removeListeners();
 		for (final IAxisManager current : this.subManagers) {
 			current.dispose();
 		}
@@ -168,10 +168,11 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	 */
 	@Override
 	protected void removeListeners() {
-		if (null != getTableEditingDomain()) {
+		if (null != getTableEditingDomain() && null != resourceSetListener) {
 			getTableEditingDomain().removeResourceSetListener(this.resourceSetListener);
 		}
 		this.resourceSetListener = null;
+		super.removeListeners();
 	}
 
 	/**
