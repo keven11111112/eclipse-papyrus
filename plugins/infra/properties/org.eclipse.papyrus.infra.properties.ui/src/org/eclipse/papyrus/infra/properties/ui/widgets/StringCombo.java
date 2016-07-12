@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Sebastien Gabel (Esterel Technologies SAS) - Bug 497768
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.widgets;
 
@@ -37,7 +39,7 @@ public class StringCombo extends AbstractPropertyEditor {
 	 */
 	public StringCombo(Composite parent, int style) {
 		editor = createStringCombo(parent, style);
-		super.setEditor(editor);
+		setEditor(editor);
 	}
 
 	/**
