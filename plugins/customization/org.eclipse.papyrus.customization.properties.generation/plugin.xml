@@ -39,5 +39,15 @@
             generator="org.eclipse.papyrus.customization.properties.generation.layout.ProfileWithDatatypes">
       </generator>
    </extension>
+   <extension point="org.eclipse.m2m.qvt.oml.runtime.qvtTransformation">
+      <library
+            file="transforms/ecore2datacontext.qvto"
+            id="ecore2datacontext">
+      </library>
+      <library
+            file="transforms/profile2datacontext.qvto"
+            id="profile2datacontext">
+      </library>
+   </extension>
 
 </plugin>
