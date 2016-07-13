@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2013 CEA LIST and others.
+ * Copyright (c) 2008, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,14 +12,17 @@
  *  <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>: Code simplification and NPE
  *         management.
  *  Christian W. Damus (CEA LIST) - API for determining URI of a resource in an editor
+ *  Christian W. Damus - bug 496299
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -35,6 +38,8 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.emf.resource.ICrossReferenceIndex;
+import org.eclipse.papyrus.infra.emf.resource.ShardResourceHelper;
 import org.eclipse.papyrus.infra.ui.Activator;
 import org.eclipse.papyrus.infra.ui.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
@@ -47,6 +52,10 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+
+import com.google.common.collect.Iterables;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 
 /**
  * Set of utility methods for the CoreEditor. <br>
@@ -81,7 +90,7 @@ public class EditorUtils {
 		if (page == null) {
 			return null;
 		}
-		List<IMultiDiagramEditor> list = new ArrayList<IMultiDiagramEditor>();
+		List<IMultiDiagramEditor> list = new ArrayList<>();
 		for (IEditorReference editorRef : page.getEditorReferences()) {
 			IEditorPart editorPart = editorRef.getEditor(false);
 			if (editorPart instanceof IMultiDiagramEditor) {
@@ -109,7 +118,7 @@ public class EditorUtils {
 		if (openedEditors == null) {
 			return new IMultiDiagramEditor[0];
 		}
-		List<IMultiDiagramEditor> list = new ArrayList<IMultiDiagramEditor>(openedEditors.length);
+		List<IMultiDiagramEditor> list = new ArrayList<>(openedEditors.length);
 
 		for (IMultiDiagramEditor editorPart : openedEditors) {
 			if (editorPart.getEditorInput() instanceof IFileEditorInput && diFile.equals(((IFileEditorInput) editorPart.getEditorInput()).getFile())) {
@@ -718,5 +727,57 @@ public class EditorUtils {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Resolves the root resource URI from the URI of a resource that may be a
+	 * shard or may be an independent model unit.
+	 * 
+	 * @param index
+	 *            the shard index to consult
+	 * @param resourceURI
+	 *            a resource URI
+	 * 
+	 * @return the root, which may just be the input resource URI if it is a root
+	 * 
+	 * @see ShardResourceHelper
+	 * @see ICrossReferenceIndex#getRoots(URI)
+	 * @since 1.3
+	 */
+	public static URI resolveShardRoot(ICrossReferenceIndex index, URI resourceURI) {
+		URI result;
+
+		try {
+			Set<URI> roots = index.getRoots(resourceURI);
+
+			// TODO: Handle case of multiple roots
+			result = Iterables.getFirst(roots, resourceURI);
+		} catch (CoreException e) {
+			Activator.log.log(e.getStatus());
+			result = resourceURI;
+		}
+
+		return result;
+	}
+
+	/**
+	 * Asynchronously resolves the root resource URI from the URI of a resource that
+	 * may be a shard or may be an independent model unit.
+	 * 
+	 * @param index
+	 *            the shard index to consult
+	 * @param resourceURI
+	 *            a resource URI
+	 * 
+	 * @return the root, which may just be the input resource URI if it is a root
+	 * 
+	 * @see ShardResourceHelper
+	 * @see ICrossReferenceIndex#getRootsAsync(URI)
+	 * @since 1.3
+	 */
+	public static ListenableFuture<URI> resolveShardRootAsync(ICrossReferenceIndex index, URI resourceURI) {
+		// TODO: Handle case of multiple roots
+		return Futures.transform(index.getRootsAsync(resourceURI),
+				(Set<URI> roots) -> Iterables.getFirst(roots, resourceURI));
 	}
 }

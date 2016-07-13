@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 CEA LIST and others.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 429242
+ *  Christian W. Damus - bug 496299
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -18,6 +19,7 @@ import static org.eclipse.papyrus.infra.core.Activator.log;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -31,6 +33,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.extension.ExtensionException;
 import org.eclipse.papyrus.infra.core.extension.ExtensionUtils;
+import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 
 import com.google.common.collect.Sets;
 
@@ -191,7 +194,18 @@ public class ModelsReader extends ExtensionUtils {
 			try {
 				if (MODEL_ELEMENT_NAME.equals(ele.getName())) {
 					IModel model = instanciateModel(ele);
+
+					// Register the model
+					AbstractModel previous = TypeUtils.as(modelSet.getModel(model.getIdentifier()), AbstractModel.class);
 					modelSet.registerModel(model);
+
+					// We may be contributing to another model already registered
+					// under the same ID
+					model = modelSet.getModel(model.getIdentifier());
+					if ((previous != null) && (previous != model)) {
+						inherit(model, previous);
+					}
+
 					addDeclaredModelSnippet(ele, model);
 					addDeclaredDependencies(ele, model);
 					log.debug("model loaded: '" + model.getClass().getName() + "'");
@@ -200,6 +214,21 @@ public class ModelsReader extends ExtensionUtils {
 				log.error("Problems occur while instanciating model", e);
 			}
 		}
+	}
+
+	/**
+	 * Let a {@code special} model inherit the snippets and dependencies from a
+	 * more {@code general} model that it replaces in the model-set.
+	 * 
+	 * @param special
+	 *            a specializing model
+	 * @param general
+	 *            a more generalized model that it replaces
+	 */
+	private void inherit(IModel special, AbstractModel general) {
+		general.snippets.forEach(special::addModelSnippet);
+		special.setAfterLoadModelDependencies(general.getAfterLoadModelIdentifiers());
+		special.setBeforeUnloadDependencies(general.getUnloadBeforeModelIdentifiers());
 	}
 
 	/**
@@ -316,11 +345,12 @@ public class ModelsReader extends ExtensionUtils {
 	protected void addDeclaredDependencies(IConfigurationElement modelConfigurationElement, IModel model) {
 		// Get children
 		IConfigurationElement[] dependencyElements = modelConfigurationElement.getChildren(DEPENDENCY_ELEMENT_NAME);
-		List<String> afterLoadModelIdentifiers = null;
-		List<String> unloadBeforeModelIdentifiers = null;
+
+		// Ordering is important, obviously, but we mustn't have duplicates
+		LinkedHashSet<String> afterLoadModelIdentifiers = null;
+		LinkedHashSet<String> unloadBeforeModelIdentifiers = null;
 
 		for (IConfigurationElement dependencyElement : dependencyElements) {
-
 			// init load after and unloadBefore
 			IConfigurationElement[] loadAfterElements = dependencyElement.getChildren(LOAD_AFTER_ELEMENT_NAME);
 			IConfigurationElement[] unloadBeforeElements = dependencyElement.getChildren(UNLOAD_BEFORE_ELEMENT_NAME);
@@ -329,7 +359,11 @@ public class ModelsReader extends ExtensionUtils {
 				String identifier = loadAfterElement.getAttribute(IDENTIFIER_ATTRIBUTE_NAME);
 				if (identifier != null && identifier.length() > 0) {
 					if (afterLoadModelIdentifiers == null) {
-						afterLoadModelIdentifiers = new ArrayList<String>();
+						afterLoadModelIdentifiers = new LinkedHashSet<>();
+						List<String> existing = model.getAfterLoadModelIdentifiers();
+						if (existing != null) {
+							afterLoadModelIdentifiers.addAll(existing);
+						}
 					}
 					afterLoadModelIdentifiers.add(identifier);
 				}
@@ -339,7 +373,11 @@ public class ModelsReader extends ExtensionUtils {
 				String identifier = unloadBeforeElement.getAttribute(IDENTIFIER_ATTRIBUTE_NAME);
 				if (identifier != null && identifier.length() > 0) {
 					if (unloadBeforeModelIdentifiers == null) {
-						unloadBeforeModelIdentifiers = new ArrayList<String>();
+						unloadBeforeModelIdentifiers = new LinkedHashSet<>();
+						List<String> existing = model.getUnloadBeforeModelIdentifiers();
+						if (existing != null) {
+							unloadBeforeModelIdentifiers.addAll(existing);
+						}
 					}
 					unloadBeforeModelIdentifiers.add(identifier);
 				}
@@ -347,8 +385,12 @@ public class ModelsReader extends ExtensionUtils {
 		}
 
 		// all config elements have been parsed. sets the dependencies in the model
-		model.setAfterLoadModelDependencies(afterLoadModelIdentifiers);
-		model.setBeforeUnloadDependencies(unloadBeforeModelIdentifiers);
+		if (afterLoadModelIdentifiers != null) {
+			model.setAfterLoadModelDependencies(new ArrayList<>(afterLoadModelIdentifiers));
+		}
+		if (unloadBeforeModelIdentifiers != null) {
+			model.setBeforeUnloadDependencies(new ArrayList<>(unloadBeforeModelIdentifiers));
+		}
 	}
 
 	/**

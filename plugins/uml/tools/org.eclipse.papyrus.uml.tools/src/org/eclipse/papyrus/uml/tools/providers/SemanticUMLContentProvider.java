@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,13 +9,14 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 410346
- *  Christian W. Damus - bug 451338
+ *  Christian W. Damus - bugs 451338, 496299
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.providers;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
@@ -199,8 +200,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 				}
 			}
 			return res;
-		}
-		else if (metaclass instanceof EClass) {
+		} else if (metaclass instanceof EClass) {
 			EClass metaEClass = (EClass) metaclass;
 			for (EObject stereotypeApplication : semanticElement.getStereotypeApplications()) {
 				if (metaEClass.isSuperTypeOf(stereotypeApplication.eClass())) {
@@ -254,8 +254,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 					if (stereotypeApplication != null) {
 						return stereotypeApplication;
 					}
-				}
-				else if (metaclassWanted instanceof EClass) {
+				} else if (metaclassWanted instanceof EClass) {
 					// new check based on EClass (stereotype definition)
 					EClass metaEClassWanted = (EClass) metaclassWanted;
 					for (EObject stereotypeApplication : element.getStereotypeApplications()) {
@@ -327,7 +326,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 	private class RootsAdapter {
 
-		private boolean needsRefresh = false;
+		private final AtomicReference<Runnable> pendingRefresh = new AtomicReference<>();
 
 		private Object listener;
 
@@ -379,21 +378,30 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 		private synchronized void triggerRefresh() {
 			roots = getRoots(root);
+
 			// During display, a resource has been loaded (e.g. by a Label provider).
 			// Schedule an update (in the future, to avoid conflicts with a potential current update)
-			if (viewer != null && viewer.getControl() != null && !viewer.getControl().isDisposed()) {
-				needsRefresh = true;
-				viewer.getControl().getDisplay().asyncExec(new Runnable() {
+			if ((viewer != null) && (viewer.getControl() != null) && !viewer.getControl().isDisposed()) {
+				if (pendingRefresh.compareAndSet(null, new Runnable() {
 
 					@Override
 					public void run() {
-						if (!needsRefresh || viewer == null || viewer.getControl() == null || viewer.getControl().isDisposed()) {
+						if (!pendingRefresh.compareAndSet(this, null)
+								|| (viewer == null) || (viewer.getControl() == null)
+								|| viewer.getControl().isDisposed()) {
 							return;
 						}
-						needsRefresh = false;
+
+						// Because containment proxy resolution that sets a root's
+						// eContainer is not detected by the adapter, so recompute
+						// again, now
+						roots = getRoots(root);
+
 						viewer.refresh();
 					};
-				});
+				})) {
+					viewer.getControl().getDisplay().asyncExec(pendingRefresh.get());
+				}
 			}
 		}
 	}

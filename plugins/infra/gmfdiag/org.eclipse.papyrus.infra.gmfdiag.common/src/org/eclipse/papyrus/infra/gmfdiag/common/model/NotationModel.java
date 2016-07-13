@@ -8,18 +8,13 @@
  *
  * Contributors:
  *   LIFL - Initial API and implementation
- *   Christian W. Damus - bug 485220
+ *   Christian W. Damus - bugs 485220, 496299
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.model;
 
-import java.util.Collections;
-
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.BadArgumentExcetion;
@@ -123,28 +118,6 @@ public class NotationModel extends EMFLogicalModel implements IModel {
 
 		return false;
 	}
-
-	@Override
-	public void handle(Resource resource) {
-		super.handle(resource);
-		if (resource == null) {
-			return;
-		}
-
-		// If the parameter resource is already a notation resource, nothing to do
-		if (!isRelatedResource(resource)) {
-			URI notationURI = resource.getURI().trimFileExtension().appendFileExtension(NOTATION_FILE_EXTENSION);
-			ResourceSet resourceSet = getResourceSet();
-			if (resourceSet != null && resourceSet.getURIConverter() != null) {
-				URIConverter converter = resourceSet.getURIConverter();
-				if (converter.exists(notationURI, Collections.emptyMap())) {
-					// If the notation resource associated to the parameter resource exists, load it
-					getResourceSet().getResource(notationURI, true);
-				}
-			}
-		}
-	}
-
 
 	/**
 	 * Get a diagram by its name.

@@ -1,0 +1,30 @@
+/*****************************************************************************
+ * Copyright (c) 2016 Christian W. Damus and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Christian W. Damus - Initial API and implementation
+ *   
+ *****************************************************************************/
+
+package org.eclipse.papyrus.infra.emf.internal.resource;
+
+/**
+ * A simple, recognizable throwable to bail out of XML parsing early.
+ */
+class StopParsing extends Error {
+
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Initializes me.
+	 */
+	public StopParsing() {
+		super();
+	}
+
+}

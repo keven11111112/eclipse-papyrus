@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 Christian W. Damus and others.
+ * Copyright (c) 2014, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -20,6 +20,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,7 +32,12 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.Supplier;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -41,8 +47,11 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -51,6 +60,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.emf.Activator;
+import org.eclipse.papyrus.infra.emf.internal.resource.index.IndexManager;
+import org.eclipse.papyrus.infra.emf.internal.resource.index.InternalModelIndex;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.LogTracker;
@@ -66,16 +77,17 @@ import org.junit.Test;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.common.io.Files;
-import com.google.common.util.concurrent.Uninterruptibles;
 
 /**
  * Test suite for the {@link WorkspaceModelIndex} class.
  */
 public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 
-	private static final CrossReferenceIndexer index = new CrossReferenceIndexer();
+	private static final SyncHolder syncHolder = new SyncHolder();
+	private static final CrossReferenceIndexer index = new CrossReferenceIndexer(syncHolder);
+
+	private static IndexManager manager;
 	private static WorkspaceModelIndex<CrossReferenceIndex> fixture;
-	private static boolean delayIndexing;
 
 	@Rule
 	public final HouseKeeper houseKeeper = new HouseKeeper();
@@ -219,8 +231,8 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 		// Initial build
 		Map<IFile, CrossReferenceIndex> index = fixture.getIndex().get();
 
-		// Ensure that indexing will take a bit of time
-		delayIndexing = true;
+		// Interlock with the indexing for timing purposes
+		Semaphore sync = syncHolder.createStandardSync();
 
 		final String newFileName = "the_referencing_model.uml";
 
@@ -231,8 +243,11 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 		referencingFile = referencingProject.getFile(new Path(newFileName));
 		referencingURI = uri(referencingFile);
 
+		// Let the indexing start
+		sync.release();
+
 		// Cancel the index control job
-		Job[] family = Job.getJobManager().find(fixture);
+		Job[] family = Job.getJobManager().find(manager);
 		Job controlJob = null;
 		for (Job job : family) {
 			if (job.getClass().getSimpleName().contains("JobWrangler")) {
@@ -241,16 +256,25 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 			}
 		}
 		assertThat("Control job not found", controlJob, notNullValue());
+
+		long cancellingAt = System.currentTimeMillis();
+
 		controlJob.cancel();
 
-		long requestIndex = System.currentTimeMillis();
+		// Let the indexing finish
+		sync.release();
+
+		JobWaiter controlJobWaiter = JobWaiter.waitForStart(controlJob);
+
+		controlJobWaiter.waitForJob();
+
+		long restartedAt = System.currentTimeMillis();
+
+		assertThat("Didn't have to wait for the index to recover",
+				(restartedAt - cancellingAt), greaterThan(1000L));
 
 		// Check the index
 		index = fixture.getIndex().get();
-
-		long gotIndex = System.currentTimeMillis();
-
-		assertThat("Didn't have to wait for the index to recover", (gotIndex - requestIndex), greaterThan(1000L));
 
 		assertIndex(index);
 	}
@@ -311,12 +335,21 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 
 	@BeforeClass
 	public static void createFixture() {
-		fixture = new WorkspaceModelIndex<CrossReferenceIndex>("test", UMLResource.UML_CONTENT_TYPE_IDENTIFIER, index, 2);
+		manager = new IndexManager() {
+			@Override
+			protected Map<QualifiedName, InternalModelIndex> loadIndices() {
+				fixture = new WorkspaceModelIndex<>("test", UMLResource.UML_CONTENT_TYPE_IDENTIFIER, index, 2);
+				return Collections.singletonMap(fixture.getIndexKey(), (InternalModelIndex) fixture);
+			}
+		};
+		manager.startManager();
 	}
 
 	@AfterClass
 	public static void destroyFixture() {
-		fixture.dispose();
+		// This disposes the fixture, too
+		manager.dispose();
+		manager = null;
 		fixture = null;
 	}
 
@@ -346,7 +379,7 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 
 	@After
 	public void reset() {
-		delayIndexing = false;
+		syncHolder.clear();
 	}
 
 	static URI uri(IFile file) {
@@ -393,8 +426,44 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 	// Nested types
 	//
 
+	static class SyncHolder implements Supplier<Semaphore> {
+		private volatile Semaphore sync;
+
+		@Override
+		public Semaphore get() {
+			return sync;
+		}
+
+		Semaphore createStandardSync() {
+			sync = new Semaphore(0);
+			return sync;
+		}
+
+		void clear() {
+			if (sync != null) {
+				// Make sure that any blocked threads are released to whatever fate
+				syncHolder.sync.release(100);
+				syncHolder.sync = null;
+			}
+		}
+	}
+
 	static class CrossReferenceIndexer implements WorkspaceModelIndex.IndexHandler<CrossReferenceIndex> {
 		private final Map<IFile, CrossReferenceIndex> index = Maps.newHashMap();
+
+		private final Supplier<? extends Semaphore> syncSupplier;
+
+		/**
+		 * Initializes me.
+		 * 
+		 * @param syncSupplier
+		 *            a supplier of an optional semaphore to acquire at start and end of indexing a file
+		 */
+		public CrossReferenceIndexer(Supplier<? extends Semaphore> syncSupplier) {
+			super();
+
+			this.syncSupplier = syncSupplier;
+		}
 
 		private CrossReferenceIndex get(IFile file) {
 			CrossReferenceIndex result;
@@ -413,38 +482,48 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 		@Override
 		public CrossReferenceIndex index(IFile file) {
 			final CrossReferenceIndex result = get(file);
+			final Semaphore sync = syncSupplier.get();
 
-			Set<URI> imports = result.imports;
-
-			ResourceSet resourceSet = new IndexingResourceSet();
+			if (sync != null) {
+				// Wait for the test to let us proceed
+				sync.acquireUninterruptibly();
+			}
 
 			try {
-				URI uri = uri(file);
+				Set<URI> imports = result.imports;
+				imports.clear();
 
-				Resource resource = resourceSet.getResource(uri, true);
-				for (Map.Entry<EObject, Collection<EStructuralFeature.Setting>> next : EcoreUtil.ProxyCrossReferencer.find(resource).entrySet()) {
-					for (EStructuralFeature.Setting setting : next.getValue()) {
-						Object references = setting.get(false);
+				ResourceSet resourceSet = new IndexingResourceSet();
 
-						if (references instanceof EObject) {
-							EObject ref = (EObject) references;
-							if (ref.eIsProxy()) {
-								URI href = EcoreUtil.getURI(ref).trimFragment();
-								if (href.isPlatformResource() && imports.add(href)) {
-									// add the corresponding export
-									IFile other = file.getWorkspace().getRoot().getFile(new Path(href.toPlatformString(true)));
-									get(other).exports.add(uri);
+				try {
+					URI uri = uri(file);
+
+					Resource resource = resourceSet.getResource(uri, true);
+					for (Map.Entry<EObject, Collection<EStructuralFeature.Setting>> next : EcoreUtil.ProxyCrossReferencer.find(resource).entrySet()) {
+						for (EStructuralFeature.Setting setting : next.getValue()) {
+							Object references = setting.get(false);
+
+							if (references instanceof EObject) {
+								EObject ref = (EObject) references;
+								if (ref.eIsProxy()) {
+									URI href = EcoreUtil.getURI(ref).trimFragment();
+									if (href.isPlatformResource() && imports.add(href)) {
+										// add the corresponding export
+										IFile other = file.getWorkspace().getRoot().getFile(new Path(href.toPlatformString(true)));
+										get(other).exports.add(uri);
+									}
 								}
 							}
 						}
 					}
+				} finally {
+					EMFHelper.unload(resourceSet);
 				}
 			} finally {
-				EMFHelper.unload(resourceSet);
-			}
-
-			if (delayIndexing) {
-				Uninterruptibles.sleepUninterruptibly(1L, TimeUnit.SECONDS);
+				if (sync != null) {
+					// Wait for the test to let us finish
+					sync.acquireUninterruptibly();
+				}
 			}
 
 			return result;
@@ -551,5 +630,75 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 		protected void manipulateFile(IFile file, IProgressMonitor monitor) throws CoreException {
 			file.delete(true, monitor);
 		}
+	}
+
+	static final class JobWaiter extends JobChangeAdapter {
+		private final Job job;
+		private final boolean waitForStart;
+
+		private final Lock lock = new ReentrantLock();
+		private final Condition cond = lock.newCondition();
+		private volatile boolean gotIt;
+
+		private JobWaiter(Job job, boolean waitForStart) {
+			super();
+
+			this.job = job;
+			this.waitForStart = waitForStart;
+
+			Job.getJobManager().addJobChangeListener(this);
+		}
+
+		public static JobWaiter waitForStart(Job job) {
+			return new JobWaiter(job, true);
+		}
+
+		public static JobWaiter waitForEnd(Job job) {
+			return new JobWaiter(job, false);
+		}
+
+		public void waitForJob() {
+			lock.lock();
+
+			try {
+				while (!gotIt) {
+					try {
+						cond.await();
+					} catch (InterruptedException e) {
+						fail("Test was interrupted");
+					}
+				}
+			} finally {
+				lock.unlock();
+				Job.getJobManager().removeJobChangeListener(this);
+			}
+		}
+
+		@Override
+		public void aboutToRun(IJobChangeEvent event) {
+			if (waitForStart && (event.getJob() == job)) {
+				lock.lock();
+				try {
+					gotIt = true;
+					cond.signalAll();
+				} finally {
+					lock.unlock();
+				}
+			}
+		}
+
+		@Override
+		public void done(IJobChangeEvent event) {
+			if (!waitForStart && (event.getJob() == job)) {
+				lock.lock();
+				try {
+					gotIt = true;
+					cond.signalAll();
+				} finally {
+					lock.unlock();
+				}
+			}
+		}
+
 	}
 }

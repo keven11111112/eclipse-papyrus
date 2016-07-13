@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 Christian W. Damus and others.
+ * Copyright (c) 2014, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -35,7 +35,7 @@ import com.google.common.collect.Maps;
  */
 public abstract class AbstractUMLIndexHandler extends DefaultHandler {
 	protected final URI fileURI;
-	private final Map<URI, Map<URI, URI>> packageToProfileApplications = Maps.newHashMap();
+	private final Map<String, Map<String, String>> packageToProfileApplications = Maps.newHashMap();
 
 	private String umlNamespace;
 	private String umlPrefix;
@@ -67,7 +67,7 @@ public abstract class AbstractUMLIndexHandler extends DefaultHandler {
 		return fileURI;
 	}
 
-	public Map<URI, Map<URI, URI>> getProfileApplicationsByPackage() {
+	public Map<String, Map<String, String>> getProfileApplicationsByPackage() {
 		return packageToProfileApplications;
 	}
 

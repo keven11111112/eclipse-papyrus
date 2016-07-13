@@ -4,18 +4,20 @@ Export-Package: org.eclipse.papyrus.infra.emf,
  org.eclipse.papyrus.infra.emf.advice,
  org.eclipse.papyrus.infra.emf.commands,
  org.eclipse.papyrus.infra.emf.edit.domain,
+ org.eclipse.papyrus.infra.emf.internal.resource;x-internal:=true,
+ org.eclipse.papyrus.infra.emf.internal.resource.index;x-internal:=true,
  org.eclipse.papyrus.infra.emf.requests,
  org.eclipse.papyrus.infra.emf.resource,
  org.eclipse.papyrus.infra.emf.resource.index,
  org.eclipse.papyrus.infra.emf.spi.resolver,
  org.eclipse.papyrus.infra.emf.utils
-Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="[2.1.0,3.0.0)";visibility:=reexport,
  org.eclipse.core.expressions;bundle-version="[3.5.0,4.0.0)";visibility:=reexport,
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="[1.9.0,2.0.0)";visibility:=reexport,
  org.eclipse.papyrus.emf.facet.custom.core;bundle-version="[2.0.0,3.0.0)";visibility:=reexport
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.100.qualifier
+Bundle-Version: 2.2.0.qualifier
 Bundle-Name: EMF Tools
 Bundle-Activator: org.eclipse.papyrus.infra.emf.Activator
 Bundle-ManifestVersion: 2

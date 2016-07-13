@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 Christian W. Damus and others.
+ * Copyright (c) 2014, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.decoratormodel.internal.resource;
 import static org.eclipse.papyrus.uml.decoratormodel.Activator.TRACE_INDEX;
 
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
@@ -23,6 +24,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -34,13 +36,15 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.papyrus.infra.emf.resource.index.IWorkspaceModelIndexProvider;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex;
-import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex.IndexHandler;
+import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex.PersistentIndexHandler;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndexAdapter;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndexEvent;
 import org.eclipse.papyrus.uml.decoratormodel.Activator;
 import org.eclipse.papyrus.uml.decoratormodel.helper.DecoratorModelUtils;
 import org.eclipse.papyrus.uml.decoratormodel.internal.messages.Messages;
+import org.eclipse.papyrus.uml.decoratormodel.internal.resource.index.AbstractUMLIndexHandler;
 import org.eclipse.papyrus.uml.decoratormodel.internal.resource.index.ModelIndexHandler;
 import org.eclipse.papyrus.uml.decoratormodel.internal.resource.index.ProfileIndexHandler;
 import org.eclipse.uml2.common.util.CacheAdapter;
@@ -79,9 +83,15 @@ public class DecoratorModelIndex {
 
 	private final Map<URI, SetMultimap<URI, URI>> userModelToResourceToAppliedProfiles = Maps.newHashMap();
 
-	private final WorkspaceModelIndex<DecoratorModelIndex> index;
+	private final WorkspaceModelIndex<IndexedFile<?>> index;
 
 	private final CopyOnWriteArrayList<IDecoratorModelIndexListener> listeners = Lists.newCopyOnWriteArrayList();
+
+	static {
+		// This cannot be done in the constructor because it depends on the INSTANCE
+		// already being set
+		INSTANCE.initialize();
+	}
 
 	/**
 	 * Not instantiable by clients.
@@ -89,7 +99,10 @@ public class DecoratorModelIndex {
 	private DecoratorModelIndex() {
 		super();
 
-		index = new WorkspaceModelIndex<DecoratorModelIndex>("papyrusUMLProfiles", UMLPackage.eCONTENT_TYPE, indexer(), MAX_INDEX_JOBS); //$NON-NLS-1$
+		index = new WorkspaceModelIndex<IndexedFile<?>>("papyrusUMLProfiles", UMLPackage.eCONTENT_TYPE, indexer(), MAX_INDEX_JOBS); //$NON-NLS-1$
+	}
+
+	private void initialize() {
 		index.addListener(new WorkspaceModelIndexAdapter() {
 			@Override
 			protected void indexAboutToCalculateOrRecalculate(WorkspaceModelIndexEvent event) {
@@ -565,12 +578,20 @@ public class DecoratorModelIndex {
 		}
 	}
 
-	private void indexDecoratorModel(IFile file) {
+	private IndexedDecoratorModel indexDecoratorModel(IFile file) {
 		final URI decoratorURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 
 		ProfileIndexHandler handler = new ProfileIndexHandler(decoratorURI);
 
 		runIndexHandler(file, decoratorURI, handler);
+
+		IndexedDecoratorModel result = new IndexedDecoratorModel(handler);
+		indexDecoratorModel(file, result);
+		return result;
+	}
+
+	private void indexDecoratorModel(IFile file, IndexedDecoratorModel index) {
+		final URI decoratorURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 
 		synchronized (sync) {
 			// first, remove all links to the decorator model
@@ -584,10 +605,10 @@ public class DecoratorModelIndex {
 			}
 
 			// update the forward mapping
-			decoratorToModels.replaceValues(decoratorURI, handler.getReferencedModelURIs());
+			decoratorToModels.replaceValues(decoratorURI, index.getReferencedModelURIs());
 
 			// update the reverse mapping
-			for (URI next : handler.getReferencedModelURIs()) {
+			for (URI next : index.getReferencedModelURIs()) {
 				modelToDecorators.put(next, decoratorURI);
 			}
 
@@ -600,19 +621,19 @@ public class DecoratorModelIndex {
 			}
 
 			// update the package links
-			for (URI next : handler.getPackageToProfileApplications().keySet()) {
+			for (URI next : index.getProfileApplicationsByPackage().keySet()) {
 				packageToDecoratorModels.put(next, decoratorURI);
 			}
 
 			// and update the package-to-profiles-to-definitions index
-			decoratorModelToPackageToProfileApplications.put(decoratorURI, handler.getPackageToProfileApplications());
+			decoratorModelToPackageToProfileApplications.put(decoratorURI, index.getProfileApplicationsByPackage());
 
 			// and the externalization name index
-			decoratorModelNames.put(decoratorURI, handler.getExternalizationName());
+			decoratorModelNames.put(decoratorURI, index.getExternalizationName());
 
 			// and the applied profiles by resource (external and internal)
 			Set<URI> userModelsProcessed = Sets.newHashSet();
-			for (Map.Entry<URI, Map<URI, URI>> next : handler.getPackageToProfileApplications().entrySet()) {
+			for (Map.Entry<URI, Map<URI, URI>> next : index.getProfileApplicationsByPackage().entrySet()) {
 				URI userModelURI = next.getKey().trimFragment();
 				if (userModelsProcessed.add(userModelURI)) {
 					SetMultimap<URI, URI> resourceToAppliedProfiles = userModelToResourceToAppliedProfiles.get(userModelURI);
@@ -661,12 +682,20 @@ public class DecoratorModelIndex {
 		}
 	}
 
-	private void indexUserModel(IFile file) {
+	private IndexedUserModel indexUserModel(IFile file) {
 		final URI userModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 
 		ModelIndexHandler handler = new ModelIndexHandler(userModelURI);
 
 		runIndexHandler(file, userModelURI, handler);
+
+		IndexedUserModel result = new IndexedUserModel(handler);
+		indexUserModel(file, result);
+		return result;
+	}
+
+	private void indexUserModel(IFile file, IndexedUserModel index) {
+		final URI userModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 
 		synchronized (sync) {
 			// remove all internal profile applications of this resource
@@ -676,7 +705,7 @@ public class DecoratorModelIndex {
 			}
 
 			// then add the applied profiles by resource (external and internal)
-			for (Map<URI, URI> next : handler.getProfileApplicationsByPackage().values()) {
+			for (Map<URI, URI> next : index.getProfileApplicationsByPackage().values()) {
 				if (resourceToAppliedProfiles == null) {
 					resourceToAppliedProfiles = HashMultimap.create();
 					userModelToResourceToAppliedProfiles.put(userModelURI, resourceToAppliedProfiles);
@@ -698,22 +727,39 @@ public class DecoratorModelIndex {
 		}
 	}
 
-	private IndexHandler<DecoratorModelIndex> indexer() {
-		return new IndexHandler<DecoratorModelIndex>() {
+	private PersistentIndexHandler<IndexedFile<?>> indexer() {
+		return new PersistentIndexHandler<IndexedFile<?>>() {
 			@Override
-			public DecoratorModelIndex index(IFile file) {
+			public IndexedFile<?> index(IFile file) {
+				IndexedFile<?> result;
+
 				if (DecoratorModelUtils.isDecoratorModel(file)) {
-					DecoratorModelIndex.this.indexDecoratorModel(file);
+					result = DecoratorModelIndex.this.indexDecoratorModel(file);
 				} else {
-					DecoratorModelIndex.this.indexUserModel(file);
+					result = DecoratorModelIndex.this.indexUserModel(file);
 				}
-				return DecoratorModelIndex.this;
+				return result;
 			}
 
 			@Override
 			public void unindex(IFile file) {
 				DecoratorModelIndex.this.unindexDecoratorModel(file);
 				DecoratorModelIndex.this.unindexUserModel(file);
+			}
+
+			@Override
+			public boolean load(IFile file, IndexedFile<?> index) {
+				boolean result = true;
+
+				if (index instanceof IndexedDecoratorModel) {
+					DecoratorModelIndex.this.indexDecoratorModel(file, (IndexedDecoratorModel) index);
+				} else if (index instanceof IndexedUserModel) {
+					DecoratorModelIndex.this.indexUserModel(file, (IndexedUserModel) index);
+				} else {
+					result = false;
+				}
+
+				return result;
 			}
 		};
 	}
@@ -752,5 +798,89 @@ public class DecoratorModelIndex {
 		}
 
 		protected abstract V doCall();
+	}
+
+	static abstract class IndexedFile<H extends AbstractUMLIndexHandler> implements Serializable {
+		private static final long serialVersionUID = 1L;
+
+		private Map<String, Map<String, String>> profileApplicationByPackage;
+
+		private transient Map<URI, Map<URI, URI>> profileApplicationByPackageURI;
+
+		IndexedFile(H handler) {
+			super();
+
+			profileApplicationByPackage = handler.getProfileApplicationsByPackage();
+		}
+
+		Map<URI, Map<URI, URI>> getProfileApplicationsByPackage() {
+			if (profileApplicationByPackageURI == null) {
+				profileApplicationByPackageURI = mapOfMapsToURIs(profileApplicationByPackage);
+			}
+			return profileApplicationByPackageURI;
+		}
+
+		final Set<URI> setToURIs(Set<String> uris) {
+			return uris.stream()
+					.map(URI::createURI)
+					.collect(Collectors.toSet());
+		}
+
+		final Map<URI, Map<URI, URI>> mapOfMapsToURIs(Map<String, Map<String, String>> uris) {
+			Map<URI, Map<URI, URI>> result = Maps.newHashMap();
+			uris.forEach((uri, map) -> {
+				Map<URI, URI> uriMap = Maps.newHashMap();
+				map.forEach((a, b) -> uriMap.put(URI.createURI(a), URI.createURI(b)));
+				result.put(URI.createURI(uri), uriMap);
+			});
+			return result;
+		}
+	}
+
+	static final class IndexedDecoratorModel extends IndexedFile<ProfileIndexHandler> {
+
+		private static final long serialVersionUID = 1L;
+
+		private String externalizationName;
+		private Set<String> referencedModels;
+
+		private transient Set<URI> referencedModelURIs;
+
+		IndexedDecoratorModel(ProfileIndexHandler handler) {
+			super(handler);
+
+			externalizationName = handler.getExternalizationName();
+			referencedModels = handler.getReferencedModelURIs();
+		}
+
+		String getExternalizationName() {
+			return externalizationName;
+		}
+
+		Set<URI> getReferencedModelURIs() {
+			if (referencedModelURIs == null) {
+				referencedModelURIs = setToURIs(referencedModels);
+			}
+			return referencedModelURIs;
+		}
+	}
+
+	static final class IndexedUserModel extends IndexedFile<ModelIndexHandler> {
+
+		private static final long serialVersionUID = 1L;
+
+		IndexedUserModel(ModelIndexHandler handler) {
+			super(handler);
+		}
+	}
+
+	/**
+	 * Index provider on the extension point.
+	 */
+	public static final class IndexProvider implements IWorkspaceModelIndexProvider {
+		@Override
+		public WorkspaceModelIndex<?> get() {
+			return DecoratorModelIndex.INSTANCE.index;
+		}
 	}
 }

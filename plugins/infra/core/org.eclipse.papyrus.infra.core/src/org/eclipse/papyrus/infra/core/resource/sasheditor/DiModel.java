@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 LIFL, CEA LIST, and others.
+ * Copyright (c) 2011, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,21 +10,18 @@
  * Contributors:
  *  LIFL - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 429242
+ *  Christian W. Damus - bug 496299
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
-import java.util.Collections;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
 import org.eclipse.papyrus.infra.core.resource.IEMFModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
@@ -129,47 +126,6 @@ public class DiModel extends AbstractModelWithSharedResource<EObject> implements
 		}
 		super.setModelURI(uriWithoutExtension);
 
-	}
-
-	@Override
-	public void handle(Resource resource) {
-		super.handle(resource);
-		if (resource == null) {
-			return;
-		}
-
-		// If the parameter resource is already a di resource, nothing to do
-		if (!isRelatedResource(resource)) {
-			URI diUri = resource.getURI().trimFileExtension().appendFileExtension(DI_FILE_EXTENSION);
-			ResourceSet resourceSet = getResourceSet();
-
-			boolean diAlreadyLoaded = false;
-			for (Resource loadedResource : resourceSet.getResources()) {
-				if (loadedResource.getURI().equals(diUri)) {
-					diAlreadyLoaded = true;
-					break;
-				}
-			}
-
-			if (!diAlreadyLoaded && resourceSet.getURIConverter() != null) {
-				URIConverter converter = resourceSet.getURIConverter();
-
-				// If the di resource associated to the parameter resource exists, load it
-				if (converter.exists(diUri, Collections.emptyMap())) {
-
-					// loadModel writes this.resource and this.resourceUri. In this case, when only want to load
-					// the resource, but it should not become the main resource
-
-					// Load with try/catch to remain consistent with loadModel()
-					try {
-						resourceSet.getResource(diUri, true);
-					} catch (Exception ex) {
-						Activator.log.error(ex);
-					}
-				}
-
-			}
-		}
 	}
 
 	// Prevent infinite loop from 2 models delegating to each other.

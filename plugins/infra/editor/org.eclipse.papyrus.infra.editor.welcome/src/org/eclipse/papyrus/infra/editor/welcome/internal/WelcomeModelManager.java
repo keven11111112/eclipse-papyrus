@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -38,7 +38,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.ResourceLocator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
@@ -259,61 +258,6 @@ public class WelcomeModelManager {
 			} else {
 				super.demandLoadHelper(resource);
 			}
-		}
-
-		// More or less copied from EMF
-		@Override
-		protected Resource basicGetResource(URI uri, boolean loadOnDemand) {
-			Map<URI, Resource> map = resourceSet.getURIResourceMap();
-			if (map != null) {
-				Resource resource = map.get(uri);
-				if (resource != null) {
-					if (loadOnDemand && !resource.isLoaded()) {
-						demandLoadHelper(resource);
-					}
-					return resource;
-				}
-			}
-
-			URIConverter theURIConverter = resourceSet.getURIConverter();
-			URI normalizedURI = theURIConverter.normalize(uri);
-			for (Resource resource : resourceSet.getResources()) {
-				if (theURIConverter.normalize(resource.getURI()).equals(normalizedURI)) {
-					if (loadOnDemand && !resource.isLoaded()) {
-						demandLoadHelper(resource);
-					}
-
-					if (map != null) {
-						map.put(uri, resource);
-					}
-					return resource;
-				}
-			}
-
-			Resource delegatedResource = delegatedGetResource(uri, loadOnDemand);
-			if (delegatedResource != null) {
-				if (map != null) {
-					map.put(uri, delegatedResource);
-				}
-				return delegatedResource;
-			}
-
-			if (loadOnDemand) {
-				Resource resource = demandCreateResource(uri);
-				if (resource == null) {
-					throw new IllegalArgumentException(String.format("Cannot create a resource for '%s'; a registered resource factory is needed", uri));
-				}
-
-				demandLoadHelper(resource);
-
-				if (map != null) {
-					map.put(uri, resource);
-				}
-				return resource;
-			}
-
-			return null;
-
 		}
 
 		@Override

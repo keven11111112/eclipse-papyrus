@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -33,7 +33,6 @@ import com.google.common.collect.Multimap;
  * </ul>
  */
 public class ModelIndexHandler extends AbstractUMLIndexHandler {
-	private final Map<URI, Map<URI, URI>> packageToProfileApplications = Maps.newHashMap();
 	private final Multimap<String, URIPair> packageProfileApplications = ArrayListMultimap.create();
 
 	private String profileApplication;
@@ -54,11 +53,6 @@ public class ModelIndexHandler extends AbstractUMLIndexHandler {
 	@Override
 	public URI getFileURI() {
 		return fileURI;
-	}
-
-	@Override
-	public Map<URI, Map<URI, URI>> getProfileApplicationsByPackage() {
-		return packageToProfileApplications;
 	}
 
 	@Override
@@ -107,15 +101,15 @@ public class ModelIndexHandler extends AbstractUMLIndexHandler {
 			URI applyingPackageURI = fileURI.appendFragment(packageID);
 			Collection<URIPair> profileApplications = packageProfileApplications.get(packageID);
 			if (!profileApplications.isEmpty()) {
-				Map<URI, URI> map = packageToProfileApplications.get(applyingPackageURI);
+				Map<String, String> map = getProfileApplicationsByPackage().get(applyingPackageURI.toString());
 				if (map == null) {
 					map = Maps.newHashMap();
-					packageToProfileApplications.put(applyingPackageURI, map);
+					getProfileApplicationsByPackage().put(applyingPackageURI.toString(), map);
 				}
 				for (URIPair profileApplication : profileApplications) {
 					// If we can't determine the Ecore definition, the profile is not properly applied
 					if (profileApplication.second != null) {
-						map.put(profileApplication.first, profileApplication.second);
+						map.put(profileApplication.first.toString(), profileApplication.second.toString());
 					}
 				}
 			}

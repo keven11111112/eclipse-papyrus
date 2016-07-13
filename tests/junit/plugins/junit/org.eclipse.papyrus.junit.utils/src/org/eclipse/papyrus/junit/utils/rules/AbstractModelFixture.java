@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 399859, 451230, 458685, 469188, 485220
+ *   Christian W. Damus - bugs 399859, 451230, 458685, 469188, 485220, 496299
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -55,10 +55,12 @@ import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.uml2.uml.Package;
@@ -262,6 +264,18 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 				uris.add(next.getURI());
 			}
 			initialResourceURIs = uris;
+
+			// Ensure that the ModelSet's IModels are started
+			ModelSet modelSet = TypeUtils.as(getResourceSet(), ModelSet.class);
+			if (modelSet != null) {
+				// It doesn't matter that the resource is already loaded
+				try {
+					modelSet.loadModels(result.get(0).getURI());
+				} catch (ModelMultiException e) {
+					// Continue with the test as well as we can
+					e.printStackTrace();
+				}
+			}
 		} else {
 			ResourceSet rset = getResourceSet();
 			boolean bootstrapResourceSet = rset == null;
@@ -345,8 +359,8 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 			}
 
 			// Look for any other dependencies (libraries, profiles, etc.) that also need to be copied
-			Queue<Resource> dependents = new LinkedList<Resource>();
-			Set<Resource> scanned = new HashSet<Resource>();
+			Queue<Resource> dependents = new LinkedList<>();
+			Set<Resource> scanned = new HashSet<>();
 			dependents.add(result);
 			boolean loadedProfiles = false;
 			for (Resource dependent = dependents.poll(); dependent != null; dependent = dependents.poll()) {

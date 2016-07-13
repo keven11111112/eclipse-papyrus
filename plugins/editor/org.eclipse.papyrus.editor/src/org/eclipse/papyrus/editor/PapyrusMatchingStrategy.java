@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,20 +8,18 @@
  *
  * Contributors:
  *  Ansgar Radermacher  ansgar.radermacher@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 496299
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.editor;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.papyrus.infra.emf.resource.ICrossReferenceIndex;
+import org.eclipse.papyrus.infra.ui.util.EditorUtils;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorMatchingStrategy;
 import org.eclipse.ui.IEditorReference;
-import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.PartInitException;
 
 
 public class PapyrusMatchingStrategy implements IEditorMatchingStrategy {
@@ -43,26 +40,27 @@ public class PapyrusMatchingStrategy implements IEditorMatchingStrategy {
 	 */
 	@Override
 	public boolean matches(IEditorReference editorRef, IEditorInput newEInput) {
-		if (newEInput instanceof IFileEditorInput) {
-			IFile newFile = ((IFileEditorInput) newEInput).getFile();
-			String extension = newFile.getFileExtension();
-			if ("uml".equals(extension) || "di".equals(extension) || "notation".equals(extension)) {
-				try {
-					IEditorInput exiEInput = editorRef.getEditorInput();
-					if ((exiEInput instanceof IFileEditorInput)) {
-						IFile exiFile = ((IFileEditorInput) exiEInput).getFile();
-						IPath exiFilenameWOE = exiFile.getFullPath().removeFileExtension();
-						IPath newFilenameWOE = newFile.getFullPath().removeFileExtension();
+		boolean result = false;
 
-						if (exiFilenameWOE.equals(newFilenameWOE)) {
-							return true;
-						}
-					}
-				} catch (PartInitException e) {
-					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
+		URI newURI = EditorUtils.getResourceURI(newEInput);
+		if (newURI != null) {
+			URI existingURI = EditorUtils.getResourceURI(editorRef);
+			if (existingURI != null) {
+				String extension = newURI.fileExtension();
+
+				// Some processing is only appropriate to Papyrus model resources
+				if ("uml".equals(extension) || "di".equals(extension) || "notation".equals(extension)) {
+					// Resolve the root unit in case of a shard
+					ICrossReferenceIndex index = ICrossReferenceIndex.getInstance(null);
+					newURI = EditorUtils.resolveShardRoot(index, newURI);
+					existingURI = EditorUtils.resolveShardRoot(index, existingURI);
 				}
+
+				// Are they the same?
+				result = newURI.equals(existingURI);
 			}
 		}
-		return false;
+
+		return result;
 	}
 }

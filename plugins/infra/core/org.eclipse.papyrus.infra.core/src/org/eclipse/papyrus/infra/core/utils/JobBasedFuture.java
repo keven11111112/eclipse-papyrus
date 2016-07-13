@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -179,8 +179,8 @@ public abstract class JobBasedFuture<V> extends Job implements ListenableFuture<
 		boolean result = isDone();
 
 		if (!result) {
-			Job current = Job.getJobManager().currentJob();
-			if ((current == null) || (current.getRule() == null)) {
+			ISchedulingRule current = Job.getJobManager().currentRule();
+			if (current == null) {
 				result = uiSafeAwaitDone(timeoutMillis);
 			} else {
 				result = lockBasedAwaitDone(timeoutMillis);
