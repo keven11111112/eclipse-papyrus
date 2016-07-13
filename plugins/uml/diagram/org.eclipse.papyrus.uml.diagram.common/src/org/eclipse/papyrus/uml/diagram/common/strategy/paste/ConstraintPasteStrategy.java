@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
+ *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497819
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.strategy.paste;
 
@@ -160,17 +162,18 @@ public class ConstraintPasteStrategy extends AbstractPasteStrategy implements IP
 					}
 					Object internalFromTarget = getInternalFromTarget(papyrusClipboard, targetConstraint);
 					ConstraintClipboard constraintClipboard = (ConstraintClipboard) additionalDataMap.get(internalFromTarget);
-					Namespace context = constraintClipboard.getContext();
-					if (checkContext(targetOwner, context)) {
-						RecordingCommand semanticCommand = buildSemanticCommand(domain, targetConstraint, context);
-						if (semanticCommand != null) {
-							compoundCommand.add(EMFtoGEFCommandWrapper.wrap(semanticCommand));
-							ShowConstraintContextLink command = new ShowConstraintContextLink((TransactionalEditingDomain) domain, targetEditPart, (View) target);
-							compoundCommand.add(GMFtoGEFCommandWrapper.wrap(command));
-							alreadyprocesed.add(targetConstraint);
+					if (constraintClipboard != null) {
+						Namespace context = constraintClipboard.getContext();
+						if (checkContext(targetOwner, context)) {
+							RecordingCommand semanticCommand = buildSemanticCommand(domain, targetConstraint, context);
+							if (semanticCommand != null) {
+								compoundCommand.add(EMFtoGEFCommandWrapper.wrap(semanticCommand));
+								ShowConstraintContextLink command = new ShowConstraintContextLink((TransactionalEditingDomain) domain, targetEditPart, (View) target);
+								compoundCommand.add(GMFtoGEFCommandWrapper.wrap(command));
+								alreadyprocesed.add(targetConstraint);
+							}
 						}
 					}
-
 				}
 			}
 		}
