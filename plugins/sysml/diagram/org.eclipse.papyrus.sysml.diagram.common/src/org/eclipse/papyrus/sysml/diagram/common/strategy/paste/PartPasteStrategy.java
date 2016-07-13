@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
+ *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497816
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.strategy.paste;
 
@@ -27,9 +29,9 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.clipboard.IClipboardAdditionalData;
 import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.DefaultPasteStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -188,8 +190,10 @@ public class PartPasteStrategy implements IPasteStrategy {
 						IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetOwner);
 						if (provider != null) {
 							ICommand editCommand = provider.getEditCommand(moveRequest);
-							GMFtoEMFCommandWrapper gmFtoEMFCommandWrapper = new GMFtoEMFCommandWrapper(editCommand);
-							compoundCommand.append(gmFtoEMFCommandWrapper);
+							if (editCommand != null) {
+								GMFtoEMFCommandWrapper gmFtoEMFCommandWrapper = new GMFtoEMFCommandWrapper(editCommand);
+								compoundCommand.append(gmFtoEMFCommandWrapper);
+							}
 						}
 					}
 				}
