@@ -143,31 +143,60 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 	}
 	
 	public RegionActivation getLeastCommonAncestor(VertexActivation targetVertexActivation){
-		// Calculate paths from both vertices to the root of the state-machine.
-		// Compare the paths, the first difference means the previous item in the
-		// path was the least common ancestor.
+		// Determine the semantic visitor being the least common ancestor between
+		// the current vertex activation and the target vertex activation (provided as
+		// a parameter). To  compute this common ancestor the both context chain from the
+		// the current vertex activation and the target vertex activation are compared. As soon
+		// as one different is found between the two context chain is found then it means we are
+		// in presence of the least common ancestor. The least common ancestor is always 
+		// a region activation.
 		List<SemanticVisitor> sourceHierarchy = this.getContextChain();
-		List<SemanticVisitor> targetHierachy = targetVertexActivation.getContextChain();
-		int i = targetHierachy.size() - 1;
-		int j = sourceHierarchy.size() - 1;
+		List<SemanticVisitor> targetHierarchy = targetVertexActivation.getContextChain();
+		int i = sourceHierarchy.size() - 1;
+		int j = targetHierarchy.size() - 1;
+		SemanticVisitor source = null;
+		SemanticVisitor target = null;
+		SemanticVisitor ancestor = null;
 		RegionActivation leastCommonAncestor = null;
-		while(i >= 0 && j >= 0 && leastCommonAncestor==null){
-			if(targetHierachy.get(i)!=sourceHierarchy.get(j)){
-				leastCommonAncestor = (RegionActivation) sourceHierarchy.get(j+1);
-			}
-			i--;
-			j--;
+		// Check if the source vertex activation contains the target vertex activation
+		boolean isTargetContained = false;
+		if(this.getVertexActivation((Vertex)targetVertexActivation.node) != null){
+			isTargetContained = true;
 		}
-		if(leastCommonAncestor==null){
-			StateActivation commonAncestor = (StateActivation) sourceHierarchy.get(j+1);
-			VertexActivation searchedVertexActivation = sourceHierarchy.size() >= targetHierachy.size() ? this : targetVertexActivation;
-			int x = 0;
-			while(leastCommonAncestor==null && x < commonAncestor.getRegionActivation().size()){
-				RegionActivation regionActivation = commonAncestor.getRegionActivation().get(x);
-				if(regionActivation.getVertexActivation((Vertex)searchedVertexActivation.node)!=null){
-					leastCommonAncestor = regionActivation;
+		while(leastCommonAncestor == null){
+			// Retrieve the current element in the source hierarchy
+			// null if index out of bounds
+			if(i >= 0){
+				source = sourceHierarchy.get(i);
+			}else{
+				source = null;
+			}
+			// Retrieve the current element in the target hierarchy
+			// null if index out of bounds
+			if(j >= 0){
+				target = targetHierarchy.get(j);
+			}else{
+				target = null;
+			}
+			// Check if source and target are different. In such situation
+			// determine the least common ancestor
+			if(source != target){
+				if(isTargetContained){
+					ancestor = sourceHierarchy.get(i+1);
+				}else{
+					ancestor = sourceHierarchy.get(i);
 				}
-				x++;
+				if(ancestor instanceof RegionActivation){
+					leastCommonAncestor = (RegionActivation) ancestor;
+				}else if(ancestor instanceof VertexActivation){
+					leastCommonAncestor = (RegionActivation) ((VertexActivation)ancestor).getParent();
+				}
+			}else if(source == null && target == null){
+				// Case where the source and the target are identical
+				leastCommonAncestor = (RegionActivation) ((StateMachineSemanticVisitor)sourceHierarchy.get(i+1)).getParent();
+			}else{
+				i--;
+				j--;
 			}
 		}
 		return leastCommonAncestor;
