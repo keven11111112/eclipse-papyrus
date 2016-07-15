@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 496439
+ *  Christian W. Damus - bugs 496439, 461980
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.tests.qvt;
 
@@ -17,6 +17,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -25,10 +27,14 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.junit.utils.DisplayUtils;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.RSAToPapyrusParametersFactory;
@@ -99,7 +105,7 @@ public class AbstractTransformationTest extends AbstractPapyrusTest {
 
 	}
 
-	protected void simpleImport(String modelToImportPath, String[] additionalResourcesPath) throws Exception {
+	protected void simpleImport(String modelToImportPath, String... additionalResourcesPath) throws Exception {
 		simpleImport(modelToImportPath, additionalResourcesPath, false);
 	}
 
@@ -111,10 +117,28 @@ public class AbstractTransformationTest extends AbstractPapyrusTest {
 		rootPackage = (Package) umlModel.getResource().getContents().get(0);
 	}
 
+	protected Diagram openDiagram(String name) throws Exception {
+		List<Diagram> diagrams = getDiagrams();
+		Diagram result = diagrams.stream()
+				.filter(d -> name.equals(d.getName()))
+				.findAny()
+				.orElseThrow(AssertionError::new);
+		ServiceUtilsForEObject.getInstance().getIPageManager(result).openPage(result);
+		DisplayUtils.flushEventLoop();
+		return result;
+	}
+
+	protected List<Diagram> getDiagrams() throws Exception {
+		ModelSet modelSet = ServiceUtils.getInstance().getModelSet(editor.getServicesRegistry());
+		return StreamSupport.stream(NotationUtils.getAllNotations(modelSet).spliterator(), false)
+				.filter(Diagram.class::isInstance).map(Diagram.class::cast)
+				.collect(Collectors.toList());
+	}
+
 	protected void batchImport(String[] modelsToImportPath, String[] additionalResourcesPath) throws Exception {
 
 		mainModelFiles = new IFile[modelsToImportPath.length];
-		List<URI> urisToImport = new LinkedList<URI>();
+		List<URI> urisToImport = new LinkedList<>();
 
 		int i = 0;
 		for (String mainModelPath : modelsToImportPath) {

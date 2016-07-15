@@ -9,7 +9,7 @@
  * Contributors:
  * 	Thibault Le Ouay (Sherpa Engineering) t.leouay@sherpa-eng.com - Initial API and implementation
  * 	Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
- * 	Christian W. Damus - bug 496439
+ * 	Christian W. Damus - bugs 496439, 461980
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.tests;
 
@@ -19,6 +19,7 @@ import org.eclipse.papyrus.migration.rsa.tests.qvt.ImportDiagramTest;
 import org.eclipse.papyrus.migration.rsa.tests.qvt.ImportModelsTest;
 import org.eclipse.papyrus.migration.rsa.tests.qvt.ImportProfilesTest;
 import org.eclipse.papyrus.migration.rsa.tests.qvt.TracesTest;
+import org.eclipse.papyrus.migration.rsa.tests.regression.RegressionTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -29,7 +30,9 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		ImportDiagramTest.class, ImportModelsTest.class, BatchImportTest.class, ImportProfilesTest.class,
 		TracesTest.class,
-		ThreadSafeResourceSetTest.class })
+		ThreadSafeResourceSetTest.class,
+		RegressionTests.class,
+})
 public class AllTests {
 	// Test suite
 }

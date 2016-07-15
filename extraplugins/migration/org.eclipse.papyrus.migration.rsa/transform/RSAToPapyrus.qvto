@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 461980
  *****************************************************************************/
 import org.eclipse.papyrus.m2m.qvto.UI;
 import org.eclipse.papyrus.m2m.qvto.NotationTypes;
@@ -145,6 +146,11 @@ abstract mapping Diagram::toPapyrusDiagram() : notation::Diagram inherits notati
 	//	log(result.element.toString());
 		var targetEdges := self.edges.map toEdge();
 		result.edges += targetEdges;
+		
+		// And tweak some details
+		if (result.hasDiagramFrame()) then {
+			result.getDiagramFrame().map defaultFrameSize();
+		} endif;
 	}
 	
 	end {
@@ -393,18 +399,27 @@ abstract query View::getEdgeType(element : Element) : String;
 
 abstract query View::getDecorationType(element : Element) : String;
 
+/** Queries whether the imported diagram has a frame (as in behaviour or structure diagrams). */
+query Diagram::hasDiagramFrame() : Boolean {
+	return not self.getDiagramFrame().oclIsUndefined();
+}
+
+/** Overridden by specializing transformations to get the diagram frame, if any. */
+query Diagram::getDiagramFrame() : Node {
+	return null;
+}
+
+/** Tweaks for specific diagrams */
+
+/** Overridden by specializing transformations to set the default dimensions of the diagram frame. */
+mapping inout Node::defaultFrameSize()
+	when { self.layoutConstraint.oclIsKindOf(notation::Size) and let size = self.layoutConstraint.oclAsType(notation::Size) in
+				size.width = -1 or size.height = -1 }
+{
+	// Pass
+}
+
 /** Main diagram mapping */
 abstract mapping notation::Diagram::generateDiagram() : notation::Diagram;
-
-
-
-
-
-
-
-
-
-
-
 
 
