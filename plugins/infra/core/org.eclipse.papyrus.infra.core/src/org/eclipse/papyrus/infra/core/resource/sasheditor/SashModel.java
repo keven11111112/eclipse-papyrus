@@ -10,13 +10,16 @@
  * 	Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Rewrite the sash model - store in the plugin's PreferenceStore (Bug 429239)
  *  Christian W. Damus (CEA) - bugs 429242, 436468
- * 	Christian W. Damus - bugs 434983, 469188, 485220
+ * 	Christian W. Damus - bugs 434983, 469188, 485220, 461709
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.Collections;
 import java.util.Map;
 
@@ -38,6 +41,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 
 import com.google.common.base.Objects;
+import com.google.common.io.Resources;
 
 /**
  * <p>
@@ -206,20 +210,56 @@ public class SashModel extends EMFLogicalModel implements IModel {
 		try {
 			super.loadModel(sashModelURI.trimFileExtension());
 		} catch (Exception ex) {
-			createModel(sashModelURI.trimFileExtension());
+			// Unload it and try again by creating it
+			Resource resource = getModelManager().getResource(sashModelURI, false);
+			if (resource != null) {
+				resource.unload();
+				resource.getResourceSet().getResources().remove(resource);
+			}
+
+			// This will create the private sash model if that's what we need
+			createModel(uriWithoutExtension);
 		}
 
 		if (resource == null) {
-			createModel(sashModelURI.trimFileExtension());
+			// This will create the private sash model if that's what we need
+			createModel(uriWithoutExtension);
 		}
 	}
 
 	@Override
 	public void createModel(URI uriWithoutExtension) {
 		if (isLegacy(uriWithoutExtension)) {
-			super.createModel(getSashModelStoreURI(uriWithoutExtension).trimFileExtension());
+			// http://eclip.se/461709
+			// Initialize the workspace-private sash model from our template
+			// to avoid resolving all proxies in the ProxyModificationTrackingAdapter
+			URI sashURI = getSashModelStoreURI(uriWithoutExtension);
+			try {
+				intantiateTemplate(sashURI);
+				loadModel(uriWithoutExtension);
+			} catch (IOException e) {
+				// Fall back to the default (pre-461709) strategy
+				Activator.log.error("Failed to initialize workspace private sash model", e); //$NON-NLS-1$
+				super.createModel(sashURI.trimFileExtension());
+			}
 		} else {
 			super.createModel(uriWithoutExtension);
+		}
+	}
+
+	/**
+	 * Intantiates the sash resource template on the given URI.
+	 * 
+	 * @param sashResourceURI
+	 *            the new sash resource URI
+	 * 
+	 * @throws IOException
+	 *             on failure to copy the template to this URI for any reason
+	 */
+	void intantiateTemplate(URI sashResourceURI) throws IOException {
+		try (OutputStream output = getModelManager().getURIConverter().createOutputStream(sashResourceURI)) {
+			URL template = Activator.getDefault().getBundle().getEntry("templates/model.sash"); //$NON-NLS-1$
+			Resources.copy(template, output);
 		}
 	}
 
