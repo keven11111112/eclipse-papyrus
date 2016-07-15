@@ -119,6 +119,12 @@ public class NotationModel extends EMFLogicalModel implements IModel {
 		return false;
 	}
 
+	@Override
+	public void handle(Resource resource) {
+		super.handle(resource);
+	}
+
+
 	/**
 	 * Get a diagram by its name.
 	 *
