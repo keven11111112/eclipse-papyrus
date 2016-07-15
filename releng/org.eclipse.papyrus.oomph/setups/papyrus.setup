@@ -1634,10 +1634,8 @@
     </project>
     <project label="Model Migration" name="migration">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="migration"/>
-      <setupTask xsi:type="setup.targlets:TargletTask">
-        <targlet name="Papyrus Model Migration Dependencies">
-          <requirement name="org.eclipse.papyrus.umlrt"/>
-        </targlet>
+      <setupTask xsi:type="setup.p2:P2Task" label="Migration Development Tools">
+        <requirement name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
       </setupTask>
       <stream label="master (Oxygen/3.0)" name="master">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
