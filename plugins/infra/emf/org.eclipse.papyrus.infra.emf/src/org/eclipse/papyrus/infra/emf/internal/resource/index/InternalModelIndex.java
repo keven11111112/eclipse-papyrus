@@ -26,7 +26,10 @@ import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.content.IContentType;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex;
 
+import com.google.common.util.concurrent.AsyncFunction;
+import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.SettableFuture;
 
 /**
  * Internal implementation details of a {@link WorkspaceModelIndex}.
@@ -36,8 +39,8 @@ public abstract class InternalModelIndex {
 	private final QualifiedName indexKey;
 	private final int maxIndexJobs;
 
-	/** My manager. */
-	private IndexManager manager;
+	/** Clients can trigger 'afterIndex' calls before the manager is assigned. */
+	private final ListenableFuture<IndexManager> manager = SettableFuture.create();
 
 	/** A class loader that knows the classes of the owner (bundle) context. */
 	private ClassLoader ownerClassLoader;
@@ -67,8 +70,17 @@ public abstract class InternalModelIndex {
 		return maxIndexJobs;
 	}
 
+	/**
+	 * Obtains the content types matching a {@code file}.
+	 * 
+	 * @param file
+	 *            a file in the workspace
+	 * @return the content types of the {@code file}, or an empty array if none
+	 * 
+	 * @precondition The {@link IndexManager} must have already {@linkplain #start() started} me.
+	 */
 	protected final IContentType[] getContentTypes(IFile file) {
-		return manager.getContentTypes(file);
+		return Futures.getUnchecked(manager).getContentTypes(file);
 	}
 
 	/**
@@ -81,7 +93,8 @@ public abstract class InternalModelIndex {
 	 * @return the future result of the operation
 	 */
 	protected <V> ListenableFuture<V> afterIndex(final Callable<V> callable) {
-		return manager.afterIndex(this, callable);
+		AsyncFunction<IndexManager, V> indexFunction = mgr -> mgr.afterIndex(this, callable);
+		return Futures.transform(manager, indexFunction);
 	}
 
 	void setOwnerClassLoader(ClassLoader ownerClassLoader) {
@@ -102,8 +115,11 @@ public abstract class InternalModelIndex {
 	protected abstract void dispose();
 
 	void start(IndexManager manager) {
-		this.manager = manager;
-		start();
+		try {
+			start();
+		} finally {
+			((SettableFuture<IndexManager>) this.manager).set(manager);
+		}
 	}
 
 	protected abstract void start();
