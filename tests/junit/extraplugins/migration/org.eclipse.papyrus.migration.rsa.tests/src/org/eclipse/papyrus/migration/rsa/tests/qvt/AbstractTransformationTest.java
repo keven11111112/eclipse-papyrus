@@ -8,15 +8,22 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bugs 496439, 461980
+ *  Christian W. Damus - bugs 496439, 461980, 496653
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.tests.qvt;
+
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Queue;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -24,10 +31,13 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -43,9 +53,14 @@ import org.eclipse.papyrus.migration.rsa.transformation.ImportTransformation;
 import org.eclipse.papyrus.migration.rsa.transformation.ImportTransformationLauncher;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.uml2.uml.Package;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
+
+import com.google.common.collect.Queues;
 
 public class AbstractTransformationTest extends AbstractPapyrusTest {
 
@@ -118,13 +133,18 @@ public class AbstractTransformationTest extends AbstractPapyrusTest {
 	}
 
 	protected Diagram openDiagram(String name) throws Exception {
+		Diagram result = getDiagram(name);
+		ServiceUtilsForEObject.getInstance().getIPageManager(result).openPage(result);
+		DisplayUtils.flushEventLoop();
+		return result;
+	}
+
+	protected Diagram getDiagram(String name) throws Exception {
 		List<Diagram> diagrams = getDiagrams();
 		Diagram result = diagrams.stream()
 				.filter(d -> name.equals(d.getName()))
 				.findAny()
 				.orElseThrow(AssertionError::new);
-		ServiceUtilsForEObject.getInstance().getIPageManager(result).openPage(result);
-		DisplayUtils.flushEventLoop();
 		return result;
 	}
 
@@ -245,5 +265,64 @@ public class AbstractTransformationTest extends AbstractPapyrusTest {
 			Assert.assertNotEquals("RSA resources should not be referenced anymore", "efx", fileExtension);
 			Assert.assertNotEquals("RSA Profiles should not be reference anymore", "epx", fileExtension);
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	protected EList<View> children(View view) {
+		return view.getChildren();
+	}
+
+	protected View requireChild(View view, String type) {
+		View result = ViewUtil.getChildBySemanticHint(view, type);
+		assertThat("No child of type " + type, result, notNullValue());
+		return result;
+	}
+
+	protected <T extends View> T requireChild(View view, String type, Class<T> ofClass) {
+		View result = requireChild(view, type);
+		assertThat(result, instanceOf(ofClass));
+		return ofClass.cast(result);
+	}
+
+	@SafeVarargs
+	protected final <T> Matcher<Iterable<? extends T>> containsInOrder(T... elements) {
+		List<T> expected = Arrays.asList(elements);
+
+		return new BaseMatcher<Iterable<? extends T>>() {
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("contains ")
+						.appendValueList("(", ", ", ")", Arrays.asList(elements))
+						.appendText(" in order");
+			}
+
+			@Override
+			public boolean matches(Object item) {
+				boolean result;
+
+				if (!(item instanceof Iterable<?>)) {
+					result = false;
+				} else {
+					Queue<T> queue = Queues.newArrayDeque(expected);
+					Iterator<?> iter = ((Iterable<?>) item).iterator();
+					for (T next = queue.peek(); (next != null) && iter.hasNext(); next = queue.peek()) {
+						while (iter.hasNext()) {
+							if (Objects.equals(iter.next(), next)) {
+								// Matched the next in the expected order. Advance
+								queue.remove();
+								break;
+							}
+						}
+					}
+
+					// Did we find them all, in order?
+					result = queue.isEmpty();
+				}
+
+				return result;
+			}
+		};
+
+
 	}
 }

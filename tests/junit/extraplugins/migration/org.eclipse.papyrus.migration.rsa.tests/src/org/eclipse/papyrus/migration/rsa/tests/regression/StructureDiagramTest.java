@@ -17,13 +17,16 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import java.util.List;
+
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.migration.rsa.tests.qvt.AbstractTransformationTest;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeNameEditPart;
 import org.junit.Test;
 
 /**
@@ -50,13 +53,32 @@ public class StructureDiagramTest extends AbstractTransformationTest {
 		// Need to open the diagram to convert the visual IDs to modern notation for assertions
 		Diagram diagram = openDiagram("StructureDiagram1");
 
-		View frameView = ViewUtil.getChildBySemanticHint(diagram, ClassCompositeEditPart.VISUAL_ID);
-		assertThat(frameView, instanceOf(Node.class));
-
-		Node frame = (Node) frameView;
+		Node frame = requireChild(diagram, ClassCompositeEditPart.VISUAL_ID, Node.class);
 		assertThat(frame.getLayoutConstraint(), instanceOf(Size.class));
 		Size size = (Size) frame.getLayoutConstraint();
 		assertThat(size.getWidth(), is(600));
 		assertThat(size.getHeight(), is(400));
+	}
+
+	/**
+	 * @see <a href="http://eclip.se/496653">bug 496653</a>
+	 */
+	@Test
+	public void dividerBetweenNameAndStructureCompartment_bug496653() throws Exception {
+		simpleImport("resources/bug461980/CompositeStructureDiagram.emx");
+
+		openEditor();
+
+		// Need to open the diagram to convert the visual IDs to modern notation for assertions
+		Diagram diagram = openDiagram("StructureDiagram1");
+
+		View frame = requireChild(diagram, ClassCompositeEditPart.VISUAL_ID);
+
+		View name = requireChild(frame, ClassCompositeNameEditPart.VISUAL_ID);
+		View structure = requireChild(frame, ClassCompositeCompartmentEditPart.VISUAL_ID);
+
+		@SuppressWarnings("unchecked")
+		List<? extends View> children = frame.getChildren();
+		assertThat(children, containsInOrder(name, structure));
 	}
 }

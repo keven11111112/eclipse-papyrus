@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 461980
+ *  Christian W. Damus - bugs 461980, 496653
  *****************************************************************************/
 import org.eclipse.papyrus.m2m.qvto.UI;
 import org.eclipse.papyrus.m2m.qvto.NotationTypes;
@@ -55,8 +55,15 @@ abstract mapping notation::View::toPapyrusView() : notation::View {
 	result.element := self.element; /* UML Model is in-out. No mapping required. */
 	result.visible := self.visible;
 	
-	result.children := self.children.map toNode();
+	// Bug 496653: Name labels need to be first for proper rendering in Papyrus
+	var sortedChildren := self.children->sortedBy(if isNameLabel() then -1 else 0 endif);
+	result.children := sortedChildren.map toNode();
 	result.type := self.getType();
+}
+
+/** A name label is a BasicDecorationNode of type 'Name' in RSA diagrams. */
+query Node::isNameLabel() : Boolean {
+	return self.oclIsKindOf(BasicDecorationNode) and self.type = 'Name'
 }
 
 abstract mapping Edge::toPapyrusEdge() : Edge inherits View::toPapyrusView {
