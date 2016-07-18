@@ -33,6 +33,10 @@ public class RegionActivation extends StateMachineSemanticVisitor{
 	// Semantic visitors for transitions owned by that region
 	protected List<TransitionActivation> transitionActivations;
 	
+	// Last known configuration for the region (updated on region exiting)
+	// Null if this region has never been entered before.
+	protected StateActivation history;
+	
 	// Is that region completed (e.g., the regions is completed
 	// when the final state)
 	public boolean isCompleted;
@@ -242,11 +246,14 @@ public class RegionActivation extends StateMachineSemanticVisitor{
 	
 	public void exit(TransitionActivation exitingTransition, EventOccurrence eventOccurrence){
 		// Exiting a region implies exiting all of is active vertices.
+		// Note: there is always a single active vertex for a given region.
 		for(VertexActivation vertexActivation: this.getVertexActivations()){
 			if(vertexActivation.isActive()){
+				this.history = (StateActivation) vertexActivation;
 				vertexActivation.exit(exitingTransition, eventOccurrence, null);
 			}
 		}
+		this.isCompleted = false;
 	}
 	
 	public void terminate(){

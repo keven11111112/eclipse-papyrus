@@ -16,6 +16,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci;
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_ExecutionFactory;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ChoicePseudostateActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.DeepHistoryActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.EntryPointActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ExitPointActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ExternalTransitionActivation;
@@ -26,6 +27,7 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Inter
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.JoinPseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.LocalTransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.RegionActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ShallowHistoryActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.StateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.StateMachineExecution;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.TerminatePseudostateActivation;
@@ -57,6 +59,8 @@ public class SM_ExecutionFactory extends CS_ExecutionFactory {
 				case FORK_LITERAL: visitor = new ForkPseudostateActivation(); break;
 				case JOIN_LITERAL: visitor = new JoinPseudostateActivation(); break;
 				case TERMINATE_LITERAL: visitor = new TerminatePseudostateActivation(); break;
+				case DEEP_HISTORY_LITERAL: visitor = new DeepHistoryActivation(); break;
+				case SHALLOW_HISTORY_LITERAL: visitor = new ShallowHistoryActivation(); break;
 				default: System.err.println("Element: "+element+" is not supported");break;
 			}
 		}else if (element instanceof State) {
