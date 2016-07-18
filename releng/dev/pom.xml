@@ -79,7 +79,7 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>${eclipse.download}/eclipse/updates/4.5-M-builds/M-4.5.2RC4-201602121500/</url>
+			<url>${eclipse.download}/eclipse/updates/4.5/R-4.5.2-201602121500/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
