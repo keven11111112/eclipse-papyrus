@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,8 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
+ *  Alain Le Guennec (Esterel Technologies SAS) - bug 497400
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy;
@@ -99,8 +99,8 @@ public class CustomBlockPropertyStructureCompartmentEditPartDropEditPolicy exten
 
 			// 7. Build default drop command (show view of the dropped object)
 			Command defaultDropCommand = super.getDropObjectsCommand(dropRequest);
-			defaultDropCommand.setLabel("Default drop (Show dropped object in diagram)");
 			if ((defaultDropCommand != null) && (defaultDropCommand.canExecute())) {
+				defaultDropCommand.setLabel("Default drop (Show dropped object in diagram)");
 				commandChoice.add(defaultDropCommand);
 			}
 
