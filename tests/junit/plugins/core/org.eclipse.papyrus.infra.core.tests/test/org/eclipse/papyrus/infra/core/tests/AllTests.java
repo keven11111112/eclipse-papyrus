@@ -10,7 +10,7 @@
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - add test for AdapterUtils
  *  Christian W. Damus (CEA) - bugs 402525, 422257, 399859
- *  Christian W. Damus - bugs 456934, 468030, 482949, 485220, 488558
+ *  Christian W. Damus - bugs 456934, 468030, 482949, 485220, 488558, 498140
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.tests;
@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.core.services.SharedServiceFactoryTest;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtilsTest;
 import org.eclipse.papyrus.infra.core.utils.JobBasedFutureTest;
 import org.eclipse.papyrus.infra.core.utils.JobExecutorServiceTest;
+import org.eclipse.papyrus.infra.core.utils.TransactionHelperTest;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.junit.framework.runner.Headless;
 import org.junit.runner.RunWith;
@@ -45,7 +46,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		// {oep}.core.services
 		ComposedServiceTest.class, ServicesRegistryTest.class, SharedServiceFactoryTest.class,
 		// {oep}.core.utils
-		AdapterUtilsTest.class, JobBasedFutureTest.class, JobExecutorServiceTest.class
+		AdapterUtilsTest.class, JobBasedFutureTest.class, JobExecutorServiceTest.class,
+		TransactionHelperTest.class,
 })
 /**
  * Suite Class for all tests in the plugin

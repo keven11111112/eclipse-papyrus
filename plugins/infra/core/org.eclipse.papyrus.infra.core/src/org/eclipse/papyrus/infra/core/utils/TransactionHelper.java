@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bugs 429826, 408491, 433320
- *  Christian W. Damus - bugs 451557, 457560, 461629, 463564, 466997, 465416, 485220
+ *  Christian W. Damus - bugs 451557, 457560, 461629, 463564, 466997, 465416, 485220, 498140
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -473,9 +474,16 @@ public class TransactionHelper {
 	}
 
 	/**
+	 * <p>
 	 * Create a privileged progress runnable, which is like a regular {@linkplain TransactionalEditingDomain#createPrivilegedRunnable(Runnable)
 	 * privileged runnable} except that it is given a progress monitor for progress reporting.
-	 *
+	 * </p>
+	 * <b>Note</b> that a privileged progress-runnable can be used only once. Because it has the
+	 * context of a borrowed transaction, repeated execution is invalid because the required
+	 * transaction context will have expired. Attempting to run a privileged runnable a second
+	 * time will throw an {@link IllegalStateException}.
+	 * </p>
+	 * 
 	 * @param domain
 	 *            an editing domain
 	 * @param runnable
@@ -488,16 +496,21 @@ public class TransactionHelper {
 
 		Runnable privileged = domain.createPrivilegedRunnable(() -> runnable.run(monitorHolder[0]));
 
-		return monitor -> {
-			monitorHolder[0] = monitor;
-			privileged.run();
-		};
+		return new PrivilegedProgressRunnable(privileged, m -> monitorHolder[0] = m);
 	}
 
 	/**
+	 * <p>
 	 * Create a privileged progress callable, which is like a {@linkplain TransactionalEditingDomain#createPrivilegedRunnable(Runnable)
 	 * privileged runnable} except that it is given a progress monitor for progress reporting and it computes a result.
-	 *
+	 * </p>
+	 * <p>
+	 * <b>Note</b> that a privileged progress-callable can be used only once. Because it has the
+	 * context of a borrowed transaction, repeated execution is invalid because the required
+	 * transaction context will have expired. Attempting to run a privileged callable a second
+	 * time will throw an {@link IllegalStateException}.
+	 * </p>
+	 * 
 	 * @param callable
 	 *            an editing domain
 	 * @param callable
@@ -506,22 +519,27 @@ public class TransactionHelper {
 	 * @since 2.0
 	 */
 	public static <V> IProgressCallable<V> createPrivilegedCallable(TransactionalEditingDomain domain, final IProgressCallable<V> callable) {
-		IProgressMonitor monitorHolder[] = { null };
-		AtomicReference<V> resultHolder = new AtomicReference<V>();
+		AtomicReference<V> resultHolder = new AtomicReference<>();
 		Exception failHolder[] = { null };
 
-		Runnable privileged = domain.createPrivilegedRunnable(() -> {
+		IProgressRunnable[] privileged = { createPrivilegedRunnable(domain, monitor -> {
 			try {
-				resultHolder.set(callable.call(monitorHolder[0]));
+				resultHolder.set(callable.call(monitor));
 			} catch (Exception e) {
 				failHolder[0] = e;
 			}
-		});
+		}) };
 
 		return monitor -> {
-			monitorHolder[0] = monitor;
+			if (privileged[0] == null) {
+				throw new IllegalStateException("Privileged callable was already run"); //$NON-NLS-1$
+			}
 
-			privileged.run();
+			try {
+				privileged[0].run(monitor);
+			} finally {
+				privileged[0] = null;
+			}
 
 			if (failHolder[0] != null) {
 				throw failHolder[0];
@@ -529,5 +547,42 @@ public class TransactionHelper {
 
 			return resultHolder.get();
 		};
+	}
+
+	//
+	// Nested types
+	//
+
+	private static final class PrivilegedProgressRunnable implements IProgressRunnable {
+		private final Consumer<? super IProgressMonitor> monitorSlot;
+		private Runnable privileged;
+
+		PrivilegedProgressRunnable(Runnable privileged, Consumer<? super IProgressMonitor> monitorSlot) {
+			super();
+
+			this.monitorSlot = monitorSlot;
+			this.privileged = privileged;
+		}
+
+		@Override
+		public void run(IProgressMonitor monitor) {
+			if (privileged == null) {
+				throw new IllegalArgumentException("Privileged runnable was already run"); //$NON-NLS-1$
+			}
+
+			monitorSlot.accept(monitor);
+
+			try {
+				privileged.run();
+			} finally {
+				// Clear our reference to the runnable, which holds a reference
+				// to the transaction which, in turn, holds monitors. If we
+				// are run in the ModalContextThread and initialize an Xtext UI
+				// bundle, then that thread will be retained forever in its
+				// Guice injector as the creating thread, and that thread then
+				// will retain me (its runnable). See bug 498140
+				privileged = null;
+			}
+		}
 	}
 }
