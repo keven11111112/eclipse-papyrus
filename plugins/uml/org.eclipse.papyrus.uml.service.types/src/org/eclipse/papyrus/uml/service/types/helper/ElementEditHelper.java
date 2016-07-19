@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
- *    
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,7 @@
  *      Christian W. Damus - bug 458685
  * 		Christian W. Damus - bug 467016
  * 		Christian W. Damus - bug 459701
+ * 		Sebastien Bordes (Esterel Technologies SAS) - bug 497800
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
@@ -97,7 +98,7 @@ public class ElementEditHelper extends DefaultUMLEditHelper {
 				if (context instanceof EObject) {
 					EObject owner = (EObject) context;
 					EReference reference = getContainmentFeature((CreateElementRequest) request);
-					if ((reference != null) && reference.getEContainingClass().isSuperTypeOf(owner.eClass()) && !reference.isContainment()) {
+					if (reference != null && reference.getEContainingClass() != null && reference.getEContainingClass().isSuperTypeOf(owner.eClass()) && !reference.isContainment()) {
 						// Look for containment superset. UML2 will do the right thing and add the new
 						// element implicitly to that superset
 						for (EReference next : UmlUtils.getSupersets(reference)) {
