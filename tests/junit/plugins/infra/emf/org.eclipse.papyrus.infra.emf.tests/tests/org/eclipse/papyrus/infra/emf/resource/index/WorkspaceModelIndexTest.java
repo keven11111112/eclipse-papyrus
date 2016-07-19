@@ -37,7 +37,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.function.Supplier;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -83,8 +82,8 @@ import com.google.common.io.Files;
  */
 public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 
-	private static final SyncHolder syncHolder = new SyncHolder();
-	private static final CrossReferenceIndexer index = new CrossReferenceIndexer(syncHolder);
+	private static final Sync sync = new Sync();
+	private static final CrossReferenceIndexer index = new CrossReferenceIndexer(sync);
 
 	private static IndexManager manager;
 	private static WorkspaceModelIndex<CrossReferenceIndex> fixture;
@@ -232,7 +231,7 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 		Map<IFile, CrossReferenceIndex> index = fixture.getIndex().get();
 
 		// Interlock with the indexing for timing purposes
-		Semaphore sync = syncHolder.createStandardSync();
+		sync.createIndexSync();
 
 		final String newFileName = "the_referencing_model.uml";
 
@@ -244,7 +243,7 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 		referencingURI = uri(referencingFile);
 
 		// Let the indexing start
-		sync.release();
+		sync.syncFromTest();
 
 		// Cancel the index control job
 		Job[] family = Job.getJobManager().find(manager);
@@ -262,7 +261,7 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 		controlJob.cancel();
 
 		// Let the indexing finish
-		sync.release();
+		sync.syncFromTest();
 
 		JobWaiter controlJobWaiter = JobWaiter.waitForStart(controlJob);
 
@@ -311,6 +310,10 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 
 		tracker.assertNone(statusWithException(instanceOf(FileNotFoundException.class)));
 
+		// Interlock with the indexing to ensure that we don't try the index before it hears
+		// about the file delta
+		sync.createTestSync();
+
 		// Put the file back and synchronize it
 		new FileManipulationJob("Restore file", referencingFile) {
 			@Override
@@ -323,6 +326,10 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 				file.getProject().refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			}
 		}.go();
+
+		// Wait for the indexing to start. If it doesn't start within five seconds, then
+		// something is wrong with the resource change notifications
+		sync.syncFromTest();
 
 		// Synchronize with the index and verify that it got the file
 		index = fixture.getIndex().get();
@@ -379,7 +386,7 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 
 	@After
 	public void reset() {
-		syncHolder.clear();
+		sync.clear();
 	}
 
 	static URI uri(IFile file) {
@@ -426,43 +433,89 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 	// Nested types
 	//
 
-	static class SyncHolder implements Supplier<Semaphore> {
+	static class Sync {
 		private volatile Semaphore sync;
+		private volatile Mode mode = Mode.NONE;
 
-		@Override
-		public Semaphore get() {
-			return sync;
+		/**
+		 * Create (in the test) a semaphore that gates the index on the test.
+		 */
+		void createIndexSync() {
+			sync = new Semaphore(0);
+			mode = Mode.INDEX;
 		}
 
-		Semaphore createStandardSync() {
+		/**
+		 * Create (in the test) a semaphore that gates the test on the index.
+		 */
+		void createTestSync() {
 			sync = new Semaphore(0);
-			return sync;
+			mode = Mode.TEST;
+		}
+
+		/** Called by the index when it needs to sync up with the test. */
+		void syncFromIndex() {
+			switch (mode) {
+			case INDEX:
+				// Index is gated on the test
+				sync.acquireUninterruptibly();
+				break;
+			case TEST:
+				// Test is gated on the index
+				sync.release();
+				break;
+			default:
+				// Pass
+			}
+		}
+
+		/** Called by the test when it needs to sync up with the index. */
+		void syncFromTest() throws Exception {
+			switch (mode) {
+			case INDEX:
+				// Index is gated on the test
+				sync.release();
+				break;
+			case TEST:
+				// Test is gated on the index
+				if (!sync.tryAcquire(5L, TimeUnit.SECONDS)) {
+					fail("Timed out waiting for indexing job");
+				}
+				break;
+			default:
+				// Pass
+			}
 		}
 
 		void clear() {
+			mode = Mode.NONE;
 			if (sync != null) {
 				// Make sure that any blocked threads are released to whatever fate
-				syncHolder.sync.release(100);
-				syncHolder.sync = null;
+				sync.release(100);
+				sync = null;
 			}
+		}
+
+		private enum Mode {
+			NONE, INDEX, TEST,
 		}
 	}
 
 	static class CrossReferenceIndexer implements WorkspaceModelIndex.IndexHandler<CrossReferenceIndex> {
 		private final Map<IFile, CrossReferenceIndex> index = Maps.newHashMap();
 
-		private final Supplier<? extends Semaphore> syncSupplier;
+		private final Sync sync;
 
 		/**
 		 * Initializes me.
 		 * 
-		 * @param syncSupplier
-		 *            a supplier of an optional semaphore to acquire at start and end of indexing a file
+		 * @param sync
+		 *            a protocol for handshaking at start and end of indexing a file
 		 */
-		public CrossReferenceIndexer(Supplier<? extends Semaphore> syncSupplier) {
+		public CrossReferenceIndexer(Sync sync) {
 			super();
 
-			this.syncSupplier = syncSupplier;
+			this.sync = sync;
 		}
 
 		private CrossReferenceIndex get(IFile file) {
@@ -482,12 +535,8 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 		@Override
 		public CrossReferenceIndex index(IFile file) {
 			final CrossReferenceIndex result = get(file);
-			final Semaphore sync = syncSupplier.get();
 
-			if (sync != null) {
-				// Wait for the test to let us proceed
-				sync.acquireUninterruptibly();
-			}
+			sync.syncFromIndex();
 
 			try {
 				Set<URI> imports = result.imports;
@@ -520,10 +569,7 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 					EMFHelper.unload(resourceSet);
 				}
 			} finally {
-				if (sync != null) {
-					// Wait for the test to let us finish
-					sync.acquireUninterruptibly();
-				}
+				sync.syncFromIndex();
 			}
 
 			return result;
