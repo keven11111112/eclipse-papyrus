@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:Bmm="https://www.eclipse.org/papyrus/BMM/0.7.0/" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_epjjsCv5EeaEspEQU410_w" name="RootElement">
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_D98VUCv8EeajE7H9u7E28g" name="Engineering Division"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_GMnMUCv8EeajE7H9u7E28g" name="Management Division"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_8s7JUCv8EeajE7H9u7E28g" name="GoalAmplifiesVision1" client="_g9nwsCv8EeajE7H9u7E28g" supplier="_MX_JcCv8EeajE7H9u7E28g"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="__eTr0Cv8EeajE7H9u7E28g" name="BusinessProcessRealizesCourseOfAction1" client="_0eg9cCv8EeajE7H9u7E28g" supplier="_wL2OYCv8EeajE7H9u7E28g"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_ACFHQCv9EeajE7H9u7E28g" name="BusinessProcessRealizesCourseOfAction2" client="_00ChgCv8EeajE7H9u7E28g" supplier="_xMZscCv8EeajE7H9u7E28g"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_BLoJQCv9EeajE7H9u7E28g" name="MissionMakesOperativeVision1" client="_WjLLECv8EeajE7H9u7E28g" supplier="_MX_JcCv8EeajE7H9u7E28g"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_NbMdcCv9EeajE7H9u7E28g" name="StrategyIsAComponentfOfThe_PlanForMIssion1" client="_egRkgCv8EeajE7H9u7E28g" supplier="_WjLLECv8EeajE7H9u7E28g"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_PInokCv9EeajE7H9u7E28g" name="TacticImplementsStrategy1" client="_wL2OYCv8EeajE7H9u7E28g" supplier="_egRkgCv8EeajE7H9u7E28g"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_Pt0AUCv9EeajE7H9u7E28g" name="TacticImplementsStrategy2" client="_xMZscCv8EeajE7H9u7E28g" supplier="_egRkgCv8EeajE7H9u7E28g"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_bVzXICv9EeajE7H9u7E28g" name="OrganizationUnitDefinesEnd1" client="_GMnMUCv8EeajE7H9u7E28g" supplier="_MX_JcCv8EeajE7H9u7E28g"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_ciGLICv9EeajE7H9u7E28g" name="OrganizationUnitEstablishesMeans1" client="_D98VUCv8EeajE7H9u7E28g" supplier="_WjLLECv8EeajE7H9u7E28g"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_nOniwCv-EeajE7H9u7E28g" name="ObjectiveQuantitiesGoal1" client="_j044wCv8EeajE7H9u7E28g" supplier="_g9nwsCv8EeajE7H9u7E28g"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_vVWZUCv-EeajE7H9u7E28g" name="End">
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_j044wCv8EeajE7H9u7E28g" name="Increase satisfaction rating" fileName=""/>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_g9nwsCv8EeajE7H9u7E28g" name="Increase customer satisfaction"/>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_MX_JcCv8EeajE7H9u7E28g" name="Be the most profitable producer in Europe" fileName=""/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_95sMgCv-EeajE7H9u7E28g" name="Means">
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_egRkgCv8EeajE7H9u7E28g" name="Shorten Time to Market" fileName=""/>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_WjLLECv8EeajE7H9u7E28g" name="Produce our products in France" fileName=""/>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_wL2OYCv8EeajE7H9u7E28g" name="Balance Work"/>
+      <packagedElement xmi:type="uml:Artifact" xmi:id="_xMZscCv8EeajE7H9u7E28g" name="Limit Buffers' size"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_yDFVcCv_EeajE7H9u7E28g" name="CourseOfActionChannelsEffortsTowardsDesiredResult1" client="_egRkgCv8EeajE7H9u7E28g" supplier="_g9nwsCv8EeajE7H9u7E28g"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_0eg9cCv8EeajE7H9u7E28g" name="BusinessProcess1"/>
+    <packagedElement xmi:type="uml:Artifact" xmi:id="_00ChgCv8EeajE7H9u7E28g" name="BusinessProcess2"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_e0AgMCv5EeaEspEQU410_w">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_e0ExoCv5EeaEspEQU410_w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="https://www.eclipse.org/papyrus/BMM/0.7.0/#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://BMM_PROFILE_1.3/Bmm.profile.uml#_bNz28BEEEeWdY8_QZO32Xg"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Tg5MMCwEEeajE7H9u7E28g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Tg7ocCwEEeajE7H9u7E28g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_TZ_nULU5EduiKqCzJMWbGw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Tg-rwCwEEeajE7H9u7E28g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Tg_S0CwEEeajE7H9u7E28g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//modelelements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_Gx8MgLX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ThBvECwEEeajE7H9u7E28g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ThBvESwEEeajE7H9u7E28g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_fSw28LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ThEyYCwEEeajE7H9u7E28g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ThEyYSwEEeajE7H9u7E28g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//portandflows"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_rpx28LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ThH1sCwEEeajE7H9u7E28g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ThH1sSwEEeajE7H9u7E28g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//constraints"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_5WYJ0LX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ThKR8CwEEeajE7H9u7E28g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ThK5ACwEEeajE7H9u7E28g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//activities"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_C2zXMLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ThNVQCwEEeajE7H9u7E28g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ThNVQSwEEeajE7H9u7E28g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//allocations"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_NxdG4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ThPxgCwEEeajE7H9u7E28g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ThPxgSwEEeajE7H9u7E28g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ThSNwCwEEeajE7H9u7E28g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ThSNwSwEEeajE7H9u7E28g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//interactions"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_meOioLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ThVRECwEEeajE7H9u7E28g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ThVRESwEEeajE7H9u7E28g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//statemachines"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_nAF5kLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ThXtUCwEEeajE7H9u7E28g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ThXtUSwEEeajE7H9u7E28g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//usecases"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_neZmMLX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_libfACwEEeajE7H9u7E28g">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_libfASwEEeajE7H9u7E28g" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Bmm:OrganizationUnit xmi:id="_D-STkCv8EeajE7H9u7E28g" base_Artifact="_D98VUCv8EeajE7H9u7E28g"/>
+  <Bmm:OrganizationUnit xmi:id="_GNNpQCv8EeajE7H9u7E28g" base_Artifact="_GMnMUCv8EeajE7H9u7E28g"/>
+  <Bmm:Vision xmi:id="_MYgG0Cv8EeajE7H9u7E28g" base_Artifact="_MX_JcCv8EeajE7H9u7E28g"/>
+  <Bmm:Mission xmi:id="_WjzdMCv8EeajE7H9u7E28g" description="a Long description of the mission" base_Artifact="_WjLLECv8EeajE7H9u7E28g"/>
+  <Bmm:Strategy xmi:id="_egwFoCv8EeajE7H9u7E28g" base_Artifact="_egRkgCv8EeajE7H9u7E28g"/>
+  <Bmm:Goal xmi:id="_g-PbwCv8EeajE7H9u7E28g" base_Artifact="_g9nwsCv8EeajE7H9u7E28g"/>
+  <Bmm:Objective xmi:id="_j1mDYCv8EeajE7H9u7E28g" description="Increase satisfaction rating in 50% before 2016" base_Artifact="_j044wCv8EeajE7H9u7E28g"/>
+  <Bmm:Tactic xmi:id="_wMlOMCv8EeajE7H9u7E28g" base_Artifact="_wL2OYCv8EeajE7H9u7E28g"/>
+  <Bmm:Tactic xmi:id="_xNJTUCv8EeajE7H9u7E28g" base_Artifact="_xMZscCv8EeajE7H9u7E28g"/>
+  <Bmm:BusinessProcess xmi:id="_0fRycCv8EeajE7H9u7E28g" base_Artifact="_0eg9cCv8EeajE7H9u7E28g"/>
+  <Bmm:BusinessProcess xmi:id="_00zWgCv8EeajE7H9u7E28g" base_Artifact="_00ChgCv8EeajE7H9u7E28g"/>
+  <Bmm:GoalAmplifiesVision xmi:id="_8vSg0Cv8EeajE7H9u7E28g" base_Dependency="_8s7JUCv8EeajE7H9u7E28g"/>
+  <Bmm:BusinessProcessRealizesCourseOfAction xmi:id="__fv2QCv8EeajE7H9u7E28g" base_Dependency="__eTr0Cv8EeajE7H9u7E28g"/>
+  <Bmm:BusinessProcessRealizesCourseOfAction xmi:id="_ADKFUCv9EeajE7H9u7E28g" base_Dependency="_ACFHQCv9EeajE7H9u7E28g"/>
+  <Bmm:MissionMakesOperativeVision xmi:id="_BM1DICv9EeajE7H9u7E28g" base_Dependency="_BLoJQCv9EeajE7H9u7E28g"/>
+  <Bmm:StrategyIsAComponentfOfThe_PlanForMIssion xmi:id="_NcSpoCv9EeajE7H9u7E28g" base_Dependency="_NbMdcCv9EeajE7H9u7E28g"/>
+  <Bmm:TacticImplementsStrategy xmi:id="_PJ5a8Cv9EeajE7H9u7E28g" base_Dependency="_PInokCv9EeajE7H9u7E28g"/>
+  <Bmm:TacticImplementsStrategy xmi:id="_Pu_sECv9EeajE7H9u7E28g" base_Dependency="_Pt0AUCv9EeajE7H9u7E28g"/>
+  <Bmm:OrganizationUnitDefinesEnd xmi:id="_bXHlwCv9EeajE7H9u7E28g" base_Dependency="_bVzXICv9EeajE7H9u7E28g"/>
+  <Bmm:OrganizationUnitEstablishesMeans xmi:id="_cjcO8Cv9EeajE7H9u7E28g" base_Dependency="_ciGLICv9EeajE7H9u7E28g"/>
+  <Bmm:ObjectiveQuantitiesGoal xmi:id="_nP4uECv-EeajE7H9u7E28g" base_Dependency="_nOniwCv-EeajE7H9u7E28g"/>
+  <Bmm:CourseOfActionChannelsEffortsTowardsDesiredResult xmi:id="_yE56YCv_EeajE7H9u7E28g" base_Dependency="_yDFVcCv_EeajE7H9u7E28g"/>
+</xmi:XMI>

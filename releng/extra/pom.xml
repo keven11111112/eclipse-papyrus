@@ -201,6 +201,7 @@
 		<module>../../extraplugins/bmm/org.eclipse.papyrus.bmm.diagram</module>
 		<module>../../extraplugins/bmm/org.eclipse.papyrus.bmm.diagram.common</module>
 		<module>../../extraplugins/bmm/org.eclipse.papyrus.bmm.diagram.ui</module>
+		<module>../../extraplugins/bmm/org.eclipse.papyrus.bmm.examples</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.bmm.extra.feature</module>
 
 		<!-- Papyrus BPMN -->
