@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,13 +8,18 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 497841
  *****************************************************************************/
 package org.eclipse.papyrus.m2m.qvto;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeTypes;
+import org.eclipse.gmf.runtime.notation.Anchor;
+import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 import org.eclipse.m2m.qvt.oml.blackbox.java.Operation;
 import org.eclipse.m2m.qvt.oml.blackbox.java.Operation.Kind;
@@ -22,22 +27,36 @@ import org.eclipse.m2m.qvt.oml.blackbox.java.Operation.Kind;
 
 public class NotationTypes {
 
+	@Operation(contextual = true, kind = Kind.QUERY)
+	public static int toPixels(LayoutConstraint self, Integer himetric) {
+		return (himetric == null) ? -1 : convertToPixels(himetric);
+	}
+
+	@Operation(contextual = true, kind = Kind.QUERY)
+	public static int toPixels(View self, Integer himetric) {
+		return (himetric == null) ? -1 : convertToPixels(himetric);
+	}
+
+	@Operation(contextual = true, kind = Kind.QUERY)
+	public static int toPixels(Anchor self, Integer himetric) {
+		return (himetric == null) ? -1 : convertToPixels(himetric);
+	}
+
 	@Operation(contextual = true, kind = Kind.HELPER)
 	public static void copyBendpoints(final RelativeBendpoints source, RelativeBendpoints target, boolean convertToPixels) {
 		List<RelativeBendpoint> result = new LinkedList<RelativeBendpoint>();
 
-		for(Object point : source.getPoints()) {
-			if(point instanceof RelativeBendpoint) {
-				RelativeBendpoint pointCopy = new RelativeBendpoint(((RelativeBendpoint)point).convertToString());
+		for (Object point : source.getPoints()) {
+			if (point instanceof RelativeBendpoint) {
+				RelativeBendpoint pointCopy = new RelativeBendpoint(((RelativeBendpoint) point).convertToString());
 				result.add(pointCopy);
 			}
 		}
 
-		if(convertToPixels) {
-
+		if (convertToPixels) {
 			List<RelativeBendpoint> convertedResult = new LinkedList<RelativeBendpoint>();
 
-			for(RelativeBendpoint point : result) {
+			for (RelativeBendpoint point : result) {
 				convertedResult.add(convertToPixels(point));
 			}
 
@@ -59,6 +78,6 @@ public class NotationTypes {
 	}
 
 	private static int convertToPixels(int source) {
-		return source / 25;
+		return MapModeTypes.HIMETRIC_MM.LPtoDP(source);
 	}
 }

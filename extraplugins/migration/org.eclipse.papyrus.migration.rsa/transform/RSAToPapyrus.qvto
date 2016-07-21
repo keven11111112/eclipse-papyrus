@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bugs 461980, 496653
+ *  Christian W. Damus - bugs 461980, 496653, 497841
  *****************************************************************************/
 import org.eclipse.papyrus.m2m.qvto.UI;
 import org.eclipse.papyrus.m2m.qvto.NotationTypes;
@@ -59,6 +59,14 @@ abstract mapping notation::View::toPapyrusView() : notation::View {
 	var sortedChildren := self.children->sortedBy(if isNameLabel() then -1 else 0 endif);
 	result.children := sortedChildren.map toNode();
 	result.type := self.getType();
+	
+	// Adjust containment or other characteristics, as necessary, after attachment
+	result.children.map adjustNode();
+}
+
+/** Overridden/extended in specialized mappings to adjust newly attached nodes. */
+abstract mapping inout notation::Node::adjustNode() {
+	// Pass
 }
 
 /** A name label is a BasicDecorationNode of type 'Name' in RSA diagrams. */
@@ -91,8 +99,8 @@ abstract mapping Node::toPapyrusConnectorLabel() : Node {
 	var initY := self.layoutConstraint.oclAsType(Location).y;
 	
 	if self.diagram.isHimetric() then {
-		initX := initX.toPixels();
-		initY := initY.toPixels();
+		initX := self.toPixels(initX);
+		initY := self.toPixels(initY);
 	} endif;
 	
 	result.layoutConstraint := object Location {
@@ -276,10 +284,10 @@ mapping Bounds::toLayout(diagram : Diagram) : LayoutConstraint {
 	var bounds : Bounds := result.oclAsType(Bounds);
 	
 	if diagram.isHimetric() then {
-		bounds.x := self.x.toPixels();
-		bounds.y := self.y.toPixels();
-		if self.width > 0 then bounds.width := self.width.toPixels() endif;
-		if self.height > 0 then bounds.height := self.height.toPixels() endif;
+		bounds.x := self.toPixels(self.x);
+		bounds.y := self.toPixels(self.y);
+		if self.width > 0 then bounds.width := self.toPixels(self.width) endif;
+		if self.height > 0 then bounds.height := self.toPixels(self.height) endif;
 	} else{
 		bounds.x := self.x;
 		bounds.y := self.y;
@@ -290,10 +298,6 @@ mapping Bounds::toLayout(diagram : Diagram) : LayoutConstraint {
 
 query View::isHimetric() : Boolean {
 	return self.diagram.measurementUnit = MeasurementUnit::Himetric
-}
-
-query Integer::toPixels() : Integer{
-	return self.div(25); //FIXME: Approx.
 }
 
 mapping Anchor::toAnchor() : Anchor disjuncts
@@ -314,7 +318,7 @@ mapping IdentityAnchor::toAnchor() : Anchor {
 		var newId := if part1.oclIsInvalid() or part2.oclIsInvalid() then 
 			self.id 
 		else
-			(part1.toPixels().toString())+':'+(part2.toPixels().toString())
+			(self.toPixels(part1).toString())+':'+(self.toPixels(part2).toString())
 		endif;
 		newId;
 	} else {
@@ -359,6 +363,14 @@ query View::getType(): String{
 		else self.fail()
 	
 	endif;
+}
+
+query View::parent() : View {
+	return self.oclAsType(EObject).eContainer().oclAsType(View);
+}
+
+query Node::parentNode() : Node {
+	return self.oclAsType(EObject).eContainer().oclAsType(Node);
 }
 
 query View::findElement() : Element {

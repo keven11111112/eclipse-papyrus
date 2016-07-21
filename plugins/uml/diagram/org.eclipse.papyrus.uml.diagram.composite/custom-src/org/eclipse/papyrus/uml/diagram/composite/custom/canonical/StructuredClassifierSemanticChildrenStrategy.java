@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,13 +12,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.canonical;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.canonical.DefaultUMLSemanticChildrenStrategy;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 
 /**
@@ -38,10 +41,11 @@ public class StructuredClassifierSemanticChildrenStrategy extends DefaultUMLSema
 		StructuredClassifier composite = (semanticFromEditPart instanceof StructuredClassifier) ? (StructuredClassifier) semanticFromEditPart : null;
 		if (composite == null) {
 			result = super.getCanonicalSemanticChildren(semanticFromEditPart, viewFromEditPart);
-		} else {
+		} else if (!(viewFromEditPart instanceof Diagram)) {
 			// The children of a structured classifier that we present are only its structural
 			// features (parts, ports, connectors), remembering that connectors are handled by
-			// the getCanonicalSemanticConnections(...) method for connectable elements
+			// the getCanonicalSemanticConnections(...) method for connectable elements.
+			// And, of course, only within the structure frame (not the diagram, itself)
 			result = new java.util.ArrayList<>(composite.getOwnedAttributes());
 
 			// But, we only visualize ports on the borders of the composite frame and parts
@@ -49,6 +53,8 @@ public class StructuredClassifierSemanticChildrenStrategy extends DefaultUMLSema
 			if (viewFromEditPart instanceof DecorationNode) {
 				result.removeIf(Port.class::isInstance);
 			}
+		} else {
+			result = Collections.emptyList();
 		}
 
 		return result;
