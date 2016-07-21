@@ -138,8 +138,8 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * this method returns the icon image that represents the first applied
-	 * stereotype.
+	 * this method returns the icon image that represents the first available icon of each applied
+	 * stereotypes.
 	 *
 	 * @param element
 	 *            the stereotyped element
@@ -147,12 +147,22 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	@Deprecated
 	public Image getIconElement(Element element) {
-
 		List<Stereotype> stereotypeList = element.getAppliedStereotypes();
-		if (stereotypeList == null || stereotypeList.isEmpty()) {
+		if (null == stereotypeList || stereotypeList.isEmpty()) {
 			return null;
 		}
-		return getIconElement(element, stereotypeList.get(0));
+
+		// Retrieve the first available icon of each stereotype. Return null, if no icon are found.
+		int i = 0;
+		while (i < stereotypeList.size()) {
+			Image iconElement = getIconElement(element, stereotypeList.get(i));
+			if (null != iconElement) {
+				return iconElement;
+			}
+			i++;
+		}
+
+		return null;
 	}
 
 	/**
