@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 461980
+ *  Christian W. Damus - bugs 461980, 497841
  *****************************************************************************/
 import RSAToPapyrus;
 
@@ -99,6 +99,20 @@ mapping inout Node::defaultFrameSize() {
 	} endif;
 }
 
+mapping inout Node::defaultSize(dWidth : Integer, dHeight : Integer) when {
+	self.layoutConstraint.oclIsKindOf(notation::Size) and
+		let size = self.layoutConstraint.oclAsType(notation::Size) in
+			size.width = -1 or size.height = -1
+} {
+	var size : Size = self.layoutConstraint.oclAsType(notation::Size);
+	if (size.width = -1) then {
+		size.width := dWidth;
+	} endif;
+	if (size.height = -1) then {
+		size.height := dHeight;
+	} endif;
+}
+
 /***** Nodes **********/
 
 mapping UMLShape::toPapyrusShape() : Shape inherits Shape::toPapyrusShape when {
@@ -158,9 +172,34 @@ mapping UMLShape::toPapyrusShape() : Shape inherits Shape::toPapyrusShape when {
 	self.element.oclIsTypeOf(Interaction)
 	)
 }{
-	
+
+	if (result.type = '3070') {
+		// Handle default size of part shape
+		result.map defaultSize(160, 40);
+	}
 }
 
+/****** Adjustments to newly attached output views ******/
+
+mapping inout Node::adjustNode() disjuncts
+	Node::adjustStructureCompartment
+;
+
+mapping inout Node::adjustStructureCompartment() when {
+	self.type = '7073'
+} {
+	// All ports, even internal ports, are children of the frame
+	self.children->select(type = '3069').map hoistPortNode();
+}
+
+mapping inout Node::hoistPortNode()	{
+	self.parentNode().parentNode().children += self;
+	
+	// Add the height of the name label to account for the placement in the frame
+	// instead of the structure compartment
+	var loc = self.layoutConstraint.oclAsType(Location);
+	loc.y := loc.y + 20;
+}
 
 /****** Connector Labels ******/
 
