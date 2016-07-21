@@ -21,6 +21,7 @@ Export-Package: org.eclipse.papyrus.uml.diagram.composite,
  org.eclipse.papyrus.uml.diagram.composite.edit.helpers,
  org.eclipse.papyrus.uml.diagram.composite.edit.parts,
  org.eclipse.papyrus.uml.diagram.composite.edit.policies,
+ org.eclipse.papyrus.uml.diagram.composite.internal.custom.helper.advice;x-internal:=true,
  org.eclipse.papyrus.uml.diagram.composite.parsers,
  org.eclipse.papyrus.uml.diagram.composite.part,
  org.eclipse.papyrus.uml.diagram.composite.preferences,
@@ -45,7 +46,7 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.providers.ide;bundle-version=
  org.eclipse.papyrus.infra.gmfdiag.hyperlink;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.0.1.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.composite; singleton:=true

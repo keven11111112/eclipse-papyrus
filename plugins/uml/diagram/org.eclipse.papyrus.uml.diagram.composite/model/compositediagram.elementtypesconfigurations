@@ -9,4 +9,7 @@
   <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_Q8xrsLgSEeSsJKs23mSE-A" description="Collaboration specific advices (remove inconsistent views when a CollaborationRole is removed" identifier="org.eclipse.papyrus.uml.diagram.composite.CollaborationHelperAdvice" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.composite.custom.helper.advice.CollaborationHelperAdvice">
     <target xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sca07VYCEeS0WsAAtVmToA"/>
   </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xsi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_o7Pa8E9QEeaJ1LBTnqBlMQ" identifier="org.eclipse.papyrus.uml.diagram.composite.PortAdvice" description="Advice specific to the visualization of ports in compositr structure diagrams" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.composite.internal.custom.helper.advice.PortAdvice">
+    <target xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sc-ObFYCEeS0WsAAtVmToA"/>
+  </adviceBindingsConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>
