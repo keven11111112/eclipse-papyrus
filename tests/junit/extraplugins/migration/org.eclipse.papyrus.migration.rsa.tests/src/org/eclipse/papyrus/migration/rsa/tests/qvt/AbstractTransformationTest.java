@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bugs 496439, 461980, 496653
+ *  Christian W. Damus - bugs 496439, 461980, 496653, 498282
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.tests.qvt;
 
@@ -24,7 +24,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Queue;
+import java.util.Spliterator;
+import java.util.Spliterators;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.core.resources.IFile;
@@ -33,6 +36,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -42,6 +46,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.DisplayUtils;
@@ -282,6 +287,17 @@ public class AbstractTransformationTest extends AbstractPapyrusTest {
 		View result = requireChild(view, type);
 		assertThat(result, instanceOf(ofClass));
 		return ofClass.cast(result);
+	}
+
+	protected Stream<EObject> streamAllContents(EObject object) {
+		return StreamSupport.stream(Spliterators.spliteratorUnknownSize(
+				object.eAllContents(),
+				Spliterator.ORDERED | Spliterator.DISTINCT | Spliterator.NONNULL),
+				false);
+	}
+
+	protected Stream<Diagram> diagramsOf(EObject object) {
+		return DiagramUtils.getAssociatedDiagrams(object, null).stream();
 	}
 
 	@SafeVarargs

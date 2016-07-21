@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bugs 461980, 496653, 497841
+ *  Christian W. Damus - bugs 461980, 496653, 497841, 498282
  *****************************************************************************/
 import org.eclipse.papyrus.m2m.qvto.UI;
 import org.eclipse.papyrus.m2m.qvto.NotationTypes;
@@ -342,6 +342,14 @@ helper View::fail() : String {
 	var semanticEClassName := if isProxy then 'Unresolved (proxy) reference' elif self.element = null then 'No semantic element' else self.element.eClass().name endif;
 	warning('Unknown or unsupported element type. Graphical Type = "'+self.type+'", Semantic Type = "'+semanticEClassName+'". Diagram Type: "'+self.diagram.type+'". The element will be ignored.');
 	return '';
+}
+
+/**
+ * Unset the named feature of an object.
+ */
+helper OclAny::unset(feature : String) {
+	var eObject : EObject := self.oclAsType(EObject);
+	eObject.eUnset(eObject.eClass().getEStructuralFeature(feature));
 }
 
 

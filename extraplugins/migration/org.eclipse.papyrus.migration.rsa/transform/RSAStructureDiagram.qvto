@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bugs 461980, 497841
+ *  Christian W. Damus - bugs 461980, 497841, 498282
  *****************************************************************************/
 import RSAToPapyrus;
 
@@ -182,7 +182,8 @@ mapping UMLShape::toPapyrusShape() : Shape inherits Shape::toPapyrusShape when {
 /****** Adjustments to newly attached output views ******/
 
 mapping inout Node::adjustNode() disjuncts
-	Node::adjustStructureCompartment
+	Node::adjustStructureCompartment,
+	Node::adjustPort
 ;
 
 mapping inout Node::adjustStructureCompartment() when {
@@ -190,6 +191,16 @@ mapping inout Node::adjustStructureCompartment() when {
 } {
 	// All ports, even internal ports, are children of the frame
 	self.children->select(type = '3069').map hoistPortNode();
+}
+
+mapping inout Node::adjustPort() when {
+	self.type = '3069'
+		and self.element.oclIsKindOf(Port)
+		and self.element.oclAsType(Port).isConjugated
+} {
+	// If the port is conjugated, we need to enable the default visualization,
+	// not the colour (if any) imported from RSA
+	self.unset('fillColor');
 }
 
 mapping inout Node::hoistPortNode()	{
