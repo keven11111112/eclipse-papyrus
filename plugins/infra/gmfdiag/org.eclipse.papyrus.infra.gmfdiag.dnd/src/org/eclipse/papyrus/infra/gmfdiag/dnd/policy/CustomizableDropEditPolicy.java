@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 433206
  *  Christian W. Damus - bug 477384
+ *  Sebastien Bordes (Esterel Technologies SAS) - bug 498357
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.dnd.policy;
 
@@ -477,9 +478,12 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 		}
 
 		//Retrieve defaultStrategy
-		ArrayList<Command> selectedCommands = new ArrayList<Command>();
-		selectedCommands.add(defaultDropStrategy.getCommand(request, getHost()));
-		matchingStrategies.put(defaultDropStrategy, selectedCommands);
+		Command command = defaultDropStrategy.getCommand(request, getHost());
+		if (command != null && command.canExecute()) {
+			List<Command> selectedCommands = new ArrayList<Command>();
+			selectedCommands.add(command);
+			matchingStrategies.put(defaultDropStrategy, selectedCommands);
+		}
 
 		return matchingStrategies;
 	}
