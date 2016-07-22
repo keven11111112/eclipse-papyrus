@@ -204,8 +204,10 @@ public class IndexManager {
 	<V> ListenableFuture<V> afterIndex(InternalModelIndex index, Callable<V> callable) {
 		ListenableFuture<V> result;
 
-		if (Job.getJobManager().find(this).length == 0) {
-			// Result is available now
+		if ((Job.getJobManager().find(this).length == 0) || wsRoot.getWorkspace().isTreeLocked()) {
+			// Result is available now, or the workspace is currently notifying on this,
+			// in which case none of the indexer jobs can run yet so we must return whatever
+			// is the current state of the index (or else certainly deadlock)
 			try {
 				result = Futures.immediateFuture(callable.call());
 			} catch (Exception e) {
