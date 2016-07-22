@@ -34,7 +34,7 @@ public class ConstraintPropertyMatcher implements IElementMatcher {
 			Property element = (Property) eObject;
 			Type type = element.getType();
 			// A ConstraintProperty is necessarily typed by a ConstraintBlock which must be a Class.
-			if (type instanceof Class && UMLUtil.getStereotypeApplication(element, ConstraintProperty.class) != null) {
+			if ((type==null || type instanceof Class) && UMLUtil.getStereotypeApplication(element, ConstraintProperty.class) != null) {
 				isMatch = true;
 			}
 		}
