@@ -42,4 +42,4 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.sysml.nattable.requirement.tests.Activator
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.nattable.requirement.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
