@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
- *   Christian W. Damus - bugs 485220, 497342
+ *   Christian W. Damus - bugs 485220, 497342, 498414
  *   
  *****************************************************************************/
 
@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin;
 import org.eclipse.papyrus.infra.services.controlmode.commands.LoadDiagramCommand;
 
 
@@ -44,6 +45,7 @@ public class LoadResourceSnippet implements IModelSetSnippet {
 	 *
 	 * @param startingModel
 	 */
+	@Override
 	public void start(ModelSet startingModel) {
 		adapter = new LoadResourceAdapter();
 		startingModel.eAdapters().add(adapter);
@@ -55,6 +57,7 @@ public class LoadResourceSnippet implements IModelSetSnippet {
 	 *
 	 * @param stoppingModel
 	 */
+	@Override
 	public void dispose(ModelSet stoppingModel) {
 		stoppingModel.eAdapters().remove(adapter);
 		adapter = null;
@@ -84,12 +87,18 @@ public class LoadResourceSnippet implements IModelSetSnippet {
 			if (pageManager != null) {
 				EditingDomain editingDomain = TransactionUtil.getEditingDomain(resource);
 				final LoadDiagramCommand loadCommand = new LoadDiagramCommand(resource, pageManager);
-				try {
-					TransactionHelper.run(editingDomain, loadCommand);
-				} catch (InterruptedException e) {
-					// Nothing to do
-				} catch (RollbackException e) {
-					// Nothing to do
+
+				// Nor is there anything to do if we have no diagrams to reload
+				if (loadCommand.canExecute()) {
+					try {
+						TransactionHelper.run(editingDomain, loadCommand);
+					} catch (InterruptedException e) {
+						// Nothing to do
+						ControlModePlugin.log.error(e);
+					} catch (RollbackException e) {
+						// Nothing to do
+						ControlModePlugin.log.error(e);
+					}
 				}
 			}
 		}
