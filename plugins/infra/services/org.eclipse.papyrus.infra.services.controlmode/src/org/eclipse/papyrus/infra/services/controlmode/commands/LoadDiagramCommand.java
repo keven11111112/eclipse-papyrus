@@ -8,13 +8,15 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Christian W. Damus - bugs 485220, 497342
+ *   Christian W. Damus - bugs 485220, 497342, 498414
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.services.controlmode.commands;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -94,19 +96,35 @@ public class LoadDiagramCommand implements Runnable {
 	 */
 	@Override
 	public void run() {
-
-		if (pageManager != null) {
-			URI uriTrimResource = uri.trimFragment().trimFileExtension();
-			// retrieve open pages related to this URI
-			List<Object> pagesID = pageManager.getAssociatedPages(uriTrimResource);
-			if (pagesID.size() > 0) {
-				for (Object pageID : pagesID) {
-					if (pageID != null) {
-						pageManager.reloadPage(pageID);
-					}
-				}
-			}
+		List<?> pagesToReload = getPagesToReload();
+		if (!pagesToReload.isEmpty()) {
+			pagesToReload.forEach(pageManager::reloadPage);
 		}
 
+	}
+
+	/**
+	 * Queries whether I have any pages to reload. If I have none to reload,
+	 * then I don't need to be executed.
+	 * 
+	 * @return whether I have any pages to reload
+	 * @since 1.3
+	 */
+	public boolean canExecute() {
+		return !getPagesToReload().isEmpty();
+	}
+
+	private List<?> getPagesToReload() {
+		List<?> result;
+
+		if (pageManager == null) {
+			result = Collections.EMPTY_LIST;
+		} else {
+			// Retrieve open pages related to our URI (in the abstract, without extension)
+			result = pageManager.getAssociatedPages(uri.trimFragment().trimFileExtension());
+			result.removeIf(Objects::isNull);
+		}
+
+		return result;
 	}
 }
