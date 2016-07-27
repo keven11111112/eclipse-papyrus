@@ -13,6 +13,7 @@ package org.eclipse.papyrus.infra.gmfdiag.export.actions;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
@@ -41,7 +42,7 @@ public class ExportComposite extends Composite {
 	private Text outputPathTxt;
 
 	private Button outputDirectoryBtn;
-
+	
 	private Combo outputFormatCb;
 
 	private Button btnCheckButton;
@@ -164,6 +165,23 @@ public class ExportComposite extends Composite {
 		if (uriDiagramFile != null) {
 			IPath location = new Path(uriDiagramFile.toPlatformString(true));
 			outputDirectory = ResourcesPlugin.getWorkspace().getRoot().findMember(location.makeRelativeTo(ResourcesPlugin.getWorkspace().getRoot().getLocation()));
+			if (outputDirectory == null) {
+				try {
+					IResource[] members = ResourcesPlugin.getWorkspace().getRoot().members();
+					for (int idx = 0; idx < members.length; idx++) {
+						if (location.equals(members[idx].getLocation())) {
+							outputDirectory = members[idx];
+							break;
+						}
+					}
+				} catch (CoreException e) {
+					Activator.log.error(e);
+				}
+			}
+			if(outputDirectory ==null) {
+				Activator.log.error("Impossible to find the output directory", null);
+				return;
+			}
 			outputPathTxt.setText(location.toString());
 		}
 		for (ImageFileFormat imageFileFormat : ImageFileFormat.VALUES) {
