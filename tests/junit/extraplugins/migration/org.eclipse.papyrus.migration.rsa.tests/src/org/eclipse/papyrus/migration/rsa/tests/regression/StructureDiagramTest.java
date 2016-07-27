@@ -20,8 +20,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeThat;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -83,7 +81,7 @@ public class StructureDiagramTest extends AbstractTransformationTest {
 	 * @see <a href="http://eclip.se/496653">bug 496653</a>
 	 */
 	@Test
-	@PluginResource("bug461980/CompositeStructureDiagram.emx")
+	@PluginResource("CompositeStructureDiagram.emx")
 	public void dividerBetweenNameAndStructureCompartment_bug496653() throws Exception {
 		// Need to open the diagram to convert the visual IDs to modern notation for assertions
 		Diagram diagram = openDiagram("StructureDiagram1");
@@ -147,18 +145,8 @@ public class StructureDiagramTest extends AbstractTransformationTest {
 	public void importAndOpen() throws Exception {
 		String resourcePath = testModel.get()[0];
 
-		Matcher bugMatcher = Pattern.compile("^(bug\\d+)/").matcher(resourcePath);
-		String bug;
-
-		if (bugMatcher.find()) {
-			bug = bugMatcher.group(1);
-
-			// Don't be redundant
-			resourcePath = resourcePath.substring(bugMatcher.end());
-		} else {
-			bug = name.getMethodName();
-			bug = bug.substring(bug.lastIndexOf('_') + 1);
-		}
+		String bug = name.getMethodName();
+		bug = bug.substring(bug.lastIndexOf('_') + 1);
 
 		simpleImport(String.format("resources/%s/%s", bug, resourcePath));
 
