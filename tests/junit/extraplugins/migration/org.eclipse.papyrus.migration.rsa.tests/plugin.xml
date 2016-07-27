@@ -35,4 +35,10 @@
       </resource>
    </extension>
 
+   <extension
+         point="org.eclipse.papyrus.migration.rsa.extensions">
+      <transformation
+            className="org.eclipse.papyrus.migration.rsa.tests.UML25HandlerExtension">
+      </transformation>
+   </extension>
 </plugin>

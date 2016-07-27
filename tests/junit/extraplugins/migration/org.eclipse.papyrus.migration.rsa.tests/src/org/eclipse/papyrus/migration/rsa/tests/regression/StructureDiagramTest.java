@@ -31,13 +31,16 @@ import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.junit.utils.rules.AnnotationRule;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.migration.rsa.tests.UML25HandlerExtension;
 import org.eclipse.papyrus.migration.rsa.tests.qvt.AbstractTransformationTest;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeNameEditPart;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Port;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -160,5 +163,15 @@ public class StructureDiagramTest extends AbstractTransformationTest {
 		simpleImport(String.format("resources/%s/%s", bug, resourcePath));
 
 		openEditor();
+	}
+
+	@BeforeClass
+	public static void enableUML25Transformation() {
+		UML25HandlerExtension.isEnabled = true;
+	}
+
+	@AfterClass
+	public static void disableUML25Transformation() {
+		UML25HandlerExtension.isEnabled = false;
 	}
 }
