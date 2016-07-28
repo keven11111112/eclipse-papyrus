@@ -20,7 +20,7 @@ import java.util.List;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.ChoiceStrategy;
 
-public class JunctionPseudostateActivation extends PseudostateActivation{
+public class JunctionPseudostateActivation extends ConditionalPseudostateActivation{
 	
 	// Transitions that were fireable at the time which the junction
 	// pseudo-state was evaluated.
@@ -34,14 +34,24 @@ public class JunctionPseudostateActivation extends PseudostateActivation{
 		// Evaluate all guards of transitions outgoing this junction pseudo-state.
 		// Transitions with a guard evaluating to true are added to the set of fireable
 		// transitions (i.e., transitions that may be fired when the junction pseudo-state
-		// is entered). Not that at each evaluation of the junction pseudo-state the set
-		// of fireable transitions is cleared.
+		// is entered). In the case there is no transition with a guard evaluating to true
+		// and it exists an else transition then this transition is added to the set of
+		// fireable transitions.Note that at each evaluation of the junction pseudo-state
+		// the set of fireable transitions is cleared.
 		this.fireableTransitions.clear();
+		TransitionActivation elseTransitionActivation = null;
 		for(int i=0; i < this.outgoingTransitionActivations.size(); i++){
 			TransitionActivation transitionActivation = this.outgoingTransitionActivations.get(i);
-			if(transitionActivation.evaluateGuard(eventOccurrence)){
-				this.fireableTransitions.add(transitionActivation);
+			if(this.isElseTransition(transitionActivation)){
+				elseTransitionActivation = transitionActivation;
+			}else{
+				if(transitionActivation.evaluateGuard(eventOccurrence)){
+					this.fireableTransitions.add(transitionActivation);
+				}
 			}
+		}
+		if(this.fireableTransitions.isEmpty() && elseTransitionActivation != null){
+			this.fireableTransitions.add(elseTransitionActivation);
 		}
 	}
 	
@@ -86,9 +96,9 @@ public class JunctionPseudostateActivation extends PseudostateActivation{
 	
 	@Override
 	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
-		// When entered, all parent that have not yet been entered are entered first.
-		// Next, one transition is chosen in the set of fireable transition to be fired.
-		// This transition is fired and the junction pseudo state is exited.
+		// When entered the junction pseudo-state the set of fireable transition (calculated during static
+		// analysis) is used to determine which transition will actually be fired. The transition selected
+		// to be fired is determined using the choice semantic strategy.
 		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 		TransitionActivation selectedTransition = null;
 		if(this.fireableTransitions.size() == 1){
