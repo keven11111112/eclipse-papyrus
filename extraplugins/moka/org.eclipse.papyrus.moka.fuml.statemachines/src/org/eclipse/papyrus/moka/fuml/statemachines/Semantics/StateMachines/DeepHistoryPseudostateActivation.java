@@ -18,7 +18,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.uml2.uml.Vertex;
 
-public class DeepHistoryActivation extends HistoryActivation {
+public class DeepHistoryPseudostateActivation extends HistoryPseudostateActivation {
 	
 	protected boolean canRestore(StateActivation stateActivation){
 		// A state activation can only be restored if it is contained that is istelf

@@ -20,13 +20,13 @@ import java.util.List;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.ChoiceStrategy;
 
-public class JunctionActivation extends PseudostateActivation{
+public class JunctionPseudostateActivation extends PseudostateActivation{
 	
 	// Transitions that were fireable at the time which the junction
 	// pseudo-state was evaluated.
 	protected List<TransitionActivation> fireableTransitions;
 	
-	public JunctionActivation(){
+	public JunctionPseudostateActivation(){
 		this.fireableTransitions = new ArrayList<TransitionActivation>();
 	}
 	

@@ -19,7 +19,7 @@ import java.util.Iterator;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.uml2.uml.State;
 
-public abstract class HistoryActivation extends PseudostateActivation {
+public abstract class HistoryPseudostateActivation extends PseudostateActivation {
 
 	@Override
 	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {

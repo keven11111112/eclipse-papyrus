@@ -15,7 +15,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 
-public class EntryPointActivation extends ConnectionPointActivation {
+public class EntryPointPseudostateActivation extends ConnectionPointActivation {
 	
 	public boolean isExitable(TransitionActivation exitingTransition) {
 		// An entry point can be exited as soon as every outgoing transition expect

@@ -21,7 +21,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.ChoiceStrategy;
 
 import org.eclipse.uml2.uml.Transition;
 
-public class ExitPointActivation extends ConnectionPointActivation {
+public class ExitPointPseudostateActivation extends ConnectionPointActivation {
 
 	public boolean isEnterable(TransitionActivation enteringTransition) {
 		// Determine if this exit point satisfied its requirement to be exited.

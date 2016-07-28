@@ -58,7 +58,7 @@ public abstract class StateMachineSemanticVisitor extends SemanticVisitor {
 		// the visitor that called context chain. The caller is part of the returned
 		// context chain.
 		List<SemanticVisitor> contextChain = new ArrayList<SemanticVisitor>();
-		if(!(this instanceof ExitPointActivation) && !(this instanceof EntryPointActivation)){
+		if(!(this instanceof ExitPointPseudostateActivation) && !(this instanceof EntryPointPseudostateActivation)){
 			contextChain.add(this);
 		}
 		if(this.parent!=null){

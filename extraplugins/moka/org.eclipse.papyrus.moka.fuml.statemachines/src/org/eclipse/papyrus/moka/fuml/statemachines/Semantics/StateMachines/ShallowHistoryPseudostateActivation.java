@@ -16,7 +16,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 
-public class ShallowHistoryActivation extends HistoryActivation {
+public class ShallowHistoryPseudostateActivation extends HistoryPseudostateActivation {
 
 	@Override
 	public void restore(RegionActivation regionActivation, TransitionActivation enteringTransition, EventOccurrence eventOccurrence) {

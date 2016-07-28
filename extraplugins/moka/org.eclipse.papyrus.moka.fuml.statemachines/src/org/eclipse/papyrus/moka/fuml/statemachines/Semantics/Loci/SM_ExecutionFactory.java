@@ -16,19 +16,19 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci;
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_ExecutionFactory;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ChoicePseudostateActivation;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.DeepHistoryActivation;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.EntryPointActivation;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ExitPointActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.DeepHistoryPseudostateActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.EntryPointPseudostateActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ExitPointPseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ExternalTransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.FinalStateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ForkPseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.InitialPseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.InternalTransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.JoinPseudostateActivation;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.JunctionActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.JunctionPseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.LocalTransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.RegionActivation;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ShallowHistoryActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ShallowHistoryPseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.StateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.StateMachineExecution;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.TerminatePseudostateActivation;
@@ -54,15 +54,15 @@ public class SM_ExecutionFactory extends CS_ExecutionFactory {
 			Pseudostate pseudostate = (Pseudostate) element;
 			switch(pseudostate.getKind()){ // FIXME: align names of pseudo-state activations 
 				case INITIAL_LITERAL: visitor = new InitialPseudostateActivation(); break;
-				case ENTRY_POINT_LITERAL: visitor = new EntryPointActivation(); break;
-				case EXIT_POINT_LITERAL: visitor = new ExitPointActivation(); break;
+				case ENTRY_POINT_LITERAL: visitor = new EntryPointPseudostateActivation(); break;
+				case EXIT_POINT_LITERAL: visitor = new ExitPointPseudostateActivation(); break;
 				case CHOICE_LITERAL: visitor = new ChoicePseudostateActivation(); break;
 				case FORK_LITERAL: visitor = new ForkPseudostateActivation(); break;
 				case JOIN_LITERAL: visitor = new JoinPseudostateActivation(); break;
 				case TERMINATE_LITERAL: visitor = new TerminatePseudostateActivation(); break;
-				case DEEP_HISTORY_LITERAL: visitor = new DeepHistoryActivation(); break;
-				case SHALLOW_HISTORY_LITERAL: visitor = new ShallowHistoryActivation(); break;
-				case JUNCTION_LITERAL: visitor = new JunctionActivation(); break;
+				case DEEP_HISTORY_LITERAL: visitor = new DeepHistoryPseudostateActivation(); break;
+				case SHALLOW_HISTORY_LITERAL: visitor = new ShallowHistoryPseudostateActivation(); break;
+				case JUNCTION_LITERAL: visitor = new JunctionPseudostateActivation(); break;
 			}
 		}else if (element instanceof State) {
 			if(element instanceof FinalState){

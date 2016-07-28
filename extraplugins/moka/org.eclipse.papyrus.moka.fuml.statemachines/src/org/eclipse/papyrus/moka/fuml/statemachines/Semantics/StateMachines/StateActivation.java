@@ -256,7 +256,7 @@ public class StateActivation extends VertexActivation {
 			}
 		}else{
 			VertexActivation targetActivation = enteringTransition.getTargetActivation();
-			if(targetActivation instanceof EntryPointActivation){
+			if(targetActivation instanceof EntryPointPseudostateActivation){
 				Pseudostate entryPoint = (Pseudostate)targetActivation.getNode();
 				for(int i = 0; i < entryPoint.getOutgoings().size(); i++){
 					targetedVertices.add(entryPoint.getOutgoings().get(i).getTarget());

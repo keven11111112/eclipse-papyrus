@@ -26,7 +26,7 @@ public class LocalTransitionActivation extends TransitionActivation {
 		// 2 - Else in the case where the source contains the target then the containing
 		//	   state is the source itself. Otherwise the source is the target
 		StateActivation containingState = null; 
-		if(this.vertexSourceActivation instanceof EntryPointActivation){
+		if(this.vertexSourceActivation instanceof EntryPointPseudostateActivation){
 			containingState = (StateActivation) this.vertexSourceActivation.getParentStateActivation();
 		}else{
 			if(this.vertexSourceActivation.getVertexActivation((Vertex)this.vertexTargetActivation.getNode())!=null){
@@ -50,7 +50,7 @@ public class LocalTransitionActivation extends TransitionActivation {
 		//     then it is also exited
 		StateActivation containingState = this.getContainingState();
 		if(this.vertexSourceActivation.isExitable(this)){
-			if(this.vertexSourceActivation instanceof EntryPointActivation){
+			if(this.vertexSourceActivation instanceof EntryPointPseudostateActivation){
 				this.vertexSourceActivation.exit(this, eventOccurrence, null);
 			}else{
 				int i=0;
