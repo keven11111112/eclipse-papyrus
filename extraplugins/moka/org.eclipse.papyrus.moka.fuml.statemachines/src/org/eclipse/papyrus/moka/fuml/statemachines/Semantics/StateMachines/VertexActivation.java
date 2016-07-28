@@ -146,8 +146,10 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 	}
 	
 	public boolean isActive(){
-		// FIXME: Shall be replaced by a call to the state-machine configuration
-		// If a state is active, it is in the state-machine configuration
+		// By default is is possible to assess if a vertex is active by checking
+		// if its status is ACTIVE. Note this operation is overriden in the context
+		// of state activations which require a presence within the state-machine
+		// configuration.
 		return this.status.equals(StateMetadata.ACTIVE);
 	}
 	
