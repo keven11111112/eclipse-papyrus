@@ -310,18 +310,9 @@ public class StateActivation extends VertexActivation {
 			// The impact on the execution is that the parent state
 			// of the current state is not active then it must be entered
 			// the rule applies recursively
-			if(leastCommonAncestor!=null){
-				RegionActivation parentRegionActivation = (RegionActivation) this.getParent();
-				if(leastCommonAncestor!=parentRegionActivation){
-					StateActivation stateActivation = (StateActivation) parentRegionActivation.getParent();
-					if(stateActivation!=null){
-						stateActivation.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
-					}
-				}
-			}
+			super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 			// Initialization
 			State state = (State) this.getNode();
-			super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 			this.isEntryCompleted = state.getEntry()==null;
 			this.isDoActivityCompleted = state.getDoActivity()==null;
 			this.isExitCompleted = state.getExit()==null;
@@ -366,25 +357,16 @@ public class StateActivation extends VertexActivation {
 		if(!this.isExitCompleted){
 			this.tryExecuteExit(eventOccurrence);
 		}
-		super.exit(exitingTransition, eventOccurrence, leastCommonAncestor);
-		// When the state is exited then it is removed from the state-machine configuration
-		StateMachineExecution smExecution = (StateMachineExecution)this.getStateMachineExecution();
-		smExecution.getConfiguration().unregister(this);
 		// Re-initialize the boolean flags
 		this.isEntryCompleted = false;
 		this.isDoActivityCompleted = false;
 		this.isExitCompleted = false;
+		// When the state is exited then it is removed from the state-machine configuration
+		StateMachineExecution smExecution = (StateMachineExecution)this.getStateMachineExecution();
+		smExecution.getConfiguration().unregister(this);
 		// The state is exited by a transition that targets a state which is located within 
 		// another region. This means parent state must also be exited.  
-		if(leastCommonAncestor!=null){
-			RegionActivation parentRegionActivation = (RegionActivation) this.getParent();
-			if(leastCommonAncestor!=parentRegionActivation){
-				StateActivation stateActivation = (StateActivation) parentRegionActivation.getParent();
-				if(stateActivation!=null){
-					stateActivation.exit(exitingTransition, eventOccurrence, leastCommonAncestor);
-				}
-			}
-		}
+		super.exit(exitingTransition, eventOccurrence, leastCommonAncestor);
 	}
 	
 	public List<TransitionActivation> getFireableTransitions(EventOccurrence eventOccurrence){

@@ -23,7 +23,7 @@ public class InitialPseudostateActivation extends PseudostateActivation{
 		// they are not taken into account. If there is no outgoing transitions then the model
 		// is considered as being ill-formed, similar interpretation occurs if there are more than
 		// an single outgoing transition for the initial pseudo state.
-		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
+		super.enter(enteringTransition, eventOccurrence, null);
 		if(this.outgoingTransitionActivations.size()==1){
 			this.outgoingTransitionActivations.get(0).fire(eventOccurrence);	
 		}

@@ -40,32 +40,11 @@ public class JoinPseudostateActivation extends PseudostateActivation {
 		// (if this is the case then the model is ill-formed).
 		// The guard of the outgoing transition is evaluated to verify that the transition can be fired
 		// If required parent state is entered first (the rule applies recursively)
-		if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
-			VertexActivation parentVertexActivation = this.getParentStateActivation();
-			if (parentVertexActivation != null) {
-				parentVertexActivation.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
-			}
-		}
-		// The Join pseudo state is entered and its outgoing transition is fired (if possible)
 		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 		if (!this.outgoingTransitionActivations.isEmpty()) {
 			TransitionActivation transitionActivation = this.outgoingTransitionActivations.get(0);
 			if (transitionActivation.evaluateGuard(eventOccurrence)) {
 				transitionActivation.fire(eventOccurrence);
-			}
-		}
-	}
-
-	@Override
-	public void exit(TransitionActivation exitingTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
-		// When the join pseudo state is exited then it also provokes the exit of all containing
-		// state that not directly belong to the least common ancestor before its outgoing transition
-		// fires
-		super.exit(exitingTransition, eventOccurrence, leastCommonAncestor);
-		if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
-			VertexActivation parentVertexActivation = this.getParentStateActivation();
-			if (parentVertexActivation != null) {
-				parentVertexActivation.exit(exitingTransition, eventOccurrence, leastCommonAncestor);
 			}
 		}
 	}

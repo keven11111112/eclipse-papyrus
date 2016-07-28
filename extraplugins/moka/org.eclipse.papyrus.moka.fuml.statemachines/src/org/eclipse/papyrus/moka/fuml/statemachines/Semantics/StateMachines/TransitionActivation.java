@@ -254,7 +254,7 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	protected RegionActivation getLeastCommonAncestor(){
 		// Return the common ancestor of the source and the target. This common ancestor is
 		// a region activation
-		if(this.vertexSourceActivation.getParentStateActivation()!=this.vertexTargetActivation.getParentStateActivation()){
+		if(this.vertexSourceActivation.getParentVertexActivation()!=this.vertexTargetActivation.getParentVertexActivation()){
 			if(this.leastCommonAncestor==null){
 				this.leastCommonAncestor = this.vertexSourceActivation.getLeastCommonAncestor(this.vertexTargetActivation, ((Transition)this.getNode()).getKind());
 			}

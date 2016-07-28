@@ -48,7 +48,7 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		this.outgoingTransitionActivations = new ArrayList<TransitionActivation>();
 	}
 	
-	public VertexActivation getParentStateActivation(){
+	public VertexActivation getParentVertexActivation(){
 		// The parent state of a vertex is either a StateMachineExecution or a StateActivation
 		RegionActivation regionActivation = (RegionActivation)this.getParent();
 		if(regionActivation!=null){
@@ -126,9 +126,17 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 	}
 		
 	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence,  RegionActivation leastCommonAncestor){
-		// 1-The vertex becomes active
-		// 2-Outgoing transitions of this vertex are tagged as being REACHED
-		// 3-The vertex starts to be highlighted
+		// When a vertex is entered its parent may need to be entered as well. Such situation
+		// occurs when the parent is not active while there is an attempt to enter the current
+		// vertex activation. What is important here is that entry rule is applied recursively
+		// until the least common ancestor is reached.
+		RegionActivation owningRegionActivation = this.getOwningRegionActivation();
+		if(leastCommonAncestor != null && owningRegionActivation != null && leastCommonAncestor != owningRegionActivation){
+			VertexActivation vertexActivation = (VertexActivation) owningRegionActivation.getParent();
+			if(vertexActivation != null){
+				vertexActivation.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
+			}
+		}
 		logger.info(this.getNode().getName()+" => ACTIVE");
 		this.setStatus(StateMetadata.ACTIVE);
 		this.tagOutgoingTransitions(TransitionMetadata.REACHED);
@@ -136,13 +144,21 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 	}
 	
 	public void exit(TransitionActivation exitingTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor){
-		// 1-The representation of the vertex stops to be highlighted
-		// 2-The incoming transitions of this vertex get back to the NONE status
-		// 3- The vertex becomes IDLE
+		// When a vertex is exited its parent may need to be exited too. Such situation typically
+		// occurs when the current vertex is exited through a transition that cross boundaries of
+		// the parent state (and maybe also border its own parent). This implies that from the current
+		// vertex and until the least common ancestor is reached all states are exited recursively.
 		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode());
 		this.tagIncomingTransitions(TransitionMetadata.NONE);
 		this.setStatus(StateMetadata.IDLE);
 		logger.info(this.getNode().getName()+" => IDLE");
+		RegionActivation owningRegionActivation = this.getOwningRegionActivation();
+		if(leastCommonAncestor != null && owningRegionActivation != null && leastCommonAncestor != owningRegionActivation){
+			VertexActivation vertexActivation = (VertexActivation) owningRegionActivation.getParent();
+			if(vertexActivation != null){
+				vertexActivation.exit(exitingTransition, eventOccurrence, leastCommonAncestor);
+			}
+		}
 	}
 	
 	public boolean isActive(){

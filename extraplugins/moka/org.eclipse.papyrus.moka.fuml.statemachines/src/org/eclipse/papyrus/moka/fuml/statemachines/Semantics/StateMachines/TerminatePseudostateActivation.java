@@ -14,16 +14,10 @@ public class TerminatePseudostateActivation extends PseudostateActivation {
 		// to the destruction of its context object. This means the object
 		// will be stopped and consequently no any other event will be dispatched
 		// and the object will finally be removed from the locus.
-		if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
-			VertexActivation parentVertexActivation = this.getParentStateActivation();
-			if (parentVertexActivation != null) {
-				parentVertexActivation.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
-			}
-		}
 		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 		Execution stateMachineExecution = this.getStateMachineExecution();
 		stateMachineExecution.terminate();
 		stateMachineExecution.context.destroy();
-		super.exit(enteringTransition, eventOccurrence, leastCommonAncestor);
+		super.exit(null, null, null);
 	}
 }

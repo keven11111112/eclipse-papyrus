@@ -28,19 +28,13 @@ public abstract class HistoryPseudostateActivation extends PseudostateActivation
 		// is targeted by the entering transition. Finally if needed, the deep history is exited.
 		// Situation in which the deep history need to be exited is when the region containing
 		// the history node has already been executed.
-		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 		StateActivation parentStateActivation = null;
-		VertexActivation parentVertexActivation = this.getParentStateActivation();
+		VertexActivation parentVertexActivation = this.getParentVertexActivation();
 		if(parentVertexActivation != null){
 			parentStateActivation = (StateActivation) parentVertexActivation;
 			parentStateActivation.status = StateMetadata.ACTIVE;
 		}
-		if (leastCommonAncestor != null && parentVertexActivation != null && parentVertexActivation.getParent() != leastCommonAncestor) {
-			parentVertexActivation = this.getParentStateActivation();
-			if (parentVertexActivation != null) {
-				parentVertexActivation.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
-			}
-		}
+		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 		if(parentStateActivation != null){
 			this.restore(parentStateActivation, enteringTransition, eventOccurrence);
 		}

@@ -90,10 +90,6 @@ public class JunctionPseudostateActivation extends PseudostateActivation{
 		// Next, one transition is chosen in the set of fireable transition to be fired.
 		// This transition is fired and the junction pseudo state is exited.
 		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
-		VertexActivation vertexActivation = this.getParentStateActivation();
-		if(vertexActivation!=null){
-			vertexActivation.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
-		}
 		TransitionActivation selectedTransition = null;
 		if(this.fireableTransitions.size() == 1){
 			selectedTransition = this.fireableTransitions.get(0);
@@ -105,17 +101,4 @@ public class JunctionPseudostateActivation extends PseudostateActivation{
 		selectedTransition.fire(eventOccurrence);
 	}
 	
-	@Override
-	public void exit(TransitionActivation exitingTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
-		super.exit(exitingTransition, eventOccurrence, leastCommonAncestor);
-		if(leastCommonAncestor != null){
-			RegionActivation parentRegionActivation = (RegionActivation) this.getParent();
-			if(leastCommonAncestor!=parentRegionActivation){
-				VertexActivation parentVertexActivation = (VertexActivation) parentRegionActivation.getParent();
-				if(parentVertexActivation != null){
-					parentVertexActivation.exit(exitingTransition, eventOccurrence, leastCommonAncestor);
-				}
-			}
-		}
-	}
 }

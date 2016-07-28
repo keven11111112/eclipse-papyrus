@@ -19,8 +19,6 @@ import java.util.List;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.ChoiceStrategy;
 
-import org.eclipse.uml2.uml.Transition;
-
 public class ExitPointPseudostateActivation extends ConnectionPointActivation {
 
 	public boolean isEnterable(TransitionActivation enteringTransition) {
@@ -66,20 +64,21 @@ public class ExitPointPseudostateActivation extends ConnectionPointActivation {
 	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
 		// When the ExitPoint is entered then the state on which it is placed is exited.
 		// One outgoing transition is chosen non-deterministically in set of transition
-		// that can be used to leave the ExitPoint. This transition is fired. This lead
-		// to exit parent states in cascade if required.
+		// that can be used to leave the ExitPoint. This transition is fired.
 		List<TransitionActivation> fireableTransitions = this.getFireableTransitions(eventOccurrence);
 		if (!fireableTransitions.isEmpty()) {
 			ChoiceStrategy choiceStrategy = (ChoiceStrategy) this.getExecutionLocus().factory.getStrategy("choice");
 			int chosenIndex = choiceStrategy.choose(fireableTransitions.size());
 			TransitionActivation selectedTransition = fireableTransitions.get(chosenIndex - 1);
-			RegionActivation newLeastCommonAncestor = this.getLeastCommonAncestor(selectedTransition.getTargetActivation(), ((Transition)selectedTransition.getNode()).getKind());
-			super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
-			VertexActivation vertexActivation = this.getParentStateActivation();
+			// When the exit point is entered that does not imply recursive entry of its parent
+			super.enter(enteringTransition, eventOccurrence, null);
+			VertexActivation vertexActivation = this.getParentVertexActivation();
 			if (vertexActivation != null) {
-				vertexActivation.exit(enteringTransition, eventOccurrence, newLeastCommonAncestor);
+				// Only the state that owns the exit point is exited.
+				vertexActivation.exit(enteringTransition, eventOccurrence, null);
 			}
 			selectedTransition.fire(eventOccurrence);
 		}
 	}
+	
 }
