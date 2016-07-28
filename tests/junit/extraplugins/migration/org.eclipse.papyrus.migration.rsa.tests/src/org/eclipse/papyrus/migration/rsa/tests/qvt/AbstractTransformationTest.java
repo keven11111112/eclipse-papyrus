@@ -141,6 +141,11 @@ public class AbstractTransformationTest extends AbstractPapyrusTest {
 		Diagram result = getDiagram(name);
 		ServiceUtilsForEObject.getInstance().getIPageManager(result).openPage(result);
 		DisplayUtils.flushEventLoop();
+
+		// Ensure that the editor is actually fully opened and that diagram reconcilers
+		// have run, if necessary (bug 496653)
+		editor.getActiveEditor();
+
 		return result;
 	}
 
