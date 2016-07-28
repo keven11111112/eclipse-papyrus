@@ -23,6 +23,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.Ev
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.TransitionActivation.TransitionMetadata;
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
+import org.eclipse.uml2.uml.TransitionKind;
 import org.eclipse.uml2.uml.Vertex;
 
 public abstract class VertexActivation extends StateMachineSemanticVisitor {
@@ -47,7 +48,7 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		this.outgoingTransitionActivations = new ArrayList<TransitionActivation>();
 	}
 	
-	public VertexActivation getParentState(){
+	public VertexActivation getParentStateActivation(){
 		// The parent state of a vertex is either a StateMachineExecution or a StateActivation
 		RegionActivation regionActivation = (RegionActivation)this.getParent();
 		if(regionActivation!=null){
@@ -58,6 +59,14 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 			}
 		}
 		return null;
+	}
+	
+	public RegionActivation getOwningRegionActivation(){
+		// In general for a vertex activation its owning region activation
+		// is its direct parent. Not that is not true for the exit point
+		// activation as well as the entry point activation. This operation
+		// is therefore overridden in these two context
+		return (RegionActivation) this.parent;
 	}
 	
 	public void setStatus(StateMetadata state){
@@ -142,64 +151,65 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		return this.status.equals(StateMetadata.ACTIVE);
 	}
 	
-	public RegionActivation getLeastCommonAncestor(VertexActivation targetVertexActivation){
+	public RegionActivation getLeastCommonAncestor(VertexActivation targetVertexActivation, TransitionKind transitionKind){
 		// Determine the semantic visitor being the least common ancestor between
 		// the current vertex activation and the target vertex activation (provided as
-		// a parameter). To  compute this common ancestor the both context chain from the
-		// the current vertex activation and the target vertex activation are compared. As soon
-		// as one different is found between the two context chain is found then it means we are
-		// in presence of the least common ancestor. The least common ancestor is always 
-		// a region activation.
+		// a parameter). The analysis is based on a comparative analysis vertices (source and
+		// target) hierarchies.
+		RegionActivation leastCommonAncestor = null;
+		SemanticVisitor sourceHierachyNode =  null;
+		SemanticVisitor targetHierarchyNode = null;
 		List<SemanticVisitor> sourceHierarchy = this.getContextChain();
 		List<SemanticVisitor> targetHierarchy = targetVertexActivation.getContextChain();
-		int i = sourceHierarchy.size() - 1;
-		int j = targetHierarchy.size() - 1;
-		SemanticVisitor source = null;
-		SemanticVisitor target = null;
-		SemanticVisitor ancestor = null;
-		RegionActivation leastCommonAncestor = null;
-		// Check if the source vertex activation contains the target vertex activation
-		boolean isTargetContained = false;
-		if(this.getVertexActivation((Vertex)targetVertexActivation.node) != null){
-			isTargetContained = true;
+		int sourceHierarchyIndex = sourceHierarchy.size();
+		int targetHierarchyIndex = targetHierarchy.size();
+		// Check if a difference can be found in between the two subsets
+		// delimited by the common index. Iterate until the least common
+		// ancestor is found or the two subsets have been reviewed
+		while(leastCommonAncestor == null && sourceHierarchyIndex > 0 && targetHierarchyIndex > 0){
+			sourceHierachyNode = sourceHierarchy.get(sourceHierarchyIndex - 1);
+			targetHierarchyNode = targetHierarchy.get(targetHierarchyIndex - 1);
+			if(sourceHierachyNode != targetHierarchyNode){
+				leastCommonAncestor = this.getRegionActivation(sourceHierachyNode);
+			}else{
+				sourceHierarchyIndex = sourceHierarchyIndex - 1;
+				targetHierarchyIndex = targetHierarchyIndex - 1;
+			}
 		}
-		while(leastCommonAncestor == null){
-			// Retrieve the current element in the source hierarchy
-			// null if index out of bounds
-			if(i >= 0){
-				source = sourceHierarchy.get(i);
+		// It may happen than no difference could found in the hierarchy subsets
+		// previously reviewed. This indicate two possible situations:
+		// 1. The source and the target are the same.
+		// 2. There is containing / container relationship existing between
+		//    the source and the target.
+		if(leastCommonAncestor == null){
+			if(sourceHierarchyIndex == 0 && targetHierarchyIndex == 0){
+				leastCommonAncestor = this.getRegionActivation(sourceHierarchy.get(sourceHierarchyIndex + 1));
 			}else{
-				source = null;
-			}
-			// Retrieve the current element in the target hierarchy
-			// null if index out of bounds
-			if(j >= 0){
-				target = targetHierarchy.get(j);
-			}else{
-				target = null;
-			}
-			// Check if source and target are different. In such situation
-			// determine the least common ancestor
-			if(source != target){
-				if(isTargetContained){
-					ancestor = sourceHierarchy.get(i+1);
+				if(this.getVertexActivation((Vertex)targetVertexActivation.getNode()) != null){
+					if(transitionKind == TransitionKind.EXTERNAL_LITERAL){
+						leastCommonAncestor = this.getRegionActivation(sourceHierarchy.get(sourceHierarchyIndex));
+					}else{
+						leastCommonAncestor = this.getRegionActivation(targetHierarchy.get(targetHierarchyIndex - 1));
+					}
 				}else{
-					ancestor = sourceHierarchy.get(i);
+					leastCommonAncestor = this.getRegionActivation(sourceHierarchy.get(sourceHierarchyIndex - 1));
 				}
-				if(ancestor instanceof RegionActivation){
-					leastCommonAncestor = (RegionActivation) ancestor;
-				}else if(ancestor instanceof VertexActivation){
-					leastCommonAncestor = (RegionActivation) ((VertexActivation)ancestor).getParent();
-				}
-			}else if(source == null && target == null){
-				// Case where the source and the target are identical
-				leastCommonAncestor = (RegionActivation) ((StateMachineSemanticVisitor)sourceHierarchy.get(i+1)).getParent();
-			}else{
-				i--;
-				j--;
 			}
 		}
 		return leastCommonAncestor;
+	}
+	
+	private RegionActivation getRegionActivation(SemanticVisitor semanticVisitor){
+		// If the given semantic visitor is a region activation then this activation
+		// is returned. Otherwise if the visitor is a vertex activation  then its
+		// parent region activation is returned.
+		RegionActivation regionActivation = null; 
+		if(semanticVisitor instanceof RegionActivation){
+			regionActivation = (RegionActivation) semanticVisitor;
+		}else if(semanticVisitor instanceof VertexActivation){
+			regionActivation = (RegionActivation)((VertexActivation)semanticVisitor).getParent();
+		}
+		return regionActivation;
 	}
 	
 	public boolean isEnterable(TransitionActivation enteringTransition){
@@ -221,5 +231,22 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		// Terminate applied by a vertex activation does nothing by default. However it is intended
 		// to be overridden by sub-classe(s)  
 		return;
+	}
+	
+	public boolean canPropagateExecution(TransitionActivation enteringTransition, EventOccurrence eventOccurrence , RegionActivation leastCommonAncestor) {
+		// The common behavior of all kind of vertices is that when the propagation analysis is done
+		// if a the target is a vertex that is nested within a hierarchy then the analysis
+		// must be recursively propagated to the parent vertices.
+		boolean propagate = true;
+		if(leastCommonAncestor != null){
+			RegionActivation parentRegionActivation = this.getOwningRegionActivation();
+			if(leastCommonAncestor!=parentRegionActivation){
+				VertexActivation vertexActivation = (VertexActivation) parentRegionActivation.getParent();
+				if(vertexActivation != null){
+					propagate = vertexActivation.canPropagateExecution(enteringTransition, eventOccurrence, leastCommonAncestor);
+				}
+			}
+		}
+		return propagate;
 	}
 }

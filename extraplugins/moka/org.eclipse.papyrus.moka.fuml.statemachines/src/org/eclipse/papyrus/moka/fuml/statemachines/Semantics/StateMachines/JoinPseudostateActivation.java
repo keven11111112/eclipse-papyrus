@@ -41,7 +41,7 @@ public class JoinPseudostateActivation extends PseudostateActivation {
 		// The guard of the outgoing transition is evaluated to verify that the transition can be fired
 		// If required parent state is entered first (the rule applies recursively)
 		if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
-			VertexActivation parentVertexActivation = this.getParentState();
+			VertexActivation parentVertexActivation = this.getParentStateActivation();
 			if (parentVertexActivation != null) {
 				parentVertexActivation.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 			}
@@ -63,7 +63,7 @@ public class JoinPseudostateActivation extends PseudostateActivation {
 		// fires
 		super.exit(exitingTransition, eventOccurrence, leastCommonAncestor);
 		if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
-			VertexActivation parentVertexActivation = this.getParentState();
+			VertexActivation parentVertexActivation = this.getParentStateActivation();
 			if (parentVertexActivation != null) {
 				parentVertexActivation.exit(exitingTransition, eventOccurrence, leastCommonAncestor);
 			}

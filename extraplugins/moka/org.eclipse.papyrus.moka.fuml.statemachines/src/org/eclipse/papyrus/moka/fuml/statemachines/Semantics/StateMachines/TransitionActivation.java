@@ -209,13 +209,22 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		if(eventOccurrence instanceof CompletionEventOccurrence){
 			reactive = !this.isTriggered() &&
 						this.getSourceActivation()==((CompletionEventOccurrence)eventOccurrence).stateActivation &&
-						this.evaluateGuard(eventOccurrence);
+						this.evaluateGuard(eventOccurrence) &&
+						this.canPropagateExecution(eventOccurrence);
 		}else if(eventOccurrence instanceof SignalEventOccurrence | eventOccurrence instanceof CallEventOccurrence){
-			reactive = this.hasTrigger(eventOccurrence) && this.evaluateGuard(eventOccurrence);
+			reactive = this.hasTrigger(eventOccurrence) && 
+					   this.evaluateGuard(eventOccurrence) &&
+					   this.canPropagateExecution(eventOccurrence);
 		}else{
 			reactive = false;
 		}
 		return reactive;
+	}
+	
+	public boolean canPropagateExecution(EventOccurrence eventOccurrence){
+		// Evaluate the possibility to propagate the execution by requesting
+		// the target vertex activation it can propagates the execution.
+		return this.vertexTargetActivation.canPropagateExecution(this, eventOccurrence, this.getLeastCommonAncestor());
 	}
 	
 	public void executeEffect(EventOccurrence eventOccurrence){
@@ -245,9 +254,9 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	protected RegionActivation getLeastCommonAncestor(){
 		// Return the common ancestor of the source and the target. This common ancestor is
 		// a region activation
-		if(this.vertexSourceActivation.getParentState()!=this.vertexTargetActivation.getParentState()){
+		if(this.vertexSourceActivation.getParentStateActivation()!=this.vertexTargetActivation.getParentStateActivation()){
 			if(this.leastCommonAncestor==null){
-				this.leastCommonAncestor = this.vertexSourceActivation.getLeastCommonAncestor(this.vertexTargetActivation);
+				this.leastCommonAncestor = this.vertexSourceActivation.getLeastCommonAncestor(this.vertexTargetActivation, ((Transition)this.getNode()).getKind());
 			}
 		}
 		return this.leastCommonAncestor;

@@ -25,6 +25,7 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ForkP
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.InitialPseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.InternalTransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.JoinPseudostateActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.JunctionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.LocalTransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.RegionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ShallowHistoryActivation;
@@ -51,7 +52,7 @@ public class SM_ExecutionFactory extends CS_ExecutionFactory {
 			visitor = new StateMachineExecution();
 		}else if (element instanceof Pseudostate) {
 			Pseudostate pseudostate = (Pseudostate) element;
-			switch(pseudostate.getKind()){
+			switch(pseudostate.getKind()){ // FIXME: align names of pseudo-state activations 
 				case INITIAL_LITERAL: visitor = new InitialPseudostateActivation(); break;
 				case ENTRY_POINT_LITERAL: visitor = new EntryPointActivation(); break;
 				case EXIT_POINT_LITERAL: visitor = new ExitPointActivation(); break;
@@ -61,7 +62,7 @@ public class SM_ExecutionFactory extends CS_ExecutionFactory {
 				case TERMINATE_LITERAL: visitor = new TerminatePseudostateActivation(); break;
 				case DEEP_HISTORY_LITERAL: visitor = new DeepHistoryActivation(); break;
 				case SHALLOW_HISTORY_LITERAL: visitor = new ShallowHistoryActivation(); break;
-				default: System.err.println("Element: "+element+" is not supported");break;
+				case JUNCTION_LITERAL: visitor = new JunctionActivation(); break;
 			}
 		}else if (element instanceof State) {
 			if(element instanceof FinalState){

@@ -15,8 +15,23 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
 public abstract class ConnectionPointActivation extends PseudostateActivation{
 	
-	public VertexActivation getParentState(){
+	public VertexActivation getParentStateActivation(){
 		// The parent state of a connection point reference is its owning state
-		return (VertexActivation)this.getParent();
+		VertexActivation vertexActivation = null;
+		if(this.getParent() != null){
+			vertexActivation = (VertexActivation)this.getParent();
+		}
+		return vertexActivation;
+	}
+	
+	@Override
+	public RegionActivation getOwningRegionActivation() {
+		// Return the owning region activation of the state activation
+		// on which this point activation is placed.
+		RegionActivation regionActivation = null;
+		if(this.getParentStateActivation() != null){
+			regionActivation = (RegionActivation) this.getParentStateActivation().getParent();
+		}
+		return regionActivation;
 	}
 }

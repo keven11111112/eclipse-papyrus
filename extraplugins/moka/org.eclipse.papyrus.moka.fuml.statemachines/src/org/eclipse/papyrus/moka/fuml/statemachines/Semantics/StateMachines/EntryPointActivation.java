@@ -37,7 +37,7 @@ public class EntryPointActivation extends ConnectionPointActivation {
 		// placed can be a deeply nested state. Therefore parent state of that state must
 		// be entered before if it is not already the case.
 		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
-		VertexActivation vertexActivation = this.getParentState();
+		VertexActivation vertexActivation = this.getParentStateActivation();
 		if(vertexActivation!=null){
 			vertexActivation.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 		}

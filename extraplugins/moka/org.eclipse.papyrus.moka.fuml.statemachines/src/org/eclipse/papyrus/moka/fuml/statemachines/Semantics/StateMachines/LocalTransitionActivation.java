@@ -27,7 +27,7 @@ public class LocalTransitionActivation extends TransitionActivation {
 		//	   state is the source itself. Otherwise the source is the target
 		StateActivation containingState = null; 
 		if(this.vertexSourceActivation instanceof EntryPointActivation){
-			containingState = (StateActivation) this.vertexSourceActivation.getParentState();
+			containingState = (StateActivation) this.vertexSourceActivation.getParentStateActivation();
 		}else{
 			if(this.vertexSourceActivation.getVertexActivation((Vertex)this.vertexTargetActivation.getNode())!=null){
 				containingState = (StateActivation) this.vertexSourceActivation;

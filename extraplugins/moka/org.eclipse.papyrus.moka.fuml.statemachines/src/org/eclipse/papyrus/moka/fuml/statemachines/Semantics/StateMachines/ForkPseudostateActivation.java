@@ -40,7 +40,7 @@ public class ForkPseudostateActivation extends PseudostateActivation {
 		// Transitions outgoing from a fork are not guarded nor triggered
 		// If required parent state is entered first (the rule applies recursively)
 		if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
-			VertexActivation parentVertexActivation = this.getParentState();
+			VertexActivation parentVertexActivation = this.getParentStateActivation();
 			if (parentVertexActivation != null) {
 				parentVertexActivation.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 			}
@@ -58,7 +58,7 @@ public class ForkPseudostateActivation extends PseudostateActivation {
 		super.exit(exitingTransition, eventOccurrence, leastCommonAncestor);
 		// If required parent state is exited (the rule applies recursively)
 		if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
-			VertexActivation parentVertexActivation = this.getParentState();
+			VertexActivation parentVertexActivation = this.getParentStateActivation();
 			if (parentVertexActivation != null) {
 				parentVertexActivation.enter(exitingTransition, eventOccurrence, leastCommonAncestor);
 			}

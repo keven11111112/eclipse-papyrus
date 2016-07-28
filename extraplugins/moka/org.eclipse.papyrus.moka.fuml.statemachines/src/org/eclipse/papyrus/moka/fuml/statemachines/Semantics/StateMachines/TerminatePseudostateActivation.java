@@ -15,7 +15,7 @@ public class TerminatePseudostateActivation extends PseudostateActivation {
 		// will be stopped and consequently no any other event will be dispatched
 		// and the object will finally be removed from the locus.
 		if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
-			VertexActivation parentVertexActivation = this.getParentState();
+			VertexActivation parentVertexActivation = this.getParentStateActivation();
 			if (parentVertexActivation != null) {
 				parentVertexActivation.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 			}

@@ -30,13 +30,13 @@ public abstract class HistoryActivation extends PseudostateActivation {
 		// the history node has already been executed.
 		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 		StateActivation parentStateActivation = null;
-		VertexActivation parentVertexActivation = this.getParentState();
+		VertexActivation parentVertexActivation = this.getParentStateActivation();
 		if(parentVertexActivation != null){
 			parentStateActivation = (StateActivation) parentVertexActivation;
 			parentStateActivation.status = StateMetadata.ACTIVE;
 		}
 		if (leastCommonAncestor != null && parentVertexActivation != null && parentVertexActivation.getParent() != leastCommonAncestor) {
-			parentVertexActivation = this.getParentState();
+			parentVertexActivation = this.getParentStateActivation();
 			if (parentVertexActivation != null) {
 				parentVertexActivation.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 			}

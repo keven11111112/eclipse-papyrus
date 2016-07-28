@@ -28,5 +28,4 @@ public class InitialPseudostateActivation extends PseudostateActivation{
 			this.outgoingTransitionActivations.get(0).fire(eventOccurrence);	
 		}
 	}
-
 }

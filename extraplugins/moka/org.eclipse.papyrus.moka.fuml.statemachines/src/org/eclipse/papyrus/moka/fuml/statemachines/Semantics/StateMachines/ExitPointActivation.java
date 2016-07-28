@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.ChoiceStrategy;
 
+import org.eclipse.uml2.uml.Transition;
 
 public class ExitPointActivation extends ConnectionPointActivation {
 
@@ -51,23 +52,34 @@ public class ExitPointActivation extends ConnectionPointActivation {
 		return fireableTransitions;
 	}
 
+	public boolean canPropagateExecution(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
+		// Propagate execution through all outgoing transitions of the exit point.
+		boolean propagate = false;
+		int i = 0;
+		while(!propagate && i < this.outgoingTransitionActivations.size()){
+			propagate = this.outgoingTransitionActivations.get(i).canPropagateExecution(eventOccurrence);
+			i++;
+		}
+		return propagate;
+	}
+	
 	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
 		// When the ExitPoint is entered then the state on which it is placed is exited.
 		// One outgoing transition is chosen non-deterministically in set of transition
 		// that can be used to leave the ExitPoint. This transition is fired. This lead
-		// to exit and parent states in cascade if required.
+		// to exit parent states in cascade if required.
 		List<TransitionActivation> fireableTransitions = this.getFireableTransitions(eventOccurrence);
 		if (!fireableTransitions.isEmpty()) {
 			ChoiceStrategy choiceStrategy = (ChoiceStrategy) this.getExecutionLocus().factory.getStrategy("choice");
 			int chosenIndex = choiceStrategy.choose(fireableTransitions.size());
 			TransitionActivation selectedTransition = fireableTransitions.get(chosenIndex - 1);
-			RegionActivation newLeastCommonAncestor = this.getLeastCommonAncestor(selectedTransition.getTargetActivation());
+			RegionActivation newLeastCommonAncestor = this.getLeastCommonAncestor(selectedTransition.getTargetActivation(), ((Transition)selectedTransition.getNode()).getKind());
 			super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
-			VertexActivation vertexActivation = this.getParentState();
+			VertexActivation vertexActivation = this.getParentStateActivation();
 			if (vertexActivation != null) {
 				vertexActivation.exit(enteringTransition, eventOccurrence, newLeastCommonAncestor);
 			}
-			selectedTransition.fire(null);
+			selectedTransition.fire(eventOccurrence);
 		}
 	}
 }

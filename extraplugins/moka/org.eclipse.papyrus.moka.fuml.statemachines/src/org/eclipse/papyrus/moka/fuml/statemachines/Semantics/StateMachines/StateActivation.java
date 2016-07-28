@@ -285,6 +285,25 @@ public class StateActivation extends VertexActivation {
 		return !((StateMachineExecution)this.getStateMachineExecution()).getConfiguration().isActive(this);
 	}
 	
+	@Override
+	public boolean canPropagateExecution(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
+		// When a simple state is encountered then the propagation analysis is terminated. If
+		// the visited state is composite then the analysis  is propagated to the region(s). All
+		// regions for which the possibility to propagate the execution is asserted must return true.
+		boolean propagate = true;
+		if(this.regionActivation.contains(leastCommonAncestor)){
+			propagate = super.canPropagateExecution(enteringTransition, eventOccurrence, null);
+		}
+		if(propagate && this.regionActivation.size() > 0){
+			int i = 0;
+			while(propagate && i < this.regionActivation.size()){
+				propagate = this.regionActivation.get(i).canPropagateExecution(eventOccurrence, enteringTransition);
+				i++;
+			}
+		}
+		return propagate;
+	}
+	
 	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
 		if(this.status.equals(StateMetadata.IDLE)){
 			// The state is entered via an explicit transition

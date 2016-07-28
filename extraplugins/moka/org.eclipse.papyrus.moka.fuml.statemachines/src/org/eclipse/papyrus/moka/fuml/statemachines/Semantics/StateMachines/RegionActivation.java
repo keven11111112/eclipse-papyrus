@@ -213,25 +213,47 @@ public class RegionActivation extends StateMachineSemanticVisitor{
 		return activation;
 	}
 	
+	protected boolean canPropagateExecution(EventOccurrence eventOccurrence, TransitionActivation enteringTransition){
+		// If the region does not provide a initial pseudo-state activation
+		// then the execution is considered as being allowed to propagate. The
+		// rationale for this choice is that if no initial pseudo state activation
+		// is discovered then the region is not considered by the execution.
+		// Otherwise if the region has an initial pseudo state activation then
+		// the propagation analysis continues through this activation.
+		boolean propagate = true;
+		if(this.getVertexActivation((Vertex)enteringTransition.vertexTargetActivation.getNode()) == null){
+			InitialPseudostateActivation initialNodeActivation = this.getOrigin();
+			if(initialNodeActivation != null){
+				propagate = initialNodeActivation.canPropagateExecution(enteringTransition, eventOccurrence, null);
+			}
+		}
+		return propagate;
+	}
+	
+	protected InitialPseudostateActivation getOrigin(){
+		// Return, if any, the initial pseudo-state activation directly
+		// owned by this region.
+		int i = 0; 
+		InitialPseudostateActivation initialNodeActivation = null;
+		while(initialNodeActivation==null && i < this.vertexActivations.size()){
+			if(this.vertexActivations.get(i) instanceof InitialPseudostateActivation){
+				initialNodeActivation = (InitialPseudostateActivation) this.vertexActivations.get(i);
+			}else{
+				i++;
+			}
+		}
+		return initialNodeActivation;
+	}
+	
 	protected void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence){
 		// An implicit entry of a region means the initial transition is searched.
 		// If such transition exists then it is fired. An explicit entry as no impact on the region.
 		// In case the region is entered implicitly a initial pseudo state shall be found to
 		// start its execution. If no such pseudo-state is found and the state containing
 		// the region has no other region(s) then the state is treated as a simple leaf state
-		int i = 0; 
-		VertexActivation initialNodeActivation = null;
-		while(initialNodeActivation==null && i < this.vertexActivations.size()){
-			if(this.vertexActivations.get(i) instanceof InitialPseudostateActivation){
-				initialNodeActivation = this.vertexActivations.get(i);
-			}else{
-				i++;
-			}
-		}
+		InitialPseudostateActivation initialNodeActivation = this.getOrigin();
 		if(initialNodeActivation!=null){
-			for(TransitionActivation transitionActivation : initialNodeActivation.getOutgoingTransitions()){
-				transitionActivation.fire(eventOccurrence);
-			}
+			initialNodeActivation.enter(enteringTransition, eventOccurrence, null);
 		}else{
 			SemanticVisitor parent = this.getParent();
 			if(parent != null && parent instanceof StateActivation){
