@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2016 CEA LIST, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 488082
+ *  Sebastien Gabel (Esterel Technologies SAS) - Bug 498743
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
@@ -704,9 +705,8 @@ public class StereotypeUtil {
 		Object valueObject = umlElement.getValue(stereotype, property.getName());
 
 		if (valueObject == null) {
-			return out = property.getName() + PROPERTY_VALUE_SEPARATOR;
-		}
-		else {
+			out = property.getName() + PROPERTY_VALUE_SEPARATOR;
+		} else {
 			if (property.getDefaultValue() != null) {
 				if (withDelimitator) {
 					String value = "" + valueObject;
@@ -715,12 +715,10 @@ public class StereotypeUtil {
 						out = out.replace("[", "[" + QUOTE);
 						out = out.replace("]", QUOTE + "]");
 						out = out.replace(", ", QUOTE + "," + QUOTE);
-					}
-					else {
+					} else {
 						out = property.getName() + EQUAL_SEPARATOR + QUOTE + value + QUOTE + PROPERTY_VALUE_SEPARATOR;
 					}
-				}
-				else {
+				} else {
 					if (valueObject instanceof EObject) {
 						ILabelProvider labelProvider = getLabelProvider(property);
 						return out = property.getName() + EQUAL_SEPARATOR + labelProvider.getText(valueObject) + PROPERTY_VALUE_SEPARATOR;
@@ -728,9 +726,8 @@ public class StereotypeUtil {
 						out = property.getName() + EQUAL_SEPARATOR + valueObject + PROPERTY_VALUE_SEPARATOR;
 					}
 				}
-			}
-			else {
-				out = property.getName() + PROPERTY_VALUE_SEPARATOR;
+			} else {
+				out = property.getName() + EQUAL_SEPARATOR + valueObject + PROPERTY_VALUE_SEPARATOR;
 			}
 		}
 		return out;
