@@ -68,7 +68,7 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
@@ -98,8 +98,15 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 
 
-	public static final String ID = "AppliedStereotypeProperty";
+	/**
+	 * 
+	 */
+	private static final String DEFAUL_STEROTYPE_PROPERTY_TEXT = "SterotypeProperty";//$NON-NLS-1$
 
+	public static final String ID = "AppliedStereotypeProperty";//$NON-NLS-1$
+
+	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.NORMAL);
+	
 	private DirectEditManager manager;
 
 	private IParser parser;
@@ -308,7 +315,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 			text = getParser().getPrintString(new SemanticAdapter(this.resolveSemanticElement(), getNotationView()), getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {
-			text = "SterotypeProperty";
+			text = DEFAUL_STEROTYPE_PROPERTY_TEXT;
 		}
 		return text;
 	}
@@ -746,7 +753,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-			if (languagePreferred != null && !languagePreferred.equals("")) {
+			if (languagePreferred != null && !languagePreferred.equals("")) {//$NON-NLS-1$
 				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 			} else {
 				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
@@ -760,7 +767,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
+		if (languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {//$NON-NLS-1$
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
@@ -944,6 +951,6 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 
 	}
 
-	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.NORMAL);
+
 
 }

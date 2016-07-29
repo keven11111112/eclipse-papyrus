@@ -33,7 +33,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommentShapeForApplie
 import org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCompartmentForCommentShapeEditPolicy;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Applied StereotypeCommentEdipart and the appliedStereotypeCommentLinkEditPart are connected to the semantic element.
  * Thanks to this, if the semantic element is deleted the comment will be also deleted.
@@ -46,6 +45,15 @@ import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedSt
 
 public class AppliedStereotypeCommentEditPart extends NodeEditPart implements IGraphicalEditPart, IPrimaryEditPart {
 
+	//TODO: key should define a role not the usage (see org.eclipse.gef.commands.Command.EditPolicy
+	// org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles )
+	public static final String AUTOMATIC_DELETION_IF_EMPTY_EDIT_POLICY = "AutomaticDeletionIfEmpty";//$NON-NLS-1$
+
+	public static final String APPLIED_STEREOTYPE_COMPARTMENT_EDIT_POLICY = "AppliedStereotypeCompartment";//$NON-NLS-1$
+
+	/** The Constant ID. */
+	public static final String ID = "AppliedStereotypesComment"; //$NON-NLS-1$
+		
 	/**
 	 * Group Request type of deletion request.
 	 */
@@ -71,14 +79,11 @@ public class AppliedStereotypeCommentEditPart extends NodeEditPart implements IG
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
-
 		super.createDefaultEditPolicies();
-		installEditPolicy("AppliedStereotypeCompartment", new AppliedStereotypeCompartmentForCommentShapeEditPolicy());
-		installEditPolicy("AutomaticDeletionIfEmpty", new CommentShapeForAppliedStereotypeEditPolicy());
+		installEditPolicy(APPLIED_STEREOTYPE_COMPARTMENT_EDIT_POLICY, new AppliedStereotypeCompartmentForCommentShapeEditPolicy());
+		installEditPolicy(AUTOMATIC_DELETION_IF_EMPTY_EDIT_POLICY, new CommentShapeForAppliedStereotypeEditPolicy());
 	}
 
-	/** The Constant ID. */
-	public static final String ID = "AppliedStereotypesComment";
 
 	/**
 	 * Creates figure for this edit part.

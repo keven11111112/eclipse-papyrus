@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display
- *
+ *  Benoit Maggi (CEA) benoit.maggi@cea.fr - Bug 498864 : Performance issue 
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart;
 
@@ -99,8 +99,16 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditPart implements ITextAwareEditPart, NotificationListener, IPapyrusListener, IControlParserForDirectEdit {
 
+	private static final String LISTENER_NAME_ROOT = "SemanticModel"; //$NON-NLS-1$
+
+	private static final String PRIMARY_VIEW = "PrimaryView"; //$NON-NLS-1$
+
+	private static final String ADD_PARENT_MODEL = "AddParentModel"; //$NON-NLS-1$	 
+	
 	public static final String ID = "AppliedStereotypeProperty"; //$NON-NLS-1$
 
+	protected EObject stereotypeApplication;	
+	
 	private DirectEditManager manager;
 
 	private IParser parser;
@@ -140,7 +148,6 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new AppliedStereotypePropertyDirectEditPolicy());
-		// installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UseCaseDiagramEditPart.NodeLabelDragPolicy());
 	}
 
 
@@ -156,19 +163,16 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 		if (figure instanceof ILabelFigure) {
 			return ((ILabelFigure) figure).getText();
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/**
 	 * set the text if not
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
-
 		if (figure instanceof FlowPage) {
 			// remove all children from page.
 			((FlowPage) figure).removeAll();
-
-
 			// generates new ones
 			generateBlockForText(text, ((FlowPage) figure));
 		}
@@ -629,7 +633,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 			EObject element = resolveSemanticElement();
 			parserElements = ((ISemanticParser) getParser()).getSemanticElementsBeingParsed(element);
 			for (int i = 0; i < parserElements.size(); i++) {
-				addListenerFilter("SemanticModel" + i, this, (EObject) parserElements.get(i)); //$NON-NLS-1$
+				addListenerFilter(LISTENER_NAME_ROOT + i, this, (EObject) parserElements.get(i));
 			}
 		} else {
 			super.addSemanticListeners();
@@ -659,7 +663,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
-				removeListenerFilter("SemanticModel" + i); //$NON-NLS-1$
+				removeListenerFilter(LISTENER_NAME_ROOT + i);
 			}
 		} else {
 			super.removeSemanticListeners();
@@ -717,8 +721,9 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	 * @return <code>true</code> if an extended editor is present.
 	 */
 	protected boolean checkExtendedEditor() {
-		if (resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass().getInstanceClassName());
+		EObject resolveSemanticElement = resolveSemanticElement();
+		if (resolveSemanticElement != null) {
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement.eClass().getInstanceClassName());
 		}
 		return false;
 	}
@@ -739,7 +744,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + AppliedStereotypeProperty.class.getName());
-			if (languagePreferred != null && !languagePreferred.equals("")) {
+			if (languagePreferred != null && !"".equals(languagePreferred)) { //$NON-NLS-1$
 				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, AppliedStereotypeProperty.class.getName());
 			} else {
 				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, AppliedStereotypeProperty.class.getName());
@@ -753,7 +758,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + AppliedStereotypeProperty.class.getName());
-		if (languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
+		if (languagePreferred != null && !"".equals(languagePreferred) && languagePreferred != configuration.getLanguage()) { //$NON-NLS-1$
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, AppliedStereotypeProperty.class.getName());
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
@@ -797,7 +802,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	@Override
 	protected void addNotationalListeners() {
 		super.addNotationalListeners();
-		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
+		addListenerFilter(PRIMARY_VIEW, this, getPrimaryView()); 
 	}
 
 	/**
@@ -808,7 +813,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	@Override
 	protected void removeNotationalListeners() {
 		super.removeNotationalListeners();
-		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
+		removeListenerFilter(PRIMARY_VIEW);
 	}
 
 	/**
@@ -818,7 +823,6 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {
-		refreshLabel();
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer) event.getNewValue();
@@ -831,9 +835,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
-			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
-				refreshLabel();
-			}
+
 			if (getParser() instanceof ISemanticParser) {
 				ISemanticParser modelParser = (ISemanticParser) getParser();
 				if (modelParser.areSemanticElementsAffected(null, event)) {
@@ -843,9 +845,10 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 					}
 					refreshLabel();
 				}
+			} else if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
+				refreshLabel();
 			}
 		}
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -861,23 +864,17 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 
 	/**
 	 *
-	 */
-	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
-	protected EObject stereotypeApplication;
-
-	/**
-	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#activate()
 	 *
 	 */
 	@Override
 	public void activate() {
 		// before to be suppressed by its owner, the associate EObject can be UNSET, so refresh is prevented
-		if (((View) getNotationView().eContainer() != null) && ((View) getNotationView().eContainer()).getElement() != null) {
+		View eContainer = (View) getNotationView().eContainer();
+		if ((eContainer != null) && eContainer.getElement() != null) {
 			super.activate();
 			addOwnerElementListeners();
-			Stereotype stereotype = (Stereotype) ((View) getNotationView().eContainer()).getElement();
+			Stereotype stereotype = (Stereotype) eContainer.getElement();
 			stereotypeApplication = StereotypeDisplayUtil.getInstance().getStereotypeApplication(getNotationView(), stereotype);
 			final Element umlElement = UMLUtil.getBaseElement(stereotypeApplication);
 			getDiagramEventBroker().addNotificationListener(stereotypeApplication, this);

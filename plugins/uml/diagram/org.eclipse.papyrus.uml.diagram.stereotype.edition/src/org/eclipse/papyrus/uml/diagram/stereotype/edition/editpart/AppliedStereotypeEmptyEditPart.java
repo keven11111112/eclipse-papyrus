@@ -33,7 +33,8 @@ import org.eclipse.papyrus.uml.diagram.stereotype.edition.provider.StereotypePro
 public class AppliedStereotypeEmptyEditPart
 		extends GraphicalEditPart {
 
-	public static final String ID = "AppliedStereotypesEmptyNode";
+	public static final String ID = "AppliedStereotypesEmptyNode";//$NON-NLS-1$
+	
 	private IFigure figure;
 
 	/**

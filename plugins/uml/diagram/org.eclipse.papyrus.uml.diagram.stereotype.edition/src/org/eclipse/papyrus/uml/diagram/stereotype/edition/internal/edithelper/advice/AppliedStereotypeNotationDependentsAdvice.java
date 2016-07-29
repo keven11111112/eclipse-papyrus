@@ -66,8 +66,6 @@ public class AppliedStereotypeNotationDependentsAdvice extends AbstractEditHelpe
 
 	protected Collection<View> getAppliedStereotypeViews(EObject object) {
 		Collection<View> result = null;
-
-		@SuppressWarnings("unchecked")
 		List<View> views = (List<View>) DiagramEditPartsUtil.getEObjectViews(object);
 		if (!views.isEmpty()) {
 			// Assume three applied-stereotype views for each and on average
