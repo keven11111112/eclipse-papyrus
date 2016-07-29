@@ -29,7 +29,7 @@ import org.eclipse.papyrus.uml.diagram.stereotype.edition.Activator;
 
 public class AppliedStereotypesCommentLinkEditPart extends ConnectionEditPart {
 
-	public static final String ID = "AppliedStereotypesCommentLink";
+	public static final String ID = "AppliedStereotypesCommentLink";//$NON-NLS-1$
 
 	public AppliedStereotypesCommentLinkEditPart(View view) {
 		super(view);
@@ -41,7 +41,7 @@ public class AppliedStereotypesCommentLinkEditPart extends ConnectionEditPart {
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
 	 *
-	 * @generated
+	 * 
 	 */
 	@Override
 	protected Connection createConnectionFigure() {
@@ -49,19 +49,19 @@ public class AppliedStereotypesCommentLinkEditPart extends ConnectionEditPart {
 	}
 
 	/**
-	 * @generated
+	 * 
 	 */
 	public AppliedStereotypesCommentLink getPrimaryShape() {
 		return (AppliedStereotypesCommentLink) getFigure();
 	}
 
 	/**
-	 * @generated
+	 * 
 	 */
 	public class AppliedStereotypesCommentLink extends PolylineConnectionEx {
 
 		/**
-		 * @generated
+		 * 
 		 */
 		public AppliedStereotypesCommentLink() {
 			this.setLineStyle(Graphics.LINE_DASH);
@@ -99,7 +99,6 @@ public class AppliedStereotypesCommentLinkEditPart extends ConnectionEditPart {
 	 */
 	@Override
 	protected void refreshVisuals() {
-
 		super.refreshVisuals();
 		if (this.getTarget() == null || this.getSource() == null) {
 			setVisibility(false);
