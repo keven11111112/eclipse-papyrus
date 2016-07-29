@@ -9,7 +9,7 @@
  * Contributors:
  *
  *		CEA LIST - Initial API and implementation
- *
+ *      Benoit Maggi (CEA) benoit.maggi@cea.fr - Bug 498881
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.service.shape;
 
@@ -28,8 +28,6 @@ import org.eclipse.gmf.runtime.common.ui.services.util.ActivityFilterProviderDes
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
-import org.eclipse.gmf.runtime.notation.IntValueStyle;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
@@ -43,12 +41,12 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 	/**
 	 * 
 	 */
-	private static final String MAX_NUMBER_OF_SYMBOL = "maxNumberOfSymbol";
+	private static final String MAX_NUMBER_OF_SYMBOL = "maxNumberOfSymbol";//$NON-NLS-1$
 
 	/**
 	 * 
 	 */
-	private static final String MAX_NUMBER_OF_SYMBOL_DECORATION = "maxNumberOfSymbolDecoration";
+	private static final String MAX_NUMBER_OF_SYMBOL_DECORATION = "maxNumberOfSymbolDecoration";//$NON-NLS-1$
 
 	/** singleton instance */
 	private static ShapeService instance;
@@ -67,9 +65,15 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 	 */
 	public boolean hasShapeToDisplay(EObject view) {
 		@SuppressWarnings("unchecked")
-		List<RenderedImage> images = execute(ExecutionStrategy.REVERSE, new GetShapesForViewOperation(view));
-		return images != null && images.size() > 0;
-	}
+		List<List<RenderedImage>> images = execute(ExecutionStrategy.REVERSE, new GetShapesForViewOperation(view));
+		Iterator<List<RenderedImage>> iterator = images.iterator();
+		boolean hasRealImage = false;
+		while (!hasRealImage && iterator.hasNext()) { // strategy gives a lot of null && empty list check if there is a real one
+			List<RenderedImage> next = iterator.next();
+			hasRealImage = next!=null && !next.isEmpty() ;
+		} 
+		return hasRealImage;
+	}	
 
 	/**
 	 * Checks if the given element can display shapes as decoration.
@@ -78,8 +82,14 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 	 */
 	public boolean hasShapeDecorationToDisplay(EObject view) {
 		@SuppressWarnings("unchecked")
-		List<RenderedImage> images = execute(ExecutionStrategy.REVERSE, new GetShapeDecorationsForViewOperation(view));
-		return images != null && images.size() > 0;
+		List<List<RenderedImage>> images = execute(ExecutionStrategy.REVERSE, new GetShapeDecorationsForViewOperation(view));
+		Iterator<List<RenderedImage>> iterator = images.iterator();
+		boolean hasRealImage = false;
+		while (!hasRealImage && iterator.hasNext()) { // strategy gives a lot of null && empty list check if there is a real one
+			List<RenderedImage> next = iterator.next();
+			hasRealImage = next!=null && !next.isEmpty() ;
+		} 
+		return hasRealImage;
 	}
 
 	/**
@@ -147,19 +157,6 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 		int nbImagesToDisplay = NotationUtils.getIntValue((View) view, MAX_NUMBER_OF_SYMBOL, getDefaultMaxNumberOfSymbol());
 
 		return images.subList(0, Math.min(nbImagesToDisplay, images.size()));
-	}
-
-	/**
-	 * Get the maximum number of images to be displayed
-	 * 
-	 * @param view
-	 * @return
-	 */
-	private int getMaxNumberOfSymbolToDisplay(EObject view) {
-		// get the nbImagesToDisplay highest images from the list
-		IntValueStyle maxNbImages = (IntValueStyle) ((View) view).getNamedStyle(NotationPackage.eINSTANCE.getIntValueStyle(), MAX_NUMBER_OF_SYMBOL);
-		int nbImagesToDisplay = maxNbImages != null ? maxNbImages.getIntValue() : getDefaultMaxNumberOfSymbol();
-		return nbImagesToDisplay;
 	}
 
 	/**
