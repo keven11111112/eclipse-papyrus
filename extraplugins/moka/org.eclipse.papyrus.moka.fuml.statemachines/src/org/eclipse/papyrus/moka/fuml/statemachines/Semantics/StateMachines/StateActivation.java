@@ -363,6 +363,9 @@ public class StateActivation extends VertexActivation {
 		this.isEntryCompleted = false;
 		this.isDoActivityCompleted = false;
 		this.isExitCompleted = false;
+		// Change containing region history
+		RegionActivation containgRegionActivation = this.getOwningRegionActivation();
+		containgRegionActivation.history = this;
 		// When the state is exited then it is removed from the state-machine configuration
 		StateMachineExecution smExecution = (StateMachineExecution)this.getStateMachineExecution();
 		smExecution.getConfiguration().unregister(this);

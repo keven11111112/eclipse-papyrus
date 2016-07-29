@@ -271,7 +271,6 @@ public class RegionActivation extends StateMachineSemanticVisitor{
 		// Note: there is always a single active vertex for a given region.
 		for(VertexActivation vertexActivation: this.getVertexActivations()){
 			if(vertexActivation.isActive()){
-				this.history = (StateActivation) vertexActivation;
 				vertexActivation.exit(exitingTransition, eventOccurrence, null);
 			}
 		}
