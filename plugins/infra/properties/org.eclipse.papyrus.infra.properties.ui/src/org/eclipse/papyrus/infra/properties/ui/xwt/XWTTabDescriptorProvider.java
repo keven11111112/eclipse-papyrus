@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 417409
- *
+ *  Sebastien Revol (CEA LIST) - bug 484234
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.xwt;
 
@@ -48,6 +48,11 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributo
  */
 public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 
+	private static final String ADVANCED_TAB_NAME = "Advanced";
+	// added to programmatically decide to not display the advanced tab
+	// ideally it should be also configurable from properties view
+	private boolean displayAdvanced = true;
+
 	private ITabDescriptor[] cachedResult;
 
 	private ISelection previousSelection;
@@ -56,6 +61,8 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 
 	private final Map<IWorkbenchPart, DisplayEngine> displays = new HashMap<IWorkbenchPart, DisplayEngine>();
 
+
+	private static XWTTabDescriptorProvider defaultProvider;
 
 	public XWTTabDescriptorProvider() {
 		PropertiesRuntime.getConstraintEngine().addConstraintEngineListener(new ConstraintEngineListener() {
@@ -69,6 +76,12 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 				}
 			}
 		});
+
+		defaultProvider = this;
+	}
+
+	public static XWTTabDescriptorProvider getDefault() {
+		return defaultProvider;
 	}
 
 	private DisplayEngine getDisplay(final IWorkbenchPart part) {
@@ -158,7 +171,10 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 					if (registeredTabDesriptors != null) {
 						for (ITabDescriptor descriptor : registeredTabDesriptors) {
 							if (descriptor.getSectionDescriptors().size() > 0) {
-								descriptors.add(descriptor);
+								if (!ADVANCED_TAB_NAME.equals(descriptor.getLabel()) || displayAdvanced) {
+									descriptors.add(descriptor);
+								}
+
 							}
 						}
 					}
@@ -281,4 +297,20 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 
 		});
 	}
+
+	/**
+	 * 
+	 * @return true if the "Advanced tab" is displayed (default)
+	 */
+	public boolean getDisplayAdvanced() {
+		return displayAdvanced;
+	}
+
+	/**
+	 * Allows to display or not the "Advanced Tab" in the properties view
+	 */
+	public void setDisplayAdvanced(boolean displayAdvanced) {
+		this.displayAdvanced = displayAdvanced;
+	}
+
 }
