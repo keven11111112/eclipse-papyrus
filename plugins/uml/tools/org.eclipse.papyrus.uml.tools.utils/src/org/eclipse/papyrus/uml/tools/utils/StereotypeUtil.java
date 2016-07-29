@@ -52,13 +52,13 @@ public class StereotypeUtil {
 
 	protected static final String QUOTE = "\"";
 
-	protected static final String SPACE_SEPARATOR = "#";
+	public static final String SPACE_SEPARATOR = "#";
 
-	protected static final String EQUAL_SEPARATOR = "=";
+	public static final String EQUAL_SEPARATOR = "=";
 
-	protected static final String PROPERTY_VALUE_SEPARATOR = "|";
+	public static final String PROPERTY_VALUE_SEPARATOR = "|";
 
-	protected static final String SETREOTYPE_WITH_VALUE_SEPARATOR = ";";
+	public static final String SETREOTYPE_WITH_VALUE_SEPARATOR = ";";
 
 	protected static final String ST_LEFT = String.valueOf("\u00AB");
 
