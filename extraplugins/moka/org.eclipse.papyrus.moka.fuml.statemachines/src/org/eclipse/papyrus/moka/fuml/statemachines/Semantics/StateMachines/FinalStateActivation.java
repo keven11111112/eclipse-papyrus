@@ -19,8 +19,9 @@ public class FinalStateActivation extends StateActivation {
 
 	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
 		// The final state completes the region in which it is located*/
-		RegionActivation regionActivation = (RegionActivation) this.getParent();
+		RegionActivation regionActivation = this.getOwningRegionActivation();
 		regionActivation.isCompleted = true;
+		regionActivation.history = null;
 		// If this region is the last of this state to complete through its final
 		// state then it leads to the generation of a completion event
 		if(regionActivation.getParent() instanceof StateActivation){
