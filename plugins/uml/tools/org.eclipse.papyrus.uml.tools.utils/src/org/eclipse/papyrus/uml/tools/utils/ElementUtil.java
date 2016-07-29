@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
+ *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 498889 
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
@@ -41,6 +41,13 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class ElementUtil {
 
+	private static final String GETTER_SHAPE = "getShape";//$NON-NLS-1$
+
+	private static final String GETTER_ICON = "getIcon";//$NON-NLS-1$
+
+	private static final String SHAPE = "shape";//$NON-NLS-1$
+
+	private static final String ICON = "icon";//$NON-NLS-1$
 
 	/**
 	 * Check if the StereotypedElement has the given stereotype, or if one of
@@ -81,7 +88,7 @@ public class ElementUtil {
 	 *         found
 	 */
 	public static Image getStereotypeImage(Element element, Stereotype stereotype, String kind) {
-		if (stereotype == null || element.getAppliedStereotypes() == null) {
+		if (stereotype == null || element == null) {
 			return null;
 		}
 
@@ -94,9 +101,9 @@ public class ElementUtil {
 			// No image found by getters
 			// Search for the image verifying expressions
 			EList<Image> availableImages = new BasicEList<Image>();
-			if ("icon".equals(kind)) {
+			if (ICON.equals(kind)) {
 				availableImages = StereotypeUtil.getIcons(stereotype);
-			} else if ("shape".equals(kind)) {
+			} else if (SHAPE.equals(kind)) {
 				availableImages = StereotypeUtil.getShapes(stereotype);
 			}
 
@@ -123,15 +130,13 @@ public class ElementUtil {
 	 *            of image ("icon" | "shape")
 	 * @return {@link Image} or null
 	 */
-	public static Image getStereotypeImage(Element element, String kind) {
-		// Get first stereotype
-		if (element.getAppliedStereotypes() == null || element.getAppliedStereotypes().isEmpty()) {
-			return null; // null
+	public static Image getStereotypeImage(Element element, String kind) {	
+		EList<Stereotype> appliedStereotypes = element.getAppliedStereotypes();
+		if (appliedStereotypes == null || appliedStereotypes.isEmpty()) {
+			return null;
 		}
-
-		// The image is one of the 1st stereotype
-		Stereotype stereotype = element.getAppliedStereotypes().get(0);
-
+		// The image is the one of the 1st stereotype
+		Stereotype stereotype = appliedStereotypes.get(0);// Get first stereotype
 		return getStereotypeImage(element, stereotype, kind);
 	}
 
@@ -149,12 +154,12 @@ public class ElementUtil {
 	public static Image getStereotypeImageFromGetter(Element element, Stereotype stereotype, String kind) {
 
 		// Prepare getter method name
-		String getterName = "";
-		if ("icon".equals(kind)) {
-			getterName += "getIcon";
+		String getterName = "";//$NON-NLS-1$
+		if (ICON.equals(kind)) {
+			getterName += GETTER_ICON;
 
-		} else if ("shape".equals(kind)) {
-			getterName += "getShape";
+		} else if (SHAPE.equals(kind)) {
+			getterName += GETTER_SHAPE;
 
 		} else {
 			// Unknown kind : abort and return null (no image)
@@ -197,8 +202,9 @@ public class ElementUtil {
 	 * @return <code>true</code> if icons were found
 	 */
 	public static boolean hasIcons(Element element) {
-		if (!element.getAppliedStereotypes().isEmpty()) {
-			return hasIcons(element, element.getAppliedStereotypes().get(0));
+		EList<Stereotype> appliedStereotypes = element.getAppliedStereotypes();
+		if (!appliedStereotypes.isEmpty()) {
+			return hasIcons(element, appliedStereotypes.get(0));
 		}
 		return false;
 	}
@@ -225,8 +231,9 @@ public class ElementUtil {
 	 */
 	// @unused
 	public static boolean hasShapes(Element element) {
-		if (!element.getAppliedStereotypes().isEmpty()) {
-			return hasShapes(element, element.getAppliedStereotypes().get(0));
+		EList<Stereotype> appliedStereotypes = element.getAppliedStereotypes();
+		if (!appliedStereotypes.isEmpty()) {
+			return hasShapes(element, appliedStereotypes.get(0));
 		}
 		return false;
 	}
@@ -272,7 +279,7 @@ public class ElementUtil {
 	 */
 	public static List<Type> getMetaclasses(Element element) {
 		if (element == null) {
-			Activator.log.warn("element should not be null to retrieve metaclasses");
+			Activator.log.warn("element should not be null to retrieve metaclasses");//$NON-NLS-1$
 			return Collections.emptyList();
 		}
 
@@ -298,7 +305,7 @@ public class ElementUtil {
 
 			package_ = (org.eclipse.uml2.uml.Package) EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.eINSTANCE.getPackage());
 		} catch (WrappedException we) {
-			Activator.logError("impossible to load content for URI: " + uri);
+			Activator.logError("impossible to load content for URI: " + uri);//$NON-NLS-1$
 		}
 
 		return package_;
@@ -397,7 +404,7 @@ public class ElementUtil {
 						}
 					}
 
-				} else { // if (appliedStereotype == null)
+				} else { 
 					if (metaType.isInstance(currentElt)) {
 						filteredElements.add((T) currentElt);
 					}
