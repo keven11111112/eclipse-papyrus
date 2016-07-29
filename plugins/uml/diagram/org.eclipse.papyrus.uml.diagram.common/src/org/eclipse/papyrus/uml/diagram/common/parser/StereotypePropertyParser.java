@@ -21,6 +21,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -33,7 +34,9 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
+import org.eclipse.papyrus.uml.tools.listeners.StereotypeElementListener.StereotypeExtensionNotification;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
@@ -46,7 +49,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class StereotypePropertyParser implements IParser, ISemanticParser {
 
-	private static final String DEFAULT_VALUE = "<UNDEFINED>";
+	private static final String DEFAULT_VALUE = "<UNDEFINED>"; //$NON-NLS-1$
 
 	/**
 	 *
@@ -57,7 +60,6 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 	 */
 	@Override
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -77,15 +79,13 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 			final EObject stereotypeApplication = ((View) view.eContainer()).getElement();
 			final Stereotype stereotype = UMLUtil.getStereotype(stereotypeApplication);
 			final Element umlElement = UMLUtil.getBaseElement(stereotypeApplication);
-
-
-			String result = StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, "");
-			if (result.contains("=")) {
+			String result = StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, "");//$NON-NLS-1$
+			if (result.contains(StereotypeUtil.EQUAL_SEPARATOR)) {
 				result = result.substring(property.getName().length() + 1);
 				return result;
 			}
 			else {
-				return "";
+				return "";//$NON-NLS-1$
 			}
 
 		}
@@ -133,7 +133,6 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 			};
 			return cmd;
 		}
-		// TO Modify
 		return UnexecutableCommand.INSTANCE;
 	}
 
@@ -170,8 +169,14 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 	 */
 	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
-		// TODO Auto-generated method stub
-		return true;
+		if (event instanceof org.eclipse.emf.common.notify.Notification) {
+			Notification notification = (org.eclipse.emf.common.notify.Notification) event;
+			int eventType = notification.getEventType();
+			return StereotypeExtensionNotification.STEREOTYPE_UNAPPLIED_FROM_ELEMENT == eventType 
+					|| StereotypeExtensionNotification.STEREOTYPE_APPLIED_TO_ELEMENT == eventType
+					|| StereotypeExtensionNotification.MODIFIED_STEREOTYPE_OF_ELEMENT == eventType;		
+		}
+		return false; 
 	}
 
 	/**
@@ -184,7 +189,7 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 	 */
 	@Override
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-		return new ParserEditStatus("Papyrus Edition for property of stereotype", IStatus.OK, "");
+		return new ParserEditStatus(Activator.ID, IStatus.OK, "Papyrus Edition for property of stereotype");
 	}
 
 	@Override
@@ -194,9 +199,15 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 	}
 
 	@Override
-	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
-		return true;
+	public boolean areSemanticElementsAffected(EObject listener, Object object) {
+		if (object instanceof org.eclipse.emf.common.notify.Notification) {
+			Notification notification = (org.eclipse.emf.common.notify.Notification) object;
+			int eventType = notification.getEventType();
+			return StereotypeExtensionNotification.STEREOTYPE_UNAPPLIED_FROM_ELEMENT == eventType 
+					|| StereotypeExtensionNotification.STEREOTYPE_APPLIED_TO_ELEMENT == eventType
+					|| StereotypeExtensionNotification.MODIFIED_STEREOTYPE_OF_ELEMENT == eventType;		
+		}
+		return false;
 	}
-
 
 }

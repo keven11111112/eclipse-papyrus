@@ -61,7 +61,7 @@ import org.osgi.framework.ServiceRegistration;
 public class Activator extends AbstractUIPlugin {
 
 	/** The Constant ID. */
-	public static final String ID = "org.eclipse.papyrus.uml.diagram.common";
+	public static final String ID = "org.eclipse.papyrus.uml.diagram.common";//$NON-NLS-1$
 
 	/** Shared instance of the plug-in (singleton pattern) */
 	private static Activator plugin;
@@ -70,10 +70,10 @@ public class Activator extends AbstractUIPlugin {
 	public static LogHelper log;
 
 	/** The Constant UML_VIS_ICONS_16x16. */
-	public static final String UML_VIS_ICONS_16x16 = "icons/obj16/";
+	public static final String UML_VIS_ICONS_16x16 = "icons/obj16/";//$NON-NLS-1$
 
 	/** Default image. */
-	public static final String DEFAULT_IMAGE = "icons/papyrus/PapyrusLogo16x16.gif";
+	public static final String DEFAULT_IMAGE = "icons/papyrus/PapyrusLogo16x16.gif";//$NON-NLS-1$
 
 	/** Color manager. */
 	protected static ColorManager colorManager = /* new ColorManager(); */null;
@@ -198,7 +198,7 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	public static Image getImage(String key) {
-		return getImage(key, "");
+		return getImage(key, "");//$NON-NLS-1$
 	}
 
 	/**
@@ -216,7 +216,7 @@ public class Activator extends AbstractUIPlugin {
 	public static Image getImage(String key, String visKey) {
 
 		String image_id = key;
-		if (!"".equals(visKey)) {
+		if (!"".equals(visKey)) {//$NON-NLS-1$
 			image_id = image_id + "::" + visKey;
 		}
 
@@ -228,7 +228,7 @@ public class Activator extends AbstractUIPlugin {
 			// Get the descriptor of the image without visibility
 			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(ID, key);
 
-			if (!"".equals(visKey)) { // Add visibility overlay
+			if (!"".equals(visKey)) { //$NON-NLS-1$ Add visibility overlay
 
 				Image initialImage = desc.createImage();
 				getDefault();
