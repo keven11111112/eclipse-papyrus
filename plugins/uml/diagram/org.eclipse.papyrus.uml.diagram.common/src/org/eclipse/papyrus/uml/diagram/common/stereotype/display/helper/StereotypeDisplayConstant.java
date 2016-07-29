@@ -47,7 +47,7 @@ public class StereotypeDisplayConstant {
 	public static final String STEREOTYPE_PROPERTY_BRACE_TYPE = "StereotypePropertyBrace";//$NON-NLS-1$
 
 	public static final String STEREOTYPE_COMMENT_TYPE = "StereotypeComment";//$NON-NLS-1$
-	public static final String STEREOTYPE_COMMENT_LINK_TYPE = "StereotypeCommentLink";
+	public static final String STEREOTYPE_COMMENT_LINK_TYPE = "StereotypeCommentLink";//$NON-NLS-1$
 	
 	/**
 	 * The applied-stereotype view types.
@@ -84,15 +84,15 @@ public class StereotypeDisplayConstant {
 	// Ornament Constants
 	public final static String QUOTE_LEFT = Activator.ST_LEFT;
 	public final static String QUOTE_RIGHT = Activator.ST_RIGHT;
-	public final static String BRACE_LEFT = "{";// $NON-NLS-1$
-	public final static String BRACE_RIGHT = "}";// $NON-NLS-1$
+	public final static String BRACE_LEFT = "{";//$NON-NLS-1$
+	public final static String BRACE_RIGHT = "}";//$NON-NLS-1$
 
 
 	// Define if Stereotype View are Persistent or not.
 	public static final boolean PERSISTENT = false;
 
 	// Icon NamedStyle Property
-	public static final String DISPLAY_ICON = "displayIcon";// $NON-NLS-1$
+	public static final String DISPLAY_ICON = "displayIcon";//$NON-NLS-1$
 
 	// NamedStyle Name for Property Location
 	public static final String STEREOTYPE_PROPERTY_LOCATION = "StereotypePropertyLocation";//$NON-NLS-1$
