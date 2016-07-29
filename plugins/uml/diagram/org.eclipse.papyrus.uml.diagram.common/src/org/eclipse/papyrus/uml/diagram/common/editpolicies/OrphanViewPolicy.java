@@ -84,6 +84,9 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	/** stores the host associated semantic element */
 	protected EObject hostSemanticElement;
 
+	/** status of the edit policy */
+	private boolean isActive = false;
+
 	/**
 	 * Adds additional listeners to the diagram event broker.
 	 */
@@ -116,6 +119,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 			log.debug("Activate: " + prettyPrint(additionalParentToListen));
 		}
 
+		isActive = true;
 		super.activate();
 	}
 
@@ -197,7 +201,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 
 		// removes the reference to the semantic element
 		hostSemanticElement = null;
-
+		isActive = false;
 		super.deactivate();
 	}
 
@@ -367,6 +371,9 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
+		if(!isActive()) {
+			return;
+		}
 		// something has change. What ? :)
 		// check who is responsible of notification. If this is host edit part
 		// related semantic element, act as standard
@@ -427,6 +434,13 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 				}
 			}
 		}
+	}
+
+	/**
+	 * @return
+	 */
+	private boolean isActive() {
+		return isActive;
 	}
 
 	/**
