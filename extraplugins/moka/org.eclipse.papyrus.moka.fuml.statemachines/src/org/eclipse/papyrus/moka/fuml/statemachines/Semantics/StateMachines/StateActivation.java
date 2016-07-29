@@ -262,7 +262,9 @@ public class StateActivation extends VertexActivation {
 					targetedVertices.add(entryPoint.getOutgoings().get(i).getTarget());
 				}
 			}else{
-				targetedVertices.add((Vertex)targetActivation.getNode());
+				if(!(targetActivation instanceof HistoryPseudostateActivation)){
+					targetedVertices.add((Vertex)targetActivation.getNode());
+				}
 			}
 		}		
 		for(int i=0; i < this.regionActivation.size(); i++){

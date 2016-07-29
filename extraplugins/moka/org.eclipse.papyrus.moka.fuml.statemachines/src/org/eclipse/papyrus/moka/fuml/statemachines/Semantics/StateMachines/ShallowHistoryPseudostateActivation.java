@@ -31,7 +31,7 @@ public class ShallowHistoryPseudostateActivation extends HistoryPseudostateActiv
 			if(regionActivation.history != null){
 				this.restore(regionActivation.history, enteringTransition, eventOccurrence);
 			}else{
-				if(this.outgoingTransitionActivations.size()==1){
+				if(this.hasDefaultTransition()){
 					this.outgoingTransitionActivations.get(0).fire(eventOccurrence);
 				}
 			}

@@ -21,22 +21,50 @@ import org.eclipse.uml2.uml.State;
 
 public abstract class HistoryPseudostateActivation extends PseudostateActivation {
 
+	protected boolean hasDefaultTransition(){
+		// Determine if the history pseudo-state activation has default transition.
+		// Returns true if it has one, false otherwise
+		boolean defaultTransition = false;
+		if(this.outgoingTransitionActivations.size()==1){
+			defaultTransition = true;
+		}
+		return defaultTransition;
+	}
+	
 	@Override
 	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
-		// Enclosing states need to be entered before the restoration process start are entered.
-		// Then the restoration process start with the region containing the history that
-		// is targeted by the entering transition. Finally if needed, the deep history is exited.
-		// Situation in which the deep history need to be exited is when the region containing
-		// the history node has already been executed.
-		StateActivation parentStateActivation = null;
+		// When entering an history pseudo-state two distinct situations can occur:
+		// 1. The region has no history and the history pseudo-state has no default
+		//    transition to force entry of a particular vertex. In such situation
+		//    there is no other possibility than to perform a default entry for the
+		//    state hierarchy in which the history pseudo-state is nested. Note that
+		//    if the pseudo-state is placed directly in a region owned by the state
+		//    machine then the region in which it is placed performs a default entry.
+		// 2. The region already has an history or at least has a default transition
+		//    to force entry to in a particular vertex. In such situation, the state
+		//    hierarchy of the parent state of the history pseudo-state is entered.
+		//    Next the containing state is restored (the result of the restoration
+		//    process is dependent of the type of the history). Note that if the history
+		//    is placed in a region directly owned by the state-machine then the
+		//    restoration process starts from the region.
 		VertexActivation parentVertexActivation = this.getParentVertexActivation();
 		if(parentVertexActivation != null){
-			parentStateActivation = (StateActivation) parentVertexActivation;
-			parentStateActivation.status = StateMetadata.ACTIVE;
-		}
-		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
-		if(parentStateActivation != null){
-			this.restore(parentStateActivation, enteringTransition, eventOccurrence);
+			RegionActivation owningRegionActivation = this.getOwningRegionActivation();
+			if(owningRegionActivation.history == null && !this.hasDefaultTransition()){
+				super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
+			}else{
+				parentVertexActivation = (StateActivation) parentVertexActivation;
+				parentVertexActivation.status = StateMetadata.ACTIVE;
+				super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
+				this.restore((StateActivation)parentVertexActivation, enteringTransition, eventOccurrence);
+			}
+		}else{
+			RegionActivation owningRegionActivation = this.getOwningRegionActivation();
+			if(owningRegionActivation.history == null && !this.hasDefaultTransition()){
+				owningRegionActivation.enter(enteringTransition, eventOccurrence);
+			}else{
+				this.restore(owningRegionActivation, enteringTransition, eventOccurrence);
+			}
 		}
 		if(this.isActive()){
 			this.exit(null, null, null);

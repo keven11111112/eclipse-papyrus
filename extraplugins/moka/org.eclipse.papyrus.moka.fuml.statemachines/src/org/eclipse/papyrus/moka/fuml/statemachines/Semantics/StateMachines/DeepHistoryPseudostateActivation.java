@@ -21,9 +21,8 @@ import org.eclipse.uml2.uml.Vertex;
 public class DeepHistoryPseudostateActivation extends HistoryPseudostateActivation {
 	
 	protected boolean canRestore(StateActivation stateActivation){
-		// A state activation can only be restored if it is contained that is istelf
-		// contained in a region from which the the region containing the history state
-		// can be reached (directly or indirectly).
+		// A state activation can only be restored if it is directly or indirectly
+		// by the region containing the history state.
 		boolean canRestore = false;
 		if(stateActivation != null){
 			RegionActivation historyRegion = (RegionActivation) this.getParent(); 
@@ -51,7 +50,7 @@ public class DeepHistoryPseudostateActivation extends HistoryPseudostateActivati
 			if(regionActivation.history != null){
 				this.restore(regionActivation.history, enteringTransition, eventOccurrence);
 			}else{
-				if(this.outgoingTransitionActivations.size()==1){
+				if(this.hasDefaultTransition()){
 					this.outgoingTransitionActivations.get(0).fire(eventOccurrence);
 				}
 			}
