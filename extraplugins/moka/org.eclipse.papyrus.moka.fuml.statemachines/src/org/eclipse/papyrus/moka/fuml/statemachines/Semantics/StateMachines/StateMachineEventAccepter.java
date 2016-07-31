@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
@@ -48,12 +49,17 @@ public class StateMachineEventAccepter extends EventAccepter{
 		if(this.isDeferred(eventOccurrence)){
 			this.defer(eventOccurrence);
 		}else{
-			List<TransitionActivation> fireableTransition = this.select(eventOccurrence);
-			if(!fireableTransition.isEmpty()){
-				int i = 0;
-				while(i < fireableTransition.size()){
-					fireableTransition.get(i).fire(eventOccurrence);
-					i++;
+			List<TransitionActivation> fireableTransitionActivations = new ArrayList<TransitionActivation>();
+			List<TransitionActivation> selectedTransitionActivations = this.select(eventOccurrence);
+			for(int i=0; i < selectedTransitionActivations.size(); i++){
+				TransitionActivation potentiallyValidTransitionActivation = selectedTransitionActivations.get(i);
+				if(potentiallyValidTransitionActivation.canPropagateExecution(eventOccurrence)){
+					fireableTransitionActivations.add(potentiallyValidTransitionActivation);
+				}
+			}
+			if(!fireableTransitionActivations.isEmpty()){
+				for(Iterator<TransitionActivation> fireableTransitionsIterator = fireableTransitionActivations.iterator(); fireableTransitionsIterator.hasNext();){
+					fireableTransitionsIterator.next().fire(eventOccurrence);
 				}
 				// If the dispatched event was an CallEventOccurrence then check
 				// if the caller need to be released.
@@ -116,10 +122,20 @@ public class StateMachineEventAccepter extends EventAccepter{
 			i++;
 		}
 		if(!deferred && 
-				stateConfiguration.vertexActivation != null && 
-				this._select(eventOccurrence, stateConfiguration).isEmpty() &&
-				((StateActivation)stateConfiguration.vertexActivation).canDefer(eventOccurrence)){
+				stateConfiguration.vertexActivation != null){
+			List<TransitionActivation> selectedtransitionActivations = this._select(eventOccurrence, stateConfiguration);
+			TransitionActivation validTransitionActivation = null;
+			i = 0;
+			while(validTransitionActivation==null && i < selectedtransitionActivations.size()){
+				if(selectedtransitionActivations.get(i).canPropagateExecution(eventOccurrence)){
+					validTransitionActivation = selectedtransitionActivations.get(i);
+				}
+				i++;
+			}
+			if(validTransitionActivation == null &&
+					((StateActivation)stateConfiguration.vertexActivation).canDefer(eventOccurrence)){
 				deferred = true;
+			}
 		}
 		return deferred;
 	}

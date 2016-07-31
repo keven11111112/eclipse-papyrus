@@ -50,7 +50,7 @@ public abstract class PseudostateActivation extends VertexActivation {
 		// one of the outgoing transitions of the pseudo-state. If it is not possible false is returned. Not that
 		// in case where the pseudo-state cannot be entered true is returned.
 		boolean propagate = super.canPropagateExecution(enteringTransition, eventOccurrence, leastCommonAncestor);
-		if(propagate && this.isEnterable(enteringTransition)){
+		if(propagate && this.isEnterable(enteringTransition, true)){
 			this.evaluateAllGuards(eventOccurrence);
 			if(this.outgoingTransitionActivations.size() > 0){
 				propagate = false;
@@ -59,7 +59,7 @@ public abstract class PseudostateActivation extends VertexActivation {
 					while(!propagate && i < this.fireableTransitions.size()){
 						propagate = this.fireableTransitions.get(i).canPropagateExecution(eventOccurrence);
 						i++;
-					}	
+					}
 				}
 			}
 		}

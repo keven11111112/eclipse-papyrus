@@ -45,13 +45,13 @@ public class ChoicePseudostateActivation extends ConditionalPseudostateActivatio
 		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 		this.evaluateAllGuards(eventOccurrence);
 		TransitionActivation selectedTransition = null;
-		if (this.fireableTransitions.size() == 1) {
-			selectedTransition = this.fireableTransitions.get(0);
-		} else if (fireableTransitions.size() > 1) {
-			ChoiceStrategy strategy =  (ChoiceStrategy)this.getExecutionContext().locus.factory.getStrategy("choice");
-			selectedTransition = this.fireableTransitions.get(strategy.choose(this.fireableTransitions.size()-1));
-		}
-		if(selectedTransition != null){
+		if(this.fireableTransitions.size() > 0){
+			if (this.fireableTransitions.size() == 1) {
+				selectedTransition = this.fireableTransitions.get(0);
+			} else{
+				ChoiceStrategy strategy =  (ChoiceStrategy)this.getExecutionContext().locus.factory.getStrategy("choice");
+				selectedTransition = this.fireableTransitions.get(strategy.choose(this.fireableTransitions.size()-1));
+			}
 			// Note: Force a static analysis from the selected (maybe compound) transition.
 			// The rationale is that it forces evaluation of downstream guards.
 			selectedTransition.canPropagateExecution(eventOccurrence);

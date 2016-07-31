@@ -281,7 +281,8 @@ public class StateActivation extends VertexActivation {
 		}
 	}
 	
-	public boolean isEnterable(TransitionActivation enteringTransition) {
+	@Override
+	public boolean isEnterable(TransitionActivation enteringTransition, boolean staticCheck) {
 		// A state can only be entered if it is not part of the state-machine configuration
 		// (i.e., the state is not currently active)
 		return !((StateMachineExecution)this.getStateMachineExecution()).getConfiguration().isActive(this);
@@ -337,10 +338,11 @@ public class StateActivation extends VertexActivation {
 		}
 	}
 	
-	public boolean isExitable(TransitionActivation exitingTransition) {
+	@Override
+	public boolean isExitable(TransitionActivation exitingTransition, boolean staticCheck) {
 		// A state can only be be exited if it is part of the state-machine configuration
 		// (i.e., the state is currently active)
-		return !this.isEnterable(exitingTransition);
+		return !this.isEnterable(exitingTransition, staticCheck);
 	}
 	
 	public void exit(TransitionActivation exitingTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor){

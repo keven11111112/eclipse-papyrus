@@ -49,12 +49,15 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	// The target activation of this transition activation
 	protected VertexActivation vertexTargetActivation;
 	
-	// The status (NONE, REACHED, TRAVERSED or COMPLETED) of the transition
+	// The runtime status (NONE, REACHED, TRAVERSED) of the transition
 	protected TransitionMetadata status;
 	
 	// Least common ancestor of the source and the target. This is materialized
 	// by the region activation that is the common ancestor of the source and the target. 
 	private RegionActivation leastCommonAncestor;
+	
+	// The static status (NONE, REACHED, TRAVERSED) of the transition
+	protected TransitionMetadata analyticalStatus;
 	
 	// The last event occurrence used during static analysis.
 	private EventOccurrence lastTriggeringEventOccurrence;
@@ -73,6 +76,7 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	public TransitionActivation(){
 		super();
 		this.status = TransitionMetadata.NONE;
+		this.analyticalStatus = TransitionMetadata.NONE;
 		this.leastCommonAncestor = null;
 		this.lastTriggeringEventOccurrence = null;
 		this.lastPropagation = false;
@@ -218,12 +222,10 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		if(eventOccurrence instanceof CompletionEventOccurrence){
 			reactive = !this.isTriggered() &&
 						this.getSourceActivation()==((CompletionEventOccurrence)eventOccurrence).stateActivation &&
-						this.evaluateGuard(eventOccurrence) &&
-						this.canPropagateExecution(eventOccurrence);
+						this.evaluateGuard(eventOccurrence);
 		}else if(eventOccurrence instanceof SignalEventOccurrence | eventOccurrence instanceof CallEventOccurrence){
 			reactive = this.hasTrigger(eventOccurrence) && 
-					   this.evaluateGuard(eventOccurrence) &&
-					   this.canPropagateExecution(eventOccurrence);
+					   this.evaluateGuard(eventOccurrence);
 		}else{
 			reactive = false;
 		}
@@ -240,7 +242,6 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		//    is that the analysis is propagated through the target vertex activation. 
 		boolean propagate = true;
 		if(this.lastTriggeringEventOccurrence != eventOccurrence){
-			this.status = TransitionMetadata.TRAVERSED;
 			propagate = this.vertexTargetActivation.canPropagateExecution(this, eventOccurrence, this.getLeastCommonAncestor());
 			this.lastTriggeringEventOccurrence = eventOccurrence;
 			this.lastPropagation = propagate;
@@ -298,6 +299,14 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	protected abstract void enterTarget(EventOccurrence eventOccurrence);
 	
 	public String toString(){
-		return "["+this.getSourceActivation()+"] -> ["+this.getTargetActivation()+"]";
+		String representation = "["+this.getSourceActivation()+"] -> ["+this.getTargetActivation()+"] (";
+		if(this.isReached()){
+			representation += "REACHED";
+		}else if(this.isTraversed()){
+			representation += "TRAVERSED";
+		}else{
+			representation += "NONE";
+		}
+		return representation +")";
 	}
 }

@@ -16,11 +16,12 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 import java.util.Iterator;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.TransitionActivation.TransitionMetadata;
 
 public class ForkPseudostateActivation extends PseudostateActivation {
 
 	@Override
-	public boolean isExitable(TransitionActivation exitingTransition) {
+	public boolean isExitable(TransitionActivation exitingTransition, boolean staticCheck) {
 		// The Fork node activation can only be exited when all of its outgoing transitions
 		// (expect the current "exitingTransition")previously fired.
 		int i = 0;
@@ -28,7 +29,11 @@ public class ForkPseudostateActivation extends PseudostateActivation {
 		while(isExitable && i < this.outgoingTransitionActivations.size()){
 			TransitionActivation transitionActivation = this.outgoingTransitionActivations.get(i);
 			if(transitionActivation != exitingTransition){
-				isExitable = transitionActivation.isTraversed();
+				if(staticCheck){
+					isExitable = transitionActivation.analyticalStatus == TransitionMetadata.TRAVERSED;
+				}else{
+					isExitable = transitionActivation.status== TransitionMetadata.TRAVERSED;
+				}
 			}
 			i++;
 		}
@@ -58,7 +63,7 @@ public class ForkPseudostateActivation extends PseudostateActivation {
 		// propagate the execution. Note that there is no guard evaluation. This is normal since outgoing transitions of
 		// a fork cannot have guards.
 		boolean propagate = this._canPropagateExecution(enteringTransition, eventOccurrence, leastCommonAncestor);
-		if(propagate && this.isEnterable(enteringTransition)){
+		if(propagate && this.isEnterable(enteringTransition, true)){
 			int i = 0;
 			while(propagate && i < this.outgoingTransitionActivations.size()){
 				propagate = this.outgoingTransitionActivations.get(i).canPropagateExecution(eventOccurrence);

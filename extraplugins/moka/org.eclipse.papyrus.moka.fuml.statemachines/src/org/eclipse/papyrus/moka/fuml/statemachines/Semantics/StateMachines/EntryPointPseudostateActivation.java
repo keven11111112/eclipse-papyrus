@@ -16,10 +16,12 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 import java.util.Iterator;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.TransitionActivation.TransitionMetadata;
 
 public class EntryPointPseudostateActivation extends ConnectionPointActivation {
 
-	public boolean isExitable(TransitionActivation exitingTransition) {
+	@Override
+	public boolean isExitable(TransitionActivation exitingTransition, boolean staticCheck) {
 		// An entry point can be exited as soon as every outgoing transition expect
 		// the current "exitingTransition" have been traversed.
 		int i = 0;
@@ -27,7 +29,11 @@ public class EntryPointPseudostateActivation extends ConnectionPointActivation {
 		while(isExitable && i < this.outgoingTransitionActivations.size()){
 			TransitionActivation transitionActivation = this.outgoingTransitionActivations.get(i);
 			if(transitionActivation != exitingTransition){
-				isExitable = transitionActivation.isTraversed();
+				if(staticCheck){
+					isExitable = transitionActivation.analyticalStatus == TransitionMetadata.TRAVERSED;
+				}else{
+					isExitable = transitionActivation.status== TransitionMetadata.TRAVERSED;
+				}
 			}
 			i++;
 		}
@@ -44,7 +50,7 @@ public class EntryPointPseudostateActivation extends ConnectionPointActivation {
 		if(vertexActivation != null){
 			propagate = vertexActivation.canPropagateExecution(enteringTransition, eventOccurrence, leastCommonAncestor);
 		}
-		if(propagate && this.isEnterable(enteringTransition)){
+		if(propagate && this.isEnterable(enteringTransition, true)){
 			this.evaluateAllGuards(eventOccurrence);
 			if(this.outgoingTransitionActivations.size() == this.fireableTransitions.size()){
 				int i = 0;

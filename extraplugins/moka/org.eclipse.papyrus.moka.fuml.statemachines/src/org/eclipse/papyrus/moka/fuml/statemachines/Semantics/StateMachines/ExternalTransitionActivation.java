@@ -27,8 +27,8 @@ public class ExternalTransitionActivation extends TransitionActivation {
 		// 2 - The source can be exited but is target is not ready to be entered
 		//		-> The source is exited but the common ancestor is used. This implies
 		//         the exiting phase is not propagated to parent state (if required)
-		if(this.vertexSourceActivation.isExitable(this)){
-			if(this.vertexTargetActivation.isEnterable(this)){
+		if(this.vertexSourceActivation.isExitable(this, false)){
+			if(this.vertexTargetActivation.isEnterable(this, false)){
 				this.vertexSourceActivation.exit(this, eventOccurrence, this.getLeastCommonAncestor());
 			}else{
 				this.vertexSourceActivation.exit(this, eventOccurrence, null);	
@@ -42,7 +42,7 @@ public class ExternalTransitionActivation extends TransitionActivation {
 		// to enter other states based on what is the common ancestor exiting between the
 		// the source and the target. Besides the prerequisites imposed by the target vertex
 		// activation there are no other constraints to enter the target state
-		if(this.vertexTargetActivation.isEnterable(this)){
+		if(this.vertexTargetActivation.isEnterable(this, false)){
 			this.vertexTargetActivation.enter(this, eventOccurrence, this.getLeastCommonAncestor());
 		}else{
 			if(this.vertexTargetActivation instanceof StateActivation){

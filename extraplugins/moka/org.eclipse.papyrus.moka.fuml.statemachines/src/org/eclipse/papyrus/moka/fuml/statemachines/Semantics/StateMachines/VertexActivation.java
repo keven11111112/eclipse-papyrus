@@ -98,17 +98,25 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		return null;
 	}
 	
-	public final void tagOutgoingTransitions(TransitionMetadata status){
-		// Assign the given status to all outgoing transitions of this vertex 
+	public final void tagOutgoingTransitions(TransitionMetadata status, boolean staticCheck){
+		// Assign the given status (runtime or analysis) to all outgoing transitions of this vertex 
 		for(TransitionActivation transitionActivation: this.outgoingTransitionActivations){
-			transitionActivation.setStatus(status);
+			if(staticCheck){
+				transitionActivation.analyticalStatus = status;
+			}else{
+				transitionActivation.status = status;
+			}
 		}
 	}
 	
-	public final void tagIncomingTransitions(TransitionMetadata status){
-		// Assign the given status to all incoming transitions of this vertex
+	public final void tagIncomingTransitions(TransitionMetadata status, boolean staticCheck){
+		// Assign the given status (runtime or analysis) to all incoming transitions of this vertex
 		for(TransitionActivation transitionActivation: this.incomingTransitionActivations){
-			transitionActivation.setStatus(status);
+			if(staticCheck){
+				transitionActivation.analyticalStatus = status;
+			}else{
+				transitionActivation.status = status;
+			}
 		}
 	}
 	
@@ -139,7 +147,7 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		}
 		logger.info(this.getNode().getName()+" => ACTIVE");
 		this.setStatus(StateMetadata.ACTIVE);
-		this.tagOutgoingTransitions(TransitionMetadata.REACHED);
+		this.tagOutgoingTransitions(TransitionMetadata.REACHED, false);
 		FUMLExecutionEngine.eInstance.getControlDelegate().control(this);
 	}
 	
@@ -149,7 +157,7 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		// the parent state (and maybe also border its own parent). This implies that from the current
 		// vertex and until the least common ancestor is reached all states are exited recursively.
 		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode());
-		this.tagIncomingTransitions(TransitionMetadata.NONE);
+		this.tagIncomingTransitions(TransitionMetadata.NONE, false);
 		this.setStatus(StateMetadata.IDLE);
 		logger.info(this.getNode().getName()+" => IDLE");
 		RegionActivation owningRegionActivation = this.getOwningRegionActivation();
@@ -230,7 +238,7 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		return regionActivation;
 	}
 	
-	public boolean isEnterable(TransitionActivation enteringTransition){
+	public boolean isEnterable(TransitionActivation enteringTransition, boolean staticCheck){
 		// By default a vertex has no prerequisites that need to be full-filled
 		// to be entered. Nevertheless some vertex (e.g., join or exit) have such
 		// prerequisites. Therefore this method is intended to be overridden in vertex
@@ -238,7 +246,7 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		return true;
 	}
 	
-	public boolean isExitable(TransitionActivation exitingTransition){
+	public boolean isExitable(TransitionActivation exitingTransition, boolean staticCheck){
 		// By default a vertex has no prerequisites that need to be full-filled to be entered
 		// Nevertheless some vertex (e.g., Fork) have such prerequisite. Therefore this method
 		// is intended to be overridden in vertex activation sub-classes.

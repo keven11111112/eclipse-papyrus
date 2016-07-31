@@ -49,7 +49,7 @@ public class LocalTransitionActivation extends TransitionActivation {
 		//     the tar get is exited. At this point, if the source is not the containing state
 		//     then it is also exited
 		StateActivation containingState = this.getContainingState();
-		if(this.vertexSourceActivation.isExitable(this)){
+		if(this.vertexSourceActivation.isExitable(this, false)){
 			if(this.vertexSourceActivation instanceof EntryPointPseudostateActivation){
 				this.vertexSourceActivation.exit(this, eventOccurrence, null);
 			}else{
@@ -88,7 +88,7 @@ public class LocalTransitionActivation extends TransitionActivation {
 	protected void enterTarget(EventOccurrence eventOccurrence) {
 		// Entering the target of local transition consists in checking if the target can be entered. If
 		// this is the case then only when the target is not also the containing state it is entered 
-		if(this.vertexTargetActivation.isEnterable(this)){	
+		if(this.vertexTargetActivation.isEnterable(this, false)){	
 			if(this.vertexTargetActivation != this.getContainingState()){
 				this.vertexTargetActivation.enter(this, eventOccurrence, this.getLeastCommonAncestor());
 			}
