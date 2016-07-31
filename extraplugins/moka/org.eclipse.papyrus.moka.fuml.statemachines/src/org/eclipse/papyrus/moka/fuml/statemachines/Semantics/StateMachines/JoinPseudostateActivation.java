@@ -20,8 +20,8 @@ public class JoinPseudostateActivation extends PseudostateActivation {
 	public boolean isEnterable(TransitionActivation enteringTransition) {
 		// Determine if all incoming transitions except this one already have been traversed
 		// If this is the case then this node is ready to be entered
-		boolean isReady = true;
 		int i = 0;
+		boolean isReady = true;
 		while (isReady && i < this.incomingTransitionActivations.size()) {
 			TransitionActivation transitionActivation = this.incomingTransitionActivations.get(i);
 			if (enteringTransition != transitionActivation && !transitionActivation.isTraversed()) {
@@ -31,21 +31,16 @@ public class JoinPseudostateActivation extends PseudostateActivation {
 		}
 		return isReady;
 	}
-
+	
 	@Override
 	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
-		// When entered by the last incoming transition that had not already fired the Fork pseudo state
-		// is allowed to continue its execution. The continuation of the execution consist in firing the
-		// outgoing transition of the Join. Note that a Fork cannot have more than an outgoing transition
-		// (if this is the case then the model is ill-formed).
-		// The guard of the outgoing transition is evaluated to verify that the transition can be fired
-		// If required parent state is entered first (the rule applies recursively)
+		// A join pseudo-state is only allowed to bentered  if all is incoming transitions (except the one
+		// currently used to perform the entry) were traversed. When the join pseudo-state is finally entered
+		// is traversal is straightforward : its outgoing transition is fired.  This transition is registered
+		// in the set of fireable transitions owned by this pseudo-state activation.
 		super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
-		if (!this.outgoingTransitionActivations.isEmpty()) {
-			TransitionActivation transitionActivation = this.outgoingTransitionActivations.get(0);
-			if (transitionActivation.evaluateGuard(eventOccurrence)) {
-				transitionActivation.fire(eventOccurrence);
-			}
+		if (this.fireableTransitions.size() == 1) {
+			this.fireableTransitions.get(0).fire(eventOccurrence);
 		}
 	}
 }

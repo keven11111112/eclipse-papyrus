@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.uml2.uml.Expression;
 import org.eclipse.uml2.uml.Transition;
 
@@ -33,6 +34,27 @@ public abstract class ConditionalPseudostateActivation extends PseudostateActiva
 			}
 		}
 		return isElse;
+	}
+	
+	protected void evaluateAllGuards(EventOccurrence eventOccurrence){
+		// Evaluate all guards of transitions outgoing this conditional pseudo-state.
+		// and populate the set of fireable transitions. Note that this set is cleared
+		// before each evaluation.
+		this.fireableTransitions.clear();
+		TransitionActivation elseTransitionActivation = null;
+		for(int i=0; i < this.outgoingTransitionActivations.size(); i++){
+			TransitionActivation transitionActivation = this.outgoingTransitionActivations.get(i);
+			if(this.isElseTransition(transitionActivation)){
+				elseTransitionActivation = transitionActivation;
+			}else{
+				if(transitionActivation.evaluateGuard(eventOccurrence)){
+					this.fireableTransitions.add(transitionActivation);
+				}
+			}
+		}
+		if(this.fireableTransitions.isEmpty() && elseTransitionActivation != null){
+			this.fireableTransitions.add(elseTransitionActivation);
+		}
 	}
 
 }

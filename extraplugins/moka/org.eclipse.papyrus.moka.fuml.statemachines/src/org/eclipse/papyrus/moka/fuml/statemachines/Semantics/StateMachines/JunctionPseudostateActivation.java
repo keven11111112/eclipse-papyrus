@@ -14,85 +14,10 @@
 
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.ChoiceStrategy;
 
 public class JunctionPseudostateActivation extends ConditionalPseudostateActivation{
-	
-	// Transitions that were fireable at the time which the junction
-	// pseudo-state was evaluated.
-	protected List<TransitionActivation> fireableTransitions;
-	
-	public JunctionPseudostateActivation(){
-		this.fireableTransitions = new ArrayList<TransitionActivation>();
-	}
-	
-	protected void evaluateAllGuards(EventOccurrence eventOccurrence){
-		// Evaluate all guards of transitions outgoing this junction pseudo-state.
-		// Transitions with a guard evaluating to true are added to the set of fireable
-		// transitions (i.e., transitions that may be fired when the junction pseudo-state
-		// is entered). In the case there is no transition with a guard evaluating to true
-		// and it exists an else transition then this transition is added to the set of
-		// fireable transitions.Note that at each evaluation of the junction pseudo-state
-		// the set of fireable transitions is cleared.
-		this.fireableTransitions.clear();
-		TransitionActivation elseTransitionActivation = null;
-		for(int i=0; i < this.outgoingTransitionActivations.size(); i++){
-			TransitionActivation transitionActivation = this.outgoingTransitionActivations.get(i);
-			if(this.isElseTransition(transitionActivation)){
-				elseTransitionActivation = transitionActivation;
-			}else{
-				if(transitionActivation.evaluateGuard(eventOccurrence)){
-					this.fireableTransitions.add(transitionActivation);
-				}
-			}
-		}
-		if(this.fireableTransitions.isEmpty() && elseTransitionActivation != null){
-			this.fireableTransitions.add(elseTransitionActivation);
-		}
-	}
-	
-	@Override
-	public boolean isEnterable(TransitionActivation enteringTransition) {
-		// A junction pseudo-state can only be entered if it has at least one
-		// transition that was fireable the last time it was evaluated. Note that
-		// in practice this there must be not cases in which the execution reaches
-		// a jucntion pseudo-state which actually cannot be entered. Indeed such
-		// cases are prevented by the compound transitions analysis provided by the
-		// state-machine event accepter.
-		boolean isEnterable = false;
-		if(this.fireableTransitions.size() > 0){
-			isEnterable = true;
-		}
-		return isEnterable;
-	}
-	
-	@Override
-	public boolean canPropagateExecution(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
-		// The execution can only be propagated if this pseudo-state has
-		// at least on outgoing transition evaluating to true. The propagation
-		// consists in:
-		// 1. Force guards of outgoing transitions to be evaluated
-		// 2. Test if the pseudo-state can then be entered
-		// 3. If the pseudo state can be entered then propagate the execution
-		//    through the set of fireable transitions
-		boolean propagate = super.canPropagateExecution(enteringTransition, eventOccurrence, leastCommonAncestor);
-		if(propagate){
-			this.evaluateAllGuards(eventOccurrence);
-			propagate = false;
-			if(this.isEnterable(null)){
-				int i = 0;
-				while(!propagate && i < this.fireableTransitions.size()){
-					propagate = this.fireableTransitions.get(i).canPropagateExecution(eventOccurrence);
-					i++;
-				}
-			}
-		}
-		return propagate;
-	}
 	
 	@Override
 	public void enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor) {
@@ -108,7 +33,9 @@ public class JunctionPseudostateActivation extends ConditionalPseudostateActivat
 			int index = choiceStrategy.choose(this.fireableTransitions.size()) - 1;
 			selectedTransition = this.fireableTransitions.get(index);
 		}
-		selectedTransition.fire(eventOccurrence);
+		if(selectedTransition != null){
+			selectedTransition.fire(eventOccurrence);
+		}
 	}
 	
 }

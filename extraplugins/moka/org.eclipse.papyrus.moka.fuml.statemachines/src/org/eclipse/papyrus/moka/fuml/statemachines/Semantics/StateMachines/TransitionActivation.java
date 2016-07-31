@@ -56,6 +56,12 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	// by the region activation that is the common ancestor of the source and the target. 
 	private RegionActivation leastCommonAncestor;
 	
+	// The last event occurrence used during static analysis.
+	private EventOccurrence lastTriggeringEventOccurrence;
+	
+	// The last verdict when the execution was propagated over this transition.
+	private boolean lastPropagation;
+	
 	public TransitionMetadata getStatus() {
 		return status;
 	}
@@ -67,6 +73,9 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	public TransitionActivation(){
 		super();
 		this.status = TransitionMetadata.NONE;
+		this.leastCommonAncestor = null;
+		this.lastTriggeringEventOccurrence = null;
+		this.lastPropagation = false;
 	}
 
 	public boolean isReached(){
@@ -222,9 +231,23 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	}
 	
 	public boolean canPropagateExecution(EventOccurrence eventOccurrence){
-		// Evaluate the possibility to propagate the execution by requesting
-		// the target vertex activation it can propagates the execution.
-		return this.vertexTargetActivation.canPropagateExecution(this, eventOccurrence, this.getLeastCommonAncestor());
+		// Evaluate the possibility to propagate the static analysis through this transition activation.
+		// Two situations can occur:
+		// 1. The transition has already been "traversed" with using the same event occurrence. This means
+		//    we already know the execution can be propagated through the transiton activation. Hence true
+		//    is returned and the propagation stops.
+		// 2. The transition has not already been "traversed" using this event occurrence. The consequence
+		//    is that the analysis is propagated through the target vertex activation. 
+		boolean propagate = true;
+		if(this.lastTriggeringEventOccurrence != eventOccurrence){
+			this.status = TransitionMetadata.TRAVERSED;
+			propagate = this.vertexTargetActivation.canPropagateExecution(this, eventOccurrence, this.getLeastCommonAncestor());
+			this.lastTriggeringEventOccurrence = eventOccurrence;
+			this.lastPropagation = propagate;
+		}else{
+			propagate = this.lastPropagation;
+		}
+		return propagate;
 	}
 	
 	public void executeEffect(EventOccurrence eventOccurrence){

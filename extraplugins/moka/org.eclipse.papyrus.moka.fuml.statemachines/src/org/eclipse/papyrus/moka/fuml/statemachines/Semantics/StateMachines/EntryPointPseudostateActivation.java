@@ -13,10 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
+import java.util.Iterator;
+
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 
 public class EntryPointPseudostateActivation extends ConnectionPointActivation {
-	
+
 	public boolean isExitable(TransitionActivation exitingTransition) {
 		// An entry point can be exited as soon as every outgoing transition expect
 		// the current "exitingTransition" have been traversed.
@@ -30,6 +32,31 @@ public class EntryPointPseudostateActivation extends ConnectionPointActivation {
 			i++;
 		}
 		return isExitable;
+	}
+	
+	@Override
+	public boolean canPropagateExecution(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor){
+		// Static analysis is propagated to the parents. If the propagation is accepted, then all outgoing transitions
+		// guards are evaluated. For the propagation to be accepted through this pseudo-state activation, all transitions
+		// must be fireable and all of them must accept the propagation.
+		boolean propagate = true;
+		VertexActivation vertexActivation = this.getParentVertexActivation();
+		if(vertexActivation != null){
+			propagate = vertexActivation.canPropagateExecution(enteringTransition, eventOccurrence, leastCommonAncestor);
+		}
+		if(propagate && this.isEnterable(enteringTransition)){
+			this.evaluateAllGuards(eventOccurrence);
+			if(this.outgoingTransitionActivations.size() == this.fireableTransitions.size()){
+				int i = 0;
+				while(propagate && i < this.fireableTransitions.size()){
+					propagate = this.fireableTransitions.get(i).canPropagateExecution(eventOccurrence);
+					i++;
+				}	
+			}else{
+				propagate = false;
+			}
+		}
+		return propagate;
 	}
 	
 	protected void _enter(TransitionActivation enteringTransition, EventOccurrence eventOccurrence, RegionActivation leastCommonAncestor){
@@ -50,11 +77,8 @@ public class EntryPointPseudostateActivation extends ConnectionPointActivation {
 		this._enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 		// Fire all transitions originating from the entry point. These transitions
 		// are fired under the condition that the guard is true. 
-		for(int i = 0; i < this.getOutgoingTransitions().size(); i++){
-			TransitionActivation transitionActivation = this.getOutgoingTransitions().get(i);
-			if(transitionActivation.evaluateGuard(eventOccurrence)){
-				transitionActivation.fire(eventOccurrence);
-			}
+		for(Iterator<TransitionActivation> fireableTransitionsIterator = this.fireableTransitions.iterator(); fireableTransitionsIterator.hasNext();){
+			fireableTransitionsIterator.next().fire(eventOccurrence);
 		}
 	}
 	
