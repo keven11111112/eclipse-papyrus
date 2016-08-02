@@ -13,16 +13,28 @@
 package org.eclipse.papyrus.uml.properties.widgets;
 
 import java.util.Collection;
+import java.util.Collections;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.hideshow.RowHideShowLayer;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.RowHideCommand;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+import org.eclipse.papyrus.infra.nattable.tree.ITreeItemAxisHelper;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * The property editor for the stereotype display nattable widget.
@@ -97,5 +109,40 @@ public class StereotypeDisplayNattablePropertyEditor extends TreeNattablePropert
 	@Override
 	protected EObject getEObjectAsTableContext(EObject element) {
 		return element;
+	}
+	
+	/**
+	 * This allow to add the tree item axis.
+	 * 
+	 * @param axisProvider
+	 *            The axis provider.
+	 * @param rep
+	 *            The axis manager representation.
+	 * @param object
+	 *            The object to add.
+	 * @since 3.0
+	 */
+	protected void addTreeItemAxis(final TransactionalEditingDomain domain, final AbstractAxisProvider axisProvider, final AxisManagerRepresentation rep, final Object object, final CompoundCommand command) {
+		if (object instanceof View && isStereotypedElement((View) object)) {
+			final IAxis axis = ITreeItemAxisHelper.createITreeItemAxis(null, null, object, rep);
+			Command addCommand = AddCommand.create(getTableEditingDomain(), axisProvider, NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), Collections.singleton(axis));
+			command.append(addCommand);
+		}
+	}
+	
+	/**
+	 * Check is the element of the view is stereotyped.
+	 * 
+	 * @param view
+	 *            The view.
+	 * @return <code>true</code> if the element of view is stereotyped, <code>false</code> otherwise.
+	 * @since 3.0
+	 */
+	protected boolean isStereotypedElement(final View view) {
+		boolean result = false;
+		if (view.getElement() instanceof Element && !((Element) view.getElement()).getAppliedStereotypes().isEmpty()) {
+			result = true;
+		}
+		return result;
 	}
 }

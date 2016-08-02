@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -60,8 +59,6 @@ import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattableFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration;
@@ -72,7 +69,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.T
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestyleFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style;
-import org.eclipse.papyrus.infra.nattable.tree.ITreeItemAxisHelper;
 import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.nattable.utils.NattableModelManagerFactory;
 import org.eclipse.papyrus.infra.properties.contexts.Property;
@@ -94,7 +90,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.uml2.uml.Element;
 
 /**
  * The property editor for the nattable widget.
@@ -863,29 +858,6 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		return table;
 	}
 
-
-	/**
-	 * This allow to add the tree item axis.
-	 * 
-	 * @param axisProvider
-	 *            The axis provider.
-	 * @param rep
-	 *            The axis manager representation.
-	 * @param object
-	 *            The object to add.
-	 * 
-	 * @deprecated since 2.0, moved into {@link TreeNattablePropertyEditor} with command
-	 */
-	@Deprecated
-	protected void addTreeItemAxis(final AbstractAxisProvider axisProvider, final AxisManagerRepresentation rep, final Object object) {
-		if (object instanceof View && isStereotypedElement((View) object)) {
-			TransactionalEditingDomain domain = getTableEditingDomain();
-			final IAxis axis = ITreeItemAxisHelper.createITreeItemAxis(null, null, object, rep);
-			Command addCommand = AddCommand.create(getTableEditingDomain(), axisProvider, NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), Collections.singleton(axis));
-			domain.getCommandStack().execute(addCommand);
-		}
-	}
-
 	/**
 	 * 
 	 * @return
@@ -900,21 +872,6 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			Activator.log.error(e);
 		}
 		return null;
-	}
-
-	/**
-	 * Check is the element of the view is stereotyped.
-	 * 
-	 * @param view
-	 *            The view.
-	 * @return <code>true</code> if the element of view is stereotyped, <code>false</code> otherwise.
-	 */
-	protected boolean isStereotypedElement(final View view) {
-		boolean result = false;
-		if (view.getElement() instanceof Element && !((Element) view.getElement()).getAppliedStereotypes().isEmpty()) {
-			result = true;
-		}
-		return result;
 	}
 
 	/**
