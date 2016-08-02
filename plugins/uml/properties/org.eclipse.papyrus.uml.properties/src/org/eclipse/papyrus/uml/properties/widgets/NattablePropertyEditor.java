@@ -1072,7 +1072,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 					// Get the model element
 					if (0 < contexts.size()) {
 						final ModelElement modelElement = dataSource.getModelElement(propertyPath);
-						EObject sourceElement = EMFHelper.getEObject(contexts.get(0));
+						EObject sourceElement = getEObjectAsTableContext(EMFHelper.getEObject(contexts.get(0)));
 						EStructuralFeature feature = null;
 						if (modelElement instanceof CompositeModelElement) {
 							if (!((CompositeModelElement) modelElement).getSubElements().isEmpty()) {
@@ -1094,6 +1094,22 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		}
 
 		return dataSourceListener;
+	}
+
+	/**
+	 * This allows to get the table context as EObject (and avoid View).
+	 * 
+	 * @param element
+	 *            The initial source element.
+	 * @return The source element defining Table context.
+	 * @since 2.1
+	 */
+	protected EObject getEObjectAsTableContext(final EObject element) {
+		EObject result = element;
+		if (result instanceof View) {
+			result = ((View) result).getElement();
+		}
+		return result;
 	}
 
 	/**
