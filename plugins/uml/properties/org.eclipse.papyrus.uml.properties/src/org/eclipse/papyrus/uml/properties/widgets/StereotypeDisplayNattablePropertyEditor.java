@@ -88,4 +88,14 @@ public class StereotypeDisplayNattablePropertyEditor extends TreeNattablePropert
 		}
 		return natTable;
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.uml.properties.widgets.NattablePropertyEditor#getEObjectAsTableContext(org.eclipse.emf.ecore.EObject)
+	 */
+	@Override
+	protected EObject getEObjectAsTableContext(EObject element) {
+		return element;
+	}
 }
