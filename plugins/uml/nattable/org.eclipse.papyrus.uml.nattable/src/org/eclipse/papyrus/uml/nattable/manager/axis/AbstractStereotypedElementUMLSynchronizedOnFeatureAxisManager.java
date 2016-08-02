@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 439501
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 439501, 499007
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.manager.axis;
@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -56,6 +57,11 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 	 * the map between the stereotypes applications and the base_element
 	 */
 	protected Map<EObject, Element> stereotypedElementsMap;
+	
+	/**
+	 * The list of resources listened.
+	 */
+	protected Collection<Resource> listenedResources;
 
 
 	/**
@@ -109,7 +115,11 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 	 * @return
 	 */
 	protected Collection<Resource> getResourceToListen() {
-		return Collections.singleton(getTableContext().eResource());
+		if(null == this.listenedResources){
+			this.listenedResources = new HashSet<Resource>();
+			this.listenedResources.add(getTableContext().eResource());
+		}
+		return this.listenedResources;
 	}
 
 	/**
@@ -385,6 +395,8 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 	@Override
 	public void dispose() {
 		super.dispose();
+		this.listenedResources.clear();
+		this.listenedResources = null;
 		this.listenerMap.clear();
 		this.stereotypedElementsMap.clear();
 	}
