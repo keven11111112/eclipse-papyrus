@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
@@ -89,10 +88,8 @@ public class TreeNattablePropertyEditor extends NattablePropertyEditor {
 	 * 
 	 */
 	protected void addTreeItemAxis(final TransactionalEditingDomain domain, final AbstractAxisProvider axisProvider, final AxisManagerRepresentation rep, final Object object, final CompoundCommand command) {
-		if (object instanceof View && isStereotypedElement((View) object)) {
-			final IAxis axis = ITreeItemAxisHelper.createITreeItemAxis(null, null, object, rep);
-			Command addCommand = AddCommand.create(getTableEditingDomain(), axisProvider, NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), Collections.singleton(axis));
-			command.append(addCommand);
-		}
+		final IAxis axis = ITreeItemAxisHelper.createITreeItemAxis(null, null, object, rep);
+		Command addCommand = AddCommand.create(getTableEditingDomain(), axisProvider, NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), Collections.singleton(axis));
+		command.append(addCommand);
 	}
 }

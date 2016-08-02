@@ -908,6 +908,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * @param view
 	 *            The view.
 	 * @return <code>true</code> if the element of view is stereotyped, <code>false</code> otherwise.
+	 * @deprecated since 2.0, moved into {@link StereotypeDisplayNattablePropertyEditor}
 	 */
 	protected boolean isStereotypedElement(final View view) {
 		boolean result = false;
