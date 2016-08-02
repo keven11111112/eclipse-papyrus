@@ -102,28 +102,30 @@ public class UMLTableUtils {
 
 			// Bug 435417 : Search the properties by their qualified name instead of search by its stereotypes first
 			// This allows to manage the inherit properties and the stereotypes in packages
-			final Iterator<Profile> appliedProfilesIterator = element.getNearestPackage().getAllAppliedProfiles().iterator();
-			while(appliedProfilesIterator.hasNext() && null == result){
-				final Profile appliedProfile = appliedProfilesIterator.next();
-
-				// Bug 488082 : Loop on all stereotypes (check in sub packages)
-				final Iterator<Stereotype> stereotypesIterator = StereotypeUtil.getAllStereotypes(appliedProfile).iterator();
-				while(stereotypesIterator.hasNext() && null == result){
-					final Stereotype ownedStereotype = stereotypesIterator.next();
-					final Iterator<Property> propertiesIterator = ownedStereotype.getAllAttributes().iterator();
-					while(propertiesIterator.hasNext() && null == result){
-						final Property property = propertiesIterator.next();
-						if(property.getQualifiedName().equals(propertyQN)){
-							result = property;
+			if (null != element.getNearestPackage()){
+				final Iterator<Profile> appliedProfilesIterator = element.getNearestPackage().getAllAppliedProfiles().iterator();
+				while(appliedProfilesIterator.hasNext() && null == result){
+					final Profile appliedProfile = appliedProfilesIterator.next();
+	
+					// Bug 488082 : Loop on all stereotypes (check in sub packages)
+					final Iterator<Stereotype> stereotypesIterator = StereotypeUtil.getAllStereotypes(appliedProfile).iterator();
+					while(stereotypesIterator.hasNext() && null == result){
+						final Stereotype ownedStereotype = stereotypesIterator.next();
+						final Iterator<Property> propertiesIterator = ownedStereotype.getAllAttributes().iterator();
+						while(propertiesIterator.hasNext() && null == result){
+							final Property property = propertiesIterator.next();
+							if(property.getQualifiedName().equals(propertyQN)){
+								result = property;
+							}
 						}
 					}
 				}
-			}
-
-			// 2. if not, the profile could be applied on a sub-package of the nearest package
-			/* the table can show element which are not children of its context, so the profile could not be available in its context */
-			if(null == result){
-				result = getProperty(element.getNearestPackage().getNestedPackages(), propertyQN);
+	
+				// 2. if not, the profile could be applied on a sub-package of the nearest package
+				/* the table can show element which are not children of its context, so the profile could not be available in its context */
+				if(null == result){
+					result = getProperty(element.getNearestPackage().getNestedPackages(), propertyQN);
+				}
 			}
 		}
 		return result;
