@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
  *
  *****************************************************************************/
 package org.eclipse.papyrus.extensionpoints.editors.configuration;
@@ -139,4 +140,19 @@ public interface IDirectEditorConfiguration {
 		}
 
 	}
+
+	/**
+	 * Get the superType attribute value.
+	 *
+	 * @return The value of superType.
+	 */
+	public boolean isSuperType();
+
+	/**
+	 * Set the superType attribute value.
+	 *
+	 * @param superType
+	 *            the value to set.
+	 */
+	public void setSuperType(boolean superType);
 }

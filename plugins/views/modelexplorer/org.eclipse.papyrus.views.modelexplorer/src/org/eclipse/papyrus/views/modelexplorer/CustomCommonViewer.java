@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
@@ -48,6 +49,7 @@ public class CustomCommonViewer extends CommonViewer {
 		// TODO Auto-generated constructor stub
 		setComparer(new IElementComparer() {
 
+			@Override
 			public int hashCode(Object element) {
 				if (element instanceof EObjectTreeElement) {
 					EObject eObject = ((EObjectTreeElement) element).getEObject();
@@ -70,6 +72,7 @@ public class CustomCommonViewer extends CommonViewer {
 				return element.hashCode();
 			}
 
+			@Override
 			public boolean equals(Object a, Object b) {
 				if (a instanceof IMatchingItem) {
 					return ((IMatchingItem) a).matchingItemEquals(b);
@@ -131,8 +134,8 @@ public class CustomCommonViewer extends CommonViewer {
 					ColumnViewerEditorActivationEvent event) {
 				// activation will uses F2 (also used by rename-popup, but not taken into account by the latter
 				// for model elements for which a direct-editor exists)
-				return event.eventType == ColumnViewerEditorActivationEvent.KEY_PRESSED &&
-						event.keyCode == SWT.F2;
+				return (event.eventType == ColumnViewerEditorActivationEvent.KEY_PRESSED &&
+						event.keyCode == SWT.F2) || (event.eventType == ColumnViewerEditorActivationEvent.PROGRAMMATIC);
 			}
 		}, ColumnViewerEditor.KEYBOARD_ACTIVATION);
 		ColumnViewerEditor editor = this.getColumnViewerEditor();
@@ -146,8 +149,8 @@ public class CustomCommonViewer extends CommonViewer {
 	 */
 	@Override
 	public void dispose() {
-		//Remove the custom column viewer editor which causes NPE after dispose
-		//ViewerEditor cannot be nulled or disposed, so we just recreate a default one
+		// Remove the custom column viewer editor which causes NPE after dispose
+		// ViewerEditor cannot be nulled or disposed, so we just recreate a default one
 		setColumnViewerEditor(super.createViewerEditor());
 		super.dispose();
 	}

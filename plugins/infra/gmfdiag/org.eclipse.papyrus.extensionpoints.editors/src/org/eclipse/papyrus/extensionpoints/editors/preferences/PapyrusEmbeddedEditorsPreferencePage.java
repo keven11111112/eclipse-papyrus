@@ -7,8 +7,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		Remi Schnekenburger (CEA LIST) - Initial API and implementation
- *		Gabriel Pascual (ALL4TEC) gabriel.pascual -  Bug 441962
+ *	Remi Schnekenburger (CEA LIST) - Initial API and implementation
+ *	Gabriel Pascual (ALL4TEC) gabriel.pascual -  Bug 441962
+ *	Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
  *
  *****************************************************************************/
 package org.eclipse.papyrus.extensionpoints.editors.preferences;
@@ -68,7 +69,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage implements IWorkbenchPreferencePage, Listener {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final String PRIORITY_COLUMN_TITLE = "Priority";
 
@@ -479,8 +480,9 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 			// Now set the new default
 			if (selection instanceof IStructuredSelection) {
 				Object selectedElement = ((IStructuredSelection) selection).getFirstElement();
-				if (selectedElement instanceof IDirectEditorExtensionPoint)
+				if (selectedElement instanceof IDirectEditorExtensionPoint) {
 					extensionPoint = (IDirectEditorExtensionPoint) selectedElement;
+				}
 			}
 			// retrieve current object to edit name
 			getPreferenceStore().setValue(IDirectEditorsIds.EDITOR_FOR_ELEMENT + getSelectedElementType(), (extensionPoint != null) ? extensionPoint.getLanguage() : IDirectEditorsIds.SIMPLE_DIRECT_EDITOR);
@@ -555,6 +557,10 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 
 		public IDirectEditorConstraint getAdditionalConstraint() {
 			return null;
+		}
+
+		public boolean isSuperType() {
+			return false;
 		}
 	};
 

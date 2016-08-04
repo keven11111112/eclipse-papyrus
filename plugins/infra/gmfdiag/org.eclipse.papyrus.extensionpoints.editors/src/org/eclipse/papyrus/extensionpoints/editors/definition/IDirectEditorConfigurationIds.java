@@ -9,6 +9,8 @@
  *
  * Contributors:
  *  CEA LIST - initial API and implementation
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.extensionpoints.editors.definition;
@@ -68,4 +70,7 @@ public interface IDirectEditorConfigurationIds {
 
 	/** string that represents the Highest priority **/
 	public static final String PRIORITY_HIGHEST = "Highest";
+
+	/** string that represents the superType attribute **/
+	public static final String ATT_SUPER_TYPE = "superType";
 }

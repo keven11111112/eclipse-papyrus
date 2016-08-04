@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,8 +8,9 @@
  *
  * Contributors:
  *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.fr - Initial API and implementation
- *   Patrik Nandorf (Ericsson AB) patrik.nandorf@ericsson.com - Bug 425565 
- *   
+ *   Patrik Nandorf (Ericsson AB) patrik.nandorf@ericsson.com - Bug 425565
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.views.modelexplorer.newchild;
@@ -25,20 +26,23 @@ import org.eclipse.papyrus.infra.newchild.CreationMenuFactory;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu;
 import org.eclipse.papyrus.infra.widgets.util.RevealResultCommand;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
 import org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview.MultiViewPageBookView;
+import org.eclipse.papyrus.views.modelexplorer.newchild.commands.EditResultCommand;
 import org.eclipse.papyrus.views.modelexplorer.newchild.preferences.NewChildPreferences;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * Override of creation menu factory to select created element in Model Explorer view.
- * 
+ * Override of creation menu factory to select and edit created element in Model Explorer view.
+ *
  * @author Gabriel Pascual
  *
  */
 public class ModelExplorerMenuFactory extends CreationMenuFactory {
 
 	private boolean defaultSelectionPreference;
+	private boolean defaultEditionPreference;
 	private IViewPart viewPart;
 
 
@@ -50,6 +54,7 @@ public class ModelExplorerMenuFactory extends CreationMenuFactory {
 	public ModelExplorerMenuFactory(TransactionalEditingDomain editingDomain) {
 		super(editingDomain);
 		defaultSelectionPreference = Activator.getDefault().getPreferenceStore().getBoolean(NewChildPreferences.DEFAULT_SELECTION);
+		defaultEditionPreference = Activator.getDefault().getPreferenceStore().getBoolean(NewChildPreferences.DEFAULT_EDITION);
 		viewPart = getActiveViewPart();
 	}
 
@@ -58,7 +63,7 @@ public class ModelExplorerMenuFactory extends CreationMenuFactory {
 	 *
 	 * @param reference
 	 * @param container
-	 * @param creationMenu 
+	 * @param creationMenu
 	 * @return
 	 */
 	@Override
@@ -72,6 +77,12 @@ public class ModelExplorerMenuFactory extends CreationMenuFactory {
 		if (defaultSelectionPreference) {
 			// Wrap command to select created element
 			buildCommand = RevealResultCommand.wrap(buildCommand, viewPart, container);
+
+			if (defaultEditionPreference) {
+				if (viewPart instanceof ModelExplorerView) {
+					buildCommand = EditResultCommand.wrap(buildCommand, viewPart);
+				}
+			}
 		}
 
 		return buildCommand;

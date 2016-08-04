@@ -109,6 +109,13 @@
                </appInfo>
             </annotation>
          </attribute>
+         <attribute name="superType" type="boolean">
+            <annotation>
+               <documentation>
+                  To indicate if the editor configuration is available for each type depending of the language.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

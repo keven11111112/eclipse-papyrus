@@ -7,6 +7,8 @@
  *
  * Contributors:
  *     CEA LIST - initial API and implementation
+ *     Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
+ *     
  *******************************************************************************/
 package org.eclipse.papyrus.extensionpoints.editors.definition;
 
@@ -42,6 +44,9 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 
 	/** value of the language attribute */
 	private String language;
+
+	/** value of the superType attribute */
+	private boolean superType;
 
 	/** value of the editor configuration attribute */
 	private IDirectEditorConfiguration directEditorConfiguration;
@@ -172,6 +177,9 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 *            the configuration element corresponding to the configuration
 	 */
 	public DirectEditorExtensionPoint(IConfigurationElement configElt) {
+		String attribute = getAttribute(configElt, IDirectEditorConfigurationIds.ATT_SUPER_TYPE, "false", false); //$NON-NLS-1$
+		superType = attribute.equals("true"); //$NON-NLS-1$
+
 		language = getAttribute(configElt, IDirectEditorConfigurationIds.ATT_LANGUAGE, "undefined", true); // should
 		// already
 		// be
@@ -191,6 +199,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 			directEditorConfiguration = getPopupDirectEditorConfigurationClass(configElt);
 		}
 		directEditorConfiguration.setLanguage(language);
+		directEditorConfiguration.setSuperType(superType);
 
 		// retrieve the bundle loader of the plugin that declares the extension
 		try {
@@ -493,6 +502,13 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 		return null;
 	}
 
-
+	/**
+	 * @see org.eclipse.papyrus.extensionpoints.editors.definition.IDirectEditorExtensionPoint#isSuperType()
+	 *
+	 * @return
+	 */
+	public boolean isSuperType() {
+		return superType;
+	}
 
 }
