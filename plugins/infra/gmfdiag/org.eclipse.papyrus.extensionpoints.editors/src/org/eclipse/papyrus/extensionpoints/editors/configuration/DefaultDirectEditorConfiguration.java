@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
  *
  *****************************************************************************/
 
@@ -30,6 +31,9 @@ public class DefaultDirectEditorConfiguration implements IDirectEditorConfigurat
 
 	/** language of the edited body */
 	protected String language;
+
+	/** To check if the configuration is available for each type. */
+	protected boolean superType;
 
 	/** objectToEdit */
 	protected Object objectToEdit;
@@ -158,4 +162,17 @@ public class DefaultDirectEditorConfiguration implements IDirectEditorConfigurat
 		return new Selection(0, value.length());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isSuperType() {
+		return superType;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setSuperType(boolean superType) {
+		this.superType = superType;
+	}
 }

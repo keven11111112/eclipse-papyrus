@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
- *   
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.extensionpoints.editors.definition;
@@ -20,7 +21,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * Interface to manipulate extension point of Direct Editor.
- * 
+ *
  * @author Gabriel Pascual
  *
  */
@@ -92,5 +93,12 @@ public interface IDirectEditorExtensionPoint {
 	 * @return the additional constraint
 	 */
 	public IDirectEditorConstraint getAdditionalConstraint();
+
+	/**
+	 * Return the "superType" attribute*.
+	 *
+	 * @return The attribute.
+	 */
+	public boolean isSuperType();
 
 }

@@ -7,12 +7,15 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
  *   Andreas Muelder - Initial contribution and API
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
 
+import java.util.List;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -93,23 +96,67 @@ public class DirectEditorEditingSupport extends EditingSupport {
 	/**
 	 * Obtain direct editor configuration for a semantic element
 	 *
-	 * @param element
-	 *            a sementic element
+	 * @param semanticElement
+	 *            a semantic element
 	 * @return The direct editor configuration, if it exists.
 	 */
 	public static ICustomDirectEditorConfiguration getConfiguration(EObject semanticElement) {
-
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-		String semanticClassName = semanticElement.eClass().getInstanceClassName();
+		EClass eClass = semanticElement.eClass();
+		String semanticClassName = eClass.getInstanceClassName();
 		String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT + semanticClassName;
 		String languagePreferred = store.getString(key);
 
-		if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
-			IDirectEditorConfiguration configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, semanticElement, semanticElement);
-			if (configuration instanceof ICustomDirectEditorConfiguration) {
-				return (ICustomDirectEditorConfiguration) configuration;
-			}
+		IDirectEditorConfiguration configuration = null;
+
+		if (null != languagePreferred && !languagePreferred.isEmpty()) {
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, semanticElement, semanticElement);
+		} else {
+			configuration = getConfigurationSuperType(eClass, semanticElement);
+		}
+
+		if (configuration instanceof ICustomDirectEditorConfiguration) {
+			return (ICustomDirectEditorConfiguration) configuration;
 		}
 		return null;
+	}
+
+	/**
+	 * Obtain an editor configuration compatible with a superType of an EClass.
+	 * 
+	 * @param basedEClass
+	 *            The based EClass.
+	 * @param semanticElement
+	 *            The renamed semantic element.
+	 * @return The editor configuration, if it exists.
+	 */
+	public static IDirectEditorConfiguration getConfigurationSuperType(final EClass basedEClass, final EObject semanticElement) {
+		IDirectEditorConfiguration configuration = null;
+		List<EClass> eClasses = basedEClass.getESuperTypes();
+
+		if (null != eClasses && !eClasses.isEmpty()) {
+			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+			int i = 0;
+			while (i < eClasses.size() && null == configuration) {
+				EClass eClass = eClasses.get(i);
+				String semanticClassName = eClass.getInstanceClassName();
+				String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT + semanticClassName;
+				String languagePreferred = store.getString(key);
+
+				// If language has found, get the corresponding configuration.
+				if (languagePreferred != null && !languagePreferred.isEmpty()) {
+					configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, semanticElement, semanticElement);
+					if (!configuration.isSuperType()) {
+						configuration = getConfigurationSuperType(eClass, semanticElement);
+					}
+				} else {
+					configuration = getConfigurationSuperType(eClass, semanticElement);
+				}
+
+				i++;
+			}
+		}
+
+		return configuration;
 	}
 }

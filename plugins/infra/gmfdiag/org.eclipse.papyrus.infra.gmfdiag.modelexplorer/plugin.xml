@@ -84,5 +84,18 @@
             type="org.eclipse.jface.viewers.IStructuredSelection">
       </propertyTester>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
+      <DirectEditor
+            contributor="CEA LIST"
+            language="Diagram Direct Editor"
+            objectToEdit="org.eclipse.gmf.runtime.notation.Diagram">
+         <popupeditor
+               editorConfiguration="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.directeditor.DiagramDirectEditorConfiguration"></popupeditor>
+         <Priority
+               name="Medium">
+         </Priority>
+      </DirectEditor>
+   </extension>
   
 </plugin>

@@ -11,6 +11,7 @@
  *  Christian W. Damus (CEA) - post refreshes for transaction commit asynchronously (CDO)
  *  Christian W. Damus (CEA) - bugs 429826, 434635, 437217, 441857
  *  Christian W. Damus - bugs 450235, 451683, 485220
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
@@ -63,7 +64,6 @@ import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationMenu;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
@@ -84,7 +84,6 @@ import org.eclipse.papyrus.views.modelexplorer.matching.ReferencableMatchingItem
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.graphics.Point;
@@ -1079,6 +1078,29 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					viewer.setSelection(selection);
 				}
 			});
+		}
+	}
+
+	/**
+	 * Edit an element contained on the common viewer.
+	 * 
+	 * @param element
+	 *            The element to edit.
+	 * @param numColumn
+	 *            The number of the column which contains the element to edit.
+	 */
+	public void editElement(final EObject element, final int numColumn) {
+		ModelElementItemMatchingItem modelElementItemMatchingItem = new ModelElementItemMatchingItem(element);
+		if (null != modelElementItemMatchingItem) {
+			CommonViewer commonViewer = getCommonViewer();
+			if (null != commonViewer) {
+				commonViewer.getControl().getDisplay().syncExec(new Runnable() {
+					@Override
+					public void run() {
+						commonViewer.editElement(modelElementItemMatchingItem, numColumn);
+					}
+				});
+			}
 		}
 	}
 

@@ -2448,4 +2448,19 @@
                type="org.eclipse.jface.viewers.IStructuredSelection">
          </propertyTester>
       </extension>
+      <extension
+         point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
+      <DirectEditor
+            contributor="CEA LIST"
+            language="Named Element Direct Editor"
+            objectToEdit="org.eclipse.uml2.uml.NamedElement"
+            superType="true">
+         <popupeditor
+               editorConfiguration="org.eclipse.papyrus.uml.modelexplorer.directeditor.NamedElementDirectEditorConfiguration">
+         </popupeditor>
+         <Priority
+               name="Medium">
+         </Priority>
+      </DirectEditor>
+   </extension>
 </plugin>

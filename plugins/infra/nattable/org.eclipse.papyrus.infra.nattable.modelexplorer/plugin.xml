@@ -117,4 +117,18 @@
                type="org.eclipse.jface.viewers.IStructuredSelection">
          </propertyTester>
       </extension>
+      <extension
+            point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
+         <DirectEditor
+               contributor="CEA LIST"
+               language="Table Direct Editor"
+               objectToEdit="org.eclipse.papyrus.infra.nattable.model.nattable.Table">
+            <popupeditor
+                  editorConfiguration="org.eclipse.papyrus.infra.nattable.modelexplorer.directeditor.TableDirectEditorConfiguration">
+            </popupeditor>
+            <Priority
+                  name="Medium">
+            </Priority>
+         </DirectEditor>
+      </extension>
 </plugin>

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.fr - Initial API and implementation
- *   
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.views.modelexplorer.newchild.preferences;
@@ -22,7 +23,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 
 /**
  * Preference page to define enable/disable default selection in Model Explorer.
- * 
+ *
  * @author Gabriel Pascual
  *
  */
@@ -34,12 +35,18 @@ public class NewChildPreferencePage extends FieldEditorPreferencePage implements
 	/** The Constant PAGE_DESCRIPTION. */
 	private static final String PAGE_DESCRIPTION = Messages.getString("NewChildPreferencePage.desciption"); //$NON-NLS-1$
 
+	/** The Constant DEFAULT_EDITION_LABEL. */
+	private static final String DEFAULT_EDITION_LABEL = Messages.getString("NewChildPreferencePage.edition.label"); //$NON-NLS-1$
+
+	/** The field editor to indicate if the new element will be edit. */
+	private BooleanFieldEditor editionFieldEditor;
+
 	/**
 	 * Constructor.
 	 *
 	 */
 	public NewChildPreferencePage() {
-		super();
+		super(GRID);
 	}
 
 	/**
@@ -61,11 +68,30 @@ public class NewChildPreferencePage extends FieldEditorPreferencePage implements
 	 */
 	@Override
 	protected void createFieldEditors() {
-		addField(new BooleanFieldEditor(NewChildPreferences.DEFAULT_SELECTION, DEFAULT_SELECTION_LABEL, getFieldEditorParent()));
+		final BooleanFieldEditor selectionFieldEditor = new BooleanFieldEditor(NewChildPreferences.DEFAULT_SELECTION, DEFAULT_SELECTION_LABEL, getFieldEditorParent()) {
 
+			/**
+			 * @see org.eclipse.jface.preference.BooleanFieldEditor#valueCh
+			 *      anged(boolean, boolean)
+			 *
+			 * @param oldValue
+			 * @param newValue
+			 */
+			@Override
+			protected void valueChanged(boolean oldValue, boolean newValue) {
+				super.valueChanged(oldValue, newValue);
+				if (null != editionFieldEditor) {
+					editionFieldEditor.setEnabled(newValue, getFieldEditorParent());
+				}
+			}
+		};
+
+		editionFieldEditor = new BooleanFieldEditor(NewChildPreferences.DEFAULT_EDITION, DEFAULT_EDITION_LABEL, getFieldEditorParent());
+
+		boolean defaultSelection = Activator.getDefault().getPreferenceStore().getBoolean(NewChildPreferences.DEFAULT_SELECTION);
+		editionFieldEditor.setEnabled(defaultSelection, getFieldEditorParent());
+
+		addField(selectionFieldEditor);
+		addField(editionFieldEditor);
 	}
-
-
-
-
 }
