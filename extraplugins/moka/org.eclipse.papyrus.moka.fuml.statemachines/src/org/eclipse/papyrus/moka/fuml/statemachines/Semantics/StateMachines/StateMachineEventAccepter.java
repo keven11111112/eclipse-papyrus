@@ -49,14 +49,7 @@ public class StateMachineEventAccepter extends EventAccepter{
 		if(this.isDeferred(eventOccurrence)){
 			this.defer(eventOccurrence);
 		}else{
-			List<TransitionActivation> fireableTransitionActivations = new ArrayList<TransitionActivation>();
-			List<TransitionActivation> selectedTransitionActivations = this.select(eventOccurrence);
-			for(int i=0; i < selectedTransitionActivations.size(); i++){
-				TransitionActivation potentiallyValidTransitionActivation = selectedTransitionActivations.get(i);
-				if(potentiallyValidTransitionActivation.canPropagateExecution(eventOccurrence)){
-					fireableTransitionActivations.add(potentiallyValidTransitionActivation);
-				}
-			}
+			List<TransitionActivation> fireableTransitionActivations = this.select(eventOccurrence);
 			if(!fireableTransitionActivations.isEmpty()){
 				for(Iterator<TransitionActivation> fireableTransitionsIterator = fireableTransitionActivations.iterator(); fireableTransitionsIterator.hasNext();){
 					fireableTransitionsIterator.next().fire(eventOccurrence);
@@ -122,18 +115,9 @@ public class StateMachineEventAccepter extends EventAccepter{
 			i++;
 		}
 		if(!deferred && 
-				stateConfiguration.vertexActivation != null){
-			List<TransitionActivation> selectedtransitionActivations = this._select(eventOccurrence, stateConfiguration);
-			TransitionActivation validTransitionActivation = null;
-			i = 0;
-			while(validTransitionActivation==null && i < selectedtransitionActivations.size()){
-				if(selectedtransitionActivations.get(i).canPropagateExecution(eventOccurrence)){
-					validTransitionActivation = selectedtransitionActivations.get(i);
-				}
-				i++;
-			}
-			if(validTransitionActivation == null &&
-					((StateActivation)stateConfiguration.vertexActivation).canDefer(eventOccurrence)){
+				stateConfiguration.vertexActivation != null &&
+				((StateActivation)stateConfiguration.vertexActivation).canDefer(eventOccurrence)){
+			if(this._select(eventOccurrence, stateConfiguration).isEmpty()){
 				deferred = true;
 			}
 		}

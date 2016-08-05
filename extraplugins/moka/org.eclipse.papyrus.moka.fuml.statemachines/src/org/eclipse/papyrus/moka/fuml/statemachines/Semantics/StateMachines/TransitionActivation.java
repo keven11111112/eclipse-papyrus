@@ -222,10 +222,12 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		if(eventOccurrence instanceof CompletionEventOccurrence){
 			reactive = !this.isTriggered() &&
 						this.getSourceActivation()==((CompletionEventOccurrence)eventOccurrence).stateActivation &&
-						this.evaluateGuard(eventOccurrence);
+						this.evaluateGuard(eventOccurrence) &&
+						this.canPropagateExecution(eventOccurrence);
 		}else if(eventOccurrence instanceof SignalEventOccurrence | eventOccurrence instanceof CallEventOccurrence){
 			reactive = this.hasTrigger(eventOccurrence) && 
-					   this.evaluateGuard(eventOccurrence);
+					   this.evaluateGuard(eventOccurrence) &&
+					   this.canPropagateExecution(eventOccurrence);
 		}else{
 			reactive = false;
 		}
