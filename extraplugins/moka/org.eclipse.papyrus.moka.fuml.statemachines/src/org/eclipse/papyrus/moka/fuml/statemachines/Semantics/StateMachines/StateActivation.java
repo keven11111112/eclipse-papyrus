@@ -294,8 +294,8 @@ public class StateActivation extends VertexActivation {
 		// the visited state is composite then the analysis  is propagated to the region(s). All
 		// regions for which the possibility to propagate the execution is asserted must return true.
 		boolean propagate = true;
-		if(this.regionActivation.contains(leastCommonAncestor)){
-			propagate = super.canPropagateExecution(enteringTransition, eventOccurrence, null);
+		if(!this.regionActivation.contains(leastCommonAncestor)){
+			propagate = super.canPropagateExecution(enteringTransition, eventOccurrence, leastCommonAncestor);
 		}
 		if(propagate && this.regionActivation.size() > 0){
 			int i = 0;
