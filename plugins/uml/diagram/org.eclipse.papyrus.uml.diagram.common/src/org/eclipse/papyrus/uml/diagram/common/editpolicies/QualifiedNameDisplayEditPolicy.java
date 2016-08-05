@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
-import org.eclipse.papyrus.infra.emf.appearance.helper.QualifiedNameHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
@@ -42,7 +42,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
 
 	/** key for this edit policy */
-	public final static String QUALIFIED_NAME_POLICY = "Qualified_name_editpolicy";
+	public final static String QUALIFIED_NAME_POLICY = "Qualified_name_editpolicy"; //$NON-NLS-1$
 
 	/** host semantic element */
 	protected NamedElement hostSemanticNamedElement;
@@ -118,7 +118,7 @@ public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implemen
 	 *            the associated figure to the editpart
 	 */
 	protected void refreshQualifiedNameDepth(NodeNamedElementFigure nodeNamedElementFigure) {
-		nodeNamedElementFigure.setDepth(QualifiedNameHelper.getQualifiedNameDepth((View) getHost().getModel()));
+		nodeNamedElementFigure.setDepth(AppearanceHelper.getQualifiedNameDepth((View) getHost().getModel()));
 	}
 
 	/**

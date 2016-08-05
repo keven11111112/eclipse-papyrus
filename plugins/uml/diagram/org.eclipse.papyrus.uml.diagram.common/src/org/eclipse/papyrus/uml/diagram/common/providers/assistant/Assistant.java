@@ -13,7 +13,7 @@ package org.eclipse.papyrus.uml.diagram.common.providers.assistant;
 import java.util.List;
 
 import org.eclipse.gef.EditPart;
-import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.MDTUtil;
 
 /**
  * An assistant that can add or remove element types to various EditPart. Created for the

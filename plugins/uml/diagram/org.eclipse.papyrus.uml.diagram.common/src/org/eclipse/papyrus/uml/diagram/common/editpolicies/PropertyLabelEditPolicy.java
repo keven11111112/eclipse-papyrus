@@ -49,7 +49,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		Property property = getUMLElement();
 		// check host semantic element is not null
 		if (property == null) {
-			Activator.log.error("No semantic element present when adding listeners in PropertyLabelEditPolicy", null);
+			Activator.log.error("No semantic element present when adding listeners in PropertyLabelEditPolicy", null); //$NON-NLS-1$
 			return;
 		}
 		// adds a listener to the element itself, and to linked elements, like Type

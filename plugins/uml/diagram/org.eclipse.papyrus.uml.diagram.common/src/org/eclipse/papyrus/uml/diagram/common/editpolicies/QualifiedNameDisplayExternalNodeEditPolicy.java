@@ -20,7 +20,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.emf.appearance.helper.QualifiedNameHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
@@ -94,7 +94,7 @@ public class QualifiedNameDisplayExternalNodeEditPolicy extends QualifiedNameDis
 	 *            the associated figure to the editpart
 	 */
 	protected void refreshQualifiedNameDepth(IPapyrusNodeNamedElementFigure nodeNamedElementFigure) {
-		nodeNamedElementFigure.setDepth(QualifiedNameHelper.getQualifiedNameDepth((View) (getHost().getParent()).getModel()));
+		nodeNamedElementFigure.setDepth(AppearanceHelper.getQualifiedNameDepth((View) (getHost().getParent()).getModel()));
 	}
 
 	/**

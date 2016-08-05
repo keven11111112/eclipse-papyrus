@@ -13,7 +13,6 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-// TODO: Auto-generated Javadoc
 /**
  * Lets a D&D policy know if an <EObject> is a <Node> or a <Edge> in the host <EditPart>. Can
  * resolve the <EStructuralFeature> where an <EObject> is stored by its <ECLass>.

@@ -17,7 +17,7 @@ import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.ui.IEditorPart;
-
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.MDTUtil;
 /**
  * This class provides a Tester to know if the current diagram is the wanted
  * diagram. Test is done using {@link Diagram#getType()}
@@ -30,7 +30,7 @@ public class DiagramTester extends PropertyTester {
 	/**
 	 * The property to test
 	 */
-	private static final String DIAGRAM_ID = "diagramType";
+	private static final String DIAGRAM_ID = "diagramType"; //$NON-NLS-1$
 
 	/**
 	 *

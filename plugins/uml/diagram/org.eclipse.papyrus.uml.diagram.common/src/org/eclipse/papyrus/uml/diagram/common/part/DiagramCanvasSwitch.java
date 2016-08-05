@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.MDTUtil;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Utility methods to "demultiplex" <EClass>es and <EObject>s for different canvas elements.
  *

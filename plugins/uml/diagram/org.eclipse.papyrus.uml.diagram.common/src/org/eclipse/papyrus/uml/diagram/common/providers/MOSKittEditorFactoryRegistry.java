@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.uml.diagram.common.util.ExtensionPointParser;
-import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.MDTUtil;
 import org.eclipse.ui.IEditorPart;
 
 /**

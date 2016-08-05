@@ -18,7 +18,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ShowViewEditPolicy.
  */
@@ -39,7 +38,7 @@ public class ShowViewEditPolicy {
 				@Override
 				protected Command getOpenCommand(Request request) {
 
-					String viewId = "org.eclipse.ui.views.PropertySheet";
+					String viewId = "org.eclipse.ui.views.PropertySheet"; //$NON-NLS-1$
 					try {
 						PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(viewId);
 					} catch (PartInitException e) {

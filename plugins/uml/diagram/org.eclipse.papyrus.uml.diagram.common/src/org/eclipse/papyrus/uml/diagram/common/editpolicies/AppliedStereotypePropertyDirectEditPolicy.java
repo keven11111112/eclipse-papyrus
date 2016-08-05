@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
 import org.eclipse.gmf.runtime.gef.ui.internal.parts.TextCellEditorEx;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 
 
 public class AppliedStereotypePropertyDirectEditPolicy extends LabelDirectEditPolicy {
@@ -48,13 +48,7 @@ public class AppliedStereotypePropertyDirectEditPolicy extends LabelDirectEditPo
 
 		ITextAwareEditPart compartment = (ITextAwareEditPart) getHost();
 		EObject model = (EObject) compartment.getModel();
-		SemanticAdapter elementAdapter = null;
-		if (model instanceof View) {
-			View view = (View) model;
-			elementAdapter = new SemanticAdapter(((View) model).getElement(), model);
-		} else {
-			elementAdapter = new SemanticAdapter(((View) model).getElement(), model);
-		}
+		SemanticAdapter elementAdapter = new SemanticAdapter(((View) model).getElement(), model);
 		// check to make sure an edit has occurred before returning a command.
 		String prevText = compartment.getParser().getEditString(elementAdapter,
 				compartment.getParserOptions().intValue());

@@ -13,12 +13,11 @@ package org.eclipse.papyrus.uml.diagram.common.part;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.MDTUtil;
 import org.eclipse.papyrus.uml.diagram.common.util.PathsUtil;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CachedResourcesEditorInput.
  *

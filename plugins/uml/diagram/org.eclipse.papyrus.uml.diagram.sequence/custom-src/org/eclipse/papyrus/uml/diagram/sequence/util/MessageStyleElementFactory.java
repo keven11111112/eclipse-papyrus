@@ -42,7 +42,7 @@ public class MessageStyleElementFactory extends AbstractModelElementFactory<Mess
 	protected void updateModelElement(MessageStyleModelElement modelElement, Object newSourceElement) {
 		View view = NotationHelper.findView(newSourceElement);
 		if (!(view instanceof Edge)) {
-			throw new IllegalArgumentException("Cannot resolve Edge selection: " + newSourceElement);
+			throw new IllegalArgumentException("Cannot resolve Edge selection: " + newSourceElement); //$NON-NLS-1$
 		}
 		modelElement.source = (Edge) view;
 	}

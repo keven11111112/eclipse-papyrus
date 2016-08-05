@@ -20,8 +20,7 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
-
-// TODO: Auto-generated Javadoc
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.MDTUtil;
 /**
  * Several util general methods to work with <URI>s, <IPath>s and <IFile>s.
  *
