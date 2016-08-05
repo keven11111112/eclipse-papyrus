@@ -51,8 +51,8 @@ public abstract class PseudostateActivation extends VertexActivation {
 		// in case where the pseudo-state cannot be entered true is returned.
 		boolean propagate = super.canPropagateExecution(enteringTransition, eventOccurrence, leastCommonAncestor);
 		if(propagate && this.isEnterable(enteringTransition, true)){
-			this.evaluateAllGuards(eventOccurrence);
 			if(this.outgoingTransitionActivations.size() > 0){
+				this.evaluateAllGuards(eventOccurrence);
 				propagate = false;
 				if(this.fireableTransitions.size() > 0){
 					int i = 0;
