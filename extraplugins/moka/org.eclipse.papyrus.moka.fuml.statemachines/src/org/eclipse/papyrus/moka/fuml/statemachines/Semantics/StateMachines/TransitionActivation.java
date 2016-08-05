@@ -82,16 +82,28 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		this.lastPropagation = false;
 	}
 
-	public boolean isReached(){
+	public boolean isReached(boolean staticCheck){
 		/// Convenience operation which returns true if the status of this transition
 		// is REACHED; false otherwise.
-		return this.status.equals(TransitionMetadata.REACHED);
+		boolean reached = true;
+		if(staticCheck){
+			reached = this.analyticalStatus.equals(TransitionMetadata.REACHED);
+		}else{
+			reached = this.status.equals(TransitionMetadata.REACHED);
+		}
+		return reached;
 	}
 	
-	public boolean isTraversed(){
+	public boolean isTraversed(boolean staticCheck){
 		// Convenience operation which returns true if the status of this transition
 		// is TRAVERSED; false otherwise.
-		return this.status.equals(TransitionMetadata.TRAVERSED);
+		boolean traversed = true;
+		if(staticCheck){
+			traversed = this.analyticalStatus.equals(TransitionMetadata.TRAVERSED);
+		}else{
+			traversed = this.status.equals(TransitionMetadata.TRAVERSED);
+		}
+		return traversed;
 	}
 	
 	@Override
@@ -302,9 +314,9 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	
 	public String toString(){
 		String representation = "["+this.getSourceActivation()+"] -> ["+this.getTargetActivation()+"] (";
-		if(this.isReached()){
+		if(this.isReached(false)){
 			representation += "REACHED";
-		}else if(this.isTraversed()){
+		}else if(this.isTraversed(false)){
 			representation += "TRAVERSED";
 		}else{
 			representation += "NONE";

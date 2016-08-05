@@ -28,11 +28,7 @@ public class JoinPseudostateActivation extends PseudostateActivation {
 		while (isReady && i < this.incomingTransitionActivations.size()) {
 			TransitionActivation transitionActivation = this.incomingTransitionActivations.get(i);
 			if (enteringTransition != transitionActivation) {
-				if(staticCheck){
-					isReady = transitionActivation.analyticalStatus == TransitionMetadata.TRAVERSED;
-				}else{
-					isReady = transitionActivation.status == TransitionMetadata.TRAVERSED;
-				}
+				isReady = transitionActivation.isTraversed(staticCheck);
 			}
 			i++;
 		}

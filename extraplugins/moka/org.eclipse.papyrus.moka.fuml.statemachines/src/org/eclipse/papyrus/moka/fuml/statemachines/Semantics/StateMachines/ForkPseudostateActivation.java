@@ -16,7 +16,6 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 import java.util.Iterator;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.TransitionActivation.TransitionMetadata;
 
 public class ForkPseudostateActivation extends PseudostateActivation {
 
@@ -29,11 +28,7 @@ public class ForkPseudostateActivation extends PseudostateActivation {
 		while(isExitable && i < this.outgoingTransitionActivations.size()){
 			TransitionActivation transitionActivation = this.outgoingTransitionActivations.get(i);
 			if(transitionActivation != exitingTransition){
-				if(staticCheck){
-					isExitable = transitionActivation.analyticalStatus == TransitionMetadata.TRAVERSED;
-				}else{
-					isExitable = transitionActivation.status== TransitionMetadata.TRAVERSED;
-				}
+				isExitable = transitionActivation.isTraversed(staticCheck);
 			}
 			i++;
 		}
