@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.ui.command.AbstractPapyrusHandler;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
@@ -34,7 +35,7 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
  *
  *
  */
-public class OpenHandler extends AbstractModelExplorerHandler implements IExecutableExtension {
+public class OpenHandler extends AbstractPapyrusHandler implements IExecutableExtension {
 
 
 	/**
@@ -60,8 +61,9 @@ public class OpenHandler extends AbstractModelExplorerHandler implements IExecut
 	 * @return
 	 * @throws ExecutionException
 	 */
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final IPageManager pageManager = getPageManager();
+		final IPageManager pageManager = getPageManager(event);
 		if (pageManager == null) {
 			return null;
 		}
@@ -127,6 +129,7 @@ public class OpenHandler extends AbstractModelExplorerHandler implements IExecut
 	 * @param data
 	 * @throws CoreException
 	 */
+	@Override
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
 		if (!(data instanceof Hashtable)) {
 			return;

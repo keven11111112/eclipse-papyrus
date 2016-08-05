@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.ui.command.AbstractPapyrusHandler;
 import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 
 /**
@@ -33,7 +34,7 @@ import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
  *
  *
  */
-public class CloseHandler extends AbstractModelExplorerHandler implements IExecutableExtension {
+public class CloseHandler extends AbstractPapyrusHandler implements IExecutableExtension {
 
 	/** parameters for this action */
 	/**

@@ -16,7 +16,9 @@ package org.eclipse.papyrus.views.modelexplorer.handler;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.ui.command.AbstractPapyrusHandler;
 
 /**
  * Handler for the Undo Action
@@ -24,7 +26,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  *
  *
  */
-public class UndoHandler extends AbstractModelExplorerHandler {
+public class UndoHandler extends AbstractPapyrusHandler {
 
 	/**
 	 *
@@ -35,7 +37,7 @@ public class UndoHandler extends AbstractModelExplorerHandler {
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		EditingDomain domain = getEditingDomain();
+		EditingDomain domain = getEditingDomain(event);
 		if (domain != null) {
 			domain.getCommandStack().undo();
 		}
@@ -49,8 +51,14 @@ public class UndoHandler extends AbstractModelExplorerHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		EditingDomain domain = getEditingDomain();
-		if (domain != null) {
+		EditingDomain domain;
+		if (evaluationContext instanceof IEvaluationContext) {
+			domain = getEditingDomain((IEvaluationContext) evaluationContext);
+		} else {
+			domain = getEditingDomain((IEvaluationContext) null);
+		}
+
+		if (null != domain) {
 			setBaseEnabled(domain.getCommandStack().canUndo());
 		} else {
 			setBaseEnabled(false);

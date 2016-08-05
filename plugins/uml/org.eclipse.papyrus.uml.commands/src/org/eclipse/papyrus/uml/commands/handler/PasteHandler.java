@@ -36,8 +36,9 @@ public class PasteHandler extends AbstractEMFCommandHandler {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.AbstractEMFCommandHandler.handler.AbstractCommandHandler#getCommand()
+	 * @see org.eclipse.papyrus.uml.commands.handler.AbstractEMFCommandHandler#getCommand(org.eclipse.papyrus.infra.core.services.ServicesRegistry)
 	 *
+	 * @param registry
 	 * @return
 	 */
 	@Override
