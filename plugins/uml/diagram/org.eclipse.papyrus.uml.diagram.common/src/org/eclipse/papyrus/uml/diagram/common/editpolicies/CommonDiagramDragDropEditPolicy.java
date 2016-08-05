@@ -323,7 +323,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 			return cc;
 		}
 
-		if (linkVISUALID == null && nodeVISUALID != null) {
+		if ((linkVISUALID == null || linkVISUALID.isEmpty()) && nodeVISUALID != null) {
 			// The element to drop is a node
 			// Retrieve it's expected graphical parent
 			EObject graphicalParent = ((GraphicalEditPart) getHost()).resolveSemanticElement();
@@ -339,7 +339,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 
 		}
-		if (linkVISUALID != null) {
+		if (linkVISUALID != null && !linkVISUALID.isEmpty()) {
 			Collection<?> sources = linkmappingHelper.getSource((Element) droppedObject);
 			Collection<?> targets = linkmappingHelper.getTarget((Element) droppedObject);
 			if (sources.size() == 0 || targets.size() == 0) {
@@ -560,7 +560,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 * @return the creation node command
 	 */
 	protected ICommand getDefaultDropNodeCommand(EditPart hostEP, String semanticHint, Point absoluteLocation, EObject droppedObject, DropObjectsRequest request) {
-		List<View> existingViews = DiagramEditPartsUtil.findViews(droppedObject, getViewer());
+		DiagramEditPartsUtil.findViews(droppedObject, getViewer());
 
 		// only allow one view instance of a single element by diagram
 		// if(existingViews.isEmpty()) {
