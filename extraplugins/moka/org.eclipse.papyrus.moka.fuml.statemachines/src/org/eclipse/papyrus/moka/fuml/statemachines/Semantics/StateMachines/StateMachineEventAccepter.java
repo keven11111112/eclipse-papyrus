@@ -54,14 +54,14 @@ public class StateMachineEventAccepter extends EventAccepter{
 				for(Iterator<TransitionActivation> fireableTransitionsIterator = fireableTransitionActivations.iterator(); fireableTransitionsIterator.hasNext();){
 					fireableTransitionsIterator.next().fire(eventOccurrence);
 				}
-				// If the dispatched event was an CallEventOccurrence then check
-				// if the caller need to be released.
-				// FIXME: This moved on further updates to common behavior semantics
-				if(eventOccurrence instanceof CallEventOccurrence){
-					CallEventOccurrence callEventOccurrence = (CallEventOccurrence) eventOccurrence;
-					callEventOccurrence.execution.releaseCaller();
-				}
 			}
+		}
+		// If the dispatched event was an CallEventOccurrence then check
+		// if the caller need to be released.
+		// FIXME: This moved on further updates to common behavior semantics
+		if(eventOccurrence instanceof CallEventOccurrence){
+			CallEventOccurrence callEventOccurrence = (CallEventOccurrence) eventOccurrence;
+			callEventOccurrence.execution.releaseCaller();
 		}
 		Object_ context = this.registrationContext.context;
 		if(context!=null && context.objectActivation!=null){

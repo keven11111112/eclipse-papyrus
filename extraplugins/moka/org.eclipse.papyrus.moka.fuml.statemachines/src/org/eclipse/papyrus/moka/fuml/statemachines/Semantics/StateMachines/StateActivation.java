@@ -16,25 +16,19 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_SignalInstance;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ArrivalSignal;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ClassifierBehaviorInvocationEventAccepter;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.InvocationEventOccurrence;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalEventOccurrence;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.EventTriggeredExecution;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.SM_ObjectActivation;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.Region;
-import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.State;
-import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.Vertex;
 
 /**
@@ -396,35 +390,9 @@ public class StateActivation extends VertexActivation {
 		// Note: for the moment the evaluation is done with the assumption that the
 		// received event occurrence is a signal event occurrence. This will change
 		// as soon as other kind of event (e.g. call event) will be supported in fUML.
-		boolean deferred = false;
-		int i = 0;
-		while(!deferred && i < ((State) this.node).getDeferrableTriggers().size()){
-			Trigger trigger = ((State) this.node).getDeferrableTriggers().get(i);
-			if(eventOccurrence instanceof SignalEventOccurrence
-					&& trigger.getEvent() instanceof SignalEvent){
-				SignalInstance signalInstance = ((SignalEventOccurrence)eventOccurrence).signalInstance;
-				SignalEvent signalEvent = (SignalEvent) trigger.getEvent();
-				deferred = signalInstance.type == signalEvent.getSignal();
-				if(deferred && !trigger.getPorts().isEmpty() 
-						&& signalInstance instanceof CS_SignalInstance){
-					int j = 0;
-					Port matchingPort = null;
-					while(matchingPort==null && j < trigger.getPorts().size()){
-						Port currentPort = trigger.getPorts().get(j);
-						if(((CS_SignalInstance)signalInstance).interactionPoint.definingPort==currentPort){
-							matchingPort = currentPort;
-						}
-						j++;
-					}
-					if(matchingPort==null){
-						deferred = false;
-					}
-				}
-			}
-			i++;
-		}
+		boolean deferred = this.match(eventOccurrence, ((State)this.node).getDeferrableTriggers());
 		if(deferred){
-			i = 0;
+			int i = 0;
 			TransitionActivation overridingTransitionActivation = null;
 			while(overridingTransitionActivation == null && i < this.outgoingTransitionActivations.size()){
 				TransitionActivation currentTransitionActivation = this.outgoingTransitionActivations.get(i);
