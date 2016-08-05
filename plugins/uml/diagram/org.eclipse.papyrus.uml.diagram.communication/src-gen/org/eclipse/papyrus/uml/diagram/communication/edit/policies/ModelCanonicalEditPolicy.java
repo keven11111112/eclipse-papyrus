@@ -211,7 +211,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		for (Iterator<View> linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
 			Edge nextDiagramLink = (Edge) linksIterator.next();
 			String diagramLinkVisualID = UMLVisualIDRegistry.getVisualID(nextDiagramLink);
-			if (diagramLinkVisualID == null) {
+			if (diagramLinkVisualID == null || diagramLinkVisualID.isEmpty()) {
 				if (nextDiagramLink.getSource() != null && nextDiagramLink.getTarget() != null) {
 					linksIterator.remove();
 				}

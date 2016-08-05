@@ -132,7 +132,7 @@ public class UMLVisualIDRegistry {
 			if (ComponentDiagramEditPart.MODEL_ID.equals(view.getType())) {
 				return ComponentDiagramEditPart.VISUAL_ID;
 			} else {
-				return null;
+				return "";
 			}
 		}
 		return org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.getVisualID(view.getType());
@@ -172,7 +172,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getDiagramVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
 		return ComponentDiagramEditPart.VISUAL_ID;
 	}
@@ -182,12 +182,12 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getNodeVisualID(View containerView, EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
 		String containerModelID = org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry
 				.getModelID(containerView);
 		if (!ComponentDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			return null;
+			return "";
 		}
 		String containerVisualID;
 		if (ComponentDiagramEditPart.MODEL_ID.equals(containerModelID)) {
@@ -197,7 +197,7 @@ public class UMLVisualIDRegistry {
 			if (containerView instanceof Diagram) {
 				containerVisualID = ComponentDiagramEditPart.VISUAL_ID;
 			} else {
-				return null;
+				return "";
 			}
 		}
 		if (containerVisualID != null) {
@@ -395,7 +395,7 @@ public class UMLVisualIDRegistry {
 				break;
 			}
 		}
-		return null;
+		return "";
 	}
 
 	/**
@@ -843,7 +843,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
 		if (UMLPackage.eINSTANCE.getUsage().isSuperTypeOf(domainElement.eClass())) {
 			return UsageEditPart.VISUAL_ID;
@@ -875,7 +875,7 @@ public class UMLVisualIDRegistry {
 		if (UMLPackage.eINSTANCE.getConnector().isSuperTypeOf(domainElement.eClass())) {
 			return ConnectorEditPart.VISUAL_ID;
 		}
-		return null;
+		return "";
 	}
 
 	/**

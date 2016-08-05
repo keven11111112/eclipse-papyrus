@@ -45,7 +45,7 @@ public class UMLVisualIDRegistry {
 			if (ProfileDiagramEditPart.MODEL_ID.equals(view.getType())) {
 				return ProfileDiagramEditPart.VISUAL_ID;
 			} else {
-				return null;
+				return "";
 			}
 		}
 		return org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry.getVisualID(view.getType());
@@ -85,7 +85,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getDiagramVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
 		return ProfileDiagramEditPart.VISUAL_ID;
 	}
@@ -1022,7 +1022,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
 		if (UMLPackage.eINSTANCE.getExtension().isSuperTypeOf(domainElement.eClass())) {
 			return ExtensionEditPart.VISUAL_ID;
@@ -1051,7 +1051,7 @@ public class UMLVisualIDRegistry {
 		if (UMLPackage.eINSTANCE.getPackageImport().isSuperTypeOf(domainElement.eClass())) {
 			return PackageImportEditPart.VISUAL_ID;
 		}
-		return null;
+		return "";
 	}
 
 	/**

@@ -46,7 +46,7 @@ public class UMLVisualIDRegistry {
 			if (CompositeStructureDiagramEditPart.MODEL_ID.equals(view.getType())) {
 				return CompositeStructureDiagramEditPart.VISUAL_ID;
 			} else {
-				return null;
+				return "";
 			}
 		}
 		return org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.getVisualID(view.getType());
@@ -86,7 +86,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getDiagramVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
 		return CompositeStructureDiagramEditPart.VISUAL_ID;
 	}
@@ -96,12 +96,11 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getNodeVisualID(View containerView, EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
-		String containerModelID = org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!CompositeStructureDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			return null;
+			return "";
 		}
 		String containerVisualID;
 		if (CompositeStructureDiagramEditPart.MODEL_ID.equals(containerModelID)) {
@@ -111,7 +110,7 @@ public class UMLVisualIDRegistry {
 			if (containerView instanceof Diagram) {
 				containerVisualID = CompositeStructureDiagramEditPart.VISUAL_ID;
 			} else {
-				return null;
+				return "";
 			}
 		}
 		if (containerVisualID != null) {
@@ -2612,7 +2611,7 @@ public class UMLVisualIDRegistry {
 				break;
 			}
 		}
-		return null;
+		return "";
 	}
 
 	/**
@@ -5926,7 +5925,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
 		if (UMLPackage.eINSTANCE.getComponentRealization().isSuperTypeOf(domainElement.eClass())) {
 			return ComponentRealizationEditPart.VISUAL_ID;
@@ -5969,7 +5968,7 @@ public class UMLVisualIDRegistry {
 		if (UMLPackage.eINSTANCE.getInformationFlow().isSuperTypeOf(domainElement.eClass())) {
 			return InformationFlowEditPart.VISUAL_ID;
 		}
-		return null;
+		return "";
 	}
 
 	/**

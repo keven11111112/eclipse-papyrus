@@ -225,7 +225,7 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 				PackageableElement element = it.next();
 				if (!(element instanceof AssociationClass)) {
 					String visualID = UMLVisualIDRegistry.getNodeVisualID(viewObject, element);
-					if (visualID != null) {
+					if (visualID != null && !visualID.isEmpty()) {
 						ViewDescriptor descriptor = getViewDescriptor(element);
 						descriptors.add(descriptor);
 					}

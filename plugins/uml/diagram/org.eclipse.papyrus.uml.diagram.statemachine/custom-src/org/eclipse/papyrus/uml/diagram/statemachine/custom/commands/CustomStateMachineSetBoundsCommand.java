@@ -73,7 +73,7 @@ public class CustomStateMachineSetBoundsCommand extends AbstractTransactionalCom
 				if (currentNode.getLayoutConstraint() == null) {
 					currentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 				}
-				if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateMachineNameEditPart.VISUAL_ID ||UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateNameEditPartTN.VISUAL_ID ) {
+				if (UMLVisualIDRegistry.getVisualID(currentNode.getType()).equals(StateMachineNameEditPart.VISUAL_ID) ||UMLVisualIDRegistry.getVisualID(currentNode.getType()).equals(StateNameEditPartTN.VISUAL_ID) ) {
 					if ((size != null) && !size.equals(-1, -1)) {
 						Zone.setWidth(currentNode, size.width);
 						Zone.setHeight(currentNode, Zone.defaultHeader);
@@ -81,7 +81,7 @@ public class CustomStateMachineSetBoundsCommand extends AbstractTransactionalCom
 						Zone.setWidth(currentNode, Zone.defaultWidth);
 						Zone.setHeight(currentNode, Zone.defaultHeader);
 					}
-				} else if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateMachineCompartmentEditPart.VISUAL_ID || UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateCompartmentEditPartTN.VISUAL_ID) {
+				} else if (UMLVisualIDRegistry.getVisualID(currentNode.getType()).equals(StateMachineCompartmentEditPart.VISUAL_ID) || UMLVisualIDRegistry.getVisualID(currentNode.getType()).equals(StateCompartmentEditPartTN.VISUAL_ID)) {
 					Zone.setY(currentNode, Zone.defaultHeader);
 					if ((size != null) && !size.equals(-1, -1)) {
 						Zone.setWidth(currentNode, size.width);
@@ -103,7 +103,7 @@ public class CustomStateMachineSetBoundsCommand extends AbstractTransactionalCom
 							if (subCurrentNode.getLayoutConstraint() == null) {
 								subCurrentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 							}
-							if (UMLVisualIDRegistry.getVisualID(subCurrentNode.getType()) == RegionEditPart.VISUAL_ID) {
+							if (UMLVisualIDRegistry.getVisualID(subCurrentNode.getType()).equals(RegionEditPart.VISUAL_ID)) {
 								if ((size != null) && !size.equals(-1, -1)) {
 									Zone.setWidth(subCurrentNode, (i == nRegions - 1) ? size.width - width : size.width / nRegions);
 									Zone.setHeight(subCurrentNode, size.height - Zone.defaultHeader);

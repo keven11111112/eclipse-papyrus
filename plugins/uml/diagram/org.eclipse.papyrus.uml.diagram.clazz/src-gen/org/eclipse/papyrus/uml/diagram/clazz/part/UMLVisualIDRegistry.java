@@ -46,7 +46,7 @@ public class UMLVisualIDRegistry {
 			if (ModelEditPart.MODEL_ID.equals(view.getType())) {
 				return ModelEditPart.VISUAL_ID;
 			} else {
-				return null;
+				return "";
 			}
 		}
 		return org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getVisualID(view.getType());
@@ -70,13 +70,6 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	public static String getVisualID(String type) {
-		return type;
-	}
-
-	/**
-	 * @generated
-	 */
 	public static String getType(String visualID) {
 		return visualID;
 	}
@@ -86,7 +79,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getDiagramVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
 		return ModelEditPart.VISUAL_ID;
 	}
@@ -96,22 +89,20 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getNodeVisualID(View containerView, EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
-		String containerModelID = org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!ModelEditPart.MODEL_ID.equals(containerModelID)) {
-			return null;
+			return "";
 		}
 		String containerVisualID;
 		if (ModelEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = ModelEditPart.VISUAL_ID;
 			} else {
-				return null;
+				return "";
 			}
 		}
 		if (containerVisualID != null) {
@@ -791,7 +782,14 @@ public class UMLVisualIDRegistry {
 				break;
 			}
 		}
-		return null;
+		return "";
+	}
+
+	/**
+	 * @generated
+	 */
+	public static String getVisualID(String type) {
+		return type;
 	}
 
 	/**
@@ -1952,7 +1950,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
 		if (UMLPackage.eINSTANCE.getAssociationClass().isSuperTypeOf(domainElement.eClass())) {
 			return AssociationClassLinkEditPart.VISUAL_ID;
@@ -2012,7 +2010,7 @@ public class UMLVisualIDRegistry {
 		if (UMLPackage.eINSTANCE.getInformationFlow().isSuperTypeOf(domainElement.eClass())) {
 			return InformationFlowEditPart.VISUAL_ID;
 		}
-		return null;
+		return "";
 	}
 
 	/**

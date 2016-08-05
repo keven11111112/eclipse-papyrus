@@ -202,7 +202,7 @@ import xpt.diagram.updater.Utils_qvto
 	'''
 
 	override def unrecognizedVID(GenDiagram it) '''
-	return null;
+	return "";
 	'''
 
 	override def getVisualID(GenDiagram it) '''

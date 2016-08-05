@@ -74,7 +74,7 @@ public class CustomCompositeStateSetBoundsCommand extends AbstractTransactionalC
 					if (currentNode.getLayoutConstraint() == null) {
 						currentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 					}
-					if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateNameEditPart.VISUAL_ID) {
+					if (StateNameEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(currentNode.getType()))) {
 						if ((size != null) && !size.equals(-1, -1)) {
 							Zone.setWidth(currentNode, size.width);
 							Zone.setHeight(currentNode, size.height);
@@ -82,7 +82,7 @@ public class CustomCompositeStateSetBoundsCommand extends AbstractTransactionalC
 							Zone.setWidth(currentNode, 40);
 							Zone.setHeight(currentNode, 40);
 						}
-					} else if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateCompartmentEditPart.VISUAL_ID) {
+					} else if (StateCompartmentEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(currentNode.getType()))) {
 						Zone.setY(currentNode, 40);
 						if ((size != null) && !size.equals(-1, -1)) {
 							Zone.setWidth(currentNode, size.width);
@@ -103,7 +103,7 @@ public class CustomCompositeStateSetBoundsCommand extends AbstractTransactionalC
 					if (currentNode.getLayoutConstraint() == null) {
 						currentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 					}
-					if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateNameEditPart.VISUAL_ID) {
+					if (StateNameEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(currentNode.getType()))) {
 						if ((size != null) && !size.equals(-1, -1)) {
 							Zone.setWidth(currentNode, size.width);
 							Zone.setHeight(currentNode, Zone.defaultHeader);
@@ -111,7 +111,7 @@ public class CustomCompositeStateSetBoundsCommand extends AbstractTransactionalC
 							Zone.setWidth(currentNode, Zone.defaultWidth);
 							Zone.setHeight(currentNode, Zone.defaultHeader);
 						}
-					} else if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateCompartmentEditPart.VISUAL_ID) {
+					} else if (StateCompartmentEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(currentNode.getType()))) {
 						Zone.setY(currentNode, Zone.defaultHeader);
 						if ((size != null) && !size.equals(-1, -1)) {
 							Zone.setWidth(currentNode, size.width);
@@ -133,7 +133,7 @@ public class CustomCompositeStateSetBoundsCommand extends AbstractTransactionalC
 								if (subCurrentNode.getLayoutConstraint() == null) {
 									subCurrentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 								}
-								if (UMLVisualIDRegistry.getVisualID(subCurrentNode.getType()) == RegionEditPart.VISUAL_ID) {
+								if (RegionEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(subCurrentNode.getType()))) {
 									if ((size != null) && !size.equals(-1, -1)) {
 										Zone.setWidth(subCurrentNode, (i == nRegions - 1) ? size.width - width : size.width / nRegions);
 										Zone.setHeight(subCurrentNode, size.height - Zone.defaultHeader);

@@ -752,7 +752,7 @@ public class Zone {
 		if (view == null) {
 			return false;
 		}
-		return (UMLVisualIDRegistry.getVisualID(view.getType()) == RegionEditPart.VISUAL_ID);
+		return (UMLVisualIDRegistry.getVisualID(view.getType()).equals(RegionEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -781,7 +781,7 @@ public class Zone {
 		if (view == null) {
 			throw new IllegalArgumentException();
 		}
-		return (UMLVisualIDRegistry.getVisualID(view.getType()) == StateMachineEditPart.VISUAL_ID);
+		return (UMLVisualIDRegistry.getVisualID(view.getType()).equals(StateMachineEditPart.VISUAL_ID));
 	}
 
 	/**

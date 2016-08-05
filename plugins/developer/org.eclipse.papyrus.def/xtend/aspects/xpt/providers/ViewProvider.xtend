@@ -114,7 +114,7 @@ import xpt.editor.VisualIDRegistry
 		
 			«generatedMemberComment»«/* When diagram domain element is null only diagram kind is checked */»
 			protected boolean provides(org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation op) {
-				return «VisualIDRegistry::modelID(it)».equals(op.getSemanticHint())«IF domainDiagramElement != null» && «xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)»(getSemanticElement(op.getSemanticAdapter())) != null«ENDIF»;
+				return «VisualIDRegistry::modelID(it)».equals(op.getSemanticHint())«IF domainDiagramElement != null» && «xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)»(getSemanticElement(op.getSemanticAdapter())) != null && !«xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)»(getSemanticElement(op.getSemanticAdapter())).isEmpty()«ENDIF»;
 			}
 		
 			«generatedMemberComment»

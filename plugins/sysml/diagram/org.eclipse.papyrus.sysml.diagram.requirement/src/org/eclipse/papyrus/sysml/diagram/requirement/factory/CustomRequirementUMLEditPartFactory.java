@@ -29,10 +29,14 @@ public class CustomRequirementUMLEditPartFactory extends CustomUMLEditPartFactor
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
-			switch (UMLVisualIDRegistry.getVisualID(view)) {
-			// redefined classes to modify the method createNodePlate
-			case ClassNameEditPart.VISUAL_ID:
-				return new CustomRequirementNameEditPart(view);
+			String visualID = UMLVisualIDRegistry.getVisualID(view);
+
+			if (visualID != null) {
+				switch (visualID) {
+				// redefined classes to modify the method createNodePlate
+				case ClassNameEditPart.VISUAL_ID:
+					return new CustomRequirementNameEditPart(view);
+				}
 			}
 		}
 		return super.createEditPart(context, model);

@@ -59,7 +59,7 @@ public class CustomStateMachineWithDefaultRegionCreateNodeCommand extends Abstra
 		Iterator<?> it = stateMachineView.getChildren().iterator();
 		while ((compartmentView == null) && it.hasNext()) {
 			View currentView = (View) it.next();
-			if (UMLVisualIDRegistry.getVisualID(currentView.getType()) == StateMachineCompartmentEditPart.VISUAL_ID) {
+			if (UMLVisualIDRegistry.getVisualID(currentView.getType()).equals(StateMachineCompartmentEditPart.VISUAL_ID)) {
 				compartmentView = currentView;
 			}
 		}

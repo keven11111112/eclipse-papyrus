@@ -49,7 +49,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 				continue;
 			}
 			Association link = (Association) linkObject;
-			if (AssociationEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+			if (!AssociationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getEndTypes();
@@ -118,7 +118,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 					continue;
 				}
 				Association link = (Association) linkObject;
-				if (AssociationEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+				if (!AssociationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 					continue;
 				}
 				List<?> ends = link.getEndTypes();

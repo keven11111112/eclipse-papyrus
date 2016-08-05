@@ -32,17 +32,20 @@ public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
-			switch (UMLVisualIDRegistry.getVisualID(view)) {
-			// redefined classes to modify the method createNodePlate
+			String visualID = UMLVisualIDRegistry.getVisualID(view);
+			if(visualID != null) {
+				switch (visualID) {
+				// redefined classes to modify the method createNodePlate
 
-			case ModelEditPart.VISUAL_ID:
-				return new CustomModelEditPart(view);
-			case ModelEditPartCN.VISUAL_ID:
-				return new CustomModelEditPartCN(view);
-			case DependencyNodeEditPart.VISUAL_ID:
-				return new CustomDependencyNodeEditPart(view);
-			case DependencyBranchEditPart.VISUAL_ID:
-				return new CustomDependencyBranchEditPart(view);
+				case ModelEditPart.VISUAL_ID:
+					return new CustomModelEditPart(view);
+				case ModelEditPartCN.VISUAL_ID:
+					return new CustomModelEditPartCN(view);
+				case DependencyNodeEditPart.VISUAL_ID:
+					return new CustomDependencyNodeEditPart(view);
+				case DependencyBranchEditPart.VISUAL_ID:
+					return new CustomDependencyBranchEditPart(view);
+				}
 			}
 		}
 		return super.createEditPart(context, model);
