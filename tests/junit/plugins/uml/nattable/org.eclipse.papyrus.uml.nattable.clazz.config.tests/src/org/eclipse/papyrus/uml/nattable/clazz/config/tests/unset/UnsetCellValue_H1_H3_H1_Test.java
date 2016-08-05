@@ -19,6 +19,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectCellCommand;
+import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.ui.util.SelectionHelper;
@@ -83,7 +84,8 @@ public class UnsetCellValue_H1_H3_H1_Test extends AbstractUnsetCellValueTest {
 		layer.clear();
 		fixture.flushDisplayEvents();
 		ISelection selection = SelectionHelper.getCurrentSelection();
-		Assert.assertTrue(selection.isEmpty());
+		Assert.assertTrue("The selection (even if empty) must be a TableSelectionProvider", selection instanceof TableStructuredSelection); //$NON-NLS-1$
+		Assert.assertEquals("The empty selection must have table context as selection", manager.getTable().getContext(), ((TableStructuredSelection)selection).getFirstElement()); //$NON-NLS-1$
 		checkUnsetCellValueHandlerStatusAndExecuteCommandIfRequired(false);
 	}
 

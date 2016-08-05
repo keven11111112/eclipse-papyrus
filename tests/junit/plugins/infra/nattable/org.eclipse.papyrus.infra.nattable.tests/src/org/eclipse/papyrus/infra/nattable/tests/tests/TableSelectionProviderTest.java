@@ -34,6 +34,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.tests.Activator;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
@@ -151,7 +152,8 @@ public class TableSelectionProviderTest extends AbstractEditorTest {
 	public void testRowSelection() {
 		SelectionLayer selectionLayer = this.tableManager.getBodyLayerStack().getSelectionLayer();
 		selectionLayer.clear();
-		Assert.assertTrue(getCurrentSelection().isEmpty());
+		Assert.assertTrue("The selection (even if empty) must be a TableSelectionProvider", getCurrentSelection() instanceof TableStructuredSelection); //$NON-NLS-1$
+		Assert.assertEquals("The empty selection must have table context as selection", table.getContext(), ((TableStructuredSelection)getCurrentSelection()).getFirstElement()); //$NON-NLS-1$
 		this.nattable.doCommand(new TurnViewportOffCommand());
 		this.nattable.doCommand(new SelectRowsCommand(this.nattable, 2, 3, false, false));//select the row representing class1
 		this.nattable.doCommand(new TurnViewportOnCommand());
@@ -167,8 +169,8 @@ public class TableSelectionProviderTest extends AbstractEditorTest {
 	public void test_RowSelectionWithCTRL() {
 		SelectionLayer selectionLayer = this.tableManager.getBodyLayerStack().getSelectionLayer();
 		selectionLayer.clear();
-		Assert.assertTrue(getCurrentSelection().isEmpty());
-		Assert.assertTrue(getCurrentSelection().isEmpty());
+		Assert.assertTrue("The selection (even if empty) must be a TableSelectionProvider", getCurrentSelection() instanceof TableStructuredSelection); //$NON-NLS-1$
+		Assert.assertEquals("The empty selection must have table context as selection", table.getContext(), ((TableStructuredSelection)getCurrentSelection()).getFirstElement()); //$NON-NLS-1$
 		this.nattable.doCommand(new TurnViewportOffCommand());
 		this.nattable.doCommand(new SelectRowsCommand(this.nattable, 2, 3, false, false));//select the row representing class1
 		this.nattable.doCommand(new SelectRowsCommand(this.nattable, 2, 5, false, true));//select the row representing package
@@ -186,7 +188,8 @@ public class TableSelectionProviderTest extends AbstractEditorTest {
 	public void test_RowThenCellSelection() {
 		SelectionLayer selectionLayer = this.tableManager.getBodyLayerStack().getSelectionLayer();
 		selectionLayer.clear();
-		Assert.assertTrue(getCurrentSelection().isEmpty());
+		Assert.assertTrue("The selection (even if empty) must be a TableSelectionProvider", getCurrentSelection() instanceof TableStructuredSelection); //$NON-NLS-1$
+		Assert.assertEquals("The empty selection must have table context as selection", table.getContext(), ((TableStructuredSelection)getCurrentSelection()).getFirstElement()); //$NON-NLS-1$
 		this.nattable.doCommand(new TurnViewportOffCommand());
 		this.nattable.doCommand(new SelectRowsCommand(this.nattable, 2, 3, false, false));//select the row representing class1
 		this.nattable.doCommand(new SelectCellCommand(this.nattable, 5, 5, false, true));//select the cell package/members
@@ -205,7 +208,8 @@ public class TableSelectionProviderTest extends AbstractEditorTest {
 	public void test_CellThenRowSelection() {
 		SelectionLayer selectionLayer = this.tableManager.getBodyLayerStack().getSelectionLayer();
 		selectionLayer.clear();
-		Assert.assertTrue(getCurrentSelection().isEmpty());
+		Assert.assertTrue("The selection (even if empty) must be a TableSelectionProvider", getCurrentSelection() instanceof TableStructuredSelection); //$NON-NLS-1$
+		Assert.assertEquals("The empty selection must have table context as selection", table.getContext(), ((TableStructuredSelection)getCurrentSelection()).getFirstElement()); //$NON-NLS-1$
 		this.nattable.doCommand(new TurnViewportOffCommand());
 		this.nattable.doCommand(new SelectCellCommand(this.nattable, 5, 5, false, false));//select the cell package/members
 		this.nattable.doCommand(new SelectRowsCommand(this.nattable, 2, 3, false, true));//select the row representing class1
