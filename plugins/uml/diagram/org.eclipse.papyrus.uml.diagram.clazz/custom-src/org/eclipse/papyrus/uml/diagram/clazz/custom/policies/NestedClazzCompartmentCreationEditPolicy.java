@@ -80,8 +80,8 @@ public class NestedClazzCompartmentCreationEditPolicy extends DefaultCreationEdi
 		// drop of the object
 		IAdaptable elementAdapter = new EObjectAdapter(element);
 		String nodeVISUALID = UMLVisualIDRegistry.getNodeVisualID(((View) getHost().getModel()), element);
-		// If -1 then the node can node be create
-		if (nodeVISUALID == null) {
+		// If none then the node can node be create
+		if (nodeVISUALID == null || nodeVISUALID.isEmpty()) {
 			cc.compose(UnexecutableCommand.INSTANCE);
 		} else {
 			ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) UMLElementTypes.getElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, ((GraphicalEditPart) getHost()).getDiagramPreferencesHint());

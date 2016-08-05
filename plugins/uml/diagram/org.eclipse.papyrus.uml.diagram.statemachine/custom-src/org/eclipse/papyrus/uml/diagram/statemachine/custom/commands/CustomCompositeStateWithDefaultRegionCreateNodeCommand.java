@@ -58,7 +58,7 @@ public class CustomCompositeStateWithDefaultRegionCreateNodeCommand extends Abst
 		Iterator<?> it = stateView.getChildren().iterator();
 		while ((compartmentView == null) && it.hasNext()) {
 			View currentView = (View) it.next();
-			if (UMLVisualIDRegistry.getVisualID(currentView.getType()) == StateCompartmentEditPart.VISUAL_ID) {
+			if (StateCompartmentEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(currentView.getType()))) {
 				compartmentView = currentView;
 			}
 		}

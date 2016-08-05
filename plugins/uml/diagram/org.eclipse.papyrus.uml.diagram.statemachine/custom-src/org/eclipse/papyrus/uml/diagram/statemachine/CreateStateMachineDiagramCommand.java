@@ -146,10 +146,10 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 						if (currentNode.getLayoutConstraint() == null) {
 							currentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 						}
-						if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateMachineNameEditPart.VISUAL_ID) {
+						if (StateMachineNameEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(currentNode.getType()))) {
 							Zone.setWidth(currentNode, defaultWidth);
 							Zone.setHeight(currentNode, defaultHeader);
-						} else if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateMachineCompartmentEditPart.VISUAL_ID) {
+						} else if (StateMachineCompartmentEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(currentNode.getType()))) {
 							Zone.setY(currentNode, defaultHeader);
 							Zone.setWidth(currentNode, defaultWidth);
 							Zone.setHeight(currentNode, defaultHeight - defaultHeader);
@@ -194,10 +194,10 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 						if (currentNode.getLayoutConstraint() == null) {
 							currentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 						}
-						if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateNameEditPartTN.VISUAL_ID) {
+						if (StateNameEditPartTN.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(currentNode.getType()))) {
 							Zone.setWidth(currentNode, defaultWidth);
 							Zone.setHeight(currentNode, defaultHeader);
-						} else if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateCompartmentEditPartTN.VISUAL_ID) {
+						} else if (StateCompartmentEditPartTN.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(currentNode.getType()))) {
 							Zone.setY(currentNode, defaultHeader);
 							Zone.setWidth(currentNode, defaultWidth);
 							Zone.setHeight(currentNode, defaultHeight - defaultHeader);

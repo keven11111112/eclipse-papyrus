@@ -1123,7 +1123,7 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 		for (Object o : models) {
 			if (o instanceof View) {
 				View view = (View) o;
-				if (UMLVisualIDRegistry.getVisualID(view.getType()) == LifelineEditPart.VISUAL_ID && view.getElement() instanceof Lifeline) {
+				if (LifelineEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(view.getType()))  && view.getElement() instanceof Lifeline) {
 					return true;
 				}
 			}

@@ -144,7 +144,7 @@ public class UMLVisualIDRegistry {
 			if (UseCaseDiagramEditPart.MODEL_ID.equals(view.getType())) {
 				return UseCaseDiagramEditPart.VISUAL_ID;
 			} else {
-				return null;
+				return "";
 			}
 		}
 		return org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry.getVisualID(view.getType());
@@ -184,7 +184,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getDiagramVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
 		return UseCaseDiagramEditPart.VISUAL_ID;
 	}
@@ -194,12 +194,12 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getNodeVisualID(View containerView, EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
 		String containerModelID = org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry
 				.getModelID(containerView);
 		if (!UseCaseDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			return null;
+			return "";
 		}
 		String containerVisualID;
 		if (UseCaseDiagramEditPart.MODEL_ID.equals(containerModelID)) {
@@ -209,7 +209,7 @@ public class UMLVisualIDRegistry {
 			if (containerView instanceof Diagram) {
 				containerVisualID = UseCaseDiagramEditPart.VISUAL_ID;
 			} else {
-				return null;
+				return "";
 			}
 		}
 		if (containerVisualID != null) {
@@ -353,7 +353,7 @@ public class UMLVisualIDRegistry {
 				break;
 			}
 		}
-		return null;
+		return "";
 	}
 
 	/**
@@ -774,7 +774,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
-			return null;
+			return "";
 		}
 		if (UMLPackage.eINSTANCE.getInclude().isSuperTypeOf(domainElement.eClass())) {
 			return IncludeEditPart.VISUAL_ID;
@@ -811,7 +811,7 @@ public class UMLVisualIDRegistry {
 		if (UMLPackage.eINSTANCE.getPackageImport().isSuperTypeOf(domainElement.eClass())) {
 			return PackageImportEditPart.VISUAL_ID;
 		}
-		return null;
+		return "";
 	}
 
 	/**

@@ -305,7 +305,7 @@ public class ContainmentHelper extends ElementHelper {
 	 * @return true, if is containment link
 	 */
 	public static boolean isContainmentLink(Edge edge) {
-		return UMLVisualIDRegistry.getVisualID(edge) == ContainmentLinkEditPart.VISUAL_ID;
+		return ContainmentLinkEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(edge));
 	}
 
 	/**

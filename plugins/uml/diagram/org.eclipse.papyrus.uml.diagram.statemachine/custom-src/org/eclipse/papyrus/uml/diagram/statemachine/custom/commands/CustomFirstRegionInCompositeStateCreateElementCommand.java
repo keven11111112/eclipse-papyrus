@@ -148,10 +148,10 @@ public class CustomFirstRegionInCompositeStateCreateElementCommand extends Abstr
 				if (currentNode.getLayoutConstraint() == null) {
 					currentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 				}
-				if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateNameEditPart.VISUAL_ID) {
+				if (StateNameEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(currentNode.getType()))) {
 					Zone.setWidth(currentNode, width);
 					Zone.setHeight(currentNode, Zone.defaultHeader);
-				} else if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateCompartmentEditPart.VISUAL_ID) {
+				} else if (StateCompartmentEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(currentNode.getType()))) {
 					Zone.setY(currentNode, Zone.defaultHeader);
 					Zone.setWidth(currentNode, width);
 					Zone.setHeight(currentNode, height - Zone.defaultHeader);
@@ -163,7 +163,7 @@ public class CustomFirstRegionInCompositeStateCreateElementCommand extends Abstr
 							if (subCurrentNode.getLayoutConstraint() == null) {
 								subCurrentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 							}
-							if (UMLVisualIDRegistry.getVisualID(subCurrentNode.getType()) == RegionEditPart.VISUAL_ID) {
+							if (RegionEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(subCurrentNode.getType()))) {
 								Zone.setWidth(subCurrentNode, width);
 								Zone.setHeight(subCurrentNode, height - Zone.defaultHeader);
 							}

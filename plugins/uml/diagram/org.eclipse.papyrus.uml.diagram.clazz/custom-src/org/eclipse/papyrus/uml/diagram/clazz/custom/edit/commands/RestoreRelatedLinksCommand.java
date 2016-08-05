@@ -223,7 +223,7 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 		for (Iterator<Edge> linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
 			Edge nextDiagramLink = linksIterator.next();
 			String diagramLinkVisualID = UMLVisualIDRegistry.getVisualID(nextDiagramLink);
-			if (diagramLinkVisualID == null) {
+			if (diagramLinkVisualID == null || diagramLinkVisualID.isEmpty() ) {
 				if (nextDiagramLink.getSource() != null && nextDiagramLink.getTarget() != null) {
 					linksIterator.remove();
 				}
