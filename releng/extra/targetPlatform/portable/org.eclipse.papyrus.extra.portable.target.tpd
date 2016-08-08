@@ -60,6 +60,15 @@ location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.
 	org.eclipse.zest.layouts
 }
 
+//manualUpdate
+
+location elk "http://download.eclipse.org/elk/updates/releases/0.1.0/" {
+	  org.eclipse.elk.feature.feature.group
+	  org.eclipse.elk.ui.feature.feature.group
+	  org.eclipse.elk.gmf.feature.feature.group
+}
+
+
 //Transitive dependencies
 
 //updateFrom("Graphiti",0)

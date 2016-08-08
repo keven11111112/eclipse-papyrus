@@ -226,6 +226,10 @@
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.sysml.nattable.feature</module>
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.sysml.properties.feature</module>
 
+		<!--  ELK Integration -->
+		<module>../../extraplugins/elk/org.eclipse.papyrus.infra.gmfdiag.elk</module>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.infra.gmfdiag.elk.feature</module>
+
 		<module>site</module>
 		<module>targetPlatform</module>
 	</modules>

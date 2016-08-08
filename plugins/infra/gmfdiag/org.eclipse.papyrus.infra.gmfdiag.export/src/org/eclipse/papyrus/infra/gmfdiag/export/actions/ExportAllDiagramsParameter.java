@@ -42,6 +42,9 @@ public class ExportAllDiagramsParameter {
 	/** The model set. */
 	private ModelSet modelSet = null;
 
+	/** boolean to check if the result of the generation has to be displayed */
+	private boolean isDisplayStatus = true;
+
 	/**
 	 * Constructor.
 	 *
@@ -165,6 +168,20 @@ public class ExportAllDiagramsParameter {
 		this.modelSet = modelSet;
 	}
 
-
+	/**
+	 * Returns <code>true</code> if the status has to be displayed at the end of the export.
+	 * @return <code>true</code> if the status has to be displayed at the end of the export
+	 */
+	public boolean isDisplayStatus() {
+		return isDisplayStatus;
+	}
+	
+	/**
+	 * Indicates if the status has to be displayed at the end of the export 
+	 * @param isDisplayStatus <code>true</code> if the status has to be displayed at the end of the export.
+	 */
+	public void setDisplayStatus(boolean isDisplayStatus) {
+		this.isDisplayStatus = isDisplayStatus;
+	}
 
 }
