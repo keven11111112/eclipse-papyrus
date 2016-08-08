@@ -26,7 +26,7 @@ Require-Bundle: org.eclipse.ui.navigator;bundle-version="[3.6.0,4.0.0)";visibili
  org.eclipse.papyrus.infra.ui;bundle-version="[1.2.0,2.0.0)";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.views.modelexplorer.Activator

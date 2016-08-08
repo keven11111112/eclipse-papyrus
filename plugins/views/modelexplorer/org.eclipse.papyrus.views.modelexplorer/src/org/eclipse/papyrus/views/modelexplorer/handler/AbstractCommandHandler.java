@@ -53,6 +53,11 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 	private List<?> selection = Collections.EMPTY_LIST;
 
 	/**
+	 * The current IEvaluationContext.
+	 */
+	private IEvaluationContext currentContext = null;
+
+	/**
 	 * <pre>
 	 *
 	 * Returns the command to execute (to be implemented
@@ -66,6 +71,15 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 
 	protected List<?> getSelection() {
 		return selection;
+	}
+
+	/**
+	 * Returns the current IEvaluationContext used on the AbstractCommandHandler.
+	 * 
+	 * @return
+	 */
+	protected IEvaluationContext getCurrentContext() {
+		return currentContext;
 	}
 
 	/**
@@ -174,6 +188,7 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 	@Override
 	public void setEnabled(Object evaluationContext) {
 		if (evaluationContext instanceof IEvaluationContext) {
+			currentContext = (IEvaluationContext) evaluationContext;
 			Object selection = ((IEvaluationContext) evaluationContext).getDefaultVariable();
 			if (selection instanceof Collection<?>) {
 				this.selection = (selection instanceof List<?>) ? (List<?>) selection : new java.util.ArrayList<Object>((Collection<?>) selection);

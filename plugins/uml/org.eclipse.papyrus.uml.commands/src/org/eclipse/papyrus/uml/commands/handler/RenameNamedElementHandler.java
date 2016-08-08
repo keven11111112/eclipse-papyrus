@@ -48,7 +48,7 @@ public class RenameNamedElementHandler extends AbstractCommandHandler {
 	 */
 	@Override
 	protected Command getCommand() {
-		TransactionalEditingDomain editingDomain = getEditingDomain();
+		TransactionalEditingDomain editingDomain = getEditingDomain(getCurrentContext());
 		List<EObject> selectedElements = getSelectedElements();
 		if (selectedElements.size() == 1 && selectedElements.get(0) instanceof NamedElement) {
 			final NamedElement namedElement = (NamedElement) selectedElements.get(0);
