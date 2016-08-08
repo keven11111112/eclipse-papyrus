@@ -38,6 +38,9 @@ public class AllTests {
 		/* Migration tests */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.migration.rsa.tests.AllTests.class));
 
+		/* ELK tests */
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.gmfdiag.elk.tests.AllTests.class));
+		
 		if (System.getProperty("no.SysML.tests") == null) {
 			// SysML tests
 			suiteClasses.addAll(AllSysMLTests.suiteClasses);
