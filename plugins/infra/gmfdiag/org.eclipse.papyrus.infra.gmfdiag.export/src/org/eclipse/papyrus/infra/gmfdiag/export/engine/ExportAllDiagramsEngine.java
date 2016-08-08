@@ -459,7 +459,7 @@ public class ExportAllDiagramsEngine {
 		}
 
 		// Display dialog to validate export
-		if (workbenchWindow != null && workbenchWindow.getShell() != null) {
+		if (workbenchWindow != null && workbenchWindow.getShell() != null && exportParameter.isDisplayStatus()) {
 			Display.getDefault().syncExec(new Runnable() {
 
 				@Override

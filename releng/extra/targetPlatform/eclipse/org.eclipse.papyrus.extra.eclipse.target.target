@@ -151,6 +151,12 @@
       <repository id="gef" location="file:/home/data/httpd/download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.elk.feature.feature.group" version="0.1.0.201607121925"/>
+      <unit id="org.eclipse.elk.ui.feature.feature.group" version="0.1.0.201607121925"/>
+      <unit id="org.eclipse.elk.gmf.feature.feature.group" version="0.1.0.201607121925"/>
+      <repository id="elk" location="file:/home/data/httpd/download.eclipse.org/elk/updates/releases/0.1.0/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="graphiti" location="file:/home/data/httpd/download.eclipse.org/graphiti/updates/0.13.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">

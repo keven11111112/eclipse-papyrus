@@ -1,5 +1,11 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.gmfdiag.export
+Export-Package: org.eclipse.papyrus.infra.gmfdiag.export,
+ org.eclipse.papyrus.infra.gmfdiag.export.actions,
+ org.eclipse.papyrus.infra.gmfdiag.export.engine,
+ org.eclipse.papyrus.infra.gmfdiag.export.messages,
+ org.eclipse.papyrus.infra.gmfdiag.export.propertytester,
+ org.eclipse.papyrus.infra.gmfdiag.export.utils,
+ org.eclipse.papyrus.infra.gmfdiag.export.wizard
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.infra.services.validation;bundle-version="[2.0.0,3.0.0)",
