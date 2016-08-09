@@ -119,16 +119,22 @@ public class DropStrategyEditor extends MultipleReferenceEditor {
 					if (selection instanceof IStructuredSelection && !selection.isEmpty()) {
 						IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 
-						Boolean isActive = findIsActive(structuredSelection);
+						Activation isActive = findIsActive(structuredSelection);
 
-						Iterator<?> iterator = structuredSelection.iterator();
-						while (iterator.hasNext()) {
-							Object element = iterator.next();
-							if (element instanceof DropStrategy) {
-								DropStrategy strategy = (DropStrategy) element;
-								Button button = checkboxes.get(strategy);
+						if (isActive != Activation.UNDEFINED) {
+							Iterator<?> iterator = structuredSelection.iterator();
+							while (iterator.hasNext()) {
+								Object element = iterator.next();
+								if (element instanceof DropStrategy) {
+									DropStrategy strategy = (DropStrategy) element;
+									Button button = checkboxes.get(strategy);
 
-								updateStrategy(strategy, button, isActive);
+									if (isActive != Activation.TRUE) {
+										updateStrategy(strategy, button, true);
+									} else {
+										updateStrategy(strategy, button, false);
+									}
+								}
 							}
 						}
 
@@ -143,18 +149,26 @@ public class DropStrategyEditor extends MultipleReferenceEditor {
 		});
 	}
 
+	private enum Activation {
+		TRUE, FALSE, UNDEFINED
+	}
+
 	// Returns the new status of the first DropStrategy in the selection.
 	// Returns null if the selection doesn't contain any DropStrategy
-	private Boolean findIsActive(IStructuredSelection selection) {
+	private Activation findIsActive(IStructuredSelection selection) {
 		Iterator<?> iterator = selection.iterator();
 		while (iterator.hasNext()) {
 			Object element = iterator.next();
 			if (element instanceof DropStrategy) {
 				boolean isActive = DropStrategyManager.instance.isActive((DropStrategy) element); // Current status
-				return !isActive; // New status (Toggle)
+				if (isActive) {
+					return Activation.FALSE;
+				} else {
+					return Activation.TRUE;
+				}
 			}
 		}
-		return null; // No DropStrategy found in the selection
+		return Activation.UNDEFINED; // No DropStrategy found in the selection
 	}
 
 	private void updateStrategy(DropStrategy strategy, Button button, boolean isActive) {

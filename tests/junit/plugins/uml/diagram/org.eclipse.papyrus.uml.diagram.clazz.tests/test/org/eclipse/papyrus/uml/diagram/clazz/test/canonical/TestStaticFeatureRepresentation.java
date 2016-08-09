@@ -29,7 +29,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomUMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPart;

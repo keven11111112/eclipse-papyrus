@@ -43,7 +43,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
+import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.ui.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;

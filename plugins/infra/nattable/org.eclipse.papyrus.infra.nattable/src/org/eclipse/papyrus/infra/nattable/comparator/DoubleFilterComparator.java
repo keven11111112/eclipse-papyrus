@@ -60,9 +60,9 @@ public class DoubleFilterComparator implements Comparator<Object> {
 			Double d1 = (Double) o1;
 			Double d2 = null;
 			if (o2 instanceof Double) {
-				if (TypeUtils.isDoubleValue((String) o2)) {
+				if (TypeUtils.isDoubleValue(o2.toString())) {
 					// big decimal to avoid to get comma as separator instead of dot
-					d2 = new BigDecimal((String) o2).doubleValue();
+					d2 = new BigDecimal(o2.toString()).doubleValue();
 					return d1.compareTo(d2);
 				}
 				return FilterPreferences.INCONSISTENT_VALUE;

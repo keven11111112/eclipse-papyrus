@@ -279,7 +279,7 @@ public class PolicyChecker {
 	 *
 	 * @return The current policy checker
 	 */
-	public static PolicyChecker getCurrent() {
+	public static synchronized PolicyChecker getCurrent() {
 		if (currentPolicyChecker == null) {
 			currentPolicyChecker = new PolicyChecker();
 			PolicyCheckerNotifier.getInstance().fire(currentPolicyChecker);
@@ -462,14 +462,14 @@ public class PolicyChecker {
 		if (!applicableViewpoints.contains(vp)) {
 			// This viewpoint
 			applicableViewpoints.add(vp);
-			
-			// Its contributions, recursively.  Process these first because they
+
+			// Its contributions, recursively. Process these first because they
 			// are more likely to be more pertinent to the selected stakeholder
 			// than the inherited viewpoint(s)
 			for (PapyrusViewpoint contrib : getContributionsTo(vp)) {
 				buildApplicableViewpoints(contrib);
 			}
-			
+
 			// Its parents, recursively
 			if ((vp.getParent() != null) && !vp.getParent().eIsProxy()) {
 				buildApplicableViewpoints(vp.getParent());

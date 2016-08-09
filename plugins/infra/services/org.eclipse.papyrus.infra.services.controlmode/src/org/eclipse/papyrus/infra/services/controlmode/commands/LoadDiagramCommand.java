@@ -47,7 +47,9 @@ public class LoadDiagramCommand implements Runnable {
 	 * Initializes me as a no-op.
 	 */
 	public LoadDiagramCommand() {
-		this(null, null);
+		super();
+		this.pageManager = null;
+		this.uri = null;
 	}
 
 

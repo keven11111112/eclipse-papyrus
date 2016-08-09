@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 /**
  * The constraint which allow to determinate if this is a nattable editor as current editor part and a flat table.
  * 
- * @since 2.1
+ * @since 2.2
  */
 public class IsEObjectInFlatTableConstraint extends IsEObjectInTableConstraint {
 

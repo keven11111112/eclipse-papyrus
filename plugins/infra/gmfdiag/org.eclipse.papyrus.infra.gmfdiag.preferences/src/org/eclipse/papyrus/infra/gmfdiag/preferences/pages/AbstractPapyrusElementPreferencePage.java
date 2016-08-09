@@ -14,10 +14,10 @@ package org.eclipse.papyrus.infra.gmfdiag.preferences.pages;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.FontGroup;
+import org.eclipse.papyrus.infra.ui.preferences.AbstractPapyrusPreferencePage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Layout;
 
 /**
@@ -35,7 +35,6 @@ import org.eclipse.swt.widgets.Layout;
  */
 public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyrusPreferencePage {
 
-	private Group toolbar;
 
 	protected Layout getToolbarLayout() {
 		return new GridLayout(2, false);
@@ -56,13 +55,10 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 	@Override
 	protected void createPageContents(Composite parent) {
 		FontGroup fontGroupComposite = new FontGroup(parent, getPreferenceKey(), this);
-		addAbstractGroup(fontGroupComposite);
+		addPreferenceGroup(fontGroupComposite);
 
 	}
 
-	protected Group getToolbar() {
-		return toolbar;
-	}
 
 	/**
 	 * Get the specified preference type associated with this preference page.

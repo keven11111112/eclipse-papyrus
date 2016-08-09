@@ -29,10 +29,6 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
  */
 public class ErrorServiceTypeEntry extends ServiceTypeEntry {
 
-	/**
-	 * The original service descriptor.
-	 */
-	private ServiceDescriptor descriptor;
 
 	/**
 	 *
@@ -53,7 +49,7 @@ public class ErrorServiceTypeEntry extends ServiceTypeEntry {
 	 */
 	@Override
 	public Object getServiceInstance() throws ServiceException {
-		throw new BadStateException("Service has not started.", ServiceState.error, descriptor); //$NON-NLS-1$
+		throw new BadStateException("Service has not started.", ServiceState.error, serviceDescriptor); //$NON-NLS-1$
 	}
 
 	/**

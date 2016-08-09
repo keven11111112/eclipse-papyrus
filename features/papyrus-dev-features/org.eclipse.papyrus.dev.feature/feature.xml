@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.dev.feature"
       label="Papyrus Developer Tools (Incubation)"
-      version="2.0.0.qualifier"
+      version="3.0.0.qualifier"
       provider-name="Eclipse Modeling Project">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">

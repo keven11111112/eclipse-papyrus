@@ -45,7 +45,7 @@ public class BlockDefinitionDiagramLinkPreferencePage extends AbstractPapyrusLin
 		// Add label visibility group
 		if (!labelsList.isEmpty()) {
 			OrderedLabelGroup compartmentGroup = new OrderedLabelGroup(parent, getPreferenceKey(), this, labelsList);
-			addAbstractGroup(compartmentGroup);
+			addPreferenceGroup(compartmentGroup);
 		}
 
 	}

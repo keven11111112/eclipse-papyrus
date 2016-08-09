@@ -56,7 +56,7 @@ import org.eclipse.swt.widgets.Display;
  * 
  * Duplicated and adapted code from nattable
  */
-public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable */{
+public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable */ {
 
 	/**
 	 * Replacement for the pipe character | that is used for persistence.
@@ -113,7 +113,7 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 	/* Flag to avoid reentrant call to refresh */
 	private AtomicBoolean isFilterRefreshing = new AtomicBoolean(false);
 
-//	private ResourceSetListener listener;
+	// private ResourceSetListener listener;
 
 
 	/**
@@ -135,69 +135,69 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 		this.columnHeaderLayer = columnHeaderLayer;
 		this.columnHeaderDataProvider = columnHeaderDataProvider;
 		this.manager = tableManager;
-//		TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(this.manager.getTable());
-//		listener = new ResourceSetListener() {
-//
-//			@Override
-//			public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
-//				// TODO Auto-generated method stub
-//				return null;
-//			}
-//
-//			@Override
-//			public void resourceSetChanged(ResourceSetChangeEvent event) {
-//				// TODO Auto-generated method stub
-//				for (Notification current : event.getNotifications()) {
-//					if (current.getNotifier() instanceof IAxis) {
-//						IAxis axis = (IAxis) current.getNotifier();
-//						EObject parent = axis.eContainer();
-//						if (current.getOldValue() instanceof NamedStyle) {
-//							NamedStyle style = (NamedStyle) current.getOldValue();
-//							if (style.getName().equals(IFilterConfiguration.FILTER_VALUE_TO_MATCH)) {
-//								int index = manager.getColumnElementsList().indexOf(axis);
-//								getDataValue(index, 0);
-//								applyFilter();
-//							}
-//						}
-//						if (current.getNewValue() instanceof NamedStyle) {
-//							NamedStyle style = (NamedStyle) current.getOldValue();
-//							if (style.getName().equals(IFilterConfiguration.FILTER_VALUE_TO_MATCH)) {
-//								int index = manager.getColumnElementsList().indexOf(axis);
-//								getDataValue(index, 0);
-//								applyFilter();
-//							}
-//						}
-//					}
-//
-//				}
-//
-//			}
-//
-//			@Override
-//			public boolean isPrecommitOnly() {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//
-//			@Override
-//			public boolean isPostcommitOnly() {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//
-//			@Override
-//			public boolean isAggregatePrecommitListener() {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//
-//			@Override
-//			public NotificationFilter getFilter() {
-//				// TODO Auto-generated method stub
-//				return null;
-//			}
-//		};
-//		domain.addResourceSetListener(listener);
+		// TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(this.manager.getTable());
+		// listener = new ResourceSetListener() {
+		//
+		// @Override
+		// public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
+		// // TODO Auto-generated method stub
+		// return null;
+		// }
+		//
+		// @Override
+		// public void resourceSetChanged(ResourceSetChangeEvent event) {
+		// // TODO Auto-generated method stub
+		// for (Notification current : event.getNotifications()) {
+		// if (current.getNotifier() instanceof IAxis) {
+		// IAxis axis = (IAxis) current.getNotifier();
+		// EObject parent = axis.eContainer();
+		// if (current.getOldValue() instanceof NamedStyle) {
+		// NamedStyle style = (NamedStyle) current.getOldValue();
+		// if (style.getName().equals(IFilterConfiguration.FILTER_VALUE_TO_MATCH)) {
+		// int index = manager.getColumnElementsList().indexOf(axis);
+		// getDataValue(index, 0);
+		// applyFilter();
+		// }
+		// }
+		// if (current.getNewValue() instanceof NamedStyle) {
+		// NamedStyle style = (NamedStyle) current.getOldValue();
+		// if (style.getName().equals(IFilterConfiguration.FILTER_VALUE_TO_MATCH)) {
+		// int index = manager.getColumnElementsList().indexOf(axis);
+		// getDataValue(index, 0);
+		// applyFilter();
+		// }
+		// }
+		// }
+		//
+		// }
+		//
+		// }
+		//
+		// @Override
+		// public boolean isPrecommitOnly() {
+		// // TODO Auto-generated method stub
+		// return false;
+		// }
+		//
+		// @Override
+		// public boolean isPostcommitOnly() {
+		// // TODO Auto-generated method stub
+		// return false;
+		// }
+		//
+		// @Override
+		// public boolean isAggregatePrecommitListener() {
+		// // TODO Auto-generated method stub
+		// return false;
+		// }
+		//
+		// @Override
+		// public NotificationFilter getFilter() {
+		// // TODO Auto-generated method stub
+		// return null;
+		// }
+		// };
+		// domain.addResourceSetListener(listener);
 	}
 
 	/**
@@ -233,10 +233,11 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 	}
 
 	public void updateMapValue(int columnIndex) {
-		NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
-		IConfigRegistry configRegistry = natTable.getConfigRegistry();
-
 		if (manager != null) {
+			NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
+			IConfigRegistry configRegistry = natTable.getConfigRegistry();
+
+
 			IFilterValueToMatchManager loader = getFilterValueToMatchManager(columnIndex);
 			if (loader != null) {
 				Object columnObject = manager.getColumnElement(columnIndex);
@@ -256,32 +257,32 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 			}
 		}
 	}
-	
+
 	@Override
 	public Object getDataValue(int columnIndex, int rowIndex) {
-//		NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
-//		IConfigRegistry configRegistry = natTable.getConfigRegistry();
-//
-//		if (manager != null) {
-//			IFilterValueToMatchManager loader = getFilterValueToMatchManager(columnIndex);
-//			if (loader != null) {
-//				Object columnObject = manager.getColumnElement(columnIndex);
-//				Object savedValue = loader.getValueToMatch(configRegistry, columnObject);
-//				// to manage undo/redo
-//				Object mapValue = filterIndexToObjectMap.get(columnIndex);
-//				if (savedValue != mapValue) {
-//					if ((mapValue != null && !mapValue.equals(savedValue)) || (savedValue != null && !savedValue.equals(mapValue))) {
-//						if (savedValue == null) {
-//							filterIndexToObjectMap.remove(columnIndex);
-//						} else {
-//							filterIndexToObjectMap.put(columnIndex, savedValue);
-//						}
-//						applyFilter();
-//
-//					}
-//				}
-//			}
-//		}
+		// NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
+		// IConfigRegistry configRegistry = natTable.getConfigRegistry();
+		//
+		// if (manager != null) {
+		// IFilterValueToMatchManager loader = getFilterValueToMatchManager(columnIndex);
+		// if (loader != null) {
+		// Object columnObject = manager.getColumnElement(columnIndex);
+		// Object savedValue = loader.getValueToMatch(configRegistry, columnObject);
+		// // to manage undo/redo
+		// Object mapValue = filterIndexToObjectMap.get(columnIndex);
+		// if (savedValue != mapValue) {
+		// if ((mapValue != null && !mapValue.equals(savedValue)) || (savedValue != null && !savedValue.equals(mapValue))) {
+		// if (savedValue == null) {
+		// filterIndexToObjectMap.remove(columnIndex);
+		// } else {
+		// filterIndexToObjectMap.put(columnIndex, savedValue);
+		// }
+		// applyFilter();
+		//
+		// }
+		// }
+		// }
+		// }
 
 		return filterIndexToObjectMap.get(columnIndex);
 	}
@@ -311,7 +312,7 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 	/**
 	 *
 	 * @return
-	 *         a new runnable for the refreash action
+	 * 		a new runnable for the refreash action
 	 */
 	private Runnable createRefreshFilterRunnable() {
 		return new Runnable() {
@@ -374,10 +375,10 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 	public void setDataValue(int columnIndex, int rowIndex, Object newValue) {
 		columnIndex = columnHeaderLayer.getColumnIndexByPosition(columnIndex);
 		// INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-
-		NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
-		IConfigRegistry configRegistry = natTable.getConfigRegistry();
 		if (manager != null) {
+			NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
+			IConfigRegistry configRegistry = natTable.getConfigRegistry();
+
 			IFilterValueToMatchManager loader = getFilterValueToMatchManager(columnIndex);
 			if (loader != null) {
 				Object columnObject = manager.getColumnElement(columnIndex);
@@ -400,7 +401,7 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 	 * @param columnIndex
 	 *            the index of the column
 	 * @return
-	 *         the filter value to match manager to use
+	 * 		the filter value to match manager to use
 	 */
 	private IFilterValueToMatchManager getFilterValueToMatchManager(int columnIndex) {
 		StringBuilder builder = new StringBuilder();
@@ -412,7 +413,7 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 	/**
 	 * 
 	 * @return
-	 *         the config registry to used by the nattable widget
+	 * 		the config registry to used by the nattable widget
 	 */
 	private IConfigRegistry getConfigRegistry() {
 		NatTable natTable = (NatTable) this.manager.getAdapter(NatTable.class);
@@ -431,7 +432,7 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 	// FilterRowDataLayer.FILTER_ROW_COLUMN_LABEL_PREFIX + columnIndex);
 	//
 	// String filterText = getFilterStringRepresentation(filterIndexToObjectMap.get(columnIndex), converter);
-	//			filterText = filterText.replace("|", PIPE_REPLACEMENT); //$NON-NLS-1$
+	// filterText = filterText.replace("|", PIPE_REPLACEMENT); //$NON-NLS-1$
 	// filterTextByIndex.put(columnIndex, filterText);
 	// }
 	//
@@ -456,11 +457,11 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 	// FilterRowDataLayer.FILTER_ROW_COLUMN_LABEL_PREFIX + columnIndex);
 	//
 	// String filterText = filterTextByIndex.get(columnIndex);
-	//				filterText = filterText.replace(PIPE_REPLACEMENT, "|"); //$NON-NLS-1$
+	// filterText = filterText.replace(PIPE_REPLACEMENT, "|"); //$NON-NLS-1$
 	// filterIndexToObjectMap.put(columnIndex, getFilterFromString(filterText, converter));
 	// }
 	// } catch (Exception e) {
-	//			log.error("Error while restoring filter row text!", e); //$NON-NLS-1$
+	// log.error("Error while restoring filter row text!", e); //$NON-NLS-1$
 	// }
 
 	// filterStrategy.applyFilter(filterIndexToObjectMap);

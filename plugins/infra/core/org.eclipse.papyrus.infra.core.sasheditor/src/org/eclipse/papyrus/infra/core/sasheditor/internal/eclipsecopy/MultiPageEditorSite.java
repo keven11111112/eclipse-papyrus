@@ -146,6 +146,7 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 	public MultiPageEditorSite(IEditorSite mainEditorSite, IEditorPart editor, EditorActionBarContributor actionBarContributor) {
 		Assert.isNotNull(mainEditorSite);
 		Assert.isNotNull(editor);
+		Assert.isLegal(mainEditorSite instanceof PartSite);
 		this.mainEditorSite = mainEditorSite;
 		this.editor = editor;
 		this.actionBarContributor = actionBarContributor;

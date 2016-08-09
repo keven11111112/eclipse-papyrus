@@ -80,62 +80,66 @@ public class SelectionMenu {
 	 * @since 2.0
 	 */
 	public SelectionMenu(Shell parentShell, Object source) {
-		if (source instanceof TableViewer && parentShell != null) {
-			TableViewer tableViewer = (TableViewer) source;
+		if (parentShell != null) {
+			if (source instanceof TableViewer) {
+				TableViewer tableViewer = (TableViewer) source;
 
-			// Get the cell's y position (we can't use the getCell(Point location) method)
-			int selectionIndex = tableViewer.getTable().getSelectionIndex();
-			int cellHeight = tableViewer.getTable().getItem(selectionIndex).getBounds().height;
-			int y = tableViewer.getTable().getShell().getLocation().y;
-			y += selectionIndex * cellHeight;
+				// Get the cell's y position (we can't use the getCell(Point location) method)
+				int selectionIndex = tableViewer.getTable().getSelectionIndex();
+				int cellHeight = tableViewer.getTable().getItem(selectionIndex).getBounds().height;
+				int y = tableViewer.getTable().getShell().getLocation().y;
+				y += selectionIndex * cellHeight;
 
-			// Get the cell's x position and append by the table's width
-			// int width= tableViewer.getTable().getSize().x;
-			int width = tableViewer.getTable().getShell().getBounds().width;
-			int x = tableViewer.getTable().getShell().getLocation().x + width;
+				// Get the cell's x position and append by the table's width
+				// int width= tableViewer.getTable().getSize().x;
+				int width = tableViewer.getTable().getShell().getBounds().width;
+				int x = tableViewer.getTable().getShell().getLocation().x + width;
 
-			Point location = new Point(x, y);
-			init(parentShell, location, -1, 0);
-			return;
+				Point location = new Point(x, y);
+				init(parentShell, location, -1, 0);
+				return;
+			}
+
+			init(parentShell, parentShell.getDisplay().getCursorLocation(), 1, 1);
 		}
-
-		init(parentShell, parentShell.getDisplay().getCursorLocation(), 1, 1);
 	}
 
 	/**
 	 * @since 2.0
 	 */
 	public SelectionMenu(Shell parentShell, Object source, Point cursorPosition) {
-		if (source instanceof Table && parentShell != null && cursorPosition != null) {
-			Table table = (Table) source;
+		if (parentShell != null) {
+			if (source instanceof Table && cursorPosition != null) {
+				Table table = (Table) source;
 
-			TableItem item = table.getItem(cursorPosition);
+				TableItem item = table.getItem(cursorPosition);
 
-			if (item != null) {
-				int selectionIndex = 0;
-				for (Object tableItem : table.getItems()) {
-					if (tableItem.equals(item)) {
-						break;
+				if (item != null) {
+					int selectionIndex = 0;
+					for (Object tableItem : table.getItems()) {
+						if (tableItem.equals(item)) {
+							break;
+						}
+						selectionIndex++;
 					}
-					selectionIndex++;
+
+					int cellHeight = item.getBounds().height;
+					int y = table.getShell().getLocation().y;
+					y += selectionIndex * cellHeight;
+
+					// Get the cell's x position and append by the table's width
+					// int width= tableViewer.getTable().getSize().x;
+					int width = table.getShell().getBounds().width;
+					int x = table.getShell().getLocation().x + width;
+
+					Point location = new Point(x, y);
+					init(parentShell, location, -1, 0);
+					return;
 				}
-
-				int cellHeight = item.getBounds().height;
-				int y = table.getShell().getLocation().y;
-				y += selectionIndex * cellHeight;
-
-				// Get the cell's x position and append by the table's width
-				// int width= tableViewer.getTable().getSize().x;
-				int width = table.getShell().getBounds().width;
-				int x = table.getShell().getLocation().x + width;
-
-				Point location = new Point(x, y);
-				init(parentShell, location, -1, 0);
-				return;
 			}
-		}
 
-		init(parentShell, parentShell.getDisplay().getCursorLocation(), 1, 1);
+			init(parentShell, parentShell.getDisplay().getCursorLocation(), 1, 1);
+		}
 	}
 
 	public SelectionMenu(Shell parentShell, Point location) {
@@ -252,10 +256,10 @@ public class SelectionMenu {
 	public void dispose() {
 		if (tableViewer != null) {
 			tableViewer.removeSelectionChangedListener(selectionChangedListener);
-		}
 
-		if (tableViewer.getTable() != null) {
-			tableViewer.getTable().removeKeyListener(keyListener);
+			if (tableViewer.getTable() != null) {
+				tableViewer.getTable().removeKeyListener(keyListener);
+			}
 		}
 
 		if (shell != null) {

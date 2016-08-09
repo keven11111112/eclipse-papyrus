@@ -56,8 +56,10 @@ public class ToolbooxImageUtils {
 		if (result == null) {
 			URL url = Activator.getDefault().getBundle().getEntry(path.toString());
 			try {
-				result = new Image(Display.getDefault(), url.openStream());
-				JFaceResources.getImageRegistry().put(key, result);
+				if (url != null) {
+					result = new Image(Display.getDefault(), url.openStream());
+					JFaceResources.getImageRegistry().put(key, result);
+				}
 			} catch (IOException e) {
 			}
 		}

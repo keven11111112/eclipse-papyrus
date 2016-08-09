@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.textedit.javaconstraint
-Require-Bundle: org.eclipse.papyrus.extensionpoints.editors;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.extensionpoints.editors;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="[5.2.0,6.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.emf;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.javaconstraint.Activator

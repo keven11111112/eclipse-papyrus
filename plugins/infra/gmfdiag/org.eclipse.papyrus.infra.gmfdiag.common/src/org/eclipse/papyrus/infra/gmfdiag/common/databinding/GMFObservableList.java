@@ -18,7 +18,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.ui.databinding.PapyrusObservableList;
 
 /**

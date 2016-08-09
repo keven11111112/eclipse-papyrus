@@ -46,7 +46,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;

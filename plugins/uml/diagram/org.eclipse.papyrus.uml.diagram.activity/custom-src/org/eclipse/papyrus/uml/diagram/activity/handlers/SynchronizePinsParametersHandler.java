@@ -55,7 +55,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.ui.util.EditorUtils;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
@@ -220,7 +220,7 @@ public class SynchronizePinsParametersHandler extends AbstractSynchronizePinsAnd
 		}
 		// The command that is going to be executed.
 		CompoundCommand linkingPinsAndParamsCommand = new CompoundCommand();
-		//		CompositeTransactionalCommand linkingPinsAndParamsCommand = new CompositeTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Pin synchronization");////$NON-NLS-1$
+		// CompositeTransactionalCommand linkingPinsAndParamsCommand = new CompositeTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Pin synchronization");////$NON-NLS-1$
 		if (invocationAction instanceof CallAction) {
 			CallAction callAction = (CallAction) invocationAction;
 			List<Parameter> callActionParams = getParametersFromCallAction(callAction);

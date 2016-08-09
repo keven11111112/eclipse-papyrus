@@ -35,7 +35,7 @@ import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;

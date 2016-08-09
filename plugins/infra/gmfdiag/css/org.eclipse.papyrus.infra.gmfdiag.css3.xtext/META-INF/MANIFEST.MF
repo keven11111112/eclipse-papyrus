@@ -28,7 +28,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.css3,
  org.eclipse.papyrus.infra.gmfdiag.css3.formatting2
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 3.0.0.qualifier
 Bundle-Name: CSS3 Xtext Editor
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css3.xtext; singleton:=true

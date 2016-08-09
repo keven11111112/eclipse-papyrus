@@ -75,7 +75,7 @@ public class LabelGroup extends AbstractGroup {
 			String key = PreferencesConstantsHelper.getLabelElementConstant(getKey(), role, PreferencesConstantsHelper.LABEL_VISIBILITY);
 			Image im = null;
 			String iconPath = myRoles.get(role);
-			if (iconPath != null && iconPath != "") { //$NON-NLS-1$
+			if (iconPath != null && !iconPath.isEmpty()) { // $NON-NLS-1$
 				try {
 					im = ImageDescriptor.createFromURL(new URL(iconPath)).createImage();
 				} catch (MalformedURLException e) {

@@ -44,16 +44,16 @@ public abstract class AbstractPapyrusLinkPreferencePage extends AbstractPapyrusE
 		super.createPageContents(parent);
 		// color pref for links
 		LinkColorGroup colorGroupComposite = new LinkColorGroup(parent, getPreferenceKey(), this);
-		addAbstractGroup(colorGroupComposite);
+		addPreferenceGroup(colorGroupComposite);
 
 		// router for links
 		ConnectionGroup connectionGroupComposite = new ConnectionGroup(parent, getPreferenceKey(), this);
-		addAbstractGroup(connectionGroupComposite);
+		addPreferenceGroup(connectionGroupComposite);
 
 		// Label role group
 		if (!getLabelRole().isEmpty()) {
 			LabelGroup compartmentGroup = new LabelGroup(parent, getPreferenceKey(), this, getLabelRole());
-			addAbstractGroup(compartmentGroup);
+			addPreferenceGroup(compartmentGroup);
 		}
 
 	}

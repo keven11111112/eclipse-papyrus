@@ -15,7 +15,7 @@ import org.eclipse.papyrus.infra.widgets.selectors.RealSelector;
 import org.eclipse.swt.widgets.Composite;
 
 
-public class MultipleDoubleEditor extends MultipleStringEditor {
+public class MultipleDoubleEditor extends MultipleStringEditor<RealSelector> {
 
 	/**
 	 * Constructs an Editor for multiple double values

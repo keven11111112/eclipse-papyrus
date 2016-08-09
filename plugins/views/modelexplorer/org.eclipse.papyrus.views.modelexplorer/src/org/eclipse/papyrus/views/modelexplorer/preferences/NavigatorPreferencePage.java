@@ -62,7 +62,7 @@ public class NavigatorPreferencePage extends AbstractPapyrusNodePreferencePage {
 		// show popup dialog
 		TransformCommandShowPopupDialogGroup groupComposite = new TransformCommandShowPopupDialogGroup(
 				parent, getTitle(), this);
-		addAbstractGroup(groupComposite);
+		addPreferenceGroup(groupComposite);
 	}
 
 }

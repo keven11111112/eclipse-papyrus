@@ -293,7 +293,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * The table popup menu configuration.
 	 */
 	private TablePopupMenuConfiguration tablePopupMenuConfiguration;
-	
+
 	/**
 	 * The CTabFolder.
 	 * 
@@ -469,10 +469,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * 
 	 * @return The parent CTabFolder or <code>null</code>.
 	 * 
-	 * @since 2.1
+	 * @since 3.0
 	 */
 	protected CTabFolder getParentCTabFolder() {
-		if(null == cTabFolder){
+		if (null == cTabFolder) {
 			Control currentControl = natTable.getParent();
 			while (null != currentControl && !(currentControl instanceof CTabFolder)) {
 				currentControl = currentControl.getParent();
@@ -489,7 +489,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * 
 	 * @return The CTabFolder selection listener.
 	 * 
-	 * @since 2.1
+	 * @since 3.0
 	 */
 	protected SelectionListener getCTabFolderSelectionListener() {
 		if (null == cTabFolderSelectionListener) {
@@ -508,7 +508,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 						}
 
 						if (!hasSelection && null != natTable && null != selectionProvider && null != getTable().getContext()) {
-							if(selectionInTable.getFirstElement().equals(getTable().getContext())){
+							if (selectionInTable.getFirstElement().equals(getTable().getContext())) {
 								// Set the table as selection to force the properties view to refresh it
 								selectionProvider.setSelection(new TableStructuredSelection(getTable(), new TableSelectionWrapper(Collections.<PositionCoordinate> emptyList())));
 							}
@@ -527,7 +527,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * 
 	 * @return The display of the top composite.
 	 * 
-	 * @since 2.1
+	 * @since 3.0
 	 */
 	protected Control getNattableTopParentComposite() {
 		Control currentControl = natTable.getParent();
@@ -535,7 +535,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		while (null != currentControl && !hasToStop) {
 			if (null == currentControl.getParent() || currentControl.getParent() instanceof CTabFolder) {
 				hasToStop = true;
-			}else{
+			} else {
 				currentControl = currentControl.getParent();
 			}
 		}
@@ -1399,7 +1399,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	public void exportToXLS() {
 		this.natTable.doCommand(new ExportCommand(this.natTable.getConfigRegistry(), this.natTable.getShell()));
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 

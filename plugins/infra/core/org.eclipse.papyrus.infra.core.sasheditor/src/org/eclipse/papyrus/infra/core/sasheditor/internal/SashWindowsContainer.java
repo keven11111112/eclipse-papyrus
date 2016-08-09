@@ -918,90 +918,90 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 */
 		@Override
 		public IDropTarget drag(Control currentControl, Object draggedObject, Point position, Rectangle dragRectangle) {
-			// TODO remove the cast by changing the method. Only folder can be source and target
-			final TabFolderPart sourcePart = (TabFolderPart) rootPart.findPart(draggedObject); // (ITilePart) draggedObject;
-			// Compute src tab index
-			// TODO move that and previous in the sender of drag event. Use a class containing both as draggedObject.
-			final int srcTabIndex = PTabFolder.getDraggedObjectTabIndex(draggedObject);
+			if (rootPart != null) {
+				// TODO remove the cast by changing the method. Only folder can be source and target
+				final TabFolderPart sourcePart = (TabFolderPart) rootPart.findPart(draggedObject); // (ITilePart) draggedObject;
+				// Compute src tab index
+				// TODO move that and previous in the sender of drag event. Use a class containing both as draggedObject.
+				final int srcTabIndex = PTabFolder.getDraggedObjectTabIndex(draggedObject);
 
-			// System.out.println("drag to position=" + position);
-			Rectangle containerDisplayBounds = DragUtil.getDisplayBounds(container);
-			AbstractPanelPart targetPart = null;
+				// System.out.println("drag to position=" + position);
+				Rectangle containerDisplayBounds = DragUtil.getDisplayBounds(container);
+				AbstractPanelPart targetPart = null;
 
-			// Check if the cursor is inside the container
-			if (containerDisplayBounds.contains(position)) {
+				// Check if the cursor is inside the container
+				if (containerDisplayBounds.contains(position)) {
 
-				if (rootPart != null) {
 					targetPart = (AbstractPanelPart) rootPart.findPart(position);
 					// System.out.println("targetPart=" + targetPart
 					// + ", position=" + position
 					// + "container.toControl(position)=" + container.toControl(position));
-				}
 
-				if (targetPart != null) {
-					final Control targetControl = targetPart.getControl();
+					if (targetPart != null) {
+						final Control targetControl = targetPart.getControl();
 
-					final Rectangle targetBounds = DragUtil.getDisplayBounds(targetControl);
+						final Rectangle targetBounds = DragUtil.getDisplayBounds(targetControl);
 
-					int side = Geometry.getClosestSide(targetBounds, position);
-					int distance = Geometry.getDistanceFromEdge(targetBounds, position, side);
+						int side = Geometry.getClosestSide(targetBounds, position);
+						int distance = Geometry.getDistanceFromEdge(targetBounds, position, side);
 
-					// Reserve the 5 pixels around the edge of the part for the drop-on-edge cursor
-					// Check if the target can handle the drop.
-					if (distance >= 5) {
-						// Otherwise, ask the part if it has any special meaning for this drop location
-						// TODO remove cast; change return type of findPart()
-						IDropTarget target = targetPart.getDropTarget(draggedObject, sourcePart, position);
-						if (target != null) {
-							return target;
+						// Reserve the 5 pixels around the edge of the part for the drop-on-edge cursor
+						// Check if the target can handle the drop.
+						if (distance >= 5) {
+							// Otherwise, ask the part if it has any special meaning for this drop location
+							// TODO remove cast; change return type of findPart()
+							IDropTarget target = targetPart.getDropTarget(draggedObject, sourcePart, position);
+							if (target != null) {
+								return target;
+							}
+						} else {
+							// We are on the boarder, try to drop on the parent
+							// Warning : the parent could be the rootPart
+							// System.out.println("DropTarget near the border");
 						}
-					} else {
-						// We are on the boarder, try to drop on the parent
-						// Warning : the parent could be the rootPart
-						// System.out.println("DropTarget near the border");
+						//
+						if (distance > 30) {
+							side = SWT.CENTER;
+						}
+						//
+						// // If the part doesn't want to override this drop location then drop on the edge
+						//
+						// // A "pointless drop" would be one that will put the dragged object back where it started.
+						// // Note that it should be perfectly valid to drag an object back to where it came from -- however,
+						// // the drop should be ignored.
+						//
+						@SuppressWarnings("unused")
+						boolean pointlessDrop = false;
+
+						if (sourcePart == targetPart) {
+							pointlessDrop = true;
+						}
+
+						return createDropTarget(sourcePart, srcTabIndex, side, side, targetPart);
 					}
-					//
-					if (distance > 30) {
-						side = SWT.CENTER;
-					}
-					//
-					// // If the part doesn't want to override this drop location then drop on the edge
-					//
-					// // A "pointless drop" would be one that will put the dragged object back where it started.
-					// // Note that it should be perfectly valid to drag an object back to where it came from -- however,
-					// // the drop should be ignored.
-					//
-					@SuppressWarnings("unused")
+				} else {
+					// Cursor is outside the container
+					// System.out.println("Outside container bounds");
+					// This will be used to create a new Window.
+					// We only allow dropping into a stack, not creating one
+					// if (differentWindows)
+					// return null;
+
+					int side = Geometry.getClosestSide(containerDisplayBounds, position);
+
 					boolean pointlessDrop = false;
+					int cursor = Geometry.getOppositeSide(side);
 
-					if (sourcePart == targetPart) {
-						pointlessDrop = true;
+					if (pointlessDrop) {
+						side = SWT.NONE;
 					}
 
-					return createDropTarget(sourcePart, srcTabIndex, side, side, targetPart);
+					return createDropTarget(sourcePart, srcTabIndex, side, cursor, null);
 				}
-			} else {
-				// Cursor is outside the container
-				// System.out.println("Outside container bounds");
-				// This will be used to create a new Window.
-				// We only allow dropping into a stack, not creating one
-				// if (differentWindows)
-				// return null;
-
-				int side = Geometry.getClosestSide(containerDisplayBounds, position);
-
-				boolean pointlessDrop = false;
-				int cursor = Geometry.getOppositeSide(side);
-
-				if (pointlessDrop) {
-					side = SWT.NONE;
-				}
-
-				return createDropTarget(sourcePart, srcTabIndex, side, cursor, null);
 			}
 			return null;
-		}
 
+		}
 	};
 
 
@@ -1307,9 +1307,9 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 */
 		@Override
 		public boolean accept(TabFolderPart part) {
-
-			IPage page = part.getVisiblePagePart();
 			if (part != null) {
+				IPage page = part.getVisiblePagePart();
+
 				if (expectedClass != null && expectedClass.isInstance(page)) {
 					visiblePages.add(page);
 				} else {

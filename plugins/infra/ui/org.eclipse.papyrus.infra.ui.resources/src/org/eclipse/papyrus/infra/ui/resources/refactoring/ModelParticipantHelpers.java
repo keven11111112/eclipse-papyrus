@@ -69,8 +69,12 @@ public class ModelParticipantHelpers {
 
 		IPath diPath = null;
 
-		if (DiModel.DI_FILE_EXTENSION.equalsIgnoreCase(initialPath.getFileExtension())) {
-			diPath = initialPath;
+		if (initialPath != null) {
+			if (DiModel.DI_FILE_EXTENSION.equalsIgnoreCase(initialPath.getFileExtension())) {
+				diPath = initialPath;
+			} else {
+				return Collections.<IResource> singleton(initialFile);
+			}
 		} else {
 			return Collections.<IResource> singleton(initialFile);
 		}

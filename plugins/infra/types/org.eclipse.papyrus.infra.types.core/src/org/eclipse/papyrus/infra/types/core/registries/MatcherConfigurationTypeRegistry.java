@@ -29,9 +29,13 @@ import org.eclipse.papyrus.infra.types.core.factories.impl.DefaultMatcherFactory
 
 public class MatcherConfigurationTypeRegistry {
 
-	private static MatcherConfigurationTypeRegistry registry;
+	private volatile static MatcherConfigurationTypeRegistry registry;
 
 	protected Map<String, IMatcherFactory<? extends AbstractMatcherConfiguration>> matcherConfigurationTypeToFactory = null;
+
+	private MatcherConfigurationTypeRegistry() {
+		super();
+	}
 
 	public static synchronized MatcherConfigurationTypeRegistry getInstance() {
 		if (registry == null) {

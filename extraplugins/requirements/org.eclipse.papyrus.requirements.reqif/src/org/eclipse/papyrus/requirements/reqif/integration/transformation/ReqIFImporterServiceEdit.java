@@ -25,6 +25,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.requirements.reqif.integration.assistant.ChooseReqIFTypeDialog;
@@ -46,14 +47,17 @@ import org.eclipse.uml2.uml.Profile;
 
 public class ReqIFImporterServiceEdit extends ReqIFImporter {
 
-	
+
 	/**
 	 * 
 	 * Constructor.
 	 *
-	 * @param domain the domain to execute command
-	 * @param reqIFModel the reqIF model that is imported
-	 * @param UMLModel the UML model that contain imported elements
+	 * @param domain
+	 *            the domain to execute command
+	 * @param reqIFModel
+	 *            the reqIF model that is imported
+	 * @param UMLModel
+	 *            the UML model that contain imported elements
 	 */
 	public ReqIFImporterServiceEdit(TransactionalEditingDomain domain, ReqIF reqIFModel, Package UMLModel) {
 		super(domain, reqIFModel, UMLModel);
@@ -62,19 +66,19 @@ public class ReqIFImporterServiceEdit extends ReqIFImporter {
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.requirements.reqif.transformation.ReqIFImporter#createRequirementClass(org.eclipse.uml2.uml.Element)
-	 *{@inheritDoc}
+	 *      {@inheritDoc}
 	 */
 	protected Class createClassWithRequirementName(org.eclipse.uml2.uml.Element owner) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(owner);
-		if(provider == null) {
+		if (provider == null) {
 			return null;
 		}
 
 		ICommand createGMFCommand = provider.getEditCommand(new CreateElementRequest(domain, owner, UMLElementTypes.CLASS));
-		if(createGMFCommand != null) {
-			Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
+		if (createGMFCommand != null) {
+			Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
 			domain.getCommandStack().execute(emfCommand);
-			Class theClass= (Class)createGMFCommand.getCommandResult().getReturnValue();
+			Class theClass = (Class) createGMFCommand.getCommandResult().getReturnValue();
 			theClass.setName(theClass.getName().replaceAll("Class", "Requirement"));
 			return theClass;
 		}
@@ -84,20 +88,20 @@ public class ReqIFImporterServiceEdit extends ReqIFImporter {
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.requirements.reqif.transformation.ReqIFImporter#createDependency(org.eclipse.uml2.uml.Package)
-	 *{@inheritDoc}
+	 *      {@inheritDoc}
 	 */
 	protected Dependency createDependency(Package uMLModel) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(uMLModel);
-		if(provider == null) {
+		if (provider == null) {
 			return null;
 		}
 
-		ICommand createGMFCommand = provider.getEditCommand(new CreateElementRequest(domain, uMLModel,org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.DEPENDENCY));
-		if(createGMFCommand != null) {
+		ICommand createGMFCommand = provider.getEditCommand(new CreateElementRequest(domain, uMLModel, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.DEPENDENCY));
+		if (createGMFCommand != null) {
 
-			Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
+			Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
 			domain.getCommandStack().execute(emfCommand);
-			return (Dependency)createGMFCommand.getCommandResult().getReturnValue();
+			return (Dependency) createGMFCommand.getCommandResult().getReturnValue();
 		}
 		return null;
 	}
@@ -105,17 +109,17 @@ public class ReqIFImporterServiceEdit extends ReqIFImporter {
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.requirements.reqif.transformation.ReqIFImporter#selectReqIFType(java.util.Collection)
-	 *{@inheritDoc}
+	 *      {@inheritDoc}
 	 * 
 	 */
 	protected HashMap<String, SpecType> selectReqIFType(Collection<SpecType> availableReqiFTypes) {
-		HashMap<String, SpecType> selectedReqiFType= new HashMap<String, SpecType>();
-		ChooseReqIFTypeDialog assistedDialog= new ChooseReqIFTypeDialog(new Shell(), availableReqiFTypes);
+		HashMap<String, SpecType> selectedReqiFType = new HashMap<String, SpecType>();
+		ChooseReqIFTypeDialog assistedDialog = new ChooseReqIFTypeDialog(new Shell(), availableReqiFTypes);
 		assistedDialog.open();
-		ArrayList<Object> result=assistedDialog.getSelectedElements();
-		for(Object object : result) {
-			if(object instanceof SpecType){
-				selectedReqiFType.put(((SpecType)object).getLongName(), ((SpecType)object));
+		ArrayList<Object> result = assistedDialog.getSelectedElements();
+		for (Object object : result) {
+			if (object instanceof SpecType) {
+				selectedReqiFType.put(((SpecType) object).getLongName(), ((SpecType) object));
 			}
 		}
 		return selectedReqiFType;
@@ -126,11 +130,12 @@ public class ReqIFImporterServiceEdit extends ReqIFImporter {
 	 * 
 	 * @see org.eclipse.papyrus.requirements.reqif.transformation.ReqIFImporter#defineProfile(org.eclipse.uml2.uml.Profile)
 	 *
-	 * {@inheritDoc}
+	 *      {@inheritDoc}
 	 */
 	protected void defineProfile(Profile profile) {
 		try {
-			DefineProfileCommand defineProfileCmd= new DefineProfileCommand(domain, new  org.eclipse.papyrus.uml.tools.profile.definition.PapyrusDefinitionAnnotation(new org.eclipse.papyrus.uml.tools.profile.definition.Version(1, 0, 0), "generated by Papyrus Req","", GregorianCalendar.getInstance().getTime().toString(), "Papyrus Req"), profile, true);
+			DefineProfileCommand defineProfileCmd = new DefineProfileCommand(domain, new org.eclipse.papyrus.uml.tools.profile.definition.PapyrusDefinitionAnnotation(new org.eclipse.papyrus.uml.tools.profile.definition.Version(1, 0, 0),
+					"generated by Papyrus Req", "", GregorianCalendar.getInstance().getTime().toString(), "Papyrus Req"), profile, true);
 			defineProfileCmd.execute(new NullProgressMonitor(), null);
 			profile.eResource().save(null);
 		} catch (IOException e) {

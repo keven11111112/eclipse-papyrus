@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal;
 
 import org.eclipse.jface.preference.IPreferencePage;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusPreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
+import org.eclipse.papyrus.infra.ui.preferences.AbstractPapyrusPreferencePage;
 
 /**
  * This singleton has bee created to manage the button ok and apply of preference page.

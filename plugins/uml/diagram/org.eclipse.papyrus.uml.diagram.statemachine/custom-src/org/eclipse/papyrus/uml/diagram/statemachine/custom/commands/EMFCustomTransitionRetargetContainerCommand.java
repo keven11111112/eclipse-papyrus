@@ -14,7 +14,7 @@ package org.eclipse.papyrus.uml.diagram.statemachine.custom.commands;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
+import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.PseudostateKind;

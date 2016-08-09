@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="[2.0.0,3.0.0)";visibility:=reexport
+Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
 Export-Package: org.eclipse.papyrus.uml.diagram.common.palette.customaction.providers,
  org.eclipse.papyrus.uml.diagram.common.palette.customaction.swt,
  org.eclipse.papyrus.uml.diagram.common.palette.customaction.toolbox,
  org.eclipse.papyrus.uml.diagram.common.palette.customaction.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2

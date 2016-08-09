@@ -74,10 +74,10 @@ public class CombinedPopupAndViewBuilder implements IBuilder {
 		// If the Notification view is not visible show temporary notification
 		if ((notificationView != null) && !(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().isPartVisible(notificationView))) {
 			createNotificationPopup(wrapper, toolkit);
+			return createNotificationLog(notificationView, wrapper, toolkit);
 		}
 
-		// In any case, log the notification in the PapyrusNotificationView so that the user can consult this later.
-		return createNotificationLog(notificationView, wrapper, toolkit);
+		return null;
 	}
 
 	/*

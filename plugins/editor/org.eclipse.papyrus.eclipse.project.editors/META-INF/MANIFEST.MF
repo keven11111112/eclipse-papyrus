@@ -3,7 +3,7 @@ Export-Package: org.eclipse.papyrus.eclipse.project.editors.file,
  org.eclipse.papyrus.eclipse.project.editors.interfaces,
  org.eclipse.papyrus.eclipse.project.editors.project
 Require-Bundle: org.eclipse.jdt.core;bundle-version="[3.12.0,4.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.widgets;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.widgets;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.pde.core;bundle-version="[3.11.0,4.0.0)";visibility:=reexport,
  org.eclipse.pde.ui;bundle-version="[3.9.0,4.0.0)"
 Bundle-Vendor: %providerName

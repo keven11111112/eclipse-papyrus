@@ -33,9 +33,13 @@ import org.eclipse.papyrus.infra.types.core.factories.impl.DefaultEditHelperAdvi
 
 public class AdviceConfigurationTypeRegistry {
 
-	private static AdviceConfigurationTypeRegistry registry;
+	private volatile static AdviceConfigurationTypeRegistry registry;
 
 	protected Map<String, IEditHelperAdviceFactory<? extends AdviceConfiguration>> adviceConfigurationTypeToFactory = null;
+
+	private AdviceConfigurationTypeRegistry() {
+		super();
+	}
 
 	/**
 	 * returns the singleton instance of this registry

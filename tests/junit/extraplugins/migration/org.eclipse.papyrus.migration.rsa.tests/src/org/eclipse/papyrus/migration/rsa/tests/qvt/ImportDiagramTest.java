@@ -34,13 +34,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelsReader;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
@@ -109,18 +109,18 @@ public class ImportDiagramTest extends AbstractPapyrusTest {
 		fileProfile = URI.createPlatformResourceURI(Activator.PLUGIN_ID + ".testProject" + "/Profile.epx", true);
 		ImportTransformation transfoProfile = new ImportTransformation(fileProfile);
 
-		//Run in sequence, since individual transformations are not thread safe
-		
+		// Run in sequence, since individual transformations are not thread safe
+
 		transfoDiagram.run(false);
 		transfoDiagram.waitForCompletion();
-		
-		transfoProfile.run(false);	
+
+		transfoProfile.run(false);
 		transfoProfile.waitForCompletion();
-		
+
 		URI umlModelURI = fileDiagram.trimFileExtension().appendFileExtension("uml");
 		IFile umlModelFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(umlModelURI.toPlatformString(true)));
 		Assert.assertTrue(umlModelFile.exists());
-		
+
 		URI umlProfileURI = fileProfile.trimFileExtension().appendFileExtension("profile.uml");
 		IFile umlProfileFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(umlProfileURI.toPlatformString(true)));
 		Assert.assertTrue(umlProfileFile.exists());

@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.diagram.ui.image.ImageFileFormat;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.gmfdiag.export.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.export.DialogDisplayUtils;
 import org.eclipse.papyrus.infra.gmfdiag.export.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -42,7 +43,7 @@ public class ExportComposite extends Composite {
 	private Text outputPathTxt;
 
 	private Button outputDirectoryBtn;
-	
+
 	private Combo outputFormatCb;
 
 	private Button btnCheckButton;
@@ -128,7 +129,7 @@ public class ExportComposite extends Composite {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ContainerSelectionDialog csDialog = new ContainerSelectionDialog(Activator.getActiveWorkbenchShell(), ResourcesPlugin.getWorkspace().getRoot(), true, Messages.ExportAllDiagramsDialog_3);
+				ContainerSelectionDialog csDialog = new ContainerSelectionDialog(DialogDisplayUtils.getActiveWorkbenchShell(), ResourcesPlugin.getWorkspace().getRoot(), true, Messages.ExportAllDiagramsDialog_3);
 
 
 				if (csDialog.open() == Window.OK) {
@@ -178,7 +179,7 @@ public class ExportComposite extends Composite {
 					Activator.log.error(e);
 				}
 			}
-			if(outputDirectory ==null) {
+			if (outputDirectory == null) {
 				Activator.log.error("Impossible to find the output directory", null);
 				return;
 			}

@@ -721,11 +721,6 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		this.horizontalFilterList = newHorizontalFilterList;
 		this.verticalFilterList = newVerticalFilterLilst;
 
-		this.rowSortedList = newHorizontalSortedList;
-		this.columnSortedList = newVerticalSortedList;
-
-
-		NattableModelManager.this.rowManager = newRowManager;
 		NattableModelManager.this.columnManager = newColumnManager;
 		this.rowManager.setAxisComparator(null);
 		this.columnManager.setAxisComparator(null);
@@ -841,17 +836,17 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 				this.contextEditingDomain.removeResourceSetListener(resourceSetListener);
 			}
 		}
-		
+
 		if (this.columnManager != null) {
 			this.columnManager.dispose();
 			this.columnManager = null;
 		}
-		
+
 		if (this.rowManager != null) {
 			this.rowManager.dispose();
 			this.rowManager = null;
 		}
-		
+
 		final Table table = getTable();
 		if (table != null) {
 

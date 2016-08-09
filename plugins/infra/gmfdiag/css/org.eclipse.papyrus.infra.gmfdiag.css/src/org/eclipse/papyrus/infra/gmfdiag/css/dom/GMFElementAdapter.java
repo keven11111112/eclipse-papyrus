@@ -260,7 +260,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 				humanType = notationElement.getType();
 			}
 
-			pseudoInstances.add(new StringIgnoreCase(humanType));
+			pseudoInstances.add(normalizeString(humanType));
 		}
 	}
 
@@ -691,51 +691,15 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		getEngine().handleDispose(notationElement);
 	}
 
-	private final Set<StringIgnoreCase> pseudoInstances = new HashSet<StringIgnoreCase>();
+	private final Set<String> pseudoInstances = new HashSet<String>();
 
-	private final static class StringIgnoreCase {
-
-		private final String sourceString;
-
-		private final String sourceStringToLower;
-
-		public StringIgnoreCase(String source) {
-			this.sourceString = source;
-			this.sourceStringToLower = source == null ? null : source.toLowerCase();
-		}
-
-		@Override
-		public boolean equals(Object other) {
-			if (other instanceof String) {
-				return ((String) other).equalsIgnoreCase(sourceString);
-			}
-
-			if (other instanceof StringIgnoreCase) {
-				return equals(((StringIgnoreCase) other).sourceString);
-			}
-
-			return false;
-		}
-
-		@Override
-		public int hashCode() {
-			if (sourceStringToLower == null) {
-				return 0;
-			}
-
-			return sourceStringToLower.hashCode();
-		}
-
-		@Override
-		public String toString() {
-			return sourceStringToLower;
-		}
-
+	private String normalizeString(String string) {
+		return string.toUpperCase().toLowerCase();
 	}
 
 	@Override
 	public boolean isPseudoInstanceOf(String pseudo) {
-		return pseudoInstances.contains(new StringIgnoreCase(pseudo));
+		return pseudoInstances.contains(normalizeString(pseudo));
 	}
 
 
@@ -760,7 +724,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	@Override
 	public void addStates(Set<String> states) {
 		for (String state : states) {
-			this.pseudoInstances.add(new StringIgnoreCase(state));
+			this.pseudoInstances.add(normalizeString(state));
 		}
 		getEngine().notifyChange(this);
 	}
@@ -773,17 +737,13 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	@Override
 	public void removeStates(Set<String> states) {
 		for (String state : states) {
-			this.pseudoInstances.remove(new StringIgnoreCase(state));
+			this.pseudoInstances.remove(normalizeString(state));
 		}
 		getEngine().notifyChange(this);
 	}
 
 	@Override
 	public Set<String> getStates() {
-		Set<String> result = new HashSet<String>();
-		for (StringIgnoreCase element : pseudoInstances) {
-			result.add(element.toString());
-		}
-		return result;
+		return pseudoInstances;
 	}
 }

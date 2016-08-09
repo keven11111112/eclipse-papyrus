@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		Régis CHEVREL: chevrel.regis <at> gmail.com
+ *		Rï¿½gis CHEVREL: chevrel.regis <at> gmail.com
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -60,13 +60,13 @@ public class ParametricDiagramNodePreferencePage extends AbstractPapyrusNodePref
 		// Add compartments visibility group
 		if (!compartmentNamesList.isEmpty()) {
 			OrderedCompartmentGroup compartmentGroup = new OrderedCompartmentGroup(parent, getPreferenceKey(), this, compartmentNamesList, compartmentTitlesList, getPreferenceStore());
-			addAbstractGroup(compartmentGroup);
+			addPreferenceGroup(compartmentGroup);
 		}
 
 		// Add label visibility group
 		if (!labelsList.isEmpty()) {
 			OrderedLabelGroup compartmentGroup = new OrderedLabelGroup(parent, getPreferenceKey(), this, labelsList);
-			addAbstractGroup(compartmentGroup);
+			addPreferenceGroup(compartmentGroup);
 		}
 	}
 

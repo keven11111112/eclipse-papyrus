@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Composite;
  * @author Camille Letavernier
  *
  */
-public class MultipleIntegerEditor extends MultipleStringEditor {
+public class MultipleIntegerEditor extends MultipleStringEditor<IntegerSelector> {
 
 	/**
 	 * Constructs an Editor for multiple Integer values

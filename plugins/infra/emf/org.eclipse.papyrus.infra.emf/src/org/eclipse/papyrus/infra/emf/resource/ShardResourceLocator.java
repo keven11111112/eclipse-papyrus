@@ -134,21 +134,22 @@ public class ShardResourceLocator extends ResourceLocator {
 		return (resource == null) || !resource.isLoaded();
 	}
 
-	protected void loadParentResource(URI parentURI, URI shard) {
+	protected void loadParentResource(URI parentURI, URI shardURI) {
 		// This operates recursively on the demand-load helper
 		Resource parent = resourceSet.getResource(parentURI, true);
+		Resource shard = resourceSet.getResource(shardURI, true);
 
 		// Unlock the shardresource, now
 		inDemandLoadHelper.remove(shard);
 
 		// Scan for the cross-resource containment
-		URI shardURI = normalize(shard);
+		URI normalizedShardURI = normalize(shardURI);
 		for (TreeIterator<EObject> iter = EcoreUtil.getAllProperContents(parent, false); iter.hasNext();) {
 			EObject next = iter.next();
 			if (next.eIsProxy()) {
 				// Must always only compare normalized URIs to determine 'same resource'
 				URI proxyURI = normalize(((InternalEObject) next).eProxyURI());
-				if (proxyURI.trimFragment().equals(shardURI)) {
+				if (proxyURI.trimFragment().equals(normalizedShardURI)) {
 					// This is our parent object
 					EObject parentObject = next.eContainer();
 

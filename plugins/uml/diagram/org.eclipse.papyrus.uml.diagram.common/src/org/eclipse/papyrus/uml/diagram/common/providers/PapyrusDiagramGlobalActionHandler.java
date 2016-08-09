@@ -42,8 +42,8 @@ import org.eclipse.gmf.runtime.diagram.ui.render.internal.providers.ImageSupport
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.ui.properties.actions.PropertyPageViewAction;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.helper.CleanDiagramHelper;
 import org.eclipse.papyrus.uml.diagram.common.service.PasteCommandService;
 import org.eclipse.ui.IEditorPart;
@@ -252,8 +252,7 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 
 			/* Send the request to the edit part */
 			org.eclipse.gef.commands.Command command = editPart.getCommand(deleteReq);
-			if (command != null)
-			{
+			if (command != null) {
 				compositeCommand.compose(new CommandProxy(command));
 				// deleteCC.add(editPart.getCommand(deleteReq));
 			}

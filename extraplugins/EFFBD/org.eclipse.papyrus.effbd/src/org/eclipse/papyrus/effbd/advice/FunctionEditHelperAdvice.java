@@ -15,8 +15,8 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.effbd.command.ConfigureFunction;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.uml2.uml.OpaqueAction;
 
 /**

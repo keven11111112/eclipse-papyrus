@@ -24,7 +24,7 @@ import org.eclipse.gef.RootEditPart;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.helper.CleanDiagramHelper;
 import org.eclipse.papyrus.uml.diagram.common.service.PasteCommandService;
 

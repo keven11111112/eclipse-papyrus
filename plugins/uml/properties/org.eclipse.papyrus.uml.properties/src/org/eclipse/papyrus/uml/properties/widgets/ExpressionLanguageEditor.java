@@ -26,7 +26,7 @@ import org.eclipse.swt.widgets.Composite;
  *
  * @author Camille Letavernier
  */
-public class ExpressionLanguageEditor extends MultipleValueEditor {
+public class ExpressionLanguageEditor extends MultipleValueEditor<LanguageSelector> {
 
 	/**
 	 *

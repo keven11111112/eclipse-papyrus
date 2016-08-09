@@ -14,7 +14,7 @@ package org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusPreferencePage;
+import org.eclipse.papyrus.infra.ui.preferences.AbstractPapyrusPreferencePage;
 import org.eclipse.swt.widgets.Composite;
 
 /**

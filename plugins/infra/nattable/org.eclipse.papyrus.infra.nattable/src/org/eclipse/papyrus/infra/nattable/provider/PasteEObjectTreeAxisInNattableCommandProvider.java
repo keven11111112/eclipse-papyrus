@@ -194,9 +194,11 @@ public class PasteEObjectTreeAxisInNattableCommandProvider extends AbstractPaste
 					referencedPasteConf.add(tmp.getPasteConfiguration());
 				}
 			}
-			for (final IAxisConfiguration axisConf : conf.getOwnedAxisConfigurations()) {
-				if (axisConf instanceof IPasteConfiguration && !referencedPasteConf.contains(axisConf)) {
-					return (IPasteConfiguration) axisConf;
+			if (conf != null) {
+				for (final IAxisConfiguration axisConf : conf.getOwnedAxisConfigurations()) {
+					if (axisConf instanceof IPasteConfiguration && !referencedPasteConf.contains(axisConf)) {
+						return (IPasteConfiguration) axisConf;
+					}
 				}
 			}
 		}
@@ -547,7 +549,7 @@ public class PasteEObjectTreeAxisInNattableCommandProvider extends AbstractPaste
 	 */
 	private Object createElement(final boolean isDetachedMode, final ExtendedCompoundCommand compoundCommand, final Map<Integer, EObject> contextMap, final int depth, final String valueAsString, final PasteEObjectConfiguration pasteConfToUse,
 			final IProgressMonitor monitor, final IAdaptable info)
-					throws ExecutionException {
+			throws ExecutionException {
 		return isDetachedMode ? createElementInDetachedMode(compoundCommand, contextMap, depth, valueAsString, pasteConfToUse, monitor, info) : createElementInAttachedMode(compoundCommand, contextMap, depth, valueAsString, pasteConfToUse, monitor, info);
 	}
 
@@ -631,7 +633,7 @@ public class PasteEObjectTreeAxisInNattableCommandProvider extends AbstractPaste
 	 */
 	protected Object createElementInAttachedMode(final ExtendedCompoundCommand compoundCommand, final Map<Integer, EObject> contextMap, final int depth, final String valueAsString, final PasteEObjectConfiguration pasteConfToUse, final IProgressMonitor monitor,
 			final IAdaptable info)
-					throws ExecutionException {
+			throws ExecutionException {
 		Object createdElement = null;
 
 		// get the element type to use to create the element

@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		Régis CHEVREL: chevrel.regis <at> gmail.com
+ *		Rï¿½gis CHEVREL: chevrel.regis <at> gmail.com
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -45,7 +45,7 @@ public class ParametricDiagramLinkPreferencePage extends AbstractPapyrusLinkPref
 		// Add label visibility group
 		if (!labelsList.isEmpty()) {
 			OrderedLabelGroup compartmentGroup = new OrderedLabelGroup(parent, getPreferenceKey(), this, labelsList);
-			addAbstractGroup(compartmentGroup);
+			addPreferenceGroup(compartmentGroup);
 		}
 
 	}

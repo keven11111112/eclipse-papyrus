@@ -30,7 +30,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.AddCustomStyleListValueCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
+import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.databinding.AddCSSStyleSheetCommand;

@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.papyrus.infra.emf.gmf.command.NotifyingWorkspaceCommandStack;
 
 /**
  * @deprecated Use the {@link org.eclipse.papyrus.infra.emf.gmf.command.NestingNotifyingWorkspaceCommandStack} API, instead.

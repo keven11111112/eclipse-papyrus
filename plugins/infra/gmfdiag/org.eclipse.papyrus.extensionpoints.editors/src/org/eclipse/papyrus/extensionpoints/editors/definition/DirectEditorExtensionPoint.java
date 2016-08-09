@@ -37,6 +37,8 @@ import org.eclipse.swt.graphics.Image;
  */
 public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 
+	private static volatile DirectEditorExtensionPoint instance = null;
+
 	/** Array that stores registered transformations */
 	private static IDirectEditorExtensionPoint[] configurations;
 
@@ -59,18 +61,12 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	/** an optional additional constraint to filter the supported elements (In addition to the Metaclass) */
 	private IDirectEditorConstraint constraint;
 
-	/**
-	 * Returns the set of transformations registered in the platform
-	 *
-	 * @return the set of transformations registered in the platform
-	 */
-	public static IDirectEditorExtensionPoint[] getDirectEditorConfigurations() {
+	private DirectEditorExtensionPoint() {
+		super();
+		init();
+	}
 
-		// Computed only once
-		if (configurations != null) {
-			return configurations;
-		}
-
+	protected void init() {
 		// It was not already computed,
 		// returns the new Collection of DirectEditorExtensionPoint
 		List<DirectEditorExtensionPoint> directEditorExtensionPoints = new ArrayList<DirectEditorExtensionPoint>();
@@ -95,18 +91,26 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 		configurations = directEditorExtensionPoints.toArray(new DirectEditorExtensionPoint[directEditorExtensionPoints.size()]);
 		directEditorProvider = new DirectEditorRegistry();
 		directEditorProvider.init(configurations);
+	}
 
+	public final synchronized static DirectEditorExtensionPoint getInstance() {
+		if (DirectEditorExtensionPoint.instance == null) {
+			DirectEditorExtensionPoint.instance = new DirectEditorExtensionPoint();
+		}
+		return DirectEditorExtensionPoint.instance;
+	}
+
+	/**
+	 * Returns the set of transformations registered in the platform
+	 *
+	 * @return the set of transformations registered in the platform
+	 */
+	public IDirectEditorExtensionPoint[] getDirectEditorConfigurations() {
 		return configurations;
 	}
 
-	public static DirectEditorRegistry getDirectEditorProvider() {
-		if (directEditorProvider != null) {
-			return directEditorProvider;
-		} else {
-			directEditorProvider = new DirectEditorRegistry();
-			directEditorProvider.init(getDirectEditorConfigurations());
-			return directEditorProvider;
-		}
+	public DirectEditorRegistry getDirectEditorProvider() {
+		return directEditorProvider;
 	}
 
 	/**
@@ -118,7 +122,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 * @deprecated Use {@link DirectEditorsUtil#getDefautDirectEditorConfiguration(Object, Object)} instead
 	 */
 	@Deprecated
-	public static DirectEditorExtensionPoint getDefautDirectEditorConfiguration(EObject semanticObjectToEdit, Object selectedObject) {
+	public DirectEditorExtensionPoint getDefautDirectEditorConfiguration(EObject semanticObjectToEdit, Object selectedObject) {
 		return (DirectEditorExtensionPoint) DirectEditorsUtil.getDefautDirectEditorConfiguration(semanticObjectToEdit, selectedObject);
 
 	}
@@ -134,7 +138,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 * @deprecated Use {@link DirectEditorsUtil#getDirectEditorConfigurations(Object, Object)} instead
 	 */
 	@Deprecated
-	public static Collection<DirectEditorExtensionPoint> getDirectEditorConfigurations(EObject semanticObjectToEdit, Object selectedObject) {
+	public Collection<DirectEditorExtensionPoint> getDirectEditorConfigurations(EObject semanticObjectToEdit, Object selectedObject) {
 		Collection<IDirectEditorExtensionPoint> directEditorConfigurations = DirectEditorsUtil.getDirectEditorConfigurations(semanticObjectToEdit, selectedObject);
 
 		List<DirectEditorExtensionPoint> returnList = new ArrayList<DirectEditorExtensionPoint>();
@@ -153,7 +157,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 *            the element that declares the extension
 	 * @return a new configuration, given the information of the specified configElt
 	 */
-	public static DirectEditorExtensionPoint parseDirectEditorConfiguration(IConfigurationElement configElt) {
+	public DirectEditorExtensionPoint parseDirectEditorConfiguration(IConfigurationElement configElt) {
 
 		// check that the ConfigElement is a transformation
 		if (!IDirectEditorConfigurationIds.TAG_DIRECT_EDITOR_CONFIGURATION.equals(configElt.getName())) {

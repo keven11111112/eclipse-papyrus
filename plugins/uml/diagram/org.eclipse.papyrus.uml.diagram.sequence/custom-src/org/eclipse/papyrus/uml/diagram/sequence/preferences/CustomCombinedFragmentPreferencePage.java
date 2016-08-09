@@ -91,19 +91,19 @@ public class CustomCombinedFragmentPreferencePage extends CombinedFragmentPrefer
 	protected void createPageContents(Composite parent) {
 		super.createPageContents(parent);
 		NodeColorGroup colorGroupForNodeComposite = new NodeColorGroup(parent, getPreferenceKey(), this);
-		addAbstractGroup(colorGroupForNodeComposite);
+		addPreferenceGroup(colorGroupForNodeComposite);
 		BackgroundColor backgroundColorGroup = new BackgroundColor(parent, getPreferenceKey(), this);
-		addAbstractGroup(backgroundColorGroup);
+		addPreferenceGroup(backgroundColorGroup);
 		DecorationGroup decorationGroup = new DecorationGroup(parent, getPreferenceKey(), this);
-		addAbstractGroup(decorationGroup);
+		addPreferenceGroup(decorationGroup);
 		if (!compartmentsList.isEmpty()) {
 			NodeCompartmentGroupEx compartmentGroup = new NodeCompartmentGroupEx(parent, getPreferenceKey(), this, compartmentsList, getCompartmentTitleVisibilityPreferences().keySet(), getPreferenceStore());
-			addAbstractGroup(compartmentGroup);
+			addPreferenceGroup(compartmentGroup);
 		}
 		// Label role group
 		if (!getLabelRole().isEmpty()) {
 			LabelGroup compartmentGroup = new LabelGroup(parent, getPreferenceKey(), this, getLabelRole());
-			addAbstractGroup(compartmentGroup);
+			addPreferenceGroup(compartmentGroup);
 		}
 	}
 

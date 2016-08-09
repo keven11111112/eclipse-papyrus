@@ -3,7 +3,7 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility
  org.eclipse.emf.ecore.xmi;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="[5.2.0,6.0.0)",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="[1.8.0,2.0.0)";visibility:=reexport,
- org.eclipse.papyrus.editor;bundle-version="[1.2.0,2.0.0)"
+ org.eclipse.papyrus.editor;bundle-version="[2.0.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.uml.diagram.paletteconfiguration,
  org.eclipse.papyrus.uml.diagram.paletteconfiguration.descriptor,
  org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl,
@@ -12,7 +12,7 @@ Export-Package: org.eclipse.papyrus.uml.diagram.paletteconfiguration,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.paletteconfiguration.Activator

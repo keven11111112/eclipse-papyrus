@@ -634,23 +634,26 @@ public class ModelSet extends ResourceSetImpl {
 	 *
 	 * @param modelIdentifiers
 	 *            The model to import from the specified IFile.
-	 * @param file
-	 *            The IFile used to import the model.
+	 * @param uri
+	 *            The URI used to import the model.
 	 * @throws ModelException
 	 *             If an error occur during import.
 	 */
 	public void importModels(ModelIdentifiers modelIdentifiers, URI uri) throws ModelException {
 
-		URI toImport = uri.trimFileExtension();
-		// Walk all registered models
-		for (String modelId : modelIdentifiers) {
-			IModel model = getModel(modelId);
+		if (uri != null) {
+			URI toImport = uri.trimFileExtension();
+			// Walk all registered models
+			for (String modelId : modelIdentifiers) {
+				IModel model = getModel(modelId);
 
-			// Load models using the default path
-			model.importModel(toImport);
-			if (uri != null) {
+				// Load models using the default path
+				model.importModel(toImport);
+
 				model.setModelURI(uriWithoutExtension);
 			}
+		} else {
+			throw new ModelException("URI used to import the model is null");
 		}
 	}
 

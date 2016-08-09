@@ -31,7 +31,7 @@ import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;

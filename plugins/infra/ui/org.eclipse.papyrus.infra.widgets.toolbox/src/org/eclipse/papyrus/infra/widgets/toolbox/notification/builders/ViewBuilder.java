@@ -70,9 +70,11 @@ public class ViewBuilder implements IBuilder {
 						}
 					}
 				}
-				ViewNotification notification = new ViewNotification(viewCompo);
-				viewCompo.setINotification(notification);
-				return notification;
+				if (viewCompo != null) {
+					ViewNotification notification = new ViewNotification(viewCompo);
+					viewCompo.setINotification(notification);
+					return notification;
+				}
 			}
 		} catch (PartInitException e) {
 		}

@@ -118,19 +118,26 @@ public class ExportAllWizard extends Wizard implements IExportWizard {
 		if (file != null) {
 			IContainer parentResource = file.getParent();
 			parentResource = ResourcesPlugin.getWorkspace().getRoot().getContainerForLocation(parentResource.getLocation());
-			uriFile = URI.createPlatformResourceURI(parentResource.getLocation().toString(), true);
+			if (parentResource != null) {
+				uriFile = URI.createPlatformResourceURI(parentResource.getLocation().toString(), true);
 
-		}
-
-		if (parameter == null) {
-			pageError = new ExportDiagramsErrorPage();
-			addPage(pageError);
+				if (parameter == null) {
+					addErrorPage();
+				} else {
+					page = new ExportDiagramsPage(uriFile);
+					addPage(page);
+				}
+			} else {
+				addErrorPage();
+			}
 		} else {
-			page = new ExportDiagramsPage(uriFile);
-			addPage(page);
+			addErrorPage();
 		}
+	}
 
-
+	private void addErrorPage() {
+		pageError = new ExportDiagramsErrorPage();
+		addPage(pageError);
 	}
 
 	/**

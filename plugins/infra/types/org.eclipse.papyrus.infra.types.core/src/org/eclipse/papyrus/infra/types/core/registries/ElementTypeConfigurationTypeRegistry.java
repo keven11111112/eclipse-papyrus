@@ -33,9 +33,13 @@ import org.eclipse.papyrus.infra.types.core.factories.impl.SpecializationTypeFac
  */
 public class ElementTypeConfigurationTypeRegistry {
 
-	private static ElementTypeConfigurationTypeRegistry registry;
+	private volatile static ElementTypeConfigurationTypeRegistry registry;
 
 	protected Map<String, IElementTypeConfigurationFactory<? extends ElementTypeConfiguration>> elementTypeConfigurationTypeToFactory = null;
+
+	private ElementTypeConfigurationTypeRegistry() {
+		super();
+	}
 
 	/**
 	 * returns the singleton instance of this registry

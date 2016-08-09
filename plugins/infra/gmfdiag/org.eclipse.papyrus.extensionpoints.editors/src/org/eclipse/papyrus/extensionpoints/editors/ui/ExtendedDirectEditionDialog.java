@@ -44,9 +44,6 @@ public class ExtendedDirectEditionDialog extends LabelEditorDialog {
 	/** Document used by the dialog */
 	protected Document document;
 
-	/** initial text value */
-	protected String value;
-
 	/** extension configuration */
 	protected IDirectEditorConfiguration configuration;
 

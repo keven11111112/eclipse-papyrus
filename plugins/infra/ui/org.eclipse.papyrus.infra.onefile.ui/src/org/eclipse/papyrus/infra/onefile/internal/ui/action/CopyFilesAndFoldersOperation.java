@@ -902,7 +902,8 @@ public class CopyFilesAndFoldersOperation {
 								NLS
 										.bind(
 												IDEWorkbenchMessages.CopyFilesAndFoldersOperation_infoNotFound,
-												fileName), null);
+												fileName),
+								null);
 			}
 		});
 	}
@@ -1141,9 +1142,11 @@ public class CopyFilesAndFoldersOperation {
 						NLS
 								.bind(
 										IDEWorkbenchMessages.CopyFilesAndFoldersOperation_inputDialogMessage,
-										resource.getName()), getAutoNewNameFor(
+										resource.getName()),
+						getAutoNewNameFor(
 								originalName, workspace).lastSegment()
-								.toString(), validator);
+										.toString(),
+						validator);
 				dialog.setBlockOnOpen(true);
 				dialog.open();
 				if (dialog.getReturnCode() == Window.CANCEL) {
@@ -1642,9 +1645,8 @@ public class CopyFilesAndFoldersOperation {
 			}
 			for (int i = 0; i < sourceStores.length; i++) {
 				IFileStore sourceStore = sourceStores[i];
-				IFileStore sourceParentStore = sourceStore.getParent();
-
 				if (sourceStore != null) {
+					IFileStore sourceParentStore = sourceStore.getParent();
 					if (destinationStore.equals(sourceStore)
 							|| (sourceParentStore != null && destinationStore
 									.equals(sourceParentStore))) {

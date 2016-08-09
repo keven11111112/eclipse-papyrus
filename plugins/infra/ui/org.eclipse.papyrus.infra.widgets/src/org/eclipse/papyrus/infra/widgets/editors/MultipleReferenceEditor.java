@@ -27,12 +27,9 @@ import org.eclipse.swt.widgets.Composite;
  * @author Camille Letavernier
  *
  */
-public class MultipleReferenceEditor extends MultipleValueEditor {
+public class MultipleReferenceEditor extends MultipleValueEditor<ReferenceSelector> {
 
-	/**
-	 * The element selector for the available values
-	 */
-	protected ReferenceSelector selector;
+
 
 	protected IStaticContentProvider contentProvider;
 
@@ -53,7 +50,6 @@ public class MultipleReferenceEditor extends MultipleValueEditor {
 	 */
 	public MultipleReferenceEditor(Composite parent, int style, boolean ordered, boolean unique, String label) {
 		super(parent, style, new ReferenceSelector(unique), ordered, unique, label);
-		this.selector = (ReferenceSelector) super.selector;
 		// Default providers
 		setProviders(EmptyContentProvider.instance, new WrappedLabelProvider());
 	}
@@ -99,17 +95,23 @@ public class MultipleReferenceEditor extends MultipleValueEditor {
 
 		this.contentProvider = contentProvider;
 
-		selector.setContentProvider(contentProvider);
+		if (selector instanceof ReferenceSelector) {
+			selector.setContentProvider(contentProvider);
+		}
 
 		if (labelProvider != null) {
+
 			selector.setLabelProvider(labelProvider);
+
 			super.setLabelProvider(labelProvider);
 		}
 	}
 
 	@Override
 	public void setUnique(boolean unique) {
+
 		selector.setUnique(unique);
+
 		super.setUnique(unique);
 	}
 }

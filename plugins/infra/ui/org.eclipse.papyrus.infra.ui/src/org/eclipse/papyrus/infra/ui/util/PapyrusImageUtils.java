@@ -57,10 +57,13 @@ public class PapyrusImageUtils {
 		Image result = JFaceResources.getImageRegistry().get(key);
 		if (result == null) {
 			URL url = Activator.getDefault().getBundle().getEntry(path);
-			try {
-				result = new Image(Display.getDefault(), url.openStream());
-				JFaceResources.getImageRegistry().put(key, result);
-			} catch (IOException e) {
+
+			if (url != null) {
+				try {
+					result = new Image(Display.getDefault(), url.openStream());
+					JFaceResources.getImageRegistry().put(key, result);
+				} catch (IOException e) {
+				}
 			}
 		}
 		return result;

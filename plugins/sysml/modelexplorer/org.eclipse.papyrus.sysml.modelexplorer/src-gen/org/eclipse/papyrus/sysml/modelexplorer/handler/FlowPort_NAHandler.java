@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -61,7 +62,7 @@ public class FlowPort_NAHandler extends FlowPortHandler {
 		// Retrieve create command from the Element Edit service
 		ICommand createGMFCommand = provider.getEditCommand(createRequest);
 		if (createGMFCommand != null) {
-			Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
+			Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
 			return emfCommand;
 		}
 		return UnexecutableCommand.INSTANCE;

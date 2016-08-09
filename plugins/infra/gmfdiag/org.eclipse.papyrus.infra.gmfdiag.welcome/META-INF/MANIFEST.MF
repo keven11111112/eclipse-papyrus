@@ -3,10 +3,10 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.welcome.internal;x-internal:=t
  org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements;x-internal:=true,
  org.eclipse.papyrus.infra.gmfdiag.welcome.internal.widgets;x-internal:=true
 Require-Bundle: org.eclipse.papyrus.infra.editor.welcome;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.infra.services.navigation;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.services.navigation;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.jface.databinding;bundle-version="[1.8.0,2.0.0)",
- org.eclipse.papyrus.infra.editor.welcome.nattable;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.editor.welcome.nattable;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.nattable.model;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

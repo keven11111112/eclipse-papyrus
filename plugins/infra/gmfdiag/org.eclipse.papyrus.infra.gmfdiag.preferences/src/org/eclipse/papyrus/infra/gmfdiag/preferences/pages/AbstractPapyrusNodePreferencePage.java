@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
+import org.eclipse.papyrus.infra.gmfdiag.preferences.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.BackgroundColor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.DecorationGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.LabelGroup;
@@ -57,20 +58,20 @@ public abstract class AbstractPapyrusNodePreferencePage extends AbstractPapyrusE
 	protected void createPageContents(Composite parent) {
 		super.createPageContents(parent);
 		NodeColorGroup colorGroupForNodeComposite = new NodeColorGroup(parent, getPreferenceKey(), this);
-		addAbstractGroup(colorGroupForNodeComposite);
+		addPreferenceGroup(colorGroupForNodeComposite);
 		BackgroundColor backgroundColorGroup = new BackgroundColor(parent, getPreferenceKey(), this);
-		addAbstractGroup(backgroundColorGroup);
+		addPreferenceGroup(backgroundColorGroup);
 		DecorationGroup decorationGroup = new DecorationGroup(parent, getPreferenceKey(), this);
-		addAbstractGroup(decorationGroup);
+		addPreferenceGroup(decorationGroup);
 		if (!compartmentsList.isEmpty()) {
-			NodeCompartmentGroup compartmentGroup = new NodeCompartmentGroup(parent, getPreferenceKey(), this, compartmentsList, getCompartmentTitleVisibilityPreferences().keySet(), getPreferenceStore());
-			addAbstractGroup(compartmentGroup);
+			NodeCompartmentGroup compartmentGroup = new NodeCompartmentGroup(parent, getPreferenceKey(), this, compartmentsList, getCompartmentTitleVisibilityPreferences().keySet(), Activator.getDefault().getPreferenceStore());
+			addPreferenceGroup(compartmentGroup);
 		}
 
 		// Label role group
 		if (!getLabelRole().isEmpty()) {
 			LabelGroup compartmentGroup = new LabelGroup(parent, getPreferenceKey(), this, getLabelRole());
-			addAbstractGroup(compartmentGroup);
+			addPreferenceGroup(compartmentGroup);
 		}
 	}
 
@@ -84,7 +85,7 @@ public abstract class AbstractPapyrusNodePreferencePage extends AbstractPapyrusE
 	/**
 	 *
 	 * @return
-	 *         the label roles
+	 * 		the label roles
 	 */
 	protected TreeMap<String, String> getLabelRole() {
 		return new TreeMap<String, String>();
@@ -93,7 +94,7 @@ public abstract class AbstractPapyrusNodePreferencePage extends AbstractPapyrusE
 	/**
 	 *
 	 * @return
-	 *         the compartment title visibility
+	 * 		the compartment title visibility
 	 */
 	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
 		return new TreeMap<String, Boolean>();

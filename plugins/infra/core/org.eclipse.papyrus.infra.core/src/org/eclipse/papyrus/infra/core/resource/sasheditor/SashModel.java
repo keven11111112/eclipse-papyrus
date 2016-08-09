@@ -248,7 +248,7 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	}
 
 	/**
-	 * Intantiates the sash resource template on the given URI.
+	 * Instantiates the sash resource template on the given URI.
 	 * 
 	 * @param sashResourceURI
 	 *            the new sash resource URI
@@ -258,8 +258,13 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	 */
 	void intantiateTemplate(URI sashResourceURI) throws IOException {
 		try (OutputStream output = getModelManager().getURIConverter().createOutputStream(sashResourceURI)) {
-			URL template = Activator.getDefault().getBundle().getEntry("templates/model.sash"); //$NON-NLS-1$
-			Resources.copy(template, output);
+			String path = "templates/model.sash"; //$NON-NLS-1$
+			URL template = Activator.getDefault().getBundle().getEntry(path);
+			if (template != null) {
+				Resources.copy(template, output);
+			} else {
+				throw new IOException("Sash template URL is null for: " + path);
+			}
 		}
 	}
 

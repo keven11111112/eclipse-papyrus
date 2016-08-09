@@ -21,8 +21,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collections;
 
-import junit.framework.AssertionFailedError;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -35,6 +33,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
+import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
@@ -44,6 +43,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
+
+import junit.framework.AssertionFailedError;
 
 
 /**
@@ -64,7 +65,7 @@ public class GMFUnsafeTest extends AbstractPapyrusTest {
 
 	@Test
 	public void testWrite_runnable() throws Exception {
-		if(doIt()) {
+		if (doIt()) {
 			GMFUnsafe.write(domain, new Runnable() {
 
 				public void run() {
@@ -76,7 +77,7 @@ public class GMFUnsafeTest extends AbstractPapyrusTest {
 
 	@Test
 	public void testWrite_command() throws Exception {
-		if(doIt()) {
+		if (doIt()) {
 			GMFUnsafe.write(domain, new AbstractCommand() {
 
 				public void redo() {
@@ -92,7 +93,7 @@ public class GMFUnsafeTest extends AbstractPapyrusTest {
 
 	@Test
 	public void testWrite_gmfCommand() throws Exception {
-		if(doIt()) {
+		if (doIt()) {
 			GMFUnsafe.write(domain, new AbstractTransactionalCommand(domain, "Test", Collections.emptyList()) {
 
 				@Override
@@ -106,7 +107,7 @@ public class GMFUnsafeTest extends AbstractPapyrusTest {
 
 	@Test
 	public void testWrap() throws Exception {
-		if(doIt()) {
+		if (doIt()) {
 			GMFUnsafe.wrap(domain, new AbstractCommand() {
 
 				public void redo() {
@@ -139,15 +140,15 @@ public class GMFUnsafeTest extends AbstractPapyrusTest {
 			input.close();
 		}
 
-		model = (Model)res.getContents().get(0);
-		classA = (Class)model.getOwnedType("A");
+		model = (Model) res.getContents().get(0);
+		classA = (Class) model.getOwnedType("A");
 	}
 
 	@After
 	public void destroyFixture() {
 		ResourceSet rset = domain.getResourceSet();
 
-		for(Resource next : rset.getResources()) {
+		for (Resource next : rset.getResources()) {
 			next.unload();
 			next.eAdapters().clear();
 		}
@@ -170,7 +171,7 @@ public class GMFUnsafeTest extends AbstractPapyrusTest {
 	}
 
 	boolean doIt() {
-		if(!doIt) {
+		if (!doIt) {
 			try {
 				domain.runExclusive(new Runnable() {
 
@@ -182,15 +183,15 @@ public class GMFUnsafeTest extends AbstractPapyrusTest {
 									doIt = true;
 
 									try {
-										// Reflectively re-invoke the test method.  This will result in it execution of its body because
+										// Reflectively re-invoke the test method. This will result in it execution of its body because
 										// the re-entrant call to doIt() will return true this time
 										try {
 											Object test = GMFUnsafeTest.this;
 											Method method = test.getClass().getDeclaredMethod(testName.getMethodName());
 											method.invoke(test);
 										} catch (Exception e) {
-											if((e instanceof InvocationTargetException) && (((InvocationTargetException)e).getTargetException() instanceof AssertionFailedError)) {
-												throw (AssertionFailedError)((InvocationTargetException)e).getTargetException();
+											if ((e instanceof InvocationTargetException) && (((InvocationTargetException) e).getTargetException() instanceof AssertionFailedError)) {
+												throw (AssertionFailedError) ((InvocationTargetException) e).getTargetException();
 											}
 											e.printStackTrace();
 											fail("Reflective invocation of test failed: " + e.getLocalizedMessage());

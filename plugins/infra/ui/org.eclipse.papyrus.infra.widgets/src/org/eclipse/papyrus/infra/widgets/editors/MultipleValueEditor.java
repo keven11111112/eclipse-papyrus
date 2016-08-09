@@ -52,9 +52,10 @@ import org.eclipse.swt.widgets.TreeItem;
  * An editor for multivalued fields.
  *
  * @author Camille Letavernier
+ * @param <T>
  *
  */
-public class MultipleValueEditor extends AbstractListEditor implements SelectionListener, IChangeListener, DisposeListener {
+public class MultipleValueEditor<T extends IElementSelector> extends AbstractListEditor implements SelectionListener, IChangeListener, DisposeListener {
 
 	public static final int MANY = -1;
 
@@ -103,7 +104,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	/**
 	 * The element selector for this editor's dialog
 	 */
-	protected IElementSelector selector;
+	protected T selector;
 
 	/**
 	 * Indicates whether the underlying is ordered
@@ -137,6 +138,8 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	/**
 	 *
 	 * Constructor.
+	 * 
+	 * @param <T>
 	 *
 	 * @param parent
 	 *            The Composite in which this Editor should be displayed
@@ -151,7 +154,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param label
 	 *            The label for this editor. If null, the label isn't created.
 	 */
-	public MultipleValueEditor(Composite parent, int style, IElementSelector selector, boolean ordered, boolean unique, String label) {
+	public MultipleValueEditor(Composite parent, int style, T selector, boolean ordered, boolean unique, String label) {
 		this(parent, style, selector, ordered, unique, label, MANY);
 	}
 
@@ -174,7 +177,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param upperBound
 	 *            The maximum number of values that must appear.
 	 */
-	public MultipleValueEditor(Composite parent, int style, IElementSelector selector, boolean ordered, boolean unique, String label, int upperBound) {
+	public MultipleValueEditor(Composite parent, int style, T selector, boolean ordered, boolean unique, String label, int upperBound) {
 		super(parent, label);
 		Assert.isNotNull(selector, "The Element Selector must be specified for a MultipleValueEditor"); //$NON-NLS-1$
 
@@ -231,7 +234,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		return data;
 	}
 
-	public void setSelector(IElementSelector selector) {
+	public void setSelector(T selector) {
 		this.selector = selector;
 	}
 
@@ -274,7 +277,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param ordered
 	 *            Specify if the observed collection is ordered. If true, Up and Down controls are displayed
 	 */
-	public MultipleValueEditor(Composite parent, int style, IElementSelector selector, boolean ordered) {
+	public MultipleValueEditor(Composite parent, int style, T selector, boolean ordered) {
 		this(parent, style, selector, ordered, false, null);
 	}
 
@@ -289,7 +292,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param selector
 	 *            The element selector for this editor's dialog
 	 */
-	public MultipleValueEditor(Composite parent, int style, IElementSelector selector) {
+	public MultipleValueEditor(Composite parent, int style, T selector) {
 		this(parent, style, selector, false, false, null);
 	}
 
@@ -306,7 +309,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param label
 	 *            The label for this Editor
 	 */
-	public MultipleValueEditor(Composite parent, int style, IElementSelector selector, String label) {
+	public MultipleValueEditor(Composite parent, int style, T selector, String label) {
 		this(parent, style, selector, false, false, label);
 	}
 

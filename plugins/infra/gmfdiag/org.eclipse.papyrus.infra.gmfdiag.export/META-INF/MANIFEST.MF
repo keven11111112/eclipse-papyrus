@@ -7,12 +7,12 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.export,
  org.eclipse.papyrus.infra.gmfdiag.export.utils,
  org.eclipse.papyrus.infra.gmfdiag.export.wizard
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="[1.7.0,2.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.services.validation;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.services.semantic;bundle-version="[1.2.0,2.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.export.Activator

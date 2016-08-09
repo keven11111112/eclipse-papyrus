@@ -64,12 +64,14 @@ public class PapyrusBeveledBorderDecorator extends BeveledBorderDecorator {
 		if (cell instanceof TranslatedLayerCell) {
 			labels = cell.getConfigLabels();
 		}
-		if (!labels.hasLabel(TreeLayer.TREE_COLUMN_CELL)) {
-			super.paintCell(cell, gc, adjustedCellBounds, configRegistry);
-			return;
-		} else {
-			if (getWrappedPainter() != null) {
-				getWrappedPainter().paintCell(cell, gc, adjustedCellBounds, configRegistry);
+		if (labels != null) {
+			if (!labels.hasLabel(TreeLayer.TREE_COLUMN_CELL)) {
+				super.paintCell(cell, gc, adjustedCellBounds, configRegistry);
+				return;
+			} else {
+				if (getWrappedPainter() != null) {
+					getWrappedPainter().paintCell(cell, gc, adjustedCellBounds, configRegistry);
+				}
 			}
 		}
 	}

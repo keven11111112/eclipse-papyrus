@@ -170,7 +170,7 @@ public abstract class AbstractModelElement implements ModelElement, IDataSourceL
 	 * @param propertyPath
 	 *            The path of the property we want to observe
 	 * @return
-	 *         The new IObservable
+	 * 		The new IObservable
 	 */
 	protected abstract IObservable doGetObservable(String propertyPath);
 
@@ -210,8 +210,8 @@ public abstract class AbstractModelElement implements ModelElement, IDataSourceL
 
 		return observableDisposeListener;
 	}
-	
-	
+
+
 	/**
 	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement#getNameResolutionHelper(java.lang.String)
 	 *
@@ -232,13 +232,13 @@ public abstract class AbstractModelElement implements ModelElement, IDataSourceL
 	public IPapyrusConverter getPapyrusConverter(String propertyPath) {
 		return null;
 	}
-	
+
 	/**
 	 * Get the observables map by property path.
 	 * 
 	 * @return the observables.
 	 * 
-	 * @since 1.3
+	 * @since 2.0
 	 */
 	public Map<String, IObservable> getObservables() {
 		return observables;

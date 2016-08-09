@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.timing.custom.Messages;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.CutAndInsertOccurrenceSpecificationCompactLifelineCommand;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.policies.AbstractTimelineLayoutPolicy;

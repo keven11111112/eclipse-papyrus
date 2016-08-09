@@ -162,6 +162,11 @@ public class OperationHistoryDirtyState {
 		return (obj instanceof Delegator) ? equals(((Delegator) obj).delegate) : super.equals(obj);
 	}
 
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
 	//
 	// Nested types
 	//

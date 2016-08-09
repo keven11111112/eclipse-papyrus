@@ -18,7 +18,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.editor.integration.tests.tests.AbstractEditorIntegrationTest;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;

@@ -163,12 +163,15 @@ public class DefaultLanguageProvider implements ILanguageProvider {
 		} else if (modelURI.isFile()) {
 			String baseName = modelURI.lastSegment();
 			File directory = new File(modelURI.trimSegments(1).toFileString());
-			for (File next : directory.listFiles()) {
-				if (next.isFile()) {
-					IPath nextPath = new Path(directory.getPath()).append(next.getName());
-					String name = nextPath.removeFileExtension().lastSegment();
-					if (name.equals(baseName)) {
-						result.add(URI.createPlatformResourceURI(nextPath.toString(), true));
+			File[] listFiles = directory.listFiles();
+			if (listFiles != null) {
+				for (File next : listFiles) {
+					if (next.isFile()) {
+						IPath nextPath = new Path(directory.getPath()).append(next.getName());
+						String name = nextPath.removeFileExtension().lastSegment();
+						if (name.equals(baseName)) {
+							result.add(URI.createPlatformResourceURI(nextPath.toString(), true));
+						}
 					}
 				}
 			}

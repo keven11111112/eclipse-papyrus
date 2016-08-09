@@ -21,7 +21,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.CanonicalStyle;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy.CanonicalStateListener;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SetCanonicalCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;

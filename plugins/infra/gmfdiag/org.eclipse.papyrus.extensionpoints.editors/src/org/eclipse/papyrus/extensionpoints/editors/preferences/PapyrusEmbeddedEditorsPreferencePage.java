@@ -345,7 +345,7 @@ public class PapyrusEmbeddedEditorsPreferencePage extends PreferencePage impleme
 		Map<String, List<IDirectEditorExtensionPoint>> elements = new HashMap<String, List<IDirectEditorExtensionPoint>>();
 
 		// Populate the table with the items
-		IDirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getDirectEditorConfigurations();
+		IDirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getInstance().getDirectEditorConfigurations();
 		List<IDirectEditorExtensionPoint> configurations;
 		for (IDirectEditorExtensionPoint extensionPoint : extensionPoints) {
 			if (!elements.containsKey(extensionPoint.getObjectToEdit())) {

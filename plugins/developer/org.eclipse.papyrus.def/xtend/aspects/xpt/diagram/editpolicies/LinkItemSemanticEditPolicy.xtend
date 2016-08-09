@@ -43,7 +43,7 @@ import xpt.Common
 				java.util.List<org.eclipse.emf.ecore.EObject> todestroy=new java.util.ArrayList<org.eclipse.emf.ecore.EObject>();
 				todestroy.add(req.getElementToDestroy());
 				//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
-				cmd.add(new org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(),todestroy )));
+				cmd.add(new org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(),todestroy )));
 				return getGEFWrapper(cmd.reduce());
 				//return getGEFWrapper(«newDeleteLinkWithClassCommand(it,genLink, 'req')»);
 			}

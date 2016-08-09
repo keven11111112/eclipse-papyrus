@@ -503,7 +503,6 @@ public class IndexManager {
 			super(name);
 
 			this.project = project;
-			this.permit = permit;
 
 			if ((project != null) && register) {
 				setRule(project);

@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.component.custom.command.DeferredSetViewCommand;

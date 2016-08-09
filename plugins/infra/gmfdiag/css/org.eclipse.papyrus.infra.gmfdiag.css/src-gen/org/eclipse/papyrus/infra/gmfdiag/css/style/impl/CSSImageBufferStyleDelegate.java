@@ -39,7 +39,8 @@ public class CSSImageBufferStyleDelegate implements CSSImageBufferStyle {
 			Object defaultValue = NotationPackage.eINSTANCE.getImageStyle_AntiAlias().getDefaultValue();
 			return (java.lang.Boolean) defaultValue;
 		}
-		return null;
+
+		return (Boolean) engine.convert(cssValue, Boolean.class, null);
 	}
 
 	@Override
@@ -49,6 +50,7 @@ public class CSSImageBufferStyleDelegate implements CSSImageBufferStyle {
 			Object defaultValue = NotationPackage.eINSTANCE.getImageStyle_MaintainAspectRatio().getDefaultValue();
 			return (java.lang.Boolean) defaultValue;
 		}
-		return null;
+
+		return (Boolean) engine.convert(cssValue, Boolean.class, null);
 	}
 }

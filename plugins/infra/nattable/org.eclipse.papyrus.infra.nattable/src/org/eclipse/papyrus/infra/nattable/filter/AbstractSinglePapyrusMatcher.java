@@ -42,10 +42,6 @@ public abstract class AbstractSinglePapyrusMatcher<E> implements Matcher<E> {
 	 */
 	private int columnIndex;
 
-	/**
-	 * the config registry of the table
-	 */
-	private IConfigRegistry registry;
 
 	/**
 	 * 
@@ -103,19 +99,13 @@ public abstract class AbstractSinglePapyrusMatcher<E> implements Matcher<E> {
 		return columnIndex;
 	}
 
-	/**
-	 * @return the registry
-	 */
-	protected final IConfigRegistry getRegistry() {
-		return registry;
-	}
 
 	/**
 	 * 
 	 * @param item
 	 *            an object (a row)
 	 * @return
-	 *         the cell value for this row and the filtered column
+	 * 		the cell value for this row and the filtered column
 	 */
 	protected Object getCellValueFor(Object item) {
 		return getColumnAccessor().getDataValue(item, getColumnIndex());

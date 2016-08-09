@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.editor.EditorFontGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.editor.EditorNodeColorGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.editor.EditorRulersAndGridGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
+import org.eclipse.papyrus.infra.ui.preferences.AbstractPapyrusPreferencePage;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -56,31 +57,31 @@ public class PapyrusAllDiagramsPreferencePage extends AbstractPapyrusPreferenceP
 
 		// FontGroup
 		FontGroup fontGroupComposite = new EditorFontGroup(contentGroup, getTitle(), this);
-		addAbstractGroup(fontGroupComposite);
+		addPreferenceGroup(fontGroupComposite);
 		// color
 		NodeColorGroup colorGroupForNodeComposite = new EditorNodeColorGroup(contentGroup, getTitle(), this);
-		addAbstractGroup(colorGroupForNodeComposite);
+		addPreferenceGroup(colorGroupForNodeComposite);
 
 
 		// router for links
 		ConnectionGroup connectionGroupComposite = new EditorConnectionGroup(contentGroup, getTitle(), this);
-		addAbstractGroup(connectionGroupComposite);
+		addPreferenceGroup(connectionGroupComposite);
 
 		// background
 		BackgroundColor backgroundColorGroup = new EditorBackgroundColor(contentGroup, getTitle(), this);
-		addAbstractGroup(backgroundColorGroup);
+		addPreferenceGroup(backgroundColorGroup);
 
 		DecorationGroup decorationGroupComposite = new EditorDecorationGroup(contentGroup, getTitle(), this);
-		addAbstractGroup(decorationGroupComposite);
+		addPreferenceGroup(decorationGroupComposite);
 
 		DimensionGroup dimensionGroup = new EditorDimensionGroup(contentGroup, getTitle(), this);
-		addAbstractGroup(dimensionGroup);
+		addPreferenceGroup(dimensionGroup);
 
 		RulersAndGridGroup viewGroupComposite = new EditorRulersAndGridGroup(parent, getTitle(), this);
-		addAbstractGroup(viewGroupComposite);
+		addPreferenceGroup(viewGroupComposite);
 
 		final RestoreElementGroup restoreElementGroup = new RestoreElementGroup(parent, getTitle(), this);
-		addAbstractGroup(restoreElementGroup);
+		addPreferenceGroup(restoreElementGroup);
 	}
 
 

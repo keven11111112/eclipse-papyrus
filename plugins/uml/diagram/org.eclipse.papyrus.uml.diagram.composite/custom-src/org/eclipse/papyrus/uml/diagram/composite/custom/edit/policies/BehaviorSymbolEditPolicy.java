@@ -29,7 +29,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
+import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.BehaviorPortLinkEditPart;
 import org.eclipse.uml2.uml.Element;

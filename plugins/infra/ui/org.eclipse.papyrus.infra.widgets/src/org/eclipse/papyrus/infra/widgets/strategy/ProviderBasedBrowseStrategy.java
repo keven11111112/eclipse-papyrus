@@ -28,7 +28,7 @@ import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 
 
-public class ProviderBasedBrowseStrategy extends EncapsulatedContentProvider implements TreeBrowseStrategy {
+public class ProviderBasedBrowseStrategy<T extends Viewer> extends EncapsulatedContentProvider implements TreeBrowseStrategy {
 
 	protected ITreeContentProvider provider;
 
@@ -169,11 +169,7 @@ public class ProviderBasedBrowseStrategy extends EncapsulatedContentProvider imp
 		}
 	}
 
-	@Override
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		super.inputChanged(viewer, oldInput, newInput);
-		this.viewer = viewer;
-	}
 
-	protected Viewer viewer;
+
+	protected T viewer;
 }

@@ -228,7 +228,7 @@ public class InputComboFieldEditor extends FieldEditor implements IDynamicFieldE
 			}
 		}
 		if (fEntryNamesAndValues.length > 0) {
-			value = fEntryNamesAndValues[0][1];
+			this.value = fEntryNamesAndValues[0][1];
 			combo.setText(fEntryNamesAndValues[0][0]);
 		}
 	}

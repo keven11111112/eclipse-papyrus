@@ -48,7 +48,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomRegionCreateElementCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.EMFCustomTransitionRetargetContainerCommand;

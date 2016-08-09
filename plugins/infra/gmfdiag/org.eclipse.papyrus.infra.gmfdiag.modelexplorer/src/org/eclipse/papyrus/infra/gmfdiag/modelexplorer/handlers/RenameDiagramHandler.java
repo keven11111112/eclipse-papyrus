@@ -32,6 +32,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.modelexplorer.messages.Messages;
 import org.eclipse.papyrus.views.modelexplorer.DirectEditorEditingSupport;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -69,7 +70,7 @@ public class RenameDiagramHandler extends AbstractDiagramCommandHandler {
 						}
 					}
 				};
-				return new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(cmd);
+				return new GMFtoEMFCommandWrapper(cmd);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;

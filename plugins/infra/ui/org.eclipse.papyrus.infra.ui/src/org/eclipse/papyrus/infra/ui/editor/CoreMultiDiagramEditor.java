@@ -369,22 +369,23 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * @return
 	 */
 	protected ActionBarContributorRegistry getActionBarContributorRegistry() {
-		if (actionBarContributorRegistry != null) {
-			return actionBarContributorRegistry;
+		if (actionBarContributorRegistry == null) {
+
+			// Try to got it from CoreComposedActionBarContributor
+			// Get it from the contributor.
+			IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
+			if (contributor instanceof CoreComposedActionBarContributor) {
+				log.debug(getClass().getSimpleName() + " - ActionBarContributorRegistry loaded from CoreComposedActionBarContributor.");
+				actionBarContributorRegistry = ((CoreComposedActionBarContributor) contributor).getActionBarContributorRegistry();
+
+			} else {
+				// Create a registry.
+				log.debug(getClass().getSimpleName() + " - create an ActionBarContributorRegistry.");
+				actionBarContributorRegistry = createActionBarContributorRegistry();
+			}
 		}
 
-		// Try to got it from CoreComposedActionBarContributor
-		// Get it from the contributor.
-		IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
-		if (contributor instanceof CoreComposedActionBarContributor) {
-			log.debug(getClass().getSimpleName() + " - ActionBarContributorRegistry loaded from CoreComposedActionBarContributor.");
-			return ((CoreComposedActionBarContributor) contributor).getActionBarContributorRegistry();
-		} else {
-			// Create a registry.
-			log.debug(getClass().getSimpleName() + " - create an ActionBarContributorRegistry.");
-			return createActionBarContributorRegistry();
-		}
-
+		return actionBarContributorRegistry;
 	}
 
 	/**
@@ -611,7 +612,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 			// start remaining services
 			servicesRegistry.startRegistry();
-			
+
 			// In case of a shard
 			String name = uri.lastSegment();
 			if (!name.equals(getPartName())) {

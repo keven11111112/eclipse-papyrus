@@ -27,7 +27,7 @@ import org.eclipse.ui.IEditorPart;
 /**
  * The constraint which allow to determinate if this is a nattable editor as current editor part.
  * 
- * @since 2.1
+ * @since 2.2
  */
 public class IsEObjectInTableConstraint extends AbstractConstraint {
 
@@ -63,14 +63,14 @@ public class IsEObjectInTableConstraint extends AbstractConstraint {
 
 		if (null != EditorHelper.getActivePart()) {
 			final IEditorPart currentEditor = EditorHelper.getCurrentEditor();
-			if (currentEditor instanceof IMultiPageEditorPart && null != ((IMultiPageEditorPart)currentEditor).getActiveEditor()) {
-				final IMultiPageEditorPart multiDiagramEditor = (IMultiPageEditorPart)currentEditor;
+			if (currentEditor instanceof IMultiPageEditorPart && null != ((IMultiPageEditorPart) currentEditor).getActiveEditor()) {
+				final IMultiPageEditorPart multiDiagramEditor = (IMultiPageEditorPart) currentEditor;
 				result = EditorHelper.getActivePart().equals(currentEditor)
 						&& null != multiDiagramEditor.getActiveEditor().getAdapter(NatTableEditor.class)
-						&& checkMoreTableConstraint(((NatTableEditor)multiDiagramEditor.getActiveEditor()).getTable());
-			}else if(currentEditor instanceof IAdaptable){
-				final Table table = ((IAdaptable)currentEditor).getAdapter(Table.class);
-				result = null != table 
+						&& checkMoreTableConstraint(((NatTableEditor) multiDiagramEditor.getActiveEditor()).getTable());
+			} else if (currentEditor instanceof IAdaptable) {
+				final Table table = ((IAdaptable) currentEditor).getAdapter(Table.class);
+				result = null != table
 						&& EditorHelper.getActivePart().equals(currentEditor)
 						&& checkMoreTableConstraint(table);
 			}
@@ -78,14 +78,15 @@ public class IsEObjectInTableConstraint extends AbstractConstraint {
 
 		return expectedValue == result;
 	}
-	
+
 	/**
 	 * This allows to check more constraint for the match.
 	 * 
-	 * @param table the current table.
+	 * @param table
+	 *            the current table.
 	 * @return <code>true</code> if the constraints are correctly managed, <code>false</code> otherwise.
 	 */
-	protected boolean checkMoreTableConstraint(final Table table){
+	protected boolean checkMoreTableConstraint(final Table table) {
 		return true;
 	}
 

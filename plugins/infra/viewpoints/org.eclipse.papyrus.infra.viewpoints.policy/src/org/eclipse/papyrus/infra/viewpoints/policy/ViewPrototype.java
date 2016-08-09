@@ -433,7 +433,7 @@ public abstract class ViewPrototype {
 		public int compare(ViewPrototype proto1, ViewPrototype proto2) {
 			Integer p1 = getPriority(proto1);
 			Integer p2 = getPriority(proto2);
-			if (p1 == p2) {
+			if (p1.equals(p2)) {
 				return (proto1.getLabel().compareTo(proto2.getLabel()));
 			} else {
 				return p1.compareTo(p2);

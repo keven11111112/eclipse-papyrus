@@ -50,28 +50,26 @@ public class CreationMenuRegistry {
 	private static final boolean DEFAULT_VISIBILITY = true;
 
 	/** The registry. */
-	protected static CreationMenuRegistry creationMenuRegistry;
+	protected static volatile CreationMenuRegistry creationMenuRegistry;
 
 	/** The extension id. */
-	private final String MENU_CREATION_MODEL_EXTENSION_ID = "org.eclipse.papyrus.infra.newchild"; //$NON-NLS-1$
+	private static final String MENU_CREATION_MODEL_EXTENSION_ID = "org.eclipse.papyrus.infra.newchild"; //$NON-NLS-1$
 
 	/** The model id. */
-	private final String MODEL_ID = "model"; //$NON-NLS-1$
-
-	/** The tool id. */
-	private final String ID = "id"; //$NON-NLS-1$
+	private static final String MODEL_ID = "model"; //$NON-NLS-1$
 
 	/** preferences which contain visible folder */
-	private Preferences preferences;
+	private static Preferences preferences;
 
 	/** the folders collection. */
-	private List<Folder> folders = new ArrayList<>();
+	private static List<Folder> folders = new ArrayList<>();
 
 	/** Default values of folder visibilities */
-	private Map<String, Boolean> defaultValues = new HashMap<>();
+	private static Map<String, Boolean> defaultValues = new HashMap<>();
 
 	/** the resource set. */
 	private static ResourceSetImpl resourceSet;
+
 
 	/**
 	 * returns the singleton instance of this registry
@@ -81,7 +79,7 @@ public class CreationMenuRegistry {
 	public static synchronized CreationMenuRegistry getInstance() {
 		if (null == creationMenuRegistry) {
 			creationMenuRegistry = new CreationMenuRegistry();
-			creationMenuRegistry.init();
+			init();
 		}
 		return creationMenuRegistry;
 	}
@@ -89,13 +87,13 @@ public class CreationMenuRegistry {
 	/**
 	 * Constructor.
 	 */
-	public CreationMenuRegistry() {
+	private CreationMenuRegistry() {
 	}
 
 	/**
 	 * this method load the extension points and initialize resource set.
 	 */
-	public void init() {
+	public static void init() {
 		// Obtain a new resource set
 		resourceSet = new ResourceSetImpl();
 		resourceSet.getPackageRegistry().put(ElementCreationMenuModelPackage.eINSTANCE.getNsURI(), ElementCreationMenuModelPackage.eINSTANCE);
@@ -121,7 +119,7 @@ public class CreationMenuRegistry {
 	/**
 	 * Return the id of the folder if is loaded.
 	 */
-	public String getFolderKey(Folder folder) {
+	public static String getFolderKey(Folder folder) {
 		return EcoreUtil.getURI(folder).trimFragment().toPlatformString(true);
 	}
 
@@ -132,7 +130,7 @@ public class CreationMenuRegistry {
 	 *            the extension point
 	 * @return the Folder
 	 */
-	private Folder initializeOneModel(final IConfigurationElement element) {
+	private static Folder initializeOneModel(final IConfigurationElement element) {
 		Folder folder = null;
 		try {
 			folder = createExtension(element, element.getAttribute(MODEL_ID));
@@ -192,7 +190,7 @@ public class CreationMenuRegistry {
 	 * @throws Exception
 	 *             if the resource is not loaded
 	 */
-	private Folder createExtension(final IConfigurationElement element, final String classAttribute) throws Exception {
+	private static Folder createExtension(final IConfigurationElement element, final String classAttribute) throws Exception {
 		Folder folder = null;
 		try {
 			Bundle extensionBundle = Platform.getBundle(element.getDeclaringExtension().getNamespaceIdentifier());
@@ -222,7 +220,7 @@ public class CreationMenuRegistry {
 	 * @return the root {@link Folder} from the model CreationMenuModel.
 	 * @throws URISyntaxException
 	 */
-	private Folder getCreationMenuModel(final URI uri) throws URISyntaxException {
+	private static Folder getCreationMenuModel(final URI uri) throws URISyntaxException {
 		Folder folder = null;
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 
@@ -280,7 +278,7 @@ public class CreationMenuRegistry {
 	 */
 	public boolean getCreationMenuVisibility(final Folder folder) {
 		String visible = preferences.get(getFolderKey(folder), "");//$NON-NLS-1$
-		return "" == visible ? folder.isVisible() : Boolean.valueOf(visible);//$NON-NLS-1$
+		return visible.isEmpty() ? folder.isVisible() : Boolean.valueOf(visible);// $NON-NLS-1$
 	}
 
 	/**
@@ -298,7 +296,7 @@ public class CreationMenuRegistry {
 			Activator.log.error(e);
 		}
 		String visible = preferences.get(uri.toPlatformString(true), "");//$NON-NLS-1$
-		return "" == visible ? folder.isVisible() : Boolean.valueOf(visible);//$NON-NLS-1$
+		return visible.isEmpty() ? folder.isVisible() : Boolean.valueOf(visible);// $NON-NLS-1$
 	}
 
 	/**

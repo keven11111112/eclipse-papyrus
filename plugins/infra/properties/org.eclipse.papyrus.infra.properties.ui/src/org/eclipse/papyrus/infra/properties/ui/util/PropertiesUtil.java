@@ -36,7 +36,7 @@ public class PropertiesUtil {
 	/**
 	 * @param source
 	 * @return
-	 *         the given String with the first letter capitalized
+	 * 		the given String with the first letter capitalized
 	 */
 	public static String firstToUpper(String source) {
 		if (source.length() == 0) {
@@ -48,7 +48,7 @@ public class PropertiesUtil {
 	/**
 	 * @param source
 	 * @return
-	 *         the given String with the first letter lowered
+	 * 		the given String with the first letter lowered
 	 */
 	public static String firstToLower(String source) {
 		if (source.length() == 0) {
@@ -74,7 +74,7 @@ public class PropertiesUtil {
 	/**
 	 * @param variableName
 	 * @return
-	 *         A formatted version of the given variable name
+	 * 		A formatted version of the given variable name
 	 */
 	public static String getLabel(String variableName) {
 		// "CamelCase" to "Natural case"
@@ -109,7 +109,7 @@ public class PropertiesUtil {
 	 * @param namespace
 	 * @param value
 	 * @return
-	 *         True if they are equal
+	 * 		True if they are equal
 	 */
 	public static boolean namespaceEquals(Namespace namespace, String value) {
 		if (namespace == null) {
@@ -125,7 +125,7 @@ public class PropertiesUtil {
 	 * @param namespace
 	 * @param name
 	 * @return
-	 *         True if they are equal
+	 * 		True if they are equal
 	 */
 	public static boolean namespaceEqualsByName(Namespace namespace, String name) {
 		if (namespace == null) {
@@ -142,7 +142,7 @@ public class PropertiesUtil {
 	 * @param namespace
 	 *            The namespace we want to prefix
 	 * @return
-	 *         The prefixed namespace
+	 * 		The prefixed namespace
 	 */
 	public static String getPrefixedValue(Namespace namespace) {
 		String prefixedValue = ""; //$NON-NLS-1$
@@ -161,7 +161,7 @@ public class PropertiesUtil {
 	 * @param namespace
 	 *            The namespace for which we want to get the qualified name
 	 * @return
-	 *         The namespace's qualified name
+	 * 		The namespace's qualified name
 	 */
 	public static String getQualifiedName(Namespace namespace) {
 		if (namespace.getName() == null || namespace.getName().trim().equals("")) { //$NON-NLS-1$
@@ -180,7 +180,7 @@ public class PropertiesUtil {
 	 * @param fromContextElements
 	 *            The collection of DataContextElements in which the method should look
 	 * @return
-	 *         The matching DataContextElement, or null if none was found
+	 * 		The matching DataContextElement, or null if none was found
 	 */
 	public static DataContextElement getContextElementByQualifiedName(String qualifiedName, Collection<? extends DataContextElement> fromContextElements) {
 		int index = qualifiedName.indexOf(":"); //$NON-NLS-1$
@@ -212,7 +212,7 @@ public class PropertiesUtil {
 	 * @param context
 	 *            The context for which we want to retrieve the list of dependencies
 	 * @return
-	 *         The list of Contexts on which the given context depends
+	 * 		The list of Contexts on which the given context depends
 	 */
 	public static List<Context> getDependencies(Context context) {
 		List<Context> result = new LinkedList<Context>();
@@ -241,7 +241,7 @@ public class PropertiesUtil {
 	 * @param source
 	 *            The collection of DataContextElements for which we want to retrieve all inherited elements
 	 * @return
-	 *         All DataContextElements inherited (Directly or indirectly) by at least one of the source
+	 * 		All DataContextElements inherited (Directly or indirectly) by at least one of the source
 	 *         context elements
 	 */
 	public static Set<DataContextElement> getAllContextElements(Collection<DataContextElement> source) {
@@ -269,10 +269,10 @@ public class PropertiesUtil {
 	 * @param maxCharPerLine
 	 *            The maximum number of characters per line in the resulting string
 	 * @return
-	 *         The split string
+	 * 		The split string
 	 */
 	public static String resizeString(String string, int maxCharPerLine) {
-		if (string == null || string.trim().length() <= maxCharPerLine) {
+		if (string.trim().length() <= maxCharPerLine) {
 			return string.trim();
 		}
 

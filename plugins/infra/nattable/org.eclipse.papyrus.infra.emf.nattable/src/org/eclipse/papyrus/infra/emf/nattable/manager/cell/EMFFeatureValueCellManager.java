@@ -106,7 +106,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 * @param sharedMap
 	 *            a map with interesting informations
 	 * @return
-	 *         <code>null</code> or a list of 2 objects.
+	 * 		<code>null</code> or a list of 2 objects.
 	 *         <ul>
 	 *         <li>the first element is the edited EObject</li>
 	 *         <li>the second one is the edited feature</li>
@@ -179,7 +179,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 * @param newValue
 	 *            the new value
 	 * @return
-	 *         the command to set the value
+	 * 		the command to set the value
 	 */
 	protected Command getSetValueCommand(final TransactionalEditingDomain domain, final EObject elementToEdit, final EStructuralFeature featureToEdit, final Object newValue, final Object columnElement, final Object rowElement,
 			final INattableModelManager tableManager) {
@@ -194,48 +194,51 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 			final AbstractEditCommandRequest request = new SetRequest(domain, elementToEdit, featureToEdit, newValue);
 			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToEdit);
 			final ICommand cmd = provider.getEditCommand(request);
-			ICommand returnedCommand = (cmd != null) ? cmd : org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;;
-			if (cmd.canExecute() && featureToEdit instanceof EReference) {
-				boolean shouldOpenDialog = false;
-				final EReference editedReference = (EReference) featureToEdit;
+			if (cmd != null) {
+				ICommand returnedCommand = cmd;
+				if (cmd.canExecute() && featureToEdit instanceof EReference) {
+					boolean shouldOpenDialog = false;
+					final EReference editedReference = (EReference) featureToEdit;
 
-				// we are editing a containment feature
-				if (editedReference.isContainment()) {
-					if (newValue instanceof Collection<?>) {
-						if (!editedReference.isMany()) {
-							return UnexecutableCommand.INSTANCE;
-						} else {
-							final Collection<?> currentValues = new ArrayList<Object>((Collection<?>) elementToEdit.eGet(editedReference));
-							final Collection<?> addedValues = new ArrayList<Object>((Collection<?>) newValue);
-							addedValues.removeAll(currentValues);
-							// we need to test the added values
-							final Iterator<?> iter = ((Collection<?>) addedValues).iterator();
-							while (iter.hasNext() && !shouldOpenDialog) {
-								final Object current = iter.next();
-								if (current instanceof EObject) {
-									if (elementToEdit == current) {
-										// an element can be owned by itself
-										return UnexecutableCommand.INSTANCE;
-									} else {
-										shouldOpenDialog = ((EObject) current).eContainer() != elementToEdit;
+					// we are editing a containment feature
+					if (editedReference.isContainment()) {
+						if (newValue instanceof Collection<?>) {
+							if (!editedReference.isMany()) {
+								return UnexecutableCommand.INSTANCE;
+							} else {
+								final Collection<?> currentValues = new ArrayList<Object>((Collection<?>) elementToEdit.eGet(editedReference));
+								final Collection<?> addedValues = new ArrayList<Object>((Collection<?>) newValue);
+								addedValues.removeAll(currentValues);
+								// we need to test the added values
+								final Iterator<?> iter = ((Collection<?>) addedValues).iterator();
+								while (iter.hasNext() && !shouldOpenDialog) {
+									final Object current = iter.next();
+									if (current instanceof EObject) {
+										if (elementToEdit == current) {
+											// an element can be owned by itself
+											return UnexecutableCommand.INSTANCE;
+										} else {
+											shouldOpenDialog = ((EObject) current).eContainer() != elementToEdit;
+										}
 									}
 								}
 							}
+						} else if (elementToEdit == newValue) {
+							// an element cannot be owned by itself
+							return UnexecutableCommand.INSTANCE;
+						} else if (newValue instanceof EObject) {
+							shouldOpenDialog = ((EObject) newValue).eContainer() != elementToEdit;
 						}
-					} else if (elementToEdit == newValue) {
-						// an element cannot be owned by itself
-						return UnexecutableCommand.INSTANCE;
-					} else if (newValue instanceof EObject) {
-						shouldOpenDialog = ((EObject) newValue).eContainer() != elementToEdit;
-					}
 
-					if (shouldOpenDialog) {
-						returnedCommand = getOpenConfirmChangeContainmentDialogCommand(domain, returnedCommand, editedReference.isMany());
+						if (shouldOpenDialog) {
+							returnedCommand = getOpenConfirmChangeContainmentDialogCommand(domain, returnedCommand, editedReference.isMany());
+						}
 					}
-
 				}
+				result.add(returnedCommand);
+			} else {
+				result.add(org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE);
 			}
-			result.add(returnedCommand);
 		}
 		return result.isEmpty() ? null : new GMFtoEMFCommandWrapper(result);
 	}
@@ -283,7 +286,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 		ConvertedValueContainer<?> solvedValue = valueSolver.deduceValueFromString(editedFeature, newValue);
 		Object convertedValue = solvedValue.getConvertedValue();
 		Command setValueCommand = getSetValueCommand(domain, editedObject, editedFeature, convertedValue, columnElement, rowElement, tableManager);
-		if(null != setValueCommand && !solvedValue.getStatus().isOK()){
+		if (null != setValueCommand && !solvedValue.getStatus().isOK()) {
 			setValueCommand = new GMFtoEMFCommandWrapper(new ErrorTransactionalCommand(domain, null, null, solvedValue.getStatus()));
 		}
 		return setValueCommand;
@@ -305,7 +308,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 * @param valueContainer
 	 *            the converted value
 	 * @return
-	 *         the command to create a String resolution Problem
+	 * 		the command to create a String resolution Problem
 	 */
 	@Deprecated
 	// use CellHelper.getCreateStringResolutionProblemCommand(
@@ -366,7 +369,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 * @param valueContainer
 	 * @param sharedMap
 	 */
-	@Deprecated //problem must no be managed here, since Eclipse Mars
+	@Deprecated // problem must no be managed here, since Eclipse Mars
 	// use CellHelper.createStringResolutionProblem
 	protected void createStringResolutionProblem(final INattableModelManager tableManager, final Object columnElement, final Object rowElement, final String pastedText, final ConvertedValueContainer<?> valueContainer, final Map<?, ?> sharedMap) {
 		CellHelper.createStringResolutionProblem(tableManager, columnElement, rowElement, pastedText, valueContainer, sharedMap);

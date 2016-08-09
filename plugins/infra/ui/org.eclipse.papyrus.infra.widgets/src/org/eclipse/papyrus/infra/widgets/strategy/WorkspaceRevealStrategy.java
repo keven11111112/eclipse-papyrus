@@ -20,6 +20,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.Viewer;
 
 /**
  * A Strategy to search for a Resource in the Workspace
@@ -27,7 +28,7 @@ import org.eclipse.jface.viewers.TreeViewer;
  * @author Camille Letavernier
  *
  */
-public class WorkspaceRevealStrategy extends ProviderBasedBrowseStrategy {
+public class WorkspaceRevealStrategy extends ProviderBasedBrowseStrategy<Viewer> {
 
 	public WorkspaceRevealStrategy(ITreeContentProvider provider) {
 		super(provider);
@@ -35,6 +36,12 @@ public class WorkspaceRevealStrategy extends ProviderBasedBrowseStrategy {
 
 	public WorkspaceRevealStrategy() {
 		super();
+	}
+
+	@Override
+	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		super.inputChanged(viewer, oldInput, newInput);
+		this.viewer = viewer;
 	}
 
 	@Override

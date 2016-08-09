@@ -29,7 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.activity.activitygroup.ContainerNodeDescriptorRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.activitygroup.GroupRequestAdvisor;
 import org.eclipse.papyrus.uml.diagram.activity.activitygroup.IContainerNodeDescriptor;

@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.extensionpoints.profile.IRegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.uml2.uml.Comment;
@@ -100,7 +100,7 @@ public class AlfUtil {
 	public Profile getStandardProfile(Model context) {
 		return this.getAppliedProfile(context, AlfUtilConstants.STANDARD_PROFILE_LOADING_NAME);
 	}
-	
+
 	/**
 	 * Retrieve a reference on the action language profile that is used in the specified context
 	 * 
@@ -122,7 +122,7 @@ public class AlfUtil {
 	 * @return profile - a reference to the loaded profile
 	 */
 	public Profile loadProfile(Model context, String name) {
-		/*1. Retrieve the profile from a resource already loaded in the context of the model*/
+		/* 1. Retrieve the profile from a resource already loaded in the context of the model */
 		Profile searchedProfile = null;
 		ResourceSet resourceSet = context.eResource().getResourceSet();
 		if (resourceSet != null) {
@@ -168,17 +168,17 @@ public class AlfUtil {
 	protected boolean isProfileApplied(Model context, final String profileName) {
 		return this.getAppliedProfile(context, profileName) != null;
 	}
-	
+
 	/**
 	 * Get a reference on the profile that is used in the specified context
 	 * 
 	 * @param context
-	 * 			- the context
+	 *            - the context
 	 * @param profileName
-	 * 			- the name of the profile for which we look for an application
+	 *            - the name of the profile for which we look for an application
 	 * @return a reference on the profile or null
 	 */
-	protected Profile getAppliedProfile(Model context, final String profileName){
+	protected Profile getAppliedProfile(Model context, final String profileName) {
 		Iterator<Profile> appliedProfilesIterator = context.getAppliedProfiles().iterator();
 		Profile searchedProfile = null;
 		while (searchedProfile == null && appliedProfilesIterator.hasNext()) {
@@ -198,10 +198,10 @@ public class AlfUtil {
 	 * @return textualRepresentation - the definition of the stereotype textual representation
 	 */
 	private Stereotype getTextualRepresentationStereotype(Element context) {
-		if(context!=null){	
-			Profile actionLanguageProfile = this.getAppliedProfile(context.getModel(), 
+		if (context != null) {
+			Profile actionLanguageProfile = this.getAppliedProfile(context.getModel(),
 					AlfUtilConstants.ACTION_LANGUAGE_PROFILE_NAME);
-			if(actionLanguageProfile!=null){
+			if (actionLanguageProfile != null) {
 				return actionLanguageProfile.getOwnedStereotype(
 						AlfUtilConstants.TEXTUAL_REPRESENTATION_STEREOTYPE_NAME);
 			}
@@ -258,13 +258,13 @@ public class AlfUtil {
 	 * specified model.
 	 * 
 	 * @param model
-	 * 			- the model on which the profile will be applied
+	 *            - the model on which the profile will be applied
 	 * @param profile
-	 * 			- the profile that will be applied
+	 *            - the profile that will be applied
 	 * @return true if appplied false otherwise
 	 */
-	protected boolean applyProfile(Model model, Profile profile){
-		if(model==null || profile==null){
+	protected boolean applyProfile(Model model, Profile profile) {
+		if (model == null || profile == null) {
 			return false;
 		}
 		AbstractTransactionalCommand command = new ApplyProfileCommand(profile, model);
@@ -283,7 +283,7 @@ public class AlfUtil {
 	public boolean applyActionLanguageProfile(Element context) {
 		boolean applied = this.isActionLanguageProfileApplied(context);
 		if (!applied) {
-			applied = this.applyProfile(context.getModel(), 
+			applied = this.applyProfile(context.getModel(),
 					this.loadProfile(context.getModel(), AlfUtilConstants.ACTION_LANGUAGE_PROFILE_NAME));
 		}
 		return applied;
@@ -299,7 +299,7 @@ public class AlfUtil {
 	public boolean applyStandardProfile(Element context) {
 		boolean applied = this.isStandardProfileApplied(context);
 		if (!applied) {
-			applied = this.applyProfile(context.getModel(), 
+			applied = this.applyProfile(context.getModel(),
 					this.loadProfile(context.getModel(), AlfUtilConstants.STANDARD_PROFILE_NAME));
 		}
 		return applied;
@@ -311,7 +311,7 @@ public class AlfUtil {
 	 * not already applied.
 	 * 
 	 * @param comment
-	 * 			- the comment on which the stereotype is applied
+	 *            - the comment on which the stereotype is applied
 	 * @return true if applied false otherwise
 	 */
 	public boolean applyTextualRepresentation(Comment comment) {
@@ -320,7 +320,7 @@ public class AlfUtil {
 			applied = this.applyActionLanguageProfile(comment);
 		}
 		if (applied) {
-			if(!this.isATextualRepresentationComment(comment)){
+			if (!this.isATextualRepresentationComment(comment)) {
 				Stereotype textualRepresentation = this.getTextualRepresentationStereotype(comment);
 				comment.applyStereotype(textualRepresentation);
 				comment.setValue(textualRepresentation,

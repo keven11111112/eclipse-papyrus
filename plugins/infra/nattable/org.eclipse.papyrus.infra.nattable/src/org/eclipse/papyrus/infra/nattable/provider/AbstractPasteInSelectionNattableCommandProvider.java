@@ -367,9 +367,11 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 					referencedPasteConf.add(tmp.getPasteConfiguration());
 				}
 			}
-			for (final IAxisConfiguration axisConf : conf.getOwnedAxisConfigurations()) {
-				if (axisConf instanceof IPasteConfiguration && !referencedPasteConf.contains(axisConf)) {
-					return (IPasteConfiguration) axisConf;
+			if (conf != null) {
+				for (final IAxisConfiguration axisConf : conf.getOwnedAxisConfigurations()) {
+					if (axisConf instanceof IPasteConfiguration && !referencedPasteConf.contains(axisConf)) {
+						return (IPasteConfiguration) axisConf;
+					}
 				}
 			}
 		}
@@ -666,11 +668,11 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 						// If only one row is pasted in the columns,
 						// transpose the pastedValues to try to repeat for each row in the table
 						final Map<Object, List<String>> returnedPastedValues = new LinkedHashMap<Object, List<String>>();
-						if(!pastedValues.isEmpty()){
-							for(Object o : pastedValues.keySet()){
+						if (!pastedValues.isEmpty()) {
+							for (Object o : pastedValues.keySet()) {
 								int i = 0;
-								for(String s : pastedValues.get(o)){
-									if(null == returnedPastedValues.get(i)){
+								for (String s : pastedValues.get(o)) {
+									if (null == returnedPastedValues.get(i)) {
 										returnedPastedValues.put(i, new ArrayList<String>());
 									}
 									returnedPastedValues.get(i).add(s);
@@ -678,17 +680,17 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 								}
 							}
 							pastedValues = returnedPastedValues;
-							
+
 							// The number of columns must be the same to repeat it
-							if(pastedValues.size() == 1 && fullySelectedColumns.size() == pastedValues.get(pastedValues.keySet().iterator().next()).size()){
+							if (pastedValues.size() == 1 && fullySelectedColumns.size() == pastedValues.get(pastedValues.keySet().iterator().next()).size()) {
 								this.isSingleAxisPasted = true;
 								this.numberSelectedAxis = tableManager.getBodyLayerStack().getRowHideShowLayer().getRowCount();
 								resultCommand = getPasteCellsRowFromStringCommand(contextEditingDomain, tableEditingDomain, tableSelectionWrapper.getSelectedCells(), openDialog, progressMonitor, sharedMap, attachedMode);
 							}
 						}
-						
+
 						// If we can't repeat (not only one line or not the same number of columns), return the error message
-						if(null == resultCommand){
+						if (null == resultCommand) {
 							resultCommand = new ErrorTransactionalCommand(contextEditingDomain, PASTE_COMMAND_NAME, null, canPasteStatus);
 						}
 					}
@@ -932,10 +934,12 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 		// - The rows numbers are not equals -> Error
 		// - The column read is alone -> Continue and repeat the column pasted
 		// - The columns numbers are not equals -> Error
-		/*if (1 == nbRowRead && nbColumnsSelected == nbColumnRead){
-			this.isSingleAxisPasted = true;
-			this.numberSelectedAxis = nbRowsSelected;
-		}else*/ if (nbRowRead != nbRowsSelected) {
+		/*
+		 * if (1 == nbRowRead && nbColumnsSelected == nbColumnRead){
+		 * this.isSingleAxisPasted = true;
+		 * this.numberSelectedAxis = nbRowsSelected;
+		 * }else
+		 */ if (nbRowRead != nbRowsSelected) {
 			result = new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.AbstractPasteInSelectionNattableCommandProvider_readrowsexceedsexistingrows);
 		} else if (1 == nbColumnRead && 1 < nbColumnsSelected) {
 			this.isSingleAxisPasted = true;
@@ -1043,24 +1047,24 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 						int realRowIndex = rowHideShowLayer.getRowIndexByPosition(lastRowPosition);
 						// Get the row element from its index
 						final Object rowElement = AxisUtils.getRepresentedElement(tableManager.getRowElement(realRowIndex));
-						
+
 						// check that the row element is not a tree filling configuration and continue the process for others
-						if(!(rowElement instanceof TreeFillingConfiguration)){
-	
+						if (!(rowElement instanceof TreeFillingConfiguration)) {
+
 							// Manage the columns of the row
 							while (cellIter.hasNext() && canContinue(resultStatus)) {
 								final String valueAsString = cellIter.next();
-	
+
 								// Get the column index from its position
 								int realColumnIndex = columnHideShowLayer.getColumnIndexByPosition(nbColmnRead);
 								// Get the column attribute from its index
 								final Object columnElement = AxisUtils.getRepresentedElement(tableManager.getColumnElement(realColumnIndex));
-	
+
 								// Edit the value if this is editable
 								final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, sharedMap);
 								if (isEditable) {
 									final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnElement, rowElement, tableManager, existingConverters, pasteHelper.getMultiValueSeparator());
-	
+
 									// Get the converted value (to compare with the new one
 									final Command command = CellManagerFactory.INSTANCE.getSetStringValueCommand(tableEditingDomain, columnElement, rowElement, valueAsString, converter, tableManager);
 									final IStatus commandStatus = getStatusCommand(command);
@@ -1077,7 +1081,7 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 								}
 								nbColmnRead++;
 							}
-							
+
 							if (lastColumnPosition < nbColmnRead) {
 								lastColumnPosition = nbColmnRead;
 							}
@@ -1093,7 +1097,7 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 				if (canContinue(resultStatus) && null != compoundCommand && !compoundCommand.isEmpty() && compoundCommand.canExecute()) {
 					// Execute the compound command
 					tableEditingDomain.getCommandStack().execute(compoundCommand);
-					
+
 					return new CommandResult(resultStatus);
 				}
 				if (!resultStatus.isOK()) {
@@ -1320,7 +1324,7 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 											Iterator<InsertedElementInNattable> objectsToAddIterator = objectsToAdd.iterator();
 											while (objectsToAddIterator.hasNext() && null == foundInsertedElement) {
 												final InsertedElementInNattable insertedElement = objectsToAddIterator.next();
-												if (insertedElement.equals(currentContext) && insertedElement.getContainementFeature().equals(containementFeature)) {
+												if (insertedElement.getContext().equals(currentContext) && insertedElement.getContainementFeature().equals(containementFeature)) {
 													foundInsertedElement = insertedElement;
 												}
 											}
@@ -1378,9 +1382,7 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 										final Object columnElement = getColumnElement(realColumnIndex);
 
 										// Edit the value if this is editable
-										final boolean isEditable = null == sharedMap ? 
-												CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement) :
-												CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, sharedMap);
+										final boolean isEditable = null == sharedMap ? CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement) : CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, sharedMap);
 										if (isEditable) {
 											final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnElement, rowElement, tableManager, existingConverters, pasteHelper.getMultiValueSeparator());
 
@@ -1431,23 +1433,23 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 								createTableRowInAttachedModeCommand(compoundCommand, objectsToAdd);
 							}
 						}
-						
+
 						// Execute some actions available in the share map when this is the detached mode
-						if(!attachedMode){
+						if (!attachedMode) {
 							// Manage the reference to set
 							@SuppressWarnings("unchecked")
 							final List<IValueSetter> valueToSet = (List<IValueSetter>) sharedMap.get(Constants.REFERENCES_TO_SET_KEY);
-	
+
 							if (valueToSet.size() > 0) {
 								for (final IValueSetter current : valueToSet) {
 									current.doSetValue(contextEditingDomain);
 								}
 							}
-							
+
 							// Manage the cells problems to add
 							@SuppressWarnings("unchecked")
 							final List<Cell> cells = (List<Cell>) sharedMap.get(Constants.CELLS_TO_ADD_KEY);
-							
+
 							// add the created cells to the table
 							if (null != cells && !cells.isEmpty()) {
 								compoundCommand.append(AddCommand.create(tableEditingDomain, table, NattablePackage.eINSTANCE.getTable_Cells(), cells));
@@ -1455,13 +1457,18 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 						}
 					}
 
-					if (progressMonitor != null && progressMonitor.isCanceled()) {
+
+					if (progressMonitor != null) {
+						if (progressMonitor.isCanceled()) {
+							progressMonitor.done();
+							localDispose();
+							return CommandResult.newCancelledCommandResult();
+						}
+
 						progressMonitor.done();
-						localDispose();
-						return CommandResult.newCancelledCommandResult();
 					}
-					
-					progressMonitor.done();
+
+
 					localDispose();
 
 					if (resultStatus.isOK()) {
@@ -1613,13 +1620,13 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 							int realRowIndex = rowHideShowLayer.getRowIndexByPosition(nbRowRead);
 							// Get the row object from its index
 							final Object rowElement = AxisUtils.getRepresentedElement(tableManager.getRowElement(realRowIndex));
-							
-							if(!(rowElement instanceof TreeFillingConfiguration)){
+
+							if (!(rowElement instanceof TreeFillingConfiguration)) {
 								// Edit the value if this is editable
 								final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement, sharedMap);
 								if (isEditable) {
 									final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnElement, rowElement, tableManager, existingConverters, pasteHelper.getMultiValueSeparator());
-	
+
 									// Get the converted value (to compare with the new one
 									final Command command = CellManagerFactory.INSTANCE.getSetStringValueCommand(tableEditingDomain, columnElement, rowElement, valueAsString, converter, tableManager);
 									final IStatus commandStatus = getStatusCommand(command);
@@ -1781,7 +1788,7 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 			if (isInsert) {
 				currentUserAction = UserActionConstants.ADD_USER_ACTION;
 				multiStatus.add(new Status(IStatus.WARNING, Activator.PLUGIN_ID, String.format(Messages.AbstractPasteInSelectionNattableCommandProvider_identifierNotFoundInSelectionSoTheObjectWasCreated, identifierValue)));
-			}else{
+			} else {
 				multiStatus.add(new Status(IStatus.WARNING, Activator.PLUGIN_ID, String.format(Messages.AbstractPasteInSelectionNattableCommandProvider_identifierNotFoundInSelection, identifierValue)));
 			}
 		}
@@ -1961,7 +1968,7 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 	 * @return The depth from the object in parameter.
 	 */
 	protected abstract int getDepthFromObject(final Object object);
-	
+
 	/**
 	 * Get the category from the object in parameter.
 	 * 

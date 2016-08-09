@@ -63,7 +63,7 @@ import org.osgi.framework.Bundle;
  */
 public class ElementTypeSetConfigurationRegistry {
 
-	protected static ElementTypeSetConfigurationRegistry elementTypeSetConfigurationRegistry;
+	private volatile static ElementTypeSetConfigurationRegistry elementTypeSetConfigurationRegistry;
 
 	/** Map of retrieved elementType sets, key is their identifier */
 	protected Map<String, Map<String, ElementTypeSetConfiguration>> elementTypeSetConfigurations = null;
@@ -74,6 +74,10 @@ public class ElementTypeSetConfigurationRegistry {
 
 	/** unique resource set to load all elementType sets models */
 	protected ResourceSet elementTypeSetConfigurationResourceSet = null;
+
+	private ElementTypeSetConfigurationRegistry() {
+		super();
+	}
 
 	/**
 	 * returns the singleton instance of this registry
@@ -130,9 +134,9 @@ public class ElementTypeSetConfigurationRegistry {
 			}
 
 		}
-		elementTypeSetConfigurationResourceSet = null;
-		elementTypeSetConfigurations = null;
-		elementTypeSetConfigurationRegistry = null;
+		elementTypeSetConfigurationResourceSet = createResourceSet();
+		elementTypeSetConfigurations.clear();
+		advicesDeps.clear();
 	}
 
 	/**
@@ -208,9 +212,9 @@ public class ElementTypeSetConfigurationRegistry {
 			// First, check if dependencies are registered
 			for (ElementTypeConfiguration specializedTypeConfiguration : ((SpecializationTypeConfiguration) elementTypeConfiguration).getSpecializedTypes()) {
 
-				if (!isAlreadyRegistred(specializedTypeConfiguration.getIdentifier(), context)) {
-					// try to register the dependency
-					if (specializedTypeConfiguration != null) {
+				// try to register the dependency
+				if (specializedTypeConfiguration != null) {
+					if (!isAlreadyRegistred(specializedTypeConfiguration.getIdentifier(), context)) {
 						boolean registred = registerElementTypeConfiguration(specializedTypeConfiguration, elementTypeConfigurationsDefinitions, context);
 						if (!registred) {
 							Activator.log.info("Failed to register " + specializedTypeConfiguration);
@@ -455,10 +459,10 @@ public class ElementTypeSetConfigurationRegistry {
 
 
 	protected void addElementTypeSetConfigurationToDefinitions(ElementTypeSetConfiguration set, String clientContextId, Map<String, Set<ElementTypeSetConfiguration>> existingDefinitions) {
-		if (set.getIdentifier() == null) {
-			Activator.log.warn("The following ElementTypesSetConfiguration has ill-defined ID and is therefore ignored: " + set.eResource().getURI());
-		} else {
-			if (set != null) {
+		if (set != null) {
+			if (set.getIdentifier() == null) {
+				Activator.log.warn("The following ElementTypesSetConfiguration has ill-defined ID and is therefore ignored: " + set.eResource().getURI());
+			} else {
 				if (existingDefinitions.get(clientContextId) != null && containsElementTypeSet(existingDefinitions.get(clientContextId), set.getIdentifier())) {
 					Activator.log.warn("The following ElementTypesSetConfiguration has been ignored because the same ID already registreted: " + set.getIdentifier());
 				} else {

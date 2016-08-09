@@ -11,14 +11,7 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.export;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -39,7 +32,6 @@ public class Activator extends AbstractUIPlugin {
 	 * The constructor
 	 */
 	public Activator() {
-		plugin = this;
 	}
 
 	/**
@@ -48,6 +40,7 @@ public class Activator extends AbstractUIPlugin {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+		plugin = this;
 		log = new LogHelper(this);
 	}
 
@@ -56,6 +49,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
+		log = null;
 		plugin = null;
 		super.stop(context);
 	}
@@ -69,83 +63,5 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
-	/**
-	 * Returns the active workbench shell
-	 *
-	 * @return the active workbench shell
-	 */
-	public static Shell getActiveWorkbenchShell() {
-		IWorkbenchWindow workBenchWindow = getActiveWorkbenchWindow();
-		if (workBenchWindow == null) {
-			return null;
-		}
-		return workBenchWindow.getShell();
-	}
 
-	/**
-	 * Returns the active workbench page or <code>null</code> if none.
-	 *
-	 * @return the active workbench page
-	 */
-	public static IWorkbenchPage getActivePage() {
-		IWorkbenchWindow window = getActiveWorkbenchWindow();
-		if (window != null) {
-			return window.getActivePage();
-		}
-		return null;
-	}
-
-	/**
-	 * Returns the active workbench window
-	 *
-	 * @return the active workbench window
-	 */
-	public static IWorkbenchWindow getActiveWorkbenchWindow() {
-		if (getDefault() == null) {
-			return null;
-		}
-		IWorkbench workBench = getDefault().getWorkbench();
-		if (workBench == null) {
-			return null;
-		}
-		return workBench.getActiveWorkbenchWindow();
-	}
-
-	/**
-	 * Display a dialog box with the specified level
-	 *
-	 * @param title
-	 *            title dialog box
-	 * @param message
-	 *            message displayed
-	 * @param level
-	 *            message level
-	 */
-	public static void displayDialog(final String title, final String message, final int level) {
-		if (level == IStatus.INFO) {
-			Display.getDefault().asyncExec(new Runnable() {
-
-				@Override
-				public void run() {
-					MessageDialog.openInformation(getActiveWorkbenchShell(), (title == null) ? "Information" : title, (message == null) ? "" : message);
-				}
-			});
-		} else if (level == IStatus.WARNING) {
-			Display.getDefault().asyncExec(new Runnable() {
-
-				@Override
-				public void run() {
-					MessageDialog.openWarning(getActiveWorkbenchShell(), (title == null) ? "Warning" : title, (message == null) ? "" : message);
-				}
-			});
-		} else if (level == IStatus.ERROR) {
-			Display.getDefault().asyncExec(new Runnable() {
-
-				@Override
-				public void run() {
-					MessageDialog.openError(getActiveWorkbenchShell(), (title == null) ? "Error" : title, (message == null) ? "" : message);
-				}
-			});
-		}
-	}
 }

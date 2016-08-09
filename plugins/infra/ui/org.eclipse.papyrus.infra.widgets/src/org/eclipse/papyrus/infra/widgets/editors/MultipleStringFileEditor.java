@@ -43,7 +43,7 @@ import org.eclipse.swt.widgets.FileDialog;
  *
  * @author Camille Letavernier
  */
-public class MultipleStringFileEditor extends MultipleValueEditor {
+public class MultipleStringFileEditor extends MultipleValueEditor<IElementSelector> {
 
 	protected boolean allowBrowseWorkspace = true;
 

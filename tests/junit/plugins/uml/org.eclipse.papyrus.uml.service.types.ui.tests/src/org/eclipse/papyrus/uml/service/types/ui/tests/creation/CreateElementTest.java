@@ -288,7 +288,7 @@ public class CreateElementTest extends AbstractPapyrusTest {
 			assertNotNull("Command should not be null", command);
 			assertTrue("Command should be executable", command.canExecute());
 			// command is executable, and it was expected to => run the creation
-			Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(command);
+			Command emfCommand = new org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper(command);
 			return emfCommand;
 		}
 		return null;

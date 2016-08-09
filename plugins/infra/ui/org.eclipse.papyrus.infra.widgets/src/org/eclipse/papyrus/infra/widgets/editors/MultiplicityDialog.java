@@ -252,10 +252,16 @@ public class MultiplicityDialog extends AbstractValueEditor implements Selection
 	 * This allow to manage the stack layout top control displayed.
 	 */
 	protected void displayTopControl() {
-		final String multiplicityEditorMode = preferenceStore.getString(MultiplicityConstants.MULTIPLICITY_EDITOR_MODE);
-		if (null != preferenceStore && null != multiplicityEditorMode) {
-			// If the advanced mode is used, display the double editors composite, else use the simple mode with the string combo
-			stackLayout.topControl = multiplicityEditorMode.equals(MultiplicityConstants.ADVANCED_MODE) ? doubleEditorsComposite : stringComboEditor;
+		if (null != preferenceStore) {
+			final String multiplicityEditorMode = preferenceStore.getString(MultiplicityConstants.MULTIPLICITY_EDITOR_MODE);
+			if (null != multiplicityEditorMode) {
+				// If the advanced mode is used, display the double editors composite, else use the simple mode with the string combo
+				stackLayout.topControl = multiplicityEditorMode.equals(MultiplicityConstants.ADVANCED_MODE) ? doubleEditorsComposite : stringComboEditor;
+			} else {
+				if (null == stackLayout.topControl) {
+					stackLayout.topControl = stringComboEditor;
+				}
+			}
 		} else {
 			if (null == stackLayout.topControl) {
 				stackLayout.topControl = stringComboEditor;

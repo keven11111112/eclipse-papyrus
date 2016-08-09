@@ -41,7 +41,7 @@ import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateNameEditPart;

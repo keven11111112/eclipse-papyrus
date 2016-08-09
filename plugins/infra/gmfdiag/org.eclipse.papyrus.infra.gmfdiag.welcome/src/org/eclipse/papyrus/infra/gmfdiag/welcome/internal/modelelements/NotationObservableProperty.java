@@ -144,8 +144,12 @@ public class NotationObservableProperty implements Supplier<IObservableList<Nota
 		if (rset instanceof ModelSet) {
 			result = ((ModelSet) rset).isUserModelResource(resource.getURI());
 		} else {
-			URI uri = resource.getURI();
-			result = uri.isPlatformResource() || uri.isFile();
+			if (resource != null) {
+				URI uri = resource.getURI();
+				result = uri.isPlatformResource() || uri.isFile();
+			} else {
+				result = false;
+			}
 		}
 
 		return result;

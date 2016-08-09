@@ -73,21 +73,24 @@ public abstract class ScopeChooser implements IScopeChooser {
 		/**
 		 * Determine if the given file is an XMI some specific code has been set for notation and di
 		 *
-		 * @param f
+		 * @param file
 		 * @return
 		 */
-		public boolean isXMI(IFile f) {
-			URI uri = URI.createPlatformResourceURI(f.getFullPath().toString(), true);
-			IContentType contentType = IDE.getContentType(f);
-			Registry instance = Resource.Factory.Registry.INSTANCE;
-			Object old = instance.getContentTypeToFactoryMap().get(Resource.Factory.Registry.DEFAULT_CONTENT_TYPE_IDENTIFIER);
-			Object old2 = instance.getExtensionToFactoryMap().get(Resource.Factory.Registry.DEFAULT_EXTENSION);
-			instance.getContentTypeToFactoryMap().put(Resource.Factory.Registry.DEFAULT_CONTENT_TYPE_IDENTIFIER, null);
-			instance.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, null);
-			boolean result = (f != null && contentType != null && (Resource.Factory.Registry.INSTANCE.getFactory(uri, contentType.getId()) != null || "notation".equals(f.getFileExtension()) || "di".equals(f.getFileExtension())));
-			instance.getContentTypeToFactoryMap().put(Resource.Factory.Registry.DEFAULT_CONTENT_TYPE_IDENTIFIER, old);
-			instance.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, old2);
-			return result;
+		public boolean isXMI(IFile file) {
+			if (file != null) {
+				URI uri = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+				IContentType contentType = IDE.getContentType(file);
+				Registry instance = Resource.Factory.Registry.INSTANCE;
+				Object old = instance.getContentTypeToFactoryMap().get(Resource.Factory.Registry.DEFAULT_CONTENT_TYPE_IDENTIFIER);
+				Object old2 = instance.getExtensionToFactoryMap().get(Resource.Factory.Registry.DEFAULT_EXTENSION);
+				instance.getContentTypeToFactoryMap().put(Resource.Factory.Registry.DEFAULT_CONTENT_TYPE_IDENTIFIER, null);
+				instance.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, null);
+				boolean result = (contentType != null && (Resource.Factory.Registry.INSTANCE.getFactory(uri, contentType.getId()) != null || "notation".equals(file.getFileExtension()) || "di".equals(file.getFileExtension())));
+				instance.getContentTypeToFactoryMap().put(Resource.Factory.Registry.DEFAULT_CONTENT_TYPE_IDENTIFIER, old);
+				instance.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, old2);
+				return result;
+			}
+			return false;
 		}
 
 		public List<IFile> getFiles() {

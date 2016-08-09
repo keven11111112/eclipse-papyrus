@@ -16,7 +16,6 @@
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -47,7 +46,6 @@ import org.eclipse.papyrus.infra.emf.gmf.util.CommandUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.preference.INavigationPreferenceConstant;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
@@ -111,8 +109,6 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		// defaultHyperlinks
 		final ArrayList<HyperLinkObject> defaultHyperLinkObject = new ArrayList<HyperLinkObject>();
 		final ArrayList<HyperLinkObject> hyperLinkObjectList;
-		// Diagrams that will be found by using heuristic
-		HashMap<NavigableElement, List<Diagram>> existingDiagrams = new HashMap<NavigableElement, List<Diagram>>();
 
 		if (semanticElement == null) {
 			return UnexecutableCommand.INSTANCE;

@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.sysml.nattable.feature" label="Papyrus SysML Table - New Version" provider-name="Eclipse Modeling Project" version="1.2.0.qualifier">
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.sysml.nattable.feature"
+      label="Papyrus SysML Table - New Version"
+      version="2.0.0.qualifier"
+      provider-name="Eclipse Modeling Project">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2012 CEA LIST
@@ -13,16 +18,46 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.sysml.nattable" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.sysml.nattable"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.sysml.nattable.requirement" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.sysml.nattable.requirement"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.sysml.nattable.requirement.config" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.sysml.nattable.requirement.config"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.sysml.nattable.allocation" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.sysml.nattable.allocation"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.sysml.nattable.allocation.config" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.sysml.nattable.allocation.config"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.sysml.nattable.menu" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.sysml.nattable.menu"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

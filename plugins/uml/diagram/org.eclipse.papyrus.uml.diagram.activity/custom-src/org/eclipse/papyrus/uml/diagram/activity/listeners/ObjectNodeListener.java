@@ -19,7 +19,7 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.listeners.AbstractPapyrusModifcationTriggerListener;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.ObjectNode;

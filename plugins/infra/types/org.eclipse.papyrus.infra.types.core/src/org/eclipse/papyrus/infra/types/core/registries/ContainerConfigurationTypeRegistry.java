@@ -34,9 +34,13 @@ import org.eclipse.papyrus.infra.types.core.factories.IContainerFactory;
  */
 public class ContainerConfigurationTypeRegistry {
 
-	private static ContainerConfigurationTypeRegistry registry;
+	private volatile static ContainerConfigurationTypeRegistry registry;
 
 	protected Map<String, IContainerFactory<? extends ContainerConfiguration>> containerConfigurationTypeToFactory = null;
+
+	private ContainerConfigurationTypeRegistry() {
+		super();
+	}
 
 	/**
 	 * returns the singleton instance of this registry

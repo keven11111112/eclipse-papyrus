@@ -57,7 +57,7 @@ public final class MouseOnlySortingStrategy implements SortingStrategy {
 		// add a click to the newly clicked column if it has any comparators
 		int netClicks = 1 + clickedColumn.getComparatorIndex() * 2 + (clickedColumn.isReverse() ? 1 : 0);
 		clickedColumn.setComparatorIndex((netClicks / 2) % clickedColumn.getComparators().size());
-		clickedColumn.setReverse(netClicks % 2 == 1);
+		clickedColumn.setReverse(netClicks % 2 != 0);
 		if (!recentlyClickedColumns.contains(clickedColumn)) {
 			recentlyClickedColumns.add(clickedColumn);
 		}

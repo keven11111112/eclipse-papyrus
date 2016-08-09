@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.gef.internal;x-internal:=true,
  org.eclipse.papyrus.infra.gmfdiag.gef.internal.editor;x-internal:=true
 Require-Bundle: org.eclipse.gef;bundle-version="[3.11.0,4.0.0)",
- org.eclipse.papyrus.infra.ui;bundle-version="[1.2.0,2.0.0)"
+ org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

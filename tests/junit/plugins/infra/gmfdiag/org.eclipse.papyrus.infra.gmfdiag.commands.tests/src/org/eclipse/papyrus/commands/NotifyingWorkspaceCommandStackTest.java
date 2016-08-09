@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
+import org.eclipse.papyrus.infra.emf.gmf.command.NotifyingWorkspaceCommandStack;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.junit.After;
 import org.junit.Before;

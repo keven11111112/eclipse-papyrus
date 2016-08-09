@@ -76,8 +76,7 @@ public class ModelSetQueryAdapterSizeMatters extends EContentAdapter implements 
 	}
 
 	private void addSubTypes(EClass eClassifier) {
-		for (EClass superType : eClassifier.getESuperTypes())
-		{
+		for (EClass superType : eClassifier.getESuperTypes()) {
 			addSubType(superType, eClassifier);
 			addSubTypes(superType);
 		}
@@ -85,19 +84,16 @@ public class ModelSetQueryAdapterSizeMatters extends EContentAdapter implements 
 
 	protected void addSubType(EClass superType, EClassifier eClassifier) {
 		Collection<EClassifier> result = subTypes.get(superType);
-		if (result == null)
-		{
+		if (result == null) {
 			result = new HashSet<EClassifier>();
 			subTypes.put(superType, result);
 		}
 		result.add(eClassifier);
 	}
 
-	private void putObjectInMap(EClassifier eClassifier, EObject obj)
-	{
+	private void putObjectInMap(EClassifier eClassifier, EObject obj) {
 		Collection<EObject> result = cache.get(eClassifier);
-		if (result == null)
-		{
+		if (result == null) {
 			result = new HashSet<EObject>();
 			cache.put(eClassifier, result);
 		}
@@ -125,22 +121,24 @@ public class ModelSetQueryAdapterSizeMatters extends EContentAdapter implements 
 		Set<EClassifier> alreadyComputed = new HashSet<EClassifier>();
 		Stack<EClassifier> types = new Stack<EClassifier>();
 		types.push(type);
-		while (!types.isEmpty())
-		{
+		while (!types.isEmpty()) {
 			EClassifier top = types.pop();
 			alreadyComputed.add(top);
 			// add instances to the buffer
 			Collection<EObject> c = cache.get(top);
-			if (c != null)
-			{
+			if (c != null) {
 				buffer.addAll(c);
 			}
 			// compute sub types
 			Collection<EClassifier> c2 = subTypes.get(top);
-			if (c2 != null && !alreadyComputed.contains(c2))
-			{
-				types.addAll(c2);
+			if (c2 != null) {
+				for (EClassifier eClassifier : c2) {
+					if (eClassifier != null && !alreadyComputed.contains(eClassifier)) {
+						types.add(eClassifier);
+					}
+				}
 			}
+
 		}
 		return buffer;
 	}
@@ -161,8 +159,7 @@ public class ModelSetQueryAdapterSizeMatters extends EContentAdapter implements 
 	 */
 	@Override
 	public void addEntriesInCache(EClassifier type, HashSet<EObject> list) {
-		for (EObject e : list)
-		{
+		for (EObject e : list) {
 			addObjectInCache(e);
 		}
 	}

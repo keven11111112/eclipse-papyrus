@@ -23,7 +23,7 @@ import org.eclipse.ui.IEditorPart;
 /**
  * The java constraint to check if the table from the active nattable editor.
  * 
- * @since 2.1
+ * @since 2.2
  */
 public class EObjectInTableJavaConstraint implements JavaQuery {
 
@@ -35,31 +35,32 @@ public class EObjectInTableJavaConstraint implements JavaQuery {
 	@Override
 	public boolean match(Object selection) {
 		boolean result = false;
-		
+
 		if (null != EditorHelper.getActivePart()) {
 			final IEditorPart currentEditor = EditorHelper.getCurrentEditor();
-			if (currentEditor instanceof IMultiPageEditorPart && null != ((IMultiPageEditorPart)currentEditor).getActiveEditor()) {
-				final IMultiPageEditorPart multiDiagramEditor = (IMultiPageEditorPart)currentEditor;
+			if (currentEditor instanceof IMultiPageEditorPart && null != ((IMultiPageEditorPart) currentEditor).getActiveEditor()) {
+				final IMultiPageEditorPart multiDiagramEditor = (IMultiPageEditorPart) currentEditor;
 				final Table table = multiDiagramEditor.getActiveEditor().getAdapter(Table.class);
-				if(null != table){
+				if (null != table) {
 					result = checkMoreConstraints(table);
 				}
-			}else if(currentEditor instanceof IAdaptable){
-				final Table table = ((IAdaptable)currentEditor).getAdapter(Table.class);
+			} else if (currentEditor instanceof IAdaptable) {
+				final Table table = ((IAdaptable) currentEditor).getAdapter(Table.class);
 				result = checkMoreConstraints(table);
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
 	 * This allows to check more constraint for the match.
 	 * 
-	 * @param table the current table.
+	 * @param table
+	 *            the current table.
 	 * @return <code>true</code> if the constraints are correctly managed, <code>false</code> otherwise.
 	 */
-	protected boolean checkMoreConstraints(final Table table){
+	protected boolean checkMoreConstraints(final Table table) {
 		return true;
 	}
 

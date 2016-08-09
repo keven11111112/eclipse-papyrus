@@ -20,7 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.ENamedElement;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.ModelSetFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;

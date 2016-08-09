@@ -122,9 +122,11 @@ public class PasteInSelectionTreeNattableCommandProvider extends PasteInSelectio
 					referencedPasteConf.add(tmp.getPasteConfiguration());
 				}
 			}
-			for (final IAxisConfiguration axisConf : conf.getOwnedAxisConfigurations()) {
-				if (axisConf instanceof PasteEObjectConfiguration && !referencedPasteConf.contains(axisConf)) {
-					return (PasteEObjectConfiguration) axisConf;
+			if (conf != null) {
+				for (final IAxisConfiguration axisConf : conf.getOwnedAxisConfigurations()) {
+					if (axisConf instanceof PasteEObjectConfiguration && !referencedPasteConf.contains(axisConf)) {
+						return (PasteEObjectConfiguration) axisConf;
+					}
 				}
 			}
 		}
@@ -282,8 +284,8 @@ public class PasteInSelectionTreeNattableCommandProvider extends PasteInSelectio
 			final InsertedElementInNattable currentInsertedElement = createdElements.get(insertedElementIndex);
 			if (-1 != currentInsertedElement.getIndexInParent()) {
 				int addedIndex = 0;
-				for(Object createdElement : currentInsertedElement.getCreatedElements()){
-					addCommand.append(MoveCommand.create(contextEditingDomain, currentInsertedElement.getContext(), currentInsertedElement.getContainementFeature(), createdElement, currentInsertedElement.getIndexInParent()+addedIndex));
+				for (Object createdElement : currentInsertedElement.getCreatedElements()) {
+					addCommand.append(MoveCommand.create(contextEditingDomain, currentInsertedElement.getContext(), currentInsertedElement.getContainementFeature(), createdElement, currentInsertedElement.getIndexInParent() + addedIndex));
 					addedIndex++;
 				}
 			}

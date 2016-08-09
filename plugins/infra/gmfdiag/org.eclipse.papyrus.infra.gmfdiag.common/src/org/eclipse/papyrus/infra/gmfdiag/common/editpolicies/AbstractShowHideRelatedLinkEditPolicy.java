@@ -312,7 +312,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	private boolean cleanContains(Collection<? extends UpdaterLinkDescriptor> collection, UpdaterLinkDescriptor umlLinkDescriptor) {
 		for (UpdaterLinkDescriptor descriptor : collection) {
 			if (descriptor.getModelElement() == umlLinkDescriptor.getModelElement() && descriptor.getSource() == umlLinkDescriptor.getSource() && descriptor.getDestination() == umlLinkDescriptor.getDestination()
-					&& descriptor.getVisualID() == umlLinkDescriptor.getVisualID()) {
+					&& descriptor.getVisualID().equals(umlLinkDescriptor.getVisualID())) {
 				return true;
 			}
 		}

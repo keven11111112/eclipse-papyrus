@@ -30,9 +30,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.button.MoreButton;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.listener.NavigationMenuKeyListener;
-import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.listener.SelectionMenuMouseTrackListener;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.listener.SelectionMenuSelectionChangedListener;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.provider.SelectionMenuLabelProvider;
 import org.eclipse.papyrus.infra.services.navigation.service.ExtendedNavigableElement;
@@ -56,7 +54,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	private Shell parentShell;
 
 	private NavigationService navigationService;
-	
+
 	private ViewerSearchService viewerSearchService;
 
 	private EObject currentModel;
@@ -72,9 +70,9 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	private boolean wasUnderlined;
 
 	private WrappingLabel lastWrappingLabel;
-	
-	private static boolean altReleasedPostNavigation = true;
-	
+
+	private boolean altReleasedPostNavigation = true;
+
 	private View selectedView;
 
 	public class NavigationMenuInitializationException extends Exception {
@@ -280,13 +278,13 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		if (navigationMenuElements.isEmpty()) {
 			return;
 		}
-		
+
 		// Add "More..." button
-		//navigationMenuElements.add(new MoreButton());
-		
+		// navigationMenuElements.add(new MoreButton());
+
 		// The semantic element
 		EObject umlElement = EMFHelper.getEObject(source);
-		
+
 		// Create the selection menu and subMenus list
 		selectionMenu = new SelectionMenu(shell);
 		subMenus = new LinkedList<SelectionMenu>();
@@ -313,7 +311,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 
 		selectionMenu.addSelectionChangedListener(new SelectionMenuSelectionChangedListener(DefaultNavigationMenu.this, selectionMenu, navigationMenuElements, umlElement, subMenus));
 		selectionMenu.addKeyListener(new NavigationMenuKeyListener(this));
-		//selectionMenu.addMouseTrackListener(new SelectionMenuMouseTrackListener(DefaultNavigationMenu.this, selectionMenu, subMenus, umlElement));
+		// selectionMenu.addMouseTrackListener(new SelectionMenuMouseTrackListener(DefaultNavigationMenu.this, selectionMenu, subMenus, umlElement));
 	}
 
 	public void addContextualMenus(List<Object> navigationMenuElements, Object umlElement) {
@@ -330,22 +328,22 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		if (navElement == null) {
 			return null;
 		}
-		
+
 		EObject element = null;
 		if (navElement instanceof ExtendedNavigableElement
 				&& ((ExtendedNavigableElement) navElement).getSemanticElement() instanceof EObject) {
 			element = (EObject) ((ExtendedNavigableElement) navElement).getSemanticElement();
 		}
-		
+
 		if (element != null) {
 			ViewerSearchService viewerSearchService = null;
-			
+
 			try {
 				viewerSearchService = getViewerSearchService();
 			} catch (NavigationMenuInitializationException e) {
 				Activator.log.error(e);
 			}
-			
+
 			if (viewerSearchService != null) {
 				return viewerSearchService.getViewersInCurrentModel(element, null, false, onlyOpened);
 			}
@@ -353,13 +351,13 @@ public class DefaultNavigationMenu implements NavigationMenu {
 
 		return new LinkedList<Object>();
 	}
-	
+
 	public void showInModelExplorer(NavigableElement navigableElement) {
 		Object semanticElement = null;
 		if (navigableElement instanceof ExtendedNavigableElement) {
 			semanticElement = ((ExtendedNavigableElement) navigableElement).getSemanticElement();
 		}
-		
+
 		if (semanticElement != null) {
 			try {
 				getNavigationService().navigate(semanticElement, "org.eclipse.papyrus.views.modelexplorer.navigation.target");
@@ -402,21 +400,21 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		return servicesRegistry;
 	}
 
-	private NavigationService getNavigationService() throws NavigationMenuInitializationException  {
+	private NavigationService getNavigationService() throws NavigationMenuInitializationException {
 		if (navigationService == null) {
 			throw new NavigationMenuInitializationException(navigationService);
 		}
 		return navigationService;
 	}
-	
-	public ViewerSearchService getViewerSearchService() throws NavigationMenuInitializationException  {
+
+	public ViewerSearchService getViewerSearchService() throws NavigationMenuInitializationException {
 		if (viewerSearchService == null) {
 			throw new NavigationMenuInitializationException(viewerSearchService);
 		}
 		return viewerSearchService;
 	}
 
-	private Shell getParentShell() throws NavigationMenuInitializationException  {
+	private Shell getParentShell() throws NavigationMenuInitializationException {
 		if (parentShell == null) {
 			throw new NavigationMenuInitializationException(parentShell);
 		}
@@ -566,7 +564,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 			Activator.log.error(e);
 		}
 	}
-	
+
 	public View getSelectedView() {
 		return selectedView;
 	}
@@ -579,8 +577,8 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	public void setParentShell(Shell parentShell) {
 		this.parentShell = parentShell;
 	}
-	
+
 	public void altReleased() {
-		this.altReleasedPostNavigation = true;
+		altReleasedPostNavigation = true;
 	}
 }

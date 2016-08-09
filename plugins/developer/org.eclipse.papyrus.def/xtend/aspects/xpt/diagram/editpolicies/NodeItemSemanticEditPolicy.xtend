@@ -93,7 +93,7 @@ protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.
 		java.util.List<org.eclipse.emf.ecore.EObject> todestroy=new java.util.ArrayList<org.eclipse.emf.ecore.EObject>();
 		todestroy.add(req.getElementToDestroy());
 		//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
-		cmd.add(new org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(),todestroy )));
+		cmd.add(new org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(),todestroy )));
 	} else {«««Here, we may play smart and don't generate else for non-toplevel nodes(which can't be shortcuts). Is it worth doing?
 		cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), view));
 	}

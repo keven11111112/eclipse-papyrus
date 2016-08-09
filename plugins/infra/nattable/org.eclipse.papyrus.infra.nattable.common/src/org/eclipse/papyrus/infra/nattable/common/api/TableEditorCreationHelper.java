@@ -351,11 +351,13 @@ public class TableEditorCreationHelper {
 			if (this.creationCommand != null && this.creationCommand.canExecute()) {
 				this.editingDomain.getCommandStack().execute(creationCommand);
 			}
-			Collection<?> result = creationCommand.getResult();
-			if (result.size() > 0) {
-				Object res = result.iterator().next();
-				if (res instanceof Table) {
-					return (Table) res;
+			if (this.creationCommand != null) {
+				Collection<?> result = creationCommand.getResult();
+				if (result.size() > 0) {
+					Object res = result.iterator().next();
+					if (res instanceof Table) {
+						return (Table) res;
+					}
 				}
 			}
 		}

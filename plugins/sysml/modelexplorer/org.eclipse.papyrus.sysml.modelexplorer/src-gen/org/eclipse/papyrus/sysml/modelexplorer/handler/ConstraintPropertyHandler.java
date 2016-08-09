@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -36,9 +37,9 @@ public class ConstraintPropertyHandler extends AbstractSysmlModelExplorerCreateC
 
 	/**
 	 * <pre>
-	 * @see org.eclipse.papyrus.uml.service.types.ui.handlers.AbstractCreateCommandHandler#getElementTypeToCreate()
+	 * &#64;see org.eclipse.papyrus.uml.service.types.ui.handlers.AbstractCreateCommandHandler#getElementTypeToCreate()
 	 *
-	 * @return the IElementType this handler is supposed to create
+	 * &#64;return the IElementType this handler is supposed to create
 	 *
 	 * </pre>
 	 *
@@ -77,7 +78,7 @@ public class ConstraintPropertyHandler extends AbstractSysmlModelExplorerCreateC
 
 		// Retrieve create command from the Element Edit service
 		ICommand createGMFCommand = provider.getEditCommand(createRequest);
-		Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
+		Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
 		return emfCommand;
 	}
 

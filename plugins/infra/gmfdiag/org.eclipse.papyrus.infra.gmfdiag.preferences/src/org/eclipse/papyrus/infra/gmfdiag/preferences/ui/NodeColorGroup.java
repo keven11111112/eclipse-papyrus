@@ -24,11 +24,6 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class NodeColorGroup extends LinkColorGroup {
 
-	/** The font color editor. */
-	protected ColorFieldEditor fontColorEditor;
-
-	/** The line color editor. */
-	protected ColorFieldEditor lineColorEditor;
 
 	/** The fill color editor. */
 	protected ColorFieldEditor fillColorEditor;

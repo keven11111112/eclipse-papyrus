@@ -40,11 +40,9 @@ import org.eclipse.swt.widgets.TreeItem;
  *
  * @author Camille Letavernier
  */
-public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy {
+public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy<TreeViewer> {
 
 	protected IAdaptableContentProvider adaptableProvider;
-
-	protected TreeViewer viewer;
 
 	public ContainmentBrowseStrategy(ITreeContentProvider provider) {
 		if (!(provider instanceof IAdaptableContentProvider)) {
@@ -342,5 +340,6 @@ public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy {
 
 		return new ArrayList<Object>();
 	}
+
 
 }

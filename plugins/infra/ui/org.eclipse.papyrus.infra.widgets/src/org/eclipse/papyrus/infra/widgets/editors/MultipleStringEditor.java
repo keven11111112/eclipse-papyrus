@@ -22,9 +22,10 @@ import org.eclipse.swt.widgets.Composite;
  * An editor for multivalued String attributes
  *
  * @author Camille Letavernier
+ * @param <T>
  *
  */
-public class MultipleStringEditor extends MultipleValueEditor {
+public class MultipleStringEditor<T extends StringSelector> extends MultipleValueEditor<IElementSelector> {
 
 	/**
 	 * Constructs an Editor for multiple String values
@@ -104,7 +105,7 @@ public class MultipleStringEditor extends MultipleValueEditor {
 	 * @param label
 	 *            The editor's label
 	 */
-	public MultipleStringEditor(Composite parent, int style, IElementSelector selector, boolean ordered, boolean unique, String label) {
+	public MultipleStringEditor(Composite parent, int style, T selector, boolean ordered, boolean unique, String label) {
 		super(parent, style, selector, ordered, unique, label);
 		init();
 	}
@@ -121,7 +122,7 @@ public class MultipleStringEditor extends MultipleValueEditor {
 	 * @param selector
 	 *            The Element selector for the dialog's left-pane. Used to select values or enter new ones.
 	 */
-	public MultipleStringEditor(Composite parent, int style, IElementSelector selector) {
+	public MultipleStringEditor(Composite parent, int style, T selector) {
 		super(parent, style, selector);
 		init();
 	}
@@ -140,7 +141,7 @@ public class MultipleStringEditor extends MultipleValueEditor {
 	 * @param label
 	 *            The editor's label
 	 */
-	public MultipleStringEditor(Composite parent, int style, IElementSelector selector, String label) {
+	public MultipleStringEditor(Composite parent, int style, T selector, String label) {
 		super(parent, style, selector, label);
 		init();
 	}
@@ -167,7 +168,7 @@ public class MultipleStringEditor extends MultipleValueEditor {
 	}
 
 	public void setContentProvider(final IStaticContentProvider provider) {
-		IElementSelector selector = new StandardSelector(StringCombo.class) {
+		StandardSelector selector = new StandardSelector(StringCombo.class) {
 
 			@Override
 			public void createControls(Composite parent) {

@@ -64,6 +64,7 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.gmfdiag.css.service.CssMarkerEventManagerService;
 import org.eclipse.papyrus.infra.gmfdiag.css.service.MarkerToPseudoSelectorMappingService;
 import org.eclipse.papyrus.infra.gmfdiag.export.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.export.DialogDisplayUtils;
 import org.eclipse.papyrus.infra.gmfdiag.export.actions.ExportAllDiagramsParameter;
 import org.eclipse.papyrus.infra.gmfdiag.export.messages.Messages;
 import org.eclipse.papyrus.infra.services.decoration.DecorationService;
@@ -465,9 +466,9 @@ public class ExportAllDiagramsEngine {
 				@Override
 				public void run() {
 					if (diagnostic.getSeverity() == Diagnostic.OK) {
-						MessageDialog.openInformation(Activator.getActiveWorkbenchShell(), Messages.ExportAllDiagrams_25, Messages.ExportAllDiagrams_26 + exportParameter.getOutputDirectoryPath());
+						MessageDialog.openInformation(DialogDisplayUtils.getActiveWorkbenchShell(), Messages.ExportAllDiagrams_25, Messages.ExportAllDiagrams_26 + exportParameter.getOutputDirectoryPath());
 					} else {
-						DiagnosticDialog.open(Activator.getActiveWorkbenchShell(), Messages.ExportAllDiagrams_27, "", diagnostic); //$NON-NLS-1$
+						DiagnosticDialog.open(DialogDisplayUtils.getActiveWorkbenchShell(), Messages.ExportAllDiagrams_27, "", diagnostic); //$NON-NLS-1$
 					}
 				}
 			});

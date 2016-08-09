@@ -287,14 +287,15 @@ public class RenameModelChange extends Change {
 
 			try {
 				SashModel oldSash = SashModelUtils.getSashModel(resourceSet);
-				URI oldSashURI = oldSash.getResourceURI();
-				Resource resource = oldSash.getResource();
-				resourceSet.loadModels(newFile);
-				SashModel sashModel = SashModelUtils.getSashModel(resourceSet);
-				URI stashNewFile = sashModel.getResourceURI();
-				resource.setURI(stashNewFile);
-				resource.save(ResourceUtils.getSaveOptions());
-				if(oldSash != null) { // delete old stash
+				if (oldSash != null) { // delete old stash
+					URI oldSashURI = oldSash.getResourceURI();
+					Resource resource = oldSash.getResource();
+					resourceSet.loadModels(newFile);
+					SashModel sashModel = SashModelUtils.getSashModel(resourceSet);
+					URI stashNewFile = sashModel.getResourceURI();
+					resource.setURI(stashNewFile);
+					resource.save(ResourceUtils.getSaveOptions());
+
 					try {
 						resourceSet.getURIConverter().delete(oldSashURI, null);
 					} catch (IOException e) {

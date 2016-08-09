@@ -57,7 +57,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.TreeIterators;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SetCanonicalCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;

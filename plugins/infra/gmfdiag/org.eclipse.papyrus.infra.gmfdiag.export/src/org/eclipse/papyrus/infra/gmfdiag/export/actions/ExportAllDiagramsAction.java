@@ -27,7 +27,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
-import org.eclipse.papyrus.infra.gmfdiag.export.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.export.DialogDisplayUtils;
 import org.eclipse.papyrus.infra.gmfdiag.export.engine.ExportAllDiagramsEngine;
 import org.eclipse.papyrus.infra.gmfdiag.export.utils.SelectionHelper;
 import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForSelection;
@@ -117,7 +117,7 @@ public class ExportAllDiagramsAction extends AbstractHandler {
 
 		}
 
-		ExportAllDiagramsDialog exportPopup = new ExportAllDiagramsDialog(Activator.getActiveWorkbenchShell(), uriFile);
+		ExportAllDiagramsDialog exportPopup = new ExportAllDiagramsDialog(DialogDisplayUtils.getActiveWorkbenchShell(), uriFile);
 		if (exportPopup.open() == Window.OK) {
 
 			// Complete export configuration

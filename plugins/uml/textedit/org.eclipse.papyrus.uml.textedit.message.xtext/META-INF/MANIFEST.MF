@@ -24,7 +24,7 @@ Require-Bundle: org.eclipse.xtext.generator;bundle-version="[2.10.0,3.0.0)";reso
  org.eclipse.xtext.xbase.lib;bundle-version="[2.10.0,3.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2

@@ -117,8 +117,13 @@ public class OneFileUtils {
 	 * @return
 	 */
 	public static String withoutFileExtension(IResource res) {
-		if (res.getFileExtension() != null && res.getFileExtension().length() > 0) {
-			return res.getName().substring(0, res.getName().lastIndexOf('.'));
+		String extension = res.getFileExtension();
+		if (extension != null) {
+			if (extension.length() > 0) {
+				return res.getName().substring(0, res.getName().lastIndexOf('.'));
+			} else {
+				return null;
+			}
 		} else {
 			return res.getName();
 		}

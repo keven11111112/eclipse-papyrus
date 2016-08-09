@@ -114,7 +114,7 @@ public class ITreeItemAxisComparator implements Comparator<ITreeItemAxis> {
 	 * @param axis1
 	 * @param axis2
 	 * @return
-	 *         the axis manager representation
+	 * 		the axis manager representation
 	 */
 	protected AxisManagerRepresentation getAxisManagerRepresentation(ITreeItemAxis axis1, ITreeItemAxis axis2) {
 		if (this.axisManager != null) {
@@ -128,7 +128,11 @@ public class ITreeItemAxisComparator implements Comparator<ITreeItemAxis> {
 		if ((subAxisManager1 != null || subAxisManager2 != null) && (subAxisManager1 != subAxisManager2)) {
 			throw new UnsupportedOperationException("this case is not yet supported"); //$NON-NLS-1$
 		}
-		return subAxisManager1.getAxisManagerRepresentation();
+		if (subAxisManager1 != null) {
+			return subAxisManager1.getAxisManagerRepresentation();
+		} else {
+			throw new UnsupportedOperationException("this case is not yet supported"); //$NON-NLS-1$
+		}
 	}
 
 	/**
@@ -202,7 +206,7 @@ public class ITreeItemAxisComparator implements Comparator<ITreeItemAxis> {
 	 * @param axis2
 	 *            the second axis
 	 * @return
-	 *         the axis manager used
+	 * 		the axis manager used
 	 */
 	private IAxisManager getAxisManager(ITreeItemAxis axis1, ITreeItemAxis axis2) {
 		if (this.axisManager != null) {

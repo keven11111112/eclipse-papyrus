@@ -18,7 +18,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.listeners.AbstractPapyrusModifcationTriggerListener;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExceptionHandler;

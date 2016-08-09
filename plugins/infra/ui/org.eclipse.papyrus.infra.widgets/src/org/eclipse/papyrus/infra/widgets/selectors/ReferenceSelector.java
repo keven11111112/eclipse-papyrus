@@ -25,6 +25,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelectionListener;
@@ -148,7 +149,7 @@ public class ReferenceSelector implements IElementSelector {
 	 * @param containerElements
 	 *            The array of elements wrapped in their container
 	 * @return
-	 *         The array of semantic elements to be converted
+	 * 		The array of semantic elements to be converted
 	 *
 	 * @see #getContainerElements(Object[])
 	 * @see org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider
@@ -169,7 +170,7 @@ public class ReferenceSelector implements IElementSelector {
 	 * @param selection
 	 *            The input array to filter
 	 * @return
-	 *         The filtered array
+	 * 		The filtered array
 	 *
 	 * @see org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider#isValidValue(Object)
 	 */
@@ -321,7 +322,7 @@ public class ReferenceSelector implements IElementSelector {
 	 * @author Camille Letavernier
 	 *
 	 */
-	private class SelectionFilteredBrowseStrategy extends ProviderBasedBrowseStrategy {
+	private class SelectionFilteredBrowseStrategy extends ProviderBasedBrowseStrategy<Viewer> {
 
 		public SelectionFilteredBrowseStrategy(ITreeContentProvider provider) {
 			super(provider);
@@ -344,6 +345,12 @@ public class ReferenceSelector implements IElementSelector {
 			if (unique) {
 				clearCache();
 			}
+		}
+
+		@Override
+		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			super.inputChanged(viewer, oldInput, newInput);
+			this.viewer = viewer;
 		}
 	}
 

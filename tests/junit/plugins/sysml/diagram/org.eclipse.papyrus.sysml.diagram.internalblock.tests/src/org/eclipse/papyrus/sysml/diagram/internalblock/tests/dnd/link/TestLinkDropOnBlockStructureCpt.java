@@ -29,7 +29,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.utils.GMFCommandUtils;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.AbstractTest;

@@ -54,10 +54,14 @@ public class InsertedElementInNattable {
 	/**
 	 * Constructor.
 	 *
-	 * @param context The context of the created elements
-	 * @param containementFeature The containment feature.
-	 * @param indexInParent The index where add the created elements in the context.
-	 * @param indexInTable The index where add the created elements in the table.
+	 * @param context
+	 *            The context of the created elements
+	 * @param containementFeature
+	 *            The containment feature.
+	 * @param indexInParent
+	 *            The index where add the created elements in the context.
+	 * @param indexInTable
+	 *            The index where add the created elements in the table.
 	 */
 	public InsertedElementInNattable(EObject context, EStructuralFeature containementFeature, int indexInParent, int indexInTable) {
 		super();
@@ -67,16 +71,21 @@ public class InsertedElementInNattable {
 		this.indexInParent = indexInParent;
 		this.indexInTable = indexInTable;
 	}
-	
+
 	/**
 	 * 
 	 * Constructor.
 	 *
-	 * @param context The context of the created elements.
-	 * @param createdElements The created elements to add.
-	 * @param containementFeature The containment feature.
-	 * @param indexInParent The index where add the created elements in the context.
-	 * @param indexInTable The index where add the created elements in the table.
+	 * @param context
+	 *            The context of the created elements.
+	 * @param createdElements
+	 *            The created elements to add.
+	 * @param containementFeature
+	 *            The containment feature.
+	 * @param indexInParent
+	 *            The index where add the created elements in the context.
+	 * @param indexInTable
+	 *            The index where add the created elements in the table.
 	 */
 	public InsertedElementInNattable(EObject context, List<Object> createdElements, EStructuralFeature containementFeature, int indexInParent, int indexInTable) {
 		super();
@@ -100,7 +109,8 @@ public class InsertedElementInNattable {
 	/**
 	 * This allows to add a created elements.
 	 * 
-	 * @param object the created element to add.
+	 * @param object
+	 *            the created element to add.
 	 */
 	public void addCreatedElement(final Object createdElement) {
 		this.createdElements.add(createdElement);
@@ -161,5 +171,10 @@ public class InsertedElementInNattable {
 		}
 
 		return result;
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
 	}
 }

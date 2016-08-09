@@ -21,17 +21,17 @@ import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.InducedRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.NotificationManager;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
  * this edit policy can be apply only on {@link IPapyrusEditPart} in order to
  * access to primary figure. the primary figure has to be a {@link IPapyrusNodeUMLElementFigure}.
-
+ * 
  * it creates the compartment displaying shapes for an element by reading the expansion model
  * see #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011
  */
@@ -102,23 +102,22 @@ public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy
 	 * @param appliedstereotype
 	 *            the stereotype application
 	 */
-	protected void executeShapeCompartmentCreation(final IGraphicalEditPart editPart, HashMap<String, View> existedDynamicCompartment, List<String> wantedChildreenID,ChildrenListRepresentation listRepresentation) {
+	protected void executeShapeCompartmentCreation(final IGraphicalEditPart editPart, HashMap<String, View> existedDynamicCompartment, List<String> wantedChildreenID, ChildrenListRepresentation listRepresentation) {
 		for (String wantedID : wantedChildreenID) {
-			if( existedDynamicCompartment.get(wantedID)==null){	
-				if( listRepresentation.IDMap.get(wantedID) instanceof InducedRepresentation){
+			if (existedDynamicCompartment.get(wantedID) == null) {
+				if (listRepresentation.IDMap.get(wantedID) instanceof InducedRepresentation) {
 					try {
 						TransactionalEditingDomain domain = getEditingDomain(editPart);
 
-						CreateInducedRepresentationViewCommand command = new CreateInducedRepresentationViewCommand
-								(domain,
-										"view Creation",
-										wantedID,
-										"view Creation",
-										editPart.getNotationView(),
-										true,
-										editPart.getDiagramPreferencesHint());
-							// This should not change the command stack, as this transaction will only manipulate transient views. Create a transaction manually, if needed
-							GMFUnsafe.write(domain, command);
+						CreateInducedRepresentationViewCommand command = new CreateInducedRepresentationViewCommand(domain,
+								"view Creation",
+								wantedID,
+								"view Creation",
+								editPart.getNotationView(),
+								true,
+								editPart.getDiagramPreferencesHint());
+						// This should not change the command stack, as this transaction will only manipulate transient views. Create a transaction manually, if needed
+						GMFUnsafe.write(domain, command);
 					} catch (Exception e) {
 						Activator.log.error(e);
 					}
@@ -142,17 +141,17 @@ public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy
 
 
 	protected String getDiagramType(View currentView) {
-		Diagram diagram=currentView.getDiagram();
-		String currentDiagramType=null;
-		ViewPrototype viewPrototype=org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
-		if(viewPrototype!=null){
-			currentDiagramType=viewPrototype.getLabel();
-		}
-		else{
-			currentDiagramType=diagram.getType();
+		Diagram diagram = currentView.getDiagram();
+		String currentDiagramType = null;
+		ViewPrototype viewPrototype = org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
+		if (viewPrototype != null) {
+			currentDiagramType = viewPrototype.getLabel();
+		} else {
+			currentDiagramType = diagram.getType();
 		}
 		return currentDiagramType;
 	}
+
 	/**
 	 * this method creates a node for the compartment of stereotype if it does not exist.
 	 *
@@ -162,19 +161,19 @@ public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy
 	public void updateAddedCompartment() {
 		final IGraphicalEditPart editPart = (IGraphicalEditPart) getHost();
 		final View view = editPart.getNotationView();
-		String diagramType= getDiagramType(view);
-		ChildrenListRepresentation listRepresentation=diagramExpansionRegistry.mapChildreen.get(diagramType);
-		if( listRepresentation==null){
+		String diagramType = getDiagramType(view);
+		ChildrenListRepresentation listRepresentation = diagramExpansionRegistry.mapChildreen.get(diagramType);
+		if (listRepresentation == null) {
 			return;
 		}
-		List<String> childreenID=listRepresentation.parentChildrenRelation.get(view.getType());
-		if( childreenID==null){
+		List<String> childreenID = listRepresentation.parentChildrenRelation.get(view.getType());
+		if (childreenID == null) {
 			return;
 		}
 		// Look for the node for the shape compartment
-		HashMap<String,View> dynamicCompartments = getAddedCompartmentView(view, childreenID);
+		HashMap<String, View> dynamicCompartments = getAddedCompartmentView(view, childreenID);
 		// it does not exist
-		if (dynamicCompartments.size()<childreenID.size()) {
+		if (dynamicCompartments.size() < childreenID.size()) {
 
 			executeShapeCompartmentCreation(editPart, dynamicCompartments, childreenID, listRepresentation);
 		}
@@ -183,12 +182,12 @@ public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy
 	/**
 	 * Returns the view corresponding to the shape compartment
 	 *
-	 * @param view 
+	 * @param view
 	 * @return
 	 */
-	private HashMap<String,View> getAddedCompartmentView(View view, List<String> childreenID) {
+	private HashMap<String, View> getAddedCompartmentView(View view, List<String> childreenID) {
 
-		HashMap<String,View> dynamicCompartments= new HashMap<String,View>();
+		HashMap<String, View> dynamicCompartments = new HashMap<String, View>();
 		for (Object child : view.getChildren()) {
 			if (child instanceof View && childreenID.contains(((View) child).getType())) {
 				dynamicCompartments.put((((View) child).getType()), (View) child);
