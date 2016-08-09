@@ -24,6 +24,7 @@ import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.FillColumnsSizeTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.OpenAndDeleteTest;
+import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.PasteAttachedModeEnumTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.StereotypeInheritDisplayTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.StereotypeSubPackagesDisplayTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.importfile.ImportCellsAll_Test;
@@ -99,6 +100,9 @@ import org.junit.runners.Suite.SuiteClasses;
 
 		// Check the enumeration content items
 		EnumerationContentItemsTest.class,
+		
+		// Bug 456841: Check paste with stereotype attribute typed as enum
+		PasteAttachedModeEnumTest.class,
 
 		// Paste Overwrite tests
 		PasteEmptyClipboard_Test.class,
@@ -125,7 +129,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteEmptyOverwriteFailColumns_Test.class,
 		PasteEmptyOverwriteWarningNotExisting_Test.class,
 		PasteEmptyOverwriteAxisIdentifierNotExisting_Test.class,
-
+		
 		// Insert tests
 		InsertEmptyClipboard_Test.class,
 
