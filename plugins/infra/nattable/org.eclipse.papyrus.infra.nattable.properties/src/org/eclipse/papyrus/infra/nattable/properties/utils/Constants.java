@@ -25,6 +25,12 @@ public class Constants {
 		// to prevent instanciation
 	}
 
+	/**
+	 * The table owner constant.
+	 * 
+	 * @since 2.1
+	 */
+	public static final String TABLE_OWNER = "owner"; //$NON-NLS-1$
 
 	public static final String TABLE_CONTEXT = "context"; //$NON-NLS-1$
 

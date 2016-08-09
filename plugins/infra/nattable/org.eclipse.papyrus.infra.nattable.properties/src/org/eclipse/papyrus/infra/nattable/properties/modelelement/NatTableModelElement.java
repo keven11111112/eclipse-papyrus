@@ -533,6 +533,9 @@ public class NatTableModelElement extends EMFModelElement {
 		if (Constants.TABLE_CONTEXT.equals(propertyPath)) {
 			Table table = getEditedTable();
 			provider = new ContextFeatureContentProvider(table, getRoot(table.getContext()));
+		} else if (Constants.TABLE_OWNER.equals(propertyPath)) {
+			Table table = getEditedTable();
+			provider = new ContextFeatureContentProvider(table, getRoot(table.getContext()));
 		} else if (Constants.ROW_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
 			provider = new RowContainmentFeatureContentProvider(getEditedTable(), getEditedTable().getContext().eClass());
 		} else if (Constants.COLUMN_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {

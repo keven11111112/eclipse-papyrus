@@ -14,10 +14,10 @@
 			property="nattable:nattableconfiguration:TableNamedElement:name"></ppe:StringEditor>
 		<ppe:ReferenceLabel input="{Binding}"
 			property="nattable:Table:prototype" readOnly="true" customLabel="View Type"></ppe:ReferenceLabel>
-		<ppe:ReferenceLabel input="{Binding}" property="nattable:Table:owner"
-			readOnly="true" customLabel="Owner"></ppe:ReferenceLabel>
-		<ppe:ReferenceDialog input="{Binding}"
-			property="nattable:Table:context" customLabel="Root element"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}" property="nattable:Table:owner"
+			customLabel="Owner"></ppe:ReferenceDialog>
+		<ppe:ReferenceLabel input="{Binding}"
+			readOnly="true" property="nattable:Table:context" customLabel="Root element"></ppe:ReferenceLabel>
 	</Composite>
 	<Composite>
 		<Composite.layout>
