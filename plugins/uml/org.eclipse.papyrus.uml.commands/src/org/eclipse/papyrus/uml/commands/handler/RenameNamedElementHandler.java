@@ -23,15 +23,20 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.ui.command.AbstractCommandHandler;
 import org.eclipse.papyrus.views.modelexplorer.DirectEditorEditingSupport;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This handler allows to rename {@link NamedElement}
@@ -53,7 +58,7 @@ public class RenameNamedElementHandler extends AbstractCommandHandler {
 			final String currentName = namedElement.getName();
 			if (currentName != null) {
 
-				AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "RenameCommand", null) { //$NON-NLS-1$
+				final AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "RenameCommand", null) { //$NON-NLS-1$
 
 					/**
 					 *
@@ -67,10 +72,17 @@ public class RenameNamedElementHandler extends AbstractCommandHandler {
 					@Override
 					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 						InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename...", "New name:", currentName, null);
-						if (dialog.open() == Window.OK) {
+						if (Window.OK == dialog.open()) {
 							final String name = dialog.getValue();
-							if (name != null && name.length() > 0) {
-								namedElement.setName(name);
+							if (null != name && 0 < name.length()) {
+								SetRequest setRequest = new SetRequest(namedElement, UMLPackage.eINSTANCE.getNamedElement_Name(), name);
+
+								IElementEditService provider = ElementEditServiceUtils.getCommandProvider(namedElement);
+								ICommand editCommand = provider.getEditCommand(setRequest);
+
+								if (null != editCommand && editCommand.canExecute()) {
+									editCommand.execute(monitor, info);
+								}
 							}
 							return CommandResult.newOKCommandResult();
 						} else {
