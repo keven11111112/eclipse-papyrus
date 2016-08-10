@@ -34,8 +34,7 @@ public class MeasureMetricsHandler extends PapyrusAbstractHandler {
 		if (selectedElements.size() == 1) {
 			Element selectedElement = getSelection();
 			if (selectedElement != null) {
-				CalculateRegisteredMeasuresCommand calculateRegisteredMeasuresCommand = new CalculateRegisteredMeasuresCommand(
-						transactionalEditingDomain, selectedElement);
+				CalculateRegisteredMeasuresCommand calculateRegisteredMeasuresCommand = new CalculateRegisteredMeasuresCommand(selectedElement);
 				transactionalEditingDomain.getCommandStack().execute(calculateRegisteredMeasuresCommand);
 			}
 		}

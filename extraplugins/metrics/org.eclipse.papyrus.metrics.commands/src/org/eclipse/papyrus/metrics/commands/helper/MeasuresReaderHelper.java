@@ -44,10 +44,12 @@ public class MeasuresReaderHelper {
 		SmmModel smmModel = null;
 		SmmMetricsModelHelper helper = new SmmMetricsModelHelper();
 		String smmModelLocation = helper.getSmmModelFileLocation();
-		if (smmModelLocation.isEmpty()) {
+		if (smmModelLocation.isEmpty()|| null == smmModelLocation) {
+			Activator.log.warn("SMM model location is empty in the extension plugin");
 			return null;
 		}
 		if (helper.getSmmModel(smmModelLocation) == null) {
+			Activator.log.warn("Impossible to get SMM model from: "+smmModelLocation);
 			return null;
 		}
 		smmModel = helper.getSmmModel(smmModelLocation);
@@ -98,7 +100,7 @@ public class MeasuresReaderHelper {
 		boolean foundMeasures = (Boolean.TRUE.equals(existMeasuresFrombasicMeasuresRegistry)
 				|| Boolean.TRUE.equals(existMeasuresFromSmmModelRegistry)) ? true : false;
 		if (!foundMeasures) {
-			Activator.log.warn("Failed to find at least one registered measure definitions ");
+			Activator.log.warn("Failed to find at least one registered measure definition");
 			return null;
 		}
 

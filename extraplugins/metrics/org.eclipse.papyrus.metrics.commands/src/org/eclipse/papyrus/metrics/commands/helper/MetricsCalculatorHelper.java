@@ -18,11 +18,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.metrics.commands.Activator;
 import org.eclipse.papyrus.metrics.extensionpoints.helpers.Result;
 import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IDefaultQuerySwitch;
 import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IRecognizerSwitch;
 import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IResultsViewer;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.omg.smm.Measure;
 import org.omg.smm.Operation;
@@ -118,6 +120,11 @@ public class MetricsCalculatorHelper {
 	 * Shows the information of the smmModels using all the registered viewers
 	 */
 	public void showMeasures() {
+		if (observationResults.isEmpty()){
+			MessageDialog.openWarning(Display.getCurrent().getActiveShell(), "Information",
+					"There are no measures to calculate for the selected element");
+			return;
+		}
 		for (IResultsViewer resultsViewer : resultsViewers) {
 			resultsViewer.show(observationResults);
 		}

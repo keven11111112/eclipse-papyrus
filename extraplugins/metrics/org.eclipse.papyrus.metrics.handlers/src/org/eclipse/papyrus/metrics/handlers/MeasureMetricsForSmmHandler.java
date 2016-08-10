@@ -35,7 +35,7 @@ public class MeasureMetricsForSmmHandler extends PapyrusAbstractHandler {
 			Element selectedElement = getSelection();
 			if (selectedElement != null) {
 				CalculateSmmBasedMeasuresCommand calculateSmmBasedMeasuresCommand = new CalculateSmmBasedMeasuresCommand(
-						transactionalEditingDomain, selectedElement);
+						selectedElement);
 				transactionalEditingDomain.getCommandStack().execute(calculateSmmBasedMeasuresCommand);
 			}
 		}
