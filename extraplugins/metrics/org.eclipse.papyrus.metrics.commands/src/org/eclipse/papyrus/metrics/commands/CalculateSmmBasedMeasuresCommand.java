@@ -15,16 +15,11 @@
 package org.eclipse.papyrus.metrics.commands;
 
 import java.util.ArrayList;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+
 import org.eclipse.papyrus.metrics.commands.helper.MeasuresReaderHelper;
-import org.eclipse.papyrus.metrics.commands.helper.MetricsCalculatorHelper;
-import org.eclipse.papyrus.metrics.commands.helper.RegistersHelper;
-import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IDefaultQuerySwitch;
-import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IRecognizerSwitch;
 import org.eclipse.papyrus.metrics.extensionpoints.interfaces.IResultsViewer;
+import org.eclipse.uml2.uml.Element;
 import org.omg.smm.Measure;
-import org.omg.smm.SmmModel;
 
 /**
  * Calculates the Measures values defined in an external file containing an SMM
@@ -32,35 +27,15 @@ import org.omg.smm.SmmModel;
  * viewers implementing {@link IResultsViewer}
  *
  */
-public class CalculateSmmBasedMeasuresCommand extends RecordingCommand {
-	protected ArrayList<Measure> measures = new ArrayList<Measure>();
-	protected ArrayList<IResultsViewer> resultsViewers = new ArrayList<IResultsViewer>();
-	protected org.eclipse.uml2.uml.Element observationScope = null;
-	protected SmmModel smmModel = null;
-	protected IRecognizerSwitch recognizerSwitch = null;
-	protected IDefaultQuerySwitch defaultQuerySwitch = null;
+public class CalculateSmmBasedMeasuresCommand extends AbstractCalculateMeasuresCommand {
 
-	public CalculateSmmBasedMeasuresCommand(TransactionalEditingDomain domain,
-			org.eclipse.uml2.uml.Element observationScope) {
-		super(domain, "CalculateSmmBasedMeasuresCommand");
-		RegistersHelper registersHelper = new RegistersHelper();
-		this.resultsViewers = registersHelper.getViewers();
-		this.recognizerSwitch = registersHelper.getRecognizerSwitch();
-		this.defaultQuerySwitch = registersHelper.getDefaultQuerySwitch();
-		this.observationScope = observationScope;
+	public CalculateSmmBasedMeasuresCommand(Element observationScope) {
+		super(observationScope);
 	}
 
 	@Override
-	protected void doExecute() {
+	protected ArrayList<Measure> getMeasures() {
 		MeasuresReaderHelper measuresReaderHelper = new MeasuresReaderHelper();
-		this.measures = measuresReaderHelper.getMeasuresFromFile();
-		if (null == this.measures) {
-			return;
-		} else {
-			MetricsCalculatorHelper helper = new MetricsCalculatorHelper(measures, observationScope, resultsViewers,
-					recognizerSwitch, defaultQuerySwitch);
-			helper.run();
-		}
+		return measuresReaderHelper.getMeasuresFromFile();
 	}
-
 }
