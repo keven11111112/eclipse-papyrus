@@ -20,12 +20,14 @@ import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.expressions.IEvaluationContext;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.nebula.widgets.nattable.ui.menu.MenuItemProviders;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.IMultiPageEditorPart;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
@@ -33,7 +35,14 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
+import org.eclipse.papyrus.infra.ui.util.EditorHelper;
 import org.eclipse.papyrus.infra.ui.util.WorkbenchPartHelper;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
@@ -154,24 +163,41 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 			}
 		}
 
-		// Commented since Papyrus 1.2 (Neon Mars 2016)
 		// that's why we can't add the variable NAT_EVENT_DATA_PARAMETER_ID and we need to create a NatEventData instead of to get it in evaluationContext
-		// if (eventData == null) {
-		// Point cursorLocation = Display.getDefault().getCursorLocation();
-		// Control control = Display.getDefault().getCursorControl();// doesn't work when we are selecting a command in a sub menu!
-		// if (control instanceof NatTable) {// : not nice, but required
-		// cursorLocation = control.toControl(cursorLocation);
-		// Event e = new Event();
-		// e.x = cursorLocation.x;
-		// e.y = cursorLocation.y;
-		// e.display = Display.getDefault();
-		// e.widget = control;
-		// MouseEvent event = new MouseEvent(e);
-		// eventData = NatEventData.createInstanceFromEvent(event);
-		// }
-		// }
+		if (eventData == null) {
+			Point cursorLocation = Display.getDefault().getCursorLocation();
+			Control control = null;
+			
+			// Try to get the nattable from the multi diagram
+			// We need to manage it from active editor for the sub menu items
+			final IEditorPart activeEditor = EditorHelper.getCurrentEditor();
+			if (null != activeEditor) {
+				INattableModelManager nattableModelManager = null;
+				if(activeEditor instanceof IMultiPageEditorPart && null != ((IMultiPageEditorPart)activeEditor).getActiveEditor()){
+					nattableModelManager = ((IMultiPageEditorPart)activeEditor).getActiveEditor().getAdapter(INattableModelManager.class);
+				}else if(activeEditor instanceof IAdaptable){
+					nattableModelManager = ((IAdaptable)activeEditor).getAdapter(INattableModelManager.class);
+				}
+				
+				if(null != nattableModelManager){
+					control = nattableModelManager.getAdapter(NatTable.class);
+				}
+			}
+			
+			if (control instanceof NatTable) {// : not nice, but required
+				cursorLocation = control.toControl(cursorLocation);
+				Event e = new Event();
+				e.x = cursorLocation.x;
+				e.y = cursorLocation.y;
+				e.display = Display.getDefault();
+				e.widget = control;
+				MouseEvent event = new MouseEvent(e);
+				eventData = NatEventData.createInstanceFromEvent(event);
+			}
+		}
 		return eventData;
 	}
+	
 	/**
 	 *
 	 * @param evaluationContext
