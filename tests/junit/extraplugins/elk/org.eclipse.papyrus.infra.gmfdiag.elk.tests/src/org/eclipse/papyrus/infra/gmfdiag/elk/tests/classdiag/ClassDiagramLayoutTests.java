@@ -162,8 +162,9 @@ public class ClassDiagramLayoutTests extends AbstractPapyrusTest {
 		IRangeComparator expectedContent = new TokenComparator(readFile(expected));
 		IRangeComparator currentContent = new TokenComparator(readFile(current));
 		RangeDifference[] diffs = RangeDifferencer.findDifferences(expectedContent, currentContent);
-		for(int i = 0; i < diffs.length; i++) {
-			System.err.println(i + " -> " + diffs[i].toString());
+		if(diffs.length > 0) {
+			System.err.println("current file:");
+			System.err.println(readFile(expected));
 		}
 		assertThat("There should not be any difference, but some diffs were found.", diffs.length, equalTo(0));
 	}
