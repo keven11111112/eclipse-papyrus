@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009, 2015 CEA LIST, Christian W. Damus, and others.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 476436
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.test.canonical;
@@ -55,6 +56,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 * Test to manage component.
 	 */
 	@Test
+	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManageComponent() {
 		testEdition(UMLElementTypes.Component_Shape);
 	}
@@ -63,6 +65,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 * Test to manage instance specification.
 	 */
 	@Test
+	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManageInstanceSpecification() {
 		testEdition(UMLElementTypes.InstanceSpecification_Shape);
 	}
@@ -71,6 +74,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 * Test to manage signal.
 	 */
 	@Test
+	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManageSignal() {
 		testEdition(UMLElementTypes.Signal_Shape);
 	}
@@ -79,6 +83,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 * Test to manage model.
 	 */
 	@Test
+	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManageModel() {
 		testEdition(UMLElementTypes.Model_Shape);
 	}
@@ -87,6 +92,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 * Test to manage enumeration.
 	 */
 	@Test
+	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManageEnumeration() {
 		testEdition(UMLElementTypes.Enumeration_Shape);
 	}
@@ -95,6 +101,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 * Test to manage i package.
 	 */
 	@Test
+	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManageIPackage() {
 		testEdition(UMLElementTypes.Package_Shape);
 	}
@@ -103,6 +110,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 * Test to manage class.
 	 */
 	@Test
+	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManageClass() {
 		testEdition(UMLElementTypes.Class_Shape);
 	}
@@ -111,6 +119,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 * Test to manage primitive type.
 	 */
 	@Test
+	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManagePrimitiveType() {
 		testEdition(UMLElementTypes.PrimitiveType_Shape);
 	}
@@ -119,6 +128,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 * Test to manage data type.
 	 */
 	@Test
+	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManageDataType() {
 		testEdition(UMLElementTypes.DataType_Shape);
 	}
@@ -141,33 +151,37 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	}
 
 	/**
-	 * Test to manage component.
+	 * Test to manage Item.
 	 */
 	@Test
+	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManageInformationItem() {
 		testEdition(UMLElementTypes.InformationItem_Shape);
 	}
 
 	/**
-	 * Test to manage component.
+	 * Test to manage Interface.
 	 */
 	@Test
+	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManageInterface() {
 		testEdition(UMLElementTypes.Interface_Shape);
 	}
 
 	/**
-	 * Test to manage component.
+	 * Test to manage TimeObservation.
 	 */
 	@Test
+	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManageTimeObservation() {
 		testEdition(UMLElementTypes.TimeObservation_Shape);
 	}
 
 	/**
-	 * Test to manage component.
+	 * Test to manage DurationObservation.
 	 */
 	@Test
+	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManageDurationObservation() {
 		testEdition(UMLElementTypes.DurationObservation_Shape);
 	}
