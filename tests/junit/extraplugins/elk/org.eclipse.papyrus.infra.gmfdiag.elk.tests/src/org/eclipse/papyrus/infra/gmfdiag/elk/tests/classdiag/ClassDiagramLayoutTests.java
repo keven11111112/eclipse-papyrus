@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.List;
 
@@ -50,13 +49,13 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.elk.core.service.DiagramLayoutEngine;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.common.core.util.Log;
@@ -190,7 +189,7 @@ public class ClassDiagramLayoutTests extends AbstractPapyrusTest {
 
 		try {
 			System.setProperty("line.separator", "\n");
-			copyImageUtil.copyToImage(editor.getActiveDiagram(), imagePath, exportParameter.getExportFormat(), new org.eclipse.core.runtime.NullProgressMonitor());
+			copyImageUtil.copyToImage(editor.getActiveDiagram(), imagePath, exportParameter.getExportFormat(), new NullProgressMonitor());
 		} catch (Throwable e) {
 			e.printStackTrace();
 			fail(e.getMessage());
