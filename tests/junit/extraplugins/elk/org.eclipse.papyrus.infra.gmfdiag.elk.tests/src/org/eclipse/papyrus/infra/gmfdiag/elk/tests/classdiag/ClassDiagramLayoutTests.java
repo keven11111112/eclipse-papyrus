@@ -21,10 +21,12 @@ import static org.junit.Assert.fail;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
 import java.util.List;
@@ -44,6 +46,7 @@ import org.eclipse.compare.structuremergeviewer.IStructureComparator;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -81,6 +84,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.rules.TestRule;
 import org.osgi.framework.Bundle;
@@ -118,6 +122,7 @@ public class ClassDiagramLayoutTests extends AbstractPapyrusTest {
 	}
 
 	@Test
+	@Ignore("waiting for resolution from svg comparison")
 	public void testELKAdvancedLayout() {
 		editor.openDiagram(ADVANCED_DIAGRAM_NAME);
 		assertThat("Active diagram is not the one expected", editor.getActiveDiagram().getDiagramView().getName(), equalTo(ADVANCED_DIAGRAM_NAME));
@@ -210,7 +215,22 @@ public class ClassDiagramLayoutTests extends AbstractPapyrusTest {
 
 		Object fRoot = d.findDifferences(false, null, null, null, currentStructureComparator, expectedStructureComparator);
 		if (fRoot != null) {
-			System.err.println(fRoot);
+			System.err.println("SVG export: issue on the current file");
+			StringBuilder inputStringBuilder = new StringBuilder();
+			BufferedReader bufferedReader;
+			try {
+				bufferedReader = new BufferedReader(new InputStreamReader(current.getContents(), "UTF-8"));
+				String line = bufferedReader.readLine();
+
+				while (line != null) {
+					inputStringBuilder.append(line);
+					inputStringBuilder.append('\n');
+					line = bufferedReader.readLine();
+				}
+				System.out.println(inputStringBuilder.toString());
+			} catch (CoreException | IOException e) {
+				e.printStackTrace();
+			}
 		}
 		assertThat("There should not be any difference, but some diffs were found.", fRoot, nullValue());
 
@@ -383,8 +403,8 @@ public class ClassDiagramLayoutTests extends AbstractPapyrusTest {
 				transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8"); //$NON-NLS-1$
 				transformer.setOutputProperty(OutputKeys.INDENT, "yes"); //$NON-NLS-1$
 				transformer.setOutputProperty(OutputKeys.INDENT, "yes"); //$NON-NLS-1$
-				transformer.setOutputProperty( "{http://xml.apache.org/xalan}line-separator", "\n");
-				
+				transformer.setOutputProperty("{http://xml.apache.org/xalan}line-separator", "\n");
+
 				DOMSource source = new DOMSource(svgRoot);
 				StreamResult result = new StreamResult(outputStream);
 				transformer.transform(source, result);
