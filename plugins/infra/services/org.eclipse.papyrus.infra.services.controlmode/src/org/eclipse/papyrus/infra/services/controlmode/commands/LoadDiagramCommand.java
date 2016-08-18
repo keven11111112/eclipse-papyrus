@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Christian W. Damus - bugs 485220, 497342, 498414
+ *   Christian W. Damus - bugs 485220, 497342, 498414, 499661
  *   
  *****************************************************************************/
 
@@ -29,8 +29,10 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
  * Command to load the diagram related to a resource URI
  * 
  * @author Céline JANSSENS
- *
+ * 
+ * @deprecated As of version 1.3, this class is no longer used by the Control-Mode framework.
  */
+@Deprecated
 public class LoadDiagramCommand implements Runnable {
 
 	private final IPageManager pageManager;

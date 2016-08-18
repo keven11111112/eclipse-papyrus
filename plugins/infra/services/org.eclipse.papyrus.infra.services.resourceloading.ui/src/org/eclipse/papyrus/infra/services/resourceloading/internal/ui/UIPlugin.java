@@ -8,11 +8,12 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
- *  Christian W. Damus - bug 485220
+ *  Christian W. Damus - bugs 485220, 499661
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.resourceloading.internal.ui;
 
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -27,28 +28,23 @@ public class UIPlugin extends AbstractUIPlugin {
 	// The shared instance
 	private static UIPlugin plugin;
 
+	/** The logging facade. */
+	public static LogHelper log;
+
 	/**
 	 * The constructor
 	 */
 	public UIPlugin() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+
 		plugin = this;
+		log = new LogHelper(this);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;

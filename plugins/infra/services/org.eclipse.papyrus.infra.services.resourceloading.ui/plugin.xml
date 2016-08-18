@@ -68,4 +68,11 @@
             type="org.eclipse.jface.viewers.IStructuredSelection">
       </propertyTester>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.model">
+      <modelSetSnippet
+            classname="org.eclipse.papyrus.infra.services.resourceloading.internal.ui.editor.LoadResourceSnippet"
+            description="Snippet handling unresolved editor pages when resources are loaded.">
+      </modelSetSnippet>
+   </extension>
 </plugin>

@@ -12,7 +12,7 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.services.controlmode.listener;
+package org.eclipse.papyrus.infra.services.resourceloading.internal.ui.editor;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -21,13 +21,12 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.infra.core.resource.IModelSetSnippet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapter;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageManagerImpl;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
-import org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin;
-import org.eclipse.papyrus.infra.services.controlmode.commands.LoadDiagramCommand;
+import org.eclipse.papyrus.infra.services.resourceloading.internal.ui.UIPlugin;
 
 
 /**
@@ -66,7 +65,7 @@ public class LoadResourceSnippet implements IModelSetSnippet {
 
 	/**
 	 * This Adapter allows to load associated pages of the resources.
-	 * It uses {@link LoadingPagesHandler} to do so with the help of the {@link PageManagerImpl}.
+	 * It uses {@link LoadDiagramCommand} to do so with the help of the {@link IPageManager}.
 	 * 
 	 * @author Céline JANSSENS
 	 *
@@ -76,9 +75,11 @@ public class LoadResourceSnippet implements IModelSetSnippet {
 		@Override
 		protected void handleResourceLoaded(Resource resource) {
 			IPageManager pageManager = null;
+			ISashWindowsContainer sashContainer = null;
 
 			try {
 				pageManager = ServiceUtilsForResource.getInstance().getIPageManager(resource);
+				sashContainer = ServiceUtilsForResource.getInstance().getService(ISashWindowsContainer.class, resource);
 			} catch (ServiceException e) {
 				// No editor. That's okay
 			}
@@ -86,7 +87,7 @@ public class LoadResourceSnippet implements IModelSetSnippet {
 			// If we have no page manager, then there's no editor and so nothing to do
 			if (pageManager != null) {
 				EditingDomain editingDomain = TransactionUtil.getEditingDomain(resource);
-				final LoadDiagramCommand loadCommand = new LoadDiagramCommand(resource, pageManager);
+				final LoadDiagramCommand loadCommand = new LoadDiagramCommand(resource, pageManager, sashContainer);
 
 				// Nor is there anything to do if we have no diagrams to reload
 				if (loadCommand.canExecute()) {
@@ -94,10 +95,10 @@ public class LoadResourceSnippet implements IModelSetSnippet {
 						TransactionHelper.run(editingDomain, loadCommand);
 					} catch (InterruptedException e) {
 						// Nothing to do
-						ControlModePlugin.log.error(e);
+						UIPlugin.log.error(e);
 					} catch (RollbackException e) {
 						// Nothing to do
-						ControlModePlugin.log.error(e);
+						UIPlugin.log.error(e);
 					}
 				}
 			}
