@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 433206
- *  Christian W. Damus - bug 420549
- *  Christian W. Damus - bug 472155
- *  Christian W. Damus - bug 471954
- *  Christian W. Damus - bug 477384
+ *  Christian W. Damus - bugs 433206, 420549, 472155, 471954, 477384, 499695
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy;
@@ -27,6 +23,7 @@ import java.util.WeakHashMap;
 import java.util.concurrent.Callable;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
@@ -409,7 +406,7 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 	 * @return the list of all semantic element display by parents edipart.
 	 */
 	protected ArrayList<EObject> getAllEObjectAncestor() {
-		ArrayList<EObject> ancestor = new ArrayList<EObject>();
+		ArrayList<EObject> ancestor = new ArrayList<>();
 		EditPart currentEditPart = getHost();
 		if (currentEditPart.getModel() instanceof View) {
 			ancestor.add(((View) currentEditPart.getModel()).getElement());
@@ -514,7 +511,7 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 		// current views
 		List<View> viewChildren = getViewChildren(kind);
 		List<EObject> allSemanticChildren = getSemanticChildrenList(kind);
-		List<EObject> semanticChildren = new ArrayList<EObject>(allSemanticChildren);
+		List<EObject> semanticChildren = new ArrayList<>(allSemanticChildren);
 
 		boolean changed = false;
 
@@ -747,6 +744,10 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 				ccvr.setSourceEditPart(ccd.getSourceEditPart());
 				ccvr.setTargetEditPart(ccd.getTargetEditPart());
 			}
+
+			// Unlike CreateViewRequest, this request's constructor doesn't
+			// initialize the location
+			ccvr.setLocation(new Point(-1, -1));
 
 			result = ccvr;
 		} else {

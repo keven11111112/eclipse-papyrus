@@ -1401,8 +1401,17 @@
     <extension
             point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">
         <semanticChildrenStrategy
-                editPart="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart"
                 class="org.eclipse.papyrus.uml.diagram.sequence.canonical.LifelineSemanticChildrenStrategy">
+            <enablement>
+               <or>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart"/>
+                  <instanceof
+                        value="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart"/>
+               </or>
+            </enablement>
         </semanticChildrenStrategy>
     </extension>
     <extension
