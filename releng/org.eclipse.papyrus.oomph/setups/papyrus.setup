@@ -209,7 +209,7 @@
         </repository>
       </repositoryList>
       <repositoryList name="Neon">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.6/R-4.6-201606061100/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC1-201608170420/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -287,14 +287,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201605300614">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.1/S201608201313">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>MDT OCL 6.0</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.2milestones">
+        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.2.x">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>MDT UML2</value>
@@ -322,7 +322,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.8.0/S-3.8.0RC3-20160601010110/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.8.0/R-3.8.0-20160608130753/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
@@ -1462,6 +1462,19 @@
         </predicate>
       </workingSet>
     </setupTask>
+    <project label="BPMN" name="bpmn">
+      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="bpmn"/>
+      <stream label="master (Oxygen/3.0)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
+      </stream>
+      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
+      </stream>
+      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
+      </stream>
+      <description>Papyrus BPMN</description>
+    </project>
     <project label="CDO Integration" name="cdo">
       <setupTask xsi:type="setup.targlets:TargletTask">
         <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus CDO Dependencies">
@@ -1510,6 +1523,28 @@
       </stream>
       <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
+      </stream>
+    </project>
+    <project label="ELK Integration" name="elk">
+      <setupTask xsi:type="setup.targlets:TargletTask">
+        <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus ELK Dependencies">
+          <requirement name="org.eclipse.elk.feature.feature.group"/>
+          <requirement name="org.eclipse.elk.ui.feature.feature.group"/>
+          <requirement name="org.eclipse.elk.gmf.feature.feature.group"/>
+          <repositoryList name="Oxygen">
+            <repository url="http://download.eclipse.org/elk/updates/releases/0.1.0/"/>
+          </repositoryList>
+          <repositoryList name="Neon">
+            <repository url="http://download.eclipse.org/elk/updates/releases/0.1.0/"/>
+          </repositoryList>
+        </targlet>
+      </setupTask>
+      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="elk"/>
+      <stream label="master (Oxygen/3.0)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
+      </stream>
+      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
       </stream>
     </project>
     <project label="Diagram Template" name="diagramtemplate">
@@ -1613,6 +1648,16 @@
       </stream>
       <description/>
     </project>
+    <project label="Manufacturing" name="manufacturing">
+      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="manufacturing"/>
+      <stream label="master (Oxygen/3.0)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
+      </stream>
+      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
+      </stream>
+      <description>Papyrus4Manufacturing</description>
+    </project>
     <project label="MARTE" name="marte">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="marte"/>
       <setupTask xsi:type="setup.p2:P2Task">
@@ -1653,6 +1698,16 @@
     </project>
     <project label="Moka" name="moka">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="moka"/>
+      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
+      </stream>
+      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
+      </stream>
+      <description/>
+    </project>
+    <project label="SysML 1.4" name="sysml14">
+      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="sysml14"/>
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
       </stream>
@@ -1727,39 +1782,6 @@
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
       </stream>
       <description/>
-    </project>
-    <project label="SysML 1.4" name="sysml14">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="sysml14"/>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-      <description/>
-    </project>
-    <project label="BPMN" name="bpmn">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="bpmn"/>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <description>Papyrus BPMN</description>
-    </project>
-    <project label="Manufacturing" name="manufacturing">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="manufacturing"/>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <description>Papyrus4Manufacturing</description>
     </project>
     <description>Select sub-projects to import dependencies and sources for Papyrus extra components.</description>
   </project>
