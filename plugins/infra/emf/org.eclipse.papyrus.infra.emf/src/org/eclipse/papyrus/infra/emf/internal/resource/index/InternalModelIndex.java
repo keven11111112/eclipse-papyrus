@@ -18,12 +18,16 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectStreamClass;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.QualifiedName;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.content.IContentType;
+import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex;
 
 import com.google.common.util.concurrent.AsyncFunction;
@@ -95,6 +99,26 @@ public abstract class InternalModelIndex {
 	protected <V> ListenableFuture<V> afterIndex(final Callable<V> callable) {
 		AsyncFunction<IndexManager, V> indexFunction = mgr -> mgr.afterIndex(this, callable);
 		return Futures.transform(manager, indexFunction);
+	}
+
+	/**
+	 * Executes the specified {@code callable} on the index if it is ready now to provide
+	 * a result.
+	 * 
+	 * @param callable
+	 *            an index operation
+	 * @return the result, or {@code null} if the index is not now ready
+	 * 
+	 * @throws CoreException
+	 *             on failure to get the index manager or exception in the
+	 *             {@code callable}
+	 */
+	protected <V> V ifAvailable(Callable<V> callable) throws CoreException {
+		try {
+			return manager.get().ifAvailable(callable);
+		} catch (ExecutionException | InterruptedException e) {
+			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Index manager not available", e)); //$NON-NLS-1$
+		}
 	}
 
 	void setOwnerClassLoader(ClassLoader ownerClassLoader) {

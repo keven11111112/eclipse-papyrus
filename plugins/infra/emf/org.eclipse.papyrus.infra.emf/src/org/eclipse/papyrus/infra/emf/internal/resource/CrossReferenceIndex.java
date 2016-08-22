@@ -24,6 +24,9 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.resource.index.IWorkspaceModelIndexProvider;
@@ -49,7 +52,7 @@ public class CrossReferenceIndex extends AbstractCrossReferenceIndex {
 		super();
 
 		// TODO: Is there a constant somewhere for the XMI content-type?
-		index = new WorkspaceModelIndex<CrossReferencedFile>(
+		index = new WorkspaceModelIndex<>(
 				"papyrusCrossRefs", //$NON-NLS-1$
 				"org.eclipse.emf.ecore.xmi", //$NON-NLS-1$
 				null, indexer(), MAX_INDEX_JOBS);
@@ -67,8 +70,28 @@ public class CrossReferenceIndex extends AbstractCrossReferenceIndex {
 	// Indexing
 	//
 
+	@Override
 	<V> ListenableFuture<V> afterIndex(Callable<V> callable) {
 		return index.afterIndex(callable);
+	}
+
+	<V> V ifAvailable(Callable<V> callable, Callable<? extends V> elseCallable) throws CoreException {
+		V result = null;
+
+		// if available, need nonetheless to be synchronized on our internal lock
+		result = index.ifAvailable(sync(callable));
+
+		if ((result == null) && (elseCallable != null)) {
+			try {
+				result = elseCallable.call();
+			} catch (CoreException e) {
+				throw e;
+			} catch (Exception e) {
+				throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e));
+			}
+		}
+
+		return result;
 	}
 
 	private void runIndexHandler(IFile file, URI resourceURI, DefaultHandler handler) {
@@ -213,7 +236,7 @@ public class CrossReferenceIndex extends AbstractCrossReferenceIndex {
 			return shardURIs;
 		}
 	}
-	
+
 	/**
 	 * Index provider on the extension point.
 	 */

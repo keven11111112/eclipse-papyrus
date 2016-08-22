@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -134,6 +135,13 @@ public class OnDemandCrossReferenceIndex extends AbstractCrossReferenceIndex {
 	@Override
 	<V> ListenableFuture<V> afterIndex(Callable<V> callable) {
 		return executor.submit(callable);
+	}
+
+	<V> V ifAvailable(Callable<V> callable, Callable<? extends V> elseCallable) throws CoreException {
+		// We are implicitly always available, because we cannot cause deadlock and
+		// with on-demand computation we're not expected actually to be "available"
+		// in the strictest sense, anyways
+		return sync(afterIndex(callable));
 	}
 
 	void index(URI resourceURI) {

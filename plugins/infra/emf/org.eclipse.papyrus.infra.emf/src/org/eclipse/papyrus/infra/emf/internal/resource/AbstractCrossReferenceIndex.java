@@ -334,6 +334,19 @@ public abstract class AbstractCrossReferenceIndex implements ICrossReferenceInde
 		return sync(afterIndex(getRootsCallable(shardURI)));
 	}
 
+	@Override
+	public Set<URI> getRoots(URI shardURI, ICrossReferenceIndex alternate) throws CoreException {
+		if (alternate == this) {
+			throw new IllegalArgumentException("self alternate"); //$NON-NLS-1$
+		}
+
+		Callable<Set<URI>> elseCallable = (alternate == null)
+				? null
+				: () -> alternate.getRoots(shardURI);
+
+		return ifAvailable(getRootsCallable(shardURI), elseCallable);
+	}
+
 	Callable<Set<URI>> getRootsCallable(URI shardURI) {
 		return sync(() -> {
 			Set<URI> result;
@@ -373,12 +386,14 @@ public abstract class AbstractCrossReferenceIndex implements ICrossReferenceInde
 	}
 
 	final <V> Callable<V> sync(Callable<V> callable) {
-		return new SyncCallable<V>() {
-			@Override
-			protected V doCall() throws Exception {
-				return callable.call();
-			}
-		};
+		return (callable instanceof SyncCallable)
+				? callable // Don't re-wrap for sync
+				: new SyncCallable<V>() {
+					@Override
+					protected V doCall() throws Exception {
+						return callable.call();
+					}
+				};
 	}
 
 	//
@@ -386,6 +401,8 @@ public abstract class AbstractCrossReferenceIndex implements ICrossReferenceInde
 	//
 
 	abstract <V> ListenableFuture<V> afterIndex(Callable<V> callable);
+
+	abstract <V> V ifAvailable(Callable<V> callable, Callable<? extends V> elseCallable) throws CoreException;
 
 	//
 	// Nested types
