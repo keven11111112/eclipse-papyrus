@@ -329,6 +329,11 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 		});
 	}
 
+	@Override
+	public final <V> V ifAvailable(Callable<V> callable) throws CoreException {
+		return super.ifAvailable(callable);
+	}
+
 	/**
 	 * Schedules an operation to run after any pending indexing work has completed.
 	 * The {@code runnable} is invoked under synchronization on the index, so it must be careful about how it

@@ -12,7 +12,7 @@
  *  <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>: Code simplification and NPE
  *         management.
  *  Christian W. Damus (CEA LIST) - API for determining URI of a resource in an editor
- *  Christian W. Damus - bug 496299
+ *  Christian W. Damus - bugs 496299, 500046
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.util;
@@ -748,7 +748,11 @@ public class EditorUtils {
 		URI result;
 
 		try {
-			Set<URI> roots = index.getRoots(resourceURI);
+			// Editor matching is done in contexts where waiting for the
+			// index causes deadlocks, (e.g., bug 500046), so hit the
+			// index only if it is already available
+			Set<URI> roots = index.getRoots(resourceURI,
+					ICrossReferenceIndex.getAlternate(index, null));
 
 			// TODO: Handle case of multiple roots
 			result = Iterables.getFirst(roots, resourceURI);

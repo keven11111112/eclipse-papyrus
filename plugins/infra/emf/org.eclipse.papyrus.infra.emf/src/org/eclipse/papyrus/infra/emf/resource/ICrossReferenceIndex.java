@@ -64,6 +64,32 @@ public interface ICrossReferenceIndex {
 	}
 
 	/**
+	 * Obtains an index to use as a back-up in operations such as
+	 * {@link #getRoots(URI, ICrossReferenceIndex)}. Some indices do not require
+	 * back-ups because they are always available, in which case the alternate
+	 * is just {@code null}. In this case, the intended operation can usually
+	 * just be invoked with this {@code null} alternate for correct behaviour.
+	 * 
+	 * @param index
+	 *            an index
+	 * @param resourceSet
+	 *            a resource-set in which resources are managed on which
+	 *            cross-reference queries are to be applied, or {@code null}
+	 *            if there is no contextual resource set, in which case
+	 *            the default heuristic- or otherwise-determined kinds of
+	 *            resources will be indexed
+	 * 
+	 * @return the best alternate in case the {@code index} is not ready to
+	 *         provide a result, or {@code null} if the {@code index} is expected
+	 *         always to be ready (thus not needing an alternate)
+	 */
+	static ICrossReferenceIndex getAlternate(ICrossReferenceIndex index, ResourceSet resourceSet) {
+		return (index instanceof OnDemandCrossReferenceIndex)
+				? null
+				: new OnDemandCrossReferenceIndex(resourceSet);
+	}
+
+	/**
 	 * Asynchronously queries the mapping of URIs of resources to URIs of others
 	 * that they cross-reference to.
 	 * 
@@ -271,4 +297,26 @@ public interface ICrossReferenceIndex {
 	 */
 	Set<URI> getRoots(URI shardURI) throws CoreException;
 
+	/**
+	 * Attempts to queries URIs of resources that are roots (ultimate parents) of a given
+	 * (potential) shard resource. If the receiver is not ready to provide a complete
+	 * and/or correct result, then fall back to an {@code alternate}, if any.
+	 * 
+	 * @param shardURI
+	 *            the URI of a potential shard resource. It needs not necessarily actually
+	 *            be a shard, in which case it trivially wouldn't have any parents
+	 * @param alternate
+	 *            a fall-back index from which to get the roots if I am not ready
+	 *            to provide them, or {@code null} if not required
+	 * @return the URIs of resources that are roots of its parent graph, or {@code null}
+	 *         if the receiver cannot provide a result and there is no {@code alternate}.
+	 *         Note that {@code null} is only returned in this failure case; any successful
+	 *         result is at least an empty set
+	 * 
+	 * @throws CoreException
+	 *             if the index is not available and the {@code alternate} fails
+	 * @throws IllegalArgumentException
+	 *             if the {@code alternate} is myself (attempted recursion)
+	 */
+	Set<URI> getRoots(URI shardURI, ICrossReferenceIndex alternate) throws CoreException;
 }

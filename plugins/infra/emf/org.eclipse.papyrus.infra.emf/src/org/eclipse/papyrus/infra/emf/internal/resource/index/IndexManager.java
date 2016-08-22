@@ -236,6 +236,35 @@ public class IndexManager {
 		return result;
 	}
 
+	/**
+	 * Invokes an operation on some index if it is assured to be ready by
+	 * virture of no indexing jobs currently working on computing the index.
+	 * 
+	 * @param callable
+	 *            an index operation
+	 * @return the result of the {@code callable}, or {@code null} if indexing is
+	 *         still pending (not ready to compute any result)
+	 * 
+	 * @throws CoreException
+	 *             on failure of the {@code callable}
+	 */
+	<V> V ifAvailable(Callable<V> callable) throws CoreException {
+		V result = null;
+
+		if (Job.getJobManager().find(this).length == 0) {
+			// Result is available now
+			try {
+				result = callable.call();
+			} catch (CoreException e) {
+				throw e;
+			} catch (Exception e) {
+				throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e));
+			}
+		}
+
+		return result;
+	}
+
 	void index(Collection<? extends IProject> projects) {
 		List<IndexProjectJob> jobs = Lists.newArrayListWithCapacity(projects.size());
 		for (IProject next : projects) {

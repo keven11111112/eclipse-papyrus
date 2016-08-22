@@ -81,6 +81,25 @@ public class CrossReferenceIndexTest extends AbstractCrossReferenceIndexTest {
 	}
 
 	@Test
+	public void roots_alternate() throws Exception {
+		ICrossReferenceIndex index = index();
+		ICrossReferenceIndex alternate = ICrossReferenceIndex.getAlternate(index, fixture);
+
+		// Trigger re-indexing
+		project.getFile(project.getURI("package1/packageA/foo.uml")).touch(null);
+
+		assertThat(index.getRoots(uri("package1/packageA/foo.uml"), alternate), is(singleton(uri("root.uml"))));
+		assertThat(index.getRoots(uri("package1/packageA.uml"), alternate), is(singleton(uri("root.uml"))));
+		assertThat(index.getRoots(uri("package1.uml"), alternate), is(singleton(uri("root.uml"))));
+
+		// A root has no parents and, therefore, no root
+		assertThat(index.getRoots(uri("root.uml"), alternate), is(emptySet()));
+
+		// And this one has nothing to do with shards
+		assertThat(index.getRoots(uri("referencing.uml"), alternate), is(emptySet()));
+	}
+
+	@Test
 	public void outgoingReferences_givenURI() throws Exception {
 		// Shard relationship (cross-resource containment) is not a cross-reference
 		assertThat(index().getOutgoingCrossReferences(uri("package1.uml")), is(emptySet()));
