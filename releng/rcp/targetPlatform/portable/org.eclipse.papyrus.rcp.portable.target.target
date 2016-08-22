@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus RCP" sequenceNumber="1468957196">
+<target name="Papyrus RCP" sequenceNumber="1471882195">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.6.0.v20160606-1156"/>
@@ -22,8 +22,8 @@
       <repository id="nebula" location="http://download.eclipse.org/nebula/releases/1.0.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.uml2.sdk.feature.group" version="5.2.0.v20160516-0939"/>
-      <repository id="uml" location="http://download.eclipse.org/modeling/mdt/uml2/updates/5.2"/>
+      <unit id="org.eclipse.uml2.sdk.feature.group" version="5.2.1.v20160822-0739"/>
+      <repository id="uml" location="http://download.eclipse.org/modeling/mdt/uml2/updates/5.2.x"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.10.0.201606071959"/>
@@ -97,7 +97,7 @@
       <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.epp.logging.aeri.feature.feature.group" version="2.0.2.v20160630-0955"/>
+      <unit id="org.eclipse.epp.logging.aeri.feature.feature.group" version="2.0.3.v20160819-1337"/>
       <repository id="aeri" location="http://download.eclipse.org/technology/epp/logging/milestones/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
@@ -124,6 +124,12 @@
       <unit id="org.eclipse.zest.layouts" version="1.1.300.201606061308"/>
       <unit id="org.eclipse.gef.feature.group" version="3.11.0.201606061308"/>
       <repository id="gef" location="http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.elk.feature.feature.group" version="0.1.0.201607121925"/>
+      <unit id="org.eclipse.elk.ui.feature.feature.group" version="0.1.0.201607121925"/>
+      <unit id="org.eclipse.elk.gmf.feature.feature.group" version="0.1.0.201607121925"/>
+      <repository id="elk" location="http://download.eclipse.org/elk/updates/releases/0.1.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="graphiti" location="http://download.eclipse.org/graphiti/updates/0.13.0/"/>
@@ -167,11 +173,11 @@
       <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20160606-1100"/>
+      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20160817-0420"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="3.6.300.v20160525-1303"/>
       <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="4.5.100.v20160503-0947"/>
-      <unit id="org.eclipse.sdk.feature.group" version="4.6.0.v20160606-1342"/>
-      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.6/R-4.6-201606061100/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.6.1.v20160817-0420"/>
+      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC1-201608170420/"/>
     </location>
   </locations>
 </target>

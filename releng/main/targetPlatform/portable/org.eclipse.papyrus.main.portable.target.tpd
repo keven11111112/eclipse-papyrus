@@ -34,7 +34,7 @@ location nebula "http://download.eclipse.org/nebula/releases/1.0.0/" {
 
 //updateFrom("MDT UML2",0) 
 
-location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.2" {
+location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.2.x" {
 	org.eclipse.uml2.sdk.feature.group
 }
 
@@ -46,7 +46,7 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6/R-4.6-201606061100/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC1-201608170420/" {
 	org.eclipse.sdk.feature.group
 }
 
