@@ -49,11 +49,11 @@ public class ProfileApplicationHelper {
 			ProfileApplication toCopy = _package.getProfileApplication(profile, true);
 			// Is it inherited from a parent package and intrinsic to the model?
 			if (_package.allOwningPackages().contains(toCopy.getApplyingPackage())) {
-				_package.applyProfile(profile);
-				ProfileApplication profileAppl = _package.getProfileApplication(profile);
-				if (profileAppl != null) {
-					markAsDuplicate(profileAppl);
-				}
+				// Don't apply the profile because this needlessly destroys and
+				// reconstitutes all stereotype applications by a "migration"
+				ProfileApplication profileAppl = EcoreUtil.copy(toCopy);
+				_package.getProfileApplications().add(profileAppl);
+				markAsDuplicate(profileAppl);
 			}
 		}
 	}

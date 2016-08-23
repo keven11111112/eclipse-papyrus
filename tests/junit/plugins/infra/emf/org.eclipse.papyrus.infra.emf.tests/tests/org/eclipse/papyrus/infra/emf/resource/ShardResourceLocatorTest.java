@@ -17,6 +17,7 @@ import java.util.Arrays;
 
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -89,5 +90,10 @@ public class ShardResourceLocatorTest extends AbstractCrossReferenceIndexTest {
 				{ false, "full index" },
 				{ true, "on-demand index" },
 		});
+	}
+
+	@BeforeClass
+	public static void createProjectContents() {
+		createProjectContents("resources/shards");
 	}
 }

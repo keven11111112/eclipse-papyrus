@@ -39,6 +39,7 @@ import org.eclipse.papyrus.junit.utils.rules.AnnotationRule;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -108,6 +109,40 @@ public class ShardResourceHelperTest extends AbstractCrossReferenceIndexTest {
 		assertNoAnnotation();
 	}
 
+	@Test
+	@ProjectResource("referencing.uml")
+	@ShardElement("referencing::package2::packageB")
+	public void makeShardObservedByOtherHelper() {
+		ShardResourceHelper other = new ShardResourceHelper(shardElement);
+		housekeeper.cleanUpLater(other, ShardResourceHelper::close);
+
+		setShard(true);
+		assertThat("Other helper did not observe exec", other.isShard(), is(true));
+
+		undo();
+		assertThat("Other helper did not observe undo", other.isShard(), is(false));
+
+		redo();
+		assertThat("Other helper did not observe redo", other.isShard(), is(true));
+	}
+
+	@Test
+	@ProjectResource("root.uml")
+	@ShardElement("root::package2::packageB")
+	public void makeNotShardObservedByOtherHelper() {
+		ShardResourceHelper other = new ShardResourceHelper(shardElement);
+		housekeeper.cleanUpLater(other, ShardResourceHelper::close);
+
+		setShard(false);
+		assertThat("Other helper did not observe exec", other.isShard(), is(false));
+
+		undo();
+		assertThat("Other helper did not observe undo", other.isShard(), is(true));
+
+		redo();
+		assertThat("Other helper did not observe redo", other.isShard(), is(false));
+	}
+
 	@Test(expected = IllegalStateException.class)
 	@ProjectResource("referencing.uml")
 	@ShardElement("referencing::package2::packageB")
@@ -127,6 +162,11 @@ public class ShardResourceHelperTest extends AbstractCrossReferenceIndexTest {
 				{ false },
 				{ true },
 		});
+	}
+
+	@BeforeClass
+	public static void createProjectContents() {
+		createProjectContents("resources/shards");
 	}
 
 	@Before

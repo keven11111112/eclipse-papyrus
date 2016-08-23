@@ -21,6 +21,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
@@ -51,14 +52,14 @@ public abstract class AbstractCrossReferenceIndex implements ICrossReferenceInde
 	final SetMultimap<URI, URI> outgoingReferences = HashMultimap.create();
 	final SetMultimap<URI, URI> incomingReferences = HashMultimap.create();
 
-	final SetMultimap<URI, URI> resourceToShards = HashMultimap.create();
-	final SetMultimap<URI, URI> shardToParents = HashMultimap.create();
+	final SetMultimap<URI, URI> resourceToSubunits = HashMultimap.create();
+	final SetMultimap<URI, URI> subunitToParents = HashMultimap.create();
 
 	// These are abstracted as URIs without extension
 	SetMultimap<URI, URI> aggregateOutgoingReferences;
 	SetMultimap<URI, URI> aggregateIncomingReferences;
-	SetMultimap<URI, URI> aggregateResourceToShards;
-	SetMultimap<URI, URI> aggregateShardToParents;
+	SetMultimap<URI, URI> aggregateResourceToSubunits;
+	SetMultimap<URI, URI> aggregateSubunitToParents;
 	final SetMultimap<URI, String> shards = HashMultimap.create();
 
 	/**
@@ -219,36 +220,53 @@ public abstract class AbstractCrossReferenceIndex implements ICrossReferenceInde
 	}
 
 	@Override
-	public ListenableFuture<SetMultimap<URI, URI>> getShardsAsync() {
-		return afterIndex(getShardsCallable());
+	public ListenableFuture<SetMultimap<URI, URI>> getSubunitsAsync() {
+		return afterIndex(getSubunitsCallable());
 	}
 
 	@Override
-	public SetMultimap<URI, URI> getShards() throws CoreException {
-		return sync(afterIndex(getShardsCallable()));
+	public SetMultimap<URI, URI> getSubunits() throws CoreException {
+		return sync(afterIndex(getSubunitsCallable()));
 	}
 
-	Callable<SetMultimap<URI, URI>> getShardsCallable() {
-		return sync(() -> ImmutableSetMultimap.copyOf(resourceToShards));
-	}
-
-	@Override
-	public ListenableFuture<Set<URI>> getShardsAsync(URI resourceURI) {
-		return afterIndex(getShardsCallable(resourceURI));
+	Callable<SetMultimap<URI, URI>> getSubunitsCallable() {
+		return sync(() -> ImmutableSetMultimap.copyOf(resourceToSubunits));
 	}
 
 	@Override
-	public Set<URI> getShards(URI resourceURI) throws CoreException {
-		return sync(afterIndex(getShardsCallable(resourceURI)));
+	public ListenableFuture<Set<URI>> getSubunitsAsync(URI resourceURI) {
+		return getSubunitsAsync(resourceURI, true);
 	}
 
-	Callable<Set<URI>> getShardsCallable(URI shardURI) {
+	@Override
+	public Set<URI> getSubunits(URI resourceURI) throws CoreException {
+		return getSubunits(resourceURI, true);
+	}
+
+	@Override
+	public ListenableFuture<Set<URI>> getSubunitsAsync(URI resourceURI, boolean shardOnly) {
+		return afterIndex(getSubunitsCallable(resourceURI, shardOnly));
+	}
+
+	@Override
+	public Set<URI> getSubunits(URI resourceURI, boolean shardOnly) throws CoreException {
+		return sync(afterIndex(getSubunitsCallable(resourceURI, shardOnly)));
+	}
+
+	Callable<Set<URI>> getSubunitsCallable(URI shardURI, boolean shardOnly) {
 		return sync(() -> {
 			String ext = shardURI.fileExtension();
 			URI withoutExt = shardURI.trimFileExtension();
-			Set<URI> result = getAggregateShards().get(withoutExt).stream()
-					// Only those that actually are shards
-					.filter(AbstractCrossReferenceIndex.this::isShard0)
+
+			Stream<URI> intermediateResult = getAggregateShards().get(withoutExt).stream();
+
+			if (shardOnly) {
+				// Only those that actually are shards
+				intermediateResult = intermediateResult
+						.filter(AbstractCrossReferenceIndex.this::isShard0);
+			}
+
+			Set<URI> result = intermediateResult
 					.map(uri -> uri.appendFileExtension(ext))
 					.collect(Collectors.toSet());
 
@@ -260,16 +278,16 @@ public abstract class AbstractCrossReferenceIndex implements ICrossReferenceInde
 		SetMultimap<URI, URI> result;
 
 		synchronized (sync) {
-			if (aggregateResourceToShards == null) {
+			if (aggregateResourceToSubunits == null) {
 				// Compute the aggregate now
-				aggregateResourceToShards = HashMultimap.create();
-				for (Map.Entry<URI, URI> next : resourceToShards.entries()) {
-					aggregateResourceToShards.put(next.getKey().trimFileExtension(),
+				aggregateResourceToSubunits = HashMultimap.create();
+				for (Map.Entry<URI, URI> next : resourceToSubunits.entries()) {
+					aggregateResourceToSubunits.put(next.getKey().trimFileExtension(),
 							next.getValue().trimFileExtension());
 				}
 			}
 
-			result = aggregateResourceToShards;
+			result = aggregateResourceToSubunits;
 		}
 
 		return result;
@@ -277,21 +295,32 @@ public abstract class AbstractCrossReferenceIndex implements ICrossReferenceInde
 
 	@Override
 	public ListenableFuture<Set<URI>> getParentsAsync(URI shardURI) {
-		return afterIndex(getParentsCallable(shardURI));
+		return getParentsAsync(shardURI, true);
+	}
+
+	@Override
+	public ListenableFuture<Set<URI>> getParentsAsync(URI resourceURI, boolean shardOnly) {
+		return afterIndex(getParentsCallable(resourceURI, shardOnly));
 	}
 
 	@Override
 	public Set<URI> getParents(URI shardURI) throws CoreException {
-		return sync(afterIndex(getParentsCallable(shardURI)));
+		return getParents(shardURI, true);
 	}
 
-	Callable<Set<URI>> getParentsCallable(URI shardURI) {
+	@Override
+	public Set<URI> getParents(URI resourceURI, boolean shardOnly) throws CoreException {
+		return sync(afterIndex(getParentsCallable(resourceURI, shardOnly)));
+	}
+
+	Callable<Set<URI>> getParentsCallable(URI shardURI, boolean shardOnly) {
 		return sync(() -> {
 			Set<URI> result;
 			URI withoutExt = shardURI.trimFileExtension();
 
-			// If it's not a shard, it has no parents, by definition
-			if (!isShard0(withoutExt)) {
+			// If it's not a shard, it has no parents, by definition, unless we're also
+			// including sub-model units
+			if (shardOnly && !isShard0(withoutExt)) {
 				result = Collections.emptySet();
 			} else {
 				String ext = shardURI.fileExtension();
@@ -309,16 +338,16 @@ public abstract class AbstractCrossReferenceIndex implements ICrossReferenceInde
 		SetMultimap<URI, URI> result;
 
 		synchronized (sync) {
-			if (aggregateShardToParents == null) {
+			if (aggregateSubunitToParents == null) {
 				// Compute the aggregate now
-				aggregateShardToParents = HashMultimap.create();
-				for (Map.Entry<URI, URI> next : shardToParents.entries()) {
-					aggregateShardToParents.put(next.getKey().trimFileExtension(),
+				aggregateSubunitToParents = HashMultimap.create();
+				for (Map.Entry<URI, URI> next : subunitToParents.entries()) {
+					aggregateSubunitToParents.put(next.getKey().trimFileExtension(),
 							next.getValue().trimFileExtension());
 				}
 			}
 
-			result = aggregateShardToParents;
+			result = aggregateSubunitToParents;
 		}
 
 		return result;
@@ -326,53 +355,69 @@ public abstract class AbstractCrossReferenceIndex implements ICrossReferenceInde
 
 	@Override
 	public ListenableFuture<Set<URI>> getRootsAsync(URI shardURI) {
-		return afterIndex(getRootsCallable(shardURI));
+		return getRootsAsync(shardURI, true);
+	}
+
+	@Override
+	public ListenableFuture<Set<URI>> getRootsAsync(URI shardURI, boolean shardOnly) {
+		return afterIndex(getRootsCallable(shardURI, shardOnly));
 	}
 
 	@Override
 	public Set<URI> getRoots(URI shardURI) throws CoreException {
-		return sync(afterIndex(getRootsCallable(shardURI)));
+		return getRoots(shardURI, true);
 	}
 
 	@Override
-	public Set<URI> getRoots(URI shardURI, ICrossReferenceIndex alternate) throws CoreException {
+	public Set<URI> getRoots(URI shardURI, boolean shardOnly) throws CoreException {
+		return sync(afterIndex(getRootsCallable(shardURI, shardOnly)));
+	}
+
+	@Override
+	public Set<URI> getRoots(URI subunitURI, ICrossReferenceIndex alternate) throws CoreException {
+		return getRoots(subunitURI, true, alternate);
+	}
+
+	@Override
+	public Set<URI> getRoots(URI subunitURI, boolean shardOnly, ICrossReferenceIndex alternate) throws CoreException {
 		if (alternate == this) {
 			throw new IllegalArgumentException("self alternate"); //$NON-NLS-1$
 		}
 
 		Callable<Set<URI>> elseCallable = (alternate == null)
 				? null
-				: () -> alternate.getRoots(shardURI);
+				: () -> alternate.getRoots(subunitURI, shardOnly);
 
-		return ifAvailable(getRootsCallable(shardURI), elseCallable);
+		return ifAvailable(getRootsCallable(subunitURI, shardOnly), elseCallable);
 	}
 
-	Callable<Set<URI>> getRootsCallable(URI shardURI) {
+	Callable<Set<URI>> getRootsCallable(URI subunitURI, boolean shardOnly) {
 		return sync(() -> {
 			Set<URI> result;
-			URI withoutExt = shardURI.trimFileExtension();
+			URI withoutExt = subunitURI.trimFileExtension();
 
-			// If it's not a shard, it has no roots, by definition
-			if (!isShard0(withoutExt)) {
+			// If we need shards only and it's not a shard, it has no roots, by definition
+			if (shardOnly && !isShard0(withoutExt)) {
 				result = Collections.emptySet();
 			} else {
 				// TODO: Cache this?
 				ImmutableSet.Builder<URI> resultBuilder = ImmutableSet.builder();
 
-				SetMultimap<URI, URI> shardToParents = getAggregateShardToParents();
+				SetMultimap<URI, URI> subunitToParents = getAggregateShardToParents();
 
 				// Breadth-first search of the parent graph
 				Queue<URI> queue = Lists.newLinkedList();
 				Set<URI> cycleDetect = Sets.newHashSet();
-				String ext = shardURI.fileExtension();
+				String ext = subunitURI.fileExtension();
 				queue.add(withoutExt);
 
 				for (URI next = queue.poll(); next != null; next = queue.poll()) {
 					if (cycleDetect.add(next)) {
-						if (shardToParents.containsKey(next)) {
-							queue.addAll(shardToParents.get(next));
-						} else {
-							// It's a root
+						// Even if it looks like a shard but has no parents, it's a root
+						if ((!shardOnly || isShard0(next)) && subunitToParents.containsKey(next)) {
+							queue.addAll(subunitToParents.get(next));
+						} else if (!next.equals(withoutExt)) {
+							// It's a root (and not the original resource we were asked about)
 							resultBuilder.add(next.appendFileExtension(ext));
 						}
 					}

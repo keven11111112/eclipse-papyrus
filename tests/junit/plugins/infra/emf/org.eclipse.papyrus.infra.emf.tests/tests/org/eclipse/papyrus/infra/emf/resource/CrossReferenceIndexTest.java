@@ -17,11 +17,16 @@ import static java.util.Collections.emptySet;
 import static java.util.Collections.singleton;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assume.assumeThat;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.emf.internal.resource.CrossReferenceIndex;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationRunner;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.runners.Enclosed;
+import org.junit.runner.RunWith;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.SetMultimap;
@@ -29,13 +34,17 @@ import com.google.common.collect.SetMultimap;
 /**
  * Tests for the {@link CrossReferenceIndex} class, the full indexer.
  */
-public class CrossReferenceIndexTest extends AbstractCrossReferenceIndexTest {
+@RunWith(Enclosed.class)
+public abstract class CrossReferenceIndexTest extends AbstractCrossReferenceIndexTest {
+	private final boolean shardsOnly;
 
 	/**
 	 * Initializes me.
 	 */
-	public CrossReferenceIndexTest() {
+	CrossReferenceIndexTest(boolean shardsOnly) {
 		super(false); // Always the full indexer
+
+		this.shardsOnly = shardsOnly;
 	}
 
 	//
@@ -44,59 +53,63 @@ public class CrossReferenceIndexTest extends AbstractCrossReferenceIndexTest {
 
 	@Test
 	public void isShard() throws Exception {
-		assertThat(index().isShard(uri("package1/packageA/foo.uml")), is(true));
-		assertThat(index().isShard(uri("package1/packageA.uml")), is(true));
-		assertThat(index().isShard(uri("package1.uml")), is(true));
+		assertThat(index().isShard(uri("package1/packageA/foo.uml")), is(shardsOnly));
+		assertThat(index().isShard(uri("package1/packageA.uml")), is(shardsOnly));
+		assertThat(index().isShard(uri("package1.uml")), is(shardsOnly));
 		assertThat(index().isShard(uri("root.uml")), is(false));
 	}
 
 	@Test
-	public void shards() throws Exception {
-		assertThat(index().getShards(uri("package1/packageA/foo.uml")), is(emptySet()));
-		assertThat(index().getShards(uri("package1/packageA.uml")), is(singleton(uri("package1/packageA/foo.uml"))));
-		assertThat(index().getShards(uri("package1.uml")), is(singleton(uri("package1/packageA.uml"))));
-		assertThat(index().getShards(uri("root.uml")), // This one has two shards
+	public void subunits() throws Exception {
+		assertThat(index().getSubunits(uri("package1/packageA/foo.uml"), shardsOnly), is(emptySet()));
+		assertThat(index().getSubunits(uri("package1/packageA.uml"), shardsOnly), is(singleton(uri("package1/packageA/foo.uml"))));
+		assertThat(index().getSubunits(uri("package1.uml"), shardsOnly), is(singleton(uri("package1/packageA.uml"))));
+		assertThat(index().getSubunits(uri("root.uml"), shardsOnly), // This one has two sub-units
 				is(ImmutableSet.of(uri("package1.uml"), uri("package2.uml"))));
 	}
 
 	@Test
-	public void parentShards() throws Exception {
-		assertThat(index().getParents(uri("package1/packageA/foo.uml")), is(singleton(uri("package1/packageA.uml"))));
-		assertThat(index().getParents(uri("package1/packageA.uml")), is(singleton(uri("package1.uml"))));
-		assertThat(index().getParents(uri("package1.uml")), is(singleton(uri("root.uml"))));
-		assertThat(index().getParents(uri("root.uml")), is(emptySet()));
+	public void parents() throws Exception {
+		assertThat(index().getParents(uri("package1/packageA/foo.uml"), shardsOnly), is(singleton(uri("package1/packageA.uml"))));
+		assertThat(index().getParents(uri("package1/packageA.uml"), shardsOnly), is(singleton(uri("package1.uml"))));
+		assertThat(index().getParents(uri("package1.uml"), shardsOnly), is(singleton(uri("root.uml"))));
+		assertThat(index().getParents(uri("root.uml"), shardsOnly), is(emptySet()));
 	}
 
 	@Test
 	public void roots() throws Exception {
-		assertThat(index().getRoots(uri("package1/packageA/foo.uml")), is(singleton(uri("root.uml"))));
-		assertThat(index().getRoots(uri("package1/packageA.uml")), is(singleton(uri("root.uml"))));
-		assertThat(index().getRoots(uri("package1.uml")), is(singleton(uri("root.uml"))));
+		assertThat(index().getRoots(uri("package1/packageA/foo.uml"), shardsOnly), is(singleton(uri("root.uml"))));
+		assertThat(index().getRoots(uri("package1/packageA.uml"), shardsOnly), is(singleton(uri("root.uml"))));
+		assertThat(index().getRoots(uri("package1.uml"), shardsOnly), is(singleton(uri("root.uml"))));
 
 		// A root has no parents and, therefore, no root
-		assertThat(index().getRoots(uri("root.uml")), is(emptySet()));
+		assertThat(index().getRoots(uri("root.uml"), shardsOnly), is(emptySet()));
 
 		// And this one has nothing to do with shards
-		assertThat(index().getRoots(uri("referencing.uml")), is(emptySet()));
+		assertThat(index().getRoots(uri("referencing.uml"), shardsOnly), is(emptySet()));
 	}
 
 	@Test
 	public void roots_alternate() throws Exception {
+		// The alternate index is the on-demand index that only works with the
+		// shard annotation, so it's not applicable in the context of sub-models
+		assumeThat("Test not applicable to sub-models", shardsOnly, is(true));
+
 		ICrossReferenceIndex index = index();
 		ICrossReferenceIndex alternate = ICrossReferenceIndex.getAlternate(index, fixture);
 
 		// Trigger re-indexing
 		project.getFile(project.getURI("package1/packageA/foo.uml")).touch(null);
 
-		assertThat(index.getRoots(uri("package1/packageA/foo.uml"), alternate), is(singleton(uri("root.uml"))));
-		assertThat(index.getRoots(uri("package1/packageA.uml"), alternate), is(singleton(uri("root.uml"))));
-		assertThat(index.getRoots(uri("package1.uml"), alternate), is(singleton(uri("root.uml"))));
+		assertThat(index.getRoots(uri("package1/packageA/foo.uml"), shardsOnly, alternate), is(singleton(uri("root.uml"))));
+		assertThat(index.getRoots(uri("package1/packageA.uml"), shardsOnly, alternate), is(singleton(uri("root.uml"))));
+		assertThat(index.getRoots(uri("package1.uml"), shardsOnly, alternate), is(singleton(uri("root.uml"))));
 
 		// A root has no parents and, therefore, no root
-		assertThat(index.getRoots(uri("root.uml"), alternate), is(emptySet()));
+		assertThat(index.getRoots(uri("root.uml"), shardsOnly, alternate), is(emptySet()));
 
 		// And this one has nothing to do with shards
-		assertThat(index.getRoots(uri("referencing.uml"), alternate), is(emptySet()));
+		assertThat(index.getRoots(uri("referencing.uml"), shardsOnly, alternate), is(emptySet()));
 	}
 
 	@Test
@@ -165,5 +178,35 @@ public class CrossReferenceIndexTest extends AbstractCrossReferenceIndexTest {
 
 		// This API is *not* generalized for the Papyrus one-file
 		assertThat(xrefs.get(uri("package2/packageB/bar.di")), is(emptySet()));
+	}
+
+	//
+	// Nested types
+	//
+
+	// Need to be explicit so that we don't inherit the Enclosed for a recursion error
+	@RunWith(ClassificationRunner.class)
+	public static class SubmodelsTest extends CrossReferenceIndexTest {
+		public SubmodelsTest() {
+			super(false);
+		}
+
+		@BeforeClass
+		public static void createProjectContents() {
+			createProjectContents("resources/submodels");
+		}
+	}
+
+	// Need to be explicit so that we don't inherit the Enclosed for a recursion error
+	@RunWith(ClassificationRunner.class)
+	public static class ShardsTest extends CrossReferenceIndexTest {
+		public ShardsTest() {
+			super(true);
+		}
+
+		@BeforeClass
+		public static void createProjectContents() {
+			createProjectContents("resources/shards");
+		}
 	}
 }

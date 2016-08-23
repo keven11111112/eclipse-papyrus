@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 Atos, CEA LIST, and others.
+ * Copyright (c) 2013, 2016 Atos, CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -13,6 +13,7 @@
  *  Christian W. Damus (CEA) - bug 410346
  *  Juan Cadavid <juan.cadavid@cea.fr> - bug 399877
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436952
+ *  Christian W. Damus - bug 497865
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.handler;
@@ -25,6 +26,9 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.ParameterValuesException;
 import org.eclipse.core.commands.common.NotDefinedException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -37,7 +41,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -50,9 +53,11 @@ import org.eclipse.papyrus.infra.services.controlmode.commands.ResourceLocationP
 import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 import org.eclipse.papyrus.infra.services.controlmode.ui.IControlModeFragmentDialogProvider;
 import org.eclipse.papyrus.infra.services.controlmode.util.LabelHelper;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.ui.statushandlers.StatusManager;
 
 /**
  * Handler used to control an element
@@ -82,6 +87,7 @@ public class ControlCommandHandler extends AbstractHandler {
 	/** The Constant CONTROLMODE_USE_DIALOG_PARAMETER. */
 	public static final String CONTROLMODE_USE_DIALOG_PARAMETER = "org.eclipse.papyrus.infra.services.controlmode.useDialogParameter"; //$NON-NLS-1$
 
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 
@@ -95,12 +101,18 @@ public class ControlCommandHandler extends AbstractHandler {
 				TransactionalEditingDomain editingDomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(eObjectToControl);
 				if (getShowDialogParameterValue(event)) {
 					IControlModeFragmentDialogProvider provider = getDialogProvider(eObjectToControl);
-					Dialog dialog = provider.createDialog(Display.getCurrent().getActiveShell(), eObjectToControl.eResource(), getDefaultLabelResource(eObjectToControl));
+					Dialog dialog = provider.createDialog(Display.getCurrent().getActiveShell(), eObjectToControl, getDefaultLabelResource(eObjectToControl));
 					if (dialog.open() == Window.OK) {
-						ControlModeRequest controlRequest = ControlModeRequest.createUIControlModelRequest(editingDomain, eObjectToControl, provider.getSelectedURI(dialog));
+						ControlModeRequest controlRequest = provider.getControlRequest(dialog, editingDomain, eObjectToControl);
 						IControlModeManager controlMng = ControlModeManager.getInstance();
-						ICommand controlCommand = controlMng.getControlCommand(controlRequest);
-						editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(controlCommand));
+						Diagnostic problems = controlMng.approveRequest(controlRequest);
+						if ((problems != null) && (problems.getSeverity() >= Diagnostic.ERROR)) {
+							IStatus status = BasicDiagnostic.toIStatus(problems);
+							StatusManager.getManager().handle(status, StatusManager.SHOW);
+						} else {
+							ICommand controlCommand = controlMng.getControlCommand(controlRequest);
+							editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(controlCommand));
+						}
 					}
 				} else {
 					URI resourceURI = getParameterisedURI(event);
@@ -177,7 +189,7 @@ public class ControlCommandHandler extends AbstractHandler {
 	IControlModeFragmentDialogProvider getDialogProvider(EObject context) {
 		try {
 			ModelSet modelSet = ServiceUtilsForEObject.getInstance().getModelSet(context);
-			return AdapterUtils.adapt(modelSet, IControlModeFragmentDialogProvider.class, IControlModeFragmentDialogProvider.DEFAULT);
+			return PlatformHelper.getAdapter(modelSet, IControlModeFragmentDialogProvider.class, IControlModeFragmentDialogProvider.DEFAULT);
 		} catch (ServiceException e) {
 			// can't get the model set? Odd
 			ControlModePlugin.log.error(MODELSET_ERROR, e);

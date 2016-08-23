@@ -44,7 +44,7 @@ public class CrossReferenceIndexHandler extends DefaultHandler {
 
 	private Set<String> crossReferences = Sets.newHashSet();
 	private XMIElement shard;
-	private Set<String> shards = Sets.newHashSet();
+	private Set<String> subunits = Sets.newHashSet();
 
 	// The (optional) parent references in the annotation
 	private Set<String> parents = Sets.newHashSet();
@@ -93,8 +93,8 @@ public class CrossReferenceIndexHandler extends DefaultHandler {
 		return shard != null;
 	}
 
-	public Set<String> getShards() {
-		return shards;
+	public Set<String> getSubunits() {
+		return subunits;
 	}
 
 	public Set<String> getParents() {
@@ -145,8 +145,8 @@ public class CrossReferenceIndexHandler extends DefaultHandler {
 			// Don't index internal references
 			if (!xref.equals(fileURI)) {
 				if (element.isContainment()) {
-					// Cross-resource containment is a shard relationship
-					shards.add(xref.toString());
+					// Cross-resource containment is a sub-unit relationship
+					subunits.add(xref.toString());
 				} else if (isShard() && (element.parent == shard) && element.isRole(eAnnotationReferencesName)) {
 					// Handle shard parent resource reference. This is
 					// *not* a regular cross-resource reference

@@ -200,64 +200,117 @@ public interface ICrossReferenceIndex {
 	boolean isShard(URI resourceURI) throws CoreException;
 
 	/**
-	 * Asynchronously queries the mapping of URIs of resources to URIs of shards that are their immediate
-	 * children.
+	 * Asynchronously queries the mapping of URIs of resources to URIs of sub-units
+	 * that are their direct children.
 	 * 
-	 * @return a future result of the mapping of resource URIs to shard URIs
+	 * @return a future result of the mapping of resource URIs to sub-unit URIs
 	 */
-	ListenableFuture<SetMultimap<URI, URI>> getShardsAsync();
+	ListenableFuture<SetMultimap<URI, URI>> getSubunitsAsync();
 
 	/**
-	 * Queries the mapping of URIs of resources to URIs of shards that are their immediate
-	 * children.
+	 * Queries the mapping of URIs of resources to URIs of controlled units that are
+	 * their direct children.
 	 * 
-	 * @return the mapping of resource URIs to shard URIs
+	 * @return the mapping of resource URIs to sub-unit URIs
 	 * 
 	 * @throws CoreException
-	 *             if the index either fails to compute the shards or if
+	 *             if the index either fails to compute the sub-units or if
 	 *             the calling thread is interrupted in waiting for the result
 	 */
-	SetMultimap<URI, URI> getShards() throws CoreException;
+	SetMultimap<URI, URI> getSubunits() throws CoreException;
 
 	/**
-	 * Asynchronously queries the URIs of resources that are immediate shards of a
+	 * Asynchronously queries the URIs of controlled units that are direct children of a
+	 * given resource. Equivalent to calling {@link #getSUbunitsAsync(URI, boolean)}
+	 * with a {@code true} argument.
+	 * 
+	 * @param resourceURI
+	 *            the URI of a resource
+	 * @return a future result of the URIs of sub-units that are its direct children
+	 * 
+	 * @see #getSubunitsAsync(URI, boolean)
+	 */
+	ListenableFuture<Set<URI>> getSubunitsAsync(URI resourceURI);
+
+	/**
+	 * Asynchronously queries the URIs of controlled units that are direct children of a
 	 * given resource.
 	 * 
 	 * @param resourceURI
 	 *            the URI of a resource
-	 * @return a future result of the URIs of shards that are its immediate children
+	 * @param shardOnly
+	 *            whether to consider only sub-units that are shards
+	 * @return a future result of the URIs of sub-units that are its direct children
 	 */
-	ListenableFuture<Set<URI>> getShardsAsync(URI resourceURI);
+	ListenableFuture<Set<URI>> getSubunitsAsync(URI resourceURI, boolean shardOnly);
 
 	/**
-	 * Queries the URIs of resources that are immediate shards of a
+	 * Queries the URIs of controlled units that are direct children of a
+	 * given resource. Equivalent to calling {@link #getSubunits(URI, boolean)}
+	 * with a {@code true} argument.
+	 * 
+	 * @param resourceURI
+	 *            the URI of a resource
+	 * @return the URIs of sub-units that are its direct children
+	 * 
+	 * @throws CoreException
+	 *             if the index either fails to compute the sub-units or if
+	 *             the calling thread is interrupted in waiting for the result
+	 * @see #getSubunits(URI, boolean)
+	 */
+	Set<URI> getSubunits(URI resourceURI) throws CoreException;
+
+	/**
+	 * Queries the URIs of controlled units that are direct children of a
 	 * given resource.
 	 * 
 	 * @param resourceURI
 	 *            the URI of a resource
-	 * @return the URIs of shards that are its immediate children
+	 * @param shardOnly
+	 *            whether to consider only sub-units that are shards
+	 * @return the URIs of sub-units that are its direct children
 	 * 
 	 * @throws CoreException
-	 *             if the index either fails to compute the shards or if
+	 *             if the index either fails to compute the sub-units or if
 	 *             the calling thread is interrupted in waiting for the result
 	 */
-	Set<URI> getShards(URI resourceURI) throws CoreException;
+	Set<URI> getSubunits(URI resourceURI, boolean shardOnly) throws CoreException;
 
 	/**
 	 * Asynchronously queries URIs of resources that are immediate parents of a given
-	 * (potential) shard resource.
+	 * (potential) shard resource. Equivalent to calling {@link #getParentsAsync(URI, boolean)}
+	 * with a {@code true} argument.
 	 * 
 	 * @param shardURI
 	 *            the URI of a potential shard resource. It needs not necessarily actually
 	 *            be a shard, in which case it trivially wouldn't have any parents
 	 * @return the future result of the URIs of resources that are immediate parents of
 	 *         the shard
+	 * 
+	 * @see #getParentsAsync(URI, boolean)
 	 */
 	ListenableFuture<Set<URI>> getParentsAsync(URI shardURI);
 
 	/**
+	 * Asynchronously queries URIs of resources that are immediate parents of a given
+	 * resource, whether it is a shard or a sub-model unit.
+	 * 
+	 * @param resourceURI
+	 *            the URI of a potential shard or sub-model resource. It needs not necessarily
+	 *            actually be a shard or a sub-model, in which case it wouldn't have any parents
+	 * @param shardOnly
+	 *            whether to consider only shards as validly having parents (useful for
+	 *            determining required resource dependencies)
+	 * 
+	 * @return the future result of the URIs of resources that are immediate parents of
+	 *         the resource
+	 */
+	ListenableFuture<Set<URI>> getParentsAsync(URI resourceURI, boolean shardOnly);
+
+	/**
 	 * Queries URIs of resources that are immediate parents of a given
-	 * (potential) shard resource.
+	 * (potential) shard resource. Equivalent to calling {@link #getParents(URI, boolean)}
+	 * with a {@code true} argument.
 	 * 
 	 * @param shardURI
 	 *            the URI of a potential shard resource. It needs not necessarily actually
@@ -268,23 +321,63 @@ public interface ICrossReferenceIndex {
 	 * @throws CoreException
 	 *             if the index either fails to compute the parents or if
 	 *             the calling thread is interrupted in waiting for the result
+	 * 
+	 * @see #getParents(URI, boolean)
 	 */
 	Set<URI> getParents(URI shardURI) throws CoreException;
 
 	/**
+	 * Queries URIs of resources that are immediate parents of a given
+	 * resource, whether it is a shard or a sub-model unit.
+	 * 
+	 * @param resourceURI
+	 *            the URI of a potential shard or sub-model resource. It needs not necessarily
+	 *            actually be a shard or a sub-model, in which case it wouldn't have any parents
+	 * @param shardOnly
+	 *            whether to consider only shards as validly having parents (useful for
+	 *            determining required resource dependencies)
+	 * @return the URIs of resources that are immediate parents of
+	 *         the resource
+	 * 
+	 * @throws CoreException
+	 *             if the index either fails to compute the parents or if
+	 *             the calling thread is interrupted in waiting for the result
+	 */
+	Set<URI> getParents(URI resourceURI, boolean shardOnly) throws CoreException;
+
+	/**
 	 * Asynchronously queries URIs of resources that are roots (ultimate parents) of a given
-	 * (potential) shard resource.
+	 * (potential) shard resource. Equivalent to calling {@link #getRootsAsync(URI, boolean)}
+	 * with a {@code true} argument.
 	 * 
 	 * @param shardURI
 	 *            the URI of a potential shard resource. It needs not necessarily actually
 	 *            be a shard, in which case it trivially wouldn't have any parents
 	 * @return the future result of the URIs of resources that are roots of its parent graph
+	 * 
+	 * @see #getRootsAsync(URI, boolean)
 	 */
 	ListenableFuture<Set<URI>> getRootsAsync(URI shardURI);
 
 	/**
+	 * Asynchronously queries URIs of resources that are roots (ultimate parents) of a given
+	 * resource.
+	 * 
+	 * @param resourceURI
+	 *            the URI of a potential sub-unit resource. It needs not necessarily actually
+	 *            be a sub-unit, in which case it wouldn't have any parents and, therefore,
+	 *            no roots
+	 * @param shardOnly
+	 *            whether to consider only shards as validly having roots (useful for
+	 *            determining required resource dependencies)
+	 * @return the future result of the URIs of resources that are roots of its parent graph
+	 */
+	ListenableFuture<Set<URI>> getRootsAsync(URI resourceURI, boolean shardOnly);
+
+	/**
 	 * Queries URIs of resources that are roots (ultimate parents) of a given
-	 * (potential) shard resource.
+	 * (potential) shard resource. Equivalent to calling {@link #getRoots(URI, boolean)}
+	 * with a {@code true} argument.
 	 * 
 	 * @param shardURI
 	 *            the URI of a potential shard resource. It needs not necessarily actually
@@ -294,17 +387,67 @@ public interface ICrossReferenceIndex {
 	 * @throws CoreException
 	 *             if the index either fails to compute the roots or if
 	 *             the calling thread is interrupted in waiting for the result
+	 * @see #getRoots(URI, boolean)
 	 */
 	Set<URI> getRoots(URI shardURI) throws CoreException;
 
 	/**
-	 * Attempts to queries URIs of resources that are roots (ultimate parents) of a given
-	 * (potential) shard resource. If the receiver is not ready to provide a complete
+	 * Attempts to query URIs of resources that are roots (ultimate parents) of a given
+	 * (potential) sub-unit resource. If the receiver is not ready to provide a complete
+	 * and/or correct result, then fall back to an {@code alternate}, if any.
+	 * Equivalent to calling {@link #getRoots(URI, boolean, ICrossReferenceIndex)} with
+	 * a {@code true} value for the {@code shardOnly} parameter.
+	 * 
+	 * @param subunitURI
+	 *            the URI of a potential sub-unit resource. It needs not necessarily actually
+	 *            be a sub-unit, in which case it trivially wouldn't have any parents
+	 * @param alternate
+	 *            a fall-back index from which to get the roots if I am not ready
+	 *            to provide them, or {@code null} if not required
+	 * @return the URIs of resources that are roots of its parent graph, or {@code null}
+	 *         if the receiver cannot provide a result and there is no {@code alternate}.
+	 *         Note that {@code null} is only returned in this failure case; any successful
+	 *         result is at least an empty set
+	 * 
+	 * @throws CoreException
+	 *             if the index is not available and the {@code alternate} fails
+	 * @throws IllegalArgumentException
+	 *             if the {@code alternate} is myself (attempted recursion)
+	 * 
+	 * @see #getRoots(URI, boolean, ICrossReferenceIndex)
+	 */
+	Set<URI> getRoots(URI subunitURI, ICrossReferenceIndex alternate) throws CoreException;
+
+	/**
+	 * Queries URIs of resources that are roots (ultimate parents) of a given
+	 * resource.
+	 * 
+	 * @param resourceURI
+	 *            the URI of a potential sub-unit resource. It needs not necessarily actually
+	 *            be a sub-unit, in which case it trivially wouldn't have any parents and,
+	 *            therefore, no roots
+	 * @param shardOnly
+	 *            whether to consider only shards as validly having roots (useful for
+	 *            determining required resource dependencies)
+	 * @return the URIs of resources that are roots of its parent graph
+	 * 
+	 * @throws CoreException
+	 *             if the index either fails to compute the roots or if
+	 *             the calling thread is interrupted in waiting for the result
+	 */
+	Set<URI> getRoots(URI resourceURI, boolean shardOnly) throws CoreException;
+
+	/**
+	 * Attempts to query URIs of resources that are roots (ultimate parents) of a given
+	 * (potential) sub-unit resource. If the receiver is not ready to provide a complete
 	 * and/or correct result, then fall back to an {@code alternate}, if any.
 	 * 
-	 * @param shardURI
-	 *            the URI of a potential shard resource. It needs not necessarily actually
-	 *            be a shard, in which case it trivially wouldn't have any parents
+	 * @param subunitURI
+	 *            the URI of a potential sub-unit resource. It needs not necessarily actually
+	 *            be a sub-unit, in which case it trivially wouldn't have any parents
+	 * @param shardOnly
+	 *            whether to consider only shards as validly having roots (useful for
+	 *            determining required resource dependencies)
 	 * @param alternate
 	 *            a fall-back index from which to get the roots if I am not ready
 	 *            to provide them, or {@code null} if not required
@@ -318,5 +461,6 @@ public interface ICrossReferenceIndex {
 	 * @throws IllegalArgumentException
 	 *             if the {@code alternate} is myself (attempted recursion)
 	 */
-	Set<URI> getRoots(URI shardURI, ICrossReferenceIndex alternate) throws CoreException;
+	Set<URI> getRoots(URI subunitURI, boolean shardOnly, ICrossReferenceIndex alternate) throws CoreException;
+
 }
