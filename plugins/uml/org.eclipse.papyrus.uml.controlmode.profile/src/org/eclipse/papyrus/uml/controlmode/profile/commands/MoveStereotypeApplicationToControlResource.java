@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 Atos, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2016 Atos, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Arthur Daussy (Atos) arthur.daussy@atos.net - Initial API and implementation
- *  Christian W. Damus - bug 399859
+ *  Christian W. Damus - bugs 399859, 497865
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - bug 460435
  *
  *****************************************************************************/
@@ -85,7 +85,7 @@ public final class MoveStereotypeApplicationToControlResource extends AbstractCo
 		}
 
 		// Retrieve related resources by control command
-		Resource sourceResource = getRequest().getModelSet().getAssociatedResource(targetElement, UmlModel.UML_FILE_EXTENSION, false);
+		Resource sourceResource = getRequest().getSourceResource(UmlModel.UML_FILE_EXTENSION);
 		Resource targetResource = getRequest().getTargetResource(UmlModel.UML_FILE_EXTENSION);
 
 		if (targetResource == null) {

@@ -108,7 +108,7 @@ public class OnDemandCrossReferenceIndex extends AbstractCrossReferenceIndex {
 	}
 
 	@Override
-	Callable<SetMultimap<URI, URI>> getShardsCallable() {
+	Callable<SetMultimap<URI, URI>> getSubunitsCallable() {
 		// We don't parse on-the-fly for child shards; it requires scanning
 		// the whole resource
 		return () -> ImmutableSetMultimap.of();
@@ -153,7 +153,7 @@ public class OnDemandCrossReferenceIndex extends AbstractCrossReferenceIndex {
 			doIndex(next);
 
 			// And then, breadth-first, its parents that aren't already indexed
-			shardToParents.get(next).stream()
+			subunitToParents.get(next).stream()
 					.filter(((Predicate<URI>) shards::containsKey).negate())
 					.forEach(toIndex::offer);
 		}
@@ -178,13 +178,13 @@ public class OnDemandCrossReferenceIndex extends AbstractCrossReferenceIndex {
 		}
 
 		// Clear the aggregate map because we now have updates to include
-		aggregateShardToParents = null;
+		aggregateSubunitToParents = null;
 
 		setShard(resourceURI, handler.isShard());
 		Set<URI> parents = handler.getParents().stream()
 				.map(URI::createURI)
 				.collect(Collectors.toSet());
-		shardToParents.putAll(resourceURI, parents);
+		subunitToParents.putAll(resourceURI, parents);
 	}
 
 }

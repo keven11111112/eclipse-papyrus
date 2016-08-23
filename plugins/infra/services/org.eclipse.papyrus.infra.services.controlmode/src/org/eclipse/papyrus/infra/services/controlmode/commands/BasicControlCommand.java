@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 Atos.
+ * Copyright (c) 2013, 2016 Atos, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Arthur Daussy (Atos) arthur.daussy@atos.net - Initial API and implementation
+ *  Christian W. Damus - bug 497865
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.commands;
@@ -24,7 +25,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.papyrus.infra.emf.resource.ShardResourceHelper;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
+import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParameters;
 import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 
 /**
@@ -67,6 +70,14 @@ public class BasicControlCommand extends AbstractControlCommand {
 			objectToControl.eResource().setModified(true);
 		}
 		resource.getContents().add(objectToControl);
+
+		// Should we create the unit as a 'shard' resource?
+		if (ControlModeRequestParameters.isCreateShard(getRequest())) {
+			try (ShardResourceHelper helper = new ShardResourceHelper(objectToControl)) {
+				helper.setShard(true);
+			}
+		}
+
 		return CommandResult.newOKCommandResult(resource);
 	}
 

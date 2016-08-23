@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos Origin.
+ * Copyright (c) 2011, 2016 Atos Origin, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Christian W. Damus - bug 497865
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.controlmode.profile.helpers;
@@ -65,8 +66,11 @@ public abstract class SafeDialogOpenerDuringValidation<ReturnType> {
 		 */
 		IOperationHistory history = CheckedOperationHistory.getInstance();
 		history.addOperationApprover(operationDisapprover);
-		ReturnType result = openDialog();
-		history.removeOperationApprover(operationDisapprover);
-		return result;
+		try {
+			ReturnType result = openDialog();
+			return result;
+		} finally {
+			history.removeOperationApprover(operationDisapprover);
+		}
 	}
 }

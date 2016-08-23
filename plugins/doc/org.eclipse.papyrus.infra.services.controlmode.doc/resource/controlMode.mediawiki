@@ -10,22 +10,53 @@ This is specially helpful working in collaborative environments, since the Team 
 ==Create a submodel==
 To create a submodel:
 #Right click on the element which you wish to move to a different resource (a Package in the common case)
-#Select ''Create Submodel''[[Image:images/ControlAction.png]] 
+#Select ''Create Submodel''<br/>[[Image:images/ControlAction.png]] 
 #The following dialog appears.<br/>[[Image:images/ControlDialog.png]]  
 #Select the desired location for the new resource
 #Click ''OK''.
 
-
-
 '''Important:''' The selected element has not been moved just yet. The model editor will be dirty i.e. there will be an asterisk next to its name in the tab. In order to complete the submodel creation, you need to '''save''' your model.
 
-The new resource is created in the chosen location with the chosen file name, whilst a green decorator is shown in the model explorer view of the parent model to indicate this element is in a submodel.
+The new resource is created in the chosen location with the chosen file name, whilst a green decorator is shown in the Model Explorer view of the parent model to indicate this element is in a submodel.
+
+Note that, for a package, the dialog shows an option to have it be openable and editable in its own editor, independently of the package containing it (and the one containing that, etc.).
+This can be convenient, but it does mean that the package has to redundantly apply all of the
+profile applications applied to the packages containing it, so that stereotypes can properly be
+manipulated in the editor.  This can result in inconsistencies if a profile definition changes
+over time and not all applications in all packages are kept up-to-date consistently with
+stereotype migrations.  This option is available only for packages, because only they can have
+profile applications.  For other kinds of elements, this option is disabled and the resources
+created for them will always open in the context of the containing model.
+
+When this option is not selected, then the resulting submodel cannot be opened separately.
+Attempting to open it, usually by double-clicking it in the Project Explorer, will instead
+open the top-most independent submodel (or the root model package).  Or, if that is already
+open, just activate its editor.  This ensures that the nesting package context, and especially
+its profile applications, is always available to properly manage stereotypes. 
+
+==Toggle the Independent Submodel Support==
+
+Once a package has been stored in a submodel resource, the support for editing it independently
+can be added and removed at any time:
+#Right-click on the submodel package in the Model Explorer.
+#If the package is independently editable, the ''Independent Submodel'' menu item will have a check mark.  Otherwise, it will not.
+#Click the ''Independent Submodel'' menu item to change whether the package can be edited independently or not.
+[[Image:images/ToggleSubmodelAction.png]]
+
+'''Important:''' These changes will only take permanent effect on the next '''save''' action.  Until then, the resource on disk is not changed and so what happens when it is opened in an editor will not change. 
+
+In the Project Explorer view, the submodel resource is indicated by a filled blue
+note-paper decoration or a hollow blue decoration in the case that it is not an independently
+openable submodel.
+
+[[Image:images/Decorations.png|400px]]
+
 
 ==Reintegrate a submodel into the main model==
 
 To reintegrate a submodel into the main model: 
 #Open the parent model 
-#Right click on the submodel element in the model explorer (recognizable with the green decorator).
+#Right click on the submodel element in the Model Explorer (recognizable with the green decorator).
 #Select ''Reintegrate Submodel''
 [[Image:images/UncontrolAction.png]] 
 

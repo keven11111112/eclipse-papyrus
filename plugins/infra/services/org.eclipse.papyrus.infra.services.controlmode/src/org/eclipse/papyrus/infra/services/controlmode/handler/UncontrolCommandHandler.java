@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 Atos.
+ * Copyright (c) 2013, 2016 Atos, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Arthur Daussy (Atos) arthur.daussy@atos.net - Initial API and implementation
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436952
+ *  Christian W. Damus - bug 497865
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.handler;
@@ -17,6 +18,9 @@ package org.eclipse.papyrus.infra.services.controlmode.handler;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -32,6 +36,7 @@ import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForSelection;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.ui.statushandlers.StatusManager;
 
 /**
  * Handler use to uncontrol an element
@@ -54,6 +59,7 @@ public class UncontrolCommandHandler extends AbstractHandler {
 	 * @return
 	 * @throws ExecutionException
 	 */
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 
@@ -68,8 +74,15 @@ public class UncontrolCommandHandler extends AbstractHandler {
 				EObject eObjectToControl = EMFHelper.getEObject(((IStructuredSelection) selection).getFirstElement());
 				ControlModeRequest controlRequest = ControlModeRequest.createUIUncontrolModelRequest(editingDomain, eObjectToControl);
 				IControlModeManager controlMng = ControlModeManager.getInstance();
-				ICommand controlCommand = controlMng.getUncontrolCommand(controlRequest);
-				editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(controlCommand));
+
+				Diagnostic problems = controlMng.approveRequest(controlRequest);
+				if ((problems != null) && (problems.getSeverity() >= Diagnostic.ERROR)) {
+					IStatus status = BasicDiagnostic.toIStatus(problems);
+					StatusManager.getManager().handle(status, StatusManager.SHOW);
+				} else {
+					ICommand controlCommand = controlMng.getUncontrolCommand(controlRequest);
+					editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(controlCommand));
+				}
 			} catch (ServiceException e) {
 				NotificationBuilder.createInfoPopup(NO_EDITING_DOMAIN_MESSAGE).run();
 

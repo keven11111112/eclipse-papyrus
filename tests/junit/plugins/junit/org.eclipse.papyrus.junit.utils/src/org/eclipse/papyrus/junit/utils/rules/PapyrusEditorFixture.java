@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542
+ *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -1147,7 +1147,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 					break;
 				}
 			} catch (Exception e) {
-				Bundle testBundle = FrameworkUtil.getBundle(testClass);
+				Bundle testBundle = FrameworkUtil.getBundle((testClass == null) ? PapyrusEditorFixture.class : testClass);
 				Platform.getLog(testBundle).log(new Status(IStatus.ERROR, testBundle.getSymbolicName(), "Uncaught exception in display runnable.", e));
 			}
 		}

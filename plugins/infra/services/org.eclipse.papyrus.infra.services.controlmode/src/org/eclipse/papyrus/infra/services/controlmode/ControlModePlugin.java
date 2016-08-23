@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2010, 2016 Atos Origin, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,10 +9,12 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus - bug 497865
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode;
 
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -56,6 +58,24 @@ public class ControlModePlugin extends AbstractUIPlugin {
 	 */
 	public static ControlModePlugin getDefault() {
 		return plugin;
+	}
+
+	/**
+	 * Gets an icon from this bundle.
+	 * 
+	 * @param path
+	 *            the icon path. If it does not start with {@code "icons/"} then it
+	 *            is assumed to be relative to the icons directory
+	 * 
+	 * @return the image descriptor for the icon
+	 * 
+	 * @since 1.3
+	 */
+	public ImageDescriptor getIcon(String path) {
+		if (!path.startsWith("icons/")) { //$NON-NLS-1$
+			path = "icons/" + path; //$NON-NLS-1$
+		}
+		return AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 
 }

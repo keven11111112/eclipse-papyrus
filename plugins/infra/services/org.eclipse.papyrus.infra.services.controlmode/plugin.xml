@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="org.eclipse.papyrus.infra.services.controlmode.participant" name="participant" schema="schema/participant.exsd"/>
+   <extension-point id="org.eclipse.papyrus.infra.services.controlmode.participant" name="%extpt.participant.name" schema="schema/participant.exsd"/>
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
@@ -43,12 +43,12 @@
          point="org.eclipse.ui.commands">
       <command
             defaultHandler="org.eclipse.papyrus.infra.services.controlmode.handler.ControlCommandHandler"
-            description="Move this submodel into its own resource (file)"
+            description="%cmd.control.desc"
             id="org.eclipse.papyrus.infra.services.controlmode.createsubmodel"
-            name="Create submodel unit">
+            name="%cmd.control.name">
          <commandParameter
                id="org.eclipse.papyrus.infra.services.controlmode.useDialogParameter"
-               name="Show control mode dialog"
+               name="%cmd.control.showDlg.name"
                optional="true">
             <values
                   class="org.eclipse.papyrus.infra.services.controlmode.commands.ControlModeCommandParameterValues">
@@ -56,7 +56,7 @@
          </commandParameter>
          <commandParameter
                id="org.eclipse.papyrus.infra.services.controlmode.resourceLocation"
-               name="Resource Location"
+               name="%cmd.control.resource.name"
                optional="true">
             <values
                   class="org.eclipse.papyrus.infra.services.controlmode.commands.ResourceLocationParameterValues">
@@ -65,9 +65,19 @@
       </command>
       <command
             defaultHandler="org.eclipse.papyrus.infra.services.controlmode.handler.UncontrolCommandHandler"
-            description="Reintegrate this submodel into the resource (file) of the parent model"
+            description="%cmd.uncontrol.desc"
             id="org.eclipse.papyrus.infra.services.controlmode.reintegratesubmodel"
-            name="Reintegrate submodel unit into parent model">
+            name="%cmd.uncontrol.name">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.infra.services.controlmode.internal.handler.ToggleSubmodelHandler"
+            description="%cmd.submodel.desc"
+            id="org.eclipse.papyrus.infra.services.controlmode.toggleSubmodelStyle"
+            name="%cmd.submodel.name">
+         <state
+               id="org.eclipse.ui.commands.toggleState"
+               class="org.eclipse.papyrus.infra.services.controlmode.internal.handler.SubmodelState">
+         </state>
       </command>
    </extension>
  <extension
@@ -78,9 +88,9 @@
          <command
                commandId="org.eclipse.papyrus.infra.services.controlmode.createsubmodel"
                icon="icons/CreateSubModel_16.png"
-               label="Create Submodel"
+               label="%cmd.control.label"
                style="push"
-               tooltip="Move this submodel into its own resource (file)">
+               tooltip="%cmd.control.tip">
             <visibleWhen
                   checkEnabled="false">
                <with
@@ -96,9 +106,33 @@
          <command
                commandId="org.eclipse.papyrus.infra.services.controlmode.reintegratesubmodel"
                icon="icons/ReintegrateSubModel_16.png"
-               label="Reintegrate Submodel"
+               label="%cmd.uncontrol.label"
                style="push"
-               tooltip="Reintegrate this submodel into the resource (file) of the parent model">
+               tooltip="%cmd.uncontrol.tip">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="selection">
+                 <and>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.eclipse.papyrus.infra.services.controlmode.isFragmentModel"
+                          value="true">
+                    </test>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.eclipse.papyrus.infra.services.controlmode.isParentLoaded"
+                          value="true">
+                    </test>
+                 </and>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.infra.services.controlmode.toggleSubmodelStyle"
+               label="%cmd.submodel.label"
+               style="toggle"
+               tooltip="%cmd.submodel.tip">
             <visibleWhen
                   checkEnabled="false">
                <with
@@ -127,4 +161,27 @@
           path="model/controlmode.elementtypesconfigurations">
     </elementTypeSet>
  </extension>
+   <extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            class="org.eclipse.papyrus.infra.services.controlmode.internal.ui.ControlledUnitLabelDecorator"
+            id="org.eclipse.papyrus.infra.services.controlmode.ui.ControlledUnit"
+            label="%decorator.controlmode.label"
+            lightweight="true"
+            state="true">
+         <description>
+            %decorator.controlmode.desc
+         </description>
+         <enablement>
+            <or>
+               <objectClass
+                     name="org.eclipse.core.resources.IFile">
+               </objectClass>
+               <objectClass
+                     name="org.eclipse.papyrus.infra.onefile.model.IPapyrusFile">
+               </objectClass>
+            </or>
+         </enablement>
+      </decorator>
+   </extension>
 </plugin>

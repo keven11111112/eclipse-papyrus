@@ -18,6 +18,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.Executor;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import javax.xml.parsers.SAXParser;
@@ -32,6 +35,8 @@ import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.resource.index.IWorkspaceModelIndexProvider;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex.PersistentIndexHandler;
+import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndexAdapter;
+import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndexEvent;
 import org.xml.sax.helpers.DefaultHandler;
 
 import com.google.common.util.concurrent.ListenableFuture;
@@ -42,6 +47,8 @@ import com.google.common.util.concurrent.ListenableFuture;
 public class CrossReferenceIndex extends AbstractCrossReferenceIndex {
 
 	private static final CrossReferenceIndex INSTANCE = new CrossReferenceIndex();
+
+	private final CopyOnWriteArrayList<Dispatcher> listeners = new CopyOnWriteArrayList<>();
 
 	private final WorkspaceModelIndex<CrossReferencedFile> index;
 
@@ -56,14 +63,85 @@ public class CrossReferenceIndex extends AbstractCrossReferenceIndex {
 				"papyrusCrossRefs", //$NON-NLS-1$
 				"org.eclipse.emf.ecore.xmi", //$NON-NLS-1$
 				null, indexer(), MAX_INDEX_JOBS);
+		index.addListener(new WorkspaceModelIndexAdapter() {
+
+			@Override
+			public void indexCalculated(WorkspaceModelIndexEvent event) {
+				indexChanged();
+			}
+
+			@Override
+			public void indexRecalculated(WorkspaceModelIndexEvent event) {
+				indexChanged();
+			}
+		});
 	}
 
 	public void dispose() {
+		listeners.clear();
+
 		index.dispose();
 	}
 
 	public static CrossReferenceIndex getInstance() {
 		return INSTANCE;
+	}
+
+	/**
+	 * Registers a {@code handler} for updates to the index.
+	 * 
+	 * @param handler
+	 *            invoked whenever the contents of the index change. No assumption
+	 *            must be made about the thread or kind of thread on which this call-back
+	 *            is invoked. If the thread context is important, use the
+	 *            {@link #onIndexChanged(Consumer, Executor)} API, instead
+	 * 
+	 * @return a runnable that, when executed, will disconnect the {@code handler} so that
+	 *         it will no longer receive updates
+	 * 
+	 * @see #onIndexChanged(Consumer, Executor)
+	 */
+	public Runnable onIndexChanged(Consumer<? super CrossReferenceIndex> handler) {
+		return onIndexChanged(handler, null);
+	}
+
+	/**
+	 * Registers a {@code handler} for updates to the index.
+	 * 
+	 * @param handler
+	 *            invoked whenever the contents of the index change. No assumption
+	 *            must be made about the thread or kind of thread on which this call-back
+	 *            is invoked
+	 * @param exec
+	 *            an executor on which to submit invocation of the {@code handler}, in case
+	 *            it needs to run on a specific thread. May be {@code null} to run in
+	 *            whatever thread processes index updates (about which, then, no assumptions
+	 *            may be made by the handler
+	 * 
+	 * @return a runnable that, when executed, will disconnect the {@code handler} so that
+	 *         it will no longer receive updates
+	 */
+	public Runnable onIndexChanged(Consumer<? super CrossReferenceIndex> handler, Executor exec) {
+		Runnable result;
+
+		if (handler != null) {
+			Dispatcher dispatcher = new Dispatcher(this, handler, exec);
+			if (listeners.add(dispatcher)) {
+				result = dispatcher::dispose;
+			} else {
+				result = Dispatcher::pass;
+			}
+		} else {
+			result = Dispatcher::pass;
+		}
+
+		return result;
+	}
+
+	private void indexChanged() {
+		if (!listeners.isEmpty()) {
+			listeners.forEach(Dispatcher::dispatch);
+		}
 	}
 
 	//
@@ -117,12 +195,12 @@ public class CrossReferenceIndex extends AbstractCrossReferenceIndex {
 			unindexResource(file);
 
 			// update the forward mapping
-			resourceToShards.putAll(resourceURI, index.getShards());
+			resourceToSubunits.putAll(resourceURI, index.getShards());
 			outgoingReferences.putAll(resourceURI, index.getCrossReferences());
 
 			// and the reverse mapping
 			for (URI next : index.getShards()) {
-				shardToParents.put(next, resourceURI);
+				subunitToParents.put(next, resourceURI);
 			}
 			for (URI next : index.getCrossReferences()) {
 				incomingReferences.put(next, resourceURI);
@@ -152,20 +230,20 @@ public class CrossReferenceIndex extends AbstractCrossReferenceIndex {
 
 		synchronized (sync) {
 			// purge the aggregates (for model-set "resource without URI")
-			aggregateResourceToShards = null;
-			aggregateShardToParents = null;
+			aggregateResourceToSubunits = null;
+			aggregateSubunitToParents = null;
 			aggregateOutgoingReferences = null;
 			aggregateIncomingReferences = null;
 			setShard(resourceURI, false);
 
 			// And remove all traces of this resource
-			resourceToShards.removeAll(resourceURI);
+			resourceToSubunits.removeAll(resourceURI);
 			outgoingReferences.removeAll(resourceURI);
 
 			// the multimap's entry collection that underlies the key-set
 			// is modified as we go, so take a safe copy of the keys
-			for (URI next : new ArrayList<>(shardToParents.keySet())) {
-				shardToParents.remove(next, resourceURI);
+			for (URI next : new ArrayList<>(subunitToParents.keySet())) {
+				subunitToParents.remove(next, resourceURI);
 			}
 			for (URI next : new ArrayList<>(incomingReferences.keySet())) {
 				incomingReferences.remove(next, resourceURI);
@@ -211,7 +289,7 @@ public class CrossReferenceIndex extends AbstractCrossReferenceIndex {
 
 			this.isShard = handler.isShard();
 			this.crossReferences = handler.getCrossReferences();
-			this.shards = handler.getShards();
+			this.shards = handler.getSubunits();
 		}
 
 		boolean isShard() {
@@ -245,5 +323,85 @@ public class CrossReferenceIndex extends AbstractCrossReferenceIndex {
 		public WorkspaceModelIndex<?> get() {
 			return CrossReferenceIndex.INSTANCE.index;
 		}
+	}
+
+	private static final class Dispatcher {
+		private final CrossReferenceIndex owner;
+		private final Consumer<? super CrossReferenceIndex> handler;
+		private final Executor exec;
+
+		Dispatcher(CrossReferenceIndex owner,
+				Consumer<? super CrossReferenceIndex> handler,
+				Executor exec) {
+
+			super();
+
+			this.owner = owner;
+			this.handler = handler;
+			this.exec = exec;
+		}
+
+		static void pass() {
+			// Pass
+		}
+
+		public void dispose() {
+			owner.listeners.remove(this);
+		}
+
+		void dispatch() {
+			if (exec == null) {
+				handler.accept(owner);
+			} else {
+				exec.execute(() -> handler.accept(owner));
+			}
+		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((exec == null) ? 0 : exec.hashCode());
+			result = prime * result + ((handler == null) ? 0 : handler.hashCode());
+			result = prime * result + ((owner == null) ? 0 : owner.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj) {
+				return true;
+			}
+			if (obj == null) {
+				return false;
+			}
+			if (getClass() != obj.getClass()) {
+				return false;
+			}
+			Dispatcher other = (Dispatcher) obj;
+			if (exec == null) {
+				if (other.exec != null) {
+					return false;
+				}
+			} else if (!exec.equals(other.exec)) {
+				return false;
+			}
+			if (handler == null) {
+				if (other.handler != null) {
+					return false;
+				}
+			} else if (!handler.equals(other.handler)) {
+				return false;
+			}
+			if (owner == null) {
+				if (other.owner != null) {
+					return false;
+				}
+			} else if (!owner.equals(other.owner)) {
+				return false;
+			}
+			return true;
+		}
+
 	}
 }

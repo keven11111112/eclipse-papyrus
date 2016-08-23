@@ -42,7 +42,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
 
@@ -100,8 +99,7 @@ public abstract class AbstractCrossReferenceIndexTest {
 		}
 	}
 
-	@BeforeClass
-	public static void createProjectContents() {
+	public static void createProjectContents(String basePath) {
 		List<String> resources = ImmutableList.of(
 				"root.uml",
 				"package1.uml",
@@ -114,7 +112,8 @@ public abstract class AbstractCrossReferenceIndexTest {
 
 		resources.forEach(res -> {
 			try {
-				project.createFile(res, AbstractCrossReferenceIndexTest.class, "resources/shards/" + res);
+				project.createFile(res, AbstractCrossReferenceIndexTest.class,
+						String.format("%s/%s", basePath, res));
 			} catch (IOException e) {
 				e.printStackTrace();
 				fail("Failed to create test resource: " + e.getMessage());

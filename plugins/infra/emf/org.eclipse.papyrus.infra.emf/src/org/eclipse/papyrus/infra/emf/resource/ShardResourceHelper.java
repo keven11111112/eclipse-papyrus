@@ -213,6 +213,11 @@ public class ShardResourceHelper implements AutoCloseable {
 						resource.getContents(),
 						annotation);
 			}
+
+			result = new CommandWrapper(
+					"Toggle Submodel",
+					"Toggle the ability to open the resource as an independent sub-model unit",
+					result);
 		} else {
 			// Create the annotation
 			EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
@@ -252,7 +257,11 @@ public class ShardResourceHelper implements AutoCloseable {
 
 			// Ensure attachment of the adapter on first execution and record the
 			// annotation, if not already closed
-			result = new CommandWrapper(result) {
+			result = new CommandWrapper(
+					"Toggle Submodel",
+					"Toggle the ability to open the resource as an independent sub-model unit",
+					result) {
+
 				@Override
 				public void execute() {
 					super.execute();
@@ -347,9 +356,7 @@ public class ShardResourceHelper implements AutoCloseable {
 				}
 			}
 
-			if (result != null) {
-				attachAnnotationAdapter(annotationOwner);
-			}
+			attachAnnotationAdapter(annotationOwner);
 		}
 
 		return result;
@@ -412,7 +419,9 @@ public class ShardResourceHelper implements AutoCloseable {
 		if (annotationAdapter != null) {
 			Adapter adapter = annotationAdapter;
 			annotationAdapter = null;
-			adapter.getTarget().eAdapters().remove(adapter);
+			if (adapter.getTarget() != null) {
+				adapter.getTarget().eAdapters().remove(adapter);
+			}
 		}
 	}
 }
