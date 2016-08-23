@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 465656
  *****************************************************************************/
 import RSAToPapyrus;
 
@@ -32,24 +33,24 @@ mapping notation::Diagram::generateDiagram() : notation::Diagram inherits Diagra
 	self.type = 'Statechart'
 }{
 	end {
-		graphics.objectsOfType(DecorationNode)->select(type = '3002').map addInRegion();
-		graphics.objectsOfType(Shape)->select(type = '2000').map createIntermediateCompartment();
-		graphics.objectsOfType(Shape)->select(type = '6000').map createStructureCompartment();
-		graphics.objectsOfType(DecorationNode)->select(type = '2001').map addLayout();		
-		graphics.objectsOfType(DecorationNode)->select(type = '6001').map fixLayout();
+		graphics.objectsOfType(DecorationNode)->select(type = 'Region_SubvertexCompartment').map addInRegion();
+		graphics.objectsOfType(Shape)->select(type = 'StateMachine_Shape').map createIntermediateCompartment();
+		graphics.objectsOfType(Shape)->select(type = 'State_Shape').map createStructureCompartment();
+		graphics.objectsOfType(DecorationNode)->select(type = 'StateMachine_NameLabel').map addLayout();		
+		graphics.objectsOfType(DecorationNode)->select(type = 'State_NameLabel').map fixLayout();
 		
-		graphics.objectsOfType(Shape)->select(type='666').map addCommentDecoration();
-		graphics.objectsOfType(Shape)->select(type = '668').map addConstraintDecoration();
+		graphics.objectsOfType(Shape)->select(type='Comment_Shape').map addCommentDecoration();
+		graphics.objectsOfType(Shape)->select(type = 'Constraint_Shape').map addConstraintDecoration();
 	}
 }
 
 mapping inout Shape::createIntermediateCompartment() {
 	var compartment := object DecorationNode {
-		type := '2002';
+		type := 'StateMachine_RegionCompartment';
 		layoutConstraint := object Bounds{}
 	};
 	
-	compartment.children := self.children->select(type = '3000');
+	compartment.children := self.children->select(type = 'Region_Shape');
 	
 	children := children->insertAt(2, compartment); /* Required for layout: the Structure Compartment of the Region must be in 2nd position */
 }
@@ -59,7 +60,7 @@ mapping inout DecorationNode::addInRegion() {
 	var currentBounds := self.layoutConstraint.oclAsType(Bounds);
 
 	var region := object Shape {
-		type := '3000';
+		type := 'Region_Shape';
 		layoutConstraint := object Bounds{
 			x := currentBounds.x;
 			y := currentBounds.y;
@@ -82,15 +83,15 @@ mapping inout DecorationNode::addInRegion() {
 }
 
 mapping inout Shape::createStructureCompartment() when {
-	not self.children->exists(type = '6002')
+	not self.children->exists(type = 'State_RegionCompartment')
 }{
 	var compartment := object DecorationNode {
-		type := '6002';
-		visible := self.children->exists(type='3000');
+		type := 'State_RegionCompartment';
+		visible := self.children->exists(type='Region_Shape');
 		layoutConstraint := object Bounds{};
 	};
 	
-	compartment.children += children->select(type = '3000');
+	compartment.children += children->select(type = 'Region_Shape');
 	children := children->insertAt(2, compartment);
 }
 
@@ -128,21 +129,21 @@ mapping UMLShapeCompartment::toStructureCompartment() : DecorationNode inherits 
 }
 
 mapping inout Shape::addCommentDecoration() when {
-	self.type = '666' and self.diagram.type = self.getDiagramType()
+	self.type = 'Comment_Shape' and self.diagram.type = self.getDiagramType()
 } {
 	
 	self.children += object DecorationNode{
-		type := '6666';
+		type := 'Comment_BodyLabel';
 	}
 
 }
 
 mapping inout Shape::addConstraintDecoration() when {
-	self.type = '668' and self.diagram.type = self.getDiagramType()
+	self.type = 'Constraint_Shape' and self.diagram.type = self.getDiagramType()
 } {
 	
 	self.children += object DecorationNode{
-		type := '6669'; //Constraint specification
+		type := 'Constraint_BodyLabel'; //Constraint specification
 	}	
 
 }
@@ -205,11 +206,11 @@ mapping uml::State::fillBehavior(node : BasicSemanticCompartment) : Sequence(Nod
 }
 
 mapping Transition::toTransitionIn(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '680';
+	result.type := 'Transition_InternalTransitionLabel';
 }
 
 mapping Behavior::toBehaviorIn(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '690';
+	result.type := 'Behavior_EntryBehaviorLabel';
 }
 
 
@@ -231,7 +232,7 @@ mapping UMLConnector::toPapyrusConnector() : Connector inherits Connector::toPap
 mapping UMLConnector::toCommentLink() : Connector inherits Connector::toCommentLink when{
 	self.type='Reference'
 }{	
-	result.type :='667';
+	result.type :='Comment_AnnotatedElementEdge';
 	result.bendpoints := self.bendpoints.map toBendpoint(self.diagram);
 	result.sourceAnchor := object IdentityAnchor{};		
 }
@@ -242,7 +243,7 @@ mapping UMLConnector::toConstraintLink() : Connector inherits Connector::toPapyr
 	 	self.target.element.oclIsKindOf(Constraint)
 	)
 }{	
-	result.type :='670';
+	result.type :='Constraint_ConstrainedElementEdge';
 	result.bendpoints := self.bendpoints.map toBendpoint(self.diagram);
 	result.sourceAnchor := object IdentityAnchor{};		
 }
@@ -252,23 +253,23 @@ mapping UMLConnector::toConstraintLink() : Connector inherits Connector::toPapyr
 
 query View::getNodeType(element : Element) : String {
 	return
-		if element.oclIsTypeOf(Comment) then '666' 
-		elif element.oclIsTypeOf(FinalState) then '5000' 
-		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::join then '9000' 
-		elif element.oclIsTypeOf(State) then '6000' 
-		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::shallowHistory then '13000' 
-		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::terminate then '15000' 
-		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::choice then '11000' 
-		elif element.oclIsTypeOf(Constraint) then '668' 
-		elif element.oclIsTypeOf(StateMachine) then '2000' 
-		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::fork then '10000' 
-		elif element.oclIsTypeOf(Region) then '3000' 
-		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::junction then '12000' 
-		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::deepHistory then '14000' 
-		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::initial then '8000'
-		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::entryPoint then '16000'
-		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::exitPoint then '17000'
-		elif element.oclIsTypeOf(ConnectionPointReference) then '18000'
+		if element.oclIsTypeOf(Comment) then 'Comment_Shape' 
+		elif element.oclIsTypeOf(FinalState) then 'FinalState_Shape' 
+		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::join then 'Pseudostate_JoinShape' 
+		elif element.oclIsTypeOf(State) then 'State_Shape' 
+		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::shallowHistory then 'Pseudostate_ShallowHistoryShape' 
+		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::terminate then 'Pseudostate_TerminateShape' 
+		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::choice then 'Pseudostate_ChoiceShape' 
+		elif element.oclIsTypeOf(Constraint) then 'Constraint_Shape' 
+		elif element.oclIsTypeOf(StateMachine) then 'StateMachine_Shape' 
+		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::fork then 'Pseudostate_ForkShape' 
+		elif element.oclIsTypeOf(Region) then 'Region_Shape' 
+		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::junction then 'Pseudostate_JunctionShape' 
+		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::deepHistory then 'Pseudostate_DeepHistoryShape' 
+		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::initial then 'Pseudostate_InitialShape'
+		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::entryPoint then 'Pseudostate_EntryPointShape'
+		elif element.oclIsTypeOf(Pseudostate) and element.oclAsType(Pseudostate).kind = PseudostateKind::exitPoint then 'Pseudostate_ExitPointShape'
+		elif element.oclIsTypeOf(ConnectionPointReference) then 'ConnectionPointReference_Shape'
 		else self.fail()
 	endif;
 }
@@ -296,84 +297,84 @@ query View::doGetDecorationType(element : Element) : String{
 	return if self.container().oclIsKindOf(Node) then {
 		return if element.oclIsTypeOf(Pseudostate) then
 			return switch {
-				case (self.type = 'Name') '11001';
+				case (self.type = 'Name') 'Pseudostate_ChoiceFloatingNameLabel';
 				
 			}
 			elif element.oclIsTypeOf(Pseudostate) then
 				return switch {
-					case (self.type = 'Name') '17001';
+					case (self.type = 'Name') 'Pseudostate_ExitPointFloatingNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Pseudostate) then
 				return switch {
-					case (self.type = 'Name') '13001';
+					case (self.type = 'Name') 'Pseudostate_ShallowHistoryFloatingNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Pseudostate) then
 				return switch {
-					case (self.type = 'Name') '9001';
+					case (self.type = 'Name') 'Pseudostate_JoinFloatingNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Pseudostate) then
 				return switch {
-					case (self.type = 'Name') '8001';
+					case (self.type = 'Name') 'Pseudostate_InitialFloatingNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Region) then
 				return switch {
 					
-					case (self.type = 'Region' or self.type = '') '3002';
+					case (self.type = 'Region' or self.type = '') 'Region_SubvertexCompartment';
 				}
 			elif element.oclIsTypeOf(ConnectionPointReference) then
 				return switch {
-					case (self.type = 'Name') '18001';
+					case (self.type = 'Name') 'ConnectionPointReference_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(State) then
 				return switch {
-					case (self.type = 'Name') '6001';
+					case (self.type = 'Name') 'State_NameLabel';
 				}
 			elif element.oclIsTypeOf(FinalState) then
 				return switch {
-					case (self.type = 'Name') '5001';
+					case (self.type = 'Name') 'FinalState_FloatingNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Pseudostate) then
 				return switch {
-					case (self.type = 'Name') '14001';
+					case (self.type = 'Name') 'Pseudostate_DeepHistoryFloatingNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Pseudostate) then
 				return switch {
-					case (self.type = 'Name') '15001';
+					case (self.type = 'Name') 'Pseudostate_TerminateFloatingNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Pseudostate) then
 				return switch {
-					case (self.type = 'Name') '10001';
+					case (self.type = 'Name') 'Pseudostate_ForkFloatingNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Pseudostate) then
 				return switch {
-					case (self.type = 'Name') '16001';
+					case (self.type = 'Name') 'Pseudostate_EntryPointFloatingNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(StateMachine) then
 				return switch {
-					case (self.type = 'Name') '2001';
-					case (self.type = 'StructureCompartment') '2002';
+					case (self.type = 'Name') 'StateMachine_NameLabel';
+					case (self.type = 'StructureCompartment') 'StateMachine_RegionCompartment';
 				}
 			elif element.oclIsTypeOf(Pseudostate) then
 				return switch {
-					case (self.type = 'Name') '12001';
+					case (self.type = 'Name') 'Pseudostate_JunctionFloatingNameLabel';
 					
 				}
 		endif
 	} else {
 		return if element.oclIsTypeOf(Transition)  then
 			return switch {
-				case (self.type='Name') '7001';		
-				case (self.type = 'NameLabel') '7001';
+				case (self.type='Name') 'Transition_NameLabel';		
+				case (self.type = 'NameLabel') 'Transition_NameLabel';
 				
 				
 			}
@@ -385,8 +386,8 @@ query View::doGetDecorationType(element : Element) : String{
 query View::getEdgeType(element : Element) : String {
 	return
 		if self.type = 'Reference' then '' /* Constraint/Comment links handled separately */
-		elif element.oclIsTypeOf(Transition) then '7000'
-		elif element.oclIsTypeOf(Generalization) then '19000'
+		elif element.oclIsTypeOf(Transition) then 'Transition_Edge'
+		elif element.oclIsTypeOf(Generalization) then 'Generalization_Edge'
 		else self.fail()
 	endif;
 }

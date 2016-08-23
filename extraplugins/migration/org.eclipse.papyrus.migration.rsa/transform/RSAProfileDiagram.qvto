@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 465656
  *****************************************************************************/
 import RSAToPapyrus;
 
@@ -35,27 +36,27 @@ mapping notation::Diagram::generateDiagram() : notation::Diagram inherits Diagra
 	end {
 		//POST ACTION UPDATE meta class to import element
 		semantics.objectsOfType(UMLConnector)->map toContextLink();
-		graphics.objectsOfType(Shape)->select(type = '1002').map addCommentDecoration();
-		graphics.objectsOfType(Shape)->select(type = '1014').map addConstraintDecoration();
+		graphics.objectsOfType(Shape)->select(type = 'Comment_Shape').map addCommentDecoration();
+		graphics.objectsOfType(Shape)->select(type = 'Constraint_PackagedElementShape').map addConstraintDecoration();
 	}
 }
 
 mapping inout Shape::addCommentDecoration() when {
-	self.type = '1002' and self.diagram.type = self.getDiagramType()
+	self.type = 'Comment_Shape' and self.diagram.type = self.getDiagramType()
 } {
 	
 	self.children += object DecorationNode{
-		type := '3'; //Comment body
+		type := 'Comment_BodyLabel'; //Comment body
 	}	
 
 }
 
 mapping inout Shape::addConstraintDecoration() when {
-	self.type = '1014' and self.diagram.type = self.getDiagramType()
+	self.type = 'Constraint_PackagedElementShape' and self.diagram.type = self.getDiagramType()
 } {
 	
 	self.children += object DecorationNode{
-		type := '5063'; //Constraint specification
+		type := 'Constraint_BodyLabel'; //Constraint specification
 	}	
 
 }
@@ -67,7 +68,7 @@ query View::getDiagramType() : String{
 mapping UMLConnector::toContextLink() : notation::Connector inherits Connector::toPapyrusConnector when {
 	self.type = 'Reference' and self.source.element.oclIsKindOf(Constraint) and self.target.element.oclIsKindOf(Namespace)
 }{
-	result.type := '8500';
+	result.type := 'Constraint_ContextEdge';
 	self.diagram.map generateDiagram().edges += result;
 }
 
@@ -292,35 +293,35 @@ mapping uml::Class::fillOperation(node : BasicSemanticCompartment) : Sequence(No
 }
 
 mapping Operation::toOperationInDataType(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3019';
+	result.type := 'Operation_DataTypeOperationLabel';
 }
 
 mapping EnumerationLiteral::toEnumerationLiteralInEnumeration(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '1037';
+	result.type := 'EnumerationLiteral_LiteralLabel';
 }
 
 mapping Property::toPropertyInDataType(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3018';
+	result.type := 'Property_DataTypeAttributeLabel';
 }
 
 mapping Property::toPropertyInStereotype(node : Node) : Shape inherits Element::toCompartmentEntry when{
 	not self.name.startsWith('base_')
 }{
-	result.type := '3002';
+	result.type := 'Property_ClassAttributeLabel';
 }
 
 mapping Operation::toOperationInStereotype(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3020';
+	result.type := 'Operation_ClassOperationLabel';
 }
 
 mapping Property::toPropertyInClass(node : Node) : Shape inherits Element::toCompartmentEntry when{
 	not self.name.startsWith('base_')
 }{
-	result.type := '3002';
+	result.type := 'Property_ClassAttributeLabel';
 }
 
 mapping Operation::toOperationInClass(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3020';
+	result.type := 'Operation_ClassOperationLabel';
 }
 
 
@@ -349,20 +350,20 @@ mapping UMLConnector::toPapyrusConnector() : Connector inherits Connector::toPap
 
 query View::getNodeType(element : Element) : String {
 	return
-		if element.oclIsTypeOf(Dependency) then '2014' 
-		elif element.oclIsTypeOf(Association) then '2015' 
-		elif element.oclIsTypeOf(Stereotype) then '1026' 
-		elif element.oclIsTypeOf(Class) and not element.oclAsType(Class).isMetaclass() then '2008' //Class
-		elif element.oclIsTypeOf(Class) and element.oclAsType(Class).isMetaclass() then '1031' //Metaclass
-		elif element.oclIsTypeOf(Comment) then '1002' 
-		elif element.oclIsTypeOf(Constraint) then '1014' 
-		elif element.oclIsTypeOf(Model) then '2005' 
-		elif element.oclIsTypeOf(Profile) then '1030' 
-		elif element.oclIsTypeOf(Package) then '2007' 
-		elif element.oclIsTypeOf(Enumeration) then '2006' 
-		elif element.oclIsTypeOf(PrimitiveType) then '2009' 
-		elif element.oclIsTypeOf(DataType) then '2010' 
-		elif element.oclIsTypeOf(Diagram) then '2016' 
+		if element.oclIsTypeOf(Dependency) then 'Dependency_Shape' 
+		elif element.oclIsTypeOf(Association) then 'Association_Shape' 
+		elif element.oclIsTypeOf(Stereotype) then 'Stereotype_Shape' 
+		elif element.oclIsTypeOf(Class) and not element.oclAsType(Class).isMetaclass() then 'Class_Shape' //Class
+		elif element.oclIsTypeOf(Class) and element.oclAsType(Class).isMetaclass() then 'Class_MetaclassShape' //Metaclass
+		elif element.oclIsTypeOf(Comment) then 'Comment_Shape' 
+		elif element.oclIsTypeOf(Constraint) then 'Constraint_PackagedElementShape' 
+		elif element.oclIsTypeOf(Model) then 'Model_Shape' 
+		elif element.oclIsTypeOf(Profile) then 'Profile_Shape' 
+		elif element.oclIsTypeOf(Package) then 'Package_Shape' 
+		elif element.oclIsTypeOf(Enumeration) then 'Enumeration_Shape' 
+		elif element.oclIsTypeOf(PrimitiveType) then 'PrimitiveType_Shape' 
+		elif element.oclIsTypeOf(DataType) then 'DataType_Shape' 
+		elif element.oclIsTypeOf(Diagram) then 'Diagram_ShortcutShape' 
 		else self.fail()
 	endif;
 }
@@ -390,95 +391,95 @@ query View::doGetDecorationType(element : Element) : String{
 	return if self.container().oclIsKindOf(Node) then {
 		return if element.oclIsTypeOf(Stereotype) then
 			return switch {
-				case (self.type = 'Name') '1034';
-				case (self.type = 'AttributeCompartment') '1071';
-				case (self.type = 'OperationCompartment') '1019';
+				case (self.type = 'Name') 'Stereotype_NameLabel';
+				case (self.type = 'AttributeCompartment') 'Stereotype_AttributeCompartment';
+				case (self.type = 'OperationCompartment') 'Stereotype_OperationCompartment';
 			}
 			elif element.oclIsTypeOf(Class) and not element.oclAsType(Class).isMetaclass() then //Class
 				return switch {
-					case (self.type = 'Name') '5029';
-					case (self.type = 'OperationCompartment') '7018';
-					case (self.type = 'AttributeCompartment') '7017';
+					case (self.type = 'Name') 'Class_NameLabel';
+					case (self.type = 'OperationCompartment') 'Class_OperationCompartment';
+					case (self.type = 'AttributeCompartment') 'Class_AttributeCompartment';
 				}
 			elif element.oclIsTypeOf(Class) and element.oclAsType(Class).isMetaclass() then //Metaclass
 				return switch {
-					case (self.type = 'Name') '1084';
+					case (self.type = 'Name') 'Class_MetaclassNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Constraint) then
 				return switch {
-					case (self.type = 'Name') '1015';
+					case (self.type = 'Name') 'Constraint_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Model) then
 				return switch {
-					case (self.type = 'Name') '5020';
-					case (self.type = 'StructureCompartment') '1057';
+					case (self.type = 'Name') 'Model_NameLabel';
+					case (self.type = 'StructureCompartment') 'Model_PackagedElementCompartment';
 				}
 			elif element.oclIsTypeOf(Profile) then
 				return switch {
 					
-					case (self.type = 'StructureCompartment') '1042';
+					case (self.type = 'StructureCompartment') 'Profile_PackagedElementCompartment';
 				}
 			elif element.oclIsTypeOf(Package) then
 				return switch {
-					case (self.type = 'Name') '5026';
-					case (self.type = 'PackageContents') '1005';
+					case (self.type = 'Name') 'Package_NameLabel';
+					case (self.type = 'PackageContents') 'Package_PackagedElementCompartment';
 				}
 			elif element.oclIsTypeOf(Enumeration) then
 				return switch {
-					case (self.type = 'Name') '5023';
-					case (self.type = 'EnumerationCompartment') '1063';
+					case (self.type = 'Name') 'Enumeration_NameLabel';
+					case (self.type = 'EnumerationCompartment') 'Enumeration_LiteralCompartment';
 				}
 			elif element.oclIsTypeOf(PrimitiveType) then
 				return switch {
-					case (self.type = 'Name') '5032';
+					case (self.type = 'Name') 'PrimitiveType_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(DataType) then
 				return switch {
-					case (self.type = 'Name') '5035';
-					case (self.type = 'AttributeCompartment') '1067';
-					case (self.type = 'OperationCompartment') '1068'; //TODO: Disable?
+					case (self.type = 'Name') 'DataType_NameLabel';
+					case (self.type = 'AttributeCompartment') 'DataType_AttributeCompartment';
+					case (self.type = 'OperationCompartment') 'DataType_OperationCompartment'; //TODO: Disable?
 				}
 			elif element.oclIsTypeOf(Diagram) then
 				return switch {
-					case (self.type = 'Name') '2';
+					case (self.type = 'Name') 'Diagram_NameLabel';
 					
 				}
 		endif
 	} else {
 		return if element.oclIsTypeOf(Association)  then
 			return switch {
-				case (self.type='Name') '6002';		
-				case (self.type = 'KindLabel') '6001';
-				case (self.type = 'NameLabel') '6002';
+				case (self.type='Name') 'Association_NameLabel';		
+				case (self.type = 'KindLabel') 'Association_StereotypeLabel';
+				case (self.type = 'NameLabel') 'Association_NameLabel';
 				
 				
-				case (self.type = 'FromMultiplicityLabel') '6033';
-				case (self.type = 'ToMultiplicityLabel') '6034';
+				case (self.type = 'FromMultiplicityLabel') 'Association_SourceMultiplicityLabel';
+				case (self.type = 'ToMultiplicityLabel') 'Association_TargetMultiplicityLabel';
 			}
 			elif element.oclIsTypeOf(Generalization)  then
 				return switch {
 							
-					case (self.type = 'KindLabel') '6007';
+					case (self.type = 'KindLabel') 'Generalization_StereotypeLabel';
 				}
 			elif element.oclIsTypeOf(Dependency)  then
 				return switch {
-					case (self.type='Name') '6026';		
-					case (self.type = 'NameLabel') '6026';
-					case (self.type = 'KindLabel') '6027';
+					case (self.type='Name') 'Dependency_NameLabel';		
+					case (self.type = 'NameLabel') 'Dependency_NameLabel';
+					case (self.type = 'KindLabel') 'Dependency_StereotypeLabel';
 				}
 			elif element.oclIsTypeOf(ElementImport)  then
 				return switch {
 							
 					
-					case (self.type = 'KindLabel') '6021';
+					case (self.type = 'KindLabel') 'ElementImport_StereotypeLabel';
 				}
 			elif element.oclIsTypeOf(PackageImport)  then
 				return switch {
 							
-					case (self.type = 'KindLabel') '6022';
+					case (self.type = 'KindLabel') 'PackageImport_StereotypeLabel';
 				}
 		endif
 	} endif;
@@ -488,15 +489,15 @@ query View::doGetDecorationType(element : Element) : String{
 query View::getEdgeType(element : Element) : String {
 	return
 		if self.type = 'Reference' then '' /* Context Links handled separately */
-		elif element.oclIsTypeOf(Extension) then '1013'
-		elif element.oclIsTypeOf(Association) then '4001'
-		elif element.oclIsTypeOf(ProfileApplication) then '1045'
-		elif element.oclIsTypeOf(Association) then '4019'
-		elif element.oclIsTypeOf(Generalization) then '4002'
-		elif element.oclIsTypeOf(Dependency) then '4008'
-		elif element.oclIsTypeOf(Dependency) then '4018'
-		elif element.oclIsTypeOf(ElementImport) then '1064'
-		elif element.oclIsTypeOf(PackageImport) then '1065'
+		elif element.oclIsTypeOf(Extension) then 'Extension_Edge'
+		elif element.oclIsTypeOf(Association) then 'Association_Edge'
+		elif element.oclIsTypeOf(ProfileApplication) then 'ProfileApplication_Edge'
+		elif element.oclIsTypeOf(Association) then 'Association_BranchEdge'
+		elif element.oclIsTypeOf(Generalization) then 'Generalization_Edge'
+		elif element.oclIsTypeOf(Dependency) then 'Dependency_Edge'
+		elif element.oclIsTypeOf(Dependency) then 'Dependency_BranchEdge'
+		elif element.oclIsTypeOf(ElementImport) then 'ElementImport_Edge'
+		elif element.oclIsTypeOf(PackageImport) then 'PackageImport_Edge'
 		else self.fail()
 	endif;
 }

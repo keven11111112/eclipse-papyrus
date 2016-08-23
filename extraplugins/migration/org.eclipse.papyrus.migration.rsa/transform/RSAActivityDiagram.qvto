@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 465656
  *****************************************************************************/
 import RSAToPapyrus;
 
@@ -32,13 +33,13 @@ mapping notation::Diagram::generateDiagram() : notation::Diagram inherits Diagra
 	self.type = 'Activity'
 }{
 	end {
-		graphics.objectsOfType(Shape)->any(type = '2001').map fixFramePosition();
-		graphics.objectsOfType(Shape)->any(type = '2001').map createHeaders();
+		graphics.objectsOfType(Shape)->any(type = 'Activity_Shape').map fixFramePosition();
+		graphics.objectsOfType(Shape)->any(type = 'Activity_Shape').map createHeaders();
 		
-		graphics.objectsOfType(Shape)->select(type='3080').map addCommentDecoration();
-		graphics.objectsOfType(Shape)->select(type = '3112').map addConstraintDecoration();
+		graphics.objectsOfType(Shape)->select(type='Comment_Shape').map addCommentDecoration();
+		graphics.objectsOfType(Shape)->select(type = 'Constraint_Shape').map addConstraintDecoration();
 		
-		graphics.objectsOfType(Shape)->select(type = '3067').map fixPartitionsLayout();
+		graphics.objectsOfType(Shape)->select(type = 'ActivityPartition_Shape').map fixPartitionsLayout();
 		
 		graphics.objectsOfType(Shape).map fixDefaultSize();
 	}
@@ -52,7 +53,7 @@ mapping inout Shape::fixDefaultSize() disjuncts Shape::fixJoinForkSize, Shape::f
 }
 
 mapping inout Shape::fixJoinForkSize() when {
-	self.type = '3041' /* JoinNode */ or self.type = '3040' /* ForkNode */
+	self.type = 'JoinNode_Shape' or self.type = 'ForkNode_Shape'
 } {
 	var layout : Bounds := self.layoutConstraint.oclAsType(Bounds);
 	
@@ -61,7 +62,7 @@ mapping inout Shape::fixJoinForkSize() when {
 }
 
 mapping inout Shape::fixMergeDecisionSize() when {
-	self.type = '3039' /* MergeNode */ or self.type = '3038' /* DecisionNode */
+	self.type = 'MergeNode_Shape' or self.type = 'DecisionNode_Shape'
 } {
 	var layout : Bounds := self.layoutConstraint.oclAsType(Bounds);
 	
@@ -82,8 +83,8 @@ mapping inout Node::fixPartitionsLayout() {
 	var parentBounds := parent.layoutConstraint.oclAsType(Bounds);
 	var parentHeight := parentBounds.height;
 	
-	var previousPosition : Integer := parentCompartment.children->select(type = '3067')->indexOf(self) - 1; 
-	var previousPartition : Node := parentCompartment.children->select(type = '3067')->at(previousPosition);
+	var previousPosition : Integer := parentCompartment.children->select(type = 'ActivityPartition_Shape')->indexOf(self) - 1; 
+	var previousPartition : Node := parentCompartment.children->select(type = 'ActivityPartition_Shape')->at(previousPosition);
 	
 	if previousPartition.oclIsUndefined() then { /* First partition */
 		bounds.x := partitionX;
@@ -99,21 +100,21 @@ mapping inout Node::fixPartitionsLayout() {
 }
 
 mapping inout Shape::addCommentDecoration() when {
-	self.type = '3080' and self.diagram.type = self.getDiagramType()
+	self.type = 'Comment_Shape' and self.diagram.type = self.getDiagramType()
 } {
 	
 	self.children += object DecorationNode{
-		type := '5138';
+		type := 'Comment_BodyLabel';
 	}
 
 }
 
 mapping inout Shape::addConstraintDecoration() when {
-	self.type = '3112' and self.diagram.type = self.getDiagramType()
+	self.type = 'Constraint_Shape' and self.diagram.type = self.getDiagramType()
 } {
 	
 	self.children += object DecorationNode{
-		type := '5190'; //Constraint specification
+		type := 'Constraint_BodyLabel'; //Constraint specification
 	}	
 
 }
@@ -132,9 +133,9 @@ mapping inout Shape::createHeaders() : param: DecorationNode, pre: DecorationNod
 	self.children += pre;
 	self.children += post;
 	
-	param.type := '7001';
-	pre.type := '7002';
-	post.type := '7003';
+	param.type := 'Activity_ParameterCompartment';
+	pre.type := 'Activity_PreconditionCompartment';
+	post.type := 'Activity_PostconditionCompartment';
 }
 
 mapping Node::toNode() : Node disjuncts
@@ -346,11 +347,11 @@ mapping uml::Activity::fillConstraint(node : BasicSemanticCompartment) : Sequenc
 }
 
 mapping Parameter::toParameterInActivity(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3001';
+	result.type := 'Parameter_ParameterLabel';
 }
 
 mapping Constraint::toConstraintInActivity(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3002';
+	result.type := 'Constraint_PreconditionLabel';
 }
 
 
@@ -375,7 +376,7 @@ mapping UMLConnector::toCommentLink() : Connector inherits Connector::toCommentL
 	 	self.target.element.oclIsKindOf(Comment)
 	)
 }{
-	result.type :='4006';
+	result.type :='Comment_AnnotatedElementEdge';
 	result.bendpoints := self.bendpoints.map toBendpoint(self.diagram);
 	result.sourceAnchor := object IdentityAnchor{};		
 }
@@ -386,7 +387,7 @@ mapping UMLConnector::toConstraintLink() : Connector inherits Connector::toPapyr
 	 	self.target.element.oclIsKindOf(Constraint)
 	)
 }{	
-	result.type :='4007';
+	result.type :='Constraint_ConstrainedElementEdge';
 	result.bendpoints := self.bendpoints.map toBendpoint(self.diagram);
 	result.sourceAnchor := object IdentityAnchor{};		
 }
@@ -403,20 +404,20 @@ query View::getNodeType(element : Element) : String {
 	if element.oclIsTypeOf(OutputPin) then {
 		
 		type := switch {
-			case (parent.oclIsTypeOf(OpaqueAction)) '3014'; 
-			case (parent.oclIsTypeOf(CreateObjectAction)) '3087';
-			case (parent.oclIsTypeOf(ReadStructuralFeatureAction)) '3090';
-			case (parent.oclIsTypeOf(AcceptEventAction)) '3064';
-			case (parent.oclIsTypeOf(ValueSpecificationAction)) '3077';
-			case (parent.oclIsTypeOf(AddStructuralFeatureValueAction)) '3094';
-			case (parent.oclIsTypeOf(CallOperationAction)) '3024';
-			case (parent.oclIsTypeOf(CallBehaviorAction)) '3020';
-			case (parent.oclIsTypeOf(ReadVariableAction)) '3098';
-			case (parent.oclIsTypeOf(ReadSelfAction)) '3084';
+			case (parent.oclIsTypeOf(OpaqueAction)) 'OutputPin_OpaqueActionOutputShape'; 
+			case (parent.oclIsTypeOf(CreateObjectAction)) 'OutputPin_CreateObjectActionResultShape';
+			case (parent.oclIsTypeOf(ReadStructuralFeatureAction)) 'OutputPin_ReadStructuralFeatureActionResultShape';
+			case (parent.oclIsTypeOf(AcceptEventAction)) 'OutputPin_AcceptEventActionResultShape';
+			case (parent.oclIsTypeOf(ValueSpecificationAction)) 'OutputPin_ValueSpecificationActionResultShape';
+			case (parent.oclIsTypeOf(AddStructuralFeatureValueAction)) 'OutputPin_AddStructuralFeatureValueActionResultShape';
+			case (parent.oclIsTypeOf(CallOperationAction)) 'OutputPin_CallOperationActionResultShape';
+			case (parent.oclIsTypeOf(CallBehaviorAction)) 'OutputPin_CallBehaviorActionResultShape';
+			case (parent.oclIsTypeOf(ReadVariableAction)) 'OutputPin_ReadVariableActionResultShape';
+			case (parent.oclIsTypeOf(ReadSelfAction)) 'OutputPin_ReadSelfActionResultShape';
 			
-			case (parent.oclIsTypeOf(LoopNode) and parent.oclAsType(LoopNode).bodyOutput->includes(element.oclAsType(OutputPin))) '3109';  
-			case (parent.oclIsTypeOf(LoopNode) and parent.oclAsType(LoopNode)._result->includes(element.oclAsType(OutputPin))) '3111';
-			case (parent.oclIsTypeOf(LoopNode) and parent.oclAsType(LoopNode).loopVariable->includes(element.oclAsType(OutputPin))) '3110';
+			case (parent.oclIsTypeOf(LoopNode) and parent.oclAsType(LoopNode).bodyOutput->includes(element.oclAsType(OutputPin))) 'OutputPin_LoopNodeBodyOutputShape';  
+			case (parent.oclIsTypeOf(LoopNode) and parent.oclAsType(LoopNode)._result->includes(element.oclAsType(OutputPin))) 'OutputPin_LoopNodeResultShape';
+			case (parent.oclIsTypeOf(LoopNode) and parent.oclAsType(LoopNode).loopVariable->includes(element.oclAsType(OutputPin))) 'OutputPin_LoopNodeVariableShape';
 			
 			else self.fail(); 
 		}; 
@@ -426,27 +427,27 @@ query View::getNodeType(element : Element) : String {
 	if element.oclIsTypeOf(InputPin) then {
 			
 		type := switch {
-			case (parent.oclIsTypeOf(LoopNode))	'3105';
-			case (parent.oclIsTypeOf(ReadStructuralFeatureAction)) '3089';
-			case (parent.oclIsTypeOf(BroadcastSignalAction)) '3103';
-			case (parent.oclIsTypeOf(DestroyObjectAction)) '3096';
-			case (parent.oclIsTypeOf(CallBehaviorAction)) '3019';
-			case (parent.oclIsTypeOf(OpaqueAction))	'3013';
+			case (parent.oclIsTypeOf(LoopNode))	'InputPin_LoopNodeVariableInputShape';
+			case (parent.oclIsTypeOf(ReadStructuralFeatureAction)) 'InputPin_ReadStructuralFeatureActionObjectShape';
+			case (parent.oclIsTypeOf(BroadcastSignalAction)) 'InputPin_BroadcastSignalActionArgumentShape';
+			case (parent.oclIsTypeOf(DestroyObjectAction)) 'InputPin_DestroyObjectActionTargetShape';
+			case (parent.oclIsTypeOf(CallBehaviorAction)) 'InputPin_CallBehaviorActionArgumentShape';
+			case (parent.oclIsTypeOf(OpaqueAction))	'InputPin_OpaqueActionInputShape';
 			
-			case (parent.oclIsTypeOf(SendSignalAction) and parent.oclAsType(SendSignalAction).target->includes(element.oclAsType(InputPin))) '3062';
-			case (parent.oclIsTypeOf(SendSignalAction))	'3055';
+			case (parent.oclIsTypeOf(SendSignalAction) and parent.oclAsType(SendSignalAction).target->includes(element.oclAsType(InputPin))) 'InputPin_SendSignalActionTargetShape';
+			case (parent.oclIsTypeOf(SendSignalAction))	'InputPin_SendSignalActionArgumentShape';
 			
-			case (parent.oclIsTypeOf(AddStructuralFeatureValueAction) and parent.oclAsType(AddStructuralFeatureValueAction).value->includes(element.oclAsType(InputPin))) '3093'; 
-			case (parent.oclIsTypeOf(AddStructuralFeatureValueAction) and parent.oclAsType(AddStructuralFeatureValueAction)._object->includes(element.oclAsType(InputPin))) '3092';
+			case (parent.oclIsTypeOf(AddStructuralFeatureValueAction) and parent.oclAsType(AddStructuralFeatureValueAction).value->includes(element.oclAsType(InputPin))) 'InputPin_AddStructuralFeatureValueActionValueShape'; 
+			case (parent.oclIsTypeOf(AddStructuralFeatureValueAction) and parent.oclAsType(AddStructuralFeatureValueAction)._object->includes(element.oclAsType(InputPin))) 'InputPin_AddStructuralFeatureValueActionObjectShape';
 			
-			case (parent.oclIsTypeOf(SendObjectAction) and parent.oclAsType(SendObjectAction).target->includes(element.oclAsType(InputPin))) '3051';
-			case (parent.oclIsTypeOf(SendObjectAction) and parent.oclAsType(SendObjectAction).request->includes(element.oclAsType(InputPin))) '3048';
+			case (parent.oclIsTypeOf(SendObjectAction) and parent.oclAsType(SendObjectAction).target->includes(element.oclAsType(InputPin))) 'InputPin_SendObjectActionTargetShape';
+			case (parent.oclIsTypeOf(SendObjectAction) and parent.oclAsType(SendObjectAction).request->includes(element.oclAsType(InputPin))) 'InputPin_SendObjectActionRequestShape';
 			 
-			case (parent.oclIsTypeOf(CallOperationAction) and parent.oclAsType(CallOperationAction).target->includes(element.oclAsType(InputPin))) '3027';
-			case (parent.oclIsTypeOf(CallOperationAction)) '3023';
+			case (parent.oclIsTypeOf(CallOperationAction) and parent.oclAsType(CallOperationAction).target->includes(element.oclAsType(InputPin))) 'InputPin_CallOperationActionTargetShape';
+			case (parent.oclIsTypeOf(CallOperationAction)) 'InputPin_CallOperationActionArgumentShape';
 
-			case (parent.oclIsTypeOf(AddVariableValueAction) and parent.oclAsType(AddVariableValueAction).insertAt->includes(element.oclAsType(InputPin))) '3100';
-			case (parent.oclIsTypeOf(AddVariableValueAction) and parent.oclAsType(AddVariableValueAction).value->includes(element.oclAsType(InputPin))) '3101';
+			case (parent.oclIsTypeOf(AddVariableValueAction) and parent.oclAsType(AddVariableValueAction).insertAt->includes(element.oclAsType(InputPin))) 'InputPin_AddVariableValueActionInsertAtShape';
+			case (parent.oclIsTypeOf(AddVariableValueAction) and parent.oclAsType(AddVariableValueAction).value->includes(element.oclAsType(InputPin))) 'InputPin_AddVariableValueActionValueShape';
 			
 			else self.fail();
 		};
@@ -456,17 +457,17 @@ query View::getNodeType(element : Element) : String {
 	//Specific cases for Action input pins
 	if element.oclIsTypeOf(ActionInputPin) then {
 		type := switch {
-			case (parent.oclIsTypeOf(SendSignalAction) and parent.oclAsType(SendSignalAction).target->includes(element.oclAsType(InputPin))) '3061';
-			case (parent.oclIsTypeOf(SendSignalAction)) '3053';
+			case (parent.oclIsTypeOf(SendSignalAction) and parent.oclAsType(SendSignalAction).target->includes(element.oclAsType(InputPin))) 'ActionInputPin_SendSignalActionTargetShape';
+			case (parent.oclIsTypeOf(SendSignalAction)) 'ActionInputPin_SendSignalActionArgumentShape';
 			
-			case (parent.oclIsTypeOf(SendObjectAction) and parent.oclAsType(SendObjectAction).target->includes(element.oclAsType(InputPin))) '3050';
-			case (parent.oclIsTypeOf(SendObjectAction) and parent.oclAsType(SendObjectAction).request->includes(element.oclAsType(InputPin))) '3047'; 
+			case (parent.oclIsTypeOf(SendObjectAction) and parent.oclAsType(SendObjectAction).target->includes(element.oclAsType(InputPin))) 'ActionInputPin_SendObjectActionTargetShape';
+			case (parent.oclIsTypeOf(SendObjectAction) and parent.oclAsType(SendObjectAction).request->includes(element.oclAsType(InputPin))) 'ActionInputPin_SendObjectActionRequestShape'; 
 			
-			case (parent.oclIsTypeOf(CallOperationAction) and parent.oclAsType(CallOperationAction).target->includes(element.oclAsType(InputPin))) '3026';
-			case (parent.oclIsTypeOf(CallOperationAction)) '3021';
+			case (parent.oclIsTypeOf(CallOperationAction) and parent.oclAsType(CallOperationAction).target->includes(element.oclAsType(InputPin))) 'ActionInputPin_CallOperationActionTargetShape';
+			case (parent.oclIsTypeOf(CallOperationAction)) 'ActionInputPin_CallOperationActionArgumentShape';
 			
-			case (parent.oclIsTypeOf(OpaqueAction)) '3016';
-			case (parent.oclIsTypeOf(CallBehaviorAction)) '3018';
+			case (parent.oclIsTypeOf(OpaqueAction)) 'ActionInputPin_OpaqueActionInputShape';
+			case (parent.oclIsTypeOf(CallBehaviorAction)) 'ActionInputPin_CallBehaviorActionArgumentShape';
 			
 			else self.fail();
 		};
@@ -477,17 +478,17 @@ query View::getNodeType(element : Element) : String {
 	if element.oclIsTypeOf(ValuePin) then {
 		type := switch {		 
 			
-			case (parent.oclIsTypeOf(CallBehaviorAction)) '3017';
-			case (parent.oclIsTypeOf(OpaqueAction)) '3015';
+			case (parent.oclIsTypeOf(CallBehaviorAction)) 'ValuePin_CallBehaviorActionArgumentShape';
+			case (parent.oclIsTypeOf(OpaqueAction)) 'ValuePin_OpaqueActionInputShape';
 			
-			case (parent.oclIsTypeOf(SendSignalAction) and parent.oclAsType(SendSignalAction).target->includes(element.oclAsType(InputPin))) '3060';
-			case (parent.oclIsTypeOf(SendSignalAction)) '3054';
+			case (parent.oclIsTypeOf(SendSignalAction) and parent.oclAsType(SendSignalAction).target->includes(element.oclAsType(InputPin))) 'ValuePin_SendSignalActionTargetShape';
+			case (parent.oclIsTypeOf(SendSignalAction)) 'ValuePin_SendSignalActionArgumentShape';
 			
-			case (parent.oclIsTypeOf(CallOperationAction) and parent.oclAsType(CallOperationAction).target->includes(element.oclAsType(InputPin))) '3025';
-			case (parent.oclIsTypeOf(CallOperationAction)) '3022';
+			case (parent.oclIsTypeOf(CallOperationAction) and parent.oclAsType(CallOperationAction).target->includes(element.oclAsType(InputPin))) 'ValuePin_CallOperationActionTargetShape';
+			case (parent.oclIsTypeOf(CallOperationAction)) 'ValuePin_CallOperationActionArgumentShape';
 			
-			case (parent.oclIsTypeOf(SendObjectAction) and parent.oclAsType(SendObjectAction).request->includes(element.oclAsType(InputPin))) '3046';
-			case (parent.oclIsTypeOf(SendObjectAction) and parent.oclAsType(SendObjectAction).target->includes(element.oclAsType(InputPin))) '3049';
+			case (parent.oclIsTypeOf(SendObjectAction) and parent.oclAsType(SendObjectAction).request->includes(element.oclAsType(InputPin))) 'ValuePin_SendObjectActionRequestShape';
+			case (parent.oclIsTypeOf(SendObjectAction) and parent.oclAsType(SendObjectAction).target->includes(element.oclAsType(InputPin))) 'ValuePin_SendObjectActionTargetShape';
 
 			else self.fail();
 		};
@@ -501,54 +502,54 @@ query View::getNodeType(element : Element) : String {
 
 	//Generated cases
 	return
-		if element.oclIsTypeOf(Constraint) then '3112'
-		elif element.oclIsTypeOf(Constraint) then '3002'
-		elif element.oclIsTypeOf(Constraint) then '3003'
-		elif element.oclIsTypeOf(Constraint) then '3011'
-		elif element.oclIsTypeOf(Constraint) then '3012'
-		elif element.oclIsTypeOf(IntervalConstraint) then '3033'
-		elif element.oclIsTypeOf(IntervalConstraint) then '3032' 		
-		elif element.oclIsTypeOf(DurationConstraint) then '3035'
-		elif element.oclIsTypeOf(TimeConstraint) then '3036'
-		elif element.oclIsTypeOf(TimeConstraint) then '3037'
-		elif element.oclIsTypeOf(DurationConstraint) then '3034'
-		elif element.oclIsTypeOf(FlowFinalNode) then '3006' 
-		elif element.oclIsTypeOf(ActivityPartition) then '3067'
-		elif element.oclIsTypeOf(BroadcastSignalAction) then '3102'
-		elif element.oclIsTypeOf(SequenceNode) then '3073'
-		elif element.oclIsTypeOf(ReadSelfAction) then '3081' 
-		elif element.oclIsTypeOf(ActivityFinalNode) then '3005'
-		elif element.oclIsTypeOf(SendSignalAction) then '3052' 
-		elif element.oclIsTypeOf(InitialNode) then '3004' 
-		elif element.oclIsTypeOf(AddStructuralFeatureValueAction) then '3091'
-		elif element.oclIsTypeOf(LoopNode) then '3071' 
-		elif element.oclIsTypeOf(ForkNode) then '3040' 
-		elif element.oclIsTypeOf(ExpansionNode) then '3074' 
-		elif element.oclIsTypeOf(CallOperationAction) then '3010'
-		elif element.oclIsTypeOf(AddVariableValueAction) then '3099' 
-		elif element.oclIsTypeOf(ExpansionNode) then '3075' 
-		elif element.oclIsTypeOf(Parameter) then '3001' 
-		elif element.oclIsTypeOf(ReadVariableAction) then '3097' 
-		elif element.oclIsTypeOf(OpaqueAction) then '3007'
-		elif element.oclIsTypeOf(InterruptibleActivityRegion) then '3068'
-		elif element.oclIsTypeOf(JoinNode) then '3041' 
-		elif element.oclIsTypeOf(StructuredActivityNode) then '3065' 
-		elif element.oclIsTypeOf(ConditionalNode) then '3069'
-		elif element.oclIsTypeOf(DecisionNode) then '3038' 
-		elif element.oclIsTypeOf(ActivityParameterNode) then '3059' 
-		elif element.oclIsTypeOf(CentralBufferNode) then '3104' 
-		elif element.oclIsTypeOf(Comment) then '3080' 
-		elif element.oclIsTypeOf(DestroyObjectAction) then '3095' 
-		elif element.oclIsTypeOf(CreateObjectAction) then '3086'
-		elif element.oclIsTypeOf(DataStoreNode) then '3078'		 
-		elif element.oclIsTypeOf(CallBehaviorAction) then '3008' 
-		elif element.oclIsTypeOf(ExpansionRegion) then '3070' 
-		elif element.oclIsTypeOf(SendObjectAction) then '3042'
-		elif element.oclIsTypeOf(MergeNode) then '3039'
-		elif element.oclIsTypeOf(ValueSpecificationAction) then '3076' 
-		elif element.oclIsTypeOf(AcceptEventAction) then '3063' 
-		elif element.oclIsTypeOf(Activity) then '2001' 
-		elif element.oclIsTypeOf(ReadStructuralFeatureAction) then '3088' 		 
+		if element.oclIsTypeOf(Constraint) then 'Constraint_Shape'
+		elif element.oclIsTypeOf(Constraint) then 'Constraint_PreconditionLabel'
+		elif element.oclIsTypeOf(Constraint) then 'Constraint_PostconditionLabel'
+		elif element.oclIsTypeOf(Constraint) then 'Constraint_LocalPreconditionShape'
+		elif element.oclIsTypeOf(Constraint) then 'Constraint_LocalPostconditionShape'
+		elif element.oclIsTypeOf(IntervalConstraint) then 'IntervalConstraint_LocalPostconditionShape'
+		elif element.oclIsTypeOf(IntervalConstraint) then 'IntervalConstraint_LocalPreconditionShape' 		
+		elif element.oclIsTypeOf(DurationConstraint) then 'DurationConstraint_LocalPostconditionShape'
+		elif element.oclIsTypeOf(TimeConstraint) then 'TimeConstraint_LocalPreconditionShape'
+		elif element.oclIsTypeOf(TimeConstraint) then 'TimeConstraint_LocalPostconditionShape'
+		elif element.oclIsTypeOf(DurationConstraint) then 'DurationConstraint_LocalPreconditionShape'
+		elif element.oclIsTypeOf(FlowFinalNode) then 'FlowFinalNode_Shape' 
+		elif element.oclIsTypeOf(ActivityPartition) then 'ActivityPartition_Shape'
+		elif element.oclIsTypeOf(BroadcastSignalAction) then 'BroadcastSignalAction_Shape'
+		elif element.oclIsTypeOf(SequenceNode) then 'SequenceNode_Shape'
+		elif element.oclIsTypeOf(ReadSelfAction) then 'ReadSelfAction_Shape' 
+		elif element.oclIsTypeOf(ActivityFinalNode) then 'ActivityFinalNode_Shape'
+		elif element.oclIsTypeOf(SendSignalAction) then 'SendSignalAction_Shape' 
+		elif element.oclIsTypeOf(InitialNode) then 'InitialNode_Shape' 
+		elif element.oclIsTypeOf(AddStructuralFeatureValueAction) then 'AddStructuralFeatureValueAction_Shape'
+		elif element.oclIsTypeOf(LoopNode) then 'LoopNode_Shape' 
+		elif element.oclIsTypeOf(ForkNode) then 'ForkNode_Shape' 
+		elif element.oclIsTypeOf(ExpansionNode) then 'ExpansionNode_InputShape' 
+		elif element.oclIsTypeOf(CallOperationAction) then 'CallOperationAction_Shape'
+		elif element.oclIsTypeOf(AddVariableValueAction) then 'AddVariableValueAction_Shape' 
+		elif element.oclIsTypeOf(ExpansionNode) then 'ExpansionNode_OutputShape' 
+		elif element.oclIsTypeOf(Parameter) then 'Parameter_ParameterLabel' 
+		elif element.oclIsTypeOf(ReadVariableAction) then 'ReadVariableAction_Shape' 
+		elif element.oclIsTypeOf(OpaqueAction) then 'OpaqueAction_Shape'
+		elif element.oclIsTypeOf(InterruptibleActivityRegion) then 'InterruptibleActivityRegion_Shape'
+		elif element.oclIsTypeOf(JoinNode) then 'JoinNode_Shape' 
+		elif element.oclIsTypeOf(StructuredActivityNode) then 'StructuredActivityNode_Shape' 
+		elif element.oclIsTypeOf(ConditionalNode) then 'ConditionalNode_Shape'
+		elif element.oclIsTypeOf(DecisionNode) then 'DecisionNode_Shape' 
+		elif element.oclIsTypeOf(ActivityParameterNode) then 'ActivityParameterNode_Shape' 
+		elif element.oclIsTypeOf(CentralBufferNode) then 'CentralBufferNode_Shape' 
+		elif element.oclIsTypeOf(Comment) then 'Comment_Shape' 
+		elif element.oclIsTypeOf(DestroyObjectAction) then 'DestroyObjectAction_Shape' 
+		elif element.oclIsTypeOf(CreateObjectAction) then 'CreateObjectAction_Shape'
+		elif element.oclIsTypeOf(DataStoreNode) then 'DataStoreNode_Shape'		 
+		elif element.oclIsTypeOf(CallBehaviorAction) then 'CallBehaviorAction_Shape' 
+		elif element.oclIsTypeOf(ExpansionRegion) then 'ExpansionRegion_Shape' 
+		elif element.oclIsTypeOf(SendObjectAction) then 'SendObjectAction_Shape'
+		elif element.oclIsTypeOf(MergeNode) then 'MergeNode_Shape'
+		elif element.oclIsTypeOf(ValueSpecificationAction) then 'ValueSpecificationAction_Shape' 
+		elif element.oclIsTypeOf(AcceptEventAction) then 'AcceptEventAction_Shape' 
+		elif element.oclIsTypeOf(Activity) then 'Activity_Shape' 
+		elif element.oclIsTypeOf(ReadStructuralFeatureAction) then 'ReadStructuralFeatureAction_Shape' 		 
 		else self.fail()
 	endif;
 	
@@ -580,188 +581,188 @@ query View::doGetDecorationType(element : Element) : String{
 	return if self.container().oclIsKindOf(Node) then {
 		return if element.oclIsTypeOf(ActivityPartition) then
 			return switch {
-				case (self.type = 'PartitionName') '5118';
-				case (self.type = 'PartitionCompartment') '7006';
+				case (self.type = 'PartitionName') 'ActivityPartition_NameLabel';
+				case (self.type = 'PartitionCompartment') 'ActivityPartition_ActivityNodeCompartment';
 			}
 			elif element.oclIsTypeOf(Constraint) then
 				return switch {
-					case (self.type = 'Name') '5189';
+					case (self.type = 'Name') 'Constraint_NameLabel';
 				}
 			elif element.oclIsTypeOf(IntervalConstraint) then
 				return switch {
-					case (self.type = 'Name') '5037';
+					case (self.type = 'Name') 'IntervalConstraint_LocalPostconditionNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(BroadcastSignalAction) then
 				return switch {
-					case (self.type = 'Name') '5175';
+					case (self.type = 'Name') 'BroadcastSignalAction_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(SequenceNode) then
 				return switch {
 					
-					case (self.type = 'StructureCompartment') '7012';
+					case (self.type = 'StructureCompartment') 'SequenceNode_ActivityNodeCompartment';
 				}
 			elif element.oclIsTypeOf(ReadSelfAction) then
 				return switch {
-					case (self.type = 'Name') '5139';
+					case (self.type = 'Name') 'ReadSelfAction_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(SendSignalAction) then
 				return switch {
-					case (self.type = 'Name') '5060';
+					case (self.type = 'Name') 'SendSignalAction_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(AddStructuralFeatureValueAction) then
 				return switch {
-					case (self.type = 'Name') '5160';
+					case (self.type = 'Name') 'AddStructuralFeatureValueAction_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(DurationConstraint) then
 				return switch {
-					case (self.type = 'Name') '5039';
+					case (self.type = 'Name') 'DurationConstraint_LocalPostconditionNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(LoopNode) then
 				return switch {
 					
-					case (self.type = 'StructureCompartment') '7010';
+					case (self.type = 'StructureCompartment') 'LoopNode_ActivityNodeCompartment';
 				}
 			elif element.oclIsTypeOf(CallOperationAction) then
 				return switch {
-					case (self.type = 'Name') '5006';
+					case (self.type = 'Name') 'CallOperationAction_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(IntervalConstraint) then
 				return switch {
-					case (self.type = 'Name') '5036';
+					case (self.type = 'Name') 'IntervalConstraint_LocalPreconditionNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Constraint) then
 				return switch {
-					case (self.type = 'Name') '5007';
+					case (self.type = 'Name') 'Constraint_LocalPreconditionNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(AddVariableValueAction) then
 				return switch {
-					case (self.type = 'Name') '5171';
+					case (self.type = 'Name') 'AddVariableValueAction_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(ReadVariableAction) then
 				return switch {
-					case (self.type = 'Name') '5166';
+					case (self.type = 'Name') 'ReadVariableAction_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(OpaqueAction) then
 				return switch {
-					case (self.type = 'Name') '5003';
+					case (self.type = 'Name') 'OpaqueAction_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(InterruptibleActivityRegion) then
 				return switch {
 					
-					case (self.type = 'StructureCompartment') '7007';
+					case (self.type = 'StructureCompartment') 'InterruptibleActivityRegion_ActivityNodeCompartment';
 				}
 			elif element.oclIsTypeOf(Constraint) then
 				return switch {
-					case (self.type = 'Name') '5008';
+					case (self.type = 'Name') 'Constraint_LocalPostconditionNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(StructuredActivityNode) then
 				return switch {
-					case (self.type = 'Name') '5117';
-					case (self.type = 'StructuredActivityNodeCompartment') '7005';
+					case (self.type = 'Name') 'StructuredActivityNode_KeywordLabel';
+					case (self.type = 'StructuredActivityNodeCompartment') 'StructuredActivityNode_ActivityNodeCompartment';
 				}
 			elif element.oclIsTypeOf(ConditionalNode) then
 				return switch {
 					
-					case (self.type = 'StructureCompartment') '7008';
+					case (self.type = 'StructureCompartment') 'ConditionalNode_ActivityNodeCompartment';
 				}
 			elif element.oclIsTypeOf(TimeConstraint) then
 				return switch {
-					case (self.type = 'Name') '5040';
+					case (self.type = 'Name') 'TimeConstraint_LocalPreconditionNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(ActivityParameterNode) then
 				return switch {
-					case (self.type = 'ObjectNodeNameLabel') '5071';
+					case (self.type = 'ObjectNodeNameLabel') 'ActivityParameterNode_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(DestroyObjectAction) then
 				return switch {
-					case (self.type = 'Name') '5163';
+					case (self.type = 'Name') 'DestroyObjectAction_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(CreateObjectAction) then
 				return switch {
-					case (self.type = 'Name') '5148';
+					case (self.type = 'Name') 'CreateObjectAction_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(CallBehaviorAction) then
 				return switch {
-					case (self.type = 'Name') '5004';
+					case (self.type = 'Name') 'CallBehaviorAction_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(ExpansionRegion) then
 				return switch {
 					
-					case (self.type = 'StructureCompartment') '7009';
+					case (self.type = 'StructureCompartment') 'ExpansionRegion_ActivityNodeCompartment';
 				}
 			elif element.oclIsTypeOf(SendObjectAction) then
 				return switch {
-					case (self.type = 'Name') '5059';
+					case (self.type = 'Name') 'SendObjectAction_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(TimeConstraint) then
 				return switch {
-					case (self.type = 'Name') '5041';
+					case (self.type = 'Name') 'TimeConstraint_LocalPostconditionNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(DurationConstraint) then
 				return switch {
-					case (self.type = 'Name') '5038';
+					case (self.type = 'Name') 'DurationConstraint_LocalPreconditionNameLabel';
 					
 				}
 			elif element.oclIsTypeOf(ValueSpecificationAction) then
 				return switch {
-					case (self.type = 'Name') '5126';
+					case (self.type = 'Name') 'ValueSpecificationAction_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Activity) then
 				return switch {
-					case (self.type = 'Name') '5001';
-					case (self.type = 'ActivityCompartment') '7004';
+					case (self.type = 'Name') 'Activity_NameLabel';
+					case (self.type = 'ActivityCompartment') 'Activity_ActivityNodeCompartment';
 				}
 			elif element.oclIsTypeOf(ReadStructuralFeatureAction) then
 				return switch {
-					case (self.type = 'Name') '5153';
+					case (self.type = 'Name') 'ReadStructuralFeatureAction_NameLabel';
 				}
 			elif element.oclIsTypeOf(AcceptEventAction) then 
 				return switch {
-					case (self.type = 'Name') '5078';
+					case (self.type = 'Name') 'AcceptEventAction_NameLabel';
 				}
 			elif element.oclIsTypeOf(InputPin) then
-				'5009'
+				'InputPin_OpaqueActionInputNameLabel'
 			elif element.oclIsTypeOf(ValuePin) then
-				'5024'
+				'ValuePin_OpaqueActionInputValueLabel'
 			elif element.oclIsTypeOf(OutputPin) then
-				'5010'
+				'OutputPin_OpaqueActionOutputNameLabel'
 			elif element.oclIsTypeOf(ActionInputPin) then
-				'5012'
+				'ActionInputPin_OpaqueActionInputNameLabel'
 		endif
 	} else {
 		return if element.oclIsTypeOf(ObjectFlow)  then
 			return switch {
-				case (self.type='Name') '6001';		
-				case (self.type = 'NameLabel') '6001';
-				case (self.type = 'KindLabel') '6010';
+				case (self.type='Name') 'ObjectFlow_NameLabel';		
+				case (self.type = 'NameLabel') 'ObjectFlow_NameLabel';
+				case (self.type = 'KindLabel') 'ObjectFlow_StereotypeLabel';
 				
 			}
 			elif element.oclIsTypeOf(ControlFlow)  then
 				return switch {
-					case (self.type='Name') '6003';		
-					case (self.type = 'NameLabel') '6003';
-					case (self.type = 'KindLabel') '6011';
+					case (self.type='Name') 'ControlFlow_NameLabel';		
+					case (self.type = 'NameLabel') 'ControlFlow_NameLabel';
+					case (self.type = 'KindLabel') 'ControlFlow_StereotypeLabel';
 				}
 		endif
 	} endif;
@@ -771,9 +772,9 @@ query View::doGetDecorationType(element : Element) : String{
 query View::getEdgeType(element : Element) : String {
 	return
 		if self.type = 'Reference' then '' /* Constraint/Comment links handled separately */
-		elif element.oclIsTypeOf(ObjectFlow) then '4003'
-		elif element.oclIsTypeOf(ControlFlow) then '4004'
-		elif element.oclIsTypeOf(ExceptionHandler) then '4005'
+		elif element.oclIsTypeOf(ObjectFlow) then 'ObjectFlow_Edge'
+		elif element.oclIsTypeOf(ControlFlow) then 'ControlFlow_Edge'
+		elif element.oclIsTypeOf(ExceptionHandler) then 'ExceptionHandler_Edge'
 		else self.fail()
 	endif;
 }
