@@ -1,6 +1,5 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.diagram.clazz,
- org.eclipse.papyrus.uml.diagram.clazz.custom.action,
  org.eclipse.papyrus.uml.diagram.clazz.custom.command,
  org.eclipse.papyrus.uml.diagram.clazz.custom.edit.actions,
  org.eclipse.papyrus.uml.diagram.clazz.custom.edit.commands,
@@ -49,7 +48,7 @@ Require-Bundle: org.eclipse.ui.navigator;bundle-version="[3.6.0,4.0.0)";visibili
  org.eclipse.papyrus.infra.gmfdiag.hyperlink;bundle-version="[3.0.0,4.0.0)"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 3.0.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription

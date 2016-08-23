@@ -306,7 +306,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 			return createEnumeration8CreationTool();
 		}
 		if (toolId.equals(CLAZZ_TOOL_ENUMERATIONLITERAL)) {
-			return createEnumerationliteral9CreationTool();
+			return createEnumerationLiteral9CreationTool();
 		}
 		if (toolId.equals(CLAZZ_TOOL_INTERFACE)) {
 			return createInterface10CreationTool();
@@ -537,7 +537,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createEnumerationliteral9CreationTool() {
+	private Tool createEnumerationLiteral9CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.EnumerationLiteral_LiteralLabel);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);

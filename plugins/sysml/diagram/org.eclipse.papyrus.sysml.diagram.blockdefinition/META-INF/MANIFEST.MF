@@ -12,7 +12,7 @@ Export-Package: org.eclipse.papyrus.sysml.diagram.blockdefinition,
  org.eclipse.papyrus.sysml.diagram.blockdefinition.provider,
  org.eclipse.papyrus.sysml.diagram.blockdefinition.ui,
  org.eclipse.papyrus.sysml.diagram.blockdefinition.utils
-Require-Bundle: org.eclipse.papyrus.uml.diagram.clazz;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.uml.diagram.clazz;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui.providers;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.papyrus.sysml.diagram.common;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.papyrus.sysml.service.types;bundle-version="[2.0.0,3.0.0)",

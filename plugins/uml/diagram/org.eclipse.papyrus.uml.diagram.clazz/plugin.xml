@@ -540,10 +540,10 @@
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create a ClassifiertemplateParameter"
+				      description="Create a Classifier Template Parameter"
 				      id="clazz.tool.classifiertemplateparameter"
 				      kind="tool"
-				      label="ClassifierTemplateParameter"
+				      label="Classifier Template Parameter"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif">
@@ -580,20 +580,20 @@
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create a new DataType"
+				      description="Create a new Data Type"
 				      id="clazz.tool.datatype"
 				      kind="tool"
-				      label="DataType"
+				      label="Data Type"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create new DurationObservation"
+				      description="Create new Duration Observation"
 				      id="createDurationObservation7CreationTool"
 				      kind="tool"
-				      label="DurationObservation"
+				      label="Duration Observation"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif">
@@ -610,10 +610,10 @@
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create an enumeration literal"
+				      description="Create an Enumeration Literal"
 				      id="clazz.tool.enumerationliteral"
 				      kind="tool"
-				      label="Enumeration literal"
+				      label="Enumeration Literal"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif">
@@ -630,30 +630,30 @@
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create an InstanceSpecification"
+				      description="Create an Instance Specification"
 				      id="clazz.tool.instancespecification"
 				      kind="tool"
-				      label="InstanceSpecification"
+				      label="Instance Specification"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create an InformationItem"
+				      description="Create an Information Item"
 				      id="clazz.tool.informationitem"
 				      kind="tool"
-				      label="InformationItem"
+				      label="Information Item"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create a Primitivetype"
+				      description="Create a Primitive Type"
 				      id="clazz.tool.primitivetype"
 				      kind="tool"
-				      label="PrimitiveType"
+				      label="Primitive Type"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif">
@@ -680,10 +680,10 @@
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create an OperationTemplateParameter"
+				      description="Create an Operation Template Parameter"
 				      id="clazz.tool.OperationTemplateParameter"
 				      kind="tool"
-				      label="OperationTemplateParameter"
+				      label="Operation Template Parameter"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OperationTemplateParameter.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OperationTemplateParameter.gif">
@@ -720,10 +720,10 @@
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create a RedefinableTemplateSignature"
+				      description="Create a Redefinable Template Signature"
 				      id="clazz.tool.redefinabletemplatesignature"
 				      kind="tool"
-				      label="RedefinableTemplateSignature"
+				      label="Redefinable Template Signature"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RedefinableTemplateSignature.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RedefinableTemplateSignature.gif">
@@ -750,40 +750,40 @@
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create a templateParameter"
+				      description="Create a Template Parameter"
 				      id="clazz.tool.templateparameter"
 				      kind="tool"
-				      label="TemplateParameter"
+				      label="Template Parameter"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create a TemplateSignature"
+				      description="Create a Template Signature"
 				      id="clazz.tool.templatesignature"
 				      kind="tool"
-				      label="TemplateSignature"
+				      label="Template Signature"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateSignature.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateSignature.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create new TimeObservation"
+				      description="Create new Time Observation"
 				      id="createTimeObservation22CreationTool"
 				      kind="tool"
-				      label="TimeObservation"
+				      label="Time Observation"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create a ConnectableElementTemplateParameter"
+				      description="Create a Connectable Element Template Parameter"
 				      id="clazz.tool.connectableelementtemplateparameter"
 				      kind="tool"
-				      label="ConnectableElementTemplateParameter"
+				      label="Connectable Element Template Parameter"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectableElementTemplateParameter.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectableElementTemplateParameter.gif">
@@ -800,7 +800,7 @@
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create an association"
+				      description="Create an Association"
 				      id="clazz.tool.association"
 				      kind="tool"
 				      label="Association"
@@ -810,30 +810,30 @@
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create an association branch"
+				      description="Create an Association Branch"
 				      id="clazz.tool.associationbranch"
 				      kind="tool"
-				      label="AssociationBranch"
+				      label="Association Branch"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="AssociationClass"
+				      description="create an Association Class"
 				      id="clazz.tool.associationclass"
 				      kind="tool"
-				      label="AssociationClass"
+				      label="Association Class"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AssociationClass.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AssociationClass.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create a ContainmentLink"
+				      description="Create a Containment Link"
 				      id="clazz.tool.containmentlink"
 				      kind="tool"
-				      label="ContainmentLink"
+				      label="Containment Link"
 				      large_icon="icons/obj16/ContainmentConnection.gif"
 				      path=""
 				      small_icon="icons/obj16/ContainmentConnection.gif">
@@ -843,7 +843,7 @@
 				      description="Creation of a context link for a Constraint"
 				      id="clazz.tool.contextlink"
 				      kind="tool"
-				      label="ContextLink"
+				      label="Context Link"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
@@ -860,27 +860,27 @@
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create a dependency branch"
+				      description="Create a Dependency Branch"
 				      id="clazz.tool.dependencybranch"
 				      kind="tool"
-				      label="DependencyBranch"
+				      label="Dependency Branch"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create a  elementImport"
+				      description="Create a Element Import"
 				      id="clazz.tool.elementimport"
 				      kind="tool"
-				      label="ElementImport"
+				      label="Element Import"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description=" Create a generalization"
+				      description=" Create a Generalization"
 				      id="clazz.tool.generalization"
 				      kind="tool"
 				      label="Generalization"
@@ -890,40 +890,40 @@
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="GeneralizationSet"
+				      description="Generalization Set"
 				      id="clazz.tool.generalizationset"
 				      kind="tool"
-				      label="GeneralizationSet"
+				      label="Generalization Set"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create an InformationFlow link"
+				      description="Create an Information Flow Link"
 				      id="clazz.tool.informationflowlink"
 				      kind="tool"
-				      label="InformationFlow link"
+				      label="Information Flow Link"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create an InstanceSpecification link"
+				      description="Create an Instance Specification Link"
 				      id="clazz.tool.instancespecificationlink"
 				      kind="tool"
-				      label="InstanceSpecification link"
+				      label="Instance Specification Link"
 				      large_icon="icons/obj16/InstanceLink.gif"
 				      path=""
 				      small_icon="icons/obj16/InstanceLink.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create an InterfaceRealization"
+				      description="Create an Interface Realization"
 				      id="clazz.tool.interfacerealization"
 				      kind="tool"
-				      label="InterfaceRealization"
+				      label="Interface Realization"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif">
@@ -940,30 +940,30 @@
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description=" Create a packageImport"
+				      description=" Create a Package Import"
 				      id="clazz.tool.packageimport"
 				      kind="tool"
-				      label="PackageImport"
+				      label="Package Import"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create a packageMerge"
+				      description="Create a Package Merge"
 				      id="clazz.tool.packagemerge"
 				      kind="tool"
-				      label="PackageMerge"
+				      label="Package Merge"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif">
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create a profileApplication"
+				      description="Create a Profile Application"
 				      id="clazz.tool.profileapplication"
 				      kind="tool"
-				      label="ProfileApplication"
+				      label="Profile Application"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif">
@@ -990,10 +990,10 @@
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create a TemplateBinding"
+				      description="Create a Template Binding"
 				      id="clazz.tool.templatebinding"
 				      kind="tool"
-				      label="TemplateBinding"
+				      label="Template Binding"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif">
@@ -1751,6 +1751,20 @@
             label="Nested package class diagram hyperlinks">
       </contributor>
 </extension>
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="org.eclipse.papyrus.uml.diagram.clazz.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="org.eclipse.papyrus.uml.diagram.clazz.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="org.eclipse.papyrus.uml.diagram.clazz.TypeContext">
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+
 
 
 </plugin>
