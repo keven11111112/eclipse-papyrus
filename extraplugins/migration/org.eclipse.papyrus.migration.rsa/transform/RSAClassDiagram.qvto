@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 465656
  *****************************************************************************/
 import RSAToPapyrus;
 import org.eclipse.papyrus.m2m.qvto.Properties;
@@ -42,8 +43,8 @@ mapping notation::Diagram::generateDiagram() : notation::Diagram inherits Diagra
 		/* Post action: Move AssociationClasses to the right parent (Dashed Edge + Node) */
 		/* Easier to do in post-treatment than during the transformation (The transformation can remain generic) */
 		result.map handleAssociationClasses();
-		graphics.objectsOfType(Shape)->select(type = '2012').map addCommentDecoration();
-		graphics.objectsOfType(Shape)->select(type = '2011').map addConstraintDecoration();
+		graphics.objectsOfType(Shape)->select(type = 'Comment_Shape').map addCommentDecoration();
+		graphics.objectsOfType(Shape)->select(type = 'Constraint_PackagedElementShape').map addConstraintDecoration();
 		if not result.element.oclIsKindOf(Package) then
 			result.map toInnerClassDiagram()
 		endif;
@@ -62,33 +63,33 @@ query getInnerClassDiagramView() : PapyrusDiagram {
 }
 
 mapping inout Shape::addCommentDecoration() when {
-	self.type = '2012' and self.diagram.type = self.getDiagramType()
+	self.type = 'Comment_Shape' and self.diagram.type = self.getDiagramType()
 } {
 	
 	self.children += object DecorationNode{
-		type := '5038'; //Comment body
+		type := 'Comment_BodyLabel'; //Comment body
 	}	
 
 }
 
 mapping inout Shape::addConstraintDecoration() when {
-	self.type = '2011' and self.diagram.type = self.getDiagramType()
+	self.type = 'Constraint_PackagedElementShape' and self.diagram.type = self.getDiagramType()
 } {
 	
 	self.children += object DecorationNode{
-		type := '5159'; //Constraint specification
+		type := 'Constraint_BodyLabel'; //Constraint specification
 	}	
 
 }
 
 mapping inout Diagram::handleAssociationClasses() {
-	graphics.objectsOfType(Shape)->select(type = '2013').map updateLocation();
+	graphics.objectsOfType(Shape)->select(type = 'AssociationClass_Shape').map updateLocation();
 
-	self.children := self.children->union(graphics.objectsOfKind(Node)->select(diagram = self and type = '2013'));
+	self.children := self.children->union(graphics.objectsOfKind(Node)->select(diagram = self and type = 'AssociationClass_Shape'));
 }
 
 mapping inout Shape::updateLocation() {
-	var dashedEdge := graphics.objectsOfType(Connector)->select(type = '4016' and source = self or target = self)->any(true);
+	var dashedEdge := graphics.objectsOfType(Connector)->select(type = 'AssociationClass_TetherEdge' and source = self or target = self)->any(true);
 	
 	var association := dashedEdge.findConnector();
 	
@@ -125,7 +126,7 @@ mapping UMLConnector::toAssociationClass() : Connector inherits Connector::toPap
 }{
 	result.styles := self.map toFontStyle();
 	var dashedEdge := object Connector {
-		type := '4016';
+		type := 'AssociationClass_TetherEdge';
 		target := self.children->selectByKind(UMLShape)->any(true).map toPapyrusShape();
 		source := result;
 		styles := object FontStyle{};
@@ -766,151 +767,151 @@ mapping uml::Interface::fillSignal(node : BasicSemanticCompartment) : Sequence(N
 }
 
 mapping Property::toPropertyInClass(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3012';
+	result.type := 'Property_ClassAttributeLabel';
 }
 
 mapping Property::toPropertyInComponent(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3002';
+	result.type := 'Property_ComponentAttributeLabel';
 }
 
 mapping Property::toPropertyInSignal(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3005';
+	result.type := 'Property_SignalAttributeLabel';
 }
 
 mapping Property::toPropertyInInterface(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3006';
+	result.type := 'Property_InterfaceAttributeLabel';
 }
 
 mapping Property::toPropertyInPrimitiveType(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3041';
+	result.type := 'Property_PrimitiveTypeAttributeLabel';
 }
 
 mapping Property::toPropertyInDataType(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3018';
+	result.type := 'Property_DataTypeAttributeLabel';
 }
 
 mapping Class::toClassInClass(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3014';
+	result.type := 'Class_ClassNestedClassifierLabel';
 }
 
 mapping Class::toClassInComponent(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3004';
+	result.type := 'Class_ComponentNestedClassifierLabel';
 }
 
 mapping Class::toClassInInterface(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3008';
+	result.type := 'Class_InterfaceNestedClassifierLabel';
 }
 
 mapping Operation::toOperationInClass(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3013';
+	result.type := 'Operation_ClassOperationLabel';
 }
 
 mapping Operation::toOperationInComponent(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3003';
+	result.type := 'Operation_ComponentOperationLabel';
 }
 
 mapping Operation::toOperationInInterface(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3007';
+	result.type := 'Operation_InterfaceOperationLabel';
 }
 
 mapping Operation::toOperationInPrimitiveType(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3042';
+	result.type := 'Operation_PrimitiveTypeOperationLabel';
 }
 
 mapping Operation::toOperationInDataType(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3019';
+	result.type := 'Operation_DataTypeOperationLabel';
 }
 
 mapping ConnectableElementTemplateParameter::toConnectableElementTemplateParameterInRedefinableTemplateSignature(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3034';
+	result.type := 'ConnectableElementTemplateParameter_TemplateParameterLabel';
 }
 
 mapping OperationTemplateParameter::toOperationTemplateParameterInTemplateSignature(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3035';
+	result.type := 'OperationTemplateParameter_TemplateParameterLabel';
 }
 
 mapping ClassifierTemplateParameter::toClassifierTemplateParameterInRedefinableTemplateSignature(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3031';
+	result.type := 'ClassifierTemplateParameter_TemplateParameterLabel';
 }
 
 mapping TemplateParameter::toTemplateParameterInRedefinableTemplateSignature(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3016';
+	result.type := 'TemplateParameter_TemplateParameterLabel';
 }
 
 mapping EnumerationLiteral::toEnumerationLiteralInEnumeration(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3017';
+	result.type := 'EnumerationLiteral_LiteralLabel';
 }
 
 mapping Reception::toReceptionInClass(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3011';
+	result.type := 'Reception_ReceptionLabel';
 }
 
 mapping Reception::toReceptionInInterface(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3039';
+	result.type := 'Reception_InterfaceReceptionLabel';
 }
 
 mapping Slot::toSlotInInstanceSpecification(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3030';
+	result.type := 'Slot_SlotLabel';
 }
 
 mapping Interface::toInterfaceInClass(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3036';
+	result.type := 'Interface_ClassNestedClassifierLabel';
 }
 
 mapping Interface::toInterfaceInComponent(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3037';
+	result.type := 'Interface_ComponentNestedClassifierLabel';
 }
 
 mapping Interface::toInterfaceInInterface(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3038';
+	result.type := 'Interface_InterfaceNestedClassifierLabel';
 }
 
 mapping Enumeration::toEnumerationInClass(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3052';
+	result.type := 'Enumeration_ClassNestedClassifierLabel';
 }
 
 mapping Enumeration::toEnumerationInComponent(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3053';
+	result.type := 'Enumeration_ComponentNestedClassifierLabel';
 }
 
 mapping Enumeration::toEnumerationInInterface(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3054';
+	result.type := 'Enumeration_InterfaceNestedClassifierLabel';
 }
 
 mapping PrimitiveType::toPrimitiveTypeInClass(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3047';
+	result.type := 'PrimitiveType_ClassNestedClassifierLabel';
 }
 
 mapping PrimitiveType::toPrimitiveTypeInComponent(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3046';
+	result.type := 'PrimitiveType_ComponentNestedClassifierLabel';
 }
 
 mapping PrimitiveType::toPrimitiveTypeInInterface(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3048';
+	result.type := 'PrimitiveType_InterfaceNestedClassifierLabel';
 }
 
 mapping DataType::toDataTypeInClass(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3044';
+	result.type := 'DataType_ClassNestedClassifierLabel';
 }
 
 mapping DataType::toDataTypeInComponent(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3045';
+	result.type := 'DataType_ComponentNestedClassifierLabel';
 }
 
 mapping DataType::toDataTypeInInterface(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3043';
+	result.type := 'DataType_InterfaceNestedClassifierLabel';
 }
 
 mapping Signal::toSignalInClass(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3050';
+	result.type := 'Signal_ClassNestedClassifierLabel';
 }
 
 mapping Signal::toSignalInComponent(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3051';
+	result.type := 'Signal_ComponentNestedClassifierLabel';
 }
 
 mapping Signal::toSignalInInterface(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3049';
+	result.type := 'Signal_InterfaceNestedClassifierLabel';
 }
 
 
@@ -948,7 +949,7 @@ mapping UMLConnector::toGeneralizationConnector() : Connector inherits Connector
 	self.type='' and self.element.oclIsTypeOf(Generalization)
 }{
 	result.children->forEach(element){
-		element.type:='6007'
+		element.type:='Generalization_StereotypeLabel'
 	};
 	result.styles := self.map toFontStyle();
 	result.sourceAnchor := object IdentityAnchor{};
@@ -962,7 +963,7 @@ mapping UMLConnector::toCommentLink() : Connector inherits Connector::toCommentL
 	 	self.target.element.oclIsKindOf(Comment)
 	)
 }{
-	result.type :='4013';
+	result.type :='Comment_AnnotatedElementEdge';
 	result.bendpoints := self.bendpoints.map toBendpoint(self.diagram);
 	result.sourceAnchor := object IdentityAnchor{};		
 }
@@ -973,7 +974,7 @@ mapping UMLConnector::toConstraintLink() : Connector inherits Connector::toPapyr
 	 	self.target.element.oclIsKindOf(Constraint)
 	)
 }{	
-	result.type :='4014';
+	result.type :='Constraint_ConstrainedElementEdge';
 	result.bendpoints := self.bendpoints.map toBendpoint(self.diagram);
 	result.sourceAnchor := object IdentityAnchor{};		
 }
@@ -987,11 +988,11 @@ mapping UMLConnector::toContextLink() : Connector inherits Connector::toPapyrusC
 	 	self.target.element.oclIsKindOf(Constraint)
 	)
 }{	
-	result.type :='8500';
+	result.type :='Constraint_ContextEdge';
 	result.bendpoints := self.bendpoints.map toBendpoint(self.diagram);
 	result.sourceAnchor := object IdentityAnchor{};		
 	result.children += object DecorationNode {
-		type := '8501';
+		type := 'Constraint_KeywordLabel';
 		layoutConstraint := object Location {
 			y := 15;
 		}
@@ -1003,26 +1004,26 @@ mapping UMLConnector::toContextLink() : Connector inherits Connector::toPapyrusC
 
 query View::getNodeType(element : Element) : String {
 	return
-		if element.oclIsTypeOf(Dependency) then '2014' 
-		elif element.oclIsTypeOf(AssociationClass) then '2013' 
-		elif element.oclIsTypeOf(Association) then '2015' 
-		elif element.oclIsTypeOf(InstanceSpecification) then '2001' 
-		elif element.oclIsTypeOf(Component) then '2002' 
-		elif element.oclIsTypeOf(Signal) then '2003' 
-		elif element.oclIsTypeOf(Interface) then '2004' 
-		elif element.oclIsTypeOf(Model) then '2005' 
-		elif element.oclIsTypeOf(Enumeration) then '2006' 
-		elif element.oclIsTypeOf(Package) then '2007' 
-		elif element.oclIsTypeOf(InformationItem) then '2099' 
-		elif element.oclIsTypeOf(Class) then '2008' 
-		elif element.oclIsTypeOf(PrimitiveType) then '2009' 
-		elif element.oclIsTypeOf(DataType) then '2010' 
-		elif element.oclIsTypeOf(Constraint) then '2011' 
-		elif element.oclIsTypeOf(Comment) then '2012' 
-		elif element.oclIsTypeOf(Diagram) then '2016' 
-		elif element.oclIsTypeOf(DurationObservation) then '2095' 
-		elif element.oclIsTypeOf(TimeObservation) then '2096' 
-		elif element.oclIsKindOf(NamedElement) then '2097'
+		if element.oclIsTypeOf(Dependency) then 'Dependency_Shape' 
+		elif element.oclIsTypeOf(AssociationClass) then 'AssociationClass_Shape' 
+		elif element.oclIsTypeOf(Association) then 'Association_Shape' 
+		elif element.oclIsTypeOf(InstanceSpecification) then 'InstanceSpecification_Shape' 
+		elif element.oclIsTypeOf(Component) then 'Component_Shape' 
+		elif element.oclIsTypeOf(Signal) then 'Signal_Shape' 
+		elif element.oclIsTypeOf(Interface) then 'Interface_Shape' 
+		elif element.oclIsTypeOf(Model) then 'Model_Shape' 
+		elif element.oclIsTypeOf(Enumeration) then 'Enumeration_Shape' 
+		elif element.oclIsTypeOf(Package) then 'Package_Shape' 
+		elif element.oclIsTypeOf(InformationItem) then 'InformationItem_Shape' 
+		elif element.oclIsTypeOf(Class) then 'Class_Shape' 
+		elif element.oclIsTypeOf(PrimitiveType) then 'PrimitiveType_Shape' 
+		elif element.oclIsTypeOf(DataType) then 'DataType_Shape' 
+		elif element.oclIsTypeOf(Constraint) then 'Constraint_PackagedElementShape' 
+		elif element.oclIsTypeOf(Comment) then 'Comment_Shape' 
+		elif element.oclIsTypeOf(Diagram) then 'Diagram_ShortcutShape' 
+		elif element.oclIsTypeOf(DurationObservation) then 'DurationObservation_Shape' 
+		elif element.oclIsTypeOf(TimeObservation) then 'TimeObservation_Shape' 
+		elif element.oclIsKindOf(NamedElement) then 'NamedElement_DefaultShape'
 		else self.fail()
 	endif;
 }
@@ -1049,209 +1050,209 @@ query View::doGetDecorationType(element : Element) : String{
 	return if self.container().oclIsKindOf(Node) then {
 		return if element.oclIsKindOf(AssociationClass) then
 			return switch {
-				case (self.type = 'Name') '5066';
-				case (self.type = 'AttributeCompartment') '7034';
-				case (self.type = 'OperationCompartment') '7036';
-				case (self.type = 'SignalCompartment') '7037';
+				case (self.type = 'Name') 'AssociationClass_NameLabel';
+				case (self.type = 'AttributeCompartment') 'AssociationClass_AttributeCompartment';
+				case (self.type = 'OperationCompartment') 'AssociationClass_OperationCompartment';
+				case (self.type = 'SignalCompartment') 'AssociationClass_NestedClassifierCompartment';
 			}
 		elif element.oclIsKindOf(InstanceSpecification) then
 			return switch {
-				case (self.type = 'Name') '5002';
-				case (self.type = 'SlotCompartment') '7001';
+				case (self.type = 'Name') 'InstanceSpecification_NameLabel';
+				case (self.type = 'SlotCompartment') 'InstanceSpecification_SlotCompartment';
 			}
 		elif element.oclIsKindOf(Component) then
 			return switch {
-				case (self.type = 'Name') '5005';
-				case (self.type = 'AttributeCompartment') '7002';
-			case (self.type = 'OperationCompartment') '7003';
-			case (self.type = 'SignalCompartment') '7004';
+				case (self.type = 'Name') 'Component_NameLabel';
+				case (self.type = 'AttributeCompartment') 'Component_AttributeCompartment';
+			case (self.type = 'OperationCompartment') 'Component_OperationCompartment';
+			case (self.type = 'SignalCompartment') 'Component_NestedClassifierCompartment';
 			}
 		elif element.oclIsKindOf(Signal) then
 			return switch {
-				case (self.type = 'Name') '5008';
-				case (self.type = 'AttributeCompartment') '7005';
+				case (self.type = 'Name') 'Signal_NameLabel';
+				case (self.type = 'AttributeCompartment') 'Signal_AttributeCompartment';
 			}
 		elif element.oclIsKindOf(Interface) then
 			return switch {
-				case (self.type = 'Name') '5011';
-				case (self.type = 'AttributeCompartment') '7006';
-				case (self.type = 'OperationCompartment') '7007';
-				case (self.type = 'SignalCompartment') '7008';
+				case (self.type = 'Name') 'Interface_NameLabel';
+				case (self.type = 'AttributeCompartment') 'Interface_AttributeCompartment';
+				case (self.type = 'OperationCompartment') 'Interface_OperationCompartment';
+				case (self.type = 'SignalCompartment') 'Interface_NestedClassifierCompartment';
 			}
 		elif element.oclIsKindOf(Model) then
 			return switch {
-				case (self.type = 'Name') '5020';
-				case (self.type = 'PackageContents') '7009';
+				case (self.type = 'Name') 'Model_NameLabel';
+				case (self.type = 'PackageContents') 'Model_PackagedElementCompartment';
 			}
 		elif element.oclIsKindOf(Enumeration) then
 			return switch {
-				case (self.type = 'Name') '5023';
-				case (self.type = 'EnumerationCompartment') '7015';
+				case (self.type = 'Name') 'Enumeration_NameLabel';
+				case (self.type = 'EnumerationCompartment') 'Enumeration_LiteralCompartment';
 			}
 		elif element.oclIsKindOf(Package) then
 			return switch {
-				case (self.type = 'Name') '5026';
-				case (self.type = 'PackageContents') '7016';
+				case (self.type = 'Name') 'Package_NameLabel';
+				case (self.type = 'PackageContents') 'Package_PackagedElementCompartment';
 			}
 		elif element.oclIsKindOf(InformationItem) then
 			return switch {
-				case (self.type = 'Name') '5161';
+				case (self.type = 'Name') 'InformationItem_NameLabel';
 				
 			}
 		elif element.oclIsKindOf(Class) then
 			return switch {
-				case (self.type = 'Name') '5029';
-				case (self.type = 'AttributeCompartment') '7017';
-				case (self.type = 'OperationCompartment') '7018';
-				case (self.type = 'SignalCompartment') '7019';
+				case (self.type = 'Name') 'Class_NameLabel';
+				case (self.type = 'AttributeCompartment') 'Class_AttributeCompartment';
+				case (self.type = 'OperationCompartment') 'Class_OperationCompartment';
+				case (self.type = 'SignalCompartment') 'Class_NestedClassifierCompartment';
 			}
 		elif element.oclIsKindOf(PrimitiveType) then
 			return switch {
-				case (self.type = 'Name') '5032';
-				case (self.type = 'AttributeCompartment') '7039';
-				case (self.type = 'OperationCompartment') '7040';
+				case (self.type = 'Name') 'PrimitiveType_NameLabel';
+				case (self.type = 'AttributeCompartment') 'PrimitiveType_AttributeCompartment';
+				case (self.type = 'OperationCompartment') 'PrimitiveType_OperationCompartment';
 			}
 		elif element.oclIsKindOf(DataType) then
 			return switch {
-				case (self.type = 'Name') '5035';
-				case (self.type = 'AttributeCompartment') '7020';
-				case (self.type = 'OperationCompartment') '7021';
+				case (self.type = 'Name') 'DataType_NameLabel';
+				case (self.type = 'AttributeCompartment') 'DataType_AttributeCompartment';
+				case (self.type = 'OperationCompartment') 'DataType_OperationCompartment';
 			}
 		elif element.oclIsKindOf(Constraint) then
 			return switch {
-				case (self.type = 'Name') '5037';
+				case (self.type = 'Name') 'Constraint_NameLabel';
 				
 			}
 		elif element.oclIsKindOf(Diagram) then
 			return switch {
-				case (self.type = 'Name') '0';
+				case (self.type = 'Name') 'Diagram_NameLabel';
 				
 			}
 		elif element.oclIsKindOf(DurationObservation) then
 			return switch {
-				case (self.type = 'Name') '5155';
+				case (self.type = 'Name') 'DurationObservation_FloatingNameLabel';
 				
 			}
 		elif element.oclIsKindOf(TimeObservation) then
 			return switch {
-				case (self.type = 'Name') '5153';
+				case (self.type = 'Name') 'TimeObservation_FloatingNameLabel';
 				
 			}
 		elif element.oclIsKindOf(NamedElement) then
 			return switch {
-				case (self.type = 'Name') '5157';
+				case (self.type = 'Name') 'NamedElement_NameLabel';
 			}
 		endif
 	} else {
 		return if element.oclIsKindOf(Association) then
 			return switch {
-				case (self.type='Name') '6002';		
-				case (self.type = 'KindLabel') '6001';
-				case (self.type = 'NameLabel') '6002';
+				case (self.type='Name') 'Association_NameLabel';		
+				case (self.type = 'KindLabel') 'Association_StereotypeLabel';
+				case (self.type = 'NameLabel') 'Association_NameLabel';
 			}
 		elif element.oclIsKindOf(Property) then 
 			return if element.oclAsType(Property).association.oclIsTypeOf(Association) then
 				return switch {
-					case (self.type = 'ToRoleLabel') '6003';
+					case (self.type = 'ToRoleLabel') 'Association_TargetRoleLabel';
 				
-					case (self.type = 'FromRoleLabel') '6005';
+					case (self.type = 'FromRoleLabel') 'Association_SourceRoleLabel';
 					
-					case (self.type = 'FromMultiplicityLabel') '6033';
+					case (self.type = 'FromMultiplicityLabel') 'Association_SourceMultiplicityLabel';
 					
-					case (self.type = 'ToMultiplicityLabel') '6034';
+					case (self.type = 'ToMultiplicityLabel') 'Association_TargetMultiplicityLabel';
 				}
 			elif element.oclAsType(Property).association.oclIsTypeOf(AssociationClass) then
 				return switch {
-					case (self.type = 'ToRoleLabel') '6032';
-					case (self.type = 'FromRoleLabel') '6031';
+					case (self.type = 'ToRoleLabel') 'AssociationClass_TargetRoleLabel';
+					case (self.type = 'FromRoleLabel') 'AssociationClass_SourceRoleLabel';
 				}
 			endif
 		elif element.oclIsKindOf(Generalization) then
 			return switch {
 						
-				case (self.type = 'KindLabel') '6007';
+				case (self.type = 'KindLabel') 'Generalization_StereotypeLabel';
 			}
 		
 		elif element.oclIsKindOf(InterfaceRealization) then
 			return switch {
-				case (self.type='Name') '6009';		
-				case (self.type = 'KindLabel') '6008';
-				case (self.type = 'NameLabel') '6009';
+				case (self.type='Name') 'InterfaceRealization_NameLabel';		
+				case (self.type = 'KindLabel') 'InterfaceRealization_StereotypeLabel';
+				case (self.type = 'NameLabel') 'InterfaceRealization_NameLabel';
 			}
 		
 		elif element.oclIsKindOf(Substitution) then
 			return switch {
-				case (self.type='Name') '6011';		
-				case (self.type = 'KindLabel') '6010';
-				case (self.type = 'NameLabel') '6011';
+				case (self.type='Name') 'Substitution_NameLabel';		
+				case (self.type = 'KindLabel') 'Substitution_StereotypeLabel';
+				case (self.type = 'NameLabel') 'Substitution_NameLabel';
 			}
 		
 		elif element.oclIsKindOf(Realization) then
 			return switch {
-				case (self.type='Name') '6013';		
-				case (self.type = 'KindLabel') '6012';
-				case (self.type = 'NameLabel') '6013';
+				case (self.type='Name') 'Realization_NameLabel';		
+				case (self.type = 'KindLabel') 'Realization_StereotypeLabel';
+				case (self.type = 'NameLabel') 'Realization_NameLabel';
 			}
 		
 		elif element.oclIsKindOf(Abstraction) then
 			return switch {
-				case (self.type='Name') '6014';		
-				case (self.type = 'NameLabel') '6014';
-				case (self.type = 'KindLabel') '6015';
+				case (self.type='Name') 'Abstraction_NameLabel';		
+				case (self.type = 'NameLabel') 'Abstraction_NameLabel';
+				case (self.type = 'KindLabel') 'Abstraction_StereotypeLabel';
 			}
 		
 		elif element.oclIsKindOf(Usage) then
 			return switch {
-				case (self.type='Name') '6016';		
-				case (self.type = 'NameLabel') '6016';
-				case (self.type = 'KindLabel') '6017';
+				case (self.type='Name') 'Usage_NameLabel';		
+				case (self.type = 'NameLabel') 'Usage_NameLabel';
+				case (self.type = 'KindLabel') 'Usage_StereotypeLabel';
 			}
 		
 		elif element.oclIsKindOf(Dependency) then
 			return switch {
-				case (self.type='Name') '6026';		
-				case (self.type = 'NameLabel') '6026';
-				case (self.type = 'KindLabel') '6027';
+				case (self.type='Name') 'Dependency_NameLabel';		
+				case (self.type = 'NameLabel') 'Dependency_NameLabel';
+				case (self.type = 'KindLabel') 'Dependency_StereotypeLabel';
 			}
 
 		elif element.oclIsKindOf(ElementImport) then
 			return switch {
 						
 				
-				case (self.type = 'KindLabel') '6021';
+				case (self.type = 'KindLabel') 'ElementImport_StereotypeLabel';
 			}
 		
 		elif element.oclIsKindOf(PackageImport) then
 			return switch {
 						
-				case (self.type = 'KindLabel') '6022';
+				case (self.type = 'KindLabel') 'PackageImport_StereotypeLabel';
 			}
 		
 		elif element.oclIsKindOf(PackageMerge) then
 			return switch {
 						
-				case (self.type = 'KindLabel') '6030';
+				case (self.type = 'KindLabel') 'PackageMerge_StereotypeLabel';
 			}
 		
 		elif element.oclIsKindOf(TemplateBinding) then
 			return switch {
 						
 				
-				case (self.type = 'KindLabel') '6036';
+				case (self.type = 'KindLabel') 'TemplateBinding_StereotypeLabel';
 			}
 		
 		elif element.oclIsKindOf(GeneralizationSet) then
 			return switch {
 						
 				
-				case (self.type = 'KindLabel') '6037';
+				case (self.type = 'KindLabel') 'GeneralizationSet_StereotypeLabel';
 			}
 
 		elif element.oclIsKindOf(InformationFlow) then
 			return switch {
 						
 				
-				case (self.type = 'KindLabel') '6041';
+				case (self.type = 'KindLabel') 'InformationFlow_StereotypeLabel';
 			}		
 		endif;
 	} endif;
@@ -1260,26 +1261,26 @@ query View::doGetDecorationType(element : Element) : String{
 
 query View::getEdgeType(element : Element) : String {
 	return if self.type = 'Reference' then '' /* Context and Constraint Links handled separately */
-		elif element.oclIsTypeOf(AssociationClass) then '4017'
-		elif element.oclIsTypeOf(Association) then '4001'
-		elif element.oclIsTypeOf(Association) then '4019'
-		elif element.oclIsTypeOf(Generalization) then '4002'
-		elif element.oclIsTypeOf(InterfaceRealization) then '4003'
-		elif element.oclIsTypeOf(Substitution) then '4004'
-		elif element.oclIsTypeOf(Realization) then '4005'
-		elif element.oclIsTypeOf(Abstraction) then '4006'
-		elif element.oclIsTypeOf(Usage) then '4007'
-		elif element.oclIsTypeOf(Dependency) then '4008'
-		elif element.oclIsTypeOf(Dependency) then '4018'
-		elif element.oclIsTypeOf(ElementImport) then '4009'
-		elif element.oclIsTypeOf(PackageImport) then '4010'
-		elif element.oclIsTypeOf(PackageMerge) then '4011'
-		elif element.oclIsTypeOf(ProfileApplication) then '4012'
-		elif element.oclIsTypeOf(Comment) then'4013'
-		elif element.oclIsTypeOf(TemplateBinding) then '4015'
-		elif element.oclIsTypeOf(GeneralizationSet) then '4020'
-		elif element.oclIsTypeOf(InstanceSpecification) then '4021'
-		elif element.oclIsTypeOf(InformationFlow) then '4026'
+		elif element.oclIsTypeOf(AssociationClass) then 'AssociationClass_Edge'
+		elif element.oclIsTypeOf(Association) then 'Association_Edge'
+		elif element.oclIsTypeOf(Association) then 'Association_BranchEdge'
+		elif element.oclIsTypeOf(Generalization) then 'Generalization_Edge'
+		elif element.oclIsTypeOf(InterfaceRealization) then 'InterfaceRealization_Edge'
+		elif element.oclIsTypeOf(Substitution) then 'Substitution_Edge'
+		elif element.oclIsTypeOf(Realization) then 'Realization_Edge'
+		elif element.oclIsTypeOf(Abstraction) then 'Abstraction_Edge'
+		elif element.oclIsTypeOf(Usage) then 'Usage_Edge'
+		elif element.oclIsTypeOf(Dependency) then 'Dependency_Edge'
+		elif element.oclIsTypeOf(Dependency) then 'Dependency_BranchEdge'
+		elif element.oclIsTypeOf(ElementImport) then 'ElementImport_Edge'
+		elif element.oclIsTypeOf(PackageImport) then 'PackageImport_Edge'
+		elif element.oclIsTypeOf(PackageMerge) then 'PackageMerge_Edge'
+		elif element.oclIsTypeOf(ProfileApplication) then 'ProfileApplication_Edge'
+		elif element.oclIsTypeOf(Comment) then'Comment_AnnotatedElementEdge'
+		elif element.oclIsTypeOf(TemplateBinding) then 'TemplateBinding_Edge'
+		elif element.oclIsTypeOf(GeneralizationSet) then 'GeneralizationSet_Edge'
+		elif element.oclIsTypeOf(InstanceSpecification) then 'InstanceSpecification_Edge'
+		elif element.oclIsTypeOf(InformationFlow) then 'InformationFlow_Edge'
 		else self.fail()
 	endif;
 }

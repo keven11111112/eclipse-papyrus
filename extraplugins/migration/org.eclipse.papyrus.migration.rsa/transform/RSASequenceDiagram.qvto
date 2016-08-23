@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 465656
  *****************************************************************************/
 import RSAToPapyrus;
 
@@ -32,31 +33,31 @@ mapping notation::Diagram::generateDiagram() : notation::Diagram inherits Diagra
 	self.type = 'Sequence'
 }{
 	end {
-		graphics.objectsOfType(Shape)->select(type = '3003').map fixExecutionSpecification();
-		graphics.objectsOfType(Shape)->select(type = '3001').map fixLifelineHeight();
-		graphics.objectsOfType(Shape)->select(type = '3017').map fixStateInvariant();
+		graphics.objectsOfType(Shape)->select(type = 'BehaviorExecutionSpecification_Shape').map fixExecutionSpecification();
+		graphics.objectsOfType(Shape)->select(type = 'Lifeline_Shape').map fixLifelineHeight();
+		graphics.objectsOfType(Shape)->select(type = 'StateInvariant_Shape').map fixStateInvariant();
 		
-		graphics.objectsOfType(Shape)->select(type = '3009').map addCommentDecoration();
-		graphics.objectsOfType(Shape)->select(type = '3008').map addConstraintDecoration();
+		graphics.objectsOfType(Shape)->select(type = 'Comment_Shape').map addCommentDecoration();
+		graphics.objectsOfType(Shape)->select(type = 'Constraint_Shape').map addConstraintDecoration();
 	}
 }
 
 mapping inout Shape::addCommentDecoration() when {
-	self.type = '3009' and self.diagram.type = self.getDiagramType()
+	self.type = 'Comment_Shape' and self.diagram.type = self.getDiagramType()
 } {
 	
 	self.children += object DecorationNode{
-		type := '5006'; //Comment body
+		type := 'Comment_BodyLabel'; //Comment body
 	}	
 
 }
 
 mapping inout Shape::addConstraintDecoration() when {
-	self.type = '3008' and self.diagram.type = self.getDiagramType()
+	self.type = 'Constraint_Shape' and self.diagram.type = self.getDiagramType()
 } {
 	
 	self.children += object DecorationNode{
-		type := '5012'; //Constraint specification
+		type := 'Constraint_BodyLabel'; //Constraint specification
 	}	
 
 }
@@ -224,25 +225,25 @@ mapping UMLConnector::toPapyrusConnector() : Connector inherits Connector::toPap
 
 query View::getNodeType(element : Element) : String {
 	return
-		if element.oclIsTypeOf(TimeObservation) then '3020' 
-		elif element.oclIsTypeOf(InteractionUse) then '3002' 
-		elif element.oclIsTypeOf(CombinedFragment) then '3004' 
-		elif element.oclIsTypeOf(CombinedFragment) then '3018' 
-		elif element.oclIsTypeOf(Comment) then '3009' 
-		elif element.oclIsTypeOf(Lifeline) then '3001' 
-		elif element.oclIsTypeOf(InteractionOperand) then '3005' 
-		elif element.oclIsTypeOf(TimeConstraint) then '3019' 
-		elif element.oclIsTypeOf(StateInvariant) then '3017' 
-		elif element.oclIsTypeOf(Continuation) then '3016' 
-		elif element.oclIsTypeOf(Interaction) then '2001' 
-		elif element.oclIsTypeOf(Constraint) then '3008' 
-		elif element.oclIsTypeOf(DurationConstraint) then '3021' 
-		elif element.oclIsTypeOf(DurationObservation) then '3024' 
-		elif element.oclIsTypeOf(ConsiderIgnoreFragment) then '3007' 
-		elif element.oclIsTypeOf(ActionExecutionSpecification) then '3006' 
-		elif element.oclIsTypeOf(DurationConstraint) then '3023' 
-		elif element.oclIsTypeOf(DestructionOccurrenceSpecification) then '3022' 
-		elif element.oclIsTypeOf(BehaviorExecutionSpecification) then '3003' 
+		if element.oclIsTypeOf(TimeObservation) then 'TimeObservation_Shape' 
+		elif element.oclIsTypeOf(InteractionUse) then 'InteractionUse_Shape' 
+		elif element.oclIsTypeOf(CombinedFragment) then 'CombinedFragment_Shape' 
+		elif element.oclIsTypeOf(CombinedFragment) then 'CombinedFragment_CoRegionShape' 
+		elif element.oclIsTypeOf(Comment) then 'Comment_Shape' 
+		elif element.oclIsTypeOf(Lifeline) then 'Lifeline_Shape' 
+		elif element.oclIsTypeOf(InteractionOperand) then 'InteractionOperand_Shape' 
+		elif element.oclIsTypeOf(TimeConstraint) then 'TimeConstraint_Shape' 
+		elif element.oclIsTypeOf(StateInvariant) then 'StateInvariant_Shape' 
+		elif element.oclIsTypeOf(Continuation) then 'Continuation_Shape' 
+		elif element.oclIsTypeOf(Interaction) then 'Interaction_Shape' 
+		elif element.oclIsTypeOf(Constraint) then 'Constraint_Shape' 
+		elif element.oclIsTypeOf(DurationConstraint) then 'DurationConstraint_Shape' 
+		elif element.oclIsTypeOf(DurationObservation) then 'DurationObservation_Shape' 
+		elif element.oclIsTypeOf(ConsiderIgnoreFragment) then 'ConsiderIgnoreFragment_Shape' 
+		elif element.oclIsTypeOf(ActionExecutionSpecification) then 'ActionExecutionSpecification_Shape' 
+		elif element.oclIsTypeOf(DurationConstraint) then 'DurationConstraint_Shape_CN' 
+		elif element.oclIsTypeOf(DestructionOccurrenceSpecification) then 'DestructionOccurrenceSpecification_Shape' 
+		elif element.oclIsTypeOf(BehaviorExecutionSpecification) then 'BehaviorExecutionSpecification_Shape' 
 		else self.fail()
 	endif;
 }
@@ -269,94 +270,94 @@ query View::doGetDecorationType(element : Element) : String{
 	return if self.container().oclIsKindOf(Node) then {
 		return if element.oclIsTypeOf(InteractionUse) then
 				return switch {
-					case (self.type = 'Name') '5003';
+					case (self.type = 'Name') 'InteractionUse_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Lifeline) then
 				return switch {
-					case (self.type = 'Name') '5002';
+					case (self.type = 'Name') 'Lifeline_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(StateInvariant) then
 				return switch {
-					case (self.type = 'Name') '5008';
+					case (self.type = 'Name') 'StateInvariant_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(InteractionOperand) then
 				return switch {
 					
-					case (self.type.oclIsUndefined() or self.type = '') '7004';
+					case (self.type.oclIsUndefined() or self.type = '') 'CombinedFragment_SubfragmentCompartment';
 				}
 			elif element.oclIsTypeOf(Continuation) then
 				return switch {
-					case (self.type = 'Name') '5007';
+					case (self.type = 'Name') 'Continuation_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Interaction) then
 				return switch {
-					case (self.type = 'Name') '5001';
-					case (self.type = 'interaction_compartment') '7001';
+					case (self.type = 'Name') 'Interaction_NameLabel';
+					case (self.type = 'interaction_compartment') 'Interaction_SubfragmentCompartment';
 				}
 			elif element.oclIsTypeOf(Constraint) then
 				return switch {
-					case (self.type = 'Name') '5005';
+					case (self.type = 'Name') 'Constraint_NameLabel';
 					
 				}
 		endif
 	} else {
 		return if element.oclIsTypeOf(Message) and (element.oclIsKindOf(uml::InteractionFragment)) and (element.oclIsKindOf(uml::InteractionFragment) or element.oclIsKindOf(uml::Lifeline)) then
 			return switch {
-				case (self.type='Name') '6001';		
-				case (self.type = 'NameLabel') '6001';
-				case (self.type = 'KindLabel') '6008';
+				case (self.type='Name') 'Message_SynchNameLabel';		
+				case (self.type = 'NameLabel') 'Message_SynchNameLabel';
+				case (self.type = 'KindLabel') 'Message_SynchStereotypeLabel';
 			}
 		
 			elif element.oclIsTypeOf(Message) and ((element.oclIsKindOf(uml::Lifeline) or element.oclIsKindOf(uml::InteractionFragment) or element.oclIsKindOf(uml::Gate))) and true then
 				return switch {
 							
-					case (self.type = 'NameLabel') '6002';
-					case (self.type = 'KindLabel') '6009';
+					case (self.type = 'NameLabel') 'Message_AsynchNameLabel';
+					case (self.type = 'KindLabel') 'Message_AsynchStereotypeLabel';
 				}
 			
 			elif element.oclIsTypeOf(Message) and (element.oclIsKindOf(uml::InteractionFragment)) and ((element.oclIsKindOf(uml::Lifeline) or element.oclIsKindOf(uml::InteractionFragment) or element.oclIsKindOf(uml::Gate))) then
 				return switch {
 							
-					case (self.type = 'NameLabel') '6003';
-					case (self.type = 'KindLabel') '6010';
+					case (self.type = 'NameLabel') 'Message_ReplyNameLabel';
+					case (self.type = 'KindLabel') 'Message_ReplyStereotypeLabel';
 				}
 			
 			elif element.oclIsTypeOf(Message) and (element.oclIsKindOf(uml::InteractionFragment) or element.oclIsKindOf(uml::Lifeline)) and (element.oclIsKindOf(uml::Lifeline)) then
 				return switch {
 							
-					case (self.type = 'NameLabel') '6004';
-					case (self.type = 'KindLabel') '6011';
+					case (self.type = 'NameLabel') 'Message_CreateNameLabel';
+					case (self.type = 'KindLabel') 'Message_CreateStereotypeLabel';
 				}
 			
 			elif element.oclIsTypeOf(Message) and (element.oclIsKindOf(uml::InteractionFragment) or element.oclIsKindOf(uml::Lifeline)) and (element.oclIsKindOf(uml::DestructionOccurrenceSpecification) or element.oclIsKindOf(uml::Lifeline)) then
 				return switch {
 							
-					case (self.type = 'NameLabel') '6005';
-					case (self.type = 'KindLabel') '6012';
+					case (self.type = 'NameLabel') 'Message_DeleteNameLabel';
+					case (self.type = 'KindLabel') 'Message_DeleteStereotypeLabel';
 				}
 			
 			elif element.oclIsTypeOf(Message) and ((element.oclIsKindOf(uml::Lifeline) or element.oclIsKindOf(uml::InteractionFragment) or element.oclIsKindOf(uml::Gate))) and (element.oclIsKindOf(uml::Interaction)) then
 				return switch {
 							
-					case (self.type = 'NameLabel') '6006';
-					case (self.type = 'KindLabel') '6013';
+					case (self.type = 'NameLabel') 'Message_LostNameLabel';
+					case (self.type = 'KindLabel') 'Message_LostStereotypeLabel';
 				}
 			
 			elif element.oclIsTypeOf(Message) and (element.oclIsKindOf(uml::Interaction)) and ((element.oclIsKindOf(uml::Lifeline) or element.oclIsKindOf(uml::InteractionFragment) or element.oclIsKindOf(uml::Gate))) then
 				return switch {
 							
-					case (self.type = 'NameLabel') '6007';
-					case (self.type = 'KindLabel') '6014';
+					case (self.type = 'NameLabel') 'Message_FoundNameLabel';
+					case (self.type = 'KindLabel') 'Message_FoundStereotypeLabel';
 				}
 			
 			elif element.oclIsTypeOf(GeneralOrdering)  then
 				return switch {
 							
-					case (self.type = 'KindLabel') '6015';
+					case (self.type = 'KindLabel') 'GeneralOrdering_StereotypeLabel';
 				}
 			
 		endif
@@ -366,14 +367,14 @@ query View::doGetDecorationType(element : Element) : String{
 
 query View::getEdgeType(element : Element) : String {
 	return
-		if element.oclIsTypeOf(Message) then '4003'
-		elif element.oclIsTypeOf(Message) then '4004'
-		elif element.oclIsTypeOf(Message) then '4005'
-		elif element.oclIsTypeOf(Message) then '4006'
-		elif element.oclIsTypeOf(Message) then '4007'
-		elif element.oclIsTypeOf(Message) then '4008'
-		elif element.oclIsTypeOf(Message) then '4009'
-		elif element.oclIsTypeOf(GeneralOrdering) then '4012'
+		if element.oclIsTypeOf(Message) then 'Message_SynchEdge'
+		elif element.oclIsTypeOf(Message) then 'Message_AsynchEdge'
+		elif element.oclIsTypeOf(Message) then 'Message_ReplyEdge'
+		elif element.oclIsTypeOf(Message) then 'Message_CreateEdge'
+		elif element.oclIsTypeOf(Message) then 'Message_DeleteEdge'
+		elif element.oclIsTypeOf(Message) then 'Message_LostEdge'
+		elif element.oclIsTypeOf(Message) then 'Message_FoundEdge'
+		elif element.oclIsTypeOf(GeneralOrdering) then 'GeneralOrdering_Edge'
 		else self.fail()
 	endif;
 }

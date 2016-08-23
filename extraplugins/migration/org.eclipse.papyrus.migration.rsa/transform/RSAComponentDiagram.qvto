@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 465656
  *****************************************************************************/
 import RSAToPapyrus;
 
@@ -149,15 +150,15 @@ mapping uml::Interface::fillReception(node : BasicSemanticCompartment) : Sequenc
 }
 
 mapping Property::toPropertyInInterface(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '1';
+	result.type := 'Property_InterfaceAttributeLabel';
 }
 
 mapping Operation::toOperationInInterface(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '5';
+	result.type := 'Operation_InterfaceOperationLabel';
 }
 
 mapping Reception::toReceptionInInterface(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '6';
+	result.type := 'Reception_InterfaceReceptionLabel';
 }
 
 
@@ -186,17 +187,17 @@ mapping UMLConnector::toPapyrusConnector() : Connector inherits Connector::toPap
 
 query View::getNodeType(element : Element) : String {
 	return
-		if element.oclIsTypeOf(Component) then '2002' 
-		elif element.oclIsTypeOf(Dependency) then '3203' 
-		elif element.oclIsTypeOf(Package) then '3200' 
-		elif element.oclIsTypeOf(Port) then '3069' 
-		elif element.oclIsTypeOf(Comment) then '3201' 
-		elif element.oclIsTypeOf(Interface) then '3205' 
-		elif element.oclIsTypeOf(Model) then '3202' 
-		elif element.oclIsTypeOf(Property) then '1' 
-		elif element.oclIsTypeOf(Constraint) then '3199' 
-		elif element.oclIsTypeOf(Operation) then '5' 
-		elif element.oclIsTypeOf(Reception) then '6' 
+		if element.oclIsTypeOf(Component) then 'Component_PackagedElementShape' 
+		elif element.oclIsTypeOf(Dependency) then 'Dependency_Shape' 
+		elif element.oclIsTypeOf(Package) then 'Package_Shape' 
+		elif element.oclIsTypeOf(Port) then 'Port_Shape' 
+		elif element.oclIsTypeOf(Comment) then 'Comment_Shape' 
+		elif element.oclIsTypeOf(Interface) then 'Interface_ClassifierShape' 
+		elif element.oclIsTypeOf(Model) then 'Model_Shape' 
+		elif element.oclIsTypeOf(Property) then 'Property_InterfaceAttributeLabel' 
+		elif element.oclIsTypeOf(Constraint) then 'Constraint_Shape' 
+		elif element.oclIsTypeOf(Operation) then 'Operation_InterfaceOperationLabel' 
+		elif element.oclIsTypeOf(Reception) then 'Reception_InterfaceReceptionLabel' 
 		else self.fail()
 	endif;
 }
@@ -211,33 +212,33 @@ query View::doGetDecorationType(element : Element) : String{
 	return if self.container().oclIsKindOf(Node) then {
 		return if element.oclIsTypeOf(Component) then
 			return switch {
-				case (self.type = 'Name') '5004';
-				case (self.type = 'StructureCompartment') '7001';
+				case (self.type = 'Name') 'Component_NameLabel';
+				case (self.type = 'StructureCompartment') 'Component_StructureCompartment';
 			}
 			elif element.oclIsTypeOf(Package) then
 				return switch {
-					case (self.type = 'Name') '5254';
-					case (self.type = 'PackageContents') '7002';
+					case (self.type = 'Name') 'Package_NameLabel';
+					case (self.type = 'PackageContents') 'Package_PackagedElementCompartment';
 				}
 			elif element.oclIsTypeOf(Port) then
 				return switch {
-					case (self.type = 'Name') '5006';
+					case (self.type = 'Name') 'Port_NameLabel';
 					
 				}
 			elif element.oclIsTypeOf(Interface) then
 				return switch {
-					case (self.type = 'Name') '5266';
-					case (self.type = 'AttributeCompartment') '7008';
-				case (self.type = 'ReceptionCompartment') '7009';
+					case (self.type = 'Name') 'Interface_ClassifierNameLabel';
+					case (self.type = 'AttributeCompartment') 'Interface_AttributeCompartment';
+				case (self.type = 'ReceptionCompartment') 'Interface_OperationCompartment';
 				}
 			elif element.oclIsTypeOf(Model) then
 				return switch {
-					case (self.type = 'Name') '5262';
-					case (self.type = 'StructureCompartment') '7006';
+					case (self.type = 'Name') 'Model_NameLabel';
+					case (self.type = 'StructureCompartment') 'Model_PackagedElementCompartment';
 				}
 			elif element.oclIsTypeOf(Constraint) then
 				return switch {
-					case (self.type = 'Name') '5252';
+					case (self.type = 'Name') 'Constraint_NameLabel';
 					
 				}
 
@@ -246,42 +247,42 @@ query View::doGetDecorationType(element : Element) : String{
 		return if element.oclIsTypeOf(Generalization) then
 				return switch {
 							
-					case (self.type = 'KindLabel') '2';
+					case (self.type = 'KindLabel') 'Generalization_StereotypeLabel';
 				}
 			
 			elif element.oclIsTypeOf(Substitution) then
 				return switch {
-					case (self.type='Name') '6006';		
-					case (self.type = 'NameLabel') '6006';
-					case (self.type = 'KindLabel') '6020';
+					case (self.type='Name') 'Substitution_NameLabel';		
+					case (self.type = 'NameLabel') 'Substitution_NameLabel';
+					case (self.type = 'KindLabel') 'Substitution_StereotypeLabel';
 				}
 			
 			elif element.oclIsTypeOf(Manifestation) then
 				return switch {
-					case (self.type='Name') '6008';		
-					case (self.type = 'NameLabel') '6008';
-					case (self.type = 'KindLabel') '6022';
+					case (self.type='Name') 'Manifestation_NameLabel';		
+					case (self.type = 'NameLabel') 'Manifestation_NameLabel';
+					case (self.type = 'KindLabel') 'Manifestation_StereotypeLabel';
 				}
 			
 			elif element.oclIsTypeOf(ComponentRealization) then
 				return switch {
-					case (self.type='Name') '3';		
-					case (self.type = 'NameLabel') '3';
-					case (self.type = 'KindLabel') '4';
+					case (self.type='Name') 'ComponentRealization_NameLabel';		
+					case (self.type = 'NameLabel') 'ComponentRealization_NameLabel';
+					case (self.type = 'KindLabel') 'ComponentRealization_StereotypeLabel';
 				}
 			
 			elif element.oclIsTypeOf(Abstraction) then
 				return switch {
-					case (self.type='Name') '6007';		
-					case (self.type = 'NameLabel') '6007';
-					case (self.type = 'KindLabel') '6021';
+					case (self.type='Name') 'Abstraction_NameLabel';		
+					case (self.type = 'NameLabel') 'Abstraction_NameLabel';
+					case (self.type = 'KindLabel') 'Abstraction_StereotypeLabel';
 				}
 			
 			elif element.oclIsTypeOf(Dependency) then
 				return switch {
-					case (self.type='Name') '6009';		
-					case (self.type = 'NameLabel') '6009';
-					case (self.type = 'KindLabel') '6023';
+					case (self.type='Name') 'Dependency_NameLabel';		
+					case (self.type = 'NameLabel') 'Dependency_NameLabel';
+					case (self.type = 'KindLabel') 'Dependency_StereotypeLabel';
 				}
 			
 		endif
@@ -291,15 +292,15 @@ query View::doGetDecorationType(element : Element) : String{
 
 query View::getEdgeType(element : Element) : String {
 	return
-		if element.oclIsTypeOf(Usage) then '4001'
-		elif element.oclIsTypeOf(InterfaceRealization) then '4006'
-		elif element.oclIsTypeOf(Generalization) then '4003'
-		elif element.oclIsTypeOf(Substitution) then '4012'
-		elif element.oclIsTypeOf(Manifestation) then '4014'
-		elif element.oclIsTypeOf(ComponentRealization) then '4007'
-		elif element.oclIsTypeOf(Abstraction) then '4013'
-		elif element.oclIsTypeOf(Dependency) then '4010'
-		elif element.oclIsTypeOf(Dependency) then '4017'
+		if element.oclIsTypeOf(Usage) then 'Usage_Edge'
+		elif element.oclIsTypeOf(InterfaceRealization) then 'InterfaceRealization_Edge'
+		elif element.oclIsTypeOf(Generalization) then 'Generalization_Edge'
+		elif element.oclIsTypeOf(Substitution) then 'Substitution_Edge'
+		elif element.oclIsTypeOf(Manifestation) then 'Manifestation_Edge'
+		elif element.oclIsTypeOf(ComponentRealization) then 'ComponentRealization_Edge'
+		elif element.oclIsTypeOf(Abstraction) then 'Abstraction_Edge'
+		elif element.oclIsTypeOf(Dependency) then 'Dependency_Edge'
+		elif element.oclIsTypeOf(Dependency) then 'Dependency_BranchEdge'
 		else self.fail()
 	endif;
 }

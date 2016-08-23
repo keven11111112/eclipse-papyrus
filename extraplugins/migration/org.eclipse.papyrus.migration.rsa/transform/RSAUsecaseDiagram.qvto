@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 465656
  *****************************************************************************/
 import RSAToPapyrus;
 import org.eclipse.papyrus.m2m.qvto.Properties;
@@ -36,15 +37,15 @@ mapping notation::Diagram::generateDiagram() : notation::Diagram inherits Diagra
 }{
 	end {
 		//Remove Generalization#name since it is not supported in Papyrus
-		result.edges->select(e | e.type = '4010').children->selectByType(DecorationNode)->select(type.oclIsUndefined()).map delete();
+		result.edges->select(e | e.type = 'Generalization_Edge').children->selectByType(DecorationNode)->select(type.oclIsUndefined()).map delete();
 		
 		//Change the position of the Actor#name Label, since it is fixed in RSA and Floating in Papyrus
-		graphics.objectsOfType(DecorationNode)->select(type = '5014').map fixActorLabelPosition();
+		graphics.objectsOfType(DecorationNode)->select(type = 'Actor_NameLabel').map fixActorLabelPosition();
 	}
 }
 
 mapping inout notation::DecorationNode::fixActorLabelPosition() when {
-	self.type = '5014'
+	self.type = 'Actor_NameLabel'
 } {
 	self.layoutConstraint := object Location {
 		x := 20;
@@ -121,7 +122,7 @@ mapping UMLConnector::toCommentLink() : Connector inherits Connector::toCommentL
 	 	self.target.element.oclIsKindOf(Comment)
 	)
 }{
-	result.type :='4014';
+	result.type :='Comment_AnnotatedElementEdge';
 	result.bendpoints := self.bendpoints.map toBendpoint(self.diagram);
 	result.sourceAnchor := object IdentityAnchor{};		
 }
@@ -132,7 +133,7 @@ mapping UMLConnector::toConstraintLink() : Connector inherits Connector::toPapyr
 	 	self.target.element.oclIsKindOf(Constraint)
 	)
 }{	
-	result.type :='4012';
+	result.type :='Constraint_ConstrainedElementEdge';
 	result.bendpoints := self.bendpoints.map toBendpoint(self.diagram);
 	result.sourceAnchor := object IdentityAnchor{};		
 }
@@ -213,7 +214,7 @@ mapping uml::UseCase::fillExtensionPoint(node : ListCompartment) : Sequence(Node
 
  //5. ChildLabelNode x TopNode visual ID
 mapping ExtensionPoint::toExtensionPointInUseCase(node : Node) : Shape inherits Element::toCompartmentEntry {
-	result.type := '3007';
+	result.type := 'ExtensionPoint_ExtensionPointLabel';
 }
 
 query View::getDecorationType(element : Element) : String{
@@ -235,29 +236,29 @@ query View::getDecorationType(element : Element) : String{
 
 query View::getNodeType(element : Element) : String {
 	return
-		if element.oclIsTypeOf(Actor) then '2011'
-		elif element.oclIsTypeOf(UseCase) then '2013'
-		elif element.oclIsTypeOf(Package) then '2016'
-		elif element.oclIsTypeOf(Constraint) then '2017'
-		elif element.oclIsTypeOf(Comment) then '2018'
-		elif element.oclIsTypeOf(Diagram) then '2019'
-		elif element.oclIsKindOf(Classifier) then '2015'
-		elif element.oclIsKindOf(NamedElement) then '2022' 
+		if element.oclIsTypeOf(Actor) then 'Actor_Shape'
+		elif element.oclIsTypeOf(UseCase) then 'UseCase_Shape'
+		elif element.oclIsTypeOf(Package) then 'Package_Shape'
+		elif element.oclIsTypeOf(Constraint) then 'Constraint_Shape'
+		elif element.oclIsTypeOf(Comment) then 'Comment_Shape'
+		elif element.oclIsTypeOf(Diagram) then 'Diagram_ShortcutShape'
+		elif element.oclIsKindOf(Classifier) then 'Classifier_SubjectShape'
+		elif element.oclIsKindOf(NamedElement) then 'NamedElement_DefaultShape' 
 		else self.fail()
 	endif;
 }
 query View::getEdgeType(element : Element) : String {
 	return if self.type = 'Reference' then '' /* Context and Constraint Links handled separately */ 
-		elif  self.element.oclIsTypeOf(Include) then '4008'
-		elif  self.element.oclIsTypeOf(Extend) then '4009'
-		elif  self.element.oclIsTypeOf(Generalization) then '4010'
-		elif  self.element.oclIsTypeOf(Association) then '4011'
-		elif  self.element.oclIsTypeOf(Dependency) then '4013'
-		elif  self.element.oclIsTypeOf(Abstraction) then '4015'
-		elif  self.element.oclIsTypeOf(Usage) then '4016'
-		elif  self.element.oclIsTypeOf(Realization) then '4017'
-		elif  self.element.oclIsTypeOf(PackageMerge) then '4018'
-		elif  self.element.oclIsTypeOf(PackageImport) then '4019'
+		elif  self.element.oclIsTypeOf(Include) then 'Include_Edge'
+		elif  self.element.oclIsTypeOf(Extend) then 'Extend_Edge'
+		elif  self.element.oclIsTypeOf(Generalization) then 'Generalization_Edge'
+		elif  self.element.oclIsTypeOf(Association) then 'Association_Edge'
+		elif  self.element.oclIsTypeOf(Dependency) then 'Dependency_Edge'
+		elif  self.element.oclIsTypeOf(Abstraction) then 'Abstraction_Edge'
+		elif  self.element.oclIsTypeOf(Usage) then 'Usage_Edge'
+		elif  self.element.oclIsTypeOf(Realization) then 'Realization_Edge'
+		elif  self.element.oclIsTypeOf(PackageMerge) then 'PackageMerge_Edge'
+		elif  self.element.oclIsTypeOf(PackageImport) then 'PackageImport_Edge'
 		else self.fail()
 	endif;
 }
@@ -270,126 +271,126 @@ query View::doGetDecorationType(element : Element) : String{
 		
 		element.oclIsKindOf(Actor) then
 		return switch {
-			case (self.type = 'Name') '5014';
-			case (self.type = 'UNKNOWN') '6029';
-			case (self.type = 'UNKNOWN') '6037';
-			case (self.type = 'Name') '6048';
+			case (self.type = 'Name') 'Actor_NameLabel';
+			case (self.type = 'UNKNOWN') 'Actor_StereotypeLabel';
+			case (self.type = 'UNKNOWN') 'Actor_QualifiedNameLabel';
+			case (self.type = 'Name') 'Actor_FloatingNameLabel';
 		}
 		elif
 		element.oclIsKindOf(Actor) then
 		return switch {
-			case (self.type = 'Name') '5015';
+			case (self.type = 'Name') 'Actor_ClassifierNameLabel';
 		}
 		elif
 		element.oclIsKindOf(UseCase) then
 		return switch {
-			case (self.type = 'Name') '5016';
-			case (self.type = 'Name') '6038';
-			case (self.type = 'Extension_Points') '7009';
+			case (self.type = 'Name') 'UseCase_NameLabel';
+			case (self.type = 'Name') 'UseCase_FloatingNameLabel';
+			case (self.type = 'Extension_Points') 'UseCase_ExtensionPointCompartment';
 		}
 		elif
 		element.oclIsKindOf(UseCase) then
 		return switch {
-			case (self.type = 'Name') '5017';
-			case (self.type = 'Extension_Points') '7010';
+			case (self.type = 'Name') 'UseCase_ClassifierNameLabel';
+			case (self.type = 'Extension_Points') 'UseCase_ClassifierExtensionPointCompartment';
 		}
 		elif
 		element.oclIsKindOf(Classifier) then
 		return switch {
-			case (self.type = 'Name') '5019';
-			case (self.type = 'Name') '6047';
-			case (self.type = 'UseCaseShapeCompartment') '7011';
+			case (self.type = 'Name') 'Classifier_NameLabel';
+			case (self.type = 'Name') 'Classifier_FloatingNameLabel';
+			case (self.type = 'UseCaseShapeCompartment') 'Classifier_UseCaseCompartment';
 		}
 		elif
 		element.oclIsKindOf(Package) then
 		return switch {
-			case (self.type = 'Name') '5025';
-			case (self.type = 'PackageContents') '7013';
+			case (self.type = 'Name') 'Package_NameLabel';
+			case (self.type = 'PackageContents') 'Package_PackagedElementCompartment';
 		}
 		elif
 		element.oclIsKindOf(Constraint) then
 		return switch {
-			case (self.type = 'Name') '5026';
-			case (self.type = 'ValueSpecification') '6042';
+			case (self.type = 'Name') 'Constraint_NameLabel';
+			case (self.type = 'ValueSpecification') 'Constraint_BodyLabel';
 		}
 		elif
 		element.oclIsKindOf(Comment) then
 		return switch {
-			case (self.type = 'CommentBody') '5027';
+			case (self.type = 'CommentBody') 'Comment_BodyLabel';
 		}
 		elif
 		element.oclIsKindOf(NamedElement) then
 		return switch {
-			case (self.type = 'Name') '6039';
+			case (self.type = 'Name') 'NamedElement_NameLabel';
 		}
 		elif
 		element.oclIsKindOf(Diagram) then
 		return switch {
-			case (self.type = 'Name') '5032';
+			case (self.type = 'Name') 'Diagram_NameLabel';
 		}
 		endif
 	} else { /* Floating Edge Labels */
 		return if 
 		element.oclIsKindOf(Include) then
 			return switch {
-				case (self.type='KindLabel') '6006';
-				case (self.type='Stereotype') '6030';
+				case (self.type='KindLabel') 'Include_KeywordLabel';
+				case (self.type='Stereotype') 'Include_StereotypeLabel';
 			}
 		elif 
 		element.oclIsKindOf(Extend) then
 			return switch {
-				case (self.type='KindLabel') '6007';
-				case (self.type='Stereotype') '6031';
+				case (self.type='KindLabel') 'Extend_KeywordLabel';
+				case (self.type='Stereotype') 'Extend_StereotypeLabel';
 			}
 		elif 
 		element.oclIsKindOf(Generalization) then
 			return switch {
-				case (self.type='Stereotype') '6032';
+				case (self.type='Stereotype') 'Generalization_StereotypeLabel';
 			}
 		elif 
 		element.oclIsKindOf(Association) then
 			return switch {
-				case (self.type='Name') '6008';
-				case (self.type='Stereotype') '6033';
-				case (self.type='NameLabel') '6008';
+				case (self.type='Name') 'Association_NameLabel';
+				case (self.type='Stereotype') 'Association_StereotypeLabel';
+				case (self.type='NameLabel') 'Association_NameLabel';
 			}
 		elif  
 		element.oclIsKindOf(Realization) then
 			return switch {
-				case (self.type='Name') '6015';
-				case (self.type='Stereotype') '6035';
-				case (self.type='NameLabel') '6015';
+				case (self.type='Name') 'Realization_NameLabel';
+				case (self.type='Stereotype') 'Realization_StereotypeLabel';
+				case (self.type='NameLabel') 'Realization_NameLabel';
 			}
 		elif 
 		element.oclIsKindOf(Abstraction) then
 			return switch {
-				case (self.type='Name') '6011';
-				case (self.type='Stereotype') '6014';
-				case (self.type='NameLabel') '6011';
+				case (self.type='Name') 'Abstraction_NameLabel';
+				case (self.type='Stereotype') 'Abstraction_StereotypeLabel';
+				case (self.type='NameLabel') 'Abstraction_NameLabel';
 			}
 		elif 
 		element.oclIsKindOf(Usage) then
 			return switch {
-				case (self.type='Name') '6012';
-				case (self.type='Stereotype') '6013';
-				case (self.type='NameLabel') '6012';
+				case (self.type='Name') 'Usage_NameLabel';
+				case (self.type='Stereotype') 'Usage_StereotypeLabel';
+				case (self.type='NameLabel') 'Usage_NameLabel';
 			}
 		elif
 		element.oclIsKindOf(Dependency) then
 			return switch {
-				case (self.type='Name') '6010';
-				case (self.type='Stereotype') '6034';
-				case (self.type='NameLabel') '6010';
+				case (self.type='Name') 'Dependency_NameLabel';
+				case (self.type='Stereotype') 'Dependency_StereotypeLabel';
+				case (self.type='NameLabel') 'Dependency_NameLabel';
 			}
 		elif 
 		element.oclIsKindOf(PackageMerge) then
 			return switch {
-				case (self.type='Stereotype') '0';
+				case (self.type='Stereotype') 'PackageMerge_StereotypeLabel';
 			}
 		elif 
 		element.oclIsKindOf(PackageImport) then
 			return switch {
-				case (self.type='Stereotype') '6036';
+				case (self.type='Stereotype') 'PackageImport_StereotypeLabel';
 			}
 		endif;
 	} endif;
