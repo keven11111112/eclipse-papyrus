@@ -26,13 +26,13 @@ public class SysMLRequirementsDefaultQuerySwitch implements IDefaultQuerySwitch{
 	@Override
 	public Object calculateValue(String operationName, Element element) {
 		switch (operationName) {
-		case "countRequirementsInAllOwnedElements":
+		case I_Requirements_Operations.N_REQS:
 			return countRequirementsInAllOwnedElements(element);
 
-		case "countUnsatisfiedRequirementsInAllOwnedElements":
+		case I_Requirements_Operations.N_UNSAT_REQS:
 			return countUnsatisfiedRequirementsInAllOwnedElements(element);
 
-		case "countSatisfiedRequirementsInAllOwnedElements":
+		case I_Requirements_Operations.N_SAT_REQS:
 			return countSatisfiedRequirementsInAllOwnedElements(element);
 		}
 		return null;
@@ -56,7 +56,7 @@ public class SysMLRequirementsDefaultQuerySwitch implements IDefaultQuerySwitch{
 		for (Element e : element.allOwnedElements()) {
 			if (e.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE) != null) {
 				Stereotype reqStereotype = e.getAppliedStereotype(I_SysMLStereotype.REQUIREMENT_STEREOTYPE);
-				Object listOfObjectsThatSatisfyRequirement = e.getValue(reqStereotype, "satisfiedBy");
+				Object listOfObjectsThatSatisfyRequirement = e.getValue(reqStereotype, I_SysMLStereotype.REQUIREMENT_SATISFIEDBY_ATT);
 				if (listOfObjectsThatSatisfyRequirement instanceof EList<?>) {
 					@SuppressWarnings("unchecked")
 					EList<EObject> list = (EList<EObject>) listOfObjectsThatSatisfyRequirement;
@@ -68,6 +68,4 @@ public class SysMLRequirementsDefaultQuerySwitch implements IDefaultQuerySwitch{
 		}
 		return numberOfUnsatisfiedRequirements;
 	}
-
-
 }
