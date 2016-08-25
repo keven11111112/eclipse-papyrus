@@ -95,8 +95,8 @@ public class OCLEvaluationView extends ViewPart {
 		EnvironmentFactory environmentFactory = metamodelManager.getEnvironmentFactory();
 		OCL ocl = OCL.newInstance(environmentFactory);
 		org.eclipse.ocl.pivot.Class contextType = ocl.getContextType(contextObject);
-		OCLHelper oclHelper = ocl.createOCLHelper(contextType);
 		try {
+		OCLHelper oclHelper = ocl.createOCLHelper(contextType);
 			ExpressionInOCL createQuery = oclHelper.createQuery(expression);
 			Object evaluate = ocl.evaluate(contextObject, createQuery);
 			String print = evaluate.toString();
