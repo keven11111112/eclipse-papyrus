@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Tests" sequenceNumber="1471882195">
+<target name="Papyrus Tests" sequenceNumber="1472124206">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
@@ -37,9 +37,9 @@
       <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC1-201608170420/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.2.0.v20160523-1914"/>
-      <unit id="org.eclipse.ocl.examples.feature.group" version="6.1.0.v20160526-1513"/>
-      <repository id="ocl" location="http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.1.0"/>
+      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.2.1.v20160808-1416"/>
+      <unit id="org.eclipse.ocl.examples.feature.group" version="6.1.1.v20160808-1615"/>
+      <repository id="ocl" location="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.1/S201608201313"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xwt.feature.feature.group" version="1.2.0.v20160502-1019"/>
@@ -69,9 +69,9 @@
       <repository id="emfQuery" location="http://download.eclipse.org/modeling/emf/query/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.wst.xml_sdk.feature.feature.group" version="3.8.0.v201605120129"/>
-      <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.8.0.v201605120129"/>
-      <repository id="webtools" location="http://download.eclipse.org/webtools/downloads/drops/R3.8.0/R-3.8.0-20160608130753/repository/"/>
+      <unit id="org.eclipse.wst.xml_sdk.feature.feature.group" version="3.9.0.v201608061824"/>
+      <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.9.0.v201608061824"/>
+      <repository id="webtools" location="http://download.eclipse.org/webtools/downloads/drops/R3.8.1/S-3.8.1RC1-20160818152815/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.validation.sdk.feature.group" version="1.10.0.201606071713"/>

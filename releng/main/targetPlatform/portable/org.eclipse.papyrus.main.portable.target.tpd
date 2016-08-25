@@ -52,7 +52,7 @@ location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.
 
 //updateFrom("MDT OCL 6.0",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.1.0" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.1/S201608201313" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -96,7 +96,7 @@ location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releas
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.8.0/R-3.8.0-20160608130753/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.8.1/S-3.8.1RC1-20160818152815/repository/" {
 	org.eclipse.wst.xml_sdk.feature.feature.group
 	org.eclipse.wst.xml_ui.feature.feature.group
 }
