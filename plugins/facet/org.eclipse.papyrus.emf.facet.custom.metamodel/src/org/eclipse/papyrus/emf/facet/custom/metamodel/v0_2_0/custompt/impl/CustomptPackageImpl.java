@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IColor;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment;
@@ -28,14 +29,12 @@ import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class CustomptPackageImpl extends EPackageImpl implements CustomptPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private EEnum shadowEEnum = null;
@@ -43,7 +42,6 @@ public class CustomptPackageImpl extends EPackageImpl implements CustomptPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private EEnum alignmentEEnum = null;
@@ -51,7 +49,6 @@ public class CustomptPackageImpl extends EPackageImpl implements CustomptPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private EDataType imageEDataType = null;
@@ -59,17 +56,26 @@ public class CustomptPackageImpl extends EPackageImpl implements CustomptPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private EDataType colorEDataType = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType styledLabelEDataType = null;
+
+	/**
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptPackage#eNS_URI
 	 * @see #init()
@@ -82,29 +88,26 @@ public class CustomptPackageImpl extends EPackageImpl implements CustomptPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 *
-	 * <p>
-	 * This method is used to initialize {@link CustomptPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
+	 * <p>This method is used to initialize {@link CustomptPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static CustomptPackage init() {
-		if (isInited) {
-			return (CustomptPackage) EPackage.Registry.INSTANCE.getEPackage(CustomptPackage.eNS_URI);
-		}
+		if (isInited) return (CustomptPackage)EPackage.Registry.INSTANCE.getEPackage(CustomptPackage.eNS_URI);
 
 		// Obtain or create and register package
-		CustomptPackageImpl theCustomptPackage = (CustomptPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof CustomptPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new CustomptPackageImpl());
+		CustomptPackageImpl theCustomptPackage = (CustomptPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof CustomptPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new CustomptPackageImpl());
 
 		isInited = true;
 
@@ -117,7 +120,7 @@ public class CustomptPackageImpl extends EPackageImpl implements CustomptPackage
 		// Mark meta-data to indicate it can't be changed
 		theCustomptPackage.freeze();
 
-
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(CustomptPackage.eNS_URI, theCustomptPackage);
 		return theCustomptPackage;
@@ -126,7 +129,6 @@ public class CustomptPackageImpl extends EPackageImpl implements CustomptPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EEnum getShadow() {
@@ -136,7 +138,6 @@ public class CustomptPackageImpl extends EPackageImpl implements CustomptPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EEnum getAlignment() {
@@ -146,7 +147,6 @@ public class CustomptPackageImpl extends EPackageImpl implements CustomptPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EDataType getImage() {
@@ -156,7 +156,6 @@ public class CustomptPackageImpl extends EPackageImpl implements CustomptPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EDataType getColor() {
@@ -166,33 +165,37 @@ public class CustomptPackageImpl extends EPackageImpl implements CustomptPackage
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public CustomptFactory getCustomptFactory() {
-		return (CustomptFactory) getEFactoryInstance();
+	public EDataType getStyledLabel() {
+		return styledLabelEDataType;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @generated
+	 */
+	public CustomptFactory getCustomptFactory() {
+		return (CustomptFactory)getEFactoryInstance();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is
+	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) {
-			return;
-		}
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create enums
@@ -202,28 +205,25 @@ public class CustomptPackageImpl extends EPackageImpl implements CustomptPackage
 		// Create data types
 		imageEDataType = createEDataType(IMAGE);
 		colorEDataType = createEDataType(COLOR);
+		styledLabelEDataType = createEDataType(STYLED_LABEL);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
+	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) {
-			return;
-		}
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -245,6 +245,7 @@ public class CustomptPackageImpl extends EPackageImpl implements CustomptPackage
 		// Initialize data types
 		initEDataType(imageEDataType, IImage.class, "Image", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(colorEDataType, IColor.class, "Color", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(styledLabelEDataType, org.eclipse.jface.viewers.StyledString.class, "StyledLabel", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

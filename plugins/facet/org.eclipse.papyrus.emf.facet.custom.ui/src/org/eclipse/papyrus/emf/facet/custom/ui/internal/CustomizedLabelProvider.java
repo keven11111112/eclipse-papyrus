@@ -16,13 +16,14 @@
  *      Gregoire Dupe (Mia-Software) - Bug 374941 - To be able to customize overlay icons on EClass
  *      Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  *      Vincent Lorenzo (CEA-LIST) - Bug 352603 - [Table] A tooltip which displays the full label of a String cell editor
- *      Grégoire Dupé(Mia-Software) - Bug 352603 - [Table] A tooltip which displays the full label of a String cell editor
+ *      Grï¿½goire Dupï¿½(Mia-Software) - Bug 352603 - [Table] A tooltip which displays the full label of a String cell editor
  *      David Couvrand (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  *  	Nicolas Rault (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  *      David Couvrand (Soft-Maint) - Bug 418418 - [Customization] Overlay icons not implemented
  *      David Couvrand (Soft-Maint) - Bug 422058 - Implementation of strikethrough and underline in the CustomizedLabelProvider
- *      Grégoire Dupé (Mia-Software) - Bug 424122 - [Table] Images, fonts and colors are not shared between the instances of table
+ *      Grï¿½goire Dupï¿½ (Mia-Software) - Bug 424122 - [Table] Images, fonts and colors are not shared between the instances of table
  *      Thomas Cicognani (Soft-Maint) - Bug 424414 - ImageManager doesn't cache images
+ *      Mickael ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 500219 - implementation of IStyledLabelProvider
  */
 package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
@@ -105,8 +106,8 @@ public class CustomizedLabelProvider extends CellLabelProvider implements
 	public String getText(final Object element) {
 		String result;
 		if (element instanceof EObject) {
-			result = getPropertyValue(element,
-					this.propertiesHandler.getLabelProperty(), null, String.class);
+			result = getPropertyValue(element, this.propertiesHandler.getLabelProperty(), null, String.class);
+
 		} else if (element == null) {
 			result = Messages.CustomizedLabelProvider_null;
 		} else if (element instanceof List<?>) {
@@ -139,6 +140,27 @@ public class CustomizedLabelProvider extends CellLabelProvider implements
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedLabelProvider#getStyledText(java.lang.Object)
+	 */
+	@Override
+	public StyledString getStyledText(final Object element) {
+		Object result = null;
+		if (element instanceof EObject) {
+			result = getPropertyValue(element,
+					this.propertiesHandler.getLabelProperty(), null, StyledString.class);
+			if (result instanceof String) {
+				result = new StyledString((String) result);
+			}
+		} else {
+			result = new StyledString(getText(element));
+		}
+
+		return (StyledString) result;
+	}
+
 	private static ICustomOverride getICustomOverride() {
 		final Bundle bundle = Activator.getDefault().getBundle();
 		final BundleContext bundleContext = bundle.getBundleContext();
@@ -150,17 +172,22 @@ public class CustomizedLabelProvider extends CellLabelProvider implements
 	}
 
 	public String getText(final Object object, final ETypedElement eTypedElement) {
-		String result;
+		String result = null;
 		if (object == null) {
 			result = Messages.CustomizedLabelProvider_null;
 		} else {
 			if (object instanceof EObject) {
 				final EObject eObject = (EObject) object;
 				try {
-					result = this.customManager.getCustomValueOf(eObject,
+					Object objectResult = this.customManager.getCustomValueOf(eObject,
 							eTypedElement,
 							this.propertiesHandler.getLabelProperty(),
-							String.class);
+							Object.class);
+					if (objectResult instanceof StyledString) {
+						result = objectResult.toString();
+					} else if (objectResult instanceof String) {
+						result = (String) objectResult;
+					}
 				} catch (CustomizationException e) {
 					Logger.logError(e, Activator.getDefault());
 					result = "!!! Error, cf log !!!";
@@ -171,27 +198,36 @@ public class CustomizedLabelProvider extends CellLabelProvider implements
 
 		}
 		return result;
+	}
 
-		// TODO Remove before to commit
-		// if (structuralFeature.getUpperBound() == 1) {
-		// final Object object = this.customManager.getFacetManager().get(eObject,
-		// structuralFeature, Object.class);
-		// result = getText(object);
-		// } else {
-		// final StringBuffer stringBuffer = new StringBuffer();
-		// final List<Object> objects = this.customManager.getFacetManager()
-		// .getMultiValued(eObject, structuralFeature, Object.class);
-		// final Iterator<Object> objectsIter = objects.iterator();
-		// while (objectsIter.hasNext()) {
-		// final Object object = objectsIter.next();
-		// stringBuffer.append(this.getText(object));
-		// if (objectsIter.hasNext()) {
-		// stringBuffer.append(", ");
-		// }
-		// }
-		// result = stringBuffer.toString();
-		// }
-		// TODO (end)
+	@Override
+	public StyledString getStyledText(final Object object, final ETypedElement eTypedElement) {
+		StyledString result = null;
+		if (object == null) {
+			result = new StyledString(Messages.CustomizedLabelProvider_null);
+		} else {
+			if (object instanceof EObject) {
+				final EObject eObject = (EObject) object;
+				try {
+					Object objectResult = this.customManager.getCustomValueOf(eObject,
+							eTypedElement,
+							this.propertiesHandler.getLabelProperty(),
+							Object.class);
+					if (objectResult instanceof StyledString) {
+						result = (StyledString) objectResult;
+					} else if (objectResult instanceof String) {
+						result = new StyledString((String) objectResult);
+					}
+				} catch (CustomizationException e) {
+					Logger.logError(e, Activator.getDefault());
+					result = new StyledString("!!! Error, cf log !!!");
+				}
+			} else {
+				result = new StyledString(object.toString());
+			}
+
+		}
+		return result;
 	}
 
 	@Override
@@ -585,10 +621,6 @@ public class CustomizedLabelProvider extends CellLabelProvider implements
 
 	public ICustomizedLabelProvider cloneLabelProvider() {
 		return new CustomizedLabelProvider(this.customManager);
-	}
-
-	public StyledString getStyledText(final Object element) {
-		return new StyledString(getText(element));
 	}
 
 }

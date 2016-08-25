@@ -10,6 +10,7 @@
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *      Gregoire Dupe (Mia-Software) - Bug 376576 - [EFacet] Change the multiplicity of Facet::extendedFacet
  *      David Couvrand (Soft-Maint) - Bug 418418 - [Customization] Overlay icons not implemented
+ *      Mickael ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 500219 - implementation of IStyledLabelProvider
  */
 package org.eclipse.papyrus.emf.facet.custom.core.internal.exported;
 
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.emf.facet.custom.core.exception.CustomizationException;
 import org.eclipse.papyrus.emf.facet.custom.core.internal.Activator;
@@ -127,6 +129,12 @@ public final class CustomizationUtils {
 						Activator.getDefault());
 			}
 		}
+
+		// Patch to convert StyledString to String in case of customManager provide StyleString and String is expected.
+		if (result instanceof StyledString && !classs.isInstance(result)) {
+			result = (T) result.toString();
+		}
+
 		return result;
 	}
 }

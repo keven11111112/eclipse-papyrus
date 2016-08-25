@@ -7,11 +7,14 @@
  *
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
+ *    Mickael ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 500219 - implementation of getStyledText
+ *    
  *******************************************************************************/
 package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement;
@@ -62,6 +65,32 @@ public class ResolvingCustomizedLabelProvider implements ICustomizedLabelProvide
 			result = this.delegate.getText(parent.getEObject(), treeElement.getEAttribute());
 		} else {
 			result = this.delegate.getText(CustomizedContentProviderUtils.resolve(element));
+		}
+		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedLabelProvider#getStyledText(java.lang.Object)
+	 */
+	@Override
+	public StyledString getStyledText(final Object element) {
+		StyledString result;
+		if (delegate instanceof ICustomizedLabelProvider) {
+			if (element instanceof EReferenceTreeElement) {
+				final EReferenceTreeElement treeElement = (EReferenceTreeElement) element;
+				final EObjectTreeElement parent = treeElement.getParent();
+				result = this.delegate.getStyledText(parent.getEObject(), treeElement.getEReference());
+			} else if (element instanceof EAttributeTreeElement) {
+				final EAttributeTreeElement treeElement = (EAttributeTreeElement) element;
+				final EObjectTreeElement parent = (EObjectTreeElement) treeElement.getParent();
+				result = this.delegate.getStyledText(parent.getEObject(), treeElement.getEAttribute());
+			} else {
+				result = this.delegate.getStyledText(CustomizedContentProviderUtils.resolve(element));
+			}
+		} else {
+			result = new StyledString(getText(element));
 		}
 		return result;
 	}
@@ -489,4 +518,5 @@ public class ResolvingCustomizedLabelProvider implements ICustomizedLabelProvide
 	public ICustomizedLabelProvider cloneLabelProvider() {
 		return new ResolvingCustomizedLabelProvider(this.delegate.cloneLabelProvider());
 	}
+
 }

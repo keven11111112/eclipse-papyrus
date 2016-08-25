@@ -11,13 +11,16 @@
  *      Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *      Vincent Lorenzo (CEA-LIST)   - Bug 372644 - Create Customizable tooltips for the TreeViewer using a CustomizableLabelProvider
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
+ *      Mickael ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 500219 - implementation of IStyledLabelProvider
  */
 package org.eclipse.papyrus.emf.facet.custom.ui;
 
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.IFontProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.swt.graphics.Image;
 
@@ -30,7 +33,7 @@ import org.eclipse.swt.graphics.Image;
  * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface ICustomizedLabelProvider extends ILabelProvider,
-		IColorProvider, IFontProvider, ICustomizedToolTipLabelProvider {
+		IColorProvider, IFontProvider, ICustomizedToolTipLabelProvider, IStyledLabelProvider {
 	/**
 	 * This method returns the customization manager used by the label provider. The
 	 * customization stack updates have to be done using this {@link ICustomizationManager}.
@@ -63,5 +66,26 @@ public interface ICustomizedLabelProvider extends ILabelProvider,
 	 * @since 0.2
 	 */
 	ICustomizedLabelProvider cloneLabelProvider();
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider#getStyledText(java.lang.Object)
+	 * 
+	 * @since 1.3
+	 */
+	@Override
+	default StyledString getStyledText(final Object element) {
+		return new StyledString(getText(element));
+	}
+
+	/**
+	 * Returns the styled text label for the given element.
+	 * 
+	 * @since 1.3
+	 */
+	default StyledString getStyledText(final Object element, final ETypedElement eTypedElement) {
+		return new StyledString(getText(element, eTypedElement));
+	}
 
 }

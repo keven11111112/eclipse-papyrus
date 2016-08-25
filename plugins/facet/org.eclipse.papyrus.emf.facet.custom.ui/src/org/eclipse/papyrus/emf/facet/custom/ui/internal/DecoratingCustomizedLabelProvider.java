@@ -7,6 +7,7 @@
  *
  * Contributors:
  *    David Couvrand (Soft-Maint) - Bug 418418 - [Customization] Overlay icons not implemented
+ *    Mickael ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 500219 - implementation of getStyledText
  *******************************************************************************/
 package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.jface.viewers.DecoratingStyledCellLabelProvider;
 import org.eclipse.jface.viewers.IDecorationContext;
 import org.eclipse.jface.viewers.ILabelDecorator;
+import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedLabelProvider;
 import org.eclipse.swt.graphics.Color;
@@ -30,6 +32,26 @@ public class DecoratingCustomizedLabelProvider extends
 			final ILabelDecorator decorator,
 			final IDecorationContext decorationContext) {
 		super(labelProvider, decorator, decorationContext);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.viewers.DecoratingStyledCellLabelProvider#getStyledText(java.lang.Object)
+	 */
+	@Override
+	public StyledString getStyledText(final Object element) {
+		return this.lblProvider.getStyledText(element);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedLabelProvider#getStyledText(java.lang.Object, org.eclipse.emf.ecore.ETypedElement)
+	 */
+	@Override
+	public StyledString getStyledText(final Object element, final ETypedElement eTypedElement) {
+		return this.lblProvider.getStyledText(element, eTypedElement);
 	}
 
 	public DecoratingCustomizedLabelProvider(

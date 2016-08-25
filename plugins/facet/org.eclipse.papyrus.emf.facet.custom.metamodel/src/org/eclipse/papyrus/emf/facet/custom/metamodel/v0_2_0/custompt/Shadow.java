@@ -24,7 +24,6 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Shadow</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptPackage#getShadow()
  * @model
  * @generated
@@ -34,7 +33,6 @@ public enum Shadow implements Enumerator {
 	 * The '<em><b>NONE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #NONE_VALUE
 	 * @generated
 	 * @ordered
@@ -45,7 +43,6 @@ public enum Shadow implements Enumerator {
 	 * The '<em><b>IN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #IN_VALUE
 	 * @generated
 	 * @ordered
@@ -56,7 +53,6 @@ public enum Shadow implements Enumerator {
 	 * The '<em><b>OUT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #OUT_VALUE
 	 * @generated
 	 * @ordered
@@ -70,7 +66,6 @@ public enum Shadow implements Enumerator {
 	 * If the meaning of '<em><b>NONE</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #NONE
 	 * @model
 	 * @generated
@@ -85,7 +80,6 @@ public enum Shadow implements Enumerator {
 	 * If the meaning of '<em><b>IN</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #IN
 	 * @model
 	 * @generated
@@ -100,7 +94,6 @@ public enum Shadow implements Enumerator {
 	 * If the meaning of '<em><b>OUT</b></em>' literal object isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #OUT
 	 * @model
 	 * @generated
@@ -112,21 +105,19 @@ public enum Shadow implements Enumerator {
 	 * An array of all the '<em><b>Shadow</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private static final Shadow[] VALUES_ARRAY =
 			new Shadow[] {
-					NONE,
-					IN,
-					OUT,
-			};
+			NONE,
+			IN,
+			OUT,
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>Shadow</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public static final List<Shadow> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -135,7 +126,8 @@ public enum Shadow implements Enumerator {
 	 * Returns the '<em><b>Shadow</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static Shadow get(String literal) {
@@ -152,7 +144,8 @@ public enum Shadow implements Enumerator {
 	 * Returns the '<em><b>Shadow</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static Shadow getByName(String name) {
@@ -169,17 +162,15 @@ public enum Shadow implements Enumerator {
 	 * Returns the '<em><b>Shadow</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static Shadow get(int value) {
 		switch (value) {
-		case NONE_VALUE:
-			return NONE;
-		case IN_VALUE:
-			return IN;
-		case OUT_VALUE:
-			return OUT;
+			case NONE_VALUE: return NONE;
+			case IN_VALUE: return IN;
+			case OUT_VALUE: return OUT;
 		}
 		return null;
 	}
@@ -187,7 +178,6 @@ public enum Shadow implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private final int value;
@@ -195,7 +185,6 @@ public enum Shadow implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private final String name;
@@ -203,7 +192,6 @@ public enum Shadow implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private final String literal;
@@ -212,7 +200,6 @@ public enum Shadow implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private Shadow(int value, String name, String literal) {
@@ -224,38 +211,34 @@ public enum Shadow implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public int getValue() {
-		return value;
+	  return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String getName() {
-		return name;
+	  return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String getLiteral() {
-		return literal;
+	  return literal;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

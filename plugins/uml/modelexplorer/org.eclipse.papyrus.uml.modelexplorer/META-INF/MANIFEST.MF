@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.modelexplorer,
  org.eclipse.papyrus.uml.modelexplorer.factory,
  org.eclipse.papyrus.uml.modelexplorer.handler,
+ org.eclipse.papyrus.uml.modelexplorer.preferences,
  org.eclipse.papyrus.uml.modelexplorer.queries,
  org.eclipse.papyrus.uml.modelexplorer.util
 Require-Bundle: org.eclipse.papyrus.views.modelexplorer;bundle-version="[3.0.0,4.0.0)",

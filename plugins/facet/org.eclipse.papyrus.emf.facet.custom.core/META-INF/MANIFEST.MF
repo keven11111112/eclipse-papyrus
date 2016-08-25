@@ -7,7 +7,7 @@ Export-Package: org.eclipse.papyrus.emf.facet.custom.core,
  org.eclipse.papyrus.emf.facet.custom.core.internal.query
 Require-Bundle: org.eclipse.ui;bundle-version="[3.107.0,4.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)",
- org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="[1.3.0,2.0.0)";visibility:=reexport,
  org.eclipse.papyrus.emf.facet.efacet.core;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
  org.eclipse.papyrus.emf.facet.util.core;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.emf.validation;bundle-version="[1.8.0,2.0.0)"

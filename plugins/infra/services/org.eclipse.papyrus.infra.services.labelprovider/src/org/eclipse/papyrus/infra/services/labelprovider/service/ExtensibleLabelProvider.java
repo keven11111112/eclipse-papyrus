@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Workspace-independent model validation view (CDO)
+ *  Mickael ADAM (ALL4TEC) - Bug 500219 - implementation of IStyledLabelProvider
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.labelprovider.service;
 
@@ -19,12 +20,14 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.IFontProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
+import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
@@ -38,7 +41,7 @@ import org.eclipse.swt.graphics.Image;
  * @author Camille Letavernier
  *
  */
-public class ExtensibleLabelProvider implements ILabelProvider, IQualifierLabelProvider, ILabelProviderListener, IColorProvider, IFontProvider {
+public class ExtensibleLabelProvider implements ILabelProvider, IQualifierLabelProvider, ILabelProviderListener, IColorProvider, IFontProvider, IStyledLabelProvider {
 
 	private final Set<ILabelProviderListener> listeners;
 
@@ -187,5 +190,24 @@ public class ExtensibleLabelProvider implements ILabelProvider, IQualifierLabelP
 		for (ILabelProviderListener listener : listeners) {
 			listener.labelProviderChanged(event);
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider#getStyledText(java.lang.Object)
+	 */
+	@Override
+	public StyledString getStyledText(final Object element) {
+		StyledString text = null;
+
+		ILabelProvider provider = getProvider(element);
+		if (provider instanceof IStyledLabelProvider) {
+			text = ((IStyledLabelProvider) provider).getStyledText(element);
+		} else {
+			text = new StyledString(provider.getText(element));
+		}
+
+		return text;
 	}
 }
