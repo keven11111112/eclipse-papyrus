@@ -229,7 +229,7 @@ public class SashModel extends EMFLogicalModel implements IModel {
 
 	@Override
 	public void createModel(URI uriWithoutExtension) {
-		if (isLegacy(uriWithoutExtension)) {
+		if (!isLegacy(uriWithoutExtension)) {
 			// http://eclip.se/461709
 			// Initialize the workspace-private sash model from our template
 			// to avoid resolving all proxies in the ProxyModificationTrackingAdapter
@@ -285,7 +285,11 @@ public class SashModel extends EMFLogicalModel implements IModel {
 		if (uriWithoutExtension == null) {
 			return false;
 		}
-		return Objects.equal(uriWithoutExtension, getModelManager().getURIWithoutExtension());
+		
+		URI legacy = getLegacyURI(uriWithoutExtension);
+		URI sash = getSashModelURI(uriWithoutExtension);
+		
+		return Objects.equal(legacy, sash);
 	}
 
 	/**
