@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, ALL4TEC, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
  *  Christian W. Damus - bug 485220
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.internal.emf;
@@ -21,6 +22,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManager;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManagerFactory;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
@@ -31,6 +34,7 @@ import org.eclipse.papyrus.infra.emf.CustomizationComparator;
 import org.eclipse.papyrus.infra.emf.readonly.spi.IReadOnlyManagerProcessor;
 import org.eclipse.papyrus.infra.emf.spi.resolver.IEObjectResolver;
 import org.eclipse.papyrus.infra.ui.internal.emf.readonly.EditorReloadProcessor;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
@@ -201,4 +205,27 @@ public class Activator extends AbstractUIPlugin {
 		}
 		return customizationManager;
 	}
+
+	/**
+	 * Get Icon image from the specified path on the specified plugin id.
+	 * 
+	 * @param pluginId
+	 *            The plugin id.
+	 * @param iconPath
+	 *            The icon local path.
+	 * @return the {@link Image}
+	 */
+	public static Image getPluginIconImage(final String pluginId, final String iconPath) {
+		String key = pluginId + iconPath;
+		ImageRegistry registry = getDefault().getImageRegistry();
+		Image image = registry.get(key);
+
+		if (null == image) {
+			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, iconPath);
+			registry.put(key, desc);
+			image = registry.get(key);
+		}
+		return image;
+	}
+
 }

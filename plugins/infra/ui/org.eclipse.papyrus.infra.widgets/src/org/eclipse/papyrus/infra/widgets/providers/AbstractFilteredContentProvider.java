@@ -11,13 +11,23 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.providers;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
-import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
-import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
+import org.eclipse.papyrus.infra.widgets.Activator;
+import org.eclipse.papyrus.infra.widgets.editors.StringWithClearEditor;
+import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
 
@@ -43,15 +53,20 @@ import org.eclipse.swt.widgets.Composite;
 // TODO : Encapsulate a IStructuredContentProvider and make this class concrete
 public abstract class AbstractFilteredContentProvider implements IGraphicalContentProvider {
 
+	/** The current viewer. */
 	protected StructuredViewer viewer;
 
-	private StringEditor filterPattern;
-
-	private PatternViewerFilter filter;
-
+	/** The base pattern . */
 	public static final String BASE_PATTERN = "*"; //$NON-NLS-1$
 
+	/** true if must be show if has visible parent. */
 	protected boolean showIfHasVisibleParent = false;
+
+	/** The pattern viewer filter. */
+	private PatternViewerFilter patternFilter;
+
+	/** The current filter pattern as String. */
+	private String currentFilterPattern;
 
 	@Override
 	public void dispose() {
@@ -62,32 +77,100 @@ public abstract class AbstractFilteredContentProvider implements IGraphicalConte
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		if (viewer instanceof StructuredViewer) {
 			this.viewer = (StructuredViewer) viewer;
-			updateFilter();
-		}
-	}
-
-	private void updateFilter() {
-		if (this.viewer != null && filterPattern != null) {
-			this.viewer.setFilters(new ViewerFilter[] { filter });
 		}
 	}
 
 	@Override
 	public void createBefore(Composite parent) {
-		filterPattern = new StringEditor(parent, SWT.NONE, "Filter : "); //$NON-NLS-1$
-		filterPattern.setValidateOnDelay(true);
-		filterPattern.setValue(BASE_PATTERN);
-		filter = getViewerFilter();
-		filterPattern.addCommitListener(new ICommitListener() {
+		Composite composite = new Composite(parent, SWT.NONE);
+
+		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(composite);
+
+		// Create filter composite
+		createPatternFilter(composite);
+		createCaseSensitiveButton(composite);
+	}
+
+	/**
+	 * create the Case sensitive checkBox.
+	 * 
+	 * @param parent
+	 *            The parent {@link Composite}.
+	 */
+	protected void createCaseSensitiveButton(final Composite parent) {
+		// Create the checkbox button
+		Button checkBoxCaseSensitive = new Button(parent, SWT.CHECK);
+
+		checkBoxCaseSensitive.setText(Messages.AbstractFilteredContentProvider_CaseSensitiveLabel);
+		checkBoxCaseSensitive.setToolTipText(Messages.AbstractFilteredContentProvider_CaseSensitiveTooltip);
+		checkBoxCaseSensitive.addSelectionListener(new SelectionAdapter() {
+
 
 			@Override
-			public void commit(AbstractEditor editor) {
-				filter.setPattern((String) filterPattern.getValue());
+			public void widgetSelected(SelectionEvent event) {
+				if (patternFilter instanceof PatternViewerFilter) {
+					((PatternViewerFilter) patternFilter).setIgnoreCase(!checkBoxCaseSensitive.getSelection());
+				}
 				viewer.refresh();
 			}
-
 		});
-		updateFilter();
+	}
+
+	/**
+	 * Create the pattern filter.
+	 * 
+	 * @param parent
+	 */
+	protected void createPatternFilter(final Composite parent) {
+		StringWithClearEditor filterField = new StringWithClearEditor(parent, SWT.BORDER);
+		filterField.setToolTipText(Messages.AbstractFilteredContentProvider_FilterFieldTooltip);
+		filterField.setValidateOnDelay(Activator.getValidationDelay());
+		filterField.setValidateOnDelay(Activator.isFilterValidateOnDelay());
+
+		// Set replacement of stereotype delimiters
+		if (Activator.isStereotypeDelimitersReplaced()) {
+			filterField.addStringToReplace(Activator.ST_LEFT_BEFORE, Activator.ST_LEFT);
+			filterField.addStringToReplace(Activator.ST_RIGHT_BEFORE, Activator.ST_RIGHT);
+		} else {
+			filterField.clearStringToReplace();
+		}
+
+		GridLayoutFactory.fillDefaults().applyTo(filterField);
+
+		filterField.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+
+		patternFilter = getViewerFilter();
+		currentFilterPattern = BASE_PATTERN;
+		((PatternViewerFilter) patternFilter).setPattern(BASE_PATTERN);
+
+		filterField.addCommitListener(editor -> {
+			String filterPattern = (String) ((StringWithClearEditor) editor).getValue();
+			((PatternViewerFilter) patternFilter).setPattern(filterPattern);
+
+			List<ViewerFilter> filtersAsList = Arrays.asList(viewer.getFilters());
+			if (!filtersAsList.contains(patternFilter)) {
+				viewer.addFilter(patternFilter);
+			}
+			viewer.refresh();
+
+			if (!("".equals(filterPattern) || currentFilterPattern.equals(filterPattern))) { //$NON-NLS-1$
+				currentFilterPattern = filterPattern;
+			}
+		});
+
+		// Focus on viewer when press the down arrow
+		filterField.getText().addKeyListener(new KeyAdapter() {
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void keyPressed(final KeyEvent e) {
+				if (e.keyCode == SWT.ARROW_DOWN) {
+					viewer.getControl().setFocus();
+				}
+			}
+		});
+
 	}
 
 	@Override
@@ -98,7 +181,8 @@ public abstract class AbstractFilteredContentProvider implements IGraphicalConte
 	protected PatternViewerFilter getViewerFilter() {
 		PatternViewerFilter filter = new PatternViewerFilter();
 		filter.setStrict(false);
-		filter.setPattern(BASE_PATTERN);
+		currentFilterPattern = BASE_PATTERN;
+		filter.setPattern(currentFilterPattern);
 		filter.setShowIfHasVisibleParent(showIfHasVisibleParent);
 		return filter;
 	}

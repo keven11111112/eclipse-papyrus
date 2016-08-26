@@ -151,6 +151,12 @@ public class Messages extends NLS {
 
 	public static String ConfigureTableCategoriesWizard_DepthFilledByUser;
 
+	public static String ContextFeatureContentProvider_CaseSensitiveLabel;
+
+	public static String ContextFeatureContentProvider_CaseSensitiveTooltip;
+
+	public static String ContextFeatureContentProvider_FilterTooltip;
+
 	public static String DeleteNatTableContextAdvice_DestroyNattableCommand;
 
 	public static String EditConfiguration_ConfigurationFactoryNotFound;

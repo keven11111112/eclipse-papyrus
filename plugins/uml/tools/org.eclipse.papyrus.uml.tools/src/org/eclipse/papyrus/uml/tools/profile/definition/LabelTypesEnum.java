@@ -20,7 +20,7 @@ public enum LabelTypesEnum {
 	LABEL("label"), //$NON-NLS-1$
 
 	/** The qualify name. */
-	QUALIFY_NAME("qualifyName"), //$NON-NLS-1$
+	QUALIFIED_NAME("qualifiedName"), //$NON-NLS-1$
 
 	/** The stereotype. */
 	STEREOTYPE("stereotype"), //$NON-NLS-1$
@@ -57,7 +57,7 @@ public enum LabelTypesEnum {
 	}
 
 	/** The Constant LINE_STYLE_ARRAY. */
-	private static final LabelTypesEnum[] TYPES_ARRAY = new LabelTypesEnum[] { LABEL, STEREOTYPE, QUALIFY_NAME, COLON_SEPARATOR, DASH_SEPARATOR, METACLASS };
+	private static final LabelTypesEnum[] TYPES_ARRAY = new LabelTypesEnum[] { LABEL, STEREOTYPE, QUALIFIED_NAME, COLON_SEPARATOR, DASH_SEPARATOR, METACLASS };
 
 	/**
 	 * Gets the by literal.

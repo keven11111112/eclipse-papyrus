@@ -112,4 +112,14 @@
          </referenceFilter>
       </factoryConfiguration>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.widgets.selectorDialogTab">
+      <tabDeclaration
+            contentProvider="org.eclipse.papyrus.infra.widgets.providers.FlatFilteredContentProvider"
+            id="org.eclipse.papyrus.uml.tools.tabflat"
+            labelProvider="org.eclipse.papyrus.uml.tools.providers.FlatTabUMLLabelProvider"
+            tabIcon="icons/flatView.gif"
+            tabLabel="Flat">
+      </tabDeclaration>
+   </extension>
 </plugin>

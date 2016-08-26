@@ -17,6 +17,8 @@ import java.net.URL;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
@@ -362,5 +364,81 @@ public class Activator extends AbstractUIPlugin {
 		}
 
 		return null;
+	}
+
+	/** preferences of model explorer where is store filter preferences. */
+	private static final IEclipsePreferences ModelExplorerPreferences = InstanceScope.INSTANCE.getNode("org.eclipse.papyrus.views.modelexplorer");
+
+	/** The preference if the filter is in live validation. */
+	private static final String PREF_FILTER_LIVE_VALIDATION = "liveValidation"; //$NON-NLS-1$
+
+	/** The preference of the delay of live validation. */
+	private static final String PREF_FILTER_VALIDATION_DELAY = "validateDelay"; //$NON-NLS-1$
+
+	/** the default value for validation delay. */
+	private static final int DEFAULT_VALIDATION_DELAY_VALUE = 600; // $NON-NLS-1$
+
+	/** the default value for the use of live validation in filter. */
+	private static final Boolean DEFAULT_FILTER_LIVE_VALIDATION_VALUE = true; // $NON-NLS-1$
+
+	/** The max level to expand action preference. */
+	public static final String PREF_MAX_LEVEL_TO_EXPAND = "maxLevelToExpand"; //$NON-NLS-1$
+
+	/** The default value of the expand action preference. */
+	public static final int DEFAULT_MAX_LEVEL_TO_EXPAND_VALUE = 15;
+
+	/** The preference for the replacement of stereotype delimiters. */
+	public static final String PREF_FILTER_STEREOTYPE_REPLACED = "replaceStrereotypeDelimiter"; //$NON-NLS-1$
+
+	/** the default value for the replacement of stereotype delimiters. */
+	public static final boolean DEFAULT_FILTER_STEREOTYPE_REPLACED_VALUE = true;
+
+	/**
+	 * The left stereotype delimiter
+	 */
+	public static final String ST_LEFT = "\u00AB";//$NON-NLS-1$
+
+	/**
+	 * The right stereotype delimiter
+	 */
+	public static final String ST_RIGHT = "\u00BB";//$NON-NLS-1$
+
+	/**
+	 * The right stereotype delimiter to be replaced in Text
+	 */
+	public static final String ST_RIGHT_BEFORE = ">>";//$NON-NLS-1$
+
+	/**
+	 * The left stereotype delimiter to be replaced in fields
+	 */
+	public static final String ST_LEFT_BEFORE = "<<";//$NON-NLS-1$
+
+
+	/**
+	 * Gets the preferences for the validation kind of filter field.
+	 */
+	public static boolean isFilterValidateOnDelay() {
+		return ModelExplorerPreferences.getBoolean(PREF_FILTER_LIVE_VALIDATION, DEFAULT_FILTER_LIVE_VALIDATION_VALUE);
+	}
+
+	/**
+	 * Gets the preferences for the validation delay.
+	 */
+	public static int getValidationDelay() {
+		return ModelExplorerPreferences.getInt(PREF_FILTER_VALIDATION_DELAY, DEFAULT_VALIDATION_DELAY_VALUE);
+	}
+
+	/**
+	 * Gets the preferences for the max level to expand value.
+	 */
+	public static int getMaxLevelToExpandValue() {
+		return ModelExplorerPreferences.getInt(PREF_MAX_LEVEL_TO_EXPAND, DEFAULT_MAX_LEVEL_TO_EXPAND_VALUE);
+	}
+
+	/**
+	 * Gets the preferences for the stereotype delimiter replacement.
+	 */
+	public static boolean isStereotypeDelimitersReplaced() {
+		return ModelExplorerPreferences.getBoolean(PREF_FILTER_STEREOTYPE_REPLACED, DEFAULT_FILTER_STEREOTYPE_REPLACED_VALUE);
 	}
 }

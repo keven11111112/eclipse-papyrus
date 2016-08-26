@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2016 CEA LIST.
+ * Copyright (c) 2016 CEA LIST, ALL4TEC and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -13,6 +13,7 @@
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial History implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - History integration
  *  Philip Langer (EclipseSource) planger@eclipsesource.com - Revealing first match of filter
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 500869
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.emf.providers;
@@ -23,7 +24,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -32,11 +32,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.viewers.AbstractTreeViewer;
+import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -44,20 +49,30 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IDetailLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.ui.internal.emf.Activator;
+import org.eclipse.papyrus.infra.ui.internal.emf.messages.Messages;
+import org.eclipse.papyrus.infra.widgets.IFireDoubleClick;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
-import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
+import org.eclipse.papyrus.infra.widgets.editors.StringWithClearEditor;
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.PatternViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.ToolBar;
+import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
@@ -74,6 +89,18 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 	private static final String PREVIOUS_SELECTION = "PreviousSelection"; //$NON-NLS-1$
 
 	private static final int HISTORY_MAX_SIZE = 15;
+
+	/** The default profile icon path. */
+	private static final String ICONS_EXPAND_ALL = "/icons/expandAll.png";//$NON-NLS-1$
+
+	/** The default profile icon path. */
+	private static final String ICONS_COLLAPSE_ALL = "/icons/collapseAll.png";//$NON-NLS-1$
+
+	/** the expand button */
+	private ToolItem buttonExpand;
+
+	/** the collapse button */
+	private ToolItem buttonCollapse;
 
 	/**
 	 * The maximum depth for {@link #findAndRevealFirstMatchingItem() finding and revealing}
@@ -107,9 +134,8 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 
 	private TableViewer historyViewer;
 
-	/**
-	 * the wanted root of the contentprovider
-	 */
+	/** Set to true if expand and collapse buttons must be enable. */
+	private boolean buttonExpandCollapseEnable = true;
 
 	/**
 	 * the constructor
@@ -122,29 +148,153 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider#createBefore(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
-	public void createBefore(Composite parent) {
-		createPatternFilter(parent);
+	public void createBefore(final Composite parent) {
+		Composite composite = new Composite(parent, SWT.NONE);
+
+		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(composite);
+
+		// Create filter composite
+		createPatternFilter(composite);
+
+		createCaseSensitiveButton(composite);
 	}
 
-	protected void createPatternFilter(Composite parent) {
-		StringEditor editor = new StringEditor(parent, SWT.NONE);
-		editor.setLabel("Filter:");
-		editor.setToolTipText("Enter the name of the element you're looking for. You can use * as a wildcard");
-		editor.setValidateOnDelay(true);
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IGraphicalContentProvider#createViewerToolbar(org.eclipse.swt.widgets.Composite)
+	 */
+	@Override
+	public void createViewerToolbar(Composite parent) {
+		createExpandCollapseButtons(parent);
+	}
+
+	/**
+	 * Create buttons to collapse and expand treeViewer.
+	 */
+	protected void createExpandCollapseButtons(final Composite parent) {
+
+		ToolBar Toolbar = new ToolBar(parent, SWT.NONE);
+		buttonExpand = new ToolItem(Toolbar, SWT.NONE);
+		buttonExpand.setImage(Activator.getPluginIconImage(org.eclipse.papyrus.infra.widgets.Activator.PLUGIN_ID, ICONS_EXPAND_ALL));
+		buttonExpand.setToolTipText(Messages.EMFGraphicalContentProvider_ExpandAllTooltip);
+		buttonExpand.setEnabled(buttonExpandCollapseEnable);
+		buttonExpand.addSelectionListener(new SelectionAdapter() {
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				ISelection selection = viewer.getSelection();
+				// If there are selected element
+				if (selection instanceof StructuredSelection && !selection.isEmpty()) {
+					// For each element
+					for (Object object : ((StructuredSelection) selection).toArray()) {
+						((AbstractTreeViewer) viewer).expandToLevel(object, org.eclipse.papyrus.infra.widgets.Activator.getMaxLevelToExpandValue());
+					}
+				} else {
+					// or expand all
+					((AbstractTreeViewer) viewer).expandToLevel(org.eclipse.papyrus.infra.widgets.Activator.getMaxLevelToExpandValue());
+				}
+				viewer.refresh();
+			}
+		});
+
+		buttonCollapse = new ToolItem(Toolbar, SWT.NONE);
+		buttonCollapse.setImage(Activator.getPluginIconImage(org.eclipse.papyrus.infra.widgets.Activator.PLUGIN_ID, ICONS_COLLAPSE_ALL));
+		buttonCollapse.setToolTipText(Messages.EMFGraphicalContentProvider_CollapseAllTooltip);
+		buttonCollapse.setEnabled(buttonExpandCollapseEnable);
+		buttonCollapse.addSelectionListener(new SelectionAdapter() {
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				ISelection selection = ((AbstractTreeViewer) viewer).getSelection();
+				// If there are selected element
+				if (selection instanceof StructuredSelection && !selection.isEmpty()) {
+					// expand each selected element
+					for (Object object : ((StructuredSelection) selection).toArray()) {
+						((AbstractTreeViewer) viewer).collapseToLevel(object, AbstractTreeViewer.ALL_LEVELS);
+					}
+
+				} else {
+					// or collapse all
+					((AbstractTreeViewer) viewer).collapseAll();
+				}
+			}
+		});
+	}
+
+	/**
+	 * create the Case sensitive checkBox.
+	 * 
+	 * @param parent
+	 *            The parent {@link Composite}.
+	 */
+	protected void createCaseSensitiveButton(final Composite parent) {
+		// Create the checkbox button
+		Button checkBoxCaseSensitive = new Button(parent, SWT.CHECK);
+
+		checkBoxCaseSensitive.setText(Messages.EMFGraphicalContentProvider_CaseSensitiveCheckBoxLabel);
+		checkBoxCaseSensitive.setToolTipText(Messages.EMFGraphicalContentProvider_CaseSensitiveCheckBoxTooltip);
+		checkBoxCaseSensitive.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent event) {
+				if (patternFilter instanceof PatternViewerFilter) {
+					((PatternViewerFilter) patternFilter).setIgnoreCase(!checkBoxCaseSensitive.getSelection());
+				}
+				viewer.refresh();
+			}
+		});
+	}
+
+	/**
+	 * Create the pattern filter.
+	 * 
+	 * @param parent
+	 */
+	protected void createPatternFilter(final Composite parent) {
+		StringWithClearEditor editor = new StringWithClearEditor(parent, SWT.BORDER);
+		editor.setToolTipText(Messages.EMFGraphicalContentProvider_FilterFieldTooltip);
+		editor.setValidateOnDelay(org.eclipse.papyrus.infra.widgets.Activator.getValidationDelay());
+		editor.setValidateOnDelay(org.eclipse.papyrus.infra.widgets.Activator.isFilterValidateOnDelay());
+
+		// Set replacement of stereotype delimiters
+		if (org.eclipse.papyrus.infra.widgets.Activator.isStereotypeDelimitersReplaced()) {
+			editor.addStringToReplace(org.eclipse.papyrus.infra.widgets.Activator.ST_LEFT_BEFORE, org.eclipse.papyrus.infra.widgets.Activator.ST_LEFT);
+			editor.addStringToReplace(org.eclipse.papyrus.infra.widgets.Activator.ST_RIGHT_BEFORE, org.eclipse.papyrus.infra.widgets.Activator.ST_RIGHT);
+		} else {
+			editor.clearStringToReplace();
+		}
+
+		GridLayoutFactory.fillDefaults().applyTo(editor);
+
+		editor.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+
 		patternFilter = new PatternViewerFilter();
-		currentFilterPattern = ""; //$NON-NLS-1$
+		currentFilterPattern = "*"; //$NON-NLS-1$
 		((PatternViewerFilter) patternFilter).setPattern(currentFilterPattern);
 
 		editor.addCommitListener(new ICommitListener() {
 
 			@Override
 			public void commit(AbstractEditor editor) {
-				String filterPattern = (String) ((StringEditor) editor).getValue();
+				String filterPattern = (String) ((StringWithClearEditor) editor).getValue();
 				((PatternViewerFilter) patternFilter).setPattern(filterPattern);
+
+				List<ViewerFilter> filtersAsList = Arrays.asList(viewer.getFilters());
+				if (!filtersAsList.contains(patternFilter)) {
+					viewer.addFilter(patternFilter);
+				}
 				viewer.refresh();
-				if (!("".equals(filterPattern) || currentFilterPattern.equals(filterPattern))) {
+
+				if (!("".equals(filterPattern) || currentFilterPattern.equals(filterPattern))) { //$NON-NLS-1$
 					findAndRevealFirstMatchingItem();
 					currentFilterPattern = filterPattern;
 				}
@@ -152,10 +302,21 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 
 		});
 
-		List<ViewerFilter> filters = new LinkedList<ViewerFilter>(Arrays.asList(viewer.getFilters()));
-		filters.add(patternFilter);
-		viewer.setFilters(filters.toArray(new ViewerFilter[filters.size()]));
+		// Focus on viewer when press the down arrow
+		editor.getText().addKeyListener(new KeyAdapter() {
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void keyPressed(final KeyEvent e) {
+				if (e.keyCode == SWT.ARROW_DOWN) {
+					viewer.getControl().setFocus();
+				}
+			}
+		});
+
 	}
+
 
 	/**
 	 * Traverses to the first leaf item in the viewer tree and reveals it.
@@ -168,16 +329,13 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 	 * @return the semantic element of the revealed item, or <code>null</code> if it could not be found.
 	 */
 	protected EObject findAndRevealFirstMatchingItem() {
-		if (!(viewer instanceof TreeViewer)) {
-			return null;
+		if (viewer instanceof TreeViewer) {
+			// start to search from first root element
+			final Tree tree = ((TreeViewer) viewer).getTree();
+			if (tree.getItems().length > 0) {
+				return revealFirstLeaf(tree.getItem(0), MAX_SEARCH_DEPTH);
+			}
 		}
-
-		// start to search from first root element
-		final Tree tree = ((TreeViewer) viewer).getTree();
-		if (tree.getItems().length > 0) {
-			return revealFirstLeaf(tree.getItem(0), MAX_SEARCH_DEPTH);
-		}
-
 		return null;
 	}
 
@@ -253,9 +411,10 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void createAfter(Composite parent) {
+	public void createAfter(final Composite parent) {
 		parent.setLayout(new GridLayout(1, false));
 		// createMetaclassFilter(parent); //Disabled
+
 		createHistory(parent);
 		createDetailArea(parent);
 	}
@@ -270,7 +429,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 		initSelectionHistory();
 
 		Group historyGroup = new Group(parent, SWT.NONE);
-		historyGroup.setText("Recent selections");
+		historyGroup.setText(Messages.EMFGraphicalContentProvider_historyGroupLabel);
 		historyGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
 		historyGroup.setLayout(new GridLayout(1, true));
 
@@ -281,7 +440,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 		historyTable.setLayoutData(data);
 		historyViewer = new TableViewer(historyTable);
 		historyViewer.setContentProvider(CollectionContentProvider.instance);
-		historyViewer.setLabelProvider(viewer.getLabelProvider());
+		historyViewer.setLabelProvider(new LabelProviderServiceImpl().getLabelProvider());
 		historyViewer.setInput(selectionHistory);
 		historyViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -298,6 +457,14 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 				}
 			}
 		});
+
+		historyViewer.addDoubleClickListener(event -> {
+			if (viewer instanceof IFireDoubleClick) {
+				((IFireDoubleClick) viewer).fireDoubleClick(new DoubleClickEvent(viewer, event.getSelection()));
+			}
+
+		});
+
 	}
 
 	/**
@@ -438,7 +605,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 	}
 
 	private String getDialogSettingsIdentifier() {
-		return DIALOG_SETTINGS + "_" + historyId;
+		return DIALOG_SETTINGS + "_" + historyId; //$NON-NLS-1$
 	}
 
 	/**
@@ -475,7 +642,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 	}
 
 	@Override
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+	public void inputChanged(final Viewer viewer, final Object oldInput, final Object newInput) {
 		encapsulated.inputChanged(viewer, oldInput, newInput);
 
 		if (viewer instanceof StructuredViewer) {
@@ -499,7 +666,7 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 			return;
 		}
 		if (selectedObject == null) {
-			detailLabel.setText("");
+			detailLabel.setText(""); //$NON-NLS-1$
 			detailLabel.setImage(null);
 		} else {
 			ILabelProvider labelProvider = (ILabelProvider) viewer.getLabelProvider();
@@ -539,6 +706,27 @@ public class EMFGraphicalContentProvider extends EncapsulatedContentProvider imp
 		super.dispose();
 		if (viewer != null) {
 			viewer.removeSelectionChangedListener(this);
+		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider#setFlat(boolean)
+	 *
+	 * @param isFlat
+	 */
+	@Override
+	public void setFlat(final boolean isFlat) {
+		super.setFlat(isFlat);
+		if (patternFilter instanceof PatternViewerFilter) {
+			((PatternViewerFilter) patternFilter).clearCache();
+		}
+		if (viewer != null) {
+			viewer.refresh();
+		}
+		if (null != buttonCollapse && null != buttonExpand) {
+			buttonExpandCollapseEnable = !isFlat;
+			buttonExpand.setEnabled(buttonExpandCollapseEnable);
+			buttonCollapse.setEnabled(buttonExpandCollapseEnable);
 		}
 	}
 }

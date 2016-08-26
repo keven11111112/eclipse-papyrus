@@ -71,6 +71,7 @@ public class ProviderBasedBrowseStrategy<T extends Viewer> extends EncapsulatedC
 	 * @return
 	 */
 	protected Object[] getValidElements(Object[] roots) {
+		clearCache(); //fix to display element
 		if (filterElements) {
 			List<Object> rootsList = ListHelper.asList(roots);
 			Iterator<?> iterator = rootsList.iterator();

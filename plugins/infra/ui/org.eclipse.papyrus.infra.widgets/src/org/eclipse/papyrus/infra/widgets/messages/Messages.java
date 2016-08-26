@@ -23,6 +23,12 @@ public class Messages extends NLS {
 	/** The Constant BUNDLE_NAME. */
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.widgets.messages.messages"; //$NON-NLS-1$
 
+	public static String AbstractFilteredContentProvider_CaseSensitiveLabel;
+
+	public static String AbstractFilteredContentProvider_CaseSensitiveTooltip;
+
+	public static String AbstractFilteredContentProvider_FilterFieldTooltip;
+
 	public static String IconValueEditor_WaitingOneIconButFound;
 
 	public static String BooleanInputValidator_NotABoolean;
@@ -134,6 +140,20 @@ public class Messages extends NLS {
 	/** the Enum radio_ no value */
 	public static String EnumRadio_NoValue;
 
+	public static String FilteredContentProvider_CaseSensitiveLabel;
+
+	public static String FilteredContentProvider_CaseSensitiveTooltip;
+
+	public static String FilteredContentProvider_CollapseAllTooltip;
+
+	public static String FilteredContentProvider_ExpandAllTooltip;
+
+	public static String FlatFilteredContentProvider_sortButtonTooltip;
+
+	public static String FlattenableFilteredContentProvider_flatButtonAsFlatTooltip;
+
+	public static String FlattenableFilteredContentProvider_flatButtonAsTreeTooltip;
+
 	public static String FlattenableRestrictedFilteredContentProvider_AllPossibleContentsMessage;
 
 	public static String FlattenableRestrictedFilteredContentProvider_FlatViewMessage;
@@ -170,6 +190,8 @@ public class Messages extends NLS {
 	public static String BundleExplorerDialog_DialogMessage;
 
 	public static String BundleExplorerDialog_PlugInSelectionTitle;
+
+	public static String TreeSelectorDialog_defaultTabLabel;
 
 	static {
 		// initialize resource bundle

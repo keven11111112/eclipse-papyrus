@@ -68,7 +68,7 @@ public class CustomizableDelegatingItemLabelProvider implements IItemLabelProvid
 	private final AdapterFactory itemAdapterFactory;
 
 	/** The styles list. */
-	List<Entry<String, Styler>> stylesList = new ArrayList<Entry<String, Styler>>();
+	private List<Entry<String, Styler>> stylesList = new ArrayList<Entry<String, Styler>>();
 
 	/**
 	 * Initializes me with my delegate factory and a bit-mask of which label components to allow.
@@ -129,6 +129,14 @@ public class CustomizableDelegatingItemLabelProvider implements IItemLabelProvid
 		this.stylesList = toStylesList(labelTypes, labelStyles);
 	}
 
+
+	/**
+	 * @return the styles List
+	 */
+	public List<Entry<String, Styler>> getStylesList() {
+		return stylesList;
+	}
+
 	/**
 	 * get the list of {@link Entry}.
 	 * 
@@ -172,7 +180,7 @@ public class CustomizableDelegatingItemLabelProvider implements IItemLabelProvid
 	protected static List<Entry<String, Styler>> getDefaultStyles() {
 		List<Entry<String, Styler>> styles = new ArrayList<Entry<String, Styler>>();
 		styles.add(new StyleEntry(LabelTypesEnum.STEREOTYPE.getLiteral(), null));
-		styles.add(new StyleEntry(LabelTypesEnum.STEREOTYPE.getLiteral(), null));
+		styles.add(new StyleEntry(LabelTypesEnum.LABEL.getLiteral(), null));
 		return styles;
 
 	}
@@ -241,7 +249,7 @@ public class CustomizableDelegatingItemLabelProvider implements IItemLabelProvid
 						stringAdded = true;
 					}
 					break;
-				case QUALIFY_NAME:
+				case QUALIFIED_NAME:
 					if (element instanceof NamedElement && null != ((NamedElement) element).getQualifiedName()) {
 						result.append(((NamedElement) element).getQualifiedName(), style);
 						stringAdded = true;
@@ -323,7 +331,7 @@ public class CustomizableDelegatingItemLabelProvider implements IItemLabelProvid
 				case COLON_SEPARATOR:
 					result = SEPARATOR_COLON;
 					break;
-				case QUALIFY_NAME:
+				case QUALIFIED_NAME:
 					if (element instanceof NamedElement && null != ((NamedElement) element).getQualifiedName()) {
 						result = ((NamedElement) element).getQualifiedName();
 					}

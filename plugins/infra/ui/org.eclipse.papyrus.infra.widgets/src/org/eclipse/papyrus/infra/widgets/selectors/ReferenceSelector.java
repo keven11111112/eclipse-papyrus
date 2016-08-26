@@ -18,6 +18,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -41,6 +43,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.dialogs.PatternFilter;
 
@@ -382,21 +385,31 @@ public class ReferenceSelector implements IElementSelector {
 		if (contentProvider instanceof IGraphicalContentProvider) {
 			IGraphicalContentProvider graphicalContentProvider = contentProvider;
 
-			Composite beforeTreeComposite = new Composite(content, SWT.NONE);
-			beforeTreeComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-			FillLayout layout = new FillLayout();
-			layout.marginHeight = 0;
-			layout.marginWidth = 0;
-			beforeTreeComposite.setLayout(layout);
+			// The viewer toolbar
+			Composite toolbar = new Composite(content, SWT.NONE);
+			GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).spacing(2, 0).applyTo(toolbar);
+			GridDataFactory.fillDefaults().applyTo(toolbar);
+
+			// Before the viewer
+			Composite beforeTreeComposite = new Composite(toolbar, SWT.NONE);
+			beforeTreeComposite.setLayout(new FillLayout(SWT.VERTICAL));
+			GridDataFactory.fillDefaults().grab(true, false).applyTo(beforeTreeComposite);
 			graphicalContentProvider.createBefore(beforeTreeComposite);
 
-			beforeTreeComposite.moveAbove(treeViewer.getTree());
+			Label separator = new Label(toolbar, SWT.VERTICAL | SWT.SEPARATOR);
+			GridDataFactory.fillDefaults().hint(SWT.DEFAULT, 10).grab(false, false).applyTo(separator);
+
+			// gets all wanted icons
+			Composite iconsComposite = new Composite(toolbar, SWT.NONE);
+			FillLayout iconsLayout = new FillLayout(SWT.HORIZONTAL);
+			iconsLayout.spacing = 2;
+			iconsComposite.setLayout(iconsLayout);
+			graphicalContentProvider.createViewerToolbar(iconsComposite);
+
+			toolbar.moveAbove(treeViewer.getTree());
 
 			Composite afterTreeComposite = new Composite(content, SWT.NONE);
-			layout = new FillLayout();
-			layout.marginHeight = 0;
-			layout.marginWidth = 0;
-			afterTreeComposite.setLayout(layout);
+			afterTreeComposite.setLayout(new FillLayout(SWT.VERTICAL));
 			afterTreeComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 			graphicalContentProvider.createAfter(afterTreeComposite);
 		}

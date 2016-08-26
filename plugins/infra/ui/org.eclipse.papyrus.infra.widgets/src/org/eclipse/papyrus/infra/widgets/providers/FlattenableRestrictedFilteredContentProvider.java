@@ -8,18 +8,24 @@
  *
  * Contributors:
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - add flat button.
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.providers;
 
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.ToolBar;
+import org.eclipse.swt.widgets.ToolItem;
 
 /**
  *
@@ -28,6 +34,7 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class FlattenableRestrictedFilteredContentProvider extends AbstractFilteredContentProvider implements IStaticContentProvider, IRestrictedContentProvider, IFlattenableContentProvider {
 
+	/** true if the display should be flat */
 	private boolean isFlat = false;
 
 	private ReferenceSelector selector;
@@ -35,6 +42,21 @@ public class FlattenableRestrictedFilteredContentProvider extends AbstractFilter
 	protected IRestrictedContentProvider provider;
 
 	protected HierarchicToFlatContentProvider flatProvider;
+
+	/** the flat button. */
+	private ToolItem flatButton;
+
+	/** The dialog settings key for this class. */
+	protected static final String DIALOG_SETTINGS_KEY = FlattenableRestrictedFilteredContentProvider.class.getName();
+
+	/** The dialogs settings key for the flat value */
+	protected static final String FLAT_SETTINGS_KEY = "flat"; //$NON-NLS-1$
+
+	/** The default profile icon path. */
+	protected static final String ICONS_FLAT_VIEW = "/icons/flatView.gif";//$NON-NLS-1$
+
+	/** The default profile icon path. */
+	protected static final String ICONS_TREE_VIEW = "/icons/treeView.gif";//$NON-NLS-1$
 
 	/**
 	 *
@@ -66,9 +88,6 @@ public class FlattenableRestrictedFilteredContentProvider extends AbstractFilter
 		checkboxSection.setLayout(new FillLayout(SWT.VERTICAL));
 		final Button onlyCurrentContainersCheckbox = new Button(checkboxSection, SWT.CHECK);
 		onlyCurrentContainersCheckbox.setText(Messages.FlattenableRestrictedFilteredContentProvider_AllPossibleContentsMessage);
-
-		final Button showFlatListOfFeaturesCheckbox = new Button(checkboxSection, SWT.CHECK);
-		showFlatListOfFeaturesCheckbox.setText(Messages.FlattenableRestrictedFilteredContentProvider_FlatViewMessage);
 		onlyCurrentContainersCheckbox.addSelectionListener(new SelectionListener() {
 
 			@Override
@@ -83,22 +102,67 @@ public class FlattenableRestrictedFilteredContentProvider extends AbstractFilter
 
 			}
 		});
-		showFlatListOfFeaturesCheckbox.addSelectionListener(new SelectionListener() {
+	}
 
+	/**
+	 * {@inheritDoc}<br>
+	 * Extended to add flat check boxes to the dialog.
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IGraphicalContentProvider#createViewerToolbar(org.eclipse.swt.widgets.Composite)
+	 */
+	@Override
+	public void createViewerToolbar(final Composite parent) {
+		createFlatSwitchButton(parent);
+		if (provider instanceof IGraphicalContentProvider) {
+			((IGraphicalContentProvider) provider).createViewerToolbar(parent);
+		}
+	}
+
+	/**
+	 * create the flat checkBox.
+	 * 
+	 * @param parent
+	 *            The parent {@link Composite}.
+	 */
+	protected void createFlatSwitchButton(final Composite parent) {
+		// Create the checkBox button
+		ToolBar Toolbar = new ToolBar(parent, SWT.NONE);
+		flatButton = new ToolItem(Toolbar, SWT.CHECK);
+		refreshFlatButton();
+		flatButton.addSelectionListener(new SelectionAdapter() {
+			/**
+			 * {@inheritDoc}
+			 */
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-
-				setFlat(showFlatListOfFeaturesCheckbox.getSelection());
+				setFlat(!isFlat);
+				getDialogSettings().put(FLAT_SETTINGS_KEY, isFlat);
+				refreshFlatButton();
 				viewer.refresh();
 				selector.refresh();
-
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-
 			}
 		});
+	}
+
+	/**
+	 * Refresh the button icon and tooltip according to isFlat.
+	 */
+	protected void refreshFlatButton() {
+		flatButton.setImage(Activator.getDefault().getImage(isFlat ? ICONS_TREE_VIEW : ICONS_FLAT_VIEW));
+		flatButton.setToolTipText(isFlat ? Messages.FlattenableFilteredContentProvider_flatButtonAsFlatTooltip : Messages.FlattenableFilteredContentProvider_flatButtonAsTreeTooltip);
+	}
+
+	/**
+	 * Returns the dialog settings. Returned object can't be null.
+	 *
+	 * @return dialog settings for this dialog
+	 */
+	protected IDialogSettings getDialogSettings() {
+		IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS_KEY);
+		if (settings == null) {
+			settings = Activator.getDefault().getDialogSettings().addNewSection(DIALOG_SETTINGS_KEY);
+		}
+		return settings;
 	}
 
 	@Override
@@ -198,6 +262,16 @@ public class FlattenableRestrictedFilteredContentProvider extends AbstractFilter
 	@Override
 	public boolean isRestricted() {
 		return provider.isRestricted();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IFlattenableContentProvider#isFlat()
+	 */
+	@Override
+	public boolean isFlat() {
+		return isFlat;
 	}
 
 }

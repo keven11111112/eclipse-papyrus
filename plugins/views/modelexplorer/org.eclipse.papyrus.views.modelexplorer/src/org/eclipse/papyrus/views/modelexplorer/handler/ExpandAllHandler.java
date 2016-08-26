@@ -57,7 +57,7 @@ public class ExpandAllHandler extends AbstractHandler {
 				}
 			} else {
 				// or expand all
-				commonViewer.expandAll();
+				commonViewer.expandToLevel(getLevelToExpand());
 			}
 		}
 		return null;

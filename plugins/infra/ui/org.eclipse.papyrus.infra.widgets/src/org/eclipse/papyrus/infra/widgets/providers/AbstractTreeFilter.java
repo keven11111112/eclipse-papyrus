@@ -139,7 +139,7 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 		// get the semantic element for facet case
 		if (!visited) {
 			EObject eObject = PlatformHelper.getAdapter(element, EObject.class);
-			if (null != eObject) {
+			if (null != eObject && !element.equals(eObject)) {
 				if (visitedElements.contains(eObject)) {
 					visited = true;
 				} else {

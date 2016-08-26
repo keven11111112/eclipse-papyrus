@@ -44,7 +44,7 @@ import org.eclipse.swt.widgets.Composite;
  */
 // TODO : Move the temporary elements feature to another class.
 // This feature is only used by multi-reference dialogs
-public class EncapsulatedContentProvider implements IHierarchicContentProvider, IGraphicalContentProvider, ICommitListener, IAdaptableContentProvider, IRevealSemanticElement, IStrategyBasedContentProvider, IStaticContentProvider {
+public class EncapsulatedContentProvider implements IHierarchicContentProvider, IGraphicalContentProvider, ICommitListener, IAdaptableContentProvider, IRevealSemanticElement, IStrategyBasedContentProvider, IStaticContentProvider, IFlattenableContentProvider {
 
 	/**
 	 * The encapsulated static content provider
@@ -83,7 +83,7 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 	 * @param elements
 	 *            The Object[] returned by the encapsulated provider
 	 * @return
-	 *         All elements known by this ContentProvider
+	 * 		All elements known by this ContentProvider
 	 */
 	private Object[] getAllElements(Object[] elements) {
 		if (temporaryElements.isEmpty()) {
@@ -152,7 +152,7 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 	 * Gets the elements for this content provider
 	 *
 	 * @return
-	 *         all elements from the wrapped ContentProvider
+	 * 		all elements from the wrapped ContentProvider
 	 */
 	@Override
 	public Object[] getElements() {
@@ -257,6 +257,18 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 		}
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IGraphicalContentProvider#createViewerToolbar(org.eclipse.swt.widgets.Composite)
+	 *
+	 * @param parent
+	 */
+	@Override
+	public void createViewerToolbar(final Composite parent) {
+		if (encapsulated instanceof IGraphicalContentProvider) {
+			((IGraphicalContentProvider) encapsulated).createViewerToolbar(parent);
+		}
+	}
+
 	@Override
 	public void commit(AbstractEditor editor) {
 		if (encapsulated instanceof ICommitListener) {
@@ -301,5 +313,30 @@ public class EncapsulatedContentProvider implements IHierarchicContentProvider, 
 			return ((IStrategyBasedContentProvider) encapsulated).getRevealStrategy();
 		}
 		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IFlattenableContentProvider#setFlat(boolean)
+	 */
+	@Override
+	public void setFlat(final boolean isFlat) {
+		if (encapsulated instanceof IFlattenableContentProvider) {
+			((IFlattenableContentProvider) encapsulated).setFlat(isFlat);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.IFlattenableContentProvider#isFlat()
+	 */
+	@Override
+	public boolean isFlat() {
+		if (encapsulated instanceof IFlattenableContentProvider) {
+			return ((IFlattenableContentProvider) encapsulated).isFlat();
+		}
+		return false;
 	}
 }

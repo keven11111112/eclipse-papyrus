@@ -24,11 +24,13 @@ import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.core.runtime.ListenerList;
+import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
+import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.infra.properties.internal.ui.Activator;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
@@ -90,7 +92,7 @@ public class DataSource implements IChangeListener {
 	 * @param propertyPath
 	 *            The propertyPath to lookup
 	 * @return
-	 *         The ModelElement associated to the given propertyPath
+	 * 		The ModelElement associated to the given propertyPath
 	 */
 	public ModelElement getModelElement(String propertyPath) {
 		// ConfigurationManager.instance.getProperty(propertyPath)
@@ -120,7 +122,7 @@ public class DataSource implements IChangeListener {
 	 * @param propertyPath
 	 *            The property path for which we want to retrieve an ObservableValue
 	 * @return
-	 *         The IObservable corresponding to the given propertyPath
+	 * 		The IObservable corresponding to the given propertyPath
 	 */
 	public IObservable getObservable(String propertyPath) {
 		String localPropertyPath = getLocalPropertyPath(propertyPath);
@@ -150,7 +152,7 @@ public class DataSource implements IChangeListener {
 	 * @param propertyPath
 	 *            The property path for which we want to retrieve a ContentProvider
 	 * @return
-	 *         The IStaticContentProvider corresponding to the given propertyPath
+	 * 		The IStaticContentProvider corresponding to the given propertyPath
 	 */
 	public IStaticContentProvider getContentProvider(final String propertyPath) {
 		class Delegator extends EncapsulatedContentProvider implements IDataSourceListener {
@@ -206,10 +208,10 @@ public class DataSource implements IChangeListener {
 	 * @param propertyPath
 	 *            The property path for which we want to retrieve an ILabelProvider
 	 * @return
-	 *         The ILabelProvider corresponding to the given propertyPath
+	 * 		The ILabelProvider corresponding to the given propertyPath
 	 */
 	public ILabelProvider getLabelProvider(final String propertyPath) {
-		class Delegator extends LabelProvider implements IDataSourceListener, ILabelProviderListener {
+		class Delegator extends LabelProvider implements IDataSourceListener, ILabelProviderListener, IStyledLabelProvider {
 			private ILabelProvider delegate;
 
 			private final CopyOnWriteArrayList<ILabelProviderListener> listeners = new CopyOnWriteArrayList<ILabelProviderListener>();
@@ -284,6 +286,23 @@ public class DataSource implements IChangeListener {
 			@Override
 			public boolean isLabelProperty(Object element, String property) {
 				return getDelegate().isLabelProperty(element, property);
+			}
+
+			/**
+			 * {@inhiriteDoc}
+			 * 
+			 * @see org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider#getStyledText(java.lang.Object)
+			 */
+			@Override
+			public StyledString getStyledText(final Object element) {
+				StyledString styledText = null;
+				ILabelProvider delegateProvider = getDelegate();
+				if (delegateProvider instanceof IStyledLabelProvider) {
+					styledText = ((IStyledLabelProvider) delegateProvider).getStyledText(element);
+				} else {
+					styledText = new StyledString(getText(element));
+				}
+				return styledText;
 			}
 		}
 
@@ -384,7 +403,7 @@ public class DataSource implements IChangeListener {
 	/**
 	 * @param propertyPath
 	 * @return
-	 *         true if the property represented by this propertyPath is ordered
+	 * 		true if the property represented by this propertyPath is ordered
 	 */
 	public boolean isOrdered(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -397,7 +416,7 @@ public class DataSource implements IChangeListener {
 	/**
 	 * @param propertyPath
 	 * @return
-	 *         true if the property represented by this propertyPath is unique
+	 * 		true if the property represented by this propertyPath is unique
 	 */
 	public boolean isUnique(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -410,7 +429,7 @@ public class DataSource implements IChangeListener {
 	/**
 	 * @param propertyPath
 	 * @return
-	 *         true if the property represented by this propertyPath is mandatory
+	 * 		true if the property represented by this propertyPath is mandatory
 	 */
 	public boolean isMandatory(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -423,7 +442,7 @@ public class DataSource implements IChangeListener {
 	/**
 	 * @param propertyPath
 	 * @return
-	 *         true if the property represented by this propertyPath is editable
+	 * 		true if the property represented by this propertyPath is editable
 	 */
 	public boolean isEditable(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -456,7 +475,7 @@ public class DataSource implements IChangeListener {
 	 * @param propertyPath
 	 *            The property path to lookup
 	 * @return
-	 *         The factory used to edit and/or instantiate values for this property path
+	 * 		The factory used to edit and/or instantiate values for this property path
 	 */
 	public ReferenceValueFactory getValueFactory(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -471,7 +490,7 @@ public class DataSource implements IChangeListener {
 	 *
 	 * @param propertyPath
 	 * @return
-	 *         The default value for the given property
+	 * 		The default value for the given property
 	 */
 	public Object getDefaultValue(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -492,7 +511,7 @@ public class DataSource implements IChangeListener {
 	 *
 	 * @param propertyPath
 	 * @return
-	 *         True if the widget should use the direct edition option for the given property
+	 * 		True if the widget should use the direct edition option for the given property
 	 */
 	public boolean getDirectCreation(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -542,14 +561,14 @@ public class DataSource implements IChangeListener {
 		}
 		return element.getNameResolutionHelper(getLocalPropertyPath(propertyPath));
 	}
-	
+
 	/**
 	 * return the Papyrus Converter to convert the object to edit or display string and to find the object from a string
 	 * 
 	 * @param propertyPath
 	 * @return
 	 */
-	public IPapyrusConverter getPapyrusConverter(String propertyPath){
+	public IPapyrusConverter getPapyrusConverter(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
 		if (element == null) {
 			return null;

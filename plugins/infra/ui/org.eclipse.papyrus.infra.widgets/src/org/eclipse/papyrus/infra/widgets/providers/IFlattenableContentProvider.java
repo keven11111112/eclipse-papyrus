@@ -24,4 +24,10 @@ public interface IFlattenableContentProvider {
 	 *            <code>true</code> if we display the possible value as a flat view
 	 */
 	public void setFlat(boolean isFlat);
+
+	/**
+	 * @since 3.0
+	 * @return <code>true</code> if we display the possible value as a flat view
+	 */
+	public boolean isFlat();
 }

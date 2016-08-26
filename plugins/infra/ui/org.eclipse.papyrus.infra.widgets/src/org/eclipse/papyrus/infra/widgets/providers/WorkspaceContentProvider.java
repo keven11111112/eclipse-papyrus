@@ -23,6 +23,7 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.infra.widgets.strategy.ProviderBasedBrowseStrategy;
 import org.eclipse.papyrus.infra.widgets.strategy.StrategyBasedContentProvider;
 import org.eclipse.papyrus.infra.widgets.strategy.TreeBrowseStrategy;
@@ -132,4 +133,23 @@ public class WorkspaceContentProvider extends EncapsulatedContentProvider {
 		}
 	}
 
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider#setFlat(boolean)
+	 */
+	@Override
+	public void setFlat(final boolean isFlat) {
+		super.setFlat(isFlat);
+		if (null != viewer) {
+			ViewerFilter[] filters = viewer.getFilters();
+			for (int i = 0; i < filters.length; i++) {
+				if (filters[i] instanceof PatternViewerFilter) {
+					((PatternViewerFilter) filters[i]).clearCache();
+				}
+			}
+			viewer.refresh();
+		}
+	}
 }

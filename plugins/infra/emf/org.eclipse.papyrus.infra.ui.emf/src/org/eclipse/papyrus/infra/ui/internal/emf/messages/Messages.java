@@ -1,5 +1,5 @@
 /*************************************************************
- * Copyright (c) 2012, 2016 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2016 CEA, Christian W. Damus, ALL4TEC, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *   Vincent Lorenzo (CEA LIST) - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 323802
  *   Christian W. Damus - bug 485220
+ *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 500869
  *
  */
 
@@ -20,6 +21,18 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.ui.internal.emf.messages.messages"; //$NON-NLS-1$
+
+	public static String EMFGraphicalContentProvider_CaseSensitiveCheckBoxLabel;
+
+	public static String EMFGraphicalContentProvider_CaseSensitiveCheckBoxTooltip;
+
+	public static String EMFGraphicalContentProvider_CollapseAllTooltip;
+
+	public static String EMFGraphicalContentProvider_ExpandAllTooltip;
+
+	public static String EMFGraphicalContentProvider_FilterFieldTooltip;
+
+	public static String EMFGraphicalContentProvider_historyGroupLabel;
 
 	public static String ResourceFilteredLabelProvider_local;
 

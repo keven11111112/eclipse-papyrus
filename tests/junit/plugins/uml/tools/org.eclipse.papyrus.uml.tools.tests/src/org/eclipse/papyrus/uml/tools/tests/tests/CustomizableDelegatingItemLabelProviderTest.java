@@ -73,7 +73,7 @@ public class CustomizableDelegatingItemLabelProviderTest {
 			LabelTypesEnum.LABEL.toString(),
 			LabelTypesEnum.STEREOTYPE.toString(),
 			LabelTypesEnum.COLON_SEPARATOR.toString(),
-			LabelTypesEnum.QUALIFY_NAME.toString());
+			LabelTypesEnum.QUALIFIED_NAME.toString());
 
 	/** the list of style */
 	public static List<Styler> styles = Arrays.asList(
