@@ -30,7 +30,6 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
-import org.eclipse.papyrus.views.modelexplorer.Messages;
 
 import com.google.common.base.Supplier;
 import com.google.common.base.Suppliers;
@@ -79,7 +78,7 @@ public class DoubleClickListener implements IDoubleClickListener {
 		try {
 			pageManager = ServiceUtils.getInstance().getService(IPageManager.class, servicesRegistry.get());
 		} catch (Exception e) {
-			Activator.log.error(Messages.DoubleClickListener_Error_NoLoadManagerToOpen, e);
+			Activator.log.error("Impossibility to load the page manager", e);//$NON-NLS-1$
 			return;
 		}
 

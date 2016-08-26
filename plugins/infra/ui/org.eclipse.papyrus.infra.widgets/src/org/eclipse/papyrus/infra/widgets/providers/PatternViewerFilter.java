@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 500290: add ignore case boolean and some refactore
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.providers;
 
@@ -31,11 +32,22 @@ import org.eclipse.ui.internal.misc.StringMatcher;
  */
 public class PatternViewerFilter extends AbstractTreeFilter {
 
-	private StringMatcher[] validPatterns = new StringMatcher[] { new StringMatcher("*", true, false) };
+	/** the wilcard ? */
+	private static final String SEMI_COLON = ";";//$NON-NLS-1$
 
+	/** the wilcard * */
+	private static final String ASTERISK = "*";//$NON-NLS-1$
+
+	private StringMatcher[] validPatterns = new StringMatcher[] { new StringMatcher(ASTERISK, true, false) };
+
+	/** The current pattern. */
 	private String currentPattern;
 
+	/** True if strict. */
 	private boolean strict = false;
+
+	/** To ignore case. */
+	private boolean ignoreCase = true;
 
 	/**
 	 * If the pattern is not strict, wildcards (*) will be added at the beginning and the end of the pattern
@@ -47,26 +59,51 @@ public class PatternViewerFilter extends AbstractTreeFilter {
 		this.strict = strict;
 	}
 
-	public void setPattern(String value) {
-		if (value.equals(currentPattern)) {
-			return;
+	/**
+	 * Set to true to ignore case.
+	 * 
+	 * @param ignoreCase
+	 *            the ignoreCase to set
+	 */
+	public void setIgnoreCase(boolean value) {
+		if (value != ignoreCase) {
+			this.ignoreCase = value;
+			setPatterns();
 		}
+	}
 
-		currentPattern = value;
+	/**
+	 * Set the pattern.
+	 */
+	public void setPattern(String value) {
+		if (!value.equals(currentPattern)) {
+			currentPattern = value;
+			setPatterns();
+		}
+	}
 
-		String[] patterns = value.split(";");
+	/**
+	 * Set Patterns.
+	 */
+	protected void setPatterns() {
+		String[] patterns = currentPattern.split(SEMI_COLON);
 		this.validPatterns = new StringMatcher[patterns.length];
 		int i = 0;
 		for (String pattern : patterns) {
 			if (!strict) {
-				pattern = "*" + pattern.trim() + "*";
+				pattern = ASTERISK + pattern.trim() + ASTERISK;
 			}
-			validPatterns[i++] = new StringMatcher(pattern, true, false);
+			validPatterns[i++] = new StringMatcher(pattern, ignoreCase, false);
 		}
 
 		clearCache();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.AbstractTreeFilter#isVisible(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+	 */
 	@Override
 	public boolean isVisible(Viewer viewer, Object parentElement, Object element) {
 		IBaseLabelProvider labelProvider = ((StructuredViewer) viewer).getLabelProvider();

@@ -11,6 +11,7 @@
  *  Christian W. Damus (CEA) - bug 434635
  *  Christian W. Damus - bug 450536
  *  Christian W. Damus - bug 454536
+ *  Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 500290: add composite to contain new filter
  *
  *****************************************************************************/
 
@@ -18,6 +19,9 @@ package org.eclipse.papyrus.views.modelexplorer;
 
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview.ViewPartPage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IViewPart;
@@ -33,6 +37,7 @@ import org.eclipse.ui.IWorkbenchPart;
 public class ModelExplorerPage extends ViewPartPage {
 
 	private SharedModelExplorerState state;
+	private Composite composite;
 
 	public ModelExplorerPage() {
 		super();
@@ -62,8 +67,14 @@ public class ModelExplorerPage extends ViewPartPage {
 	 */
 	@Override
 	public void createControl(Composite parent) {
-		getViewer().createPartControl(parent);
+		composite = new Composite(parent, SWT.NONE);
+		composite.setLayout(new GridLayout(1, false));
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+
+		getViewer().createPartControl(composite);
 	}
+
+
 
 	/**
 	 * Return the control
@@ -74,7 +85,7 @@ public class ModelExplorerPage extends ViewPartPage {
 	 */
 	@Override
 	public Control getControl() {
-		return ((ModelExplorerView) getViewer()).getControl();
+		return composite;
 	}
 
 	void setSharedState(SharedModelExplorerState state) {

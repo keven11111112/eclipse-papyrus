@@ -16,11 +16,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.infra.widgets.strategy.IStrategyBasedContentProvider;
 import org.eclipse.papyrus.infra.widgets.strategy.ProviderBasedBrowseStrategy;
 import org.eclipse.papyrus.infra.widgets.strategy.TreeBrowseStrategy;
@@ -126,9 +128,27 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 		}
 
 		boolean result = false;
-		if (!visitedElements.contains(element)) {
-			visitedElements.add(element);
+		boolean visited = false;
 
+		if (visitedElements.contains(element)) {
+			visited = true;
+		} else {
+			visitedElements.add(element);
+		}
+
+		// get the semantic element for facet case
+		if (!visited) {
+			EObject eObject = PlatformHelper.getAdapter(element, EObject.class);
+			if (null != eObject) {
+				if (visitedElements.contains(eObject)) {
+					visited = true;
+				} else {
+					visitedElements.add(eObject);
+				}
+			}
+		}
+
+		if (!visited) {
 			Object[] children = strategy.getChildren(element);
 			if (null != children) {
 				for (Object childElement : children) {
@@ -171,7 +191,7 @@ public abstract class AbstractTreeFilter extends ViewerFilter {
 		return result;
 	}
 
-	protected void clearCache() {
+	public void clearCache() {
 		visibleElement.clear();
 		visibleParent.clear();
 		visibleChild.clear();

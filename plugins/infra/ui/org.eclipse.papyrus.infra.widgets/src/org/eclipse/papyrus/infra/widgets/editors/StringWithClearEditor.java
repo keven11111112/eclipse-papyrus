@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Mickaël ADAM (ALL4TEC) - mickae.adam@all4tec.net - Initial API and implementation
+ *   Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Initial API and implementation
  *   
  *****************************************************************************/
 
@@ -61,10 +61,6 @@ public class StringWithClearEditor extends AbstractValueEditor implements KeyLis
 
 	private TimerTask changeColorTask;
 
-	protected final static int DEFAULT_HEIGHT_HINT = 55;
-
-	protected final static int DEFAULT_WIDTH_HINT = 100;
-
 	/** The clear icon when enable. */
 	private static final String CLEAR_ENABLED_ICON = "/icons/clear_enabled.gif";//$NON-NLS-1$
 
@@ -88,7 +84,7 @@ public class StringWithClearEditor extends AbstractValueEditor implements KeyLis
 	 *            The style for this editor's text box
 	 */
 	public StringWithClearEditor(Composite parent, int style) {
-		this(parent, style, null, DEFAULT_HEIGHT_HINT, DEFAULT_WIDTH_HINT);
+		this(parent, style, null);
 
 	}
 
@@ -104,67 +100,22 @@ public class StringWithClearEditor extends AbstractValueEditor implements KeyLis
 	 *            The label for this editor
 	 */
 	public StringWithClearEditor(Composite parent, int style, String label) {
-		this(parent, style, label, DEFAULT_HEIGHT_HINT, DEFAULT_WIDTH_HINT);
-	}
-
-	/**
-	 *
-	 * Constructor.
-	 *
-	 * @param parent
-	 *            The composite in which this editor should be displayed
-	 * @param style
-	 *            The style for this editor's text box
-	 * @param heighHint
-	 *            Height hint of the text area in multiline mode
-	 * @param widthHint
-	 *            Width hint of the text area in multiline mode
-	 */
-	public StringWithClearEditor(Composite parent, int style, int heighHint, int widthHint) {
-		this(parent, style, null, heighHint, widthHint);
-	}
-
-	/**
-	 *
-	 * Constructor.
-	 *
-	 * @param parent
-	 *            The composite in which this editor should be displayed
-	 * @param style
-	 *            The style for this editor's text box
-	 * @param label
-	 *            The label for this editor
-	 * @param heighHint
-	 *            Height hint of the text area in multiline mode
-	 * @param widthHint
-	 *            Width hint of the text area in multiline mode
-	 */
-	public StringWithClearEditor(Composite parent, int style, String label, int heighHint, int widthHint) {
 		super(parent, label);
 
 		// Create the filter composite
-		final Composite filterComposite = new Composite(parent, style);
+		final Composite filterComposite = new Composite(this, style);
 		filterComposite.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_LIST_BACKGROUND));
 
 		// Initialise the layout of the filter composite to display the widgets on 2 columns
 		final GridLayout filterLayout = new GridLayout(2, false);
 		filterLayout.marginHeight = 0;
 		filterLayout.marginWidth = 0;
+
 		filterComposite.setLayout(filterLayout);
-		{
-			GridData gridData = new GridData(SWT.FILL, SWT.BEGINNING, true, false);
-			filterComposite.setLayoutData(gridData);
-		}
+		filterComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
 
 		text = new Text(filterComposite, SWT.NONE);
-		{
-			GridData data = new GridData();
-			data.grabExcessVerticalSpace = false;
-			data.grabExcessHorizontalSpace = true;
-			data.horizontalAlignment = GridData.FILL;
-			data.verticalAlignment = GridData.BEGINNING;
-			text.setLayoutData(data);
-		}
+		text.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
 		text.setFont(parent.getFont());
 
 		Label clearButton = new Label(filterComposite, SWT.NONE);

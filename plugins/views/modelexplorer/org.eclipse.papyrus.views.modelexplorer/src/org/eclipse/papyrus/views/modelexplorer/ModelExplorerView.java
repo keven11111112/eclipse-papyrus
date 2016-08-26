@@ -12,6 +12,7 @@
  *  Christian W. Damus (CEA) - bugs 429826, 434635, 437217, 441857
  *  Christian W. Damus - bugs 450235, 451683, 485220
  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
+ *  Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 500290: implement new filter and ignore case Check button
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
@@ -74,6 +75,8 @@ import org.eclipse.papyrus.infra.ui.editor.reload.TreeViewerContext;
 import org.eclipse.papyrus.infra.ui.emf.providers.SemanticFromModelExplorer;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.IEditorInputChangedListener;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService;
+import org.eclipse.papyrus.infra.widgets.editors.StringWithClearEditor;
+import org.eclipse.papyrus.infra.widgets.providers.PatternViewerFilter;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.views.modelexplorer.SharedModelExplorerState.StateChangedEvent;
 import org.eclipse.papyrus.views.modelexplorer.listener.DoubleClickListener;
@@ -82,11 +85,19 @@ import org.eclipse.papyrus.views.modelexplorer.matching.LinkItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ModelElementItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ReferencableMatchingItem;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseMoveListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -135,7 +146,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 *
 	 * @see {@link LabelProviderService}
 	 */
-	public static final String LABEL_PROVIDER_SERVICE_CONTEXT = "org.eclipse.papyrus.views.modelexplorer.labelProvider.context";
+	public static final String LABEL_PROVIDER_SERVICE_CONTEXT = "org.eclipse.papyrus.views.modelexplorer.labelProvider.context"; //$NON-NLS-1$
 
 	/**
 	 * The {@link ServicesRegistry} associated to the Editor. This view is associated to the
@@ -160,6 +171,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/** Navigation menu for selected tree item */
 	private NavigationMenu navigationMenu;
+
+	/** The tree viewer filter. */
+	protected PatternViewerFilter viewerFilter;
 
 	/**
 	 * A listener on page (all editors) selection change. This listener is set
@@ -217,7 +231,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	public ModelExplorerView(IMultiDiagramEditor part) {
 
 		if (part == null) {
-			throw new IllegalArgumentException("A part should be provided.");
+			throw new IllegalArgumentException("A part should be provided.");//$NON-NLS-1$
 		}
 
 		init(part);
@@ -250,7 +264,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		// Try to get the ServicesRegistry
 		serviceRegistry = editor.getServicesRegistry();
 		if (serviceRegistry == null) {
-			throw new IllegalArgumentException("The editor should have a ServiceRegistry.");
+			throw new IllegalArgumentException("The editor should have a ServiceRegistry.");//$NON-NLS-1$
 		}
 
 		// Get required services from ServicesRegistry
@@ -410,7 +424,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		// Removal also fixes bug 400012: no scrollbar although tree is larger than visible area
 		Collection<Listener> listenersToRemove = new LinkedList<Listener>();
 		for (Listener listener : tree.getListeners(SWT.MeasureItem)) {
-			if (listener.getClass().getName().contains("org.eclipse.papyrus.emf.facet.infra.browser.uicore.internal.CustomTreePainter")) {
+			if (listener.getClass().getName().contains("org.eclipse.papyrus.emf.facet.infra.browser.uicore.internal.CustomTreePainter")) { //$NON-NLS-1$
 				listenersToRemove.add(listener);
 			}
 		}
@@ -450,6 +464,8 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	@Override
 	public void createPartControl(Composite aParent) {
 		super.createPartControl(aParent);
+
+		getCommonViewer().getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		getCommonViewer().setSorter(null);
 		((CustomCommonViewer) getCommonViewer()).getDropAdapter().setFeedbackEnabled(true);
@@ -531,12 +547,81 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		if (sharedState != null) {
 			initSharedState(sharedState);
 		}
+
+		// create the filter composite
+		createFilterComposite(aParent);
+	}
+
+	/**
+	 * Creates an area where a filter can be entered.
+	 *
+	 * @param parent
+	 *            the parent composite where to create the filter text
+	 * @return the created text area
+	 */
+	protected void createFilterComposite(final Composite parent) {
+		Composite filterComposite = new Composite(parent, SWT.NONE);
+		GridLayout layout = new GridLayout(2, false);
+		layout.marginHeight = 0;
+		layout.marginWidth = 0;
+		filterComposite.setLayout(layout);
+		filterComposite.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+
+		// Set the viewerFilter
+		viewerFilter = new PatternViewerFilter();
+		getCommonViewer().setFilters(viewerFilter);
+
+		// Create the filter composite
+		final StringWithClearEditor filterText = new StringWithClearEditor(filterComposite, SWT.BORDER);
+		filterText.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+		filterText.setValue("");//$NON-NLS-1$
+		filterText.setToolTipText(Messages.ModelExplorerView_SearchTextFieldTooltip);
+		filterText.getText().addModifyListener(new ModifyListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void modifyText(final ModifyEvent e) {
+				viewerFilter.setPattern(filterText.getValue());
+				getCommonViewer().refresh();
+			}
+		});
+
+		// Key listener to focus in the treeviewer when presser arrow up key
+		filterText.getText().addKeyListener(new KeyAdapter() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void keyPressed(final KeyEvent e) {
+				if (e.keyCode == SWT.ARROW_UP) {
+					getCommonViewer().getControl().setFocus();
+				}
+			}
+
+		});
+
+		// Create the checkbox button
+		Button checkBoxCaseSensitive = new Button(filterComposite, SWT.CHECK);
+		checkBoxCaseSensitive.setText(Messages.ModelExplorerView_CaseSensitiveCheckBoxLabel);
+		checkBoxCaseSensitive.setToolTipText(Messages.ModelExplorerView_CaseSensitiveCheckBoxTooltip);
+		checkBoxCaseSensitive.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent event) {
+				viewerFilter.setIgnoreCase(!((Button) event.getSource()).getSelection());
+				getCommonViewer().refresh();
+			}
+		});
+
 	}
 
 	@Override
 	protected CommonViewer createCommonViewer(Composite aParent) {
 		CommonViewer viewer = super.createCommonViewer(aParent);
-		ViewerColumn column = (ViewerColumn) viewer.getTree().getData(Policy.JFACE + ".columnViewer");
+		ViewerColumn column = (ViewerColumn) viewer.getTree().getData(Policy.JFACE + ".columnViewer");//$NON-NLS-1$
 		column.setEditingSupport(new DirectEditorEditingSupport(viewer));
 		return viewer;
 	}
@@ -1170,7 +1255,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					}
 					break;
 				default:
-					Activator.log.warn("Unsupported read-only event type: " + event.getEventType());
+					Activator.log.warn("Unsupported read-only event type: " + event.getEventType()); //$NON-NLS-1$
 					break;
 				}
 			}
