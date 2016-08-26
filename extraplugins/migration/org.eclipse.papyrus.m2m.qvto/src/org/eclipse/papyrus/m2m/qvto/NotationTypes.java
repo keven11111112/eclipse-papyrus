@@ -15,7 +15,6 @@ package org.eclipse.papyrus.m2m.qvto;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeTypes;
 import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
@@ -26,6 +25,15 @@ import org.eclipse.m2m.qvt.oml.blackbox.java.Operation.Kind;
 
 
 public class NotationTypes {
+
+	private static final double HIMETRIC_UNITS_PER_INCH = 2540.0;
+
+	private static float pseudoHimetricDPI = 72.0f;
+	private static double pseudoHimetricScale = 1.0;
+
+	static {
+		pseudoHimetricScale = pseudoHimetricDPI / HIMETRIC_UNITS_PER_INCH;
+	}
 
 	@Operation(contextual = true, kind = Kind.QUERY)
 	public static int toPixels(LayoutConstraint self, Integer himetric) {
@@ -78,6 +86,10 @@ public class NotationTypes {
 	}
 
 	private static int convertToPixels(int source) {
-		return MapModeTypes.HIMETRIC_MM.LPtoDP(source);
+		// TODO: Fix hard-coded pixel defaults in the QVTos and
+		// elsewhere that assume a 72-DPI display (cf. bug 497841).
+
+		// return MapModeTypes.HIMETRIC_MM.LPtoDP(source);
+		return (int) (source * pseudoHimetricScale);
 	}
 }
