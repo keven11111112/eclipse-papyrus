@@ -26,6 +26,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
@@ -219,15 +221,21 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 
 		@Override
 		public List<EObject> caseActivityNode(ActivityNode object) {
-			result.addAll(object.getOutgoings());
-			result.addAll(object.getIncomings());
+			// Use intermediate unique EList to avoid duplicates
+			EList<EObject> outAndIn = new UniqueEList<EObject>();
+			outAndIn.addAll(object.getOutgoings());
+			outAndIn.addAll(object.getIncomings());
+			result.addAll(outAndIn);
 			return super.caseActivityNode(object);
 		}
 
 		@Override
 		public List<EObject> caseVertex(Vertex object) {
-			result.addAll(object.getOutgoings());
-			result.addAll(object.getIncomings());
+			// Use intermediate unique EList to avoid duplicates
+			EList<EObject> outAndIn = new UniqueEList<EObject>();
+			outAndIn.addAll(object.getOutgoings());
+			outAndIn.addAll(object.getIncomings());
+			result.addAll(outAndIn);
 			return super.caseVertex(object);
 		}
 
