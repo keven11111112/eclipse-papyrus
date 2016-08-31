@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra Tests" sequenceNumber="1472124206">
+<target name="Papyrus Extra Tests" sequenceNumber="1472643985">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.b3.aggregator.editor.source.feature.feature.group" version="0.3.0.v20140928-0617"/>
@@ -10,23 +10,23 @@
       <repository id="b3" location="file:/home/data/httpd/download.eclipse.org/modeling/emft/b3/updates-4.4"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.oomph.version.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.workingsets.feature.group" version="1.4.0.v20160530-1200"/>
-      <unit id="org.eclipse.oomph.projectconfig.feature.group" version="1.4.0.v20160426-0718"/>
-      <unit id="org.eclipse.oomph.setup.targlets.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.mylyn.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.workbench.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.projectset.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.pde.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.targlets.feature.group" version="1.4.0.v20160518-1301"/>
-      <unit id="org.eclipse.oomph.setup.jdt.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.projects.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.git.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.maven.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.p2.feature.group" version="1.4.0.v20160606-0856"/>
-      <unit id="org.eclipse.oomph.setup.feature.group" version="1.4.0.v20160606-0856"/>
-      <unit id="org.eclipse.oomph.preferences.feature.group" version="1.4.0.v20160426-0711"/>
-      <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/release/1.4.0"/>
+      <unit id="org.eclipse.oomph.version.feature.group" version="1.5.0.v20160807-1022"/>
+      <unit id="org.eclipse.oomph.setup.workingsets.feature.group" version="1.5.0.v20160712-1728"/>
+      <unit id="org.eclipse.oomph.projectconfig.feature.group" version="1.5.0.v20160707-0243"/>
+      <unit id="org.eclipse.oomph.setup.targlets.feature.group" version="1.5.0.v20160807-1022"/>
+      <unit id="org.eclipse.oomph.setup.mylyn.feature.group" version="1.5.0.v20160707-0243"/>
+      <unit id="org.eclipse.oomph.setup.workbench.feature.group" version="1.5.0.v20160707-0243"/>
+      <unit id="org.eclipse.oomph.setup.projectset.feature.group" version="1.5.0.v20160707-0243"/>
+      <unit id="org.eclipse.oomph.setup.pde.feature.group" version="1.5.0.v20160707-0243"/>
+      <unit id="org.eclipse.oomph.targlets.feature.group" version="1.5.0.v20160807-1022"/>
+      <unit id="org.eclipse.oomph.setup.jdt.feature.group" version="1.5.0.v20160707-0243"/>
+      <unit id="org.eclipse.oomph.setup.projects.feature.group" version="1.5.0.v20160807-1022"/>
+      <unit id="org.eclipse.oomph.setup.git.feature.group" version="1.5.0.v20160807-1022"/>
+      <unit id="org.eclipse.oomph.setup.maven.feature.group" version="1.5.0.v20160807-1022"/>
+      <unit id="org.eclipse.oomph.p2.feature.group" version="1.5.0.v20160818-1158"/>
+      <unit id="org.eclipse.oomph.setup.feature.group" version="1.5.0.v20160818-1158"/>
+      <unit id="org.eclipse.oomph.preferences.feature.group" version="1.5.0.v20160807-0831"/>
+      <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/milestone/S20160831-044539-1.5.0-M1"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="fr.obeo.releng.targetplatform-feature.feature.group" version="2.1.1.201410251450"/>
@@ -65,8 +65,8 @@
       <repository id="gmfRuntime" location="file:/home/data/httpd/download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.sdk.feature.group" version="4.6.1.v20160817-0420"/>
-      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC1-201608170420/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.6.1.v20160824-0427"/>
+      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC2-201608240059/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.2.1.v20160808-1416"/>
@@ -192,7 +192,7 @@
       <repository id="elk" location="file:/home/data/httpd/download.eclipse.org/elk/updates/releases/0.1.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="graphiti" location="file:/home/data/httpd/download.eclipse.org/graphiti/updates/0.13.0/"/>
+      <repository id="graphiti" location="file:/home/data/httpd/download.eclipse.org/graphiti/updates/maintenance/S-0.13.1Neon.1RC2-201608301309/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="sphinx" location="file:/home/data/httpd/download.eclipse.org/sphinx/previews"/>

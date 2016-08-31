@@ -2,7 +2,7 @@ target "Papyrus Extra" with requirements source
 
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
 
-location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository" {
+location orbit2 "http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository" {
 	org.apache.batik.dom lazy
 	org.apache.batik.dom.svg lazy
 	org.apache.batik.extension lazy
@@ -55,7 +55,7 @@ location upr "http://download.eclipse.org/upr/0.9RC1/update/" {
 
 //manualUpdate 
 
-location rmf "http://download.eclipse.org/rmf/updates/releases" {
+location rmf "http://download.eclipse.org/rmf/updates/releases/0.13.0" {
 	org.eclipse.rmf.reqif10.sdk.feature.feature.group
 	org.eclipse.rmf.reqif10.pror.sdk.feature.feature.group
 }
@@ -85,7 +85,7 @@ location elk "http://download.eclipse.org/elk/updates/releases/0.1.0/" {
 
 //updateFrom("Graphiti",0)
 
-location graphiti "http://download.eclipse.org/graphiti/updates/0.13.0/" //
+location graphiti "http://download.eclipse.org/graphiti/updates/maintenance/S-0.13.1Neon.1RC2-201608301309/" //
 
 //updateFrom("Sphinx",0)
 

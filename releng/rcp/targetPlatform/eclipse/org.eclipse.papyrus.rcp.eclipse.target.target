@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus RCP" sequenceNumber="1472124206">
+<target name="Papyrus RCP" sequenceNumber="1472643985">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.6.0.v20160606-1156"/>
@@ -132,7 +132,7 @@
       <repository id="elk" location="file:/home/data/httpd/download.eclipse.org/elk/updates/releases/0.1.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="graphiti" location="file:/home/data/httpd/download.eclipse.org/graphiti/updates/0.13.0/"/>
+      <repository id="graphiti" location="file:/home/data/httpd/download.eclipse.org/graphiti/updates/maintenance/S-0.13.1Neon.1RC2-201608301309/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="sphinx" location="file:/home/data/httpd/download.eclipse.org/sphinx/previews"/>
@@ -173,11 +173,11 @@
       <repository id="cdo" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20160817-0420"/>
+      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20160824-0059"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="3.6.300.v20160525-1303"/>
       <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="4.5.100.v20160503-0947"/>
-      <unit id="org.eclipse.sdk.feature.group" version="4.6.1.v20160817-0420"/>
-      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC1-201608170420/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.6.1.v20160824-0427"/>
+      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC2-201608240059/"/>
     </location>
   </locations>
 </target>
