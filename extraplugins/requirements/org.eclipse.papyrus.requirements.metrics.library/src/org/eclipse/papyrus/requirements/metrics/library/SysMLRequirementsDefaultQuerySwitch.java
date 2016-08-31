@@ -26,13 +26,13 @@ public class SysMLRequirementsDefaultQuerySwitch implements IDefaultQuerySwitch{
 	@Override
 	public Object calculateValue(String operationName, Element element) {
 		switch (operationName) {
-		case I_Requirements_Operations.N_REQS:
+		case IRequirementsOperations.N_REQS:
 			return countRequirementsInAllOwnedElements(element);
 
-		case I_Requirements_Operations.N_UNSAT_REQS:
+		case IRequirementsOperations.N_UNSAT_REQS:
 			return countUnsatisfiedRequirementsInAllOwnedElements(element);
 
-		case I_Requirements_Operations.N_SAT_REQS:
+		case IRequirementsOperations.N_SAT_REQS:
 			return countSatisfiedRequirementsInAllOwnedElements(element);
 		}
 		return null;
