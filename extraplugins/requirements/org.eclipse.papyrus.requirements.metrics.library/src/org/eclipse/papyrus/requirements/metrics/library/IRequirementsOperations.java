@@ -18,7 +18,7 @@ package org.eclipse.papyrus.requirements.metrics.library;
  * List of constants used to calculate metrics about SysML requirements
  *
  */
-public interface I_Requirements_Operations {
+public interface IRequirementsOperations {
 	public static final String N_REQS="countRequirementsInAllOwnedElements";
 	public static final String N_SAT_REQS="countSatisfiedRequirementsInAllOwnedElements";
 	public static final String N_UNSAT_REQS="countUnsatisfiedRequirementsInAllOwnedElements";
