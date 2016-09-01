@@ -6,8 +6,8 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
-		<tycho-version>0.250.0</tycho-version>
-		<tychoExtrasVersion>0.25.0</tychoExtrasVersion>
+		<tycho-version>0.26.0</tycho-version>
+		<tychoExtrasVersion>0.26.0</tychoExtrasVersion>
 	</properties>
 	<build>
 		<plugins>
