@@ -243,7 +243,7 @@ public class BlockPropertyCompositeEditPart extends AbstractElementEditPart {
 		super.refreshVisuals();
 
 		String tag = "property";
-		int lineStyle = Graphics.LINE_SOLID;
+		int borderStyle = Graphics.LINE_SOLID;
 
 		if (resolveSemanticElement() != null) {
 			EObject eObject = resolveSemanticElement();
@@ -252,7 +252,7 @@ public class BlockPropertyCompositeEditPart extends AbstractElementEditPart {
 
 			} else if (((ISpecializationType) SysMLElementTypes.REFERENCE_PROPERTY).getMatcher().matches(eObject)) {
 				tag = "reference";
-				lineStyle = Graphics.LINE_CUSTOM;
+				borderStyle = Graphics.LINE_CUSTOM;
 
 			} else if (((ISpecializationType) SysMLElementTypes.ACTOR_PART_PROPERTY).getMatcher().matches(eObject)) {
 				tag = "actor part";
@@ -266,6 +266,6 @@ public class BlockPropertyCompositeEditPart extends AbstractElementEditPart {
 		}
 
 		getPrimaryShape().setFigureTag(tag);
-		getPrimaryShape().setLineStyle(lineStyle);
+		getPrimaryShape().setBorderStyle(borderStyle);
 	}
 }
