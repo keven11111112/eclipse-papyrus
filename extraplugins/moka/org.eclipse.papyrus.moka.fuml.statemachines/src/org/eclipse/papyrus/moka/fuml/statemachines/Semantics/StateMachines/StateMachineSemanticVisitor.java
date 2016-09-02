@@ -161,7 +161,7 @@ public abstract class StateMachineSemanticVisitor extends SemanticVisitor {
 					int j = 0;
 					boolean matchingPort = false; 
 					while(j < trigger.getPorts().size() & !matchingPort){
-						if(((CS_SignalInstance)signalEventOccurrence.signalInstance).interactionPoint == trigger.getPorts().get(j)){
+						if(((CS_SignalInstance)signalEventOccurrence.signalInstance).interactionPoint.definingPort == trigger.getPorts().get(j)){
 							matchingPort = true;
 						} 
 						j = j + 1;
