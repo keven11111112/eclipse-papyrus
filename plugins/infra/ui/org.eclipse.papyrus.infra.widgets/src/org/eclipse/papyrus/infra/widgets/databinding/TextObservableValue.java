@@ -71,6 +71,9 @@ public class TextObservableValue extends AbstractObservableValue implements List
 
 	@Override
 	protected void doSetValue(Object value) {
+		if (this.text == null || this.text.isDisposed()) {
+			return;
+		}
 		if (modelProperty != null && modelProperty.hasDifferentValues()) {
 			this.text.setText(UnchangedObject.instance.toString());
 			this.currentValue = UnchangedObject.instance;
