@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra Tests" sequenceNumber="1472021702">
+<target name="Papyrus Extra Tests" sequenceNumber="1473062011">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.b3.aggregator.editor.source.feature.feature.group" version="0.3.0.v20140928-0617"/>
@@ -113,7 +113,7 @@
       <repository id="emfValidation" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/validation/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.team.svn.feature.group" version="4.0.1.I20160719-1700"/>
+      <unit id="org.eclipse.team.svn.feature.group" version="4.0.2.I20160902-1700"/>
       <repository id="subversive" location="file:/home/data/httpd/download.eclipse.org/technology/subversive/4.0/neon-site/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
@@ -134,7 +134,7 @@
       <repository id="mylyn" location="file:/home/data/httpd/download.eclipse.org/mylyn/drops/3.20.0/v20160608-1917"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.epp.logging.aeri.feature.feature.group" version="2.0.3.v20160824-1528"/>
+      <unit id="org.eclipse.epp.logging.aeri.feature.feature.group" version="2.0.3.v20160902-0858"/>
       <repository id="aeri" location="file:/home/data/httpd/download.eclipse.org/technology/epp/logging/milestones/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
