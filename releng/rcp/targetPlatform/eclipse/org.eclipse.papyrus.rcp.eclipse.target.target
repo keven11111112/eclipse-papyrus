@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus RCP" sequenceNumber="1472643985">
+<target name="Papyrus RCP" sequenceNumber="1473062964">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.6.0.v20160606-1156"/>
@@ -71,7 +71,7 @@
       <repository id="emfValidation" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/validation/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.team.svn.feature.group" version="4.0.1.I20160719-1700"/>
+      <unit id="org.eclipse.team.svn.feature.group" version="4.0.2.I20160902-1700"/>
       <repository id="subversive" location="file:/home/data/httpd/download.eclipse.org/technology/subversive/4.0/neon-site/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
@@ -97,15 +97,15 @@
       <repository id="orbit" location="file:/home/data/httpd/download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.epp.logging.aeri.feature.feature.group" version="2.0.3.v20160824-1528"/>
+      <unit id="org.eclipse.epp.logging.aeri.feature.feature.group" version="2.0.3.v20160902-0858"/>
       <repository id="aeri" location="file:/home/data/httpd/download.eclipse.org/technology/epp/logging/milestones/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.acceleo.runtime.source.feature.group" version="3.6.4.201605040614"/>
-      <unit id="org.eclipse.acceleo.source.feature.group" version="3.6.4.201605040614"/>
-      <unit id="org.eclipse.acceleo.query.source.feature.group" version="5.0.0.201605040614"/>
-      <unit id="org.eclipse.acceleo.sdk.feature.group" version="3.6.4.201605040614"/>
-      <repository id="acceleo" location="file:/home/data/httpd/download.eclipse.org/acceleo/updates/milestones/3.6/S201605040614"/>
+      <unit id="org.eclipse.acceleo.runtime.source.feature.group" version="3.6.5.201608301456"/>
+      <unit id="org.eclipse.acceleo.source.feature.group" version="3.6.5.201608301456"/>
+      <unit id="org.eclipse.acceleo.query.source.feature.group" version="5.0.1.201608301456"/>
+      <unit id="org.eclipse.acceleo.sdk.feature.group" version="3.6.5.201608301456"/>
+      <repository id="acceleo" location="file:/home/data/httpd/download.eclipse.org/acceleo/updates/nightly/3.6.5.201608301456"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.upr.utp.feature.feature.group" version="0.9.0.20141027-1408-incubation"/>
@@ -114,7 +114,7 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.rmf.reqif10.sdk.feature.feature.group" version="0.13.0.201509161042"/>
       <unit id="org.eclipse.rmf.reqif10.pror.sdk.feature.feature.group" version="0.13.0.201509161042"/>
-      <repository id="rmf" location="file:/home/data/httpd/download.eclipse.org/rmf/updates/releases"/>
+      <repository id="rmf" location="file:/home/data/httpd/download.eclipse.org/rmf/updates/releases/0.13.0"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.eef.sdk-feature.feature.group" version="1.5.1.201601141612"/>
@@ -152,11 +152,11 @@
       <repository id="mylyn" location="file:/home/data/httpd/download.eclipse.org/mylyn/drops/3.20.0/v20160608-1917"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.compare.ide.ui.source.feature.group" version="3.2.0.201605311222"/>
-      <unit id="org.eclipse.emf.compare.diagram.gmf.source.feature.group" version="3.2.0.201605311222"/>
-      <unit id="org.eclipse.emf.compare.source.feature.group" version="3.2.0.201605311222"/>
-      <unit id="org.eclipse.emf.compare.uml2.source.feature.group" version="3.2.0.201605311222"/>
-      <repository id="emfCompare" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201605311222"/>
+      <unit id="org.eclipse.emf.compare.ide.ui.source.feature.group" version="3.2.1.201608311750"/>
+      <unit id="org.eclipse.emf.compare.diagram.gmf.source.feature.group" version="3.2.1.201608311750"/>
+      <unit id="org.eclipse.emf.compare.source.feature.group" version="3.2.1.201608311750"/>
+      <unit id="org.eclipse.emf.compare.uml2.source.feature.group" version="3.2.1.201608311750"/>
+      <repository id="emfCompare" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/compare/updates/nightly/3.2.1.201608311750"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xsd.sdk.feature.group" version="2.12.0.v20160526-0356"/>
@@ -173,11 +173,11 @@
       <repository id="cdo" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20160824-0059"/>
+      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20160831-0700"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="3.6.300.v20160525-1303"/>
       <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="4.5.100.v20160503-0947"/>
-      <unit id="org.eclipse.sdk.feature.group" version="4.6.1.v20160824-0427"/>
-      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC2-201608240059/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.6.1.v20160831-0700"/>
+      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC3-201608310700/"/>
     </location>
   </locations>
 </target>

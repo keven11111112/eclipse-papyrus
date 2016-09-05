@@ -2,7 +2,7 @@ target "Papyrus Extra" with requirements source
 
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
 
-location orbit2 "http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository" {
+location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository" {
 	org.apache.batik.dom lazy
 	org.apache.batik.dom.svg lazy
 	org.apache.batik.extension lazy
@@ -22,7 +22,7 @@ location aeri "http://download.eclipse.org/technology/epp/logging/milestones/" {
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201605311222" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/nightly/3.2.1.201608311750" {
 	org.eclipse.emf.compare.diagram.gmf.source.feature.group
 	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.uml2.source.feature.group
@@ -40,7 +40,7 @@ location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209"
 
 //updateFrom("M2T ACCELEO",0) 
 
-location acceleo "http://download.eclipse.org/acceleo/updates/milestones/3.6/S201605040614" {
+location acceleo "http://download.eclipse.org/acceleo/updates/nightly/3.6.5.201608301456" {
 	org.eclipse.acceleo.runtime.source.feature.group
 	org.eclipse.acceleo.source.feature.group
 	org.eclipse.acceleo.query.source.feature.group

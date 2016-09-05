@@ -2,7 +2,7 @@ target "Papyrus Main" with requirements source
 
 //manualUpdate
 
-location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/S201607281920/repository" {
+location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository" {
 	
 }
 
@@ -46,7 +46,7 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC2-201608240059/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC3-201608310700/" {
 	org.eclipse.sdk.feature.group
 }
 
