@@ -14,5 +14,6 @@
 	<modules>
 		<module>org.eclipse.papyrus.infra.newchild</module>
 		<module>org.eclipse.papyrus.infra.newchild.edit</module>
+		<module>org.eclipse.papyrus.infra.newchild.editor</module>
 	</modules>
 </project>
