@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra Tests" sequenceNumber="1473062011">
+<target name="Papyrus Extra Tests" sequenceNumber="1473143750">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.b3.aggregator.editor.source.feature.feature.group" version="0.3.0.v20140928-0617"/>
@@ -134,7 +134,7 @@
       <repository id="mylyn" location="http://download.eclipse.org/mylyn/drops/3.20.0/v20160608-1917"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.epp.logging.aeri.feature.feature.group" version="2.0.3.v20160902-0858"/>
+      <unit id="org.eclipse.epp.logging.aeri.feature.feature.group" version="2.0.3.v20160905-1331"/>
       <repository id="aeri" location="http://download.eclipse.org/technology/epp/logging/milestones/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
