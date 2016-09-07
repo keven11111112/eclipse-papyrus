@@ -95,12 +95,6 @@ public class IndexManager {
 	private JobWrangler jobWrangler;
 	private final CopyOnWriteArrayList<IndexListener> listeners = new CopyOnWriteArrayList<>();
 
-	static {
-		// This cannot be done in the constructor because indices that I load
-		// depend on the INSTANCE field already being set
-		INSTANCE.startManager();
-	}
-
 	public IndexManager() {
 		super();
 

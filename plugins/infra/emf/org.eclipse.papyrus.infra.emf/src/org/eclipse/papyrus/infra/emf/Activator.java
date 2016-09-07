@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
- *  Christian W. Damus - bugs 485220, 496299
+ *  Christian W. Damus - bugs 485220, 496299, 500990
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf;
@@ -95,7 +95,9 @@ public class Activator extends Plugin {
 
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
-				IndexManager.getInstance();
+				// This cannot be done in the IndexManager constructor because
+				// indices that it loads depend on the instance already being set
+				IndexManager.getInstance().startManager();
 
 				return Status.OK_STATUS;
 			}
