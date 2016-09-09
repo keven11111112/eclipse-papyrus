@@ -4,8 +4,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
-    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"
-    xsi:schemaLocation="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension ../../org.eclipse.papyrus.gmfgenextension/model/papyrusGmfgenExtension.ecore">
+    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension">
   <gmfgen:GenEditorGenerator
       packageNamePrefix="org.eclipse.papyrus.uml.diagram.deployment"
       modelID="PapyrusUMLDeploymentDiagram"
@@ -3728,7 +3727,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment=""
-        genView="/0/@diagram/@topLevelNodes.7 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.8 /0/@diagram/@topLevelNodes.10 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.15 /0/@diagram/@topLevelNodes.9"
+        genView="/0/@diagram/@topLevelNodes.7 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.8 /0/@diagram/@topLevelNodes.10 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.15 /0/@diagram/@topLevelNodes.9 /0/@diagram/@childNodes.10"
         name="RoundedCompartmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"/>
     <extensionNodes

@@ -69,8 +69,7 @@ public class UMLValidationProvider {
 			return false;
 		}
 		if (object instanceof View) {
-			return constraintsActive
-					&& DeploymentDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
+			return constraintsActive && DeploymentDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
 		}
 		return true;
 	}

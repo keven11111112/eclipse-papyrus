@@ -187,7 +187,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createModelCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(2);
+		List<IElementType> types = new ArrayList<>(2);
 		types.add(UMLElementTypes.Model_Shape_CN);
 		types.add(UMLElementTypes.Model_Shape);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
@@ -198,7 +198,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createPackageCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(2);
+		List<IElementType> types = new ArrayList<>(2);
 		types.add(UMLElementTypes.Package_Shape);
 		types.add(UMLElementTypes.Package_Shape_CN);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
@@ -209,7 +209,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createCommunicationPath1CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<>(1);
 		types.add(UMLElementTypes.CommunicationPath_Edge);
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
@@ -219,7 +219,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createNodeCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(3);
+		List<IElementType> types = new ArrayList<>(3);
 		types.add(UMLElementTypes.Node_Shape);
 		types.add(UMLElementTypes.Node_Shape_CCN);
 		types.add(UMLElementTypes.Node_Shape_CN);
@@ -231,7 +231,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createDeviceCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(3);
+		List<IElementType> types = new ArrayList<>(3);
 		types.add(UMLElementTypes.Device_Shape);
 		types.add(UMLElementTypes.Device_Shape_CCN);
 		types.add(UMLElementTypes.Device_Shape_CN);
@@ -243,7 +243,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createDeploymentSpecification5CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(4);
+		List<IElementType> types = new ArrayList<>(4);
 		types.add(UMLElementTypes.DeploymentSpecification_Shape);
 		types.add(UMLElementTypes.DeploymentSpecification_Shape_CCN);
 		types.add(UMLElementTypes.DeploymentSpecification_Shape_CN);
@@ -256,7 +256,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createExecutionEnvironmentCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(3);
+		List<IElementType> types = new ArrayList<>(3);
 		types.add(UMLElementTypes.ExecutionEnvironment_Shape);
 		types.add(UMLElementTypes.ExecutionEnvironment_Shape_CCN);
 		types.add(UMLElementTypes.ExecutionEnvironment_Shape_CN);
@@ -268,7 +268,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createArtifactCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(4);
+		List<IElementType> types = new ArrayList<>(4);
 		types.add(UMLElementTypes.Artifact_Shape);
 		types.add(UMLElementTypes.Artifact_Shape_CCN);
 		types.add(UMLElementTypes.Artifact_Shape_ACN);
@@ -281,7 +281,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createCommentCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(2);
+		List<IElementType> types = new ArrayList<>(2);
 		types.add(UMLElementTypes.Comment_Shape);
 		types.add(UMLElementTypes.Comment_Shape_CN);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
@@ -292,7 +292,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createConstraintCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(2);
+		List<IElementType> types = new ArrayList<>(2);
 		types.add(UMLElementTypes.Constraint_Shape);
 		types.add(UMLElementTypes.Constraint_Shape_CN);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
@@ -303,7 +303,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createLinkCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(2);
+		List<IElementType> types = new ArrayList<>(2);
 		types.add(UMLElementTypes.Comment_AnnotatedElementEdge);
 		types.add(UMLElementTypes.Constraint_ConstrainedElementEdge);
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
@@ -314,7 +314,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createDependencyCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<>(1);
 		types.add(UMLElementTypes.Dependency_Edge);
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
@@ -324,7 +324,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createDependencyBranchCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<>(1);
 		types.add(UMLElementTypes.Dependency_BranchEdge);
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
@@ -334,7 +334,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createGeneralizationCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<>(1);
 		types.add(UMLElementTypes.Generalization_Edge);
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
@@ -344,7 +344,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createDeploymentCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<>(1);
 		types.add(UMLElementTypes.Deployment_Edge);
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
@@ -354,7 +354,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createManifestationCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<>(1);
 		types.add(UMLElementTypes.Manifestation_Edge);
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;

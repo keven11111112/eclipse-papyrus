@@ -187,15 +187,13 @@ public class UMLVisualIDRegistry {
 		if (domainElement == null) {
 			return "";
 		}
-		String containerModelID = org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!DeploymentDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return "";
 		}
 		String containerVisualID;
 		if (DeploymentDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = DeploymentDiagramEditPart.VISUAL_ID;
@@ -227,8 +225,7 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
 					return DeviceEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-						&& isArtifact_Shape((Artifact) domainElement)) {
+				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass()) && isArtifact_Shape((Artifact) domainElement)) {
 					return ArtifactEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
@@ -257,8 +254,7 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 					return NestedNodeEditPartCN.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-						&& isArtifact_Shape_CN((Artifact) domainElement)) {
+				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass()) && isArtifact_Shape_CN((Artifact) domainElement)) {
 					return NestedArtifactNodeEditPartCN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
@@ -278,8 +274,7 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())) {
 					return PackageEditPartCN.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-						&& isArtifact_Shape_CN((Artifact) domainElement)) {
+				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass()) && isArtifact_Shape_CN((Artifact) domainElement)) {
 					return NestedArtifactNodeEditPartCN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
@@ -319,8 +314,7 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 					return ExecutionEnvironmentEditPartCN.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-						&& isArtifact_Shape_CCN((Artifact) domainElement)) {
+				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass()) && isArtifact_Shape_CCN((Artifact) domainElement)) {
 					return ArtifactEditPartCN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
@@ -334,8 +328,7 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
 					return ExecutionEnvironmentEditPartCN.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-						&& isArtifact_Shape_CCN((Artifact) domainElement)) {
+				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass()) && isArtifact_Shape_CCN((Artifact) domainElement)) {
 					return ArtifactEditPartCN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
@@ -346,8 +339,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case ArtifactCompositeCompartmentEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-						&& isArtifact_Shape_ACN((Artifact) domainElement)) {
+				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass()) && isArtifact_Shape_ACN((Artifact) domainElement)) {
 					return ArtifactEditPartACN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
@@ -370,8 +362,7 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 					return NestedNodeEditPartCN.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-						&& isArtifact_Shape_CN((Artifact) domainElement)) {
+				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass()) && isArtifact_Shape_CN((Artifact) domainElement)) {
 					return NestedArtifactNodeEditPartCN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
@@ -388,8 +379,7 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())) {
 					return PackageEditPartCN.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-						&& isArtifact_Shape_CN((Artifact) domainElement)) {
+				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass()) && isArtifact_Shape_CN((Artifact) domainElement)) {
 					return NestedArtifactNodeEditPartCN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())) {
@@ -426,8 +416,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-						&& isArtifact_Shape_CCN((Artifact) domainElement)) {
+				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass()) && isArtifact_Shape_CCN((Artifact) domainElement)) {
 					return ArtifactEditPartCN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())) {
@@ -447,8 +436,7 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())) {
 					return NodeEditPartCN.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-						&& isArtifact_Shape_CCN((Artifact) domainElement)) {
+				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass()) && isArtifact_Shape_CCN((Artifact) domainElement)) {
 					return ArtifactEditPartCN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
@@ -456,8 +444,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case ArtifactCompositeCompartmentEditPartCN.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-						&& isArtifact_Shape_ACN((Artifact) domainElement)) {
+				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass()) && isArtifact_Shape_ACN((Artifact) domainElement)) {
 					return ArtifactEditPartACN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
@@ -465,8 +452,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case ArtifactCompositeCompartmentEditPartACN.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-						&& isArtifact_Shape_ACN((Artifact) domainElement)) {
+				if (UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass()) && isArtifact_Shape_ACN((Artifact) domainElement)) {
 					return ArtifactEditPartACN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())) {
@@ -482,15 +468,13 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, String nodeVisualID) {
-		String containerModelID = org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!DeploymentDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		String containerVisualID;
 		if (DeploymentDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = DeploymentDiagramEditPart.VISUAL_ID;
@@ -1041,8 +1025,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isArtifact_Shape(Artifact domainElement) {
-		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getArtifact(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getArtifact(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -1050,8 +1033,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isArtifact_Shape_CCN(Artifact domainElement) {
-		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getArtifact(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getArtifact(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -1059,8 +1041,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isArtifact_Shape_ACN(Artifact domainElement) {
-		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getArtifact(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getArtifact(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -1068,8 +1049,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isArtifact_Shape_CN(Artifact domainElement) {
-		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getArtifact(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getArtifact(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -1142,7 +1122,6 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
-
 		/**
 		 * @generated
 		 */
@@ -1164,8 +1143,7 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public String getNodeVisualID(View containerView, EObject domainElement) {
-			return org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.getNodeVisualID(containerView,
-					domainElement);
+			return org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		}
 
 		/**
@@ -1173,8 +1151,7 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
-			return org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.checkNodeVisualID(containerView,
-					domainElement, candidate);
+			return org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
 		}
 
 		/**

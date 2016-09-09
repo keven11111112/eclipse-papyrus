@@ -158,8 +158,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if (editPolicyCommand != null) {
-			ICommand command = editPolicyCommand instanceof ICommandProxy
-					? ((ICommandProxy) editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
+			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
@@ -340,8 +339,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
 		for (Iterator<?> it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
 			View nextView = (View) it.next();
-			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() //$NON-NLS-1$
-					|| nextView.getElement() != view.getElement()) {
+			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
 				continue;
 			}
 			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
@@ -382,12 +380,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateComment_AnnotatedElementEdge(Comment source, Element target) {
 			if (source != null) {
-				if (source.getAnnotatedElements().contains(target)) {
+				if (source.getAnnotatedElements()
+						.contains(target)) {
 					return false;
 				}
 			}
 
-			return canExistComment_AnnotatedElementEdge(source, target);
+			return canExistComment_AnnotatedElementEdge(
+					source, target);
 		}
 
 		/**
@@ -395,54 +395,62 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			if (source != null) {
-				if (source.getConstrainedElements().contains(target)) {
+				if (source.getConstrainedElements()
+						.contains(target)) {
 					return false;
 				}
 			}
 
-			return canExistConstraint_ConstrainedElementEdge(source, target);
+			return canExistConstraint_ConstrainedElementEdge(
+					source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDeployment_Edge(DeploymentTarget container, NamedElement source, NamedElement target) {
-			return canExistDeployment_Edge(container, null, source, target);
+			return canExistDeployment_Edge(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateManifestation_Edge(Artifact container, NamedElement source, NamedElement target) {
-			return canExistManifestation_Edge(container, null, source, target);
+			return canExistManifestation_Edge(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateGeneralization_Edge(Classifier container, Classifier source, Classifier target) {
-			return canExistGeneralization_Edge(container, null, source, target);
+			return canExistGeneralization_Edge(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDependency_Edge(Package container, NamedElement source, NamedElement target) {
-			return canExistDependency_Edge(container, null, source, target);
+			return canExistDependency_Edge(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDependency_BranchEdge(Package container, NamedElement source, NamedElement target) {
-			return canExistDependency_BranchEdge(container, null, source, target);
+			return canExistDependency_BranchEdge(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateCommunicationPath_Edge(Package container, Type source, Type target) {
-			return canExistCommunicationPath_Edge(container, null, source, target);
+			return canExistCommunicationPath_Edge(
+					container, null, source, target);
 		}
 
 		/**
