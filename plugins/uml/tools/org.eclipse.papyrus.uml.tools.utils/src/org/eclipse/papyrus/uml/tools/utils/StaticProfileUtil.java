@@ -45,19 +45,31 @@ public class StaticProfileUtil {
 	 */
 	public StaticProfileUtil(Profile profile) {
 		Stereotype ePkg = profile.getAppliedStereotype(EPackage_QNAME);
+		// create definition
+		definition = EcoreFactory.eINSTANCE.createEPackage();
 		if (ePkg != null) {
 			basePackage = (String) profile.getValue(ePkg, EPKG_BASE_PACKAGE);
 			packageName = (String) profile.getValue(ePkg, EPKG_PACKAGE_NAME);
-			// create definition from stereotype
-			definition = EcoreFactory.eINSTANCE.createEPackage();
 			definition.setNsPrefix((String) profile.getValue(ePkg, EPKG_NS_PREFIX));
-			definition.setNsURI((String) profile.getValue(ePkg, EPKG_NS_URI));
 		}
 		else {
 			basePackage = null;
 			packageName = null;
-			definition = null;
+			definition.setNsPrefix(""); //$NON-NLS-1$
 		}
+		String nsURI = null;
+		if (ePkg != null) {
+			// examine the ePkg stereotype attribute first
+			nsURI = (String) profile.getValue(ePkg, EPKG_NS_URI);
+		}
+		if (nsURI == null || nsURI.isEmpty()) {
+			// still undefined or empty, get URI from UML attribute
+			nsURI = profile.getURI();
+		}
+		if (nsURI == null) {
+			nsURI = ""; //$NON-NLS-1$
+		}
+		definition.setNsURI(nsURI);
 	}
 
 	/**
