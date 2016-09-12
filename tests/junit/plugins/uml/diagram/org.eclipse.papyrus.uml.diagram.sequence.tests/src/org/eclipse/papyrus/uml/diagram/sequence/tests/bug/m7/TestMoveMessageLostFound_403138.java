@@ -23,8 +23,8 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.BendpointRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -52,7 +52,7 @@ public class TestMoveMessageLostFound_403138 extends AbstractNodeTest {
 		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(100, 300));
 		Point endLocation = getAbsoluteBounds(lifeline1).getTop().translate(0, 50);
 		Point startLocation = endLocation.getTranslated(-200, 0);
-		Message7EditPart messageFound = (Message7EditPart)createLink(UMLElementTypes.Message_FoundEdge, lifeline1.getViewer(), startLocation, endLocation);
+		MessageFoundEditPart messageFound = (MessageFoundEditPart)createLink(UMLElementTypes.Message_FoundEdge, lifeline1.getViewer(), startLocation, endLocation);
 		waitForComplete();
 		Point sourceLoc = SequenceUtil.getAbsoluteEdgeExtremity(messageFound, true);
 		Point targetLoc = SequenceUtil.getAbsoluteEdgeExtremity(messageFound, false);
@@ -83,7 +83,7 @@ public class TestMoveMessageLostFound_403138 extends AbstractNodeTest {
 		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(75, 200));
 		Point startLocation = getAbsoluteBounds(lifeline1).getTop().translate(0, 50);
 		Point endLocation = startLocation.getTranslated(100, 0);
-		Message6EditPart messageFound = (Message6EditPart)createLink(UMLElementTypes.Message_LostEdge, lifeline1.getViewer(), startLocation, endLocation);
+		MessageLostEditPart messageFound = (MessageLostEditPart)createLink(UMLElementTypes.Message_LostEdge, lifeline1.getViewer(), startLocation, endLocation);
 		waitForComplete();
 		Point sourceLoc = SequenceUtil.getAbsoluteEdgeExtremity(messageFound, true);
 		Point targetLoc = SequenceUtil.getAbsoluteEdgeExtremity(messageFound, false);

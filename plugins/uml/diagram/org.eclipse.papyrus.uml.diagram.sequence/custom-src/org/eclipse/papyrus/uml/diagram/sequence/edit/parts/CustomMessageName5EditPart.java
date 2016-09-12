@@ -27,7 +27,7 @@ import org.eclipse.swt.graphics.FontData;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomMessageName5EditPart extends MessageName5EditPart implements ICustomMessageLabel {
+public class CustomMessageName5EditPart extends MessageDeleteNameEditPart implements ICustomMessageLabel {
 
 	/**
 	 * Constructor.

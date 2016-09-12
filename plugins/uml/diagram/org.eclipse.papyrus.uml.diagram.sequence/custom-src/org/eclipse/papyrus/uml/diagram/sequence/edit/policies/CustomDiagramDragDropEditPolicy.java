@@ -98,13 +98,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractio
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message5EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
@@ -185,15 +185,15 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(TimeObservationEditPart.VISUAL_ID);
 		elementsVisualId.add(DurationConstraintEditPart.VISUAL_ID);
 		elementsVisualId.add(PackageEditPart.VISUAL_ID);
-		elementsVisualId.add(MessageEditPart.VISUAL_ID);
-		elementsVisualId.add(Message2EditPart.VISUAL_ID);
-		elementsVisualId.add(Message3EditPart.VISUAL_ID);
-		elementsVisualId.add(Message4EditPart.VISUAL_ID);
-		elementsVisualId.add(Message4EditPart.VISUAL_ID);
-		elementsVisualId.add(Message5EditPart.VISUAL_ID);
-		elementsVisualId.add(Message6EditPart.VISUAL_ID);
-		elementsVisualId.add(Message7EditPart.VISUAL_ID);
-		elementsVisualId.add(Message6EditPart.VISUAL_ID);
+		elementsVisualId.add(MessageSyncEditPart.VISUAL_ID);
+		elementsVisualId.add(MessageAsyncEditPart.VISUAL_ID);
+		elementsVisualId.add(MessageReplyEditPart.VISUAL_ID);
+		elementsVisualId.add(MessageCreateEditPart.VISUAL_ID);
+		elementsVisualId.add(MessageCreateEditPart.VISUAL_ID);
+		elementsVisualId.add(MessageDeleteEditPart.VISUAL_ID);
+		elementsVisualId.add(MessageLostEditPart.VISUAL_ID);
+		elementsVisualId.add(MessageFoundEditPart.VISUAL_ID);
+		elementsVisualId.add(MessageLostEditPart.VISUAL_ID);
 		elementsVisualId.add(GeneralOrderingEditPart.VISUAL_ID);
 		elementsVisualId.add(DestructionOccurrenceSpecificationEditPart.VISUAL_ID);
 		elementsVisualId.add(StateInvariantEditPart.VISUAL_ID);
@@ -412,13 +412,13 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		}
 		if (linkVISUALID != null) {
 			switch (linkVISUALID) {
-			case MessageEditPart.VISUAL_ID:
-			case Message2EditPart.VISUAL_ID:
-			case Message3EditPart.VISUAL_ID:
-			case Message4EditPart.VISUAL_ID:
-			case Message5EditPart.VISUAL_ID:
-			case Message6EditPart.VISUAL_ID:
-			case Message7EditPart.VISUAL_ID:
+			case MessageSyncEditPart.VISUAL_ID:
+			case MessageAsyncEditPart.VISUAL_ID:
+			case MessageReplyEditPart.VISUAL_ID:
+			case MessageCreateEditPart.VISUAL_ID:
+			case MessageDeleteEditPart.VISUAL_ID:
+			case MessageLostEditPart.VISUAL_ID:
+			case MessageFoundEditPart.VISUAL_ID:
 				return dropMessage(dropRequest, semanticElement, linkVISUALID);
 			case GeneralOrderingEditPart.VISUAL_ID:
 				return dropGeneralOrdering(dropRequest, semanticElement, linkVISUALID);
@@ -757,24 +757,24 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			if (message == null) {
 				return null;
 			}
-			ConnectionNodeEditPart messageEditPart = null;
+			ConnectionNodeEditPart MessageSyncEditPart = null;
 			DiagramEditPart diag = DiagramEditPartsUtil.getDiagramEditPart(getHost());
 			for (Object conn : diag.getConnections()) {
 				if (conn instanceof ConnectionNodeEditPart) {
 					EObject connElt = ((ConnectionNodeEditPart) conn).resolveSemanticElement();
 					if (message.equals(connElt)) {
-						messageEditPart = (ConnectionNodeEditPart) conn;
+						MessageSyncEditPart = (ConnectionNodeEditPart) conn;
 						break;
 					}
 				}
 			}
-			if (messageEditPart == null) {
+			if (MessageSyncEditPart == null) {
 				return null;
 			}
 			if (event == message.getSendEvent()) {
-				targetLocation = SequenceUtil.getAbsoluteEdgeExtremity(messageEditPart, true);
+				targetLocation = SequenceUtil.getAbsoluteEdgeExtremity(MessageSyncEditPart, true);
 			} else if (event == message.getReceiveEvent()) {
-				targetLocation = SequenceUtil.getAbsoluteEdgeExtremity(messageEditPart, false);
+				targetLocation = SequenceUtil.getAbsoluteEdgeExtremity(MessageSyncEditPart, false);
 			}
 		} else if (event instanceof ExecutionOccurrenceSpecification) {
 			ExecutionSpecification execution = ((ExecutionOccurrenceSpecification) event).getExecution();
@@ -871,16 +871,16 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *
 	 * @param durationLabelElement
 	 *            the duration observation or duration constraint to display as message label
-	 * @param messageEditPart
+	 * @param MessageSyncEditPart
 	 *            the containing message edit part
 	 * @param nodeVISUALID
 	 *            the label node visual id
 	 * @return the command or UnexecutableCommand
 	 */
-	private Command dropNodeOnMessage(PackageableElement durationLabelElement, ConnectionNodeEditPart messageEditPart, String nodeVISUALID) {
+	private Command dropNodeOnMessage(PackageableElement durationLabelElement, ConnectionNodeEditPart MessageSyncEditPart, String nodeVISUALID) {
 		IAdaptable elementAdapter = new EObjectAdapter(durationLabelElement);
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
-		return messageEditPart.getCommand(new CreateViewRequest(descriptor));
+		return MessageSyncEditPart.getCommand(new CreateViewRequest(descriptor));
 	}
 
 	/**

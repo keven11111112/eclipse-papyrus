@@ -26,8 +26,8 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -99,7 +99,7 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		ExecutionSpecification execution = (ExecutionSpecification)part2.resolveSemanticElement();
 		assertNotNull("execution", execution);
 		doCheckExecution(execution);
-		MessageEditPart message = (MessageEditPart)createLink(UMLElementTypes.Message_SynchEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
+		MessageSyncEditPart message = (MessageSyncEditPart)createLink(UMLElementTypes.Message_SynchEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
 		assertNotNull("Sync message", message);
 		Message msg = (Message)message.resolveSemanticElement();
 		assertNotNull("message", msg);
@@ -107,7 +107,7 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		getDiagramCommandStack().undo();
 		doCheckExecution(execution);
 		getDiagramCommandStack().redo();
-		message = (MessageEditPart)part2.getTargetConnections().get(0);
+		message = (MessageSyncEditPart)part2.getTargetConnections().get(0);
 		msg = (Message)message.resolveSemanticElement();
 		assertNotNull("message", msg);
 		doCheckExecution(execution, msg, true);
@@ -122,7 +122,7 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		ExecutionSpecification execution2 = (ExecutionSpecification)part2.resolveSemanticElement();
 		assertNotNull("execution2", execution2);
 		doCheckExecution(execution2);
-		MessageEditPart messagePart = (MessageEditPart)createLink(UMLElementTypes.Message_SynchEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
+		MessageSyncEditPart messagePart = (MessageSyncEditPart)createLink(UMLElementTypes.Message_SynchEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
 		assertNotNull("Sync message", messagePart);
 		Message message = (Message)messagePart.resolveSemanticElement();
 		assertNotNull("message", message);
@@ -152,7 +152,7 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		ExecutionSpecification execution2 = (ExecutionSpecification)part2.resolveSemanticElement();
 		assertNotNull("execution2", execution2);
 		doCheckExecution(execution2);
-		MessageEditPart messagePart = (MessageEditPart)createLink(UMLElementTypes.Message_SynchEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
+		MessageSyncEditPart messagePart = (MessageSyncEditPart)createLink(UMLElementTypes.Message_SynchEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
 		assertNotNull("Sync message", messagePart);
 		Message message = (Message)messagePart.resolveSemanticElement();
 		assertNotNull("message", message);
@@ -183,7 +183,7 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		ExecutionSpecification execution = (ExecutionSpecification)part1.resolveSemanticElement();
 		assertNotNull("execution", execution);
 		doCheckExecution(execution);
-		Message3EditPart messagePart = (Message3EditPart)createLink(UMLElementTypes.Message_ReplyEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
+		MessageReplyEditPart messagePart = (MessageReplyEditPart)createLink(UMLElementTypes.Message_ReplyEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
 		assertNotNull("Reply message", messagePart);
 		Message message = (Message)messagePart.resolveSemanticElement();
 		assertNotNull("message", message);
@@ -191,7 +191,7 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		getDiagramCommandStack().undo();
 		doCheckExecution(execution);
 		getDiagramCommandStack().redo();
-		messagePart = (Message3EditPart)part1.getSourceConnections().get(0);
+		messagePart = (MessageReplyEditPart)part1.getSourceConnections().get(0);
 		message = (Message)messagePart.resolveSemanticElement();
 		assertNotNull("message", message);
 		doCheckExecution(execution, message, false);
@@ -206,7 +206,7 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		ExecutionSpecification execution = (ExecutionSpecification)part1.resolveSemanticElement();
 		assertNotNull("execution", execution);
 		doCheckExecution(execution);
-		Message3EditPart messagePart = (Message3EditPart)createLink(UMLElementTypes.Message_ReplyEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
+		MessageReplyEditPart messagePart = (MessageReplyEditPart)createLink(UMLElementTypes.Message_ReplyEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
 		assertNotNull("Reply message", messagePart);
 		Message message = (Message)messagePart.resolveSemanticElement();
 		assertNotNull("message", message);
@@ -237,7 +237,7 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		ExecutionSpecification execution = (ExecutionSpecification)part1.resolveSemanticElement();
 		assertNotNull("execution", execution);
 		doCheckExecution(execution);
-		Message3EditPart messagePart = (Message3EditPart)createLink(UMLElementTypes.Message_ReplyEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
+		MessageReplyEditPart messagePart = (MessageReplyEditPart)createLink(UMLElementTypes.Message_ReplyEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
 		assertNotNull("Reply message", messagePart);
 		Message message = (Message)messagePart.resolveSemanticElement();
 		assertNotNull("message", message);

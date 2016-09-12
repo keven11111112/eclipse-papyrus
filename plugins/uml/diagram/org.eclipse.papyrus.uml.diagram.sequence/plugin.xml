@@ -203,6 +203,40 @@
                value="org.eclipse.papyrus.uml.diagram.sequence.EditingDomain"/>
          </enablement>
       </clientContext> 
+      <binding context="org.eclipse.papyrus.uml.diagram.sequence.TypeContext">
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Package_SequenceDiagram"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Interaction_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.ConsiderIgnoreFragment_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.InteractionOperand_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.InteractionUse_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Continuation_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Lifeline_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.ActionExecutionSpecification_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.BehaviorExecutionSpecification_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.StateInvariant_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_CoRegionShape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.TimeConstraint_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.TimeObservation_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.DestructionOccurrenceSpecification_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Constraint_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Comment_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape_CN"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.DurationObservation_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Message_SynchEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Message_AsynchEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Message_ReplyEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Message_CreateEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Message_DeleteEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Message_LostEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Message_FoundEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Comment_AnnotatedElementEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Constraint_ConstrainedElementEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.GeneralOrdering_Edge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Constraint_ContextEdge"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
    </extension>
 
 	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
@@ -1459,6 +1493,309 @@
          path="model/sequencediagram-uml.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="true"?>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Package_SequenceDiagram"
+               name="%metatype.name.Package_SequenceDiagram"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Package"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.PackageEditHelper">
+            <param name="semanticHint" value="Package_SequenceDiagram"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Interaction_Shape"
+               name="%metatype.name.Interaction_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Interaction"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.InteractionEditHelper">
+            <param name="semanticHint" value="Interaction_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.ConsiderIgnoreFragment_Shape"
+               name="%metatype.name.ConsiderIgnoreFragment_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ConsiderIgnoreFragment"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.ConsiderIgnoreFragmentEditHelper">
+            <param name="semanticHint" value="ConsiderIgnoreFragment_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_Shape"
+               name="%metatype.name.CombinedFragment_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="CombinedFragment"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.CombinedFragmentEditHelper">
+            <param name="semanticHint" value="CombinedFragment_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.InteractionOperand_Shape"
+               name="%metatype.name.InteractionOperand_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="InteractionOperand"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.InteractionOperandEditHelper">
+            <param name="semanticHint" value="InteractionOperand_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.InteractionUse_Shape"
+               name="%metatype.name.InteractionUse_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="InteractionUse"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.InteractionUseEditHelper">
+            <param name="semanticHint" value="InteractionUse_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Continuation_Shape"
+               name="%metatype.name.Continuation_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Continuation"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.ContinuationEditHelper">
+            <param name="semanticHint" value="Continuation_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Lifeline_Shape"
+               name="%metatype.name.Lifeline_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Lifeline"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.LifelineEditHelper">
+            <param name="semanticHint" value="Lifeline_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.ActionExecutionSpecification_Shape"
+               name="%metatype.name.ActionExecutionSpecification_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ActionExecutionSpecification"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.ActionExecutionSpecificationEditHelper">
+            <param name="semanticHint" value="ActionExecutionSpecification_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.BehaviorExecutionSpecification_Shape"
+               name="%metatype.name.BehaviorExecutionSpecification_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="BehaviorExecutionSpecification"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.BehaviorExecutionSpecificationEditHelper">
+            <param name="semanticHint" value="BehaviorExecutionSpecification_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.StateInvariant_Shape"
+               name="%metatype.name.StateInvariant_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="StateInvariant"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.StateInvariantEditHelper">
+            <param name="semanticHint" value="StateInvariant_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_CoRegionShape"
+               name="%metatype.name.CombinedFragment_CoRegionShape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_Shape"/>
+            <param name="semanticHint" value="CombinedFragment_CoRegionShape"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.TimeConstraint_Shape"
+               name="%metatype.name.TimeConstraint_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="TimeConstraint"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.TimeConstraintEditHelper">
+            <param name="semanticHint" value="TimeConstraint_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.TimeObservation_Shape"
+               name="%metatype.name.TimeObservation_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="TimeObservation"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.TimeObservationEditHelper">
+            <param name="semanticHint" value="TimeObservation_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape"
+               name="%metatype.name.DurationConstraint_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DurationConstraint"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.DurationConstraintEditHelper">
+            <param name="semanticHint" value="DurationConstraint_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.DestructionOccurrenceSpecification_Shape"
+               name="%metatype.name.DestructionOccurrenceSpecification_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DestructionOccurrenceSpecification"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.DestructionEventEditHelper">
+            <param name="semanticHint" value="DestructionOccurrenceSpecification_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Constraint_Shape"
+               name="%metatype.name.Constraint_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Constraint"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.ConstraintEditHelper">
+            <param name="semanticHint" value="Constraint_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Comment_Shape"
+               name="%metatype.name.Comment_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Comment"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.CommentEditHelper">
+            <param name="semanticHint" value="Comment_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape_CN"
+               name="%metatype.name.DurationConstraint_Shape_CN"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape"/>
+            <param name="semanticHint" value="DurationConstraint_Shape_CN"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.DurationObservation_Shape"
+               name="%metatype.name.DurationObservation_Shape"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DurationObservation"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.DurationObservationEditHelper">
+            <param name="semanticHint" value="DurationObservation_Shape"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Message_SynchEdge"
+               name="%metatype.name.Message_SynchEdge"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Message"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.MessageEditHelper">
+            <param name="semanticHint" value="Message_SynchEdge"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Message_AsynchEdge"
+               name="%metatype.name.Message_AsynchEdge"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.diagram.sequence.Message_SynchEdge"/>
+            <param name="semanticHint" value="Message_AsynchEdge"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Message_ReplyEdge"
+               name="%metatype.name.Message_ReplyEdge"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.diagram.sequence.Message_SynchEdge"/>
+            <param name="semanticHint" value="Message_ReplyEdge"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Message_CreateEdge"
+               name="%metatype.name.Message_CreateEdge"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.diagram.sequence.Message_SynchEdge"/>
+            <param name="semanticHint" value="Message_CreateEdge"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Message_DeleteEdge"
+               name="%metatype.name.Message_DeleteEdge"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.diagram.sequence.Message_SynchEdge"/>
+            <param name="semanticHint" value="Message_DeleteEdge"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Message_LostEdge"
+               name="%metatype.name.Message_LostEdge"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.diagram.sequence.Message_SynchEdge"/>
+            <param name="semanticHint" value="Message_LostEdge"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Message_FoundEdge"
+               name="%metatype.name.Message_FoundEdge"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.uml.diagram.sequence.Message_SynchEdge"/>
+            <param name="semanticHint" value="Message_FoundEdge"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Comment_AnnotatedElementEdge"
+               name="%metatype.name.Comment_AnnotatedElementEdge"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="Comment_AnnotatedElementEdge"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Constraint_ConstrainedElementEdge"
+               name="%metatype.name.Constraint_ConstrainedElementEdge"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="Constraint_ConstrainedElementEdge"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.uml.diagram.sequence.GeneralOrdering_Edge"
+               name="%metatype.name.GeneralOrdering_Edge"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="GeneralOrdering"
+               edithelper="org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.GeneralOrderingEditHelper">
+            <param name="semanticHint" value="GeneralOrdering_Edge"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.sequence.Constraint_ContextEdge"
+               name="%metatype.name.Constraint_ContextEdge"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="Constraint_ContextEdge"/>
+         </specializationType>
+      </metamodel>
+   </extension>
+
 
 
 </plugin>

@@ -19,13 +19,13 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message5EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.junit.Test;
 
@@ -49,7 +49,7 @@ public class MessageStereotypesTest extends BaseStereotypesTest {
 		assertNotNull(lifeline2);
 		ActionExecutionSpecificationEditPart target = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline2, getAbsoluteBounds(lifeline2).getTop().translate(0, 50), null);
 		assertNotNull(target);
-		MessageEditPart message = (MessageEditPart)createLink(UMLElementTypes.Message_SynchEdge, lifeline1.getViewer(), getAbsoluteCenter(source), getAbsoluteCenter(target));
+		MessageSyncEditPart message = (MessageSyncEditPart)createLink(UMLElementTypes.Message_SynchEdge, lifeline1.getViewer(), getAbsoluteCenter(source), getAbsoluteCenter(target));
 		assertNotNull(message);
 		doTest(message);
 	}
@@ -60,7 +60,7 @@ public class MessageStereotypesTest extends BaseStereotypesTest {
 		assertNotNull(source);
 		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), null);
 		assertNotNull(target);
-		Message2EditPart message = (Message2EditPart)createLink(UMLElementTypes.Message_AsynchEdge, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
+		MessageAsyncEditPart message = (MessageAsyncEditPart)createLink(UMLElementTypes.Message_AsynchEdge, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
 		assertNotNull(message);
 		doTest(message);
 	}
@@ -71,7 +71,7 @@ public class MessageStereotypesTest extends BaseStereotypesTest {
 		assertNotNull(source);
 		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), null);
 		assertNotNull(target);
-		Message4EditPart message = (Message4EditPart)createLink(UMLElementTypes.Message_CreateEdge, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
+		MessageCreateEditPart message = (MessageCreateEditPart)createLink(UMLElementTypes.Message_CreateEdge, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
 		assertNotNull(message);
 		doTest(message);
 	}
@@ -86,7 +86,7 @@ public class MessageStereotypesTest extends BaseStereotypesTest {
 		assertNotNull(lifeline2);
 		ActionExecutionSpecificationEditPart target = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline2, getAbsoluteBounds(lifeline1).getTop().translate(0, 150), null);
 		assertNotNull(target);
-		Message3EditPart message = (Message3EditPart)createLink(UMLElementTypes.Message_ReplyEdge, source.getViewer(), getAbsoluteCenter(source), getAbsoluteCenter(target));
+		MessageReplyEditPart message = (MessageReplyEditPart)createLink(UMLElementTypes.Message_ReplyEdge, source.getViewer(), getAbsoluteCenter(source), getAbsoluteCenter(target));
 		assertNotNull(message);
 		doTest(message);
 	}
@@ -97,7 +97,7 @@ public class MessageStereotypesTest extends BaseStereotypesTest {
 		assertNotNull(target);
 		Point targetLocation = getAbsoluteBounds(target).getTop().translate(0, 50);
 		Point sourceLocation = targetLocation.getTranslated(-100, 0);
-		Message7EditPart message = (Message7EditPart)createLink(UMLElementTypes.Message_FoundEdge, target.getViewer(), sourceLocation, targetLocation);
+		MessageFoundEditPart message = (MessageFoundEditPart)createLink(UMLElementTypes.Message_FoundEdge, target.getViewer(), sourceLocation, targetLocation);
 		assertNotNull(message);
 		doTest(message);
 	}
@@ -108,7 +108,7 @@ public class MessageStereotypesTest extends BaseStereotypesTest {
 		assertNotNull(source);
 		Point sourceLocation = getAbsoluteBounds(source).getTop().translate(0, 50);
 		Point targetLocation = sourceLocation.getTranslated(100, 0);
-		Message6EditPart message = (Message6EditPart)createLink(UMLElementTypes.Message_LostEdge, source.getViewer(), sourceLocation, targetLocation);
+		MessageLostEditPart message = (MessageLostEditPart)createLink(UMLElementTypes.Message_LostEdge, source.getViewer(), sourceLocation, targetLocation);
 		assertNotNull(message);
 		doTest(message);
 	}
@@ -119,7 +119,7 @@ public class MessageStereotypesTest extends BaseStereotypesTest {
 		assertNotNull(source);
 		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), null);
 		assertNotNull(target);
-		Message5EditPart message = (Message5EditPart)createLink(UMLElementTypes.Message_DeleteEdge, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
+		MessageDeleteEditPart message = (MessageDeleteEditPart)createLink(UMLElementTypes.Message_DeleteEdge, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
 		assertNotNull(message);
 		doTest(message);
 	}

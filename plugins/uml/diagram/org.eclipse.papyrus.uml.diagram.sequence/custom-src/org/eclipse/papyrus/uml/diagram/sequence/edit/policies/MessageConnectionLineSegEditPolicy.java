@@ -48,11 +48,11 @@ import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter.Rou
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageCreate;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
@@ -115,24 +115,24 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=403138
 	 */
 	protected Command getMoveMessageCommand(BendpointRequest request) {
-		if (getHost() instanceof Message6EditPart || getHost() instanceof Message7EditPart) {
+		if (getHost() instanceof MessageLostEditPart || getHost() instanceof MessageFoundEditPart) {
 			PointList points = getConnection().getPoints().getCopy();
 			CompoundCommand command = new CompoundCommand("Move");
-			AbstractMessageEditPart messageEditPart = (AbstractMessageEditPart) getHost();
+			AbstractMessageEditPart MessageSyncEditPart = (AbstractMessageEditPart) getHost();
 			// move source
 			ReconnectRequest sourceReq = new ReconnectRequest(REQ_RECONNECT_SOURCE);
-			sourceReq.setConnectionEditPart(messageEditPart);
+			sourceReq.setConnectionEditPart(MessageSyncEditPart);
 			Point sourceLocation = points.getFirstPoint().getCopy();
 			getConnection().translateToAbsolute(sourceLocation);
-			EditPart source = messageEditPart.getSource();
+			EditPart source = MessageSyncEditPart.getSource();
 			sourceReq.setLocation(sourceLocation);
 			sourceReq.setTargetEditPart(source);
 			Command moveSourceCommand = source.getCommand(sourceReq);
 			command.add(moveSourceCommand);
 			// move target
-			EditPart target = messageEditPart.getTarget();
+			EditPart target = MessageSyncEditPart.getTarget();
 			ReconnectRequest targetReq = new ReconnectRequest(REQ_RECONNECT_TARGET);
-			targetReq.setConnectionEditPart(messageEditPart);
+			targetReq.setConnectionEditPart(MessageSyncEditPart);
 			Point targetLocation = points.getLastPoint().getCopy();
 			getConnection().translateToAbsolute(targetLocation);
 			targetReq.setLocation(targetLocation);
@@ -164,9 +164,9 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				LifelineEditPart tgtLifelinePart = SequenceUtil.getParentLifelinePart(tgtPart);
 				if (/* send instanceof OccurrenceSpecification && rcv instanceof OccurrenceSpecification && */srcLifelinePart != null && tgtLifelinePart != null) {
 					RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
-					if ((getHost() instanceof MessageEditPart || getHost() instanceof Message2EditPart) && kind == RouterKind.SELF) {
+					if ((getHost() instanceof MessageSyncEditPart || getHost() instanceof MessageAsyncEditPart) && kind == RouterKind.SELF) {
 						return getSelfLinkMoveCommand(request, connectionPart, send, rcv, srcLifelinePart);
-					} else if (getHost() instanceof Message4EditPart) {
+					} else if (getHost() instanceof MessageCreateEditPart) {
 						IFigure fig = tgtLifelinePart.getPrimaryShape().getFigureLifelineNameContainerFigure();
 						Rectangle bounds = fig.getBounds().getCopy();
 						fig.translateToAbsolute(bounds);
@@ -337,7 +337,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				}
 			}
 			// Add impossible to move MessageLost and MessageFound by dragging the line.
-			else if (getHost() instanceof Message7EditPart || getHost() instanceof Message6EditPart) {
+			else if (getHost() instanceof MessageFoundEditPart || getHost() instanceof MessageLostEditPart) {
 				showMoveLineSegFeedback((BendpointRequest) request);
 			}
 		}
@@ -356,7 +356,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	@SuppressWarnings("unchecked")
 	protected void showMoveLineSegFeedback(BendpointRequest request) {
 		RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
-		if ((getHost() instanceof MessageEditPart || getHost() instanceof Message2EditPart) && kind == RouterKind.SELF) {
+		if ((getHost() instanceof MessageSyncEditPart || getHost() instanceof MessageAsyncEditPart) && kind == RouterKind.SELF) {
 			if (router == null) {
 				router = getConnection().getConnectionRouter();
 				getConnection().setConnectionRouter(new DummyRouter());
@@ -384,7 +384,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				to = 3;
 				request.getExtendedData().put(MOVE_LINE_ORIENTATION_DATA, MOVED_DOWN);
 			}
-			if (getHost() instanceof MessageEditPart && index > 1) {
+			if (getHost() instanceof MessageSyncEditPart && index > 1) {
 				dy = 0;
 			}
 			// move points on link
@@ -404,7 +404,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			return;
 		}
 		// Add impossible to dragging MessageLost and MessageFound. See bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=403138
-		if (getHost() instanceof Message4EditPart || getHost() instanceof Message6EditPart || getHost() instanceof Message7EditPart) {
+		if (getHost() instanceof MessageCreateEditPart || getHost() instanceof MessageLostEditPart || getHost() instanceof MessageFoundEditPart) {
 			if (router == null) {
 				router = getConnection().getConnectionRouter();
 				getConnection().setConnectionRouter(new DummyRouter());
@@ -452,7 +452,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			fig.translateToAbsolute(bounds);
 			Rectangle conBounds = linkPoints.getBounds().getCopy();
 			getConnection().translateToAbsolute(conBounds);
-			if (getHost() instanceof MessageEditPart) {// Sync message is linked between two executions.
+			if (getHost() instanceof MessageSyncEditPart) {// Sync message is linked between two executions.
 				if (conBounds.width < 2 || conBounds.height < 2
 						// check top and bottom y limit
 						|| conBounds.y <= bounds.y || conBounds.getBottom().y >= bounds.getBottom().y) {

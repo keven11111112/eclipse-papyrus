@@ -81,27 +81,27 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message5EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName5EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName7EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
@@ -1558,7 +1558,7 @@ public class SequenceUtil {
 		if (targetConnections != null && targetConnections.size() > 0) {
 			for (int i = 0; i < targetConnections.size(); i++) {
 				Object connection = targetConnections.get(i);
-				if (connection instanceof Message4EditPart) {
+				if (connection instanceof MessageCreateEditPart) {
 					return true;
 				}
 			}
@@ -1653,11 +1653,11 @@ public class SequenceUtil {
 		if (editPart instanceof DurationObservationEditPart) {
 			editPart.installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
 		}
-		if (editPart instanceof MessageEditPart || editPart instanceof Message2EditPart || editPart instanceof Message3EditPart || editPart instanceof Message4EditPart || editPart instanceof Message5EditPart || editPart instanceof Message6EditPart
-				|| editPart instanceof Message7EditPart) {
+		if (editPart instanceof MessageSyncEditPart || editPart instanceof MessageAsyncEditPart || editPart instanceof MessageReplyEditPart || editPart instanceof MessageCreateEditPart || editPart instanceof MessageDeleteEditPart || editPart instanceof MessageLostEditPart
+				|| editPart instanceof MessageFoundEditPart) {
 			editPart.installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
-		} else if (editPart instanceof MessageNameEditPart || editPart instanceof MessageName2EditPart || editPart instanceof MessageName3EditPart || editPart instanceof MessageName4EditPart || editPart instanceof MessageName5EditPart
-				|| editPart instanceof MessageName6EditPart || editPart instanceof MessageName7EditPart) {
+		} else if (editPart instanceof MessageSyncNameEditPart || editPart instanceof MessageAsyncNameEditPart || editPart instanceof MessageReplyNameEditPart || editPart instanceof MessageCreateNameEditPart || editPart instanceof MessageDeleteNameEditPart
+				|| editPart instanceof MessageLostNameEditPart || editPart instanceof MessageFoundNameEditPart) {
 			editPart.getParent().installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
 		} else if (editPart instanceof MessageSyncAppliedStereotypeEditPart || editPart instanceof MessageAsyncAppliedStereotypeEditPart || editPart instanceof MessageReplyAppliedStereotypeEditPart || editPart instanceof MessageCreateAppliedStereotypeEditPart
 				|| editPart instanceof MessageDeleteAppliedStereotypeEditPart || editPart instanceof MessageLostAppliedStereotypeEditPart || editPart instanceof MessageFoundAppliedStereotypeEditPart) {

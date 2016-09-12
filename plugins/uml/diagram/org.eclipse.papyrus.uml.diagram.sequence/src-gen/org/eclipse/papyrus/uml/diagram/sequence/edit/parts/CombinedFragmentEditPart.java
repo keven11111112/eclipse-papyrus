@@ -137,6 +137,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	 *
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new CombinedFragmentFigure();
 	}
@@ -144,6 +145,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public CombinedFragmentFigure getPrimaryShape() {
 		return (CombinedFragmentFigure) primaryShape;
 	}
@@ -211,6 +213,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -238,6 +241,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();

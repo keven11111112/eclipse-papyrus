@@ -864,7 +864,7 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 					if (part instanceof DestructionOccurrenceSpecificationEditPart) {
 						continue;
 					}
-					if (part.getParent() instanceof CustomMessage5EditPart && ((CustomMessage5EditPart) part.getParent()).getSource() != this) {
+					if (part.getParent() instanceof CustomMessageDeleteEditPart && ((CustomMessageDeleteEditPart) part.getParent()).getSource() != this) {
 						continue;
 					}
 				}
@@ -943,11 +943,11 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 	 */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
-		if (connEditPart instanceof Message4EditPart) {
+		if (connEditPart instanceof MessageCreateEditPart) {
 			// Create message
 			return new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
 		}
-		if (connEditPart instanceof Message2EditPart) {
+		if (connEditPart instanceof MessageAsyncEditPart) {
 			String terminal = AnchorHelper.getAnchorId(getEditingDomain(), connEditPart, false);
 			if (terminal.length() > 0) {
 				int start = terminal.indexOf("{") + 1;
@@ -986,7 +986,7 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 		} else if (request instanceof ReconnectRequest) {
 			ReconnectRequest reconnectRequest = (ReconnectRequest) request;
 			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
-			if (connectionEditPart instanceof Message4EditPart) {
+			if (connectionEditPart instanceof MessageCreateEditPart) {
 				return LifelineMessageCreateHelper.getCreateMessageAnchor(this, request, ((ReconnectRequest) request).getLocation().getCopy());
 			}
 		}

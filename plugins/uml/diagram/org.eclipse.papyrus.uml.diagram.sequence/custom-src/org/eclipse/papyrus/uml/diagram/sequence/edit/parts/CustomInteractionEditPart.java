@@ -473,7 +473,7 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 	 */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-		ConnectionAnchor sourceAnchor = createAnchor(request, UMLElementTypes.Message_FoundEdge, Message7EditPart.VISUAL_ID, Message7EditPart.class);
+		ConnectionAnchor sourceAnchor = createAnchor(request, UMLElementTypes.Message_FoundEdge, MessageFoundEditPart.VISUAL_ID, MessageFoundEditPart.class);
 		if (sourceAnchor == null) {
 			sourceAnchor = super.getSourceConnectionAnchor(request);
 		}
@@ -485,7 +485,7 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 	 */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
-		if (connEditPart instanceof Message7EditPart) {
+		if (connEditPart instanceof MessageFoundEditPart) {
 			String terminal = AnchorHelper.getAnchorId(getEditingDomain(), connEditPart, true);
 			if (terminal.length() > 0) {
 				PrecisionPoint pt = BaseSlidableAnchor.parseTerminalString(terminal);
@@ -494,7 +494,7 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 		}
 		ConnectionAnchor sourceConnectionAnchor = super.getSourceConnectionAnchor(connEditPart);
 		// Point referencePoint = sourceConnectionAnchor.getReferencePoint();
-		// if(connEditPart instanceof Message7EditPart && referencePoint.x != 0 && referencePoint.y != 0) {
+		// if(connEditPart instanceof MessageFoundEditPart && referencePoint.x != 0 && referencePoint.y != 0) {
 		// sourceConnectionAnchor = new XYAnchor(referencePoint);
 		// }
 		return sourceConnectionAnchor;
@@ -505,11 +505,11 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 	 */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-		ConnectionAnchor targetAnchor = createAnchor(request, UMLElementTypes.Message_LostEdge, Message6EditPart.VISUAL_ID, Message6EditPart.class);
+		ConnectionAnchor targetAnchor = createAnchor(request, UMLElementTypes.Message_LostEdge, MessageLostEditPart.VISUAL_ID, MessageLostEditPart.class);
 		if (targetAnchor == null) {
 			// Enabled to find Anchor for MessageCreate, this would be useful when showing feedbacks.
 			// Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=403134
-			targetAnchor = createAnchor(request, UMLElementTypes.Message_CreateEdge, Message4EditPart.VISUAL_ID, Message4EditPart.class);
+			targetAnchor = createAnchor(request, UMLElementTypes.Message_CreateEdge, MessageCreateEditPart.VISUAL_ID, MessageCreateEditPart.class);
 		}
 		if (targetAnchor == null) {
 			targetAnchor = super.getTargetConnectionAnchor(request);
@@ -524,7 +524,7 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
 		// Enabled to find Anchor for MessageCreate, this would be useful when showing feedbacks.
 		// Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=403134
-		if (connEditPart instanceof Message6EditPart || connEditPart instanceof Message4EditPart) {
+		if (connEditPart instanceof MessageLostEditPart || connEditPart instanceof MessageCreateEditPart) {
 			String terminal = AnchorHelper.getAnchorId(getEditingDomain(), connEditPart, false);
 			if (terminal.length() > 0) {
 				PrecisionPoint pt = BaseSlidableAnchor.parseTerminalString(terminal);
@@ -533,7 +533,7 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 		}
 		ConnectionAnchor targetConnectionAnchor = super.getTargetConnectionAnchor(connEditPart);
 		// Point referencePoint = targetConnectionAnchor.getReferencePoint();
-		// if(connEditPart instanceof Message6EditPart && referencePoint.x != 0 && referencePoint.y != 0) {
+		// if(connEditPart instanceof MessageLostEditPart && referencePoint.x != 0 && referencePoint.y != 0) {
 		// targetConnectionAnchor = new XYAnchor(referencePoint);
 		// }
 		return targetConnectionAnchor;

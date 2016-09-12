@@ -34,9 +34,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
@@ -78,7 +78,7 @@ public class TestCombinedFragmentGates_364816 extends TestLink {
 		// prepare link and gate
 		createLink(UMLElementTypes.Message_AsynchEdge, source, target, getAbsoluteCenter(source), getLeft(target));
 		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().size() == 1);
-		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().get(0) instanceof Message2EditPart);
+		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().get(0) instanceof MessageAsyncEditPart);
 		assertTrue(CREATION + INITIALIZATION_TEST, cf.getCfragmentGates().size() == 1);
 
 		// check reuse of gate
@@ -86,11 +86,11 @@ public class TestCombinedFragmentGates_364816 extends TestLink {
 		createLink(UMLElementTypes.Message_AsynchEdge, source, target, getAbsoluteCenter(source).translate(0, 40), getLeft(target).translate(0, 40));
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 2);
-		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().get(1) instanceof Message2EditPart);
+		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().get(1) instanceof MessageAsyncEditPart);
 		assertTrue(CREATION + TEST_THE_EXECUTION, cf.getCfragmentGates().size() == 1);
 
-		Message2EditPart conn1 = (Message2EditPart)source.getSourceConnections().get(0);
-		Message2EditPart conn2 = (Message2EditPart)source.getSourceConnections().get(1);
+		MessageAsyncEditPart conn1 = (MessageAsyncEditPart)source.getSourceConnections().get(0);
+		MessageAsyncEditPart conn2 = (MessageAsyncEditPart)source.getSourceConnections().get(1);
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((Message)conn1.resolveSemanticElement()).getReceiveEvent() == cf.getCfragmentGates().get(0));
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((Message)conn2.resolveSemanticElement()).getReceiveEvent() == cf.getCfragmentGates().get(0));
 
@@ -114,7 +114,7 @@ public class TestCombinedFragmentGates_364816 extends TestLink {
 		// prepare link and gate
 		createLink(UMLElementTypes.Message_FoundEdge, source, target, new Point(0, 0), getLeft(target));
 		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().size() == 1);
-		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().get(0) instanceof Message7EditPart);
+		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().get(0) instanceof MessageFoundEditPart);
 		assertTrue(CREATION + INITIALIZATION_TEST, cf.getCfragmentGates().size() == 1);
 
 		// check reuse of gate
@@ -122,11 +122,11 @@ public class TestCombinedFragmentGates_364816 extends TestLink {
 		createLink(UMLElementTypes.Message_FoundEdge, source, target, new Point(0, 20), getLeft(target).translate(0, 40));
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 2);
-		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().get(1) instanceof Message7EditPart);
+		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().get(1) instanceof MessageFoundEditPart);
 		assertTrue(CREATION + TEST_THE_EXECUTION, cf.getCfragmentGates().size() == 1);
 
-		Message7EditPart conn1 = (Message7EditPart)source.getSourceConnections().get(0);
-		Message7EditPart conn2 = (Message7EditPart)source.getSourceConnections().get(1);
+		MessageFoundEditPart conn1 = (MessageFoundEditPart)source.getSourceConnections().get(0);
+		MessageFoundEditPart conn2 = (MessageFoundEditPart)source.getSourceConnections().get(1);
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((Message)conn1.resolveSemanticElement()).getReceiveEvent() == cf.getCfragmentGates().get(0));
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((Message)conn2.resolveSemanticElement()).getReceiveEvent() == cf.getCfragmentGates().get(0));
 
@@ -150,7 +150,7 @@ public class TestCombinedFragmentGates_364816 extends TestLink {
 		// prepare link and gate
 		createLink(UMLElementTypes.Message_LostEdge, source, target, getLeft(source), new Point(0, 150));
 		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().size() == 1);
-		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().get(0) instanceof Message6EditPart);
+		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().get(0) instanceof MessageLostEditPart);
 		assertTrue(CREATION + INITIALIZATION_TEST, cf.getCfragmentGates().size() == 1);
 
 		// check reuse of gate
@@ -158,11 +158,11 @@ public class TestCombinedFragmentGates_364816 extends TestLink {
 		createLink(UMLElementTypes.Message_LostEdge, source, target, getLeft(source), new Point(0, 200));
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 2);
-		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().get(1) instanceof Message6EditPart);
+		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().get(1) instanceof MessageLostEditPart);
 		assertTrue(CREATION + TEST_THE_EXECUTION, cf.getCfragmentGates().size() == 1);
 
-		Message6EditPart conn1 = (Message6EditPart)source.getSourceConnections().get(0);
-		Message6EditPart conn2 = (Message6EditPart)source.getSourceConnections().get(1);
+		MessageLostEditPart conn1 = (MessageLostEditPart)source.getSourceConnections().get(0);
+		MessageLostEditPart conn2 = (MessageLostEditPart)source.getSourceConnections().get(1);
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((Message)conn1.resolveSemanticElement()).getSendEvent() == cf.getCfragmentGates().get(0));
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((Message)conn2.resolveSemanticElement()).getSendEvent() == cf.getCfragmentGates().get(0));
 

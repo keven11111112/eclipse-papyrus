@@ -4,8 +4,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
-    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"
-    xsi:schemaLocation="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension ../../org.eclipse.papyrus.gmfgenextension/model/papyrusGmfgenExtension.ecore">
+    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension">
   <gmfgen:GenEditorGenerator
       packageNamePrefix="org.eclipse.papyrus.uml.diagram.sequence"
       modelID="PapyrusUMLSequenceDiagram"
@@ -1473,11 +1472,11 @@
       </topLevelNodes>
       <links
           visualID="4003"
-          editPartClassName="MessageEditPart"
-          itemSemanticEditPolicyClassName="MessageItemSemanticEditPolicy"
+          editPartClassName="MessageSyncEditPart"
+          itemSemanticEditPolicyClassName="MessageSyncItemSemanticEditPolicy"
           notationViewFactoryClassName="MessageViewFactory"
-          createCommandClassName="MessageCreateCommand"
-          reorientCommandClassName="MessageReorientCommand">
+          createCommandClassName="MessageSyncCreateCommand"
+          reorientCommandClassName="MessageSyncReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
@@ -1506,7 +1505,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageItemSemanticEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageSyncItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.1">
@@ -1523,8 +1522,8 @@
         </modelFacet>
         <labels
             visualID="6001"
-            editPartClassName="MessageNameEditPart"
-            itemSemanticEditPolicyClassName="MessageNameItemSemanticEditPolicy"
+            editPartClassName="MessageSyncNameEditPart"
+            itemSemanticEditPolicyClassName="MessageSyncNameItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageNameViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1572,11 +1571,11 @@
       </links>
       <links
           visualID="4004"
-          editPartClassName="Message2EditPart"
-          itemSemanticEditPolicyClassName="Message2ItemSemanticEditPolicy"
+          editPartClassName="MessageAsyncEditPart"
+          itemSemanticEditPolicyClassName="MessageAsyncItemSemanticEditPolicy"
           notationViewFactoryClassName="MessageViewFactory"
-          createCommandClassName="Message2CreateCommand"
-          reorientCommandClassName="Message2ReorientCommand">
+          createCommandClassName="MessageAsyncCreateCommand"
+          reorientCommandClassName="MessageAsyncReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
@@ -1605,7 +1604,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message2ItemSemanticEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageAsyncItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.4">
@@ -1622,8 +1621,8 @@
         </modelFacet>
         <labels
             visualID="6002"
-            editPartClassName="MessageName2EditPart"
-            itemSemanticEditPolicyClassName="MessageName2ItemSemanticEditPolicy"
+            editPartClassName="MessageAsyncNameEditPart"
+            itemSemanticEditPolicyClassName="MessageAsyncNameItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageNameViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1670,11 +1669,11 @@
       </links>
       <links
           visualID="4005"
-          editPartClassName="Message3EditPart"
-          itemSemanticEditPolicyClassName="Message3ItemSemanticEditPolicy"
+          editPartClassName="MessageReplyEditPart"
+          itemSemanticEditPolicyClassName="MessageReplyItemSemanticEditPolicy"
           notationViewFactoryClassName="MessageViewFactory"
-          createCommandClassName="Message3CreateCommand"
-          reorientCommandClassName="Message3ReorientCommand">
+          createCommandClassName="MessageReplyCreateCommand"
+          reorientCommandClassName="MessageReplyReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
@@ -1703,7 +1702,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message3ItemSemanticEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageReplyItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.7">
@@ -1720,8 +1719,8 @@
         </modelFacet>
         <labels
             visualID="6003"
-            editPartClassName="MessageName3EditPart"
-            itemSemanticEditPolicyClassName="MessageName3ItemSemanticEditPolicy"
+            editPartClassName="MessageReplyNameEditPart"
+            itemSemanticEditPolicyClassName="MessageReplyNameItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageNameViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1768,11 +1767,11 @@
       </links>
       <links
           visualID="4006"
-          editPartClassName="Message4EditPart"
-          itemSemanticEditPolicyClassName="Message4ItemSemanticEditPolicy"
+          editPartClassName="MessageCreateEditPart"
+          itemSemanticEditPolicyClassName="MessageCreateItemSemanticEditPolicy"
           notationViewFactoryClassName="MessageViewFactory"
-          createCommandClassName="Message4CreateCommand"
-          reorientCommandClassName="Message4ReorientCommand">
+          createCommandClassName="MessageCreateCreateCommand"
+          reorientCommandClassName="MessageCreateReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
@@ -1801,7 +1800,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message4ItemSemanticEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageCreateItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.10">
@@ -1818,8 +1817,8 @@
         </modelFacet>
         <labels
             visualID="6004"
-            editPartClassName="MessageName4EditPart"
-            itemSemanticEditPolicyClassName="MessageName4ItemSemanticEditPolicy"
+            editPartClassName="MessageCreateNameEditPart"
+            itemSemanticEditPolicyClassName="MessageCreateNameItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageNameViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1867,11 +1866,11 @@
       </links>
       <links
           visualID="4007"
-          editPartClassName="Message5EditPart"
-          itemSemanticEditPolicyClassName="Message5ItemSemanticEditPolicy"
+          editPartClassName="MessageDeleteEditPart"
+          itemSemanticEditPolicyClassName="MessageDeleteItemSemanticEditPolicy"
           notationViewFactoryClassName="MessageViewFactory"
-          createCommandClassName="Message5CreateCommand"
-          reorientCommandClassName="Message5ReorientCommand">
+          createCommandClassName="MessageDeleteCreateCommand"
+          reorientCommandClassName="MessageDeleteReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
@@ -1900,7 +1899,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message5ItemSemanticEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageDeleteItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.13">
@@ -1917,8 +1916,8 @@
         </modelFacet>
         <labels
             visualID="6005"
-            editPartClassName="MessageName5EditPart"
-            itemSemanticEditPolicyClassName="MessageName5ItemSemanticEditPolicy"
+            editPartClassName="MessageDeleteNameEditPart"
+            itemSemanticEditPolicyClassName="MessageDeleteNameItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageNameViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -1965,11 +1964,11 @@
       </links>
       <links
           visualID="4008"
-          editPartClassName="Message6EditPart"
-          itemSemanticEditPolicyClassName="Message6ItemSemanticEditPolicy"
+          editPartClassName="MessageLostEditPart"
+          itemSemanticEditPolicyClassName="MessageLostItemSemanticEditPolicy"
           notationViewFactoryClassName="MessageViewFactory"
-          createCommandClassName="Message6CreateCommand"
-          reorientCommandClassName="Message6ReorientCommand">
+          createCommandClassName="MessageLostCreateCommand"
+          reorientCommandClassName="MessageLostReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
@@ -1998,7 +1997,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message6ItemSemanticEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLostItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.16">
@@ -2015,8 +2014,8 @@
         </modelFacet>
         <labels
             visualID="6006"
-            editPartClassName="MessageName6EditPart"
-            itemSemanticEditPolicyClassName="MessageName6ItemSemanticEditPolicy"
+            editPartClassName="MessageLostNameEditPart"
+            itemSemanticEditPolicyClassName="MessageLostNameItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageNameViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2064,11 +2063,11 @@
       </links>
       <links
           visualID="4009"
-          editPartClassName="Message7EditPart"
-          itemSemanticEditPolicyClassName="Message7ItemSemanticEditPolicy"
+          editPartClassName="MessageFoundEditPart"
+          itemSemanticEditPolicyClassName="MessageFoundItemSemanticEditPolicy"
           notationViewFactoryClassName="MessageViewFactory"
-          createCommandClassName="Message7CreateCommand"
-          reorientCommandClassName="Message7ReorientCommand">
+          createCommandClassName="MessageFoundCreateCommand"
+          reorientCommandClassName="MessageFoundReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
@@ -2097,7 +2096,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.Message7ItemSemanticEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageFoundItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.19">
@@ -2114,8 +2113,8 @@
         </modelFacet>
         <labels
             visualID="6007"
-            editPartClassName="MessageName7EditPart"
-            itemSemanticEditPolicyClassName="MessageName7ItemSemanticEditPolicy"
+            editPartClassName="MessageFoundNameEditPart"
+            itemSemanticEditPolicyClassName="MessageFoundNameItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageNameViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2625,7 +2624,7 @@
     <plugin
         iD="org.eclipse.papyrus.uml.diagram.sequence"
         provider="CEA"
-        version="2.0.0.qualifier">
+        version="3.0.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.papyrus.uml.diagram.common</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>

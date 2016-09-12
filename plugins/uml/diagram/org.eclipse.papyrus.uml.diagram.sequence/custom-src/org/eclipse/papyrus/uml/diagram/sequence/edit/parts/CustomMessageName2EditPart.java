@@ -39,7 +39,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomMessageName2EditPart extends MessageName2EditPart implements ICustomMessageLabel {
+public class CustomMessageName2EditPart extends MessageAsyncNameEditPart implements ICustomMessageLabel {
 
 	private NotificationHelper notifier = new NotificationHelper(new UIAdapterImpl() {
 
@@ -99,7 +99,7 @@ public class CustomMessageName2EditPart extends MessageName2EditPart implements 
 	@Override
 	public void refreshBounds() {
 		super.refreshBounds();
-		Message2EditPart parent = (Message2EditPart) getParent();
+		MessageAsyncEditPart parent = (MessageAsyncEditPart) getParent();
 		// Update location of label for self linked message.
 		if (SelfMessageHelper.isSelfLink(parent)) {
 			SelfMessageHelper.updateLabelLocation(this);

@@ -67,13 +67,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPar
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message5EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -272,19 +272,19 @@ public class CustomLifelineItemSemanticEditPolicy extends LifelineItemSemanticEd
 	@Override
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case MessageEditPart.VISUAL_ID:
+		case MessageSyncEditPart.VISUAL_ID:
 			return getGEFWrapper(new CustomMessageReorientCommand(req));
-		case Message2EditPart.VISUAL_ID:
+		case MessageAsyncEditPart.VISUAL_ID:
 			return getGEFWrapper(new CustomMessage2ReorientCommand(req));
-		case Message3EditPart.VISUAL_ID:
+		case MessageReplyEditPart.VISUAL_ID:
 			return getGEFWrapper(new CustomMessage3ReorientCommand(req));
-		case Message4EditPart.VISUAL_ID:
+		case MessageCreateEditPart.VISUAL_ID:
 			return getGEFWrapper(new CustomMessage4ReorientCommand(req));
-		case Message5EditPart.VISUAL_ID:
+		case MessageDeleteEditPart.VISUAL_ID:
 			return getGEFWrapper(new CustomMessage5ReorientCommand(req));
-		case Message6EditPart.VISUAL_ID:
+		case MessageLostEditPart.VISUAL_ID:
 			return getGEFWrapper(new CustomMessage6ReorientCommand(req));
-		case Message7EditPart.VISUAL_ID:
+		case MessageFoundEditPart.VISUAL_ID:
 			return getGEFWrapper(new CustomMessage7ReorientCommand(req));
 			// add general ordering
 		case GeneralOrderingEditPart.VISUAL_ID:
@@ -323,14 +323,14 @@ public class CustomLifelineItemSemanticEditPolicy extends LifelineItemSemanticEd
 			ReconnectRequest reconnReq = (ReconnectRequest) request;
 			Object model = reconnReq.getConnectionEditPart().getModel();
 			// Source of Message Found should be always located on Interaction.
-			if (model instanceof View && UMLVisualIDRegistry.getVisualID((View) model).equals(Message7EditPart.VISUAL_ID)) {
+			if (model instanceof View && UMLVisualIDRegistry.getVisualID((View) model).equals(MessageFoundEditPart.VISUAL_ID)) {
 				return false;
 			}
 		} else if (REQ_RECONNECT_TARGET.equals(request.getType())) {
 			ReconnectRequest reconnReq = (ReconnectRequest) request;
 			Object model = reconnReq.getConnectionEditPart().getModel();
 			// Target of Message Lost should be always located on Interaction.
-			if (model instanceof View && UMLVisualIDRegistry.getVisualID((View) model).equals(Message6EditPart.VISUAL_ID)) {
+			if (model instanceof View && UMLVisualIDRegistry.getVisualID((View) model).equals(MessageLostEditPart.VISUAL_ID)) {
 				return false;
 			}
 		}

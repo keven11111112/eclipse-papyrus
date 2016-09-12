@@ -52,8 +52,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPar
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -260,7 +260,7 @@ public class LifelineHeadUtil {
 				Command command = getVerticalMoveShapeCommand((GateEditPart) target, moveDelta, false);
 				commands.appendIfCanExecute(command);
 				movedEditParts.add(target);
-			} else if (object instanceof Message6EditPart) {
+			} else if (object instanceof MessageLostEditPart) {
 				Command command = getMoveAnchorCommand(conn, moveDelta, false);
 				commands.appendIfCanExecute(command);
 			}
@@ -268,7 +268,7 @@ public class LifelineHeadUtil {
 		List<?> targetConnections = editPart.getTargetConnections();
 		for (Object object : targetConnections) {
 			ConnectionEditPart conn = (ConnectionEditPart) object;
-			if (conn instanceof Message7EditPart) {
+			if (conn instanceof MessageFoundEditPart) {
 				Command command = getMoveAnchorCommand(conn, moveDelta, true);
 				commands.appendIfCanExecute(command);
 			} else if (conn.getSource() instanceof GateEditPart) {

@@ -31,10 +31,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Constraint2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintContextAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
@@ -58,30 +56,29 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseName2Ed
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message5EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName5EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName7EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
@@ -309,13 +306,13 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		// handle duration constraint/observation on message
-		case MessageEditPart.VISUAL_ID:
-		case Message2EditPart.VISUAL_ID:
-		case Message3EditPart.VISUAL_ID:
-		case Message4EditPart.VISUAL_ID:
-		case Message5EditPart.VISUAL_ID:
-		case Message6EditPart.VISUAL_ID:
-		case Message7EditPart.VISUAL_ID:
+		case MessageSyncEditPart.VISUAL_ID:
+		case MessageAsyncEditPart.VISUAL_ID:
+		case MessageReplyEditPart.VISUAL_ID:
+		case MessageCreateEditPart.VISUAL_ID:
+		case MessageDeleteEditPart.VISUAL_ID:
+		case MessageLostEditPart.VISUAL_ID:
+		case MessageFoundEditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())) {
 				return DurationConstraintInMessageEditPart.VISUAL_ID;
 			}
@@ -520,56 +517,56 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case MessageEditPart.VISUAL_ID:
-			if (MessageNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+		case MessageSyncEditPart.VISUAL_ID:
+			if (MessageSyncNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			if (MessageSyncAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			break;
-		case Message2EditPart.VISUAL_ID:
-			if (MessageName2EditPart.VISUAL_ID.equals(nodeVisualID)) {
+		case MessageAsyncEditPart.VISUAL_ID:
+			if (MessageAsyncNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			if (MessageAsyncAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			break;
-		case Message3EditPart.VISUAL_ID:
-			if (MessageName3EditPart.VISUAL_ID.equals(nodeVisualID)) {
+		case MessageReplyEditPart.VISUAL_ID:
+			if (MessageReplyNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			if (MessageReplyAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			break;
-		case Message4EditPart.VISUAL_ID:
-			if (MessageName4EditPart.VISUAL_ID.equals(nodeVisualID)) {
+		case MessageCreateEditPart.VISUAL_ID:
+			if (MessageCreateNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			if (MessageCreateAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			break;
-		case Message5EditPart.VISUAL_ID:
-			if (MessageName5EditPart.VISUAL_ID.equals(nodeVisualID)) {
+		case MessageDeleteEditPart.VISUAL_ID:
+			if (MessageDeleteNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			if (MessageDeleteAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			break;
-		case Message6EditPart.VISUAL_ID:
-			if (MessageName6EditPart.VISUAL_ID.equals(nodeVisualID)) {
+		case MessageLostEditPart.VISUAL_ID:
+			if (MessageLostNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			if (MessageLostAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			break;
-		case Message7EditPart.VISUAL_ID:
-			if (MessageName7EditPart.VISUAL_ID.equals(nodeVisualID)) {
+		case MessageFoundEditPart.VISUAL_ID:
+			if (MessageFoundNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
 				return true;
 			}
 			if (MessageFoundAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
@@ -594,31 +591,31 @@ public class UMLVisualIDRegistry {
 		}
 		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 				&& isMessage_SynchEdge((Message) domainElement)) {
-			return MessageEditPart.VISUAL_ID;
+			return MessageSyncEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 				&& isMessage_AsynchEdge((Message) domainElement)) {
-			return Message2EditPart.VISUAL_ID;
+			return MessageAsyncEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 				&& isMessage_ReplyEdge((Message) domainElement)) {
-			return Message3EditPart.VISUAL_ID;
+			return MessageReplyEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 				&& isMessage_CreateEdge((Message) domainElement)) {
-			return Message4EditPart.VISUAL_ID;
+			return MessageCreateEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 				&& isMessage_DeleteEdge((Message) domainElement)) {
-			return Message5EditPart.VISUAL_ID;
+			return MessageDeleteEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 				&& isMessage_LostEdge((Message) domainElement)) {
-			return Message6EditPart.VISUAL_ID;
+			return MessageLostEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 				&& isMessage_FoundEdge((Message) domainElement)) {
-			return Message7EditPart.VISUAL_ID;
+			return MessageFoundEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getGeneralOrdering().isSuperTypeOf(domainElement.eClass())) {
 			return GeneralOrderingEditPart.VISUAL_ID;

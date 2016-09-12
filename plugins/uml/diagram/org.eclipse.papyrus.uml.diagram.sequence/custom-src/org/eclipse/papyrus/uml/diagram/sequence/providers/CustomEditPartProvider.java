@@ -120,33 +120,33 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 			return new CustomInteractionInteractionCompartmentEditPart(view);
 		case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
 			return new CustomCombinedFragmentCombinedFragmentCompartmentEditPart(view);
-		case MessageEditPart.VISUAL_ID:
-			return new CustomMessageEditPart(view);
-		case MessageNameEditPart.VISUAL_ID:
+		case MessageSyncEditPart.VISUAL_ID:
+			return new CustomMessageSyncEditPart(view);
+		case MessageSyncNameEditPart.VISUAL_ID:
 			return new CustomMessageNameEditPart(view);
-		case Message2EditPart.VISUAL_ID:
-			return new CustomMessage2EditPart(view);
-		case MessageName2EditPart.VISUAL_ID:
+		case MessageAsyncEditPart.VISUAL_ID:
+			return new CustomMessageAsyncEditPart(view);
+		case MessageAsyncNameEditPart.VISUAL_ID:
 			return new CustomMessageName2EditPart(view);
-		case Message3EditPart.VISUAL_ID:
-			return new CustomMessage3EditPart(view);
-		case MessageName3EditPart.VISUAL_ID:
+		case MessageReplyEditPart.VISUAL_ID:
+			return new CustomMessageReplyEditPart(view);
+		case MessageReplyNameEditPart.VISUAL_ID:
 			return new CustomMessageName3EditPart(view);
-		case Message4EditPart.VISUAL_ID:
-			return new CustomMessage4EditPart(view);
-		case MessageName4EditPart.VISUAL_ID:
+		case MessageCreateEditPart.VISUAL_ID:
+			return new CustomMessageCreateEditPart(view);
+		case MessageCreateNameEditPart.VISUAL_ID:
 			return new CustomMessageName4EditPart(view);
-		case Message5EditPart.VISUAL_ID:
-			return new CustomMessage5EditPart(view);
-		case MessageName5EditPart.VISUAL_ID:
+		case MessageDeleteEditPart.VISUAL_ID:
+			return new CustomMessageDeleteEditPart(view);
+		case MessageDeleteNameEditPart.VISUAL_ID:
 			return new CustomMessageName5EditPart(view);
-		case Message6EditPart.VISUAL_ID:
-			return new CustomMessage6EditPart(view);
-		case MessageName6EditPart.VISUAL_ID:
+		case MessageLostEditPart.VISUAL_ID:
+			return new CustomMessageLostEditPart(view);
+		case MessageLostNameEditPart.VISUAL_ID:
 			return new CustomMessageName6EditPart(view);
-		case Message7EditPart.VISUAL_ID:
-			return new CustomMessage7EditPart(view);
-		case MessageName7EditPart.VISUAL_ID:
+		case MessageFoundEditPart.VISUAL_ID:
+			return new CustomMessageFoundEditPart(view);
+		case MessageFoundNameEditPart.VISUAL_ID:
 			return new CustomMessageName7EditPart(view);
 		case CommentAnnotatedElementEditPart.VISUAL_ID:
 			return new CustomCommentAnnotatedElementEditPart(view);

@@ -44,19 +44,19 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseName2Ed
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName5EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName7EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
@@ -79,7 +79,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class UMLParserProvider extends AbstractProvider implements IParserProvider {
 	/**
 	 * @generated
-	 * 
+	 *
 	 */
 	private IParser interaction_NameLabel_Parser;
 
@@ -677,37 +677,37 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			case DurationObservationAppliedStereotypeEditPart.VISUAL_ID:
 				return getDurationObservation_StereotypeLabel_Parser();
 
-			case MessageNameEditPart.VISUAL_ID:
+			case MessageSyncNameEditPart.VISUAL_ID:
 				return getMessage_SynchNameLabel_Parser();
 			case MessageSyncAppliedStereotypeEditPart.VISUAL_ID:
 				return getMessage_SynchStereotypeLabel_Parser();
 
-			case MessageName2EditPart.VISUAL_ID:
+			case MessageAsyncNameEditPart.VISUAL_ID:
 				return getMessage_AsynchNameLabel_Parser();
 			case MessageAsyncAppliedStereotypeEditPart.VISUAL_ID:
 				return getMessage_AsynchStereotypeLabel_Parser();
 
-			case MessageName3EditPart.VISUAL_ID:
+			case MessageReplyNameEditPart.VISUAL_ID:
 				return getMessage_ReplyNameLabel_Parser();
 			case MessageReplyAppliedStereotypeEditPart.VISUAL_ID:
 				return getMessage_ReplyStereotypeLabel_Parser();
 
-			case MessageName4EditPart.VISUAL_ID:
+			case MessageCreateNameEditPart.VISUAL_ID:
 				return getMessage_CreateNameLabel_Parser();
 			case MessageCreateAppliedStereotypeEditPart.VISUAL_ID:
 				return getMessage_CreateStereotypeLabel_Parser();
 
-			case MessageName5EditPart.VISUAL_ID:
+			case MessageDeleteNameEditPart.VISUAL_ID:
 				return getMessage_DeleteNameLabel_Parser();
 			case MessageDeleteAppliedStereotypeEditPart.VISUAL_ID:
 				return getMessage_DeleteStereotypeLabel_Parser();
 
-			case MessageName6EditPart.VISUAL_ID:
+			case MessageLostNameEditPart.VISUAL_ID:
 				return getMessage_LostNameLabel_Parser();
 			case MessageLostAppliedStereotypeEditPart.VISUAL_ID:
 				return getMessage_LostStereotypeLabel_Parser();
 
-			case MessageName7EditPart.VISUAL_ID:
+			case MessageFoundNameEditPart.VISUAL_ID:
 				return getMessage_FoundNameLabel_Parser();
 			case MessageFoundAppliedStereotypeEditPart.VISUAL_ID:
 				return getMessage_FoundStereotypeLabel_Parser();
@@ -734,11 +734,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	@Override
 	public IParser getParser(IAdaptable hint) {
-		String vid = (String) hint.getAdapter(String.class);
+		String vid = hint.getAdapter(String.class);
 		if (vid != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(vid));
 		}
-		View view = (View) hint.getAdapter(View.class);
+		View view = hint.getAdapter(View.class);
 		if (view != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(view));
 		}

@@ -45,13 +45,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message5EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
@@ -309,7 +309,7 @@ public class UMLElementTypes {
 	public static synchronized ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
-			elements = new IdentityHashMap<IElementType, ENamedElement>();
+			elements = new IdentityHashMap<>();
 
 			elements.put(Package_SequenceDiagram, UMLPackage.eINSTANCE.getPackage());
 
@@ -431,19 +431,19 @@ public class UMLElementTypes {
 				return DurationConstraint_Shape_CN;
 			case DurationObservationEditPart.VISUAL_ID:
 				return DurationObservation_Shape;
-			case MessageEditPart.VISUAL_ID:
+			case MessageSyncEditPart.VISUAL_ID:
 				return Message_SynchEdge;
-			case Message2EditPart.VISUAL_ID:
+			case MessageAsyncEditPart.VISUAL_ID:
 				return Message_AsynchEdge;
-			case Message3EditPart.VISUAL_ID:
+			case MessageReplyEditPart.VISUAL_ID:
 				return Message_ReplyEdge;
-			case Message4EditPart.VISUAL_ID:
+			case MessageCreateEditPart.VISUAL_ID:
 				return Message_CreateEdge;
-			case Message5EditPart.VISUAL_ID:
+			case MessageDeleteEditPart.VISUAL_ID:
 				return Message_DeleteEdge;
-			case Message6EditPart.VISUAL_ID:
+			case MessageLostEditPart.VISUAL_ID:
 				return Message_LostEdge;
-			case Message7EditPart.VISUAL_ID:
+			case MessageFoundEditPart.VISUAL_ID:
 				return Message_FoundEdge;
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return Comment_AnnotatedElementEdge;
@@ -463,7 +463,7 @@ public class UMLElementTypes {
 	 */
 	public static synchronized boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
-			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
+			KNOWN_ELEMENT_TYPES = new HashSet<>();
 			KNOWN_ELEMENT_TYPES.add(Package_SequenceDiagram);
 			KNOWN_ELEMENT_TYPES.add(Interaction_Shape);
 			KNOWN_ELEMENT_TYPES.add(ConsiderIgnoreFragment_Shape);

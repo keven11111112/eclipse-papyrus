@@ -23,7 +23,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.BendpointRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -53,7 +53,7 @@ public class TestMoveAnchorInsideCoRegion_402970 extends AbstractNodeTest {
 		CombinedFragment2EditPart coRegion = (CombinedFragment2EditPart)createNode(UMLElementTypes.CombinedFragment_CoRegionShape, lifeline1, getAbsoluteBounds(lifeline1).getTop().translate(0, 50), new Dimension(50, 100));
 		Point startLocation = getAbsoluteBounds(coRegion).getCenter().getTranslated(0, -30);
 		Point endLocation = getAbsoluteBounds(lifeline2).getCenter().setY(startLocation.y);
-		Message2EditPart messagePart = (Message2EditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, coRegion, endLocation, lifeline2);
+		MessageAsyncEditPart messagePart = (MessageAsyncEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, coRegion, endLocation, lifeline2);
 		waitForComplete();
 		Point sourceLoc = SequenceUtil.getAbsoluteEdgeExtremity(messagePart, true);
 		Point targetLoc = SequenceUtil.getAbsoluteEdgeExtremity(messagePart, false);

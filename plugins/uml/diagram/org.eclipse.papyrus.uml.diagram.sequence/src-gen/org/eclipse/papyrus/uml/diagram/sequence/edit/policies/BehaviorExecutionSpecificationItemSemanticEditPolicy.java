@@ -45,13 +45,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageCreateComma
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message5EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 
 /**
@@ -184,19 +184,19 @@ public class BehaviorExecutionSpecificationItemSemanticEditPolicy extends UMLBas
 	@Override
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case MessageEditPart.VISUAL_ID:
+		case MessageSyncEditPart.VISUAL_ID:
 			return getGEFWrapper(new MessageReorientCommand(req));
-		case Message2EditPart.VISUAL_ID:
+		case MessageAsyncEditPart.VISUAL_ID:
 			return getGEFWrapper(new Message2ReorientCommand(req));
-		case Message3EditPart.VISUAL_ID:
+		case MessageReplyEditPart.VISUAL_ID:
 			return getGEFWrapper(new Message3ReorientCommand(req));
-		case Message4EditPart.VISUAL_ID:
+		case MessageCreateEditPart.VISUAL_ID:
 			return getGEFWrapper(new Message4ReorientCommand(req));
-		case Message5EditPart.VISUAL_ID:
+		case MessageDeleteEditPart.VISUAL_ID:
 			return getGEFWrapper(new Message5ReorientCommand(req));
-		case Message6EditPart.VISUAL_ID:
+		case MessageLostEditPart.VISUAL_ID:
 			return getGEFWrapper(new Message6ReorientCommand(req));
-		case Message7EditPart.VISUAL_ID:
+		case MessageFoundEditPart.VISUAL_ID:
 			return getGEFWrapper(new Message7ReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);

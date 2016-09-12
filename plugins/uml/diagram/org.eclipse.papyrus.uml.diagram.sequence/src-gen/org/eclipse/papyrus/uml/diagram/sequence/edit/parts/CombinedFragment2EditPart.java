@@ -110,6 +110,7 @@ public class CombinedFragment2EditPart extends NodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new CoRegionCombinedFragmentFigure();
 	}
@@ -117,6 +118,7 @@ public class CombinedFragment2EditPart extends NodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public CoRegionCombinedFragmentFigure getPrimaryShape() {
 		return (CoRegionCombinedFragmentFigure) primaryShape;
 	}
@@ -124,6 +126,7 @@ public class CombinedFragment2EditPart extends NodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
@@ -151,6 +154,7 @@ public class CombinedFragment2EditPart extends NodeEditPart {
 	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		return nodeShape; // use nodeShape itself as contentPane
 	}

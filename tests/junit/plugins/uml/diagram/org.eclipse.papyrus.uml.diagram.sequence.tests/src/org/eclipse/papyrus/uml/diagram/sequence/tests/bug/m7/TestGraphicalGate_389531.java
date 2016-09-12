@@ -35,7 +35,6 @@ import org.eclipse.gef.requests.CreationFactory;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
@@ -45,8 +44,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
@@ -276,7 +275,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		Rectangle r = getAbsoluteBounds(outerGateEditPart);
 		Point endLocation = r.getCenter();
 		Point startLocation = getAbsoluteBounds(lifeline1).getCenter().setY(endLocation.y);
-		Message2EditPart message1EditPart = (Message2EditPart) createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, endLocation);
+		MessageAsyncEditPart message1EditPart = (MessageAsyncEditPart) createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, endLocation);
 		assertNotNull("Message from Lifeline1 to Gate(outer gate) of CombinedFragment should be created", message1EditPart);
 		// Check names with the outer gate and message1.
 		Message message1 = (Message) message1EditPart.resolveSemanticElement();
@@ -304,7 +303,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		Rectangle r = getAbsoluteBounds(outerGateEditPart);
 		Point startLocation = r.getCenter();
 		Point endLocation = getAbsoluteBounds(lifeline1).getCenter().setY(startLocation.y);
-		MessageEditPart messageEditPart = (MessageEditPart) createLink(UMLElementTypes.Message_SynchEdge, lifeline1.getViewer(), startLocation, endLocation);
+		MessageSyncEditPart messageEditPart = (MessageSyncEditPart) createLink(UMLElementTypes.Message_SynchEdge, lifeline1.getViewer(), startLocation, endLocation);
 		assertNotNull("Message from Gate(outer gate) of CombinedFragment to Lifeline1 should be created", messageEditPart);
 	}
 
@@ -338,7 +337,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		Point startLocation = getAbsoluteBounds(lifeline1).getTop().translate(0, 100);
 		Rectangle r = getAbsoluteBounds(cf);
 		Point endLocation = r.getLocation().setY(startLocation.y);
-		Message2EditPart message1EditPart = (Message2EditPart) createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, endLocation);
+		MessageAsyncEditPart message1EditPart = (MessageAsyncEditPart) createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, endLocation);
 		assertNotNull("Message from Lifeline1 to Gate(outer gate) of CombinedFragment should be created", message1EditPart);
 		// The outer gate should be created automatically.
 		GateEditPart message1EndGate = getPrimaryGateEditPart(cf);
@@ -350,11 +349,11 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		startLocation = getAbsoluteBounds(message1EndGateInner).getCenter();
 		// endLocation = getAbsoluteBounds(lifeline2).getCenter().setY(startLocation.y);
 		endLocation = lifeline2Rect.getCenter().setY(startLocation.y);// Workaround because lifeline2 location on combined fragment is not well done
-		Message2EditPart message2EditPart = (Message2EditPart) createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, endLocation);
-		assertNotNull("Message from inner Gate of CombinedFragment to Lifeline2 should be created", message2EditPart);
+		MessageAsyncEditPart MessageAsyncEditPart = (MessageAsyncEditPart) createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, endLocation);
+		assertNotNull("Message from inner Gate of CombinedFragment to Lifeline2 should be created", MessageAsyncEditPart);
 		// Check names with the outer gate, inner gate , message1 and message2.
 		Message message1 = (Message) message1EditPart.resolveSemanticElement();
-		Message message2 = (Message) message2EditPart.resolveSemanticElement();
+		Message message2 = (Message) MessageAsyncEditPart.resolveSemanticElement();
 		String name = "m1";
 		changeName(getEditingDomain(), message1, name);
 		// assertEquals("Suggestion name of message2", name, message2.getName());
@@ -366,7 +365,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		waitForComplete();
 		startLocation = new Point(getAbsoluteBounds(cf).right() - 2, getAbsoluteBounds(cf).getCenter().y);
 		endLocation = startLocation.getCopy().setX(getAbsoluteBounds(lifeline3).getCenter().x);
-		Message2EditPart message3EditPart = (Message2EditPart) createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, cf, endLocation, lifeline3);
+		MessageAsyncEditPart message3EditPart = (MessageAsyncEditPart) createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, cf, endLocation, lifeline3);
 		assertNotNull("Message from CombinedFragment to Lifeline3 should be created", message3EditPart);
 		GateEditPart message3StartGate = getPrimaryGateEditPart(cf);
 		assertNotNull("New Gate created", message3StartGate);
@@ -377,7 +376,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		assertNotNull("a inner Gate should be created", message3StartGateInner);
 		endLocation = getAbsoluteBounds(message3StartGateInner).getCenter();
 		startLocation = new Point(lifeline2Rect.getCenter().x, endLocation.y);
-		Message2EditPart message4EditPart = (Message2EditPart) createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, endLocation);
+		MessageAsyncEditPart message4EditPart = (MessageAsyncEditPart) createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, endLocation);
 		assertNotNull("Message from Lifeline2 to message3StartGateInner", message4EditPart);
 		Message message4 = (Message) message4EditPart.resolveSemanticElement();
 		assertEquals("Suggestion name of message4", message3.getName(), message4.getName());
@@ -396,7 +395,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		// 1. message1
 		Point endLocation = lifelineBounds.getCenter();
 		Point startLocation = new Point(0, endLocation.y);
-		Message2EditPart message1ep = (Message2EditPart) createLink(UMLElementTypes.Message_AsynchEdge, interaction.getViewer(), startLocation, interaction, endLocation, lifeline);
+		MessageAsyncEditPart message1ep = (MessageAsyncEditPart) createLink(UMLElementTypes.Message_AsynchEdge, interaction.getViewer(), startLocation, interaction, endLocation, lifeline);
 		assertNotNull("message1: Interaction --> Lifeline", message1ep);
 		Message message1 = (Message) message1ep.resolveSemanticElement();
 		Gate gate1 = (Gate) message1.getSendEvent();
@@ -406,7 +405,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		// 2. message2
 		startLocation = endLocation.getTranslated(0, 50);
 		endLocation = new Point(0, startLocation.y);
-		Message2EditPart message2ep = (Message2EditPart) createLink(UMLElementTypes.Message_AsynchEdge, interaction.getViewer(), startLocation, lifeline, endLocation, interaction);
+		MessageAsyncEditPart message2ep = (MessageAsyncEditPart) createLink(UMLElementTypes.Message_AsynchEdge, interaction.getViewer(), startLocation, lifeline, endLocation, interaction);
 		assertNotNull("message2: Lifeline --> Interaction", message2ep);
 		Message message2 = (Message) message2ep.resolveSemanticElement();
 		Gate gate2 = (Gate) message2.getReceiveEvent();
@@ -431,7 +430,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		// 1. message1
 		Point endLocation = getAbsoluteBounds(lifeline1).getCenter();
 		Point startLocation = new Point(getAbsoluteBounds(interactionUse).x, endLocation.y);
-		Message2EditPart message1ep = (Message2EditPart) createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, lifeline1, endLocation, interactionUse);
+		MessageAsyncEditPart message1ep = (MessageAsyncEditPart) createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, lifeline1, endLocation, interactionUse);
 		assertNotNull("message1: Lifeline1 --> InteractionUse", message1ep);
 		Message message1 = (Message) message1ep.resolveSemanticElement();
 		Gate gate1 = (Gate) message1.getReceiveEvent();
@@ -441,7 +440,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		// 2. message2
 		endLocation = getAbsoluteBounds(lifeline2).getCenter();
 		startLocation = new Point(getAbsoluteBounds(interactionUse).right(), endLocation.y);
-		Message2EditPart message2ep = (Message2EditPart) createLink(UMLElementTypes.Message_AsynchEdge, interactionUse.getViewer(), startLocation, interactionUse, endLocation, lifeline2);
+		MessageAsyncEditPart message2ep = (MessageAsyncEditPart) createLink(UMLElementTypes.Message_AsynchEdge, interactionUse.getViewer(), startLocation, interactionUse, endLocation, lifeline2);
 		assertNotNull("message2: InteractionUse --> Lifeline2", message2ep);
 		Message message2 = (Message) message2ep.resolveSemanticElement();
 		Gate gate2 = (Gate) message2.getSendEvent();

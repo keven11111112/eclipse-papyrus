@@ -34,8 +34,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.StereotypeInteractionFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 
@@ -95,8 +95,8 @@ public class InteractionHeadImpactLayoutEditPolicy extends AbstractHeadImpactLay
 		{
 			List sourceConnections = ((NodeEditPart) getHost()).getSourceConnections();
 			for (Object object : sourceConnections) {
-				if (object instanceof Message7EditPart) {
-					Edge edge = (Edge) ((Message7EditPart) object).getNotationView();
+				if (object instanceof MessageFoundEditPart) {
+					Edge edge = (Edge) ((MessageFoundEditPart) object).getNotationView();
 					Anchor sourceAnchor = edge.getSourceAnchor();
 					if (sourceAnchor instanceof IdentityAnchor) {
 						String terminal = ((IdentityAnchor) sourceAnchor).getId();
@@ -113,7 +113,7 @@ public class InteractionHeadImpactLayoutEditPolicy extends AbstractHeadImpactLay
 		{
 			List targetConnections = ((NodeEditPart) getHost()).getTargetConnections();
 			for (Object object : targetConnections) {
-				if (object instanceof Message6EditPart) {
+				if (object instanceof MessageLostEditPart) {
 					AbstractMessageEditPart message = (AbstractMessageEditPart) object;
 					Edge edge = (Edge) message.getNotationView();
 					Anchor targetAnchor = edge.getTargetAnchor();

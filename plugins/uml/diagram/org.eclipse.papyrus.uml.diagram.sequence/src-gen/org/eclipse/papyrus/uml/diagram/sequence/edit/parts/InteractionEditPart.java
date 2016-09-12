@@ -123,6 +123,7 @@ public class InteractionEditPart extends NodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new InteractionRectangleFigure();
 	}
@@ -130,6 +131,7 @@ public class InteractionEditPart extends NodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public InteractionRectangleFigure getPrimaryShape() {
 		return (InteractionRectangleFigure) primaryShape;
 	}
@@ -204,6 +206,7 @@ public class InteractionEditPart extends NodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(857, 757);
 		return result;
@@ -231,6 +234,7 @@ public class InteractionEditPart extends NodeEditPart {
 	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();

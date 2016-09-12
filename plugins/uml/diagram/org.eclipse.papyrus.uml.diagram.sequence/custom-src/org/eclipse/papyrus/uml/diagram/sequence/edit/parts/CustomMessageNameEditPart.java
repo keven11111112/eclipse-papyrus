@@ -28,7 +28,7 @@ import org.eclipse.swt.graphics.FontData;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomMessageNameEditPart extends MessageNameEditPart implements ICustomMessageLabel {
+public class CustomMessageNameEditPart extends MessageSyncNameEditPart implements ICustomMessageLabel {
 
 	/**
 	 * Constructor.
@@ -47,7 +47,7 @@ public class CustomMessageNameEditPart extends MessageNameEditPart implements IC
 	@Override
 	public void refreshBounds() {
 		super.refreshBounds();
-		MessageEditPart parent = (MessageEditPart) getParent();
+		MessageSyncEditPart parent = (MessageSyncEditPart) getParent();
 		// Update location of label for self linked message.
 		if (SelfMessageHelper.isSelfLink(parent)) {
 			SelfMessageHelper.updateLabelLocation(this);

@@ -111,6 +111,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getTargetEditPart(Request request) {
 
 		return super.getTargetEditPart(request);

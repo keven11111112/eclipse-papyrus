@@ -26,13 +26,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2Edit
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message5EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.validation.UMLValidationHelper;
@@ -71,13 +71,13 @@ public class CustomValidationProvider extends UMLValidationProvider {
 				// result = result || DurationConstraintEditPart.VISUAL_ID.equals(id);
 				// result = result || DurationObservationEditPart.VISUAL_ID.equals(id);
 				// Messages
-				result = result || MessageEditPart.VISUAL_ID.equals(id);
-				result = result || Message2EditPart.VISUAL_ID.equals(id);
-				result = result || Message3EditPart.VISUAL_ID.equals(id);
-				result = result || Message4EditPart.VISUAL_ID.equals(id);
-				result = result || Message5EditPart.VISUAL_ID.equals(id);
-				result = result || Message6EditPart.VISUAL_ID.equals(id);
-				result = result || Message7EditPart.VISUAL_ID.equals(id);
+				result = result || MessageSyncEditPart.VISUAL_ID.equals(id);
+				result = result || MessageAsyncEditPart.VISUAL_ID.equals(id);
+				result = result || MessageReplyEditPart.VISUAL_ID.equals(id);
+				result = result || MessageCreateEditPart.VISUAL_ID.equals(id);
+				result = result || MessageDeleteEditPart.VISUAL_ID.equals(id);
+				result = result || MessageLostEditPart.VISUAL_ID.equals(id);
+				result = result || MessageFoundEditPart.VISUAL_ID.equals(id);
 				// General Ordering : do nothing, the real event support will be also moved
 				// result = result || GeneralOrderingEditPart.VISUAL_ID.equals(id);
 				return result;

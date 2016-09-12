@@ -53,20 +53,20 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPar
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message5EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName5EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName7EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
@@ -204,25 +204,25 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 		case DurationObservationEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/5.0.0/UML?DurationObservation", //$NON-NLS-1$
 					UMLElementTypes.DurationObservation_Shape);
-		case MessageEditPart.VISUAL_ID:
+		case MessageSyncEditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/5.0.0/UML?Message", //$NON-NLS-1$
 					UMLElementTypes.Message_SynchEdge);
-		case Message2EditPart.VISUAL_ID:
+		case MessageAsyncEditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/5.0.0/UML?Message", //$NON-NLS-1$
 					UMLElementTypes.Message_AsynchEdge);
-		case Message3EditPart.VISUAL_ID:
+		case MessageReplyEditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/5.0.0/UML?Message", //$NON-NLS-1$
 					UMLElementTypes.Message_ReplyEdge);
-		case Message4EditPart.VISUAL_ID:
+		case MessageCreateEditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/5.0.0/UML?Message", //$NON-NLS-1$
 					UMLElementTypes.Message_CreateEdge);
-		case Message5EditPart.VISUAL_ID:
+		case MessageDeleteEditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/5.0.0/UML?Message", //$NON-NLS-1$
 					UMLElementTypes.Message_DeleteEdge);
-		case Message6EditPart.VISUAL_ID:
+		case MessageLostEditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/5.0.0/UML?Message", //$NON-NLS-1$
 					UMLElementTypes.Message_LostEdge);
-		case Message7EditPart.VISUAL_ID:
+		case MessageFoundEditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/5.0.0/UML?Message", //$NON-NLS-1$
 					UMLElementTypes.Message_FoundEdge);
 		case CommentAnnotatedElementEditPart.VISUAL_ID:
@@ -325,19 +325,19 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getDurationConstraint_Shape_CNText(view);
 		case DurationObservationEditPart.VISUAL_ID:
 			return getDurationObservation_ShapeText(view);
-		case MessageEditPart.VISUAL_ID:
+		case MessageSyncEditPart.VISUAL_ID:
 			return getMessage_SynchEdgeText(view);
-		case Message2EditPart.VISUAL_ID:
+		case MessageAsyncEditPart.VISUAL_ID:
 			return getMessage_AsynchEdgeText(view);
-		case Message3EditPart.VISUAL_ID:
+		case MessageReplyEditPart.VISUAL_ID:
 			return getMessage_ReplyEdgeText(view);
-		case Message4EditPart.VISUAL_ID:
+		case MessageCreateEditPart.VISUAL_ID:
 			return getMessage_CreateEdgeText(view);
-		case Message5EditPart.VISUAL_ID:
+		case MessageDeleteEditPart.VISUAL_ID:
 			return getMessage_DeleteEdgeText(view);
-		case Message6EditPart.VISUAL_ID:
+		case MessageLostEditPart.VISUAL_ID:
 			return getMessage_LostEdgeText(view);
-		case Message7EditPart.VISUAL_ID:
+		case MessageFoundEditPart.VISUAL_ID:
 			return getMessage_FoundEdgeText(view);
 		case CommentAnnotatedElementEditPart.VISUAL_ID:
 			return getComment_AnnotatedElementEdgeText(view);
@@ -663,7 +663,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getMessage_SynchEdgeText(View view) {
 		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Message_SynchEdge,
 				view.getElement() != null ? view.getElement() : view,
-				UMLVisualIDRegistry.getType(MessageNameEditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(MessageSyncNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -679,7 +679,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getMessage_AsynchEdgeText(View view) {
 		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Message_AsynchEdge,
 				view.getElement() != null ? view.getElement() : view,
-				UMLVisualIDRegistry.getType(MessageName2EditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(MessageAsyncNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -695,7 +695,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getMessage_ReplyEdgeText(View view) {
 		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Message_ReplyEdge,
 				view.getElement() != null ? view.getElement() : view,
-				UMLVisualIDRegistry.getType(MessageName3EditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(MessageReplyNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -711,7 +711,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getMessage_CreateEdgeText(View view) {
 		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Message_CreateEdge,
 				view.getElement() != null ? view.getElement() : view,
-				UMLVisualIDRegistry.getType(MessageName4EditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(MessageCreateNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -727,7 +727,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getMessage_DeleteEdgeText(View view) {
 		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Message_DeleteEdge,
 				view.getElement() != null ? view.getElement() : view,
-				UMLVisualIDRegistry.getType(MessageName5EditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(MessageDeleteNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -743,7 +743,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getMessage_LostEdgeText(View view) {
 		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Message_LostEdge,
 				view.getElement() != null ? view.getElement() : view,
-				UMLVisualIDRegistry.getType(MessageName6EditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(MessageLostNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());
@@ -759,7 +759,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	private String getMessage_FoundEdgeText(View view) {
 		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Message_FoundEdge,
 				view.getElement() != null ? view.getElement() : view,
-				UMLVisualIDRegistry.getType(MessageName7EditPart.VISUAL_ID));
+				UMLVisualIDRegistry.getType(MessageFoundNameEditPart.VISUAL_ID));
 		if (parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
 					ParserOptions.NONE.intValue());

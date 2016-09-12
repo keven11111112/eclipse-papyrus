@@ -238,7 +238,7 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			}
 		} else if (request instanceof ReconnectRequest) {
 			ConnectionEditPart con = ((ReconnectRequest) request).getConnectionEditPart();
-			if (con instanceof Message7EditPart || con instanceof Message6EditPart) {
+			if (con instanceof MessageLostEditPart || con instanceof MessageFoundEditPart) {
 				return null;
 			}
 		}

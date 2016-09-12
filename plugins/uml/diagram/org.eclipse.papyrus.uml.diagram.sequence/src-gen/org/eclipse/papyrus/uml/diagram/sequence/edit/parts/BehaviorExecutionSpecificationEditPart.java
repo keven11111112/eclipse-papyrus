@@ -124,6 +124,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure();
 	}
@@ -183,6 +184,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		return nodeShape; // use nodeShape itself as contentPane
 	}

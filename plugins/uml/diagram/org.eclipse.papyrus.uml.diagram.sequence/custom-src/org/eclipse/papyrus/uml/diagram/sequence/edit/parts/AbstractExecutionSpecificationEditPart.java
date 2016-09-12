@@ -490,7 +490,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		} else if (request instanceof ReconnectRequest) {
 			ReconnectRequest reconnectRequest = (ReconnectRequest) request;
 			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
-			if (connectionEditPart instanceof MessageEditPart) {
+			if (connectionEditPart instanceof MessageSyncEditPart) {
 				// Sync Message
 				return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
 			}
@@ -518,7 +518,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 	 */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
-		if (connEditPart instanceof MessageEditPart) {
+		if (connEditPart instanceof MessageSyncEditPart) {
 			// Sync Message
 			return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
 		}
@@ -575,7 +575,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		} else if (request instanceof ReconnectRequest) {
 			ReconnectRequest reconnectRequest = (ReconnectRequest) request;
 			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
-			if (connectionEditPart instanceof Message3EditPart) {
+			if (connectionEditPart instanceof MessageReplyEditPart) {
 				// Reply Message
 				return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.BOTTOM);
 			}
@@ -592,7 +592,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 	 */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
-		if (connEditPart instanceof Message3EditPart) {
+		if (connEditPart instanceof MessageReplyEditPart) {
 			// Reply Message
 			return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.BOTTOM);
 		}

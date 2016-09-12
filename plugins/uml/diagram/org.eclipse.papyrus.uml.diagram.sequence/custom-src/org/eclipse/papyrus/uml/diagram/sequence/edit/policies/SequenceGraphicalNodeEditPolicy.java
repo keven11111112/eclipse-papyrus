@@ -63,13 +63,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message5EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message6EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message7EditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -422,7 +422,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// prevent duplicate link
-		if (request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() != null && !LifelineMessageCreateHelper.canReconnectMessageCreate(request)) {
+		if (request.getConnectionEditPart() instanceof MessageCreateEditPart && request.getTarget() != null && !LifelineMessageCreateHelper.canReconnectMessageCreate(request)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// Avoid to reconnect AppliedStereotypesCommentLink to another EditPart.
@@ -442,7 +442,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 	private boolean isLostFoundMessage(ReconnectRequest request) {
 		ConnectionEditPart connectionEditPart = request.getConnectionEditPart();
-		if (connectionEditPart instanceof Message7EditPart || connectionEditPart instanceof Message6EditPart) {
+		if (connectionEditPart instanceof MessageFoundEditPart || connectionEditPart instanceof MessageLostEditPart) {
 			return true;
 		}
 		return false;
@@ -464,7 +464,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// prevent duplicate link
-		if (request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() != null && !LifelineMessageCreateHelper.canReconnectMessageCreate(request)) {
+		if (request.getConnectionEditPart() instanceof MessageCreateEditPart && request.getTarget() != null && !LifelineMessageCreateHelper.canReconnectMessageCreate(request)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		Command command = super.getReconnectTargetCommand(request);
@@ -560,19 +560,19 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 					if (object instanceof IHintedType) {
 						IHintedType elementType = (IHintedType) object;
 						switch (UMLVisualIDRegistry.getVisualID(elementType.getSemanticHint())) {
-						case MessageEditPart.VISUAL_ID:
+						case MessageSyncEditPart.VISUAL_ID:
 							return Messages.MessageSync1CreationTool_title;
-						case Message2EditPart.VISUAL_ID:
+						case MessageAsyncEditPart.VISUAL_ID:
 							return Messages.MessageAsync2CreationTool_title;
-						case Message3EditPart.VISUAL_ID:
+						case MessageReplyEditPart.VISUAL_ID:
 							return Messages.MessageReply3CreationTool_title;
-						case Message4EditPart.VISUAL_ID:
+						case MessageCreateEditPart.VISUAL_ID:
 							return Messages.MessageCreate4CreationTool_title;
-						case Message5EditPart.VISUAL_ID:
+						case MessageDeleteEditPart.VISUAL_ID:
 							return Messages.MessageDelete5CreationTool_title;
-						case Message6EditPart.VISUAL_ID:
+						case MessageLostEditPart.VISUAL_ID:
 							return Messages.MessageLost6CreationTool_title;
-						case Message7EditPart.VISUAL_ID:
+						case MessageFoundEditPart.VISUAL_ID:
 							return Messages.MessageFound7CreationTool_title;
 						}
 					}
@@ -613,10 +613,10 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 					ConnectionEditPart conn = ((ReconnectRequest) request).getConnectionEditPart();
 					Object model = conn.getModel();
 					if (model instanceof View) {
-						if (REQ_RECONNECT_TARGET.equals(request.getType()) && UMLVisualIDRegistry.getVisualID((View) model).equals(Message6EditPart.VISUAL_ID)) {
+						if (REQ_RECONNECT_TARGET.equals(request.getType()) && UMLVisualIDRegistry.getVisualID((View) model).equals(MessageLostEditPart.VISUAL_ID)) {
 							return host;
 						}
-						if (REQ_RECONNECT_SOURCE.equals(request.getType()) && UMLVisualIDRegistry.getVisualID((View) model).equals(Message7EditPart.VISUAL_ID)) {
+						if (REQ_RECONNECT_SOURCE.equals(request.getType()) && UMLVisualIDRegistry.getVisualID((View) model).equals(MessageFoundEditPart.VISUAL_ID)) {
 							return host;
 						}
 					}

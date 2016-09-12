@@ -107,6 +107,7 @@ public class InteractionInteractionCompartmentEditPart extends LinkLFShapeCompar
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getTargetEditPart(Request request) {
 
 		return super.getTargetEditPart(request);

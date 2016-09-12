@@ -42,7 +42,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecif
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart.CustomLifelineFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -160,7 +160,7 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 					Point location = ((ReconnectRequest) request).getLocation().getCopy();
 					ConnectionEditPart conn = ((ReconnectRequest) request).getConnectionEditPart();
 					View model = (View) conn.getModel();
-					if (UMLVisualIDRegistry.getVisualID(model).equals(Message4EditPart.VISUAL_ID) && isLocatedOnLifelineHeader(lifeline, location)) {
+					if (UMLVisualIDRegistry.getVisualID(model).equals(MessageCreateEditPart.VISUAL_ID) && isLocatedOnLifelineHeader(lifeline, location)) {
 						return host;
 					}
 					return getTargetEditPart(request, lifeline, location);
@@ -176,7 +176,7 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 			CustomLifelineEditPart childLifeline = (CustomLifelineEditPart) childEditPart;
 			if (isCreateConnectionRequest(request, UMLElementTypes.Message_CreateEdge) && isLocatedOnLifelineHeader(childLifeline, location)) {
 				return childEditPart;
-			} else if (request instanceof ReconnectRequest && (UMLVisualIDRegistry.getVisualID((View) ((ReconnectRequest) request).getConnectionEditPart().getModel()).equals(Message4EditPart.VISUAL_ID) && isLocatedOnLifelineHeader(childLifeline, location))) {
+			} else if (request instanceof ReconnectRequest && (UMLVisualIDRegistry.getVisualID((View) ((ReconnectRequest) request).getConnectionEditPart().getModel()).equals(MessageCreateEditPart.VISUAL_ID) && isLocatedOnLifelineHeader(childLifeline, location))) {
 				return childEditPart;
 			} else if (isLocatedOnLifelineDotLine(childLifeline, location)) {
 				return childEditPart;

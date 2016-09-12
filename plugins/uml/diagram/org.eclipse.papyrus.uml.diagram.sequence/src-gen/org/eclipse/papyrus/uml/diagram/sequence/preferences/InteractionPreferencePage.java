@@ -92,7 +92,7 @@ public class InteractionPreferencePage extends AbstractPapyrusNodePreferencePage
 	 * @generated
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
-		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+		TreeMap<String, Boolean> map = new TreeMap<>();
 		map.put("InteractionCompartment", Boolean.TRUE);
 		return map;
 	}
@@ -101,7 +101,7 @@ public class InteractionPreferencePage extends AbstractPapyrusNodePreferencePage
 	 * @generated
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
-		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+		TreeMap<String, Boolean> map = new TreeMap<>();
 		return map;
 	}
 

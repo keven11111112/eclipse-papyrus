@@ -170,65 +170,65 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
 				return new CombinedFragmentCombinedFragmentCompartmentEditPart(view);
 
-			case MessageEditPart.VISUAL_ID:
-				return new MessageEditPart(view);
+			case MessageSyncEditPart.VISUAL_ID:
+				return new MessageSyncEditPart(view);
 
-			case MessageNameEditPart.VISUAL_ID:
-				return new MessageNameEditPart(view);
+			case MessageSyncNameEditPart.VISUAL_ID:
+				return new MessageSyncNameEditPart(view);
 
 			case MessageSyncAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageSyncAppliedStereotypeEditPart(view);
 
-			case Message2EditPart.VISUAL_ID:
-				return new Message2EditPart(view);
+			case MessageAsyncEditPart.VISUAL_ID:
+				return new MessageAsyncEditPart(view);
 
-			case MessageName2EditPart.VISUAL_ID:
-				return new MessageName2EditPart(view);
+			case MessageAsyncNameEditPart.VISUAL_ID:
+				return new MessageAsyncNameEditPart(view);
 
 			case MessageAsyncAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageAsyncAppliedStereotypeEditPart(view);
 
-			case Message3EditPart.VISUAL_ID:
-				return new Message3EditPart(view);
+			case MessageReplyEditPart.VISUAL_ID:
+				return new MessageReplyEditPart(view);
 
-			case MessageName3EditPart.VISUAL_ID:
-				return new MessageName3EditPart(view);
+			case MessageReplyNameEditPart.VISUAL_ID:
+				return new MessageReplyNameEditPart(view);
 
 			case MessageReplyAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageReplyAppliedStereotypeEditPart(view);
 
-			case Message4EditPart.VISUAL_ID:
-				return new Message4EditPart(view);
+			case MessageCreateEditPart.VISUAL_ID:
+				return new MessageCreateEditPart(view);
 
-			case MessageName4EditPart.VISUAL_ID:
-				return new MessageName4EditPart(view);
+			case MessageCreateNameEditPart.VISUAL_ID:
+				return new MessageCreateNameEditPart(view);
 
 			case MessageCreateAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageCreateAppliedStereotypeEditPart(view);
 
-			case Message5EditPart.VISUAL_ID:
-				return new Message5EditPart(view);
+			case MessageDeleteEditPart.VISUAL_ID:
+				return new MessageDeleteEditPart(view);
 
-			case MessageName5EditPart.VISUAL_ID:
-				return new MessageName5EditPart(view);
+			case MessageDeleteNameEditPart.VISUAL_ID:
+				return new MessageDeleteNameEditPart(view);
 
 			case MessageDeleteAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageDeleteAppliedStereotypeEditPart(view);
 
-			case Message6EditPart.VISUAL_ID:
-				return new Message6EditPart(view);
+			case MessageLostEditPart.VISUAL_ID:
+				return new MessageLostEditPart(view);
 
-			case MessageName6EditPart.VISUAL_ID:
-				return new MessageName6EditPart(view);
+			case MessageLostNameEditPart.VISUAL_ID:
+				return new MessageLostNameEditPart(view);
 
 			case MessageLostAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageLostAppliedStereotypeEditPart(view);
 
-			case Message7EditPart.VISUAL_ID:
-				return new Message7EditPart(view);
+			case MessageFoundEditPart.VISUAL_ID:
+				return new MessageFoundEditPart(view);
 
-			case MessageName7EditPart.VISUAL_ID:
-				return new MessageName7EditPart(view);
+			case MessageFoundNameEditPart.VISUAL_ID:
+				return new MessageFoundNameEditPart(view);
 
 			case MessageFoundAppliedStereotypeEditPart.VISUAL_ID:
 				return new MessageFoundAppliedStereotypeEditPart(view);

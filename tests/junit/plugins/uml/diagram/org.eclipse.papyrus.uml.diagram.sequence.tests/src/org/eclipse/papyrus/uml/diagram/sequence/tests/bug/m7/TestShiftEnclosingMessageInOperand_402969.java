@@ -26,7 +26,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombi
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -61,7 +61,7 @@ public class TestShiftEnclosingMessageInOperand_402969 extends AbstractNodeTest 
 		int offset = 10;
 		Point startLocation = getAbsoluteBounds(lifeline1).getCenter().setY(operandBounds.y + offset);
 		Point endLocation = getAbsoluteBounds(lifeline2).getCenter().setY(operandBounds.y + offset);
-		Message2EditPart message = (Message2EditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, lifeline1, endLocation, lifeline2);
+		MessageAsyncEditPart message = (MessageAsyncEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, lifeline1, endLocation, lifeline2);
 		checkMessageEnclosing(message, operandBounds);
 		resize(operand1, operandBounds.getTop(), PositionConstants.SOUTH, new Dimension(0, offset * 2));
 		Rectangle newOperandBounds = getAbsoluteBounds(operand2);

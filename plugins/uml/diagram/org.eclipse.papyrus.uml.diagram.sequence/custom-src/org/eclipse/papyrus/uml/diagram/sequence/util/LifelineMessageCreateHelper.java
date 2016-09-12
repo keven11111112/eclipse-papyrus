@@ -42,7 +42,7 @@ import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 
 public class LifelineMessageCreateHelper {
@@ -95,8 +95,8 @@ public class LifelineMessageCreateHelper {
 
 	// when a create message is deleted, move its target lifelines up
 	public static Command restoreLifelineOnMessageDelete(Command commands, EditPart editPart) {
-		if (editPart instanceof Message4EditPart) {
-			Message4EditPart part = (Message4EditPart) editPart;
+		if (editPart instanceof MessageCreateEditPart) {
+			MessageCreateEditPart part = (MessageCreateEditPart) editPart;
 			if (part.getTarget() instanceof LifelineEditPart && LifelineMessageCreateHelper.getIncomingMessageCreate(part.getTarget()).size() == 1) {
 				LifelineEditPart target = (LifelineEditPart) part.getTarget();
 				if (target.getModel() instanceof Shape) {
@@ -119,8 +119,8 @@ public class LifelineMessageCreateHelper {
 		List<?> list = part.getSourceConnections();
 		if (list != null && list.size() > 0) {
 			for (Object l : list) {
-				if (l instanceof Message4EditPart) {
-					EditPart target = ((Message4EditPart) l).getTarget();
+				if (l instanceof MessageCreateEditPart) {
+					EditPart target = ((MessageCreateEditPart) l).getTarget();
 					if (target instanceof LifelineEditPart && getIncomingMessageCreate(target).size() == 1) {
 						LifelineEditPart lp = (LifelineEditPart) target;
 						Rectangle bounds = lp.getPrimaryShape().getBounds();
@@ -139,7 +139,7 @@ public class LifelineMessageCreateHelper {
 	public static boolean hasMessageCreate(GraphicalEditPart sourceEditPart, EditPart targetEditPart) {
 		List<?> list = sourceEditPart.getSourceConnections();
 		for (Object o : list) {
-			if (o instanceof Message4EditPart && targetEditPart.equals(((Message4EditPart) o).getTarget())) {
+			if (o instanceof MessageCreateEditPart && targetEditPart.equals(((MessageCreateEditPart) o).getTarget())) {
 				return true;
 			}
 		}
@@ -156,8 +156,8 @@ public class LifelineMessageCreateHelper {
 			List<?> list = ((LifelineEditPart) target).getTargetConnections();
 			if (list != null && list.size() > 0) {
 				for (Object l : list) {
-					if (l instanceof Message4EditPart) {
-						create.add((Message4EditPart) l);
+					if (l instanceof MessageCreateEditPart) {
+						create.add((MessageCreateEditPart) l);
 					}
 				}
 			}
@@ -166,7 +166,7 @@ public class LifelineMessageCreateHelper {
 	}
 
 	public static boolean canReconnectMessageCreate(ReconnectRequest request) {
-		Message4EditPart connPart = (Message4EditPart) request.getConnectionEditPart();
+		MessageCreateEditPart connPart = (MessageCreateEditPart) request.getConnectionEditPart();
 		if (request.isMovingStartAnchor()) { // reconnect source
 			if (hasMessageCreate((GraphicalEditPart) request.getTarget(), (GraphicalEditPart) connPart.getTarget())) {
 				return false;
@@ -233,8 +233,8 @@ public class LifelineMessageCreateHelper {
 		List<?> list = part.getSourceConnections();
 		if (list != null && list.size() > 0) {
 			for (Object l : list) {
-				if (l instanceof Message4EditPart) {
-					EditPart target = ((Message4EditPart) l).getTarget();
+				if (l instanceof MessageCreateEditPart) {
+					EditPart target = ((MessageCreateEditPart) l).getTarget();
 					if (target instanceof CustomLifelineEditPart) {
 						CustomLifelineEditPart lp = (CustomLifelineEditPart) target;
 						Rectangle bounds = lp.getFigure().getBounds().getCopy();
@@ -262,8 +262,8 @@ public class LifelineMessageCreateHelper {
 		List<?> list = child.getSourceConnections();
 		if (list != null && list.size() > 0) {
 			for (Object l : list) {
-				if (l instanceof Message4EditPart && ((Message4EditPart) l).getTarget() instanceof LifelineEditPart) {
-					LifelineEditPart lowPart = (LifelineEditPart) ((Message4EditPart) l).getTarget();
+				if (l instanceof MessageCreateEditPart && ((MessageCreateEditPart) l).getTarget() instanceof LifelineEditPart) {
+					LifelineEditPart lowPart = (LifelineEditPart) ((MessageCreateEditPart) l).getTarget();
 					Rectangle outBounds = lowPart.getFigure().getBounds();
 					if (outBounds.y - newBounds.y < halfHeight) {
 						return false;
@@ -275,8 +275,8 @@ public class LifelineMessageCreateHelper {
 		list = child.getTargetConnections();
 		if (list != null && list.size() > 0) {
 			for (Object l : list) {
-				if (l instanceof Message4EditPart && ((Message4EditPart) l).getSource() instanceof LifelineEditPart) {
-					LifelineEditPart highPart = (LifelineEditPart) ((Message4EditPart) l).getSource();
+				if (l instanceof MessageCreateEditPart && ((MessageCreateEditPart) l).getSource() instanceof LifelineEditPart) {
+					LifelineEditPart highPart = (LifelineEditPart) ((MessageCreateEditPart) l).getSource();
 					Rectangle inBounds = highPart.getFigure().getBounds();
 					if (newBounds.y - inBounds.y < halfHeight) {
 						return false;

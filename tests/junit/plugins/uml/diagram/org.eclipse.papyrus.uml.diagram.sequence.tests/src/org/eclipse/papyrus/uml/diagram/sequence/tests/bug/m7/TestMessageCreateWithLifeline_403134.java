@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.junit.Test;
@@ -50,8 +50,8 @@ public class TestMessageCreateWithLifeline_403134 extends AbstractNodeTest {
 		EditPart editPart = createLink(UMLElementTypes.Message_CreateEdge, lifeline.getViewer(), fromLocation, fromLocation.getTranslated(100, 0));
 		//check result
 		assertNotNull("editpart not found", editPart);
-		assertTrue("not a messageCreate editpart", editPart instanceof Message4EditPart);
-		EditPart target = ((Message4EditPart)editPart).getTarget();
+		assertTrue("not a messageCreate editpart", editPart instanceof MessageCreateEditPart);
+		EditPart target = ((MessageCreateEditPart)editPart).getTarget();
 		assertTrue("the target is not a lifeline", target instanceof LifelineEditPart);
 	}
 }
