@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.commands.operations.IUndoContext;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -52,6 +53,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerColumn;
 import org.eclipse.jface.window.ToolTip;
+import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyListener;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -65,6 +67,9 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.commands.PapyrusDeleteCommand;
+import org.eclipse.papyrus.infra.emf.gmf.command.ICommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.util.CommandUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationMenu;
@@ -227,13 +232,61 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		@Override
 		public void commandStackChanged(EventObject event) {
-			// Selection of the root element
-			getCommonViewer().setSelection(new StructuredSelection(getCommonViewer().getTree().getItems()[0].getData()));
+			Command mostRecentCommand = getEditingDomain().getCommandStack().getMostRecentCommand();
+			if (isDeleteCommand(mostRecentCommand)) {
+				TreeItem topItem = getCommonViewer().getTree().getTopItem();
+				if (null != topItem) {
+					if (null == Display.getCurrent()) {
+						Display.getDefault().asyncExec(new Runnable() {
+
+							@Override
+							public void run() {
+								getCommonViewer().setSelection(new StructuredSelection(topItem.getData()));
+							}
+						});
+					} else {
+						getCommonViewer().setSelection(new StructuredSelection(topItem.getData()));
+					}
+				}
+			}
 		};
 	};
 
+	/**
+	 * Verify if the command is a DeleteElementCommand
+	 *
+	 * @param command
+	 *            The parent command
+	 * @return The result.
+	 */
+	protected boolean isDeleteCommand(final Object command) {
+		boolean isDeleteCommand = false;
+
+		if (command instanceof PapyrusDeleteCommand || command instanceof DestroyElementPapyrusCommand) {
+			isDeleteCommand = true;
+		} else if (CommandUtils.isCompound(command)) {
+			final Iterable<Object> children = CommandUtils.getChildren(command);
+			if (null != children) {
+				Iterator<Object> iterator = children.iterator();
+				while (iterator.hasNext() && !isDeleteCommand) {
+					Object next = iterator.next();
+					if (isDeleteCommand(next)) {
+						isDeleteCommand = true;
+					}
+				}
+			}
+		} else if (ICommandWrapper.isWrapper(command, Object.class)) {
+			Object unwrap = ICommandWrapper.unwrap(command, Object.class);
+			if (isDeleteCommand(unwrap)) {
+				isDeleteCommand = true;
+			}
+		}
+
+		return isDeleteCommand;
+	}
+
 	/** The {@link IPropertySheetPage} this model explorer will use. */
-	private final List<IPropertySheetPage> propertySheetPages = new LinkedList<IPropertySheetPage>();
+	private final List<IPropertySheetPage> propertySheetPages = new LinkedList<>();
 
 	/**
 	 *
@@ -302,7 +355,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			if (part instanceof IEditorPart) {
 				if (selection instanceof IStructuredSelection) {
 					Iterator<?> selectionIterator = ((IStructuredSelection) selection).iterator();
-					ArrayList<Object> semanticElementList = new ArrayList<Object>();
+					ArrayList<Object> semanticElementList = new ArrayList<>();
 					while (selectionIterator.hasNext()) {
 						Object currentSelection = selectionIterator.next();
 						Object semanticElement = EMFHelper.getEObject(currentSelection);
@@ -344,7 +397,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 */
 	protected List<Object> searchPath(EObject eobject, List<Object> objects) {
 		SemanticFromModelExplorer semanticGetter = new SemanticFromModelExplorer();
-		List<Object> path = new ArrayList<Object>();
+		List<Object> path = new ArrayList<>();
 		ITreeContentProvider contentProvider = (ITreeContentProvider) getCommonViewer().getContentProvider();
 		// IPageMngr iPageMngr = EditorUtils.getIPageMngr();
 		IPageManager iPageMngr;
@@ -371,12 +424,12 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			for (int i = 0; i < contentProvider.getChildren(o).length; i++) {
 				Object treeItem = contentProvider.getChildren(o)[i];
 
-				List<Object> tmppath = new ArrayList<Object>();
+				List<Object> tmppath = new ArrayList<>();
 				Object element = semanticGetter.getSemanticElement(treeItem);
 				if (element != null) {
 					if (element instanceof EReference) {
 						if (((EReference) element).isContainment() && (!((EReference) element).isDerived())) {
-							List<Object> childs = new ArrayList<Object>();
+							List<Object> childs = new ArrayList<>();
 							childs.add(treeItem);
 							tmppath = searchPath(eobject, childs);
 						}
@@ -384,7 +437,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 					else {
 						if (element instanceof EObject) {
-							List<Object> childs = new ArrayList<Object>();
+							List<Object> childs = new ArrayList<>();
 							childs.add(treeItem);
 							tmppath = searchPath(eobject, childs);
 						}
@@ -402,7 +455,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			}
 		}
 
-		return new ArrayList<Object>();
+		return new ArrayList<>();
 	}
 
 
@@ -436,7 +489,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		// The EMF Facet MeasureItem Listener is incompatible with the NavigatorDecoratingLabelProvider. Remove it.
 		// Symptoms: ModelElementItems with an EMF Facet Overlay have a small selection size
 		// Removal also fixes bug 400012: no scrollbar although tree is larger than visible area
-		Collection<Listener> listenersToRemove = new LinkedList<Listener>();
+		Collection<Listener> listenersToRemove = new LinkedList<>();
 		for (Listener listener : tree.getListeners(SWT.MeasureItem)) {
 			if (listener.getClass().getName().contains("org.eclipse.papyrus.emf.facet.infra.browser.uicore.internal.CustomTreePainter")) { //$NON-NLS-1$
 				listenersToRemove.add(listener);
@@ -1052,7 +1105,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 *            The CommonViewer they are to be revealed in
 	 */
 	public static void reveal(Iterable<?> elementList, final CommonViewer commonViewer) {
-		ArrayList<IMatchingItem> matchingItemsToSelect = new ArrayList<IMatchingItem>();
+		ArrayList<IMatchingItem> matchingItemsToSelect = new ArrayList<>();
 		// filter out non EMF objects
 		Iterable<EObject> list = Iterables.filter(elementList, EObject.class);
 
@@ -1063,7 +1116,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			if (commonViewer.getContentProvider() != null) {
 				// retrieve the ancestors to reveal them
 				// and allow the selection of the object
-				ArrayList<EObject> parents = new ArrayList<EObject>();
+				ArrayList<EObject> parents = new ArrayList<>();
 				EObject tmp = currentEObject.eContainer();
 				while (tmp != null) {
 					parents.add(tmp);
@@ -1185,7 +1238,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * Edit an element contained on the common viewer.
-	 * 
+	 *
 	 * @param element
 	 *            The element to edit.
 	 * @param numColumn
