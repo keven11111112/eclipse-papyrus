@@ -114,7 +114,6 @@ import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
-import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -129,7 +128,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPartSite;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
+import org.eclipse.ui.swt.IFocusService;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -208,6 +209,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	protected Adapter changeAxisProvider;
 
 	private final AdapterImpl changeAxisProviderHistory;
+
+	
+	private IFocusService focusService; 
 
 
 	/**
@@ -505,6 +509,20 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		}
 		this.focusListener = this;
 		nattable.addFocusListener(this.focusListener);
+
+		//registering to focusService allows to declare properties tester on "activeFocusControl" and "activeFocusControlId" variables
+		focusService = (IFocusService) PlatformUI.getWorkbench().getService(IFocusService.class);
+		if (focusService!=null){
+			String id=null;
+			if (getTable().getTableConfiguration()!= null){
+				id =  getTable().getTableConfiguration().getType();
+			}
+			if (id == null){	
+				id = getTableName();
+			}
+			focusService.addFocusTracker(nattable,id);
+		}
+		
 
 		this.layerListener = new ILayerListener() {
 
@@ -877,6 +895,11 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			if (this.focusListener != null) {
 				natTable.removeFocusListener(this.focusListener);
 			}
+		}
+		
+		if (focusService != null && this.natTable!=null){
+			focusService.removeFocusTracker(this.natTable);
+			focusService = null;
 		}
 
 		removeListeners();
