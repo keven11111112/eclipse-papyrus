@@ -89,4 +89,4 @@ location graphiti "http://download.eclipse.org/graphiti/updates/maintenance/S-0.
 
 //updateFrom("Sphinx",0)
 
-location sphinx "http://download.eclipse.org/sphinx/previews" //
+location sphinx "http://download.eclipse.org/sphinx/updates/0.10.x" //

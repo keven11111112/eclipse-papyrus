@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus RCP" sequenceNumber="1473142832">
+<target name="Papyrus RCP" sequenceNumber="1473843778">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.6.0.v20160606-1156"/>
@@ -62,9 +62,9 @@
       <repository id="emfQuery" location="http://download.eclipse.org/modeling/emf/query/updates/releases"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.wst.xml_sdk.feature.feature.group" version="3.9.0.v201608061824"/>
-      <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.9.0.v201608061824"/>
-      <repository id="webtools" location="http://download.eclipse.org/webtools/downloads/drops/R3.8.1/S-3.8.1RC1-20160818152815/repository/"/>
+      <unit id="org.eclipse.wst.xml_sdk.feature.feature.group" version="3.8.0.v201608061842"/>
+      <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.8.0.v201608061842"/>
+      <repository id="webtools" location="http://download.eclipse.org/webtools/downloads/drops/R3.8.1/S-3.8.1RC3-20160906143814/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.validation.sdk.feature.group" version="1.10.0.201606071713"/>
@@ -135,11 +135,11 @@
       <repository id="graphiti" location="http://download.eclipse.org/graphiti/updates/maintenance/S-0.13.1Neon.1RC2-201608301309/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="sphinx" location="http://download.eclipse.org/sphinx/previews"/>
+      <repository id="sphinx" location="http://download.eclipse.org/sphinx/updates/0.10.x"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.egit.feature.group" version="4.4.0.201606070830-r"/>
-      <repository id="egit" location="http://download.eclipse.org/egit/updates-4.4"/>
+      <unit id="org.eclipse.egit.feature.group" version="4.4.1.201607150455-r"/>
+      <repository id="egit" location="http://download.eclipse.org/egit/updates-4.4.1"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.mylyn.ide_feature.feature.group" version="3.20.0.v20160421-1902"/>
@@ -173,11 +173,11 @@
       <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20160831-0700"/>
+      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20160907-1200"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="3.6.300.v20160525-1303"/>
       <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="4.5.100.v20160503-0947"/>
-      <unit id="org.eclipse.sdk.feature.group" version="4.6.1.v20160831-0700"/>
-      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC3-201608310700/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.6.1.v20160907-1200"/>
+      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC4-201609071200/"/>
     </location>
   </locations>
 </target>

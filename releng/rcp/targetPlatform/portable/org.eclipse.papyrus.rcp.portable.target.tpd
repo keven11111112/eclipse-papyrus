@@ -4,13 +4,13 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 include "../../../extra/targetPlatform/portable/org.eclipse.papyrus.extra.portable.target.tpd"
 
 //updateFrom("EGIT",0)
-location egit "http://download.eclipse.org/egit/updates-4.4" {
+location egit "http://download.eclipse.org/egit/updates-4.4.1" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC3-201608310700/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC4-201609071200/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 }
 
@@ -46,7 +46,7 @@ location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209"
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC3-201608310700/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC4-201609071200/" {
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
 }
