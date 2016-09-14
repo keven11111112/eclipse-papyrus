@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
-<setup:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:git="http://www.eclipse.org/oomph/setup/git/1.0" xmlns:jdt="http://www.eclipse.org/oomph/setup/jdt/1.0" xmlns:mylyn="http://www.eclipse.org/oomph/setup/mylyn/1.0" xmlns:p2_1.0="http://www.eclipse.org/oomph/setup/p2/1.0" xmlns:predicates="http://www.eclipse.org/oomph/predicates/1.0" xmlns:projects="http://www.eclipse.org/oomph/setup/projects/1.0" xmlns:setup="http://www.eclipse.org/oomph/setup/1.0" xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0" xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0" xmlns:workingsets="http://www.eclipse.org/oomph/workingsets/1.0" xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/mylyn/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Mylyn.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/WorkingSets.ecore" name="papyrus" label="Papyrus">
+<setup:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:git="http://www.eclipse.org/oomph/setup/git/1.0" xmlns:jdt="http://www.eclipse.org/oomph/setup/jdt/1.0" xmlns:mylyn="http://www.eclipse.org/oomph/setup/mylyn/1.0" xmlns:predicates="http://www.eclipse.org/oomph/predicates/1.0" xmlns:projects="http://www.eclipse.org/oomph/setup/projects/1.0" xmlns:setup="http://www.eclipse.org/oomph/setup/1.0" xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0" xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0" xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0" xmlns:workingsets="http://www.eclipse.org/oomph/workingsets/1.0" xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/jdt/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/JDT.ecore http://www.eclipse.org/oomph/setup/mylyn/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Mylyn.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/WorkingSets.ecore" name="papyrus" label="Papyrus">
   <logicalProjectContainer xsi:type="setup:ProjectCatalog" href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
   <description>Workbench and workspace configuration for development on Papyrus</description>
-  <setupTask xsi:type="p2_1.0:P2Task" label="Core Development Tools">
+  <setupTask xsi:type="setup.p2:P2Task" label="Core Development Tools">
     <requirement name="org.eclipse.emf.sdk.feature.group"/>
     <requirement name="org.eclipse.gmf.runtime.notation.sdk.feature.group"/>
     <requirement name="org.eclipse.gmf.runtime.sdk.feature.group"/>
@@ -27,7 +27,7 @@
     <requirement name="org.eclipse.m2e.feature.feature.group"/>
     <repository url="http://download.eclipse.org/technology/swtbot/snapshots"/>
   </setupTask>
-  <setupTask xsi:type="p2_1.0:P2Task" label="Releng Tools">
+  <setupTask xsi:type="setup.p2:P2Task" label="Releng Tools">
     <requirement name="org.eclipse.oomph.projectconfig.feature.group"/>
     <requirement name="org.eclipse.oomph.projectcopy.feature.group"/>
     <requirement name="org.eclipse.oomph.workingsets.feature.group"/>
@@ -35,7 +35,7 @@
     <requirement name="org.sonatype.tycho.m2e.feature.feature.group"/>
     <repository url="http://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.8.0/N/LATEST/"/>
   </setupTask>
-  <setupTask xsi:type="p2_1.0:P2Task" label="Code Quality Tools">
+  <setupTask xsi:type="setup.p2:P2Task" label="Code Quality Tools">
     <requirement name="com.mountainminds.eclemma.feature.feature.group" optional="true"/>
     <requirement name="net.sf.eclipsecs.feature.group" optional="true"/>
     <requirement name="edu.umd.cs.findbugs.plugin.eclipse.feature.group" optional="true"/>
@@ -78,7 +78,7 @@
       <requirement name="org.eclipse.uml2.sdk.feature.group"/>
       <requirement name="org.eclipse.emf.sdk.feature.group"/>
       <repositoryList name="Neon">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC1-201608170420/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC4-201609071200/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -149,7 +149,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201605040614">
+        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201608301456">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>M2T ACCELEO</value>
@@ -184,14 +184,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201605311222">
+        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201608311750">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF COMPARE</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.8.1/S-3.8.1RC1-20160818152815/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.8.1/S-3.8.1RC3-20160906143814/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
@@ -821,7 +821,7 @@
           <requirement name="org.eclipse.ocl.jdt.annotation7" optional="true"/>
         </targlet>
       </setupTask>
-      <setupTask xsi:type="p2_1.0:P2Task">
+      <setupTask xsi:type="setup.p2:P2Task">
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>
       </setupTask>
       <stream label="master (Neon/2.0)" name="master">
@@ -862,7 +862,7 @@
           </predicate>
         </workingSet>
       </setupTask>
-      <setupTask xsi:type="p2_1.0:P2Task">
+      <setupTask xsi:type="setup.p2:P2Task">
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>
       </setupTask>
       <setupTask xsi:type="setup.targlets:TargletTask">
@@ -909,7 +909,7 @@
           </predicate>
         </workingSet>
       </setupTask>
-      <setupTask xsi:type="p2_1.0:P2Task">
+      <setupTask xsi:type="setup.p2:P2Task">
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>
       </setupTask>
       <stream label="master (Neon/2.0)" name="master">
@@ -1020,7 +1020,7 @@
       </stream>
     </project>
     <project label="Customization" name="customization">
-      <setupTask xsi:type="p2_1.0:P2Task">
+      <setupTask xsi:type="setup.p2:P2Task">
         <requirement name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
       </setupTask>
       <setupTask xsi:type="projects:ProjectsImportTask">
@@ -1336,7 +1336,7 @@
           <predicate xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.infra\.tools"/>
         </sourceLocator>
       </setupTask>
-      <setupTask xsi:type="p2_1.0:P2Task">
+      <setupTask xsi:type="setup.p2:P2Task">
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>
       </setupTask>
       <stream label="master (Neon/2.0)" name="master">
@@ -1404,7 +1404,7 @@
     </project>
     <project label="MARTE" name="marte">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="marte"/>
-      <setupTask xsi:type="p2_1.0:P2Task">
+      <setupTask xsi:type="setup.p2:P2Task">
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>
       </setupTask>
       <stream label="master (Neon/2.0)" name="master">
@@ -1563,7 +1563,7 @@
         <requirement name="org.eclipse.acceleo.feature.group"/>
       </targlet>
     </setupTask>
-    <setupTask xsi:type="p2_1.0:P2Task">
+    <setupTask xsi:type="setup.p2:P2Task">
       <requirement name="org.eclipse.xtend.sdk.feature.group"/>
       <requirement name="org.eclipse.acceleo.feature.group"/>
     </setupTask>
@@ -1606,7 +1606,7 @@
     <project label="Developer Tools" name="devtools">
       <stream label="master (Neon/2.0)" name="master">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-        <setupTask xsi:type="p2_1.0:P2Task">
+        <setupTask xsi:type="setup.p2:P2Task">
           <requirement name="org.eclipse.papyrus.dev.feature.feature.group"/>
           <requirement name="org.eclipse.b3.aggregator.engine.feature.feature.group"/>
           <repository url="https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/lastSuccessfulBuild/artifact/repository/"/>
@@ -1623,7 +1623,7 @@
       </stream>
       <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-        <setupTask xsi:type="p2_1.0:P2Task">
+        <setupTask xsi:type="setup.p2:P2Task">
           <requirement name="org.eclipse.papyrus.dev.feature.feature.group"/>
           <requirement name="org.eclipse.b3.aggregator.engine.feature.feature.group"/>
           <repository url="https://hudson.eclipse.org/papyrus/job/Papyrus-Mars-Developer/lastSuccessfulBuild/artifact/releng/dev/target/repository/"/>
@@ -1633,7 +1633,7 @@
       </stream>
       <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-        <setupTask xsi:type="p2_1.0:P2Task">
+        <setupTask xsi:type="setup.p2:P2Task">
           <requirement name="org.eclipse.papyrus.dev.feature.feature.group"/>
           <requirement name="org.eclipse.b3.aggregator.engine.feature.feature.group"/>
           <requirement name="org.eclipse.buckminster.core.feature.feature.group"/>
@@ -1671,7 +1671,7 @@
         </repositoryList>
       </targlet>
     </setupTask>
-    <setupTask xsi:type="p2_1.0:P2Task" label="Papyrus Test Generation Framework Tools">
+    <setupTask xsi:type="setup.p2:P2Task" label="Papyrus Test Generation Framework Tools">
       <requirement name="org.eclipse.upr.utp"/>
       <requirement name="org.eclipse.upr.utp.papyrus"/>
       <repository url="${base.downloads.url}/upr/nightly/standardized/update/"/>

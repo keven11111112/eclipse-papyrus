@@ -430,7 +430,7 @@
 		<plugin name="org.eclipse.papyrus.uml.xtext.integration.validation" version="1.2.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.views.modelexplorer.feature" version="2.0.0">
-		<plugin name="org.eclipse.papyrus.views.modelexplorer" version="2.0.0"/>
+		<plugin name="org.eclipse.papyrus.views.modelexplorer" version="2.1.0"/>
 		<plugin name="org.eclipse.papyrus.views.modelexplorer.resourceloading" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.views.modelexplorer.widgets" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.views.modelexplorer.newchild" version="1.2.0"/>
@@ -769,7 +769,7 @@
 	<plugin name="org.eclipse.papyrus.uml.xtext.integration.core" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.xtext.integration.ui" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.xtext.integration.validation" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.views.modelexplorer" version="2.0.0"/>
+	<plugin name="org.eclipse.papyrus.views.modelexplorer" version="2.1.0"/>
 	<plugin name="org.eclipse.papyrus.views.modelexplorer.newchild" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.views.modelexplorer.resourceloading" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.views.modelexplorer.widgets" version="1.2.0"/>
