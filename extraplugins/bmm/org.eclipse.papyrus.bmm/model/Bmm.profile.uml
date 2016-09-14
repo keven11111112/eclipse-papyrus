@@ -2,6 +2,294 @@
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Profile xmi:id="_bNz28BEEEeWdY8_QZO32Xg" name="Bmm" URI="https://www.eclipse.org/papyrus/BMM/0.7.0/" metaclassReference="_bN2TVxEEEeWdY8_QZO32Xg _bN2TWBEEEeWdY8_QZO32Xg">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bNz28REEEeWdY8_QZO32Xg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <contents xmi:type="ecore:EPackage" xmi:id="_msGDsHpOEea07s7ArHSAGQ" name="BMMProfile" nsURI="https://www.eclipse.org/papyrus/BMM/0.7.0/" nsPrefix="Bmm">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGDsXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_msGDsnpOEea07s7ArHSAGQ" key="originalName" value="Bmm"/>
+        </eAnnotations>
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msN_gHpOEea07s7ArHSAGQ" source="PapyrusVersion">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_msN_gXpOEea07s7ArHSAGQ" key="Version" value="0.0.3"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_msN_gnpOEea07s7ArHSAGQ" key="Comment" value=""/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_msN_g3pOEea07s7ArHSAGQ" key="Copyright" value=""/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_msN_hHpOEea07s7ArHSAGQ" key="Date" value="2016-09-14"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_msN_hXpOEea07s7ArHSAGQ" key="Author" value=""/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGDs3pOEea07s7ArHSAGQ" name="MotivationElement" abstract="true">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGDtHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TWREEEeWdY8_QZO32Xg"/>
+          <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_msGDtXpOEea07s7ArHSAGQ" name="description" ordered="false">
+            <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_msGDt3pOEea07s7ArHSAGQ" name="base_Artifact" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGDuXpOEea07s7ArHSAGQ" name="Assessment" eSuperTypes="_msGDs3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGDunpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TXhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGDvHpOEea07s7ArHSAGQ" name="OrganizationUnit" eSuperTypes="_msGDs3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGDvXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TYBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGDv3pOEea07s7ArHSAGQ" name="Strategy" eSuperTypes="_msGDwnpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGDwHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TYhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGDwnpOEea07s7ArHSAGQ" name="CourseOfAction" eSuperTypes="_msGDxXpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGDw3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TZBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGDxXpOEea07s7ArHSAGQ" name="Means" eSuperTypes="_msGDs3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGDxnpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TZhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGDyHpOEea07s7ArHSAGQ" name="Directive" eSuperTypes="_msGDxXpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGDyXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TaBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGDy3pOEea07s7ArHSAGQ" name="PotentialImpact" eSuperTypes="_msGDs3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGDzHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TahEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGDznpOEea07s7ArHSAGQ" name="Regulation" eSuperTypes="_msGD0XpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGDz3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TbBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD0XpOEea07s7ArHSAGQ" name="ExternalInfluencer" eSuperTypes="_msGD1HpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD0npOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TbhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD1HpOEea07s7ArHSAGQ" name="Influencer" eSuperTypes="_msGDs3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD1XpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TcBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD13pOEea07s7ArHSAGQ" name="InfluencingOrganization" eSuperTypes="_msGDs3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD2HpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TchEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD2npOEea07s7ArHSAGQ" name="OrganizationCategory" eSuperTypes="_msGDs3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD23pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TdBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD3XpOEea07s7ArHSAGQ" name="InfluencerCategory" eSuperTypes="_msGDs3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD3npOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TdhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD4HpOEea07s7ArHSAGQ" name="DesiredResult" eSuperTypes="_msGD43pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD4XpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TeBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD43pOEea07s7ArHSAGQ" name="End" eSuperTypes="_msGDs3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD5HpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TehEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD5npOEea07s7ArHSAGQ" name="DesiredResultCategory" eSuperTypes="_msGDs3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD53pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TfBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD6XpOEea07s7ArHSAGQ" name="Asset" eSuperTypes="_msGDs3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD6npOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TfhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD7HpOEea07s7ArHSAGQ" name="BusinessProcess" eSuperTypes="_msGDs3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD7XpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TgBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD73pOEea07s7ArHSAGQ" name="BusinessRule" eSuperTypes="_msGDyHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD8HpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TghEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD8npOEea07s7ArHSAGQ" name="BusinessPolicy" eSuperTypes="_msGDyHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD83pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2ThBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD9XpOEea07s7ArHSAGQ" name="Tactic" eSuperTypes="_msGDwnpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD9npOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2ThhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD-HpOEea07s7ArHSAGQ" name="Offering" eSuperTypes="_msGD-3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD-XpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TiBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD-3pOEea07s7ArHSAGQ" name="FixedAsset" eSuperTypes="_msGD6XpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD_HpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TihEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGD_npOEea07s7ArHSAGQ" name="Resource" eSuperTypes="_msGD6XpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGD_3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TjBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEAXpOEea07s7ArHSAGQ" name="Liability" eSuperTypes="_msGDs3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEAnpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN2TjhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEBHpOEea07s7ArHSAGQ" name="Mission" eSuperTypes="_msGDxXpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEBXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26QBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEB3pOEea07s7ArHSAGQ" name="Vision" eSuperTypes="_msGD43pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGECHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26QhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGECnpOEea07s7ArHSAGQ" name="Goal" eSuperTypes="_msGD4HpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEC3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26RBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEDXpOEea07s7ArHSAGQ" name="Objective" eSuperTypes="_msGD4HpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEDnpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26RhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEEHpOEea07s7ArHSAGQ" name="AssessmentCategory" eSuperTypes="_msGDs3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEEXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26SBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEE3pOEea07s7ArHSAGQ" name="InternalInfluencer" eSuperTypes="_msGD1HpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEFHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26ShEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEFnpOEea07s7ArHSAGQ" name="PotentialReward" eSuperTypes="_msGDy3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEF3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26TBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEGXpOEea07s7ArHSAGQ" name="Risk" eSuperTypes="_msGDy3pOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEGnpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26ThEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEHHpOEea07s7ArHSAGQ" name="MotivationEdge" abstract="true">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEHXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26UBEEEeWdY8_QZO32Xg"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_msGEHnpOEea07s7ArHSAGQ" name="base_Dependency" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Dependency"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEIHpOEea07s7ArHSAGQ" name="UsingAssessmentUsesUsedAssessment" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEIXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26UhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEI3pOEea07s7ArHSAGQ" name="OrganizationUnitMakesAssessment" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEJHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26VBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEJnpOEea07s7ArHSAGQ" name="AssessmentCategoryCategorizesAssessment" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEJ3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26VhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEKXpOEea07s7ArHSAGQ" name="AssessmentIdentifiesPotentialImpact" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEKnpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26WBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGELHpOEea07s7ArHSAGQ" name="AssessmentAffectsAchievementOfEnd" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGELXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26WhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEL3pOEea07s7ArHSAGQ" name="AssessmentAffectsEmploymentOfMeans" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEMHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26XBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEMnpOEea07s7ArHSAGQ" name="AssessmentProvidesImpetusForDirective" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEM3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26XhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGENXpOEea07s7ArHSAGQ" name="AssessmentIsJudgmentOfInfluencer" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGENnpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26YBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEOHpOEea07s7ArHSAGQ" name="BroaderAssessmentCategoryCategorizesNarrowerAssessmentCategory" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEOXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26YhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEO3pOEea07s7ArHSAGQ" name="BusinessProcessManagesAsset" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEPHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26ZBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEPnpOEea07s7ArHSAGQ" name="OrganizationUnitIsResponsibleForAsset" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEP3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26ZhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEQXpOEea07s7ArHSAGQ" name="CourseOfActionDeploysAsset" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEQnpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26aBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGERHpOEea07s7ArHSAGQ" name="DirectiveGovernsUseOfAsset" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGERXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26ahEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGER3pOEea07s7ArHSAGQ" name="BroaderBusinessPolicyIncludesMoreSpecificBusinessPolicy" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGESHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26bBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGESnpOEea07s7ArHSAGQ" name="BusinessPolicyIsBasisOfBusinessRule" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGES3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26bhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGETXpOEea07s7ArHSAGQ" name="BusinessPolicyGovernsBusinessProcess" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGETnpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26cBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEUHpOEea07s7ArHSAGQ" name="OrganizationUnitIsResponsibleForBusinessProcess" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEUXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26chEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEU3pOEea07s7ArHSAGQ" name="BusinessRuleGuidesBusinessProcess" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEVHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26dBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEVnpOEea07s7ArHSAGQ" name="BusinessProcessRealizesCourseOfAction" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEV3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26dhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEWXpOEea07s7ArHSAGQ" name="BusinessProcessDeliversOffering" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEWnpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26eBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEXHpOEea07s7ArHSAGQ" name="TacticEffectsEnforcementLevelOfBusinessRule" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEXXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26ehEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEX3pOEea07s7ArHSAGQ" name="DirectiveGovernsCourseOfAction" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEYHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26fBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEYnpOEea07s7ArHSAGQ" name="BroaderCourseOfActionIncludesMoreSpecificCourseOfAction" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEY3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26fhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEZXpOEea07s7ArHSAGQ" name="EnablingCourseOfActionEnablesEnabledCourseOfAction" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEZnpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26gBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEaHpOEea07s7ArHSAGQ" name="CourseOfActionIsFormulatedBasedOnDirective" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEaXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26ghEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEa3pOEea07s7ArHSAGQ" name="CourseOfActionDefinesOffering" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEbHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26hBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEbnpOEea07s7ArHSAGQ" name="CourseOfActionDischargesLiability" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEb3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26hhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEcXpOEea07s7ArHSAGQ" name="CourseOfActionChannelsEffortsTowardsDesiredResult" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEcnpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26iBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEdHpOEea07s7ArHSAGQ" name="BroaderDesiredResultIncludesMoreSpecificDesiredResult" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEdXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26ihEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEd3pOEea07s7ArHSAGQ" name="DesiredResultCategoryCategorizesDesiredResult" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEeHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26jBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEenpOEea07s7ArHSAGQ" name="DirectiveSupportsAchievementOfDesiredResult" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEe3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26jhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEfXpOEea07s7ArHSAGQ" name="BroaderDesiredCategoryCategorizesMoreSpecificDesiredResultCategory" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEfnpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26kBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEgHpOEea07s7ArHSAGQ" name="PotentialImpactProvidesImpetursForDirective" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEgXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26khEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEg3pOEea07s7ArHSAGQ" name="DirectiveActsAsRegulation" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEhHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26lBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEhnpOEea07s7ArHSAGQ" name="OrganizationUnitDefinesEnd" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEh3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26lhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEiXpOEea07s7ArHSAGQ" name="OfferingUsesFixedAsset" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEinpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26mBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEjHpOEea07s7ArHSAGQ" name="FixedAssetProvidesResource" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEjXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26mhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEj3pOEea07s7ArHSAGQ" name="ObjectiveQuantitiesGoal" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEkHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26nBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEknpOEea07s7ArHSAGQ" name="GoalAmplifiesVision" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEk3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26nhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGElXpOEea07s7ArHSAGQ" name="OrganizationUnitRecognizesInfluencer" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGElnpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26oBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEmHpOEea07s7ArHSAGQ" name="InfluencingOrganizationIsSourceofInfluencer" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEmXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26ohEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEm3pOEea07s7ArHSAGQ" name="InfluencerCategoryCategorizesInfluencer" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEnHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26pBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEnnpOEea07s7ArHSAGQ" name="BroaderInfluencerCategorizesNarrowerInfluencerCategory" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEn3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26phEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEoXpOEea07s7ArHSAGQ" name="OrganizationCategoryCategorizesInfluencingOrganization" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEonpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26qBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEpHpOEea07s7ArHSAGQ" name="OrganizationUnitActsAsInfluencingOrganization" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEpXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26qhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEp3pOEea07s7ArHSAGQ" name="OrganizationUnitIsResponsibleForLiability" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEqHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26rBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEqnpOEea07s7ArHSAGQ" name="LiabilityClaimsResource" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEq3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26rhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGErXpOEea07s7ArHSAGQ" name="OrganizationUnitEstablishesMeans" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGErnpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26sBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEsHpOEea07s7ArHSAGQ" name="StrategyIsAComponentfOfThe_PlanForMIssion" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEsXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26shEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEs3pOEea07s7ArHSAGQ" name="MissionMakesOperativeVision" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEtHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26tBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEtnpOEea07s7ArHSAGQ" name="OfferingRequiresResource" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEt3pOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26thEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEuXpOEea07s7ArHSAGQ" name="BroaderOrganizationCategoryCategorizesNarrowerOrganizationCategory" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEunpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26uBEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEvHpOEea07s7ArHSAGQ" name="StrategyDeterminesOrganizationUnit" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEvXpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN26uhEEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_msGEv3pOEea07s7ArHSAGQ" name="TacticImplementsStrategy" eSuperTypes="_msGEHHpOEea07s7ArHSAGQ">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_msGEwHpOEea07s7ArHSAGQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bN3hUREEEeWdY8_QZO32Xg"/>
+        </eClassifiers>
+      </contents>
       <contents xmi:type="ecore:EPackage" xmi:id="_pypj4MjkEeWCbb_R0gCzlg" name="profile" nsURI="https://www.eclipse.org/papyrus/BMM/0.7.0/" nsPrefix="org.eclipse.papyrus.bmm.profile">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_pyqK8MjkEeWCbb_R0gCzlg" source="http://www.eclipse.org/uml2/2.0.0/UML">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_pyqK8cjkEeWCbb_R0gCzlg" key="originalName" value="Bmm"/>
@@ -605,6 +893,11 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_bN2TYBEEEeWdY8_QZO32Xg" name="OrganizationUnit">
       <generalization xmi:type="uml:Generalization" xmi:id="_bN2TYREEEeWdY8_QZO32Xg" general="_bN2TWREEEeWdY8_QZO32Xg"/>
+      <icon xmi:type="uml:Image" xmi:id="_k-Qo4HpOEea07s7ArHSAGQ" location="platform:/plugin/org.eclipse.papyrus.bmm.diagram.common/icons/OrganizationUnit.png">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k-Qo4XpOEea07s7ArHSAGQ" source="image_papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_k-Qo4npOEea07s7ArHSAGQ" key="image_kind_key" value="icon"/>
+        </eAnnotations>
+      </icon>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_bN2TYhEEEeWdY8_QZO32Xg" name="Strategy">
       <generalization xmi:type="uml:Generalization" xmi:id="_bN2TYxEEEeWdY8_QZO32Xg" general="_bN2TZBEEEeWdY8_QZO32Xg"/>
