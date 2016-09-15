@@ -9,7 +9,7 @@
  * Contributors:
  * 
  *		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 476873, 481317
+ *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 476873, 481317, 500642
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
@@ -45,6 +45,7 @@ import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Port;
@@ -246,8 +247,10 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 			final EObject eObject = it.next();
 
 			if (eObject instanceof Generalization) {
-				viewsToDestroy.addAll(getViewsToDestroy((Generalization) eObject));
+				viewsToDestroy.addAll(getViewsToDestroy(eObject));
 				viewsToDestroy.addAll(getViewsAccordingToGeneralization((Generalization) eObject));
+			} else if (eObject instanceof Feature || eObject instanceof Classifier) {
+				viewsToDestroy.addAll(getViewsAccordingToEObject(eObject, request.getTargetContainer()));
 			}
 		}
 
@@ -265,11 +268,11 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 	 * This methods looks for inconsistent views to delete in case the Classifier or a child is deleted or
 	 * re-oriented.
 	 *
-	 * @param object
+	 * @param movedObject
 	 *            the modified Classifier
 	 * @return the list of {@link View} to delete
 	 */
-	private Set<View> getViewsToDestroy(final Generalization movedObject) {
+	private Set<View> getViewsToDestroy(final EObject movedObject) {
 		Set<View> viewsToDestroy = new HashSet<View>();
 
 		final Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(movedObject, null).iterator();
@@ -316,6 +319,36 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 			}
 		}
 
+		return viewsToDestroy;
+	}
+
+	/**
+	 * This method returns a list of views to be deleted after a move of a Property.
+	 * 
+	 * @param property
+	 *            The Property
+	 * @param targetContainer
+	 *            The target container of the move.
+	 * @return The list of view to delete.
+	 */
+	protected Set<View> getViewsAccordingToEObject(final EObject property, final EObject targetContainer) {
+		Set<View> viewsToDestroy = new HashSet<View>();
+		if (targetContainer instanceof Classifier) {
+			for (View view : getViewsToDestroy(property)) {
+				View containerView = ViewUtil.getContainerView(view);
+				if (null != containerView) {
+					EObject containerSemanticElement = ViewUtil.resolveSemanticElement(containerView);
+					if (containerSemanticElement instanceof Classifier) {
+						if (!containerSemanticElement.equals(targetContainer)) {
+							EList<Classifier> allParents = ((Classifier) containerSemanticElement).allParents();
+							if (!allParents.contains(targetContainer)) {
+								viewsToDestroy.add(view);
+							}
+						}
+					}
+				}
+			}
+		}
 		return viewsToDestroy;
 	}
 }
