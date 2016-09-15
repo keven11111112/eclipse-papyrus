@@ -9,7 +9,7 @@
  * Contributors:
  * 
  *		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 476873, 481317
+ *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 476873, 481317, 500642
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
@@ -45,10 +45,12 @@ import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -246,8 +248,10 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 			final EObject eObject = it.next();
 
 			if (eObject instanceof Generalization) {
-				viewsToDestroy.addAll(getViewsToDestroy((Generalization) eObject));
+				viewsToDestroy.addAll(getViewsToDestroy(eObject));
 				viewsToDestroy.addAll(getViewsAccordingToGeneralization((Generalization) eObject));
+			} else if (eObject instanceof Property) {
+				viewsToDestroy.addAll(getViewsAccordingToProperty((Property) eObject, request.getTargetContainer()));
 			}
 		}
 
@@ -265,11 +269,11 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 	 * This methods looks for inconsistent views to delete in case the Classifier or a child is deleted or
 	 * re-oriented.
 	 *
-	 * @param object
+	 * @param movedObject
 	 *            the modified Classifier
 	 * @return the list of {@link View} to delete
 	 */
-	private Set<View> getViewsToDestroy(final Generalization movedObject) {
+	private Set<View> getViewsToDestroy(final EObject movedObject) {
 		Set<View> viewsToDestroy = new HashSet<View>();
 
 		final Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(movedObject, null).iterator();
@@ -317,5 +321,73 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 		}
 
 		return viewsToDestroy;
+	}
+
+	/**
+	 * This method returns a list of views to be deleted after a move of a Property.
+	 * 
+	 * @param property
+	 *            The Property
+	 * @param targetContainer
+	 *            The target container of the move.
+	 * @return The list of view to delete.
+	 */
+	protected Set<View> getViewsAccordingToProperty(final Property property, final EObject targetContainer) {
+		Set<View> viewsToDestroy = new HashSet<View>();
+		for (View view : getViewsToDestroy(property)) {
+			View containerView = ViewUtil.getContainerView(view);
+			if (null != containerView) {
+				EObject containerSemanticElement = ViewUtil.resolveSemanticElement(containerView);
+
+				if (containerSemanticElement instanceof NamedElement && targetContainer instanceof Element) {
+					boolean existsInheritanceWay = existsInheritanceWay((NamedElement) containerSemanticElement, (Element) targetContainer);
+					if (!existsInheritanceWay) {
+						viewsToDestroy.add(view);
+					}
+				}
+			}
+		}
+
+		return viewsToDestroy;
+	}
+
+
+	/**
+	 * Check if an inheritance way exists between two elements.
+	 * 
+	 * @param containerElement
+	 *            The first ELement to check.
+	 * @param targetElement
+	 *            The target Element to check.
+	 * @return The result of the check.
+	 */
+	protected boolean existsInheritanceWay(final NamedElement containerElement, final Element targetElement) {
+		Classifier classifier = null;
+		if (containerElement instanceof Classifier) {
+			classifier = (Classifier) containerElement;
+		} else if (containerElement instanceof Property) {
+			Type type = ((Property) containerElement).getType();
+			if (type instanceof Classifier) {
+				classifier = (Classifier) type;
+			}
+		}
+
+		if (null != containerElement) {
+			if (containerElement.equals(targetElement)) {
+				return true;
+			} else {
+				for (Generalization generalization : classifier.getGeneralizations()) {
+					Classifier general = generalization.getGeneral();
+					if (null != general) {
+						if (general.equals(targetElement)) {
+							return true;
+						} else if (existsInheritanceWay(general, targetElement)) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
 	}
 }
