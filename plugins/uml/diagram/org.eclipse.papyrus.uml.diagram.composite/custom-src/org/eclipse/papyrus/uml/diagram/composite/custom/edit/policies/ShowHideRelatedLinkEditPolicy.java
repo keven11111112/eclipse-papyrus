@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies;
 import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
 import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractUMLShowHideRelatedLinkEditPolicy;
-import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramUpdater;
+import org.eclipse.papyrus.uml.diagram.composite.custom.parts.CompositeUMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
 
 /**
@@ -42,7 +42,7 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 	 */
 	@Override
 	public DiagramUpdater getDiagramUpdater() {
-		return UMLDiagramUpdater.INSTANCE;
+		return CompositeUMLDiagramUpdater.INSTANCE;
 	}
 
 	/**
