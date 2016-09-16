@@ -384,7 +384,17 @@ def configureDiagramEditDomain (GenEditorView it)'''
 
 			«overrideI(it.editorGen.diagram)»
 			public void commandStackChanged(java.util.EventObject event) {
-				firePropertyChange( org.eclipse.ui.IEditorPart.PROP_DIRTY);
+				if (Display.getCurrent() == null) { 
+					Display.getDefault().asyncExec(new Runnable() {
+						
+						@Override
+						public void run() {
+							firePropertyChange(org.eclipse.ui.IEditorPart.PROP_DIRTY);
+						}
+					});
+				} else {
+					firePropertyChange(org.eclipse.ui.IEditorPart.PROP_DIRTY);	
+				}
 			}
 		});
 	}
