@@ -19,7 +19,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
@@ -96,17 +95,27 @@ public class ITreeItemAxisComparator implements Comparator<ITreeItemAxis> {
 			}
 		}
 
-		if (firstCommon == null) {
-			Activator.log.warn("No common ITreeItemAxis found"); //$NON-NLS-1$
-			throw new UnsupportedOperationException("Not yet implemented, please submit us a bug, with your example"); //$NON-NLS-1$
-		} else if (path1.get(path1.size() - 1) == firstCommon) {
-			// Activator.log.warn("no really common");
-			return 0;
-		} else {
+		// If there is no common ancestor (when different tree filling) or not really common, don't compare them
+		if (null != firstCommon && null != path1 && !path1.isEmpty() && !firstCommon.equals(path1.get(path1.size() - 1))) {
 			int index1 = path1.indexOf(firstCommon);
 			int index2 = path2.indexOf(firstCommon);
 			return compare(path1.get(index1++), path2.get(index2++));
 		}
+          
+		// Bug 501332 : This was replaced by the previous block
+		//if (firstCommon == null) {
+		//	Activator.log.warn("No common ITreeItemAxis found"); //$NON-NLS-1$
+		//	throw new UnsupportedOperationException("Not yet implemented, please submit us a bug, with your example"); //$NON-NLS-1$
+		//} else if (path1.get(path1.size() - 1) == firstCommon) {
+		//	// Activator.log.warn("no really common");
+		//	return 0;
+		//} else {
+		//	int index1 = path1.indexOf(firstCommon);
+		//	int index2 = path2.indexOf(firstCommon);
+		//	return compare(path1.get(index1++), path2.get(index2++));
+		//}
+
+		return 0;
 	}
 
 	/**
@@ -114,7 +123,7 @@ public class ITreeItemAxisComparator implements Comparator<ITreeItemAxis> {
 	 * @param axis1
 	 * @param axis2
 	 * @return
-	 *         the axis manager representation
+	 * 		the axis manager representation
 	 */
 	protected AxisManagerRepresentation getAxisManagerRepresentation(ITreeItemAxis axis1, ITreeItemAxis axis2) {
 		if (this.axisManager != null) {
@@ -202,7 +211,7 @@ public class ITreeItemAxisComparator implements Comparator<ITreeItemAxis> {
 	 * @param axis2
 	 *            the second axis
 	 * @return
-	 *         the axis manager used
+	 * 		the axis manager used
 	 */
 	private IAxisManager getAxisManager(ITreeItemAxis axis1, ITreeItemAxis axis2) {
 		if (this.axisManager != null) {

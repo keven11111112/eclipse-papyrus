@@ -25,6 +25,7 @@ import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeInd
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.OpenAndDeleteTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.PasteAttachedModeEnumTest;
+import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.SortTableColumnTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.StereotypeInheritDisplayTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.StereotypeSubPackagesDisplayTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.importfile.ImportCellsAll_Test;
@@ -88,6 +89,9 @@ import org.junit.runners.Suite.SuiteClasses;
 		FilterNumericMatcherTest.class,
 		FilterUMLEnumerationMatcherTest.class,
 		CellEditorsConfigurationTest.class,
+		
+		// Test the sort column when no common parent
+		SortTableColumnTest.class,
 		
 		// Test the fillColumnsSize style
 		FillColumnsSizeTest.class,
