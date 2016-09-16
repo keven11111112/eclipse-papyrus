@@ -82,9 +82,7 @@ public class CustomCallBehaviorActionParser extends CallBehaviorActionParser {
 		if (editingDomain == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		if (element instanceof CallBehaviorAction) {
-			return UnexecutableCommand.INSTANCE;
-		}
+
 		return super.getModificationCommand(element, UMLPackage.eINSTANCE.getNamedElement_Name(), newString);
 	}
 }
