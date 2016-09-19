@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <!-- Register "semantic" elementype -->
+   <extension point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
+      <elementTypeSet
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+            path="resources/extLibrary.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
+
+    <!-- Reister new chil menu in Model explorer -->
+    <extension point="org.eclipse.papyrus.infra.newchild">
+      <menuCreationModel model="resources/newChild.creationmenumodel"></menuCreationModel>
+   </extension>    
+    
+</plugin>

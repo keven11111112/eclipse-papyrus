@@ -24,6 +24,7 @@
 		<module>./emf/org.eclipse.papyrus.outline.emftree</module>
 		<module>./uml/org.eclipse.papyrus.thousandcreation</module>
 		<module>./uml/org.eclipse.papyrus.uml.diagram.example.programmaticcreation</module>
+		<module>library</module>
 		<!-- <module>../examples/uml/org.eclipse.papyrus.uml.textual.editors.example</module> -->
 	</modules>
 </project>
