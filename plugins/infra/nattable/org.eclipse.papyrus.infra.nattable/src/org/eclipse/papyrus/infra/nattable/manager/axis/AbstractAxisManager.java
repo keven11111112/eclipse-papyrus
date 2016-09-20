@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
@@ -953,32 +954,36 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		protected void reInitializeColumnsWidth() {
 			final List<IAxis> notationAxisList = ((isRowsReordering && !tableManager.getTable().isInvertAxis()) || (!isRowsReordering && tableManager.getTable().isInvertAxis())) ? tableManager.getTable().getCurrentRowAxisProvider().getAxis()
 					: tableManager.getTable().getCurrentColumnAxisProvider().getAxis();
-			final DataLayer tableBodyLayer = tableManager.getBodyLayerStack().getBodyDataLayer();
-
-			// Loop on columns axis to reset the width
-			for (int index = 0; index < notationAxisList.size(); index++) {
-				final IAxis currentAxis = notationAxisList.get(index);
-				// we need both to detect and use the correct value, width or height, of the handled element as the user could have modified the table when the axis was inverted
-				if (!tableManager.getTable().isInvertAxis()) {
-					if (isRowsReordering) {
-						final int axisHeight = tableBodyLayer.getRowHeightByPosition(index);
-						final IntValueStyle value = (IntValueStyle) currentAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.AXIS_HEIGHT);
-						if (null != value) {
-							// we set the size of the axis in the graphical representation
-							tableBodyLayer.setRowHeightByPosition(index, value.getIntValue(), false);
-						} else if (axisHeight != DefaultSizeUtils.getDefaultCellHeight()) {
-							// resets the size in case of an undo in the default table
-							tableBodyLayer.setRowHeightByPosition(index, DefaultSizeUtils.getDefaultCellHeight(), false);
-						}
-					} else {
-						final int axisWidth = tableBodyLayer.getColumnWidthByPosition(index);
-						final IntValueStyle value = (IntValueStyle) currentAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.AXIS_WIDTH);
-						if (null != value) {
-							// we set the size of the axis in the graphical representation
-							tableBodyLayer.setColumnWidthByPosition(index, value.getIntValue(), false);
-						} else if (axisWidth != DefaultSizeUtils.getDefaultCellWidth()) {
-							// resets the size in case of an undo to the default table
-							tableBodyLayer.setColumnWidthByPosition(index, DefaultSizeUtils.getDefaultCellWidth(), false);
+			final BodyLayerStack bodyLayerStack = tableManager.getBodyLayerStack();
+			// Check if the body layer stack is always constructed
+			if(null != bodyLayerStack){
+				final DataLayer tableBodyLayer = bodyLayerStack.getBodyDataLayer();
+	
+				// Loop on columns axis to reset the width
+				for (int index = 0; index < notationAxisList.size(); index++) {
+					final IAxis currentAxis = notationAxisList.get(index);
+					// we need both to detect and use the correct value, width or height, of the handled element as the user could have modified the table when the axis was inverted
+					if (!tableManager.getTable().isInvertAxis()) {
+						if (isRowsReordering) {
+							final int axisHeight = tableBodyLayer.getRowHeightByPosition(index);
+							final IntValueStyle value = (IntValueStyle) currentAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.AXIS_HEIGHT);
+							if (null != value) {
+								// we set the size of the axis in the graphical representation
+								tableBodyLayer.setRowHeightByPosition(index, value.getIntValue(), false);
+							} else if (axisHeight != DefaultSizeUtils.getDefaultCellHeight()) {
+								// resets the size in case of an undo in the default table
+								tableBodyLayer.setRowHeightByPosition(index, DefaultSizeUtils.getDefaultCellHeight(), false);
+							}
+						} else {
+							final int axisWidth = tableBodyLayer.getColumnWidthByPosition(index);
+							final IntValueStyle value = (IntValueStyle) currentAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.AXIS_WIDTH);
+							if (null != value) {
+								// we set the size of the axis in the graphical representation
+								tableBodyLayer.setColumnWidthByPosition(index, value.getIntValue(), false);
+							} else if (axisWidth != DefaultSizeUtils.getDefaultCellWidth()) {
+								// resets the size in case of an undo to the default table
+								tableBodyLayer.setColumnWidthByPosition(index, DefaultSizeUtils.getDefaultCellWidth(), false);
+							}
 						}
 					}
 				}
