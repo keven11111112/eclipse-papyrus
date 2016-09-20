@@ -23,7 +23,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel
 import org.eclipse.papyrus.uml.diagram.common.draw2d.InteractionFigure;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LeftToolbarLayout;
 
-public class InteractionRectangleFigure extends NodeNamedElementFigure {
+public class InteractionRectangleFigure extends RoundedCompartmentFigure {
 
 	protected InteractionFigure interactionLabelContainer;
 

@@ -244,7 +244,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	 * @generated
 	 */
 	public Object[] wrapEObjects(Object[] objects, Object parentElement) {
-		Collection<UMLDomainNavigatorItem> result = new ArrayList<>();
+		Collection<UMLDomainNavigatorItem> result = new ArrayList<UMLDomainNavigatorItem>();
 		for (int i = 0; i < objects.length; i++) {
 			if (objects[i] instanceof EObject) {
 				result.add(

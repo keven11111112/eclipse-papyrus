@@ -3722,8 +3722,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			IFile file = (IFile) parentElement;
 			URI fileURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 			Resource resource = myEditingDomain.getResourceSet().getResource(fileURI, true);
-			Collection<Object> result = new ArrayList<>();
-			List<View> topViews = new ArrayList<>(resource.getContents().size());
+			Collection<Object> result = new ArrayList<Object>();
+			List<View> topViews = new ArrayList<View>(resource.getContents().size());
 			for (EObject o : resource.getContents()) {
 				if (o instanceof View) {
 					topViews.add((View) o);

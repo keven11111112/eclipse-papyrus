@@ -75,7 +75,7 @@ public class UMLDiagramEditorUtil {
 	 * @generated
 	 */
 	public static Map<?, ?> getSaveOptions() {
-		HashMap<String, Object> saveOptions = new HashMap<>();
+		HashMap<String, Object> saveOptions = new HashMap<String, Object>();
 		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8"); //$NON-NLS-1$
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		return saveOptions;
@@ -188,7 +188,7 @@ public class UMLDiagramEditorUtil {
 	 * Create a new instance of domain element associated with canvas.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private static Package createInitialModel() {
@@ -198,7 +198,7 @@ public class UMLDiagramEditorUtil {
 	/**
 	 * Store model element in the resource.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private static void attachModelToResource(Package model, Resource resource) {
@@ -278,7 +278,7 @@ public class UMLDiagramEditorUtil {
 		}
 
 		View view = null;
-		LinkedList<EditPart> editPartHolder = new LinkedList<>();
+		LinkedList<EditPart> editPartHolder = new LinkedList<EditPart>();
 		if (hasStructuralURI && !lazyElement2ViewMap.getElement2ViewMap().isEmpty()) {
 			view = lazyElement2ViewMap.getElement2ViewMap().get(targetElement);
 		} else if (findElementsInDiagramByID(diagramEditPart, targetElement, editPartHolder) > 0) {
@@ -322,7 +322,7 @@ public class UMLDiagramEditorUtil {
 		 */
 		public final Map<EObject, View> getElement2ViewMap() {
 			if (element2ViewMap == null) {
-				element2ViewMap = new HashMap<>();
+				element2ViewMap = new HashMap<EObject, View>();
 				// map possible notation elements to itself as these can't be found by view.getElement()
 				for (EObject element : elementSet) {
 					if (element instanceof View) {

@@ -22,9 +22,10 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 
-public class CoRegionCombinedFragmentFigure extends PapyrusNodeFigure {
+public class CoRegionCombinedFragmentFigure extends RoundedCompartmentFigure {
 
 	// The area (to the left,right, top and bottom) near the border of the Coregion that is sensible to the mouse
 	private static final int COREGION_HIT_WIDTH = 6;

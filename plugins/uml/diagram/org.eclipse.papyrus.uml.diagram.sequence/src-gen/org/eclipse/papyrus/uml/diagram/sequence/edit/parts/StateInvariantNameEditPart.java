@@ -247,7 +247,7 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart
 		if (parserElement == null) {
 			return null;
 		}
-		List<View> views = org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil.findViews(parserElement, getViewer());
+		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for (View view : views) {
 			if (AppearanceHelper.showElementIcon(view)) {
 				return UMLElementTypes.getImage(parserElement.eClass());

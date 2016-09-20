@@ -61,7 +61,7 @@ public class GeneralOrderingItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
-		List<EObject> todestroy = new ArrayList<>();
+		List<EObject> todestroy = new ArrayList();
 		todestroy.add(req.getElementToDestroy());
 		// cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 		cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));

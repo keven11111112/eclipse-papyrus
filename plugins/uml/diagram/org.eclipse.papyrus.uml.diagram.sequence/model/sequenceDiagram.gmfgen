@@ -7584,8 +7584,8 @@
         superOwnedEditPart="org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="Rounded Compartment EditPart"
-        genView="/0/@diagram/@childNodes.2"
+        comment="Edit part that inherits from Rounded Compartment EditPart"
+        genView="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.9"
         name="RoundedCompartmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>

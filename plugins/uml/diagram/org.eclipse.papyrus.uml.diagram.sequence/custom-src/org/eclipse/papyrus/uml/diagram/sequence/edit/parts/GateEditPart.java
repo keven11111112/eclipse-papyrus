@@ -53,6 +53,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractBorderEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.NotificationHelper;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
@@ -408,7 +409,7 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 		return null;
 	}
 
-	public class GateFigure extends NodeNamedElementFigure {
+	public class GateFigure extends RoundedCompartmentFigure {
 
 		/**
 		 * Constructor.

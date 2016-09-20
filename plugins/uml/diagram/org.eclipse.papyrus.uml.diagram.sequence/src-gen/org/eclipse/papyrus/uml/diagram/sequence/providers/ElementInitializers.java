@@ -563,7 +563,7 @@ public class ElementInitializers {
 		String base = prefix + body + suffix;
 		Namespace namespace = namedElement.getNamespace();
 		if (namespace != null) {
-			Set<NamedElement> members = new HashSet<>();
+			Set<NamedElement> members = new HashSet<NamedElement>();
 			members.addAll(namespace.getMembers());
 			// add general orderings which are not in initial selection
 			if (namespace instanceof Interaction) {
@@ -577,7 +577,7 @@ public class ElementInitializers {
 	@SuppressWarnings("rawtypes")
 	public static String getNextNumberedName(Collection currentElements, String base) {
 		int nextNumber = -1;
-		Set<String> elementNames = new HashSet<>();
+		Set<String> elementNames = new HashSet<String>();
 		for (Object o : currentElements) {
 			if (o instanceof NamedElement) {
 				String name = ((NamedElement) o).getName();
