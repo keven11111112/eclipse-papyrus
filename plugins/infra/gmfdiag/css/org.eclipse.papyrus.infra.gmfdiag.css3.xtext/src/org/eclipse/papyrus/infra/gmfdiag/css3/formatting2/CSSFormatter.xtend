@@ -10,6 +10,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.FuncTok
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.PseudoClassFunction
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.SimpleSelectorForNegation
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.UrlTok
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.charset
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.font_face
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.importExpression
@@ -53,6 +54,10 @@ class CSSFormatter extends AbstractCSSFormatter {
 		for (keyframes keyframes : stylesheet.getKeyframes()) {
 			format(keyframes, document);
 		}
+	}
+	
+	def dispatch void format(charset charset, extension IFormattableDocument document) {
+		charset.append[newLines = 2];
 	}
 
 	def dispatch void format(page page, extension IFormattableDocument document) {
