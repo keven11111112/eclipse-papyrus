@@ -84,6 +84,10 @@
                classname="org.eclipse.papyrus.infra.core.resource.AdjunctResourceModelSnippet"
                description="Snippet for notation resource of referenced model resources">
          </modelSnippet>
+         <modelSnippet
+               classname="org.eclipse.papyrus.infra.gmfdiag.internal.common.model.NotationPageSnippet"
+               description="Snippet that cleans up editor pages for deleted notation views">
+         </modelSnippet>
       </model>
   </extension>
 

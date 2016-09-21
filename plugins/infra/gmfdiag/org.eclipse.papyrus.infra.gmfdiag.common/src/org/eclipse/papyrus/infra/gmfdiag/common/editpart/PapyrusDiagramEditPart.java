@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,8 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - support pluggable edit-part conflict detection (CDO)
  *  C�line Janssens (ALL4TEC) - Override getDragTracker with the PapyrusRubberbandDragTracker
- *  Christian W. Damus - bug 451230
- *  Christian W. Damus - bug 461629
+ *  Christian W. Damus - bugs 451230, 461629, 501946
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - add refresh of SVGPostProcessor - Bug 467569
  *
  *****************************************************************************/
@@ -78,24 +77,21 @@ public class PapyrusDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
-	/**
-	 * Refresh.
-	 *
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#refresh()
-	 */
 	@Override
 	public void refresh() {
-		if (SVGPostProcessor.instance instanceof IRefreshHandlerPart) {
-			IEditorPart activeEditor = null;
-			try {
-				IMultiDiagramEditor multiDiagramEditor = ServiceUtilsForEditPart.getInstance().getService(IMultiDiagramEditor.class, this);
-				activeEditor = multiDiagramEditor.getActiveEditor();
-			} catch (ServiceException e) {
-				Activator.log.error(e);
+		if (hasNotationView() && (getNotationView().eResource() != null)) {
+			if (SVGPostProcessor.instance instanceof IRefreshHandlerPart) {
+				IEditorPart activeEditor = null;
+				try {
+					IMultiDiagramEditor multiDiagramEditor = ServiceUtilsForEditPart.getInstance().getService(IMultiDiagramEditor.class, this);
+					activeEditor = multiDiagramEditor.getActiveEditor();
+				} catch (ServiceException e) {
+					Activator.log.error(e);
+				}
+				((IRefreshHandlerPart) SVGPostProcessor.instance).refresh(activeEditor);
 			}
-			((IRefreshHandlerPart) SVGPostProcessor.instance).refresh(activeEditor);
+			super.refresh();
 		}
-		super.refresh();
 	}
 
 	/**
