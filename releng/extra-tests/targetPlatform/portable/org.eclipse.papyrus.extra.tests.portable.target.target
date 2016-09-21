@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Extra Tests" sequenceNumber="1473143750">
+<target name="Papyrus Extra Tests" sequenceNumber="1474473006">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.b3.aggregator.editor.source.feature.feature.group" version="0.3.0.v20140928-0617"/>
@@ -10,33 +10,33 @@
       <repository id="b3" location="http://download.eclipse.org/modeling/emft/b3/updates-4.4"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.oomph.version.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.workingsets.feature.group" version="1.4.0.v20160530-1200"/>
-      <unit id="org.eclipse.oomph.projectconfig.feature.group" version="1.4.0.v20160426-0718"/>
-      <unit id="org.eclipse.oomph.setup.targlets.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.mylyn.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.workbench.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.projectset.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.pde.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.targlets.feature.group" version="1.4.0.v20160518-1301"/>
-      <unit id="org.eclipse.oomph.setup.jdt.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.projects.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.git.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.maven.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.p2.feature.group" version="1.4.0.v20160606-0856"/>
-      <unit id="org.eclipse.oomph.setup.feature.group" version="1.4.0.v20160606-0856"/>
-      <unit id="org.eclipse.oomph.preferences.feature.group" version="1.4.0.v20160426-0711"/>
-      <repository id="oomph" location="http://download.eclipse.org/oomph/drops/release/1.4.0"/>
+      <unit id="org.eclipse.oomph.version.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.workingsets.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.projectconfig.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.targlets.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.mylyn.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.workbench.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.projectset.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.pde.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.targlets.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.jdt.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.projects.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.git.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.maven.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.p2.feature.group" version="1.6.0.v20160920-0515"/>
+      <unit id="org.eclipse.oomph.setup.feature.group" version="1.6.0.v20160920-1303"/>
+      <unit id="org.eclipse.oomph.preferences.feature.group" version="1.6.0.v20160920-0456"/>
+      <repository id="oomph" location="http://download.eclipse.org/oomph/drops/milestone/S20160921-051224-1.6.0-M1"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="fr.obeo.releng.targetplatform-feature.feature.group" version="2.1.1.201410251450"/>
       <repository id="tpd" location="http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/latest/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="egit" location="http://download.eclipse.org/egit/updates-4.4"/>
+      <repository id="egit" location="http://download.eclipse.org/egit/updates-4.4.1"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="m2e" location="http://download.eclipse.org/technology/m2e/releases/1.7/1.7.0.20160603-1933"/>
+      <repository id="m2e" location="http://download.eclipse.org/technology/m2e/milestones/1.8/1.8.0.20160809-1624"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
@@ -144,12 +144,12 @@
       <repository id="emfCompare" location="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201605311222"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.net4j.feature.group" version="4.5.0.v20160607-1254"/>
-      <unit id="org.eclipse.emf.cdo.server.feature.group" version="4.5.0.v20160607-1254"/>
+      <unit id="org.eclipse.net4j.feature.group" version="4.6.0.v20160916-1529"/>
+      <unit id="org.eclipse.emf.cdo.server.feature.group" version="4.6.0.v20160920-1352"/>
       <unit id="org.eclipse.emf.cdo.dawn.feature.group" version="2.1.300.v20160301-1326"/>
-      <unit id="org.eclipse.emf.cdo.feature.group" version="4.5.0.v20160607-1254"/>
-      <unit id="org.eclipse.emf.cdo.server.db.feature.group" version="4.4.0.v20160607-1254"/>
-      <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209"/>
+      <unit id="org.eclipse.emf.cdo.feature.group" version="4.6.0.v20160920-1352"/>
+      <unit id="org.eclipse.emf.cdo.server.db.feature.group" version="4.4.100.v20160913-1507"/>
+      <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/S20160920-0952"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.acceleo.runtime.source.feature.group" version="3.6.4.201605040614"/>
@@ -183,7 +183,7 @@
       <repository id="elk" location="http://download.eclipse.org/elk/updates/releases/0.1.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="graphiti" location="http://download.eclipse.org/graphiti/updates/0.13.0/"/>
+      <repository id="graphiti" location="http://download.eclipse.org/graphiti/updates/milestones/S-0.14.0M2-201609210744/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="sphinx" location="http://download.eclipse.org/sphinx/previews"/>

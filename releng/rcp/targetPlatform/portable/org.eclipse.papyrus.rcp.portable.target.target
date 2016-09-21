@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus RCP" sequenceNumber="1473143750">
+<target name="Papyrus RCP" sequenceNumber="1474473006">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
@@ -92,6 +92,14 @@
       <repository id="aeri" location="http://download.eclipse.org/technology/epp/logging/milestones/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.net4j.feature.group" version="4.6.0.v20160916-1529"/>
+      <unit id="org.eclipse.emf.cdo.server.feature.group" version="4.6.0.v20160920-1352"/>
+      <unit id="org.eclipse.emf.cdo.dawn.feature.group" version="2.1.300.v20160301-1326"/>
+      <unit id="org.eclipse.emf.cdo.feature.group" version="4.6.0.v20160920-1352"/>
+      <unit id="org.eclipse.emf.cdo.server.db.feature.group" version="4.4.100.v20160913-1507"/>
+      <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/S20160920-0952"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.acceleo.runtime.source.feature.group" version="3.6.4.201605040614"/>
       <unit id="org.eclipse.acceleo.source.feature.group" version="3.6.4.201605040614"/>
       <unit id="org.eclipse.acceleo.query.source.feature.group" version="5.0.0.201605040614"/>
@@ -123,7 +131,7 @@
       <repository id="elk" location="http://download.eclipse.org/elk/updates/releases/0.1.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="graphiti" location="http://download.eclipse.org/graphiti/updates/0.13.0/"/>
+      <repository id="graphiti" location="http://download.eclipse.org/graphiti/updates/milestones/S-0.14.0M2-201609210744/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="sphinx" location="http://download.eclipse.org/sphinx/previews"/>
@@ -156,12 +164,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.cdo.epp.feature.group" version="4.5.0.v20160607-1511"/>
-      <unit id="org.eclipse.net4j.feature.group" version="4.5.0.v20160607-1254"/>
-      <unit id="org.eclipse.emf.cdo.server.feature.group" version="4.5.0.v20160607-1254"/>
-      <unit id="org.eclipse.emf.cdo.dawn.feature.group" version="2.1.300.v20160301-1326"/>
-      <unit id="org.eclipse.emf.cdo.feature.group" version="4.5.0.v20160607-1254"/>
-      <unit id="org.eclipse.emf.cdo.server.db.feature.group" version="4.4.0.v20160607-1254"/>
-      <repository id="cdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209"/>
+      <repository id="rcpcdo" location="http://download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.rcp.configuration.feature.group" version="1.0.200.v20160606-1100"/>

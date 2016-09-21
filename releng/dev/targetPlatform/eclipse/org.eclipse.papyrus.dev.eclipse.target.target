@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Dev" sequenceNumber="1473062011">
+<target name="Papyrus Dev" sequenceNumber="1474465908">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="file:/home/data/httpd/download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
@@ -113,33 +113,33 @@
       <repository id="upr" location="file:/home/data/httpd/download.eclipse.org/upr/0.9RC1/update/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.oomph.version.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.workingsets.feature.group" version="1.4.0.v20160530-1200"/>
-      <unit id="org.eclipse.oomph.projectconfig.feature.group" version="1.4.0.v20160426-0718"/>
-      <unit id="org.eclipse.oomph.setup.targlets.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.mylyn.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.workbench.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.projectset.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.pde.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.targlets.feature.group" version="1.4.0.v20160518-1301"/>
-      <unit id="org.eclipse.oomph.setup.jdt.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.projects.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.git.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.setup.maven.feature.group" version="1.4.0.v20160426-0711"/>
-      <unit id="org.eclipse.oomph.p2.feature.group" version="1.4.0.v20160606-0856"/>
-      <unit id="org.eclipse.oomph.setup.feature.group" version="1.4.0.v20160606-0856"/>
-      <unit id="org.eclipse.oomph.preferences.feature.group" version="1.4.0.v20160426-0711"/>
-      <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/release/1.4.0"/>
+      <unit id="org.eclipse.oomph.version.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.workingsets.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.projectconfig.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.targlets.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.mylyn.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.workbench.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.projectset.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.pde.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.targlets.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.jdt.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.projects.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.git.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.setup.maven.feature.group" version="1.6.0.v20160920-0456"/>
+      <unit id="org.eclipse.oomph.p2.feature.group" version="1.6.0.v20160920-0515"/>
+      <unit id="org.eclipse.oomph.setup.feature.group" version="1.6.0.v20160920-1303"/>
+      <unit id="org.eclipse.oomph.preferences.feature.group" version="1.6.0.v20160920-0456"/>
+      <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/milestone/S20160921-051224-1.6.0-M1"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="fr.obeo.releng.targetplatform-feature.feature.group" version="2.1.1.201410251450"/>
       <repository id="tpd" location="http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/latest/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-4.4"/>
+      <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-4.4.1"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="m2e" location="file:/home/data/httpd/download.eclipse.org/technology/m2e/releases/1.7/1.7.0.20160603-1933"/>
+      <repository id="m2e" location="file:/home/data/httpd/download.eclipse.org/technology/m2e/milestones/1.8/1.8.0.20160809-1624"/>
     </location>
   </locations>
 </target>
