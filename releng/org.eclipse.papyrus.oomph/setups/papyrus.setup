@@ -1887,7 +1887,7 @@
         <setupTask xsi:type="setup.p2:P2Task">
           <requirement name="org.eclipse.papyrus.dev.feature.feature.group"/>
           <requirement name="org.eclipse.b3.aggregator.engine.feature.feature.group"/>
-          <repository url="https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/lastSuccessfulBuild/artifact/repository/"/>
+          <repository url="https://hudson.eclipse.org/papyrus/job/Papyrus-Neon-Developer/lastSuccessfulBuild/artifact/repository/"/>
           <repository url="${base.downloads.url}/modeling/mdt/papyrus/updates/nightly/neon/main"/>
           <repository url="http://download.eclipse.org/modeling/emft/b3/updates-4.4/"/>
           <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/I201509281643/">
