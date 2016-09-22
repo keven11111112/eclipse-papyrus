@@ -38,7 +38,6 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -67,12 +66,10 @@ import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEdi
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
-import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.AbstractCustomLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.InformationFlowCustomLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.composite.providers.UMLParserProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.custom.BusyIndicator;
@@ -153,7 +150,7 @@ public class InformationFlowConveyedLabelEditPart extends PapyrusLabelEditPart
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PapyrusLinkLabelDragPolicy());
-		installEditPolicy(AbstractCustomLabelEditPolicy.SPECIFIC_NAME_LABEL_POLICY,
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY,
 				new InformationFlowCustomLabelEditPolicy());
 	}
 
