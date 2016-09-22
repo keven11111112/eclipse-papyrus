@@ -172,7 +172,29 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	public boolean hasTrigger(EventOccurrence eventOccurrence){
 		// Return true if the event occurrence matches a trigger of this transition.
 		// false otherwise.
-		return this.match(eventOccurrence, ((Transition)this.node).getTriggers());
+		return this._hasTrigger(eventOccurrence, (Transition)this.node);
+	}
+	
+	private boolean _hasTrigger(EventOccurrence eventOccurrence, Transition transition){
+		// In case of a redefined transition, the set of triggers,
+		// is the union all of triggers defined at the different redefinition levels. As an
+		// example, we consider a set of three transitions:
+		// 1. T1 with a trigger on EvtS where EvtS is a SignalEvent
+		// 2. T2 with a trigger on EvtC where EvtC is a CallEvent. T2 redefines T1
+		// 3. T3 with no triggers. T3 redefines T2.
+		// T3 will be able to react both to an occurrence of the signal referenced by EvtS and a
+		// on a call the operation referenced by EvtC.
+		boolean reactive = false;
+		Transition redefinedTransition = transition.getRedefinedTransition();
+		if(redefinedTransition != null){
+			reactive = this._hasTrigger(eventOccurrence, redefinedTransition);
+			if(!reactive){
+				reactive = this.match(eventOccurrence, transition.getTriggers());
+			}
+		}else{
+			reactive = this.match(eventOccurrence, transition.getTriggers());
+		}
+		return reactive;
 	}
 	
 	public boolean canFireOn(EventOccurrence eventOccurrence){
