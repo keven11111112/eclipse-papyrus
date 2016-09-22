@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bugs 433206, 461629, 466997, 478556, 485220
+ *  Christian W. Damus - bugs 433206, 461629, 466997, 478556, 485220, 501946
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
@@ -30,21 +30,16 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.IExecutorPolicy;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IPapyrusCanonicalEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.ui.util.EditorUtils;
-import org.eclipse.papyrus.infra.ui.util.UIUtil;
+import org.eclipse.papyrus.infra.ui.util.TransactionUIHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.MapMaker;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -55,33 +50,6 @@ public class DiagramHelper {
 	private static final AtomicBoolean refreshPending = new AtomicBoolean();
 
 	private static final ConcurrentMap<DiagramEditPart, Boolean> pendingDiagramRefresh = new MapMaker().concurrencyLevel(4).weakKeys().makeMap();
-
-	private static final Executor uiExecutor = UIUtil.createUIExecutor(Display.getDefault());
-
-	// Don't need weak values because the executor doesn't retain a reference to the domain
-	private static final LoadingCache<TransactionalEditingDomain, Executor> domainExecutors = CacheBuilder.newBuilder().weakKeys().build(new CacheLoader<TransactionalEditingDomain, Executor>() {
-		@Override
-		public Executor load(TransactionalEditingDomain domain) {
-			// Diagram refreshes must happen on the UI thread, so we must exclude the transaction
-			// executor, itself, in the case that the transaction is not running on the UI thread
-			IExecutorPolicy policy = new IExecutorPolicy() {
-				@Override
-				public Ranking rank(Runnable task, Executor executor) {
-					if (executor == uiExecutor) {
-						// Always OK to fall back to the UI-thread executor
-						return Ranking.ACCEPTABLE;
-					} else {
-						// The case of the transaction executor
-						return (Display.getCurrent() == null) ? Ranking.DEPRECATED : Ranking.PREFERRED;
-					}
-				}
-			};
-
-			// Edit-parts will be asked to refresh, and they would do this in read-only transaction, which subsequently
-			// requires canonical edit policies invoked recursively to run unprotected transactions, breaking undo/redo
-			return TransactionHelper.createTransactionExecutor(domain, uiExecutor, policy, TransactionHelper.mergeReadOnlyOption(true));
-		}
-	});
 
 	public static void refresh(EditPart editPart, boolean recursive) {
 		editPart.refresh();
@@ -198,8 +166,9 @@ public class DiagramHelper {
 	}
 
 	private static Executor getExecutor(DiagramEditPart diagram) {
-		TransactionalEditingDomain domain = diagram.getEditingDomain();
-		return (domain != null) ? domainExecutors.getUnchecked(domain) : uiExecutor;
+		TransactionalEditingDomain domain = (diagram == null) ? null : diagram.getEditingDomain();
+		// There is a default executor for the null domain
+		return TransactionUIHelper.getExecutor(domain);
 	}
 
 	/**
@@ -307,11 +276,7 @@ public class DiagramHelper {
 	 */
 	public static void asyncExec(EditPart context, Runnable task) {
 		DiagramEditPart diagram = DiagramEditPartsUtil.getDiagramEditPart(context);
-		if (diagram != null) {
-			asyncExec(diagram, task);
-		} else {
-			uiExecutor.execute(task);
-		}
+		getExecutor(diagram).execute(task);
 	}
 
 	/**
@@ -344,7 +309,8 @@ public class DiagramHelper {
 			result = submit(diagram, task);
 		} else {
 			ListenableFutureTask<V> runnable = ListenableFutureTask.create(task);
-			uiExecutor.execute(runnable);
+			// Yes, 'diagram' is null and that is okay
+			getExecutor(diagram).execute(runnable);
 			result = runnable;
 		}
 

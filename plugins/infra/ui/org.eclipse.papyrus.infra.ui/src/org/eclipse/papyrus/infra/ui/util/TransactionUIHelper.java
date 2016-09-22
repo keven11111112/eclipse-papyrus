@@ -8,12 +8,13 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bugs 465416, 498140
+ *  Christian W. Damus - bugs 465416, 498140, 501946
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.util;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.Executor;
 import java.util.function.Consumer;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -21,6 +22,14 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.papyrus.infra.core.utils.IExecutorPolicy;
+import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
+import org.eclipse.papyrus.infra.tools.util.CoreExecutors;
+import org.eclipse.swt.widgets.Display;
+
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 
 
 /**
@@ -29,6 +38,56 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
  * @since 1.2
  */
 public class TransactionUIHelper {
+
+	private static final Executor uiExecutor = CoreExecutors.getUIExecutorService();
+
+	// Don't need weak values because the executor doesn't retain a reference to the domain
+	private static final LoadingCache<TransactionalEditingDomain, Executor> domainExecutors = CacheBuilder.newBuilder().weakKeys().build(new CacheLoader<TransactionalEditingDomain, Executor>() {
+		@Override
+		public Executor load(TransactionalEditingDomain domain) {
+			// Diagram refreshes must happen on the UI thread, so we must exclude the transaction
+			// executor, itself, in the case that the transaction is not running on the UI thread
+			IExecutorPolicy policy = new IExecutorPolicy() {
+				@Override
+				public Ranking rank(Runnable task, Executor executor) {
+					if (executor == uiExecutor) {
+						// Always OK to fall back to the UI-thread executor
+						return Ranking.ACCEPTABLE;
+					} else {
+						// The case of the transaction executor
+						return (Display.getCurrent() == null) ? Ranking.DEPRECATED : Ranking.PREFERRED;
+					}
+				}
+			};
+
+			// Edit-parts will be asked to refresh, and they would do this in read-only transaction, which subsequently
+			// requires canonical edit policies invoked recursively to run unprotected transactions, breaking undo/redo
+			return TransactionHelper.createTransactionExecutor(domain, uiExecutor, policy, TransactionHelper.mergeReadOnlyOption(true));
+		}
+	});
+
+	/**
+	 * Obtains an executor for asynchronous execution of UI updates (such as
+	 * refreshes) in the context of a transactional editing domain. This executor
+	 * is optimized to minimally postpone any task: it is run at commit of the
+	 * current transaction, if the UI thread currently has a transaction active,
+	 * otherwise as usually as an {@linkplain Display#asyncExec(Runnable) async runnable}
+	 * on the UI thread.
+	 * 
+	 * @param domain
+	 *            an editing domain (may be {@code null})
+	 * @return an asynchronous executor for the {@code domain}. If the
+	 *         {@code domain} is {@code null}, a UI-thread executor is returned.
+	 *         Exactly one executor exists per {@code domain} (including the
+	 *         {@code null} domain)
+	 *         
+	 * @since 2.0
+	 */
+	public static Executor getExecutor(TransactionalEditingDomain domain) {
+		return (domain != null)
+				? domainExecutors.getUnchecked(domain)
+				: uiExecutor;
+	}
 
 	/**
 	 * <p>
