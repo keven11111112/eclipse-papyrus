@@ -1548,13 +1548,13 @@
             label="Inner composite structure diagram hyperlinks">
       </contributor>
       <contributor
-            contributor="org.eclipse.papyrus.uml.diagram.comosite.custom.hyperlink.NestingPackageHyperlinkContributor"
+            contributor="org.eclipse.papyrus.uml.diagram.composite.custom.hyperlink.NestingPackageHyperlinkContributor"
             description="Creates hyperlinks referencing composite structure diagrams that are directly owned by the nesting package of the selected package"
             id="org.eclipse.papyrus.uml.diagram.composite.hyperlink.NestingPackageHyperlinkContributor"
             label="Nesting package composite structure diagram hyperlinks">
       </contributor>
       <contributor
-            contributor="org.eclipse.papyrus.uml.diagram.comosite.custom.hyperlink.NestedPackageHyperlinkContributor"
+            contributor="org.eclipse.papyrus.uml.diagram.composite.custom.hyperlink.NestedPackageHyperlinkContributor"
             description="Creates hyperlinks referencing composite structure diagrams that are directly owned by nested packages of the selected package"
             id="org.eclipse.papyrus.uml.diagram.composite.hyperlink.NestedPackageHyperlinkContributor"
             label="Nested package composite structure diagram hyperlinks">
