@@ -26,6 +26,9 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
+import org.eclipse.papyrus.views.modelexplorer.handler.CollapseAllHandler;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -59,6 +62,10 @@ public class Activator extends AbstractUIPlugin {
 		if (System.getProperty(workaround) == null) { // Only change the value if it is not explicitly set already (Don't override user-defined value)
 			System.setProperty(workaround, Boolean.toString(true));
 		}
+
+		//Replace collapseHandler in handler service
+		IHandlerService handlerService = PlatformUI.getWorkbench().getService(IHandlerService.class);
+		handlerService.activateHandler(org.eclipse.ui.handlers.CollapseAllHandler.COMMAND_ID, new CollapseAllHandler());
 	}
 
 	/**

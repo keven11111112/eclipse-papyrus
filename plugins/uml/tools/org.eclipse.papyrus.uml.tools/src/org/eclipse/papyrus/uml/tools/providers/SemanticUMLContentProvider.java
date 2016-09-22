@@ -31,11 +31,13 @@ import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.adapters.ResourceSetRootsAdapter;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
@@ -407,5 +409,27 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 	}
 
 	private RootsAdapter rootsAdapter = new RootsAdapter();
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider#hasChildren(java.lang.Object)
+	 */
+	@Override
+	public boolean hasChildren(final Object element) {
+
+		// In case of use of EReference visualisation by face through EReferenceTreeElement, we verify if the object is realy a child of its parent
+		// This is done to avoid infinite loop.
+		Object parent = getParent(element);
+		if (parent instanceof EReferenceTreeElement) {
+			EObject eParent = PlatformHelper.getAdapter(parent, EObject.class);
+			// The element must be contained into the parent
+			if (!eParent.eContents().contains(PlatformHelper.getAdapter(element, EObject.class))) {
+				return false;
+			}
+		}
+
+		return super.hasChildren(element);
+	}
 
 }

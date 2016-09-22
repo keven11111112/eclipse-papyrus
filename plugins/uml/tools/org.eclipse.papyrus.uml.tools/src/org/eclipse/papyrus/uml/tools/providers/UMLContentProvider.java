@@ -24,10 +24,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.infra.ui.emf.providers.EMFEnumeratorContentProvider;
 import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
@@ -89,6 +91,28 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 		}
 
 		super.inputChanged(viewer, oldInput, newInput);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider#hasChildren(java.lang.Object)
+	 */
+	@Override
+	public boolean hasChildren(final Object element) {
+
+		// In case of use of EReference visualisation by face through EReferenceTreeElement, we verify if the object is realy a child of its parent
+		// This is done to avoid infinite loop.
+		Object parent = getParent(element);
+		if (parent instanceof EReferenceTreeElement) {
+			EObject eParent = PlatformHelper.getAdapter(parent, EObject.class);
+			// The element must be contained into the parent
+			if (!eParent.eContents().contains(PlatformHelper.getAdapter(element, EObject.class))) {
+				return false;
+			}
+		}
+
+		return super.hasChildren(element);
 	}
 
 	/**
@@ -186,8 +210,7 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 			if (feature.getEType() instanceof EClass) {
 				return getStereotypedReferenceContentProvider(source, feature, (EClass) feature.getEType());
 			}
-		}
-		else {
+		} else {
 			// handle attributes of a stereotype nested in datatypes (see bug 427419 - Problems with DataTypes whose properties are typed by Stereotypes)
 			EObject sourceCont = source.eContainer();
 			if ((sourceCont != null) && (UMLUtil.getBaseElement(sourceCont) != null) && feature.getEType() instanceof EClass) {
@@ -217,11 +240,14 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 	/**
 	 * Uses the content provider for reference properties typed by a stereotype
 	 *
-	 * @param source The source element. Used to find base model (resource)
-	 * @param feature A feature referencing the element
-	 * @param type a stereotype (we want to filter for 
+	 * @param source
+	 *            The source element. Used to find base model (resource)
+	 * @param feature
+	 *            A feature referencing the element
+	 * @param type
+	 *            a stereotype (we want to filter for
 	 * @return
-	 *         The Content Provider for properties typed by a stereotype
+	 * 		The Content Provider for properties typed by a stereotype
 	 */
 	protected IHierarchicContentProvider getStereotypedReferenceContentProvider(EObject source, EStructuralFeature feature, Stereotype type) {
 		ResourceSet root = UMLUtil.getBaseElement(source).eResource().getResourceSet();
@@ -231,30 +257,37 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 
 		return contentProvider;
 	}
-	
+
 	/**
 	 * Uses the content provider for reference properties typed by a stereotype (provided in form of the EClass of its definition)
 	 *
-	 * @param source The source element. Used to find base model (resource)
-	 * @param feature A feature of the source element
-	 * @param type The EClass of the feature (stereotype definition)
+	 * @param source
+	 *            The source element. Used to find base model (resource)
+	 * @param feature
+	 *            A feature of the source element
+	 * @param type
+	 *            The EClass of the feature (stereotype definition)
 	 * @return
-	 *         The Content Provider for properties typed by a stereotype
+	 * 		The Content Provider for properties typed by a stereotype
 	 */
 	protected IHierarchicContentProvider getStereotypedReferenceContentProvider(EObject source, EStructuralFeature feature, EClass type) {
 		return getStereotypedReferenceContentProvider(source, source, feature, type);
 	}
-	
+
 	/**
 	 * Uses the content provider for reference properties typed by a stereotype (provided in form of the EClass of its definition)
 	 *
-	 * @param source The source element. Used to find base model (resource)
-	 * @param subSource The subelement within the source. This can occur, if an attribute of the stereotype is not primitive, but
-	 * 		a datatype with sub-feature
-	 * @param feature A feature (within subSource, if subsource != source)
-	 * @param type The EClass of the feature (stereotype definition)
+	 * @param source
+	 *            The source element. Used to find base model (resource)
+	 * @param subSource
+	 *            The subelement within the source. This can occur, if an attribute of the stereotype is not primitive, but
+	 *            a datatype with sub-feature
+	 * @param feature
+	 *            A feature (within subSource, if subsource != source)
+	 * @param type
+	 *            The EClass of the feature (stereotype definition)
 	 * @return
-	 *         The Content Provider for properties typed by a stereotype
+	 * 		The Content Provider for properties typed by a stereotype
 	 */
 	protected IHierarchicContentProvider getStereotypedReferenceContentProvider(EObject source, EObject subSource, EStructuralFeature feature, EClass type) {
 		ResourceSet root = UMLUtil.getBaseElement(source).eResource().getResourceSet();

@@ -18,6 +18,12 @@
    </extension>
    <extension point="org.eclipse.ui.navigator.viewer">
       <viewer popupMenuId="org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup" viewerId="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
+         <options>
+            <property
+                  name="org.eclipse.ui.navigator.hideCollapseAllAction"
+                  value="true">
+            </property>
+         </options>
       </viewer>
       <viewerContentBinding viewerId="org.eclipse.papyrus.views.modelexplorer.modelexplorer">
          <includes>
@@ -135,6 +141,18 @@
 		<!-- Sort elements command -->	
 		<command commandId="org.eclipse.papyrus.views.modelexplorer.sortelement" icon="icons/etool16/sort.gif" label="sort" style="toggle">
 		</command>
+  <command
+        commandId="org.eclipse.papyrus.views.modelexplorer.expandall"
+        icon="icons/etool16/expandall.png"
+        label="Expand all at selected element"
+        style="push">
+  </command>
+  <command
+        commandId="org.eclipse.papyrus.views.modelexplorer.collapseall"
+        icon="icons/etool16/collapseall.png"
+        label="Collapse all at selected element"
+        style="push">
+  </command>
 	</menuContribution>
  <menuContribution allPopups="false" locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
     <separator
@@ -261,7 +279,21 @@
        
 	<!-- Command declaration : Delete element command -->
 	<command categoryId="org.eclipse.papyrus.editor.category" defaultHandler="org.eclipse.papyrus.views.modelexplorer.handler.DeleteCommandHandler" description="Delete" id="org.eclipse.papyrus.uml.service.creation.DeleteCommand" name="Delete">
-	</command>       
+	</command>
+ <command
+       categoryId="org.eclipse.papyrus.editor.category"
+       defaultHandler="org.eclipse.papyrus.views.modelexplorer.handler.ExpandAllHandler"
+       description="Expand All at selected Element"
+       id="org.eclipse.papyrus.views.modelexplorer.expandall"
+       name="Expand All at Selected Element (Ctrl+ Shift+ Numpad_Multiply)">
+ </command>
+ <command
+       categoryId="org.eclipse.papyrus.editor.category"
+       defaultHandler="org.eclipse.papyrus.views.modelexplorer.handler.CollapseAllHandler"
+       description="Collapse All at selected Element"
+       id="org.eclipse.papyrus.views.modelexplorer.collapseall"
+       name="Collapse All at Selected Element (Ctrl+ Shift+ Numpad_Divide)">
+ </command>       
 </extension>
     
     
@@ -472,6 +504,10 @@
              </with>
           </and>
        </activeWhen>
+    </handler>
+    <handler
+          class="org.eclipse.papyrus.views.modelexplorer.handler.ExpandAllHandler"
+          commandId="org.eclipse.ui.navigate.expandAll">
     </handler>   
 </extension>
 <extension point="org.eclipse.core.expressions.propertyTesters">
