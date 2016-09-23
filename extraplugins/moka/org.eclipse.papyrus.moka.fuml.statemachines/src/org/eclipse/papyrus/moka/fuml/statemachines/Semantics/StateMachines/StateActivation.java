@@ -178,26 +178,43 @@ public class StateActivation extends VertexActivation {
 	}
 	
 	public void tryExecuteEntry(EventOccurrence eventOccurrence){
-		// If an entry behavior is specified for that state then it is executed
+		// If an entry behavior is specified for that state then it is executed.
+		// If no entry behavior is specified but the state redefines another state
+		// and this latter provides an entry behavior then this behavior is executed
+		// instead. The rule applies recursively.
 		State state = (State) this.getNode();
 		if(!this.isEntryCompleted){
-			Execution execution = this.getExecutionFor(state.getEntry(), eventOccurrence);
-			if(execution!=null){
-				execution.execute();
-				this.isEntryCompleted = true;
+			Behavior entry = state.getEntry();
+			while(entry  == null && state.getRedefinedState() != null){
+				state = state.getRedefinedState();
+				entry = state.getEntry();
 			}
-			// If state has completed then generate a completion event
-			if(this.hasCompleted()){
-				this.notifyCompletion();
+			if(entry != null){
+				Execution execution = this.getExecutionFor(entry, eventOccurrence);
+				if(execution!=null){
+					execution.execute();
+					this.isEntryCompleted = true;
+				}
+				// If state has completed then generate a completion event
+				if(this.hasCompleted()){
+					this.notifyCompletion();
+				}
 			}
 		}
 	}
 	
 	protected void tryInvokeDoActivity(EventOccurrence eventOccurrence){
 		State state = (State) this.getNode();
-		// If an doActivity behavior is specified for that state then it is executed*/
+		// If an doActivity behavior is specified for that state then it is executed.
+		// If no doActivity is specified but the state redefines another state which
+		// provides a doActivity then this latter is executed instead. The rule applies
+		// recursively.
 		if(!this.isDoActivityCompleted){
-			Behavior doActivity = state.getDoActivity(); 
+			Behavior doActivity = state.getDoActivity();
+			while(doActivity == null && state.getRedefinedState() != null){
+				state = state.getRedefinedState();
+				doActivity = state.getDoActivity();
+			}
 			if(doActivity!=null){
 				// Initialization of the context object used by the doActivity which
 				// is going to be invoked.
@@ -225,11 +242,21 @@ public class StateActivation extends VertexActivation {
 	}
 	
 	protected void tryExecuteExit(EventOccurrence eventOccurrence){
-		// Execute the exit behavior if any
+		// Execute the exit behavior if any. If no exit behavior is
+		// specified but the state redefines another state which provides an
+		// exit behavior then this latter is executed instead. The rule applies
+		// recursively.
 		State state = (State) this.getNode();
-		Execution execution = this.getExecutionFor(state.getExit(), eventOccurrence);
-		if(execution!=null){
-			execution.execute();
+		Behavior exit = state.getExit();
+		while(exit == null && state.getRedefinedState() != null){
+			state = state.getRedefinedState();
+			exit = state.getExit();
+		}
+		if(exit != null){
+			Execution execution = this.getExecutionFor(exit, eventOccurrence);
+			if(execution!=null){
+				execution.execute();
+			}
 		}
 		super.exit(null, eventOccurrence, null);
 	}
