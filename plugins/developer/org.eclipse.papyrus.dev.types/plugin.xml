@@ -79,6 +79,30 @@
           </visibleWhen>
        </command>
     </menuContribution>
+          <menuContribution
+          allPopups="false"
+          locationURI="popup:org.eclipse.ui.popup.any">
+       <command
+             commandId="org.eclipse.papyrus.infra.dev.types.commands.elementTypeInfo"
+             id="org.eclipse.papyrus.infra.dev.types.menus.elementTypeInfo"
+             label="ElementType Info"
+             mnemonic="E"
+             style="push">
+          <visibleWhen
+                checkEnabled="false">
+                <with
+                   variable="selection">
+                <iterate
+                      ifEmpty="false"
+                      operator="and">
+                   <adapt
+                         type="org.eclipse.emf.ecore.EObject">
+                   </adapt>
+                </iterate>
+             </with>
+          </visibleWhen>
+       </command>
+    </menuContribution>
 	</extension>
 
 	<extension
@@ -92,6 +116,11 @@
         defaultHandler="org.eclipse.papyrus.dev.types.handlers.GenerateElementTypesRegistry"
         id="org.eclipse.papyrus.infra.dev.types.commands.generateElementTypesRegistry"
         name="Generate ElementTypes Registry">
+  </command>
+  <command
+        defaultHandler="org.eclipse.papyrus.dev.types.handlers.ElementTypeInfo"
+        id="org.eclipse.papyrus.infra.dev.types.commands.elementTypeInfo"
+        name="ElementType Info">
   </command>
   <command
         defaultHandler="org.eclipse.papyrus.dev.types.handlers.MigrateSpecializations"
