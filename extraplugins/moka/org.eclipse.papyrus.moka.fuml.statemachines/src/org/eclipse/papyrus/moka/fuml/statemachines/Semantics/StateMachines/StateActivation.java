@@ -417,7 +417,12 @@ public class StateActivation extends VertexActivation {
 		// Note: for the moment the evaluation is done with the assumption that the
 		// received event occurrence is a signal event occurrence. This will change
 		// as soon as other kind of event (e.g. call event) will be supported in fUML.
-		boolean deferred = this.match(eventOccurrence, ((State)this.node).getDeferrableTriggers());
+		State state = (State) this.node;
+		boolean deferred = this.match(eventOccurrence, state.getDeferrableTriggers());
+		while(!deferred && state.getRedefinedState() != null){
+			state = state.getRedefinedState();
+			deferred = this.match(eventOccurrence, state.getDeferrableTriggers());
+		}
 		if(deferred){
 			int i = 0;
 			TransitionActivation overridingTransitionActivation = null;
