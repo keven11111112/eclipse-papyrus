@@ -19,7 +19,6 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.ScrollPane;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionDimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
@@ -102,50 +101,11 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 
 			// if there is aspect ratio and only one figure is set
 			if (isMaintainAspectRatio() && container.getParent().getChildren().size() == 1) {
-				// If the ration is maintained
+				// If the ratio is maintained
 				ScalableCompartmentFigure scalableCompartmentFigure = FigureUtils.findParentFigureInstance(container, ScalableCompartmentFigure.class);
-
-				// Get the document to calculate ratio
-				ScalableImageFigure scalableImage = FigureUtils.findChildFigureInstance(getParent(), ScalableImageFigure.class);
-				double ratio = 1;
-				RenderedImage renderedImage = scalableImage.getRenderedImage();
-				if (renderedImage instanceof org.eclipse.gmf.runtime.draw2d.ui.render.awt.internal.svg.SVGImage) {
-					org.eclipse.gmf.runtime.draw2d.ui.render.awt.internal.svg.SVGImage img = (org.eclipse.gmf.runtime.draw2d.ui.render.awt.internal.svg.SVGImage) renderedImage;
-					final PrecisionDimension svgDimension = getSvgDimension(img.getDocument());
-					ratio = svgDimension.preciseWidth() / svgDimension.preciseHeight();
-				}
-
 				Rectangle scalableCompartmentBounds = scalableCompartmentFigure != null ? scalableCompartmentBounds = scalableCompartmentFigure.getBounds() : container.getBounds();
 
-				Point center = new Point(scalableCompartmentBounds.x + scalableCompartmentBounds.width / 2, scalableCompartmentBounds.y + scalableCompartmentBounds.height / 2);
-
-				int width = 0;
-				int height = 0;
-				int y = 0;
-				int x = 0;
-
-				// Case width>height
-				if (scalableCompartmentBounds.width > scalableCompartmentBounds.height) {
-					if (scalableCompartmentBounds.width > scalableCompartmentBounds.height * ratio) {
-						width = (int) (scalableCompartmentBounds.height * ratio);
-						height = scalableCompartmentBounds.height;
-					} else {
-						width = scalableCompartmentBounds.width;
-						height = (int) (scalableCompartmentBounds.width / ratio);
-					}
-
-				} else {// Case height>width
-					if (scalableCompartmentBounds.height < scalableCompartmentBounds.width / ratio) {
-						width = (int) (scalableCompartmentBounds.height * ratio);
-						height = scalableCompartmentBounds.height;
-					} else {
-						width = scalableCompartmentBounds.width;
-						height = (int) (scalableCompartmentBounds.width / ratio);
-					}
-				}
-				y = center.y - height / 2;
-				x = center.x - width / 2;
-				container.setBounds(new Rectangle(x, y, width, height));
+				container.setBounds(scalableCompartmentBounds);
 			} else {
 				// Set bounds
 				if (scrollPaneFigure instanceof ScrollPane) {
