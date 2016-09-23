@@ -45,12 +45,11 @@ import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectorEnd;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -250,8 +249,8 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 			if (eObject instanceof Generalization) {
 				viewsToDestroy.addAll(getViewsToDestroy(eObject));
 				viewsToDestroy.addAll(getViewsAccordingToGeneralization((Generalization) eObject));
-			} else if (eObject instanceof Property) {
-				viewsToDestroy.addAll(getViewsAccordingToProperty((Property) eObject, request.getTargetContainer()));
+			} else if (eObject instanceof Feature || eObject instanceof Classifier) {
+				viewsToDestroy.addAll(getViewsAccordingToEObject(eObject, request.getTargetContainer()));
 			}
 		}
 
@@ -332,62 +331,24 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 	 *            The target container of the move.
 	 * @return The list of view to delete.
 	 */
-	protected Set<View> getViewsAccordingToProperty(final Property property, final EObject targetContainer) {
+	protected Set<View> getViewsAccordingToEObject(final EObject property, final EObject targetContainer) {
 		Set<View> viewsToDestroy = new HashSet<View>();
-		for (View view : getViewsToDestroy(property)) {
-			View containerView = ViewUtil.getContainerView(view);
-			if (null != containerView) {
-				EObject containerSemanticElement = ViewUtil.resolveSemanticElement(containerView);
-
-				if (containerSemanticElement instanceof NamedElement && targetContainer instanceof Element) {
-					boolean existsInheritanceWay = existsInheritanceWay((NamedElement) containerSemanticElement, (Element) targetContainer);
-					if (!existsInheritanceWay) {
-						viewsToDestroy.add(view);
-					}
-				}
-			}
-		}
-
-		return viewsToDestroy;
-	}
-
-
-	/**
-	 * Check if an inheritance way exists between two elements.
-	 * 
-	 * @param containerElement
-	 *            The first ELement to check.
-	 * @param targetElement
-	 *            The target Element to check.
-	 * @return The result of the check.
-	 */
-	protected boolean existsInheritanceWay(final NamedElement containerElement, final Element targetElement) {
-		Classifier classifier = null;
-		if (containerElement instanceof Classifier) {
-			classifier = (Classifier) containerElement;
-		} else if (containerElement instanceof Property) {
-			Type type = ((Property) containerElement).getType();
-			if (type instanceof Classifier) {
-				classifier = (Classifier) type;
-			}
-		}
-
-		if (null != containerElement) {
-			if (containerElement.equals(targetElement)) {
-				return true;
-			} else {
-				for (Generalization generalization : classifier.getGeneralizations()) {
-					Classifier general = generalization.getGeneral();
-					if (null != general) {
-						if (general.equals(targetElement)) {
-							return true;
-						} else if (existsInheritanceWay(general, targetElement)) {
-							return true;
+		if (targetContainer instanceof Classifier) {
+			for (View view : getViewsToDestroy(property)) {
+				View containerView = ViewUtil.getContainerView(view);
+				if (null != containerView) {
+					EObject containerSemanticElement = ViewUtil.resolveSemanticElement(containerView);
+					if (containerSemanticElement instanceof Classifier) {
+						if (!containerSemanticElement.equals(targetContainer)) {
+							EList<Classifier> allParents = ((Classifier) containerSemanticElement).allParents();
+							if (!allParents.contains(targetContainer)) {
+								viewsToDestroy.add(view);
+							}
 						}
 					}
 				}
 			}
 		}
-		return false;
+		return viewsToDestroy;
 	}
 }
