@@ -25,6 +25,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.Si
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.CallEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Values.SM_OpaqueExpressionEvaluation;
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
+import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.Transition;
@@ -171,30 +172,17 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	
 	public boolean hasTrigger(EventOccurrence eventOccurrence){
 		// Return true if the event occurrence matches a trigger of this transition.
-		// false otherwise.
-		return this._hasTrigger(eventOccurrence, (Transition)this.node);
-	}
-	
-	private boolean _hasTrigger(EventOccurrence eventOccurrence, Transition transition){
-		// In case of a redefined transition, the set of triggers,
-		// is the union all of triggers defined at the different redefinition levels. As an
-		// example, we consider a set of three transitions:
-		// 1. T1 with a trigger on EvtS where EvtS is a SignalEvent
-		// 2. T2 with a trigger on EvtC where EvtC is a CallEvent. T2 redefines T1
-		// 3. T3 with no triggers. T3 redefines T2.
-		// T3 will be able to react both to an occurrence of the signal referenced by EvtS and a
-		// on a call the operation referenced by EvtC.
-		boolean reactive = false;
-		Transition redefinedTransition = transition.getRedefinedTransition();
-		if(redefinedTransition != null){
-			reactive = this._hasTrigger(eventOccurrence, redefinedTransition);
-			if(!reactive){
-				reactive = this.match(eventOccurrence, transition.getTriggers());
-			}
-		}else{
-			reactive = this.match(eventOccurrence, transition.getTriggers());
+		// false otherwise. If the transition declares no trigger but redefines another
+		// transition then if that transition has a trigger that matches the event occurrence
+		// the redefining transition is considered has being able to react to the event occurrence.
+		// The rule applies recursively.
+		Transition transition = (Transition) this.node;
+		boolean match = this.match(eventOccurrence, transition.getTriggers());
+		while(!match && transition.getRedefinedTransition() != null){
+			transition = transition.getRedefinedTransition();
+			match = this.match(eventOccurrence, transition.getTriggers());
 		}
-		return reactive;
+		return match;
 	}
 	
 	public boolean canFireOn(EventOccurrence eventOccurrence){
@@ -241,12 +229,22 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		return propagate;
 	}
 	
-	public void executeEffect(EventOccurrence eventOccurrence){
-		// Execute the effect that is on the transition if it exists one
+	public void tryExecuteEffect(EventOccurrence eventOccurrence){
+		// Execute the effect owned by the transition (if any). If there
+		// is no effect but the transition redefines another transition, then
+		// the effect of this transition is executed instead. This rule
+		// applies recursively.
 		Transition transition = (Transition) this.getNode();
-		Execution execution = this.getExecutionFor(transition.getEffect(), eventOccurrence);
-		if(execution!=null){
-			execution.execute();
+		Behavior effect = transition.getEffect();
+		while(effect == null && transition.getRedefinedTransition() != null){
+			transition = transition.getRedefinedTransition();
+			effect = transition.getEffect();
+		}
+		if(effect != null){
+			Execution execution = this.getExecutionFor(transition.getEffect(), eventOccurrence);
+			if(execution!=null){
+				execution.execute();
+			}
 		}
 	}
 	
@@ -257,7 +255,7 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		// 3 - Enter the target (depends on the kind of transition that is currently used)
 		this.exitSource(eventOccurrence);
 		FUMLExecutionEngine.eInstance.getControlDelegate().control(this); 
-		this.executeEffect(eventOccurrence);
+		this.tryExecuteEffect(eventOccurrence);
 		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode()); 
 		this.setStatus(TransitionMetadata.TRAVERSED);
 		logger.info(this.getNode().getName()+" => TRAVERSED");
