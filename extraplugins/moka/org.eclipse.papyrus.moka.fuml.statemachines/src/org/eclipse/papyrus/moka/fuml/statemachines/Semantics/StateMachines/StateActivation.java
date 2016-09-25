@@ -177,18 +177,52 @@ public class StateActivation extends VertexActivation {
 		}
 	}
 	
+	protected Behavior getEntry(){
+		// Return the entry behavior of the state or one inherited
+		// from a redefined state. If no entry can be found null is
+		// returned.
+		State state = (State) this.getNode();
+		Behavior entry = state.getEntry();
+		while(entry  == null && state.getRedefinedState() != null){
+			state = state.getRedefinedState();
+			entry = state.getEntry();
+		}
+		return entry;
+	}
+	
+	protected Behavior getExit(){
+		// Return the exit behavior of the state or one inherited
+		// from a redefined state. If no exit can be found null is
+		// returned.
+		State state = (State) this.getNode();
+		Behavior exit = state.getExit();
+		while(exit  == null && state.getRedefinedState() != null){
+			state = state.getRedefinedState();
+			exit = state.getExit();
+		}
+		return exit;
+	}
+	
+	protected Behavior getdoActivity(){
+		// Return the doActivity behavior of the state or one inherited
+		// from a redefined state. If no doActivity can be found null is
+		// returned.
+		State state = (State) this.getNode();
+		Behavior doActivity = state.getDoActivity();
+		while(doActivity == null && state.getRedefinedState() != null){
+			state = state.getRedefinedState();
+			doActivity = state.getDoActivity();
+		}
+		return doActivity;
+	}
+	
 	public void tryExecuteEntry(EventOccurrence eventOccurrence){
 		// If an entry behavior is specified for that state then it is executed.
 		// If no entry behavior is specified but the state redefines another state
 		// and this latter provides an entry behavior then this behavior is executed
 		// instead. The rule applies recursively.
-		State state = (State) this.getNode();
 		if(!this.isEntryCompleted){
-			Behavior entry = state.getEntry();
-			while(entry  == null && state.getRedefinedState() != null){
-				state = state.getRedefinedState();
-				entry = state.getEntry();
-			}
+			Behavior entry = this.getEntry(); 
 			if(entry != null){
 				Execution execution = this.getExecutionFor(entry, eventOccurrence);
 				if(execution!=null){
@@ -204,17 +238,12 @@ public class StateActivation extends VertexActivation {
 	}
 	
 	protected void tryInvokeDoActivity(EventOccurrence eventOccurrence){
-		State state = (State) this.getNode();
 		// If an doActivity behavior is specified for that state then it is executed.
 		// If no doActivity is specified but the state redefines another state which
 		// provides a doActivity then this latter is executed instead. The rule applies
 		// recursively.
 		if(!this.isDoActivityCompleted){
-			Behavior doActivity = state.getDoActivity();
-			while(doActivity == null && state.getRedefinedState() != null){
-				state = state.getRedefinedState();
-				doActivity = state.getDoActivity();
-			}
+			Behavior doActivity = this.getdoActivity();
 			if(doActivity!=null){
 				// Initialization of the context object used by the doActivity which
 				// is going to be invoked.
@@ -246,12 +275,7 @@ public class StateActivation extends VertexActivation {
 		// specified but the state redefines another state which provides an
 		// exit behavior then this latter is executed instead. The rule applies
 		// recursively.
-		State state = (State) this.getNode();
-		Behavior exit = state.getExit();
-		while(exit == null && state.getRedefinedState() != null){
-			state = state.getRedefinedState();
-			exit = state.getExit();
-		}
+		Behavior exit = this.getExit();
 		if(exit != null){
 			Execution execution = this.getExecutionFor(exit, eventOccurrence);
 			if(execution!=null){
@@ -336,10 +360,9 @@ public class StateActivation extends VertexActivation {
 			// the rule applies recursively
 			super.enter(enteringTransition, eventOccurrence, leastCommonAncestor);
 			// Initialization
-			State state = (State) this.getNode();
-			this.isEntryCompleted = state.getEntry()==null;
-			this.isDoActivityCompleted = state.getDoActivity()==null;
-			this.isExitCompleted = state.getExit()==null;
+			this.isEntryCompleted = this.getEntry()==null;
+			this.isDoActivityCompleted = this.getdoActivity()==null;
+			this.isExitCompleted = this.getExit()==null;
 			// When the state is entered it is registered in the current
 			// state-machine configuration
 			StateMachineExecution smExecution = (StateMachineExecution)this.getStateMachineExecution();
