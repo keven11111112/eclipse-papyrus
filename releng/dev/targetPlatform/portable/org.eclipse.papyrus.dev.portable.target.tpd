@@ -52,4 +52,4 @@ location egit "http://download.eclipse.org/egit/updates-4.4.1" //
 
 //updateFrom("m2e",0)
 
-location m2e "http://download.eclipse.org/technology/m2e/milestones/1.8/1.8.0.20160809-1624" //
+location m2e "http://download.eclipse.org/technology/m2e/milestones/1.8/1.8.0.20160921-2002" //

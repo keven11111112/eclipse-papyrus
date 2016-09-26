@@ -40,7 +40,7 @@ location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.12/" {
 
 //updateFrom("EMF CDO",0) 
 
-location rcpcdo "http://download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20160920-0952" {
 	org.eclipse.emf.cdo.epp.feature.group
 }
 

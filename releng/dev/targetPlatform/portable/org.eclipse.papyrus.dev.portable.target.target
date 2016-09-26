@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Dev" sequenceNumber="1474465908">
+<target name="Papyrus Dev" sequenceNumber="1474895796">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
@@ -139,7 +139,7 @@
       <repository id="egit" location="http://download.eclipse.org/egit/updates-4.4.1"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="m2e" location="http://download.eclipse.org/technology/m2e/milestones/1.8/1.8.0.20160809-1624"/>
+      <repository id="m2e" location="http://download.eclipse.org/technology/m2e/milestones/1.8/1.8.0.20160921-2002"/>
     </location>
   </locations>
 </target>
