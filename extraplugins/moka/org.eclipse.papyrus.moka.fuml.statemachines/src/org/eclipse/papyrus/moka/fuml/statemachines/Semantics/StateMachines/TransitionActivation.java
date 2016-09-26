@@ -26,6 +26,7 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.Call
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Values.SM_OpaqueExpressionEvaluation;
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
 import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.Transition;
@@ -152,8 +153,13 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		// The evaluation does not presume of the type of the guard specification.
 		boolean result = true;  
 		Transition transition = (Transition) this.node;
-		if (transition.getGuard() != null) {
-			ValueSpecification specification = transition.getGuard().getSpecification() ;
+		Constraint guard = transition.getGuard();
+		while(guard == null && transition.getRedefinedTransition() != null){
+			transition = transition.getRedefinedTransition();
+			guard = transition.getGuard();
+		}
+		if (guard != null) {
+			ValueSpecification specification = guard.getSpecification() ;
 			if(specification!=null){
 				Evaluation evaluation = this.getExecutionLocus().factory.createEvaluation(specification);
 				if (specification instanceof OpaqueExpression) {
