@@ -350,17 +350,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	protected Command dropComment(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID) {
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart) getHost();
-		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
-		// if(!(graphicalParentObject instanceof Package) && !(graphicalParentObject instanceof Class) && !(graphicalParentObject instanceof Property) && !(graphicalParentObject instanceof Interaction) && !(graphicalParentObject instanceof StateMachine) &&
-		// !(graphicalParentObject instanceof Collaboration) && !(graphicalParentObject instanceof FunctionBehavior) && !(graphicalParentObject instanceof ProtocolStateMachine) && !(graphicalParentObject instanceof ExecutionEnvironment) &&
-		// !(graphicalParentObject instanceof Device)) {
-		// return UnexecutableCommand.INSTANCE;
-		// }
 		if (CommentEditPart.VISUAL_ID.equals(nodeVISUALID)) {
-			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_Shape,
+			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), graphicalParentEditPart.getNotationView(), (IHintedType) UMLElementTypes.Comment_Shape,
 					(IHintedType) UMLElementTypes.Comment_AnnotatedElementEdge);
 		} else if (CommentEditPartCN.VISUAL_ID.equals(nodeVISUALID)) {
-			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_Shape_CN,
+			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), graphicalParentEditPart.getNotationView(), (IHintedType) UMLElementTypes.Comment_Shape_CN,
 					(IHintedType) UMLElementTypes.Comment_AnnotatedElementEdge);
 		}
 		return UnexecutableCommand.INSTANCE;
@@ -382,17 +376,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	protected Command dropConstraint(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID) {
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart) getHost();
-		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
-		// if(!(graphicalParentObject instanceof Package) && !(graphicalParentObject instanceof Class) && !(graphicalParentObject instanceof Interaction) && !(graphicalParentObject instanceof StateMachine) && !(graphicalParentObject instanceof Collaboration)
-		// && !(graphicalParentObject instanceof FunctionBehavior) && !(graphicalParentObject instanceof ProtocolStateMachine) && !(graphicalParentObject instanceof ExecutionEnvironment) && !(graphicalParentObject instanceof Device)) {
-		// return UnexecutableCommand.INSTANCE;
-		// }
-
 		if (ConstraintEditPart.VISUAL_ID.equals(nodeVISUALID)) {
-			return getDropConstraintCommand((Constraint) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Constraint_Shape,
+			return getDropConstraintCommand((Constraint) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), graphicalParentEditPart.getNotationView(), (IHintedType) UMLElementTypes.Constraint_Shape,
 					(IHintedType) UMLElementTypes.Constraint_ConstrainedElementEdge);
 		} else if (ConstraintEditPartCN.VISUAL_ID.equals(nodeVISUALID)) {
-			return getDropConstraintCommand((Constraint) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Constraint_Shape_CN,
+			return getDropConstraintCommand((Constraint) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), graphicalParentEditPart.getNotationView(), (IHintedType) UMLElementTypes.Constraint_Shape_CN,
 					(IHintedType) UMLElementTypes.Constraint_ConstrainedElementEdge);
 		}
 		return UnexecutableCommand.INSTANCE;

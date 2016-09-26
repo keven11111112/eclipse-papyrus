@@ -63,7 +63,7 @@ public class CreateBehaviorPortCommand extends RecordingCommand {
 		TitleStyle ts = NotationFactory.eINSTANCE.createTitleStyle();
 		ts.setShowTitle(true);
 		node.getStyles().add(ts);
-		node.setType("" + BehaviorPortEditPart.VISUAL_ID);
+		node.setType(BehaviorPortEditPart.VISUAL_ID);
 		node.setElement(portView.getElement());
 
 		ViewUtil.insertChildView(owner, node, ViewUtil.APPEND, true);
@@ -78,7 +78,7 @@ public class CreateBehaviorPortCommand extends RecordingCommand {
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(owner.getDiagram(), edge, -1, true);
-		edge.setType("" + BehaviorPortLinkEditPart.VISUAL_ID);
+		edge.setType(BehaviorPortLinkEditPart.VISUAL_ID);
 		IdentityAnchor anchor = NotationFactory.eINSTANCE.createIdentityAnchor();
 		edge.setSourceAnchor(anchor);
 		anchor = NotationFactory.eINSTANCE.createIdentityAnchor();

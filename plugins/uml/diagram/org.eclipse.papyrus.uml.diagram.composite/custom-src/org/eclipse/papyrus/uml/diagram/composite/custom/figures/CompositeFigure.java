@@ -25,7 +25,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigu
 public class CompositeFigure extends RoundedCompartmentFigure {
 
 	/** The Internal Structure Compartment */
-	private final static String COMPOSITE_COMPARTMENT = "compositeCompartment";
+	private final static String COMPOSITE_COMPARTMENT = "compositeCompartment";//$NON-NLS-1$
 
 	/** The List of Compartment */
 	private final static List<String> COMPARTMENT = new ArrayList<String>() {

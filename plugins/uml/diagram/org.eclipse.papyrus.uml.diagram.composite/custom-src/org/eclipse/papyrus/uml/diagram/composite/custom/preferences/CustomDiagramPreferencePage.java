@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Group;
 
 public class CustomDiagramPreferencePage extends DiagramGeneralPreferencePage {
 
-	public static String IS_INSIDE_COMPOSITE_COMPOSITE_DIAGRAM = "isInsideComposite_CompositeDiagram";
+	public static String IS_INSIDE_COMPOSITE_COMPOSITE_DIAGRAM = "isInsideComposite_CompositeDiagram"; //$NON-NLS-1$
 
 	public CustomDiagramPreferencePage() {
 		super();

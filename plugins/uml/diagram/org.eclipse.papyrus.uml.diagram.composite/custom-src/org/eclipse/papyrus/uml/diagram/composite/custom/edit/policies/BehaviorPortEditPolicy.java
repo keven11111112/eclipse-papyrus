@@ -50,7 +50,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This editpolicy calls explicitly BehaviorPortLocator in order to place the symbol behavior at the good place (inside the composite).
  */
 public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
-	public static final String BEHAVIOR_PORT = "BehaviorPortPolicy";
+	public static final String BEHAVIOR_PORT = "BehaviorPortPolicy"; //$NON-NLS-1$
 	private Port port;
 
 	@Override
@@ -126,7 +126,7 @@ public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements Notif
 		Iterator<Edge> edgeIterator = SemanticView.getSourceEdges().iterator();
 		while (edgeIterator.hasNext()) {
 			Edge edge = edgeIterator.next();
-			if (edge.getType().equals("" + BehaviorPortLinkEditPart.VISUAL_ID)) {
+			if (BehaviorPortLinkEditPart.VISUAL_ID.equals(edge.getType())) {
 				behaviorPortLink = edge;
 			}
 

@@ -24,7 +24,6 @@ public class NameLabelValidator implements IInputValidator {
 	private String error;
 
 	public NameLabelValidator(String errorMessage) {
-		// TODO Auto-generated constructor stub
 		super();
 		error = errorMessage;
 	}

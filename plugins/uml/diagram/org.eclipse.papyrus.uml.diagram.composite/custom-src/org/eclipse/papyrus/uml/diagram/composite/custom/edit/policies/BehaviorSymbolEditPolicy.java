@@ -40,7 +40,7 @@ import org.eclipse.uml2.uml.Element;
  */
 
 public class BehaviorSymbolEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
-	public static String BEHAVIOR_SYMBOL = "BehaviorSymbolEditPolicy";
+	public static String BEHAVIOR_SYMBOL = "BehaviorSymbolEditPolicy"; //$NON-NLS-1$
 
 	@Override
 	public void notifyChanged(Notification notification) {
@@ -76,7 +76,7 @@ public class BehaviorSymbolEditPolicy extends GraphicalEditPolicy implements Not
 		Iterator<Edge> edgeIterator = SemanticView.getTargetEdges().iterator();
 		while (edgeIterator.hasNext()) {
 			Edge edge = edgeIterator.next();
-			if (edge.getType().equals("" + BehaviorPortLinkEditPart.VISUAL_ID)) {
+			if (BehaviorPortLinkEditPart.VISUAL_ID.equals(edge.getType())) {
 				behaviorPortLink = edge;
 			}
 

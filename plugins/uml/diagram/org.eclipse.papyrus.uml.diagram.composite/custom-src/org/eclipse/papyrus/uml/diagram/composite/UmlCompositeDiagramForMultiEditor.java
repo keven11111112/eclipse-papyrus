@@ -104,8 +104,8 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 			URIEditorInput uriInput = new URIEditorInput(EcoreUtil.getURI(getDiagram()));
 			doSetInput(uriInput, true);
 		} catch (CoreException x) {
-			String title = "Problem opening";
-			String msg = "Cannot open input element:";
+			String title = "Problem opening"; //$NON-NLS-1$
+			String msg = "Cannot open input element:"; //$NON-NLS-1$
 			Shell shell = getSite().getShell();
 			ErrorDialog.openError(shell, title, msg, x.getStatus());
 		}

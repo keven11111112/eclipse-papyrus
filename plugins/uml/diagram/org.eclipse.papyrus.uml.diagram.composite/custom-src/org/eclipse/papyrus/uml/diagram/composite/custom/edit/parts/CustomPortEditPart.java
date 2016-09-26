@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts;
 
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.BehaviorPortEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
 
 /**

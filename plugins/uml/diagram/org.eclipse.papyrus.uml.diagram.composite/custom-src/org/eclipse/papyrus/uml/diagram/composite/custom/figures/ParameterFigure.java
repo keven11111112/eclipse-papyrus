@@ -19,7 +19,6 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.AffixedNamedElementFig
 
 /**
  * Figure for Parameter representation.
- * TODO : Show Parameter direction graphically.
  */
 public class ParameterFigure extends AffixedNamedElementFigure {
 

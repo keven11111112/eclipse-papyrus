@@ -21,6 +21,5 @@ public class ExternalPortPositionLocator extends PortPositionLocator {
 
 	public ExternalPortPositionLocator(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);
-		// TODO Auto-generated constructor stub
 	}
 }
