@@ -27,5 +27,8 @@
        <strategy
              strategy="org.eclipse.papyrus.uml.diagram.dnd.strategy.transition.OperationAsTriggerToTransitionDropStrategy">
        </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.dnd.strategy.PortToTypesPortDropStrategy">
+       </strategy>
    </extension>
 </plugin>

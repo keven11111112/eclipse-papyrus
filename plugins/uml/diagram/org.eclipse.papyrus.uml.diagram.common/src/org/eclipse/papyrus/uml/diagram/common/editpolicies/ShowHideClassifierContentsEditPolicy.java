@@ -75,9 +75,22 @@ public class ShowHideClassifierContentsEditPolicy extends AbstractEditPolicy {
 	 * @return The command to create the view
 	 */
 	protected Command getCreateViewCommand(View container, EObject semanticElement, Point location) {
+		return getCreateViewCommand(container, semanticElement, location, null);
+	}
 
+	/**
+	 * Return the command to create the view
+	 *
+	 * @param container
+	 *            the container for the element
+	 * @param semanticElement
+	 * @param point where to create the view
+	 * @param hint to create the view
+	 * @return The command to create the view
+	 */
+	protected Command getCreateViewCommand(View container, EObject semanticElement, Point location, String hint) {
 		// creation of the node
-		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(semanticElement), Node.class, null, ViewUtil.APPEND, true, ((IGraphicalEditPart) this.getHost()).getDiagramPreferencesHint());
+		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(semanticElement), Node.class, hint, ViewUtil.APPEND, true, ((IGraphicalEditPart) this.getHost()).getDiagramPreferencesHint());
 		CompoundCommand compositeCmd = new CompoundCommand("Create View");//$NON-NLS-1$
 		CreateCommand cmd = new CreateCommand(getEditingDomain(), viewDescriptor, container);
 		if (cmd.canExecute()) {
@@ -92,8 +105,8 @@ public class ShowHideClassifierContentsEditPolicy extends AbstractEditPolicy {
 		}
 
 		return compositeCmd;
-	}
-
+	}	
+	
 	/**
 	 * Return the command to the EditPart
 	 *
