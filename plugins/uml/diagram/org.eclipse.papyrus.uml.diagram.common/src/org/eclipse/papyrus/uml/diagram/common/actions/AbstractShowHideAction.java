@@ -13,20 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.actions;
 
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -615,48 +601,4 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 			return editorLabelProvider.getImage(element);
 		}
 	}
-
-	// /**
-	// *
-	// * EditorLabelProvider for the {@link CheckedTreeSelectionDialog}
-	// *
-	// */
-	// public class CustomEditorLabelProvider extends EditorLabelProvider {
-	//
-	// /**
-	// * {@inheritDoc}
-	// */
-	// @Override
-	// public Image getImage(Object element) {
-	// if(element instanceof EditPartRepresentation) {
-	// element = ((EditPartRepresentation)element).getSemanticElement();
-	// }
-	// return super.getImage(element);
-	// }
-	//
-	// /**
-	// * {@inheritDoc}
-	// */
-	// @Override
-	// public String getText(Object element) {
-	// if(element instanceof CompartmentEditPartRepresentation) {
-	// return ((CompartmentEditPartRepresentation)element).getCompartmentName();
-	// } else if(element instanceof EditPartRepresentation) {
-	// EObject semanticElement = ((EditPartRepresentation)element).getSemanticElement();
-	// if(isElementInherited((EditPartRepresentation)element)) {
-	// StringBuffer buffer = new StringBuffer();
-	// buffer.append(super.getText(semanticElement));
-	// buffer.append(" ");
-	// buffer.append("(from ");
-	// buffer.append(super.getText(((EditPartRepresentation)element).getSemanticElement().eContainer()));
-	// buffer.append(")");
-	// return buffer.toString();
-	// } else {
-	// return super.getText(semanticElement);
-	// }
-	// }
-	// return super.getText(element);
-	// }
-	// }
-
 }

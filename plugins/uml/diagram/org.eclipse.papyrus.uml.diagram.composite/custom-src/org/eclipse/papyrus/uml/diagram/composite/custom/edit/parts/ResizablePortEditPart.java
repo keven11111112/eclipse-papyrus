@@ -7,8 +7,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *   Benoit maggi (CEA LIST) benoit.maggi@cea.fr - Allow InnerPort (Visual : Port in Port) 
+ *  CEA LIST - Initial API and implementation
+ *  Benoit maggi (CEA LIST) benoit.maggi@cea.fr - Allow InnerPort (Visual : Port in Port) 
+ *  Benoit maggi (CEA LIST) benoit.maggi@cea.fr -#501701 Showing nested port on Port   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts;
@@ -25,7 +26,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PortResizableEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
+import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.ShowHideCompositeContentsEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
 
 
@@ -47,6 +50,7 @@ public class ResizablePortEditPart extends PortEditPart {
 	public ResizablePortEditPart(View view) {
 		super(view);
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
+		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideCompositeContentsEditPolicy());
 	}
 
 	/**
