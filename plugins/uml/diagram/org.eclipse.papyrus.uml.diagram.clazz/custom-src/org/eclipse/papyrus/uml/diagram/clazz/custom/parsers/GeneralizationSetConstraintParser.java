@@ -33,7 +33,6 @@ public class GeneralizationSetConstraintParser implements IParser {
 	 */
 	@Override
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -42,7 +41,6 @@ public class GeneralizationSetConstraintParser implements IParser {
 	 */
 	@Override
 	public String getEditString(IAdaptable element, int flags) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -51,7 +49,6 @@ public class GeneralizationSetConstraintParser implements IParser {
 	 */
 	@Override
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -100,7 +97,6 @@ public class GeneralizationSetConstraintParser implements IParser {
 	 */
 	@Override
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

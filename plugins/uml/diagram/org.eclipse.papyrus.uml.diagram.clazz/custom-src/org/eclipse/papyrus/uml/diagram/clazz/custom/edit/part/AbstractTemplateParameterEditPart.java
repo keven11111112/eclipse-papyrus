@@ -22,11 +22,10 @@ import org.eclipse.uml2.uml.TemplateParameter;
  */
 public class AbstractTemplateParameterEditPart extends UMLCompartmentEditPart {
 
-	protected static final String LISTEN_OWNED_PARAM = "ListenOwnedParam";
+	protected static final String LISTEN_OWNED_PARAM = "ListenOwnedParam"; //$NON-NLS-1$
 
 	public AbstractTemplateParameterEditPart(EObject model) {
 		super(model);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

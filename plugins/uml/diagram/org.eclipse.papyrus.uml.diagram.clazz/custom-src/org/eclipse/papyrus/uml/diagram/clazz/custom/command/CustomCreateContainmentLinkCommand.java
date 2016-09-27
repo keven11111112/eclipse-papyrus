@@ -29,7 +29,7 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -94,7 +94,7 @@ public class CustomCreateContainmentLinkCommand extends CommonDeferredCreateConn
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command");
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		Map<?, ?> epRegistry = viewer.getEditPartRegistry();
 		IGraphicalEditPart targetEP = (IGraphicalEditPart) epRegistry.get(targetViewAdapter.getAdapter(View.class));
@@ -117,7 +117,7 @@ public class CustomCreateContainmentLinkCommand extends CommonDeferredCreateConn
 			org.eclipse.uml2.uml.Package container = (org.eclipse.uml2.uml.Package) sourceElement;
 			container.getPackagedElements().add(targetElement);
 		} else {
-			throw new ExecutionException("Invalid source " + sourceEP);
+			throw new ExecutionException("Invalid source " + sourceEP); //$NON-NLS-1$
 		}
 		return super.doExecuteWithResult(progressMonitor, info, sourceContainmentCircleEP, targetEP);
 	}

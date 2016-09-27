@@ -71,7 +71,7 @@ public class ConstraintHelperAdvice extends AbstractEditHelperAdvice {
 								continue;
 							}
 							Edge edge = (Edge) connector;
-							if (("" + ContextLinkEditPart.VISUAL_ID).equals(edge.getType())) {
+							if (ContextLinkEditPart.VISUAL_ID.equals(edge.getType())) {
 								if (target == edge.getTarget()) {
 									edgeToDestroy = edge;
 								}

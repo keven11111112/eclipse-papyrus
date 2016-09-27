@@ -31,7 +31,7 @@ import org.eclipse.papyrus.uml.diagram.common.actions.AbstractAction;
  */
 public class InitializeDiagramAction extends AbstractAction {
 
-	public static String ID = "papyrus.initializeDiagramAction";
+	public static String ID = "papyrus.initializeDiagramAction"; //$NON-NLS-1$
 
 	public InitializeDiagramAction() {
 		setId(ID);

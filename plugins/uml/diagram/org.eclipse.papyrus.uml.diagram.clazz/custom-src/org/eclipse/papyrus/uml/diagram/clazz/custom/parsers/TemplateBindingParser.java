@@ -54,7 +54,6 @@ public class TemplateBindingParser implements IParser {
 	 */
 	@Override
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-		// TODO Auto-generated method stub
 		return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IStatus.OK, "");
 	}
 
@@ -65,7 +64,6 @@ public class TemplateBindingParser implements IParser {
 	 */
 	@Override
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		// TODO Auto-generated method stub
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 	}
 
@@ -91,7 +89,7 @@ public class TemplateBindingParser implements IParser {
 				}
 			}
 		}
-		if (out.equals("")) {
+		if ("".equals(out)) { //$NON-NLS-1$
 			return "<No Binding Substitution>";
 		}
 		return out;
@@ -104,7 +102,6 @@ public class TemplateBindingParser implements IParser {
 	 */
 	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -115,7 +112,6 @@ public class TemplateBindingParser implements IParser {
 	 */
 	@Override
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

@@ -29,6 +29,15 @@ import org.eclipse.uml2.uml.Property;
  */
 public abstract class AbstractAssociationEndEditPart extends LabelEditPart {
 
+	/**
+	 * 
+	 */
+	private static final String ASSOCIATION_END_LISTENERS_TARGET = "AssociationEndListenersTarget"; //$NON-NLS-1$
+	/**
+	 * 
+	 */
+	private static final String ASSOCIATION_END_LISTENERS_SOURCE = "AssociationEndListenersSource";//$NON-NLS-1$
+
 	public AbstractAssociationEndEditPart(View view) {
 		super(view);
 	}
@@ -49,11 +58,11 @@ public abstract class AbstractAssociationEndEditPart extends LabelEditPart {
 	protected void addAssociationEndListeners() {
 		EObject sourceEnd = ((Association) resolveSemanticElement()).getMemberEnds().get(0);
 		EObject targetEnd = ((Association) resolveSemanticElement()).getMemberEnds().get(1);
-		addListenerFilter("AssociationEndListenersSource", this, sourceEnd); //$NON-NLS-1$
-		addListenerFilter("AssociationEndListenersTarget", this, targetEnd); //$NON-NLS-1$
-		addListenerFilter("AssociationEndListenersSourceMultUpper", this, ((Property) sourceEnd).getUpperValue());
+		addListenerFilter(ASSOCIATION_END_LISTENERS_SOURCE, this, sourceEnd); 
+		addListenerFilter(ASSOCIATION_END_LISTENERS_TARGET, this, targetEnd); 
+		addListenerFilter("AssociationEndListenersSourceMultUpper", this, ((Property) sourceEnd).getUpperValue()); //$NON-NLS-1$
 		addListenerFilter("AssociationEndListenersTargetMultUpper", this, ((Property) targetEnd).getUpperValue()); //$NON-NLS-1$
-		addListenerFilter("AssociationEndListenersSourceMultLower", this, ((Property) sourceEnd).getLowerValue());
+		addListenerFilter("AssociationEndListenersSourceMultLower", this, ((Property) sourceEnd).getLowerValue()); //$NON-NLS-1$
 		addListenerFilter("AssociationEndListenersTargetMultLower", this, ((Property) targetEnd).getLowerValue()); //$NON-NLS-1$
 	}
 
@@ -90,7 +99,7 @@ public abstract class AbstractAssociationEndEditPart extends LabelEditPart {
 	 * used to remove listeners
 	 */
 	protected void removeAssociationEndListeners() {
-		removeListenerFilter("AssociationEndListenersSource");
-		removeListenerFilter("AssociationEndListenersTarget");
+		removeListenerFilter(ASSOCIATION_END_LISTENERS_SOURCE);
+		removeListenerFilter(ASSOCIATION_END_LISTENERS_TARGET);
 	}
 }

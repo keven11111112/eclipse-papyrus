@@ -53,7 +53,7 @@ public class InnerClassHyperlinkContributor implements HyperlinkContributor {
 			List<Element> elements = ((org.eclipse.uml2.uml.Class) fromElement).getOwnedElements();
 			List<org.eclipse.uml2.uml.Class> classes = new LinkedList<org.eclipse.uml2.uml.Class>();
 			for (Element element : elements) {
-				if (element.eClass().getName().equals("Class")) {
+				if ("Class".equals(element.eClass().getName())) {
 					classes.add((org.eclipse.uml2.uml.Class) element);
 				}
 			}

@@ -24,12 +24,12 @@ import org.eclipse.uml2.uml.Element;
  *
  * @deprecated Use the {@link NamedElementUtil} API, instead.
  */
-@Deprecated
+@Deprecated // since 1.2.0
 public class NamedElementHelper {
 
 	public static NamedElementHelper EINSTANCE = new NamedElementHelper();
 
-	private String baseString = "default";
+	private String baseString = "default"; //$NON-NLS-1$
 
 	/**
 	 * {@inheritDoc}

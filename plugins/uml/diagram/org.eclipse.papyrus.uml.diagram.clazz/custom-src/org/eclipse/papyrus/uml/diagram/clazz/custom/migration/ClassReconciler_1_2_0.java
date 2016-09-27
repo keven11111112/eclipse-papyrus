@@ -74,489 +74,489 @@ public class ClassReconciler_1_2_0 extends DiagramReconciler {
 
 		@Override
 		protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-			throw new ExecutionException("Should not be called, canRedo false");
+			throw new ExecutionException("Should not be called, canRedo false"); //$NON-NLS-1$
 		}
 
 		@Override
 		protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-			throw new ExecutionException("Should not be called, canUndo false");
+			throw new ExecutionException("Should not be called, canUndo false"); //$NON-NLS-1$
 		}
 	}
 
 	public static String getNewVisualID(String oldVisualID) {
 		switch (oldVisualID) {
-		case "1000":
-			return "Package_ClassDiagram";
-		case "3012":
-			return "Property_ClassAttributeLabel";
-		case "3002":
-			return "Property_ComponentAttributeLabel";
-		case "3005":
-			return "Property_SignalAttributeLabel";
-		case "3006":
-			return "Property_InterfaceAttributeLabel";
-		case "3041":
-			return "Property_PrimitiveTypeAttributeLabel";
-		case "3018":
-			return "Property_DataTypeAttributeLabel";
-		case "3014":
-			return "Class_ClassNestedClassifierLabel";
-		case "3004":
-			return "Class_ComponentNestedClassifierLabel";
-		case "3008":
-			return "Class_InterfaceNestedClassifierLabel";
-		case "3013":
-			return "Operation_ClassOperationLabel";
-		case "3003":
-			return "Operation_ComponentOperationLabel";
-		case "3007":
-			return "Operation_InterfaceOperationLabel";
-		case "3042":
-			return "Operation_PrimitiveTypeOperationLabel";
-		case "3019":
-			return "Operation_DataTypeOperationLabel";
-		case "3034":
-			return "ConnectableElementTemplateParameter_TemplateParameterLabel";
-		case "3035":
-			return "OperationTemplateParameter_TemplateParameterLabel";
-		case "3031":
-			return "ClassifierTemplateParameter_TemplateParameterLabel";
-		case "3016":
-			return "TemplateParameter_TemplateParameterLabel";
-		case "3017":
-			return "EnumerationLiteral_LiteralLabel";
-		case "3011":
-			return "Reception_ReceptionLabel";
-		case "3039":
-			return "Reception_InterfaceReceptionLabel";
-		case "3030":
-			return "Slot_SlotLabel";
-		case "3015":
-			return "RedefinableTemplateSignature_Shape";
-		case "3033":
-			return "TemplateSignature_Shape";
-		case "3020":
-			return "InstanceSpecification_Shape_CN";
-		case "5040":
-			return "InstanceSpecification_NameLabel_CN";
-		case "8509":
-			return "InstanceSpecification_FloatingNameLabel_CN";
-		case "3021":
-			return "Component_Shape_CN";
-		case "5043":
-			return "Component_NameLabel_CN";
-		case "8513":
-			return "Component_FloatingNameLabel_CN";
-		case "3022":
-			return "Signal_Shape_CN";
-		case "5046":
-			return "Signal_NameLabel_CN";
-		case "8514":
-			return "Signal_FloatingNameLabel_CN";
-		case "3023":
-			return "Interface_Shape_CN";
-		case "5049":
-			return "Interface_NameLabel_CN";
-		case "8515":
-			return "Interface_FloatingNameLabel_CN";
-		case "3024":
-			return "Model_Shape_CN";
-		case "5052":
-			return "Model_NameLabel_CN";
-		case "3025":
-			return "Enumeration_Shape_CN";
-		case "5055":
-			return "Enumeration_NameLabel_CN";
-		case "8516":
-			return "Enumeration_FloatingNameLabel_CN";
-		case "3009":
-			return "Package_Shape_CN";
-		case "5017":
-			return "Package_NameLabel_CN";
-		case "3040":
-			return "InformationItem_Shape_CN";
-		case "5162":
-			return "InformationItem_NameLabel_CN";
-		case "8517":
-			return "InformationItem_FloatingNameLabel_CN";
-		case "3010":
-			return "Class_Shape_CN";
-		case "5014":
-			return "Class_NameLabel_CN";
-		case "8518":
-			return "Class_FloatingNameLabel_CN";
-		case "3026":
-			return "PrimitiveType_Shape_CN";
-		case "5058":
-			return "PrimitiveType_NameLabel_CN";
-		case "8519":
-			return "PrimitiveType_FloatingNameLabel_CN";
-		case "3027":
-			return "DataType_Shape_CN";
-		case "5061":
-			return "DataType_NameLabel_CN";
-		case "8520":
-			return "DataType_FloatingNameLabel_CN";
-		case "3028":
-			return "Comment_Shape_CN";
-		case "5063":
-			return "Comment_BodyLabel_CN";
-		case "3029":
-			return "Constraint_PackagedElementShape_CN";
-		case "5064":
-			return "Constraint_NameLabel_CN";
-		case "5160":
-			return "Constraint_FloatingNameLabel_CN";
-		case "3036":
-			return "Interface_ClassNestedClassifierLabel";
-		case "3037":
-			return "Interface_ComponentNestedClassifierLabel";
-		case "3038":
-			return "Interface_InterfaceNestedClassifierLabel";
-		case "3052":
-			return "Enumeration_ClassNestedClassifierLabel";
-		case "3053":
-			return "Enumeration_ComponentNestedClassifierLabel";
-		case "3054":
-			return "Enumeration_InterfaceNestedClassifierLabel";
-		case "3047":
-			return "PrimitiveType_ClassNestedClassifierLabel";
-		case "3046":
-			return "PrimitiveType_ComponentNestedClassifierLabel";
-		case "3048":
-			return "PrimitiveType_InterfaceNestedClassifierLabel";
-		case "3044":
-			return "DataType_ClassNestedClassifierLabel";
-		case "3045":
-			return "DataType_ComponentNestedClassifierLabel";
-		case "3043":
-			return "DataType_InterfaceNestedClassifierLabel";
-		case "3050":
-			return "Signal_ClassNestedClassifierLabel";
-		case "3051":
-			return "Signal_ComponentNestedClassifierLabel";
-		case "3049":
-			return "Signal_InterfaceNestedClassifierLabel";
-		case "3055":
-			return "Component_ClassNestedClassifierLabel";
-		case "3056":
-			return "Component_InterfaceNestedClassifierLabel";
-		case "3057":
-			return "Component_ComponentNestedClassifierLabel";
-		case "2014":
-			return "Dependency_Shape";
-		case "1":
-			return "Dependency_MultiNameLabel";
-		case "8522":
-			return "Dependency_FloatingNameLabel";
-		case "2013":
-			return "AssociationClass_Shape";
-		case "5066":
-			return "AssociationClass_NameLabel";
-		case "8504":
-			return "AssociationClass_FloatingNameLabel";
-		case "2015":
-			return "Association_Shape";
-		case "8521":
-			return "Association_FloatingNameLabel";
-		case "2001":
-			return "InstanceSpecification_Shape";
-		case "5002":
-			return "InstanceSpecification_NameLabel";
-		case "8505":
-			return "InstanceSpecification_FloatingNameLabel";
-		case "2002":
-			return "Component_Shape";
-		case "5005":
-			return "Component_NameLabel";
-		case "8503":
-			return "Component_FloatingNameLabel";
-		case "2003":
-			return "Signal_Shape";
-		case "5008":
-			return "Signal_NameLabel";
-		case "8506":
-			return "Signal_FloatingNameLabel";
-		case "2004":
-			return "Interface_Shape";
-		case "5011":
-			return "Interface_NameLabel";
-		case "8507":
-			return "Interface_FloatingNameLabel";
-		case "2005":
-			return "Model_Shape";
-		case "5020":
-			return "Model_NameLabel";
-		case "2006":
-			return "Enumeration_Shape";
-		case "5023":
-			return "Enumeration_NameLabel";
-		case "8508":
-			return "Enumeration_FloatingNameLabel";
-		case "2007":
-			return "Package_Shape";
-		case "5026":
-			return "Package_NameLabel";
-		case "2099":
-			return "InformationItem_Shape";
-		case "5161":
-			return "InformationItem_NameLabel";
-		case "8512":
-			return "InformationItem_FloatingNameLabel";
-		case "2008":
-			return "Class_Shape";
-		case "5029":
-			return "Class_NameLabel";
-		case "8510":
-			return "Class_FloatingNameLabel";
-		case "2009":
-			return "PrimitiveType_Shape";
-		case "5032":
-			return "PrimitiveType_NameLabel";
-		case "8511":
-			return "PrimitiveType_FloatingNameLabel";
-		case "2010":
-			return "DataType_Shape";
-		case "5035":
-			return "DataType_NameLabel";
-		case "8502":
-			return "DataType_FloatingNameLabel";
-		case "2011":
-			return "Constraint_PackagedElementShape";
-		case "5037":
-			return "Constraint_NameLabel";
-		case "5159":
-			return "Constraint_BodyLabel";
-		case "2012":
-			return "Comment_Shape";
-		case "5038":
-			return "Comment_BodyLabel";
-		case "2016":
-			return "Diagram_ShortcutShape";
-		case "0":
-			return "Diagram_NameLabel";
-		case "2095":
-			return "DurationObservation_Shape";
-		case "5155":
-			return "DurationObservation_FloatingNameLabel";
-		case "5156":
-			return "DurationObservation_StereotypeLabel";
-		case "2096":
-			return "TimeObservation_Shape";
-		case "5153":
-			return "TimeObservation_FloatingNameLabel";
-		case "5154":
-			return "TimeObservation_StereotypeLabel";
-		case "2097":
-			return "NamedElement_DefaultShape";
-		case "5157":
-			return "NamedElement_NameLabel";
-		case "4016":
-			return "AssociationClass_TetherEdge";
-		case "4017":
-			return "AssociationClass_Edge";
-		case "6031":
-			return "AssociationClass_SourceRoleLabel";
-		case "6032":
-			return "AssociationClass_TargetRoleLabel";
-		case "4001":
-			return "Association_Edge";
-		case "6001":
-			return "Association_StereotypeLabel";
-		case "6002":
-			return "Association_NameLabel";
-		case "6003":
-			return "Association_TargetRoleLabel";
-		case "6005":
-			return "Association_SourceRoleLabel";
-		case "6033":
-			return "Association_SourceMultiplicityLabel";
-		case "6034":
-			return "Association_TargetMultiplicityLabel";
-		case "4019":
-			return "Association_BranchEdge";
-		case "6024":
-			return "Association_BranchRoleLabel";
-		case "6035":
-			return "Association_BranchMultiplicityLabel";
-		case "4002":
-			return "Generalization_Edge";
-		case "6007":
-			return "Generalization_StereotypeLabel";
-		case "4003":
-			return "InterfaceRealization_Edge";
-		case "6008":
-			return "InterfaceRealization_StereotypeLabel";
-		case "6009":
-			return "InterfaceRealization_NameLabel";
-		case "4004":
-			return "Substitution_Edge";
-		case "6010":
-			return "Substitution_StereotypeLabel";
-		case "6011":
-			return "Substitution_NameLabel";
-		case "4005":
-			return "Realization_Edge";
-		case "6012":
-			return "Realization_StereotypeLabel";
-		case "6013":
-			return "Realization_NameLabel";
-		case "4006":
-			return "Abstraction_Edge";
-		case "6014":
-			return "Abstraction_NameLabel";
-		case "6015":
-			return "Abstraction_StereotypeLabel";
-		case "4007":
-			return "Usage_Edge";
-		case "6016":
-			return "Usage_NameLabel";
-		case "6017":
-			return "Usage_StereotypeLabel";
-		case "4008":
-			return "Dependency_Edge";
-		case "6026":
-			return "Dependency_NameLabel";
-		case "6027":
-			return "Dependency_StereotypeLabel";
-		case "4018":
-			return "Dependency_BranchEdge";
-		case "4009":
-			return "ElementImport_Edge";
-		case "6020":
-			return "ElementImport_AliasLabel";
-		case "6021":
-			return "ElementImport_StereotypeLabel";
-		case "4010":
-			return "PackageImport_Edge";
-		case "6022":
-			return "PackageImport_StereotypeLabel";
-		case "4011":
-			return "PackageMerge_Edge";
-		case "6030":
-			return "PackageMerge_StereotypeLabel";
-		case "4012":
-			return "ProfileApplication_Edge";
-		case "4013":
-			return "Comment_AnnotatedElementEdge";
-		case "4014":
-			return "Constraint_ConstrainedElementEdge";
-		case "4015":
-			return "TemplateBinding_Edge";
-		case "6023":
-			return "TemplateBinding_SubstitutionLabel";
-		case "6036":
-			return "TemplateBinding_StereotypeLabel";
-		case "4020":
-			return "GeneralizationSet_Edge";
-		case "5067":
-			return "GeneralizationSet_ConstraintLabel";
-		case "6037":
-			return "GeneralizationSet_StereotypeLabel";
-		case "4021":
-			return "InstanceSpecification_Edge";
-		case "6039":
-			return "InstanceSpecification_SourceRoleLabel";
-		case "6038":
-			return "InstanceSpecification_TargetRoleLabel";
-		case "4023":
-			return "Element_ContainmentEdge";
-		case "4024":
-			return "TimeObservation_EventEdge";
-		case "4025":
-			return "DurationObservation_EventEdge";
-		case "4026":
-			return "InformationFlow_Edge";
-		case "6040":
-			return "InformationFlow_ConveyedLabel";
-		case "6041":
-			return "InformationFlow_StereotypeLabel";
-		case "8500":
-			return "Constraint_ContextEdge";
-		case "8501":
-			return "Constraint_KeywordLabel";
-		case "7011":
-			return "Class_AttributeCompartment_CN";
-		case "7012":
-			return "Class_OperationCompartment_CN";
-		case "7013":
-			return "Class_NestedClassifierCompartment_CN";
-		case "7023":
-			return "Component_AttributeCompartment_CN";
-		case "7024":
-			return "Component_OperationCompartment_CN";
-		case "7025":
-			return "Component_NestedClassifierCompartment_CN";
-		case "7026":
-			return "Signal_AttributeCompartment_CN";
-		case "7027":
-			return "Interface_AttributeCompartment_CN";
-		case "7028":
-			return "Interface_OperationCompartment_CN";
-		case "7029":
-			return "Interface_NestedClassifierCompartment_CN";
-		case "7041":
-			return "PrimitiveType_AttributeCompartment_CN";
-		case "7042":
-			return "PrimitiveType_OperationCompartment_CN";
-		case "7032":
-			return "DataType_AttributeCompartment_CN";
-		case "7033":
-			return "DataType_OperationCompartment_CN";
-		case "7030":
-			return "Model_PackagedElementCompartment_CN";
-		case "7010":
-			return "Package_PackagedElementCompartment_CN";
-		case "7031":
-			return "Enumeration_LiteralCompartment_CN";
-		case "7035":
-			return "InstanceSpecification_SlotCompartment_CN";
-		case "7017":
-			return "Class_AttributeCompartment";
-		case "7018":
-			return "Class_OperationCompartment";
-		case "7019":
-			return "Class_NestedClassifierCompartment";
-		case "7002":
-			return "Component_AttributeCompartment";
-		case "7003":
-			return "Component_OperationCompartment";
-		case "7004":
-			return "Component_NestedClassifierCompartment";
-		case "7006":
-			return "Interface_AttributeCompartment";
-		case "7007":
-			return "Interface_OperationCompartment";
-		case "7008":
-			return "Interface_NestedClassifierCompartment";
-		case "7039":
-			return "PrimitiveType_AttributeCompartment";
-		case "7040":
-			return "PrimitiveType_OperationCompartment";
-		case "7020":
-			return "DataType_AttributeCompartment";
-		case "7021":
-			return "DataType_OperationCompartment";
-		case "7034":
-			return "AssociationClass_AttributeCompartment";
-		case "7001":
-			return "InstanceSpecification_SlotCompartment";
-		case "7005":
-			return "Signal_AttributeCompartment";
-		case "7009":
-			return "Model_PackagedElementCompartment";
-		case "7016":
-			return "Package_PackagedElementCompartment";
-		case "7015":
-			return "Enumeration_LiteralCompartment";
-		case "7036":
-			return "AssociationClass_OperationCompartment";
-		case "7037":
-			return "AssociationClass_NestedClassifierCompartment";
-		case "7014":
-			return "RedefinableTemplateSignature_TemplateParameterCompartment";
-		case "7038":
-			return "TemplateSignature_TemplateParameterCompartment";
+		case "1000": //$NON-NLS-1$ //$NON-NLS-1$
+			return "Package_ClassDiagram"; //$NON-NLS-1$ //$NON-NLS-1$
+		case "3012": //$NON-NLS-1$
+			return "Property_ClassAttributeLabel"; //$NON-NLS-1$
+		case "3002": //$NON-NLS-1$
+			return "Property_ComponentAttributeLabel"; //$NON-NLS-1$
+		case "3005": //$NON-NLS-1$
+			return "Property_SignalAttributeLabel"; //$NON-NLS-1$
+		case "3006": //$NON-NLS-1$
+			return "Property_InterfaceAttributeLabel"; //$NON-NLS-1$
+		case "3041": //$NON-NLS-1$
+			return "Property_PrimitiveTypeAttributeLabel"; //$NON-NLS-1$
+		case "3018": //$NON-NLS-1$
+			return "Property_DataTypeAttributeLabel"; //$NON-NLS-1$
+		case "3014": //$NON-NLS-1$
+			return "Class_ClassNestedClassifierLabel"; //$NON-NLS-1$
+		case "3004": //$NON-NLS-1$
+			return "Class_ComponentNestedClassifierLabel"; //$NON-NLS-1$
+		case "3008": //$NON-NLS-1$
+			return "Class_InterfaceNestedClassifierLabel"; //$NON-NLS-1$
+		case "3013": //$NON-NLS-1$
+			return "Operation_ClassOperationLabel"; //$NON-NLS-1$
+		case "3003": //$NON-NLS-1$
+			return "Operation_ComponentOperationLabel"; //$NON-NLS-1$
+		case "3007": //$NON-NLS-1$
+			return "Operation_InterfaceOperationLabel"; //$NON-NLS-1$
+		case "3042": //$NON-NLS-1$
+			return "Operation_PrimitiveTypeOperationLabel"; //$NON-NLS-1$
+		case "3019": //$NON-NLS-1$
+			return "Operation_DataTypeOperationLabel"; //$NON-NLS-1$
+		case "3034": //$NON-NLS-1$
+			return "ConnectableElementTemplateParameter_TemplateParameterLabel"; //$NON-NLS-1$
+		case "3035": //$NON-NLS-1$
+			return "OperationTemplateParameter_TemplateParameterLabel"; //$NON-NLS-1$
+		case "3031": //$NON-NLS-1$
+			return "ClassifierTemplateParameter_TemplateParameterLabel"; //$NON-NLS-1$
+		case "3016": //$NON-NLS-1$
+			return "TemplateParameter_TemplateParameterLabel"; //$NON-NLS-1$
+		case "3017": //$NON-NLS-1$
+			return "EnumerationLiteral_LiteralLabel"; //$NON-NLS-1$
+		case "3011": //$NON-NLS-1$
+			return "Reception_ReceptionLabel"; //$NON-NLS-1$
+		case "3039": //$NON-NLS-1$
+			return "Reception_InterfaceReceptionLabel"; //$NON-NLS-1$
+		case "3030": //$NON-NLS-1$
+			return "Slot_SlotLabel"; //$NON-NLS-1$
+		case "3015": //$NON-NLS-1$
+			return "RedefinableTemplateSignature_Shape"; //$NON-NLS-1$
+		case "3033": //$NON-NLS-1$
+			return "TemplateSignature_Shape"; //$NON-NLS-1$
+		case "3020": //$NON-NLS-1$
+			return "InstanceSpecification_Shape_CN"; //$NON-NLS-1$
+		case "5040": //$NON-NLS-1$
+			return "InstanceSpecification_NameLabel_CN"; //$NON-NLS-1$
+		case "8509": //$NON-NLS-1$
+			return "InstanceSpecification_FloatingNameLabel_CN"; //$NON-NLS-1$
+		case "3021": //$NON-NLS-1$
+			return "Component_Shape_CN"; //$NON-NLS-1$
+		case "5043": //$NON-NLS-1$
+			return "Component_NameLabel_CN"; //$NON-NLS-1$
+		case "8513": //$NON-NLS-1$
+			return "Component_FloatingNameLabel_CN"; //$NON-NLS-1$
+		case "3022": //$NON-NLS-1$
+			return "Signal_Shape_CN"; //$NON-NLS-1$
+		case "5046": //$NON-NLS-1$
+			return "Signal_NameLabel_CN"; //$NON-NLS-1$
+		case "8514": //$NON-NLS-1$
+			return "Signal_FloatingNameLabel_CN"; //$NON-NLS-1$
+		case "3023": //$NON-NLS-1$
+			return "Interface_Shape_CN"; //$NON-NLS-1$
+		case "5049": //$NON-NLS-1$
+			return "Interface_NameLabel_CN"; //$NON-NLS-1$
+		case "8515": //$NON-NLS-1$
+			return "Interface_FloatingNameLabel_CN"; //$NON-NLS-1$
+		case "3024": //$NON-NLS-1$
+			return "Model_Shape_CN"; //$NON-NLS-1$
+		case "5052": //$NON-NLS-1$
+			return "Model_NameLabel_CN"; //$NON-NLS-1$
+		case "3025": //$NON-NLS-1$
+			return "Enumeration_Shape_CN"; //$NON-NLS-1$
+		case "5055": //$NON-NLS-1$
+			return "Enumeration_NameLabel_CN"; //$NON-NLS-1$
+		case "8516": //$NON-NLS-1$
+			return "Enumeration_FloatingNameLabel_CN"; //$NON-NLS-1$
+		case "3009": //$NON-NLS-1$
+			return "Package_Shape_CN"; //$NON-NLS-1$
+		case "5017": //$NON-NLS-1$
+			return "Package_NameLabel_CN"; //$NON-NLS-1$
+		case "3040": //$NON-NLS-1$
+			return "InformationItem_Shape_CN"; //$NON-NLS-1$
+		case "5162": //$NON-NLS-1$
+			return "InformationItem_NameLabel_CN"; //$NON-NLS-1$
+		case "8517": //$NON-NLS-1$
+			return "InformationItem_FloatingNameLabel_CN"; //$NON-NLS-1$
+		case "3010": //$NON-NLS-1$
+			return "Class_Shape_CN"; //$NON-NLS-1$
+		case "5014": //$NON-NLS-1$
+			return "Class_NameLabel_CN"; //$NON-NLS-1$
+		case "8518": //$NON-NLS-1$
+			return "Class_FloatingNameLabel_CN"; //$NON-NLS-1$
+		case "3026": //$NON-NLS-1$
+			return "PrimitiveType_Shape_CN"; //$NON-NLS-1$
+		case "5058": //$NON-NLS-1$
+			return "PrimitiveType_NameLabel_CN"; //$NON-NLS-1$
+		case "8519": //$NON-NLS-1$
+			return "PrimitiveType_FloatingNameLabel_CN"; //$NON-NLS-1$
+		case "3027": //$NON-NLS-1$
+			return "DataType_Shape_CN"; //$NON-NLS-1$
+		case "5061": //$NON-NLS-1$
+			return "DataType_NameLabel_CN"; //$NON-NLS-1$
+		case "8520": //$NON-NLS-1$
+			return "DataType_FloatingNameLabel_CN"; //$NON-NLS-1$
+		case "3028": //$NON-NLS-1$
+			return "Comment_Shape_CN"; //$NON-NLS-1$
+		case "5063": //$NON-NLS-1$
+			return "Comment_BodyLabel_CN"; //$NON-NLS-1$
+		case "3029": //$NON-NLS-1$
+			return "Constraint_PackagedElementShape_CN"; //$NON-NLS-1$
+		case "5064": //$NON-NLS-1$
+			return "Constraint_NameLabel_CN"; //$NON-NLS-1$
+		case "5160": //$NON-NLS-1$
+			return "Constraint_FloatingNameLabel_CN"; //$NON-NLS-1$
+		case "3036": //$NON-NLS-1$
+			return "Interface_ClassNestedClassifierLabel"; //$NON-NLS-1$
+		case "3037": //$NON-NLS-1$
+			return "Interface_ComponentNestedClassifierLabel"; //$NON-NLS-1$
+		case "3038": //$NON-NLS-1$
+			return "Interface_InterfaceNestedClassifierLabel"; //$NON-NLS-1$
+		case "3052": //$NON-NLS-1$
+			return "Enumeration_ClassNestedClassifierLabel"; //$NON-NLS-1$
+		case "3053": //$NON-NLS-1$
+			return "Enumeration_ComponentNestedClassifierLabel"; //$NON-NLS-1$
+		case "3054": //$NON-NLS-1$
+			return "Enumeration_InterfaceNestedClassifierLabel"; //$NON-NLS-1$
+		case "3047": //$NON-NLS-1$
+			return "PrimitiveType_ClassNestedClassifierLabel"; //$NON-NLS-1$
+		case "3046": //$NON-NLS-1$
+			return "PrimitiveType_ComponentNestedClassifierLabel"; //$NON-NLS-1$
+		case "3048": //$NON-NLS-1$
+			return "PrimitiveType_InterfaceNestedClassifierLabel"; //$NON-NLS-1$
+		case "3044": //$NON-NLS-1$
+			return "DataType_ClassNestedClassifierLabel"; //$NON-NLS-1$
+		case "3045": //$NON-NLS-1$
+			return "DataType_ComponentNestedClassifierLabel"; //$NON-NLS-1$
+		case "3043": //$NON-NLS-1$
+			return "DataType_InterfaceNestedClassifierLabel"; //$NON-NLS-1$
+		case "3050": //$NON-NLS-1$
+			return "Signal_ClassNestedClassifierLabel"; //$NON-NLS-1$
+		case "3051": //$NON-NLS-1$
+			return "Signal_ComponentNestedClassifierLabel"; //$NON-NLS-1$
+		case "3049": //$NON-NLS-1$
+			return "Signal_InterfaceNestedClassifierLabel"; //$NON-NLS-1$
+		case "3055": //$NON-NLS-1$
+			return "Component_ClassNestedClassifierLabel"; //$NON-NLS-1$
+		case "3056": //$NON-NLS-1$
+			return "Component_InterfaceNestedClassifierLabel"; //$NON-NLS-1$
+		case "3057": //$NON-NLS-1$
+			return "Component_ComponentNestedClassifierLabel"; //$NON-NLS-1$
+		case "2014": //$NON-NLS-1$
+			return "Dependency_Shape"; //$NON-NLS-1$
+		case "1": //$NON-NLS-1$
+			return "Dependency_MultiNameLabel"; //$NON-NLS-1$
+		case "8522": //$NON-NLS-1$
+			return "Dependency_FloatingNameLabel"; //$NON-NLS-1$
+		case "2013": //$NON-NLS-1$
+			return "AssociationClass_Shape"; //$NON-NLS-1$
+		case "5066": //$NON-NLS-1$
+			return "AssociationClass_NameLabel"; //$NON-NLS-1$
+		case "8504": //$NON-NLS-1$
+			return "AssociationClass_FloatingNameLabel"; //$NON-NLS-1$
+		case "2015": //$NON-NLS-1$
+			return "Association_Shape"; //$NON-NLS-1$
+		case "8521": //$NON-NLS-1$
+			return "Association_FloatingNameLabel"; //$NON-NLS-1$
+		case "2001": //$NON-NLS-1$
+			return "InstanceSpecification_Shape"; //$NON-NLS-1$
+		case "5002": //$NON-NLS-1$
+			return "InstanceSpecification_NameLabel"; //$NON-NLS-1$
+		case "8505": //$NON-NLS-1$
+			return "InstanceSpecification_FloatingNameLabel"; //$NON-NLS-1$
+		case "2002": //$NON-NLS-1$
+			return "Component_Shape"; //$NON-NLS-1$
+		case "5005": //$NON-NLS-1$
+			return "Component_NameLabel"; //$NON-NLS-1$
+		case "8503": //$NON-NLS-1$
+			return "Component_FloatingNameLabel"; //$NON-NLS-1$
+		case "2003": //$NON-NLS-1$
+			return "Signal_Shape"; //$NON-NLS-1$
+		case "5008": //$NON-NLS-1$
+			return "Signal_NameLabel"; //$NON-NLS-1$
+		case "8506": //$NON-NLS-1$
+			return "Signal_FloatingNameLabel"; //$NON-NLS-1$
+		case "2004": //$NON-NLS-1$
+			return "Interface_Shape"; //$NON-NLS-1$
+		case "5011": //$NON-NLS-1$
+			return "Interface_NameLabel"; //$NON-NLS-1$
+		case "8507": //$NON-NLS-1$
+			return "Interface_FloatingNameLabel"; //$NON-NLS-1$
+		case "2005": //$NON-NLS-1$
+			return "Model_Shape"; //$NON-NLS-1$
+		case "5020": //$NON-NLS-1$
+			return "Model_NameLabel"; //$NON-NLS-1$
+		case "2006": //$NON-NLS-1$
+			return "Enumeration_Shape"; //$NON-NLS-1$
+		case "5023": //$NON-NLS-1$
+			return "Enumeration_NameLabel"; //$NON-NLS-1$
+		case "8508": //$NON-NLS-1$
+			return "Enumeration_FloatingNameLabel"; //$NON-NLS-1$
+		case "2007": //$NON-NLS-1$
+			return "Package_Shape"; //$NON-NLS-1$
+		case "5026": //$NON-NLS-1$
+			return "Package_NameLabel"; //$NON-NLS-1$
+		case "2099": //$NON-NLS-1$
+			return "InformationItem_Shape"; //$NON-NLS-1$
+		case "5161": //$NON-NLS-1$
+			return "InformationItem_NameLabel"; //$NON-NLS-1$
+		case "8512": //$NON-NLS-1$
+			return "InformationItem_FloatingNameLabel"; //$NON-NLS-1$
+		case "2008": //$NON-NLS-1$
+			return "Class_Shape"; //$NON-NLS-1$
+		case "5029": //$NON-NLS-1$
+			return "Class_NameLabel"; //$NON-NLS-1$
+		case "8510": //$NON-NLS-1$
+			return "Class_FloatingNameLabel"; //$NON-NLS-1$
+		case "2009": //$NON-NLS-1$
+			return "PrimitiveType_Shape"; //$NON-NLS-1$
+		case "5032": //$NON-NLS-1$
+			return "PrimitiveType_NameLabel"; //$NON-NLS-1$
+		case "8511": //$NON-NLS-1$
+			return "PrimitiveType_FloatingNameLabel"; //$NON-NLS-1$
+		case "2010": //$NON-NLS-1$
+			return "DataType_Shape"; //$NON-NLS-1$
+		case "5035": //$NON-NLS-1$
+			return "DataType_NameLabel"; //$NON-NLS-1$
+		case "8502": //$NON-NLS-1$
+			return "DataType_FloatingNameLabel"; //$NON-NLS-1$
+		case "2011": //$NON-NLS-1$
+			return "Constraint_PackagedElementShape"; //$NON-NLS-1$
+		case "5037": //$NON-NLS-1$
+			return "Constraint_NameLabel"; //$NON-NLS-1$
+		case "5159": //$NON-NLS-1$
+			return "Constraint_BodyLabel"; //$NON-NLS-1$
+		case "2012": //$NON-NLS-1$
+			return "Comment_Shape"; //$NON-NLS-1$
+		case "5038": //$NON-NLS-1$
+			return "Comment_BodyLabel"; //$NON-NLS-1$
+		case "2016": //$NON-NLS-1$
+			return "Diagram_ShortcutShape"; //$NON-NLS-1$
+		case "0": //$NON-NLS-1$
+			return "Diagram_NameLabel"; //$NON-NLS-1$
+		case "2095": //$NON-NLS-1$
+			return "DurationObservation_Shape"; //$NON-NLS-1$
+		case "5155": //$NON-NLS-1$
+			return "DurationObservation_FloatingNameLabel"; //$NON-NLS-1$
+		case "5156": //$NON-NLS-1$
+			return "DurationObservation_StereotypeLabel"; //$NON-NLS-1$
+		case "2096": //$NON-NLS-1$
+			return "TimeObservation_Shape"; //$NON-NLS-1$
+		case "5153": //$NON-NLS-1$
+			return "TimeObservation_FloatingNameLabel"; //$NON-NLS-1$
+		case "5154": //$NON-NLS-1$
+			return "TimeObservation_StereotypeLabel"; //$NON-NLS-1$
+		case "2097": //$NON-NLS-1$
+			return "NamedElement_DefaultShape"; //$NON-NLS-1$
+		case "5157": //$NON-NLS-1$
+			return "NamedElement_NameLabel"; //$NON-NLS-1$
+		case "4016": //$NON-NLS-1$
+			return "AssociationClass_TetherEdge"; //$NON-NLS-1$
+		case "4017": //$NON-NLS-1$
+			return "AssociationClass_Edge"; //$NON-NLS-1$
+		case "6031": //$NON-NLS-1$
+			return "AssociationClass_SourceRoleLabel"; //$NON-NLS-1$
+		case "6032": //$NON-NLS-1$
+			return "AssociationClass_TargetRoleLabel"; //$NON-NLS-1$
+		case "4001": //$NON-NLS-1$
+			return "Association_Edge"; //$NON-NLS-1$
+		case "6001": //$NON-NLS-1$
+			return "Association_StereotypeLabel"; //$NON-NLS-1$
+		case "6002": //$NON-NLS-1$
+			return "Association_NameLabel"; //$NON-NLS-1$
+		case "6003": //$NON-NLS-1$
+			return "Association_TargetRoleLabel"; //$NON-NLS-1$
+		case "6005": //$NON-NLS-1$
+			return "Association_SourceRoleLabel"; //$NON-NLS-1$
+		case "6033": //$NON-NLS-1$
+			return "Association_SourceMultiplicityLabel"; //$NON-NLS-1$
+		case "6034": //$NON-NLS-1$
+			return "Association_TargetMultiplicityLabel"; //$NON-NLS-1$
+		case "4019": //$NON-NLS-1$
+			return "Association_BranchEdge"; //$NON-NLS-1$
+		case "6024": //$NON-NLS-1$
+			return "Association_BranchRoleLabel"; //$NON-NLS-1$
+		case "6035": //$NON-NLS-1$
+			return "Association_BranchMultiplicityLabel"; //$NON-NLS-1$
+		case "4002": //$NON-NLS-1$
+			return "Generalization_Edge"; //$NON-NLS-1$
+		case "6007": //$NON-NLS-1$
+			return "Generalization_StereotypeLabel"; //$NON-NLS-1$
+		case "4003": //$NON-NLS-1$
+			return "InterfaceRealization_Edge"; //$NON-NLS-1$
+		case "6008": //$NON-NLS-1$
+			return "InterfaceRealization_StereotypeLabel"; //$NON-NLS-1$
+		case "6009": //$NON-NLS-1$
+			return "InterfaceRealization_NameLabel"; //$NON-NLS-1$
+		case "4004": //$NON-NLS-1$
+			return "Substitution_Edge"; //$NON-NLS-1$
+		case "6010": //$NON-NLS-1$
+			return "Substitution_StereotypeLabel"; //$NON-NLS-1$
+		case "6011": //$NON-NLS-1$
+			return "Substitution_NameLabel"; //$NON-NLS-1$
+		case "4005": //$NON-NLS-1$
+			return "Realization_Edge"; //$NON-NLS-1$
+		case "6012": //$NON-NLS-1$
+			return "Realization_StereotypeLabel"; //$NON-NLS-1$
+		case "6013": //$NON-NLS-1$
+			return "Realization_NameLabel"; //$NON-NLS-1$
+		case "4006": //$NON-NLS-1$
+			return "Abstraction_Edge"; //$NON-NLS-1$
+		case "6014": //$NON-NLS-1$
+			return "Abstraction_NameLabel"; //$NON-NLS-1$
+		case "6015": //$NON-NLS-1$
+			return "Abstraction_StereotypeLabel"; //$NON-NLS-1$
+		case "4007": //$NON-NLS-1$
+			return "Usage_Edge"; //$NON-NLS-1$
+		case "6016": //$NON-NLS-1$
+			return "Usage_NameLabel"; //$NON-NLS-1$
+		case "6017": //$NON-NLS-1$
+			return "Usage_StereotypeLabel"; //$NON-NLS-1$
+		case "4008": //$NON-NLS-1$
+			return "Dependency_Edge"; //$NON-NLS-1$
+		case "6026": //$NON-NLS-1$
+			return "Dependency_NameLabel"; //$NON-NLS-1$
+		case "6027": //$NON-NLS-1$
+			return "Dependency_StereotypeLabel"; //$NON-NLS-1$
+		case "4018": //$NON-NLS-1$
+			return "Dependency_BranchEdge"; //$NON-NLS-1$
+		case "4009": //$NON-NLS-1$
+			return "ElementImport_Edge"; //$NON-NLS-1$
+		case "6020": //$NON-NLS-1$
+			return "ElementImport_AliasLabel"; //$NON-NLS-1$
+		case "6021": //$NON-NLS-1$
+			return "ElementImport_StereotypeLabel"; //$NON-NLS-1$
+		case "4010": //$NON-NLS-1$
+			return "PackageImport_Edge"; //$NON-NLS-1$
+		case "6022": //$NON-NLS-1$
+			return "PackageImport_StereotypeLabel"; //$NON-NLS-1$
+		case "4011": //$NON-NLS-1$
+			return "PackageMerge_Edge"; //$NON-NLS-1$
+		case "6030": //$NON-NLS-1$
+			return "PackageMerge_StereotypeLabel"; //$NON-NLS-1$
+		case "4012": //$NON-NLS-1$
+			return "ProfileApplication_Edge"; //$NON-NLS-1$
+		case "4013": //$NON-NLS-1$
+			return "Comment_AnnotatedElementEdge"; //$NON-NLS-1$
+		case "4014": //$NON-NLS-1$
+			return "Constraint_ConstrainedElementEdge"; //$NON-NLS-1$
+		case "4015": //$NON-NLS-1$
+			return "TemplateBinding_Edge"; //$NON-NLS-1$
+		case "6023": //$NON-NLS-1$
+			return "TemplateBinding_SubstitutionLabel"; //$NON-NLS-1$
+		case "6036": //$NON-NLS-1$
+			return "TemplateBinding_StereotypeLabel"; //$NON-NLS-1$
+		case "4020": //$NON-NLS-1$
+			return "GeneralizationSet_Edge"; //$NON-NLS-1$
+		case "5067": //$NON-NLS-1$
+			return "GeneralizationSet_ConstraintLabel"; //$NON-NLS-1$
+		case "6037": //$NON-NLS-1$
+			return "GeneralizationSet_StereotypeLabel"; //$NON-NLS-1$
+		case "4021": //$NON-NLS-1$
+			return "InstanceSpecification_Edge"; //$NON-NLS-1$
+		case "6039": //$NON-NLS-1$
+			return "InstanceSpecification_SourceRoleLabel"; //$NON-NLS-1$
+		case "6038": //$NON-NLS-1$
+			return "InstanceSpecification_TargetRoleLabel"; //$NON-NLS-1$
+		case "4023": //$NON-NLS-1$
+			return "Element_ContainmentEdge"; //$NON-NLS-1$
+		case "4024": //$NON-NLS-1$
+			return "TimeObservation_EventEdge"; //$NON-NLS-1$
+		case "4025": //$NON-NLS-1$
+			return "DurationObservation_EventEdge"; //$NON-NLS-1$
+		case "4026": //$NON-NLS-1$
+			return "InformationFlow_Edge"; //$NON-NLS-1$
+		case "6040": //$NON-NLS-1$
+			return "InformationFlow_ConveyedLabel"; //$NON-NLS-1$
+		case "6041": //$NON-NLS-1$
+			return "InformationFlow_StereotypeLabel"; //$NON-NLS-1$
+		case "8500": //$NON-NLS-1$
+			return "Constraint_ContextEdge"; //$NON-NLS-1$
+		case "8501": //$NON-NLS-1$
+			return "Constraint_KeywordLabel"; //$NON-NLS-1$
+		case "7011": //$NON-NLS-1$
+			return "Class_AttributeCompartment_CN"; //$NON-NLS-1$
+		case "7012": //$NON-NLS-1$
+			return "Class_OperationCompartment_CN"; //$NON-NLS-1$
+		case "7013": //$NON-NLS-1$
+			return "Class_NestedClassifierCompartment_CN"; //$NON-NLS-1$
+		case "7023": //$NON-NLS-1$
+			return "Component_AttributeCompartment_CN"; //$NON-NLS-1$
+		case "7024": //$NON-NLS-1$
+			return "Component_OperationCompartment_CN"; //$NON-NLS-1$
+		case "7025": //$NON-NLS-1$
+			return "Component_NestedClassifierCompartment_CN"; //$NON-NLS-1$
+		case "7026": //$NON-NLS-1$
+			return "Signal_AttributeCompartment_CN"; //$NON-NLS-1$
+		case "7027": //$NON-NLS-1$
+			return "Interface_AttributeCompartment_CN"; //$NON-NLS-1$
+		case "7028": //$NON-NLS-1$
+			return "Interface_OperationCompartment_CN"; //$NON-NLS-1$
+		case "7029": //$NON-NLS-1$
+			return "Interface_NestedClassifierCompartment_CN"; //$NON-NLS-1$
+		case "7041": //$NON-NLS-1$
+			return "PrimitiveType_AttributeCompartment_CN"; //$NON-NLS-1$
+		case "7042": //$NON-NLS-1$
+			return "PrimitiveType_OperationCompartment_CN"; //$NON-NLS-1$
+		case "7032": //$NON-NLS-1$
+			return "DataType_AttributeCompartment_CN"; //$NON-NLS-1$
+		case "7033": //$NON-NLS-1$
+			return "DataType_OperationCompartment_CN"; //$NON-NLS-1$
+		case "7030": //$NON-NLS-1$
+			return "Model_PackagedElementCompartment_CN"; //$NON-NLS-1$
+		case "7010": //$NON-NLS-1$
+			return "Package_PackagedElementCompartment_CN"; //$NON-NLS-1$
+		case "7031": //$NON-NLS-1$
+			return "Enumeration_LiteralCompartment_CN"; //$NON-NLS-1$
+		case "7035": //$NON-NLS-1$
+			return "InstanceSpecification_SlotCompartment_CN"; //$NON-NLS-1$
+		case "7017": //$NON-NLS-1$
+			return "Class_AttributeCompartment"; //$NON-NLS-1$
+		case "7018": //$NON-NLS-1$
+			return "Class_OperationCompartment"; //$NON-NLS-1$
+		case "7019": //$NON-NLS-1$
+			return "Class_NestedClassifierCompartment"; //$NON-NLS-1$
+		case "7002": //$NON-NLS-1$
+			return "Component_AttributeCompartment"; //$NON-NLS-1$
+		case "7003": //$NON-NLS-1$
+			return "Component_OperationCompartment"; //$NON-NLS-1$
+		case "7004": //$NON-NLS-1$
+			return "Component_NestedClassifierCompartment"; //$NON-NLS-1$
+		case "7006": //$NON-NLS-1$
+			return "Interface_AttributeCompartment"; //$NON-NLS-1$
+		case "7007": //$NON-NLS-1$
+			return "Interface_OperationCompartment"; //$NON-NLS-1$
+		case "7008": //$NON-NLS-1$
+			return "Interface_NestedClassifierCompartment"; //$NON-NLS-1$
+		case "7039": //$NON-NLS-1$
+			return "PrimitiveType_AttributeCompartment"; //$NON-NLS-1$
+		case "7040": //$NON-NLS-1$
+			return "PrimitiveType_OperationCompartment"; //$NON-NLS-1$
+		case "7020": //$NON-NLS-1$
+			return "DataType_AttributeCompartment"; //$NON-NLS-1$
+		case "7021": //$NON-NLS-1$
+			return "DataType_OperationCompartment"; //$NON-NLS-1$
+		case "7034": //$NON-NLS-1$
+			return "AssociationClass_AttributeCompartment"; //$NON-NLS-1$
+		case "7001": //$NON-NLS-1$
+			return "InstanceSpecification_SlotCompartment"; //$NON-NLS-1$
+		case "7005": //$NON-NLS-1$
+			return "Signal_AttributeCompartment"; //$NON-NLS-1$
+		case "7009": //$NON-NLS-1$
+			return "Model_PackagedElementCompartment"; //$NON-NLS-1$
+		case "7016": //$NON-NLS-1$
+			return "Package_PackagedElementCompartment"; //$NON-NLS-1$
+		case "7015": //$NON-NLS-1$
+			return "Enumeration_LiteralCompartment"; //$NON-NLS-1$
+		case "7036": //$NON-NLS-1$
+			return "AssociationClass_OperationCompartment"; //$NON-NLS-1$
+		case "7037": //$NON-NLS-1$
+			return "AssociationClass_NestedClassifierCompartment"; //$NON-NLS-1$
+		case "7014": //$NON-NLS-1$
+			return "RedefinableTemplateSignature_TemplateParameterCompartment"; //$NON-NLS-1$
+		case "7038": //$NON-NLS-1$
+			return "TemplateSignature_TemplateParameterCompartment"; //$NON-NLS-1$
 		default:
 			return defaultGetNewVisualID(oldVisualID);
 		}

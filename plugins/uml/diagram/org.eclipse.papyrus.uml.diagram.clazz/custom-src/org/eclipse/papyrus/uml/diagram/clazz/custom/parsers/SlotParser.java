@@ -45,7 +45,6 @@ public class SlotParser implements IParser {
 	 */
 	@Override
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -59,7 +58,6 @@ public class SlotParser implements IParser {
 	 */
 	@Override
 	public String getEditString(IAdaptable element, int flags) {
-		// TODO Auto-generated method stub
 		return getPrintString(element, flags);
 	}
 
@@ -74,7 +72,6 @@ public class SlotParser implements IParser {
 	 */
 	@Override
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		// TODO Auto-generated method stub
 		return UnexecutableCommand.INSTANCE;
 	}
 
@@ -129,7 +126,6 @@ public class SlotParser implements IParser {
 	 */
 	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

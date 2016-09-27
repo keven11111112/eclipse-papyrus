@@ -64,6 +64,5 @@ public class DisplayAllAssociationBranchCommand implements IObjectActionDelegate
 	 */
 	@Override
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-		// TODO Auto-generated method stub
 	}
 }

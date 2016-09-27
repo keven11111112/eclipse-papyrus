@@ -29,7 +29,6 @@ public class TemplateFigure extends PapyrusNodeFigure {
 	@Override
 	public Dimension getPreferredSize(int wHint, int hHint) {
 		Dimension prefDim = new Dimension(60, 40);
-		// TODO Auto-generated method stub
 		Dimension contentDim = templateParameterRectangle.getPreferredSize();
 		if (contentDim.width + 10 > prefDim.width) {
 			prefDim.width = contentDim.width + 10;

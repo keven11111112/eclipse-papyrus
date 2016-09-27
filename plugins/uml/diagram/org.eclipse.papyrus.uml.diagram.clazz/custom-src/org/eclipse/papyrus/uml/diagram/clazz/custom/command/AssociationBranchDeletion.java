@@ -38,7 +38,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.uml2.uml.Association;
@@ -56,7 +56,6 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 	 * Instantiates a new association branch deletion.
 	 */
 	public AssociationBranchDeletion() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -135,6 +134,5 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 	 */
 	@Override
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-		// TODO Auto-generated method stub
 	}
 }

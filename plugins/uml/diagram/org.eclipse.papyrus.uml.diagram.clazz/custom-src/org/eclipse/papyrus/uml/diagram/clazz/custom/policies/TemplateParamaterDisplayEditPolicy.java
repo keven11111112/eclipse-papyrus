@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
 
-	public static String TEMPLATE_PARAMETER_DISPLAY = "TEMPLATE_PARAMETER_DISPLAY";
+	public static String TEMPLATE_PARAMETER_DISPLAY = "TEMPLATE_PARAMETER_DISPLAY";  //$NON-NLS-1$
 
 	/**
 	 * Stores the semantic element related to the edit policy. If resolveSemanticElement is used, there are problems when the edit part is getting
@@ -94,7 +94,7 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicy impl
 			}
 			refreshDisplay();
 		} else {
-			Activator.log.error("No semantic element was found during activation of the mask managed label edit policy", null);
+			Activator.log.error("No semantic element was found during activation of the mask managed label edit policy", null); //$NON-NLS-1$
 		}
 	}
 

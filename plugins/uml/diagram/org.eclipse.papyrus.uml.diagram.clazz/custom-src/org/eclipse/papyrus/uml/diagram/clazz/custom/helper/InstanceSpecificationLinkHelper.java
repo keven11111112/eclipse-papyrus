@@ -21,7 +21,7 @@ import org.eclipse.uml2.uml.InstanceSpecification;
 
 public class InstanceSpecificationLinkHelper {
 
-	protected static final String INSTANCE_END = "InstanceEnd";//
+	protected static final String INSTANCE_END = "InstanceEnd"; //$NON-NLS-1$
 
 	/**
 	 *

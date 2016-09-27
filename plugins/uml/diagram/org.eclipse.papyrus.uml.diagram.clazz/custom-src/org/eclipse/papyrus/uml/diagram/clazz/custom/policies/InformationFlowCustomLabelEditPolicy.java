@@ -27,7 +27,7 @@ import org.eclipse.uml2.uml.InformationFlow;
 public class InformationFlowCustomLabelEditPolicy extends AbstractCustomLabelEditPolicy {
 
 	/** constant for this edit policy role */
-	public final static String SPECIFIC_NAME_LABEL_POLICY = "SpecificNameLabelEditPolicy";
+	public final static String SPECIFIC_NAME_LABEL_POLICY = "SpecificNameLabelEditPolicy"; //$NON-NLS-1$
 
 	public final static int ADD_CONVEYED_CLASSIFIER = Notification.ADD;
 

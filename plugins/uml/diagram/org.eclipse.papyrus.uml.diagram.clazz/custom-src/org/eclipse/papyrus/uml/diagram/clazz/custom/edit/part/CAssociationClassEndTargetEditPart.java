@@ -33,7 +33,6 @@ public class CAssociationClassEndTargetEditPart extends AssociationClassRoleTarg
 	 */
 	public CAssociationClassEndTargetEditPart(View view) {
 		super(view);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

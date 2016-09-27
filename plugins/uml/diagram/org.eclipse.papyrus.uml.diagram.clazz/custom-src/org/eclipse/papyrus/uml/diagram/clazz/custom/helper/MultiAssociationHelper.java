@@ -61,7 +61,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationBranchEditPar
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.DeleteLinkDuringCreationCommand;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.helper.AssociationEndSourceLabelHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.AssociationEndTargetLabelHelper;
 import org.eclipse.uml2.uml.Association;

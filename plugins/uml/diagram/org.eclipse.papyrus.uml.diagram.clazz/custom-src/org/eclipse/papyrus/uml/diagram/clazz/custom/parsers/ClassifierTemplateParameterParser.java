@@ -28,7 +28,6 @@ public class ClassifierTemplateParameterParser implements IParser {
 
 	@Override
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -39,7 +38,6 @@ public class ClassifierTemplateParameterParser implements IParser {
 
 	@Override
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		// TODO Auto-generated method stub
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 	}
 

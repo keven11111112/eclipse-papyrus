@@ -40,7 +40,6 @@ public class PropertyCommandForAssociation extends CreateElementCommand {
 	 */
 	public PropertyCommandForAssociation(CreateElementRequest request) {
 		super(request);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

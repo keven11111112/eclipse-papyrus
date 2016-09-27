@@ -82,7 +82,6 @@ public class BindingSubstitutionFigure extends FlowPage implements ILabelFigure,
 	 */
 	@Override
 	public void setIcon(Image icon) {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -92,7 +91,6 @@ public class BindingSubstitutionFigure extends FlowPage implements ILabelFigure,
 	 */
 	@Override
 	public Image getIcon() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

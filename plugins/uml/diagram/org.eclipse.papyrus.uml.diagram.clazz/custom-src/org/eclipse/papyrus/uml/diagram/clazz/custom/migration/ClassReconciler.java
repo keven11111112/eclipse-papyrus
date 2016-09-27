@@ -31,49 +31,6 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.InsertFloatingLabelFromMapCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassFloatingNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationFloatingNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassFloatingNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassFloatingNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentFloatingNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentFloatingNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContainmentLinkEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeFloatingNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeFloatingNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyFloatingNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationFloatingNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationFloatingNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemFloatingNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationItemFloatingNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationFloatingNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationFloatingNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceFloatingNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceFloatingNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeFloatingNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeFloatingNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalFloatingNameEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalFloatingNameEditPartCN;
 
 /**
  * Class Diagram Reconciler from 1.0.0 to 1.1.0
@@ -81,51 +38,51 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalFloatingNameEditPa
 public class ClassReconciler extends DiagramReconciler {
 
 	private final static String CONTAINMENT_LINK_OLD_VISUAL_ID = "4022"; //$NON-NLS-1$
-	private final static String CONTAINMENT_LINK_NEW_VISUAL_ID = "4023";
+	private final static String CONTAINMENT_LINK_NEW_VISUAL_ID = "4023"; //$NON-NLS-1$
 	private final static String CONTAINMENT_LINK_AFFIXEDNODE_OLD_VISUAL_ID = "3032"; //$NON-NLS-1$
 
-	private final static String ClassEditPart_VISUAL_ID = "2008";
-	private final static String ClassFloatingNameEditPart_VISUAL_ID = "8510";
-	private final static String AssociationClassEditPart_VISUAL_ID = "2013";
-	private final static String AssociationClassFloatingNameEditPart_VISUAL_ID = "8504";
-	private final static String AssociationNodeEditPart_VISUAL_ID = "2015";
-	private final static String AssociationFloatingNameEditPart_VISUAL_ID = "8521";
-	private final static String ClassEditPartCN_VISUAL_ID = "3010";
-	private final static String ClassFloatingNameEditPartCN_VISUAL_ID = "8518";
-	private final static String ComponentEditPart_VISUAL_ID = "2002";
-	private final static String ComponentFloatingNameEditPart_VISUAL_ID = "8503";
-	private final static String ComponentEditPartCN_VISUAL_ID = "3021";
-	private final static String ComponentFloatingNameEditPartCN_VISUAL_ID = "8513";
-	private final static String DataTypeEditPart_VISUAL_ID = "2010";
-	private final static String DataTypeFloatingNameEditPart_VISUAL_ID = "8502";
-	private final static String DataTypeEditPartCN_VISUAL_ID = "3027";
-	private final static String DataTypeFloatingNameEditPartCN_VISUAL_ID = "8520";
-	private final static String DependencyNodeEditPart_VISUAL_ID = "2014";
-	private final static String DependencyFloatingNameEditPart_VISUAL_ID = "8522";
-	private final static String EnumerationEditPart_VISUAL_ID = "2006";
-	private final static String EnumerationFloatingNameEditPart_VISUAL_ID = "8508";
-	private final static String EnumerationEditPartCN_VISUAL_ID = "3025";
-	private final static String EnumerationFloatingNameEditPartCN_VISUAL_ID = "8516";
-	private final static String InformationItemEditPart_VISUAL_ID = "2099";
-	private final static String InformationItemFloatingNameEditPart_VISUAL_ID = "8512";
-	private final static String InformationItemEditPartCN_VISUAL_ID = "3040";
-	private final static String InformationItemFloatingNameEditPartCN_VISUAL_ID = "8517";
-	private final static String InstanceSpecificationEditPart_VISUAL_ID = "2001";
-	private final static String InstanceSpecificationFloatingNameEditPart_VISUAL_ID = "8505";
-	private final static String InstanceSpecificationEditPartCN_VISUAL_ID = "3020";
-	private final static String InstanceSpecificationFloatingNameEditPartCN_VISUAL_ID = "8509";
-	private final static String InterfaceEditPart_VISUAL_ID = "2004";
-	private final static String InterfaceFloatingNameEditPart_VISUAL_ID = "8507";
-	private final static String InterfaceEditPartCN_VISUAL_ID = "3023";
-	private final static String InterfaceFloatingNameEditPartCN_VISUAL_ID = "8515";
-	private final static String PrimitiveTypeEditPart_VISUAL_ID = "2009";
-	private final static String PrimitiveTypeFloatingNameEditPart_VISUAL_ID = "8511";
-	private final static String PrimitiveTypeEditPartCN_VISUAL_ID = "3026";
-	private final static String PrimitiveTypeFloatingNameEditPartCN_VISUAL_ID = "8519";
-	private final static String SignalEditPart_VISUAL_ID = "2003";
-	private final static String SignalFloatingNameEditPart_VISUAL_ID = "8506";
-	private final static String SignalEditPartCN_VISUAL_ID = "3022";
-	private final static String SignalFloatingNameEditPartCN_VISUAL_ID = "8514";
+	private final static String ClassEditPart_VISUAL_ID = "2008"; //$NON-NLS-1$
+	private final static String ClassFloatingNameEditPart_VISUAL_ID = "8510"; //$NON-NLS-1$
+	private final static String AssociationClassEditPart_VISUAL_ID = "2013"; //$NON-NLS-1$
+	private final static String AssociationClassFloatingNameEditPart_VISUAL_ID = "8504"; //$NON-NLS-1$
+	private final static String AssociationNodeEditPart_VISUAL_ID = "2015"; //$NON-NLS-1$
+	private final static String AssociationFloatingNameEditPart_VISUAL_ID = "8521"; //$NON-NLS-1$
+	private final static String ClassEditPartCN_VISUAL_ID = "3010"; //$NON-NLS-1$
+	private final static String ClassFloatingNameEditPartCN_VISUAL_ID = "8518"; //$NON-NLS-1$
+	private final static String ComponentEditPart_VISUAL_ID = "2002"; //$NON-NLS-1$
+	private final static String ComponentFloatingNameEditPart_VISUAL_ID = "8503"; //$NON-NLS-1$
+	private final static String ComponentEditPartCN_VISUAL_ID = "3021"; //$NON-NLS-1$
+	private final static String ComponentFloatingNameEditPartCN_VISUAL_ID = "8513"; //$NON-NLS-1$
+	private final static String DataTypeEditPart_VISUAL_ID = "2010"; //$NON-NLS-1$
+	private final static String DataTypeFloatingNameEditPart_VISUAL_ID = "8502"; //$NON-NLS-1$
+	private final static String DataTypeEditPartCN_VISUAL_ID = "3027"; //$NON-NLS-1$
+	private final static String DataTypeFloatingNameEditPartCN_VISUAL_ID = "8520"; //$NON-NLS-1$
+	private final static String DependencyNodeEditPart_VISUAL_ID = "2014"; //$NON-NLS-1$
+	private final static String DependencyFloatingNameEditPart_VISUAL_ID = "8522"; //$NON-NLS-1$
+	private final static String EnumerationEditPart_VISUAL_ID = "2006"; //$NON-NLS-1$
+	private final static String EnumerationFloatingNameEditPart_VISUAL_ID = "8508"; //$NON-NLS-1$
+	private final static String EnumerationEditPartCN_VISUAL_ID = "3025"; //$NON-NLS-1$
+	private final static String EnumerationFloatingNameEditPartCN_VISUAL_ID = "8516"; //$NON-NLS-1$
+	private final static String InformationItemEditPart_VISUAL_ID = "2099"; //$NON-NLS-1$
+	private final static String InformationItemFloatingNameEditPart_VISUAL_ID = "8512"; //$NON-NLS-1$
+	private final static String InformationItemEditPartCN_VISUAL_ID = "3040"; //$NON-NLS-1$
+	private final static String InformationItemFloatingNameEditPartCN_VISUAL_ID = "8517"; //$NON-NLS-1$
+	private final static String InstanceSpecificationEditPart_VISUAL_ID = "2001"; //$NON-NLS-1$
+	private final static String InstanceSpecificationFloatingNameEditPart_VISUAL_ID = "8505"; //$NON-NLS-1$
+	private final static String InstanceSpecificationEditPartCN_VISUAL_ID = "3020"; //$NON-NLS-1$
+	private final static String InstanceSpecificationFloatingNameEditPartCN_VISUAL_ID = "8509"; //$NON-NLS-1$
+	private final static String InterfaceEditPart_VISUAL_ID = "2004"; //$NON-NLS-1$
+	private final static String InterfaceFloatingNameEditPart_VISUAL_ID = "8507"; //$NON-NLS-1$
+	private final static String InterfaceEditPartCN_VISUAL_ID = "3023"; //$NON-NLS-1$
+	private final static String InterfaceFloatingNameEditPartCN_VISUAL_ID = "8515"; //$NON-NLS-1$
+	private final static String PrimitiveTypeEditPart_VISUAL_ID = "2009"; //$NON-NLS-1$
+	private final static String PrimitiveTypeFloatingNameEditPart_VISUAL_ID = "8511"; //$NON-NLS-1$
+	private final static String PrimitiveTypeEditPartCN_VISUAL_ID = "3026"; //$NON-NLS-1$
+	private final static String PrimitiveTypeFloatingNameEditPartCN_VISUAL_ID = "8519"; //$NON-NLS-1$
+	private final static String SignalEditPart_VISUAL_ID = "2003"; //$NON-NLS-1$
+	private final static String SignalFloatingNameEditPart_VISUAL_ID = "8506"; //$NON-NLS-1$
+	private final static String SignalEditPartCN_VISUAL_ID = "3022"; //$NON-NLS-1$
+	private final static String SignalFloatingNameEditPartCN_VISUAL_ID = "8514"; //$NON-NLS-1$
 
 	@Override
 	public ICommand getReconcileCommand(Diagram diagram) {
@@ -237,12 +194,12 @@ public class ClassReconciler extends DiagramReconciler {
 
 		@Override
 		protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-			throw new ExecutionException("Should not be called, canRedo false");
+			throw new ExecutionException("Should not be called, canRedo false"); //$NON-NLS-1$
 		}
 
 		@Override
 		protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-			throw new ExecutionException("Should not be called, canUndo false");
+			throw new ExecutionException("Should not be called, canUndo false"); //$NON-NLS-1$
 		}
 	}
 

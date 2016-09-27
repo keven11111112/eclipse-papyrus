@@ -24,7 +24,6 @@ import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
@@ -42,7 +41,7 @@ import org.eclipse.uml2.uml.Property;
 public abstract class InstanceSpecificationRoleDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
 
 	/** The Constant ACTIVATION_ERROR_MESSAGE. */
-	private static final String ACTIVATION_ERROR_MESSAGE = "No semantic element was found during activation of the mask managed label edit policy";
+	private static final String ACTIVATION_ERROR_MESSAGE = "No semantic element was found during activation of the mask managed label edit policy";  //$NON-NLS-1$
 
 	// FIXME : See #449476
 	// Will be fixed AFTER chaos (new generator) release. 

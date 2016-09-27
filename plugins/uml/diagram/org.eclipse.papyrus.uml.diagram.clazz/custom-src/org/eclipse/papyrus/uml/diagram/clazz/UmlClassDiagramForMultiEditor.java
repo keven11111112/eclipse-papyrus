@@ -40,7 +40,7 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.uml.diagr
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_Class.gif";
+	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_Class.gif"; //$NON-NLS-1$ 
 
 	/**
 	 * The image descriptor of the diagram icon
@@ -96,8 +96,8 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.uml.diagr
 			URIEditorInput uriInput = new URIEditorInput(EcoreUtil.getURI(getDiagram()));
 			doSetInput(uriInput, true);
 		} catch (CoreException x) {
-			String title = "Problem opening";
-			String msg = "Cannot open input element:";
+			String title = "Problem opening"; //$NON-NLS-1$
+			String msg = "Cannot open input element:"; //$NON-NLS-1$
 			Shell shell = getSite().getShell();
 			ErrorDialog.openError(shell, title, msg, x.getStatus());
 		}
@@ -126,6 +126,6 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.uml.diagr
 	 */
 	@Override
 	public String getEditingDomainID() {
-		return "org.eclipse.papyrus.uml.diagram.clazz.EditingDomain";
+		return "org.eclipse.papyrus.uml.diagram.clazz.EditingDomain"; //$NON-NLS-1$
 	}
 }

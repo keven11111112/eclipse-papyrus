@@ -53,7 +53,7 @@ public class OperationTemplateParamaterDisplayEditPolicy extends TemplateParamat
 			}
 			refreshDisplay();
 		} else {
-			Activator.log.error("No semantic element was found during activation of the mask managed label edit policy", null);
+			Activator.log.error("No semantic element was found during activation of the mask managed label edit policy", null); //$NON-NLS-1$
 		}
 	}
 

@@ -30,7 +30,7 @@ import org.eclipse.papyrus.uml.diagram.common.actions.AbstractAction;
  */
 public class RestoreRelatedLinksAction extends AbstractAction {
 
-	public static String ID = "papyrus.restoreRelatedLinksAction";
+	public static String ID = "papyrus.restoreRelatedLinksAction"; //$NON-NLS-1$
 
 	public RestoreRelatedLinksAction() {
 		setId(ID);
