@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.impl.EClassifierImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
@@ -390,7 +391,7 @@ public class FacetImpl extends EClassifierImpl implements Facet {
 			allTypedElements = new BasicEList<ETypedElement>();
 			allTypedElements.addAll(getAllFacetElements());
 			allTypedElements.addAll(getAllFacetOperations());
-			allTypedElements = ECollections.unmodifiableEList(allTypedElements);
+			allTypedElements =  new EcoreEList.UnmodifiableEList(this,EFacetPackage.eINSTANCE.getFacet_AllTypedElements(),allTypedElements.size(), allTypedElements.toArray());
 		}
 		return allTypedElements;
 	}
@@ -409,7 +410,7 @@ public class FacetImpl extends EClassifierImpl implements Facet {
 				allFacetOperations.addAll(facet.getAllFacetOperations());
 			}
 			allFacetOperations.addAll(getFacetOperations());
-			allFacetOperations = ECollections.unmodifiableEList(allFacetOperations);
+			allFacetOperations = new EcoreEList.UnmodifiableEList(this,EFacetPackage.eINSTANCE.getFacet_AllFacetOperations(),allFacetOperations.size(), allFacetOperations.toArray());
 		}
 		return allFacetOperations;
 	}
@@ -428,7 +429,7 @@ public class FacetImpl extends EClassifierImpl implements Facet {
 				allFacetElements.addAll(facet.getAllFacetElements());
 			}
 			allFacetElements.addAll(getFacetElements());
-			allFacetElements = ECollections.unmodifiableEList(allFacetElements);
+			allFacetElements = new EcoreEList.UnmodifiableEList(this,EFacetPackage.eINSTANCE.getFacet_AllFacetElements(),allFacetElements.size(), allFacetElements.toArray());
 		}
 		return allFacetElements;
 	}
