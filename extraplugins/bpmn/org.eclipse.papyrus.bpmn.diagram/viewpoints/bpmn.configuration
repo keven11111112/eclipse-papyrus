@@ -3,7 +3,7 @@
   <stakeholders xmi:id="_oEQ6oKYJEeS3vNH2fiQDrQ" name="Business Process Analyst"/>
   <stakeholders xmi:id="_0kyu8PL_EeONXPQ2mbw9vA" name="Enterprise System Architect"/>
   <viewpoints xsi:type="configuration:PapyrusViewpoint" xmi:id="_0kyu8fL_EeONXPQ2mbw9vA" name="Default Papyrus Viewpoint">
-    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_0kzWAPL_EeONXPQ2mbw9vA" name="BPMN Process Diagram" icon="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/Process.png" implementationID="PapyrusUMLActivityDiagram" categories="_0kz9GPL_EeONXPQ2mbw9vA">
+    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_0kzWAPL_EeONXPQ2mbw9vA" name="BPMN Process Diagram" icon="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/Processdi.png" implementationID="PapyrusUMLActivityDiagram" categories="_0kz9GPL_EeONXPQ2mbw9vA">
    <!--
     <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_0kzWAPL_EeONXPQ2mbw9vA" name="BPMN Process Diagram" icon="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/bpmn_16x16.png" implementationID="PapyrusUMLActivityDiagram" categories="_0kz9GPL_EeONXPQ2mbw9vA" customStyle="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/css/style.css">
    --> 
@@ -28,7 +28,7 @@
       <paletteRules xmi:id="_hnObJGThEeS0VelLgL_ZMA" permit="false" element="activity.*"/>
       <paletteRules xmi:id="_yRqRULFbEeWgGbmmY-b2nA" permit="false" element="bpmn.collaboration.*"/>
     </modelKinds>
-    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_0kzWAPL_EeONXPQ2mbw9vB" name="BPMN Collaboration Diagram" icon="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/Collaboration.png" implementationID="PapyrusUMLActivityDiagram" categories="_0kz9GPL_EeONXPQ2mbw9vA">
+    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_0kzWAPL_EeONXPQ2mbw9vB" name="BPMN Collaboration Diagram" icon="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/Collaborationdi.png" implementationID="PapyrusUMLActivityDiagram" categories="_0kz9GPL_EeONXPQ2mbw9vA">
     <!--
     <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_0kzWAPL_EeONXPQ2mbw9vB" name="BPMN Collaboration Diagram" icon="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/BpmnCollaboration_16x16.png" implementationID="PapyrusUMLActivityDiagram" categories="_0kz9GPL_EeONXPQ2mbw9vA" customStyle="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/css/style.css">
     -->
