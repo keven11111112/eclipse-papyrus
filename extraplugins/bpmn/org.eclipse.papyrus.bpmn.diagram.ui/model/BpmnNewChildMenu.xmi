@@ -14,6 +14,9 @@
       label="Data Association"
       elementTypeIdRef="org.eclipse.papyrus.bpmn.DataAssociation_ObjectFlow"/>
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="Macro Task"
+      elementTypeIdRef="org.eclipse.papyrus.bpmn.CallActivity_CallBehaviorAction"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="Manual Task"
       elementTypeIdRef="org.eclipse.papyrus.bpmn.ManualTask_OpaqueAction"/>
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"

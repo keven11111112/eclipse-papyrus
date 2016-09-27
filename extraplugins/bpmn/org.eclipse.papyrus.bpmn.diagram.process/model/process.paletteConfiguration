@@ -42,6 +42,17 @@
 			description="Drawer Configuration for BPMN Process Diagram Tasks">
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
+				id="bpmn.process.macrotask.tool"
+				label="Macro Task"
+				description="Macro Task (Call Behavior Action)">
+			<icon
+					pluginID="org.eclipse.papyrus.bpmn"
+					iconPath="/icons/CallBehaviorAction.png"/>
+			<elementDescriptors
+					elementTypeId="org.eclipse.papyrus.bpmndi.process.CallActivity_CallBehaviorAction"/>
+		</ownedConfigurations>
+		<ownedConfigurations
+				xsi:type="paletteconfiguration:ToolConfiguration"
 				id="bpmn.process.task.tool"
 				label="Task"
 				description="Task (Opaque Action)">
