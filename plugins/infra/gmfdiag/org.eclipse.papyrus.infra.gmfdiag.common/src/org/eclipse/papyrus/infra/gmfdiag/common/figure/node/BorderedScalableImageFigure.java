@@ -19,15 +19,11 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.ScrollPane;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.PrecisionDimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
 import org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.svg.SVGAnimatedLength;
-import org.w3c.dom.svg.SVGLength;
-import org.w3c.dom.svg.SVGSVGElement;
 
 /**
  * Scalable Image figure that will be aligned in the middle/center and keep its own ratio.
@@ -43,6 +39,12 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 		// set a layout manager to override maintain ratio behavior
 		setLayoutManager(new BorderedLayoutManager());
 		lastRenderedImage = renderedImage;
+		// assure that ShapeFlowLayout gets the actual image size as preferred size. Otherwise, it would
+		// scale the image to identical width and height which would make it impossible to calculate the
+		// original aspect ratio (SVG specific workaround was in place before, see bug 500999).
+		setPreferredImageSize(
+				renderedImage.getSWTImage().getBounds().width,
+				renderedImage.getSWTImage().getBounds().height);
 	}
 
 	@Override
@@ -103,53 +105,48 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 			if (isMaintainAspectRatio() && container.getParent().getChildren().size() == 1) {
 				// If the ratio is maintained
 				ScalableCompartmentFigure scalableCompartmentFigure = FigureUtils.findParentFigureInstance(container, ScalableCompartmentFigure.class);
+
+				// Get the image to calculate ratio
+				ScalableImageFigure scalableImage = FigureUtils.findChildFigureInstance(getParent(), ScalableImageFigure.class);
+				RenderedImage renderedImage = scalableImage.getRenderedImage();
 				Rectangle scalableCompartmentBounds = scalableCompartmentFigure != null ? scalableCompartmentBounds = scalableCompartmentFigure.getBounds() : container.getBounds();
 
-				container.setBounds(scalableCompartmentBounds);
+				double ratio = (double) renderedImage.getRenderInfo().getWidth() /
+						(double) renderedImage.getRenderInfo().getHeight();
+
+				Point center = new Point(
+						scalableCompartmentBounds.x + scalableCompartmentBounds.width / 2,
+						scalableCompartmentBounds.y + scalableCompartmentBounds.height / 2);
+
+				int width;
+				int height;
+				// Case width>height
+				if (scalableCompartmentBounds.width > scalableCompartmentBounds.height) {
+					if (scalableCompartmentBounds.width > scalableCompartmentBounds.height * ratio) {
+						width = (int) (scalableCompartmentBounds.height * ratio);
+						height = scalableCompartmentBounds.height;
+					} else {
+						width = scalableCompartmentBounds.width;
+						height = (int) (scalableCompartmentBounds.width / ratio);
+					}
+				} else {// Case height>width
+					if (scalableCompartmentBounds.height < scalableCompartmentBounds.width / ratio) {
+						width = (int) (scalableCompartmentBounds.height * ratio);
+						height = scalableCompartmentBounds.height;
+					} else {
+						width = scalableCompartmentBounds.width;
+						height = (int) (scalableCompartmentBounds.width / ratio);
+					}
+				}
+				int y = center.y - height / 2;
+				int x = center.x - width / 2;
+				container.setBounds(new Rectangle(x, y, width, height));
 			} else {
 				// Set bounds
 				if (scrollPaneFigure instanceof ScrollPane) {
 					container.setBounds(scrollPaneFigure.getBounds());
 				}
 			}
-		}
-
-		/**
-		 * Transforms the given SVG animated length to a base value, assuming the units in the SVG are pixels
-		 *
-		 * @param length
-		 *            The SVG length
-		 * @return The base value as a double
-		 */
-		private double getValueOf(SVGAnimatedLength length) {
-			if (length == null) {
-				return 0;
-			}
-			SVGLength base = length.getBaseVal();
-			if (base == null) {
-				return 0;
-			}
-			return base.getValue();
-		}
-
-		/**
-		 * Gets the dimension of the SVG document, assuming the units in the SVG are pixels
-		 *
-		 * @param document
-		 *            The SVG document
-		 * @return The equivalent Draw2D dimension
-		 */
-		private PrecisionDimension getSvgDimension(Document document) {
-			double svgWidth = 0;
-			double svgHeight = 0;
-			if (document.getDocumentElement() instanceof SVGSVGElement) {
-				SVGSVGElement svgElement = (SVGSVGElement) document.getDocumentElement();
-				if (svgElement != null) {
-					svgWidth = getValueOf(svgElement.getWidth());
-					svgHeight = getValueOf(svgElement.getHeight());
-				}
-			}
-			return new PrecisionDimension(svgWidth, svgHeight);
 		}
 
 		/**
@@ -162,10 +159,7 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 		 */
 		@Override
 		protected Dimension calculatePreferredSize(IFigure container, int wHint, int hHint) {
-			// TODO Auto-generated method stub
 			return null;
 		}
-
 	}
-
 }
