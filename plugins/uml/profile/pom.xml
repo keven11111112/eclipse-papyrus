@@ -13,5 +13,6 @@
 
 	<modules>
 		<module>org.eclipse.papyrus.uml.profile.drafter</module>
+		<module>org.eclipse.papyrus.uml.profile.drafter.documentation</module>
 	</modules>
 </project>
