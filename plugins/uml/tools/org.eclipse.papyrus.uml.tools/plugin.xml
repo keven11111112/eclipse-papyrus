@@ -99,4 +99,17 @@
          </language>
       </provider>
    </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.infra.core.copier">
+         
+      <factoryConfiguration>
+         <!-- In InterfaceRealizations, the client is a derived subset of the owner.
+              cf. http://eclip.se/502461  -->
+         <referenceFilter
+               referenceURI="http://www.eclipse.org/uml2/5.0.0/UML#//Dependency/client"
+               ownerTypeURI="http://www.eclipse.org/uml2/5.0.0/UML#//InterfaceRealization">
+         </referenceFilter>
+      </factoryConfiguration>
+   </extension>
 </plugin>
