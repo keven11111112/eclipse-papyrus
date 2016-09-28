@@ -400,7 +400,14 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			displayError("The table can't be initialized");//$NON-NLS-1$
 			return;
 		}
-		domain.getCommandStack().execute(cc);
+
+		final ResourceSet resourceSet = getResourceSet();
+		// Bug 502160: Remove the resource from the resource set to execute the command without using the editing command stack
+		resourceSet.getResources().remove(this.resource);
+		cc.execute();
+		// Bug 502160: Re-add the removed resource before the command execute
+		resourceSet.getResources().add(this.resource);
+
 		if (this.table.getContext() == null) {
 			displayError("The context of the table hasn't be set");//$NON-NLS-1$
 			return;
@@ -926,8 +933,13 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			}
 			TransactionalEditingDomain domain = getTableEditingDomain();
 			if (domain != null && this.table != null) {
+				final ResourceSet resourceSet = getResourceSet();
+				// Bug 502160: Remove the resource from the resource set to execute the command without using the editing command stack
+				resourceSet.getResources().remove(this.resource);
 				Command cmd = getDisposeTableCommand(domain, this.table);
-				domain.getCommandStack().execute(cmd);
+				cmd.execute();
+				// Bug 502160: Re-add the removed resource before the command execute
+				resourceSet.getResources().add(this.resource);
 			}
 			if (NattablePropertyEditor.this.resource != null) {
 				try {
