@@ -120,7 +120,7 @@
       <extension
             point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
          <DirectEditor
-               contributor="All4Tec"
+               contributor="CEA LIST"
                language="Table Direct Editor"
                objectToEdit="org.eclipse.papyrus.infra.nattable.model.nattable.Table">
             <popupeditor
@@ -130,5 +130,11 @@
                   name="Medium">
             </Priority>
          </DirectEditor>
+      </extension>
+      <extension
+            point="org.eclipse.core.runtime.preferences">
+         <initializer
+               class="org.eclipse.papyrus.infra.nattable.modelexplorer.preferences.TableDirectEditorPreferenceInitializer">
+         </initializer>
       </extension>
 </plugin>

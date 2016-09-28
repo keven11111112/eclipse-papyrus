@@ -2487,7 +2487,7 @@
       <extension
          point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
       <DirectEditor
-            contributor="All4Tec"
+            contributor="CEA LIST"
             language="Named Element Direct Editor"
             objectToEdit="org.eclipse.uml2.uml.NamedElement"
             superType="true">
@@ -2509,6 +2509,9 @@
             point="org.eclipse.core.runtime.preferences">
          <initializer
                class="org.eclipse.papyrus.uml.modelexplorer.preferences.CustomizableLabelPreferenceInitializer">
+         </initializer>
+         <initializer
+               class="org.eclipse.papyrus.uml.modelexplorer.preferences.NamedElementDirectEditorPreferenceInitializer">
          </initializer>
       </extension>
 </plugin>

@@ -3,6 +3,7 @@
  */
 package org.eclipse.papyrus.uml.modelexplorer;
 
+import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -37,6 +38,9 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(plugin);
+
+		// Activation of the preferences of this plug-in to initialize this.
+		DefaultScope.INSTANCE.getNode(PLUGIN_ID);
 	}
 
 	/*
