@@ -24,8 +24,10 @@ import java.util.Map;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.TreeSearch;
@@ -120,6 +122,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineModelChildrenHelper
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.common.util.CacheAdapter;
@@ -592,28 +595,6 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 				return super.containsPoint(x, y);
 			}
 
-			/**
-			 * Reverse the find order from super, otherwise the child executions would hard to select.
-			 */
-			@Override
-			public IFigure findFigureAt(int x, int y, TreeSearch search) {
-				if (search.prune(this)) {
-					return null;
-				}
-				IFigure mainFigure = getMainFigure().findFigureAt(x, y, search);
-				if (mainFigure != null) {
-					return mainFigure;
-				}
-				return getBorderItemContainer().findFigureAt(x, y, search);
-			}
-
-			@Override
-			public void setBackgroundColor(Color bg) {
-				// if (getPrimaryShape() != null) {
-				// NodeFigure dashLineRectangle = getPrimaryShape().getFigureLifelineDotLineFigure().getDashLineRectangle();
-				// dashLineRectangle.setBackgroundColor(bg);
-				// }
-			}
 
 			@Override
 			public void setOpaque(boolean opaque) {
