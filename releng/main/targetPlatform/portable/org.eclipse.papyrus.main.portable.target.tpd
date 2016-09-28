@@ -34,7 +34,7 @@ location nebula "http://download.eclipse.org/nebula/releases/1.0.0/" {
 
 //updateFrom("MDT UML2",0) 
 
-location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.2.x" {
+location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.2" {
 	org.eclipse.uml2.sdk.feature.group
 }
 
@@ -46,7 +46,7 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC4-201609071200/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6/R-4.6.1-201609071200/" {
 	org.eclipse.sdk.feature.group
 }
 
@@ -96,7 +96,7 @@ location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releas
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.8.1/S-3.8.1RC3-20160906143814/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.8.1/R-3.8.1-20160912100321/repository/" {
 	org.eclipse.wst.xml_sdk.feature.feature.group
 	org.eclipse.wst.xml_ui.feature.feature.group
 }
