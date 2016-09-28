@@ -97,5 +97,11 @@
          </Priority>
       </DirectEditor>
    </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.preferences.DiagramDirectEditorPreferenceInitializer">
+      </initializer>
+   </extension>
   
 </plugin>

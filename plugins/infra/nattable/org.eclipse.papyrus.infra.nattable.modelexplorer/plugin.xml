@@ -131,4 +131,10 @@
             </Priority>
          </DirectEditor>
       </extension>
+      <extension
+            point="org.eclipse.core.runtime.preferences">
+         <initializer
+               class="org.eclipse.papyrus.infra.nattable.modelexplorer.preferences.TableDirectEditorPreferenceInitializer">
+         </initializer>
+      </extension>
 </plugin>

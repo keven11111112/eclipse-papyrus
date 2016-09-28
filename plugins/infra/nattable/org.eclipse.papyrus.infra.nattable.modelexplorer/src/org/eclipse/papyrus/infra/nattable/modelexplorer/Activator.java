@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.modelexplorer;
 
+import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -35,6 +36,9 @@ public class Activator extends AbstractUIPlugin {
 	public void start(final BundleContext context) throws Exception {
 		super.start(context);
 		Activator.plugin = this;
+
+		// Activation of the preferences of this plug-in to initialize this.
+		DefaultScope.INSTANCE.getNode(PLUGIN_ID);
 	}
 
 

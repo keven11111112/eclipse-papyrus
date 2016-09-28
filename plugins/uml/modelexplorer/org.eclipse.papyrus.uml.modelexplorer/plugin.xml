@@ -2463,4 +2463,10 @@
          </Priority>
       </DirectEditor>
    </extension>
+   <extension
+            point="org.eclipse.core.runtime.preferences">
+         <initializer
+               class="org.eclipse.papyrus.uml.modelexplorer.preferences.NamedElementDirectEditorPreferenceInitializer">
+         </initializer>
+      </extension>
 </plugin>
