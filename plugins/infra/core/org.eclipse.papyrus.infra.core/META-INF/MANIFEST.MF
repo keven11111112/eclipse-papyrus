@@ -3,6 +3,7 @@ Export-Package: org.eclipse.papyrus.infra.core,
  org.eclipse.papyrus.infra.core.clipboard,
  org.eclipse.papyrus.infra.core.editor,
  org.eclipse.papyrus.infra.core.extension,
+ org.eclipse.papyrus.infra.core.internal.clipboard;x-internal:=true,
  org.eclipse.papyrus.infra.core.internal.expressions;x-internal:=true,
  org.eclipse.papyrus.infra.core.internal.language;x-friends:="org.eclipse.papyrus.infra.emf",
  org.eclipse.papyrus.infra.core.internal.sashmodel;x-internal:=true,
@@ -29,7 +30,7 @@ Require-Bundle: org.eclipse.emf.workspace;bundle-version="[1.5.0,2.0.0)",
  org.eclipse.core.resources;bundle-version="[3.11.0,4.0.0)";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.1.0.qualifier
+Bundle-Version: 2.1.1.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.infra.core.Activator

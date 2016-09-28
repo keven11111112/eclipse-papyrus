@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 425270
- *  Christian W. Damus - bug 469464
+ *  Christian W. Damus - bugs 469464, 502461
  *
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.tools;
@@ -21,9 +21,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.papyrus.infra.core.internal.clipboard.CopierFactory;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
@@ -31,8 +33,13 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.osgi.framework.BundleContext;
+
+import com.google.common.collect.ImmutableSetMultimap;
+import com.google.common.collect.SetMultimap;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -62,24 +69,16 @@ public class Activator extends AbstractUIPlugin {
 	public Activator() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
 		adapterFactory = createAdapterFactory();
+
+		ensureSensibleCopying();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
@@ -104,6 +103,24 @@ public class Activator extends AbstractUIPlugin {
 
 	public AdapterFactory getItemProviderAdapterFactory() {
 		return adapterFactory;
+	}
+
+	private static void ensureSensibleCopying() {
+		// Copying the 'client' reference results in multiple redundant values,
+		// which breaks the XMI deserialization (cf. bug 479425)
+		SetMultimap<EClass, EReference> doNotCopy = ImmutableSetMultimap.<EClass, EReference> builder()
+				.put(UMLPackage.Literals.INTERFACE_REALIZATION, UMLPackage.Literals.DEPENDENCY__CLIENT)
+				.build();
+
+		CopierFactory.registerReferenceFilter((reference, owner) -> {
+			boolean result = false;
+
+			if (owner instanceof InterfaceRealization) {
+				result = doNotCopy.containsEntry(UMLPackage.Literals.INTERFACE_REALIZATION, reference);
+			}
+
+			return result;
+		});
 	}
 
 
@@ -262,5 +279,4 @@ public class Activator extends AbstractUIPlugin {
 
 		return image;
 	}
-
 }
