@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Main" sequenceNumber="1473062011">
+<target name="Papyrus Main" sequenceNumber="1475137593">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
@@ -25,7 +25,7 @@
       <repository id="nebula" location="http://download.eclipse.org/nebula/releases/1.0.0/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.uml2.sdk.feature.group" version="5.2.0.v20160516-0939"/>
+      <unit id="org.eclipse.uml2.sdk.feature.group" version="5.2.1.v20160822-0739"/>
       <repository id="uml" location="http://download.eclipse.org/modeling/mdt/uml2/updates/5.2"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
