@@ -29,6 +29,7 @@ import org.eclipse.papyrus.emf.facet.util.emf.core.ModelUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.papyrus.uml.tools.profile.definition.LabelTypesEnum;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.NamedElement;
 
 
@@ -259,6 +260,11 @@ public class CustomizableDelegatingItemLabelProvider implements IItemLabelProvid
 			}
 		}
 
+		// If no text to display we call UMLLabelProvider which add some text in this case.
+		if (0 >= result.length()) {
+			result.append(new UMLLabelProvider().getText(element));
+		}
+
 		return result;
 	}
 
@@ -298,7 +304,12 @@ public class CustomizableDelegatingItemLabelProvider implements IItemLabelProvid
 				LabelTypesEnum typeEnum = LabelTypesEnum.getByLiteral(type);
 				switch (typeEnum) {
 				case LABEL:
-					result = m.group(3);
+					if (element instanceof Comment) {
+						// Comment case which can return <Empty Comment>
+						result = new UMLLabelProvider().getText((Comment) element);
+					} else {
+						result = m.group(3);
+					}
 					break;
 				case STEREOTYPE:
 					result = m.group(1);

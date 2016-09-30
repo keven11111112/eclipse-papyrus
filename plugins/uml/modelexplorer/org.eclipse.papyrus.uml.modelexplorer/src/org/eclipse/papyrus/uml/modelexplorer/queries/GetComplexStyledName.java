@@ -27,12 +27,12 @@ import org.eclipse.papyrus.uml.modelexplorer.Activator;
 import org.eclipse.papyrus.uml.modelexplorer.preferences.CustomizableLabelPreferences;
 import org.eclipse.papyrus.uml.tools.profile.definition.LabelStylersEnum;
 import org.eclipse.papyrus.uml.tools.providers.CustomizableDelegatingItemLabelProvider;
-import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * A query to get the Name as StyledString. The label is styled with preferences.
  */
-public class GetComplexStyledName implements IJavaQuery2<NamedElement, StyledString> {
+public class GetComplexStyledName implements IJavaQuery2<Element, StyledString> {
 
 	/** the label provider */
 	private static final CustomizableDelegatingItemLabelProvider labelProvider = new CustomizableDelegatingItemLabelProvider();
@@ -42,7 +42,7 @@ public class GetComplexStyledName implements IJavaQuery2<NamedElement, StyledStr
 	 * 
 	 * @see org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2#evaluate(org.eclipse.emf.ecore.EObject, org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2, org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager)
 	 */
-	public StyledString evaluate(final NamedElement source, final IParameterValueList2 parameterValues, final IFacetManager facetManager) throws DerivedTypedElementException {
+	public StyledString evaluate(final Element source, final IParameterValueList2 parameterValues, final IFacetManager facetManager) throws DerivedTypedElementException {
 		ParameterValue parameterValue = parameterValues.getParameterValueByName("eObject"); //$NON-NLS-1$
 		if (parameterValue.getValue() instanceof EStructuralFeature) {
 			return new StyledString(((EStructuralFeature) parameterValue.getValue()).getName());
