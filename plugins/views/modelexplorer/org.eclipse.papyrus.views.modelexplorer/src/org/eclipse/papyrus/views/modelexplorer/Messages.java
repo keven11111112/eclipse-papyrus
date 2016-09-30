@@ -16,7 +16,6 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.views.modelexplorer.messages"; //$NON-NLS-1$
-	public static String DiagramOrderChangeCommand_Label;
 	public static String ModelExplorerView_CaseSensitiveCheckBoxLabel;
 	public static String ModelExplorerView_CaseSensitiveCheckBoxTooltip;
 	public static String ModelExplorerView_SearchTextFieldTooltip;
