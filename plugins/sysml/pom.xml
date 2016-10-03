@@ -11,7 +11,7 @@
 		<relativePath>../../releng/extra</relativePath>
     </parent>
 	<name>Papyrus SysML</name>
-	<description>Top container of the Papyrus SysML 1.1 modeler.</description>
+	<description>Top container of the Papyrus SysML 1.1 modeler</description>
 
 	<modules>
 		<module>diagram</module>

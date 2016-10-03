@@ -164,7 +164,15 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			RefreshConnectionsRequest refreshRequest = new RefreshConnectionsRequest(newValues);
 			Command refreshCommand = getHost().getCommand(refreshRequest);
 
-			// Prepare an arrange command to avoid every dropped view to appear at the same location
+			// Prepare an arrange command to avoid every dropped view to appear at the same location only if newValues contains at least one node, not when you just drag a link
+			boolean isOneNode = false;
+			for(Object o : newValues){
+				if(o instanceof Node){
+					isOneNode=true;
+					break;
+				}
+			}
+			
 			ArrangeRequest arrangeRequest = new ArrangeRequest(RequestConstants.REQ_ARRANGE_DEFERRED);
 			arrangeRequest.setViewAdaptersToArrange(newValues);
 			Command arrangeCommand = getHost().getCommand(arrangeRequest);
@@ -172,7 +180,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			// Update the complete drop command (drop - refresh - arrange)
 			Command dropCommand = new ICommandProxy(gmfDropCommand);
 			completeDropCommand.add(dropCommand.chain(refreshCommand));
-			completeDropCommand.add(arrangeCommand);
+			if(isOneNode){
+				completeDropCommand.add(arrangeCommand);
+			}
 
 			// add snap command if required
 			// 430099: [Diagram] Snap to Grid for elements dropped from the ModelExplorer is ignored
