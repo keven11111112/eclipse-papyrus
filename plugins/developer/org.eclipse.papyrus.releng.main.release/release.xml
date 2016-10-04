@@ -263,6 +263,7 @@
 		<feature name="org.eclipse.papyrus.infra.viewpoints.feature" version="2.0.0"/>
 		<feature name="org.eclipse.papyrus.uml.decoratormodel.feature" version="3.0.0"/>
 		<feature name="org.eclipse.papyrus.uml.assistants.feature" version="3.0.0"/>
+		<feature name="org.eclipse.papyrus.views.documentation.feature" version="1.0.0"/>
 		<plugin name="com.google.guava" version="15.0.0"/>
 		<plugin name="org.eclipse.papyrus.sdk" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.eclipse.project.editors" version="2.0.0"/>

@@ -22,4 +22,14 @@
             target="platform:/plugin/org.eclipse.papyrus.uml.documentation.profile/model/">
       </mapping>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="Profile that provides documentation profile to Comment Element"
+            iconpath="icons/documentation.png"
+            name="Papyrus Documentation"
+            path="pathmap://PAPYRUS_DOCUMENTATION/Papyrus.profile.uml"
+            provider="Eclipse Modeling Project">
+      </profile>
+   </extension>
 </plugin>

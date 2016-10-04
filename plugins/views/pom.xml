@@ -17,5 +17,6 @@
 		<module>validation</module>
 		<module>org.eclipse.papyrus.views.search</module>
 		<module>references</module>
+		<module>documentation</module>
 	</modules>
 </project>

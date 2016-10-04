@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.papyrus.infra.widgets.providers.TreeCollectionContentProvider;
+import org.eclipse.papyrus.infra.widgets.util.PapyrusSelectionService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -200,6 +201,7 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 
 		treeViewer = new TreeViewer(tree);
 		treeViewer.setContentProvider(TreeCollectionContentProvider.instance);
+		PapyrusSelectionService.getInstance().setSelectionProvider(treeViewer);
 
 		createListControls();
 
@@ -630,8 +632,12 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractLis
 
 	@Override
 	public void dispose() {
-		if (modelProperty != null) {
+		if (null != modelProperty) {
 			modelProperty.removeChangeListener(this);
+		}
+
+		if (null != treeViewer) {
+			PapyrusSelectionService.getInstance().unsetSelectionProvider(treeViewer);
 		}
 		super.dispose();
 	}
