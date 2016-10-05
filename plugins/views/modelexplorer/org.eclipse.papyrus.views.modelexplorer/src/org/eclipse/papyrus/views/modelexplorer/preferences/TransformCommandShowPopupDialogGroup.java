@@ -9,19 +9,21 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - use of AbstractPreferenceGroup
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.preferences;
 
 import org.eclipse.jface.dialogs.DialogPage;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.preference.BooleanFieldEditor;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.AbstractGroup;
+import org.eclipse.papyrus.infra.ui.preferences.AbstractPreferenceGroup;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
-public class TransformCommandShowPopupDialogGroup extends AbstractGroup {
+public class TransformCommandShowPopupDialogGroup extends AbstractPreferenceGroup {
 
 	private static final String SHOW_POPUP_DIALOG_GROUP_TITLE = "Transform into Action";
 
@@ -56,6 +58,8 @@ public class TransformCommandShowPopupDialogGroup extends AbstractGroup {
 		Group visibilityGroup = new Group(parent, SWT.SCROLL_PAGE);
 		visibilityGroup.setLayout(new GridLayout());
 		visibilityGroup.setText(SHOW_POPUP_DIALOG_GROUP_TITLE);
+
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(visibilityGroup);
 
 		// field for name label visibility
 		showPopupDialogBooleanFieldEditor = new BooleanFieldEditor(

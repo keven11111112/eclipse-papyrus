@@ -106,7 +106,7 @@ public class StringWithClearEditor extends AbstractValueEditor implements KeyLis
 		final Composite filterComposite = new Composite(this, style);
 		filterComposite.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_LIST_BACKGROUND));
 
-		// Initialise the layout of the filter composite to display the widgets on 2 columns
+		// Initialize the layout of the filter composite to display the widgets on 2 columns
 		final GridLayout filterLayout = new GridLayout(2, false);
 		filterLayout.marginHeight = 0;
 		filterLayout.marginWidth = 0;
@@ -131,6 +131,7 @@ public class StringWithClearEditor extends AbstractValueEditor implements KeyLis
 			@Override
 			public void mouseUp(MouseEvent e) {
 				text.setText(EMPTY);
+				notifyChange();
 			}
 		});
 

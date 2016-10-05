@@ -91,12 +91,13 @@ import org.eclipse.papyrus.views.modelexplorer.matching.IMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.LinkItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ModelElementItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ReferencableMatchingItem;
+import org.eclipse.papyrus.views.modelexplorer.preferences.IFilterPreferenceConstants;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -637,23 +638,20 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		// Set the viewerFilter
 		viewerFilter = new PatternViewerFilter();
 		getCommonViewer().setFilters(viewerFilter);
+		viewerFilter.setPattern("*");//$NON-NLS-1$
 
 		// Create the filter composite
 		final StringWithClearEditor filterText = new StringWithClearEditor(filterComposite, SWT.BORDER);
 		filterText.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
 		filterText.setValue("");//$NON-NLS-1$
 		filterText.setToolTipText(Messages.ModelExplorerView_SearchTextFieldTooltip);
-		filterText.getText().addModifyListener(new ModifyListener() {
-
-			/**
-			 * {@inheritDoc}
-			 */
-			@Override
-			public void modifyText(final ModifyEvent e) {
-				viewerFilter.setPattern(filterText.getValue());
-				getCommonViewer().refresh();
-			}
+		filterText.addCommitListener(event -> {
+			viewerFilter.setPattern(filterText.getValue());
+			getCommonViewer().refresh();
 		});
+
+		filterText.setValidateOnDelay(getValidationDelay());
+		filterText.setValidateOnDelay(isFilterValidateOnDelay());
 
 		// Key listener to focus in the treeviewer when presser arrow up key
 		filterText.getText().addKeyListener(new KeyAdapter() {
@@ -683,6 +681,33 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			}
 		});
 
+		filterText.getText().addFocusListener(new FocusAdapter() {
+			/**
+			 * {@inhiriteDoc}
+			 * 
+			 * @see java.awt.event.FocusAdapter#focusGained(java.awt.event.FocusEvent)
+			 */
+			@Override
+			public void focusGained(final FocusEvent e) {
+				filterText.setValidateOnDelay(getValidationDelay());
+				filterText.setValidateOnDelay(isFilterValidateOnDelay());
+			}
+		});
+
+	}
+
+	/**
+	 * Gets the preferences for the validation kind of filter field.
+	 */
+	private boolean isFilterValidateOnDelay() {
+		return Activator.getDefault().getPreferenceStore().getBoolean(IFilterPreferenceConstants.PREF_FILTER_LIVE_VALIDATION);
+	}
+
+	/**
+	 * Gets the preferences for the validation delay.
+	 */
+	private int getValidationDelay() {
+		return Activator.getDefault().getPreferenceStore().getInt(IFilterPreferenceConstants.PREF_FILTER_VALIDATION_DELAY);
 	}
 
 	@Override

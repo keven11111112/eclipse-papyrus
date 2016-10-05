@@ -300,9 +300,12 @@
    <extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="false"?>
 		<initializer class="org.eclipse.papyrus.views.modelexplorer.preferences.NavigatorPreferenceInitializer"/>
+  <initializer
+        class="org.eclipse.papyrus.views.modelexplorer.preferences.FilterPreferenceInitializer">
+  </initializer>
    </extension>
    <extension point="org.eclipse.ui.preferencePages">
-      <page category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory" class="org.eclipse.papyrus.views.modelexplorer.preferences.NavigatorPreferencePage" id="org.eclipse.papyrus.views.modelexplorer.preferences.NavigatorPreferencePage" name="Papyrus Model Explorer">
+      <page category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory" class="org.eclipse.papyrus.views.modelexplorer.preferences.ModelExplorerPreferencePage" id="org.eclipse.papyrus.views.modelexplorer.preferences.NavigatorPreferencePage" name="Model Explorer">
       </page>
    </extension>
 
