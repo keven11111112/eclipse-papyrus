@@ -739,4 +739,9 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+	
+	@Override
+	public boolean isSelectable() {
+		return getFigure().isShowing();
+	}
 }
