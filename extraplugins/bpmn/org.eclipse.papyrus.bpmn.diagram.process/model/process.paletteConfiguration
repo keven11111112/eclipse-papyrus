@@ -135,12 +135,23 @@
 			description="Drawer Configuration for BPMN Process Diagram Gateways">
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
+				id="bpmn.process.inclusiveGateway.forkNode.tool"
+				label="Inclusive Gateway (Fork node)"
+				description="Inclusive Gateway (Fork node)">
+			<icon
+					pluginID="org.eclipse.papyrus.bpmn"
+					iconPath="/icons/InclusiveGatewayFork.png"/>
+			<elementDescriptors
+					elementTypeId="org.eclipse.papyrus.bpmn.process.InclusiveGateway_ForkNode_3040"/>
+		</ownedConfigurations>
+		<ownedConfigurations
+				xsi:type="paletteconfiguration:ToolConfiguration"
 				id="bpmn.process.inclusiveGateway.joinNode.tool"
 				label="Inclusive Gateway (Join node)"
 				description="Inclusive Gateway (Join node)">
 			<icon
 					pluginID="org.eclipse.papyrus.bpmn"
-					iconPath="/icons/InclusiveGateway.png"/>
+					iconPath="/icons/InclusiveGatewayJoin.png"/>
 			<elementDescriptors
 					elementTypeId="org.eclipse.papyrus.bpmn.process.InclusiveGateway_JoinNode_3041"/>
 		</ownedConfigurations>
@@ -151,7 +162,7 @@
 				description="Exclusive Gateway (Decision node)">
 			<icon
 					pluginID="org.eclipse.papyrus.bpmn"
-					iconPath="/icons/ExclusiveGateway.png"/>
+					iconPath="/icons/ExclusiveGatewayFork.png"/>
 			<elementDescriptors
 					elementTypeId="org.eclipse.papyrus.bpmn.process.ExclusiveGateway_DecisionNode_3038"/>
 		</ownedConfigurations>
@@ -162,31 +173,9 @@
 				description="Exclusive Gateway (Merge Node)">
 			<icon
 					pluginID="org.eclipse.papyrus.bpmn"
-					iconPath="/icons/ExclusiveGateway.png"/>
+					iconPath="/icons/ExclusiveGatewayJoin.png"/>
 			<elementDescriptors
 					elementTypeId="org.eclipse.papyrus.bpmn.process.ExclusiveGateway_MergeNode_3039"/>
-		</ownedConfigurations>
-		<ownedConfigurations
-				xsi:type="paletteconfiguration:ToolConfiguration"
-				id="bpmn.process.parallelGateway.joinNode.tool"
-				label="Parallel Gateway (Join node)"
-				description="Parallel Gateway (Join node)">
-			<icon
-					pluginID="org.eclipse.papyrus.bpmn"
-					iconPath="/icons/ParallelGateway.png"/>
-			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.ParallelGateway_JoinNode_3041"/>
-		</ownedConfigurations>
-		<ownedConfigurations
-				xsi:type="paletteconfiguration:ToolConfiguration"
-				id="bpmn.process.inclusiveGateway.forkNode.tool"
-				label="Inclusive Gateway (Fork node)"
-				description="Inclusive Gateway (Fork node)">
-			<icon
-					pluginID="org.eclipse.papyrus.bpmn"
-					iconPath="/icons/InclusiveGateway.png"/>
-			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.InclusiveGateway_ForkNode_3040"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -195,9 +184,20 @@
 				description="Parallel Gateway (Fork node)">
 			<icon
 					pluginID="org.eclipse.papyrus.bpmn"
-					iconPath="/icons/ParallelGateway.png"/>
+					iconPath="/icons/ParallelGatewayFork.png"/>
 			<elementDescriptors
 					elementTypeId="org.eclipse.papyrus.bpmn.process.ParallelGateway_ForkNode_3040"/>
+		</ownedConfigurations>
+		<ownedConfigurations
+				xsi:type="paletteconfiguration:ToolConfiguration"
+				id="bpmn.process.parallelGateway.joinNode.tool"
+				label="Parallel Gateway (Join node)"
+				description="Parallel Gateway (Join node)">
+			<icon
+					pluginID="org.eclipse.papyrus.bpmn"
+					iconPath="/icons/ParallelGatewayJoin.png"/>
+			<elementDescriptors
+					elementTypeId="org.eclipse.papyrus.bpmn.process.ParallelGateway_JoinNode_3041"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -342,7 +342,7 @@
 				description="Data Store Reference">
 			<icon
 					pluginID="org.eclipse.papyrus.bpmn"
-					iconPath="/icons/DataStore.png"/>
+					iconPath="/icons/DataStoreReference.png"/>
 			<elementDescriptors
 					elementTypeId="org.eclipse.papyrus.bpmn.process.DataStoreReference_DataStoreNode_3078"/>
 		</ownedConfigurations>
@@ -355,7 +355,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/DataInput.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.DataInput_ActivityParameterNode_3059"/>
+					elementTypeId="org.eclipse.papyrus.bpmn.process.DataInput_InputPin_3013"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
@@ -366,7 +366,7 @@
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/DataOutput.png"/>
 			<elementDescriptors
-					elementTypeId="org.eclipse.papyrus.bpmn.process.DataOutput_ActivityParameterNode_3059"/>
+					elementTypeId="org.eclipse.papyrus.bpmn.process.DataOutput_OutputPin_3014"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
