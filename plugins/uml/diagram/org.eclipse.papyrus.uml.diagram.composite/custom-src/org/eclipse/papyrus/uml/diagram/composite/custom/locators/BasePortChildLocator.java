@@ -37,21 +37,30 @@ public abstract class BasePortChildLocator implements IBorderItemLocator {
 
 		int side = 0;
 		;
-		if (yPortLocation == parent.y) {
+		if (nearByOne(yPortLocation, parent.y)) {
 			side = side | PositionConstants.NORTH;
 		}
-		if (yPortLocation == parent.y + parent.height) {
+		if (nearByOne(yPortLocation, parent.y + parent.height)) {
 			side = side | PositionConstants.SOUTH;
 		}
-		if (xPortLocation == parent.x) {
+		if (nearByOne(xPortLocation, parent.x)) {
 			side = side | PositionConstants.WEST;
 		}
-		if (xPortLocation == parent.x + parent.width) {
+		if (nearByOne(xPortLocation, parent.x + parent.width)) {
 			side = side | PositionConstants.EAST;
 		}
 
 		//side == 0 the port located not on the board of the parent
 		return side == 0 ? PositionConstants.SOUTH : side;
+	}
+
+	/**
+	 * @param pos1 first number
+	 * @param pos2 second number
+	 * @return true, if absolute of the difference between two integers is smaller than one
+	 */
+	private boolean nearByOne(int pos1, int pos2) {
+		return Math.abs(pos1-pos2) <= 1;
 	}
 
 	private Rectangle getParentBounds() {
