@@ -12544,6 +12544,9 @@
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-CoreStructure-Common-Events-BoundaryEvent-attachedToRef" name="attachedToRef" visibility="public" type="BPMNProfile-Process-Activities-BPMNActivity" isderived="false"/>
       <icon xmi:type="uml:Image" xmi:id="_P3jRUOmcEeSE8qC-7-3YgA" format="Papyrus" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/BoundaryEvent.png">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Kw_HYIycEeahl9J4idMaeA" source="image_papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KxAVgIycEeahl9J4idMaeA" key="image_kind_key" value="icon"/>
+        </eAnnotations>
         <content xsi:nil="true"/>
       </icon>
     </packagedElement>
@@ -13454,6 +13457,11 @@ scope, e.g. a Data Object, a Property or an Expression.</body>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Data-DataStoreReference-base_DataStoreNode" name="base_DataStoreNode" visibility="public" association="BPMNProfile-Process-Data-packagedElement-34">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#DataStoreNode"/>
       </ownedAttribute>
+      <icon xmi:type="uml:Image" xmi:id="_rk77EIybEeahl9J4idMaeA" format="Papyrus" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/DataStoreReference.png">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_rk77EYybEeahl9J4idMaeA" source="image_papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rk77EoybEeahl9J4idMaeA" key="image_kind_key" value="icon"/>
+        </eAnnotations>
+      </icon>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="BPMNProfile-Process-Data-DataObject" name="DataObject">
       <ownedRule xmi:type="uml:Constraint" xmi:id="BPMNProfile-Process-Data-DataObject-DataObject.dataState" name="DataObject.dataState" constrainedElement="BPMNProfile-Process-Data-DataObject">
@@ -14758,6 +14766,11 @@ DataInput owned by BPMN Activity has no notation. </body>
       <ownedAttribute xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-CallActivity-calledElementRef" name="calledElementRef" visibility="public" type="BPMNProfile-CoreStructure-Common-CallableElement" association="BPMNProfile-Process-Activities-packagedElement-44" isderived="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BPMNProfile-Process-Activities-CallActivity-calledElementRef-lowerValue"/>
       </ownedAttribute>
+      <icon xmi:type="uml:Image" xmi:id="_lW8HwIybEeahl9J4idMaeA" format="Papyrus" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/CallActivity.png">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lW8HwYybEeahl9J4idMaeA" source="image_papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lW8HwoybEeahl9J4idMaeA" key="image_kind_key" value="icon"/>
+        </eAnnotations>
+      </icon>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="BPMNProfile-Process-Activities-packagedElement-47" memberEnd="BPMNProfile-Process-Activities-packagedElement-47-ownedEnd BPMNProfile-Process-Activities-BusinessRuleTask-implementation">
       <ownedEnd xmi:type="uml:Property" xmi:id="BPMNProfile-Process-Activities-packagedElement-47-ownedEnd" visibility="public" type="BPMNProfile-Process-Activities-BusinessRuleTask" association="BPMNProfile-Process-Activities-packagedElement-47"/>
