@@ -15,6 +15,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci;
 
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_ExecutionFactory;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Actions.IntermediateActions.SM_ReadSelfAction;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ChoicePseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.DeepHistoryPseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.EntryPointPseudostateActivation;
@@ -37,6 +38,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.Pseudostate;
+import org.eclipse.uml2.uml.ReadSelfAction;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
@@ -52,7 +54,7 @@ public class SM_ExecutionFactory extends CS_ExecutionFactory {
 			visitor = new StateMachineExecution();
 		}else if (element instanceof Pseudostate) {
 			Pseudostate pseudostate = (Pseudostate) element;
-			switch(pseudostate.getKind()){ // FIXME: align names of pseudo-state activations 
+			switch(pseudostate.getKind()){
 				case INITIAL_LITERAL: visitor = new InitialPseudostateActivation(); break;
 				case ENTRY_POINT_LITERAL: visitor = new EntryPointPseudostateActivation(); break;
 				case EXIT_POINT_LITERAL: visitor = new ExitPointPseudostateActivation(); break;
@@ -81,6 +83,8 @@ public class SM_ExecutionFactory extends CS_ExecutionFactory {
 			visitor = new RegionActivation();
 		}else if(element instanceof OpaqueExpression) {
 			visitor = new SM_OpaqueExpressionEvaluation();
+		}else if(element instanceof ReadSelfAction){
+			visitor = new SM_ReadSelfAction();
 		}else {
 			visitor = super.instantiateVisitor(element);
 		}
