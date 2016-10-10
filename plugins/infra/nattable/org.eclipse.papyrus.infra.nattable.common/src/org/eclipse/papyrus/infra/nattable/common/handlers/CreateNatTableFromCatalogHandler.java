@@ -112,7 +112,7 @@ public class CreateNatTableFromCatalogHandler extends AbstractHandler {
 	 * The view prototypes to create by the table creation wizard.
 	 */
 	private Map<ViewPrototype, Integer> viewPrototypes = null;
-	
+
 	/**
 	 * The view prototypes names of the table to create (names from wizard).
 	 */
@@ -128,14 +128,16 @@ public class CreateNatTableFromCatalogHandler extends AbstractHandler {
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		final EObject context = getSelection().get(0);
-		final CreateNattableFromCatalogWizard wizard = new CreateNattableFromCatalogWizard(context){
-			
+		final CreateNattableFromCatalogWizard wizard = new CreateNattableFromCatalogWizard(context) {
+
 			@Override
 			public void dispose() {
 				// Get the view prototypes and the table names before the dispose values
 				// Create a new hashmap because the reference must be deleted with the dispose
-				viewPrototypes = new HashMap<ViewPrototype, Integer>(this.getSelectedViewPrototypes());
-				tableNames = new HashMap<ViewPrototype, String>(this.getTableNames());
+				if (this.getSelectedViewPrototypes() != null && this.getTableNames() != null) {
+					viewPrototypes = new HashMap<ViewPrototype, Integer>(this.getSelectedViewPrototypes());
+					tableNames = new HashMap<ViewPrototype, String>(this.getTableNames());
+				}
 				super.dispose();
 			}
 		};
@@ -151,7 +153,7 @@ public class CreateNatTableFromCatalogHandler extends AbstractHandler {
 		}
 
 		if (Window.OK == dialog.open()) {
-			
+
 			final RecordingCommand rc = new RecordingCommand(domain) {
 
 				@Override
