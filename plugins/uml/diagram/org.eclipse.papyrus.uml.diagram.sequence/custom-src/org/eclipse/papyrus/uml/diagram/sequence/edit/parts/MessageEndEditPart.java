@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 502155 
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
@@ -92,7 +104,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  */
 public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPart {
 
-	public static final String VISUAL_ID = "MessageEnd_Shape";
+	public static final String VISUAL_ID = "MessageEnd_Shape"; //$NON-NLS-1$
 
 	private static final int DEFAULT_SIZE = 16;
 
@@ -248,6 +260,27 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 		return fig;
 	}
 
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#resolveSemanticElement()
+	 *
+	 * @return
+	 */
+	@Override
+	public EObject resolveSemanticElement() {
+		EObject resolveSemanticElement = super.resolveSemanticElement();
+		if (resolveSemanticElement instanceof Message){
+			// This should never happen but does see Bug 502155
+			Message message = (Message) resolveSemanticElement;
+			final MessageEnd messageEnd = message.getReceiveEvent();
+			if (messageEnd != null) {
+				return messageEnd;
+			} else {
+				return message.getSendEvent();
+			}
+		}
+		return resolveSemanticElement;
+	}	
+	
 	@Override
 	public boolean hasNotationView() {
 		return true;
