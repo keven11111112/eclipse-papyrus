@@ -24,6 +24,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 		StructureDiagramTest.class,
+		StereotypeApplicationsTest.class,
 })
 public class RegressionTests {
 	// All is specified in annotations

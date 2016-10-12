@@ -40,5 +40,8 @@
       <transformation
             className="org.eclipse.papyrus.migration.rsa.tests.UML25HandlerExtension">
       </transformation>
+      <transformation
+            className="org.eclipse.papyrus.migration.rsa.tests.regression.StereotypeApplicationsTest$MigrationTracker">
+      </transformation>
    </extension>
 </plugin>

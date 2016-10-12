@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 505330
  *   
  *****************************************************************************/
 
@@ -26,34 +27,45 @@ public class MigrationResourceSetImpl extends ThreadSafeResourceSet implements M
 	private boolean frozen = false;
 
 	/**
-	 * @see org.eclipse.papyrus.migration.rsa.transformation.MigrationResourceSet#freeze()
-	 *
+	 * Initializes me without a dependency analysis helper, which is not recommended
+	 * because then it will be difficult for me to resolve profile namespace locations.
+	 * 
+	 * @deprecated Use the {@link #MigrationResourceSetImpl(DependencyAnalysisHelper)} constructor, instead
 	 */
+	@Deprecated
+	public MigrationResourceSetImpl() {
+		this(null);
+	}
+
+	/**
+	 * Initializes me with my dependency analysis helper.
+	 * 
+	 * @param dependencyHelper
+	 *            my dependency analysis helper, or {@code null} if none
+	 */
+	public MigrationResourceSetImpl(DependencyAnalysisHelper dependencyHelper) {
+		super();
+
+		if (dependencyHelper != null) {
+			// Install a URI converter that maps *.epx to *.profile.uml where
+			// the target actually exists
+			setURIConverter(new ProfileMappingAwareURIConverter(this, dependencyHelper));
+		}
+	}
+
 	@Override
 	public void freeze() {
 		this.frozen = true;
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.migration.rsa.transformation.MigrationResourceSet#unfreeze()
-	 *
-	 */
 	@Override
 	public void unfreeze() {
 		this.frozen = false;
 	}
-	
-	/**
-	 * @see org.eclipse.emf.ecore.resource.impl.ResourceSetImpl#getResource(org.eclipse.emf.common.util.URI, boolean)
-	 *
-	 * @param uri
-	 * @param loadOnDemand
-	 * @return
-	 */
+
 	@Override
 	public Resource getResource(URI uri, boolean loadOnDemand) {
 		return super.getResource(uri, frozen ? false : loadOnDemand);
 	}
-	
 
 }

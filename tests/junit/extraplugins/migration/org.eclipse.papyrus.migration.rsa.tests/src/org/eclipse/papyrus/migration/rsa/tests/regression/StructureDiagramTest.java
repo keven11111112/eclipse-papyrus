@@ -20,8 +20,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeThat;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -29,32 +27,21 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.junit.utils.rules.AnnotationRule;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.migration.rsa.tests.UML25HandlerExtension;
-import org.eclipse.papyrus.migration.rsa.tests.qvt.AbstractTransformationTest;
+import org.eclipse.papyrus.migration.rsa.tests.regression.AbstractMigrationRegressionTest.TransformationExtensionClass;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeNameEditPart;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Port;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 
 /**
  * Specific regression tests for bugs in the import of structure diagrams.
  */
-public class StructureDiagramTest extends AbstractTransformationTest {
-
-	@Rule
-	public final TestName name = new TestName();
-
-	@Rule
-	public final AnnotationRule<String[]> testModel = AnnotationRule.create(PluginResource.class);
+@TransformationExtensionClass(UML25HandlerExtension.class)
+public class StructureDiagramTest extends AbstractMigrationRegressionTest {
 
 	/**
 	 * Initializes me.
@@ -137,41 +124,5 @@ public class StructureDiagramTest extends AbstractTransformationTest {
 				.filter(Shape.class::isInstance).map(Shape.class::cast)
 				.filter(s -> s.getElement() instanceof Port)
 				.forEach(p -> assertThat(p.eIsSet(NotationPackage.Literals.FILL_STYLE__FILL_COLOR), is(false)));
-	}
-
-	//
-	// Test framework
-	//
-
-	@Before
-	public void importAndOpen() throws Exception {
-		String resourcePath = testModel.get()[0];
-
-		Matcher bugMatcher = Pattern.compile("^(bug\\d+)/").matcher(resourcePath);
-		String bug;
-
-		if (bugMatcher.find()) {
-			bug = bugMatcher.group(1);
-
-			// Don't be redundant
-			resourcePath = resourcePath.substring(bugMatcher.end());
-		} else {
-			bug = name.getMethodName();
-			bug = bug.substring(bug.lastIndexOf('_') + 1);
-		}
-
-		simpleImport(String.format("resources/%s/%s", bug, resourcePath));
-
-		openEditor();
-	}
-
-	@BeforeClass
-	public static void enableUML25Transformation() {
-		UML25HandlerExtension.isEnabled = true;
-	}
-
-	@AfterClass
-	public static void disableUML25Transformation() {
-		UML25HandlerExtension.isEnabled = false;
 	}
 }
