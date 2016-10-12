@@ -9,7 +9,7 @@
  * Contributors:
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *  Christian W. Damus - bugs 493858, 493853
- *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - bug 494537
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - bugs 494537, 504745
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
@@ -71,6 +71,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Na
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestyleFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style;
 import org.eclipse.papyrus.infra.nattable.tree.ITreeItemAxisHelper;
 import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
@@ -792,17 +793,24 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		}
 
 		// for the table displayed in property view, we want to use all the available place, so we add a specific named style each time
-		final BooleanValueStyle fillStyle = NattablestyleFactory.eINSTANCE.createBooleanValueStyle();
-		fillStyle.setName(NamedStyleConstants.FILL_COLUMNS_SIZE);
-		fillStyle.setBooleanValue(true);
-		table.getStyles().add(fillStyle);
+		BooleanValueStyle fillStyle = (BooleanValueStyle) table.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.FILL_COLUMNS_SIZE);
+		// if the name style already exists we do nothing
+		if (null == fillStyle) {
+			fillStyle = NattablestyleFactory.eINSTANCE.createBooleanValueStyle();
+			fillStyle.setName(NamedStyleConstants.FILL_COLUMNS_SIZE);
+			fillStyle.setBooleanValue(true);
+			table.getStyles().add(fillStyle);
+		}
 
 		// for the table displayed in property view, we expand all directly
-		final BooleanValueStyle expandStyle = NattablestyleFactory.eINSTANCE.createBooleanValueStyle();
-		expandStyle.setName(NamedStyleConstants.EXPAND_ALL);
-		expandStyle.setBooleanValue(true);
-		table.getStyles().add(expandStyle);
-
+		BooleanValueStyle expandStyle = (BooleanValueStyle) table.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.EXPAND_ALL);
+		// if the name style already exists we do nothing
+		if (null == expandStyle) {
+			expandStyle = NattablestyleFactory.eINSTANCE.createBooleanValueStyle();
+			expandStyle.setName(NamedStyleConstants.EXPAND_ALL);
+			expandStyle.setBooleanValue(true);
+			table.getStyles().add(expandStyle);
+		}
 		return table;
 	}
 
