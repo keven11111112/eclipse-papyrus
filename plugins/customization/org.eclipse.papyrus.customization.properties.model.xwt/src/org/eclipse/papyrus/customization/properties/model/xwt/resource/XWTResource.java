@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 402049
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.model.xwt.resource;
 
@@ -16,6 +17,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -30,6 +32,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -44,10 +47,13 @@ import org.eclipse.m2m.qvt.oml.util.Log;
 import org.eclipse.papyrus.customization.properties.model.xwt.Activator;
 import org.eclipse.papyrus.customization.properties.model.xwt.format.XMLFormatter;
 import org.eclipse.papyrus.customization.properties.model.xwt.modisco.GenericXMLResourceImpl;
+import org.eclipse.papyrus.customization.properties.model.xwt.xwtxml.Namespace;
 import org.eclipse.papyrus.customization.properties.model.xwt.xwtxml.Root;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
 import org.eclipse.papyrus.infra.properties.ui.UiPackage;
+import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
+import org.eclipse.papyrus.infra.properties.ui.WidgetAttribute;
 import org.eclipse.papyrus.infra.properties.ui.util.PropertiesUtil;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 
@@ -73,8 +79,14 @@ public class XWTResource extends ResourceImpl {
 	 *
 	 * This option is a boolean, which default value is true
 	 */
-	public static final String OPTION_FORMAT = "format";
+	public static final String OPTION_FORMAT = "format"; //$NON-NLS-1$
 
+	/**
+	 * Comparators created to sort the namespaces and fix the bug 402049
+	 */
+	private final NamespaceComparator comparator = new NamespaceComparator();
+
+	private final WidgetAttributeComparator widgetAttributeComparator = new WidgetAttributeComparator();
 	/**
 	 *
 	 * Constructs a new XWTResource with the given URI
@@ -94,7 +106,7 @@ public class XWTResource extends ResourceImpl {
 		try {
 			CompositeWidget widget = xmlToUISection(root);
 			if (widget == null) {
-				Activator.log.warn("Cannot load the XWT Widget");
+				Activator.log.warn("Cannot load the XWT Widget"); //$NON-NLS-1$
 			} else {
 				getContents().add(widget);
 			}
@@ -126,10 +138,11 @@ public class XWTResource extends ResourceImpl {
 	protected void doSave(OutputStream outputStream, Map<?, ?> options) throws IOException {
 		try {
 			if (getContents().isEmpty()) {
-				Activator.log.warn("Cannot save an Empty XWT resource : " + getURI());
+				Activator.log.warn("Cannot save an Empty XWT resource : " + getURI()); //$NON-NLS-1$
 				return;
 			}
 			Root root = uiSectionToXML((CompositeWidget) getContents().get(0));
+
 			xmlResource.getContents().clear();
 			xmlResource.getContents().add(root);
 			xmlResource.save(outputStream, options);
@@ -186,8 +199,12 @@ public class XWTResource extends ResourceImpl {
 			if (!(objectResult instanceof CompositeWidget)) {
 				return null;
 			}
-
-			return (CompositeWidget) outObjects.get(0);
+			
+			//we sort the attribute to be sure to display them in the same order than the serialization, done to fix the bug 402049 
+			CompositeWidget widget = (CompositeWidget) outObjects.get(0);
+			ECollections.sort(widget.getAttributes(), this.widgetAttributeComparator);
+			
+			return widget;
 		} else {
 			IStatus status = BasicDiagnostic.toIStatus(result);
 			Activator.getDefault().getLog().log(status);
@@ -238,8 +255,12 @@ public class XWTResource extends ResourceImpl {
 
 		if (result.getSeverity() == org.eclipse.emf.common.util.Diagnostic.OK) {
 			List<EObject> outObjects = outXML.getContents();
+			Root root = (Root) outObjects.get(0);
 
-			return (Root) outObjects.get(0);
+			// we sort the namespaces to fix the bug 402049.
+			ECollections.sort(root.getNamespaces(), this.comparator);
+
+			return root;
 		} else {
 			IStatus status = BasicDiagnostic.toIStatus(result);
 			Activator.getDefault().getLog().log(status);
@@ -256,5 +277,64 @@ public class XWTResource extends ResourceImpl {
 		objects.add(source);
 		ModelExtent extent = new BasicModelExtent(objects);
 		return extent;
+	}
+
+	/**
+	 * 
+	 * @author Vincent Lorenzo
+	 *         This comparator has been created to fix the bug 402049. This comparator is used during the save of the model.
+	 */
+	private static class NamespaceComparator implements Comparator<Namespace> {
+
+		/**
+		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+		 *
+		 * @param o1
+		 * @param o2
+		 * @return
+		 */
+		@Override
+		public int compare(Namespace o1, Namespace o2) {
+			final String o1Name = o1.getName() != null ? o1.getName() : "";
+			final String o2Name = o2.getName() != null ? o2.getName() : "";
+			int res = o1Name.compareTo(o2Name);
+			if (res == 0) {
+				final String o1Value = o1.getValue() != null ? o1.getValue() : "";
+				final String o2Value = o2.getValue() != null ? o2.getValue() : "";
+				res = o1Value.compareTo(o2Value);
+			}
+			return res;
+		}
+	}
+
+	/**
+	 * 
+	 * @author Vincent Lorenzo
+	 *         This comparator has been created to fix the bug 402049. This comparator is used when we load the model,
+	 *         to be sure to display attribute in the same order than the saved one!
+	 */
+	private static class WidgetAttributeComparator implements Comparator<WidgetAttribute> {
+
+		/**
+		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+		 *
+		 * @param o1
+		 * @param o2
+		 * @return
+		 */
+		@Override
+		public int compare(WidgetAttribute o1, WidgetAttribute o2) {
+			final String o1Name = o1.getName() != null ? o1.getName() : "";
+			final String o2Name = o2.getName() != null ? o2.getName() : "";
+			int res = o1Name.compareTo(o2Name);
+			if (res == 0) {
+				if (o1 instanceof ValueAttribute && o2 instanceof ValueAttribute) {
+					final String o1Value = ((ValueAttribute) o1).getValue() != null ? ((ValueAttribute) o1).getValue() : "";
+					final String o2Value = ((ValueAttribute) o2).getValue() != null ? ((ValueAttribute) o2).getValue() : "";
+					res = o1Value.compareTo(o2Value);
+				}
+			}
+			return res;
+		}
 	}
 }
