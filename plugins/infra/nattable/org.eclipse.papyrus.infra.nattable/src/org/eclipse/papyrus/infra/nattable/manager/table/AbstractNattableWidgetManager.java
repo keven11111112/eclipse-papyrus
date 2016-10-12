@@ -1909,9 +1909,11 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @since 2.0
 	 */
 	public final TableStructuredSelection getSelectionInTable() {
-		ISelection selection = this.selectionProvider.getSelection();
-		if (selection instanceof TableStructuredSelection) {
-			return (TableStructuredSelection) selection;
+		if (null != this.selectionProvider) {
+			ISelection selection = this.selectionProvider.getSelection();
+			if (selection instanceof TableStructuredSelection) {
+				return (TableStructuredSelection) selection;
+			}
 		}
 		return null;
 	}
