@@ -39,7 +39,7 @@
    <extension
          point="org.eclipse.papyrus.infra.properties.contexts">
       <context
-             contextModel="properties/BMM.ctx"
+             contextModel="properties/Bmm.ctx"
              isCustomizable="true">
        </context>
    </extension>
