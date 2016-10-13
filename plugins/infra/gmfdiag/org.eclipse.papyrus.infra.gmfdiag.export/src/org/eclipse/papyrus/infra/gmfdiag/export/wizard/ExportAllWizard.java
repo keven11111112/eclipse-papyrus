@@ -9,13 +9,13 @@
  * Contributors:
  *    Anass RADOUANI (AtoS)
  *    Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 440754
+ *    Fred Eckertson (Cerner) - fred.eckertson@cerner.com - Bug 502705
  *******************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.export.wizard;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -113,22 +113,15 @@ public class ExportAllWizard extends Wizard implements IExportWizard {
 
 		}
 
-		// Ask to user the others export configuration parameters
-		URI uriFile = null;
+		// Ask user the other export configuration parameters
+		IContainer parentResource = null;
 		if (file != null) {
-			IContainer parentResource = file.getParent();
-			parentResource = ResourcesPlugin.getWorkspace().getRoot().getContainerForLocation(parentResource.getLocation());
-			if (parentResource != null) {
-				uriFile = URI.createPlatformResourceURI(parentResource.getLocation().toString(), true);
-
-				if (parameter == null) {
-					addErrorPage();
-				} else {
-					page = new ExportDiagramsPage(uriFile);
-					addPage(page);
-				}
-			} else {
+			parentResource = file.getParent();
+			if (parameter == null) {
 				addErrorPage();
+			} else {
+				page = new ExportDiagramsPage(parentResource);
+				addPage(page);
 			}
 		} else {
 			addErrorPage();

@@ -8,11 +8,11 @@
  * 		Jacques Lescot (Anyware Technologies) - initial API and implementation
  * 		Anass Radouani (AtoS) - use of ExporterManager removed
  * 		Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 440754
+ *		Fred Eckertson (Cerner) - fred.eckertson@cerner.com - Bug 502705
  ******************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.export.actions;
 
 import org.eclipse.core.resources.IResource;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.papyrus.infra.gmfdiag.export.messages.Messages;
 import org.eclipse.swt.SWT;
@@ -31,8 +31,8 @@ public class ExportAllDiagramsDialog extends Dialog {
 	/** The dialog composite. */
 	private ExportComposite dialogComposite = null;
 
-	/** The selected diagram file. */
-	private URI outPutDirectory = null;
+	/** The output directory. */
+	private IResource outPutDirectory = null;
 
 
 	/**
@@ -40,10 +40,10 @@ public class ExportAllDiagramsDialog extends Dialog {
 	 *
 	 * @param parentShell
 	 *            the parent shell
-	 * @param selectedFile
-	 *            the selected file
+	 * @param initialOutputDirectory
+	 *            the initial output directory
 	 */
-	public ExportAllDiagramsDialog(Shell parentShell, URI initialOuputDirectory) {
+	public ExportAllDiagramsDialog(Shell parentShell, IResource initialOuputDirectory) {
 		super(parentShell);
 		outPutDirectory = initialOuputDirectory;
 		setBlockOnOpen(true);
@@ -75,7 +75,7 @@ public class ExportAllDiagramsDialog extends Dialog {
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite) super.createDialogArea(parent);
 		dialogComposite = new ExportComposite(composite, SWT.NONE);
-		dialogComposite.setSelectedDiagramFileURI(outPutDirectory);
+		dialogComposite.setOutputDirectory(outPutDirectory);
 		return composite;
 	}
 
@@ -105,8 +105,4 @@ public class ExportAllDiagramsDialog extends Dialog {
 	public boolean getQualifiedName() {
 		return dialogComposite.getQualifiedName();
 	}
-
-
-
-
 }

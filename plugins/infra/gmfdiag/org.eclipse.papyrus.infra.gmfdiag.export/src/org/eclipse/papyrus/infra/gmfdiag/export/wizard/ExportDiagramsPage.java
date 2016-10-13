@@ -7,11 +7,12 @@
  *
  * Contributors:
  *    Anass RADOUANI (AtoS)
+ *    Fred Eckertson (Cerner) - fred.eckertson@cerner.com - Bug 502705
  *******************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.export.wizard;
 
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.infra.gmfdiag.export.actions.ExportComposite;
 import org.eclipse.papyrus.infra.gmfdiag.export.messages.Messages;
@@ -29,14 +30,14 @@ public class ExportDiagramsPage extends WizardPage {
 		return export;
 	}
 
-	private final URI uriFile;
+	private final IResource outputDirectory;
 
 	/**
 	 * Create the wizard.
 	 */
-	public ExportDiagramsPage(URI uriFile) {
+	public ExportDiagramsPage(IResource outputDirectory) {
 		super(Messages.ExportDiagramsPage_0);
-		this.uriFile = uriFile;
+		this.outputDirectory = outputDirectory;
 		setTitle(Messages.ExportDiagramsPage_0);
 		setDescription(Messages.ExportDiagramsPage_2);
 	}
@@ -49,8 +50,7 @@ public class ExportDiagramsPage extends WizardPage {
 	@Override
 	public void createControl(Composite parent) {
 		export = new ExportComposite(parent, SWT.NONE);
-		export.setSelectedDiagramFileURI(uriFile);
+		export.setOutputDirectory(outputDirectory);
 		setControl(export);
 	}
-
 }

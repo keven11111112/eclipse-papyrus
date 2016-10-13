@@ -10,15 +10,15 @@
  *		Jacques Lescot (Anyware Technologies) - initial API and implementation
  * 		Anass RADOUANI (AtoS) - add verification of the selection if it is a papyrus file or not
  * 		Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 440754
+ *		Fred Eckertson (Cerner) - fred.eckertson@cerner.com - Bug 502705
  ******************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.export.actions;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.window.Window;
@@ -102,22 +102,13 @@ public class ExportAllDiagramsAction extends AbstractHandler {
 
 		}
 
-		// Ask to user the others export configuration parameters
-		URI uriFile = null;
+		// Ask user for the other export configuration parameters
+		IResource outputDirectory = null;
 		if (file != null) {
-			IContainer parentResource = file.getParent();
-			IContainer containerForParentLocation = ResourcesPlugin.getWorkspace().getRoot().getContainerForLocation(parentResource.getLocation());
-			if (containerForParentLocation != null) {
-				parentResource = containerForParentLocation;
-				uriFile = URI.createPlatformResourceURI(parentResource.getLocation().toString(), true);
-			} else {
-				// linked resource
-				uriFile = URI.createPlatformResourceURI(parentResource.getFullPath().toString(), true);
-			}
-
+			outputDirectory = file.getParent().findMember(".");
 		}
 
-		ExportAllDiagramsDialog exportPopup = new ExportAllDiagramsDialog(DialogDisplayUtils.getActiveWorkbenchShell(), uriFile);
+		ExportAllDiagramsDialog exportPopup = new ExportAllDiagramsDialog(DialogDisplayUtils.getActiveWorkbenchShell(), outputDirectory);
 		if (exportPopup.open() == Window.OK) {
 
 			// Complete export configuration
