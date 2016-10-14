@@ -62,6 +62,17 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 	 * The list of resources listened.
 	 */
 	protected Collection<Resource> listenedResources;
+	
+	/**
+	 * The adapter used to listen changes on stereotypes application
+	 */
+	private Adapter stereotypeApplicationListener = new AdapterImpl() {
+
+		@Override
+		public void notifyChanged(Notification notification) {
+			stereotypeApplicationHasChanged(notification);
+		}
+	};
 
 
 	/**
@@ -222,16 +233,16 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 
 		// Bug 439501: The feature values must be the initial values order
 		// we filter them now
-		for(final Object featureValue : featuresValue){
-			for (final EObject current : getTableContext().eResource().getContents()) {
-				if (!(current instanceof Element) && isInstanceOfRequiredStereotypeApplication(current)) {
-					final Element baseElement = UMLUtil.getBaseElement(current);
-					if (baseElement != null) {
-						if (featureValue.equals(baseElement) && isAllowedContents(baseElement)) {
-							this.managedObject.add(baseElement);
-							this.stereotypedElementsMap.put(current, (baseElement));
-							addStereotypeApplicationListener(current);
-						}
+		for (final Object featureValue : featuresValue) {
+			//here we do the same thing than in the method isAllowedContent, code has been changed to improve performance (bug 505947)
+			if(featureValue instanceof Element){
+				final Element el = (Element) featureValue;
+				if(isAllowedAsBaseElement(el)){
+					final EObject requiredStereotypeApplication = getStereotypeApplication(el);
+					if(null!=requiredStereotypeApplication){
+						this.managedObject.add(el);
+						this.stereotypedElementsMap.put(requiredStereotypeApplication, (el));
+						addStereotypeApplicationListener(requiredStereotypeApplication);
 					}
 				}
 			}
@@ -347,13 +358,6 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 		if (this.listenerMap.containsKey(stereotypeApplication)) {
 			return;
 		}
-		final Adapter stereotypeApplicationListener = new AdapterImpl() {
-
-			@Override
-			public void notifyChanged(Notification notification) {
-				stereotypeApplicationHasChanged(notification);
-			}
-		};
 		stereotypeApplication.eAdapters().add(stereotypeApplicationListener);
 		this.listenerMap.put(stereotypeApplication, stereotypeApplicationListener);
 	}
@@ -488,14 +492,8 @@ public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisMana
 	 *         <code>true</code> if the elements has all required stererotypes applied on it
 	 */
 	protected final boolean hasRequiredStereotypes(final Element element) {
-		for (final EObject current : element.getStereotypeApplications()) {
-			if (isInstanceOfRequiredStereotypeApplication(current)) {
-				return true;
-			}
-		}
-		return false;
+		return null != getStereotypeApplication(element);
 	}
-
 
 	/**
 	 *
