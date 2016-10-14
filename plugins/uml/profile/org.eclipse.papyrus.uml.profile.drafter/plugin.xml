@@ -69,7 +69,7 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=tools">
          <menu
                id="org.eclipse.papyrus.uml.profile.drafter.contextmenu"
                label="Profiles">
