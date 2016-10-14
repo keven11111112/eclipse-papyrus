@@ -32,7 +32,7 @@
 		<eclipse.download>http://download.eclipse.org</eclipse.download> <!-- Deprecated; kept for Legacy. Can be set to file:/home/data/httpd/download.eclipse.org when building on HIPP -->
 		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/main</papyrus.repo.main>
 		<papyrus.repo.extra>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/extra</papyrus.repo.extra>
-		<papyrus.repo.dev>https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/lastSuccessfulBuild/artifact/repository/</papyrus.repo.dev>
+		<papyrus.repo.dev>https://hudson.eclipse.org/papyrus/job/Papyrus-Neon-Developer/lastSuccessfulBuild/artifact/repository/</papyrus.repo.dev>
 		<target.suffix>portable</target.suffix> <!-- set to 'eclipse' when building on HIPP, to improve performances -->
 	</properties>
 
