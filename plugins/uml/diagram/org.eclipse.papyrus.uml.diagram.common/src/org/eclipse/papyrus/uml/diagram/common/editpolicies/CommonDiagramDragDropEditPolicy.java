@@ -83,8 +83,8 @@ import org.eclipse.papyrus.uml.diagram.common.helper.Element2IAdaptableRegistryH
 import org.eclipse.papyrus.uml.diagram.common.helper.ILinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
-import org.eclipse.papyrus.uml.diagram.common.util.AssociationUtil;
 import org.eclipse.swt.dnd.DND;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectableElement;
@@ -370,8 +370,11 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 		if (isListCompartmentContainsDroppedObject(parent, droppedObject)) {
 			return false;
 		}
-		if (droppedObject instanceof Property && AssociationUtil.isAssociationEndProperty((Property) droppedObject)) {
-			return false;
+		if (droppedObject instanceof Property) {
+			Property property = (Property) droppedObject;
+			if (property.getOwner() instanceof Association){
+				return false;
+			}
 		}
 		return true;
 	}
