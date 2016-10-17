@@ -116,8 +116,10 @@ public class ModelExporterTest extends AbstractModelExportTest {
 	public void disposeTestFixture() {
 		fixture = null;
 
-		config.dispose();
-		config = null;
+		if (null != config) {
+			config.dispose();
+			config = null;
+		}
 	}
 
 	void assertResource(IPath path, final String metamodel) {

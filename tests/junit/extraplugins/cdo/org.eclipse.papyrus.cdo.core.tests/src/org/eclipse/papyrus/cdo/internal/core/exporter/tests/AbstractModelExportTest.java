@@ -19,10 +19,13 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assume.assumeThat;
 
+import java.io.IOException;
+
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferNode;
 import org.eclipse.papyrus.cdo.core.resource.CDOAwareModelSet;
@@ -61,28 +64,51 @@ public abstract class AbstractModelExportTest extends AbstractPapyrusCDOTest {
 	protected void createModels() throws Exception {
 		// create the model that the other model depends on
 		ServicesRegistry[] services1 = { null };
-		ModelSet modelSet1 = createModelSet(DEPENDENCY_MODEL_NAME, services1);
+		final ModelSet modelSet1 = createModelSet(DEPENDENCY_MODEL_NAME, services1);
 
 		UmlModel uml1 = (UmlModel) modelSet1.getModel(UmlModel.MODEL_ID);
-		Model model1 = (Model) uml1.lookupRoot();
-		model1.createOwnedClass("Superclass", false);
+		final Model model1 = (Model) uml1.lookupRoot();
+		TransactionalEditingDomain ted1 = modelSet1.getTransactionalEditingDomain();
+		RecordingCommand recording1 = new RecordingCommand(ted1) {
 
-		modelSet1.save(new NullProgressMonitor());
+			@Override
+			protected void doExecute() {
+				model1.createOwnedClass("Superclass", false);
+
+				try {
+					modelSet1.save(new NullProgressMonitor());
+				} catch (IOException e) {
+					Activator.log.error("The modelSet of the fixture failed on save", e); // $NON-NLS-1$
+				}
+			}
+		};
+		ted1.getCommandStack().execute(recording1);
 
 		// create the model that depends on the first one
 		ServicesRegistry[] services2 = { null };
-		ModelSet modelSet2 = createModelSet(DEPENDENT_MODEL_NAME, services2);
+		final ModelSet modelSet2 = createModelSet(DEPENDENT_MODEL_NAME, services2);
 
 		UmlModel uml2 = (UmlModel) modelSet2.getModel(UmlModel.MODEL_ID);
-		Model model2 = (Model) uml2.lookupRoot();
-		Class subclass = model2.createOwnedClass("Subclass", false);
+		final Model model2 = (Model) uml2.lookupRoot();
+		TransactionalEditingDomain ted2 = modelSet2.getTransactionalEditingDomain();
+		RecordingCommand recording2 = new RecordingCommand(ted2) {
 
-		// add the dependency
-		Model dependency = UML2Util.load(modelSet2, getTestResourceURI(DEPENDENCY_MODEL_NAME), UMLPackage.Literals.MODEL);
-		model2.createPackageImport(dependency);
-		subclass.createGeneralization((Class) dependency.getOwnedType("Superclass"));
+			@Override
+			protected void doExecute() {
+				Class subclass = model2.createOwnedClass("Subclass", false);
 
-		modelSet2.save(new NullProgressMonitor());
+				// add the dependency
+				Model dependency = UML2Util.load(modelSet2, getTestResourceURI(DEPENDENCY_MODEL_NAME), UMLPackage.Literals.MODEL);
+				model2.createPackageImport(dependency);
+				subclass.createGeneralization((Class) dependency.getOwnedType("Superclass"));
+				try {
+					modelSet2.save(new NullProgressMonitor());
+				} catch (IOException e) {
+					Activator.log.error("The modelSet of the fixture failed on save", e); // $NON-NLS-1$
+				}
+			}
+		};
+		ted2.getCommandStack().execute(recording2);
 
 		// dispose
 		services1[0].disposeRegistry();
@@ -121,7 +147,7 @@ public abstract class AbstractModelExportTest extends AbstractPapyrusCDOTest {
 		IModelTransferNode result = null;
 
 		for (IModelTransferNode next : config.getModelsToTransfer()) {
-			if(next.getPrimaryResourceURI().equals(uri)) {
+			if (next.getPrimaryResourceURI().equals(uri)) {
 				result = next;
 				break;
 			}

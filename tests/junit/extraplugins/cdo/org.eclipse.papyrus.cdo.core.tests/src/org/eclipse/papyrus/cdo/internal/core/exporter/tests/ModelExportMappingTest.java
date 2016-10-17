@@ -128,7 +128,7 @@ public class ModelExportMappingTest extends AbstractModelExportTest {
 		assertThat(child.getMessage(), containsString("No mapping"));
 
 		Object actual = child.getData().get(0);
-		Object expected = (Object) getNode(uri2);
+		Object expected = getNode(uri2);
 		assertThat(actual, sameInstance(expected));
 	}
 
@@ -143,6 +143,7 @@ public class ModelExportMappingTest extends AbstractModelExportTest {
 
 		config = IModelTransferConfiguration.Factory.EXPORT.create(new IModelTransferOperation.Context() {
 
+			@Override
 			public Diagnostic run(IModelTransferOperation operation) {
 				operation.run(new NullProgressMonitor());
 				return Diagnostic.OK_INSTANCE;
@@ -157,8 +158,10 @@ public class ModelExportMappingTest extends AbstractModelExportTest {
 	public void disposeTestFixture() {
 		fixture = null;
 
-		config.dispose();
-		config = null;
+		if (null != config) {
+			config.dispose();
+			config = null;
+		}
 	}
 
 	IModelTransferNode getNode(URI uri) {
