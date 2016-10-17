@@ -8,6 +8,7 @@
  * 		Jacques Lescot (Anyware Technologies) - initial API and implementation
  * 		Anass Radouani (AtoS) - use of ExporterManager removed
  * 		Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 440754
+ *		Fred Eckertson (Cerner) - fred.eckertson@cerner.com - Bug 502705
  ******************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.export.actions;
 
@@ -31,7 +32,7 @@ public class ExportAllDiagramsDialog extends Dialog {
 	/** The dialog composite. */
 	private ExportComposite dialogComposite = null;
 
-	/** The selected diagram file. */
+	/** The output directory. */
 	private URI outPutDirectory = null;
 
 
@@ -40,8 +41,8 @@ public class ExportAllDiagramsDialog extends Dialog {
 	 *
 	 * @param parentShell
 	 *            the parent shell
-	 * @param selectedFile
-	 *            the selected file
+	 * @param initialOutputDirectory
+	 *            the initial output directory
 	 */
 	public ExportAllDiagramsDialog(Shell parentShell, URI initialOuputDirectory) {
 		super(parentShell);

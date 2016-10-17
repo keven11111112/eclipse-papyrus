@@ -6,14 +6,15 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    Anass RADOUANI (AtoS)
+ *		Anass RADOUANI (AtoS)
+ *		Fred Eckertson (Cerner) - fred.eckertson@cerner.com - Bug 502705
  *******************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.export.actions;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
@@ -54,7 +55,7 @@ public class ExportComposite extends Composite {
 
 	protected boolean qualifiedName;
 
-	private URI uriDiagramFile;
+	private URI uriOutputDirectory;
 
 	/**
 	 * Constructor
@@ -152,45 +153,32 @@ public class ExportComposite extends Composite {
 	}
 
 	/**
-	 * set the file from which diagrams will be exported
+	 * set the directory to which diagrams will be exported (the method is misnamed)
 	 *
-	 * @param file
+	 * @param outputDirectory The output directory.
 	 */
-	public void setSelectedDiagramFileURI(URI uriFile) {
-		uriDiagramFile = uriFile;
+	public void setSelectedDiagramFileURI(URI uriDirectory) {
+		uriOutputDirectory = uriDirectory;
 		loadData();
 	}
 
 	private void loadData() {
-		if (uriDiagramFile != null) {
-			IPath location = new Path(uriDiagramFile.toPlatformString(true));
-			outputDirectory = ResourcesPlugin.getWorkspace().getRoot().findMember(location.makeRelativeTo(ResourcesPlugin.getWorkspace().getRoot().getLocation()));
-			if (outputDirectory == null) {
-				try {
-					IResource[] members = ResourcesPlugin.getWorkspace().getRoot().members();
-					for (int idx = 0; idx < members.length; idx++) {
-						if (location.equals(members[idx].getLocation())) {
-							outputDirectory = members[idx];
-							break;
-						}
-					}
-				} catch (CoreException e) {
-					Activator.log.error(e);
-				}
-			}
-			if(outputDirectory ==null) {
-				Activator.log.error("Impossible to find the output directory", null);
-				return;
-			}
-			outputPathTxt.setText(location.toString());
-		}
 		for (ImageFileFormat imageFileFormat : ImageFileFormat.VALUES) {
 			outputFormatCb.add(imageFileFormat.toString());
 		}
-
 		outputFormatCb.setText(ImageFileFormat.getDefaultImageFormat().toString());
-
 		exporter = outputFormatCb.getText();
+		if (uriOutputDirectory != null) {
+			IContainer[] containers = ResourcesPlugin.getWorkspace().getRoot().findContainersForLocationURI(java.net.URI.create(uriOutputDirectory.toString()));					 
+			if (containers.length > 0) {
+				outputDirectory = containers[0];
+			}
+		}
+		if(outputDirectory == null) {
+			Activator.log.error("Impossible to find the output directory", null);
+			return;
+		}
+		outputPathTxt.setText(outputDirectory.getLocation().toString());
 	}
 
 	/**
