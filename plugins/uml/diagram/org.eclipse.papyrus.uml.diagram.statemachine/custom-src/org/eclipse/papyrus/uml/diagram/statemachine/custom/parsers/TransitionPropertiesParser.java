@@ -159,7 +159,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		// If it is not possible to adapt directly the element
 		// as an EObject then it might be possible to first retrieve
 		// the view and then obtain the EObject that is behind the view
-		if(semanticElement == null && view != null){
+		if(!(semanticElement instanceof Transition) && view != null) {
 			semanticElement = view.getElement(); 
 		}
 		if (semanticElement instanceof Transition && view != null) {
