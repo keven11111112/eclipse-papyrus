@@ -176,6 +176,7 @@
 		<!-- Papyrus 4 Requirements (a.k.a. Papyrus Req)-->
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.common</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.common.ui</module>
+		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.export</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.languagecreationtools.commands</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.languagecreationtools.domainModel2Profile</module>
 		<module>../../extraplugins/requirements/org.eclipse.papyrus.requirements.languagecreationtools.handlers</module>
