@@ -22,8 +22,8 @@ public class InvalidSyntaxAdapter extends EContentAdapter {
 					.getTextualRepresentationComment(element);
 			if (comment != null) {
 				element.getOwnedComments().remove(comment);
+				comment.destroy();
 			}
-
 		}
 	}
 }
