@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 500290: add ignore case boolean and some refactore
+ *  Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 505797 - The validation of search field should allow ^ and $ wildcards
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.providers;
 
@@ -31,6 +32,12 @@ import org.eclipse.ui.internal.misc.StringMatcher;
  *
  */
 public class PatternViewerFilter extends AbstractTreeFilter {
+
+	/** The wildcare to indicate that the end of a pattern is strict. */
+	private static final String END_STRICT_WILDCARE = "$";//$NON-NLS-1$
+
+	/** The wildcare to indicate that the start of a pattern is strict. */
+	private static final String START_STRICT_WILDCARE = "^";//$NON-NLS-1$
 
 	/** the wilcard ? */
 	private static final String SEMI_COLON = ";";//$NON-NLS-1$
@@ -90,10 +97,24 @@ public class PatternViewerFilter extends AbstractTreeFilter {
 		this.validPatterns = new StringMatcher[patterns.length];
 		int i = 0;
 		for (String pattern : patterns) {
+			StringBuilder patternBuilder = new StringBuilder();
 			if (!strict) {
-				pattern = ASTERISK + pattern.trim() + ASTERISK;
+				if (pattern.startsWith(START_STRICT_WILDCARE)) {
+					patternBuilder.append(pattern.subSequence(1, pattern.length()));
+				} else {
+					patternBuilder.append(ASTERISK);
+					patternBuilder.append(pattern.trim());
+				}
+
+				if (pattern.endsWith(END_STRICT_WILDCARE)) {
+					patternBuilder.setLength(patternBuilder.length() - 1);
+				} else {
+					patternBuilder.append(ASTERISK);
+				}
+			} else {
+				patternBuilder.append(pattern);
 			}
-			validPatterns[i++] = new StringMatcher(pattern, ignoreCase, false);
+			validPatterns[i++] = new StringMatcher(patternBuilder.toString(), ignoreCase, false);
 		}
 
 		clearCache();
