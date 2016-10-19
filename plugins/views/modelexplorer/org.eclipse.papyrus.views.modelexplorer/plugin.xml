@@ -303,6 +303,9 @@
   <initializer
         class="org.eclipse.papyrus.views.modelexplorer.preferences.FilterPreferenceInitializer">
   </initializer>
+  <initializer
+        class="org.eclipse.papyrus.views.modelexplorer.preferences.ExpandPreferenceInitializer">
+  </initializer>
    </extension>
    <extension point="org.eclipse.ui.preferencePages">
       <page category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory" class="org.eclipse.papyrus.views.modelexplorer.preferences.ModelExplorerPreferencePage" id="org.eclipse.papyrus.views.modelexplorer.preferences.NavigatorPreferencePage" name="Model Explorer">

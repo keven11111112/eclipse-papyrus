@@ -24,9 +24,9 @@ public interface IFilterPreferenceConstants {
 	public static final String PREF_FILTER_VALIDATION_DELAY = "validateDelay"; //$NON-NLS-1$
 
 	/** the default value for validation delay. */
-	public static final String DEFAULT_VALIDATION_DELAY_VALUE = "600"; //$NON-NLS-1$
+	public static final int DEFAULT_VALIDATION_DELAY_VALUE = 600;
 
 	/** the default value for the use of live validation in filter. */
-	public static final String DEFAULT_FILTER_LIVE_VALIDATION_VALUE = "true"; //$NON-NLS-1$
+	public static final boolean DEFAULT_FILTER_LIVE_VALIDATION_VALUE = true;
 
 }

@@ -41,14 +41,15 @@ public class ModelExplorerPreferencePage extends AbstractPapyrusPreferencePage {
 	@Override
 	protected void createPageContents(final Composite parent) {
 		// Add filter field preferences
-		FilterFieldPreferencesGroup searchGroup = new FilterFieldPreferencesGroup(
-				parent, getTitle(), this);
+		FilterFieldPreferencesGroup searchGroup = new FilterFieldPreferencesGroup(parent, getTitle(), this);
 		addPreferenceGroup(searchGroup);
 
 		// show popup dialog
-		TransformCommandShowPopupDialogGroup groupComposite = new TransformCommandShowPopupDialogGroup(
-				parent, getTitle(), this);
+		TransformCommandShowPopupDialogGroup groupComposite = new TransformCommandShowPopupDialogGroup(parent, getTitle(), this);
 		addPreferenceGroup(groupComposite);
+
+		ExpandPreferencesGroup groupExpand = new ExpandPreferencesGroup(parent, getTitle(), this);
+		addPreferenceGroup(groupExpand);
 	}
 
 }

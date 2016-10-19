@@ -16,6 +16,9 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.views.modelexplorer.messages"; //$NON-NLS-1$
+	public static String ExpandPreferencesGroup_ExpandGroupLabel;
+	public static String ExpandPreferencesGroup_ExpandGroupTooltip;
+	public static String ExpandPreferencesGroup_MaxLevelLabel;
 	public static String FilterFieldPreferencesGroup_groupTitle;
 	public static String FilterFieldPreferencesGroup_UseValidationPreferenceLabel;
 	public static String FilterFieldPreferencesGroup_ValidationDelayPreferenceLabel;

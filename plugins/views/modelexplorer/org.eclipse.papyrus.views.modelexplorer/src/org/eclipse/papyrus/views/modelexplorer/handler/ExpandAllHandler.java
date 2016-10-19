@@ -13,12 +13,13 @@ package org.eclipse.papyrus.views.modelexplorer.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
 import org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview.MultiViewPageBookView;
+import org.eclipse.papyrus.views.modelexplorer.preferences.IExpandPreferenceConstants;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.PlatformUI;
@@ -52,7 +53,7 @@ public class ExpandAllHandler extends AbstractHandler {
 			if (selection instanceof StructuredSelection && !selection.isEmpty()) {
 				// For each element
 				for (Object object : ((StructuredSelection) selection).toArray()) {
-					commonViewer.expandToLevel(object, AbstractTreeViewer.ALL_LEVELS);
+					commonViewer.expandToLevel(object, getLevelToExpand());
 				}
 			} else {
 				// or expand all
@@ -60,6 +61,13 @@ public class ExpandAllHandler extends AbstractHandler {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * @return the level to expand all levels of the tree.
+	 */
+	protected int getLevelToExpand() {
+		return Activator.getDefault().getPreferenceStore().getInt(IExpandPreferenceConstants.PREF_MAX_LEVEL_TO_EXPAND);
 	}
 
 	/**
