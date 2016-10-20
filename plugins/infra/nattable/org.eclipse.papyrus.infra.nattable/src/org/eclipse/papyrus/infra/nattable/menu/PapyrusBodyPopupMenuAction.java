@@ -34,7 +34,6 @@ public class PapyrusBodyPopupMenuAction extends AbstractPapyrusPopupMenuAction {
 	 */
 	public PapyrusBodyPopupMenuAction(final String menuId, final NatTable nattable) {
 		super(menuId, nattable);
-		this.natTable.setMenu(menu);
 	}
 
 
@@ -46,7 +45,6 @@ public class PapyrusBodyPopupMenuAction extends AbstractPapyrusPopupMenuAction {
 	@Override
 	protected void addMenuSeparators(IMenuManager menuManager) {
 		super.addMenuSeparators(menuManager);
-
 
 		Separator separator = new Separator(MenuConstants.CELL_SEPARATOR_ID);
 		separator.setVisible(true);
@@ -69,5 +67,4 @@ public class PapyrusBodyPopupMenuAction extends AbstractPapyrusPopupMenuAction {
 		// separator.setVisible(true);
 		// menuManager.add(separator);
 	}
-
 }
