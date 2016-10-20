@@ -13,7 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines;
 
+import java.util.List;
+
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ArrivalSignal;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ClassifierBehaviorInvocationEventAccepter;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.InvocationEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ObjectActivation;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.Class;
 
 public class DoActivityContextObjectActivation extends ObjectActivation {
 
@@ -34,6 +43,34 @@ public class DoActivityContextObjectActivation extends ObjectActivation {
 					doActivityObject.owner.notifyCompletion();
 				}
 			}
+		}
+	}
+	
+	@Override
+	public void startBehavior(Class classifier, List<ParameterValue> inputs) {
+		// The expected classifier is the doActivity behavior. The doActivity
+		// behavior is executed as if it was the classifier of a class typing
+		// the doActivity context object. It only exists one doActivity executed
+		// as a classifier behavior for a DoActivityContextObject.
+		if(classifier != null 
+			&& classifier instanceof Behavior
+			&& this.classifierBehaviorInvocations.isEmpty()){
+			ClassifierBehaviorInvocationEventAccepter newInvocation = new ClassifierBehaviorInvocationEventAccepter();
+			newInvocation.objectActivation = this;
+			newInvocation.classifier = classifier;
+			Execution doActivityExecution = this.object.locus.factory.createExecution((Behavior)classifier, this.object); 
+			if(inputs != null){
+				for(int i = 0; i < inputs.size(); i++){
+					doActivityExecution.setParameterValue(inputs.get(i));
+				}
+			}
+			newInvocation.execution = doActivityExecution;
+			this.classifierBehaviorInvocations.add(newInvocation);
+			this.register(newInvocation);
+			InvocationEventOccurrence invocationEventOccurrence = new InvocationEventOccurrence();
+			invocationEventOccurrence.execution = newInvocation.execution;
+			this.eventPool.add(invocationEventOccurrence);
+			this._send(new ArrivalSignal());
 		}
 	}
 }

@@ -33,7 +33,7 @@ public class EventTriggeredExecution extends Execution {
 	// the execution of the behavior
 	public EventOccurrence triggeringEventOccurrence;
 	
-	protected void initialize(){
+	public void initialize(){
 		// Transfer input parameter values of the call event execution
 		// to the wrapped execution if possible. Two situations are considered
 		// 1. If the triggering EventOccurrence is for a SignalEvent, then all
@@ -94,7 +94,7 @@ public class EventTriggeredExecution extends Execution {
 		}
 	}
 	
-	protected void finalize(){
+	public void finalize(){
 		// Transfer output parameter values (produced by the wrapped execution) back to
 		// the execution associated t the call event.
 		// If an effect, entry or exit Behavior is not just input-conforming, then the

@@ -19,11 +19,13 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.FeatureValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ArrivalSignal;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ObjectActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.SM_ObjectActivation;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.StructuralFeature;
 
@@ -38,13 +40,23 @@ public class DoActivityContextObject extends Object_ {
 	public Object_ context;
 	
 	public void initialize(Object_ context){
-		// Create the object activation and reference the context of the executing state-machine
-		this.objectActivation = new DoActivityContextObjectActivation();
-		this.objectActivation.object = this;
+		// Context object of this DoActivityContextObject is the context
+		// of the state machine which has invoked the doActivity.
 		if(context!=null){
 			this.context = context;
-			this.locus = context.locus;
 		}
+	}
+	
+	@Override
+	public void startBehavior(Class classifier, List<ParameterValue> inputs) {
+		// Starts the behavior of a DoActivityContextObject. It behaves the
+		// same than in fUML except that for object is asscoiated to a specific
+		// type of object activation: DoActivityContextObjectActivation
+		if(this.objectActivation == null){
+			this.objectActivation = new DoActivityContextObjectActivation();
+			this.objectActivation.object = this;
+		}
+		this.objectActivation.startBehavior(classifier, inputs);
 	}
 	
 	@Override

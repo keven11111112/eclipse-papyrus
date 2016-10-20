@@ -18,10 +18,8 @@ import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ArrivalSignal;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ClassifierBehaviorInvocationEventAccepter;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.InvocationEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.EventTriggeredExecution;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.SM_ObjectActivation;
 import org.eclipse.uml2.uml.Behavior;
@@ -245,27 +243,22 @@ public class StateActivation extends VertexActivation {
 		if(!this.isDoActivityCompleted){
 			Behavior doActivity = this.getdoActivity();
 			if(doActivity!=null){
-				// Initialization of the context object used by the doActivity which
-				// is going to be invoked.
+				// Create, initialize and register to the locus the doActivityContextObject. 
 				this.doActivityContextObject = new DoActivityContextObject();
-				Object_ stateMachineExecutionContext = this.getExecutionContext();
-				this.doActivityContextObject.initialize(stateMachineExecutionContext);
+				this.getExecutionLocus().add(this.doActivityContextObject);
+				this.doActivityContextObject.initialize(this.getExecutionContext());
 				this.doActivityContextObject.owner = this;
+				// Extract data from triggering event occurrence if possible. Reuse event occurrence
+				// embedded data extraction logic provided by EventTriggeredExecution.
+				List<ParameterValue> inputs = null;
 				Execution doActivityExecution = this.getExecutionFor(doActivity, eventOccurrence);
-				doActivityExecution.context = this.doActivityContextObject;
 				if(doActivityExecution instanceof EventTriggeredExecution){
-					((EventTriggeredExecution)doActivityExecution).wrappedExecution.context = this.doActivityContextObject;
+					((EventTriggeredExecution)doActivityExecution).initialize();
+					inputs = new ArrayList<ParameterValue>(((EventTriggeredExecution)doActivityExecution).wrappedExecution.parameterValues);
 				}
-				// The doActivity is started asynchronously. This is realized by adding an invocation event accepter
-				// for this doActivity within the event accepter list of the object activation attached to the currently
-				// executed state machine
-				ClassifierBehaviorInvocationEventAccepter invocationAccepter = new ClassifierBehaviorInvocationEventAccepter();
-				invocationAccepter.execution = doActivityExecution;
-				doActivityExecution.context.register(invocationAccepter);
-				InvocationEventOccurrence eventOccurence = new InvocationEventOccurrence();
-				eventOccurence.execution = doActivityExecution;
-				stateMachineExecutionContext.objectActivation.eventPool.add(eventOccurence);
-				stateMachineExecutionContext.objectActivation._send(new ArrivalSignal());
+				// Start doActivity execution on its own thread of execution (i.e., this
+				// a different thread of execution than the one used for the state machine).
+				this.doActivityContextObject.startBehavior(doActivity, inputs);
 			}
 		}
 	}
