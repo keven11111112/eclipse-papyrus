@@ -61,6 +61,15 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	
 	// The last verdict when the execution was propagated over this transition.
 	private boolean lastPropagation;
+
+	public TransitionActivation(){
+		super();
+		this.status = TransitionMetadata.NONE;
+		this.analyticalStatus = TransitionMetadata.NONE;
+		this.leastCommonAncestor = null;
+		this.lastTriggeringEventOccurrence = null;
+		this.lastPropagation = false;
+	}
 	
 	public TransitionMetadata getStatus() {
 		return status;
@@ -70,13 +79,20 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		this.status = state;
 	}
 
-	public TransitionActivation(){
-		super();
-		this.status = TransitionMetadata.NONE;
-		this.analyticalStatus = TransitionMetadata.NONE;
-		this.leastCommonAncestor = null;
-		this.lastTriggeringEventOccurrence = null;
-		this.lastPropagation = false;
+	public VertexActivation getSourceActivation() {
+		return vertexSourceActivation;
+	}
+
+	public void setSourceActivation(VertexActivation vertexSourceActivation) {
+		this.vertexSourceActivation = vertexSourceActivation;
+	}
+
+	public VertexActivation getTargetActivation() {
+		return vertexTargetActivation;
+	}
+
+	public void setTargetActivation(VertexActivation vertexTargetActivation) {
+		this.vertexTargetActivation = vertexTargetActivation;
 	}
 
 	public boolean isReached(boolean staticCheck){
@@ -125,27 +141,40 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	}
 	
 	public boolean isTriggered(){
-		return !((Transition)this.node).getTriggers().isEmpty();
+		// Check if the transition is triggered. A transition is triggered
+		// if it declares triggers or if it redefines a transition that itself
+		// declares triggers. This check applies recursively on the redefinition
+		// hierarchy.
+		Transition transition = (Transition) this.node;
+		boolean isTriggered = false;
+		if(!transition.getTriggers().isEmpty()){
+			isTriggered = true;
+		}
+		while(!isTriggered && transition.getRedefinedTransition() != null){
+			transition = transition.getRedefinedTransition();
+			if(!transition.getTriggers().isEmpty()){
+				isTriggered = true;
+			}
+		}
+		return isTriggered;
 	}
 	
 	public boolean isGuarded(){
-		return ((Transition)this.node).getGuard()!=null;
-	}
-	
-	public VertexActivation getSourceActivation() {
-		return vertexSourceActivation;
-	}
-
-	public void setSourceActivation(VertexActivation vertexSourceActivation) {
-		this.vertexSourceActivation = vertexSourceActivation;
-	}
-
-	public VertexActivation getTargetActivation() {
-		return vertexTargetActivation;
-	}
-
-	public void setTargetActivation(VertexActivation vertexTargetActivation) {
-		this.vertexTargetActivation = vertexTargetActivation;
+		// Check if the transition is guarded. A transition is guarded if it declares
+		// a guard or if a redefine transition that itself declares a guar. This check
+		// applies recursively on the redefinition hierarchy
+		Transition transition = (Transition) this.node;
+		boolean isGuarded = false;
+		if(transition.getGuard() != null){
+			isGuarded = true;
+		}
+		while(!isGuarded && transition.getRedefinedTransition() != null){
+			transition = transition.getRedefinedTransition();
+			if(transition.getGuard() != null){
+				isGuarded = true;
+			}
+		}
+		return isGuarded;
 	}
 	
 	public boolean evaluateGuard(EventOccurrence eventOccurrence){
