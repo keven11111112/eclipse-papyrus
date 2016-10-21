@@ -26,19 +26,12 @@ import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Vertex;
 
-/**
- * Visitor class used to execute a state-machine
- */
 public class StateMachineExecution extends Execution {
 
-	/**
-	 * List of visitors associated to regions owned by the state-machine
-	 */
+	// Region activation owned by the state machine execution
 	protected List<RegionActivation> regionActivation;
 	
-	/**
-	 * The current "state" of state-machine 
-	 */
+	// Current configuration for the executed state machine
 	protected StateMachineConfiguration configuration;
 	
 	public StateMachineExecution(){
@@ -59,6 +52,8 @@ public class StateMachineExecution extends Execution {
 	}
 	
 	protected void initRegions(){
+		// Instantiate activations for regions owned by the state machine.
+		// The parent of these activations is this state machine execution.
 		StateMachine machine = null;
 		if(!this.getTypes().isEmpty()){
 			machine = (StateMachine) this.getTypes().get(0);
@@ -73,13 +68,11 @@ public class StateMachineExecution extends Execution {
 		}
 	}
 	
-	/**
-	 * Search the corresponding visitor in the hierarchy owned by this
-	 * StateMachineExecution
-	 * @param vertex - the vertex for which an activation is searched
-	 * @return vertexActivation - the corresponding activation
-	 */
 	protected VertexActivation getVertexActivation(Vertex vertex){
+		// Find the vertex activation corresponding to the given vertex.
+		// Search goes through the overall hierarchy of visitors until
+		// the activation is found. Null is returned if no activation
+		// could be found.
 		int i = 0;
 		VertexActivation vertexActivation = null;
 		while(vertexActivation==null && i < this.regionActivation.size()){
