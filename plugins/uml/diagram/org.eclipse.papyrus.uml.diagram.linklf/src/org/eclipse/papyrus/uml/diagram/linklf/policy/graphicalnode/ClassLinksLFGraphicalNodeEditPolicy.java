@@ -9,15 +9,18 @@
  *
  * Contributors:
  *  Svyatoslav Kovalsky - Initial API and implementation
- *
+ *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 506314 
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.linklf.policy.graphicalnode;
+
+import java.util.Arrays;
 
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.AssociationClassHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
@@ -40,14 +43,16 @@ public class ClassLinksLFGraphicalNodeEditPolicy extends DefaultLinksLFEditPolic
 						.getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
 				CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter
 						.getAdapter(CreateRelationshipRequest.class);
-				if (UMLElementTypes.AssociationClass_Edge.equals(createElementRequest.getElementType())) {
+				IElementType elementType = createElementRequest.getElementType();
+				if (UMLElementTypes.AssociationClass_Edge.equals(elementType)
+						|| (elementType!= null && Arrays.asList(elementType.getAllSuperTypes()).contains(UMLElementTypes.AssociationClass_Edge))) {
 					AssociationClassHelper associationClassHelper = new AssociationClassHelper(getEditingDomain());
 					return associationClassHelper.getAssociationClassElementCommand(
 							((CreateConnectionViewAndElementRequest) request), c);
-				} else if (UMLElementTypes.Dependency_BranchEdge.equals(createElementRequest.getElementType())) {
+				} else if (UMLElementTypes.Dependency_BranchEdge.equals(elementType)) {
 					MultiDependencyHelper multiDependencyHelper = new MultiDependencyHelper(getEditingDomain());
 					return multiDependencyHelper.getCommand(((CreateConnectionViewAndElementRequest) request), c);
-				} else if (UMLElementTypes.Association_BranchEdge.equals(createElementRequest.getElementType())) {
+				} else if (UMLElementTypes.Association_BranchEdge.equals(elementType)) {
 					MultiAssociationHelper multiAssociationHelper = new MultiAssociationHelper(getEditingDomain());
 					return multiAssociationHelper.getCommand(((CreateConnectionViewAndElementRequest) request), c);
 				} else {
