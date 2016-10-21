@@ -15,30 +15,43 @@
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.tools.AbstractPopupBarTool;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.hyperlink.messages.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.editpolicy.NavigationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.button.HyperlinkButton;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkDocument;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
+import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkSpecificObject;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkWeb;
 import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkException;
@@ -47,8 +60,17 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
 import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.ui.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.ui.util.EditorHelper;
+import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
+import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusSyncTable;
+import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusTable;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
+import org.eclipse.papyrus.infra.viewpoints.style.PapyrusViewStyle;
+import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 
 /**
  * The Class HyperlinkNavigationMenuEditPolicy can be applied on edit part to display
@@ -58,6 +80,104 @@ import org.eclipse.swt.widgets.Shell;
  * @since 2.0
  */
 public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
+
+	/** Icon for new Table. */
+	private static final String ICONS_NEW_TABLE = "icons/NewTable.gif"; //$NON-NLS-1$
+
+	/** Icon for new Diagram. */
+	private static final String ICONS_NEW_DIAGRAM = "icons/NewDiagram.gif"; //$NON-NLS-1$
+
+	/**
+	 * Action to open the popup of creation of new View.
+	 */
+	public class AddViewPopupAction extends Action {
+
+		/** The list of available view prototype. */
+		private List<ViewPrototype> viewPrototypes;
+
+		/** the dialog title. */
+		private String title;
+
+		/** The dialog message. */
+		private String message;
+
+		/**
+		 * The label Provider for ViewPrototype.
+		 */
+		LabelProvider labelProvider = new LabelProvider() {
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.jface.viewers.LabelProvider#getText(java.lang.Object)
+			 */
+			@Override
+			public String getText(final Object element) {
+				String text = null;
+				if (element instanceof ViewPrototype) {
+					ViewPrototype prototype = (ViewPrototype) element;
+					text = prototype.getLabel();
+				} else {
+					text = super.getText(element);
+				}
+				return text;
+			}
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.jface.viewers.LabelProvider#getImage(java.lang.Object)
+			 */
+			@Override
+			public Image getImage(final Object element) {
+				Image image = null;
+				if (element instanceof ViewPrototype) {
+					image = ((ViewPrototype) element).getIconDescriptor().createImage();
+				} else {
+					image = super.getImage(element);
+				}
+				return image;
+			}
+		};
+
+		/**
+		 * Constructor.
+		 *
+		 * @param diagramPrototypes
+		 */
+		public AddViewPopupAction(List<ViewPrototype> diagramPrototypes, String Title, String message) {
+			this.viewPrototypes = diagramPrototypes;
+			this.title = Title;
+			this.message = message;
+		}
+
+		/**
+		 * Open the dialog.
+		 * 
+		 * @see org.eclipse.jface.action.Action#run()
+		 */
+		@Override
+		public void run() {
+
+			ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(EditorHelper.getActiveShell(), labelProvider, new EncapsulatedContentProvider(ArrayContentProvider.getInstance()));
+			dialog.setAllowMultiple(false);
+			dialog.setTitle(title);
+			dialog.setMessage(message);
+
+			dialog.setInput(viewPrototypes);
+			dialog.setSize(SWT.DEFAULT, 10);
+			dialog.open();
+
+			if (Window.OK == dialog.getReturnCode()) {
+				// Gets the selected view prototype
+				Object firstResult = dialog.getFirstResult();
+				if (firstResult instanceof ViewPrototype) {
+					ViewPrototype prototype = (ViewPrototype) firstResult;
+					// Create the View(Diagram or Table) and add hyperlink as default.
+					new CreateViewAndHyperlinkAction(prototype).run();
+				}
+			}
+		}
+	}
 
 	/** The editor registry. */
 	private IPageIconsRegistry editorRegistry;
@@ -107,9 +227,150 @@ public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
 			Activator.log.error(e);
 		}
 
+		// Add View(Diagram/Table) with associated hyperlink creation
+		addHyperlinkedViewCreations();
+
 		// Add the New Hyperlink tool
-		addNavigationMenuHyperlinkDescriptor(Activator.getDefault().getIcon(Activator.IMG_PLUS), new AddHyperlinkAction(), "Open hyperlinks menu", "Modify hyperlinks");
+		addNavigationMenuHyperlinkDescriptor(Activator.getDefault().getIcon(Activator.IMG_PLUS), new AddHyperlinkAction(), Messages.HyperlinkNavigationMenuEditPolicy_EditHyperLinkTooltip, Messages.HyperlinkNavigationMenuEditPolicy_EditHyperLinkTooltipLabel);
 	}
+
+	/**
+	 * Add View Navigation hyperlink.
+	 */
+	private void addHyperlinkedViewCreations() {
+		EObject selection = null;
+		Object model = ((IGraphicalEditPart) getHost()).getModel();
+		if (model instanceof View) {
+			View view = (View) model;
+			selection = EMFHelper.getEObject(view.getElement());
+
+		}
+		if (null != selection) {
+
+			// Gets View Prototype for Table and for Diagram
+			List<ViewPrototype> diagramPrototypes = new ArrayList<ViewPrototype>();
+			List<ViewPrototype> tablePrototypes = new ArrayList<ViewPrototype>();
+
+			for (final ViewPrototype proto : PolicyChecker.getCurrent().getPrototypesFor(selection)) {
+				if (proto.getConfiguration() instanceof PapyrusDiagram) {
+					diagramPrototypes.add(proto);
+				} else if (proto.getConfiguration() instanceof PapyrusTable || proto.getConfiguration() instanceof PapyrusSyncTable) {
+					tablePrototypes.add(proto);
+				}
+			}
+
+			// Diagram case
+			if (0 < diagramPrototypes.size()) {
+				// Sort list
+				Collections.sort(diagramPrototypes, new ViewPrototype.Comp());
+				// Add popup action
+				Image addDiagramIcon = Activator.imageDescriptorFromPlugin(org.eclipse.papyrus.infra.viewpoints.policy.Activator.PLUGIN_ID, ICONS_NEW_DIAGRAM).createImage();
+				AddViewPopupAction addDiagramAction = new AddViewPopupAction(diagramPrototypes, Messages.HyperlinkNavigationMenuEditPolicy_CreateDiagramDialogLabel, Messages.HyperlinkNavigationMenuEditPolicy_CreateDiagramDialogMessage);
+				addNavigationMenuHyperlinkDescriptor(addDiagramIcon, addDiagramAction, Messages.HyperlinkNavigationMenuEditPolicy_CreateDiagramhyperlinkTooltip, Messages.HyperlinkNavigationMenuEditPolicy_CreateDiagramhyperlinkLabel);
+			}
+			// Table case
+			if (0 < tablePrototypes.size()) {
+				// sort list
+				Collections.sort(tablePrototypes, new ViewPrototype.Comp());
+				// The image
+				Image addTableIcon = Activator.imageDescriptorFromPlugin(org.eclipse.papyrus.infra.viewpoints.policy.Activator.PLUGIN_ID, ICONS_NEW_TABLE).createImage();
+				// The action
+				AddViewPopupAction addTableAction = new AddViewPopupAction(tablePrototypes, Messages.HyperlinkNavigationMenuEditPolicy_CreateTableDialogTitle, Messages.HyperlinkNavigationMenuEditPolicy_CreateTableDialogMessage);
+				// Add Popup action
+				addNavigationMenuHyperlinkDescriptor(addTableIcon, addTableAction, Messages.HyperlinkNavigationMenuEditPolicy_CreateTableHyperLinkTooltip, Messages.HyperlinkNavigationMenuEditPolicy_CreateTableHyperLinkLabel);
+			}
+		}
+	}
+
+	/**
+	 * Create View and the hyperlink set as default from a ViewPrototype.
+	 */
+	protected class CreateViewAndHyperlinkAction extends Action {
+		private ViewPrototype prototype;
+
+		/**
+		 * Constructor.
+		 */
+		public CreateViewAndHyperlinkAction(final ViewPrototype prototype) {
+			this.prototype = prototype;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.jface.action.Action#run()
+		 */
+		@Override
+		public void run() {
+			try {
+				Object model = ((IGraphicalEditPart) getHost()).getModel();
+				if (model instanceof View) {
+					View view = (View) model;
+
+					EObject eObject = EMFHelper.getEObject(view.getElement());
+
+					if (null != eObject) {
+
+						// Get the usage of object before action
+						Set<EObject> usagesBefore = new HashSet<EObject>();
+						Collection<Setting> usages = EMFHelper.getUsages(eObject);
+						if (null != usages) {
+							for (Setting setting : usages) {
+								usagesBefore.add(setting.getEObject());
+							}
+						}
+						prototype.instantiateOn(eObject);
+
+						// Get the usage of object after action
+						Set<EObject> usagesAfter = new HashSet<EObject>();
+						usages = EMFHelper.getUsages(eObject);
+						if (usages != null) {
+							for (Setting setting : usages) {
+								usagesAfter.add(setting.getEObject());
+							}
+						}
+
+						// remove the before usage to get the new created Diagram, Table, ...
+						// In Diagram case and Table, it should be only one element.
+						usagesAfter.removeAll(usagesBefore);
+
+						// Gets the container
+						EObject container = null;
+						for (EObject createdObject : usagesAfter) {
+							if (createdObject instanceof PapyrusViewStyle) {
+								// Add it to hyperLink
+								PapyrusViewStyle viewStyle = (PapyrusViewStyle) createdObject;
+								container = viewStyle.eContainer();
+							} else if (null == container) {
+								container = createdObject;
+							}
+						}
+
+						// Set hyperLink
+						if (null != container) {
+							HyperLinkSpecificObject hyperLink = new HyperLinkSpecificObject(container);
+							// Set it to default to be open by double click
+							hyperLink.setIsDefault(true);
+
+							List<HyperLinkObject> hyperLinkList = new ArrayList<HyperLinkObject>();
+							hyperLinkList.add(hyperLink);
+
+							TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(eObject);
+							Command addHyperLinkCommand = hyperlinkHelperFactory.getAddHyperLinkCommand(domain, (EModelElement) model, hyperLinkList);
+
+							if (addHyperLinkCommand.canExecute()) {
+								domain.getCommandStack().execute(addHyperLinkCommand);
+							}
+						}
+					}
+
+				}
+			} catch (HyperLinkException ex) {
+				Activator.log.error(ex);
+			}
+		}
+	}
+
 
 	private void addHyperlinks() {
 		ILabelProvider labelProvider = null;

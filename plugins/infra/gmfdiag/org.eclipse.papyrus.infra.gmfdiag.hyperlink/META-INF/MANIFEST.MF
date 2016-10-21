@@ -16,4 +16,4 @@ Bundle-Name: GMF Diagram Hyperlink
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.hyperlink;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
