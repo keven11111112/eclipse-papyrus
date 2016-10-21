@@ -26,6 +26,26 @@ public class Messages extends NLS {
 
 	public static String EditorHyperLinkHelper_Editor;
 
+	public static String HyperlinkNavigationMenuEditPolicy_CreateDiagramDialogLabel;
+
+	public static String HyperlinkNavigationMenuEditPolicy_CreateDiagramDialogMessage;
+
+	public static String HyperlinkNavigationMenuEditPolicy_CreateDiagramhyperlinkLabel;
+
+	public static String HyperlinkNavigationMenuEditPolicy_CreateDiagramhyperlinkTooltip;
+
+	public static String HyperlinkNavigationMenuEditPolicy_CreateTableDialogMessage;
+
+	public static String HyperlinkNavigationMenuEditPolicy_CreateTableDialogTitle;
+
+	public static String HyperlinkNavigationMenuEditPolicy_CreateTableHyperLinkLabel;
+
+	public static String HyperlinkNavigationMenuEditPolicy_CreateTableHyperLinkTooltip;
+
+	public static String HyperlinkNavigationMenuEditPolicy_EditHyperLinkTooltip;
+
+	public static String HyperlinkNavigationMenuEditPolicy_EditHyperLinkTooltipLabel;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
