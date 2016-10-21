@@ -82,6 +82,7 @@ public class StateActivation extends VertexActivation {
 	}
 
 	public ConnectionPointActivation getConnectionPointActivation(Vertex vertex){
+		// Return the activation for the exit point or the entry point.
 		ConnectionPointActivation activation = null;
 		int i = 0;
 		while(i < this.connectionPointActivation.size() && activation==null){
@@ -117,6 +118,10 @@ public class StateActivation extends VertexActivation {
 	
 	
 	protected VertexActivation getVertexActivation(Vertex vertex){
+		// Return the activation corresponding to the vertex. Search
+		// is propagated through the owned region activation of the
+		// state activation if this latter is composite. If no activation
+		// is found null is returned.
 		VertexActivation vertexActivation = null;
 		State state = (State) this.getNode();
 		if(state.isComposite()){

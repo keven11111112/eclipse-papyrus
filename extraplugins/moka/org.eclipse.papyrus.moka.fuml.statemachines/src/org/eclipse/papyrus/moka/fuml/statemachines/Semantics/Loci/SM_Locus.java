@@ -22,6 +22,8 @@ import org.eclipse.uml2.uml.Class;
 public class SM_Locus extends CS_Locus {
 	
 	public Object_ instantiate(Class type) {
+		// Behaves like in fUML except that type instance are not
+		// Object_ but SM_Object.
 		Object_ object = null;
 		if (type instanceof Behavior) {
 			object = super.instantiate(type);

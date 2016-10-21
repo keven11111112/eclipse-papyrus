@@ -44,6 +44,12 @@ public class SM_OpaqueExpressionEvaluation extends CS_OpaqueExpressionEvaluation
 	}
 	
 	public void initialize(EventOccurrence eventOccurrence){
+		// The event occurrence that is about or is currently dispatched can
+		// have data. In such situation if the behavior that is associated
+		// to the OpaqueExpression input conforms with the proposed signal
+		// event occurrence or the input parameters of the call event occurrence
+		// then event occurrence data are passed to this behavior and used
+		// to produce the guard verdict.
 		this.parameterValues.clear();
 		OpaqueExpression expression = (OpaqueExpression)this.specification;
 		if(expression.getBehavior().getOwnedParameters().size() > 0){

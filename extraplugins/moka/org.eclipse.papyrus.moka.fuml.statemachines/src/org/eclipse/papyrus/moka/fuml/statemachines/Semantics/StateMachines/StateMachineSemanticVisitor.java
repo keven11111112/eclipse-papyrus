@@ -115,6 +115,11 @@ public abstract class StateMachineSemanticVisitor extends SemanticVisitor {
 	}
 	
 	protected Execution getExecutionFor(Behavior behavior, EventOccurrence eventOccurrence){
+		// Create an Execution for the specified behavior. In addition to the creation of this
+		// Execution, if the behavior execution is triggered by the dispatching of an event (i.e.
+		// a CallEvent or a SignalEvent) then an EventTriggeredExecution is provided. This
+		// execution wraps the original execution and ensures passing of event data to the
+		// wrapped execution.
 		Execution execution = null;
 		if(behavior != null){
 			Execution originalExecution = this.getExecutionLocus().factory.createExecution(behavior, this.getExecutionContext());

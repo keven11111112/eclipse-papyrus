@@ -47,8 +47,9 @@ import org.eclipse.uml2.uml.Transition;
 public class SM_ExecutionFactory extends CS_ExecutionFactory {
 	
 	public SemanticVisitor instantiateVisitor(Element element) {
-		// Provide the semantic visitor corresponding to the syntactic
-		// element provided as a parameter
+		// Return the semantic visitor corresponding to the given model element.
+		// If no visitor can be created for this model element then null is 
+		// returned.
 		SemanticVisitor visitor = null ;
 		if(element instanceof StateMachine){
 			visitor = new StateMachineExecution();
