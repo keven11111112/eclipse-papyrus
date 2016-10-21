@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bugs 496439, 496299
+ *  Christian W. Damus - bugs 496439, 496299, 505330
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.transformation;
 
@@ -357,7 +357,7 @@ public class ImportTransformation {
 	 * Initializes the resource set, and resolve all dependencies
 	 */
 	protected void initResourceSet(IProgressMonitor monitor) {
-		resourceSet = new MigrationResourceSetImpl();
+		resourceSet = new MigrationResourceSetImpl(analysisHelper);
 		synchronized (UMLUtil.class) {
 			UMLUtil.init(resourceSet);
 		}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--xtools2_universal_type_manager-->
+<!--Rational Software Architect RealTime Edition 9.1.2-->
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.mmi.ui.signatures.diagram" version="7.0.0"><feature description="" name="Rational Modeling Platform (com.ibm.xtools.rmp)" url="" version="7.0.0"/></signature>?>
+<?com.ibm.xtools.emf.core.signature <signature id="com.ibm.xtools.uml.msl.model" version="7.0.0"><feature description="" name="com.ibm.xtools.ruml.feature" url="" version="7.0.0"/></signature>?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:today="http:///schemas/today/__PMdsJBVEea9gsZP7hrDPQ/2" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/today/__PMdsJBVEea9gsZP7hrDPQ/2 today.epx#__PMdsZBVEea9gsZP7hrDPQ?today/today?">
+  <uml:Package xmi:id="_JExbsJBWEea9gsZP7hrDPQ" name="first">
+    <eAnnotations xmi:id="_JExbsZBWEea9gsZP7hrDPQ" source="uml2.diagrams"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_OLZ-UJBWEea9gsZP7hrDPQ" name="Class1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Q_aXAJBWEea9gsZP7hrDPQ" name="Class2"/>
+    <profileApplication xmi:id="_JExbtJBWEea9gsZP7hrDPQ">
+      <eAnnotations xmi:id="_JExbtZBWEea9gsZP7hrDPQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_JExbtpBWEea9gsZP7hrDPQ">
+      <eAnnotations xmi:id="_JExbt5BWEea9gsZP7hrDPQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML2_MSL_PROFILES/Default.epx#_fNwoAAqoEd6-N_NOT9vsCA?Default/Default?"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML2_MSL_PROFILES/Default.epx#_a_S3wNWLEdiy4IqP8whjFA?Default?"/>
+    </profileApplication>
+    <profileApplication xmi:id="_JExbuJBWEea9gsZP7hrDPQ">
+      <eAnnotations xmi:id="_JExbuZBWEea9gsZP7hrDPQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML2_MSL_PROFILES/Deployment.epx#_4OVBUD0TEeKt-L0gyEptgQ?Deployment/Deployment?"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML2_MSL_PROFILES/Deployment.epx#_vjbuwOvHEdiDX5bji0iVSA?Deployment?"/>
+    </profileApplication>
+    <profileApplication xmi:id="_MiMk0JBWEea9gsZP7hrDPQ">
+      <eAnnotations xmi:id="_MiMk0ZBWEea9gsZP7hrDPQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="today.epx#__PMdsZBVEea9gsZP7hrDPQ?today/today?"/>
+      </eAnnotations>
+      <appliedProfile href="today.epx#_0UUrkJBVEea9gsZP7hrDPQ?today?"/>
+    </profileApplication>
+  </uml:Package>
+  <today:Foo xmi:id="_QLtCIJBWEea9gsZP7hrDPQ" base_Classifier="_OLZ-UJBWEea9gsZP7hrDPQ"/>
+  <today:Bar xmi:id="_RxU8IJBWEea9gsZP7hrDPQ" base_Classifier="_Q_aXAJBWEea9gsZP7hrDPQ"/>
+</xmi:XMI>
