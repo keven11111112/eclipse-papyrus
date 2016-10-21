@@ -24,7 +24,6 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.Ev
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.CallEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Values.SM_OpaqueExpressionEvaluation;
-import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.NamedElement;
@@ -291,7 +290,6 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		this.exitSource(eventOccurrence);
 		FUMLExecutionEngine.eInstance.getControlDelegate().control(this); 
 		this.tryExecuteEffect(eventOccurrence);
-		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode()); 
 		this.setStatus(TransitionMetadata.TRAVERSED);
 		logger.info(this.getNode().getName()+" => TRAVERSED");
 		this.enterTarget(eventOccurrence);

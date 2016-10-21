@@ -22,7 +22,6 @@ import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.TransitionActivation.TransitionMetadata;
-import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
 import org.eclipse.uml2.uml.TransitionKind;
 import org.eclipse.uml2.uml.Vertex;
 
@@ -156,7 +155,6 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		// occurs when the current vertex is exited through a transition that cross boundaries of
 		// the parent state (and maybe also border its own parent). This implies that from the current
 		// vertex and until the least common ancestor is reached all states are exited recursively.
-		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode());
 		this.tagIncomingTransitions(TransitionMetadata.NONE, false);
 		this.setStatus(StateMetadata.IDLE);
 		logger.info(this.getNode().getName()+" => IDLE");
