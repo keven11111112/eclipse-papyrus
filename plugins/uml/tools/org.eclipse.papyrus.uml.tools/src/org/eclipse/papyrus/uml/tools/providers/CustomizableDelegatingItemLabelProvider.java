@@ -324,7 +324,9 @@ public class CustomizableDelegatingItemLabelProvider implements IItemLabelProvid
 					result = SEPARATOR_COLON;
 					break;
 				case QUALIFY_NAME:
-					result = ((NamedElement) element).getQualifiedName();
+					if (element instanceof NamedElement && null != ((NamedElement) element).getQualifiedName()) {
+						result = ((NamedElement) element).getQualifiedName();
+					}
 					break;
 
 				default:
