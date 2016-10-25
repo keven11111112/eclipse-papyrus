@@ -22,10 +22,18 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @Headless
 @RunWith(ClassificationSuite.class)
-@SuiteClasses({ ContentProviderTest.class, UMLStereotypePropertyContentProviderTest.class, DependencyManagementTest.class,
-		NamedElementValidatorTest.class, StereotypeElementListenerTest.class, ProfileApplicationListenerTest.class, UMLReferenceConverterTest.class, UMLReferenceConverterCompletionTest.class,
-		UMLLanguageProvidersTest.class, IconsStereotypesTest.class,
-
+@SuiteClasses({
+		ContentProviderTest.class,
+		UMLStereotypePropertyContentProviderTest.class,
+		DependencyManagementTest.class,
+		NamedElementValidatorTest.class,
+		StereotypeElementListenerTest.class,
+		ProfileApplicationListenerTest.class,
+		UMLReferenceConverterTest.class,
+		UMLReferenceConverterCompletionTest.class,
+		UMLLanguageProvidersTest.class,
+		IconsStereotypesTest.class,
+		CustomizableDelegatingItemLabelProviderTest.class,
 })
 public class AllTests {
 	// Test suite

@@ -41,10 +41,10 @@ import org.eclipse.uml2.uml.NamedElement;
 public class CustomizableDelegatingItemLabelProvider implements IItemLabelProvider {
 
 	/** left Stereotype delimiters ('Guillemets francais'). */
-	private static String ST_LEFT = "\u00AB"; //$NON-NLS-1$
+	public static String ST_LEFT = "\u00AB"; //$NON-NLS-1$
 
 	/** Right Stereotype delimiters ('Guillemets francais'). */
-	private static String ST_RIGHT = "\u00BB"; //$NON-NLS-1$
+	public static String ST_RIGHT = "\u00BB"; //$NON-NLS-1$
 
 	/**
 	 * The pattern of UML2 Edit labels:
