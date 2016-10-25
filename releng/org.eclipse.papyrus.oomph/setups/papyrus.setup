@@ -1423,7 +1423,7 @@
       <targlet activeRepositoryList="${eclipse.target.platform}" name="${scope.project.label} Plug-ins">
         <requirement name="org.eclipse.papyrus.${papyrus.extrafeature}.feature.feature.group" optional="true"/>
         <repositoryList name="Oxygen">
-          <repository url="${base.downloads.url}/modeling/mdt/papyrus/updates/nightly/oxgen/extra"/>
+          <repository url="${base.downloads.url}/modeling/mdt/papyrus/updates/nightly/oxygen/extra"/>
         </repositoryList>
         <repositoryList name="Neon">
           <repository url="${base.downloads.url}/modeling/mdt/papyrus/updates/nightly/neon/extra"/>
