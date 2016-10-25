@@ -41,8 +41,11 @@ public class FilterFieldPreferencesGroup extends AbstractPreferenceGroup {
 	/** The group. */
 	private Group fieldGroup;
 
-	/** The field editor for the lave validation preference. */
+	/** The field editor for the live validation preference. */
 	private FieldEditor liveValidationfieldEditor;
+
+	/** The field editor for the stereotype delimiter preference. */
+	private BooleanFieldEditor stereotypeDelimiterfieldEditor;
 
 	/**
 	 * 
@@ -75,6 +78,7 @@ public class FilterFieldPreferencesGroup extends AbstractPreferenceGroup {
 
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(fieldGroup);
 
+		// live validation preferences
 		liveValidationfieldEditor = new BooleanFieldEditor(IFilterPreferenceConstants.PREF_FILTER_LIVE_VALIDATION, Messages.FilterFieldPreferencesGroup_UseValidationPreferenceLabel, fieldGroup);
 		liveValidationfieldEditor.setPage(dialogPage);
 		addFieldEditor(liveValidationfieldEditor);
@@ -85,11 +89,17 @@ public class FilterFieldPreferencesGroup extends AbstractPreferenceGroup {
 
 		liveValidationfieldEditor.setPropertyChangeListener(listener);
 
+		// delay preferences
 		delayFieldEditor = new IntegerFieldEditor(IFilterPreferenceConstants.PREF_FILTER_VALIDATION_DELAY, Messages.FilterFieldPreferencesGroup_ValidationDelayPreferenceLabel, fieldGroup);
 		delayFieldEditor.setPage(dialogPage);
 		addFieldEditor(delayFieldEditor);
 
 		delayFieldEditor.setEnabled(Activator.getDefault().getPreferenceStore().getBoolean(IFilterPreferenceConstants.PREF_FILTER_LIVE_VALIDATION), fieldGroup);
+
+		// stereotype delimiters replacement preferences
+		stereotypeDelimiterfieldEditor = new BooleanFieldEditor(IFilterPreferenceConstants.PREF_FILTER_STEREOTYPE_REPLACED, Messages.FilterFieldPreferencesGroup_replaceDelimiterLabel, fieldGroup);
+		stereotypeDelimiterfieldEditor.setPage(dialogPage);
+		addFieldEditor(stereotypeDelimiterfieldEditor);
 	}
 
 	/**

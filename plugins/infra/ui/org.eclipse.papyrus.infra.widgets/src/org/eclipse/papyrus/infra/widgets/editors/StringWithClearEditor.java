@@ -13,10 +13,15 @@
 
 package org.eclipse.papyrus.infra.widgets.editors;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.jface.fieldassist.FieldDecoration;
@@ -34,6 +39,7 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackAdapter;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -73,6 +79,8 @@ public class StringWithClearEditor extends AbstractValueEditor implements KeyLis
 	/** The empty string. */
 	protected static final String EMPTY = ""; //$NON-NLS-1$
 
+	/** The map of string which have to be replaced in the text field during the user is typing. */
+	private Map<String, String> stringReplacementMap = new HashMap<>();
 
 	/**
 	 *
@@ -350,6 +358,22 @@ public class StringWithClearEditor extends AbstractValueEditor implements KeyLis
 	@Override
 	public void modifyText(final ModifyEvent e) {
 
+		//Replace strings
+		if (0 < stringReplacementMap.size()) {
+			// save the selection point in the text field
+			Point selection = text.getSelection();
+			
+			Set<Entry<String, String>> entrySet = stringReplacementMap.entrySet();
+			for (Entry<String, String> entry : entrySet) {
+				if (text.getText().contains(entry.getKey())) {
+					text.setText(getValue().replace(entry.getKey(), entry.getValue()));
+				}
+			}
+			
+			// restore the selection in the text field
+			text.setSelection(selection);
+		}
+
 		// SWT Thread
 		if (validateOnDelay) {
 			if (delay == 0) {
@@ -373,7 +397,6 @@ public class StringWithClearEditor extends AbstractValueEditor implements KeyLis
 						// SWT Thread
 						@Override
 						public void run() {
-
 							commit();
 						}
 					});
@@ -513,6 +536,40 @@ public class StringWithClearEditor extends AbstractValueEditor implements KeyLis
 				}
 			}
 		}
+	}
+
+	/**
+	 * add a set of string to be replaced in the text field when the user is typing.
+	 * 
+	 * @param oldValue
+	 *            The value to replace.
+	 * @param newValue
+	 *            The new value to be replace for.
+	 */
+	public void addStringToReplace(final String oldValue, final String newValue) {
+		Assert.isNotNull(oldValue);
+		Assert.isNotNull(newValue);
+
+		stringReplacementMap.put(oldValue, newValue);
+	}
+
+	/**
+	 * remove an value to be replaced in the text field.
+	 * 
+	 * @param oldValue
+	 *            The old value which was replace.
+	 */
+	public void removeStringToReplace(String oldValue) {
+		Assert.isNotNull(oldValue);
+
+		stringReplacementMap.remove(oldValue);
+	}
+
+	/**
+	 * Clear the string replacement map.
+	 */
+	public void clearStringToReplace() {
+		stringReplacementMap.clear();
 	}
 
 	/**

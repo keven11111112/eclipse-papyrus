@@ -29,6 +29,7 @@ public class FilterPreferenceInitializer extends AbstractPreferenceInitializer {
 		IPreferenceStore store = getPreferenceStore();
 		store.setDefault(IFilterPreferenceConstants.PREF_FILTER_LIVE_VALIDATION, IFilterPreferenceConstants.DEFAULT_FILTER_LIVE_VALIDATION_VALUE);
 		store.setDefault(IFilterPreferenceConstants.PREF_FILTER_VALIDATION_DELAY, IFilterPreferenceConstants.DEFAULT_VALIDATION_DELAY_VALUE);
+		store.setDefault(IFilterPreferenceConstants.PREF_FILTER_STEREOTYPE_REPLACED, IFilterPreferenceConstants.DEFAULT_FILTER_STEREOTYPE_REPLACED_VALUE);
 	}
 
 	/**

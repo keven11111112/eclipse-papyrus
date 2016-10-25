@@ -17,6 +17,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
 
+import static org.eclipse.papyrus.views.modelexplorer.preferences.IFilterPreferenceConstants.ST_LEFT;
+import static org.eclipse.papyrus.views.modelexplorer.preferences.IFilterPreferenceConstants.ST_LEFT_BEFORE;
+import static org.eclipse.papyrus.views.modelexplorer.preferences.IFilterPreferenceConstants.ST_RIGHT;
+import static org.eclipse.papyrus.views.modelexplorer.preferences.IFilterPreferenceConstants.ST_RIGHT_BEFORE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -182,6 +186,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/** The tree viewer filter. */
 	protected PatternViewerFilter viewerFilter;
+
+	/** true if the stereotype delimiters have to be replaced. */
+	private boolean stereotypeDelimitersReplaced;
 
 	/**
 	 * A listener on page (all editors) selection change. This listener is set
@@ -664,6 +671,17 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				if (e.keyCode == SWT.ARROW_UP) {
 					getCommonViewer().getControl().setFocus();
 				}
+
+				// Set the filter text if the replace stereotype delimiters preference have changed
+				if (isStereotypeDelimitersReplaced() != stereotypeDelimitersReplaced) {
+					stereotypeDelimitersReplaced = isStereotypeDelimitersReplaced();
+					if (stereotypeDelimitersReplaced) {
+						filterText.addStringToReplace(ST_LEFT_BEFORE, ST_LEFT);
+						filterText.addStringToReplace(ST_RIGHT_BEFORE, ST_RIGHT);
+					} else {
+						filterText.clearStringToReplace();
+					}
+				}
 			}
 
 		});
@@ -701,6 +719,13 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 */
 	private boolean isFilterValidateOnDelay() {
 		return Activator.getDefault().getPreferenceStore().getBoolean(IFilterPreferenceConstants.PREF_FILTER_LIVE_VALIDATION);
+	}
+
+	/**
+	 * Gets the preferences for the stereotype delimiter replacement.
+	 */
+	private boolean isStereotypeDelimitersReplaced() {
+		return Activator.getDefault().getPreferenceStore().getBoolean(IFilterPreferenceConstants.PREF_FILTER_STEREOTYPE_REPLACED);
 	}
 
 	/**

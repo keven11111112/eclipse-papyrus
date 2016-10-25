@@ -20,6 +20,7 @@ public class Messages extends NLS {
 	public static String ExpandPreferencesGroup_ExpandGroupTooltip;
 	public static String ExpandPreferencesGroup_MaxLevelLabel;
 	public static String FilterFieldPreferencesGroup_groupTitle;
+	public static String FilterFieldPreferencesGroup_replaceDelimiterLabel;
 	public static String FilterFieldPreferencesGroup_UseValidationPreferenceLabel;
 	public static String FilterFieldPreferencesGroup_ValidationDelayPreferenceLabel;
 	public static String ModelExplorerView_CaseSensitiveCheckBoxLabel;
