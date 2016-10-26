@@ -75,7 +75,7 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.papyrus.infra.types.doc"
          download-size="0"
@@ -190,6 +190,13 @@
 
    <plugin
          id="org.eclipse.papyrus.views.references.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.views.documentation.doc"
          download-size="0"
          install-size="0"
          version="0.0.0"
