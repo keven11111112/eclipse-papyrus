@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
@@ -88,7 +88,6 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
@@ -97,13 +96,10 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
-				new ShowHideCompartmentEditPolicy());
-		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY,
-				new ShowHideClassifierContentsEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -153,12 +149,12 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 		return lep;
 	}
 
+
 	/**
 	 * Papyrus codeGen
-	 *
+	 * 
 	 * @generated
 	 **/
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -167,7 +163,8 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge
+					&& false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -177,10 +174,10 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 
 	}
 
+
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new InstanceSpecificationFigure();
 	}
@@ -190,7 +187,6 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 	 * 
 	 * @generated
 	 */
-	@Override
 	public InstanceSpecificationFigure getPrimaryShape() {
 		return (InstanceSpecificationFigure) primaryShape;
 	}
@@ -203,6 +199,7 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 			((InstanceSpecificationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
+
 
 		if (childEditPart instanceof InstanceSpecificationSlotCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
@@ -232,7 +229,6 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -243,7 +239,6 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -254,7 +249,6 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if (editPart instanceof InstanceSpecificationSlotCompartmentEditPart) {
 			return getPrimaryShape().getSlotCompartmentFigure();
@@ -268,7 +262,6 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof InstanceSpecificationFloatingNameEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
@@ -281,21 +274,20 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(100, 100);
 		return result;
 	}
 
+
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
@@ -309,7 +301,6 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 	 *            instance of generated figure class
 	 * @generated
 	 */
-	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -322,7 +313,6 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -333,17 +323,16 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -351,7 +340,6 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -361,25 +349,27 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(InstanceSpecificationNameEditPart.VISUAL_ID));
 	}
 
+
+
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
-					.getCreateElementRequestAdapter();
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
 			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Slot_SlotLabel)) {
-				return getChildBySemanticHint(
-						UMLVisualIDRegistry.getType(InstanceSpecificationSlotCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InstanceSpecificationSlotCompartmentEditPart.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);
 	}
+
+
+
+
 }

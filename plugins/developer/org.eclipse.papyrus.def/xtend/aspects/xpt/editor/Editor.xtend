@@ -384,8 +384,8 @@ def configureDiagramEditDomain (GenEditorView it)'''
 
 			«overrideI(it.editorGen.diagram)»
 			public void commandStackChanged(java.util.EventObject event) {
-				if (Display.getCurrent() == null) { 
-					Display.getDefault().asyncExec(new Runnable() {
+				if (org.eclipse.swt.widgets.Display.getCurrent() == null) { 
+					org.eclipse.swt.widgets.Display.getDefault().asyncExec(new Runnable() {
 						
 						@Override
 						public void run() {

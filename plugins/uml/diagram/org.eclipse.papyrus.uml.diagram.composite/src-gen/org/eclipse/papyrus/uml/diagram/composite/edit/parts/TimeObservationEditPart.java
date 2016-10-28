@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.edit.parts;
 
@@ -89,8 +89,7 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeIconlDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeIconlDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ObservationLayoutEditPolicy());
@@ -144,6 +143,7 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 		return lep;
 	}
 
+
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -157,7 +157,8 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge
+					&& false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -166,6 +167,7 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 		super.handleNotificationEvent(event);
 
 	}
+
 
 	/**
 	 * @generated
@@ -182,6 +184,7 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 	public RoundedCompartmentFigure getPrimaryShape() {
 		return (RoundedCompartmentFigure) primaryShape;
 	}
+
 
 	/**
 	 * @generated
@@ -205,6 +208,7 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(20, 20);
 		return result;
 	}
+
 
 	/**
 	 * Creates figure for this edit part.
@@ -250,6 +254,7 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -272,4 +277,9 @@ public class TimeObservationEditPart extends RoundedCompartmentEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeObservationNameEditPart.VISUAL_ID));
 	}
+
+
+
+
+
 }

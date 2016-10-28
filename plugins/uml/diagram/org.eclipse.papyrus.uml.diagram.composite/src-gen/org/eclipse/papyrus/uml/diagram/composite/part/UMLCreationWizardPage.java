@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.part;
 
@@ -32,7 +32,8 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
-	public UMLCreationWizardPage(String pageName, IStructuredSelection selection, String fileExtension) {
+	public UMLCreationWizardPage(String pageName,
+			IStructuredSelection selection, String fileExtension) {
 		super(pageName, selection);
 		this.fileExtension = fileExtension;
 	}
@@ -73,7 +74,8 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	 */
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		setFileName(UMLDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), getFileName(), getExtension()));
+		setFileName(UMLDiagramEditorUtil.getUniqueFileName(
+				getContainerFullPath(), getFileName(), getExtension()));
 		setPageComplete(validatePage());
 	}
 
@@ -86,7 +88,8 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 		}
 		String extension = getExtension();
 		if (extension != null && !getFilePath().toString().endsWith("." + extension)) {
-			setErrorMessage(NLS.bind(Messages.UMLCreationWizardPageExtensionError, extension));
+			setErrorMessage(NLS.bind(
+					Messages.UMLCreationWizardPageExtensionError, extension));
 			return false;
 		}
 		return true;

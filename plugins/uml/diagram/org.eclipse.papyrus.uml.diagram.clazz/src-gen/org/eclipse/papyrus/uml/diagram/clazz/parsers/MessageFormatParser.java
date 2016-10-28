@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.parsers;
 
@@ -35,7 +35,6 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	 * @generated
 	 */
 	private String defaultPattern;
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +91,6 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setViewPattern(String viewPattern) {
 		super.setViewPattern(viewPattern);
 		viewProcessor = null;
@@ -101,7 +99,6 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setEditorPattern(String editorPattern) {
 		super.setEditorPattern(editorPattern);
 		editorProcessor = null;
@@ -122,8 +119,7 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	 */
 	protected MessageFormat getEditorProcessor() {
 		if (editorProcessor == null) {
-			editorProcessor = new MessageFormat(
-					getEditorPattern() == null ? getDefaultEditablePattern() : getEditorPattern());
+			editorProcessor = new MessageFormat(getEditorPattern() == null ? getDefaultEditablePattern() : getEditorPattern());
 		}
 		return editorProcessor;
 	}
@@ -150,7 +146,6 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setEditPattern(String editPattern) {
 		super.setEditPattern(editPattern);
 		editProcessor = null;
@@ -161,8 +156,7 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	 */
 	protected MessageFormat getEditProcessor() {
 		if (editProcessor == null) {
-			editProcessor = new MessageFormat(
-					getEditPattern() == null ? getDefaultEditablePattern() : getEditPattern());
+			editProcessor = new MessageFormat(getEditPattern() == null ? getDefaultEditablePattern() : getEditPattern());
 		}
 		return editProcessor;
 	}
@@ -170,23 +164,24 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getEditString(IAdaptable adapter, int flags) {
 		EObject element = (EObject) adapter.getAdapter(EObject.class);
-		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0))
-				.toString();
+		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	public IParserEditStatus isValidEditString(IAdaptable adapter, String editString) {
 		ParsePosition pos = new ParsePosition(0);
 		Object[] values = getEditProcessor().parse(editString, pos);
 		if (values == null) {
-			return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IParserEditStatus.UNEDITABLE,
-					NLS.bind(Messages.MessageFormatParser_InvalidInputError, new Integer(pos.getErrorIndex())));
+			return new ParserEditStatus(
+					UMLDiagramEditorPlugin.ID,
+					IParserEditStatus.UNEDITABLE,
+					NLS.bind(
+							Messages.MessageFormatParser_InvalidInputError,
+							new Integer(pos.getErrorIndex())));
 		}
 		return validateNewValues(values);
 	}
@@ -194,7 +189,6 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	/**
 	 * @generated
 	 */
-	@Override
 	public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
 		Object[] values = getEditProcessor().parse(newString, new ParsePosition(0));
 		return getParseCommand(adapter, values, flags);
@@ -203,9 +197,9 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getPrintString(IAdaptable adapter, int flags) {
 		EObject element = (EObject) adapter.getAdapter(EObject.class);
 		return getViewProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
+
 }

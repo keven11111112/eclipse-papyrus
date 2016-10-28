@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
@@ -36,7 +36,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 /**
  * @generated
  */
-public class AssociationClassOperationCompartmentEditPart extends ListCompartmentEditPart {
+public class AssociationClassOperationCompartmentEditPart
+		extends ListCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -53,7 +54,6 @@ public class AssociationClassOperationCompartmentEditPart extends ListCompartmen
 	/**
 	 * @generated
 	 */
-	@Override
 	protected boolean hasModelChildrenChanged(Notification evt) {
 		return false;
 	}
@@ -61,15 +61,14 @@ public class AssociationClassOperationCompartmentEditPart extends ListCompartmen
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getCompartmentName() {
 		return Messages.AssociationClassOperationCompartmentEditPart_title;
 	}
 
+
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableCompartmentEditPolicy());
@@ -84,10 +83,12 @@ public class AssociationClassOperationCompartmentEditPart extends ListCompartmen
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
@@ -97,7 +98,6 @@ public class AssociationClassOperationCompartmentEditPart extends ListCompartmen
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getTargetEditPart(Request request) {
 
 		return super.getTargetEditPart(request);
@@ -106,7 +106,6 @@ public class AssociationClassOperationCompartmentEditPart extends ListCompartmen
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
@@ -128,13 +127,15 @@ public class AssociationClassOperationCompartmentEditPart extends ListCompartmen
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+		((GraphicalEditPart) getParent()).setLayoutConstraint(
+				this,
+				getFigure(),
+				new Rectangle(loc, size));
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();

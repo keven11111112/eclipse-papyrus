@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
@@ -24,7 +24,8 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure
 /**
  * @generated
  */
-public class AssociationClassDashedLinkEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+public class AssociationClassDashedLinkEditPart extends ConnectionEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -41,7 +42,6 @@ public class AssociationClassDashedLinkEditPart extends ConnectionEditPart imple
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ViewComponentEditPolicy());
@@ -49,15 +49,18 @@ public class AssociationClassDashedLinkEditPart extends ConnectionEditPart imple
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
+
+
+
+
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected Connection createConnectionFigure() {
 		return new SimpleDashedEdgeFigure();
 	}
@@ -65,8 +68,8 @@ public class AssociationClassDashedLinkEditPart extends ConnectionEditPart imple
 	/**
 	 * @generated
 	 */
-	@Override
 	public SimpleDashedEdgeFigure getPrimaryShape() {
 		return (SimpleDashedEdgeFigure) getFigure();
 	}
+
 }

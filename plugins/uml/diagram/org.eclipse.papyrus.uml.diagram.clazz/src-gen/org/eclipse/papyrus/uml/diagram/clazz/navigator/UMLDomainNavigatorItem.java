@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.navigator;
 
@@ -105,11 +105,9 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) {
-			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(
-					((org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) obj).getEObject()));
+			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) obj).getEObject()));
 		}
 		return super.equals(obj);
 	}
@@ -117,8 +115,8 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	/**
 	 * @generated
 	 */
-	@Override
 	public int hashCode() {
 		return EcoreUtil.getURI(getEObject()).hashCode();
 	}
+
 }

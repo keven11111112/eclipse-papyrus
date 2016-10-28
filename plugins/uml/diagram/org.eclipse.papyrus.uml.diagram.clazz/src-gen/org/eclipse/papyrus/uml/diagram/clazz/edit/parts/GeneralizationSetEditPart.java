@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
@@ -26,7 +26,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLink
 /**
  * @generated
  */
-public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -43,13 +44,11 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart impleme
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy("CustomDisplay", new GeneralizationSetLabelDisplayEditPolicy()); //$NON-NLS-1$
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -57,11 +56,12 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart impleme
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ConstraintLabelEditPart) {
-			((ConstraintLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintLabel());
+			((ConstraintLabelEditPart) childEditPart).setLabel(
+					getPrimaryShape().getConstraintLabel());
 		}
 		if (childEditPart instanceof AppliedStereotypeGeneralizationSetLabelEditPart) {
-			((AppliedStereotypeGeneralizationSetLabelEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((AppliedStereotypeGeneralizationSetLabelEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -69,7 +69,6 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart impleme
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -93,7 +92,6 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart impleme
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -103,13 +101,12 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart impleme
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected Connection createConnectionFigure() {
 		return new GeneralizationSet();
 	}
@@ -117,8 +114,8 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart impleme
 	/**
 	 * @generated
 	 */
-	@Override
 	public GeneralizationSet getPrimaryShape() {
 		return (GeneralizationSet) getFigure();
 	}
+
 }

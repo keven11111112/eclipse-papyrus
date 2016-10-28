@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.edit.parts;
 
@@ -24,7 +24,8 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.InterfaceRealizationFi
 /**
  * @generated
  */
-public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -44,8 +45,7 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -53,11 +53,12 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof InterfaceRealizationNameEditPart) {
-			((InterfaceRealizationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+			((InterfaceRealizationNameEditPart) childEditPart).setLabel(
+					getPrimaryShape().getNameLabel());
 		}
 		if (childEditPart instanceof InterfaceRealizationAppliedStereotypeEditPart) {
-			((InterfaceRealizationAppliedStereotypeEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((InterfaceRealizationAppliedStereotypeEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -113,4 +114,5 @@ public class InterfaceRealizationEditPart extends UMLConnectionNodeEditPart impl
 	public InterfaceRealizationFigure getPrimaryShape() {
 		return (InterfaceRealizationFigure) getFigure();
 	}
+
 }

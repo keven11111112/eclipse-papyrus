@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.part;
 
@@ -25,165 +25,134 @@ import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
  * @generated
  */
 public class UMLPaletteFactory extends PaletteFactory.Adapter {
-
 	// RS: New Palette generation
+
 	// Generates the ID for the tool elements
 	// Generate the tool factory (if(ID) createtool...)
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_CLASS = "composite.tool.class";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_PROPERTY = "composite.tool.property";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_PORT = "composite.tool.port";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_COLLABORATION = "composite.tool.collaboration";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_COLLABORATIONROLE = "composite.tool.collaborationrole";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_COLLABORATIONUSE = "composite.tool.collaborationuse";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_COMMENT = "composite.tool.comment";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_CONSTRAINT = "composite.tool.constraint";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_TIMEOBSERVATION = "composite.tool.timeobservation";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_DURATIONOBSERVATION = "composite.tool.durationobservation";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_INFORMATIONITEM = "composite.tool.informationitem";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_PARAMETER = "composite.tool.parameter";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_ACTIVITY = "composite.tool.activity";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_INTERACTION = "composite.tool.interaction";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_PROTOCOLSTATEMACHINE = "composite.tool.protocolstatemachine";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_STATEMACHINE = "composite.tool.statemachine";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_FUNCTIONBEHAVIOR = "composite.tool.functionbehavior";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_OPAQUEBEHAVIOR = "composite.tool.opaquebehavior";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_STRINGEXPRESSION = "composite.tool.stringExpression";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_LINK = "composite.tool.link";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_CONNECTOR = "composite.tool.connector";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_ROLEBINDING = "composite.tool.rolebinding";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_GENERALIZATION = "composite.tool.generalization";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_REALIZATION = "composite.tool.realization";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_SUBSTITUTION = "composite.tool.substitution";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_ABSTRACTION = "composite.tool.abstraction";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_USAGE = "composite.tool.usage";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_DEPENDENCY = "composite.tool.dependency";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_REPRESENTATION = "composite.tool.representation";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_INFORMATIONFLOW = "composite.tool.informationflow";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String COMPOSITE_TOOL_MANIFESTATION = "composite.tool.manifestation";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
@@ -308,6 +277,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		// default return: null
 		return null;
 	}
+
 
 	/**
 	 * @generated
@@ -642,4 +612,5 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
+
 }

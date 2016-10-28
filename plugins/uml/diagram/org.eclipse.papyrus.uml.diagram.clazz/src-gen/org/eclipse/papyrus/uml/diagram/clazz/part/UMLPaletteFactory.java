@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.part;
 
@@ -25,245 +25,198 @@ import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreat
  * @generated
  */
 public class UMLPaletteFactory extends PaletteFactory.Adapter {
-
 	// RS: New Palette generation
+
 	// Generates the ID for the tool elements
 	// Generate the tool factory (if(ID) createtool...)
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_CLASS = "clazz.tool.class";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_CLASSIFIERTEMPLATEPARAMETER = "clazz.tool.classifiertemplateparameter";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_COMMENT = "clazz.tool.comment";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_COMPONENT = "clazz.tool.component";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_CONSTRAINT = "clazz.tool.constraint";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_DATATYPE = "clazz.tool.datatype";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CREATEDURATIONOBSERVATION7CREATIONTOOL = "createDurationObservation7CreationTool";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_ENUMERATION = "clazz.tool.enumeration";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_ENUMERATIONLITERAL = "clazz.tool.enumerationliteral";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_INTERFACE = "clazz.tool.interface";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_INSTANCESPECIFICATION = "clazz.tool.instancespecification";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_INFORMATIONITEM = "clazz.tool.informationitem";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_PRIMITIVETYPE = "clazz.tool.primitivetype";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_MODEL = "clazz.tool.model";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_OPERATION = "clazz.tool.operation";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_OPERATIONTEMPLATEPARAMETER = "clazz.tool.OperationTemplateParameter";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_PACKAGE = "clazz.tool.package";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_PROPERTY = "clazz.tool.property";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_RECEPTION = "clazz.tool.reception";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_REDEFINABLETEMPLATESIGNATURE = "clazz.tool.redefinabletemplatesignature";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_SIGNAL = "clazz.tool.signal";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_SLOT = "clazz.tool.slot";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_TEMPLATEPARAMETER = "clazz.tool.templateparameter";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_TEMPLATESIGNATURE = "clazz.tool.templatesignature";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CREATETIMEOBSERVATION22CREATIONTOOL = "createTimeObservation22CreationTool";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_CONNECTABLEELEMENTTEMPLATEPARAMETER = "clazz.tool.connectableelementtemplateparameter";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_ABSTRACTION = "clazz.tool.abstraction";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_ASSOCIATION = "clazz.tool.association";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_ASSOCIATIONBRANCH = "clazz.tool.associationbranch";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_ASSOCIATIONCLASS = "clazz.tool.associationclass";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_CONTAINMENTLINK = "clazz.tool.containmentlink";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_CONTEXTLINK = "clazz.tool.contextlink";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_DEPENDENCY = "clazz.tool.dependency";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_DEPENDENCYBRANCH = "clazz.tool.dependencybranch";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_ELEMENTIMPORT = "clazz.tool.elementimport";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_GENERALIZATION = "clazz.tool.generalization";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_GENERALIZATIONSET = "clazz.tool.generalizationset";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_INFORMATIONFLOWLINK = "clazz.tool.informationflowlink";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_INSTANCESPECIFICATIONLINK = "clazz.tool.instancespecificationlink";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_INTERFACEREALIZATION = "clazz.tool.interfacerealization";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_LINK = "clazz.tool.link";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_PACKAGEIMPORT = "clazz.tool.packageimport";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_PACKAGEMERGE = "clazz.tool.packagemerge";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_PROFILEAPPLICATION = "clazz.tool.profileapplication";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_REALIZATION = "clazz.tool.realization";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_SUBSTITUTION = "clazz.tool.substitution";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_TEMPLATEBINDING = "clazz.tool.templatebinding";//$NON-NLS-1$
-
 	/**
 	 * @generated
 	 */
@@ -279,7 +232,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	@Override
 	public Tool createTool(String toolId) {
 		if (toolId.equals(CLAZZ_TOOL_CLASS)) {
 			return createClass1CreationTool();
@@ -432,12 +384,12 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	@Override
 	public Object getTemplate(String templateId) {
 
 		// default return: null
 		return null;
 	}
+
 
 	/**
 	 * @generated
@@ -962,4 +914,5 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
+
 }

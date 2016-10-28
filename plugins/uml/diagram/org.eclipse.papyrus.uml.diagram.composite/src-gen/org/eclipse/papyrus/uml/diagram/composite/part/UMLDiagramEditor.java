@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.part;
 
@@ -51,6 +51,7 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
@@ -60,7 +61,8 @@ import org.eclipse.ui.part.ShowInContext;
 /**
  * @generated
  */
-public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderChangeListener, IGotoMarker {
+public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderChangeListener,
+		IGotoMarker {
 
 	/**
 	 * @generated
@@ -71,6 +73,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 * @generated
 	 */
 	public static final String CONTEXT_ID = "org.eclipse.papyrus.uml.diagram.composite.ui.diagramContext"; //$NON-NLS-1$
+
 
 	/**
 	 * @generated
@@ -151,6 +154,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		return UMLDiagramEditorPlugin.ID;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -207,16 +211,18 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		return new ShowInContext(getEditorInput(), getGraphicalViewer().getSelection());
 	}
 
+
 	/**
 	 * @generated
 	 */
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
-		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this,
-				getDiagramGraphicalViewer());
+		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this, getDiagramGraphicalViewer());
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
 	}
+
+
 
 	/**
 	 * @generated
@@ -235,7 +241,17 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 
 			@Override
 			public void commandStackChanged(EventObject event) {
-				firePropertyChange(IEditorPart.PROP_DIRTY);
+				if (Display.getCurrent() == null) {
+					Display.getDefault().asyncExec(new Runnable() {
+
+						@Override
+						public void run() {
+							firePropertyChange(IEditorPart.PROP_DIRTY);
+						}
+					});
+				} else {
+					firePropertyChange(IEditorPart.PROP_DIRTY);
+				}
 			}
 		});
 	}
@@ -310,6 +326,8 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	protected PaletteViewer getPaletteViewer() {
 		return getEditDomain().getPaletteViewer();
 	}
+
+
 
 	/**
 	 * @generated

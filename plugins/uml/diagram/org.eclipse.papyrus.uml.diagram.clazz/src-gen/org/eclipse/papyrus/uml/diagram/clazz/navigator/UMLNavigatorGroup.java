@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.navigator;
 
@@ -88,7 +88,6 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup) {
 			org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup anotherGroup = (org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup) obj;
@@ -102,8 +101,8 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
-	@Override
 	public int hashCode() {
 		return getGroupName().hashCode();
 	}
+
 }

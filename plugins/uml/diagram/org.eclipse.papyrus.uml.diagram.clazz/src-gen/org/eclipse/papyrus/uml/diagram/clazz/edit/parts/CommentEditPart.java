@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
@@ -69,7 +69,6 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -78,8 +77,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PapyrusReflowableShapeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -113,21 +111,21 @@ public class CommentEditPart extends AbstractCommentEditPart {
 		return lep;
 	}
 
+
 	/**
 	 * Papyrus codeGen
-	 *
+	 * 
 	 * @generated
 	 **/
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
 	}
 
+
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new HTMLCornerBentFigure();
 	}
@@ -137,7 +135,6 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	 * 
 	 * @generated
 	 */
-	@Override
 	public HTMLCornerBentFigure getPrimaryShape() {
 		return (HTMLCornerBentFigure) primaryShape;
 	}
@@ -150,6 +147,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 			((CommentBodyEditPart) childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
 			return true;
 		}
+
 
 		return false;
 	}
@@ -167,7 +165,6 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -178,7 +175,6 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -189,29 +185,28 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		return getContentPane();
 	}
 
+
 	/**
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
 	}
 
+
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
 
@@ -225,7 +220,6 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	 *            instance of generated figure class
 	 * @generated
 	 */
-	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
@@ -238,7 +232,6 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -249,17 +242,16 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -267,7 +259,6 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -277,8 +268,12 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(CommentBodyEditPart.VISUAL_ID));
 	}
+
+
+
+
+
 }

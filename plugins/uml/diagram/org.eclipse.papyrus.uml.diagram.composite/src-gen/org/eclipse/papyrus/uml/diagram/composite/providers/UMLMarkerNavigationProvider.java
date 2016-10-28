@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.providers;
 
@@ -29,7 +29,8 @@ import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorUtil;
 /**
  * @generated
  */
-public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationProvider {
+public class UMLMarkerNavigationProvider
+		extends AbstractModelMarkerNavigationProvider {
 
 	/**
 	 * @generated
@@ -52,7 +53,8 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 		}
 		EditPart targetEditPart = (EditPart) editPartRegistry.get(targetView);
 		if (targetEditPart != null) {
-			UMLDiagramEditorUtil.selectElementsInDiagram(editor, Arrays.asList(new EditPart[] { targetEditPart }));
+			UMLDiagramEditorUtil.selectElementsInDiagram(
+					editor, Arrays.asList(new EditPart[] { targetEditPart }));
 		}
 	}
 
@@ -63,14 +65,16 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 		try {
 			resource.deleteMarkers(MARKER_TYPE, true, IResource.DEPTH_ZERO);
 		} catch (CoreException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Failed to delete validation markers", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError(
+					"Failed to delete validation markers", e); //$NON-NLS-1$
 		}
 	}
 
 	/**
 	 * @generated
 	 */
-	public static IMarker addMarker(IFile file, String elementId, String location, String message, int statusSeverity) {
+	public static IMarker addMarker(IFile file,
+			String elementId, String location, String message, int statusSeverity) {
 		IMarker marker = null;
 		try {
 			marker = file.createMarker(MARKER_TYPE);
@@ -80,12 +84,14 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 			int markerSeverity = IMarker.SEVERITY_INFO;
 			if (statusSeverity == IStatus.WARNING) {
 				markerSeverity = IMarker.SEVERITY_WARNING;
-			} else if (statusSeverity == IStatus.ERROR || statusSeverity == IStatus.CANCEL) {
+			} else if (statusSeverity == IStatus.ERROR ||
+					statusSeverity == IStatus.CANCEL) {
 				markerSeverity = IMarker.SEVERITY_ERROR;
 			}
 			marker.setAttribute(IMarker.SEVERITY, markerSeverity);
 		} catch (CoreException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Failed to create validation marker", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError(
+					"Failed to create validation marker", e); //$NON-NLS-1$
 		}
 		return marker;
 	}

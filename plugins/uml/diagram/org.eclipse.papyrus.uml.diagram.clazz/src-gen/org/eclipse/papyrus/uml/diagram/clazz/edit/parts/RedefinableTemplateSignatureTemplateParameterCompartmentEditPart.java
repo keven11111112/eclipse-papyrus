@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
@@ -34,7 +34,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 /**
  * @generated
  */
-public class RedefinableTemplateSignatureTemplateParameterCompartmentEditPart extends ListCompartmentEditPart {
+public class RedefinableTemplateSignatureTemplateParameterCompartmentEditPart
+		extends ListCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -51,7 +52,6 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentEditPart ex
 	/**
 	 * @generated
 	 */
-	@Override
 	protected boolean hasModelChildrenChanged(Notification evt) {
 		return false;
 	}
@@ -59,15 +59,14 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentEditPart ex
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getCompartmentName() {
 		return Messages.RedefinableTemplateSignatureTemplateParameterCompartmentEditPart_title;
 	}
 
+
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
@@ -81,10 +80,12 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentEditPart ex
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setRatio(Double ratio) {
 		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
@@ -94,7 +95,6 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentEditPart ex
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getTargetEditPart(Request request) {
 
 		return super.getTargetEditPart(request);
@@ -103,7 +103,6 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentEditPart ex
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
@@ -125,13 +124,15 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentEditPart ex
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+		((GraphicalEditPart) getParent()).setLayoutConstraint(
+				this,
+				getFigure(),
+				new Rectangle(loc, size));
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();

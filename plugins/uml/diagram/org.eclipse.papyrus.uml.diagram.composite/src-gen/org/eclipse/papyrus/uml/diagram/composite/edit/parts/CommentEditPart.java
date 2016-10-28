@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.edit.parts;
 
@@ -75,8 +75,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PapyrusReflowableShapeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -110,6 +109,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 		return lep;
 	}
 
+
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -119,6 +119,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 		super.handleNotificationEvent(event);
 
 	}
+
 
 	/**
 	 * @generated
@@ -144,6 +145,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 			((CommentBodyEditPart) childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
 			return true;
 		}
+
 
 		return false;
 	}
@@ -185,6 +187,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 		return getContentPane();
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -192,6 +195,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
 	}
+
 
 	/**
 	 * Creates figure for this edit part.
@@ -242,6 +246,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -264,4 +269,9 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(CommentBodyEditPart.VISUAL_ID));
 	}
+
+
+
+
+
 }
