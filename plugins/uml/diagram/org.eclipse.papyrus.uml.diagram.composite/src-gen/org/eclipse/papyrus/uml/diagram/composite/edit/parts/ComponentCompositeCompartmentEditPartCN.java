@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.edit.parts;
 
@@ -39,7 +39,8 @@ import org.eclipse.papyrus.uml.diagram.composite.part.Messages;
 /**
  * @generated
  */
-public class ComponentCompositeCompartmentEditPartCN extends LinkLFShapeCompartmentEditPart {
+public class ComponentCompositeCompartmentEditPartCN
+		extends LinkLFShapeCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -53,12 +54,14 @@ public class ComponentCompositeCompartmentEditPartCN extends LinkLFShapeCompartm
 		super(view);
 	}
 
+
 	/**
 	 * @generated
 	 */
 	public String getCompartmentName() {
 		return Messages.ComponentCompositeCompartmentEditPartCN_title;
 	}
+
 
 	/**
 	 * @generated
@@ -76,6 +79,9 @@ public class ComponentCompositeCompartmentEditPartCN extends LinkLFShapeCompartm
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PortInCompartmentCreationEditPolicy());
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 	}
+
+
+
 
 	/**
 	 * @generated
@@ -118,7 +124,10 @@ public class ComponentCompositeCompartmentEditPartCN extends LinkLFShapeCompartm
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+		((GraphicalEditPart) getParent()).setLayoutConstraint(
+				this,
+				getFigure(),
+				new Rectangle(loc, size));
 	}
 
 	/**

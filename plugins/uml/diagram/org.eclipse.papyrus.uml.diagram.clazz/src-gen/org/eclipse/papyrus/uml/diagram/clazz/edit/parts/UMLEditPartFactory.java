@@ -741,6 +741,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return new InformationFlowAppliedStereotypeEditPart(view);
 
+			case InformationFlowNameEditPart.VISUAL_ID:
+				return new InformationFlowNameEditPart(view);
+
 			case ContextLinkEditPart.VISUAL_ID:
 				return new ContextLinkEditPart(view);
 

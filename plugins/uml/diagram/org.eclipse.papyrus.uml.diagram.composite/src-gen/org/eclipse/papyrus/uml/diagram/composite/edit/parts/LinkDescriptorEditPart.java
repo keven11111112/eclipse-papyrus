@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.edit.parts;
 
@@ -23,7 +23,8 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure
 /**
  * @generated
  */
-public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+public class LinkDescriptorEditPart extends ConnectionEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -46,6 +47,10 @@ public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeB
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 	}
 
+
+
+
+
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -64,4 +69,5 @@ public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeB
 	public SimpleDashedEdgeFigure getPrimaryShape() {
 		return (SimpleDashedEdgeFigure) getFigure();
 	}
+
 }

@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *  CEA LIST - Initial API and implementation
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.composite.edit.parts;
 
@@ -104,15 +104,11 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new BehaviorLayoutEditPolicy());
-		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY,
-				new ShowHideClassifierContentsEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
-				new ShowHideCompartmentEditPolicy());
-		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE,
-				new AffixedNodeAlignmentEditPolicy());
+		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new SideAffixedNodesCreationEditPolicy());
@@ -167,6 +163,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 		return lep;
 	}
 
+
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -180,7 +177,8 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge
+					&& false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -189,6 +187,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 		super.handleNotificationEvent(event);
 
 	}
+
 
 	/**
 	 * @generated
@@ -215,12 +214,15 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 			return true;
 		}
 
+
 		if (childEditPart instanceof ProtocolStateMachineCompositeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((ProtocolStateMachineCompositeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
+
+
 
 		// Papyrus Gencode :Affixed Port locator
 		if (childEditPart instanceof PortEditPart) {
@@ -229,12 +231,16 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 			return true;
 		}
 
+
+
+
 		// Papyrus Gencode :Affixed Port locator
 		if (childEditPart instanceof ParameterEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ParameterEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
 
 		return false;
 	}
@@ -315,6 +321,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 		return result;
 	}
 
+
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -364,6 +371,7 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -386,4 +394,9 @@ public class ProtocolStateMachineCompositeEditPart extends RoundedCompartmentEdi
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ProtocolStateMachineCompositeNameEditPart.VISUAL_ID));
 	}
+
+
+
+
+
 }

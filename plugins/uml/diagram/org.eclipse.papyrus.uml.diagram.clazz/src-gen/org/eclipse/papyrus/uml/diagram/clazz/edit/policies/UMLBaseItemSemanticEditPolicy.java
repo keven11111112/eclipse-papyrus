@@ -807,7 +807,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistInformationFlow_Edge(Package container, InformationFlow linkInstance,
 				NamedElement source, NamedElement target) {
 			try {
-				// Information Flow source constraint
+				//Information Flow source constraint
 				if (source != null) {
 					if (!((source instanceof Actor) || (source instanceof Node) || (source instanceof UseCase)
 							|| (source instanceof Artifact) || (source instanceof Class)
@@ -828,7 +828,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						}
 					}
 				}
-				// Information Flow target constraint
+				//Information Flow target constraint
 				if (target != null) {
 					if (!((target instanceof Actor) || (target instanceof Node) || (target instanceof UseCase)
 							|| (target instanceof Artifact) || (target instanceof Class)

@@ -2192,6 +2192,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
+	* @generated
+	*/
+	private IParser informationFlow_NameLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInformationFlow_NameLabel_Parser() {
+		if (informationFlow_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			informationFlow_NameLabel_Parser = parser;
+		}
+		return informationFlow_NameLabel_Parser;
+	}
+
+	/**
 	 * @generated
 	 */
 	protected IParser getParser(String visualID) {
@@ -2504,6 +2521,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 			case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return getInformationFlow_StereotypeLabel_Parser();
+			case InformationFlowNameEditPart.VISUAL_ID:
+				return getInformationFlow_NameLabel_Parser();
 
 			}
 		}

@@ -60,6 +60,9 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 			((InformationFlowAppliedStereotypeEditPart) childEditPart)
 					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
+		if (childEditPart instanceof InformationFlowNameEditPart) {
+			((InformationFlowNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		}
 		return false;
 	}
 
@@ -82,6 +85,9 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 			return true;
 		}
 		if (childEditPart instanceof InformationFlowAppliedStereotypeEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof InformationFlowNameEditPart) {
 			return true;
 		}
 		return false;

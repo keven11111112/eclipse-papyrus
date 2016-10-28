@@ -206,7 +206,7 @@ public class InstanceSpecificationEditPart extends RoundedCompartmentEditPart {
 
 		if (childEditPart instanceof InstanceSpecificationSlotCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((InstanceSpecificationSlotCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
