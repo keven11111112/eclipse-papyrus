@@ -1837,14 +1837,22 @@
     </project>
     <project label="Releng Tools" name="relengtools">
       <setupTask xsi:type="setup.targlets:TargletTask">
-        <targlet name="Papyrus Releng Tools Dependencies">
+        <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Releng Tools Dependencies">
           <requirement name="org.eclipse.oomph.setup.workingsets.feature.group" optional="true"/>
           <requirement name="org.eclipse.oomph.setup.targlets.feature.group" optional="true"/>
           <requirement name="org.eclipse.oomph.setup.feature.group" optional="true"/>
           <requirement name="org.eclipse.b3.aggregator.engine.feature.feature.group"/>
-          <repositoryList>
+          <repositoryList name="Oxygen">
+            <repository url="${oomph.update.url}"/>
+            <repository url="http://download.eclipse.org/cbi/updates/aggregator/ide/4.5/"/>
+          </repositoryList>
+          <repositoryList name="Neon">
             <repository url="${oomph.update.url}"/>
             <repository url="http://download.eclipse.org/modeling/emft/b3/updates-4.4/"/>
+          </repositoryList>
+          <repositoryList name="Mars">
+            <repository url="${oomph.update.url}"/>
+            <repository url="http://download.eclipse.org/modeling/emft/b3/updates-4.3/"/>
           </repositoryList>
         </targlet>
       </setupTask>
