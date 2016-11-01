@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 501833
  *   
  *****************************************************************************/
 
@@ -26,8 +27,6 @@ import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
 import org.eclipse.papyrus.infra.widgets.util.ISetPapyrusConverter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.KeyAdapter;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
@@ -37,7 +36,9 @@ import org.eclipse.swt.widgets.Display;
  *         This class allows to build a StyledText widget allowing the completion
  *
  */
-public class StringEditorWithCompletionWrapper implements ISetPapyrusConverter{
+public class StringEditorWithCompletionWrapper implements ISetPapyrusConverter {
+
+	private static final String CONTENT_ASSIST_COMMAND_ID = "org.eclipse.ui.edit.text.contentAssist.proposals"; //$NON-NLS-1$
 
 	/**
 	 * the parser used to convert object to string and string to object
@@ -95,11 +96,11 @@ public class StringEditorWithCompletionWrapper implements ISetPapyrusConverter{
 		buildControls(parent, style);
 	}
 
-	
+
 	/**
 	 * 
 	 * @return
-	 *         the text viewer used
+	 * 		the text viewer used
 	 */
 	public TextViewer getTextViewer() {
 		return this.textViewer;
@@ -108,7 +109,7 @@ public class StringEditorWithCompletionWrapper implements ISetPapyrusConverter{
 	/**
 	 * 
 	 * @return
-	 *         the styled text used or <code>null</code>
+	 * 		the styled text used or <code>null</code>
 	 */
 	public StyledText getTextWidget() {
 		if (this.textViewer != null) {
@@ -121,7 +122,7 @@ public class StringEditorWithCompletionWrapper implements ISetPapyrusConverter{
 	/**
 	 * 
 	 * @return
-	 *         <code>true</code> if the content assist is currently opened
+	 * 		<code>true</code> if the content assist is currently opened
 	 */
 	public boolean isContentAssistOpened() {
 		return delayedIsOpen;
@@ -130,7 +131,7 @@ public class StringEditorWithCompletionWrapper implements ISetPapyrusConverter{
 	private ContentAssistant assistant;
 
 	private IContentAssistProcessor processor;
-	
+
 	private void buildControls(Composite parent, int style) {
 		// setLayout(new FillLayout());
 		textViewer = new TextViewer(parent, SWT.SINGLE | SWT.V_SCROLL | style);
@@ -144,16 +145,16 @@ public class StringEditorWithCompletionWrapper implements ISetPapyrusConverter{
 			this.processor = parser.getCompletionProcessor(null);
 			assistant.setContentAssistProcessor(this.processor, IDocument.DEFAULT_CONTENT_TYPE);
 		}
-		
+
 		// Manage the sorter for the completion proposal
 		assistant.setSorter(new ICompletionProposalSorter() {
-			
+
 			@Override
 			public int compare(final ICompletionProposal p1, final ICompletionProposal p2) {
 				return p1.getDisplayString().compareTo(p2.getDisplayString());
 			}
 		});
-		
+
 		assistant.install(textViewer);
 		assistant.addCompletionListener(new ICompletionListener() {
 
@@ -167,6 +168,7 @@ public class StringEditorWithCompletionWrapper implements ISetPapyrusConverter{
 				// reset open status asynchronously.
 				Display.getDefault().asyncExec(new Runnable() {
 
+					@Override
 					public void run() {
 						delayedIsOpen = true;
 					}
@@ -178,6 +180,7 @@ public class StringEditorWithCompletionWrapper implements ISetPapyrusConverter{
 				// reset open status asynchronously.
 				Display.getDefault().asyncExec(new Runnable() {
 
+					@Override
 					public void run() {
 						delayedIsOpen = false;
 					}
@@ -185,13 +188,11 @@ public class StringEditorWithCompletionWrapper implements ISetPapyrusConverter{
 
 			}
 		});
-		textViewer.getControl().addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if (SWT.CTRL == e.stateMask && SWT.SPACE == e.character) {
-					assistant.showPossibleCompletions();
-				}
-			}
-		});
+
+		// Hook up the user's preferred key binding for content assist
+		PlatformUIUtils.handleCommand(textViewer.getControl(), CONTENT_ASSIST_COMMAND_ID,
+				"CTRL+SPACE", //$NON-NLS-1$ // The default on all platforms
+				assistant::showPossibleCompletions);
 	}
 
 	/**
@@ -202,7 +203,7 @@ public class StringEditorWithCompletionWrapper implements ISetPapyrusConverter{
 	@Override
 	public void setPapyrusConverter(IPapyrusConverter parser) {
 		this.parser = parser;
-		if (parser != null && assistant!=null && processor==null) {
+		if (parser != null && assistant != null && processor == null) {
 			this.processor = parser.getCompletionProcessor(null);
 			assistant.setContentAssistProcessor(this.processor, IDocument.DEFAULT_CONTENT_TYPE);
 		}
