@@ -1871,7 +1871,7 @@
           <requirement name="org.eclipse.papyrus.dev.feature.feature.group"/>
           <requirement name="org.eclipse.b3.aggregator.engine.feature.feature.group"/>
           <repository url="https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/lastSuccessfulBuild/artifact/repository/"/>
-          <repository url="${base.downloads.url}/modeling/mdt/papyrus/updates/nightly/neon/main"/>
+          <repository url="${base.downloads.url}/modeling/mdt/papyrus/updates/nightly/oxygen/main"/>
           <repository url="http://download.eclipse.org/modeling/emft/b3/updates-4.4/"/>
           <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.10.0/">
             <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
