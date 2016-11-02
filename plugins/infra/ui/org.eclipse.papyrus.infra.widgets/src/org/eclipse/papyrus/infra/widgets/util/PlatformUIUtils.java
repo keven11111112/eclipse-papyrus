@@ -11,7 +11,7 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.widgets.editors;
+package org.eclipse.papyrus.infra.widgets.util;
 
 import java.util.Iterator;
 import java.util.Objects;
@@ -45,8 +45,10 @@ import com.google.common.collect.AbstractIterator;
 
 /**
  * Some utilities for working with the Eclipse Platform UI.
+ * 
+ * @since 3.0
  */
-class PlatformUIUtils {
+public class PlatformUIUtils {
 	private static final String MODEL_ELEMENT_KEY = "modelElement"; //$NON-NLS-1$
 
 	/**
@@ -65,7 +67,7 @@ class PlatformUIUtils {
 	 * @return a stream providing the {@code control} and all of its parent chain,
 	 *         in order, up to the topmost control in the shell
 	 */
-	static Stream<Control> parentChain(Control control) {
+	public static Stream<Control> parentChain(Control control) {
 		Iterator<Control> iterator = new AbstractIterator<Control>() {
 			private Control next = control;
 
@@ -101,7 +103,7 @@ class PlatformUIUtils {
 	 * @return the requested service, or {@code null} if it cannot be determined
 	 *         (usually because the {@code control} is not in a workbench window)
 	 */
-	static <S> S getService(Control control, Class<S> api) {
+	public static <S> S getService(Control control, Class<S> api) {
 		Optional<S> result = parentChain(control)
 				.map(c -> c.getData(MODEL_ELEMENT_KEY))
 				.filter(MPart.class::isInstance).map(MPart.class::cast)
@@ -169,7 +171,7 @@ class PlatformUIUtils {
 	 * @param action
 	 *            the command handler to invoke
 	 */
-	static void handleCommand(Control control, String commandID, String defaultKeystroke, Runnable action) {
+	public static void handleCommand(Control control, String commandID, String defaultKeystroke, Runnable action) {
 		IBindingService bindingService = PlatformUIUtils.getService(control, IBindingService.class);
 		Consumer<IBindingService> onBindingsChanged = new Consumer<IBindingService>() {
 			private KeyListener keyListener;
