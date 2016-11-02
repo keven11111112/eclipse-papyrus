@@ -10,7 +10,7 @@ location aeri "http://download.eclipse.org/technology/epp/logging/milestones/" {
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201605311222" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201610160403" {
 	org.eclipse.emf.compare.diagram.gmf.source.feature.group
 	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.uml2.source.feature.group
@@ -18,7 +18,7 @@ location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/mi
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20160920-0952" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20161101-0352" {
 	org.eclipse.net4j.feature.group
 	org.eclipse.emf.cdo.server.feature.group
 	org.eclipse.emf.cdo.dawn.feature.group
@@ -28,7 +28,7 @@ location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20160920-0952"
 
 //updateFrom("M2T ACCELEO",0) 
 
-location acceleo "http://download.eclipse.org/acceleo/updates/milestones/3.6/S201605040614" {
+location acceleo "http://download.eclipse.org/acceleo/updates/milestones/3.7/S201610150614" {
 	org.eclipse.acceleo.runtime.source.feature.group
 	org.eclipse.acceleo.source.feature.group
 	org.eclipse.acceleo.query.source.feature.group
@@ -74,7 +74,7 @@ location elk "http://download.eclipse.org/elk/updates/releases/0.1.0/" {
 
 //updateFrom("Graphiti",0)
 
-location graphiti "http://download.eclipse.org/graphiti/updates/milestones/S-0.14.0M2-201609210744/" //
+location graphiti "http://download.eclipse.org/graphiti/updates/milestones/S-0.14.0M3-201610311154/" //
 
 //updateFrom("Sphinx",0)
 

@@ -4,10 +4,10 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 
 //manualUpdate 
 
-location b3 "http://download.eclipse.org/modeling/emft/b3/updates-4.4" {
-	org.eclipse.b3.aggregator.editor.source.feature.feature.group
+location b3 "http://download.eclipse.org/cbi/updates/aggregator/ide/4.5/" {
+	org.eclipse.b3.aggregator.editor.feature.source.feature.group
 	org.eclipse.b3.aggregator.editor.feature.feature.group
-	org.eclipse.b3.aggregator.engine.source.feature.feature.group
+	org.eclipse.b3.aggregator.engine.feature.source.feature.group
 }
 
 //manualUpdate 

@@ -8,7 +8,7 @@ location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R2016052
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/releases/3.6.0" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.7.0/S201609190356" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -34,7 +34,7 @@ location nebula "http://download.eclipse.org/nebula/releases/1.0.0/" {
 
 //updateFrom("MDT UML2",0) 
 
-location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.2" {
+location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.3milestones" {
 	org.eclipse.uml2.sdk.feature.group
 }
 
@@ -46,13 +46,13 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6/R-4.6-201606061100/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M3-201610270700/" {
 	org.eclipse.sdk.feature.group
 }
 
-//updateFrom("MDT OCL 6.0",0) 
+//updateFrom("Eclipse OCL 6.3",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.1.0" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201610310821" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -96,7 +96,7 @@ location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releas
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.8.0/R-3.8.0-20160608130753/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.0/S-3.9.0M2-20160920000111/repository/" {
 	org.eclipse.wst.xml_sdk.feature.feature.group
 	org.eclipse.wst.xml_ui.feature.feature.group
 }
@@ -121,7 +121,7 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.12/" {
+location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.13milestones/" {
 	org.eclipse.emf.sdk.feature.group
 }
 
@@ -143,4 +143,4 @@ location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.20.0/v20160608-1917"
+location mylyn "http://download.eclipse.org/mylyn/drops/3.22.0/v20161026-0352"

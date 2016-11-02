@@ -78,7 +78,7 @@
       <requirement name="org.eclipse.uml2.sdk.feature.group"/>
       <requirement name="org.eclipse.emf.sdk.feature.group"/>
       <repositoryList name="Oxygen">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M2-201609150230/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M3-201610270700/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -86,7 +86,7 @@
           </annotation>
         </repository>
         <repository url="${base.downloads.url}/tools/orbit/downloads/drops/R20150519210750/repository"/>
-        <repository url="http://download.eclipse.org/modeling/emf/emf/updates/2.12/">
+        <repository url="http://download.eclipse.org/modeling/emf/emf/updates/2.13milestones/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF (Core)</value>
@@ -156,14 +156,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201609191109">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201610310821">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse OCL 6.3</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.2">
+        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.3milestones">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>MDT UML2</value>
@@ -1480,7 +1480,7 @@
         <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus CDO Dependencies">
           <requirement name="org.eclipse.emf.cdo.sdk.feature.group"/>
           <repositoryList name="Oxygen">
-            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/S20160920-0952">
+            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/S20161101-0352">
               <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
                 <detail key="updateFrom">
                   <value>EMF CDO</value>

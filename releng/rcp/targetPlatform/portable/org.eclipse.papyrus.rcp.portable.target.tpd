@@ -4,19 +4,19 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 include "../../../extra/targetPlatform/portable/org.eclipse.papyrus.extra.portable.target.tpd"
 
 //updateFrom("EGIT",0)
-location egit "http://download.eclipse.org/egit/updates-4.4" {
+location egit "http://download.eclipse.org/egit/updates-4.4.1" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6/R-4.6-201606061100/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M3-201610270700/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 }
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.20.0/v20160608-1917" {
+location mylyn "http://download.eclipse.org/mylyn/drops/3.22.0/v20161026-0352" {
 	org.eclipse.mylyn.ide_feature.feature.group
 	org.eclipse.mylyn.java_feature.feature.group
 	org.eclipse.mylyn.pde_feature.feature.group
@@ -28,25 +28,25 @@ location mylyn "http://download.eclipse.org/mylyn/drops/3.20.0/v20160608-1917" {
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201605311222" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201610160403" {
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.12/" {
+location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.13milestones/" {
 	org.eclipse.xsd.sdk.feature.group
 }
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20160920-0952" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20161101-0352" {
 	org.eclipse.emf.cdo.epp.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6/R-4.6-201606061100/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7milestones/S-4.7M3-201610270700/" {
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
 }
