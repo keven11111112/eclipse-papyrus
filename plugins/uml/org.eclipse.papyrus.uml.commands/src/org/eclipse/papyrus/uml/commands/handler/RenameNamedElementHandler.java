@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,99 +8,79 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 506896
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.commands.handler;
 
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.expressions.IEvaluationContext;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.ICommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.ui.command.AbstractCommandHandler;
+import org.eclipse.papyrus.infra.ui.command.InteractiveCommandWrapper;
 import org.eclipse.papyrus.views.modelexplorer.DirectEditorEditingSupport;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
+import com.google.common.base.Strings;
+
 /**
- * This handler allows to rename {@link NamedElement}
- *
- *
- *
+ * This handler implements renaming of {@link NamedElement}s.
  */
 public class RenameNamedElementHandler extends AbstractCommandHandler {
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	protected Command getCommand(final IEvaluationContext context) {
+	protected Command getCommand(IEvaluationContext context) {
+		Command result = UnexecutableCommand.INSTANCE;
+
 		TransactionalEditingDomain editingDomain = getEditingDomain(context);
-		List<EObject> selectedElements = getSelectedElements();
-		if (selectedElements.size() == 1 && selectedElements.get(0) instanceof NamedElement) {
-			final NamedElement namedElement = (NamedElement) selectedElements.get(0);
+		EObject selectedElement = getSelectedElement();
+		if (selectedElement instanceof NamedElement) {
+			final NamedElement namedElement = (NamedElement) selectedElement;
 			final String currentName = namedElement.getName();
+
 			if (currentName != null) {
-
-				final AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "RenameCommand", null) { //$NON-NLS-1$
-
-					/**
-					 *
-					 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
-					 *
-					 * @param monitor
-					 * @param info
-					 * @return
-					 * @throws ExecutionException
-					 */
+				result = new InteractiveCommandWrapper("Rename", "Change the name of an element") {
 					@Override
-					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					protected Command createCommand() {
+						Command result = UnexecutableCommand.INSTANCE;
+
 						InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename...", "New name:", currentName, null);
-						if (Window.OK == dialog.open()) {
-							final String name = dialog.getValue();
-							if (null != name && 0 < name.length()) {
-								SetRequest setRequest = new SetRequest(namedElement, UMLPackage.eINSTANCE.getNamedElement_Name(), name);
+						if (dialog.open() == Window.OK) {
+							String name = dialog.getValue();
 
-								IElementEditService provider = ElementEditServiceUtils.getCommandProvider(namedElement);
-								ICommand editCommand = provider.getEditCommand(setRequest);
-
-								if (null != editCommand && editCommand.canExecute()) {
-									editCommand.execute(monitor, info);
+							if (!Strings.isNullOrEmpty(name) && !name.equals(currentName)) {
+								IElementEditService edit = ElementEditServiceUtils.getCommandProvider(namedElement);
+								SetRequest request = new SetRequest(editingDomain, namedElement, UMLPackage.Literals.NAMED_ELEMENT__NAME, name);
+								if (edit.canEdit(request)) {
+									result = ICommandWrapper.wrap(edit.getEditCommand(request), Command.class);
 								}
 							}
-							return CommandResult.newOKCommandResult();
-						} else {
-							return CommandResult.newCancelledCommandResult();
 						}
+
+						return result;
 					}
 				};
-				return new GMFtoEMFCommandWrapper(cmd);
 			}
 		}
 
-		return null;
+		return result;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	protected boolean computeEnabled(final IEvaluationContext context) {
+	protected boolean computeEnabled(IEvaluationContext context) {
 		boolean enabled = super.computeEnabled(context);
 		if (enabled) {
 			List<EObject> selectedElements = getSelectedElements();
