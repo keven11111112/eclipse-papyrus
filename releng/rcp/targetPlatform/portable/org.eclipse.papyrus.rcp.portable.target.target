@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus RCP" sequenceNumber="1478086039">
+<target name="Papyrus RCP" sequenceNumber="1478250628">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
@@ -143,11 +143,11 @@
       <repository id="mylyn" location="http://download.eclipse.org/mylyn/drops/3.22.0/v20161026-0352"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.compare.ide.ui.source.feature.group" version="3.3.0.201610160403"/>
-      <unit id="org.eclipse.emf.compare.diagram.gmf.source.feature.group" version="3.3.0.201610160403"/>
-      <unit id="org.eclipse.emf.compare.source.feature.group" version="3.3.0.201610160403"/>
-      <unit id="org.eclipse.emf.compare.uml2.source.feature.group" version="3.3.0.201610160403"/>
-      <repository id="emfCompare" location="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201610160403"/>
+      <unit id="org.eclipse.emf.compare.ide.ui.source.feature.group" version="3.3.0.201610250603"/>
+      <unit id="org.eclipse.emf.compare.diagram.gmf.source.feature.group" version="3.3.0.201610250603"/>
+      <unit id="org.eclipse.emf.compare.source.feature.group" version="3.3.0.201610250603"/>
+      <unit id="org.eclipse.emf.compare.uml2.source.feature.group" version="3.3.0.201610250603"/>
+      <repository id="emfCompare" location="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201610250603"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xsd.sdk.feature.group" version="2.13.0.v20161031-0512"/>
