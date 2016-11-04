@@ -16,6 +16,7 @@
  *  Christian W. Damus - bug 450944
  *  Christian W. Damus - bug 477384
  *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 493430
+ *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 507037
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
@@ -26,7 +27,6 @@ import java.util.List;
 
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -85,6 +85,7 @@ import org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectableElement;
@@ -372,7 +373,8 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 		}
 		if (droppedObject instanceof Property) {
 			Property property = (Property) droppedObject;
-			if (property.getOwner() instanceof Association){
+			Element owner = property.getOwner();
+			if (owner instanceof Association && !(owner instanceof AssociationClass)){
 				return false;
 			}
 		}
@@ -935,7 +937,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 		// If SideAffixedNodesCreationEditPolicy installed to the parent then delegate calculation of the real drop location to it
 		if (!isSideAffixedNodesCreationPolicyInstalled(graphicalParentEditPart)) {
 			Point parentLoc = graphicalParentEditPart.getFigure().getBounds().getLocation().getCopy();
-			PortPositionLocator locator = new PortPositionLocator(graphicalParentEditPart.getFigure(), PositionConstants.NONE);
+			PortPositionLocator locator = new PortPositionLocator(graphicalParentEditPart.getFigure());
 			Rectangle proposedBounds = new Rectangle(dropLocation, new Dimension(20, 20));
 			proposedBounds = proposedBounds.getTranslated(parentLoc);
 			Rectangle preferredBounds = locator.getPreferredLocation(proposedBounds);
