@@ -11,6 +11,7 @@
  *  Christian W. Damus (CEA) - bug 437217
  *  Christian W. Damus - bug 451683
  *  Christian W. Damus - bug 465416
+ *  Simon Delisle - Move ReconcilerHelper to a separate class
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common;
@@ -19,15 +20,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.transaction.RollbackException;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
@@ -35,8 +30,6 @@ import org.eclipse.gef.commands.CommandStack;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gef.ui.parts.ContentOutlinePage;
 import org.eclipse.gef.ui.views.palette.PalettePage;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -55,11 +48,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler;
-import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconcilersReader;
-import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.CommandIds;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.sync.service.ISyncService;
@@ -361,124 +350,7 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 		}
 	}
 
-	/**
-	 * Encapsulates the reconciling, that is diagram migration between version of Papyrus.
-	 */
-	protected static class ReconcileHelper {
-
-		private final TransactionalEditingDomain domain;
-
-		private static final String ALL_DIAGRAMS = "AllDiagrams";//$NON-NLS-1$
-
-		/**
-		 * Instantiates helper that will work with given {@link TransactionalEditingDomain}.
-		 * Note that reconcile operations are performed outside the diagram command stack using {@link GMFUnsafe}.
-		 */
-		public ReconcileHelper(TransactionalEditingDomain domain) {
-			this.domain = domain;
-		}
-
-		/**
-		 * Process diagram reconcilers to migrate models. Does nothing if the diagram is already of the current Papyrus version based on {@link DiagramVersioningUtils#isOfCurrentPapyrusVersion(Diagram)} check.
-		 * <p/>
-		 * This method needs configured {@link DiagramEditDomain} to execute collected {@link ICommand} when needed, so it can't be called from constructor
-		 *
-		 * @param diagram
-		 *            the diagram to reconcile
-		 * @throws CoreException
-		 *             subclass may throw wrapping any problem thrown from execution of reconcile using {@link GMFUnsafe}. Default implementation does not
-		 *             throw it however
-		 */
-		public void reconcileDiagram(Diagram diagram) throws CoreException {
-			CompositeCommand migration = buildReconcileCommand(diagram);
-			if (migration == null) {
-				return;
-			}
-			migration.add(DiagramVersioningUtils.createStampCurrentVersionCommand(diagram));
-			try {
-				GMFUnsafe.write(domain, migration);
-			} catch (ExecutionException e) {
-				handleReconcileException(diagram, e);
-			} catch (InterruptedException e) {
-				handleReconcileException(diagram, e);
-			} catch (RollbackException e) {
-				handleReconcileException(diagram, e);
-			}
-		}
-
-		/**
-		 * Process diagram reconcilers to migrate models.
-		 *
-		 * Returns <code>null</code> if the diagram is already of the current Papyrus version based on {@link DiagramVersioningUtils#isOfCurrentPapyrusVersion(Diagram)} check.
-		 * <p/>
-		 * If one of the reconcilers returns un-executable command, this method logs the problem and returns <code>null</code>
-		 *
-		 * @param diagram
-		 *            the diagram to reconcile
-		 */
-		protected CompositeCommand buildReconcileCommand(Diagram diagram) {
-
-			CompositeCommand reconcileCommand = new CompositeCommand("Reconciling");//$NON-NLS-1$
-
-			if (!DiagramVersioningUtils.isOfCurrentPapyrusVersion(diagram)) {
-
-				String sourceVersion = DiagramVersioningUtils.getCompatibilityVersion(diagram);
-				Map<String, Collection<DiagramReconciler>> diagramReconcilers = DiagramReconcilersReader.getInstance().load();
-				String diagramType = diagram.getType();
-				Collection<DiagramReconciler> reconcilers = new LinkedList<DiagramReconciler>();
-				if (diagramReconcilers.containsKey(diagramType)) {
-					reconcilers.addAll(diagramReconcilers.get(diagramType));
-				}
-
-				if (diagramReconcilers.containsKey(ALL_DIAGRAMS)) {
-					reconcilers.addAll(diagramReconcilers.get(ALL_DIAGRAMS));
-				}
-
-				boolean someFailed = false;
-				Iterator<DiagramReconciler> reconciler = reconcilers.iterator();
-				while (reconciler.hasNext() && !someFailed) {
-					DiagramReconciler next = reconciler.next();
-
-					if (!next.canReconcileFrom(diagram, sourceVersion)) {
-						// asked for ignore it for this instance, all fine
-						continue;
-					}
-					ICommand nextCommand = next.getReconcileCommand(diagram);
-					if (nextCommand == null) {
-						// legitimate no-op response, all fine
-						continue;
-					}
-					if (nextCommand.canExecute()) {
-						reconcileCommand.add(nextCommand);
-					} else {
-						Activator.log.error("Diagram reconciler " + next + " failed to reconcile diagram : " + diagram, null);
-						someFailed = true;
-					}
-				}
-
-
-
-				if (someFailed) {
-					// probably better to fail the whole reconicle process as user will have a chance to reconcile later when we fix the problem with one of the reconcilers
-					// executing partial reconciliation will leave the diagram in the state with partially current and partially outdated versions
-					reconcileCommand = null;
-				}
-
-			}
-
-			return reconcileCommand;
-		}
-
-		/**
-		 * Handles exception from running the diagram reconciler under {@link GMFUnsafe}.
-		 * At the time method is called the diagram is probably broken, but default implementation just logs error.
-		 * <p/>
-		 * This is to allow subclass to decide whether it is worth opening the problem diagram.
-		 */
-		protected void handleReconcileException(Diagram diagram, Exception e) throws CoreException {
-			Activator.getInstance().logError("Reconciling the diagram: " + diagram, e);
-		}
-	}
+	
 
 	protected class PalettePageWrapper implements PalettePage, IAdaptable {
 
