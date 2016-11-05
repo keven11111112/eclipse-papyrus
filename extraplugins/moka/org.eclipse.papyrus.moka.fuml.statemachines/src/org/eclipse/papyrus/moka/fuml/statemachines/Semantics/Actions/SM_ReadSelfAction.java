@@ -11,7 +11,7 @@
  *  Jeremie Tatibouet (CEA LIST)
  *
  *****************************************************************************/
-package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Actions.IntermediateActions;
+package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Actions;
 
 import org.eclipse.papyrus.moka.composites.Semantics.Actions.IntermediateActions.CS_ReadSelfActionActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;

@@ -15,7 +15,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci;
 
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_ExecutionFactory;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Actions.IntermediateActions.SM_ReadSelfAction;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Actions.SM_ReadSelfAction;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ChoicePseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.DeepHistoryPseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.EntryPointPseudostateActivation;
