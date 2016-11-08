@@ -11326,7 +11326,7 @@
         comment="Name"
         role="Name"
         iconPathRole="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png"
-        linkLabels="/0/@diagram/@links.4/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.8/@labels.0 /0/@diagram/@links.9/@labels.0 /0/@diagram/@links.10/@labels.0 /0/@diagram/@links.11/@labels.0 /0/@diagram/@links.12/@labels.0 /0/@diagram/@links.13/@labels.0 /0/@diagram/@links.14/@labels.1"
+        linkLabels="/0/@diagram/@links.4/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.8/@labels.0 /0/@diagram/@links.9/@labels.0 /0/@diagram/@links.10/@labels.0 /0/@diagram/@links.11/@labels.0 /0/@diagram/@links.12/@labels.0 /0/@diagram/@links.13/@labels.0 /0/@diagram/@links.14/@labels.1 /0/@diagram/@links.19/@labels.2"
         externalNodeLabels="/0/@diagram/@childNodes.1/@labels.0 /0/@diagram/@childNodes.2/@labels.0 /0/@diagram/@topLevelNodes.27/@labels.0 /0/@diagram/@topLevelNodes.28/@labels.0"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
