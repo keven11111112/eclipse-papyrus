@@ -19,7 +19,7 @@ Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="[2.12.0,3.0.0)";visibili
  org.eclipse.papyrus.infra.ui;bundle-version="[1.2.0,2.0.0)";visibility:=reexport
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.2.1.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.infra.ui.internal.emf.Activator
