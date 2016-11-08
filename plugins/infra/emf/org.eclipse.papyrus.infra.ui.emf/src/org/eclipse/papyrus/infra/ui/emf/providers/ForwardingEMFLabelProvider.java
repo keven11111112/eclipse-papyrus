@@ -48,6 +48,9 @@ public class ForwardingEMFLabelProvider extends StandardEMFLabelProvider {
 	public ForwardingEMFLabelProvider() {
 		super();
 
+		// I need to support re-entrant changes during notification
+		labelProviderListeners = new CopyOnWriteArrayList<>(labelProviderListeners);
+
 		// I am used in contexts where JFace label provider events are needed
 		setFireLabelUpdateNotifications(true);
 	}
