@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.activity.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 
 /**
@@ -52,6 +53,9 @@ public class DiagramSpecificPreferenceInitializer extends AbstractPreferenceInit
 		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_LOOP_NODE, true);
 		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_SEQUENCE_NODE, true);
 		store.setDefault(IActivityPreferenceConstants.PREF_STRUCTURED_SPECIFIC_KEYWORD_DISPLAY_STRUCTURED_NODE, true);
+		// Automated Model Completion Preferences
+		AutomatedModelCompletionPreferencesInitializer automatedModelCompletionPreferencesInitializer = new AutomatedModelCompletionPreferencesInitializer();
+		automatedModelCompletionPreferencesInitializer.initializeDefaultPreferences();
 	}
 
 	/**

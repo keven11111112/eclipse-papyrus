@@ -20,6 +20,10 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.diagram.common.messages.messages"; //$NON-NLS-1$
 
+	public static String AbstractAutomatedModelCompletionPreferencesPage_Accelerators;
+
+	public static String AbstractAutomatedModelCompletionPreferencesPage_Elements;
+
 	public static String ShowHideRelatedLinkSelectionDialog_Comment_;
 
 	public static String ShowHideRelatedLinkSelectionDialog_CommentLink;

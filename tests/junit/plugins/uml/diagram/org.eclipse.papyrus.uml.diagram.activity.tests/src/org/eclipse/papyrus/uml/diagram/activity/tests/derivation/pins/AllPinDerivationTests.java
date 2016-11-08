@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Jérémie TATIBOUET (CEA LIST) - Initial API and implementation
+ *   Jï¿½rï¿½mie TATIBOUET (CEA LIST) - Initial API and implementation
  *   
  *****************************************************************************/
 
@@ -18,11 +18,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(ClassificationSuite.class)
-@SuiteClasses({
-		TestCallBehaviorActionPinDerivation.class,
-		TestSendSignalActionPinDerivation.class,
-		TestCallOperationActionPinDerivation.class
-})
+@SuiteClasses({ TestAcceptCallActionPinDerivation.class, TestAcceptEventActionPinDerivation.class, TestCallBehaviorActionPinDerivation.class, TestCallOperationActionPinDerivation.class, TestSendSignalActionPinDerivation.class })
+
+
 public class AllPinDerivationTests {
 
 }

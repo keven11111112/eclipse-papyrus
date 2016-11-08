@@ -191,4 +191,8 @@ public class CustomMessages extends NLS {
 
 	public static String BehaviorToCallBehaviorActionDropStrategy_Label;
 	public static String BehaviorToCallBehaviorActionDropStrategy_Description;
+
+	public static String AutomatedModelCompletionPreferencesInitializer_None;
+
+	public static String AutomatedModelCompletionPreferencesInitializer_PinSynchronization;
 }

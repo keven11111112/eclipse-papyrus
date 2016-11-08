@@ -2162,6 +2162,19 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
          stylesheetPath="css/default-theme-contribution-activity-diagram.css">
    </stylesheet>
 </extension>
+<extension
+      point="org.eclipse.ui.preferencePages">
+   <page
+         category="org.eclipse.papyrus.uml.diagram.common.automatedModelCompletionPreferencePage"
+         class="org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.ActivityAutomatedModelCompletionPreferencePage"
+         id="org.eclipse.papyrus.uml.diagram.activity.automatedModelCompletionPreferencePage"
+         name="Activities">
+   </page>
+</extension>
+<extension point="org.eclipse.core.runtime.preferences">
+	<?gmfgen generated="false"?>
+	<initializer class="org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer"/>
+</extension>
 
 <extension point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
 	<?gmfgen generated="true"?>

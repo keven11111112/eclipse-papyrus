@@ -525,4 +525,13 @@
           target="1.3.0">
     </diagramReconciler>
  </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+            class="org.eclipse.ui.internal.dialogs.EmptyPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.common.automatedModelCompletionPreferencePage"
+            name="Automated Model Completion">
+      </page>
+   </extension>
 </plugin>

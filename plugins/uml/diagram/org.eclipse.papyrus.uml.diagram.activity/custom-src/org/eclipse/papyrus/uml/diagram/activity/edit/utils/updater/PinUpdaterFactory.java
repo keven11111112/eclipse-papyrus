@@ -7,13 +7,17 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Jérémie TATIBOUET (CEA LIST) - Initial API and implementation
- *   Sébastien REVOL (CEA LIST) - Initial API and implementation
+ *   Jï¿½rï¿½mie TATIBOUET (CEA LIST) - Initial API and implementation
+ *   Sï¿½bastien REVOL (CEA LIST) - Initial API and implementation
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater;
 
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.AcceptCallActionPinUpdater;
+import org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions.AcceptEventActionPinUpdater;
+import org.eclipse.uml2.uml.AcceptCallAction;
+import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
@@ -63,6 +67,10 @@ public class PinUpdaterFactory {
 			updater = (IPinUpdater<T>) new CallOperationActionPinUpdater();
 		} else if (node instanceof SendSignalAction) {
 			updater = (IPinUpdater<T>) new SendSignalActionPinUpdater();
+		} else if (node instanceof AcceptCallAction) {
+			updater = (IPinUpdater<T>) new AcceptCallActionPinUpdater();
+		} else if (node instanceof AcceptEventAction) {
+			updater = (IPinUpdater<T>) new AcceptEventActionPinUpdater();
 		}
 		return updater;
 	}

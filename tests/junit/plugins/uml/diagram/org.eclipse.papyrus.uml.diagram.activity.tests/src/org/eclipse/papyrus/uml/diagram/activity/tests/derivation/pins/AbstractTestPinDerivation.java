@@ -21,6 +21,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -32,6 +33,7 @@ import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurati
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -153,6 +155,9 @@ public abstract class AbstractTestPinDerivation extends AbstractPapyrusTest {
 					this.primtiveTypesMap.put(((PrimitiveType) modelElement).getName(), (PrimitiveType) modelElement);
 				}
 			}
+			
+			org.eclipse.uml2.uml.Package umlPackage = (org.eclipse.uml2.uml.Package) EcoreUtil.getObjectByType(primitiveTypesResource.getContents(), UMLPackage.Literals.PACKAGE);
+			umlTestModel.createPackageImport(umlPackage);
 		}
 	}
 }
