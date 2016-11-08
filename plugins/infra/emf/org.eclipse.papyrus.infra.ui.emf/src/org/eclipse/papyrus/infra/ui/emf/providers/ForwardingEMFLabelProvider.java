@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.ui.emf.providers;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -40,6 +41,9 @@ public class ForwardingEMFLabelProvider extends StandardEMFLabelProvider {
 
 	public ForwardingEMFLabelProvider() {
 		super();
+
+		// I need to support re-entrant changes during notification
+		labelProviderListeners = new CopyOnWriteArrayList<>(labelProviderListeners);
 
 		// I am used in contexts where JFace label provider events are needed
 		setFireLabelUpdateNotifications(true);

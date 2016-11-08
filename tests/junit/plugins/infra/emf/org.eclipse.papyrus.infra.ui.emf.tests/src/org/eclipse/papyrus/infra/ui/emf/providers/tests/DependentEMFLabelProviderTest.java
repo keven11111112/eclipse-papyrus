@@ -15,6 +15,9 @@ package org.eclipse.papyrus.infra.ui.emf.providers.tests;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -26,6 +29,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
+import com.google.common.collect.MapMaker;
 
 /**
  * Tests for the {@link DependentEMFLabelProvider} class.
@@ -75,6 +80,31 @@ public class DependentEMFLabelProviderTest {
 		assertThat("Label provider did not notify", gotEvent[0], is(true));
 	}
 
+	/**
+	 * Verify that we do not get any exception (e.g., concurrent modification) when
+	 * a subscription is removed while the label provider is notifying.
+	 */
+	@Test
+	public void safeSubscriptionRemovalOnDestroy_bug507241() {
+		// This listener indirectly triggers the unsubscription
+		ILabelProviderListener listener = __ -> fixture.getText(imported);
+		fixture.addListener(listener);
+
+		fixture.getText(imported); // Access it once to hook up the item adapters
+
+		// Add another listener that will be notified after the subscription listener
+		fixture.addListener(this::pass);
+
+		try {
+			// Delete the import
+			importing.getPackageImport(imported).destroy();
+			importing.unsetName();
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(String.format("Got %s during edit: %s", e.getClass().getSimpleName(), e.getMessage()));
+		}
+	}
+
 	//
 	// Test framework
 	//
@@ -92,9 +122,15 @@ public class DependentEMFLabelProviderTest {
 		importing.createPackageImport(imported);
 	}
 
+	void pass(Object __) {
+		// Pass
+	}
+
 	// For testing purposes, a label provider for packages that decorates the label
 	// with the label of one package that imports it (if any)
 	private class ImportedPackageLabelProvider extends DependentEMFLabelProvider {
+		private final Map<Package, Package> lastKnownImporter = new MapMaker().weakKeys().weakValues().makeMap();
+
 		@Override
 		protected String getText(EObject element) {
 			// Default
@@ -102,12 +138,17 @@ public class DependentEMFLabelProviderTest {
 
 			if (element instanceof Package) {
 				Package package_ = (Package) element;
-				Package importer = getImportingPackage(package_);
-				if (importer != null) {
+				Package importer = lastKnownImporter.computeIfAbsent(package_, this::getImportingPackage);
+
+				if ((importer != null) && importer.getImportedPackages().contains(package_)) {
+					// It is currently importing this package.
 					// Listen for changes in the dependency to notify on the dependent
 					subscribe(importer, package_);
 
 					result = String.format("%s (imported by %s)", result, getText(importer));
+				} else {
+					// In case we were subscribed
+					unsubscribe(importer, package_);
 				}
 			}
 
