@@ -186,7 +186,6 @@ public class FlatFilteredContentProvider
 			for (int i = 0; i < children.length; i++) {
 				boolean visited = false;
 
-
 				if (visitedElements.contains(children[i])) {
 					visited = true;
 				} else {
@@ -196,19 +195,15 @@ public class FlatFilteredContentProvider
 				// get the semantic element for some case
 				if (!visited) {
 					EObject eObject = PlatformHelper.getAdapter(children[i], EObject.class);
-					if (null != eObject && !eObject.equals(children[i])) {
-						if (visitedElements.contains(eObject)) {
-							visited = true;
-						} else {
-							visitedElements.add(eObject);
-						}
+					if (null != eObject && !eObject.equals(children[i]) && visitedElements.contains(eObject)) {
+						visited = true;
+					} else {
+						visitedElements.add(eObject);
 					}
 				}
-				if (isValidValue(children[i])) {
-					if (!visited) {
-						list.add(children[i]);
-					}
 
+				if (!visited && isValidValue(children[i])) {
+					list.add(children[i]);
 				}
 				if (!visited) {
 					list.addAll(Arrays.asList(getAllChildren(children[i], visitedElements)));

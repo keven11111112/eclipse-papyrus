@@ -287,7 +287,7 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 		}
 		provider.addListener(event -> {
 			TreeViewer currentTreeViewer = treeViewers.get(currentTabId);
-			if (null != currentTreeViewer) {
+			if (null != currentTreeViewer && !currentTreeViewer.getTree().isDisposed()) {
 				currentTreeViewer.refresh();
 			}
 		});
@@ -304,8 +304,6 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 		labelProviders.put(defaultTabId, provider);
 		setLabelProvider(defaultTabId, provider);
 	}
-
-
 
 	/**
 	 * Sets the ContentProvider for this dialog
@@ -390,10 +388,16 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 					tabFolder.setSelection(indexOfLast);
 					doSetInput(currentTabId);// refresh the input of the selected viewer
 				}
+			} else {
+				currentTabId = defaultTabId;
 			}
 		} else {
 			currentTabId = defaultTabId;
 		}
+
+		// Set the input on the currentTabId viewer to bind its content provider.
+		doSetInput(currentTabId);
+
 		// Reveal the initial element
 		revealInitialElement(contentProviders.get(currentTabId), treeViewers.get(currentTabId));
 
@@ -462,7 +466,8 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 
 			// create tree viewer
 			ExtendedTreeViewer tabTreeViewer = new ExtendedTreeViewer(tabComposite, SWT.BORDER);
-			GridDataFactory.fillDefaults().grab(true, true).hint(SWT.DEFAULT, 350).applyTo(tabTreeViewer.getTree());
+			GridDataFactory.fillDefaults().grab(true, true).hint(300, 300).applyTo(tabTreeViewer.getTree());
+			treeViewers.put(tabId, tabTreeViewer);
 
 			// Set label Provider
 			if (null != tabLabelProvider) {
@@ -472,11 +477,8 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 					tabTreeViewer.setLabelProvider(tabLabelProvider);
 				}
 			}
-			// Set content provider
-			tabTreeViewer.setContentProvider(tabContentProvider);
-			tabTreeViewer.setInput("");//$NON-NLS-1$
-			treeViewers.put(tabId, tabTreeViewer);
 
+			// Set content provider
 			if (null != tabContentProvider) {
 				initViewerAndProvider(tabId);
 			}
@@ -654,7 +656,7 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 	 *            The input.
 	 */
 	private void doSetInput(final String TabId) {
-		if (input == null) {
+		if (null == input) {
 			treeViewers.get(TabId).setInput("");//$NON-NLS-1$
 		} else {
 			treeViewers.get(TabId).setInput(input);
