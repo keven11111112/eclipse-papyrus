@@ -405,7 +405,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		final ResourceSet resourceSet = getResourceSet();
 		// Bug 502160: Remove the resource from the resource set to execute the command without using the editing command stack
 		resourceSet.getResources().remove(this.resource);
-		cc.execute();
+		domain.getCommandStack().execute(cc);
 		// Bug 502160: Re-add the removed resource before the command execute
 		resourceSet.getResources().add(this.resource);
 
