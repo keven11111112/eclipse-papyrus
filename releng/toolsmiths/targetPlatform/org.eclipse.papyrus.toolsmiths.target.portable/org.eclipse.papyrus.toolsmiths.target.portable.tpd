@@ -1,0 +1,6 @@
+target "Papyrus ToolSmiths" with requirements source
+
+//updateFrom("Papyrus",0)
+location Papyrus "http://download.eclipse.org/releases/oxygen/" {
+ org.eclipse.papyrus.sdk.feature.feature.group lazy
+}

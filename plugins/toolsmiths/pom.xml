@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<packaging>pom</packaging>
+	<parent>
+	    <groupId>org.eclipse.papyrus</groupId>
+	    <artifactId>org.eclipse.papyrus.toolsmiths.releng</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+	    <relativePath>../../releng/toolsmiths/pom.xml</relativePath>
+    </parent>
+    
+    <artifactId>org.eclipse.papyrus.toolsmiths</artifactId>
+	<name>Papyrus Toolsmiths Plugins</name>
+	<description>Tools for Papyrus DSML ToolSmiths, including UI customization model editors.</description>
+
+	<modules>
+		<module>../customization/org.eclipse.papyrus.customization.nattableconfiguration</module>
+		<module>../customization/org.eclipse.papyrus.customization.palette</module>
+		<module>../customization/org.eclipse.papyrus.customization.paletteconfiguration</module>
+		<module>../customization/org.eclipse.papyrus.customization.properties</module>
+		<module>../customization/org.eclipse.papyrus.customization.properties.generation</module>
+		<module>../customization/org.eclipse.papyrus.customization.properties.model.xwt</module>
+		<module>../customization/org.eclipse.papyrus.infra.gmfdiag.expansion.edit</module>
+		<module>../customization/org.eclipse.papyrus.infra.gmfdiag.expansion.editor</module>
+	</modules>
+</project>

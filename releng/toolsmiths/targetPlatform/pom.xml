@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.eclipse.papyrus</groupId>
+		<artifactId>org.eclipse.papyrus.toolsmiths.releng</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>org.eclipse.papyrus.toolsmiths.target.parent</artifactId>
+	<packaging>pom</packaging>
+	<name>Papyrus Toolsmiths TargetPlatforms</name>
+
+	<profiles>
+		<profile>
+			<id>portable</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>org.eclipse.papyrus.toolsmiths.target.portable</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>eclipse</id>
+			<activation>
+				<property>
+					<name>env.JOB_NAME</name>
+				</property>
+			</activation>
+			<properties>
+					<target.suffix>org.eclipse.papyrus.toolsmiths.target.eclipse</target.suffix>
+			</properties>
+			<modules>
+				<module>org.eclipse.papyrus.toolsmiths.target.eclipse</module>
+			</modules>
+		</profile>
+	</profiles>
+
+
+</project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.eclipse.papyrus.toolsmiths.feature_0.0.1.qualifier.jar" id="org.eclipse.papyrus.toolsmiths.feature" version="0.0.1.qualifier">
+      <category name="org.eclipse.papyrus.toolsmiths.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.toolsmiths.feature.source_0.0.1.qualifier.jar" id="org.eclipse.papyrus.toolsmiths.feature.source" version="0.0.1.qualifier">
+      <category name="org.eclipse.papyrus.toolsmiths.category"/>
+   </feature>
+   <category-def name="org.eclipse.papyrus.toolsmiths.category" label="Papyrus Toolsmiths">
+      <description>
+         Papyrus Toolsmiths offers a set of plugins dedicated to speedup the process to create your own customization on top of Papyrus.
+      </description>
+   </category-def>
+   <repository-reference location="http://download.eclipse.org/releases/oxygen/" enabled="true" />
+</site>
