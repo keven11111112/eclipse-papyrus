@@ -11,6 +11,7 @@
 	<modules>
 		<module>../../plugins</module>
 		<module>../../features/papyrus-main-features</module>
+		<module>../../features/papyrus-toolsmiths-features</module>
 		<module>targetPlatform</module>
 		<module>site</module>
 	</modules>

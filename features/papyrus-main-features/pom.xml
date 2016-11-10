@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>org.eclipse.papyrus.features</artifactId>
 	<packaging>pom</packaging>
@@ -7,13 +8,12 @@
 	    <groupId>org.eclipse.papyrus</groupId>
 	    <artifactId>org.eclipse.papyrus.releng</artifactId>
 	    <version>0.0.1-SNAPSHOT</version>
-	    <relativePath>../../releng/main</relativePath>
+	    <relativePath>../../releng/main/pom.xml</relativePath>
     </parent>
 	<name>Papyrus Main Features</name>
 	<description>Container of the Eclipse Feature definition projects for the main Papyrus distribution.</description>
 
 	<modules>
-		<module>org.eclipse.papyrus.customization.feature</module>
 		<module>org.eclipse.papyrus.doc.feature</module>
 		<module>org.eclipse.papyrus.editor.feature</module>
 		<module>org.eclipse.papyrus.emf.facet.feature</module>
