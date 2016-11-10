@@ -224,9 +224,9 @@ public class CustomCSSProposalProvider extends AbstractCSSProposalProvider {
 				"transparency", //$NON-NLS-1$
 				"fontSize", //$NON-NLS-1$
 				"displayName", //$NON-NLS-1$
-				"elementIcon", //$NON-NLS-1$
-				"shadow", //$NON-NLS-1$
-				"qualifiedNameDepth", //$NON-NLS-1$
+				NamedStyleProperties.ELEMENT_ICON,
+				NamedStyleProperties.SHADOW,
+				NamedStyleProperties.QUALIFIED_NAME_DEPTH,
 				"lineStyle", //$NON-NLS-1$
 				"lineDashLength", //$NON-NLS-1$
 				"lineDashGap", //$NON-NLS-1$
@@ -238,6 +238,7 @@ public class CustomCSSProposalProvider extends AbstractCSSProposalProvider {
 				"svgCssFile", //$NON-NLS-1$
 				"svgCssClass", //$NON-NLS-1$
 				"canonical", //$NON-NLS-1$
+				NamedStyleProperties.IMAGE_PATH,
 				NamedStyleProperties.BORDER_STYLE,
 				NamedStyleProperties.BOTTOM_MARGIN_PROPERTY,
 				NamedStyleProperties.DISPLAY_BORDER,

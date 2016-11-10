@@ -339,6 +339,8 @@ The following properties can be used to bypass the standard UML notation. They c
 |-
 | svgFile || path || N/A || Shapes || The path to an SVG file, which should be used as a symbol for the element. It will be displayed in the "symbol" compartment of the shape
 |-
+| imagePath || path || N/A || Shapes || The path to an image file, which should be used as a symbol for the element. It will be displayed in the "symbol" compartment of the shape. The format of this image can be: SVG, GIF, JPG, PNG, BMP ...
+|-
 | followSVGSymbol || boolean || false || Shapes || If the SVG file has a path with the ID "papyrusPath", this path will be used to connect edges
 |-
 | svgCssFile || path || N/A || Shapes || The path to a CSS file which will be applied to the SVG symbol (If an SVG symbol is used). Can be used to dynamically change the appearance of the SVG image (e.g. change color, ...)

@@ -10,6 +10,7 @@
  *
  *		CEA LIST - Initial API and implementation
  *      Mickael ADAM (ALL4TEC) - mickael.adam@all4tec.net - implementation of layout BorderedLayoutManager to provide maintain ratio and color set
+ *      Fanch BONNABESSE (ALL4TEC) - fanch.bonnabesse@all4tec.net - Bug 502531
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
@@ -35,6 +36,10 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 	private RenderedImage lastRenderedImage;
 
 	public BorderedScalableImageFigure(RenderedImage renderedImage, boolean useDefaultImageSize, boolean useOriginalColors, boolean antiAlias) {
+		this(renderedImage, useDefaultImageSize, useOriginalColors, antiAlias, true);
+	}
+
+	public BorderedScalableImageFigure(RenderedImage renderedImage, boolean useDefaultImageSize, boolean useOriginalColors, boolean antiAlias, boolean isModificationPreferredSize) {
 		super(renderedImage, useDefaultImageSize, useOriginalColors, antiAlias);
 		// set a layout manager to override maintain ratio behavior
 		setLayoutManager(new BorderedLayoutManager());
@@ -42,9 +47,11 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 		// assure that ShapeFlowLayout gets the actual image size as preferred size. Otherwise, it would
 		// scale the image to identical width and height which would make it impossible to calculate the
 		// original aspect ratio (SVG specific workaround was in place before, see bug 500999).
-		setPreferredImageSize(
-				renderedImage.getSWTImage().getBounds().width,
-				renderedImage.getSWTImage().getBounds().height);
+		if (isModificationPreferredSize) {
+			setPreferredImageSize(
+					renderedImage.getSWTImage().getBounds().width,
+					renderedImage.getSWTImage().getBounds().height);
+		}
 	}
 
 	@Override

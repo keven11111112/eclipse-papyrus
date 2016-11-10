@@ -45,6 +45,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
 import org.eclipse.papyrus.infra.gmfdiag.css.configuration.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.BaseCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.provider.CustomStyle;
@@ -295,16 +296,15 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 		return declarations;
 	}
 
-	// FIXME: Use constants for the CSS Properties names
 	// FIXME: Use a helper to determine whether the custom styles are computed or forced
 	protected Map<css_declaration, Boolean> handleCustomStyle(CustomStyle customStyle, View view) {
 		Map<css_declaration, Boolean> declarations = new LinkedHashMap<>();
 
 		GMFToCSSConverter converter = GMFToCSSConverter.instance;
 
-		handleCustomStyle(view, "elementIcon", VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON, declarations, converter.convert(customStyle.showElementIcon()));
-		handleCustomStyle(view, "shadow", VisualInformationPapyrusConstants.SHADOWFIGURE, declarations, converter.convert(customStyle.showShadow()));
-		handleCustomStyle(view, "qualifiedNameDepth", VisualInformationPapyrusConstants.QUALIFIED_NAME, declarations, converter.convert(customStyle.getQualifiedNameDepth()));
+		handleCustomStyle(view, NamedStyleProperties.ELEMENT_ICON, VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON, declarations, converter.convert(customStyle.showElementIcon()));
+		handleCustomStyle(view, NamedStyleProperties.SHADOW, VisualInformationPapyrusConstants.SHADOWFIGURE, declarations, converter.convert(customStyle.showShadow()));
+		handleCustomStyle(view, NamedStyleProperties.QUALIFIED_NAME_DEPTH, VisualInformationPapyrusConstants.QUALIFIED_NAME, declarations, converter.convert(customStyle.getQualifiedNameDepth()));
 
 		return declarations;
 	}

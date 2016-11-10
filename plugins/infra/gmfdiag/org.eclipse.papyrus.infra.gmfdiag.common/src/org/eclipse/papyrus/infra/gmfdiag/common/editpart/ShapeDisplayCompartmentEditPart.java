@@ -184,7 +184,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		if (shapesToDisplay != null && !shapesToDisplay.isEmpty()) {
 			for (RenderedImage image : shapesToDisplay) {
 				if (image != null) {
-					IFigure imageFigure = new BorderedScalableImageFigure(image, false, getUseOriginalColors(), true);
+					IFigure imageFigure = new BorderedScalableImageFigure(image, false, getUseOriginalColors(), true, true);
 					imageFigure.setOpaque(false);
 					imageFigure.setVisible(true);
 					contentPane.add(imageFigure);

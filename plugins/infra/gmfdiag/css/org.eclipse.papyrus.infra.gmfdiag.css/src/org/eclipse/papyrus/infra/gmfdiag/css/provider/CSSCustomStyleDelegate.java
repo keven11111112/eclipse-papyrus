@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.emf.appearance.style.AnnotationStyleProvider;
 import org.eclipse.papyrus.infra.emf.appearance.style.AppearanceStyleProvider;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSDOMSemanticElementHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.StringHelper;
@@ -30,7 +31,6 @@ import org.w3c.dom.css.CSSValue;
  *
  * @author Camille Letavernier
  */
-// FIXME: Use constants for the CSS Properties elementIcon, qualifiedNameDepth and shadow
 @SuppressWarnings("restriction")
 public class CSSCustomStyleDelegate implements CustomStyle {
 
@@ -72,7 +72,7 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 			return provider.showElementIcon(view);
 		}
 
-		CSSValue cssValue = engine.retrievePropertyValue(element, "elementIcon"); //$NON-NLS-1$
+		CSSValue cssValue = engine.retrievePropertyValue(element, NamedStyleProperties.ELEMENT_ICON);
 		if (cssValue == null) {
 			return false;
 		}
@@ -86,7 +86,7 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 			return provider.getQualifiedNameDepth(view);
 		}
 
-		CSSValue cssValue = engine.retrievePropertyValue(element, "qualifiedNameDepth"); //$NON-NLS-1$
+		CSSValue cssValue = engine.retrievePropertyValue(element, NamedStyleProperties.QUALIFIED_NAME_DEPTH);
 		if (cssValue == null) {
 			return NONE_VALUE;
 		}
@@ -124,7 +124,7 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 			return provider.showShadow(view);
 		}
 
-		CSSValue cssValue = engine.retrievePropertyValue(element, "shadow"); //$NON-NLS-1$
+		CSSValue cssValue = engine.retrievePropertyValue(element, NamedStyleProperties.SHADOW);
 		if (cssValue == null) {
 			return false;
 		}

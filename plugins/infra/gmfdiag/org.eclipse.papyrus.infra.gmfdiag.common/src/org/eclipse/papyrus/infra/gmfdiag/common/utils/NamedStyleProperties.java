@@ -164,13 +164,25 @@ public interface NamedStyleProperties {
 
 	/** The port resizable namestyle propery. */
 	public static final String IS_PORT_RESIZABLE = "isPortResizable";//$NON-NLS-1$
-	
+
 	/* Label used to identify the forced CSS values */
 	public static final String CSS_FORCE_VALUE = "PapyrusCSSForceValue"; // $NON-NLS-1$
 
 	/** name of the CSS property that manages the enablement of the {@link StyleBasedShapeProvider} */
-	public static final String SHAPE_STYLE_PROPERTY = "shapeStyle";
+	public static final String SHAPE_STYLE_PROPERTY = "shapeStyle"; //$NON-NLS-1$
 
 	/** name of the CSS property that manages the enablement of the {@link StyleBasedShapeProvider} for decoration */
-	public static final String SHAPE_DECORATION_STYLE_PROPERTY = "shapeDecorationStyle";
+	public static final String SHAPE_DECORATION_STYLE_PROPERTY = "shapeDecorationStyle"; //$NON-NLS-1$
+
+	/** NameStyle property to show an icon next to the label of an element. */
+	public static final String ELEMENT_ICON = "elementIcon"; //$NON-NLS-1$
+
+	/** NameStyle property to define the depth of the qualified name to display. */
+	public static final String QUALIFIED_NAME_DEPTH = "qualifiedNameDepth"; //$NON-NLS-1$
+
+	/** NameStyle property to display a shadow under the shape. */
+	public static final String SHADOW = "shadow"; //$NON-NLS-1$
+
+	/** NamedStyle property used to show an image on the symbol compartment. */
+	public static final String IMAGE_PATH = "imagePath"; //$NON-NLS-1$
 }
