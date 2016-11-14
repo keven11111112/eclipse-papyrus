@@ -1581,6 +1581,10 @@
 				type="InformationFlow_StereotypeLabel">
 			</mapping>
 			<mapping
+				humanReadableType="Name"
+				type="InformationFlow_NameLabel">
+			</mapping>
+			<mapping
 				humanReadableType="Stereotype"
 				type="Constraint_KeywordLabel">
 			</mapping>

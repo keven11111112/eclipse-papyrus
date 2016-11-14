@@ -1194,6 +1194,10 @@
 				type="InformationFlow_StereotypeLabel">
 			</mapping>
 			<mapping
+				humanReadableType="Name"
+				type="InformationFlow_NameLabel">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="Port_BehaviorFloatingNameLabel">
 			</mapping>
