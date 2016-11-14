@@ -64,7 +64,7 @@ public class FeatureToSetNameValueEditor extends StringEditor {
 
 			if (inputElement instanceof Stereotype) {
 				Stereotype stereotype = (Stereotype) inputElement;
-				EList<Property> ownedAttributes = stereotype.getAttributes();
+				EList<Property> ownedAttributes = stereotype.getAllAttributes();
 				for (Property property : ownedAttributes) {
 					attributes.add(property);
 				}
