@@ -74,6 +74,7 @@
             <packagedElement xmi:type="uml:Abstraction" xmi:id="_FIVKcDelEeaoIeKDbY2kpA" name="Derived_from_Diagram.REQ_008" client="_YpHAsDSrEeaZ0_eSx8_2aA" supplier="_jx4RQDRxEeaZ0_eSx8_2aA"/>
             <packagedElement xmi:type="uml:Class" xmi:id="_xwwMkDe2EeaPnYE3F_KdYw" name="Diagram.REQT_004"/>
             <packagedElement xmi:type="uml:Abstraction" xmi:id="_V7hgMDe4EeaPnYE3F_KdYw" name="Derived_from_Diagram.REQ_018" client="_xwwMkDe2EeaPnYE3F_KdYw" supplier="_z-gBEDe3EeaPnYE3F_KdYw"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_T1twoKp_Eea736WDa-fj3g" name="Diagram.REQT_005"/>
           </packagedElement>
           <packagedElement xmi:type="uml:Package" xmi:id="_jo1n0DRiEeaZ0_eSx8_2aA" name="UML Diagram Requirements">
             <packagedElement xmi:type="uml:Package" xmi:id="_op3zwDSZEeaZ0_eSx8_2aA" name="Class Diagram"/>
@@ -246,4 +247,5 @@
   <Requirements:Requirement xmi:id="_xw5WgDe2EeaPnYE3F_KdYw" text="Each diagram must have a version number.&#xD;&#xA;in the notation there is a name style name=&quot;diagram_compatibility_version&quot; stringValue=&quot;1.2.0&quot;" id="Diagram.REQT_004" base_Class="_xwwMkDe2EeaPnYE3F_KdYw"/>
   <Requirements:Requirement xmi:id="_z-oj8De3EeaPnYE3F_KdYw" text="Papyrus shall provide facilities to migrate diagram from a version to upper version" id="Diagram.REQ_018" base_Class="_z-gBEDe3EeaPnYE3F_KdYw"/>
   <Requirements:DeriveReqt xmi:id="_V7qqIDe4EeaPnYE3F_KdYw" base_Abstraction="_V7hgMDe4EeaPnYE3F_KdYw"/>
+  <Requirements:Requirement xmi:id="_T1wz8Kp_Eea736WDa-fj3g" text="The extension point used to defines palette oep.uml.diagram.common.paletteDefinition must allow to define several palettes in the same time (cardinality 1..*] " id="Diagram.REQT_003" base_Class="_T1twoKp_Eea736WDa-fj3g"/>
 </xmi:XMI>
