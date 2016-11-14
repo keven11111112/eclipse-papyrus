@@ -217,6 +217,10 @@ IdentifierOrFuncTok returns CssTok hidden(ML_COMMENT):
 	{IdentifierTok} name=Identifier ( {FuncTok.name=current} '(' params+=CssTok+ ')')?
 ;
 
+IntegerTok returns CssTok hidden():
+	{IntegerTok} val=NumInt
+;
+
 CssTok hidden(ML_COMMENT):
 	IdentifierOrFuncTok |
 	SymbolTok |
@@ -224,7 +228,8 @@ CssTok hidden(ML_COMMENT):
 	StringTok |
 	NumberTok |
 	UrlTok |
-	ColorTok
+	ColorTok |
+	IntegerTok
 ;
 
 
@@ -277,6 +282,10 @@ Num returns ecore::EDouble hidden():
 		'.' => ONE_INT+ |
 		=> ONE_INT+ (=> '.' => ONE_INT+)?
 	)
+;
+
+NumInt returns ecore::EInt hidden():
+	(PLUS|DASH)? ONE_INT+
 ;
 
 Hex returns ecore::EString:

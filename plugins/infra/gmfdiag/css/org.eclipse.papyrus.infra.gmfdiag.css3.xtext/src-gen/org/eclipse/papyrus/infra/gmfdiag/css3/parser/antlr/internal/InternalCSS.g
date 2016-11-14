@@ -2800,6 +2800,61 @@ finally {
 
 
 
+// Entry rule entryRuleIntegerTok
+entryRuleIntegerTok returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+	}
+	:
+	{ newCompositeNode(grammarAccess.getIntegerTokRule()); }
+	 iv_ruleIntegerTok=ruleIntegerTok 
+	 { $current=$iv_ruleIntegerTok.current; } 
+	 EOF 
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+// Rule IntegerTok
+ruleIntegerTok returns [EObject current=null] 
+    @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getIntegerTokAccess().getIntegerTokAction_0(),
+            $current);
+    }
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getIntegerTokAccess().getValNumIntParserRuleCall_1_0()); 
+	    }
+		lv_val_1_0=ruleNumInt		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getIntegerTokRule());
+	        }
+       		set(
+       			$current, 
+       			"val",
+        		lv_val_1_0, 
+        		"org.eclipse.papyrus.infra.gmfdiag.css3.CSS.NumInt");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+
+
+
+
 // Entry rule entryRuleCssTok
 entryRuleCssTok returns [EObject current=null] 
 	@init { 
@@ -2888,6 +2943,16 @@ ruleCssTok returns [EObject current=null]
     this_ColorTok_6=ruleColorTok
     { 
         $current = $this_ColorTok_6.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getCssTokAccess().getIntegerTokParserRuleCall_7()); 
+    }
+    this_IntegerTok_7=ruleIntegerTok
+    { 
+        $current = $this_IntegerTok_7.current; 
         afterParserOrEnumRuleCall();
     }
 )
@@ -3536,6 +3601,59 @@ ruleNum returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
     newLeafNode(this_ONE_INT_6, grammarAccess.getNumAccess().getONE_INTTerminalRuleCall_1_1_1_1()); 
     }
 )+)?)))
+    ;
+finally {
+	myHiddenTokenState.restore();
+}
+
+
+
+
+
+// Entry rule entryRuleNumInt
+entryRuleNumInt returns [String current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+	}
+	:
+	{ newCompositeNode(grammarAccess.getNumIntRule()); } 
+	 iv_ruleNumInt=ruleNumInt 
+	 { $current=$iv_ruleNumInt.current.getText(); }  
+	 EOF 
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+// Rule NumInt
+ruleNumInt returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+    }
+    @after { leaveRule(); }:
+((    this_PLUS_0=RULE_PLUS    {
+		$current.merge(this_PLUS_0);
+    }
+
+    { 
+    newLeafNode(this_PLUS_0, grammarAccess.getNumIntAccess().getPLUSTerminalRuleCall_0_0()); 
+    }
+
+    |    this_DASH_1=RULE_DASH    {
+		$current.merge(this_DASH_1);
+    }
+
+    { 
+    newLeafNode(this_DASH_1, grammarAccess.getNumIntAccess().getDASHTerminalRuleCall_0_1()); 
+    }
+)?(    this_ONE_INT_2=RULE_ONE_INT    {
+		$current.merge(this_ONE_INT_2);
+    }
+
+    { 
+    newLeafNode(this_ONE_INT_2, grammarAccess.getNumIntAccess().getONE_INTTerminalRuleCall_1()); 
+    }
+)+)
     ;
 finally {
 	myHiddenTokenState.restore();

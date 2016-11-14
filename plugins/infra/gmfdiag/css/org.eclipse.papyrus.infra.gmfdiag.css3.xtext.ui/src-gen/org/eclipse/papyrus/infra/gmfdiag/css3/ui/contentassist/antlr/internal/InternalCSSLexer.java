@@ -1,10 +1,16 @@
 package org.eclipse.papyrus.infra.gmfdiag.css3.ui.contentassist.antlr.internal;
 
-// Hack: Use our own Lexer superclass by means of import.
+import org.antlr.runtime.BaseRecognizer;
+import org.antlr.runtime.CharStream;
+import org.antlr.runtime.DFA;
+import org.antlr.runtime.EarlyExitException;
+import org.antlr.runtime.MismatchedSetException;
+import org.antlr.runtime.NoViableAltException;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RecognizerSharedState;
+// Hack: Use our own Lexer superclass by means of import. 
 // Currently there is no other way to specify the superclass for the lexer.
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
-
-import org.antlr.runtime.*;
 
 @SuppressWarnings("all")
 public class InternalCSSLexer extends Lexer {
@@ -87,7 +93,6 @@ public class InternalCSSLexer extends Lexer {
 
 	}
 
-	@Override
 	public String getGrammarFileName() {
 		return "InternalCSS.g";
 	}
@@ -978,8 +983,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_IMPORTANT_SYM;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8942:20: ( '!important' )
-			// InternalCSS.g:8942:22: '!important'
+			// InternalCSS.g:9188:20: ( '!important' )
+			// InternalCSS.g:9188:22: '!important'
 			{
 				match("!important");
 
@@ -998,8 +1003,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_ONE_INT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8944:14: ( '0' .. '9' )
-			// InternalCSS.g:8944:16: '0' .. '9'
+			// InternalCSS.g:9190:14: ( '0' .. '9' )
+			// InternalCSS.g:9190:16: '0' .. '9'
 			{
 				matchRange('0', '9');
 
@@ -1017,8 +1022,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_ONE_HEX_LETTER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8946:21: ( ( 'a' .. 'f' | 'A' .. 'F' ) )
-			// InternalCSS.g:8946:23: ( 'a' .. 'f' | 'A' .. 'F' )
+			// InternalCSS.g:9192:21: ( ( 'a' .. 'f' | 'A' .. 'F' ) )
+			// InternalCSS.g:9192:23: ( 'a' .. 'f' | 'A' .. 'F' )
 			{
 				if ((input.LA(1) >= 'A' && input.LA(1) <= 'F') || (input.LA(1) >= 'a' && input.LA(1) <= 'f')) {
 					input.consume();
@@ -1044,8 +1049,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_ONE_NON_HEX_LETTER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8948:25: ( ( 'g' .. 'z' | 'G' .. 'Z' ) )
-			// InternalCSS.g:8948:27: ( 'g' .. 'z' | 'G' .. 'Z' )
+			// InternalCSS.g:9194:25: ( ( 'g' .. 'z' | 'G' .. 'Z' ) )
+			// InternalCSS.g:9194:27: ( 'g' .. 'z' | 'G' .. 'Z' )
 			{
 				if ((input.LA(1) >= 'G' && input.LA(1) <= 'Z') || (input.LA(1) >= 'g' && input.LA(1) <= 'z')) {
 					input.consume();
@@ -1071,8 +1076,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_UNDERSCORE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8950:17: ( '_' )
-			// InternalCSS.g:8950:19: '_'
+			// InternalCSS.g:9196:17: ( '_' )
+			// InternalCSS.g:9196:19: '_'
 			{
 				match('_');
 
@@ -1090,8 +1095,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_DASH;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8952:11: ( '-' )
-			// InternalCSS.g:8952:13: '-'
+			// InternalCSS.g:9198:11: ( '-' )
+			// InternalCSS.g:9198:13: '-'
 			{
 				match('-');
 
@@ -1109,8 +1114,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_PLUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8954:11: ( '+' )
-			// InternalCSS.g:8954:13: '+'
+			// InternalCSS.g:9200:11: ( '+' )
+			// InternalCSS.g:9200:13: '+'
 			{
 				match('+');
 
@@ -1128,8 +1133,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_HASHMARK;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8956:15: ( '#' )
-			// InternalCSS.g:8956:17: '#'
+			// InternalCSS.g:9202:15: ( '#' )
+			// InternalCSS.g:9202:17: '#'
 			{
 				match('#');
 
@@ -1147,8 +1152,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_COMMA;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8958:12: ( ',' )
-			// InternalCSS.g:8958:14: ','
+			// InternalCSS.g:9204:12: ( ',' )
+			// InternalCSS.g:9204:14: ','
 			{
 				match(',');
 
@@ -1166,8 +1171,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_PERCENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8960:14: ( '%' )
-			// InternalCSS.g:8960:16: '%'
+			// InternalCSS.g:9206:14: ( '%' )
+			// InternalCSS.g:9206:16: '%'
 			{
 				match('%');
 
@@ -1185,12 +1190,12 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_ML_COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8962:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-			// InternalCSS.g:8962:19: '/*' ( options {greedy=false; } : . )* '*/'
+			// InternalCSS.g:9208:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+			// InternalCSS.g:9208:19: '/*' ( options {greedy=false; } : . )* '*/'
 			{
 				match("/*");
 
-				// InternalCSS.g:8962:24: ( options {greedy=false; } : . )*
+				// InternalCSS.g:9208:24: ( options {greedy=false; } : . )*
 				loop1: do {
 					int alt1 = 2;
 					int LA1_0 = input.LA(1);
@@ -1212,7 +1217,7 @@ public class InternalCSSLexer extends Lexer {
 
 					switch (alt1) {
 					case 1:
-					// InternalCSS.g:8962:52: .
+					// InternalCSS.g:9208:52: .
 					{
 						matchAny();
 
@@ -1241,10 +1246,10 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8964:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-			// InternalCSS.g:8964:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+			// InternalCSS.g:9210:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+			// InternalCSS.g:9210:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
 			{
-				// InternalCSS.g:8964:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+				// InternalCSS.g:9210:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
 				int cnt2 = 0;
 				loop2: do {
 					int alt2 = 2;
@@ -1273,9 +1278,8 @@ public class InternalCSSLexer extends Lexer {
 						break;
 
 					default:
-						if (cnt2 >= 1) {
+						if (cnt2 >= 1)
 							break loop2;
-						}
 						EarlyExitException eee = new EarlyExitException(2, input);
 						throw eee;
 					}
@@ -1297,12 +1301,12 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_CSSSTRING;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8966:16: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' |
+			// InternalCSS.g:9212:16: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' |
 			// '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-			// InternalCSS.g:8966:18: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' |
+			// InternalCSS.g:9212:18: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' |
 			// '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
 			{
-				// InternalCSS.g:8966:18: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\''
+				// InternalCSS.g:9212:18: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\''
 				// | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
 				int alt5 = 2;
 				int LA5_0 = input.LA(1);
@@ -1318,10 +1322,10 @@ public class InternalCSSLexer extends Lexer {
 				}
 				switch (alt5) {
 				case 1:
-				// InternalCSS.g:8966:19: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+				// InternalCSS.g:9212:19: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
 				{
 					match('\"');
-					// InternalCSS.g:8966:23: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+					// InternalCSS.g:9212:23: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
 					loop3: do {
 						int alt3 = 3;
 						int LA3_0 = input.LA(1);
@@ -1335,7 +1339,7 @@ public class InternalCSSLexer extends Lexer {
 
 						switch (alt3) {
 						case 1:
-						// InternalCSS.g:8966:24: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' )
+						// InternalCSS.g:9212:24: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' )
 						{
 							match('\\');
 							if (input.LA(1) == '\"' || input.LA(1) == '\'' || (input.LA(1) >= '0' && input.LA(1) <= '9') || (input.LA(1) >= 'A' && input.LA(1) <= 'F') || input.LA(1) == '\\' || (input.LA(1) >= 'a' && input.LA(1) <= 'f') || input.LA(1) == 'n'
@@ -1352,7 +1356,7 @@ public class InternalCSSLexer extends Lexer {
 						}
 							break;
 						case 2:
-						// InternalCSS.g:8966:96: ~ ( ( '\\\\' | '\"' ) )
+						// InternalCSS.g:9212:96: ~ ( ( '\\\\' | '\"' ) )
 						{
 							if ((input.LA(1) >= '\u0000' && input.LA(1) <= '!') || (input.LA(1) >= '#' && input.LA(1) <= '[') || (input.LA(1) >= ']' && input.LA(1) <= '\uFFFF')) {
 								input.consume();
@@ -1377,10 +1381,10 @@ public class InternalCSSLexer extends Lexer {
 				}
 					break;
 				case 2:
-				// InternalCSS.g:8966:116: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+				// InternalCSS.g:9212:116: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
 				{
 					match('\'');
-					// InternalCSS.g:8966:121: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+					// InternalCSS.g:9212:121: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
 					loop4: do {
 						int alt4 = 3;
 						int LA4_0 = input.LA(1);
@@ -1394,7 +1398,7 @@ public class InternalCSSLexer extends Lexer {
 
 						switch (alt4) {
 						case 1:
-						// InternalCSS.g:8966:122: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' )
+						// InternalCSS.g:9212:122: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '\\\\' )
 						{
 							match('\\');
 							if (input.LA(1) == '\"' || input.LA(1) == '\'' || (input.LA(1) >= '0' && input.LA(1) <= '9') || (input.LA(1) >= 'A' && input.LA(1) <= 'F') || input.LA(1) == '\\' || (input.LA(1) >= 'a' && input.LA(1) <= 'f') || input.LA(1) == 'n'
@@ -1411,7 +1415,7 @@ public class InternalCSSLexer extends Lexer {
 						}
 							break;
 						case 2:
-						// InternalCSS.g:8966:194: ~ ( ( '\\\\' | '\\'' ) )
+						// InternalCSS.g:9212:194: ~ ( ( '\\\\' | '\\'' ) )
 						{
 							if ((input.LA(1) >= '\u0000' && input.LA(1) <= '&') || (input.LA(1) >= '(' && input.LA(1) <= '[') || (input.LA(1) >= ']' && input.LA(1) <= '\uFFFF')) {
 								input.consume();
@@ -1453,8 +1457,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_INCLUDES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8968:15: ( '~=' )
-			// InternalCSS.g:8968:17: '~='
+			// InternalCSS.g:9214:15: ( '~=' )
+			// InternalCSS.g:9214:17: '~='
 			{
 				match("~=");
 
@@ -1473,8 +1477,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_DASHMATCH;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8970:16: ( '|=' )
-			// InternalCSS.g:8970:18: '|='
+			// InternalCSS.g:9216:16: ( '|=' )
+			// InternalCSS.g:9216:18: '|='
 			{
 				match("|=");
 
@@ -1493,8 +1497,8 @@ public class InternalCSSLexer extends Lexer {
 		try {
 			int _type = RULE_COLON;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// InternalCSS.g:8972:12: ( ':' )
-			// InternalCSS.g:8972:14: ':'
+			// InternalCSS.g:9218:12: ( ':' )
+			// InternalCSS.g:9218:14: ':'
 			{
 				match(':');
 
@@ -1507,7 +1511,6 @@ public class InternalCSSLexer extends Lexer {
 	}
 	// $ANTLR end "RULE_COLON"
 
-	@Override
 	public void mTokens() throws RecognitionException {
 		// InternalCSS.g:1:8: ( T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 |
 		// T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | RULE_IMPORTANT_SYM | RULE_ONE_INT | RULE_ONE_HEX_LETTER | RULE_ONE_NON_HEX_LETTER | RULE_UNDERSCORE | RULE_DASH |

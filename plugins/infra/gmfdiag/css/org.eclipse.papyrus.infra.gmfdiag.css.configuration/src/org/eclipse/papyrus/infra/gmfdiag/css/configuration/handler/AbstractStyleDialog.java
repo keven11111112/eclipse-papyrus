@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 392301
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 479314
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler;
@@ -31,6 +32,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.AttributeSelector;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ColorTok;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssTok;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IdentifierTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IntegerTok;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.NumberTok;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.StringTok;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.SymbolTok;
@@ -444,6 +446,11 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 			@Override
 			public String caseNumberTok(NumberTok token) {
 				return Double.toString(token.getVal());
+			}
+
+			@Override
+			public String caseIntegerTok(IntegerTok token) {
+				return Integer.toString(token.getVal());
 			}
 
 			@Override

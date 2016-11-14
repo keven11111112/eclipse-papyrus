@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 479314
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler;
 
@@ -22,6 +24,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSFactory;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ColorTok;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssTok;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IdentifierTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IntegerTok;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.NumberTok;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.StringTok;
 import org.eclipse.swt.graphics.Color;
@@ -90,9 +93,9 @@ public class GMFToCSSConverter {
 		return getExpression(stringValue);
 	}
 
-	public List<CssTok> convert(Integer intValue) {
+	public List<CssTok> convert(Double doubleValue) {
 		NumberTok numberValue = CSSFactory.eINSTANCE.createNumberTok();
-		numberValue.setVal(intValue);
+		numberValue.setVal(doubleValue);
 		// if (intValue < 0) {
 		// UnaryOperator operator = CssFactory.eINSTANCE.createUnaryOperator();
 		// operator.setOperator(UNARY.NEG);
@@ -100,6 +103,12 @@ public class GMFToCSSConverter {
 		// }
 
 		return getExpression(numberValue);
+	}
+
+	public List<CssTok> convert(final Integer intValue) {
+		IntegerTok integerValue = CSSFactory.eINSTANCE.createIntegerTok();
+		integerValue.setVal(intValue);
+		return getExpression(integerValue);
 	}
 
 	public List<CssTok> convert(Enumerator enumerated) {

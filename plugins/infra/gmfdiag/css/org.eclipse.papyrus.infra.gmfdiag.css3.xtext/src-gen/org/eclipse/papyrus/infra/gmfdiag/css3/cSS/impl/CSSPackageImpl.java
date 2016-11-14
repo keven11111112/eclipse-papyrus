@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ElementSelector;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.FuncTok;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IdSelector;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IdentifierTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IntegerTok;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.NumberTok;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.PseudoClass;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.PseudoClassFunction;
@@ -50,14 +51,14 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.stylesheet;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass stylesheetEClass = null;
@@ -65,7 +66,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass charsetEClass = null;
@@ -73,7 +74,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass importExpressionEClass = null;
@@ -81,7 +82,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass pageEClass = null;
@@ -89,7 +90,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass mediaEClass = null;
@@ -97,7 +98,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass font_faceEClass = null;
@@ -105,7 +106,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass keyframesEClass = null;
@@ -113,7 +114,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass keyframe_selectorEClass = null;
@@ -121,7 +122,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass rulesetEClass = null;
@@ -129,7 +130,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass selectorEClass = null;
@@ -137,7 +138,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass simpleSelectorForNegationEClass = null;
@@ -145,7 +146,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass cssSelectorEClass = null;
@@ -153,7 +154,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass simple_selectorEClass = null;
@@ -161,7 +162,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass classSelectorEClass = null;
@@ -169,7 +170,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass elementSelectorEClass = null;
@@ -177,7 +178,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass universalSelectorEClass = null;
@@ -185,7 +186,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass idSelectorEClass = null;
@@ -193,7 +194,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass css_declarationEClass = null;
@@ -201,7 +202,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass css_propertyEClass = null;
@@ -209,7 +210,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass pseudoClassOrFuncEClass = null;
@@ -217,7 +218,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass pseudoClassEClass = null;
@@ -225,7 +226,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass pseudoClassNameEClass = null;
@@ -233,7 +234,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass pseudoClassFunctionEClass = null;
@@ -241,7 +242,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass cssTokEClass = null;
@@ -249,7 +250,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass urlTypeEClass = null;
@@ -257,7 +258,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass attributeSelectorEClass = null;
@@ -265,7 +266,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass symbolTokEClass = null;
@@ -273,7 +274,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass wsTokEClass = null;
@@ -281,7 +282,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass stringTokEClass = null;
@@ -289,7 +290,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass numberTokEClass = null;
@@ -297,7 +298,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass urlTokEClass = null;
@@ -305,7 +306,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass colorTokEClass = null;
@@ -313,7 +314,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass identifierTokEClass = null;
@@ -321,10 +322,18 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass funcTokEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass integerTokEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -337,7 +346,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	 * if one already exists.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage#eNS_URI
 	 * @see #init()
@@ -350,29 +359,28 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 *
+	 * 
 	 * <p>
 	 * This method is used to initialize {@link CSSPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static CSSPackage init() {
-		if (isInited) {
+		if (isInited)
 			return (CSSPackage) EPackage.Registry.INSTANCE.getEPackage(CSSPackage.eNS_URI);
-		}
 
 		// Obtain or create and register package
 		CSSPackageImpl theCSSPackage = (CSSPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof CSSPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new CSSPackageImpl());
@@ -397,10 +405,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getstylesheet() {
 		return stylesheetEClass;
 	}
@@ -408,10 +415,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getstylesheet_Charset() {
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(0);
 	}
@@ -419,10 +425,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getstylesheet_Imports() {
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(1);
 	}
@@ -430,10 +435,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getstylesheet_Ruleset() {
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(2);
 	}
@@ -441,10 +445,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getstylesheet_Media() {
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(3);
 	}
@@ -452,10 +455,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getstylesheet_Page() {
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(4);
 	}
@@ -463,10 +465,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getstylesheet_Font_face() {
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(5);
 	}
@@ -474,10 +475,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getstylesheet_Keyframes() {
 		return (EReference) stylesheetEClass.getEStructuralFeatures().get(6);
 	}
@@ -485,10 +485,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getcharset() {
 		return charsetEClass;
 	}
@@ -496,10 +495,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getcharset_Charset() {
 		return (EAttribute) charsetEClass.getEStructuralFeatures().get(0);
 	}
@@ -507,10 +505,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getimportExpression() {
 		return importExpressionEClass;
 	}
@@ -518,10 +515,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getimportExpression_Value() {
 		return (EAttribute) importExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -529,10 +525,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getpage() {
 		return pageEClass;
 	}
@@ -540,10 +535,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getpage_PseudoPage() {
 		return (EAttribute) pageEClass.getEStructuralFeatures().get(0);
 	}
@@ -551,10 +545,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getpage_Declarations() {
 		return (EReference) pageEClass.getEStructuralFeatures().get(1);
 	}
@@ -562,10 +555,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getmedia() {
 		return mediaEClass;
 	}
@@ -573,10 +565,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getmedia_Medialist() {
 		return (EAttribute) mediaEClass.getEStructuralFeatures().get(0);
 	}
@@ -584,10 +575,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getmedia_Rulesets() {
 		return (EReference) mediaEClass.getEStructuralFeatures().get(1);
 	}
@@ -595,10 +585,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getfont_face() {
 		return font_faceEClass;
 	}
@@ -606,10 +595,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getfont_face_Declarations() {
 		return (EReference) font_faceEClass.getEStructuralFeatures().get(0);
 	}
@@ -617,10 +605,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getfont_face_Name() {
 		return (EAttribute) font_faceEClass.getEStructuralFeatures().get(1);
 	}
@@ -628,10 +615,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getfont_face_Keyframeselectors() {
 		return (EReference) font_faceEClass.getEStructuralFeatures().get(2);
 	}
@@ -639,10 +625,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getkeyframes() {
 		return keyframesEClass;
 	}
@@ -650,10 +635,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getkeyframe_selector() {
 		return keyframe_selectorEClass;
 	}
@@ -661,10 +645,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getkeyframe_selector_Type() {
 		return (EAttribute) keyframe_selectorEClass.getEStructuralFeatures().get(0);
 	}
@@ -672,10 +655,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getkeyframe_selector_Percentage() {
 		return (EAttribute) keyframe_selectorEClass.getEStructuralFeatures().get(1);
 	}
@@ -683,10 +665,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getkeyframe_selector_Declarations() {
 		return (EReference) keyframe_selectorEClass.getEStructuralFeatures().get(2);
 	}
@@ -694,10 +675,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getruleset() {
 		return rulesetEClass;
 	}
@@ -705,10 +685,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getruleset_Selectors() {
 		return (EReference) rulesetEClass.getEStructuralFeatures().get(0);
 	}
@@ -716,10 +695,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getruleset_Declarations() {
 		return (EReference) rulesetEClass.getEStructuralFeatures().get(1);
 	}
@@ -727,10 +705,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getselector() {
 		return selectorEClass;
 	}
@@ -738,10 +715,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getselector_Simpleselectors() {
 		return (EReference) selectorEClass.getEStructuralFeatures().get(0);
 	}
@@ -749,10 +725,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getselector_Combinator() {
 		return (EAttribute) selectorEClass.getEStructuralFeatures().get(1);
 	}
@@ -760,10 +735,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getselector_Selector() {
 		return (EReference) selectorEClass.getEStructuralFeatures().get(2);
 	}
@@ -771,10 +745,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getSimpleSelectorForNegation() {
 		return simpleSelectorForNegationEClass;
 	}
@@ -782,10 +755,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getSimpleSelectorForNegation_Element() {
 		return (EReference) simpleSelectorForNegationEClass.getEStructuralFeatures().get(0);
 	}
@@ -793,10 +765,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getSimpleSelectorForNegation_Universal() {
 		return (EReference) simpleSelectorForNegationEClass.getEStructuralFeatures().get(1);
 	}
@@ -804,10 +775,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getSimpleSelectorForNegation_SubSelectors() {
 		return (EReference) simpleSelectorForNegationEClass.getEStructuralFeatures().get(2);
 	}
@@ -815,10 +785,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getCssSelector() {
 		return cssSelectorEClass;
 	}
@@ -826,10 +795,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getsimple_selector() {
 		return simple_selectorEClass;
 	}
@@ -837,10 +805,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getsimple_selector_Element() {
 		return (EReference) simple_selectorEClass.getEStructuralFeatures().get(0);
 	}
@@ -848,10 +815,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getsimple_selector_Universal() {
 		return (EReference) simple_selectorEClass.getEStructuralFeatures().get(1);
 	}
@@ -859,10 +825,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getsimple_selector_SubSelectors() {
 		return (EReference) simple_selectorEClass.getEStructuralFeatures().get(2);
 	}
@@ -870,10 +835,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getClassSelector() {
 		return classSelectorEClass;
 	}
@@ -881,10 +845,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getClassSelector_Name() {
 		return (EAttribute) classSelectorEClass.getEStructuralFeatures().get(0);
 	}
@@ -892,10 +855,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getElementSelector() {
 		return elementSelectorEClass;
 	}
@@ -903,10 +865,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getElementSelector_Name() {
 		return (EAttribute) elementSelectorEClass.getEStructuralFeatures().get(0);
 	}
@@ -914,10 +875,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getUniversalSelector() {
 		return universalSelectorEClass;
 	}
@@ -925,10 +885,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getUniversalSelector_Namespace() {
 		return (EAttribute) universalSelectorEClass.getEStructuralFeatures().get(0);
 	}
@@ -936,10 +895,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getIdSelector() {
 		return idSelectorEClass;
 	}
@@ -947,10 +905,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getIdSelector_Name() {
 		return (EAttribute) idSelectorEClass.getEStructuralFeatures().get(0);
 	}
@@ -958,10 +915,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getcss_declaration() {
 		return css_declarationEClass;
 	}
@@ -969,10 +925,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getcss_declaration_Property() {
 		return (EReference) css_declarationEClass.getEStructuralFeatures().get(0);
 	}
@@ -980,10 +935,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getcss_declaration_ValueTokens() {
 		return (EReference) css_declarationEClass.getEStructuralFeatures().get(1);
 	}
@@ -991,10 +945,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getcss_declaration_Important() {
 		return (EAttribute) css_declarationEClass.getEStructuralFeatures().get(2);
 	}
@@ -1002,10 +955,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getcss_property() {
 		return css_propertyEClass;
 	}
@@ -1013,10 +965,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getcss_property_Name() {
 		return (EAttribute) css_propertyEClass.getEStructuralFeatures().get(0);
 	}
@@ -1024,10 +975,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getPseudoClassOrFunc() {
 		return pseudoClassOrFuncEClass;
 	}
@@ -1035,10 +985,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getPseudoClass() {
 		return pseudoClassEClass;
 	}
@@ -1046,10 +995,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getPseudoClassName() {
 		return pseudoClassNameEClass;
 	}
@@ -1057,10 +1005,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getPseudoClassName_Name() {
 		return (EAttribute) pseudoClassNameEClass.getEStructuralFeatures().get(0);
 	}
@@ -1068,10 +1015,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getPseudoClassFunction() {
 		return pseudoClassFunctionEClass;
 	}
@@ -1079,10 +1025,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getPseudoClassFunction_Not() {
 		return (EAttribute) pseudoClassFunctionEClass.getEStructuralFeatures().get(0);
 	}
@@ -1090,10 +1035,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getPseudoClassFunction_ParamSelector() {
 		return (EReference) pseudoClassFunctionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1101,10 +1045,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getPseudoClassFunction_Name() {
 		return (EAttribute) pseudoClassFunctionEClass.getEStructuralFeatures().get(2);
 	}
@@ -1112,10 +1055,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getPseudoClassFunction_Params() {
 		return (EReference) pseudoClassFunctionEClass.getEStructuralFeatures().get(3);
 	}
@@ -1123,10 +1065,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getCssTok() {
 		return cssTokEClass;
 	}
@@ -1134,10 +1075,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getURLType() {
 		return urlTypeEClass;
 	}
@@ -1145,10 +1085,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getURLType_MediaList() {
 		return (EAttribute) urlTypeEClass.getEStructuralFeatures().get(0);
 	}
@@ -1156,10 +1095,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getURLType_Url() {
 		return (EAttribute) urlTypeEClass.getEStructuralFeatures().get(1);
 	}
@@ -1167,10 +1105,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getAttributeSelector() {
 		return attributeSelectorEClass;
 	}
@@ -1178,10 +1115,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getAttributeSelector_Name() {
 		return (EAttribute) attributeSelectorEClass.getEStructuralFeatures().get(0);
 	}
@@ -1189,10 +1125,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getAttributeSelector_Op() {
 		return (EAttribute) attributeSelectorEClass.getEStructuralFeatures().get(1);
 	}
@@ -1200,10 +1135,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getAttributeSelector_Value() {
 		return (EAttribute) attributeSelectorEClass.getEStructuralFeatures().get(2);
 	}
@@ -1211,10 +1145,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getSymbolTok() {
 		return symbolTokEClass;
 	}
@@ -1222,10 +1155,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getSymbolTok_Symbol() {
 		return (EAttribute) symbolTokEClass.getEStructuralFeatures().get(0);
 	}
@@ -1233,10 +1165,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getWSTok() {
 		return wsTokEClass;
 	}
@@ -1244,10 +1175,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getStringTok() {
 		return stringTokEClass;
 	}
@@ -1255,10 +1185,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getStringTok_Value() {
 		return (EAttribute) stringTokEClass.getEStructuralFeatures().get(0);
 	}
@@ -1266,10 +1195,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getNumberTok() {
 		return numberTokEClass;
 	}
@@ -1277,10 +1205,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getNumberTok_Val() {
 		return (EAttribute) numberTokEClass.getEStructuralFeatures().get(0);
 	}
@@ -1288,10 +1215,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getUrlTok() {
 		return urlTokEClass;
 	}
@@ -1299,10 +1225,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getUrlTok_Url() {
 		return (EReference) urlTokEClass.getEStructuralFeatures().get(0);
 	}
@@ -1310,10 +1235,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getColorTok() {
 		return colorTokEClass;
 	}
@@ -1321,10 +1245,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getColorTok_Value() {
 		return (EAttribute) colorTokEClass.getEStructuralFeatures().get(0);
 	}
@@ -1332,10 +1255,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getIdentifierTok() {
 		return identifierTokEClass;
 	}
@@ -1343,10 +1265,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EAttribute getIdentifierTok_Name() {
 		return (EAttribute) identifierTokEClass.getEStructuralFeatures().get(0);
 	}
@@ -1354,10 +1275,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EClass getFuncTok() {
 		return funcTokEClass;
 	}
@@ -1365,10 +1285,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getFuncTok_Name() {
 		return (EReference) funcTokEClass.getEStructuralFeatures().get(0);
 	}
@@ -1376,10 +1295,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EReference getFuncTok_Params() {
 		return (EReference) funcTokEClass.getEStructuralFeatures().get(1);
 	}
@@ -1387,10 +1305,29 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
+	public EClass getIntegerTok() {
+		return integerTokEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getIntegerTok_Val() {
+		return (EAttribute) integerTokEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public CSSFactory getCSSFactory() {
 		return (CSSFactory) getEFactoryInstance();
 	}
@@ -1398,7 +1335,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -1408,13 +1345,12 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) {
+		if (isCreated)
 			return;
-		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -1541,12 +1477,15 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 		funcTokEClass = createEClass(FUNC_TOK);
 		createEReference(funcTokEClass, FUNC_TOK__NAME);
 		createEReference(funcTokEClass, FUNC_TOK__PARAMS);
+
+		integerTokEClass = createEClass(INTEGER_TOK);
+		createEAttribute(integerTokEClass, INTEGER_TOK__VAL);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -1556,13 +1495,12 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) {
+		if (isInitialized)
 			return;
-		}
 		isInitialized = true;
 
 		// Initialize package
@@ -1593,6 +1531,7 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 		colorTokEClass.getESuperTypes().add(this.getCssTok());
 		identifierTokEClass.getESuperTypes().add(this.getCssTok());
 		funcTokEClass.getESuperTypes().add(this.getCssTok());
+		integerTokEClass.getESuperTypes().add(this.getCssTok());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(stylesheetEClass, stylesheet.class, "stylesheet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1732,6 +1671,9 @@ public class CSSPackageImpl extends EPackageImpl implements CSSPackage {
 		initEClass(funcTokEClass, FuncTok.class, "FuncTok", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFuncTok_Name(), this.getIdentifierTok(), null, "name", null, 0, 1, FuncTok.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFuncTok_Params(), this.getCssTok(), null, "params", null, 0, -1, FuncTok.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(integerTokEClass, IntegerTok.class, "IntegerTok", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIntegerTok_Val(), ecorePackage.getEInt(), "val", null, 0, 1, IntegerTok.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

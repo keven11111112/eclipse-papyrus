@@ -126,5 +126,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//FuncTok/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CSS.ecore#//FuncTok/params"/>
     </genClasses>
+    <genClasses ecoreClass="CSS.ecore#//IntegerTok">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CSS.ecore#//IntegerTok/val"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

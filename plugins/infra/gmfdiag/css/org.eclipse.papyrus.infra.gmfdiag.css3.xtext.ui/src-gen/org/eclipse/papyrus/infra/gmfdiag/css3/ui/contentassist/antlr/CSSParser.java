@@ -73,6 +73,7 @@ public class CSSParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIdentifierAccess().getAlternatives_2_0(), "rule__Identifier__Alternatives_2_0");
 					put(grammarAccess.getNumAccess().getAlternatives_0(), "rule__Num__Alternatives_0");
 					put(grammarAccess.getNumAccess().getAlternatives_1(), "rule__Num__Alternatives_1");
+					put(grammarAccess.getNumIntAccess().getAlternatives_0(), "rule__NumInt__Alternatives_0");
 					put(grammarAccess.getHexAccess().getAlternatives_1_0(), "rule__Hex__Alternatives_1_0");
 					put(grammarAccess.getStylesheetAccess().getGroup(), "rule__Stylesheet__Group__0");
 					put(grammarAccess.getCharsetAccess().getGroup(), "rule__Charset__Group__0");
@@ -122,6 +123,7 @@ public class CSSParser extends AbstractContentAssistParser {
 					put(grammarAccess.getColorTokAccess().getGroup(), "rule__ColorTok__Group__0");
 					put(grammarAccess.getIdentifierOrFuncTokAccess().getGroup(), "rule__IdentifierOrFuncTok__Group__0");
 					put(grammarAccess.getIdentifierOrFuncTokAccess().getGroup_2(), "rule__IdentifierOrFuncTok__Group_2__0");
+					put(grammarAccess.getIntegerTokAccess().getGroup(), "rule__IntegerTok__Group__0");
 					put(grammarAccess.getURLTypeAccess().getGroup(), "rule__URLType__Group__0");
 					put(grammarAccess.getValidURLSymbolAccess().getGroup_18(), "rule__ValidURLSymbol__Group_18__0");
 					put(grammarAccess.getValidURLAccess().getGroup_1_10(), "rule__ValidURL__Group_1_10__0");
@@ -131,6 +133,7 @@ public class CSSParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNumAccess().getGroup_1_0(), "rule__Num__Group_1_0__0");
 					put(grammarAccess.getNumAccess().getGroup_1_1(), "rule__Num__Group_1_1__0");
 					put(grammarAccess.getNumAccess().getGroup_1_1_1(), "rule__Num__Group_1_1_1__0");
+					put(grammarAccess.getNumIntAccess().getGroup(), "rule__NumInt__Group__0");
 					put(grammarAccess.getHexAccess().getGroup(), "rule__Hex__Group__0");
 					put(grammarAccess.getHexAccess().getGroup_1(), "rule__Hex__Group_1__0");
 					put(grammarAccess.getStylesheetAccess().getCharsetAssignment_0(), "rule__Stylesheet__CharsetAssignment_0");
@@ -197,6 +200,7 @@ public class CSSParser extends AbstractContentAssistParser {
 					put(grammarAccess.getColorTokAccess().getValueAssignment_1(), "rule__ColorTok__ValueAssignment_1");
 					put(grammarAccess.getIdentifierOrFuncTokAccess().getNameAssignment_1(), "rule__IdentifierOrFuncTok__NameAssignment_1");
 					put(grammarAccess.getIdentifierOrFuncTokAccess().getParamsAssignment_2_2(), "rule__IdentifierOrFuncTok__ParamsAssignment_2_2");
+					put(grammarAccess.getIntegerTokAccess().getValAssignment_1(), "rule__IntegerTok__ValAssignment_1");
 					put(grammarAccess.getURLTypeAccess().getUrlAssignment_1(), "rule__URLType__UrlAssignment_1");
 				}
 			};

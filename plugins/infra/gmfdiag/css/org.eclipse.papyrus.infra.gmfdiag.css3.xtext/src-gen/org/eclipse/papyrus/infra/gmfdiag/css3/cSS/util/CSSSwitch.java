@@ -19,7 +19,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- *
+ * 
  * @see org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSPackage
  * @generated
  */
@@ -28,7 +28,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected static CSSPackage modelPackage;
@@ -37,7 +37,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public CSSSwitch() {
@@ -50,7 +50,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param ePackage
 	 *            the package in question.
 	 * @return whether this is a switch for the given package.
@@ -65,7 +65,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -75,336 +75,290 @@ public class CSSSwitch<T> extends Switch<T> {
 		case CSSPackage.STYLESHEET: {
 			stylesheet stylesheet = (stylesheet) theEObject;
 			T result = casestylesheet(stylesheet);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.CHARSET: {
 			charset charset = (charset) theEObject;
 			T result = casecharset(charset);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.IMPORT_EXPRESSION: {
 			importExpression importExpression = (importExpression) theEObject;
 			T result = caseimportExpression(importExpression);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.PAGE: {
 			page page = (page) theEObject;
 			T result = casepage(page);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.MEDIA: {
 			media media = (media) theEObject;
 			T result = casemedia(media);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.FONT_FACE: {
 			font_face font_face = (font_face) theEObject;
 			T result = casefont_face(font_face);
-			if (result == null) {
+			if (result == null)
 				result = casekeyframes(font_face);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.KEYFRAMES: {
 			keyframes keyframes = (keyframes) theEObject;
 			T result = casekeyframes(keyframes);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.KEYFRAME_SELECTOR: {
 			keyframe_selector keyframe_selector = (keyframe_selector) theEObject;
 			T result = casekeyframe_selector(keyframe_selector);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.RULESET: {
 			ruleset ruleset = (ruleset) theEObject;
 			T result = caseruleset(ruleset);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.SELECTOR: {
 			selector selector = (selector) theEObject;
 			T result = caseselector(selector);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.SIMPLE_SELECTOR_FOR_NEGATION: {
 			SimpleSelectorForNegation simpleSelectorForNegation = (SimpleSelectorForNegation) theEObject;
 			T result = caseSimpleSelectorForNegation(simpleSelectorForNegation);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.CSS_SELECTOR: {
 			CssSelector cssSelector = (CssSelector) theEObject;
 			T result = caseCssSelector(cssSelector);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.SIMPLE_SELECTOR: {
 			simple_selector simple_selector = (simple_selector) theEObject;
 			T result = casesimple_selector(simple_selector);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.CLASS_SELECTOR: {
 			ClassSelector classSelector = (ClassSelector) theEObject;
 			T result = caseClassSelector(classSelector);
-			if (result == null) {
+			if (result == null)
 				result = caseCssSelector(classSelector);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.ELEMENT_SELECTOR: {
 			ElementSelector elementSelector = (ElementSelector) theEObject;
 			T result = caseElementSelector(elementSelector);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.UNIVERSAL_SELECTOR: {
 			UniversalSelector universalSelector = (UniversalSelector) theEObject;
 			T result = caseUniversalSelector(universalSelector);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.ID_SELECTOR: {
 			IdSelector idSelector = (IdSelector) theEObject;
 			T result = caseIdSelector(idSelector);
-			if (result == null) {
+			if (result == null)
 				result = caseCssSelector(idSelector);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.CSS_DECLARATION: {
 			css_declaration css_declaration = (css_declaration) theEObject;
 			T result = casecss_declaration(css_declaration);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.CSS_PROPERTY: {
 			css_property css_property = (css_property) theEObject;
 			T result = casecss_property(css_property);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.PSEUDO_CLASS_OR_FUNC: {
 			PseudoClassOrFunc pseudoClassOrFunc = (PseudoClassOrFunc) theEObject;
 			T result = casePseudoClassOrFunc(pseudoClassOrFunc);
-			if (result == null) {
+			if (result == null)
 				result = caseCssSelector(pseudoClassOrFunc);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.PSEUDO_CLASS: {
 			PseudoClass pseudoClass = (PseudoClass) theEObject;
 			T result = casePseudoClass(pseudoClass);
-			if (result == null) {
+			if (result == null)
 				result = casePseudoClassOrFunc(pseudoClass);
-			}
-			if (result == null) {
+			if (result == null)
 				result = caseCssSelector(pseudoClass);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.PSEUDO_CLASS_NAME: {
 			PseudoClassName pseudoClassName = (PseudoClassName) theEObject;
 			T result = casePseudoClassName(pseudoClassName);
-			if (result == null) {
+			if (result == null)
 				result = casePseudoClass(pseudoClassName);
-			}
-			if (result == null) {
+			if (result == null)
 				result = casePseudoClassOrFunc(pseudoClassName);
-			}
-			if (result == null) {
+			if (result == null)
 				result = caseCssSelector(pseudoClassName);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.PSEUDO_CLASS_FUNCTION: {
 			PseudoClassFunction pseudoClassFunction = (PseudoClassFunction) theEObject;
 			T result = casePseudoClassFunction(pseudoClassFunction);
-			if (result == null) {
+			if (result == null)
 				result = casePseudoClassOrFunc(pseudoClassFunction);
-			}
-			if (result == null) {
+			if (result == null)
 				result = caseCssSelector(pseudoClassFunction);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.CSS_TOK: {
 			CssTok cssTok = (CssTok) theEObject;
 			T result = caseCssTok(cssTok);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.URL_TYPE: {
 			URLType urlType = (URLType) theEObject;
 			T result = caseURLType(urlType);
-			if (result == null) {
+			if (result == null)
 				result = caseimportExpression(urlType);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.ATTRIBUTE_SELECTOR: {
 			AttributeSelector attributeSelector = (AttributeSelector) theEObject;
 			T result = caseAttributeSelector(attributeSelector);
-			if (result == null) {
+			if (result == null)
 				result = caseCssSelector(attributeSelector);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.SYMBOL_TOK: {
 			SymbolTok symbolTok = (SymbolTok) theEObject;
 			T result = caseSymbolTok(symbolTok);
-			if (result == null) {
+			if (result == null)
 				result = caseCssTok(symbolTok);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.WS_TOK: {
 			WSTok wsTok = (WSTok) theEObject;
 			T result = caseWSTok(wsTok);
-			if (result == null) {
+			if (result == null)
 				result = caseCssTok(wsTok);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.STRING_TOK: {
 			StringTok stringTok = (StringTok) theEObject;
 			T result = caseStringTok(stringTok);
-			if (result == null) {
+			if (result == null)
 				result = caseCssTok(stringTok);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.NUMBER_TOK: {
 			NumberTok numberTok = (NumberTok) theEObject;
 			T result = caseNumberTok(numberTok);
-			if (result == null) {
+			if (result == null)
 				result = caseCssTok(numberTok);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.URL_TOK: {
 			UrlTok urlTok = (UrlTok) theEObject;
 			T result = caseUrlTok(urlTok);
-			if (result == null) {
+			if (result == null)
 				result = caseCssTok(urlTok);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.COLOR_TOK: {
 			ColorTok colorTok = (ColorTok) theEObject;
 			T result = caseColorTok(colorTok);
-			if (result == null) {
+			if (result == null)
 				result = caseCssTok(colorTok);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.IDENTIFIER_TOK: {
 			IdentifierTok identifierTok = (IdentifierTok) theEObject;
 			T result = caseIdentifierTok(identifierTok);
-			if (result == null) {
+			if (result == null)
 				result = caseCssTok(identifierTok);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case CSSPackage.FUNC_TOK: {
 			FuncTok funcTok = (FuncTok) theEObject;
 			T result = caseFuncTok(funcTok);
-			if (result == null) {
+			if (result == null)
 				result = caseCssTok(funcTok);
-			}
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
+			return result;
+		}
+		case CSSPackage.INTEGER_TOK: {
+			IntegerTok integerTok = (IntegerTok) theEObject;
+			T result = caseIntegerTok(integerTok);
+			if (result == null)
+				result = caseCssTok(integerTok);
+			if (result == null)
+				result = defaultCase(theEObject);
 			return result;
 		}
 		default:
@@ -418,7 +372,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>stylesheet</em>'.
@@ -435,7 +389,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>charset</em>'.
@@ -452,7 +406,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>import Expression</em>'.
@@ -469,7 +423,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>page</em>'.
@@ -486,7 +440,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>media</em>'.
@@ -503,7 +457,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>font face</em>'.
@@ -520,7 +474,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>keyframes</em>'.
@@ -537,7 +491,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>keyframe selector</em>'.
@@ -554,7 +508,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>ruleset</em>'.
@@ -571,7 +525,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>selector</em>'.
@@ -588,7 +542,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Simple Selector For Negation</em>'.
@@ -605,7 +559,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Css Selector</em>'.
@@ -622,7 +576,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>simple selector</em>'.
@@ -639,7 +593,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Class Selector</em>'.
@@ -656,7 +610,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Element Selector</em>'.
@@ -673,7 +627,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Universal Selector</em>'.
@@ -690,7 +644,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Id Selector</em>'.
@@ -707,7 +661,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>css declaration</em>'.
@@ -724,7 +678,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>css property</em>'.
@@ -741,7 +695,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Pseudo Class Or Func</em>'.
@@ -758,7 +712,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Pseudo Class</em>'.
@@ -775,7 +729,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Pseudo Class Name</em>'.
@@ -792,7 +746,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Pseudo Class Function</em>'.
@@ -809,7 +763,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Css Tok</em>'.
@@ -826,7 +780,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>URL Type</em>'.
@@ -843,7 +797,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Attribute Selector</em>'.
@@ -860,7 +814,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Symbol Tok</em>'.
@@ -877,7 +831,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>WS Tok</em>'.
@@ -894,7 +848,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>String Tok</em>'.
@@ -911,7 +865,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Number Tok</em>'.
@@ -928,7 +882,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Url Tok</em>'.
@@ -945,7 +899,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Color Tok</em>'.
@@ -962,7 +916,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Identifier Tok</em>'.
@@ -979,7 +933,7 @@ public class CSSSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Func Tok</em>'.
@@ -991,12 +945,29 @@ public class CSSSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Integer Tok</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *            the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Integer Tok</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIntegerTok(IntegerTok object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.

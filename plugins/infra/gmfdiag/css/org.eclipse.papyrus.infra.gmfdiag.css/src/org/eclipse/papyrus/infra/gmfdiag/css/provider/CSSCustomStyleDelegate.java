@@ -9,6 +9,8 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 480820
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 479314
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.provider;
 
@@ -38,9 +40,9 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 
 	private Element element;
 
-	private static final String NONE = "none";
+	private static final String NONE = "none"; //$NON-NLS-1$
 
-	private static final String FULL = "full";
+	private static final String FULL = "full"; //$NON-NLS-1$
 
 	private static int NONE_VALUE = 1000;
 
@@ -70,7 +72,7 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 			return provider.showElementIcon(view);
 		}
 
-		CSSValue cssValue = engine.retrievePropertyValue(element, "elementIcon");
+		CSSValue cssValue = engine.retrievePropertyValue(element, "elementIcon"); //$NON-NLS-1$
 		if (cssValue == null) {
 			return false;
 		}
@@ -84,7 +86,7 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 			return provider.getQualifiedNameDepth(view);
 		}
 
-		CSSValue cssValue = engine.retrievePropertyValue(element, "qualifiedNameDepth");
+		CSSValue cssValue = engine.retrievePropertyValue(element, "qualifiedNameDepth"); //$NON-NLS-1$
 		if (cssValue == null) {
 			return NONE_VALUE;
 		}
@@ -103,8 +105,14 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 			int value = Integer.parseInt(cssText);
 			return (value < 0) ? -value : value;
 		} catch (NumberFormatException ex) {
-			engine.handleExceptions(ex);
-			return NONE_VALUE;
+			try {
+				Double doubleValue = Double.parseDouble(cssText);
+				int intValue = doubleValue.intValue();
+				return (intValue < 0) ? -intValue : intValue;
+			} catch (NumberFormatException ex2) {
+				engine.handleExceptions(ex2);
+				return NONE_VALUE;
+			}
 		}
 	}
 
@@ -116,7 +124,7 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 			return provider.showShadow(view);
 		}
 
-		CSSValue cssValue = engine.retrievePropertyValue(element, "shadow");
+		CSSValue cssValue = engine.retrievePropertyValue(element, "shadow"); //$NON-NLS-1$
 		if (cssValue == null) {
 			return false;
 		}

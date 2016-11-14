@@ -239,6 +239,10 @@ public class AbstractCSSProposalProvider extends org.eclipse.xtext.ui.editor.con
 		completeRuleCall(((RuleCall) assignment.getTerminal()), context, acceptor);
 	}
 
+	public void completeIntegerTok_Val(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall) assignment.getTerminal()), context, acceptor);
+	}
+
 	public void completeURLType_Url(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall) assignment.getTerminal()), context, acceptor);
 	}
@@ -407,6 +411,10 @@ public class AbstractCSSProposalProvider extends org.eclipse.xtext.ui.editor.con
 		// subclasses may override
 	}
 
+	public void complete_IntegerTok(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
+
 	public void complete_CssTok(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
@@ -436,6 +444,10 @@ public class AbstractCSSProposalProvider extends org.eclipse.xtext.ui.editor.con
 	}
 
 	public void complete_Num(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		// subclasses may override
+	}
+
+	public void complete_NumInt(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
 

@@ -2365,6 +2365,41 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		}
 	}
 
+	public class IntegerTokElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.IntegerTok");
+		private final Group cGroup = (Group) rule.eContents().get(1);
+		private final Action cIntegerTokAction_0 = (Action) cGroup.eContents().get(0);
+		private final Assignment cValAssignment_1 = (Assignment) cGroup.eContents().get(1);
+		private final RuleCall cValNumIntParserRuleCall_1_0 = (RuleCall) cValAssignment_1.eContents().get(0);
+
+		// IntegerTok CssTok hidden():
+		// {IntegerTok} val=NumInt
+		@Override
+		public ParserRule getRule() {
+			return rule;
+		}
+
+		// {IntegerTok} val=NumInt
+		public Group getGroup() {
+			return cGroup;
+		}
+
+		// {IntegerTok}
+		public Action getIntegerTokAction_0() {
+			return cIntegerTokAction_0;
+		}
+
+		// val=NumInt
+		public Assignment getValAssignment_1() {
+			return cValAssignment_1;
+		}
+
+		// NumInt
+		public RuleCall getValNumIntParserRuleCall_1_0() {
+			return cValNumIntParserRuleCall_1_0;
+		}
+	}
+
 	public class CssTokElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.CssTok");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
@@ -2375,15 +2410,16 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNumberTokParserRuleCall_4 = (RuleCall) cAlternatives.eContents().get(4);
 		private final RuleCall cUrlTokParserRuleCall_5 = (RuleCall) cAlternatives.eContents().get(5);
 		private final RuleCall cColorTokParserRuleCall_6 = (RuleCall) cAlternatives.eContents().get(6);
+		private final RuleCall cIntegerTokParserRuleCall_7 = (RuleCall) cAlternatives.eContents().get(7);
 
 		// CssTok hidden(ML_COMMENT):
-		// IdentifierOrFuncTok | SymbolTok | WSTok | StringTok | NumberTok | UrlTok | ColorTok;
+		// IdentifierOrFuncTok | SymbolTok | WSTok | StringTok | NumberTok | UrlTok | ColorTok | IntegerTok;
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// IdentifierOrFuncTok | SymbolTok | WSTok | StringTok | NumberTok | UrlTok | ColorTok
+		// IdentifierOrFuncTok | SymbolTok | WSTok | StringTok | NumberTok | UrlTok | ColorTok | IntegerTok
 		public Alternatives getAlternatives() {
 			return cAlternatives;
 		}
@@ -2421,6 +2457,11 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		// ColorTok
 		public RuleCall getColorTokParserRuleCall_6() {
 			return cColorTokParserRuleCall_6;
+		}
+
+		// IntegerTok
+		public RuleCall getIntegerTokParserRuleCall_7() {
+			return cIntegerTokParserRuleCall_7;
 		}
 	}
 
@@ -2996,6 +3037,47 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		}
 	}
 
+	public class NumIntElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.NumInt");
+		private final Group cGroup = (Group) rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives) cGroup.eContents().get(0);
+		private final RuleCall cPLUSTerminalRuleCall_0_0 = (RuleCall) cAlternatives_0.eContents().get(0);
+		private final RuleCall cDASHTerminalRuleCall_0_1 = (RuleCall) cAlternatives_0.eContents().get(1);
+		private final RuleCall cONE_INTTerminalRuleCall_1 = (RuleCall) cGroup.eContents().get(1);
+
+		// NumInt ecore::EInt hidden():
+		// (PLUS | DASH)? ONE_INT+
+		@Override
+		public ParserRule getRule() {
+			return rule;
+		}
+
+		// (PLUS | DASH)? ONE_INT+
+		public Group getGroup() {
+			return cGroup;
+		}
+
+		// (PLUS | DASH)?
+		public Alternatives getAlternatives_0() {
+			return cAlternatives_0;
+		}
+
+		// PLUS
+		public RuleCall getPLUSTerminalRuleCall_0_0() {
+			return cPLUSTerminalRuleCall_0_0;
+		}
+
+		// DASH
+		public RuleCall getDASHTerminalRuleCall_0_1() {
+			return cDASHTerminalRuleCall_0_1;
+		}
+
+		// ONE_INT+
+		public RuleCall getONE_INTTerminalRuleCall_1() {
+			return cONE_INTTerminalRuleCall_1;
+		}
+	}
+
 	public class HexElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.Hex");
 		private final Group cGroup = (Group) rule.eContents().get(1);
@@ -3085,6 +3167,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	private final UrlTokElements pUrlTok;
 	private final ColorTokElements pColorTok;
 	private final IdentifierOrFuncTokElements pIdentifierOrFuncTok;
+	private final IntegerTokElements pIntegerTok;
 	private final CssTokElements pCssTok;
 	private final URLTypeElements pURLType;
 	private final ValidURLSymbolElements pValidURLSymbol;
@@ -3093,6 +3176,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tIMPORTANT_SYM;
 	private final IdentifierElements pIdentifier;
 	private final NumElements pNum;
+	private final NumIntElements pNumInt;
 	private final HexElements pHex;
 	private final TerminalRule tONE_INT;
 	private final TerminalRule tONE_HEX_LETTER;
@@ -3156,6 +3240,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		this.pUrlTok = new UrlTokElements();
 		this.pColorTok = new ColorTokElements();
 		this.pIdentifierOrFuncTok = new IdentifierOrFuncTokElements();
+		this.pIntegerTok = new IntegerTokElements();
 		this.pCssTok = new CssTokElements();
 		this.pURLType = new URLTypeElements();
 		this.pValidURLSymbol = new ValidURLSymbolElements();
@@ -3164,6 +3249,7 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		this.tIMPORTANT_SYM = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.IMPORTANT_SYM");
 		this.pIdentifier = new IdentifierElements();
 		this.pNum = new NumElements();
+		this.pNumInt = new NumIntElements();
 		this.pHex = new HexElements();
 		this.tONE_INT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ONE_INT");
 		this.tONE_HEX_LETTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.infra.gmfdiag.css3.CSS.ONE_HEX_LETTER");
@@ -3633,8 +3719,18 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 		return getIdentifierOrFuncTokAccess().getRule();
 	}
 
+	// IntegerTok CssTok hidden():
+	// {IntegerTok} val=NumInt
+	public IntegerTokElements getIntegerTokAccess() {
+		return pIntegerTok;
+	}
+
+	public ParserRule getIntegerTokRule() {
+		return getIntegerTokAccess().getRule();
+	}
+
 	// CssTok hidden(ML_COMMENT):
-	// IdentifierOrFuncTok | SymbolTok | WSTok | StringTok | NumberTok | UrlTok | ColorTok;
+	// IdentifierOrFuncTok | SymbolTok | WSTok | StringTok | NumberTok | UrlTok | ColorTok | IntegerTok;
 	public CssTokElements getCssTokAccess() {
 		return pCssTok;
 	}
@@ -3721,6 +3817,16 @@ public class CSSGrammarAccess extends AbstractGrammarElementFinder {
 
 	public ParserRule getNumRule() {
 		return getNumAccess().getRule();
+	}
+
+	// NumInt ecore::EInt hidden():
+	// (PLUS | DASH)? ONE_INT+
+	public NumIntElements getNumIntAccess() {
+		return pNumInt;
+	}
+
+	public ParserRule getNumIntRule() {
+		return getNumIntAccess().getRule();
 	}
 
 	// Hex:
