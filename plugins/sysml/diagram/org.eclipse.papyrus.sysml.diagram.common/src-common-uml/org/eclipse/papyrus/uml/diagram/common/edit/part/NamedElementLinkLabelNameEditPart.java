@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.common.edit.part;
 
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LinkLabelDragEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusLinkLabelDragPolicy;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -35,7 +35,7 @@ public class NamedElementLinkLabelNameEditPart extends AbstractElementLabelEditP
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new LinkLabelDragEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PapyrusLinkLabelDragPolicy());
 	}
 
 	/**

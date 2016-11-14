@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.common.edit.part;
 
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LinkLabelDragEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusLinkLabelDragPolicy;
 
 /**
  * Edit Part for link label showing {@link Connector} label.
@@ -34,7 +34,7 @@ public class ConnectorLinkLabelEditPart extends AbstractElementLabelEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new LinkLabelDragEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PapyrusLinkLabelDragPolicy());
 	}
 
 	/**
