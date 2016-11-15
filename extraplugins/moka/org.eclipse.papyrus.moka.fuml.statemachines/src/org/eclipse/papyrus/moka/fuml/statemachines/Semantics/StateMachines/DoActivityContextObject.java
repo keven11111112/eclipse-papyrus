@@ -50,7 +50,7 @@ public class DoActivityContextObject extends Object_ {
 	@Override
 	public void startBehavior(Class classifier, List<ParameterValue> inputs) {
 		// Starts the behavior of a DoActivityContextObject. It behaves the
-		// same than in fUML except that for object is asscoiated to a specific
+		// same than in fUML except that for object is associated to a specific
 		// type of object activation: DoActivityContextObjectActivation
 		if(this.objectActivation == null){
 			this.objectActivation = new DoActivityContextObjectActivation();
