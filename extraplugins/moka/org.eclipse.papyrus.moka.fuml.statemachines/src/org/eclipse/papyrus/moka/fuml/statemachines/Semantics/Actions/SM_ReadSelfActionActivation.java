@@ -17,7 +17,7 @@ import org.eclipse.papyrus.moka.composites.Semantics.Actions.IntermediateActions
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.DoActivityContextObject;
 
-public class SM_ReadSelfAction extends CS_ReadSelfActionActivation{
+public class SM_ReadSelfActionActivation extends CS_ReadSelfActionActivation{
 	
 	@Override
 	public Object_ getExecutionContext() {

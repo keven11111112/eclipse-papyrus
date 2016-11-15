@@ -15,7 +15,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci;
 
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_ExecutionFactory;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Actions.SM_ReadSelfAction;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Actions.SM_ReadSelfActionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.ChoicePseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.DeepHistoryPseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.EntryPointPseudostateActivation;
@@ -85,7 +85,7 @@ public class SM_ExecutionFactory extends CS_ExecutionFactory {
 		}else if(element instanceof OpaqueExpression) {
 			visitor = new SM_OpaqueExpressionEvaluation();
 		}else if(element instanceof ReadSelfAction){
-			visitor = new SM_ReadSelfAction();
+			visitor = new SM_ReadSelfActionActivation();
 		}else {
 			visitor = super.instantiateVisitor(element);
 		}
