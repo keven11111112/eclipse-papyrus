@@ -4,10 +4,10 @@
 <target name="Papyrus Extra Tests" sequenceNumber="1478048079">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.b3.aggregator.editor.source.feature.feature.group" version="0.3.0.v20140928-0617"/>
-      <unit id="org.eclipse.b3.aggregator.editor.feature.feature.group" version="0.3.0.v20140928-0617"/>
-      <unit id="org.eclipse.b3.aggregator.engine.source.feature.feature.group" version="0.3.0.v20140928-0617"/>
-      <repository id="b3" location="http://download.eclipse.org/modeling/emft/b3/updates-4.4"/>
+      <unit id="org.eclipse.b3.aggregator.editor.feature.source.feature.group" version="1.0.0.20161031-0323"/>
+      <unit id="org.eclipse.b3.aggregator.editor.feature.feature.group" version="1.0.0.20161031-0323"/>
+      <unit id="org.eclipse.b3.aggregator.engine.feature.source.feature.group" version="1.0.0.20161031-0323"/>
+      <repository id="b3" location="http://download.eclipse.org/cbi/updates/aggregator/ide/4.5/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.oomph.version.feature.group" version="1.5.0.v20160807-1022"/>
