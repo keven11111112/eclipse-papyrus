@@ -41,6 +41,9 @@ public class AllTests {
 
 		/* views */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.views.modelexplorer.tests.AllTests.class));
+		
+		/* documentation */
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.views.documentation.tests.AllTests.class));
 
 		/* toolsmiths */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.views.properties.toolsmiths.tests.AllTests.class));

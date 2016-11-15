@@ -18,5 +18,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </description>
 
    <plugin download-size="0" id="org.eclipse.papyrus.views.modelexplorer.tests" install-size="0" unpack="false" version="0.0.0"/>
+   
+   <plugin download-size="0" id="org.eclipse.papyrus.views.documentation.tests" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

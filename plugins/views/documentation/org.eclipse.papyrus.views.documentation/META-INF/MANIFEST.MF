@@ -23,4 +23,9 @@ Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Description: %pluginDescription
 Bundle-Localization: plugin
+Export-Package: org.eclipse.papyrus.views.documentation,
+ org.eclipse.papyrus.views.documentation.handlers,
+ org.eclipse.papyrus.views.documentation.preferences,
+ org.eclipse.papyrus.views.documentation.views,
+ org.eclipse.papyrus.views.documentation.widgets
 Automatic-Module-Name: org.eclipse.papyrus.views.documentation
