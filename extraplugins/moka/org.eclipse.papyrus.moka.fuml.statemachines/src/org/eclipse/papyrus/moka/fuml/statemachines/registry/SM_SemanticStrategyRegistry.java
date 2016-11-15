@@ -21,7 +21,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Actions.IntermediateActions.Restr
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.FIFOGetNextEventStrategy;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.FirstChoiceStrategy;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StructuredClassifiers.SM_RedefinitionBasedDispatchedStrategy;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StructuredClassifiers.SM_RedefinitionBasedDispatchStrategy;
 
 public class SM_SemanticStrategyRegistry {
 	
@@ -29,7 +29,7 @@ public class SM_SemanticStrategyRegistry {
 		locus.factory.setStrategy(new FirstChoiceStrategy());
 		locus.factory.setStrategy(new FIFOGetNextEventStrategy());
 		//locus.factory.setStrategy(new LIFOGetNextEventStrategy());
-		locus.factory.setStrategy(new SM_RedefinitionBasedDispatchedStrategy());
+		locus.factory.setStrategy(new SM_RedefinitionBasedDispatchStrategy());
 		locus.factory.setStrategy(new CS_NameBased_StructuralFeatureOfInterfaceAccessStrategy());
 		locus.factory.setStrategy(new CS_DefaultRequestPropagationStrategy());
 		locus.factory.setStrategy(new CS_DefaultConstructStrategy());
