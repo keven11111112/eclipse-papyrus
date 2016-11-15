@@ -204,9 +204,9 @@ Java and all Java-based trademarks are trademarks of Oracle Corporation in the U
    </configurations>
 
    <repositories>
-      <repository location="http://download.eclipse.org/releases/neon/" enabled="true" />
+      <repository location="http://download.eclipse.org/releases/oxygen/" enabled="true" />
       <repository location="http://download.eclipse.org/eclipse/updates/4.6" enabled="true" />
-      <repository location="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/neon" enabled="true" />
+      <repository location="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/oxygen" enabled="true" />
    </repositories>
 
    <preferencesInfo>
