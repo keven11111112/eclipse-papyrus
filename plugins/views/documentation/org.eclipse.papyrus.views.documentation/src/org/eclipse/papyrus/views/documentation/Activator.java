@@ -167,12 +167,13 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns the 'ToggleLinking' value stored on the dialog settings of the
-	 * plug-in.
+	 * plug-in. true is return if preference is not set.
 	 *
 	 * @return The 'ToggleLinking' value.
 	 */
 	public boolean getToogleLinkingSetting() {
-		return getDialogSettings().getBoolean(PLUGIN_ID + "_" + TOGGLE_LINKING);//$NON-NLS-1$
+		String linked = getDialogSettings().get(PLUGIN_ID + "_" + TOGGLE_LINKING);// $NON-NLS-1$
+		return null != linked ? Boolean.parseBoolean(linked) : true;
 	}
 
 	/**
@@ -183,7 +184,7 @@ public class Activator extends AbstractUIPlugin {
 	 *            The 'ToggleLinking' value to store.
 	 */
 	public void setToggleEditorSetting(final boolean toggleLinkingSetting) {
-		if (toggleLinkingSetting != getDialogSettings().getBoolean(PLUGIN_ID + "_" + TOGGLE_LINKING)) {//$NON-NLS-1$
+		if (toggleLinkingSetting != getToogleLinkingSetting()) {
 			getDialogSettings().put(PLUGIN_ID + "_" + TOGGLE_LINKING, toggleLinkingSetting);//$NON-NLS-1$
 		}
 	}

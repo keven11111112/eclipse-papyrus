@@ -284,7 +284,7 @@ public class DocumentationView extends ViewPart {
 		formData.bottom = new FormAttachment(100, 0);
 		richtextEditor.setLayoutData(formData);
 		richtextEditor.addModifyListener(event -> {
-			if (!readOnly) {
+			if (!readOnly && useRichText) {
 				text = richtextEditor.getText();
 			}
 		});
@@ -326,7 +326,9 @@ public class DocumentationView extends ViewPart {
 			}
 
 			// Refresh rich text configuration
-			richtextEditor.configureEdition(comment, UMLPackage.eINSTANCE.getComment_Body());
+			if (useRichText) {
+				richtextEditor.configureEdition(comment, UMLPackage.eINSTANCE.getComment_Body());
+			}
 		}
 	}
 
@@ -681,7 +683,7 @@ public class DocumentationView extends ViewPart {
 		}
 
 		// // Refresh rich text text editor
-		if (null != richtextEditor && !richtextEditor.isDisposed()) {
+		if (useRichText && null != richtextEditor && !richtextEditor.isDisposed()) {
 			richtextEditor.configureEdition(comment, null != comment ? UMLPackage.eINSTANCE.getComment_Body() : null);
 			try {
 				richtextEditor.setText(text);
