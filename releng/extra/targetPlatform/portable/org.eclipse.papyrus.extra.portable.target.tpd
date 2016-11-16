@@ -2,6 +2,8 @@ target "Papyrus Extra" with requirements source
 
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
 
+//manualUpdate
+
 location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository" {
 	org.apache.batik.dom lazy
 	org.apache.batik.dom.svg lazy
@@ -40,7 +42,7 @@ location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209"
 
 //updateFrom("M2T ACCELEO",0) 
 
-location acceleo "http://download.eclipse.org/acceleo/updates/milestones/3.6/S201608301456" {
+location acceleo "http://download.eclipse.org/acceleo/updates/releases/3.6/R201610060831" {
 	org.eclipse.acceleo.runtime.source.feature.group
 	org.eclipse.acceleo.source.feature.group
 	org.eclipse.acceleo.query.source.feature.group

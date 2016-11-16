@@ -27,14 +27,14 @@ location xpand "http://download.eclipse.org/modeling/m2t/xpand/updates/releases/
 
 //manualUpdate
 
-location nebula "http://download.eclipse.org/nebula/releases/1.0.0/" {
+location nebula "http://download.eclipse.org/nebula/releases/1.1.0/" {
 	org.eclipse.nebula.widgets.tablecombo.feature.feature.group
 	org.eclipse.nebula.widgets.richtext.feature.feature.group
 }
 
 //updateFrom("MDT UML2",0) 
 
-location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.2" {
+location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.2.x" {
 	org.eclipse.uml2.sdk.feature.group
 }
 
@@ -46,13 +46,13 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.6/R-4.6.1-201609071200/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.2RC1-201611100200/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("MDT OCL 6.0",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.1/S201608201313" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.2/S201611141024" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
