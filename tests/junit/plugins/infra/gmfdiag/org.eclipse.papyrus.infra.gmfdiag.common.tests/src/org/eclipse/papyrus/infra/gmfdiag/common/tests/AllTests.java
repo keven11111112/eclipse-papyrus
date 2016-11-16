@@ -8,10 +8,11 @@
  *
  * Contributors:
  *  Christian W. Damus (CEA) - initial API and implementation
- *  Christian W. Damus - bugs 465416, 474467
+ *  Christian W. Damus - bugs 465416, 474467, 507618
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.tests;
 
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.tests.CreateEditBasedElementCommandTest;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.tests.NotationLabelProviderTest;
 import org.eclipse.papyrus.infra.gmfdiag.common.sync.tests.SyncTests;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafeTest;
@@ -37,6 +38,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		GMFUnsafeTest.class,
 		SyncTests.class,
 		NotationLabelProviderTest.class,
+		CreateEditBasedElementCommandTest.class,
 })
 public class AllTests {
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 431109
+ *  Christian W. Damus - bug 507618
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
@@ -27,8 +28,10 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -120,9 +123,10 @@ public class CreateEditBasedElementCommand extends CreateElementCommand {
 					EReference containment = getContainmentFeature();
 					if (containment != null) {
 						IEditingDomainItemProvider editingDomainItemProvider = AdapterFactoryEditingDomain.getEditingDomainItemProviderFor(element);
+						ResourceSet resourceSet = EMFHelper.getResourceSet(element);
 						for (EClass eClassToCreateCommandsFor : eClassesToCreateCommandsFor) {
-
-							EObject newElement = eClassToCreateCommandsFor.getEPackage().getEFactoryInstance().create(eClassToCreateCommandsFor);
+							// Use the resource set's registered factory, if possible (UML-RT)
+							EObject newElement = getFactory(eClassToCreateCommandsFor, resourceSet).create(eClassToCreateCommandsFor);
 							Command possibleCommand = editingDomainItemProvider.createCommand(element, getEditingDomain(), CreateChildCommand.class, new CommandParameter(element, containment, new CommandParameter(null, containment, newElement)));
 							if (possibleCommand == null) {
 								possibleCommands.add(UnexecutableCommand.INSTANCE);
@@ -136,6 +140,39 @@ public class CreateEditBasedElementCommand extends CreateElementCommand {
 				}
 			}
 			return possibleCommands;
+		}
+
+		/**
+		 * Obtain the best factory for instantiation of the given {@code eClass}.
+		 * This is either
+		 * <ul>
+		 * <li>the factory registered locally in the {@code resourceSet} for the
+		 * {@code eClass}'s package, or</li>
+		 * <li>in the very unusual case that the package is not registered, or
+		 * if the {@code resourceSet} is {@code null}, the static factory
+		 * of the {@code eClass}'s static package</li>
+		 * </ul>
+		 * 
+		 * @param eClass
+		 *            an Ecore class to instantiate
+		 * @param resourceSet
+		 *            the resource set in which context the model is being edited.
+		 *            May be {@code null}
+		 * 
+		 * @return the factory to use for instantiation of the {@code eClass}
+		 */
+		EFactory getFactory(EClass eClass, ResourceSet resourceSet) {
+			EFactory result = null;
+
+			if (resourceSet != null) {
+				result = resourceSet.getPackageRegistry().getEFactory(eClass.getEPackage().getNsURI());
+			}
+
+			if (result == null) {
+				result = eClass.getEPackage().getEFactoryInstance();
+			}
+
+			return result;
 		}
 
 		/**
@@ -194,7 +231,9 @@ public class CreateEditBasedElementCommand extends CreateElementCommand {
 				if (containment != null) {
 					EObject element = getElementToEdit();
 					if (element != null) {
-						newElement = eClass.getEPackage().getEFactoryInstance().create(eClass);
+						ResourceSet resourceSet = EMFHelper.getResourceSet(element);
+						// Use the resource set's registered factory, if possible (UML-RT)
+						newElement = getFactory(eClass, resourceSet).create(eClass);
 						IEditingDomainItemProvider editingDomainItemProvider = AdapterFactoryEditingDomain.getEditingDomainItemProviderFor(element);
 						commandDone = editingDomainItemProvider.createCommand(element, getEditingDomain(), CreateChildCommand.class, new CommandParameter(element, containment, new CommandParameter(null, containment, newElement)));
 					}
@@ -336,10 +375,7 @@ public class CreateEditBasedElementCommand extends CreateElementCommand {
 					return (configureStatus == null) ? CommandResult.newOKCommandResult(newElement) : new CommandResult(configureStatus, newElement);
 				}
 			};
-			// executes the command and then adds it to the list
-			compositeEMFOperation.add(configureTransactionalCommand); // add
-																		// before
-																		// execution
+			compositeEMFOperation.add(configureTransactionalCommand);
 		}
 		return compositeEMFOperation;
 	}
