@@ -13,6 +13,7 @@
 	<description>Container of the Eclipse Feature definition projects for the main Papyrus distribution.</description>
 
 	<modules>
+		<module>org.eclipse.papyrus.customization.feature</module>
 		<module>org.eclipse.papyrus.doc.feature</module>
 		<module>org.eclipse.papyrus.editor.feature</module>
 		<module>org.eclipse.papyrus.emf.facet.feature</module>
