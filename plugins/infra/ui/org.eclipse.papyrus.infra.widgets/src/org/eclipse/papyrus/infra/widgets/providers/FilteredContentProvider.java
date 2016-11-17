@@ -130,14 +130,15 @@ public class FilteredContentProvider extends EncapsulatedContentProvider {
 	@Override
 	public void createViewerToolbar(final Composite parent) {
 		// Create case sensitive checkbox
-		createExpandCollapseButtons(parent);
+		if (!isFlat()) {
+			createExpandCollapseButtons(parent);
+		}
 	}
 
 	/**
 	 * Create buttons to collapse and expand treeViewer.
 	 */
 	protected void createExpandCollapseButtons(final Composite parent) {
-
 
 		ToolBar Toolbar = new ToolBar(parent, SWT.NONE);
 		buttonExpand = new ToolItem(Toolbar, SWT.NONE);

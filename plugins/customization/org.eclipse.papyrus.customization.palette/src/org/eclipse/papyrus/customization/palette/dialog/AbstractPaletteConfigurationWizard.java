@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
+ *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 507654 Change load order and add EcoreUtil.resolveAll(resource) to avoid absolute references
  *****************************************************************************/
 package org.eclipse.papyrus.customization.palette.dialog;
 
@@ -23,6 +24,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -313,28 +315,29 @@ public abstract class AbstractPaletteConfigurationWizard extends Wizard {
 		}
 
 		// Create resource
-		elementTypeUIResource = editingDomain.getResourceSet().createResource(elementTypeUIURI);
 		elementTypeSemResource = editingDomain.getResourceSet().createResource(elementTypeSemURI);
+		elementTypeUIResource = editingDomain.getResourceSet().createResource(elementTypeUIURI);
 
 		if (!PaletteUtils.notErrorOnFile(elementTypeUIFile) && !PaletteUtils.notErrorOnFile(elementTypeSemFile)) {
 
-			ElementTypeSetConfiguration emptyElementTypeModelUI = getEmptyElementTypeModel(elementTypeUIResource.getURI().lastSegment().replace(STR_DOT + PaletteConstants.ELEMENTTYPE_EXTENSION, ""));//$NON-NLS-1$
 			ElementTypeSetConfiguration emptyElementTypeModelSem = getEmptyElementTypeModel(elementTypeSemResource.getURI().lastSegment().replace(STR_DOT + PaletteConstants.ELEMENTTYPE_EXTENSION, ""));//$NON-NLS-1$
+			ElementTypeSetConfiguration emptyElementTypeModelUI = getEmptyElementTypeModel(elementTypeUIResource.getURI().lastSegment().replace(STR_DOT + PaletteConstants.ELEMENTTYPE_EXTENSION, ""));//$NON-NLS-1$
 
 			// Add it to the resource
 			CompoundCommand compoundCommand = new CompoundCommand();
-			compoundCommand.append(new AddCommand(editingDomain, elementTypeUIResource.getContents(), emptyElementTypeModelUI));
 			compoundCommand.append(new AddCommand(editingDomain, elementTypeSemResource.getContents(), emptyElementTypeModelSem));
+			compoundCommand.append(new AddCommand(editingDomain, elementTypeUIResource.getContents(), emptyElementTypeModelUI));
 			editingDomain.getCommandStack().execute(compoundCommand);
 		}
 
 		if (null != elementTypeUIResource || null != elementTypeSemResource) {
 			try {
-				elementTypeUIResource.load(Collections.emptyMap());
 				elementTypeSemResource.load(Collections.emptyMap());
-
-				elementTypeUIResource.getResourceSet().getLoadOptions().put(PaletteRessourcesConstants.ELEMENTTYPE_UI_RESSOURCE_IDENTIFIER, elementTypeUIResource);
+				EcoreUtil.resolveAll(elementTypeSemResource);
+				elementTypeUIResource.load(Collections.emptyMap());
+				EcoreUtil.resolveAll(elementTypeUIResource);
 				elementTypeSemResource.getResourceSet().getLoadOptions().put(PaletteRessourcesConstants.ELEMENTTYPE_SEMENTIC_RESSOURCE_IDENTIFIER, elementTypeSemResource);
+				elementTypeUIResource.getResourceSet().getLoadOptions().put(PaletteRessourcesConstants.ELEMENTTYPE_UI_RESSOURCE_IDENTIFIER, elementTypeUIResource);
 			} catch (IOException e) {
 				Activator.log.error(e);
 			}
@@ -421,6 +424,7 @@ public abstract class AbstractPaletteConfigurationWizard extends Wizard {
 			try {
 				paletteResource.load(Collections.emptyMap());
 				paletteResource.getResourceSet().getLoadOptions().put(PaletteRessourcesConstants.PALETTE_RESSOURCE_IDENTIFIER, paletteResource);
+				EcoreUtil.resolveAll(paletteResource);
 			} catch (IOException e) {
 				Activator.log.error(e);
 			}

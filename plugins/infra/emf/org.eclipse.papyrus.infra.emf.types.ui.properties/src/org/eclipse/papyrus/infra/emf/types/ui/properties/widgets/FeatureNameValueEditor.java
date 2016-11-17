@@ -22,14 +22,14 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider;
 import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.emf.types.ui.properties.messages.Messages;
 import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.widgets.Activator;
-import org.eclipse.papyrus.infra.widgets.editors.ElementsExplorerDialog;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
+import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
+import org.eclipse.papyrus.infra.widgets.providers.FilteredContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -45,7 +45,7 @@ public class FeatureNameValueEditor extends StringEditor {
 	/**
 	 * Content provider for the feature viewer.
 	 */
-	protected class FeatureContentProvider implements IStructuredContentProvider {
+	protected class FeatureContentProvider extends FilteredContentProvider {
 
 		/** current edited Eclass */
 		protected EClass currentEClass;
@@ -74,6 +74,17 @@ public class FeatureNameValueEditor extends StringEditor {
 			}
 			return features.toArray();
 		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider#isFlat()
+		 */
+		@Override
+		public boolean isFlat() {
+			return true;
+		}
+
 
 	}
 
@@ -178,7 +189,7 @@ public class FeatureNameValueEditor extends StringEditor {
 	 * Handles action when user press the Manage bundle button in the combo area
 	 */
 	protected void handleManageBrowseButtonPressed() {
-		ElementsExplorerDialog dialog = new ElementsExplorerDialog(getParent().getShell());
+		TreeSelectorDialog dialog = new TreeSelectorDialog(getParent().getShell());
 
 		dialog.setContentProvider(new FeatureContentProvider());
 		dialog.setLabelProvider(new FeatureStyledLabelProvider());

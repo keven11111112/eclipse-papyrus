@@ -8,7 +8,7 @@
  *
  * Contributors:
  * Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
- *
+ * Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 507654 Change the save order
  *****************************************************************************/
 
 package org.eclipse.papyrus.customization.palette.dialog;
@@ -77,34 +77,33 @@ public class ExportPaletteConfigurationWizard extends AbstractPaletteConfigurati
 
 		clearStringBuilder();
 		stringBuilder.append(selectedPath);
+		stringBuilder.append(PaletteConstants.ELEMENTTYPE_SEMENTIC_IDENTIFIER_POSTFIX);
 		stringBuilder.append(STR_DOT);
-		stringBuilder.append(PaletteConstants.PALETTECONFIGURATION_EXTENSION);
-		// Set new path
-		paletteResource.setURI(URI.createFileURI(stringBuilder.toString()));
+		stringBuilder.append(PaletteConstants.ELEMENTTYPE_EXTENSION);
+		elementTypeSemResource.setURI(URI.createFileURI(stringBuilder.toString()));
 
 		clearStringBuilder();
 		stringBuilder.append(selectedPath);
 		stringBuilder.append(PaletteConstants.ELEMENTTYPE_UI_IDENTIFIER_POSTFIX);
 		stringBuilder.append(STR_DOT);
 		stringBuilder.append(PaletteConstants.ELEMENTTYPE_EXTENSION);
-
 		elementTypeUIResource.setURI(URI.createFileURI(stringBuilder.toString()));
 
 		clearStringBuilder();
 		stringBuilder.append(selectedPath);
-		stringBuilder.append(PaletteConstants.ELEMENTTYPE_SEMENTIC_IDENTIFIER_POSTFIX);
 		stringBuilder.append(STR_DOT);
-		stringBuilder.append(PaletteConstants.ELEMENTTYPE_EXTENSION);
-		elementTypeSemResource.setURI(URI.createFileURI(stringBuilder.toString()));
+		stringBuilder.append(PaletteConstants.PALETTECONFIGURATION_EXTENSION);
+		// Set new path
+		paletteResource.setURI(URI.createFileURI(stringBuilder.toString()));
 
 		// Save
 		try {
-			paletteResource.save(PaletteUtils.saveOptions);
 			// Checks if model are not void and are useful
 			if (!((ElementTypeSetConfiguration) elementTypeUIResource.getContents().get(0)).getElementTypeConfigurations().isEmpty()) {
-				elementTypeUIResource.save(PaletteUtils.saveOptions);
 				elementTypeSemResource.save(PaletteUtils.saveOptions);
+				elementTypeUIResource.save(PaletteUtils.saveOptions);
 			}
+			paletteResource.save(PaletteUtils.saveOptions);
 		} catch (IOException e) {
 			Activator.log.error(e);
 		}

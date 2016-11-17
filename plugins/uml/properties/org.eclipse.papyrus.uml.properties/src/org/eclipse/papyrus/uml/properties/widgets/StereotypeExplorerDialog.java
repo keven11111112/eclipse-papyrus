@@ -29,10 +29,15 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider;
+import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -41,7 +46,6 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider;
 import org.eclipse.papyrus.infra.widgets.editors.StringWithClearEditor;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.PatternViewerFilter;
@@ -58,8 +62,6 @@ import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
@@ -70,6 +72,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.ToolBar;
+import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.dialogs.SelectionStatusDialog;
 import org.eclipse.uml2.uml.Comment;
@@ -352,8 +356,21 @@ public class StereotypeExplorerDialog extends SelectionStatusDialog {
 
 		// creates the message area, as defined in the super class
 		createMessageArea(composite);
-		createFilterText(composite);
-		createExpandCollapseButtons(composite);
+
+		// Top composite containing filter and collapse/expand buttons
+		Composite topComposite = new Composite(composite, SWT.NONE);
+		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).applyTo(topComposite);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(topComposite);
+
+		// Create filter
+		createFilterText(topComposite);
+
+		// create separator
+		Label separator = new Label(topComposite, SWT.VERTICAL | SWT.SEPARATOR);
+		GridDataFactory.fillDefaults().hint(SWT.DEFAULT, 10).grab(false, false).applyTo(separator);
+
+		// Create Expand button
+		createExpandCollapseButtons(topComposite);
 		createStereotypeFilteredList(composite);
 		createInformationText(composite);
 		createFilterOnSourceElementButton(composite);
@@ -367,40 +384,54 @@ public class StereotypeExplorerDialog extends SelectionStatusDialog {
 	 * Create buttons to collapse and expand treeViewer.
 	 */
 	protected void createExpandCollapseButtons(final Composite composite) {
-		Composite container = new Composite(composite, SWT.NONE);
-		GridLayout layout = new GridLayout(2, true);
-		layout.horizontalSpacing = 2;
-		layout.marginBottom = -5;
-		layout.marginBottom = -5;
-		container.setLayout(layout);
 
-		Label buttonExpand = new Label(container, SWT.NONE);
+		ToolBar container = new ToolBar(composite, SWT.NONE);
+
+		ToolItem buttonExpand = new ToolItem(container, SWT.NONE);
 		Image imageExpand = Activator.getPluginIconImage(org.eclipse.papyrus.infra.widgets.Activator.PLUGIN_ID, ICONS_EXPAND_ALL);
 		buttonExpand.setImage(imageExpand);
-		buttonExpand.addMouseListener(new MouseAdapter() {
+		buttonExpand.addSelectionListener(new SelectionAdapter() {
 			/**
-			 * {@iniriteDoc]
-			 * 
-			 * @see org.eclipse.swt.events.MouseAdapter#mouseUp(org.eclipse.swt.events.MouseEvent)
+			 * {@inheritDoc}
 			 */
 			@Override
-			public void mouseUp(MouseEvent event) {
-				stereotypeTreeViewer.expandAll();
+			public void widgetSelected(SelectionEvent e) {
+				ISelection selection = stereotypeTreeViewer.getSelection();
+				// If there are selected element
+				if (selection instanceof StructuredSelection && !selection.isEmpty()) {
+					// For each element
+					for (Object object : ((StructuredSelection) selection).toArray()) {
+						((AbstractTreeViewer) stereotypeTreeViewer).expandToLevel(object, org.eclipse.papyrus.infra.widgets.Activator.getMaxLevelToExpandValue());
+					}
+				} else {
+					// or expand all
+					((AbstractTreeViewer) stereotypeTreeViewer).expandToLevel(org.eclipse.papyrus.infra.widgets.Activator.getMaxLevelToExpandValue());
+				}
+				stereotypeTreeViewer.refresh();
 			}
 		});
 
-		Label buttonCollapse = new Label(container, SWT.NONE);
+		ToolItem buttonCollapse = new ToolItem(container, SWT.NONE);
 		Image imageCollapse = Activator.getPluginIconImage(org.eclipse.papyrus.infra.widgets.Activator.PLUGIN_ID, ICONS_COLLAPSE_ALL);
 		buttonCollapse.setImage(imageCollapse);
-		buttonCollapse.addMouseListener(new MouseAdapter() {
+		buttonCollapse.addSelectionListener(new SelectionAdapter() {
 			/**
-			 * {@iniriteDoc]
-			 * 
-			 * @see org.eclipse.swt.events.MouseAdapter#mouseUp(org.eclipse.swt.events.MouseEvent)
+			 * {@inheritDoc}
 			 */
 			@Override
-			public void mouseUp(MouseEvent event) {
-				stereotypeTreeViewer.collapseAll();
+			public void widgetSelected(SelectionEvent e) {
+				ISelection selection = ((AbstractTreeViewer) stereotypeTreeViewer).getSelection();
+				// If there are selected element
+				if (selection instanceof StructuredSelection && !selection.isEmpty()) {
+					// expand each selected element
+					for (Object object : ((StructuredSelection) selection).toArray()) {
+						((AbstractTreeViewer) stereotypeTreeViewer).collapseToLevel(object, AbstractTreeViewer.ALL_LEVELS);
+					}
+
+				} else {
+					// or collapse all
+					((AbstractTreeViewer) stereotypeTreeViewer).collapseAll();
+				}
 			}
 		});
 	}
@@ -553,7 +584,7 @@ public class StereotypeExplorerDialog extends SelectionStatusDialog {
 	protected void createFilterText(final Composite parent) {
 		// Create the filter composite
 		final StringWithClearEditor filterText = new StringWithClearEditor(parent, SWT.BORDER);
-
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(filterText);
 		filterText.setValue("");//$NON-NLS-1$
 
 		filterText.getText().addModifyListener(new ModifyListener() {

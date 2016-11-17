@@ -166,7 +166,10 @@ public class FlatTabUMLLabelProvider implements IGraphicalLabelProvider, IStyled
 	 */
 	protected void setDisplayQualifiedNameButton(final boolean visible) {
 		if (null != Toolbar && !Toolbar.isDisposed() && visible != Toolbar.getVisible()) {
-			Toolbar.setVisible(visible);
+			Composite parent = Toolbar.getParent();
+			Toolbar.dispose();
+			parent.pack();
+
 		}
 	}
 

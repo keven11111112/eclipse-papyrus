@@ -19,12 +19,12 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
-import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.FilteredContentProvider;
 
 /**
  * A {@link ITreeContentProvider} for {@link View}.
  */
-public class ViewContentProvider implements ITreeContentProvider, IStaticContentProvider {
+public class ViewContentProvider extends FilteredContentProvider {
 
 	/**
 	 * {@inheritDoc}
@@ -78,6 +78,17 @@ public class ViewContentProvider implements ITreeContentProvider, IStaticContent
 		List<Context> features = new ArrayList<Context>();
 		features.addAll(PropertiesRuntime.getConfigurationManager().getContexts());
 		return features.toArray();
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider#isValidValue(java.lang.Object)
+	 *
+	 * @param element
+	 * @return
+	 */
+	@Override
+	public boolean isValidValue(final Object element) {
+		return element instanceof View;
 	}
 
 }

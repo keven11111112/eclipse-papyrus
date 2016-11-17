@@ -24,13 +24,13 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider;
 import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.widgets.Activator;
-import org.eclipse.papyrus.infra.widgets.editors.ElementsExplorerDialog;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
+import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
+import org.eclipse.papyrus.infra.widgets.providers.FilteredContentProvider;
 import org.eclipse.papyrus.uml.diagram.common.parser.PropertyLabelParser;
 import org.eclipse.papyrus.uml.types.ui.properties.messages.Messages;
 import org.eclipse.swt.SWT;
@@ -50,7 +50,7 @@ public class FeatureToSetNameValueEditor extends StringEditor {
 	/**
 	 * Content provider for the feature viewer.
 	 */
-	protected class StereotypeAttributesContentProvider implements IStructuredContentProvider {
+	protected class StereotypeAttributesContentProvider extends FilteredContentProvider {
 
 		/** current edited EClass */
 		protected EClass currentEClass;
@@ -70,6 +70,16 @@ public class FeatureToSetNameValueEditor extends StringEditor {
 				}
 			}
 			return attributes.toArray();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider#isFlat()
+		 */
+		@Override
+		public boolean isFlat() {
+			return true;
 		}
 
 	}
@@ -181,7 +191,7 @@ public class FeatureToSetNameValueEditor extends StringEditor {
 	 * Handles action when user press the Manage bundle button in the combo area
 	 */
 	protected void handleManageBrowseButtonPressed() {
-		ElementsExplorerDialog dialog = new ElementsExplorerDialog(getParent().getShell());
+		TreeSelectorDialog dialog = new TreeSelectorDialog(getParent().getShell());
 
 		dialog.setContentProvider(new StereotypeAttributesContentProvider());
 		dialog.setLabelProvider(new StereotypeAttributesStyledLabelProvider());

@@ -182,7 +182,7 @@ public class FlatFilteredContentProvider
 	protected Object[] getAllChildren(final Object parentElement, final Set<Object> visitedElements) {
 		Set<Object> list = new HashSet<Object>();
 		Object[] children = provider.getChildren(parentElement);
-		if (0 < children.length) {
+		if (null != children && 0 < children.length) {
 			for (int i = 0; i < children.length; i++) {
 				boolean visited = false;
 

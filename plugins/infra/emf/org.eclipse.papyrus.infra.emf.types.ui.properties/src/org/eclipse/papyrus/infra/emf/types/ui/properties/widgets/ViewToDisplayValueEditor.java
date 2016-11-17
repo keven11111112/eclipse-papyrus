@@ -18,8 +18,8 @@ import org.eclipse.papyrus.infra.emf.types.ui.properties.providers.ViewContentPr
 import org.eclipse.papyrus.infra.emf.types.ui.properties.providers.ViewLabelProvider;
 import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.infra.widgets.Activator;
-import org.eclipse.papyrus.infra.widgets.editors.ElementsExplorerDialog;
 import org.eclipse.papyrus.infra.widgets.editors.ReferenceDialog;
+import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -120,12 +120,11 @@ public class ViewToDisplayValueEditor extends ReferenceDialog {
 	 * Handles action when user press the Manage bundle button in the combo area
 	 */
 	protected void handleManageBrowseButtonPressed() {
-		ElementsExplorerDialog dialog = new ElementsExplorerDialog(getParent().getShell());
+		TreeSelectorDialog dialog = new TreeSelectorDialog(getParent().getShell());
 
 		dialog.setContentProvider(new ViewContentProvider());
 		dialog.setLabelProvider(new ViewLabelProvider());
-		// Set the return type.
-		dialog.setReturnTypeClass(View.class);
+
 		dialog.setTitle(Messages.ViewToDisplayValueEditor_dialogTitle);
 		dialog.setMessage(Messages.ViewToDisplayValueEditor_dialogMessage);
 

@@ -219,10 +219,6 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 	 */
 	public TreeSelectorDialog(final Shell parentShell) {
 		super(parentShell);
-		tabIds.add(defaultTabId);
-		tabNames.put(defaultTabId, Messages.TreeSelectorDialog_defaultTabLabel);
-		Image treeIcon = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, ICONS_TREE_VIEW);
-		tabIcons.put(defaultTabId, treeIcon);
 	}
 
 	/**
@@ -231,26 +227,33 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 	protected void initializeTabulationInfo() {
 		SelectorDialogTabReader instance = SelectorDialogTabReader.getInstance();
 
+		// Add default tab
+		tabIds.add(defaultTabId);
+		tabNames.put(defaultTabId, Messages.TreeSelectorDialog_defaultTabLabel);
+		Image treeIcon = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, ICONS_TREE_VIEW);
+		tabIcons.put(defaultTabId, treeIcon);
+
 		List<String> ids = instance.getIds();
 		for (String id : ids) {
+
+			ILabelProvider tabLabelProvider = instance.getLabelProviders().get(id);
+			labelProviders.put(id, tabLabelProvider);
+			if (tabLabelProvider instanceof IDependableLabelProvider) {
+				((IDependableLabelProvider) tabLabelProvider).setLabelProvider(labelProviders.get(defaultTabId));
+			}
+
+			ITreeContentProvider tabContentProvider = instance.getContentProviders().get(id);
+			contentProviders.put(id, tabContentProvider);
+			if (tabContentProvider instanceof IDependableContentProvider) {
+				((IDependableContentProvider) tabContentProvider).setContentProvider(contentProviders.get(defaultTabId));
+			}
+
 			Constraint constraint = instance.getConstraints().get(id);
 			if (!tabIds.contains(id) && (null == constraint || constraint.match(Collections.singleton(id)))) {
 				tabIds.addAll(ids);
 				tabNames.put(id, instance.getTabNames().get(id));
 				tabIcons.put(id, instance.getTabIcons().get(id));
 				descriptions.put(id, instance.getDescriptions().get(id));
-
-				ILabelProvider tabLabelProvider = instance.getLabelProviders().get(id);
-				labelProviders.put(id, tabLabelProvider);
-				if (tabLabelProvider instanceof IDependableLabelProvider) {
-					((IDependableLabelProvider) tabLabelProvider).setLabelProvider(labelProviders.get(defaultTabId));
-				}
-
-				ITreeContentProvider tabContentProvider = instance.getContentProviders().get(id);
-				contentProviders.put(id, tabContentProvider);
-				if (tabContentProvider instanceof IDependableContentProvider) {
-					((IDependableContentProvider) tabContentProvider).setContentProvider(contentProviders.get(defaultTabId));
-				}
 			}
 		}
 
@@ -457,12 +460,19 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 				GridLayoutFactory.swtDefaults().applyTo(tabComposite);
 			}
 
+			// Message label(common for all tabs)
+			if (null != getMessage() && !getMessage().isEmpty()) {
+				Label messageLabel = new Label(tabComposite, SWT.WRAP);
+				messageLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+				messageLabel.setText(getMessage());
+			}
 			// Description Label
-			if (null != descriptions.get(tabId)) {
+			if (null != descriptions.get(tabId) && !descriptions.get(tabId).isEmpty()) {
 				Label descriptionLabel = new Label(tabComposite, SWT.WRAP);
 				descriptionLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 				descriptionLabel.setText(tabDescription);
 			}
+
 
 			// create tree viewer
 			ExtendedTreeViewer tabTreeViewer = new ExtendedTreeViewer(tabComposite, SWT.BORDER);
@@ -656,10 +666,12 @@ public class TreeSelectorDialog extends SelectionDialog implements ITreeSelector
 	 *            The input.
 	 */
 	private void doSetInput(final String TabId) {
-		if (null == input) {
-			treeViewers.get(TabId).setInput("");//$NON-NLS-1$
-		} else {
-			treeViewers.get(TabId).setInput(input);
+		if (null != treeViewers.get(TabId)) {
+			if (null == input) {
+				treeViewers.get(TabId).setInput("");//$NON-NLS-1$
+			} else {
+				treeViewers.get(TabId).setInput(input);
+			}
 		}
 	}
 

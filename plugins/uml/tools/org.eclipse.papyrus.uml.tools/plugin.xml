@@ -118,6 +118,7 @@
             contentProvider="org.eclipse.papyrus.infra.widgets.providers.FlatFilteredContentProvider"
             id="org.eclipse.papyrus.uml.tools.tabflat"
             labelProvider="org.eclipse.papyrus.uml.tools.providers.FlatTabUMLLabelProvider"
+            tabConstraint="org.eclipse.papyrus.uml.tools.providers.FlatTabConstaint"
             tabIcon="icons/flatView.gif"
             tabLabel="Flat">
       </tabDeclaration>
