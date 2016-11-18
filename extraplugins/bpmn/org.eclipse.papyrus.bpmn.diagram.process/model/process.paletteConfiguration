@@ -348,9 +348,9 @@
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
-				id="bpmn.process.dataInput.tool"
-				label="Data Input"
-				description="Data Input">
+				id="bpmn.process.dataInputTask.tool"
+				label="Data Input (Task)"
+				description="Data Input (Task)">
 			<icon
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/DataInput.png"/>
@@ -359,14 +359,36 @@
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
-				id="bpmn.process.dataOutput.tool"
-				label="Data Output"
-				description="Data Output">
+				id="bpmn.process.dataOutputTask.tool"
+				label="Data Output (Task)"
+				description="Data Output (Task)">
 			<icon
 					pluginID="org.eclipse.papyrus.bpmn"
 					iconPath="/icons/DataOutput.png"/>
 			<elementDescriptors
 					elementTypeId="org.eclipse.papyrus.bpmn.process.DataOutput_OutputPin_3014"/>
+		</ownedConfigurations>
+		<ownedConfigurations
+				xsi:type="paletteconfiguration:ToolConfiguration"
+				id="bpmn.process.dataInputActivity.tool"
+				label="Data Input (Activity)"
+				description="Data Input (Activity Parameter Node)">
+			<icon
+					pluginID="org.eclipse.papyrus.bpmn"
+					iconPath="/icons/DataInputActivity.png"/>
+			<elementDescriptors
+					elementTypeId="org.eclipse.papyrus.bpmn.process.DataInput_ActivityParameterNode_3059"/>
+		</ownedConfigurations>
+		<ownedConfigurations
+				xsi:type="paletteconfiguration:ToolConfiguration"
+				id="bpmn.process.dataOutputActivity.tool"
+				label="Data Output (Activity)"
+				description="Data Output (Activity Parameter Node)">
+			<icon
+					pluginID="org.eclipse.papyrus.bpmn"
+					iconPath="/icons/DataOutputActivity.png"/>
+			<elementDescriptors
+					elementTypeId="org.eclipse.papyrus.bpmn.process.DataOutput_ActivityParameterNode_3059"/>
 		</ownedConfigurations>
 		<ownedConfigurations
 				xsi:type="paletteconfiguration:ToolConfiguration"
