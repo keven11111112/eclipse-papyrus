@@ -54,12 +54,6 @@ OpaqueAction > Compartment[kind="symbol"] {
 	maskLabel: stereotype;
 }
 
-[appliedStereotypes~="BPMNProfile::DataInput"]
-{
-	fillColor: white;	
-	maskLabel: stereotype;
-	transparency: 0
-}
 
 [appliedStereotypes~="BPMNProfile::GlobalTask"]
 {
@@ -375,4 +369,37 @@ alternateBorderColor path{
 }
 [appliedStereotypes~="BPMNProfile::Lane"] > Compartment[kind="symbol"] {
 	visible: false;
+}
+
+
+ActivityParameterNode[appliedStereotypes~="BPMNProfile::DataOutput"] {
+	transparency:0.0;
+	lineWidth:2.0;
+	elementIcon:false;
+}
+
+ActivityParameterNode[appliedStereotypes~="BPMNProfile::DataInput"] {
+	transparency:0.0;
+	lineWidth:1.0;
+	elementIcon:false;
+}
+
+[appliedStereotypes~="BPMNProfile::DataInput"] > Label {
+	visible:false;
+}
+
+[appliedStereotypes~="BPMNProfile::DataOutput"] > Label {
+	visible:false;
+}
+
+[appliedStereotypes~="BPMNProfile::SequenceFlow"] > Label{
+	visible:false;
+}
+
+[appliedStereotypes~="BPMNProfile::StartEvent"] > Label{
+	visible:false;
+}
+
+[appliedStereotypes~="BPMNProfile::EndEvent"] > Label{
+	visible:false;
 }

@@ -112,6 +112,14 @@
       icon="platform:/plugin/org.eclipse.papyrus.bpmn/icons/DataOutput.png"
       elementTypeIdRef="org.eclipse.papyrus.bpmn.DataOutput_OutputPin"/>
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+        label="Data Input Activity"
+        icon="platform:/plugin/org.eclipse.papyrus.bpmn/icons/DataInputActivity.png"
+        elementTypeIdRef="org.eclipse.papyrus.bpmn.DataInput_ActivityParameterNode"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+        label="Data Output Activity"
+        icon="platform:/plugin/org.eclipse.papyrus.bpmn/icons/DataOutputActivity.png"
+        elementTypeIdRef="org.eclipse.papyrus.bpmn.DataOutput_ActivityParameterNode"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="Data Object"
       icon="platform:/plugin/org.eclipse.papyrus.bpmn/icons/DataObject.png"
       elementTypeIdRef="org.eclipse.papyrus.bpmn.DataObject_DataStoreNode"/>
