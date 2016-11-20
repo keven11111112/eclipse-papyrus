@@ -10,6 +10,14 @@ location b3 "http://download.eclipse.org/cbi/updates/aggregator/ide/4.5/" {
 	org.eclipse.b3.aggregator.engine.feature.source.feature.group
 }
 
+// manualUpdate
+
+location b3_4.6 "http://download.eclipse.org/cbi/updates/aggregator/ide/4.6/" {
+	org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group
+	org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group
+	org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group
+}
+
 //manualUpdate 
 
 location upr "http://download.eclipse.org/upr/0.9RC1/update/" {

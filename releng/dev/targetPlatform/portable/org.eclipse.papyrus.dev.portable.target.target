@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Dev" sequenceNumber="1479289265">
+<target name="Papyrus Dev" sequenceNumber="1479629193">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
@@ -107,6 +107,12 @@
       <unit id="org.eclipse.b3.aggregator.editor.feature.feature.group" version="1.0.0.20161031-0323"/>
       <unit id="org.eclipse.b3.aggregator.engine.feature.source.feature.group" version="1.0.0.20161031-0323"/>
       <repository id="b3" location="http://download.eclipse.org/cbi/updates/aggregator/ide/4.5/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group" version="1.0.100.20161116-2325"/>
+      <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group" version="1.0.100.20161116-2325"/>
+      <unit id="org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group" version="1.0.100.20161116-2325"/>
+      <repository id="b3_4.6" location="http://download.eclipse.org/cbi/updates/aggregator/ide/4.6/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.upr.utp.feature.feature.group" version="0.9.0.20141027-1408-incubation"/>
