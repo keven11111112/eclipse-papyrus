@@ -20,6 +20,11 @@
 		<plugin name="org.eclipse.b3.cli" version="0.2.0"/>
 		<plugin name="org.eclipse.b3.p2" version="0.2.0"/>
 		<plugin name="org.eclipse.b3.util" version="0.2.0"/>
+		<plugin name="org.eclipse.cbi.p2repo.aggregator" version="1.0.0"/>
+		<plugin name="org.eclipse.cbi.p2repo.aggregator.legacy" version="1.0.0"/>
+		<plugin name="org.eclipse.cbi.p2repo.util" version="1.0.0"/>
+		<plugin name="org.eclipse.cbi.p2repo.cli" version="1.0.0"/>
+		<plugin name="org.eclipse.cbi.p2repo.p2" version="1.0.0"/>
 		<plugin name="org.eclipse.papyrus.mwe2.utils" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.dev.tests.framework" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.dev.tests.framework.ui" version="1.2.0"/>
@@ -41,6 +46,11 @@
 	<plugin name="org.eclipse.b3.cli" version="0.2.0"/>
 	<plugin name="org.eclipse.b3.p2" version="0.2.0"/>
 	<plugin name="org.eclipse.b3.util" version="0.2.0"/>
+	<plugin name="org.eclipse.cbi.p2repo.aggregator" version="1.0.0"/>
+	<plugin name="org.eclipse.cbi.p2repo.aggregator.legacy" version="1.0.0"/>
+	<plugin name="org.eclipse.cbi.p2repo.util" version="1.0.0"/>
+	<plugin name="org.eclipse.cbi.p2repo.cli" version="1.0.0"/>
+	<plugin name="org.eclipse.cbi.p2repo.p2" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.bundles.tests" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.codegen" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.def" version="1.2.0"/>
