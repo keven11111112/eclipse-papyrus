@@ -37,10 +37,6 @@
           figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
-          key="&quot;RemoveOrphanView&quot;"
-          editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
-      <behaviour
-          xsi:type="gmfgen:CustomBehaviour"
           key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
           editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       <behaviour
@@ -3053,11 +3049,7 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
+         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
@@ -3076,10 +3068,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -3101,10 +3089,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       </compartments>
@@ -3122,10 +3106,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getOperationCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -3147,10 +3127,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getPackageableElementFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -3182,10 +3158,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
         <behaviour
@@ -3213,10 +3185,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       </compartments>
@@ -3234,10 +3202,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getEnumerationLiteralCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -3259,10 +3223,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       </compartments>
@@ -3280,10 +3240,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -3305,10 +3261,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       </compartments>
@@ -3328,10 +3280,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       </compartments>
@@ -3349,10 +3297,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -3378,10 +3322,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
         <behaviour
@@ -3405,10 +3345,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
         <behaviour
@@ -3430,10 +3366,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getOperationCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"

@@ -20,7 +20,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEdit
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.custom.policies.CustomCreationRoleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.custom.policies.ShowHideRelatedLinkEditPolicy;
 
 /**
@@ -56,7 +55,6 @@ public class ProfileDiagramEditPart extends PapyrusDiagramEditPart {
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
-		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ProfileDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomCreationRoleEditPolicy());
 		installEditPolicy(AbstractShowHideRelatedLinkEditPolicy.SHOW_HIDE_RELATED_LINK_ROLE,

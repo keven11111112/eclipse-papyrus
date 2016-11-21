@@ -31,7 +31,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentS
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.part.Messages;
 
 /**
@@ -78,7 +77,6 @@ public class ClassAttributeCompartmentEditPartCN extends ListCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ProfileDiagramDragDropEditPolicy());
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 	}
