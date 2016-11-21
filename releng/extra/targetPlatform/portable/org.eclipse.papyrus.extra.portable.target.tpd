@@ -16,11 +16,6 @@ location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R2016052
 	org.w3c.dom.svg lazy
 }
 
-//updateFrom("EPP Logging",0) 
-
-location aeri "http://download.eclipse.org/technology/epp/logging/milestones/" {
-	org.eclipse.epp.logging.aeri.feature.feature.group
-}
 
 //updateFrom("EMF COMPARE",0) 
 

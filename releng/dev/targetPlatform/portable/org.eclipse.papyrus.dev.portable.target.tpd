@@ -2,17 +2,10 @@ target "Papyrus Dev" with requirements source
 
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
 
-//manualUpdate 
-
-location b3 "http://download.eclipse.org/cbi/updates/aggregator/ide/4.5/" {
-	org.eclipse.b3.aggregator.editor.feature.source.feature.group
-	org.eclipse.b3.aggregator.editor.feature.feature.group
-	org.eclipse.b3.aggregator.engine.feature.source.feature.group
-}
 
 // manualUpdate
 
-location b3_4.6 "http://download.eclipse.org/cbi/updates/aggregator/ide/4.6/" {
+location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4.6/" {
 	org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group
 	org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group
 	org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group
@@ -26,7 +19,7 @@ location upr "http://download.eclipse.org/upr/0.9RC1/update/" {
 
 //updateFrom("oomph",0) 
 
-location oomph "http://download.eclipse.org/oomph/drops/milestone/S20161019-063628-1.6.0-M2" {
+location oomph "http://download.eclipse.org/oomph/drops/milestone/S20161116-103932-1.6.0-M4" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group
