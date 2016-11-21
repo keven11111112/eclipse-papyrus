@@ -27,6 +27,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.uml.diagram.wizards.Activator;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
@@ -40,9 +41,11 @@ import org.eclipse.ui.part.FileEditorInput;
 
 /**
  * An abstract wizard that can be used for copying model pages. Concrete examples need to
- * inherit from this class and specify model name and location. 
- *
+ * inherit from this class and specify model name and location.
+ * 
+ * @deprecated use PapyrusExampleInstallerWizard instead
  */
+@Deprecated
 abstract public class ModelCopyWizard extends Wizard implements INewWizard {
 
 	private static final String EXT_DI = ".di"; //$NON-NLS-1$
@@ -119,7 +122,7 @@ abstract public class ModelCopyWizard extends Wizard implements INewWizard {
 			copyFile(sourceModelName + EXT_UML);
 			return model;
 		} catch (CoreException e) {
-			Shell shell = new Shell();
+			Shell shell = Display.getDefault().getActiveShell();
 			String reason = e.getMessage();
 			if(reason.endsWith(Messages.ModelCopyWizard_AlreadyyExists)) {
 				reason += "\n" + //$NON-NLS-1$
