@@ -33,6 +33,7 @@ import org.eclipse.papyrus.migration.rsa.tests.regression.AbstractMigrationRegre
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeNameEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortNameEditPart;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Port;
 import org.junit.Test;
@@ -125,4 +126,22 @@ public class StructureDiagramTest extends AbstractMigrationRegressionTest {
 				.filter(s -> s.getElement() instanceof Port)
 				.forEach(p -> assertThat(p.eIsSet(NotationPackage.Literals.FILL_STYLE__FILL_COLOR), is(false)));
 	}
+
+	/**
+	 * Verify that Port name label is shown on diagram
+	 * 
+	 * @see <a href="http://eclip.se/507860">bug 507860</a>
+	 */
+	@Test
+	@PluginResource("bug507860/StructureWithPort.emx")
+	public void portNameLabelVisuals_bug507860() throws Exception {
+		// Need to open the diagram to convert the visual IDs to modern notation for assertions
+		Diagram diagram = openDiagram("compositediagram");
+
+		streamAllContents(diagram)
+				.filter(Shape.class::isInstance).map(Shape.class::cast)
+				.filter(s -> s.getElement() instanceof Port).forEach(p -> requireChild(p, PortNameEditPart.VISUAL_ID));
+
+	}
+
 }

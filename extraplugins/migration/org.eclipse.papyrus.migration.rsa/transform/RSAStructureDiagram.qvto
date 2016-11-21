@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bugs 461980, 497841, 498282, 465656
+ * 	Asma Smaoui - bug 507860
  *****************************************************************************/
 import RSAToPapyrus;
 
@@ -235,9 +236,15 @@ mapping BasicDecorationNode::toConnectorLabel() : DecorationNode inherits Node::
 mapping BasicDecorationNode::toLabel() : DecorationNode inherits Node::toPapyrusNode when {
 	not self.getType().oclIsUndefined() and
 	self.element.oclIsKindOf(uml::NamedElement) and 
-	self.type = 'Name' or self.type = 'PartName'
+	self.type = 'Name' or self.type = 'PartName' or  self.type = 'PortName'
 }{
-	
+// add the layoutconstraint fot the PortNamelabel
+	if (self.type = 'PortName'){
+		var thislayoutConstraint := (self.layoutConstraint.map toLayout(self.diagram)).oclAsType(Location);
+		thislayoutConstraint.x:=thislayoutConstraint.x -10; // to fit better RSA layout
+		thislayoutConstraint.y:=thislayoutConstraint.y -10; // to fit better RSA layout
+		result.layoutConstraint := thislayoutConstraint;
+	}
 }
 
 mapping BasicSemanticCompartment::toListCompartment() : BasicCompartment inherits Node::toPapyrusNode, DrawerStyle::toDrawerStyle when {
@@ -513,10 +520,10 @@ query View::doGetDecorationType(element : Element) : String{
 					case (self.type = 'Name' or self.type = 'PartName') 'UseCase_NameLabel';
 					
 				}
-			elif element.oclIsTypeOf(Port) then
-				return switch {
-					case (self.type = 'Name' or self.type = 'PartName') 'Port_NameLabel';
-					
+			elif element.oclIsTypeOf(Port) then	
+				return switch {			
+					case (self.type = 'PortName') 'Port_NameLabel';
+								
 				}
 			elif element.oclIsTypeOf(LiteralInteger) then
 				return switch {
@@ -873,4 +880,3 @@ query View::getEdgeType(element : Element) : String {
 		else self.fail()
 	endif;
 }
-
