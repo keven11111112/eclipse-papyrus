@@ -30,6 +30,22 @@
          </menu>
       </menuContribution>
   </extension>
+   <extension
+        point="org.eclipse.ui.menus">
+      
+        <menuContribution
+              allPopups="false"
+              locationURI="menu:org.eclipse.papyrus.ui.menu">
+              
+                <menu
+                	id="org.eclipse.papyrus.developer.ui.menu"
+            		label="Developer tools"
+            		tooltip="Tools dedicated for Papyrus developers">
+            		<separator name="org.eclipse.papyrus.developer.ui.menu.separator"/>
+            	</menu>
+            </menuContribution>
+  </extension>        
+            
   <extension
         point="org.eclipse.ui.menus">
       
