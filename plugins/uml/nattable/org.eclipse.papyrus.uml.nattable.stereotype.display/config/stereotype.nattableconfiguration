@@ -36,19 +36,19 @@
   </columnHeaderAxisConfiguration>
   <columnAxisProviders xsi:type="nattableaxisprovider:SlaveObjectAxisProvider" description="This axis provider provides available columns according to the columns of the table ( features of the object displayed on the other axis)" name="Stereotype display properties axis provider">
     <axis xsi:type="nattableaxis:FeatureIdAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.0" alias="Name Depth" element="stereotype_display_properties:/nameDepth">
-      <styles xsi:type="nattablestyle:IntValueStyle" name="axisWidth" intValue="100"/>
+      <styles xsi:type="nattablestyle:IntValueStyle" name="axisWidth" intValue="17"/>
     </axis>
     <axis xsi:type="nattableaxis:FeatureIdAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.0" alias="Visible" element="stereotype_display_properties:/isDisplayed">
-      <styles xsi:type="nattablestyle:IntValueStyle" name="axisWidth" intValue="100"/>
+      <styles xsi:type="nattablestyle:IntValueStyle" name="axisWidth" intValue="17"/>
     </axis>
     <axis xsi:type="nattableaxis:FeatureIdAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.0" alias="In Braces" element="stereotype_display_properties:/isDisplayedInBraces">
-      <styles xsi:type="nattablestyle:IntValueStyle" name="axisWidth" intValue="120"/>
+      <styles xsi:type="nattablestyle:IntValueStyle" name="axisWidth" intValue="22"/>
     </axis>
     <axis xsi:type="nattableaxis:FeatureIdAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.0" alias="In Comment" element="stereotype_display_properties:/isDisplayedInComment">
-      <styles xsi:type="nattablestyle:IntValueStyle" name="axisWidth" intValue="120"/>
+      <styles xsi:type="nattablestyle:IntValueStyle" name="axisWidth" intValue="22"/>
     </axis>
     <axis xsi:type="nattableaxis:FeatureIdAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.0" alias="In Compartment" element="stereotype_display_properties:/isDisplayedInCompartment">
-      <styles xsi:type="nattablestyle:IntValueStyle" name="axisWidth" intValue="120"/>
+      <styles xsi:type="nattablestyle:IntValueStyle" name="axisWidth" intValue="22"/>
     </axis>
   </columnAxisProviders>
   <rowAxisProviders xsi:type="nattableaxisprovider:MasterObjectAxisProvider" description="This axis provider manages the rows, according to the wanted hierarchy" name="HierarchicalRowAxisManager" disconnectSlave="true"/>

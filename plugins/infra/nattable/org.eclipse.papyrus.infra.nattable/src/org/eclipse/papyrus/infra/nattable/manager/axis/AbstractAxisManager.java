@@ -9,14 +9,16 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 469289
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 469289, 504077
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.axis;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandWrapper;
@@ -38,6 +40,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.papyrus.infra.nattable.layer.PapyrusSpanningDataLayer;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
@@ -47,6 +50,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
 import org.eclipse.papyrus.infra.nattable.utils.DefaultSizeUtils;
@@ -956,9 +961,21 @@ public abstract class AbstractAxisManager implements IAxisManager {
 					: tableManager.getTable().getCurrentColumnAxisProvider().getAxis();
 			final BodyLayerStack bodyLayerStack = tableManager.getBodyLayerStack();
 			// Check if the body layer stack is always constructed
-			if(null != bodyLayerStack){
+			if (null != bodyLayerStack) {
 				final DataLayer tableBodyLayer = bodyLayerStack.getBodyDataLayer();
-	
+
+				// Get the named style columns width as percentage management
+				BooleanValueStyle columnsWidthAsPercentage = (BooleanValueStyle) tableManager.getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.COLUMNS_WIDTH_AS_PERCENTAGE);
+				if (null == columnsWidthAsPercentage) {
+					final TableConfiguration config = tableManager.getTable().getTableConfiguration();
+					columnsWidthAsPercentage = (BooleanValueStyle) config.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.COLUMNS_WIDTH_AS_PERCENTAGE);
+				}
+				boolean isUsedPercentage = null != columnsWidthAsPercentage && columnsWidthAsPercentage.isBooleanValue();
+
+				// Get the axis with non 'axisWidth' named style (to set the correct percentage)
+				Set<Integer> notManagedIndexAxisWidth = new HashSet<Integer>();
+				int remainingPercentage = 100;
+
 				// Loop on columns axis to reset the width
 				for (int index = 0; index < notationAxisList.size(); index++) {
 					final IAxis currentAxis = notationAxisList.get(index);
@@ -978,14 +995,28 @@ public abstract class AbstractAxisManager implements IAxisManager {
 							final int axisWidth = tableBodyLayer.getColumnWidthByPosition(index);
 							final IntValueStyle value = (IntValueStyle) currentAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.AXIS_WIDTH);
 							if (null != value) {
-								// we set the size of the axis in the graphical representation
-								tableBodyLayer.setColumnWidthByPosition(index, value.getIntValue(), false);
-							} else if (axisWidth != DefaultSizeUtils.getDefaultCellWidth()) {
+								if (isUsedPercentage) {
+									// Set the percentage with the correct function
+									((PapyrusSpanningDataLayer)tableBodyLayer).setColumnWidthPercentageByPosition(index, value.getIntValue());
+									remainingPercentage -= value.getIntValue();
+								} else {
+									// we set the size of the axis in the graphical representation
+									tableBodyLayer.setColumnWidthByPosition(index, value.getIntValue(), false);
+								}
+							} else if (axisWidth != DefaultSizeUtils.getDefaultCellWidth() && !isUsedPercentage) {
 								// resets the size in case of an undo to the default table
 								tableBodyLayer.setColumnWidthByPosition(index, DefaultSizeUtils.getDefaultCellWidth(), false);
+							} else if (isUsedPercentage) {
+								// If the columns width are managed with percentage, we need to recalculate it
+								notManagedIndexAxisWidth.add(index);
 							}
 						}
 					}
+				}
+
+				// For the axis without 'axisWidth' named style and with the columns width percentage management, set the correct percentage
+				for (int index : notManagedIndexAxisWidth) {
+					((PapyrusSpanningDataLayer)tableBodyLayer).setColumnWidthPercentageByPosition(index, Math.round(remainingPercentage / notManagedIndexAxisWidth.size()), false);
 				}
 			}
 		}

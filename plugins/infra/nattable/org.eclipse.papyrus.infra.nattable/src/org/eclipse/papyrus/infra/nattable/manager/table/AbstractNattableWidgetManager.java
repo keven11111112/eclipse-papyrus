@@ -12,6 +12,7 @@
  *  Christian W. Damus (CEA) - bug 402525
  *  Christian W. Damus (CEA) - bug 430880
  *  Dirk Fauth <dirk.fauth@googlemail.com> - Bug 488234
+ *  Nicolas FAUVERGUE(ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 504077
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -19,8 +20,10 @@ package org.eclipse.papyrus.infra.nattable.manager.table;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
@@ -243,7 +246,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	private BodyLayerStack bodyLayerStack;
 
-	private ILayerListener resizeAxisListener;
+	protected ILayerListener resizeAxisListener;
 
 	private ILayerListener resizeRowHeaderListener;
 
@@ -875,7 +878,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @param bodyLayerStack
 	 *            the table's body layer
 	 */
-	private void addAxisResizeListener(final BodyLayerStack bodyLayerStack) {
+	protected void addAxisResizeListener(final BodyLayerStack bodyLayerStack) {
 		resizeAxisListener = new ILayerListener() {
 
 			@Override
@@ -889,16 +892,41 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 					}
 
 					if (event instanceof ColumnResizeEvent) {
+
 						// get the index of the first column modified by the user
 						// the assumption is that the user changes only one column at a time in order to resize to its liking
 						int resizedColumnPosition = getRangeStart(event);
 						// get the resized value from this column
-						int newColumnSize = columnHeaderLayerStack.getColumnWidthByPosition(resizedColumnPosition);
-						ICommand cmd = createSetColumnSizeCommand(resizedColumnPosition, newColumnSize);
-						if (cmd != null && cmd.canExecute()) {
-							resizeCommand.add(cmd);
-						}
+						int newColumnSize = getBodyLayerStack().getBodyDataLayer().getColumnWidthByPosition(resizedColumnPosition);
 
+						// If the columns width are managed as percentage, transform the width to the percentage
+						if (isColumnWidthAsPercentage()) {
+							int columnSizePercentage = getInitialColumnWidthPercentage();
+
+							final Composite parent = natTable.getParent();
+							if (null != parent && !parent.isDisposed()) {
+								final int parentSize = parent.getSize().x;
+
+								// Get the columns size without header
+								final int columnsSize = parentSize - PapyrusTableSizeCalculation.getRowHeaderWidth(AbstractNattableWidgetManager.this);
+
+								// Calculate the current percentage of the new width
+								int currentPercentage = Math.round(newColumnSize * 100.0f / columnsSize);
+
+								// If the current percentage is not equals to the initial percentage, set the named style with the percentage, else do nothing
+								if (currentPercentage != columnSizePercentage) {
+									final ICommand cmd = createSetColumnSizeCommand(resizedColumnPosition, currentPercentage);
+									if (cmd != null && cmd.canExecute()) {
+										resizeCommand.add(cmd);
+									}
+								}
+							}
+						} else {
+							ICommand cmd = createSetColumnSizeCommand(resizedColumnPosition, newColumnSize);
+							if (cmd != null && cmd.canExecute()) {
+								resizeCommand.add(cmd);
+							}
+						}
 					}
 
 					// the process is the same for this event
@@ -921,6 +949,45 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 		bodyLayerStack.addLayerListener(resizeAxisListener);
 
+	}
+
+	/**
+	 * This allows to calculate the initial width percentage for a column without 'axisWidth' named style.
+	 * 
+	 * @return The percentage for a column without 'axisWidth' named style.
+	 * @since 3.0
+	 */
+	protected int getInitialColumnWidthPercentage() {
+		int remainingPercentage = 100;
+		int numberColumnWithoutDefinedWidth = 0;
+
+		// Get the boolean value style to determinate if we need to use the columns width
+		BooleanValueStyle saveColumnsWidth = (BooleanValueStyle) getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.SAVE_COLUMNS_WIDTH);
+		if (null == saveColumnsWidth) {
+			final TableConfiguration config = getTable().getTableConfiguration();
+			saveColumnsWidth = (BooleanValueStyle) config.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.SAVE_COLUMNS_WIDTH);
+		}
+
+		List<IAxis> notationColumnsAxisList = getTable().getCurrentColumnAxisProvider().getAxis();
+		// we go through all the elements to find those which have been modified
+		for (int index = 0; index < notationColumnsAxisList.size(); index++) {
+			IAxis currentColumnAxis = notationColumnsAxisList.get(index);
+			// we need both to detect and use the correct value, width or height, of the handled element as the user could have modified the table when the axis was inverted
+			if (!getTable().isInvertAxis()) {
+				int axisWidth = getBodyLayerStack().getBodyDataLayer().getColumnWidthByPosition(index);
+				IntValueStyle value = (IntValueStyle) currentColumnAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.AXIS_WIDTH);
+				if (value != null && (null == saveColumnsWidth || (null != saveColumnsWidth && saveColumnsWidth.isBooleanValue()))) {
+					remainingPercentage -= axisWidth;
+				} else {
+					numberColumnWithoutDefinedWidth++;
+				}
+			}
+		}
+
+		if (0 == numberColumnWithoutDefinedWidth) {
+			numberColumnWithoutDefinedWidth = 1;
+		}
+		return Math.round(remainingPercentage / numberColumnWithoutDefinedWidth);
 	}
 
 	/**
@@ -1583,6 +1650,24 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		// value, width or height, of the resized column or row
 		IntValueStyle value = null;
 
+		// Get the boolean value style to determinate if the width in named style is managed as percentage or as pixels
+		boolean isUsedPercentage = isColumnWidthAsPercentage();
+		if (isUsedPercentage) {
+			// Notify the column percentage management to the body layer
+			tableBodyLayer.setColumnPercentageSizing(true);
+		}
+
+		// Get the boolean value style to determinate if we need to use the columns width
+		BooleanValueStyle saveColumnsWidth = (BooleanValueStyle) getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.SAVE_COLUMNS_WIDTH);
+		if (null == saveColumnsWidth) {
+			final TableConfiguration config = getTable().getTableConfiguration();
+			saveColumnsWidth = (BooleanValueStyle) config.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.SAVE_COLUMNS_WIDTH);
+		}
+
+		// Get the axis with non 'axisWidth' named style (to set the correct percentage)
+		final Set<Integer> notManagedIndexAxisWidth = new HashSet<Integer>();
+		int remainingPercentage = 100;
+
 		// we go through all the elements to find those which have been modified
 		for (int index = 0; index < notationColumnsAxisList.size(); index++) {
 			IAxis currentColumnAxis = notationColumnsAxisList.get(index);
@@ -1590,12 +1675,21 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			if (!getTable().isInvertAxis()) {
 				int axisWidth = tableBodyLayer.getColumnWidthByPosition(index);
 				value = (IntValueStyle) currentColumnAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.AXIS_WIDTH);
-				if (value != null) {
-					// we set the size of the axis in the graphical representation
-					tableBodyLayer.setColumnWidthByPosition(index, value.getIntValue());
-				} else if (axisWidth != DefaultSizeUtils.getDefaultCellWidth()) {
+				if (value != null && (null == saveColumnsWidth || (null != saveColumnsWidth && !saveColumnsWidth.isBooleanValue()))) {
+					if (isUsedPercentage) {
+						// Set the percentage with the correct function
+						tableBodyLayer.setColumnWidthPercentageByPosition(index, value.getIntValue());
+						remainingPercentage -= value.getIntValue();
+					} else {
+						// we set the size of the axis in the graphical representation
+						tableBodyLayer.setColumnWidthByPosition(index, value.getIntValue());
+					}
+				} else if (axisWidth != DefaultSizeUtils.getDefaultCellWidth() && !isUsedPercentage) {
 					// resets the size in case of an undo to the default table
 					tableBodyLayer.setColumnWidthByPosition(index, DefaultSizeUtils.getDefaultCellWidth());
+				} else if (isUsedPercentage) {
+					// If the columns width are managed with percentage, we need to recalculate it
+					notManagedIndexAxisWidth.add(index);
 				}
 			} else {
 				int axisHeight = tableBodyLayer.getRowHeightByPosition(index);
@@ -1621,19 +1715,36 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			} else {
 				int axisWidth = tableBodyLayer.getColumnWidthByPosition(index);
 				value = (IntValueStyle) currentRowAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.AXIS_WIDTH);
-				if (value != null) {
-					tableBodyLayer.setColumnWidthByPosition(index, value.getIntValue());
-				} else if (axisWidth != DefaultSizeUtils.getDefaultCellWidth()) {
+				if (value != null && (null == saveColumnsWidth || (null != saveColumnsWidth && !saveColumnsWidth.isBooleanValue()))) {
+					if (isUsedPercentage) {
+						tableBodyLayer.setColumnWidthPercentageByPosition(index, value.getIntValue());
+						remainingPercentage -= value.getIntValue();
+					} else {
+						tableBodyLayer.setColumnWidthByPosition(index, value.getIntValue());
+					}
+				} else if (axisWidth != DefaultSizeUtils.getDefaultCellWidth() && !isUsedPercentage) {
 					tableBodyLayer.setColumnWidthByPosition(index, DefaultSizeUtils.getDefaultCellWidth());
+				} else if (isUsedPercentage) {
+					// If the columns width are managed with percentage, we need to recalculate it
+					notManagedIndexAxisWidth.add(index);
 				}
 			}
+		}
+
+		// For the axis without 'axisWidth' named style and with the columns width percentage management, set the correct percentage
+		for (int index : notManagedIndexAxisWidth) {
+			tableBodyLayer.setColumnWidthPercentageByPosition(index, Math.round(remainingPercentage / notManagedIndexAxisWidth.size()));
 		}
 
 		// this method is used to resize by default. In the actual state, only the rows, representing the table's core elements, are missing from the notation file
 		if (notationRowsAxisList.size() == 0) {
 			if (getTable().isInvertAxis()) {
 				for (int index = 0; index < actualColumnAxisElements; index++) {
-					tableBodyLayer.setColumnWidthByPosition(index, DefaultSizeUtils.getDefaultCellWidth());
+					if (isUsedPercentage) {
+						tableBodyLayer.setColumnWidthPercentageByPosition(index, 100 / actualColumnAxisElements);
+					} else {
+						tableBodyLayer.setColumnWidthByPosition(index, DefaultSizeUtils.getDefaultCellWidth());
+					}
 				}
 
 			} else if (!getTable().isInvertAxis()) {
@@ -1676,6 +1787,22 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 				}
 			}
 		}
+	}
+
+	/**
+	 * Get the column width as percentage management value.
+	 * 
+	 * @return <code>true</code> if columns width are managed as percentage, <code>false</code> otherwise.
+	 * @since 3.0
+	 */
+	protected boolean isColumnWidthAsPercentage() {
+		BooleanValueStyle columnsWidthAsPercentage = (BooleanValueStyle) getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.COLUMNS_WIDTH_AS_PERCENTAGE);
+		if (null == columnsWidthAsPercentage) {
+			final TableConfiguration config = getTable().getTableConfiguration();
+			columnsWidthAsPercentage = (BooleanValueStyle) config.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.COLUMNS_WIDTH_AS_PERCENTAGE);
+		}
+
+		return null != columnsWidthAsPercentage && columnsWidthAsPercentage.isBooleanValue();
 	}
 
 	/**

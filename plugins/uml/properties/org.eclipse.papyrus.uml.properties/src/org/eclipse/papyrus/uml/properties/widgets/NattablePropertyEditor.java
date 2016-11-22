@@ -788,13 +788,19 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		}
 
 		// for the table displayed in property view, we want to use all the available place, so we add a specific named style each time
-		BooleanValueStyle fillStyle = (BooleanValueStyle) table.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.FILL_COLUMNS_SIZE);
+		// We manage it with percentage named style
+		BooleanValueStyle columnsWidthAsPercentage = (BooleanValueStyle) table.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.COLUMNS_WIDTH_AS_PERCENTAGE);
 		// if the name style already exists we do nothing
-		if (null == fillStyle) {
-			fillStyle = NattablestyleFactory.eINSTANCE.createBooleanValueStyle();
-			fillStyle.setName(NamedStyleConstants.FILL_COLUMNS_SIZE);
-			fillStyle.setBooleanValue(true);
-			table.getStyles().add(fillStyle);
+		if (null == columnsWidthAsPercentage) {
+			// for the table displayed in property view, we want to use all the available place, so we add a specific named style each time
+			BooleanValueStyle fillStyle = (BooleanValueStyle) table.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.FILL_COLUMNS_SIZE);
+			// if the name style already exists we do nothing
+			if (null == fillStyle) {
+				columnsWidthAsPercentage = NattablestyleFactory.eINSTANCE.createBooleanValueStyle();
+				columnsWidthAsPercentage.setName(NamedStyleConstants.COLUMNS_WIDTH_AS_PERCENTAGE);
+				columnsWidthAsPercentage.setBooleanValue(true);
+				table.getStyles().add(columnsWidthAsPercentage);
+			}
 		}
 
 		// for the table displayed in property view, we expand all directly
