@@ -82,7 +82,7 @@ public class ComponentDiagramChangeStereotypedShapeEditpolicy extends ChangeSter
 
 								GraphicalEditPart gmfpart = (GraphicalEditPart) part;
 								DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
-								ArrayList<EObject> list = new ArrayList<EObject>();
+								ArrayList<EObject> list = new ArrayList<>();
 								list.add(gmfpart.resolveSemanticElement());
 								dropObjectsRequest.setObjects(list);
 								dropObjectsRequest.setLocation(gmfpart.getFigure().getBounds().getLocation());

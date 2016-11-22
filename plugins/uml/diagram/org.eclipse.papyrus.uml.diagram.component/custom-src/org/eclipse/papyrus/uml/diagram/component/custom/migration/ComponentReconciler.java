@@ -25,22 +25,22 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler;
  */
 public class ComponentReconciler extends DiagramReconciler {
 
-	private final static String ComponentEditPart_VISUAL_ID = "2002";
-	private final static String ComponentFloatingLabelEditPart_VISUAL_ID = "6030";
-	private final static String ComponentEditPartCN_VISUAL_ID = "3070";
-	private final static String ComponentFloatingLabelEditPartCN_VISUAL_ID = "6026";
-	private final static String ComponentEditPartPCN_VISUAL_ID = "3071";
-	private final static String ComponentFloatingLabelEditPartPCN_VISUAL_ID = "6027";
-	private final static String DependencyNodeEditPart_VISUAL_ID = "3203";
-	private final static String DependencyNodeFloatingLabelEditPart_VISUAL_ID = "6029";
-	private final static String InterfaceEditPart_VISUAL_ID = "2003";
-	private final static String InterfaceFloatingLabelEditPart_VISUAL_ID = "6032";
-	private final static String InterfaceEditPartPCN_VISUAL_ID = "3072";
-	private final static String InterfaceFloatingLabelEditPartPCN_VISUAL_ID = "6028";
-	private final static String RectangleInterfaceEditPart_VISUAL_ID = "3205";
-	private final static String RectangleInterfaceFloatingLabelEditPart_VISUAL_ID = "6031";
-	private final static String RectangleInterfaceEditPartCN_VISUAL_ID = "3078";
-	private final static String RectangleInterfaceFloatingLabelEditPartCN_VISUAL_ID = "6033";
+	private final static String ComponentEditPart_VISUAL_ID = "2002"; //$NON-NLS-1$
+	private final static String ComponentFloatingLabelEditPart_VISUAL_ID = "6030"; //$NON-NLS-1$
+	private final static String ComponentEditPartCN_VISUAL_ID = "3070"; //$NON-NLS-1$
+	private final static String ComponentFloatingLabelEditPartCN_VISUAL_ID = "6026"; //$NON-NLS-1$
+	private final static String ComponentEditPartPCN_VISUAL_ID = "3071"; //$NON-NLS-1$
+	private final static String ComponentFloatingLabelEditPartPCN_VISUAL_ID = "6027"; //$NON-NLS-1$
+	private final static String DependencyNodeEditPart_VISUAL_ID = "3203"; //$NON-NLS-1$
+	private final static String DependencyNodeFloatingLabelEditPart_VISUAL_ID = "6029"; //$NON-NLS-1$
+	private final static String InterfaceEditPart_VISUAL_ID = "2003"; //$NON-NLS-1$
+	private final static String InterfaceFloatingLabelEditPart_VISUAL_ID = "6032"; //$NON-NLS-1$
+	private final static String InterfaceEditPartPCN_VISUAL_ID = "3072"; //$NON-NLS-1$
+	private final static String InterfaceFloatingLabelEditPartPCN_VISUAL_ID = "6028"; //$NON-NLS-1$
+	private final static String RectangleInterfaceEditPart_VISUAL_ID = "3205"; //$NON-NLS-1$
+	private final static String RectangleInterfaceFloatingLabelEditPart_VISUAL_ID = "6031"; //$NON-NLS-1$
+	private final static String RectangleInterfaceEditPartCN_VISUAL_ID = "3078"; //$NON-NLS-1$
+	private final static String RectangleInterfaceFloatingLabelEditPartCN_VISUAL_ID = "6033"; //$NON-NLS-1$
 
 	/**
 	 * Gets the reconcile command.
@@ -61,7 +61,7 @@ public class ComponentReconciler extends DiagramReconciler {
 	 * @return the floating label map
 	 */
 	private Map<String, String> getFloatingLabelMap() {
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 		map.put(ComponentEditPart_VISUAL_ID, ComponentFloatingLabelEditPart_VISUAL_ID);
 		map.put(ComponentEditPartCN_VISUAL_ID, ComponentFloatingLabelEditPartCN_VISUAL_ID);
 		map.put(ComponentEditPartPCN_VISUAL_ID, ComponentFloatingLabelEditPartPCN_VISUAL_ID);

@@ -47,7 +47,6 @@ public class RectangleToLollipopHandler extends ChangeShapeHandler implements IH
 
 	@Override
 	protected AbstractTransactionalCommand getChangeShapeCommand(GraphicalEditPart editPart) {
-		RectangleToLollipopCommand command = new RectangleToLollipopCommand(editPart.getEditingDomain(), editPart, new SemanticAdapter(null, null));
-		return command;
+		return new RectangleToLollipopCommand(editPart.getEditingDomain(), editPart, new SemanticAdapter(null, null));
 	}
 }

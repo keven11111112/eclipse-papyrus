@@ -69,9 +69,8 @@ public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEdi
 		LabelEditPart editPart = (LabelEditPart) getHost();
 
 		// FeedBack - Port + Delta
-		Rectangle updatedRect = new Rectangle();
 		PrecisionRectangle initialRect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
-		updatedRect = initialRect.getTranslated(getHostFigure().getParent().getBounds().getLocation().getNegated());
+		Rectangle updatedRect = initialRect.getTranslated(getHostFigure().getParent().getBounds().getLocation().getNegated());
 		updatedRect = updatedRect.getTranslated(request.getMoveDelta());
 
 		// translate the feedback figure

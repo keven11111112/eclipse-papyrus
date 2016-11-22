@@ -34,6 +34,14 @@ public class LollipopInterfaceFigure extends RoundedCompartmentFigure implements
 	protected boolean isProvided = false;
 
 	/**
+	 * Constructor.
+	 */
+	public LollipopInterfaceFigure() {
+		setShadow(false);
+		setBorder(null);
+	}	
+	
+	/**
 	 * display the Interface as Required
 	 *
 	 * @param required
@@ -43,15 +51,7 @@ public class LollipopInterfaceFigure extends RoundedCompartmentFigure implements
 		this.isRequired = required;
 	}
 
-	/**
-	 *
-	 * Constructor.
-	 *
-	 */
-	public LollipopInterfaceFigure() {
-		setShadow(false);
-		setBorder(null);
-	}
+
 
 	@Override
 	public void setBorder(Border border) {
@@ -153,25 +153,18 @@ public class LollipopInterfaceFigure extends RoundedCompartmentFigure implements
 
 	@Override
 	public void setStereotypeDisplay(String stereotypes, Image image) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public PapyrusWrappingLabel getStereotypesLabel() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

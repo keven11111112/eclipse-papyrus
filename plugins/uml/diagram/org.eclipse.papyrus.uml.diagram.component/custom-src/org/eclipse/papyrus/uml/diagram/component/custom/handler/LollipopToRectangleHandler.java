@@ -34,7 +34,7 @@ public class LollipopToRectangleHandler extends ChangeShapeHandler implements IH
 	 */
 	public LollipopToRectangleHandler() {
 		super();
-		newType = "" + RectangleInterfaceEditPart.VISUAL_ID;
+		newType = RectangleInterfaceEditPart.VISUAL_ID;
 	}
 
 	@Override
@@ -48,7 +48,6 @@ public class LollipopToRectangleHandler extends ChangeShapeHandler implements IH
 
 	@Override
 	protected AbstractTransactionalCommand getChangeShapeCommand(GraphicalEditPart editPart) {
-		LollipopToRectangleCommand command = new LollipopToRectangleCommand(editPart.getEditingDomain(), editPart, new SemanticAdapter(null, null));
-		return command;
+		return new LollipopToRectangleCommand(editPart.getEditingDomain(), editPart, new SemanticAdapter(null, null));
 	}
 }

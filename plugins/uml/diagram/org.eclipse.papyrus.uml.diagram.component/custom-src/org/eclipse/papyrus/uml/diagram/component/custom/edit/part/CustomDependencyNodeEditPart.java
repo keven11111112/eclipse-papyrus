@@ -12,7 +12,6 @@
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.custom.edit.part;
 
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AssociationNodeFigure;
@@ -39,9 +38,6 @@ public class CustomDependencyNodeEditPart extends DependencyNodeEditPart {
 	 */
 	@Override
 	protected NodeFigure createNodePlate() {
-
-		DefaultSizeNodeFigure result = new AssociationNodeFigure(10, 10);
-
-		return result;
+		return new AssociationNodeFigure(10, 10);
 	}
 }

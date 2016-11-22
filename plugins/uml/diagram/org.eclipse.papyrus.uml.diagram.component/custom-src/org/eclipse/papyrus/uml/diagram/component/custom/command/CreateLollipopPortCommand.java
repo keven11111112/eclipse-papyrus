@@ -44,9 +44,9 @@ import org.eclipse.papyrus.uml.diagram.component.providers.UMLViewProvider;
  */
 public class CreateLollipopPortCommand extends RecordingCommand {
 
-	protected List<Object> providedInterface = new ArrayList<Object>();
+	protected List<Object> providedInterface = new ArrayList<>();
 
-	protected List<Object> requiredInterface = new ArrayList<Object>();
+	protected List<Object> requiredInterface = new ArrayList<>();
 
 	protected PortEditPart porteditPart = null;
 
@@ -84,7 +84,7 @@ public class CreateLollipopPortCommand extends RecordingCommand {
 		for (Object currentRequired : requiredInterface) {
 
 
-			EObject interfaceRequired = null;
+			EObject interfaceRequired;
 			if (currentRequired instanceof NewElementRepresentation) {
 				interfaceRequired = ((NewElementRepresentation) currentRequired).getEObject();
 			} else {
@@ -93,13 +93,12 @@ public class CreateLollipopPortCommand extends RecordingCommand {
 
 			Node node = createInterfacenode(umlViewProvider, container, interfaceRequired);
 			setPositionNode(node, position);
-			String kind = "REQUIRED";
-			createEdge(umlViewProvider, node, kind);
+			createEdge(umlViewProvider, node, "REQUIRED");
 		}
 		for (Object currentprovided : providedInterface) {
 
 
-			EObject interfaceProvided = null;
+			EObject interfaceProvided;
 			if (currentprovided instanceof NewElementRepresentation) {
 				interfaceProvided = ((NewElementRepresentation) currentprovided).getEObject();
 			} else {
@@ -108,8 +107,7 @@ public class CreateLollipopPortCommand extends RecordingCommand {
 
 			Node node = createInterfacenode(umlViewProvider, container, interfaceProvided);
 			setPositionNode(node, position);
-			String kind = "PROVIDED";
-			createEdge(umlViewProvider, node, kind);
+			createEdge(umlViewProvider, node, "PROVIDED");
 		}
 	}
 

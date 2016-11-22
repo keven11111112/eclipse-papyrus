@@ -88,7 +88,7 @@ public class CustomInterfaceEditPart extends InterfaceEditPart {
 			Rectangle insideRect = bounds.getCopy().shrink(new Insets(2));
 			int position = insideRect.getPosition(anchor);
 			EObjectValueStyle valueStyle = (EObjectValueStyle) ((View) interfaceLinkPort.getModel()).getStyle(NotationPackage.eINSTANCE.getEObjectValueStyle());
-			if (valueStyle.getName().equals("REQUIRED")) {
+			if ("REQUIRED".equals(valueStyle.getName())) {
 				this.getPrimaryShape().setRequired(true);
 				this.getPrimaryShape().setProvided(false);
 			}
@@ -98,12 +98,7 @@ public class CustomInterfaceEditPart extends InterfaceEditPart {
 			}
 
 			this.getPrimaryShape().setOrientation(position);
-
-
-
 		}
-
-
 		else if ((getTargetConnections().size() == 1) && (getTargetConnections().get(0) instanceof InterfaceRealizationEditPart)) {
 			this.getPrimaryShape().setRequired(false);
 			this.getPrimaryShape().setProvided(true);
@@ -143,8 +138,6 @@ public class CustomInterfaceEditPart extends InterfaceEditPart {
 				this.getPrimaryShape().setOrientation(position);
 			}
 			if (usageEditPart != null && interfaceRealizationEditPart != null) {
-				// this.getPrimaryShape().setRequired(true);
-				// this.getPrimaryShape().setProvided(true);
 				Point anchor = usageEditPart.getPrimaryShape().getEnd();
 
 				Rectangle bounds = this.getFigure().getBounds();

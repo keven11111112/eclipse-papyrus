@@ -83,14 +83,8 @@ public class DependencyDiamonViewCreateCommand extends AbstractTransactionalComm
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		// / get the factory of the viewer
-		// Dependency2ViewFactory factory = new Dependency2ViewFactory();
-		// creation of the element
-		// this.node = factory.createView(semanticApdater, this.containerView,
-		// ((IHintedType) UMLElementTypes.Dependency_2014)
-		// .getSemanticHint(), -1, true, preferenceHint);
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		node = viewProvider.createDependency_Shape(((EObject) semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint);
+		node = viewProvider.createDependency_Shape((EObject) semanticApdater.getAdapter(EObject.class), this.containerView, -1, true, preferenceHint);
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
 		notationLocation.setX(location.x);
@@ -112,7 +106,7 @@ public class DependencyDiamonViewCreateCommand extends AbstractTransactionalComm
 				View view = (View) ((IGraphicalEditPart) editpart).getModel();
 				if (view != null) {
 					IFile f = WorkspaceSynchronizer.getFile(view.eResource());
-					return f != null ? Collections.singletonList(f) : Collections.EMPTY_LIST;
+					return f != null ? Collections.singletonList(f) : Collections.emptyList();
 				}
 			}
 		}

@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.component.custom.figure.edges;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class UsageDecoration.
  */

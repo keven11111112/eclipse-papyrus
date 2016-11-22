@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.OrphanViewPolicy;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * <pre>
  * This policy is used to suppress orphan node view in GMF view.

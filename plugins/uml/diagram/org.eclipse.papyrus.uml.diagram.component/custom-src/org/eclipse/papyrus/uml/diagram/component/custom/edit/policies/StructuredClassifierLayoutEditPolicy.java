@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.component.custom.edit.policies;
 
 import java.util.Iterator;
 
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -83,7 +82,7 @@ public class StructuredClassifierLayoutEditPolicy extends LayoutEditPolicy {
 			getHostFigure().translateToRelative(requestedLocation);
 
 			// Create proposed creation bounds and use the locator to find the expected position
-			PortPositionLocator locator = new PortPositionLocator(getHostFigure(), PositionConstants.NONE);
+			PortPositionLocator locator = new PortPositionLocator(getHostFigure());
 			Rectangle proposedBounds = new Rectangle(requestedLocation, new Dimension(20, 20));
 			Rectangle preferredBounds = locator.getPreferredLocation(proposedBounds);
 

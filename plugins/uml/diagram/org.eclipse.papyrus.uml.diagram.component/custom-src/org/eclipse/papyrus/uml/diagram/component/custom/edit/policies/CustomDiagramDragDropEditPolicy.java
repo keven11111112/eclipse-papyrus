@@ -17,28 +17,20 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.component.custom.edit.command.CreateViewCommand;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.ComponentLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.ConnectorHelper;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.MultiDependencyHelper;
@@ -257,12 +249,12 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	protected Command dropAsNormalBinaryLink(DropObjectsRequest dropRequest, Element semanticLink, String linkVISUALID) {
 		Collection<?> sources = linkmappingHelper.getSource(semanticLink);
 		Collection<?> targets = linkmappingHelper.getTarget(semanticLink);
-		if (sources.size() == 0 || targets.size() == 0) {
+		if (sources.isEmpty() || targets.isEmpty()) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		Element source = (Element) sources.toArray()[0];
 		Element target = (Element) targets.toArray()[0];
-		CompositeCommand cc = new CompositeCommand("");
+		CompositeCommand cc = new CompositeCommand("Drop As Normal Binary Link");
 		dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
 		return new ICommandProxy(cc);
 	}
@@ -328,12 +320,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	protected Command dropComment(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID) {
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart) getHost();
-		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
-		// if(!(graphicalParentObject instanceof Package) && !(graphicalParentObject instanceof Class) && !(graphicalParentObject instanceof Property) && !(graphicalParentObject instanceof Interaction) && !(graphicalParentObject instanceof StateMachine) &&
-		// !(graphicalParentObject instanceof Collaboration) && !(graphicalParentObject instanceof FunctionBehavior) && !(graphicalParentObject instanceof ProtocolStateMachine) && !(graphicalParentObject instanceof ExecutionEnvironment) &&
-		// !(graphicalParentObject instanceof Device)) {
-		// return UnexecutableCommand.INSTANCE;
-		// }
+		graphicalParentEditPart.resolveSemanticElement();
 		if (CommentEditPart.VISUAL_ID.equals(nodeVISUALID)) {
 			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_Shape,
 					(IHintedType) UMLElementTypes.Comment_AnnotatedElementEdge);
@@ -357,11 +344,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	protected Command dropConstraint(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID) {
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart) getHost();
-		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
-		// if(!(graphicalParentObject instanceof Package) && !(graphicalParentObject instanceof Class) && !(graphicalParentObject instanceof Interaction) && !(graphicalParentObject instanceof StateMachine) && !(graphicalParentObject instanceof Collaboration)
-		// && !(graphicalParentObject instanceof FunctionBehavior) && !(graphicalParentObject instanceof ProtocolStateMachine) && !(graphicalParentObject instanceof ExecutionEnvironment) && !(graphicalParentObject instanceof Device)) {
-		// return UnexecutableCommand.INSTANCE;
-		// }
+		graphicalParentEditPart.resolveSemanticElement();
 		if (ConstraintEditPart.VISUAL_ID.equals(nodeVISUALID)) {
 			return getDropConstraintCommand((Constraint) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Constraint_Shape,
 					(IHintedType) UMLElementTypes.Constraint_ConstrainedElementEdge);

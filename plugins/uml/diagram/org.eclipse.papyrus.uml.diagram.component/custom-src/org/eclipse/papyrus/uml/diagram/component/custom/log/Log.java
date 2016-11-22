@@ -13,11 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.custom.log;
 
-import org.eclipse.core.runtime.Plugin;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Log singleton class for CSD.
  */
@@ -25,16 +24,6 @@ public class Log extends LogHelper {
 
 	/** Singleton instance. */
 	private static Log instance;
-
-	/**
-	 * Access restriction on constructors.
-	 *
-	 * @param activator
-	 *            the activator
-	 */
-	private Log(Plugin activator) {
-		super(activator);
-	}
 
 	/**
 	 * Access restriction on constructors.

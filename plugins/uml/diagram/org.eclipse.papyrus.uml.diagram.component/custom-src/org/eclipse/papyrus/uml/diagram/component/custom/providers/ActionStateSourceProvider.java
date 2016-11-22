@@ -17,7 +17,7 @@ import org.eclipse.papyrus.uml.diagram.common.providers.AbstractActionStateSourc
 import org.eclipse.papyrus.uml.diagram.component.custom.actions.ShowHideRelatedContentsHandler;
 import org.eclipse.ui.ISources;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * This class provides the state of the actions. It's used to refresh
  * the status of these actions in the menu. (in toolbar and popup, it's not needed)
@@ -61,7 +61,7 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	 */
 	protected void refreshShowHideRelatedContentsAction() {
 		String oldState = currentState.get(SHOW_HIDE_RELATED_CONTENTS);
-		String newState = (testShowHideRelatedContents() ? ENABLED : DISABLED);
+		String newState = testShowHideRelatedContents() ? ENABLED : DISABLED;
 
 		if (oldState != newState) {
 			currentState.put(SHOW_HIDE_RELATED_CONTENTS, newState);

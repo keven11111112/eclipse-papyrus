@@ -52,7 +52,7 @@ public class DeferredSetViewCommand extends AbstractTransactionalCommand {
 	 *            the value that will be associated
 	 */
 	public DeferredSetViewCommand(TransactionalEditingDomain domain, SemanticAdapter semanticAdapter, EStructuralFeature feature, Object value) {
-		super(domain, "DeferredSetCommand", Collections.EMPTY_LIST);
+		super(domain, "DeferredSetCommand", Collections.emptyList());
 		this.semanticAdapter = semanticAdapter;
 		this.feature = feature;
 		this.value = value;

@@ -17,7 +17,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramC
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentDiagramEditPart;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CreateComponentDiagramCommand.
  */

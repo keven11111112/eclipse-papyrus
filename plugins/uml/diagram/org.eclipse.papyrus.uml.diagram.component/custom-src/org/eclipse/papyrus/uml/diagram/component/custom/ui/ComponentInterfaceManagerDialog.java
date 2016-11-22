@@ -58,13 +58,13 @@ import org.eclipse.uml2.uml.Port;
  */
 public class ComponentInterfaceManagerDialog extends InterfaceManagerDialog {
 
-	protected HashSet<Object> displayedRequiredInterfacesList = new HashSet<Object>();
+	protected HashSet<Object> displayedRequiredInterfacesList = new HashSet<>();
 
-	protected HashSet<Object> displayedProvidedInterfacesList = new HashSet<Object>();
+	protected HashSet<Object> displayedProvidedInterfacesList = new HashSet<>();
 
 	protected PortEditPart portEditPart = null;
 
-	protected HashMap<Interface, GraphicalEditPart> initialList = new HashMap<Interface, GraphicalEditPart>();
+	protected HashMap<Interface, GraphicalEditPart> initialList = new HashMap<>();
 
 	/**
 	 *
@@ -85,13 +85,13 @@ public class ComponentInterfaceManagerDialog extends InterfaceManagerDialog {
 	 */
 	protected void initDisplayInterfaceList() {
 
-		if ((portEditPart.getSourceConnections().size() > 0)) {
+		if (!(portEditPart.getSourceConnections().isEmpty())) {
 
 			for (Object currentConnection : portEditPart.getSourceConnections()) {
 				ConnectionEditPart connection = (ConnectionEditPart) currentConnection;
 				EObjectValueStyle valueStyle = (EObjectValueStyle) ((View) connection.getModel()).getStyle(NotationPackage.eINSTANCE.getEObjectValueStyle());
 				if (valueStyle != null) {
-					if (valueStyle.getName().equals("REQUIRED")) {
+					if ("REQUIRED".equals(valueStyle.getName())) {
 						displayedRequiredInterfacesList.add(((GraphicalEditPart) connection.getTarget()).resolveSemanticElement());
 					} else {
 						displayedProvidedInterfacesList.add(((GraphicalEditPart) connection.getTarget()).resolveSemanticElement());
@@ -127,25 +127,25 @@ public class ComponentInterfaceManagerDialog extends InterfaceManagerDialog {
 
 		subComposite.setLayout(new FormLayout());
 		// createDisplay button
-		Button Displaybutton = new Button(subComposite, SWT.PUSH);
-		Displaybutton.setText("Display seletected Interface");
+		Button displaybutton = new Button(subComposite, SWT.PUSH);
+		displaybutton.setText("Display seletected Interface");
 		DisplayInterfaceListener displayInterfaceListener = new DisplayInterfaceListener();
-		Displaybutton.addSelectionListener(displayInterfaceListener);
+		displaybutton.addSelectionListener(displayInterfaceListener);
 
 
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 700);
-		Displaybutton.setLayoutData(formData);
+		displaybutton.setLayoutData(formData);
 
 		// create Remove
-		Button RemoveDisplaybutton = new Button(subComposite, SWT.PUSH);
-		RemoveDisplaybutton.setText(" Do not Display selected Interface");
+		Button removeDisplaybutton = new Button(subComposite, SWT.PUSH);
+		removeDisplaybutton.setText(" Do not Display selected Interface");
 		RemoveDisplayInterfaceListener removeDisplayInterfaceListener = new RemoveDisplayInterfaceListener();
-		RemoveDisplaybutton.addSelectionListener(removeDisplayInterfaceListener);
+		removeDisplaybutton.addSelectionListener(removeDisplayInterfaceListener);
 
 		formData = new FormData();
 		formData.left = new FormAttachment(0, 500);
-		RemoveDisplaybutton.setLayoutData(formData);
+		removeDisplaybutton.setLayoutData(formData);
 
 		super.createEditors();
 	}
@@ -156,9 +156,9 @@ public class ComponentInterfaceManagerDialog extends InterfaceManagerDialog {
 	 */
 	protected Command createDisplayedInterfaceCommand() {
 		// Update list from initial List
-		HashMap<Object, GraphicalEditPart> viewToRemove = new HashMap<Object, GraphicalEditPart>();
-		HashSet<Object> requiredInterfaceToDisplay = new HashSet<Object>();
-		HashSet<Object> providedInterfaceToDisplay = new HashSet<Object>();
+		HashMap<Object, GraphicalEditPart> viewToRemove = new HashMap<>();
+		HashSet<Object> requiredInterfaceToDisplay = new HashSet<>();
+		HashSet<Object> providedInterfaceToDisplay = new HashSet<>();
 		// create the list of provided interface to display
 		for (Object currentInterface : displayedProvidedInterfacesList) {
 			if (!initialList.keySet().contains(currentInterface)) {
@@ -181,7 +181,7 @@ public class ComponentInterfaceManagerDialog extends InterfaceManagerDialog {
 		CompoundCommand cmd = new CompoundCommand();
 		CreateLollipopPortCommand comd = new CreateLollipopPortCommand(this.portEditPart.getEditingDomain(), providedInterfaceToDisplay, requiredInterfaceToDisplay, this.portEditPart);
 		cmd.add(new org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper(comd));
-		if (viewToRemove.values().size() > 0) {
+		if (!viewToRemove.values().isEmpty()) {
 			cmd.add(deleteDisplayInterface(viewToRemove.values()));
 		}
 		return cmd;

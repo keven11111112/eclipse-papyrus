@@ -20,7 +20,7 @@ import org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper.CommonSou
 import org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper.CommonTargetUMLSwitch;
 import org.eclipse.uml2.uml.Element;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * This helper is used to retrieve Link ends for use in drag and drop behavior.
  */

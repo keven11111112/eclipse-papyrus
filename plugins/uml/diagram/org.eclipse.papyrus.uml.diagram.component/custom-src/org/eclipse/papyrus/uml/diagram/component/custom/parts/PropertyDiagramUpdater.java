@@ -49,20 +49,5 @@ public class PropertyDiagramUpdater implements ICustomDiagramUpdater<UMLNodeDesc
 	@Override
 	public List<UMLNodeDescriptor> getSemanticChildren(View view) {
 		return Collections.emptyList();
-		// if (!view.isSetElement()) {
-		// return Collections.EMPTY_LIST;
-		// }
-		//
-		// Property modelElement = (Property) view.getElement();
-		// List<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		// for (Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
-		// Property childElement = (Property) it.next();
-		// int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-		// if (visualID == PortEditPart.VISUAL_ID) {
-		// result.add(new UMLNodeDescriptor(childElement, visualID));
-		// continue;
-		// }
-		// }
-		// return result;
 	}
 }

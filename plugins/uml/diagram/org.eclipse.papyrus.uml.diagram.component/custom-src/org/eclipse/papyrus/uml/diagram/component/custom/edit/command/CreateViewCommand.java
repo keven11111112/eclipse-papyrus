@@ -19,23 +19,11 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.notation.View;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class CreateViewCommand.
  */
 public class CreateViewCommand extends CreateCommand {
-
-	/**
-	 * Can execute.
-	 *
-	 * @return true, if successful
-	 * @see org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand#canExecute()
-	 */
-
-	@Override
-	public boolean canExecute() {
-		return true;
-	}
 
 	/**
 	 * Instantiates a new creates the view command.
@@ -49,5 +37,19 @@ public class CreateViewCommand extends CreateCommand {
 	 */
 	public CreateViewCommand(TransactionalEditingDomain editingDomain, ViewDescriptor viewDescriptor, View containerView) {
 		super(editingDomain, viewDescriptor, containerView);
+	}	
+	
+	/**
+	 * Can execute.
+	 *
+	 * @return true, if successful
+	 * @see org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand#canExecute()
+	 */
+
+	@Override
+	public boolean canExecute() {
+		return true;
 	}
+
+
 }

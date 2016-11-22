@@ -25,10 +25,10 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.CompartmentFigure;
 public class PropertyPartFigure extends CompartmentFigure {
 
 	/** The Internal Structure Compartment */
-	private final static String COMPOSITE_COMPARTMENT = "compositeCompartment";
+	private static final  String COMPOSITE_COMPARTMENT = "compositeCompartment";
 
 	/** The List of Compartment */
-	private final static List<String> COMPARTMENT = new ArrayList<String>() {
+	private static final  List<String> COMPARTMENT = new ArrayList<String>() {
 
 		private static final long serialVersionUID = 1L;
 		{

@@ -15,16 +15,10 @@ package org.eclipse.papyrus.uml.diagram.component;
 import org.eclipse.papyrus.infra.gmfdiag.common.GmfEditorFactory;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentDiagramEditPart;
 
-
-
-
-
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating ComponentDiagramEditor objects.
  */
 public class ComponentDiagramEditorFactory extends GmfEditorFactory {
-
 
 	/**
 	 * Instantiates a new component diagram editor factory.

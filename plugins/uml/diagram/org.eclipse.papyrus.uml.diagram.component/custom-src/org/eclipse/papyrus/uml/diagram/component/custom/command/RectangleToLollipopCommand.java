@@ -56,7 +56,7 @@ public class RectangleToLollipopCommand extends AbstractTransactionalCommand {
 	 *            the wrapper that store the value of the result
 	 */
 	public RectangleToLollipopCommand(TransactionalEditingDomain domain, GraphicalEditPart classView, SemanticAdapter semanticAdapter) {
-		super(domain, "change to Lollipop", Collections.EMPTY_LIST);
+		super(domain, "change to Lollipop", Collections.emptyList());
 		this.elementEditPart = classView;
 		this.semanticApdater = semanticAdapter;
 		setResult(CommandResult.newOKCommandResult(semanticAdapter));

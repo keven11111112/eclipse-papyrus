@@ -23,17 +23,17 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartm
  */
 public class ComponentReconcilerForCompartment extends ReconcilerForCompartment {
 
-	private static final String ComponentCompositeCompartmentEditPart_VISUAL_ID = "7001";
-	private static final String ModelPackageableElementCompartmentEditPart_VISUAL_ID = "7006";
-	private static final String PackagePackageableElementCompartmentEditPart_VISUAL_ID = "7002";
-	private static final String ModelPackageableElementCompartmentEditPartCN_VISUAL_ID = "7007";
-	private static final String PackagePackageableElementCompartmentEditPartCN_VISUAL_ID = "7005";
-	private static final String ComponentCompositeCompartmentEditPartCN_VISUAL_ID = "7003";
-	private static final String ComponentCompositeCompartmentEditPartPCN_VISUAL_ID = "7004";
-	private static final String InterfaceAttributeCompartmentEditPart_VISUAL_ID = "7008";
-	private static final String InterfaceOperationCompartmentEditPart_VISUAL_ID = "7009";
-	private static final String InterfaceAttributeCompartmentEditPartCN_VISUAL_ID = "7010";
-	private static final String InterfaceOperationCompartmentEditPartCN_VISUAL_ID = "7011";
+	private static final String ComponentCompositeCompartmentEditPart_VISUAL_ID = "7001"; //$NON-NLS-1$
+	private static final String ModelPackageableElementCompartmentEditPart_VISUAL_ID = "7006"; //$NON-NLS-1$
+	private static final String PackagePackageableElementCompartmentEditPart_VISUAL_ID = "7002"; //$NON-NLS-1$
+	private static final String ModelPackageableElementCompartmentEditPartCN_VISUAL_ID = "7007"; //$NON-NLS-1$
+	private static final String PackagePackageableElementCompartmentEditPartCN_VISUAL_ID = "7005"; //$NON-NLS-1$
+	private static final String ComponentCompositeCompartmentEditPartCN_VISUAL_ID = "7003"; //$NON-NLS-1$
+	private static final String ComponentCompositeCompartmentEditPartPCN_VISUAL_ID = "7004"; //$NON-NLS-1$
+	private static final String InterfaceAttributeCompartmentEditPart_VISUAL_ID = "7008"; //$NON-NLS-1$
+	private static final String InterfaceOperationCompartmentEditPart_VISUAL_ID = "7009"; //$NON-NLS-1$
+	private static final String InterfaceAttributeCompartmentEditPartCN_VISUAL_ID = "7010"; //$NON-NLS-1$
+	private static final String InterfaceOperationCompartmentEditPartCN_VISUAL_ID = "7011"; //$NON-NLS-1$
 
 	/** The compartments visual id. */
 	private List<String> compartmentsVisualID = Arrays.asList(

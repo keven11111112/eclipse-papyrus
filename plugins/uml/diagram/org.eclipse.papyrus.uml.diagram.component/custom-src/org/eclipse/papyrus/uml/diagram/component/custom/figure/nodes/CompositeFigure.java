@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigu
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Figure for Composite representation of Class.
  */
@@ -34,10 +34,10 @@ public class CompositeFigure extends RoundedCompartmentFigure {
 	private boolean active = false;
 
 	/** The Internal Structure Compartment. */
-	private final static String COMPOSITE_COMPARTMENT = "compositeCompartment";
+	private static final  String COMPOSITE_COMPARTMENT = "compositeCompartment";
 
 	/** The List of Compartment. */
-	private final static List<String> COMPARTMENT = new ArrayList<String>() {
+	private static final  List<String> COMPARTMENT = new ArrayList<String>() {
 
 		private static final long serialVersionUID = 1L;
 		{
