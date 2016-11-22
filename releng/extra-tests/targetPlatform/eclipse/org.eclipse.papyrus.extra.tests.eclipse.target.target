@@ -4,10 +4,10 @@
 <target name="Papyrus Extra Tests" sequenceNumber="1479378485">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.b3.aggregator.editor.feature.source.feature.group" version="1.0.0.20161031-0323"/>
-      <unit id="org.eclipse.b3.aggregator.editor.feature.feature.group" version="1.0.0.20161031-0323"/>
-      <unit id="org.eclipse.b3.aggregator.engine.feature.source.feature.group" version="1.0.0.20161031-0323"/>
-      <repository id="b3" location="file:/home/data/httpd/download.eclipse.org/cbi/updates/aggregator/ide/4.5/"/>
+      <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group" version="1.0.100.20161116-2325"/>
+      <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group" version="1.0.100.20161116-2325"/>
+      <unit id="org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group" version="1.0.100.20161116-2325"/>
+      <repository id="cbiAggregator" location="file:/home/data/httpd/download.eclipse.org/cbi/updates/aggregator/ide/4.6/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.oomph.version.feature.group" version="1.6.0.v20161019-0656"/>
@@ -132,10 +132,6 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="mylyn" location="file:/home/data/httpd/download.eclipse.org/mylyn/drops/3.22.0/v20161026-0352"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.epp.logging.aeri.feature.feature.group" version="2.0.3.v20161116-1156"/>
-      <repository id="aeri" location="file:/home/data/httpd/download.eclipse.org/technology/epp/logging/milestones/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.compare.diagram.gmf.source.feature.group" version="3.3.0.201611040610"/>

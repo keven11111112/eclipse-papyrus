@@ -22,11 +22,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.b3.aggregator.Aggregation;
-import org.eclipse.b3.aggregator.AggregatorPackage;
-import org.eclipse.b3.aggregator.Contribution;
-import org.eclipse.b3.aggregator.MappedRepository;
-import org.eclipse.b3.aggregator.transformer.TransformationManager;
+import org.eclipse.cbi.p2repo.aggregator.Aggregation;
+import org.eclipse.cbi.p2repo.aggregator.AggregatorPackage;
+import org.eclipse.cbi.p2repo.aggregator.Contribution;
+import org.eclipse.cbi.p2repo.aggregator.MappedRepository;
+import org.eclipse.cbi.p2repo.aggregator.transformer.TransformationManager;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -84,7 +84,7 @@ public class AddSetupRepositoryUpdateAnnotationHandler extends AbstractHandler {
 
 					List<IAggregationElementProxy> elements = loadContributionsAndRepositories(rset, URI.createPlatformResourceURI(aggrFile.getFullPath().toString(), true));
 
-					Map<Repository, IAggregationElementProxy> updates = new HashMap<Repository, AddSetupRepositoryUpdateAnnotationHandler.IAggregationElementProxy>();
+					Map<Repository, IAggregationElementProxy> updates = new HashMap<>();
 					for (Repository repo : repositories) {
 						FilteredItemsSelectionDialog dlg = createSelectionDialog(activeShell, repo, elements);
 						if (dlg.open() == Window.OK) {
@@ -113,7 +113,7 @@ public class AddSetupRepositoryUpdateAnnotationHandler extends AbstractHandler {
 	}
 
 	private Collection<Repository> getSelectedRepositories(Object context) {
-		List<Repository> result = new ArrayList<Repository>();
+		List<Repository> result = new ArrayList<>();
 
 		Object variable = null;
 		if (context instanceof ExecutionEvent) {
@@ -141,7 +141,7 @@ public class AddSetupRepositoryUpdateAnnotationHandler extends AbstractHandler {
 		// Ensure that the Aggregator model is loaded because the model plug-in doesn't register it
 		AggregatorPackage.eINSTANCE.eClass();
 
-		List<IAggregationElementProxy> result = new ArrayList<AddSetupRepositoryUpdateAnnotationHandler.IAggregationElementProxy>();
+		List<IAggregationElementProxy> result = new ArrayList<>();
 		Resource resource;
 
 		try {
@@ -382,6 +382,7 @@ public class AddSetupRepositoryUpdateAnnotationHandler extends AbstractHandler {
 			this.index = index;
 		}
 
+		@Override
 		public Contribution getContribution() {
 			return contribution;
 		}
@@ -394,10 +395,12 @@ public class AddSetupRepositoryUpdateAnnotationHandler extends AbstractHandler {
 			return index;
 		}
 
+		@Override
 		public String getLabel() {
 			return String.format("%s - %s", contribution.getLabel(), repository.getLocation());
 		}
 
+		@Override
 		public String getDetails() {
 			if ((contribution.getDescription() != null) && (contribution.getDescription().length() > 0)) {
 				return String.format("%s (%s) - %s", contribution.getLabel(), contribution.getDescription(), repository.getLocation());

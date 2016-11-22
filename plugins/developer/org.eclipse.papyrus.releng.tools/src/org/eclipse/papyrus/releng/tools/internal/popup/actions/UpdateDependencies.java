@@ -23,9 +23,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.b3.aggregator.Aggregation;
-import org.eclipse.b3.aggregator.AggregatorPackage;
-import org.eclipse.b3.aggregator.transformer.TransformationManager;
+import org.eclipse.cbi.p2repo.aggregator.Aggregation;
+import org.eclipse.cbi.p2repo.aggregator.AggregatorPackage;
+import org.eclipse.cbi.p2repo.aggregator.transformer.TransformationManager;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
