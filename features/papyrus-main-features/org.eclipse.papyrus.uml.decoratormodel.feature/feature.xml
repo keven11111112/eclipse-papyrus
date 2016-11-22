@@ -11,6 +11,10 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	Plug-ins providing APIs and UI for access to and management of externalized profile applications.
+   </description>
 
    <plugin download-size="0" id="org.eclipse.papyrus.uml.decoratormodel" install-size="0" unpack="false" version="0.0.0"/>
 

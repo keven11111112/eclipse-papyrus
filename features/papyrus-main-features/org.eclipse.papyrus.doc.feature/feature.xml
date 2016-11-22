@@ -16,6 +16,10 @@
    <license url="%licenseURL">
       %license
    </license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	This feature regroups the different doc plugins that should be released in the info center.
+   </description>
 
    <plugin
          id="org.eclipse.papyrus.cdo.ui.doc"

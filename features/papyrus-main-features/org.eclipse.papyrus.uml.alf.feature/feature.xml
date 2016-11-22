@@ -12,6 +12,10 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	The Papyrus implementation of the Action Language for Foundational UML.
+   </description>
 
    <plugin download-size="0" id="org.eclipse.papyrus.uml.alf.common" install-size="0" unpack="false" version="0.0.0"/>
 

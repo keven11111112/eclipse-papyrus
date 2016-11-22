@@ -13,6 +13,10 @@
       %license
    </license>
    
+   <description url="https://eclipse.org/papyrus/">
+   	Alf core Tests.
+   </description>
+   
    <plugin download-size="0" id="org.eclipse.papyrus.uml.alf.tests" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

@@ -12,6 +12,10 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	Papyrus Nattable are a set of plugins dedicated to manage tables in relation with Sysml models.
+   </description>
 
    <plugin download-size="0" id="org.eclipse.papyrus.sysml.nattable" install-size="0" unpack="false" version="0.0.0"/>
 
