@@ -29,8 +29,7 @@ import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorUtil;
 /**
  * @generated
  */
-public class UMLMarkerNavigationProvider
-		extends AbstractModelMarkerNavigationProvider {
+public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationProvider {
 
 	/**
 	 * @generated
@@ -53,8 +52,7 @@ public class UMLMarkerNavigationProvider
 		}
 		EditPart targetEditPart = (EditPart) editPartRegistry.get(targetView);
 		if (targetEditPart != null) {
-			UMLDiagramEditorUtil.selectElementsInDiagram(
-					editor, Arrays.asList(new EditPart[] { targetEditPart }));
+			UMLDiagramEditorUtil.selectElementsInDiagram(editor, Arrays.asList(new EditPart[] { targetEditPart }));
 		}
 	}
 
@@ -65,16 +63,14 @@ public class UMLMarkerNavigationProvider
 		try {
 			resource.deleteMarkers(MARKER_TYPE, true, IResource.DEPTH_ZERO);
 		} catch (CoreException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Failed to delete validation markers", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Failed to delete validation markers", e); //$NON-NLS-1$
 		}
 	}
 
 	/**
 	 * @generated
 	 */
-	public static IMarker addMarker(IFile file,
-			String elementId, String location, String message, int statusSeverity) {
+	public static IMarker addMarker(IFile file, String elementId, String location, String message, int statusSeverity) {
 		IMarker marker = null;
 		try {
 			marker = file.createMarker(MARKER_TYPE);
@@ -84,14 +80,12 @@ public class UMLMarkerNavigationProvider
 			int markerSeverity = IMarker.SEVERITY_INFO;
 			if (statusSeverity == IStatus.WARNING) {
 				markerSeverity = IMarker.SEVERITY_WARNING;
-			} else if (statusSeverity == IStatus.ERROR ||
-					statusSeverity == IStatus.CANCEL) {
+			} else if (statusSeverity == IStatus.ERROR || statusSeverity == IStatus.CANCEL) {
 				markerSeverity = IMarker.SEVERITY_ERROR;
 			}
 			marker.setAttribute(IMarker.SEVERITY, markerSeverity);
 		} catch (CoreException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Failed to create validation marker", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Failed to create validation marker", e); //$NON-NLS-1$
 		}
 		return marker;
 	}

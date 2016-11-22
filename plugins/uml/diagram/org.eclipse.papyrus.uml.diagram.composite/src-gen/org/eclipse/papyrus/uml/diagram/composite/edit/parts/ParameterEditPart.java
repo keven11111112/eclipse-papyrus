@@ -90,7 +90,8 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeIconlDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeIconlDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ParameterLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
@@ -144,7 +145,6 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 		return lep;
 	}
 
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -158,8 +158,7 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -168,7 +167,6 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
 
 	/**
 	 * @generated
@@ -185,7 +183,6 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 	public ParameterFigure getPrimaryShape() {
 		return (ParameterFigure) primaryShape;
 	}
-
 
 	/**
 	 * @generated
@@ -209,7 +206,6 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(20, 20);
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -260,7 +256,6 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -283,9 +278,5 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ParameterNameEditPart.VISUAL_ID));
 	}
-
-
-
-
 
 }

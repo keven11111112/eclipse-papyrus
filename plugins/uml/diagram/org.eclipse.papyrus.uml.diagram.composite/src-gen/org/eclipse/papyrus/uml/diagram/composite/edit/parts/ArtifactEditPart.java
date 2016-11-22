@@ -85,7 +85,8 @@ public class ArtifactEditPart extends NodeEditPart {
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -135,9 +136,6 @@ public class ArtifactEditPart extends NodeEditPart {
 		return lep;
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -162,7 +160,6 @@ public class ArtifactEditPart extends NodeEditPart {
 			((ArtifactNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
 
 		return false;
 	}
@@ -227,7 +224,6 @@ public class ArtifactEditPart extends NodeEditPart {
 		return result;
 	}
 
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -277,7 +273,6 @@ public class ArtifactEditPart extends NodeEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -300,9 +295,5 @@ public class ArtifactEditPart extends NodeEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ArtifactNameEditPart.VISUAL_ID));
 	}
-
-
-
-
 
 }

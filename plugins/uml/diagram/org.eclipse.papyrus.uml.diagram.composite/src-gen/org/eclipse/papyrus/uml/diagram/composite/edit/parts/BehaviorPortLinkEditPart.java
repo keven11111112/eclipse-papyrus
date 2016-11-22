@@ -25,8 +25,7 @@ import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.NoDeleteFr
 /**
  * @generated
  */
-public class BehaviorPortLinkEditPart extends ConnectionEditPart
-		implements ITreeBranchEditPart {
+public class BehaviorPortLinkEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -50,10 +49,6 @@ public class BehaviorPortLinkEditPart extends ConnectionEditPart
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NoConnectableEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new NoDeleteFromDiagramEditPolicy());
 	}
-
-
-
-
 
 	/**
 	 * Creates figure for this edit part.
