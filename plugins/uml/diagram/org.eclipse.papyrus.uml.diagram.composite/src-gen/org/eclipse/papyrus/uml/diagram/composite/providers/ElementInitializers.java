@@ -100,8 +100,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Activity_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -115,8 +114,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Interaction_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -130,8 +128,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_ProtocolStateMachine_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -145,8 +142,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_StateMachine_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -160,8 +156,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_FunctionBehavior_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -175,8 +170,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_OpaqueBehavior_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -190,8 +184,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Component_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -205,8 +198,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Device_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -220,8 +212,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_ExecutionEnvironment_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -235,8 +226,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Node_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -250,8 +240,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Class_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -265,8 +254,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Collaboration_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -280,8 +268,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Interface_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -295,8 +282,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_PrimitiveType_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -310,8 +296,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Enumeration_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -325,8 +310,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_DataType_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -340,8 +324,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Actor_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -355,8 +338,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_DeploymentSpecification_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -370,8 +352,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Artifact_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -385,13 +366,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_InformationItem_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 			Object value_1 = isAbstract_InformationItem_Shape(instance);
 			if (value_1 != null) {
-				instance.setIsAbstract(
-						((Boolean) value_1).booleanValue());
+				instance.setIsAbstract(((Boolean) value_1).booleanValue());
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -405,8 +384,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Signal_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -420,8 +398,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_UseCase_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -435,8 +412,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_SignalEvent_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -450,8 +426,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_CallEvent_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -465,8 +440,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_AnyReceiveEvent_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -480,8 +454,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_ChangeEvent_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -495,8 +468,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_TimeEvent_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -510,8 +482,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_DurationObservation_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -525,8 +496,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_TimeObservation_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -540,8 +510,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_LiteralBoolean_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -555,8 +524,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_LiteralInteger_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -570,8 +538,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_LiteralNull_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -585,8 +552,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_LiteralString_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -600,8 +566,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_LiteralUnlimitedNatural_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -615,8 +580,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_StringExpression_PackagedElementShape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -630,8 +594,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_OpaqueExpression_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -645,8 +608,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_TimeExpression_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -660,8 +622,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Expression_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -675,8 +636,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Duration_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -690,8 +650,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_TimeInterval_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -705,8 +664,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_DurationInterval_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -720,8 +678,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Interval_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -735,8 +692,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_InstanceValue_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -750,8 +706,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = body_Comment_Shape(instance);
 			if (value_0 != null) {
-				instance.setBody(
-						(String) value_0);
+				instance.setBody((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -765,13 +720,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_DurationConstraint_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 			Object value_1 = specification_DurationConstraint_Shape(instance);
 			if (value_1 != null) {
-				instance.setSpecification(
-						(ValueSpecification) value_1);
+				instance.setSpecification((ValueSpecification) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -785,13 +738,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_TimeConstraint_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 			Object value_1 = specification_TimeConstraint_Shape(instance);
 			if (value_1 != null) {
-				instance.setSpecification(
-						(ValueSpecification) value_1);
+				instance.setSpecification((ValueSpecification) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -805,13 +756,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_IntervalConstraint_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 			Object value_1 = specification_IntervalConstraint_Shape(instance);
 			if (value_1 != null) {
-				instance.setSpecification(
-						(ValueSpecification) value_1);
+				instance.setSpecification((ValueSpecification) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -825,13 +774,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_InteractionConstraint_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 			Object value_1 = specification_InteractionConstraint_Shape(instance);
 			if (value_1 != null) {
-				instance.setSpecification(
-						(ValueSpecification) value_1);
+				instance.setSpecification((ValueSpecification) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -845,13 +792,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Constraint_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 			Object value_1 = specification_Constraint_Shape(instance);
 			if (value_1 != null) {
-				instance.setSpecification(
-						(ValueSpecification) value_1);
+				instance.setSpecification((ValueSpecification) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -865,11 +810,9 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Port_BehaviorShape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
-			instance.setAggregation(
-					AggregationKind.COMPOSITE_LITERAL);
+			instance.setAggregation(AggregationKind.COMPOSITE_LITERAL);
 
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -883,11 +826,9 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Port_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
-			instance.setAggregation(
-					AggregationKind.COMPOSITE_LITERAL);
+			instance.setAggregation(AggregationKind.COMPOSITE_LITERAL);
 
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -901,8 +842,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Parameter_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -916,8 +856,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Property_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -931,8 +870,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_ConnectableElement_CollaborationRoleShape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -946,8 +884,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_CollaborationUse_Shape(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -961,8 +898,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Activity_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -976,8 +912,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Interaction_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -991,8 +926,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_ProtocolStateMachine_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1006,8 +940,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_StateMachine_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1021,8 +954,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_FunctionBehavior_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1036,8 +968,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_OpaqueBehavior_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1051,8 +982,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Component_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1066,8 +996,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Device_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1081,8 +1010,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_ExecutionEnvironment_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1096,8 +1024,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Node_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1111,8 +1038,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Class_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1126,8 +1052,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Collaboration_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1141,8 +1066,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Interface_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1156,8 +1080,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_PrimitiveType_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1171,8 +1094,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Enumeration_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1186,8 +1108,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_DataType_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1201,8 +1122,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Actor_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1216,8 +1136,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_DeploymentSpecification_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1231,8 +1150,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Artifact_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1246,13 +1164,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_InformationItem_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 			Object value_1 = isAbstract_InformationItem_Shape_CN(instance);
 			if (value_1 != null) {
-				instance.setIsAbstract(
-						((Boolean) value_1).booleanValue());
+				instance.setIsAbstract(((Boolean) value_1).booleanValue());
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1266,8 +1182,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Signal_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1281,8 +1196,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_UseCase_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1296,8 +1210,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = body_Comment_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setBody(
-						(String) value_0);
+				instance.setBody((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1311,13 +1224,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_DurationConstraint_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 			Object value_1 = specification_DurationConstraint_Shape_CN(instance);
 			if (value_1 != null) {
-				instance.setSpecification(
-						(ValueSpecification) value_1);
+				instance.setSpecification((ValueSpecification) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1331,13 +1242,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_TimeConstraint_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 			Object value_1 = specification_TimeConstraint_Shape_CN(instance);
 			if (value_1 != null) {
-				instance.setSpecification(
-						(ValueSpecification) value_1);
+				instance.setSpecification((ValueSpecification) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1351,13 +1260,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_IntervalConstraint_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 			Object value_1 = specification_IntervalConstraint_Shape_CN(instance);
 			if (value_1 != null) {
-				instance.setSpecification(
-						(ValueSpecification) value_1);
+				instance.setSpecification((ValueSpecification) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1371,13 +1278,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_InteractionConstraint_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 			Object value_1 = specification_InteractionConstraint_Shape_CN(instance);
 			if (value_1 != null) {
-				instance.setSpecification(
-						(ValueSpecification) value_1);
+				instance.setSpecification((ValueSpecification) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1391,13 +1296,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Constraint_Shape_CN(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 			Object value_1 = specification_Constraint_Shape_CN(instance);
 			if (value_1 != null) {
-				instance.setSpecification(
-						(ValueSpecification) value_1);
+				instance.setSpecification((ValueSpecification) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1411,8 +1314,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Property_AttributeLabel(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1426,8 +1328,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Operation_OperationLabel(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1441,8 +1342,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_EnumerationLiteral_LiteralLabel(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1456,8 +1356,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_ComponentRealization_Edge(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1471,8 +1370,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_InterfaceRealization_Edge(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1486,8 +1384,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Substitution_Edge(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1501,8 +1398,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Realization_Edge(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1516,8 +1412,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Manifestation_Edge(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1531,8 +1426,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Abstraction_Edge(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1546,8 +1440,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Usage_Edge(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1561,8 +1454,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Deployment_Edge(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1576,8 +1468,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Dependency_Edge(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1591,8 +1482,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Connector_Edge(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -1606,8 +1496,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_InformationFlow_Edge(instance);
 			if (value_0 != null) {
-				instance.setName(
-						(String) value_0);
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$

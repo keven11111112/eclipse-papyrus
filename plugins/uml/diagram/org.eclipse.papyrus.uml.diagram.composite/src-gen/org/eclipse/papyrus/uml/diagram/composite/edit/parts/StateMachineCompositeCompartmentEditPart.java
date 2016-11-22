@@ -39,8 +39,7 @@ import org.eclipse.papyrus.uml.diagram.composite.part.Messages;
 /**
  * @generated
  */
-public class StateMachineCompositeCompartmentEditPart
-		extends LinkLFShapeCompartmentEditPart {
+public class StateMachineCompositeCompartmentEditPart extends LinkLFShapeCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -54,14 +53,12 @@ public class StateMachineCompositeCompartmentEditPart
 		super(view);
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public String getCompartmentName() {
 		return Messages.StateMachineCompositeCompartmentEditPart_title;
 	}
-
 
 	/**
 	 * @generated
@@ -79,9 +76,6 @@ public class StateMachineCompositeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PortInCompartmentCreationEditPolicy());
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -124,10 +118,7 @@ public class StateMachineCompositeCompartmentEditPart
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(
-				this,
-				getFigure(),
-				new Rectangle(loc, size));
+		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
 	/**

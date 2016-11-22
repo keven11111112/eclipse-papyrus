@@ -24,8 +24,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.GeneralizationFigure;
 /**
  * @generated
  */
-public class GeneralizationEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -45,7 +44,8 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -53,8 +53,8 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof GeneralizationAppliedStereotypeEditPart) {
-			((GeneralizationAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((GeneralizationAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

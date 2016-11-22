@@ -499,7 +499,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if (source == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier>singletonMap("oppositeEnd", //$NON-NLS-1$
 							UMLPackage.eINSTANCE.getNamedElement());
 					Object sourceVal = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getNamedElement(), env)
 							.evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
@@ -510,7 +510,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if (target == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier>singletonMap("oppositeEnd", //$NON-NLS-1$
 							UMLPackage.eINSTANCE.getNamedElement());
 					Object targetVal = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getNamedElement(), env)
 							.evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
@@ -534,7 +534,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if (source == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier>singletonMap("oppositeEnd", //$NON-NLS-1$
 							UMLPackage.eINSTANCE.getInterface());
 					Object sourceVal = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getNamedElement(), env)
 							.evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
@@ -545,7 +545,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if (target == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier>singletonMap("oppositeEnd", //$NON-NLS-1$
 							UMLPackage.eINSTANCE.getNamedElement());
 					Object targetVal = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getInterface(), env)
 							.evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$

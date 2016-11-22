@@ -17,7 +17,6 @@ import org.eclipse.papyrus.uml.diagram.common.actions.handlers.AbstractShowHideH
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * Handler for the {@link ShowHideRelatedContentsAction}.
  */

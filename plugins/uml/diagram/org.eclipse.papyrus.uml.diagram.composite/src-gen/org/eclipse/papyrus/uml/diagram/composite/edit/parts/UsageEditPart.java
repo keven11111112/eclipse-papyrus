@@ -24,8 +24,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 /**
  * @generated
  */
-public class UsageEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class UsageEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -45,7 +44,8 @@ public class UsageEditPart extends UMLConnectionNodeEditPart
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -53,12 +53,10 @@ public class UsageEditPart extends UMLConnectionNodeEditPart
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof UsageNameEditPart) {
-			((UsageNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getNameLabel());
+			((UsageNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		if (childEditPart instanceof UsageAppliedStereotypeEditPart) {
-			((UsageAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((UsageAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

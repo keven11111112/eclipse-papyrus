@@ -23,8 +23,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure
 /**
  * @generated
  */
-public class LinkDescriptorEditPart extends ConnectionEditPart
-		implements ITreeBranchEditPart {
+public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -46,10 +45,6 @@ public class LinkDescriptorEditPart extends ConnectionEditPart
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ViewComponentEditPolicy());
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 	}
-
-
-
-
 
 	/**
 	 * Creates figure for this edit part.

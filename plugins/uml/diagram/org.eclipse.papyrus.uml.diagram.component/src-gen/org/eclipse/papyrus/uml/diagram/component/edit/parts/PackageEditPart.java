@@ -157,7 +157,7 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 
 		if (childEditPart instanceof PackagePackageableElementCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((PackagePackageableElementCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

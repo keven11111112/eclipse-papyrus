@@ -22,8 +22,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure
 /**
  * @generated
  */
-public class TimeObservationEventEditPart extends ConnectionEditPart
-		implements ITreeBranchEditPart {
+public class TimeObservationEventEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -44,10 +43,6 @@ public class TimeObservationEventEditPart extends ConnectionEditPart
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 	}
-
-
-
-
 
 	/**
 	 * Creates figure for this edit part.

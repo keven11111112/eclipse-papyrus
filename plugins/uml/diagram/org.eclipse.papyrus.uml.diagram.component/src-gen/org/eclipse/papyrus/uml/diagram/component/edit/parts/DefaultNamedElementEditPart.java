@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -115,6 +116,15 @@ public class DefaultNamedElementEditPart extends RoundedCompartmentEditPart {
 			}
 		};
 		return lep;
+	}
+
+	/**
+	*Papyrus codeGen
+	*@generated
+	**/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**

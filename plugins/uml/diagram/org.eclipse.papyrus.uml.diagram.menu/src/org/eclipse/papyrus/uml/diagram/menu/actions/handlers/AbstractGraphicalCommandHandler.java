@@ -31,6 +31,7 @@ import org.eclipse.papyrus.uml.diagram.common.Activator;
  * The command is executed by the handler
  *
  * @deprecated Since February 2014 use org.eclipse.papyrus.infra.gmfdiag.menu.handlers.AbstractGraphicalCommandHandler
+ * FIXME: it's impossible to use the new class due to missing parameter field from AbstractParametricHandler 
  */
 @Deprecated
 public abstract class AbstractGraphicalCommandHandler extends AbstractParametricHandler {
@@ -75,8 +76,8 @@ public abstract class AbstractGraphicalCommandHandler extends AbstractParametric
 	 * @return null
 	 * @throws ExecutionException
 	 */
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
 		TransactionalEditingDomain editingDomain = getEditingDomain();
 		if (editingDomain != null) {
 			editingDomain.getCommandStack().execute(new GEFtoEMFCommandWrapper(getCommand()));
@@ -96,7 +97,7 @@ public abstract class AbstractGraphicalCommandHandler extends AbstractParametric
 				return;
 			}
 		} catch (ExecutionException e) {
-			e.printStackTrace();
+			Activator.log.error(e);
 		}
 
 		setBaseEnabled(false);
@@ -112,7 +113,7 @@ public abstract class AbstractGraphicalCommandHandler extends AbstractParametric
 				return true;
 			}
 		} catch (ExecutionException e) {
-			e.printStackTrace();
+			Activator.log.error(e);
 		}
 
 		return false;

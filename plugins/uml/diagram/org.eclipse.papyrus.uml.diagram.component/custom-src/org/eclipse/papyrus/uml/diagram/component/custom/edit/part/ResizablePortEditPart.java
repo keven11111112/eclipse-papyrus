@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.uml.diagram.component.custom.edit.part;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -92,7 +91,7 @@ public class ResizablePortEditPart extends PortEditPart {
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof PortEditPart) {
-			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
+			IBorderItemLocator locator = new PortPositionLocator(getMainFigure());
 			borderItemContainer.add(((PortEditPart) borderItemEditPart).getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);

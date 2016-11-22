@@ -34,8 +34,12 @@ public class CustomPortPositionLocator extends PortPositionLocator {
 
 	protected RoundedBorderNamedElementEditPart portEditPart = null;
 	
-	
+	public CustomPortPositionLocator(IFigure parentFigure, RoundedBorderNamedElementEditPart childEditPart) {
+		super(parentFigure);
+		portEditPart = childEditPart;
+	}	
 
+	@Deprecated
 	public CustomPortPositionLocator(IFigure parentFigure, RoundedBorderNamedElementEditPart childEditPart,
 			int none) {
 		super(parentFigure, none);
@@ -60,14 +64,10 @@ public class CustomPortPositionLocator extends PortPositionLocator {
 		
 		// Calculate Max position around the graphical parent (1/2 size or the port around
 		// the graphical parent bounds.
-//		int xMin = parentRec.x - thisRec.width + borderItemOffset;
 		int xMin = parentRec.x - thisRec.width/2;		
-//		int xMax = parentRec.x - borderItemOffset + parentRec.width;
 		int xMax = parentRec.x + parentRec.width - thisRec.width/2;
 		
-//		int yMin = parentRec.y - thisRec.height + borderItemOffset;
 		int yMin = parentRec.y - thisRec.height/2;		
-//		int yMax = parentRec.y - borderItemOffset + parentRec.height;
 		int yMax = parentRec.y + parentRec.height - thisRec.height/2;
 
 		// Modify Port location if MAX X or Y are exceeded
@@ -157,18 +157,12 @@ public class CustomPortPositionLocator extends PortPositionLocator {
 
 		int x = constraint.x;
 		int y = constraint.y;
-//		int h = thisRec.height;
-//		int w = thisRec.width;
 		
 		Rectangle p = parentFigure.getBounds();
 		
 		int xMin = p.x - thisRec.width/2;		
-//		int xMax = parentRec.x - borderItemOffset + parentRec.width;
 		int xMax = p.x + p.width - thisRec.width/2;
-		
-//		int yMin = parentRec.y - thisRec.height + borderItemOffset;
 		int yMin = p.y - thisRec.height/2;		
-//		int yMax = parentRec.y - borderItemOffset + parentRec.height;
 		int yMax = p.y + p.height - thisRec.height/2;
 		
 		if(x == xMin && y == yMin)
@@ -187,38 +181,6 @@ public class CustomPortPositionLocator extends PortPositionLocator {
 			position = PositionConstants.WEST;
 		else 
 			position = PositionConstants.EAST;
-		
-		
-//		//NORTH EAST
-//		if(y == borderItemOffset -h && x == p.width - borderItemOffset)
-//			position = PositionConstants.NORTH_EAST;
-//
-//		//NORTH WEST
-//		else if(x == -(w - borderItemOffset) && y == -(h - borderItemOffset)) 
-//			position = PositionConstants.NORTH_WEST;
-//		
-//		//SOUTH WEST
-//		else if(x == -(w - borderItemOffset) && y == p.height - borderItemOffset)
-//			position = PositionConstants.SOUTH_WEST;
-//		
-//		//SOUTH EAST
-//		else if(x == p.width - borderItemOffset && y == p.height - borderItemOffset)
-//			position = PositionConstants.SOUTH_EAST;		
-//		
-//		//EAST
-//		else if(x >= p.width - borderItemOffset )
-//			position = PositionConstants.EAST;
-//		
-//		//WEST
-//		else if(x <= -(w - borderItemOffset))
-//			position = PositionConstants.WEST;
-//		
-//		//NORTH
-//		else if(y <= -(h-borderItemOffset))
-//			position = PositionConstants.NORTH;
-//		//SOUTH
-//		else if(y >= p.height - borderItemOffset)
-//			position = PositionConstants.SOUTH;
 		return position;
 	}
 

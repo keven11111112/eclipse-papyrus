@@ -884,18 +884,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case BehaviorPortLinkEditPart.VISUAL_ID:
 				return new BehaviorPortLinkEditPart(view);
 
-
 			case LinkDescriptorEditPart.VISUAL_ID:
 				return new LinkDescriptorEditPart(view);
-
 
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
 
-
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
-
 
 			case ComponentRealizationEditPart.VISUAL_ID:
 				return new ComponentRealizationEditPart(view);
@@ -906,7 +902,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ComponentRealizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new ComponentRealizationAppliedStereotypeEditPart(view);
 
-
 			case InterfaceRealizationEditPart.VISUAL_ID:
 				return new InterfaceRealizationEditPart(view);
 
@@ -915,7 +910,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case InterfaceRealizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new InterfaceRealizationAppliedStereotypeEditPart(view);
-
 
 			case SubstitutionEditPart.VISUAL_ID:
 				return new SubstitutionEditPart(view);
@@ -926,7 +920,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case SubstitutionAppliedStereotypeEditPart.VISUAL_ID:
 				return new SubstitutionAppliedStereotypeEditPart(view);
 
-
 			case RealizationEditPart.VISUAL_ID:
 				return new RealizationEditPart(view);
 
@@ -935,7 +928,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case RealizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new RealizationAppliedStereotypeEditPart(view);
-
 
 			case ManifestationEditPart.VISUAL_ID:
 				return new ManifestationEditPart(view);
@@ -946,7 +938,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ManifestationAppliedStereotypeEditPart.VISUAL_ID:
 				return new ManifestationAppliedStereotypeEditPart(view);
 
-
 			case AbstractionEditPart.VISUAL_ID:
 				return new AbstractionEditPart(view);
 
@@ -955,7 +946,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case AbstractionAppliedStereotypeEditPart.VISUAL_ID:
 				return new AbstractionAppliedStereotypeEditPart(view);
-
 
 			case UsageEditPart.VISUAL_ID:
 				return new UsageEditPart(view);
@@ -966,7 +956,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case UsageAppliedStereotypeEditPart.VISUAL_ID:
 				return new UsageAppliedStereotypeEditPart(view);
 
-
 			case DeploymentEditPart.VISUAL_ID:
 				return new DeploymentEditPart(view);
 
@@ -975,7 +964,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case DeploymentAppliedStereotypeEditPart.VISUAL_ID:
 				return new DeploymentAppliedStereotypeEditPart(view);
-
 
 			case RoleBindingEditPart.VISUAL_ID:
 				return new RoleBindingEditPart(view);
@@ -986,7 +974,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case RoleBindingAppliedStereotypeEditPart.VISUAL_ID:
 				return new RoleBindingAppliedStereotypeEditPart(view);
 
-
 			case DependencyEditPart.VISUAL_ID:
 				return new DependencyEditPart(view);
 
@@ -995,7 +982,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case DependencyAppliedStereotypeEditPart.VISUAL_ID:
 				return new DependencyAppliedStereotypeEditPart(view);
-
 
 			case ConnectorEditPart.VISUAL_ID:
 				return new ConnectorEditPart(view);
@@ -1012,28 +998,23 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConnectorMultiplicityTargetEditPart.VISUAL_ID:
 				return new ConnectorMultiplicityTargetEditPart(view);
 
-
 			case GeneralizationEditPart.VISUAL_ID:
 				return new GeneralizationEditPart(view);
 
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new GeneralizationAppliedStereotypeEditPart(view);
 
-
 			case TimeObservationEventEditPart.VISUAL_ID:
 				return new TimeObservationEventEditPart(view);
 
-
 			case DurationObservationEventEditPart.VISUAL_ID:
 				return new DurationObservationEventEditPart(view);
-
 
 			case RepresentationEditPart.VISUAL_ID:
 				return new RepresentationEditPart(view);
 
 			case RepresentationTagLabelEditPart.VISUAL_ID:
 				return new RepresentationTagLabelEditPart(view);
-
 
 			case InformationFlowEditPart.VISUAL_ID:
 				return new InformationFlowEditPart(view);
@@ -1063,17 +1044,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	public static CellEditorLocator getTextCellEditorLocator(
-			ITextAwareEditPart source) {
+	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof IMultilineEditableFigure) {
-			return new MultilineCellEditorLocator(
-					(IMultilineEditableFigure) source.getFigure());
+			return new MultilineCellEditorLocator((IMultilineEditableFigure) source.getFigure());
 		} else {
 			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
 
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -1109,8 +1087,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 			rect.y = getMultilineEditableFigure().getEditionLocation().y;
 			getMultilineEditableFigure().translateToAbsolute(rect);
 			if (getMultilineEditableFigure().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width,
-						SWT.DEFAULT)));
+				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);

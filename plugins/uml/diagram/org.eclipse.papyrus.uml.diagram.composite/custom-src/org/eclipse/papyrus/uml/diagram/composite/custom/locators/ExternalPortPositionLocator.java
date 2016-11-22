@@ -19,6 +19,12 @@ import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 
 public class ExternalPortPositionLocator extends PortPositionLocator {
 
+	
+	public ExternalPortPositionLocator(IFigure parentFigure) {
+		super(parentFigure);
+	}	
+	
+	@Deprecated
 	public ExternalPortPositionLocator(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);
 	}

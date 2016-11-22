@@ -23,6 +23,18 @@ import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
  */
 public class BehaviorPortLocator extends PortPositionLocator {
 
+	
+	/**
+	 * Constructor.
+	 *
+	 * @param parentFigure
+	 */
+	public BehaviorPortLocator(IFigure parentFigure) {
+		super(parentFigure);
+	}
+	
+	
+	@Deprecated
 	public BehaviorPortLocator(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);
 	}

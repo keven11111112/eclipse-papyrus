@@ -20,8 +20,6 @@ import org.eclipse.papyrus.uml.diagram.menu.actions.ShowHideLabelsAction;
 /**
  * Handler for the {@link ShowHideLabelsAction}
  *
- *
- *
  */
 public class ShowHideLabelsHandler extends AbstractGraphicalCommandHandler {
 
@@ -64,11 +62,10 @@ public class ShowHideLabelsHandler extends AbstractGraphicalCommandHandler {
 
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		if (this.parameter.equals(ShowHideLabelsAction.MANAGE_PARAMETER)) {
+		if (ShowHideLabelsAction.MANAGE_PARAMETER.equals(this.parameter)) {
 			// we test if the action can be executed with an other parameter (because getCommand() for this parameter open a dialog
 			ShowHideLabelsAction action = new ShowHideLabelsAction(ShowHideLabelsAction.SHOW_PARAMETER, getSelectedElements());
 			setBaseEnabled(action.getCommand().canExecute());
-			return;
 		} else {
 			super.setEnabled(evaluationContext);
 		}

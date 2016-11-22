@@ -30,7 +30,6 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 	 */
 	private IWorkbenchPart part;
 
-
 	/**
 	 * @generated
 	 */
@@ -39,20 +38,19 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 		this.part = part;
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public void buildContextMenu(final IMenuManager menu) {
 		getViewer().flush();
 		try {
-			TransactionUtil.getEditingDomain(
-					(EObject) getViewer().getContents().getModel()).runExclusive(new Runnable() {
+			TransactionUtil.getEditingDomain((EObject) getViewer().getContents().getModel())
+					.runExclusive(new Runnable() {
 
 						@Override
 						public void run() {
-							ContributionItemService.getInstance().contributeToPopupMenu(
-									DiagramEditorContextMenuProvider.this, part);
+							ContributionItemService.getInstance()
+									.contributeToPopupMenu(DiagramEditorContextMenuProvider.this, part);
 							menu.remove(ActionIds.ACTION_DELETE_FROM_MODEL);
 						}
 					});

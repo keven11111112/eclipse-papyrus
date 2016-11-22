@@ -1,5 +1,6 @@
 bin/
 target/
+sonarlint/
 *.java._trace
 *.pyc
 .DS_Store

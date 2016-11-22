@@ -47,7 +47,8 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(
+			UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -57,35 +58,43 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Package_CompositeStructureDiagram = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Package_CompositeStructureDiagram"); //$NON-NLS-1$
+	public static final IElementType Package_CompositeStructureDiagram = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Package_CompositeStructureDiagram"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Activity_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Activity_Shape"); //$NON-NLS-1$
+	public static final IElementType Activity_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Activity_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Interaction_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Interaction_Shape"); //$NON-NLS-1$
+	public static final IElementType Interaction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Interaction_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ProtocolStateMachine_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ProtocolStateMachine_Shape"); //$NON-NLS-1$
+	public static final IElementType ProtocolStateMachine_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ProtocolStateMachine_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType StateMachine_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.StateMachine_Shape"); //$NON-NLS-1$
+	public static final IElementType StateMachine_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.StateMachine_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType FunctionBehavior_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.FunctionBehavior_Shape"); //$NON-NLS-1$
+	public static final IElementType FunctionBehavior_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.FunctionBehavior_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OpaqueBehavior_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OpaqueBehavior_Shape"); //$NON-NLS-1$
+	public static final IElementType OpaqueBehavior_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OpaqueBehavior_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Component_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Component_Shape"); //$NON-NLS-1$
+	public static final IElementType Component_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Component_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -93,7 +102,8 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType ExecutionEnvironment_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ExecutionEnvironment_Shape"); //$NON-NLS-1$
+	public static final IElementType ExecutionEnvironment_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ExecutionEnvironment_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -105,23 +115,28 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Collaboration_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Collaboration_Shape"); //$NON-NLS-1$
+	public static final IElementType Collaboration_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Collaboration_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Interface_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Interface_Shape"); //$NON-NLS-1$
+	public static final IElementType Interface_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Interface_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType PrimitiveType_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.PrimitiveType_Shape"); //$NON-NLS-1$
+	public static final IElementType PrimitiveType_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.PrimitiveType_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Enumeration_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Enumeration_Shape"); //$NON-NLS-1$
+	public static final IElementType Enumeration_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Enumeration_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DataType_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DataType_Shape"); //$NON-NLS-1$
+	public static final IElementType DataType_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DataType_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -129,15 +144,18 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType DeploymentSpecification_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DeploymentSpecification_Shape"); //$NON-NLS-1$
+	public static final IElementType DeploymentSpecification_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DeploymentSpecification_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Artifact_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Artifact_Shape"); //$NON-NLS-1$
+	public static final IElementType Artifact_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Artifact_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InformationItem_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InformationItem_Shape"); //$NON-NLS-1$
+	public static final IElementType InformationItem_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InformationItem_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -145,119 +163,148 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType UseCase_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.UseCase_Shape"); //$NON-NLS-1$
+	public static final IElementType UseCase_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.UseCase_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType SignalEvent_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.SignalEvent_Shape"); //$NON-NLS-1$
+	public static final IElementType SignalEvent_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.SignalEvent_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType CallEvent_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.CallEvent_Shape"); //$NON-NLS-1$
+	public static final IElementType CallEvent_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.CallEvent_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType AnyReceiveEvent_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.AnyReceiveEvent_Shape"); //$NON-NLS-1$
+	public static final IElementType AnyReceiveEvent_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.AnyReceiveEvent_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ChangeEvent_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ChangeEvent_Shape"); //$NON-NLS-1$
+	public static final IElementType ChangeEvent_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ChangeEvent_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeEvent_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.TimeEvent_Shape"); //$NON-NLS-1$
+	public static final IElementType TimeEvent_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.TimeEvent_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationObservation_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DurationObservation_Shape"); //$NON-NLS-1$
+	public static final IElementType DurationObservation_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DurationObservation_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeObservation_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.TimeObservation_Shape"); //$NON-NLS-1$
+	public static final IElementType TimeObservation_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.TimeObservation_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType LiteralBoolean_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.LiteralBoolean_Shape"); //$NON-NLS-1$
+	public static final IElementType LiteralBoolean_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.LiteralBoolean_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType LiteralInteger_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.LiteralInteger_Shape"); //$NON-NLS-1$
+	public static final IElementType LiteralInteger_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.LiteralInteger_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType LiteralNull_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.LiteralNull_Shape"); //$NON-NLS-1$
+	public static final IElementType LiteralNull_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.LiteralNull_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType LiteralString_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.LiteralString_Shape"); //$NON-NLS-1$
+	public static final IElementType LiteralString_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.LiteralString_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType LiteralUnlimitedNatural_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.LiteralUnlimitedNatural_Shape"); //$NON-NLS-1$
+	public static final IElementType LiteralUnlimitedNatural_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.LiteralUnlimitedNatural_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType StringExpression_PackagedElementShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.StringExpression_PackagedElementShape"); //$NON-NLS-1$
+	public static final IElementType StringExpression_PackagedElementShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.StringExpression_PackagedElementShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OpaqueExpression_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OpaqueExpression_Shape"); //$NON-NLS-1$
+	public static final IElementType OpaqueExpression_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OpaqueExpression_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeExpression_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.TimeExpression_Shape"); //$NON-NLS-1$
+	public static final IElementType TimeExpression_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.TimeExpression_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Expression_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Expression_Shape"); //$NON-NLS-1$
+	public static final IElementType Expression_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Expression_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Duration_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Duration_Shape"); //$NON-NLS-1$
+	public static final IElementType Duration_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Duration_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeInterval_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.TimeInterval_Shape"); //$NON-NLS-1$
+	public static final IElementType TimeInterval_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.TimeInterval_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationInterval_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DurationInterval_Shape"); //$NON-NLS-1$
+	public static final IElementType DurationInterval_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DurationInterval_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Interval_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Interval_Shape"); //$NON-NLS-1$
+	public static final IElementType Interval_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Interval_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InstanceValue_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InstanceValue_Shape"); //$NON-NLS-1$
+	public static final IElementType InstanceValue_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InstanceValue_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Comment_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Comment_Shape"); //$NON-NLS-1$
+	public static final IElementType Comment_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Comment_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationConstraint_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DurationConstraint_Shape"); //$NON-NLS-1$
+	public static final IElementType DurationConstraint_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DurationConstraint_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeConstraint_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.TimeConstraint_Shape"); //$NON-NLS-1$
+	public static final IElementType TimeConstraint_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.TimeConstraint_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType IntervalConstraint_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.IntervalConstraint_Shape"); //$NON-NLS-1$
+	public static final IElementType IntervalConstraint_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.IntervalConstraint_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InteractionConstraint_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InteractionConstraint_Shape"); //$NON-NLS-1$
+	public static final IElementType InteractionConstraint_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InteractionConstraint_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Constraint_Shape"); //$NON-NLS-1$
+	public static final IElementType Constraint_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Port_BehaviorShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Port_BehaviorShape"); //$NON-NLS-1$
+	public static final IElementType Port_BehaviorShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Port_BehaviorShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -265,183 +312,228 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Parameter_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Parameter_Shape"); //$NON-NLS-1$
+	public static final IElementType Parameter_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Parameter_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Property_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Property_Shape"); //$NON-NLS-1$
+	public static final IElementType Property_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Property_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConnectableElement_CollaborationRoleShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ConnectableElement_CollaborationRoleShape"); //$NON-NLS-1$
+	public static final IElementType ConnectableElement_CollaborationRoleShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ConnectableElement_CollaborationRoleShape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType CollaborationUse_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.CollaborationUse_Shape"); //$NON-NLS-1$
+	public static final IElementType CollaborationUse_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.CollaborationUse_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Activity_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Activity_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Activity_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Activity_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Interaction_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Interaction_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Interaction_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Interaction_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ProtocolStateMachine_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ProtocolStateMachine_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType ProtocolStateMachine_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ProtocolStateMachine_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType StateMachine_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.StateMachine_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType StateMachine_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.StateMachine_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType FunctionBehavior_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.FunctionBehavior_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType FunctionBehavior_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.FunctionBehavior_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType OpaqueBehavior_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.OpaqueBehavior_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType OpaqueBehavior_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OpaqueBehavior_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Component_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Component_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Component_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Component_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Device_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Device_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Device_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Device_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ExecutionEnvironment_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ExecutionEnvironment_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType ExecutionEnvironment_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ExecutionEnvironment_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Node_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Node_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Node_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Node_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Class_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Class_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Class_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Class_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Collaboration_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Collaboration_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Collaboration_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Collaboration_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Interface_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Interface_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Interface_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Interface_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType PrimitiveType_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.PrimitiveType_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType PrimitiveType_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.PrimitiveType_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Enumeration_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Enumeration_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Enumeration_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Enumeration_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DataType_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DataType_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType DataType_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DataType_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Actor_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Actor_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Actor_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Actor_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DeploymentSpecification_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DeploymentSpecification_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType DeploymentSpecification_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DeploymentSpecification_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Artifact_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Artifact_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Artifact_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Artifact_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InformationItem_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InformationItem_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType InformationItem_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InformationItem_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Signal_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Signal_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Signal_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Signal_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType UseCase_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.UseCase_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType UseCase_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.UseCase_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Comment_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Comment_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Comment_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Comment_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationConstraint_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DurationConstraint_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType DurationConstraint_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DurationConstraint_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeConstraint_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.TimeConstraint_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType TimeConstraint_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.TimeConstraint_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType IntervalConstraint_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.IntervalConstraint_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType IntervalConstraint_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.IntervalConstraint_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InteractionConstraint_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InteractionConstraint_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType InteractionConstraint_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InteractionConstraint_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_Shape_CN = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Constraint_Shape_CN"); //$NON-NLS-1$
+	public static final IElementType Constraint_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_Shape_CN"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Property_AttributeLabel = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Property_AttributeLabel"); //$NON-NLS-1$
+	public static final IElementType Property_AttributeLabel = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Property_AttributeLabel"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Operation_OperationLabel = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Operation_OperationLabel"); //$NON-NLS-1$
+	public static final IElementType Operation_OperationLabel = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Operation_OperationLabel"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType EnumerationLiteral_LiteralLabel = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.EnumerationLiteral_LiteralLabel"); //$NON-NLS-1$
+	public static final IElementType EnumerationLiteral_LiteralLabel = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.EnumerationLiteral_LiteralLabel"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Port_BehaviorEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Port_BehaviorEdge"); //$NON-NLS-1$
+	public static final IElementType Port_BehaviorEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Port_BehaviorEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Link_DescriptorEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Link_DescriptorEdge"); //$NON-NLS-1$
+	public static final IElementType Link_DescriptorEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Link_DescriptorEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Comment_AnnotatedElementEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"); //$NON-NLS-1$
+	public static final IElementType Comment_AnnotatedElementEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_ConstrainedElementEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"); //$NON-NLS-1$
+	public static final IElementType Constraint_ConstrainedElementEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType ComponentRealization_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.ComponentRealization_Edge"); //$NON-NLS-1$
+	public static final IElementType ComponentRealization_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ComponentRealization_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InterfaceRealization_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InterfaceRealization_Edge"); //$NON-NLS-1$
+	public static final IElementType InterfaceRealization_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InterfaceRealization_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Substitution_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Substitution_Edge"); //$NON-NLS-1$
+	public static final IElementType Substitution_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Substitution_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Realization_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Realization_Edge"); //$NON-NLS-1$
+	public static final IElementType Realization_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Realization_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Manifestation_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Manifestation_Edge"); //$NON-NLS-1$
+	public static final IElementType Manifestation_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Manifestation_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Abstraction_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Abstraction_Edge"); //$NON-NLS-1$
+	public static final IElementType Abstraction_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Abstraction_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -449,39 +541,48 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Deployment_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Deployment_Edge"); //$NON-NLS-1$
+	public static final IElementType Deployment_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Deployment_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Dependency_RoleBindingEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Dependency_RoleBindingEdge"); //$NON-NLS-1$
+	public static final IElementType Dependency_RoleBindingEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Dependency_RoleBindingEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Dependency_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Dependency_Edge"); //$NON-NLS-1$
+	public static final IElementType Dependency_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Dependency_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Connector_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Connector_Edge"); //$NON-NLS-1$
+	public static final IElementType Connector_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Connector_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Generalization_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Generalization_Edge"); //$NON-NLS-1$
+	public static final IElementType Generalization_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Generalization_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeObservation_EventEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.TimeObservation_EventEdge"); //$NON-NLS-1$
+	public static final IElementType TimeObservation_EventEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.TimeObservation_EventEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationObservation_EventEdge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.DurationObservation_EventEdge"); //$NON-NLS-1$
+	public static final IElementType DurationObservation_EventEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DurationObservation_EventEdge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType Representation_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Representation_Edge"); //$NON-NLS-1$
+	public static final IElementType Representation_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Representation_Edge"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
-	public static final IElementType InformationFlow_Edge = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.InformationFlow_Edge"); //$NON-NLS-1$
+	public static final IElementType InformationFlow_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InformationFlow_Edge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -523,261 +624,175 @@ public class UMLElementTypes {
 
 			elements.put(Package_CompositeStructureDiagram, UMLPackage.eINSTANCE.getPackage());
 
-
 			elements.put(Activity_Shape, UMLPackage.eINSTANCE.getActivity());
-
 
 			elements.put(Interaction_Shape, UMLPackage.eINSTANCE.getInteraction());
 
-
 			elements.put(ProtocolStateMachine_Shape, UMLPackage.eINSTANCE.getProtocolStateMachine());
-
 
 			elements.put(StateMachine_Shape, UMLPackage.eINSTANCE.getStateMachine());
 
-
 			elements.put(FunctionBehavior_Shape, UMLPackage.eINSTANCE.getFunctionBehavior());
-
 
 			elements.put(OpaqueBehavior_Shape, UMLPackage.eINSTANCE.getOpaqueBehavior());
 
-
 			elements.put(Component_Shape, UMLPackage.eINSTANCE.getComponent());
-
 
 			elements.put(Device_Shape, UMLPackage.eINSTANCE.getDevice());
 
-
 			elements.put(ExecutionEnvironment_Shape, UMLPackage.eINSTANCE.getExecutionEnvironment());
-
 
 			elements.put(Node_Shape, UMLPackage.eINSTANCE.getNode());
 
-
 			elements.put(Class_Shape, UMLPackage.eINSTANCE.getClass_());
-
 
 			elements.put(Collaboration_Shape, UMLPackage.eINSTANCE.getCollaboration());
 
-
 			elements.put(Interface_Shape, UMLPackage.eINSTANCE.getInterface());
-
 
 			elements.put(PrimitiveType_Shape, UMLPackage.eINSTANCE.getPrimitiveType());
 
-
 			elements.put(Enumeration_Shape, UMLPackage.eINSTANCE.getEnumeration());
-
 
 			elements.put(DataType_Shape, UMLPackage.eINSTANCE.getDataType());
 
-
 			elements.put(Actor_Shape, UMLPackage.eINSTANCE.getActor());
-
 
 			elements.put(DeploymentSpecification_Shape, UMLPackage.eINSTANCE.getDeploymentSpecification());
 
-
 			elements.put(Artifact_Shape, UMLPackage.eINSTANCE.getArtifact());
-
 
 			elements.put(InformationItem_Shape, UMLPackage.eINSTANCE.getInformationItem());
 
-
 			elements.put(Signal_Shape, UMLPackage.eINSTANCE.getSignal());
-
 
 			elements.put(UseCase_Shape, UMLPackage.eINSTANCE.getUseCase());
 
-
 			elements.put(SignalEvent_Shape, UMLPackage.eINSTANCE.getSignalEvent());
-
 
 			elements.put(CallEvent_Shape, UMLPackage.eINSTANCE.getCallEvent());
 
-
 			elements.put(AnyReceiveEvent_Shape, UMLPackage.eINSTANCE.getAnyReceiveEvent());
-
 
 			elements.put(ChangeEvent_Shape, UMLPackage.eINSTANCE.getChangeEvent());
 
-
 			elements.put(TimeEvent_Shape, UMLPackage.eINSTANCE.getTimeEvent());
-
 
 			elements.put(DurationObservation_Shape, UMLPackage.eINSTANCE.getDurationObservation());
 
-
 			elements.put(TimeObservation_Shape, UMLPackage.eINSTANCE.getTimeObservation());
-
 
 			elements.put(LiteralBoolean_Shape, UMLPackage.eINSTANCE.getLiteralBoolean());
 
-
 			elements.put(LiteralInteger_Shape, UMLPackage.eINSTANCE.getLiteralInteger());
-
 
 			elements.put(LiteralNull_Shape, UMLPackage.eINSTANCE.getLiteralNull());
 
-
 			elements.put(LiteralString_Shape, UMLPackage.eINSTANCE.getLiteralString());
-
 
 			elements.put(LiteralUnlimitedNatural_Shape, UMLPackage.eINSTANCE.getLiteralUnlimitedNatural());
 
-
 			elements.put(StringExpression_PackagedElementShape, UMLPackage.eINSTANCE.getStringExpression());
-
 
 			elements.put(OpaqueExpression_Shape, UMLPackage.eINSTANCE.getOpaqueExpression());
 
-
 			elements.put(TimeExpression_Shape, UMLPackage.eINSTANCE.getTimeExpression());
-
 
 			elements.put(Expression_Shape, UMLPackage.eINSTANCE.getExpression());
 
-
 			elements.put(Duration_Shape, UMLPackage.eINSTANCE.getDuration());
-
 
 			elements.put(TimeInterval_Shape, UMLPackage.eINSTANCE.getTimeInterval());
 
-
 			elements.put(DurationInterval_Shape, UMLPackage.eINSTANCE.getDurationInterval());
-
 
 			elements.put(Interval_Shape, UMLPackage.eINSTANCE.getInterval());
 
-
 			elements.put(InstanceValue_Shape, UMLPackage.eINSTANCE.getInstanceValue());
-
 
 			elements.put(Comment_Shape, UMLPackage.eINSTANCE.getComment());
 
-
 			elements.put(DurationConstraint_Shape, UMLPackage.eINSTANCE.getDurationConstraint());
-
 
 			elements.put(TimeConstraint_Shape, UMLPackage.eINSTANCE.getTimeConstraint());
 
-
 			elements.put(IntervalConstraint_Shape, UMLPackage.eINSTANCE.getIntervalConstraint());
-
 
 			elements.put(InteractionConstraint_Shape, UMLPackage.eINSTANCE.getInteractionConstraint());
 
-
 			elements.put(Constraint_Shape, UMLPackage.eINSTANCE.getConstraint());
-
 
 			elements.put(Port_BehaviorShape, UMLPackage.eINSTANCE.getPort());
 
-
 			elements.put(Port_Shape, UMLPackage.eINSTANCE.getPort());
-
 
 			elements.put(Parameter_Shape, UMLPackage.eINSTANCE.getParameter());
 
-
 			elements.put(Property_Shape, UMLPackage.eINSTANCE.getProperty());
-
 
 			elements.put(ConnectableElement_CollaborationRoleShape, UMLPackage.eINSTANCE.getConnectableElement());
 
-
 			elements.put(CollaborationUse_Shape, UMLPackage.eINSTANCE.getCollaborationUse());
-
 
 			elements.put(Activity_Shape_CN, UMLPackage.eINSTANCE.getActivity());
 
-
 			elements.put(Interaction_Shape_CN, UMLPackage.eINSTANCE.getInteraction());
-
 
 			elements.put(ProtocolStateMachine_Shape_CN, UMLPackage.eINSTANCE.getProtocolStateMachine());
 
-
 			elements.put(StateMachine_Shape_CN, UMLPackage.eINSTANCE.getStateMachine());
-
 
 			elements.put(FunctionBehavior_Shape_CN, UMLPackage.eINSTANCE.getFunctionBehavior());
 
-
 			elements.put(OpaqueBehavior_Shape_CN, UMLPackage.eINSTANCE.getOpaqueBehavior());
-
 
 			elements.put(Component_Shape_CN, UMLPackage.eINSTANCE.getComponent());
 
-
 			elements.put(Device_Shape_CN, UMLPackage.eINSTANCE.getDevice());
-
 
 			elements.put(ExecutionEnvironment_Shape_CN, UMLPackage.eINSTANCE.getExecutionEnvironment());
 
-
 			elements.put(Node_Shape_CN, UMLPackage.eINSTANCE.getNode());
-
 
 			elements.put(Class_Shape_CN, UMLPackage.eINSTANCE.getClass_());
 
-
 			elements.put(Collaboration_Shape_CN, UMLPackage.eINSTANCE.getCollaboration());
-
 
 			elements.put(Interface_Shape_CN, UMLPackage.eINSTANCE.getInterface());
 
-
 			elements.put(PrimitiveType_Shape_CN, UMLPackage.eINSTANCE.getPrimitiveType());
-
 
 			elements.put(Enumeration_Shape_CN, UMLPackage.eINSTANCE.getEnumeration());
 
-
 			elements.put(DataType_Shape_CN, UMLPackage.eINSTANCE.getDataType());
-
 
 			elements.put(Actor_Shape_CN, UMLPackage.eINSTANCE.getActor());
 
-
 			elements.put(DeploymentSpecification_Shape_CN, UMLPackage.eINSTANCE.getDeploymentSpecification());
-
 
 			elements.put(Artifact_Shape_CN, UMLPackage.eINSTANCE.getArtifact());
 
-
 			elements.put(InformationItem_Shape_CN, UMLPackage.eINSTANCE.getInformationItem());
-
 
 			elements.put(Signal_Shape_CN, UMLPackage.eINSTANCE.getSignal());
 
-
 			elements.put(UseCase_Shape_CN, UMLPackage.eINSTANCE.getUseCase());
-
 
 			elements.put(Comment_Shape_CN, UMLPackage.eINSTANCE.getComment());
 
-
 			elements.put(DurationConstraint_Shape_CN, UMLPackage.eINSTANCE.getDurationConstraint());
-
 
 			elements.put(TimeConstraint_Shape_CN, UMLPackage.eINSTANCE.getTimeConstraint());
 
-
 			elements.put(IntervalConstraint_Shape_CN, UMLPackage.eINSTANCE.getIntervalConstraint());
-
 
 			elements.put(InteractionConstraint_Shape_CN, UMLPackage.eINSTANCE.getInteractionConstraint());
 
-
 			elements.put(Constraint_Shape_CN, UMLPackage.eINSTANCE.getConstraint());
-
 
 			elements.put(Property_AttributeLabel, UMLPackage.eINSTANCE.getProperty());
 
-
 			elements.put(Operation_OperationLabel, UMLPackage.eINSTANCE.getOperation());
-
 
 			elements.put(EnumerationLiteral_LiteralLabel, UMLPackage.eINSTANCE.getEnumerationLiteral());
 
@@ -785,39 +800,27 @@ public class UMLElementTypes {
 
 			elements.put(Constraint_ConstrainedElementEdge, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 
-
 			elements.put(ComponentRealization_Edge, UMLPackage.eINSTANCE.getComponentRealization());
-
 
 			elements.put(InterfaceRealization_Edge, UMLPackage.eINSTANCE.getInterfaceRealization());
 
-
 			elements.put(Substitution_Edge, UMLPackage.eINSTANCE.getSubstitution());
-
 
 			elements.put(Realization_Edge, UMLPackage.eINSTANCE.getRealization());
 
-
 			elements.put(Manifestation_Edge, UMLPackage.eINSTANCE.getManifestation());
-
 
 			elements.put(Abstraction_Edge, UMLPackage.eINSTANCE.getAbstraction());
 
-
 			elements.put(Usage_Edge, UMLPackage.eINSTANCE.getUsage());
-
 
 			elements.put(Deployment_Edge, UMLPackage.eINSTANCE.getDeployment());
 
-
 			elements.put(Dependency_RoleBindingEdge, UMLPackage.eINSTANCE.getDependency());
-
 
 			elements.put(Dependency_Edge, UMLPackage.eINSTANCE.getDependency());
 
-
 			elements.put(Connector_Edge, UMLPackage.eINSTANCE.getConnector());
-
 
 			elements.put(Generalization_Edge, UMLPackage.eINSTANCE.getGeneralization());
 
@@ -826,7 +829,6 @@ public class UMLElementTypes {
 			elements.put(DurationObservation_EventEdge, UMLPackage.eINSTANCE.getDurationObservation_Event());
 
 			elements.put(Representation_Edge, UMLPackage.eINSTANCE.getInformationItem_Represented());
-
 
 			elements.put(InformationFlow_Edge, UMLPackage.eINSTANCE.getInformationFlow());
 		}
@@ -1221,7 +1223,6 @@ public class UMLElementTypes {
 			return org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.getElement(elementTypeAdapter);
 		}
 	};
-
 
 	/**
 	 * @generated

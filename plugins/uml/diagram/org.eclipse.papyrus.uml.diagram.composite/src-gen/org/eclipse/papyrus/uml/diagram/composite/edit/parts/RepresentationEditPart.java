@@ -23,8 +23,7 @@ import org.eclipse.papyrus.uml.diagram.composite.custom.figures.RepresentationFi
 /**
  * @generated
  */
-public class RepresentationEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class RepresentationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -51,8 +50,7 @@ public class RepresentationEditPart extends UMLConnectionNodeEditPart
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof RepresentationTagLabelEditPart) {
-			((RepresentationTagLabelEditPart) childEditPart).setLabel(
-					getPrimaryShape().getTagLabel());
+			((RepresentationTagLabelEditPart) childEditPart).setLabel(getPrimaryShape().getTagLabel());
 		}
 		return false;
 	}

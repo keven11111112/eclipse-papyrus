@@ -37,8 +37,7 @@ import org.eclipse.papyrus.uml.diagram.composite.part.Messages;
 /**
  * @generated
  */
-public class DataTypeOperationCompartmentEditPart
-		extends ListCompartmentEditPart {
+public class DataTypeOperationCompartmentEditPart extends ListCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -66,7 +65,6 @@ public class DataTypeOperationCompartmentEditPart
 		return Messages.DataTypeOperationCompartmentEditPart_title;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -81,9 +79,6 @@ public class DataTypeOperationCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -126,10 +121,7 @@ public class DataTypeOperationCompartmentEditPart
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(
-				this,
-				getFigure(),
-				new Rectangle(loc, size));
+		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
 	/**

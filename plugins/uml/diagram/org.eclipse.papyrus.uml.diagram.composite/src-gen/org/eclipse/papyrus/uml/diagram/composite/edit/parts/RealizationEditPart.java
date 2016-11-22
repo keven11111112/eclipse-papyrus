@@ -24,8 +24,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.InterfaceRealizationFi
 /**
  * @generated
  */
-public class RealizationEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class RealizationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -45,7 +44,8 @@ public class RealizationEditPart extends UMLConnectionNodeEditPart
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -53,12 +53,11 @@ public class RealizationEditPart extends UMLConnectionNodeEditPart
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof RealizationNameEditPart) {
-			((RealizationNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getNameLabel());
+			((RealizationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		if (childEditPart instanceof RealizationAppliedStereotypeEditPart) {
-			((RealizationAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+			((RealizationAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

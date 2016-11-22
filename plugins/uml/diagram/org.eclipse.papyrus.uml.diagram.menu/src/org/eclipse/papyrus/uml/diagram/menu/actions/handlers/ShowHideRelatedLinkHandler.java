@@ -57,7 +57,7 @@ import org.eclipse.ui.IWorkbenchPartSite;
 public class ShowHideRelatedLinkHandler extends AbstractHandler implements IExecutableExtension {
 
 	/** the current selection */
-	protected final List<EditPart> selection = new ArrayList<EditPart>();
+	protected final List<EditPart> selection = new ArrayList<>();
 
 	/**
 	 * the parameter for this handler
@@ -164,10 +164,10 @@ public class ShowHideRelatedLinkHandler extends AbstractHandler implements IExec
 	 */
 	protected void buildSelection() {
 		this.selection.clear();
-		final ISelection selection = getSelectionInCurrentEditor();
-		if (selection instanceof IStructuredSelection) {
-			final Collection<EObject> eobjectsAlreadyManaged = new ArrayList<EObject>();
-			final Iterator<?> iter = ((IStructuredSelection) selection).iterator();
+		final ISelection iSelection = getSelectionInCurrentEditor();
+		if (iSelection instanceof IStructuredSelection) {
+			final Collection<EObject> eobjectsAlreadyManaged = new ArrayList<>();
+			final Iterator<?> iter = ((IStructuredSelection) iSelection).iterator();
 			while (iter.hasNext()) {
 				final Object current = iter.next();
 				if (current instanceof EditPart) {

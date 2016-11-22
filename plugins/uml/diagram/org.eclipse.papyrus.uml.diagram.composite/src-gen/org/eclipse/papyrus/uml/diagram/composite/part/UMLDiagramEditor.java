@@ -61,8 +61,7 @@ import org.eclipse.ui.part.ShowInContext;
 /**
  * @generated
  */
-public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderChangeListener,
-		IGotoMarker {
+public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderChangeListener, IGotoMarker {
 
 	/**
 	 * @generated
@@ -73,7 +72,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 * @generated
 	 */
 	public static final String CONTEXT_ID = "org.eclipse.papyrus.uml.diagram.composite.ui.diagramContext"; //$NON-NLS-1$
-
 
 	/**
 	 * @generated
@@ -154,7 +152,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		return UMLDiagramEditorPlugin.ID;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -211,18 +208,16 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		return new ShowInContext(getEditorInput(), getGraphicalViewer().getSelection());
 	}
 
-
 	/**
 	 * @generated
 	 */
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
-		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this, getDiagramGraphicalViewer());
+		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this,
+				getDiagramGraphicalViewer());
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
 	}
-
-
 
 	/**
 	 * @generated
@@ -326,8 +321,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	protected PaletteViewer getPaletteViewer() {
 		return getEditDomain().getPaletteViewer();
 	}
-
-
 
 	/**
 	 * @generated

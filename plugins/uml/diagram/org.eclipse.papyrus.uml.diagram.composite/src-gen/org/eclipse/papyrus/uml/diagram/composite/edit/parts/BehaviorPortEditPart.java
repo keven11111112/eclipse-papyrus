@@ -136,7 +136,6 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 		return lep;
 	}
 
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -150,8 +149,7 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -160,7 +158,6 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
 
 	/**
 	 * @generated
@@ -177,7 +174,6 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 	public RoundedCompartmentFigure getPrimaryShape() {
 		return (RoundedCompartmentFigure) primaryShape;
 	}
-
 
 	/**
 	 * @generated
@@ -198,7 +194,6 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -244,7 +239,6 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -267,9 +261,5 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(BehaviorPortFloatingLabelEditPart.VISUAL_ID));
 	}
-
-
-
-
 
 }

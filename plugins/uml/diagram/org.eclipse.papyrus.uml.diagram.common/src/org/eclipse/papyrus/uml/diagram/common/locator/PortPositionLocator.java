@@ -72,6 +72,32 @@ public class PortPositionLocator implements IBorderItemLocator {
 
 	/** the figure */
 	private IFigure figure;
+
+	/**
+	 * Constructor 
+	 *
+	 * @param parentFigure
+	 *            the parent figure
+	 * @param preferredSide
+	 *            unused
+	 * @deprecated           
+	 */
+	@Deprecated // use PortPositionLocator(final IFigure parentFigure)
+	public PortPositionLocator(final IFigure parentFigure, final int preferredSide) {
+		// The preferredSide parameter is not used, just kept here to ensure compatibility
+		// with GMF generated code.
+		this.parentFigure = parentFigure;
+	}
+
+	/**
+	 * Constructor 
+	 * @param parentFigure
+	 *            the parent figure
+	 */
+	public PortPositionLocator(final IFigure parentFigure) {
+		this.parentFigure = parentFigure;
+	}		
+	
 	
 	public int getBorderItemOffset() {
 		return borderItemOffset;
@@ -130,29 +156,7 @@ public class PortPositionLocator implements IBorderItemLocator {
 		return constraint;
 	}	
 
-	/**
-	 * Constructor 
-	 *
-	 * @param parentFigure
-	 *            the parent figure
-	 * @param preferredSide
-	 *            unused
-	 */
-	@Deprecated // use PortPositionLocator(final IFigure parentFigure)
-	public PortPositionLocator(final IFigure parentFigure, final int preferredSide) {
-		// The preferredSide parameter is not used, just kept here to ensure compatibility
-		// with GMF generated code.
-		this.parentFigure = parentFigure;
-	}
 
-	/**
-	 * Constructor 
-	 * @param parentFigure
-	 *            the parent figure
-	 */
-	public PortPositionLocator(final IFigure parentFigure) {
-		this.parentFigure = parentFigure;
-	}	
 	
 	/**
 	 * {@inheritDoc}

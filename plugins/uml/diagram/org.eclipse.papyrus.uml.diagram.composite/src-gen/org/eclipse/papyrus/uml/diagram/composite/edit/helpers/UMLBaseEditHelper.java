@@ -18,8 +18,4 @@ import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
  */
 public class UMLBaseEditHelper extends GeneratedEditHelperBase {
 
-
-
-
-
 }

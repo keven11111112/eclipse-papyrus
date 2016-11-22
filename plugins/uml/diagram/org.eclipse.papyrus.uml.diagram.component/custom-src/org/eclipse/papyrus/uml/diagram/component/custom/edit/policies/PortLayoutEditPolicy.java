@@ -26,7 +26,6 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
 
-// TODO: Auto-generated Javadoc
 /**
  * This edit policy replaces the GMF generated edit policy for Port.
  * In particular it installs {@link ExternalLabelPrimaryDragRoleEditPolicy} on

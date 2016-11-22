@@ -74,7 +74,8 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -107,7 +108,6 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 		return lep;
 	}
 
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -117,7 +117,6 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
 
 	/**
 	 * @generated
@@ -147,7 +146,6 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 			((ConstraintSpecificationEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
-
 
 		return false;
 	}
@@ -192,7 +190,6 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -200,7 +197,6 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -251,7 +247,6 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -274,9 +269,5 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ConstraintNameEditPart.VISUAL_ID));
 	}
-
-
-
-
 
 }

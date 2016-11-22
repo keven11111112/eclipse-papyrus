@@ -81,6 +81,7 @@ public abstract class AbstractParametricHandler extends AbstractHandler implemen
 	 * @throws CoreException
 	 */
 	@SuppressWarnings("rawtypes")
+	@Override
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
 		if (data instanceof Hashtable && this.parameterID != null) {
 			this.parameter = (String) ((Hashtable) data).get(this.parameterID);
@@ -94,7 +95,7 @@ public abstract class AbstractParametricHandler extends AbstractHandler implemen
 	 * @return the currently selected {@link IGraphicalEditPart}
 	 */
 	protected List<IGraphicalEditPart> getSelectedElements() {
-		List<IGraphicalEditPart> editparts = new ArrayList<IGraphicalEditPart>();
+		List<IGraphicalEditPart> editparts = new ArrayList<>();
 
 
 		// Get current selection
@@ -155,7 +156,7 @@ public abstract class AbstractParametricHandler extends AbstractHandler implemen
 			diagramPart = (IDiagramWorkbenchPart) part;
 
 		} else if (part != null) {
-			diagramPart = (IDiagramWorkbenchPart) part.getAdapter(IDiagramWorkbenchPart.class);
+			diagramPart = part.getAdapter(IDiagramWorkbenchPart.class);
 		}
 
 		return diagramPart;

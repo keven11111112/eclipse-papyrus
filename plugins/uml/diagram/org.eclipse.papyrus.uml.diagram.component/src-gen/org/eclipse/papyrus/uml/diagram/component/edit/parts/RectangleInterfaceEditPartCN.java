@@ -200,14 +200,14 @@ public class RectangleInterfaceEditPartCN extends RoundedCompartmentEditPart {
 
 		if (childEditPart instanceof InterfaceAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((InterfaceAttributeCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
 
 		if (childEditPart instanceof InterfaceOperationCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((InterfaceOperationCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}

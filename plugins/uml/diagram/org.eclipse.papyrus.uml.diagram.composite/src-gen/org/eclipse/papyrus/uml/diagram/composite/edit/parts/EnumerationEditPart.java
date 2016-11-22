@@ -99,9 +99,12 @@ public class EnumerationEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY,
+				new ShowHideClassifierContentsEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
+				new ShowHideCompartmentEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -151,7 +154,6 @@ public class EnumerationEditPart extends RoundedCompartmentEditPart {
 		return lep;
 	}
 
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -165,8 +167,7 @@ public class EnumerationEditPart extends RoundedCompartmentEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
@@ -175,7 +176,6 @@ public class EnumerationEditPart extends RoundedCompartmentEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
 
 	/**
 	 * @generated
@@ -202,10 +202,9 @@ public class EnumerationEditPart extends RoundedCompartmentEditPart {
 			return true;
 		}
 
-
 		if (childEditPart instanceof EnumerationEnumerationLiteralCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getEnumerationLiteralCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((EnumerationEnumerationLiteralCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -281,7 +280,6 @@ public class EnumerationEditPart extends RoundedCompartmentEditPart {
 		return result;
 	}
 
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -331,7 +329,6 @@ public class EnumerationEditPart extends RoundedCompartmentEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -355,23 +352,20 @@ public class EnumerationEditPart extends RoundedCompartmentEditPart {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(EnumerationNameEditPart.VISUAL_ID));
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
+					.getCreateElementRequestAdapter();
 			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
 			if (UMLElementTypes.isKindOf(type, UMLElementTypes.EnumerationLiteral_LiteralLabel)) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(
+						UMLVisualIDRegistry.getType(EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);
 	}
-
-
-
 
 }
