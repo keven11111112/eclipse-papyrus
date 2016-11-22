@@ -16,6 +16,10 @@ http://www.eclipse.org/legal/epl-v10.html.
    <license url="%licenseURL">
       %license
    </license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	Nebula richtext text editor integration.
+   </description>
 
    <plugin
          id="org.eclipse.papyrus.infra.widgets.richtext"

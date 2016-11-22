@@ -17,6 +17,10 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	The Papyrus implementations of the SysML 1.1 diagram editors.
+   </description>
 
    <plugin
          id="org.eclipse.papyrus.sysml.diagram.blockdefinition"

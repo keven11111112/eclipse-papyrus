@@ -14,8 +14,12 @@ http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
    <license url="%licenseURL">
-      %license
-   </license>
+		%license
+	</license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	The principal common User Interface components of Papyrus.
+   </description>
 
    <plugin
          id="org.eclipse.papyrus.infra.widgets"

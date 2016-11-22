@@ -15,8 +15,12 @@ http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
    <license url="%licenseURL">
-      %license
-   </license>
+		%license
+	</license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	Model aware search capability feature.
+   </description>
 
    <plugin
          id="org.eclipse.papyrus.views.search"

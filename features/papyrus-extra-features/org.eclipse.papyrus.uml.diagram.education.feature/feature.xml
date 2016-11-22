@@ -17,6 +17,10 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	Feature for the extra <a href="https://wiki.eclipse.org/Papyrus_for_Education">Papyrus4education</a>.
+   </description>
 
    <plugin
          id="org.eclipse.papyrus.uml.diagram.education"

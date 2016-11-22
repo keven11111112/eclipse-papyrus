@@ -11,6 +11,10 @@ http://www.eclipse.org/legal/epl-v10.html.
    <license url="%licenseURL">
       %license
    </license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	Feature regrouping Papyrus' CDO integration for model edition.
+   </description>
 
    <plugin download-size="0" id="org.eclipse.papyrus.cdo.core" install-size="0" unpack="false" version="0.0.0"/>
 

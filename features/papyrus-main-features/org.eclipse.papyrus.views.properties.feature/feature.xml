@@ -15,8 +15,12 @@ http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
    <license url="%licenseURL">
-      %license
-   </license>
+		%license
+	</license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	The plug-ins comprising the Papyrus Properties view configuration management and storage (for the Properties UI framework, refer to the /plugins/infra/properties module).
+   </description>
 
    <plugin
          id="org.eclipse.papyrus.views.properties"

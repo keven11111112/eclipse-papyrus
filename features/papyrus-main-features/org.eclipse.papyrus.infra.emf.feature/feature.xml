@@ -17,6 +17,10 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
+   
+   <description url="https://eclipse.org/papyrus/">
+	Various plug-ins providing extended modeling services on EMF.
+   </description>
 
    <plugin
          id="org.eclipse.papyrus.infra.emf"

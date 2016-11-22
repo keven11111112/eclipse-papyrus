@@ -14,6 +14,11 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	Encompass the Papyrus tests feature for build purposes.
+   	Warnign, this is not intended to be installed !
+   </description>
 
    <includes id="org.eclipse.papyrus.tests.feature" version="0.0.0"/>
 

@@ -17,6 +17,10 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	Diagram Assistant model generators and support for UML Profile-based DSMLs.
+   </description>
 
    <plugin
          id="org.eclipse.papyrus.uml.profile.assistants.generator"

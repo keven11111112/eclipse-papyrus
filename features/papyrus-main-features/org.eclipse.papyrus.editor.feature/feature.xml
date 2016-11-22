@@ -15,8 +15,12 @@ http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
    <license url="%licenseURL">
-      %license
-   </license>
+		%license
+	</license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	This feature handles the Eclipse Editors contributions of Papyrus, including the multi-page model editor.
+   </description>
 
    <plugin
          id="org.eclipse.papyrus.editor"

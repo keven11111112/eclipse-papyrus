@@ -17,6 +17,10 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
+   
+   <description url="https://eclipse.org/papyrus/">
+	Container of the core APIs of the Papyrus editor and headless components, plugins that have in charge resource management, one file presentation, new child creation menu.
+   </description>
 
    <plugin
          id="org.eclipse.papyrus.infra.onefile"
