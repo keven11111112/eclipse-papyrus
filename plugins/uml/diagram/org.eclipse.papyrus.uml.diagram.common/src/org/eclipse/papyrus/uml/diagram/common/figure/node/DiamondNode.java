@@ -36,7 +36,7 @@ public class DiamondNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEle
 	 */
 	@Override
 	public Dimension getPreferredSize(int wHint, int hHint) {
-		// TODO Auto-generated method stub
+		
 		return new Dimension(20, 20);
 	}
 
@@ -82,7 +82,7 @@ public class DiamondNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEle
 	 */
 	@Override
 	public void setStereotypeDisplay(String stereotypes, Image image) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -91,7 +91,7 @@ public class DiamondNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEle
 	 */
 	@Override
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -100,7 +100,7 @@ public class DiamondNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEle
 	 */
 	@Override
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-		// TODO Auto-generated method stub
+		
 
 	}
 

@@ -14,7 +14,7 @@ package org.eclipse.papyrus.uml.diagram.common.dialogs;
 
 import org.eclipse.emf.ecore.EObject;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface IWizardModelElementProvider.
  *

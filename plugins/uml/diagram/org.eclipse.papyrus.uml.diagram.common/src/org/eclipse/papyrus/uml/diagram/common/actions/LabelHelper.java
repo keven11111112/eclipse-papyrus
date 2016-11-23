@@ -21,7 +21,7 @@ import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * This helper class is used to get/set the name of a NamedElement EObject.
  *

@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.EditHelperContext;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Request to remove the value of a collection structural feature in a model element.
  *

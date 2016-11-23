@@ -12,7 +12,7 @@ package org.eclipse.papyrus.uml.diagram.common.util;
 
 import org.eclipse.emf.ecore.EObject;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Basic implementation of an <EcoreSwitch>, with info available for the Switch.
  *

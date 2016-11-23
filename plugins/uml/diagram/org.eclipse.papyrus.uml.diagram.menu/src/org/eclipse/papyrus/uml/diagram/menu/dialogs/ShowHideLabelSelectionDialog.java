@@ -33,7 +33,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.papyrus.uml.diagram.common.dialogs.AbstractCheckedTreeColumnViewerSelectionDialog;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.menu.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -124,6 +124,7 @@ public class ShowHideLabelSelectionDialog extends AbstractCheckedTreeColumnViewe
 		 * @param element
 		 * @return
 		 */
+		@Override
 		public Image getImage(Object element) {
 			if (element instanceof View) {
 				EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View) element);
@@ -138,7 +139,7 @@ public class ShowHideLabelSelectionDialog extends AbstractCheckedTreeColumnViewe
 								ImageDescriptor descriptor = ImageDescriptor.createFromURL(url);
 								return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(descriptor);
 							} catch (MalformedURLException e) {
-								Activator.log.error("I can't find the following image " + iconPath, e);
+								Activator.log.error("I can't find the following image " + iconPath, e); //$NON-NLS-1$
 								return null;
 							}
 						}
@@ -155,6 +156,7 @@ public class ShowHideLabelSelectionDialog extends AbstractCheckedTreeColumnViewe
 		 * @param element
 		 * @return
 		 */
+		@Override
 		public String getText(Object element) {
 			if (element instanceof View) {
 				EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View) element);
@@ -194,6 +196,7 @@ public class ShowHideLabelSelectionDialog extends AbstractCheckedTreeColumnViewe
 		 * @param element
 		 * @return
 		 */
+		@Override
 		public Image getImage(Object element) {
 			return null;
 		}
@@ -205,6 +208,7 @@ public class ShowHideLabelSelectionDialog extends AbstractCheckedTreeColumnViewe
 		 * @param element
 		 * @return
 		 */
+		@Override
 		public String getText(Object element) {
 			EditPart dummyEP = DiagramEditPartsUtil.getEditPartFromView((View) element, diagramEP);
 			String text = "[No Text To Display]";

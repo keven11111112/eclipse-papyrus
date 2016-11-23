@@ -34,7 +34,7 @@ import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.uml2.uml.NamedElement;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class SelectModelElementsForDiagramDialog.
  *

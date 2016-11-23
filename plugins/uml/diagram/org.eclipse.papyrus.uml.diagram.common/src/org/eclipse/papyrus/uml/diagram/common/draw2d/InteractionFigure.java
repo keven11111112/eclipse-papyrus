@@ -17,7 +17,7 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class InteractionFigure.
  *

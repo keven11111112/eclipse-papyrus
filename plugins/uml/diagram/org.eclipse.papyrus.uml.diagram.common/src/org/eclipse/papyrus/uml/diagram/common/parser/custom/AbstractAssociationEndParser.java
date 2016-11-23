@@ -76,7 +76,7 @@ public abstract class AbstractAssociationEndParser implements IParser {
 	 */
 	@Override
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -86,7 +86,7 @@ public abstract class AbstractAssociationEndParser implements IParser {
 	 */
 	@Override
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

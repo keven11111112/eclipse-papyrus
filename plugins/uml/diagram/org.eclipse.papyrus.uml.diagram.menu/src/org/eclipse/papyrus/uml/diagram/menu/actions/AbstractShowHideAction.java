@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2010-2014 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,23 +9,9 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) - Initial API and implementation
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.menu.actions;
-
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +30,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.util.ViewServiceUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewServiceUtil;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -116,9 +102,8 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#dispose()
 	 *
 	 */
+	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -127,9 +112,8 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 *
 	 * @param window
 	 */
+	@Override
 	public void init(IWorkbenchWindow window) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -217,6 +201,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 * @param selection
 	 *            the current selection
 	 */
+	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
 		boolean enabled = false;
 		if (editPolicyKey != null) {
@@ -306,7 +291,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 * @return
 	 *         the command done by this action
 	 */
-	abstract protected Command getActionCommand();
+	protected abstract Command getActionCommand();
 
 	protected void setEditorLabelProvider(ILabelProvider provider) {
 		this.labelProvider = provider;

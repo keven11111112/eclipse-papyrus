@@ -112,7 +112,7 @@ public class ElementChooseDialog extends AbstractChooseElement {
 
 	@Override
 	protected void createContents() {
-		// TODO Auto-generated method stub
+		
 		super.createContents();
 		// intall tree with uml element
 		treeViewer = filtercontrol.getViewer();

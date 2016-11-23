@@ -13,7 +13,7 @@ package org.eclipse.papyrus.uml.diagram.common.providers;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface IDiagramInitializer.
  *

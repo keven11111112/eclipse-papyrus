@@ -47,7 +47,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.profile.custom.commands.CustomMetaClassCreateCommand;
 import org.eclipse.papyrus.uml.diagram.profile.custom.commands.CustomSemanticCreateCommand;
 import org.eclipse.papyrus.uml.diagram.profile.custom.requests.CustomCreateElementRequestAdapter;
@@ -77,7 +77,7 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 	/**
 	 * list the metaclasses EditPart
 	 */
-	private ArrayList<String> metaclassesEP_ID_List = new ArrayList<String>();
+	private ArrayList<String> metaclassesEP_ID_List = new ArrayList<>();
 
 	/**
 	 *
@@ -161,7 +161,6 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(profile);
 		CustomSemanticCreateCommand semanticCommand = new CustomSemanticCreateCommand(domain, customRequestAdapter, profile);
 		Command viewCommand = getCreateCommand(requestNEW);
-		// Command refreshConnectionCommand = getHost().getCommand(new RefreshConnectionsRequest(((List)request.getNewObject())));
 		// form the compound command and return
 		CompositeCommand cc = new CompositeCommand(semanticCommand.getLabel());
 		cc.compose(semanticCommand);

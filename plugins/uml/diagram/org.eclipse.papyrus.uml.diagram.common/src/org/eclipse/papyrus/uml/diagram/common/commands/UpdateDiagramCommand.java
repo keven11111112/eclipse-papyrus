@@ -14,9 +14,9 @@ package org.eclipse.papyrus.uml.diagram.common.commands;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class UMLUpdateDiagramCommand.
  *

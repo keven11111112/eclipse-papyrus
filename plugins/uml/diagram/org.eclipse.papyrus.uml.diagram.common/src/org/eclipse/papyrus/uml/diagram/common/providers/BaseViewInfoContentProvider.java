@@ -14,7 +14,7 @@ package org.eclipse.papyrus.uml.diagram.common.providers;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Basic content provider for a ViewInfo.
  *

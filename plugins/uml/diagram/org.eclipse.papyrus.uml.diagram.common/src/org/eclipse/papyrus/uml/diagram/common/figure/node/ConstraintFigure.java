@@ -191,7 +191,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 */
 	@Override
 	public void setDepth(int depth) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -214,7 +214,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 */
 	@Override
 	public void setNameLabelIcon(boolean displayNameLabelIcon) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -351,25 +351,25 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 
 	@Override
 	public void removeStereotypeLabel() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void restoreStereotypeLabel() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void restoreTaggedLabel() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void removeTaggedLabel() {
-		// TODO Auto-generated method stub
+		
 
 	}
 

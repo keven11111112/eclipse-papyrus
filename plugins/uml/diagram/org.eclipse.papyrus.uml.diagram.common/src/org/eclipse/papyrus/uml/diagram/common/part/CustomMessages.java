@@ -13,7 +13,7 @@ package org.eclipse.papyrus.uml.diagram.common.part;
 
 import org.eclipse.osgi.util.NLS;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class CustomMessages.
  */

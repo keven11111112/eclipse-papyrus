@@ -12,7 +12,7 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import org.eclipse.emf.ecore.EObject;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Lets a D&D policy know if an <EObject> is a <Node> or a <Edge> in the host <EditPart>.
  *

@@ -77,7 +77,7 @@ public class GraphicalPostAction extends ModelPostAction {
 				if (nameNode != null && valueNode != null) {
 					propertiesToUpdate.put(nameNode.getNodeValue(), valueNode.getNodeValue());
 				} else {
-					Activator.log.error("Impossible to parse the configuration node for graphical post action", null);
+					Activator.log.error("Impossible to parse the configuration node for graphical post action", null); //$NON-NLS-1$
 				}
 			}
 		}
@@ -99,7 +99,7 @@ public class GraphicalPostAction extends ModelPostAction {
 					// retrieve feature to set
 					EStructuralFeature feature = view.eClass().getEStructuralFeature(featureName);
 					if (feature == null) {
-						Activator.log.error("Impossible to find the feature " + featureName + " for element " + view, null);
+						Activator.log.error("Impossible to find the feature " + featureName + " for element " + view, null); //$NON-NLS-1$ //$NON-NLS-2$
 					} else {
 						view.eSet(feature, getValue(feature, propertiesToUpdate.get(featureName)));
 					}
@@ -133,7 +133,7 @@ public class GraphicalPostAction extends ModelPostAction {
 	 */
 	@Override
 	public void save(Node parentNode) {
-		// TODO Auto-generated method stub
+		
 
 	}
 }

@@ -34,7 +34,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class UMLAbstractParser.
  *

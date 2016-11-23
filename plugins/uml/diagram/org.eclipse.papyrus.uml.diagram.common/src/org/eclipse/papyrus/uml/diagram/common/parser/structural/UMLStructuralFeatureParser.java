@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class UMLStructuralFeatureParser.
  *

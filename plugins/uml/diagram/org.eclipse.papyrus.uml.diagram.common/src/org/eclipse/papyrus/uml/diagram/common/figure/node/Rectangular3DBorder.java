@@ -22,7 +22,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.swt.graphics.Color;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Provide 3D Effect on Rectangular figure.
  */

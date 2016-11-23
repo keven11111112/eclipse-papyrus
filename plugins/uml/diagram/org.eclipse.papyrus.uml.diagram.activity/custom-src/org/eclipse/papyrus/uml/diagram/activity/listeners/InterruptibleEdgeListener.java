@@ -52,7 +52,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowInterruptib
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.request.InterruptibleEdgeRequest;
 import org.eclipse.papyrus.uml.diagram.common.listeners.AbstractPapyrusModifcationTriggerListener;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.util.functions.EObjectToViewFunction;
 import org.eclipse.papyrus.uml.diagram.common.util.functions.SettingToEObjectFunction;
 import org.eclipse.papyrus.uml.diagram.common.util.predicates.ReferencingViewPredicate;
@@ -112,7 +112,7 @@ public class InterruptibleEdgeListener extends AbstractPapyrusModifcationTrigger
 	@Override
 	protected ICommand getModificationCommand(Notification notif) {
 		if (Notification.SET == notif.getEventType()) {
-			CompositeCommand cc = new CompositeCommand("Interruptible Edge Command");//
+			CompositeCommand cc = new CompositeCommand("Interruptible Edge Command");
 			// Handling views
 			final Iterable<IGraphicalEditPart> edgesEditPart = DiagramEditPartsUtil.getChildrenByEObject((EObject) notif.getNotifier(), getDiagramEditPart(), true);
 			InterruptibleEdgeRequest request = new InterruptibleEdgeRequest();
@@ -128,7 +128,7 @@ public class InterruptibleEdgeListener extends AbstractPapyrusModifcationTrigger
 							cc.compose(createViewCommand);
 						}
 					} catch (NullPointerException e) {
-						throw new RuntimeException("Unable to find the Visual ID of the Icon of the interruptible Edge for element" + view.getElement());
+						throw new RuntimeException("Unable to find the Visual ID of the Icon of the interruptible Edge for element" + view.getElement()); //$NON-NLS-1$
 					}
 				}
 			} else {

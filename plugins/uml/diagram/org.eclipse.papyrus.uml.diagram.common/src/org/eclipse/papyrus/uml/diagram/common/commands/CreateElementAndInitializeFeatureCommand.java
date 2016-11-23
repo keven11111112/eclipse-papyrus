@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class CreateElementAndInitializeFeatureCommand.
  *

@@ -12,7 +12,7 @@ import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw2d.geometry.Transposer;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Arranges figures in a single row or column. Orientation can be set to produce
  * either a row or column layout. This layout tries to fit all children within

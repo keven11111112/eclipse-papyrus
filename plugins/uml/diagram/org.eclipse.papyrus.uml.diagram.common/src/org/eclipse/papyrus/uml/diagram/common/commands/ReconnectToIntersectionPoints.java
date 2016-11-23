@@ -29,7 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.notation.View;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ReconnectToIntersectionPoints.
  *

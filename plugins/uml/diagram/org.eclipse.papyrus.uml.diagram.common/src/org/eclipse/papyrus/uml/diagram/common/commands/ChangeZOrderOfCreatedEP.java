@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.ZOrderRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Command to change the ZOrdering of the new created EditPart. The possible
  * actions are Send to back, Bring to the front, Send backward and Bring

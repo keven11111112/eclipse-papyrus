@@ -134,37 +134,37 @@ public class QualifiedNameWrappingLabelFigure extends PapyrusWrappingLabel imple
 
 	@Override
 	public void restoreNameLabel() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void removeNameLabel() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void removeStereotypeLabel() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void restoreStereotypeLabel() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void restoreTaggedLabel() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void removeTaggedLabel() {
-		// TODO Auto-generated method stub
+		
 
 	}
 

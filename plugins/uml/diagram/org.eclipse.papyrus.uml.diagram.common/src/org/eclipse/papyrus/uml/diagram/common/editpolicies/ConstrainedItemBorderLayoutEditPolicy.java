@@ -97,7 +97,7 @@ public class ConstrainedItemBorderLayoutEditPolicy extends ConstrainedLayoutEdit
 	 */
 	@Override
 	protected Object getConstraintFor(ChangeBoundsRequest request, GraphicalEditPart child) {
-		// TODO Auto-generated method stub
+		
 		return super.getConstraintFor(request, child);
 	}
 
@@ -107,7 +107,7 @@ public class ConstrainedItemBorderLayoutEditPolicy extends ConstrainedLayoutEdit
 	 */
 	@Override
 	protected Object getConstraintFor(Point point) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -126,7 +126,7 @@ public class ConstrainedItemBorderLayoutEditPolicy extends ConstrainedLayoutEdit
 	 */
 	@Override
 	protected Command getCreateCommand(CreateRequest request) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

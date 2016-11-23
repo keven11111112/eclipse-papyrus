@@ -99,7 +99,7 @@ public class ShortcutDiagramParser implements IParser {
 	 */
 	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
@@ -109,7 +109,7 @@ public class ShortcutDiagramParser implements IParser {
 	 */
 	@Override
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

@@ -44,8 +44,8 @@ import org.eclipse.papyrus.uml.diagram.common.commands.ShowHideCompartmentReques
 import org.eclipse.papyrus.uml.diagram.common.commands.ShowHideTitleOfCompartmentCommand;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.util.CompartmentUtils;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.uml.diagram.common.util.ViewServiceUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewServiceUtil;
 import org.eclipse.papyrus.uml.diagram.menu.dialogs.ShowHideCompartmentSelectionDialog;
 import org.eclipse.papyrus.uml.diagram.menu.messages.Messages;
 import org.eclipse.ui.dialogs.SelectionDialog;
@@ -57,9 +57,6 @@ import org.eclipse.ui.dialogs.SelectionDialog;
  *
  */
 public class ShowHideCompartmentAction extends AbstractShowHideAction {
-
-	/** the transactional editing domain */
-	// protected TransactionalEditingDomain domain;
 
 	/** list of visible titles */
 	protected List<CompartmentEditPartRepresentation> visibleTitle;
@@ -124,7 +121,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		private boolean isTitleVisible;
 
 		/** notation view of the compartment */
-		final private View compartmentView;
+		private final View compartmentView;
 
 		/**
 		 * Constructor.
@@ -198,31 +195,6 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		}
 	}
 
-	// /**
-	// * {@inheritDoc}
-	// */
-	// @Override
-	// protected void buildInitialSelection() {
-	// this.initialSelection = new ArrayList<Object>();
-	// rep = new ArrayList<CompartmentEditPartRepresentation>();
-	// visibleTitle = new ArrayList<CompartmentEditPartRepresentation>();
-	// for(EditPart current : this.selectedElements) {
-	// // initialSelection.add(current);
-	// initialSelection.addAll(CompartmentUtils.getAllVisibleCompartments(current, false));
-	// // initialSelection.addAll(getAllVisibleCompartmentName(current));
-	// for(View view : CompartmentUtils.getAllCompartments(current, false)) {
-	// CompartmentTitleRepresentation localRep = new CompartmentTitleRepresentation(current, view);
-	// if(localRep.isTitleVisible()) {
-	//
-	// visibleTitle.add(localRep);
-	// }
-	// rep.add(localRep);
-	// }
-	// }
-	//
-	// initialSelection.addAll(visibleTitle);
-	// }
-
 	/**
 	 *
 	 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction#getSelectionDialog()
@@ -238,7 +210,6 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		selectionDialog.setInput(getInput());
 		selectionDialog.setExpandedElements(selectedElements.toArray());
 		selectionDialog.setInitialElementSelections(getInitialSelection());
-		// selectionDialog.setTitleRepresentation(rep);
 		return selectionDialog;
 	}
 
@@ -251,7 +222,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 	@Override
 	protected void buildShowHideElementsList(Object[] results) {
 		super.buildShowHideElementsList(results);
-		List<Object> result = new ArrayList<Object>();
+		List<Object> result = new ArrayList<>();
 
 		// we remove the EditPart from the result
 		for (int i = 0; i < results.length; i++) {
@@ -288,13 +259,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 			}
 		}
 	}
-
-	// @Override
-	// public void run(IAction action) {
-	// initAction();
-	// super.run(action);
-	// }
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -310,9 +275,6 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 			}
 		}
 		setContentProvider(new ContentProvider());
-		// setEditorLabelProvider(new EditorLabelProvider());
-		// this.domain = ((IGraphicalEditPart)this.selectedElements.get(0)).getEditingDomain();
-		// this.initialSelection = getInitialSelection();
 	}
 
 	/**
@@ -343,7 +305,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 				// if null, try to find it using gmf methods from the view
 
 				if (currentEditPart == null) {
-					Activator.log.debug("Warning! An edit part representation wished to destroy a view, but no edit part exists currently!" + current);
+					Activator.log.debug("Warning! An edit part representation wished to destroy a view, but no edit part exists currently!" + current); //$NON-NLS-1$
 					currentEditPart = DiagramEditPartsUtil.getEditPartFromView(currentView, selectedElements.get(0)).getParent();
 				}
 
@@ -355,25 +317,11 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 						completeCmd.add(tmp);
 					}
 				} else {
-					Activator.log.debug("Impossible to find an edit part for the given representation: " + current);
+					Activator.log.debug("Impossible to find an edit part for the given representation: " + current); //$NON-NLS-1$
 				}
 
 			}
 
-			// if(current instanceof View) {
-			// EditPart ep = DiagramEditPartsUtil.getEditPartFromView((View)current, selectedElements.get(0)).getParent();
-			// req = new ShowHideCompartmentRequest(ShowHideCompartmentRequest.HIDE, ((View)current).getType());
-			// req.setType(ShowHideCompartmentRequest.SHOW_HIDE_COMPARTMENT);
-			// Command tmp = ep.getCommand(req);
-			// if(tmp != null && tmp.canExecute()) {
-			// completeCmd.add(tmp);
-			// }
-			// } else if(current instanceof CompartmentTitleRepresentation) {
-			// ShowHideTitleOfCompartmentCommand tmp = new ShowHideTitleOfCompartmentCommand(this.domain, (View)((CompartmentTitleRepresentation)current).getRealObject(), false);
-			// if(tmp != null && tmp.canExecute()) {
-			// completeCmd.add(new ICommandProxy(tmp));
-			// }
-			// }
 		}
 
 		// the command to show compartment
@@ -392,36 +340,6 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 					}
 				}
 			}
-
-			// if(current instanceof View) {
-			// EditPart ep = CompartmentUtils.getCompartmentTitleRepresentation(rep, (View)current).getParent();
-			// req = new ShowHideCompartmentRequest(ShowHideCompartmentRequest.SHOW, ((View)current).getType());
-			// req.setType(ShowHideCompartmentRequest.SHOW_HIDE_COMPARTMENT);
-			// Command tmp = ep.getCommand(req);
-			// if(tmp != null && tmp.canExecute()) {
-			// completeCmd.add(tmp);
-			// }
-			// } else if(current instanceof CompartmentTitleRepresentation) {
-			// CompartmentTitleRepresentation compartmentTitleRep = (CompartmentTitleRepresentation)current;
-			// final View view = (View)compartmentTitleRep.getRealObject();
-			// Style style = view.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
-			// if(style == null) {
-			// // style is not existing yet (true for models created with Papyrus 0.7.x) => create now
-			// // See bug 351084
-			//					completeCmd.add(new ICommandProxy(new AbstractTransactionalCommand(domain, "Create title style", Collections.EMPTY_LIST) { //$NON-NLS-1$
-			//
-			// public CommandResult doExecuteWithResult(IProgressMonitor dummy, IAdaptable info) {
-			// TitleStyle style = (TitleStyle)view.createStyle(NotationPackage.eINSTANCE.getTitleStyle());
-			// style.setShowTitle(false);
-			// return CommandResult.newOKCommandResult();
-			// }
-			// }));
-			// }
-			// ShowHideTitleOfCompartmentCommand tmp = new ShowHideTitleOfCompartmentCommand(this.domain, view, true);
-			// if(tmp != null && tmp.canExecute()) {
-			// completeCmd.add(new ICommandProxy(tmp));
-			// }
-			// }
 		}
 
 		// now sets the visibility for all shown views
@@ -439,7 +357,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 				if (style == null) {
 					// style is not existing yet (true for models created with Papyrus 0.7.x) => create now
 					// See bug 351084
-					completeCmd.add(new ICommandProxy(new AbstractTransactionalCommand(domain, "Create title style", Collections.EMPTY_LIST) { //$NON-NLS-1$
+					completeCmd.add(new ICommandProxy(new AbstractTransactionalCommand(domain, "Create title style", Collections.emptyList()) { //$NON-NLS-1$
 
 								@Override
 								public CommandResult doExecuteWithResult(IProgressMonitor dummy, IAdaptable info) {
@@ -468,6 +386,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void dispose() {
 			// nothing to do
 		}
@@ -475,6 +394,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			// nothing to do
 		}
@@ -482,6 +402,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getElements(Object inputElement) {
 			if (inputElement instanceof List) {
 				return ((List<?>) inputElement).toArray();
@@ -492,6 +413,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object[] getChildren(Object parentElement) {
 			if (parentElement instanceof EditPartRepresentation) {
 				return ((EditPartRepresentation) parentElement).getPossibleElement().toArray();
@@ -502,6 +424,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public Object getParent(Object element) {
 			if (element instanceof EditPartRepresentation) {
 				EditPartRepresentation editPartRepresentation = (EditPartRepresentation) element;
@@ -513,6 +436,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public boolean hasChildren(Object element) {
 			Object[] children = getChildren(element);
 			return children != null && children.length != 0;

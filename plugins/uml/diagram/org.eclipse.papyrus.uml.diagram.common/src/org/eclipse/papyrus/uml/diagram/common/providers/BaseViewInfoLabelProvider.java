@@ -16,7 +16,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Basic label provider for a ViewInfo.
  *
@@ -31,7 +31,7 @@ public class BaseViewInfoLabelProvider implements IBaseLabelProvider, ILabelProv
 	 */
 	@Override
 	public Image getImage(Object element) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -79,7 +79,7 @@ public class BaseViewInfoLabelProvider implements IBaseLabelProvider, ILabelProv
 	 */
 	@Override
 	public boolean isLabelProperty(Object element, String property) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 

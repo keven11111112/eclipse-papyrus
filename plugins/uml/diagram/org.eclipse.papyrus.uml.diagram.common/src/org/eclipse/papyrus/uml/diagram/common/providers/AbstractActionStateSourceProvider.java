@@ -209,7 +209,7 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 		 */
 		@Override
 		public void partOpened(IWorkbenchPart part) {
-			// TODO Auto-generated method stub
+			
 		}
 
 		/**
@@ -220,7 +220,7 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 		 */
 		@Override
 		public void partDeactivated(IWorkbenchPart part) {
-			// TODO Auto-generated method stub
+			
 		}
 
 		/**
@@ -231,7 +231,7 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 		 */
 		@Override
 		public void partClosed(IWorkbenchPart part) {
-			// TODO Auto-generated method stub
+			
 
 		}
 
@@ -243,7 +243,7 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 		 */
 		@Override
 		public void partBroughtToTop(IWorkbenchPart part) {
-			// TODO Auto-generated method stub
+			
 
 		}
 

@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Command to remove the value of a collection feature of a model element.
  *

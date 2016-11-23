@@ -281,7 +281,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 
 	@Override
 	public void setIcon(Image icon) {
-		// TODO Auto-generated method stub
+		
 
 	}
 

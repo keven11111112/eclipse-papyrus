@@ -12,7 +12,7 @@ package org.eclipse.papyrus.uml.diagram.common.util;
 
 import org.eclipse.emf.ecore.EObject;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Wrapper interface for generated model switches.
  *

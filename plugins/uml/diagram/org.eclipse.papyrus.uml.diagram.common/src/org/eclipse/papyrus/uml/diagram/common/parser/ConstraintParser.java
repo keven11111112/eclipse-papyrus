@@ -242,7 +242,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 
 	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
@@ -253,7 +253,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 
 	@Override
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.DropUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.MessageUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.OccurrenceSpecificationUtils;
@@ -112,7 +112,7 @@ public class CustomMessageReorientCommand extends EditElementCommand {
 
 	private Set<View> findParentInteractionViews(final EObject eObject) {
 		final List<View> views = DiagramEditPartsUtil.findViews(eObject, this.viewer);
-		final Set<View> interactionViews = new HashSet<View>();
+		final Set<View> interactionViews = new HashSet<>();
 		for (final View view : views) {
 			final View interactionView = ViewUtils.findSuperViewWithId(view, InteractionEditPartTN.VISUAL_ID);
 			if (interactionView != null) {
