@@ -143,4 +143,4 @@ location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.20.0/v20160608-1917"
+location mylyn "http://download.eclipse.org/mylyn/drops/3.21.0/v20160929-2030"

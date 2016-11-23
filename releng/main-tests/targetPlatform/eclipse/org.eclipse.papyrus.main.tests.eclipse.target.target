@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Tests" sequenceNumber="1479717664">
+<target name="Papyrus Tests" sequenceNumber="1479890415">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="orbit" location="file:/home/data/httpd/download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository"/>
@@ -100,7 +100,7 @@
       <repository id="gef" location="file:/home/data/httpd/download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="mylyn" location="file:/home/data/httpd/download.eclipse.org/mylyn/drops/3.20.0/v20160608-1917"/>
+      <repository id="mylyn" location="file:/home/data/httpd/download.eclipse.org/mylyn/drops/3.21.0/v20160929-2030"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group" version="1.0.100.20161116-2325"/>

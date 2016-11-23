@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus RCP" sequenceNumber="1479732918">
+<target name="Papyrus RCP" sequenceNumber="1479890415">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.6.0.v20160606-1156"/>
@@ -138,14 +138,14 @@
       <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-4.4.1"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.mylyn.ide_feature.feature.group" version="3.20.0.v20160421-1902"/>
-      <unit id="org.eclipse.mylyn.java_feature.feature.group" version="3.20.0.v20160421-1902"/>
-      <unit id="org.eclipse.mylyn.pde_feature.feature.group" version="3.20.0.v20160421-1902"/>
-      <unit id="org.eclipse.mylyn.bugzilla_feature.feature.group" version="3.20.0.v20160425-1835"/>
-      <unit id="org.eclipse.mylyn.context_feature.feature.group" version="3.20.0.v20160608-1905"/>
-      <unit id="org.eclipse.mylyn_feature.feature.group" version="3.20.0.v20160608-1838"/>
-      <unit id="org.eclipse.mylyn.wikitext_feature.feature.group" version="2.9.0.v20160601-1831"/>
-      <repository id="mylyn" location="file:/home/data/httpd/download.eclipse.org/mylyn/drops/3.20.0/v20160608-1917"/>
+      <unit id="org.eclipse.mylyn.ide_feature.feature.group" version="3.21.0.v20160912-1820"/>
+      <unit id="org.eclipse.mylyn.java_feature.feature.group" version="3.21.0.v20160701-1337"/>
+      <unit id="org.eclipse.mylyn.pde_feature.feature.group" version="3.21.0.v20160701-1337"/>
+      <unit id="org.eclipse.mylyn.bugzilla_feature.feature.group" version="3.21.0.v20160909-1813"/>
+      <unit id="org.eclipse.mylyn.context_feature.feature.group" version="3.21.0.v20160815-2336"/>
+      <unit id="org.eclipse.mylyn_feature.feature.group" version="3.21.0.v20160914-0252"/>
+      <unit id="org.eclipse.mylyn.wikitext_feature.feature.group" version="2.10.0.v20160912-2336"/>
+      <repository id="mylyn" location="file:/home/data/httpd/download.eclipse.org/mylyn/drops/3.21.0/v20160929-2030"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.compare.ide.ui.source.feature.group" version="3.2.1.201608311750"/>

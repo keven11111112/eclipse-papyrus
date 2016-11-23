@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<feature id="org.eclipse.papyrus.sdk.feature" label="Papyrus UML" plugin="org.eclipse.papyrus.sdk" provider-name="Eclipse Modeling Project" version="2.0.1.qualifier">
+<feature id="org.eclipse.papyrus.sdk.feature" label="Papyrus UML" plugin="org.eclipse.papyrus.sdk" provider-name="Eclipse Modeling Project" version="2.0.2.qualifier">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others
