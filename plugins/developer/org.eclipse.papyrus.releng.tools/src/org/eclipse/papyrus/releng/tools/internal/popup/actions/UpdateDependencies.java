@@ -117,7 +117,7 @@ public class UpdateDependencies {
 			}
 			IResource[] members = project.members();
 			for (IResource resource : members) {
-				if (resource.getType() == IResource.FILE && resource.getName().endsWith(".b3aggr")) { //$NON-NLS-1$
+				if (resource.getType() == IResource.FILE && resource.getName().endsWith(".aggr")) { //$NON-NLS-1$
 					aggregationBuildFiles.add((IFile) resource);
 				}
 			}
