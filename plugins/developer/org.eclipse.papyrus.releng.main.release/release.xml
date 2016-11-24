@@ -83,7 +83,7 @@
 		<plugin name="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore" version="1.2.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.core.feature" version="2.0.1">
-		<plugin name="org.eclipse.papyrus.infra.core" version="2.1.0"/>
+		<plugin name="org.eclipse.papyrus.infra.core" version="2.1.1"/>
 		<plugin name="org.eclipse.papyrus.infra.core.log" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.core.sasheditor" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.core.sasheditor.di" version="2.0.0"/>
@@ -142,7 +142,7 @@
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.preferences" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.properties" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.widgets" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.infra.gmfdiag.common" version="2.0.1"/>
+		<plugin name="org.eclipse.papyrus.infra.gmfdiag.common" version="2.0.2"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.gef" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.modelexplorer" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.extensionpoints.editors" version="1.2.0"/>
@@ -152,7 +152,7 @@
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.controlmode" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.gmfmenu.filter" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.menu" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.infra.gmfdiag.export" version="1.2.0"/>
+		<plugin name="org.eclipse.papyrus.infra.gmfdiag.export" version="1.2.1"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant.edit" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant.editor" version="1.2.0"/>
@@ -196,7 +196,7 @@
 	<feature name="org.eclipse.papyrus.infra.ui.feature" version="2.0.0">
 		<plugin name="org.eclipse.papyrus.infra.ui" version="1.3.0"/>
 		<plugin name="org.eclipse.papyrus.infra.onefile.ui" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.infra.ui.emf" version="1.2.0"/>
+		<plugin name="org.eclipse.papyrus.infra.ui.emf" version="1.2.1"/>
 		<plugin name="org.eclipse.papyrus.infra.ui.resources" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.constraints.ui" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.types.editor" version="2.0.0"/>
@@ -207,6 +207,7 @@
 		<plugin name="org.eclipse.papyrus.infra.editor.welcome" version="1.2.1"/>
 		<plugin name="org.eclipse.papyrus.infra.editor.welcome.nattable" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.newchild.ui" version="2.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.newchild.editor" version="1.2.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.viewpoints.feature" version="2.0.0">
 		<plugin name="org.eclipse.papyrus.infra.viewpoints.configuration" version="2.0.0"/>
@@ -219,7 +220,7 @@
 		<plugin name="org.eclipse.papyrus.infra.viewpoints.preferences" version="1.2.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.widget.feature" version="2.0.0">
-		<plugin name="org.eclipse.papyrus.infra.widgets" version="2.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.widgets" version="2.0.1"/>
 		<plugin name="org.eclipse.papyrus.infra.widgets.toolbox" version="1.2.0"/>
 		<plugin name="org.eclipse.nebula.widgets.richtext" version="1.0.0"/>
 	</feature>
@@ -344,7 +345,7 @@
 		<plugin name="org.eclipse.papyrus.uml.diagram.linklf" version="1.2.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.feature" version="2.0.0">
-		<plugin name="org.eclipse.papyrus.uml.commands" version="1.2.0"/>
+		<plugin name="org.eclipse.papyrus.uml.commands" version="1.2.1"/>
 		<plugin name="org.eclipse.papyrus.uml.controlmode.profile" version="1.2.1"/>
 		<plugin name="org.eclipse.papyrus.uml.extensionpoints" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.uml.icons" version="1.2.0"/>
@@ -419,7 +420,7 @@
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.tools.feature" version="2.0.1">
 		<plugin name="org.eclipse.papyrus.uml.tools.utils" version="2.0.0"/>
-		<plugin name="org.eclipse.papyrus.uml.tools" version="2.0.1"/>
+		<plugin name="org.eclipse.papyrus.uml.tools" version="2.0.2"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.ui.feature" version="1.2.0">
 		<plugin name="org.eclipse.papyrus.uml.ui" version="1.2.0"/>
@@ -512,7 +513,7 @@
 	<plugin name="org.eclipse.papyrus.infra.constraints.edit" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.constraints.editor" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.constraints.ui" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.infra.core" version="2.1.0"/>
+	<plugin name="org.eclipse.papyrus.infra.core" version="2.1.1"/>
 	<plugin name="org.eclipse.papyrus.infra.core.log" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.core.pluginexplorer" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.core.sasheditor" version="2.0.0"/>
@@ -540,7 +541,7 @@
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant.ui" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.canonical" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.commands" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.gmfdiag.common" version="2.0.1"/>
+	<plugin name="org.eclipse.papyrus.infra.gmfdiag.common" version="2.0.2"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.common.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.controlmode" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.css" version="1.2.0"/>
@@ -554,7 +555,7 @@
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.dnd" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.expansion.edit" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.expansion.editor" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.infra.gmfdiag.export" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.infra.gmfdiag.export" version="1.2.1"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.gef" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.gmfmenu.filter" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.hyperlink" version="2.0.0"/>
@@ -583,6 +584,7 @@
 	<plugin name="org.eclipse.papyrus.infra.newchild" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.newchild.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.newchild.edit" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.infra.newchild.editor" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.newchild.ui" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.onefile" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.onefile.ui" version="1.2.0"/>
@@ -618,7 +620,7 @@
 	<plugin name="org.eclipse.papyrus.infra.types.rulebased" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.types.ui" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.ui" version="1.3.0"/>
-	<plugin name="org.eclipse.papyrus.infra.ui.emf" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.infra.ui.emf" version="1.2.1"/>
 	<plugin name="org.eclipse.papyrus.infra.ui.resources" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.viewpoints.configuration" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.viewpoints.configuration.edit" version="2.0.0"/>
@@ -628,7 +630,7 @@
 	<plugin name="org.eclipse.papyrus.infra.viewpoints.iso42010.edit" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.viewpoints.policy" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.viewpoints.preferences" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.infra.widgets" version="2.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.widgets" version="2.0.1"/>
 	<plugin name="org.eclipse.papyrus.infra.widgets.toolbox" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.layers.documentation" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.releng.main.release" version="2.0.0"/>
@@ -659,7 +661,7 @@
 	<plugin name="org.eclipse.papyrus.uml.alf.to.fuml" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.alf.ui" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.appearance" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.uml.commands" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.uml.commands" version="1.2.1"/>
 	<plugin name="org.eclipse.papyrus.uml.controlmode.profile" version="1.2.1"/>
 	<plugin name="org.eclipse.papyrus.uml.decoratormodel" version="1.2.1"/>
 	<plugin name="org.eclipse.papyrus.uml.decoratormodel.controlmode" version="1.2.0"/>
@@ -762,7 +764,7 @@
 	<plugin name="org.eclipse.papyrus.uml.textedit.valuespecification.xtext" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.textedit.valuespecification.xtext.utils" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.uml.tools" version="2.0.1"/>
+	<plugin name="org.eclipse.papyrus.uml.tools" version="2.0.2"/>
 	<plugin name="org.eclipse.papyrus.uml.tools.utils" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.types.core" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.ui" version="1.2.0"/>

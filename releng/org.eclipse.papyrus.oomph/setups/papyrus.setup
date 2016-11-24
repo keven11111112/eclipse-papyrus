@@ -78,7 +78,7 @@
       <requirement name="org.eclipse.uml2.sdk.feature.group"/>
       <requirement name="org.eclipse.emf.sdk.feature.group"/>
       <repositoryList name="Neon">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.1RC4-201609071200/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.6-M-builds/M-4.6.2RC2-201611161100/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -149,14 +149,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201608301456">
+        <repository url="http://download.eclipse.org/acceleo/updates/releases/3.6/R201610060831">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>M2T ACCELEO</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.1/S201608201313">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.2/S201611141024">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>MDT OCL 6.0</value>
@@ -191,7 +191,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.8.1/S-3.8.1RC3-20160906143814/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.8.1/R-3.8.1-20160912100321/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
