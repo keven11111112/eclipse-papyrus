@@ -32,6 +32,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.customization.nattableconfiguration.messages.Messages;
 import org.eclipse.papyrus.customization.nattableconfiguration.utils.NameSimplifier;
 import org.eclipse.papyrus.customization.nattableconfiguration.utils.NattableConfigurationConstants;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis;
@@ -42,14 +43,15 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.editors.ITreeSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
+import org.eclipse.papyrus.infra.widgets.providers.CompoundFilteredRestrictedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.FlattenableRestrictedFilteredContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
-import org.eclipse.papyrus.uml.nattable.provider.UMLFeatureRestrictedContentProvider;
-import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StackLayout;
@@ -106,7 +108,7 @@ public class TreeFillingConfigurationDialog extends SelectionDialog {
 	/**
 	 * The label provider for the UML elements.
 	 */
-	protected final ILabelProvider labelProvider = new UMLLabelProvider();
+	protected final ILabelProvider labelProvider;
 
 	/**
 	 * The stack layout which allow to display the correct element composite corresponding to the type of axis.
@@ -167,6 +169,15 @@ public class TreeFillingConfigurationDialog extends SelectionDialog {
 		this.existingLabelProviderConfigurations = existingLabelProvidersConfiguration;
 		this.existingPasteConfigurations = existingPasteConfigurations;
 		setTitle(Messages.TreeFillingConfigurationDialog_treeFillingConfigurationDialogName);
+		
+		LabelProviderService labelProviderService = new LabelProviderServiceImpl();
+		try {
+			labelProviderService.startService();
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+		}
+
+		labelProvider = labelProviderService.getLabelProvider();
 	}
 
 	/**
@@ -499,7 +510,7 @@ public class TreeFillingConfigurationDialog extends SelectionDialog {
 		};
 		dialog.setTitle(org.eclipse.papyrus.customization.nattableconfiguration.messages.Messages.TreeFillingConfigurationDialog_elementDialogName);
 
-		final UMLFeatureRestrictedContentProvider contentProvider = new UMLFeatureRestrictedContentProvider(null, false) {
+		final CompoundFilteredRestrictedContentProvider contentProvider = new CompoundFilteredRestrictedContentProvider() {
 
 			@Override
 			public Object[] getChildren(final Object parentElement) {

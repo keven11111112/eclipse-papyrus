@@ -28,17 +28,19 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.customization.nattableconfiguration.utils.NattableConfigurationConstants;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
 import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeUtils;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.editors.ITreeSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
+import org.eclipse.papyrus.infra.widgets.providers.CompoundFilteredRestrictedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.FlattenableRestrictedFilteredContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
-import org.eclipse.papyrus.uml.nattable.provider.UMLFeatureRestrictedContentProvider;
-import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.ModifyEvent;
@@ -68,7 +70,7 @@ public class PasteEObjectConfigurationDialog extends SelectionDialog {
 	/**
 	 * The label provider for the UML elements.
 	 */
-	protected final ILabelProvider labelProvider = new UMLLabelProvider();
+	protected final ILabelProvider labelProvider;
 
 	/**
 	 * The CLabel composite for the containment feature.
@@ -97,6 +99,15 @@ public class PasteEObjectConfigurationDialog extends SelectionDialog {
 		super(parentShell);
 		this.modifiedPasteConfiguration = EcoreUtil.copy(pasteConfiguration);
 		setTitle(org.eclipse.papyrus.customization.nattableconfiguration.messages.Messages.PasteEObjectConfigurationDialog_pasteEObjectConfigurationDialogName);
+		
+		LabelProviderService labelProviderService = new LabelProviderServiceImpl();
+		try {
+			labelProviderService.startService();
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+		}
+
+		labelProvider = labelProviderService.getLabelProvider();
 	}
 
 	/**
@@ -232,7 +243,7 @@ public class PasteEObjectConfigurationDialog extends SelectionDialog {
 		};
 		dialog.setTitle(org.eclipse.papyrus.customization.nattableconfiguration.messages.Messages.PasteEObjectConfigurationDialog_containmentFeatureDialogName);
 
-		final UMLFeatureRestrictedContentProvider contentProvider = new UMLFeatureRestrictedContentProvider(null, false);
+		final CompoundFilteredRestrictedContentProvider contentProvider = new CompoundFilteredRestrictedContentProvider();
 		final ReferenceSelector selector = new ReferenceSelector(false) {
 
 			@Override
