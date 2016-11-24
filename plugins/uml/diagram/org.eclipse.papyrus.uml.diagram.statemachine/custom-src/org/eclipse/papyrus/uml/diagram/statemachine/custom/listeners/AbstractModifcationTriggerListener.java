@@ -21,14 +21,18 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy.PapyrusCanonicalEditPolicy;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
-
-
+/**
+* @deprecated this is a bad way to create/synchronize views. Behavior similar to {@link PapyrusCanonicalEditPolicy} should be used instead.
+*/
+@Deprecated
 public abstract class AbstractModifcationTriggerListener extends TriggerListener {
 
 	@Override
@@ -78,6 +82,9 @@ public abstract class AbstractModifcationTriggerListener extends TriggerListener
 	 * @return
 	 */
 	protected DiagramEditPart getDiagramEditPart() {
+		if(Display.getCurrent()==null) { // UI-thread safe...
+			return null;
+		}
 		IWorkbench wb = PlatformUI.getWorkbench();
 		IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editor = page.getActiveEditor();

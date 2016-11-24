@@ -31,6 +31,7 @@ import org.eclipse.swt.dnd.TransferData;
  * This class is used to handle drop event on diagram
  *
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @deprecated class is not used. 
  */
 public abstract class DropTargetListener extends DiagramDropTargetListener {
 

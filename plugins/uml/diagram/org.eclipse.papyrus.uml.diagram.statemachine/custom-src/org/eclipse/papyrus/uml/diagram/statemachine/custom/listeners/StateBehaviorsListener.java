@@ -26,7 +26,9 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.RefreshEditPartCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy.PapyrusCanonicalEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -35,7 +37,9 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  * @author Arthur Daussy
  *
+ * @deprecated this is a bad way to create/synchronize views. Behavior similar to {@link PapyrusCanonicalEditPolicy} should be used instead.
  */
+@Deprecated
 public class StateBehaviorsListener extends AbstractModifcationTriggerListener {
 
 	/**
@@ -147,9 +151,8 @@ public class StateBehaviorsListener extends AbstractModifcationTriggerListener {
 	 */
 	protected StateEditPart getContainingEditPart(Object toTest) {
 		// If not EObject found return null;
-		if (toTest instanceof EObject)
-		{
-			IGraphicalEditPart found = getChildByEObject((EObject) toTest, getDiagramEditPart(), false);
+		if (toTest instanceof EObject && Display.getCurrent() != null)	{
+ 			IGraphicalEditPart found = getChildByEObject((EObject) toTest, getDiagramEditPart(), false);
 			if (found instanceof StateEditPart) {
 				return (StateEditPart) found;
 			}
