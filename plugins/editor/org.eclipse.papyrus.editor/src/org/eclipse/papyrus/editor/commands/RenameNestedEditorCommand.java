@@ -1,6 +1,15 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2016 CEA LIST, Christian W. Damus, and others.
  *
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.editor.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -18,6 +27,8 @@ import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 
@@ -99,23 +110,32 @@ public class RenameNestedEditorCommand extends AbstractHandler {
 			}
 		}
 
-
 		if (editingDomain != null) {
-			InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename an existing diagram", "New name:", diagram.getName(), null);
-			if (dialog.open() == Window.OK) {
-				final String name = dialog.getValue();
-				if (name != null && name.length() > 0) {
-
-					Command command = new RecordingCommand(editingDomain) {
-
-
-						@Override
-						protected void doExecute() {
-							diagram.setName(name);
-						}
-					};
-
-					editingDomain.getCommandStack().execute(command);
+			// If the diagram label is available, modify this one.
+			final String diagramLabel = LabelInternationalization.getInstance().getDiagramLabelWithoutName(diagram);
+			if(null != diagramLabel){
+				InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename diagram label", "New label:", diagramLabel, null); //$NON-NLS-1$ //$NON-NLS-2$
+				if (Window.OK == dialog.open()) {
+					final String label = dialog.getValue();
+					editingDomain.getCommandStack().execute(LabelInternationalization.getInstance().getSetDiagramLabelCommand(editingDomain, diagram, label, null));
+				}
+			}else{
+				InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename an existing diagram", "New name:", diagram.getName(), null); //$NON-NLS-1$ //$NON-NLS-2$
+				if (dialog.open() == Window.OK) {
+					final String name = dialog.getValue();
+					if (name != null && name.length() > 0) {
+	
+						Command command = new RecordingCommand(editingDomain) {
+	
+	
+							@Override
+							protected void doExecute() {
+								diagram.setName(name);
+							}
+						};
+	
+						editingDomain.getCommandStack().execute(command);
+					}
 				}
 			}
 		}

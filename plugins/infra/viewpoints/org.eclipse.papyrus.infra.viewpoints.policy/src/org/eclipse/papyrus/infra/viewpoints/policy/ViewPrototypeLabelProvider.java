@@ -9,13 +9,16 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 474467
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.policy;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.infra.ui.emf.providers.DependentEMFLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
@@ -90,6 +93,10 @@ public class ViewPrototypeLabelProvider extends DependentEMFLabelProvider {
 	 * @see EMFCoreUtil#getName(EObject)
 	 */
 	protected String getName(EObject object) {
-		return EMFCoreUtil.getName(object);
+		String value = null;
+		if(object instanceof Diagram){
+			value = LabelInternationalization.getInstance().getDiagramLabel((Diagram)object);
+		}
+		return null != value ? value : EMFCoreUtil.getName(object);
 	}
 }

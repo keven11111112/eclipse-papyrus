@@ -17,6 +17,7 @@
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436952
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436998
  *  Christian W. Damus - bugs 436998, 468030, 485220
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -853,7 +854,14 @@ public class ModelSet extends ResourceSetImpl {
 		return result;
 	}
 
-	protected boolean deleteResource(URI uri) {
+	/**
+	 * This allows to delete a resource from the uri.
+	 * 
+	 * @param uri The uri of the resource to delete.
+	 * @return <code>true</code> if the resource is deleted, <code>false</code> otherwise.
+	 * @since 2.3
+	 */
+	public boolean deleteResource(final URI uri) {
 		boolean result = false;
 
 		try {

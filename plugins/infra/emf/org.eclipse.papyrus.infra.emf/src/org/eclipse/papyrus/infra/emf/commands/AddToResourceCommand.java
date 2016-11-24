@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2016 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -8,21 +8,24 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.commands;
 
-import org.eclipse.emf.common.command.AbstractCommand;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 
 /**
- *
  * This command allows to add an EObject to a resource
- *
  */
-public class AddToResourceCommand extends AbstractCommand {
+public class AddToResourceCommand extends AbstractTransactionalCommand {
 
 	/**
 	 * the resource
@@ -38,63 +41,27 @@ public class AddToResourceCommand extends AbstractCommand {
 	 *
 	 * Constructor.
 	 *
+	 * @param domain
+	 *            The editing domain.
 	 * @param resource
 	 *            the resource
 	 * @param toAdd
 	 *            the object to add to the resource
 	 */
-	public AddToResourceCommand(final Resource resource, final EObject toAdd) {
+	public AddToResourceCommand(final TransactionalEditingDomain domain, final Resource resource, final EObject toAdd) {
+		super(domain, "Add an object to a resource", null);
 		this.resource = resource;
 		this.toAdd = toAdd;
-		setLabel("Add an object to a resource");
 	}
 
 	/**
-	 *
-	 * @see org.eclipse.emf.common.command.Command#execute()
-	 *
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 	 */
-	public void execute() {
+	@Override
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		this.resource.getContents().add(this.toAdd);
-	}
-
-	/**
-	 *
-	 * @see org.eclipse.emf.common.command.Command#redo()
-	 *
-	 */
-	public void redo() {
-		execute();
-	}
-
-	/**
-	 *
-	 * @see org.eclipse.emf.common.command.AbstractCommand#prepare()
-	 *
-	 */
-	@Override
-	protected boolean prepare() {
-		return true;
-	}
-
-
-	/**
-	 *
-	 * @see org.eclipse.emf.common.command.AbstractCommand#undo()
-	 *
-	 */
-	@Override
-	public void undo() {
-		this.resource.getContents().remove(this.toAdd);
-	}
-
-	/**
-	 *
-	 * @see org.eclipse.emf.common.command.AbstractCommand#canExecute()
-	 *
-	 */
-	@Override
-	public boolean canExecute() {
-		return super.canExecute() && this.resource != null;
+		return CommandResult.newOKCommandResult();
 	}
 }

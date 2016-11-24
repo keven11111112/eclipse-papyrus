@@ -9,6 +9,7 @@
  * Contributors:
  *   LIFL - Initial API and implementation
  *   Christian W. Damus - bugs 485220, 496299
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -46,8 +47,10 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 
 	/**
 	 * Model kind.
+	 * 
+	 * @since 2.0
 	 */
-	private ModelKind modelKind;
+	protected ModelKind modelKind;
 
 	/**
 	 *

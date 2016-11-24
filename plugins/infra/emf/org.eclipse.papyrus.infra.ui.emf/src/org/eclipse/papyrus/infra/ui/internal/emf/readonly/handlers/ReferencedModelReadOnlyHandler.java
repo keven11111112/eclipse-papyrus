@@ -9,6 +9,7 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bug 463631
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  */
 package org.eclipse.papyrus.infra.ui.internal.emf.readonly.handlers;
@@ -188,7 +189,8 @@ public class ReferencedModelReadOnlyHandler extends AbstractReadOnlyHandler impl
 			Set<URI> rootURIs = resolveRootResourceURIs(modelSet, uri);
 
 			if (!rootURIs.isEmpty()) {
-				result = modelSet.isUserModelResource(rootURIs.iterator().next())
+				URI next = rootURIs.iterator().next();
+				result = modelSet.isUserModelResource(next)
 						&& !rootURIs.contains(modelSet.getURIWithoutExtension());
 			}
 		}

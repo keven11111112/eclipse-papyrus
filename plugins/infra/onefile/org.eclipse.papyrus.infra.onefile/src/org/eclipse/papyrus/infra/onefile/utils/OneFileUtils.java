@@ -9,11 +9,16 @@
  * Contributors:
  *  Tristan Faure (Atos Origin Integration) tristan.faure@atosorigin.com - Initial API and implementation
  *  Christian W. Damus - bug 485220
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.onefile.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -21,6 +26,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.infra.internationalization.utils.PropertiesFilesUtils;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
 
@@ -54,15 +60,61 @@ public class OneFileUtils {
 		if (parent == null || parent.getType() == IResource.ROOT) {
 			return null;
 		}
-		String substring = fileName;
-		if (fileName.indexOf('.') > 0) {
-			substring = fileName.substring(0, fileName.lastIndexOf('.'));
-		}
+		final String substring = getFileNameForDi(fileName);
 		IFile file = parent.getFile(new Path(substring + "." + DiModel.DI_FILE_EXTENSION));
 		if (file.exists()) {
 			return file;
 		}
 		return null;
+	}
+
+	/**
+	 * The file name for di search in parent container.
+	 * 
+	 * @param fileName
+	 *            The initial file name.
+	 * @return The base of the di to search in the parent container.
+	 */
+	protected static String getFileNameForDi(final String fileName) {
+		String result = fileName;
+		if (fileName.indexOf('.') > 0) {
+			// Manage the properties files which contains languages
+			final String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+			String fileNameWithoutExtension = fileName.substring(0, fileName.lastIndexOf('.'));
+
+			// For the properties file with underscore in name, we need to check if a locale is available in the name
+			// If this is true, the file name is the name without the locale name
+			// Example: projectName_en_US.properties must return projectName
+			if (extension.equals(PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION) && fileNameWithoutExtension.contains("_")) {
+				boolean localeFound = false;
+				// Get the available locales
+				final List<Locale> availableLocales = Arrays.asList(Locale.getAvailableLocales());
+				String substring = fileNameWithoutExtension;
+
+				// Loop until no underscore in the name or if a locale is found
+				while (substring.contains("_") && !localeFound) { //$NON-NLS-1$
+					// Remove the first part of the name to check the possible locale
+					substring = substring.substring(substring.indexOf("_") + 1); //$NON-NLS-1$
+
+					final Iterator<Locale> localesIterator = availableLocales.iterator();
+
+					// Loop on available locales
+					while (localesIterator.hasNext() && !localeFound) {
+						final Locale currentAvailableLocale = localesIterator.next();
+
+						// The available locale is corresponding to the substring of the file name
+						if (currentAvailableLocale.toString().equals(substring)) {
+							localeFound = true;
+							// Get the initial name without the locale as string
+							fileNameWithoutExtension = fileNameWithoutExtension.substring(0, fileNameWithoutExtension.length() - substring.length() - 1);
+						}
+					}
+				}
+			}
+
+			result = fileNameWithoutExtension;
+		}
+		return result;
 	}
 
 	/**

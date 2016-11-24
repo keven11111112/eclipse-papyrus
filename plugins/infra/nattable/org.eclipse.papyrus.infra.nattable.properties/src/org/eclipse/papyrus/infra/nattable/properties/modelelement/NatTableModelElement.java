@@ -10,7 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
- *  Nicolas FAUVERGUE (ALL4tEC) nicolas.fauvergue@all4tec.net - Bug 476618, 192891
+ *  Nicolas FAUVERGUE (ALL4tEC) nicolas.fauvergue@all4tec.net - Bug 476618, 192891, 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.properties.modelelement;
@@ -76,6 +76,7 @@ import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteEObjectC
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteEObjectElementTypeIdObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteObjectDetachedModeObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteObjectPostActionsObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.TableLabelObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.provider.AxisIdentifierLabelProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnPostActionIdsProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.RowPostActionIdsProvider;
@@ -434,6 +435,10 @@ public class NatTableModelElement extends EMFModelElement {
 		} else if (Constants.COLUMN_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE.equals(propertyPath)) {
 			value = new ColumnPasteEObjectAxisIdentifierObservableValue(table);
 		}
+			
+			else if(Constants.TABLE_LABEL.equals(propertyPath)){
+				value = new TableLabelObservableValue(table);
+			}
 
 		if (value != null) {
 			return value;
@@ -516,6 +521,10 @@ public class NatTableModelElement extends EMFModelElement {
 				res = new ColumnPostActionIdsProvider(this.tableModelManager).getElements().length != 0;
 			} else if (Constants.COLUMN_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE.equals(propertyPath)) {
 				res = new ColumnAxisIdentifierContentProvider(this.tableModelManager).getElements().length != 0;
+			}
+			
+			else if(Constants.TABLE_LABEL.equals(propertyPath)){
+				res = true;
 			}
 		}
 

@@ -12,6 +12,7 @@
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *  Christian W. Damus (CEA) - bug 430880
  *  Christian W. Damus (CEA) - bug 437217
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.editor;
@@ -32,6 +33,9 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.nattable.selection.EObjectSelectionExtractor;
+import org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationUtils;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
 import org.eclipse.papyrus.infra.nattable.common.utils.TableEditorInput;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -56,7 +60,7 @@ import org.eclipse.ui.part.EditorPart;
  *
  *
  */
-public abstract class AbstractEMFNattableEditor extends EditorPart implements NavigationTarget {
+public abstract class AbstractEMFNattableEditor extends EditorPart implements NavigationTarget, IInternationalizationEditor {
 
 	/** the service registry */
 	protected ServicesRegistry servicesRegistry;
@@ -88,6 +92,9 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 		this.tableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(rawModel, new EObjectSelectionExtractor());
 		this.synchronizer = new PartNameSynchronizer(rawModel);
 		this.workspacePreferenceStore = getWorkspaceViewerPreferenceStore();
+
+		// Need to manage the part label synchronizer for the table labels
+		LabelInternationalizationUtils.managePartLabelSynchronizer(rawModel, this);
 	}
 
 	/**
@@ -106,7 +113,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 		// IPath path = Activator.getDefault().getStateLocation();
 		// String id = getIdStr(this.tableManager.getTable());
 		//
-		//			String fileName = path.toString() + "/" + id;//$NON-NLS-1$
+		// String fileName = path.toString() + "/" + id;//$NON-NLS-1$
 		// java.io.File file = new File(fileName);
 		// this.workspacePreferenceStore = new PreferenceStore(fileName);
 		// if(file.exists()) {
@@ -164,7 +171,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 		final TableEditorInput tableEditorInput = new TableEditorInput(this.tableManager.getTable(), getEditingDomain());
 		setSite(site);
 		setInput(tableEditorInput);
-		setPartName(this.tableManager.getTable().getName());
+		setPartName(LabelInternationalization.getInstance().getTableLabel(this.tableManager.getTable()));
 	}
 
 	/**
@@ -281,7 +288,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 		saveLocalPreferenceStoreValues();
 		this.tableManager.dispose();
 		this.synchronizer.dispose();
-		this.tableManager= null;
+		this.tableManager = null;
 		this.servicesRegistry = null;
 		this.synchronizer = null;
 		super.dispose();
@@ -323,7 +330,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 			@Override
 			public void notifyChanged(final Notification notification) {
 				if (notification.getFeature() == NattableconfigurationPackage.eINSTANCE.getTableNamedElement_Name()) {
-					setPartName(PartNameSynchronizer.this.papyrusTable.getName());
+					setPartName(LabelInternationalization.getInstance().getTableLabel(PartNameSynchronizer.this.papyrusTable));
 				}
 			}
 		};
@@ -356,12 +363,21 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 			// Set new table
 			this.papyrusTable = papyrusTable;
 			// Set editor name
-			setPartName(papyrusTable.getName());
+			setPartName(LabelInternationalization.getInstance().getTableLabel(papyrusTable));
 			// Listen to name change
 			papyrusTable.eAdapters().add(this.tableNameListener);
 		}
 	}
 
+	/**
+	 * @see org.eclipse.ui.part.EditorPart#setPartName(java.lang.String)
+	 *
+	 * @param partName
+	 */
+	@Override
+	public void setPartName(String partName) {
+		super.setPartName(partName);
+	}
 
 	/**
 	 *
@@ -413,5 +429,25 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 	 */
 	public TransactionalEditingDomain getTableContextEditingDomain() {
 		return TableEditingDomainUtils.getTableContextEditingDomain(getTable());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor#modifyPartName(java.lang.String)
+	 */
+	@Override
+	public void modifyPartName(final String name) {
+		setPartName(name);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor#refreshEditorPart()
+	 */
+	@Override
+	public void refreshEditorPart(){
+		// We don't need to refresh the editor part, the table is refreshed alone
 	}
 }

@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *   
  *****************************************************************************/
 
@@ -89,16 +90,29 @@ public class AdjunctResourceModelSnippet implements IModelSnippet {
 				if (converter.exists(adjunctURI, Collections.emptyMap())) {
 					// Best effort load. This must not interfere with other
 					// resource set operations
-					try {
-						resourceSet.getResource(adjunctURI, true);
-					} catch (Exception e) {
-						Activator.log.error(
-								String.format("Failed to load %s resource", model.getModelFileExtension()), //$NON-NLS-1$
-								e);
-					}
+					loadResource(model, resourceSet, adjunctURI);
 				}
 			}
 		}
 	}
 
+	/**
+	 * This allows to load the model.
+	 * 
+	 * @param model The {@link EMFLogicalModel}.
+	 * @param resourceSet The resource set.
+	 * @param adjunctURI The adjunct URI.
+	 * 
+	 * @since 2.3
+	 */
+	protected void loadResource(final EMFLogicalModel model, final ResourceSet resourceSet, final URI adjunctURI){
+		try {
+			resourceSet.getResource(adjunctURI, true);
+		} catch (final Exception e) {
+			Activator.log.error(
+					String.format("Failed to load %s resource", model.getModelFileExtension()), //$NON-NLS-1$
+					e);
+		}
+	}
+	
 }

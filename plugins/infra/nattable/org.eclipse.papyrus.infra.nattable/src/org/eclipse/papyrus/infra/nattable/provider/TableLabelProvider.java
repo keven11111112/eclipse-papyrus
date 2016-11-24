@@ -9,12 +9,15 @@
  * Contributors:
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 474467
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.provider;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototypeLabelProvider;
@@ -51,6 +54,24 @@ public class TableLabelProvider extends ViewPrototypeLabelProvider implements IF
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider#getText(java.lang.Object)
+	 */
+	@Override
+	public String getText(Object element) {
+		String result = null;
+		
+		// return the internationalization of the table if this is the case
+		EObject eObject = EMFHelper.getEObject(element);
+		if (eObject instanceof Table) {
+			result = LabelInternationalization.getInstance().getTableLabel((Table) eObject);
+		}
+		
+		return null != result ? result : super.getText(element);
 	}
 
 	@Override

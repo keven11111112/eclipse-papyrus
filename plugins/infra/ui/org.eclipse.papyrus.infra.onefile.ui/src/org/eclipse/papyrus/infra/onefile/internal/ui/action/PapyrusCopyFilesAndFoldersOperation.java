@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Benoit Maggi  benoit.maggi@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 
@@ -41,6 +42,7 @@ import org.eclipse.papyrus.infra.emf.resource.DependencyManagementHelper;
 import org.eclipse.papyrus.infra.emf.resource.MoveFileURIReplacementStrategy;
 import org.eclipse.papyrus.infra.emf.resource.RestoreDependencyHelper;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
+import org.eclipse.papyrus.infra.internationalization.utils.PropertiesFilesUtils;
 import org.eclipse.papyrus.infra.onefile.internal.ui.Activator;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -83,9 +85,8 @@ public class PapyrusCopyFilesAndFoldersOperation extends CopyFilesAndFoldersOper
 				destinationPaths[i] = destination.append(source.getName());
 				IPath relativSourcePath = source.getFullPath();
 				String sourceFileName = relativSourcePath.removeFileExtension().lastSegment();
-				if (sourceFileName.equals(oldName)) {
-					String fileExtension = relativSourcePath.getFileExtension();
-					destinationPaths[i] = relativSourcePath.removeLastSegments(1).append(newName).addFileExtension(fileExtension);
+				if (!oldName.isEmpty() && sourceFileName.startsWith(oldName)) {
+					destinationPaths[i] = getDestinationPath(relativSourcePath, newName, oldName);
 				} else {
 					oldName = sourceFileName;
 					if (workspace.getRoot().exists(destinationPaths[i]) && destinationPaths[i].getFileExtension().equals(DiModel.MODEL_FILE_EXTENSION)) {
@@ -111,7 +112,28 @@ public class PapyrusCopyFilesAndFoldersOperation extends CopyFilesAndFoldersOper
 		return true;
 	}
 
+	/**
+	 * Get the new destination path for the current relative source path.
+	 * 
+	 * @param relativeSourcePath
+	 *            The relative source path.
+	 * @param newName
+	 *            The new name to set.
+	 * @param oldName
+	 *            The old name.
+	 * @return The destination path.
+	 */
+	public IPath getDestinationPath(final IPath relativeSourcePath, final String newName, final String oldName) {
+		final String fileExtension = relativeSourcePath.getFileExtension();
+		// Get the source file name
+		final String sourceFileName = relativeSourcePath.removeFileExtension().lastSegment();
+		// Replace the oldName by the newName
+		final String destinationFileName = sourceFileName.replace(oldName, newName);
 
+		// Retrieve the last segment and append the new one with the file extension
+		return relativeSourcePath.removeLastSegments(1).append(destinationFileName).addFileExtension(fileExtension);
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -222,7 +244,10 @@ public class PapyrusCopyFilesAndFoldersOperation extends CopyFilesAndFoldersOper
 		for (Entry<URI, URI> oneInternalCopyMapping : constructInternalMapping.entrySet()) {
 			DependencyManagementHelper.updateDependencies(oneInternalCopyMapping.getKey(), oneInternalCopyMapping.getValue(), resource);
 		}
-		resource.save(ResourceUtils.getSaveOptions());
+		// Don't save the resource properties, the model resource manage it at create model call
+		if(!resource.getURI().fileExtension().equals(PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION)){
+			resource.save(ResourceUtils.getSaveOptions());
+		}
 		IPath fullPath = copyResources.getFullPath();
 		Resource sashResource = null;
 

@@ -9,6 +9,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus - bug 485220
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
@@ -27,6 +28,8 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.messages.Messages;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForIEvaluationContext;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
@@ -79,32 +82,43 @@ public class RenameDiagramHandler extends AbstractHandler {
 			return;
 		}
 
-		// Open the dialog to ask the new name
-		String currentName = notationDiagramHelper.getName();
-		String newName = null;
-		InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameDiagramHandler_RenameAnExistingDiagram, Messages.RenameDiagramHandler_NewName, currentName, null);
-		if (dialog.open() == Window.OK) {
-			newName = dialog.getValue();
-			if (newName == null || newName.length() <= 0) {
+		// If the diagram label is available, modify this one.
+		Command cmd = null;
+		final String diagramLabel = LabelInternationalization.getInstance().getDiagramLabelWithoutName(notationDiagramHelper);
+		if(null != diagramLabel && LabelInternationalizationPreferencesUtils.getInternationalizationPreference(notationDiagramHelper)){
+			InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename diagram label", "New label:", diagramLabel, null); //$NON-NLS-1$ //$NON-NLS-2$
+			if (Window.OK == dialog.open()) {
+				final String label = dialog.getValue();
+				cmd = LabelInternationalization.getInstance().getSetDiagramLabelCommand(editingDomain, notationDiagramHelper, label, null);
+			}
+		}else{
+			// Open the dialog to ask the new name
+			String currentName = notationDiagramHelper.getName();
+			String newName = null;
+			InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameDiagramHandler_RenameAnExistingDiagram, Messages.RenameDiagramHandler_NewName, currentName, null);
+			if (dialog.open() == Window.OK) {
+				newName = dialog.getValue();
+				if (newName == null || newName.length() <= 0) {
+					return;
+				}
+			} else {
+				// cancelled
 				return;
 			}
-		} else {
-			// cancelled
-			return;
+	
+			final String name = newName;
+			cmd = new RecordingCommand(editingDomain, getCommandName()) {
+	
+				@Override
+				protected void doExecute() {
+					// Rename the diagram !
+					notationDiagramHelper.setName(name);
+				}
+	
+	
+			};
 		}
-
-		final String name = newName;
-		Command cmd = new RecordingCommand(editingDomain, getCommandName()) {
-
-			@Override
-			protected void doExecute() {
-				// Rename the diagram !
-				notationDiagramHelper.setName(name);
-			}
-
-
-		};
-
+		
 		editingDomain.getCommandStack().execute(cmd);
 
 	}

@@ -11,6 +11,7 @@
  *  Christian W. Damus - bug 399859
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436952
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436998
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.commands;
@@ -19,6 +20,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -149,13 +151,23 @@ public class CreateControlResource extends AbstractControlResourceCommand {
 		resource.setModified(true);
 
 		// Handle old resource
-		if (!isControlledResourceLocked(getRequest().getNewURI())) {
+		if (!isControlledResourceLocked(getNewURI())) {
 			getResourceSet().getResources().remove(oldResource);
 			modelSet.getResourcesToDeleteOnSave().add(oldResource.getURI());
 		}
 		oldResource.setModified(true);
 
 		return superStatus;
+	}
+	
+	/**
+	 * Get the new URI.
+	 * 
+	 * @return The new URI.
+	 * @since 1.5
+	 */
+	protected URI getNewURI(){
+		return getRequest().getNewURI();
 	}
 
 	/**
@@ -165,7 +177,7 @@ public class CreateControlResource extends AbstractControlResourceCommand {
 	 *            the object to uncontrol
 	 * @return the target resrource
 	 */
-	private Resource getTargetResrource(EObject objectToUncontrol) {
+	protected Resource getTargetResrource(EObject objectToUncontrol) {
 		return getRequest().getModelSet().getAssociatedResource(objectToUncontrol, getFileExtension(), true);
 
 	}

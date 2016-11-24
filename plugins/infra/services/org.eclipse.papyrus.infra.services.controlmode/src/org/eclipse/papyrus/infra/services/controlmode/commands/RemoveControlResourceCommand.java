@@ -10,6 +10,8 @@
  * Contributors:
  *  Arthur Daussy (Atos) arthur.daussy@atos.net - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436998
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.commands;
 
@@ -39,22 +41,22 @@ import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 public class RemoveControlResourceCommand extends AbstractControlResourceCommand {
 
 	/** The Constant PREVIOUS_RESOURCE_ERROR. */
-	private static final String PREVIOUS_RESOURCE_ERROR = Messages.getString("RemoveControlResourceCommand.previous.resource.error"); //$NON-NLS-1$
+	protected static final String PREVIOUS_RESOURCE_ERROR = Messages.getString("RemoveControlResourceCommand.previous.resource.error"); //$NON-NLS-1$
 
 	/** The Constant TARGET_RESOURCE_ERROR. */
-	private static final String TARGET_RESOURCE_ERROR = Messages.getString("RemoveControlResourceCommand.target.resource.error"); //$NON-NLS-1$
+	protected static final String TARGET_RESOURCE_ERROR = Messages.getString("RemoveControlResourceCommand.target.resource.error"); //$NON-NLS-1$
 
 	/** The Constant RESOURCE_ERROR. */
-	private static final String RESOURCE_ERROR = Messages.getString("RemoveControlResourceCommand.resource.error"); //$NON-NLS-1$
+	protected static final String RESOURCE_ERROR = Messages.getString("RemoveControlResourceCommand.resource.error"); //$NON-NLS-1$
 
 	/** The Constant RESOURCESET_ERROR. */
-	private static final String RESOURCESET_ERROR = Messages.getString("RemoveControlResourceCommand.resourceset.error"); //$NON-NLS-1$
+	protected static final String RESOURCESET_ERROR = Messages.getString("RemoveControlResourceCommand.resourceset.error"); //$NON-NLS-1$
 
 	/** The Constant CONTROL_OBJECT_ERROR. */
-	private static final String CONTROL_OBJECT_ERROR = Messages.getString("RemoveControlResourceCommand.object.error"); //$NON-NLS-1$
+	protected static final String CONTROL_OBJECT_ERROR = Messages.getString("RemoveControlResourceCommand.object.error"); //$NON-NLS-1$
 
 	/** The Constant UNCONTROL_COMMAND_TITLE. */
-	private static final String UNCONTROL_COMMAND_TITLE = Messages.getString("RemoveControlResourceCommand.command.title"); //$NON-NLS-1$
+	protected static final String UNCONTROL_COMMAND_TITLE = Messages.getString("RemoveControlResourceCommand.command.title"); //$NON-NLS-1$
 
 	/**
 	 * @param request
@@ -128,7 +130,7 @@ public class RemoveControlResourceCommand extends AbstractControlResourceCommand
 		if (modelSet == null) {
 			return CommandResult.newErrorCommandResult(RESOURCESET_ERROR).getStatus();
 		}
-		Resource resource = getRequest().getSourceResource(getFileExtension());
+		Resource resource = getSourceResource();
 		if (resource == null) {
 			return CommandResult.newErrorCommandResult(RESOURCE_ERROR).getStatus();
 		}
@@ -141,11 +143,21 @@ public class RemoveControlResourceCommand extends AbstractControlResourceCommand
 
 		return superStatus;
 	}
+	
+	/**
+	 * Get the source resource.
+	 * 
+	 * @return The source resource.
+	 * @since 1.5
+	 */
+	protected Resource getSourceResource(){
+		return getRequest().getSourceResource(getFileExtension());
+	}
 
 	@Override
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IStatus superStatus = super.doRedo(monitor, info);
-		Resource resource = getRequest().getSourceResource(getFileExtension());
+		Resource resource = getSourceResource();
 		if (resource == null) {
 			return CommandResult.newErrorCommandResult(PREVIOUS_RESOURCE_ERROR).getStatus();
 		}

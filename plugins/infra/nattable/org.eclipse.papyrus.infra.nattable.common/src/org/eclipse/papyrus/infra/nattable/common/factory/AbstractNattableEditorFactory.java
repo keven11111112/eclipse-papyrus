@@ -11,6 +11,7 @@
  *  Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *  Christian W. Damus (CEA) - bug 392301
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.factory;
@@ -23,6 +24,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.ui.extension.diagrameditor.AbstractEditorFactory;
@@ -220,7 +222,7 @@ public abstract class AbstractNattableEditorFactory extends AbstractEditorFactor
 		 */
 		@Override
 		public String getTabTitle() {
-			return this.rawModel.getName();
+			return LabelInternationalization.getInstance().getTableLabel(this.rawModel);
 		}
 
 		@Override

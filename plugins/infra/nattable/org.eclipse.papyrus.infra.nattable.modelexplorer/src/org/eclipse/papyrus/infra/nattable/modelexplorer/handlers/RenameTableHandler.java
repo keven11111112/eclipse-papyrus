@@ -9,12 +9,14 @@
  * Contributors:
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.modelexplorer.handlers;
 
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -28,6 +30,8 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.modelexplorer.messages.Messages;
 import org.eclipse.papyrus.views.modelexplorer.DirectEditorEditingSupport;
@@ -48,18 +52,18 @@ public class RenameTableHandler extends AbstractTableCommandHandler {
 		if (editingDomain != null && tables.size() == 1) {
 
 			final Table table = tables.get(0);
-			final String currentName = table.getName();
-			if (currentName != null) {
-
-				AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "RenameTableCommand", null) { //$NON-NLS-1$
-
+			
+			final String tableLabel = LabelInternationalization.getInstance().getTableLabelWithoutName(table);
+			if(null != tableLabel && LabelInternationalizationPreferencesUtils.getInternationalizationPreference(table)){
+				AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "ChangeTableLabelCommand", null) { //$NON-NLS-1$
+					
 					@Override
-					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) {
-						InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameTableHandler_RenameAnExistingTable, Messages.RenameTableHandler_NewName, currentName, null);
-						if (dialog.open() == Window.OK) {
-							final String name = dialog.getValue();
-							if (name != null && name.length() > 0) {
-								table.setName(name);
+					protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+						InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename table label...", "New label:", tableLabel, null); //$NON-NLS-1$ //$NON-NLS-2$
+						if (Window.OK == dialog.open()) {
+							final String label = dialog.getValue();
+							if (label != null && label.length() > 0) {
+								LabelInternationalization.getInstance().setTableLabel(table, label, null);
 							}
 							return CommandResult.newOKCommandResult();
 						} else {
@@ -68,6 +72,28 @@ public class RenameTableHandler extends AbstractTableCommandHandler {
 					}
 				};
 				return new GMFtoEMFCommandWrapper(cmd);
+			}else{
+				final String currentName = table.getName();
+				if (currentName != null) {
+	
+					AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "RenameTableCommand", null) { //$NON-NLS-1$
+	
+						@Override
+						protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) {
+							InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameTableHandler_RenameAnExistingTable, Messages.RenameTableHandler_NewName, currentName, null);
+							if (dialog.open() == Window.OK) {
+								final String name = dialog.getValue();
+								if (name != null && name.length() > 0) {
+									table.setName(name);
+								}
+								return CommandResult.newOKCommandResult();
+							} else {
+								return CommandResult.newCancelledCommandResult();
+							}
+						}
+					};
+					return new GMFtoEMFCommandWrapper(cmd);
+				}
 			}
 		}
 		return UnexecutableCommand.INSTANCE;

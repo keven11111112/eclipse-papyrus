@@ -23,6 +23,7 @@
 		<module>org.eclipse.papyrus.infra.feature</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.css.feature</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.feature</module>
+		<module>org.eclipse.papyrus.infra.internationalization.feature</module>
 		<module>org.eclipse.papyrus.infra.nattable.feature</module>
 		<module>org.eclipse.papyrus.infra.services.feature</module>
 		<module>org.eclipse.papyrus.infra.ui.feature</module>

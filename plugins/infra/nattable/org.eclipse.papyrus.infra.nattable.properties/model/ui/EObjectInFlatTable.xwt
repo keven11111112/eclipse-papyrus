@@ -8,10 +8,17 @@
 	</Composite.layout>
 	<Composite>
 		<Composite.layout>
-			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:StringEditor input="{Binding}"
 			property="EObjectInTable:TableNamedElement:name" customLabel="Name"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="EObjectInTable:TableNamedElement:label"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
 		<ppe:ReferenceLabel input="{Binding}"
 			property="EObjectInTable:Table:prototype" readOnly="true"
 			customLabel="View Type"></ppe:ReferenceLabel>

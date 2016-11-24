@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -109,6 +110,13 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	 */
 	public Command getAddColumnElementCommand(final Collection<Object> objectsToAdd, final int index);
 
+	/**
+	 * This allows to set the label of a table.
+	 * 
+	 * @param label The new label.
+	 */
+	public void setTableLabel(final String label);
+	
 	public void setTableName(String name);
 
 	public String getTableName();

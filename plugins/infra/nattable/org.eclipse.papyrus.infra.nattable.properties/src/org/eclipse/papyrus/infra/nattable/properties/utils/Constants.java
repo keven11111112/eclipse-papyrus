@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.properties.utils;
@@ -33,6 +34,8 @@ public class Constants {
 	public static final String TABLE_OWNER = "owner"; //$NON-NLS-1$
 
 	public static final String TABLE_CONTEXT = "context"; //$NON-NLS-1$
+	
+	public static final String TABLE_LABEL = "label"; //$NON-NLS-1$
 
 	public static final String LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION_DISPLAY_LABEL = "localColumnHeaderAxisConfiguration.displayLabel"; //$NON-NLS-1$
 

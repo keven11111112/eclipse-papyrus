@@ -10,6 +10,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 485220
  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.handlers;
@@ -31,6 +32,8 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.modelexplorer.messages.Messages;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationPreferencesUtils;
 import org.eclipse.papyrus.views.modelexplorer.DirectEditorEditingSupport;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.swt.widgets.Display;
@@ -51,18 +54,27 @@ public class RenameDiagramHandler extends AbstractDiagramCommandHandler {
 		if (editingDomain != null && diagrams.size() == 1) {
 
 			final Diagram diag = diagrams.get(0);
-			final String currentName = diag.getName();
-			if (currentName != null) {
-
-				AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "RenameDiagramCommand", null) { //$NON-NLS-1$
-
+			
+			final String diagramLabel = LabelInternationalization.getInstance().getDiagramLabelWithoutName(diag);
+			if(null != diagramLabel && LabelInternationalizationPreferencesUtils.getInternationalizationPreference(diag)){
+				AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "ChangeDiagramLabelCommand", null) { //$NON-NLS-1$
+					
+					/**
+					 *
+					 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+					 *
+					 * @param monitor
+					 * @param info
+					 * @return
+					 * @throws ExecutionException
+					 */
 					@Override
-					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-						InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameDiagramHandler_RenameAnExistingDiagram, Messages.RenameDiagramHandler_NewName, currentName, null);
-						if (dialog.open() == Window.OK) {
-							final String name = dialog.getValue();
-							if (name != null && name.length() > 0) {
-								diag.setName(name);
+					protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+						InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename diagram label...", "New label:", diagramLabel, null); //$NON-NLS-1$ //$NON-NLS-2$
+						if (Window.OK == dialog.open()) {
+							final String label = dialog.getValue();
+							if (label != null && label.length() > 0) {
+								LabelInternationalization.getInstance().setDiagramLabel(diag, label, null);
 							}
 							return CommandResult.newOKCommandResult();
 						} else {
@@ -71,6 +83,28 @@ public class RenameDiagramHandler extends AbstractDiagramCommandHandler {
 					}
 				};
 				return new GMFtoEMFCommandWrapper(cmd);
+			}else{
+				final String currentName = diag.getName();
+				if (currentName != null) {
+	
+					AbstractTransactionalCommand cmd = new AbstractTransactionalCommand(editingDomain, "RenameDiagramCommand", null) { //$NON-NLS-1$
+	
+						@Override
+						protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+							InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.RenameDiagramHandler_RenameAnExistingDiagram, Messages.RenameDiagramHandler_NewName, currentName, null);
+							if (dialog.open() == Window.OK) {
+								final String name = dialog.getValue();
+								if (name != null && name.length() > 0) {
+									diag.setName(name);
+								}
+								return CommandResult.newOKCommandResult();
+							} else {
+								return CommandResult.newCancelledCommandResult();
+							}
+						}
+					};
+					return new GMFtoEMFCommandWrapper(cmd);
+				}
 			}
 		}
 		return UnexecutableCommand.INSTANCE;

@@ -8,10 +8,15 @@
  *
  * Contributors:
  *  Tristan Faure (Atos Origin Integration) tristan.faure@atosorigin.com - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.onefile.model.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Locale;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -19,6 +24,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.infra.internationalization.utils.PropertiesFilesUtils;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.onefile.utils.OneFileUtils;
 
@@ -44,12 +51,39 @@ public class PapyrusFile implements IPapyrusFile {
 	public IResource[] getAssociatedResources() {
 		ArrayList<IResource> files = new ArrayList<IResource>();
 		try {
-			for (IResource res : file.getParent().members()) {
-				if (res instanceof IFile && OneFileUtils.withoutFileExtension(file).equals(OneFileUtils.withoutFileExtension(res))) {
-					files.add(res);
+			for (final IResource res : file.getParent().members()) {
+				if (res instanceof IFile){
+					final String resourceWithoutExtension = OneFileUtils.withoutFileExtension(res);
+					final String fileWithoutExtension = OneFileUtils.withoutFileExtension(file);
+					if(fileWithoutExtension.equals(resourceWithoutExtension)) {
+						files.add(res);
+					}else if(res.getFileExtension().equals(PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION) && resourceWithoutExtension.startsWith(fileWithoutExtension)){
+						String possibleLocale = resourceWithoutExtension.substring(fileWithoutExtension.length());
+						if(possibleLocale.startsWith("_")){ //$NON-NLS-1$
+							possibleLocale = possibleLocale.substring(1);
+							Locale localeFound = null;
+
+							// Check about possible locale in available locales
+							final Iterator<Locale> availableLocales = Arrays.asList(Locale.getAvailableLocales())
+									.iterator();
+							while (availableLocales.hasNext() && null == localeFound) {
+								final Locale currentAvailableLocale = availableLocales.next();
+
+								if (currentAvailableLocale.toString().equals(possibleLocale)) {
+									localeFound = currentAvailableLocale;
+								}
+							}
+
+							// The file contains a locale, load it
+							if (null != localeFound) {
+								files.add(res);
+							}
+						}
+					}
 				}
 			}
-		} catch (CoreException e) {
+		} catch (final CoreException e) {
+			Activator.log.error("The file members cannot be found", e); //$NON-NLS-1$
 		}
 		return files.toArray(new IResource[] {});
 	}

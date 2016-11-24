@@ -8,12 +8,15 @@
  *
  * Contributors:
  *  Tristan Faure (Atos Origin Integration) tristan.faure@atosorigin.com - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.onefile.model.impl;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.infra.internationalization.utils.PropertiesFilesUtils;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.onefile.model.ISubResourceFile;
 
@@ -41,8 +44,18 @@ public class SubResourceFile implements ISubResourceFile {
 
 	@Override
 	public String toString() {
+		String result = subResource.getName();
 		String fileExtension = subResource.getFileExtension();
-		return fileExtension != null ? fileExtension : subResource.getName();
+		if(null != fileExtension){
+			result = fileExtension;
+			if(fileExtension.equals(PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION)){
+				final String resourceWithoutExtension = subResource.getName().substring(0, subResource.getName().lastIndexOf('.')); //$NON-NLS-1$
+				if(!resourceWithoutExtension.equals(parent.getText())){
+					result = subResource.getName().substring(parent.getText().length());
+				}
+			}
+		}
+		return result;
 	}
 
 	public IFile getFile() {

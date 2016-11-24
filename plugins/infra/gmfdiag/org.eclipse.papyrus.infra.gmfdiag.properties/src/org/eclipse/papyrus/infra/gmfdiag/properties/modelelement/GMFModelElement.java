@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 454891
  *  Christian W. Damus - bug 485220
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.properties.modelelement;
@@ -34,9 +35,11 @@ import org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableList;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.gmfdiag.properties.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.DiagramLabelObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.GradientObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.properties.provider.ModelContentProvider;
 import org.eclipse.papyrus.infra.gmfdiag.properties.util.LegacyOwnerObservable;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.InternationalizationConstants;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
@@ -81,15 +84,23 @@ public class GMFModelElement extends EMFModelElement {
 
 	@Override
 	protected boolean isFeatureEditable(String propertyPath) {
-		if (propertyPath.endsWith("owner")) {
-			return true;
+		boolean result = true;
+		if(InternationalizationConstants.LABEL_PROPERTY_PATH.equals(propertyPath)){ //$NON-NLS-1$
+			result = true;
+		}else if (propertyPath.endsWith("owner")) { //$NON-NLS-1$
+			result = true;
+		}else{
+			result = super.isFeatureEditable(propertyPath);
 		}
-		return super.isFeatureEditable(propertyPath);
+		return result;
 	}
 
 	@Override
 	protected IObservable doGetObservable(String propertyPath) {
-		if (propertyPath.endsWith("owner")) {
+		if(InternationalizationConstants.LABEL_PROPERTY_PATH.equals(propertyPath)){ //$NON-NLS-1$
+			Diagram diagram = (Diagram) source;
+			return new DiagramLabelObservableValue(diagram, getDomain());
+		}else if (propertyPath.endsWith("owner")) {
 			Diagram diagram = (Diagram) source;
 			Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
 			if (style != null) {
@@ -198,7 +209,7 @@ public class GMFModelElement extends EMFModelElement {
 		}
 		return super.getContentProvider(propertyPath);
 	}
-
+	
 	/**
 	 * Gets the root EObject from the given one
 	 *

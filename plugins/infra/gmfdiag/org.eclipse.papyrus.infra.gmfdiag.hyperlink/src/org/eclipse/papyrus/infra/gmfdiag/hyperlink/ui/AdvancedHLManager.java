@@ -12,6 +12,8 @@
  *  Arthur Daussy (Atos) arthur.daussy@atos.net - Bug 363827 - [Improvement] Diagram creation, remember the latest tab chosen
  *  Vincent Lorenzo (CEA-LIST) Vincent.lorenzo@cea.fr (refactoring of the hyperlink)
  *  Christian W. Damus - bug 488965
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui;
 
@@ -30,6 +32,7 @@ import org.eclipse.papyrus.infra.gmfdiag.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
 import org.eclipse.papyrus.infra.hyperlink.ui.AbstractHyperLinkTab;
 import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
 import org.eclipse.swt.widgets.Shell;
 
@@ -81,7 +84,7 @@ public class AdvancedHLManager extends HyperLinkManagerShell {
 			HyperLinkEditor hyperLinkEditor = new HyperLinkEditor();
 			hyperLinkEditor.setObject(diagrams.get(i));
 			hyperLinkEditor.setIsDefault(true);
-			hyperLinkEditor.setTooltipText(diagrams.get(i).getName());
+			hyperLinkEditor.setTooltipText(LabelInternationalization.getInstance().getDiagramLabel(diagrams.get(i)));
 			hyperLinkDiagrams.add(hyperLinkEditor);
 		}
 		return hyperLinkDiagrams;

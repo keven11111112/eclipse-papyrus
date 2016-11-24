@@ -13,6 +13,7 @@
  *      Gregoire Dupe (Mia-Software) - Bug 375087 - [Table] ITableWidget.addColumn(List<ETypedElement>, List<FacetSet>)
  *      Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  *      Christian W. Damus (CEA) - bug 410346
+ *      Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  */
 package org.eclipse.papyrus.emf.facet.custom.ui.internal.query;
 
@@ -30,6 +31,7 @@ import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementEx
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.emf.facet.util.emf.core.ModelUtils;
+import org.eclipse.papyrus.infra.internationalization.edit.provider.InternationalizationNotationItemProviderAdapterFactory;
 
 public class LabelQuery implements IJavaQuery2<EObject, String> {
 
@@ -48,6 +50,7 @@ public class LabelQuery implements IJavaQuery2<EObject, String> {
 		if (sfParam == null) {
 			final ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
 					ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+			adapterFactory.insertAdapterFactory(new InternationalizationNotationItemProviderAdapterFactory());
 
 			try {
 				final IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory.adapt(source, IItemLabelProvider.class);

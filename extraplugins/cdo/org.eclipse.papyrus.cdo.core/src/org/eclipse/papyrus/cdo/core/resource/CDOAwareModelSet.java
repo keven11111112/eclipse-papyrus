@@ -13,6 +13,7 @@
  *   Christian W. Damus (CEA) - bug 437052
  *   Christian W. Damus - bug 436998
  *   Eike Stepper (CEA) - bug 466520
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.resource;
@@ -386,7 +387,7 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 	}
 
 	@Override
-	protected boolean deleteResource(URI uri) {
+	public boolean deleteResource(URI uri) {
 		Resource res = getResource(uri, false);
 		boolean result = res instanceof CDOResource;
 

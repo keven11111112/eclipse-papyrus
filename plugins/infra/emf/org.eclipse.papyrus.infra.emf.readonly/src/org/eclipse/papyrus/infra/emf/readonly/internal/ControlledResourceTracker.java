@@ -9,6 +9,7 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bugs 463631, 485220
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  */
 package org.eclipse.papyrus.infra.emf.readonly.internal;
@@ -31,6 +32,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomainEvent;
 import org.eclipse.emf.transaction.TransactionalEditingDomainListener;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.pde.internal.ui.util.LocaleUtil;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Iterables;
@@ -45,6 +47,7 @@ import com.google.common.collect.Sets;
  * is necessary to ensure that the ephemeral states during controlling and uncontrolling a sub-model don't fool the editing domain into thinking
  * we're making changes to a read-only resource, triggering roll-back.
  */
+@SuppressWarnings("restriction")
 public class ControlledResourceTracker extends AdapterImpl implements TransactionalEditingDomainListener {
 
 	// A resource may be a sub-unit of multiple parent units (it can have multiple roots that are
@@ -108,9 +111,40 @@ public class ControlledResourceTracker extends AdapterImpl implements Transactio
 
 		for (URI next = units.poll(); next != null; next = units.poll()) {
 			if (isRoot(next)) {
-				result.add(next);
+				result.add(getFinalURI(uri, next));
 			} else {
 				Iterables.addAll(units, get(next));
+			}
+		}
+
+		return result;
+	}
+	
+	/**
+	 * Get the URI modified if necessary (for example, the properties file can have a locale at the end of the file).
+	 * 
+	 * @param uri
+	 *            The URI of a resource that potentially is in a sub-model unit.
+	 * @param initialURI
+	 *            The initial URI of the sub model unit.
+	 * @return The modified URI (or not modified if don't needed).
+	 */
+	private URI getFinalURI(final URI uri, final URI initialURI) {
+		URI result = initialURI;
+
+		// If this is a properties file, check if a locale is available at the end of the URI
+		if (uri.fileExtension().equals("properties")) { //$NON-NLS-1$
+			// Get the last segment
+			final String lastSegment = initialURI.lastSegment();
+			// Try to remove existing localization
+			final String withoutLocalization = LocaleUtil.trimLocalization(lastSegment);
+
+			// If the initial last segment and the segment without localization are not equals, localization exist
+			if (!lastSegment.equals(withoutLocalization)) {
+				// Remove the last segment
+				result = initialURI.trimSegments(1);
+				// Add the modified last segment
+				result = result.appendSegment(withoutLocalization);
 			}
 		}
 

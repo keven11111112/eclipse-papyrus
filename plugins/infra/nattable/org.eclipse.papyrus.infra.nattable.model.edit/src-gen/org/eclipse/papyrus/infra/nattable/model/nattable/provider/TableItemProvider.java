@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationFactory;
@@ -273,11 +274,11 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Table)object).getName();
+		String label = LabelInternationalization.getInstance().getTableLabel((Table)object);
 		return label == null || label.length() == 0 ?
 			getString("_UI_Table_type") : //$NON-NLS-1$
 			getString("_UI_Table_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$

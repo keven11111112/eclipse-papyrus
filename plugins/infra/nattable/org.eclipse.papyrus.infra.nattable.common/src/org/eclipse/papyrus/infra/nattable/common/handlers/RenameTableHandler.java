@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.handlers;
@@ -22,6 +23,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
@@ -77,21 +80,31 @@ public class RenameTableHandler extends AbstractHandler {
 			return;
 		}
 
-		// Open the dialog to ask the new name
-		String currentName = tableManager.getTableName();
-		String newName = null;
-		InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), RENAME_AN_EXISTING_TABLE, NEW_TABLE_NAME, currentName, null);
-		if (dialog.open() == Window.OK) {
-			newName = dialog.getValue();
-			if (newName == null || newName.length() <= 0) {
+		final String tableLabel = LabelInternationalization.getInstance().getTableLabelWithoutName(tableManager.getTable());
+		if(null != tableLabel && LabelInternationalizationPreferencesUtils.getInternationalizationPreference(tableManager.getTable())){
+			InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename table label", "New label:", tableLabel, null); //$NON-NLS-1$ //$NON-NLS-2$
+			if (Window.OK == dialog.open()) {
+				final String label = dialog.getValue();
+				
+				tableManager.setTableLabel(label);
+			}
+		}else{
+			// Open the dialog to ask the new name
+			String currentName = tableManager.getTableName();
+			String newName = null;
+			InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), RENAME_AN_EXISTING_TABLE, NEW_TABLE_NAME, currentName, null);
+			if (dialog.open() == Window.OK) {
+				newName = dialog.getValue();
+				if (newName == null || newName.length() <= 0) {
+					return;
+				}
+			} else {
+				// cancelled
 				return;
 			}
-		} else {
-			// cancelled
-			return;
+	
+			tableManager.setTableName(newName);
 		}
-
-		tableManager.setTableName(newName);
 	}
 
 	/**

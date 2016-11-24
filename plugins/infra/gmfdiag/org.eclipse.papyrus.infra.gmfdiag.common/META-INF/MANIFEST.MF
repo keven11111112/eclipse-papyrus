@@ -68,7 +68,8 @@ Require-Bundle: org.eclipse.emf.ecore.edit;bundle-version="[2.9.0,3.0.0)",
  org.eclipse.papyrus.infra.services.edit.ui;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.emf.gmf,
  org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.infra.core;bundle-version="[2.2.0,3.0.0)"
+ org.eclipse.papyrus.infra.core;bundle-version="[2.2.0,3.0.0)",
+ org.eclipse.papyrus.infra.internationalization.utils;bundle-version="[1.0.0,2.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
