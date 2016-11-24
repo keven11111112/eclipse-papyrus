@@ -16,6 +16,7 @@ package org.eclipse.papyrus.junit.utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Locale;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -24,6 +25,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.internationalization.utils.PropertiesFilesUtils;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.junit.Assert;
 import org.osgi.framework.Bundle;
@@ -53,6 +55,15 @@ public class PapyrusProjectUtils {
 		final IFile emptyModel_di = copyIFile(diSourcePath, bundle, project, fileRootName + "." + DiModel.MODEL_FILE_EXTENSION);
 		copyIFile(notationSourcePath, bundle, project, fileRootName + "." + NotationModel.NOTATION_FILE_EXTENSION);
 		copyIFile(umlSourcePath, bundle, project, fileRootName + "." + UmlModel.UML_FILE_EXTENSION);
+		
+		// Load existing properties files
+		for(final Locale locale : Locale.getAvailableLocales()){
+			String propertiesSourcePath = sourcePath + fileRootName + "_" + locale.toString() + "." + PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION;
+			final URL bundleResource = bundle.getResource(propertiesSourcePath);
+			if(null != bundleResource){
+				copyIFile(propertiesSourcePath, bundle, project, fileRootName + "_" + locale.toString() + "." + PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION);
+			}
+		}
 
 		return emptyModel_di;
 	}

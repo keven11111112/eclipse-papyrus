@@ -81,7 +81,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.services.semantic.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.uml.service.types.ui.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.eclipse.project.editors.tests;bundle-version="2.0.0",
- org.eclipse.papyrus.infra.emf.gmf.tests;bundle-version="1.2.1"
+ org.eclipse.papyrus.infra.emf.gmf.tests;bundle-version="1.2.1",
+ org.eclipse.papyrus.infra.internationalization.tests;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.internationalization.tests;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.internationalization.controlmode.tests;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.100.qualifier

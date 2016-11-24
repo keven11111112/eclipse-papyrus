@@ -53,6 +53,7 @@
 		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.welcome.tests</module>
 		<module>../../tests/junit/plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.tests</module>
 		<module>../../tests/junit/plugins/infra/nattable</module>
+		<module>../../tests/junit/plugins/infra/internationalization</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.edit.tests</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.edit.ui.tests</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.labelprovider.tests</module>
@@ -68,6 +69,7 @@
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.dynamic.profile.tests</module>
 		<module>../../tests/junit/plugins/uml/modelexplorer/org.eclipse.papyrus.uml.modelexplorer.tests</module>
 		<module>../../tests/junit/plugins/uml/nattable</module>
+		<module>../../tests/junit/plugins/uml/internationalization</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.search.tests</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.filters.tests</module>
 		<module>../../tests/junit/plugins/uml/org.eclipse.papyrus.uml.modelrepair.tests</module>
